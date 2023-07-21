@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -74,9 +78,9 @@ It should produce a response like the one below:
 
 </details>
 
-### With a search parameter
+### With a search operator
 
-Conditional filters can be combined with a search parameter such as `nearXXX`, `hybrid` or `bm25`.
+Conditional filters can be combined with a search operator such as `nearXXX`, `hybrid` or `bm25`.
 
 The following example adds a `points` filter to a `nearText` query, where the `points` property must be greater than 200. Note that the `valueInt` is used as the property datatype is `int`.
 
@@ -277,7 +281,7 @@ You can filter objects using properties from a cross-referenced object.
 
 The following example filters `JeopardyQuestion` objects using properties of `JeopardyCategory` that they are cross-referencing.
 
-More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`. 
+More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
 
 :::note Case-sensitivity
 The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).

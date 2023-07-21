@@ -65,26 +65,6 @@ services:
 
 The `reranker-transformers` module can be configured for any class in the schema.
 
-<!-- TODO: does `reranker-transformers` also have a returnDocuments flag? -->
-
-<!-- This example configures the `Document` class to use the `reranker-transformers` module, with the `cross-encoder/ms-marco-MiniLM-L-6-v2` model, and to return the documents in the response.
-
-```json
-{
-  "classes": [
-    {
-      "class": "Document",
-      ...,
-      "moduleConfig": {
-        "reranker-transformers": {
-            "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
-        },
-      }
-    }
-  ]
-}
-``` -->
-
 
 ### Reranker selection
 

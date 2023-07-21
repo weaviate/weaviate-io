@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Aggregate{}
-sidebar_position: 2
+sidebar_position: 15
 image: og/docs/api.jpg
 # tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
 ---
@@ -240,7 +240,7 @@ You can combine a vector search (e.g. `nearObject`, `nearVector`, `nearText`, `n
 
 Vector searches are different from keyword-based searches in the sense that they do not filter the result set, they just return the objects in a different order. Imagine having 1,000 objects and a vector search for `"apple iphone"`. If there was no explicit limit, every single object in the database would be a potential match. Some matches would have a very high score (certainty), and the last matches would most likely have a very low score. But nevertheless all 1,000 objects could potentially be scored. The value in this search is in the order. If we only look at the top 10 results, they will be very closely related to the query vector. Similarly, the last 10 objects on the list would be very unrelated. However, the order is not visible within an aggregation.
 
-As a result, whenever the goal is to aggregate vector search results, there needs to be something that limits the search space. Otherwise the Aggregation results (over all matches) will look exactly like an Aggregation without any additional `near<Media>` parameter.
+As a result, whenever the goal is to aggregate vector search results, there needs to be something that limits the search space. Otherwise the Aggregation results (over all matches) will look exactly like an Aggregation without any additional `near<Media>` operator.
 
 You can achieve such a restriction of the search space in two different ways:
 

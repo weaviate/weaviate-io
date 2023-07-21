@@ -20,7 +20,7 @@ client = weaviate.Client(
 # ===== QUERY WITH nearText =====
 # ===============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
 # GetNearTextPython
 response = (
@@ -105,7 +105,7 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH nearObject =====
 # =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 
 # GetNearObjectPython
 response = (
@@ -162,7 +162,7 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH nearVector =====
 # =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearvector
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearvector
 
 # GetNearVectorPython
 response = (
@@ -579,7 +579,7 @@ assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["gro
 # ===== QUERY WITH WHERE =====
 # ============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
 # GetWithWherePython
 response = (

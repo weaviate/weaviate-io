@@ -26,7 +26,7 @@ This section includes references for the RESTful and GraphQL APIs. RESTful API e
 - [Aggregate{}](./graphql/aggregate.md)
 - [Explore{}](./graphql/explore.md)
 - [Filters](./graphql/filters.md)
-- [Vector search parameters](./graphql/vector-search-parameters.md)
+- [Search operators](./graphql/search-operators.md)
 - [Additional properties](./graphql/additional-properties.md)
 
 ### References - RESTful API

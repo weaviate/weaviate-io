@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -244,7 +248,7 @@ For example, to list all distinct values of a property, and the counts for each:
 
 ## With `nearXXX`
 
-When using a [similarity search](./similarity.md) parameter (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
+When using a [similarity search](./similarity.md) operator (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
 
 Thus, for the vector search to affect the `Aggregate` output, you **must** set a limit on:
 - The number of results returned (with `limit`), or

@@ -58,7 +58,7 @@ import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.nearte
 
 This might also look familiar, as it was used in the [Quickstart tutorial](../quickstart/index.md). But let's break it down a little.
 
-Here, we are using a `nearText` parameter. What we are doing is to provide Weaviate with a query `concept` of `biology`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
+Here, we are using a `nearText` operator. What we are doing is to provide Weaviate with a query `concept` of `biology`. Weaviate then converts this into a vector through the inference API (OpenAI in this particular example) and uses that vector as the basis for a vector search.
 
 Also note here that we pass the API key in the header. This is required as the inference API is used to vectorize the input query.
 
@@ -68,9 +68,9 @@ If you run this query, you should see the entries on *"DNA"* and *"species"* ret
 
 ### `Get` with `nearVector`
 
-In some cases, you might wish to input a vector directly as a search query. For example, you might be running Weaviate with a custom, external vectorizer. In such a case, you can use the `nearVector` parameter to provide the query vector to Weaviate.
+In some cases, you might wish to input a vector directly as a search query. For example, you might be running Weaviate with a custom, external vectorizer. In such a case, you can use the `nearVector` operator to provide the query vector to Weaviate.
 
-For example, here is an example Python code obtaining an OpenAI embedding manually and providing it through the `nearVector` parameter:
+For example, here is an example Python code obtaining an OpenAI embedding manually and providing it through the `nearVector` operator:
 
 ```python
 import openai
@@ -270,7 +270,7 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 
 * `Get` queries are used for retrieving data objects.
 * `Aggregate` queries can be used to retrieve metadata, or aggregated data.
-* Parameters such as `nearText` or `nearVector` can be used for vector queries.
+* Operators such as `nearText` or `nearVector` can be used for vector queries.
 * Scalar filters can be used for exact filtering, taking advantage of inverted indexes.
 * Vector and scalar filters can be combined, and are available on both `Get` and `Aggregate` queries
 

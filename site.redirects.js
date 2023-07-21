@@ -332,6 +332,12 @@ const siteRedirects = {
             from: '/developers/weaviate/tutorials/console',
         },
 
+        // References: API / GraphQL redirects
+        {
+            to:   '/developers/weaviate/api/graphql/search-operators',
+            from: '/developers/weaviate/api/graphql/vector-search-parameters',
+        },
+
         // old link redirects
         {
             to: '/developers/weaviate/installation',

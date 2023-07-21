@@ -64,7 +64,7 @@ configuration with your setup.
 
 Out of the box, the configuration file is setup for:
 
-- 1 Weaviate replica. (This cannot be changed at the moment, [see below](#limitations))
+- 1 Weaviate replica.
 - The `text2vec-contextionary` module is enabled and running with 1 replica.
   (This can be adjusted based on the expected load).
 - Other modules, such as `text2vec-transformers`, `qna-transformers` or

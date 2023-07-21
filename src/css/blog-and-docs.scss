@@ -52,8 +52,17 @@
     font-weight: 700;
     color: var(--docs-header-color);
   };
+  h1, h2 {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+  h3 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
   h4 {
-    font-size: 1.2rem;
+    padding-top: 15px;
+    font-size: 1.3rem;
     font-weight: 700;
   };
   // .theme-doc-sidebar-container, .navbar {

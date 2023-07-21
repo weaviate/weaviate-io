@@ -153,7 +153,7 @@ Set property-level vectorizer behavior using the `moduleConfig` section under ea
 
 ## Usage
 
-Enabling this module will make [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext) available.
+Enabling this module will make [GraphQL vector search operators](/developers/weaviate/api/graphql/search-operators.md#neartext) available.
 
 ### Provide the API key
 

@@ -17,12 +17,12 @@ With the `text2vec-transformers` module, you can use one of any number of pretra
 The models are encapsulated in Docker containers. This allows for efficient scaling and resource planning. To choose your specific model, select the correct Docker container. There is a selection of pre-built Docker images available, but you can also build your own with a simple two-line Dockerfile. This separate-container microservice setup allows you to very easily host (and scale) the model independently on GPU-enabled hardware while keeping Weaviate on cheap CPU-only hardware, as  Weaviate is CPU-optimized.
 
 :::tip Significant GPU/CPU speed differences
-Transformer architecture models run *much* faster with GPUs, even for inference (10x+ speeds typically). 
+Transformer architecture models run *much* faster with GPUs, even for inference (10x+ speeds typically).
 
 Without a GPU, import or `nearText` queries may become bottlenecks in production if using `text2vec-transformers`.
 
 If this is the case, we recommend:
-- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or 
+- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or
 - The [`text2vec-contextionary`](./text2vec-contextionary.md) module if you prefer a local inference container.
 :::
 
@@ -251,7 +251,7 @@ For example:
 
 ## How to use
 
-* New GraphQL vector search parameters made available by this module can be found [here](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+* New search operators made available by this module can be found [here](/developers/weaviate/api/graphql/search-operators.md#neartext).
 
 ### Example
 

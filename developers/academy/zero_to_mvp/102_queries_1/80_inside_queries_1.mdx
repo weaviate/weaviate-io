@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player/lazy'
 
 In this unit, we have looked at various ways to construct a vector search.
 
-We started by learning how to use `Get` and `Aggregate` vector search functions, adding vector search parameters such as `nearVector`, `nearObject` and `nearText`, before wrapping up with various filters such as `where`, `limit` and `offset`.
+We started by learning how to use `Get` and `Aggregate` vector search functions, adding search operators such as `nearVector`, `nearObject` and `nearText`, before wrapping up with various filters such as `where`, `limit` and `offset`.
 
 Now let's stop to take a look at how these searches are actually performed, starting with the vector search process.
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;The vector search process
@@ -22,15 +22,15 @@ As the name suggests, vector search relies on vectors to perform its operations.
 
 The input vector is then compared to the stored vectors in Weaviate to return the most relevant objects.
 
-For queries using the `nearVector` parameter, Weaviate simply takes the provided vector and performs the vector search.
+For queries using the `nearVector` operator, Weaviate simply takes the provided vector and performs the vector search.
 
 For queries such as `nearObject` and `nearText` where the vector is not directly provided, Weaviate obtains the vector using a suitable method.
 
 #### `nearObject`
 
-If the `nearObject` parameter is used, Weaviate retrieves the associated vector for the object, which becomes the input vector.
+If the `nearObject` operator is used, Weaviate retrieves the associated vector for the object, which becomes the input vector.
 
-Let's confirm this by performing a vector search using the `nearObject` parameter, and replicating it with an equivalent `nearVector` parameter.
+Let's confirm this by performing a vector search using the `nearObject` operator, and replicating it with an equivalent `nearVector` operator.
 
 Here is the `nearObject` query:
 
@@ -94,7 +94,7 @@ When you run the second (`nearVector`) query, you will see that not only are the
 
 #### `nearText`
 
-If the `nearText` parameter is used, Weaviate converts the input text to a vector to use as the input. The specific method would depend on the `vectorizer` applicable to the relevant class. Depending on the setting, Weaviate may use the `text2vec-openai` module or the `text2vec-transformers` module to do this.
+If the `nearText` operator is used, Weaviate converts the input text to a vector to use as the input. The specific method would depend on the `vectorizer` applicable to the relevant class. Depending on the setting, Weaviate may use the `text2vec-openai` module or the `text2vec-transformers` module to do this.
 
 :::info Vectorizer setting
 We will cover how to set the vectoriser in the next section.
@@ -170,7 +170,7 @@ This, combined with efficient filtering methods, allows Weaviate to easily retur
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Conceptual diagram (filtering + vector search)
 
-The below conceptual diagram shows how the vector search process works. When an input is provided containing filters and vector search parameters, Weaviate first performs a pre-filtering step to obtain an "allow list" of objects.
+The below conceptual diagram shows how the vector search process works. When an input is provided containing filters and search operators, Weaviate first performs a pre-filtering step to obtain an "allow list" of objects.
 
 The input is used to determine an input vector, which may involve an additional step, such as retrieving the object's vector with `nearObject` or vectorizing the input text with `nearText`. The input vector is then compared to perform a vector search, returning the most relevant objects from the allow list.
 
@@ -187,7 +187,7 @@ import SearchConceptualImg from './images/search-conceptual-dark.png';
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
-- nearObject parameter retrieves the associated vector for an object, while nearText converts input text to a vector based on a specified vectorizer.
+- nearObject operator retrieves the associated vector for an object, while nearText converts input text to a vector based on a specified vectorizer.
 - You have seen how to create equivalent `nearVector` queries to `nearObject` or `nearText` queries.
 - Weaviate uses "pre-filtering", meaning that filters are applied on the entire database prior to performing vector search.
 
