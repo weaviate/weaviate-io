@@ -36,6 +36,8 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn.lock
+.yarnrc.yml
+.yarn/**
 
 .python-version
 __pycache__
