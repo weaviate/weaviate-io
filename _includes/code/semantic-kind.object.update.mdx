@@ -51,7 +51,7 @@ client.data
     .do()
     .then(res => {
         // alter the schema
-        const schema = res.schema;
+        const schema = res.properties;
         schema.name = 'J. Kantor';
         return client.data
             .updater()

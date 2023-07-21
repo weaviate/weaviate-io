@@ -42,7 +42,7 @@ client.graphql
       .withClassName('Article')
       .withFields('title')
       .withWhere({
-        operator: 'Greater',
+        operator: 'GreaterThan',
         path: ['_creationTimeUnix'],
         // valueDate: '2022-03-18T20:26:34.586-05:00',  // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
         valueText: '1647653359063',
