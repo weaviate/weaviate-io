@@ -16,9 +16,7 @@ For reasons that we'll discuss soon, chunking is a very common and important pre
 
 There are many potential reasons for chunking data, but for vector databases and LLMs, there are important, but different reasons for doing so.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector search
-
-#### Information retrieval
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Information retrieval
 
 For vector databases or vector search, chunking is a crucial step to define the quantum, or unit of information, that is being cataloged by the vector database.
 
@@ -26,34 +24,40 @@ For vector databases or vector search, chunking is a crucial step to define the 
 Add conceptual figure showing big/small chunks
 :::
 
+#### Chunks too small
+
 If chunks are too small, each text object may not contain enough information or context for meaningful search to be performed.
 
-:::tip Consider...
 Imagine a book that is chunked into individual words and vectorized.
-<br/>
 
 These vectors would be likely too granular to provide any kind of meaningful, contextual results in a search. (Unless you were using it as a thesaurus!)
+
+:::warning TODO
+ADD FIGURES OF SMALL CARDS SHOWING WORD-SIZED CHUNKS
 :::
+
+#### Chunks too large
 
 On the other hand, if chunks are too large, each chunk could not be meaningfully represented by a vector embedding.
 
-:::tip Consider...
 Imagine a book that is saved as one "chunk", or even chapters. Is this a good idea?
-<br/>
 
 Such an arrangement would not be suitable if what you were after was discovery of relevant snippets, or sections. But it may be, if you are looking to find the right chapter, or section, in - say - a library of books.
+
+:::warning TODO
+ADD FIGURES OF SMALL CARDS SHOWING WORD-SIZED CHUNKS
 :::
 
 Look at it this way - a vector embedding is a representation of the underlying object's "meaning". And a vector database catalogs those meanings so that they can be searched.
 
 Accordingly, each chunk needs to be an appropriate size that the captured meaning reflects the kind of search to be performed.
 
-#### Vectorization / token limit
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vectorization token limit
 
 Another reason for chunking is for vectorization. Depending on the model used for vectorization, the maximum input length may exceed the length of the text. This is especially true for modern models, as their transformer-based architecture can lead to high resource requirements (and thus shorter maximum lengths).
 
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Generative search
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Context window limit
 
 Chunking is also often necessary for using large language models to ensure that the input does not exceed the maximum allowable input length, typically called the "context window".
 
