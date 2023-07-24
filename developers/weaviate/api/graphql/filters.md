@@ -79,6 +79,11 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `Like`
   - `WithinGeoRange`
   - `IsNull`
+  
+  :::info
+  These operators are case sensitive. The query will error if the operators are not capitalized as above.
+  :::
+
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
 - `Path`: Is a list of strings in [XPath](https://en.wikipedia.org/wiki/XPath#Abbreviated_syntax) style, indicating the property name of the class.
   If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings. For a schema structure like:
