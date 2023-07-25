@@ -2,10 +2,10 @@
 title: Discover Healthsearch Unlocking Health with Semantic Search ✨
 slug: healthsearch-demo
 authors: edward
-date: 2023-07-21
+date: 2023-07-26
 image: ./img/hero.png
 tags: ['concepts','engineering','how-to']
-description: "Learn about our latest open-source demo and how we used Semantic and Generative Search to improve access to health"
+description: "Learn about our latest open source demo and how we used Semantic and Generative Search to improve access to health"
 
 ---
 
@@ -15,7 +15,8 @@ description: "Learn about our latest open-source demo and how we used Semantic a
 
 ## 🛠️ Bridging semantic and generative search!
 
-Do you know this too? You google your symptoms and after digging into the first few search results, there is no doubt, at least for you, that you're going to die from a terrible disease in just a matter of hours. Quick note, it's almost never the case. The phenomenon is called Dr. Google, and to save you the stress, we want to help you explore what others have found that may have helped them.
+Isn’t it annoying when you just want to find a remedy for your headache and instead find out that you have a horrible disease?
+You google your symptoms and after digging into the first few search results, there is no doubt, you're probably going to die from a terrible disease in just a matter of hours. Spoiler alert, it's almost never the case. The phenomenon is called Dr. Google, and to save you the stress, we want to help you explore what others have found that may have helped them for their conditions.
 
 Try out the [live demo here](https://healthsearch-frontend.onrender.com/)✨
 
@@ -32,13 +33,13 @@ The results shown in Healthsearch should not be taken as health advice or is it 
 :::
 </figure>
 
-Imagine being able to type in `I need to sleep better` and instantly get a list of related supplements where other users have written reviews claiming it has helped them sleep better. Or you're dealing with persistent joint pain and looking for a natural supplement to alleviate discomfort.
+Imagine you could type in `I need to sleep better` and instantly get a list of related supplements where other users have written reviews claiming it has helped them sleep better. Or you're dealing with persistent joint pain and looking for a natural supplement to alleviate discomfort.
 
-We are excited to release our latest open-source demo, Healthsearch. This demo decodes user-written reviews of supplements and performs semantic- and generative search on them, retrieving the most related products for specific health effects based on the reviews, and leveraging Large Language Models to generate product and review summaries. The demo can understand natural language queries and derive all search filters directly from the context of your query.
+We are excited to release our latest open source demo, Healthsearch. This demo decodes user-written reviews of supplements and performs semantic- and generative search on them, retrieving the most related products for specific health effects based on the reviews, and leveraging Large Language Models to generate product and review summaries. The demo can understand natural language queries and derive all search filters directly from the context of your query.
 
 In this blog post, I’ll give you a quick tour of the Healthsearch project and its amazing features. We will also go through the implementations and the challenges I faced while working on it.
 
-:::note We love open-source ❤️
+:::note We love open source ❤️
 We’re providing [all the source code on GitHub](https://github.com/weaviate/healthsearch-demo) for you to discover and use for your own projects.
 :::
 
@@ -118,7 +119,7 @@ We provide the model with examples of using Weaviate’s [nearText feature](http
 
 ### 🔮 Apply it to your own use-case!
 
-This feature is not restricted to health supplements and can be adapted to any other domain. Using other LLM providers and open-source alternatives is encouraged and something we want to try in the future! To get started, you are welcome to explore all the source code in our open-source repository to see how it is implemented line by line. Simply clone the project and read the documentation to set up the demo! (If you’re familiar with Docker, it’ll take just one command to setup everything 😈)
+This feature is not restricted to health supplements and can be adapted to any other domain. Using other LLM providers and open source alternatives is encouraged and something we want to try in the future! To get started, you are welcome to explore all the source code in our GitHub repository to see how it is implemented line by line. Simply clone the project and read the documentation to set up the demo! (If you’re familiar with Docker, it’ll take just one command to setup everything 😈)
 
 :::note Challenges
 1. **Accuracy**
@@ -359,7 +360,7 @@ This approach, which I call Semantic Caching, is advantageous as it enables us t
 
 ## 💚 Open Source is the way
 
-The repository for this project is entirely open-source, granting you access to every line of code, both front-end and back-end. We also offer an extract of our supplement dataset, enabling you to run the entire demo on your personal device. The demo can serve as a starting point and a template for displaying your own data.
+The repository for this project is entirely open-sourced, granting you access to every line of code, both front-end and back-end. We also offer an extract of our supplement dataset, enabling you to run the entire demo on your personal device. The demo can serve as a starting point and a template for displaying your own data.
 
 This blog post introduced you to Healthsearch, a cool demo that allows you to explore health supplements using natural language queries based on specific health effects. We looked at Semantic and Generative Search, translated search instructions to GraphQL, and used Weaviate as a `Semantic Cache`. I hope this blog post inspired you and that you find some of the presented features useful for your own projects!
 
