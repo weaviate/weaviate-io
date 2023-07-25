@@ -93,7 +93,8 @@ An example of a complete class object including properties:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+      "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+      "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
@@ -370,8 +371,8 @@ An example of a complete property object:
 
 ```json
 {
-    "name": "string",                     // The name of the property
-    "description": "string",              // A description for your reference
+    "name": "title",                     // The name of the property
+    "description": "title of the article",              // A description for your reference
     "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
       "text"
     ],
@@ -473,6 +474,17 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 
 </details>
 :::
+
+### Inverted indexing
+
+:::info `indexInverted` is deprecated
+The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards in lieu of `indexFilterable` and `indexSearchable`.
+:::
+
+The `indexFilterable` and `indexSearchable` parameters control whether a property is going to be indexed for filtering and searching, respectively.
+
+`indexFilterable` determines whether a property is to be indexed with a Roaring Bitmap index for fast filtering.
+`indexSearchable` determines whether a property is to be indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 
 ## Configure semantic indexing
 
