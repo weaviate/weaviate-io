@@ -20,41 +20,36 @@ client.data_object.reference.update(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .referenceReplacer()
-      .withClassName('SourceClass')
-      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-      .withReferenceProperty('wroteArticles')
-      .withReferences([
-        client.data
-          .referencePayloadBuilder()
-          .withClassName('TargetClass')
-          .withId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
-          .payload(),
-        client.data
-          .referencePayloadBuilder()
-          .withClassName('TargetClass')
-          .withId('b72912b9-e5d7-304e-a654-66dc63c55b32')
-          .payload(),
-      ])
-      .withConsistencyLevel('ALL')  // default QUORUM
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.data
+  .referenceReplacer()
+  .withClassName('SourceClass')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withReferenceProperty('wroteArticles')
+  .withReferences([
+    client.data
+      .referencePayloadBuilder()
+      .withClassName('TargetClass')
+      .withId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
+      .payload(),
+    client.data
+      .referencePayloadBuilder()
+      .withClassName('TargetClass')
+      .withId('b72912b9-e5d7-304e-a654-66dc63c55b32')
+      .payload(),
+  ])
+  .withConsistencyLevel('ALL')  // default QUORUM
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

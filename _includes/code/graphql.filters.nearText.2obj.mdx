@@ -29,17 +29,17 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary _additional { certainty }')
@@ -49,12 +49,11 @@ client.graphql
     moveTo: {
       // this ID is of the article: "Tohoku: A Japan destination for all seasons."
       objects: [{ id: 'c4209549-7981-3699-9648-61a78c2124b9' }],
-      force: 0.85
-    }
+      force: 0.85,
+    },
   })
-  .do()
-  .then(console.log)
-  .catch(console.error);
+  .do();
+console.log(response);
 ```
 
 </TabItem>

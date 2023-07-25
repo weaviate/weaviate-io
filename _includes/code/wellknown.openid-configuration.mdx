@@ -14,25 +14,20 @@ print(open_id_configuration)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.misc
-      .openidConfigurationGetter()
-      .do()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.misc
+  .openidConfigurationGetter()
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

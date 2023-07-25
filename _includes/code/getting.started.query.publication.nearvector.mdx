@@ -15,7 +15,7 @@ TBC
 import weaviate
 import json
 
-client = weaviate.Client('https://some-endpoint.semi.network')
+client = weaviate.Client('https://some-endpoint.weaviate.network')
 query_result = client.query.get(class_name='Publication', properties="name").with_near_vector({
     "vector": [-0.14, -0.06, -0.07],
     "certainty": 0.7
@@ -25,49 +25,45 @@ print(json.dumps(query_result, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-weaviate = require("weaviate-client");
+import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
-    scheme: "https",
-    host: "some-endpoint.semi.network"
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  apiKey: new ApiKey('learn-weaviate'),  // Replace with your Weaviate API key
 });
 
-client.graphql
-    .get()
-    .withClassName('Publication')
-    .withFields('name _additional {vector certainty}')
-    .withNearVector({"vector": [-0.14, -0.06, -0.07], "certainty": 0.7})
-    .do()
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => {
-        console.error(err)
-    });
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name _additional { vector certainty }')
+  .withNearVector({ vector: [-0.14, -0.06, -0.07], certainty: 0.7 })
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
 <TabItem value="go" label="Go">
 
 ```go
-TBC
+Coming soon
 ```
 
 </TabItem>
 <TabItem value="java" label="Java">
 
 ```java
-TBC
+Coming soon
 ```
 
 </TabItem>
 <TabItem value="curl" label="Curl">
 
 ```bash
-TBC
+Coming soon
 ```
 
 </TabItem>

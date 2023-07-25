@@ -20,10 +20,10 @@ print(valid_thing)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
@@ -31,21 +31,16 @@ const client = weaviate.client({
 });
 
 const schema = {
-  name: 'New York Times'
+  name: 'New York Times',
 };
 
-client.data
+const response = await client.data
   .validator()
   .withId('12345678-1234-1234-1234-123456789012')
   .withClassName('Publication')
   .withProperties(schema)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
+  .do();
+console.log(response);
 ```
 
 </TabItem>

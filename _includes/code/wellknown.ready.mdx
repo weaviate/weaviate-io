@@ -14,25 +14,20 @@ print(is_ready) # returns True if Weaviate is ready
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.misc
-      .readyChecker()
-      .do()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.misc
+  .readyChecker()
+  .do();
+console.log(response);
 ```
 
 </TabItem>

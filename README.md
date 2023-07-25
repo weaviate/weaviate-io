@@ -67,7 +67,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// ValidateObject START"
@@ -102,14 +102,14 @@ import TabItem from '@theme/TabItem';
     ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
     ```
-    const weaviate = require('weaviate-client');
+    import weaviate from 'weaviate-ts-client';
 
     const client = weaviate.client({
-    scheme: 'http',
-    host: 'localhost:8080',
+      scheme: 'http',
+      host: 'localhost:8080',
     });
     ```
 

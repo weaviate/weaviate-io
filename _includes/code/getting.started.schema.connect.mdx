@@ -17,35 +17,28 @@ print(json.dumps(schema))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
-// if you use the WCS
+// If you use the WCS
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+});
 
-// or
-
-// if you use Docker-compose
+// Or, if you use Docker compose
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client
+const response = await client
   .schema
   .getter()
-  .do()
-  .then(res => {
-    console.log(res);
-  })
-  .catch(err => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

@@ -65,55 +65,50 @@ with client.batch(callback=check_batch_result) as batch:
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',
-  });
+  scheme: 'http',
+  host: 'localhost:8080',
+});
 
-var toImport = [{
-  'id': '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
-  'class': 'Publication',
-  'properties': {
-      'name': 'The New York Times'
+const toImport = [{
+  id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
+  class: 'Publication',
+  properties: {
+    name: 'The New York Times',
   },
-  'vector': [
-      -0.0030892247,
-      0.17440806,
-      0.024489688
-  ]
+  vector: [
+    -0.0030892247,
+    0.17440806,
+    0.024489688,
+  ],
 }, {
-  'id': 'f564113e-11e2-11ed-861d-0242ac120002',
-  'class': 'Author',
-  'properties': {
-      'name': 'Paul Krugman',
-      'age': 69,
-      'born': '1953-02-28T00:00:00.0Z',
-      'wonNobelPrize': true,
-      'description': 'Paul Robin Krugman is an American economist [...] New Economic Geography.'
+  id: 'f564113e-11e2-11ed-861d-0242ac120002',
+  class: 'Author',
+  properties: {
+    name: 'Paul Krugman',
+    age: 69,
+    born: '1953-02-28T00:00:00.0Z',
+    wonNobelPrize: true,
+    description: 'Paul Robin Krugman is an American economist [...] New Economic Geography.',
   },
-  'vector': [
-      -0.16147631,
-      -0.065765485,
-      -0.06546908
-  ]
+  vector: [
+    -0.16147631,
+    -0.065765485,
+    -0.06546908,
+  ],
 }];
 
-client.batch
+const response = await client.batch
   .objectsBatcher()
   .withObject(toImport[0])
   .withObject(toImport[1])
-  .do()
-  .then(res => {
-      console.log(res)
-  })
-  .catch(err => {
-      console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
