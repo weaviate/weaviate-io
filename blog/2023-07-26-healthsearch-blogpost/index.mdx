@@ -13,6 +13,10 @@ description: "Learn about our latest open source demo and how we used Semantic a
 
 <!-- truncate -->
 
+import query from './img/query.mp4';
+import reviews from './img/reviews.mp4';
+import generative from './img/generative.mp4';
+
 ## 🛠️ Bridging semantic and generative search!
 
 Isn’t it annoying when you just want to find a remedy for your headache and instead find out that you have a horrible disease?
@@ -56,11 +60,10 @@ We use Large Language Models (LLM), like GPT4, to translate your everyday langua
 The exciting part is that we can extract information about filters, sorting, and limits directly from the context of your query. So, whether you're asking for the `top 10 products for glowing skin`, `products for sleep from a specific brand`, or `best-rated products for toothache`, our demo can interpret these queries and generate an appropriate GraphQL query in return.
 
 <figure>
-<img
-    src={require('./img/query.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
-/>
+<video width="100%" autoplay loop muted controls>
+  <source src={query} type="video/mp4" />
+Your browser does not support the video tag.
+</video>
 <figcaption>Use the search bar to generate a GraphQL</figcaption>
 </figure>
 
@@ -138,11 +141,10 @@ Using GPT-4 gives good results, but it’s very slow. I hope the technology impr
 How does Healthsearch determine which supplements are suitable for specific health effects? It relies on the power of semantic search in user reviews. When you're seeking products that are `good for joint pain`, for instance, Healthsearch scans user reviews for discussions on products that have alleviated joint pain or similar conditions. The results are then aggregated and grouped according to their respective products. As I mentioned before, all results are purely based on the content of user-written reviews.
 
 <figure>
-<img
-    src={require('./img/reviews.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
-/>
+<video width="100%" autoplay loop muted controls>
+  <source src={reviews} type="video/mp4" />
+Your browser does not support the video tag.
+</video>
 <figcaption>You can use Healthsearch to search for products with reviews related to your query</figcaption>
 </figure>
 
@@ -276,11 +278,10 @@ In developing Healthsearch, I leveraged a model from my bachelor thesis, a spaCy
 After the translation of the query to GraphQL and the retrieval of the most semantically relevant product, we enhance our demo with a feature called `Generative Search`. Essentially, we examine the top five results and employ an LLM to generate a product summary. This concise summary offers a brief overview of the products, highlighting their pros and cons and providing valuable insights. The icing on the cake? Each summary is crafted around your query, ensuring every search is unique and interesting.
 
 <figure>
-<img
-    src={require('./img/generative.gif').default}
-    alt="alt"
-    style={{ width: "100%" }}
-/>
+<video width="100%" autoplay loop muted controls>
+  <source src={generative} type="video/mp4" />
+Your browser does not support the video tag.
+</video>
 <figcaption>We use LLMs to generate a product summary over the retrieved objects</figcaption>
 </figure>
 
