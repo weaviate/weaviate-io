@@ -28,6 +28,11 @@ dirk:
   title: Software Developer
   url: https://github.com/dirkkul
   image_url: /img/people/icon/dirk.jpg
+edward:
+  name: Edward Schmuhl
+  title: Machine Learning Engineer
+  url: https://github.com/thomashacker
+  image_url: /img/people/icon/edward.jpg
 erika:
   name: Erika Cardenas
   title: Developer Advocate
