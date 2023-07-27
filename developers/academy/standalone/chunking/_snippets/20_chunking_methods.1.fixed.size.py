@@ -8,20 +8,34 @@ from typing import List
 # ========================================
 
 # START Vanilla fixed size chunker
-def get_chunks_fixed_size(text_units: List[str], chunk_size: int) -> List[str]:
+# Split the text into units (words, in this case)
+def word_splitter(source_text: str) -> List[str]:
+    import re
+    source_text = re.sub("\s+", " ", source_text)  # Replace multiple whitespces
+    return re.split("\s", source_text)  # Split by single whitespace
+
+def get_chunks_fixed_size(text: str, chunk_size: int) -> List[str]:
+    text_words = word_splitter(text)
     chunks = []
-    for i in range(0, len(text_units), chunk_size):
-        chunk = text_units[i: i + chunk_size]
+    for i in range(0, len(text_words), chunk_size):
+        chunk = text_words[i: i + chunk_size]
         chunks.append(chunk)
     return chunks
 # END Vanilla fixed size chunker
 
 # START Fixed size chunker with overlap
-def get_chunks_fixed_size_with_overlap(text_units: List[str], chunk_size: int, overlap_fraction: float) -> List[str]:
+# Split the text into units (words, in this case)
+def word_splitter(source_text: str) -> List[str]:
+    import re
+    source_text = re.sub("\s+", " ", source_text)  # Replace multiple whitespces
+    return re.split("\s", source_text)  # Split by single whitespace
+
+def get_chunks_fixed_size_with_overlap(text: str, chunk_size: int, overlap_fraction: float) -> List[str]:
+    text_words = word_splitter(text)
     overlap_int = int(chunk_size * overlap_fraction)
     chunks = []
-    for i in range(0, len(text_units), chunk_size):
-        chunk = text_units[max(i - overlap_int, 0): i + chunk_size]
+    for i in range(0, len(text_words), chunk_size):
+        chunk = " ".join(text_words[max(i - overlap_int, 0): i + chunk_size])
         chunks.append(chunk)
     return chunks
 # END Fixed size chunker with overlap
@@ -33,21 +47,13 @@ import requests
 url = "https://raw.githubusercontent.com/progit/progit2/main/book/01-introduction/sections/what-is-git.asc"
 source_text = requests.get(url).text
 
-# Split the text into units (words, in this case)
-def text_splitter(source_text: str) -> List[str]:
-    import re
-    source_text = re.sub("\s+", " ", source_text)  # Replace multiple whitespces
-    return re.split("\s", source_text)  # Split by single whitespace
-
-text_units = text_splitter(source_text)
-
 # Chunk text by number of words
 for chosen_size in [5, 25, 100]:
-    chunks = get_chunks_fixed_size_with_overlap(text_units, chosen_size, overlap_fraction=0.2)
+    chunks = get_chunks_fixed_size_with_overlap(source_text, chosen_size, overlap_fraction=0.2)
     # Print outputs to screen
     print(f"\nSize {chosen_size} - {len(chunks)} chunks returned.")
     for i in range(2):
-        print(f"Chunk {i+1}: {' '.join(chunks[i])}\n")
+        print(f"Chunk {i+1}: {chunks[i]}")
 # END Get fixed-size chunks examples
 
 

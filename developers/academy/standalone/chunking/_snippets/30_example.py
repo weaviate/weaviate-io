@@ -33,8 +33,13 @@ def get_book_text_objects():
 # START Get chunks - helper functions
 from typing import List
 
+def word_splitter(source_text: str) -> List[str]:
+    import re
+    source_text = re.sub("\s+", " ", source_text)  # Replace multiple whitespces
+    return re.split("\s", source_text)  # Split by single whitespace
+
 def get_chunks_fixed_size_with_overlap(text: str, chunk_size: int, overlap_fraction: float) -> List[str]:
-    text_words = text.split(" ")
+    text_words = word_splitter(text)
     overlap_int = int(chunk_size * overlap_fraction)
     chunks = []
     for i in range(0, len(text_words), chunk_size):
@@ -156,8 +161,21 @@ chunk_class_definition = {
     },
     "properties": [
         {
+            "name": "chunk",
+            "dataType": ["text"],
+        },
+        {
+            "name": "chapter_title",
+            "dataType": ["text"],
+        },
+        {
+            "name": "filename",
+            "dataType": ["text"],
+        },
+        {
             "name": "chunking_strategy",
-            "tokenization": "field"
+            "dataType": ["text"],
+            "tokenization": "field",
         }
     ]
 }
@@ -175,6 +193,7 @@ with client.batch() as batch:
 # END import chunks
 
 # START inspection
+print("Total count:")
 print(client.query.aggregate("Chunk").with_meta_count().do())  # Get a total count
 for chunking_strategy in chunk_obj_sets.keys():
     where_filter = {
@@ -182,10 +201,196 @@ for chunking_strategy in chunk_obj_sets.keys():
         "operator": "Equal",
         "valueText": chunking_strategy
     }
+    print(f"Object count for {chunking_strategy}")
     strategy_count = (
         client.query.aggregate("Chunk")
         .with_where(where_filter)
         .with_meta_count().do()
     )
-    print(strategy_count)  # Get a total count
+    print(strategy_count)  # Get a count for each strategy
 # END inspection
+
+"""
+# START Inspection output
+Total count:
+{'data': {'Aggregate': {'Chunk': [{'meta': {'count': 1487}}]}}}
+Object count for fixed_size_25
+{'data': {'Aggregate': {'Chunk': [{'meta': {'count': 672}}]}}}
+Object count for fixed_size_100
+{'data': {'Aggregate': {'Chunk': [{'meta': {'count': 173}}]}}}
+Object count for para_chunks
+{'data': {'Aggregate': {'Chunk': [{'meta': {'count': 549}}]}}}
+Object count for para_chunks_min_25
+{'data': {'Aggregate': {'Chunk': [{'meta': {'count': 93}}]}}}
+# END Inspection output
+"""
+
+
+# ===============================
+# ======= VECTOR SEARCH =========
+# ===============================
+
+def parse_result(response_object):
+    return response_object["data"]["Get"]["Chunk"]
+
+# START vector_search
+search_string = "history of git"  # Or any other search string
+
+for chunking_strategy in chunk_obj_sets.keys():
+    where_filter = {
+        "path": ["chunking_strategy"],
+        "operator": "Equal",
+        "valueText": chunking_strategy
+    }
+    # END vector_search
+    print(f'\n{"="*20}')
+    print(f"Retrieved objects for {chunking_strategy}")
+    # START vector_search
+    response = (
+        client.query.get("Chunk", ["chunk"])
+        .with_near_text({"concepts": [search_string]})
+        .with_where(where_filter)
+        .with_limit(2)
+        .do()
+    )
+    # END vector_search
+    for i, chunk_obj in enumerate(parse_result(response)):
+        print(f'{"="*5} Object {i} {"="*5}')
+        print(chunk_obj["chunk"])
+# END vector_search
+
+
+
+"""
+# START fixed_size_25 vector_search_history
+====================
+Retrieved objects for fixed_size_25
+===== Object 0 =====
+=== A Short History of Git As with many great things in life, Git began with a bit of creative destruction and fiery controversy. The
+===== Object 1 =====
+kernel efficiently (speed and data size) Since its birth in 2005, Git has evolved and matured to be easy to use and yet retain these initial qualities. It's amazingly fast,
+# END fixed_size_25 vector_search_history
+
+# START fixed_size_100 vector_search_history
+====================
+Retrieved objects for fixed_size_100
+===== Object 0 =====
+=== A Short History of Git As with many great things in life, Git began with a bit of creative destruction and fiery controversy. The Linux kernel is an open source software project of fairly large scope.(((Linux))) During the early years of the Linux kernel maintenance (1991–2002), changes to the software were passed around as patches and archived files. In 2002, the Linux kernel project began using a proprietary DVCS called BitKeeper.(((BitKeeper))) In 2005, the relationship between the community that developed the Linux kernel and the commercial company that developed BitKeeper broke down, and the tool's free-of-charge status was revoked.
+===== Object 1 =====
+2005, Git has evolved and matured to be easy to use and yet retain these initial qualities. It's amazingly fast, it's very efficient with large projects, and it has an incredible branching system for non-linear development (see <<ch03-git-branching#ch03-git-branching>>).
+# END fixed_size_100 vector_search_history
+
+# START para_chunks vector_search_history
+====================
+Retrieved objects for para_chunks
+===== Object 0 =====
+Since its birth in 2005, Git has evolved and matured to be easy to use and yet retain these initial qualities.
+It's amazingly fast, it's very efficient with large projects, and it has an incredible branching system for non-linear development (see <<ch03-git-branching#ch03-git-branching>>).
+
+===== Object 1 =====
+As with many great things in life, Git began with a bit of creative destruction and fiery controversy.
+# END para_chunks vector_search_history
+
+# START para_chunks_min_25 vector_search_history
+====================
+Retrieved objects for para_chunks_min_25
+===== Object 0 =====
+=== A Short History of Git
+
+As with many great things in life, Git began with a bit of creative destruction and fiery controversy.
+
+The Linux kernel is an open source software project of fairly large scope.(((Linux)))
+During the early years of the Linux kernel maintenance (1991–2002), changes to the software were passed around as patches and archived files.
+In 2002, the Linux kernel project began using a proprietary DVCS called BitKeeper.(((BitKeeper)))
+
+In 2005, the relationship between the community that developed the Linux kernel and the commercial company that developed BitKeeper broke down, and the tool's free-of-charge status was revoked.
+This prompted the Linux development community (and in particular Linus Torvalds, the creator of Linux) to develop their own tool based on some of the lessons they learned while using BitKeeper.(((Linus Torvalds)))
+Some of the goals of the new system were as follows:
+
+* Speed
+* Simple design
+* Strong support for non-linear development (thousands of parallel branches)
+* Fully distributed
+* Able to handle large projects like the Linux kernel efficiently (speed and data size)
+
+Since its birth in 2005, Git has evolved and matured to be easy to use and yet retain these initial qualities.
+It's amazingly fast, it's very efficient with large projects, and it has an incredible branching system for non-linear development (see <<ch03-git-branching#ch03-git-branching>>).
+
+===== Object 1 =====
+== Nearly Every Operation Is Local
+
+Most operations in Git need only local files and resources to operate -- generally no information is needed from another computer on your network.
+If you're used to a CVCS where most operations have that network latency overhead, this aspect of Git will make you think that the gods of speed have blessed Git with unworldly powers.
+Because you have the entire history of the project right there on your local disk, most operations seem almost instantaneous.
+
+For example, to browse the history of the project, Git doesn't need to go out to the server to get the history and display it for you -- it simply reads it directly from your local database.
+This means you see the project history almost instantly.
+If you want to see the changes introduced between the current version of a file and the file a month ago, Git can look up the file a month ago and do a local difference calculation, instead of having to either ask a remote server to do it or pull an older version of the file from the remote server to do it locally.
+
+This also means that there is very little you can't do if you're offline or off VPN.
+If you get on an airplane or a train and want to do a little work, you can commit happily (to your _local_ copy, remember?) until you get to a network connection to upload.
+If you go home and can't get your VPN client working properly, you can still work.
+In many other systems, doing so is either impossible or painful.
+In Perforce, for example, you can't do much when you aren't connected to the server; in Subversion and CVS, you can edit files, but you can't commit changes to your database (because your database is offline).
+This may not seem like a huge deal, but you may be surprised what a big difference it can make.
+# END para_chunks_min_25 vector_search_history
+"""
+
+
+"""
+# START fixed_size_25 vector_search_remote_repo
+====================
+Retrieved objects for fixed_size_25
+===== Object 0 =====
+to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote
+===== Object 1 =====
+many of these systems deal pretty well with having several remote repositories they can work with, so you can collaborate with different groups of people in different ways simultaneously within
+# END fixed_size_25 vector_search_remote_repo
+
+# START fixed_size_100 vector_search_remote_repo
+====================
+Retrieved objects for fixed_size_100
+===== Object 0 =====
+Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more. In this section, we'll cover some of these remote-management skills. [NOTE] .Remote repositories can be on your local machine. ==== It is entirely possible that you can be working with a "`remote`" repository that is, in fact, on the same host you are. The word "`remote`" does not necessarily imply that the repository is somewhere else on the network or Internet, only that it is elsewhere. Working with such a remote repository would still involve all the standard pushing, pulling and fetching operations as with any other remote. ====
+===== Object 1 =====
+[[_remote_repos]] === Working with Remotes To be able to collaborate on any Git project, you need to know how to manage your remote repositories. Remote repositories are versions of your project that are hosted on the Internet or network somewhere. You can have several of them, each of which generally is either read-only or read/write for you. Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote
+# END fixed_size_100 vector_search_remote_repo
+
+# START para_chunks vector_search_remote_repo
+====================
+Retrieved objects for para_chunks
+===== Object 0 =====
+To be able to collaborate on any Git project, you need to know how to manage your remote repositories.
+Remote repositories are versions of your project that are hosted on the Internet or network somewhere.
+You can have several of them, each of which generally is either read-only or read/write for you.
+Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work.
+Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more.
+In this section, we'll cover some of these remote-management skills.
+===== Object 1 =====
+Furthermore, many of these systems deal pretty well with having several remote repositories they can work with, so you can collaborate with different groups of people in different ways simultaneously within the same project.
+This allows you to set up several types of workflows that aren't possible in centralized systems, such as hierarchical models.
+# END para_chunks vector_search_remote_repo
+
+# START para_chunks_min_25 vector_search_remote_repo
+====================
+Retrieved objects for para_chunks_min_25
+===== Object 0 =====
+==
+It is entirely possible that you can be working with a "`remote`" repository that is, in fact, on the same host you are.
+The word "`remote`" does not necessarily imply that the repository is somewhere else on the network or Internet, only that it is elsewhere.
+Working with such a remote repository would still involve all the standard pushing, pulling and fetching operations as with any other remote.
+===== Object 1 =====
+[[_remote_repos]]= Working with Remotes
+
+To be able to collaborate on any Git project, you need to know how to manage your remote repositories.
+Remote repositories are versions of your project that are hosted on the Internet or network somewhere.
+You can have several of them, each of which generally is either read-only or read/write for you.
+Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work.
+Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more.
+In this section, we'll cover some of these remote-management skills.
+
+[NOTE]
+.Remote repositories can be on your local machine.
+# END para_chunks_min_25 vector_search_remote_repo
+"""
+

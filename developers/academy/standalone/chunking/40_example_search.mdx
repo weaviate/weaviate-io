@@ -13,19 +13,134 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Chunking and search
+We've retrieved multiple chapters of a book and ingested them to Weaviate using different chunking techniques. Now, we will use Weaviate to search through the book and see what differences if any our chunking techniques have made.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Search / retrieval
+To recap, we've generated chunks using four different methods:
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;LLM use
+- Fixed-length chunks
+    - At 25 words per chunk, and
+    - At 150 words per chunk
+- Variable-length chunks, using paragraph markers, and
+- Mixed-strategy chunks, using paragraph markers and a minimum chunk length of 25 words.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Examples
+Since the data comes from the first two chapters of a book about Git, let's search for various git-related concepts and see how the different chunking strategies perform.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Vector search
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;BM25 search
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Generative search
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Results
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START vector_search"
+  endMarker="# END vector_search"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+We've used the following search terms:
+- `"history of git"`
+- `"available functions for working with a remote repository"`
+
+Take a look at the results for both, with all four chunking strategies:
+
+<Tabs groupId="searches">
+<TabItem value="history" label="History of git">
+
+:::info Results for a search for `"history of git"`.
+:::
+
+<Tabs groupId="chunking">
+<TabItem value="fixed_size_25" label="25 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_25 vector_search_history"
+  endMarker="# END fixed_size_25 vector_search_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="fixed_size_100" label="100 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_100 vector_search_history"
+  endMarker="# END fixed_size_100 vector_search_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks" label="Paragraph chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks vector_search_history"
+  endMarker="# END para_chunks vector_search_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks_min_25" label="Paragraph chunks with minimum length">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks_min_25 vector_search_history"
+  endMarker="# END para_chunks_min_25 vector_search_history"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="remotes" label="Working with remotes">
+
+:::info Results for a search for `"available functions for working with a remote repository"`.
+:::
+
+<Tabs groupId="chunking">
+<TabItem value="fixed_size_25" label="25 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_25 vector_search_remote_repo"
+  endMarker="# END fixed_size_25 vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+<TabItem value="fixed_size_100" label="100 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_100 vector_search_remote_repo"
+  endMarker="# END fixed_size_100 vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks" label="Paragraph chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks vector_search_remote_repo"
+  endMarker="# END para_chunks vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks_min_25" label="Paragraph chunks with minimum length">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks_min_25 vector_search_remote_repo"
+  endMarker="# END para_chunks_min_25 vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Discussions
+
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Generative search
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Results
+
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Discussions
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
