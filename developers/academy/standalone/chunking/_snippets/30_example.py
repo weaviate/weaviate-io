@@ -234,7 +234,7 @@ def parse_result(response_object):
     return response_object["data"]["Get"]["Chunk"]
 
 # START vector_search
-search_string = "history of git"  # Or any other search string
+search_string = "history of git"  # Or "available git remote commands"
 
 for chunking_strategy in chunk_obj_sets.keys():
     where_filter = {
@@ -336,49 +336,82 @@ This may not seem like a huge deal, but you may be surprised what a big differen
 # END para_chunks_min_25 vector_search_history
 """
 
-
 """
 # START fixed_size_25 vector_search_remote_repo
 ====================
 Retrieved objects for fixed_size_25
 ===== Object 0 =====
-to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote
+remote))) To add a new remote Git repository as a shortname you can reference easily, run `git remote add <shortname> <url>`: [source,console] ---- $ git remote origin $ git remote
 ===== Object 1 =====
-many of these systems deal pretty well with having several remote repositories they can work with, so you can collaborate with different groups of people in different ways simultaneously within
+to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote
 # END fixed_size_25 vector_search_remote_repo
 
 # START fixed_size_100 vector_search_remote_repo
 ====================
 Retrieved objects for fixed_size_100
 ===== Object 0 =====
-Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more. In this section, we'll cover some of these remote-management skills. [NOTE] .Remote repositories can be on your local machine. ==== It is entirely possible that you can be working with a "`remote`" repository that is, in fact, on the same host you are. The word "`remote`" does not necessarily imply that the repository is somewhere else on the network or Internet, only that it is elsewhere. Working with such a remote repository would still involve all the standard pushing, pulling and fetching operations as with any other remote. ====
+adds the `origin` remote for you. Here's how to add a new remote explicitly.(((git commands, remote))) To add a new remote Git repository as a shortname you can reference easily, run `git remote add <shortname> <url>`: [source,console] ---- $ git remote origin $ git remote add pb https://github.com/paulboone/ticgit $ git remote -v origin https://github.com/schacon/ticgit (fetch) origin https://github.com/schacon/ticgit (push) pb https://github.com/paulboone/ticgit (fetch) pb https://github.com/paulboone/ticgit (push) ---- Now you can use the string `pb` on the command line in lieu of the whole URL. For example, if you want to fetch all the information that Paul has but that you don't yet have in your repository, you can run `git fetch pb`: [source,console] ---- $ git fetch pb remote: Counting objects: 43,
 ===== Object 1 =====
-[[_remote_repos]] === Working with Remotes To be able to collaborate on any Git project, you need to know how to manage your remote repositories. Remote repositories are versions of your project that are hosted on the Internet or network somewhere. You can have several of them, each of which generally is either read-only or read/write for you. Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work. Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote
+Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more. In this section, we'll cover some of these remote-management skills. [NOTE] .Remote repositories can be on your local machine. ==== It is entirely possible that you can be working with a "`remote`" repository that is, in fact, on the same host you are. The word "`remote`" does not necessarily imply that the repository is somewhere else on the network or Internet, only that it is elsewhere. Working with such a remote repository would still involve all the standard pushing, pulling and fetching operations as with any other remote. ====
 # END fixed_size_100 vector_search_remote_repo
 
 # START para_chunks vector_search_remote_repo
 ====================
 Retrieved objects for para_chunks
 ===== Object 0 =====
+We've mentioned and given some demonstrations of how the `git clone` command implicitly adds the `origin` remote for you.
+Here's how to add a new remote explicitly.(((git commands, remote)))
+To add a new remote Git repository as a shortname you can reference easily, run `git remote add <shortname> <url>`:
+===== Object 1 =====
 To be able to collaborate on any Git project, you need to know how to manage your remote repositories.
 Remote repositories are versions of your project that are hosted on the Internet or network somewhere.
 You can have several of them, each of which generally is either read-only or read/write for you.
 Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work.
 Managing remote repositories includes knowing how to add remote repositories, remove remotes that are no longer valid, manage various remote branches and define them as being tracked or not, and more.
 In this section, we'll cover some of these remote-management skills.
-===== Object 1 =====
-Furthermore, many of these systems deal pretty well with having several remote repositories they can work with, so you can collaborate with different groups of people in different ways simultaneously within the same project.
-This allows you to set up several types of workflows that aren't possible in centralized systems, such as hierarchical models.
 # END para_chunks vector_search_remote_repo
 
 # START para_chunks_min_25 vector_search_remote_repo
 ====================
 Retrieved objects for para_chunks_min_25
 ===== Object 0 =====
-==
-It is entirely possible that you can be working with a "`remote`" repository that is, in fact, on the same host you are.
-The word "`remote`" does not necessarily imply that the repository is somewhere else on the network or Internet, only that it is elsewhere.
-Working with such a remote repository would still involve all the standard pushing, pulling and fetching operations as with any other remote.
+== Adding Remote Repositories
+
+We've mentioned and given some demonstrations of how the `git clone` command implicitly adds the `origin` remote for you.
+Here's how to add a new remote explicitly.(((git commands, remote)))
+To add a new remote Git repository as a shortname you can reference easily, run `git remote add <shortname> <url>`:
+
+[source,console]
+----
+$ git remote
+origin
+$ git remote add pb https://github.com/paulboone/ticgit
+$ git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+pb	https://github.com/paulboone/ticgit (fetch)
+pb	https://github.com/paulboone/ticgit (push)
+----
+
+Now you can use the string `pb` on the command line in lieu of the whole URL.
+For example, if you want to fetch all the information that Paul has but that you don't yet have in your repository, you can run `git fetch pb`:
+
+[source,console]
+----
+$ git fetch pb
+remote: Counting objects: 43, done.
+remote: Compressing objects: 100% (36/36), done.
+remote: Total 43 (delta 10), reused 31 (delta 5)
+Unpacking objects: 100% (43/43), done.
+From https://github.com/paulboone/ticgit
+ * [new branch]      master     -> pb/master
+ * [new branch]      ticgit     -> pb/ticgit
+----
+
+Paul's `master` branch is now accessible locally as `pb/master` -- you can merge it into one of your branches, or you can check out a local branch at that point if you want to inspect it.
+We'll go over what branches are and how to use them in much more detail in <<ch03-git-branching#ch03-git-branching>>.
+
+[[_fetching_and_pulling]]
 ===== Object 1 =====
 [[_remote_repos]]= Working with Remotes
 
@@ -394,3 +427,140 @@ In this section, we'll cover some of these remote-management skills.
 # END para_chunks_min_25 vector_search_remote_repo
 """
 
+
+# ===================================
+# ======= GENERATIVE SEARCH =========
+# ===================================
+
+# START generative_search
+# Set number of chunks to retrieve to compensate for different chunk sizes
+n_chunks_by_strat = dict()
+# Grab more of shorter chunks
+n_chunks_by_strat['fixed_size_25'] = 8
+n_chunks_by_strat['para_chunks'] = 8
+# Grab fewer of longer chunks
+n_chunks_by_strat['fixed_size_100'] = 2
+n_chunks_by_strat['para_chunks_min_25'] = 2
+
+# Perform generative search
+# highlight-start
+search_string = "history of git"  # Or "available git remote commands"
+# highlight-end
+
+for chunking_strategy in chunk_obj_sets.keys():
+    where_filter = {
+        "path": ["chunking_strategy"],
+        "operator": "Equal",
+        "valueText": chunking_strategy
+    }
+    # END generative_search
+    print(f'\n{"="*20}')
+    print(f"Generated text for {chunking_strategy}")
+    # START generative_search
+    response = (
+        client.query.get("Chunk", ["chunk"])
+        .with_near_text({"concepts": [search_string]})
+        # highlight-start
+        .with_generate(
+            grouped_task=f"Using this information, please explain {search_string} in a few short points"
+        )
+        # highlight-end
+        .with_where(where_filter)
+        # highlight-start
+        .with_limit(n_chunks_by_strat[chunking_strategy])  # Variable number of chunks retrieved
+        # highlight-end
+        .do()
+    )
+    # END generative_search
+    print(response["data"]["Get"]["Chunk"][0]["_additional"]["generate"]["groupedResult"])
+# END generative_search
+
+
+"""
+====================
+# START fixed_size_25 generative_search_git_history
+Generated text for fixed_size_25
+- Git was created in 2005 as a result of creative destruction and controversy.
+- It was designed to handle the Linux kernel efficiently in terms of speed and data size.
+- Over time, Git has evolved to be easy to use while retaining its initial qualities.
+- Git reconsiders many aspects of version control, making it more like a mini filesystem with powerful tools.
+- Git stores the entire history of a project locally, allowing for fast and instantaneous operations.
+# END fixed_size_25 generative_search_git_history
+
+====================
+# START fixed_size_100 generative_search_git_history
+Generated text for fixed_size_100
+- In the early years of the Linux kernel maintenance (1991-2002), changes to the software were passed around as patches and archived files.
+- In 2002, the Linux kernel project started using a proprietary DVCS called BitKeeper.
+- In 2005, the relationship between the Linux kernel community and the company behind BitKeeper broke down, leading to the revocation of the tool's free-of-charge status.
+- Since then, Git has evolved and matured, becoming easy to use while retaining its initial qualities. It is known for its speed, efficiency with large projects, and its powerful branching system for non-linear development.
+# END fixed_size_100 generative_search_git_history
+
+====================
+# START para_chunks generative_search_git_history
+Generated text for para_chunks
+- Git was created in 2005 and has since evolved and matured to be easy to use and efficient with large projects.
+- Git has an incredibly fast performance and a powerful branching system for non-linear development.
+- Git began with controversy and creative destruction.
+- Git is fundamentally different from other version control systems (VCS) in the way it thinks about and stores data.
+- Git operates mostly on local files and resources, making operations fast and efficient.
+- Git has integrity and ensures the integrity of its data.
+- Git is more like a mini filesystem with powerful tools built on top of it, rather than just a VCS.
+# END para_chunks generative_search_git_history
+====================
+
+# START para_chunks_min_25 generative_search_git_history
+Generated text for para_chunks_min_25
+- Git was created in 2005 by the Linux development community, led by Linus Torvalds, after the breakdown of their relationship with the proprietary DVCS called BitKeeper.
+- The goals of Git were to be fast, have a simple design, support non-linear development with thousands of parallel branches, be fully distributed, and handle large projects efficiently.
+- Git has evolved and matured since its creation, becoming easy to use while retaining its initial qualities.
+- One of the key advantages of Git is that nearly every operation is local, meaning that most operations can be performed without needing information from another computer on the network.
+- This local nature of Git allows for fast and instantaneous operations, such as browsing the project history or comparing file versions.
+- Being able to work offline or off VPN is also a significant advantage of Git, as it allows users to continue working and committing changes to their local copy until they have a network connection to upload.
+# END para_chunks_min_25 generative_search_git_history
+"""
+
+
+
+"""
+====================
+# START fixed_size_25 generative_search_git_remote
+Generated text for fixed_size_25
+- `git fetch <remote>`: This command retrieves data from the remote repository specified by `<remote>`.
+- `git remote show <remote>`: Running this command with a specific shortname, such as `origin`, displays information about the remote repository, including its branches and configuration.
+- `git remote`: This command lists all the remote servers that have been configured for the repository.
+- `git remote -v`: Similar to `git remote`, this command lists all the remote servers along with their URLs for fetching and pushing.
+- `git clone`: This command is used to create a local copy of a remote repository. By default, it sets up the local `master` branch to track the remote repository's `master` branch.
+- `git remote add <name> <url>`: This command adds a new remote repository with the specified `<name>` and `<url>`. This allows you to easily fetch and push changes to and from the remote repository.
+- `git remote remove <name>`: This command removes the remote repository with the specified `<name>` from the local repository.
+# END fixed_size_25 generative_search_git_remote
+
+====================
+# START fixed_size_100 generative_search_git_remote
+Generated text for fixed_size_100
+- The `git remote` command is used to see which remote servers are configured for the repository. It lists the shortnames of each remote handle that has been specified.
+- The `git remote -v` command can be used to display more detailed information about the remote repositories, including the URLs for fetching and pushing.
+- The `git clone` command automatically adds the `origin` remote when cloning a repository.
+- To add a new remote explicitly, the `git remote add <name> <url>` command can be used. This allows for pulling and pushing to the specified remote repository.
+# END fixed_size_100 generative_search_git_remote
+
+====================
+# START para_chunks generative_search_git_remote
+Generated text for para_chunks
+- The `git remote` command lists the shortnames of each remote handle that you have configured.
+- The `git remote show <remote>` command provides more information about a particular remote.
+- The `git remote -v` command shows the URLs associated with each remote.
+- The `git remote add <shortname> <url>` command adds a new remote Git repository with a specified shortname and URL.
+- The `git remote` command can be used to show all the remotes associated with a repository.
+# END para_chunks generative_search_git_remote
+====================
+
+# START para_chunks_min_25 generative_search_git_remote
+Generated text for para_chunks_min_25
+- The `git remote` command is used to see which remote servers you have configured. It lists the shortnames of each remote handle you've specified.
+- The `git remote -v` command shows the URLs that Git has stored for the shortname to be used when reading and writing to that remote.
+- The `git remote show <remote>` command provides more information about a particular remote, including the URL for the remote repository, tracking branch information, and details about branches that can be automatically merged or pushed to.
+# END para_chunks_min_25 generative_search_git_remote
+"""
+
+# TODO - needs tests
