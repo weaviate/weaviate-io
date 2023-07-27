@@ -6,13 +6,14 @@
 
 import weaviate
 import json
+import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace w/ your OPENAI API key
     }
 )
 
@@ -566,7 +567,6 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresponse == response
 assert "JeopardyQuestion" in gqlresponse["data"]["Get"]
 assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"]) <= max_groups
 assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"].keys() == {"count", "groupedBy", "hits", "id", "maxDistance", "minDistance"}

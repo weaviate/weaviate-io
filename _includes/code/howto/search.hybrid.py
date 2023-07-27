@@ -405,7 +405,6 @@ expected_results = """
 """
 
 
-
 gql_query = """
 # HybridWithPropertiesGraphQL
 {
@@ -426,6 +425,85 @@ gql_query = """
   }
 }
 # END HybridWithPropertiesGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+# ====================================================
+# ===== Hybrid Query with Properties & Weighting =====
+# ====================================================
+
+
+# HybridWithPropertyWeightingPython
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer"])
+    .with_hybrid(
+        query="food",
+        # highlight-start
+        properties=["question^2", "answer"],
+        # highlight-end
+        alpha=0.25
+    )
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END HybridWithPropertyWeightingPython
+
+# Tests
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# End test
+
+expected_results = """
+# Expected HybridWithPropertyWeighting results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "a closer grocer",
+          "question": "A nearer food merchant"
+        },
+        {
+          "answer": "cake",
+          "question": "Devil's food & angel food are types of this dessert"
+        },
+        {
+          "answer": "food stores (supermarkets)",
+          "question": "This type of retail store sells more shampoo & makeup than any other"
+        }
+      ]
+    }
+  }
+}
+# END Expected HybridWithPropertyWeighting results
+"""
+
+
+gql_query = """
+# HybridWithPropertyWeightingGraphQL
+{
+  Get {
+    JeopardyQuestion(
+      limit: 3
+      hybrid: {
+        query: "food"
+        # highlight-start
+        properties: ["question^2", "answer"]
+        # highlight-end
+        alpha: 0.25
+      }
+    ) {
+      question
+      answer
+    }
+  }
+}
+# END HybridWithPropertyWeightingGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
