@@ -13,6 +13,7 @@
 
 
 
+
 .tabs {
   display: flex;
   flex-direction: row;
@@ -108,17 +109,20 @@
     display: flex;
     flex: 1;
 
+
+
+
     div[data-state='active'] {
       display: flex;
       // flex-direction: column;
       flex: 1;
 
+
         .codeContainer {
           display: grid;
           grid-template-rows: 1fr auto;
           grid-row-gap: 4px;
-
-          height: 460px;
+          height: 444px;
           width: 100%;
 
           @media screen and (max-width: 485px) {
@@ -137,9 +141,7 @@
               display:block;
               color: #130C49;
 font-size: 1rem;
-font-style: normal;
-font-weight: 400;
-line-height: 157.33%;
+margin-bottom: 10px;
             }
           }
 
@@ -166,3 +168,4 @@ line-height: 157.33%;
     }
   }
 }
+

@@ -57,14 +57,32 @@ export default function HomepageJoinCommunity() {
             <p className={styles.rightText}>
               Stay updated and subscribe to our newsletter
             </p>
-            <form className={styles.communityForm}>
+
+            <div className={styles.communityForm}>
+              {/*    <form className={styles.communityForm}>
               <input
                 className={styles.subscribeInput}
                 type="field"
                 placeholder="my_email@something.com"
               ></input>
               <button className={styles.communityButton}>Subscribe</button>
-            </form>
+            </form> */}
+
+              <iframe
+                src="https://embeds.beehiiv.com/15b21ebd-decd-433b-ada8-2d405e345f2e?slim=true"
+                data-test-id="beehiiv-embed"
+                frameBorder="0"
+                scrolling="no"
+                style={{
+                  margin: 0,
+                  borderRadius: '0px',
+                  buttonColour: '#61BD73',
+                  backgroundColor: 'transparent',
+                  width: '100%',
+                  important: false,
+                }}
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>

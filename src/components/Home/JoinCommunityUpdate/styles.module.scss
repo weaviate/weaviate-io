@@ -13,6 +13,9 @@
 }
 
 
+
+
+
 .rightText{
 
   margin: 0 0 22px;
@@ -39,6 +42,7 @@
 .communityForm{
 
   display:flex;
+  width: inherit;
 
 
   @media screen and (max-width: 768px) {
@@ -48,6 +52,7 @@
     justify-content: center;
     column-gap: 60px;
     row-gap: 20px;
+    width:100%;
   }
 }
 

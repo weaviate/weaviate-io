@@ -26,37 +26,44 @@ export default function HomepageLovedByDevelopers() {
           <br></br> eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
+
       <div className={styles.module}>
         <TwitterTweetEmbed
           options={{
-            height: '270px',
-            theme: 'dark',
-            width: '330px',
-            conversation: 'none',
             cards: 'hidden',
+            hideCard: true,
+            hideThread: false,
+            maxWidth: 800,
+            theme: 'dark',
+            width: 300,
+            conversation: 'none',
           }}
           tweetId={'1624058429584322560'}
         />
 
         <TwitterTweetEmbed
           options={{
-            height: '270px',
-            theme: 'dark',
-            width: '330px',
-            conversation: 'none',
             cards: 'hidden',
+            hideCard: true,
+            hideThread: false,
+            maxWidth: 800,
+            theme: 'dark',
+            width: 300,
+            conversation: 'none',
           }}
-          tweetId={'1629383824395366402'}
+          tweetId={'1631317445326643201'}
         />
         <TwitterTweetEmbed
           options={{
-            height: '270px',
-            theme: 'dark',
-            width: '330px',
-            conversation: 'none',
             cards: 'hidden',
+            hideCard: true,
+            hideThread: false,
+            maxWidth: 800,
+            theme: 'dark',
+            width: 300,
+            conversation: 'none',
           }}
-          tweetId={'1626733076230377473'}
+          tweetId={'1629383824395366402'}
         />
       </div>
     </div>
