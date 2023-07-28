@@ -34,6 +34,16 @@ This is done through an [AWS CloudFormation template](https://aws.amazon.com/clo
 1. Once ready, click 'Continue to Configuration'.
 1. Select the fulfillment option & software version from the list. -->
 
+## Configuration
+
+:::info Coming soon
+:::
+
+## Upgrade
+
+:::info Coming soon
+:::
+
 ## Billing
 
 You will be charged for the Weaviate cluster directly by AWS, based on the resources used.
