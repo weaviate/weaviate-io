@@ -19,9 +19,8 @@ This is done through an [AWS CloudFormation template](https://aws.amazon.com/clo
 
 ## Prerequisites
 
-You will need an AWS account to launch a Weaviate cluster through AWS Marketplace.
-
-We also recommend that you have some familiarity with AWS, and the AWS console.
+- You will need an AWS account to launch a Weaviate cluster through AWS Marketplace.
+- We also recommend that you have some familiarity with AWS, and the AWS console.
 
 ## Installation instructions
 
@@ -37,7 +36,7 @@ We also recommend that you have some familiarity with AWS, and the AWS console.
 
 ## Billing
 
-The AWS Marketplace charges for the Weaviate cluster are based on the AWS resources used.
+You will be charged for the Weaviate cluster directly by AWS, based on the resources used.
 
 This will, for example, include the EC2 instances, EBS volumes, and any other resources used by the cluster.
 
