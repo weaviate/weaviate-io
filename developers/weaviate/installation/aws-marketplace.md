@@ -10,7 +10,23 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Coming soon
+:::info Coming soon
+:::
+
+A Weaviate cluster can be launched on AWS (Amazon Web Services)  directly through [AWS Marketplace](https://aws.amazon.com/marketplace).
+
+This is done through an [AWS CloudFormation template](https://aws.amazon.com/cloudformation/), which includes pre-configured settings for a Weaviate cluster, using AWS resources.
+
+## Prerequisites
+
+You will need an AWS account to launch a Weaviate cluster through AWS Marketplace.
+
+We also recommend that you have some familiarity with AWS, and the AWS console.
+
+## Installation instructions
+
+:::info Coming soon
+:::
 
 <!-- ## Steps
 
@@ -18,6 +34,12 @@ Coming soon
 1. Click 'Continue to Subscribe'.
 1. Once ready, click 'Continue to Configuration'.
 1. Select the fulfillment option & software version from the list. -->
+
+## Billing
+
+The AWS Marketplace charges for the Weaviate cluster are based on the AWS resources used.
+
+This will, for example, include the EC2 instances, EBS volumes, and any other resources used by the cluster.
 
 ## More Resources
 
