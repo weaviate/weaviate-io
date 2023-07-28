@@ -20,6 +20,15 @@
         .logoW {
           background-image: url('/img/site/wp-solar-logo.png');
         }
+        .logoG {
+          background-image: url('/img/site/googleAI.png');
+        }
+        .logoL {
+          background-image: url('/img/site/langchain-logo.png');
+        }
+        .logoLa {
+          background-image: url('/img/site/lama-logo.png');
+        }
       }
     }
   }
@@ -73,7 +82,7 @@
     padding-bottom: 4rem;
 
 
-  animation: scrollSide 30s linear infinite;
+  animation: scrollSide 50s linear infinite;
 
   @keyframes scrollSide {
 
@@ -140,6 +149,31 @@
       width: 100%;
       height: 2rem;
       background-image: url('/img/site/wp-solar-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .logoG {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/googleAI.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoL {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/langchain-logo.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoLa {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/lama-logo.png');
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -240,6 +274,30 @@ display:flex!important;
         width: 100%;
         height: 2rem;
         background-image: url('/img/site/wp-solar-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoG {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/googleAI.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoL {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/langchain-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoLa {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/lama-logo.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;

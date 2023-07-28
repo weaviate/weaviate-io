@@ -45,19 +45,19 @@ export default function HomepageHeader() {
           </p>
           <div className={styles.logoSection}>
             <div className={styles.customerLogo} />
-            <div className={`${styles.customerLogo} ${styles.tyroLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.youLogo}`} />
             <div
               className={`${styles.customerLogo} ${styles.replicatedLogo}`}
             />
-            <div className={`${styles.customerLogo} ${styles.hebbiaLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
             <div className={`${styles.customerLogo} ${styles.staircaseLogo}`} />
             <div className={`${styles.customerLogo} ${styles.presshookLogo}`} />
             <div className={styles.customerLogo} />
-            <div className={`${styles.customerLogo} ${styles.tyroLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.youLogo}`} />
             <div
               className={`${styles.customerLogo} ${styles.replicatedLogo}`}
             />
-            <div className={`${styles.customerLogo} ${styles.hebbiaLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
             <div className={`${styles.customerLogo} ${styles.staircaseLogo}`} />
             <div className={`${styles.customerLogo} ${styles.presshookLogo}`} />
           </div>
@@ -65,19 +65,19 @@ export default function HomepageHeader() {
           <div className={`${styles.logoSection} ${styles.mobileLogoSection}`}>
             <div className={`${styles.customerLogo} ${styles.presshookLogo}`} />
             <div className={`${styles.customerLogo} ${styles.staircaseLogo}`} />
-            <div className={`${styles.customerLogo} ${styles.hebbiaLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
             <div
               className={`${styles.customerLogo} ${styles.replicatedLogo}`}
             />
-            <div className={`${styles.customerLogo} ${styles.tyroLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.youLogo}`} />
             <div className={styles.customerLogo} />
             <div className={`${styles.customerLogo} ${styles.presshookLogo}`} />
             <div className={`${styles.customerLogo} ${styles.staircaseLogo}`} />
-            <div className={`${styles.customerLogo} ${styles.hebbiaLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
             <div
               className={`${styles.customerLogo} ${styles.replicatedLogo}`}
             />
-            <div className={`${styles.customerLogo} ${styles.tyroLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.youLogo}`} />
             <div className={styles.customerLogo} />
           </div>
         </div>

@@ -56,6 +56,21 @@ export default function HomepageIntegrations() {
               <span className={styles.logoW} />
             </div>
           </Link>
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <div className={styles.logoBg}>
+              <span className={styles.logoG} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
+            <div className={styles.logoBg}>
+              <span className={styles.logoL} />
+            </div>
+          </Link>
+          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
+            <div className={styles.logoBg}>
+              <span className={styles.logoLa} />
+            </div>
+          </Link>
         </div>
 
         <div className={styles.inside}>
@@ -87,6 +102,21 @@ export default function HomepageIntegrations() {
           <Link to="https://wpsolr.com/wpsolr-demos/">
             <div className={styles.logoBg}>
               <span className={styles.logoW} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <div className={styles.logoBg}>
+              <span className={styles.logoG} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
+            <div className={styles.logoBg}>
+              <span className={styles.logoL} />
+            </div>
+          </Link>
+          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
+            <div className={styles.logoBg}>
+              <span className={styles.logoLa} />
             </div>
           </Link>
         </div>
@@ -127,9 +157,39 @@ export default function HomepageIntegrations() {
               <span className={styles.logoAI} />
             </div>
           </Link>
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <div className={styles.logoBg}>
+              <span className={styles.logoG} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
+            <div className={styles.logoBg}>
+              <span className={styles.logoL} />
+            </div>
+          </Link>
+          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
+            <div className={styles.logoBg}>
+              <span className={styles.logoLa} />
+            </div>
+          </Link>
         </div>
 
         <div className={styles.inside}>
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+            <div className={styles.logoBg}>
+              <span className={styles.logoG} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
+            <div className={styles.logoBg}>
+              <span className={styles.logoL} />
+            </div>
+          </Link>
+          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
+            <div className={styles.logoBg}>
+              <span className={styles.logoLa} />
+            </div>
+          </Link>
           <Link to="https://wpsolr.com/wpsolr-demos/">
             <div className={styles.logoBg}>
               <span className={styles.logoW} />

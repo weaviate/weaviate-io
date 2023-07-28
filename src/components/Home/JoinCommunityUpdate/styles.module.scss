@@ -1,13 +1,13 @@
 [data-theme='light'] {
   .socialBox {
     .slack {
-      background-image: url('/img/site/slack_logo.png');
+      background-image: url('/img/site/slack_new.png');
     }
     .github {
-      background-image: url('/img/site/github_logo.png');
+      background-image: url('/img/site/github.png');
     }
     .twitter {
-      background-image: url('/img/site/twitter_logo.png');
+      background-image: url('/img/site/twitter-x.png');
     }
   }
 }
@@ -196,7 +196,7 @@ flex-shrink: 0;
 
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/slack_logo.png');
+    background-image: url('/img/site/slack_new.png');
   }
   .text {
     padding-top: 10px;
@@ -210,7 +210,7 @@ flex-shrink: 0;
     height: 3.75rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/github_logo.png');
+    background-image: url('/img/site/github.png');
 
     @media screen and (max-width: 500px) {
       width: 2.25rem;
@@ -224,7 +224,7 @@ flex-shrink: 0;
     height: 3.75rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/twitter_logo.png');
+    background-image: url('/img/site/twitter-x.png');
 
     @media screen and (max-width: 500px) {
       width: 2.25rem;
@@ -239,7 +239,7 @@ flex-shrink: 0;
     height: 3.75rem;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('/img/site/weaviate_logo.png');
+    background-image: url('/img/site/w-forum.png');
 
     @media screen and (max-width: 500px) {
       width: 2.25rem;
