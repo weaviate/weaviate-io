@@ -18,13 +18,15 @@ There are many potential reasons for chunking data, but for vector databases and
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Information retrieval
 
-For vector databases or vector search, chunking is a crucial step to define the quantum, or unit of information, that is being cataloged by the vector database.
+For vector databases or vector search, chunking is a crucial step that effectively defines a unit of information. A chunk will become a smallest quantum of information to be catalogued or retrieved by the vector database.
+
+So, it is very important to get chunk sizing right for your use case. Failure modes can include chunks being too small, or chunks being too big.
 
 :::warning TODO
 Add conceptual figure showing big/small chunks
 :::
 
-#### Chunks too small
+#### (Too) Small chunks
 
 If chunks are too small, each text object may not contain enough information or context for meaningful search to be performed.
 
@@ -32,17 +34,19 @@ Imagine a book that is chunked into individual words and vectorized.
 
 These vectors would be likely too granular to provide any kind of meaningful, contextual results in a search. (Unless you were using it as a thesaurus!)
 
+Note that chunks that are a few words may be okay in some situations. Such as when you are looking for a specific phrase, or information.
+
 :::warning TODO
 ADD FIGURES OF SMALL CARDS SHOWING WORD-SIZED CHUNKS
 :::
 
-#### Chunks too large
+#### (Too) Large chunks
 
 On the other hand, if chunks are too large, each chunk could not be meaningfully represented by a vector embedding.
 
 Imagine a book that is saved as one "chunk", or even chapters. Is this a good idea?
 
-Such an arrangement would not be suitable if what you were after was discovery of relevant snippets, or sections. But it may be, if you are looking to find the right chapter, or section, in - say - a library of books.
+Such an arrangement would not be suitable if what you were after was discovery of relevant snippets, or sections. But it may be reasonable, if you are looking to find the right chapter, or section, in - say - a library of books.
 
 :::warning TODO
 ADD FIGURES OF SMALL CARDS SHOWING WORD-SIZED CHUNKS
@@ -54,14 +58,18 @@ Accordingly, each chunk needs to be an appropriate size that the captured meanin
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vectorization token limit
 
-Another reason for chunking is for vectorization. Depending on the model used for vectorization, the maximum input length may exceed the length of the text. This is especially true for modern models, as their transformer-based architecture can lead to high resource requirements (and thus shorter maximum lengths).
+Another need for chunking comes from the vectorization process.
+
+Depending on the model used for vectorization, the text length may exceed the maximum input length. This is especially true for modern models, as their transformer-based architecture can lead to high resource requirements (and thus shorter maximum lengths).
 
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Context window limit
 
-Chunking is also often necessary for using large language models to ensure that the input does not exceed the maximum allowable input length, typically called the "context window".
+Chunking is also often necessary for using large language models, for two reasons.
 
-In case of generative search, the chunking also has a second impact. Even if each chunk is within the size of a context window, their size will dictate:
+One is to ensure that the input does not exceed the maximum allowable input length, typically called the "context window".
+
+The second is to determine:
 
 - How many chunks can be passed onto the LLM, and
 - The amount of context that is passed onto the LLM per chunk.
@@ -70,19 +78,19 @@ In case of generative search, the chunking also has a second impact. Even if eac
 Add conceptual figure showing big/small chunks for RAG
 :::
 
-#### What happens if chunks are too short?
+#### (Too) Small chunks
 
-On one hand, using very short chunks would likely lead to insufficient information being passed on from each result to the LLM.
+Using short chunks, you can add information from more chunks to the LLM. However, it may lead to insufficient contextual information being passed on in each result to the LLM.
 
-#### What happens if chunks are too long?
+#### (Too) Large chunks
 
-On the other hand, using too large a chunk size would mean that the input text would come from fewer sections of the original text. This may adversely impact the diversity of the input information, and potentially also decrease the relevance of the information overall.
+On the other hand, using larger chunk sizes would reduce the number of objects that can be passed to the LLM. This may adversely impact the diversity of the input information, although they will include more contextual information per object.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Chunk size selection
 
 As you can start to see, there are multiple factors at play to help you choose the right chunk size.
 
-Unfortunately, there isn't a chunk size or chunking technique that works for everybody. The trick here is to find a "Goldilocks" size that works for *you* - one that isn't too small or too large, and also chunked with a method that suits you.
+Unfortunately, there isn't a chunk size or chunking technique that works for everybody. The trick here is to find a size that works for *you* - one that isn't too small or too large, and also chunked with a method that suits you.
 
 In the next unit, we'll begin to review these ideas, starting with some common chunking techniques.
 

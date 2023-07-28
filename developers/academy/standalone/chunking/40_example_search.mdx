@@ -19,9 +19,9 @@ We have retrieved and imported multiple chapters of a book into Weaviate using d
 
 We've generated chunks using four different methods:
 
-- Fixed-length chunks
-    - At 25 words per chunk, and
-    - At 150 words per chunk
+- Fixed-length chunks (and 20% overlap)
+    - With 25 words per chunk, and
+    - With 100 words per chunk
 - Variable-length chunks, using paragraph markers, and
 - Mixed-strategy chunks, using paragraph markers and a minimum chunk length of 25 words.
 
@@ -34,7 +34,7 @@ First of all, we'll retrieve information from our Weaviate instance using variou
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Search syntax
 
-The search is carried out as follows, looping through each chunking strategy by filtering our dataset. We'll obtain just a couple of top results for each search term.
+The search is carried out as follows, looping through each chunking strategy by filtering our dataset. We'll obtain a couple of top results for each search term.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -95,11 +95,9 @@ We get the following results:
 </TabItem>
 </Tabs>
 
-In this example, the query is a broad and general one on the `history of git`.
+The query in this example is a broad one on the `history of git`. The result is that here, the longer chunks seem to perform better.
 
-As such, the longer chunks seem to suit the purpose better, with the paragraph chunks containing the most amount of context.
-
-And while the 25-word chunks may be semantically similar to the history of git, it does not contain enough contextual information to enhance the readers' understanding of the topic.
+Inspecting the result, we see that while the 25-word chunks may be semantically similar to the query `history of git`, they do not contain enough contextual information to enhance the readers' understanding of the topic.
 
 On the other hand, the paragraph chunks retrieved - especially those with a minimum length of 25 words - contain a good amount of holistic information that will teach the reader about the history of git.
 
@@ -147,7 +145,7 @@ The query in this example was a more specific one, for example one that might be
 
 In contrast to the first scenario, the 25-word chunks are more useful here. Because the question was very specific, Weaviate was able to identify the chunk containing the most suitable passage - how to add a remote repository (`git remote add <shortname> <url>`).
 
-To be clear and fair, the other result sets also contain this information. But it may be worth considering how the result may be used and displayed - the longer the result, the more cognitive effort it may take the user to identify the relevant information.
+While the other result sets also contain some of this information, it may be worth considering how the result may be used and displayed. The longer the result, the more cognitive effort it may take the user to identify the relevant information.
 
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Generative search

@@ -6,13 +6,16 @@
 def get_book_text_objects():
     import requests
 
+    # Source location
     text_objs = list()
     api_base_url = 'https://api.github.com/repos/progit/progit2/contents/book'  # Book base URL
-    section_urls = ['/01-introduction/sections', '/02-git-basics/sections']  # List of section URLs
+    chapter_urls = ['/01-introduction/sections', '/02-git-basics/sections']  # List of section URLs
 
-    for section_url in section_urls:
-        response = requests.get(api_base_url + section_url)  # Get the JSON data for the files in the section
+    # Loop through book chapters
+    for chapter_url in chapter_urls:
+        response = requests.get(api_base_url + chapter_url)  # Get the JSON data for the section files in the chapter
 
+        # Loop through inner files (sections)
         for file_info in response.json():
             if file_info['type'] == 'file':  # Only process files (not directories)
                 file_response = requests.get(file_info['download_url'])
@@ -91,6 +94,8 @@ book_text_objs = get_book_text_objects()
 chunk_obj_sets = dict()
 for book_text_obj in book_text_objs:
     text = book_text_obj["body"]  # Get the object's text body
+
+    # Loop through chunking strategies:
     for strategy_name, chunks in [
         ["fixed_size_25", get_chunks_fixed_size_with_overlap(text, 25, 0.2)],
         ["fixed_size_100", get_chunks_fixed_size_with_overlap(text, 100, 0.2)],

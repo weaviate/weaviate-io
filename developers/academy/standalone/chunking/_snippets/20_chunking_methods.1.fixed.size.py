@@ -18,7 +18,8 @@ def get_chunks_fixed_size(text: str, chunk_size: int) -> List[str]:
     text_words = word_splitter(text)
     chunks = []
     for i in range(0, len(text_words), chunk_size):
-        chunk = text_words[i: i + chunk_size]
+        chunk_words = text_words[i: i + chunk_size]
+        chunk = " ".join(chunk_words)
         chunks.append(chunk)
     return chunks
 # END Vanilla fixed size chunker
@@ -35,7 +36,8 @@ def get_chunks_fixed_size_with_overlap(text: str, chunk_size: int, overlap_fract
     overlap_int = int(chunk_size * overlap_fraction)
     chunks = []
     for i in range(0, len(text_words), chunk_size):
-        chunk = " ".join(text_words[max(i - overlap_int, 0): i + chunk_size])
+        chunk_words = text_words[max(i - overlap_int, 0): i + chunk_size]
+        chunk = " ".join(chunk_words)
         chunks.append(chunk)
     return chunks
 # END Fixed size chunker with overlap
@@ -52,7 +54,7 @@ for chosen_size in [5, 25, 100]:
     chunks = get_chunks_fixed_size_with_overlap(source_text, chosen_size, overlap_fraction=0.2)
     # Print outputs to screen
     print(f"\nSize {chosen_size} - {len(chunks)} chunks returned.")
-    for i in range(2):
+    for i in range(3):
         print(f"Chunk {i+1}: {chunks[i]}")
 # END Get fixed-size chunks examples
 

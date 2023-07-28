@@ -15,11 +15,11 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-Now that you've learned about what chunking is, and why it is important, let's look at some common chunking techniques. We'll take you through both fixed-size and variable-size chunking, including some common implementations with examples.
+Now that you've learned about what chunking is, and why it is important, let's look at some common chunking techniques. We'll take you through **fixed-size** and **variable-size** chunking techniques, including some example implementations of each.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Fixed-size chunking
 
-As the name suggests, fixed-size chunking refers to the process of splitting texts into chunks of a fixed size. This is the most common type of chunking, and although it is simple, it can be very effective.
+As the name suggests, fixed-size chunking refers to the process of splitting texts into chunks of a fixed size. This may be the most common chunking technique due to its simplicity and effectiveness.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Implementations
 
@@ -29,7 +29,7 @@ Fixed-size chunking is implemented by splitting texts into chunks of a fixed num
 A "token" in this context is a unit of text that will be processed by a model by being substituted with a number. In modern tranformer models, a token is commonly a "subword" unit composed of a few characters.
 :::
 
-In pseudocode, one implementation of fixed-size chunking could look like:
+One pseudocode implementation of fixed-size chunking is:
 
 ```python
 # Given a text of length L
@@ -38,7 +38,7 @@ In pseudocode, one implementation of fixed-size chunking could look like:
 # This should typically result in a list of chunks of length L // N + 1
 ```
 
-One implementation of this in Python could look like:
+And implementing in Python, it may look like:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -64,15 +64,25 @@ Which can be modified to include an overlap (in this case, at the beginning of e
 </TabItem>
 </Tabs>
 
+This is far from the only way to implement fixed-size chunking, but it is one possible, relatively simple, implementation.
+
+:::note Exercise
+Consider how *you* might implement fixed-size chunking. What would your pseudocode (or code) look like?
+:::
+
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Examples
 
-Let's look at some concrete examples of fixed-size chunking. We'll use a word-based chunking strategy here. Let's take a look at three examples, with a chunk size of 5 words, 25 words and 100 words, respectively.
+We are ready to look at some concrete examples of fixed-size chunking. Let's take a look at three examples, with a chunk size of 5 words, 25 words and 100 words, respectively.
 
-We'll use an excerpt from the [Pro Git book](https://git-scm.com/book/en/v2) by Scott Chacon and Ben Straub*. More specifically, we'll use text of the [What is Git?](https://github.com/progit/progit2/blob/main/book/01-introduction/sections/what-is-git.asc) chapter.
+We'll use an excerpt from the [Pro Git book](https://git-scm.com/book/en/v2)*. More specifically, we'll use text of the [What is Git?](https://github.com/progit/progit2/blob/main/book/01-introduction/sections/what-is-git.asc) chapter.
+
+:::info Pro Git by Scott Chacon and Ben Straub - Book License
 
 <small>*Available through the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Non Commercial-Share Alike 3.0 license</a>.</small>
 
+:::
 
+Here is one example using our chunking function from above:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -119,11 +129,11 @@ Consider which of these chunk sizes would be most appropriate for search. Why do
 </Tabs>
 
 
-Hopefully, the ideas that we discussed about chunking in the previous section start to become clear with these concrete examples.
+Hopefully, these concrete examples start to illustrate some of the ideas that we discussed above.
 
-The smaller chunks are very granular, to the point where they may not contain enough information to be useful for search. On the other hand, the larger chunks begin to retain more information as they get to lengths that are similar to a typical paragraph.
+Immediately, it strikes me that the smaller chunks are very granular, to the point where they may not contain enough information to be useful for search. On the other hand, the larger chunks begin to retain more information as they get to lengths that are similar to a typical paragraph.
 
-You can imagine that once chunks become even longer, any vector embeddings would start to become too general to be useful in terms of searching for information.
+Now imagine these chunks becoming even longer. As chunks become longer, the corresponding vector embeddings would start to become more general. This would eventually reach a point where they cease to be useful in terms of searching for information.
 
 :::note What about character or sub-word tokenization?
 At these sizes, you typically will not need to employ character-based or sub-word token-based chunking, as splitting words at these boundaries in a group of words will not typically be meaningful.
@@ -135,7 +145,7 @@ For search with fixed-size chunks, if you don't have any other factors, try a si
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Variable-size chunking
 
-Now let's look at variable-size chunking. Unlike fixed-size chunking, the sizing of each chunks here is an outcome, rather than a parameter.
+Now let's look at variable-size chunking. Unlike fixed-size chunking, the chunk size here is an *outcome*, rather than an *input parameter*.
 
 In variable-size chunking, some marker is used to split the text. The marker may be syntactic, such as a sentence or paragraph marker, or even structural such as a markdown header.
 
@@ -149,7 +159,7 @@ A pseudocode implementation of variable-size chunking could look like this:
 # Split the text into chunks at each marker
 ```
 
-Which, implemented in Python, could look as simple as below:
+Which could be implemented in Python as below:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -162,7 +172,9 @@ Which, implemented in Python, could look as simple as below:
 </TabItem>
 </Tabs>
 
-Or, we could use special markers - such as Markdown headers - to split the text. (Since the Pro Git book is written in Asciidoc, we'll use Asciidoc headers instead, which all have the format of new lines starting with `==`.)
+Or, we could use special markers - such as Markdown headers - to split the text.
+
+(Since the *Pro Git* book is written in [Asciidoc](https://asciidoc.org/), we'll use Asciidoc headers instead - they all start with new lines followed by `==`.)
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -174,6 +186,8 @@ Or, we could use special markers - such as Markdown headers - to split the text.
 />
 </TabItem>
 </Tabs>
+
+Again, let's now apply these to concrete examples.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Examples
 
@@ -236,7 +250,7 @@ One implementation may look as follows:
 # If any of the chunks are too large, split them - e.g. at the middle or using another marker within the chunk
 ```
 
-Which, implemented in Python, could look as below:
+Which could be implemented in Python like this:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -249,7 +263,7 @@ Which, implemented in Python, could look as below:
 </TabItem>
 </Tabs>
 
-This produces a set of chunks such as below.
+Producing these chunks.
 
 <FilteredTextBlock
   text={CodeMixedStrategyChunking}
@@ -258,7 +272,9 @@ This produces a set of chunks such as below.
   language="text"
 />
 
-Unlike a purely variable-size chunker, this strategy will not produce chunks that are too small, and unlike a purely fixed-size chunker, this strategy will produce chunks based on a syntactic marker, respecting the boundary of a heading.
+This strategy will not produce chunks that are too small, while still basing them based on a syntactic marker, respecting the boundary of a heading.
+
+Since we've seen chunking strategies in action on a single text, let's now look at how they may work on a larger set of texts. We'll also take a look at what retrieval results may look like, using different chunking strategies.
 
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
