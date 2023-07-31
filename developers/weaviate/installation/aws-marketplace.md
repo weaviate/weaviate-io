@@ -54,9 +54,12 @@ This will set up the following resources:
     - <img src={Marketplace_2_Continue} width="100%" alt="Continue to configuration"/>
 1. Select the fulfillment option & software version from the list. Then click <kbd>Continue to Launch</kbd>.
     - <img src={Marketplace_3_Configure} width="100%" alt="Configure the software"/>
-1. Launch the software using a CloudFormation template:
-    - [Template for Europe (eu-central-1)](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
-    - [Template for U.S. (us-east-1)](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
+1. Launch the software using a CloudFormation template (select the one for your preferred region below):
+    - [eu-central-1](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
+    - [us-east-1](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
+    - [us-east-2](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
+    - [us-west-1](https://us-west-1.console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
+    - [us-west-2](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
 
 ### Configuration & Launch
 
