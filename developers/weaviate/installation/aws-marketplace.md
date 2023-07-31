@@ -11,7 +11,7 @@ import Badges from '/_includes/badges.mdx';
 import Marketplace_1_Subscribe from './img/marketplace_1_subscribe.png';
 import Marketplace_2_Continue from './img/marketplace_2_continue.png';
 import Marketplace_3_Configure from './img/marketplace_3_configure.png';
-import Marketplace_4_Launch from './img/marketplace_4_Launch.png';
+import Marketplace_4_Launch from './img/marketplace_4_launch.png';
 import aws_config_1 from './img/aws_config_1.png';
 import aws_config_2 from './img/aws_config_2.png';
 import aws_config_3 from './img/aws_config_3.png';
