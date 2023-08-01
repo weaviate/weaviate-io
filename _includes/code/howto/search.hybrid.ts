@@ -165,6 +165,33 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
 
+// ================================================
+// ===== Hybrid Query with Property Weighting =====
+// ================================================
+
+// searchHybridWithPropertyWeighting
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withHybrid({
+    query: 'food',
+    // highlight-start
+    properties: ['question^2', 'answer'],
+    // highlight-end
+    alpha: 0.25,
+  })
+  .withLimit(3)
+  .withFields('question answer')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END searchHybridWithPropertyWeighting
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.equal(result.data.Get.JeopardyQuestion.length, 3);
+
 // ====================================
 // ===== Hybrid Query with Vector =====
 // ====================================

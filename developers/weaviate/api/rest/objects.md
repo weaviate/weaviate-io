@@ -288,7 +288,7 @@ Collect an individual data object.
 
 Available since `v1.14` and the preferred way:
 ```bash
-GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
+GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL&tenant={tenant}]
 ```
 
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
@@ -314,6 +314,7 @@ GET /v1/objects/{id}
 | `{id}` | query param | uuid | The uuid of the data object to retrieve. |
 | `include` | query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`. |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant key. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 

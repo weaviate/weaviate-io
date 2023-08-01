@@ -109,7 +109,7 @@ For the Weaviate API key, click on the <kbd><i class="fa-solid fa-key"></i></kbd
 
 ## Install a client library
 
-We suggest useing a [Weaviate client](../client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
+We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 

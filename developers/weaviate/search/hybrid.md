@@ -367,8 +367,55 @@ It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# Expected HybridWithVector results"
-  endMarker="# END Expected HybridWithVector results"
+  startMarker="# Expected HybridWithProperties results"
+  endMarker="# END Expected HybridWithProperties results"
+  language="json"
+/>
+
+</details>
+
+### Weight (boost) searched properties
+
+You can specify weighting of object `properties` in how they affect the BM25F component of hybrid searches.
+
+The below example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithPropertyWeightingPython"
+  endMarker="# END HybridWithPropertyWeightingPython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// searchHybridWithPropertyWeighting"
+  endMarker="// END searchHybridWithPropertyWeighting"
+  language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithPropertyWeightingGraphQL"
+  endMarker="# END HybridWithPropertyWeightingGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected HybridWithPropertyWeighting results"
+  endMarker="# END Expected HybridWithPropertyWeighting results"
   language="json"
 />
 
