@@ -4,7 +4,7 @@
   display:contents;
 
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 900px) {
     display: flex;
     overflow-x: hidden;
     column-gap: 20px;
@@ -40,7 +40,7 @@
 
   display:none;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 900px) {
     display: flex;
     overflow-x: hidden;
   animation: scrollSideCustomers 30s linear infinite;

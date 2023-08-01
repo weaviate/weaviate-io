@@ -114,6 +114,7 @@ letter-spacing: -0.01rem;
 .wrapper {
   display: flex;
   flex-direction: row;
+  row-gap:50px;
   flex-wrap: wrap;
   justify-content: space-evenly;
 color: #FFFFFF;
@@ -247,4 +248,10 @@ flex-shrink: 0;
       flex-shrink: 0;
   }
   }
+}
+
+
+.sc-VigVT.dbVBAB {
+  background: #61BD73!important;
+  color: #1C1468;
 }

@@ -9,11 +9,6 @@
   }
 }
 
-.twitter-tweet.twitter-tweet-rendered {
-  width: 20rem!important;
-  height: 17.90369rem;
-  flex-shrink: 0;
-}
 
 .module{
 
@@ -137,4 +132,31 @@ flex-shrink: 0;
       }
     }
   }
+}
+
+
+.twitter-tweet.twitter-tweet-rendered {
+  margin-left: 16%!important;
+  width: 20rem!important;
+  height: 17.90369rem;
+  flex-shrink: 0;
+}
+
+.xbox{
+  margin-left: 16%;
+
+  @media screen and (max-width: 485px) {
+    margin-left: 4%;
+  }
+
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+
+    font-size: 48px!important;
+
+    color: #2021246e!important;
+
 }

@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 850px) {
     padding-top: 3rem;
     flex-direction: column;
     gap: unset;
