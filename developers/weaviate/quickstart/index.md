@@ -31,6 +31,10 @@ With Weaviate, you have options to:
 This tutorial demonstrates both methods.
 :::
 
+:::tip For more holistic learning
+Try <i class="fa-solid fa-graduation-cap"></i> [Weaviate Academy](../../academy/index.mdx), where we have built holistic courses for you to learn about Weaviate and the world of vector search.
+:::
+
 #### Source data
 
 We will use a (tiny) dataset of quizzes.
@@ -128,7 +132,7 @@ From the <kbd>Details</kbd> tab in WCS, get:
 - The Weaviate **URL**.
 
 And because we will use the Hugging Face inference API to generate vectors, you need:
-- A Hugging Face **inference API key**.
+- A Hugging Face **inference API key** ([instructions](https://huggingface.co/docs/api-inference/quicktour#get-your-api-token)).
 
 So, instantiate the client as follows:
 
