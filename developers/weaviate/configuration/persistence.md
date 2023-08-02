@@ -99,6 +99,19 @@ If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
 changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspect-the-shards-of-a-class) to do so.
 
+## Virtual memory access method
+
+:::info Available from `v1.21` onwards
+:::
+
+You can choose between `mmap` and `pread` functions to access virtual memory.
+
+The default is `mmap`, but you can change it to `pread` by setting the `PERSISTENCE_LSM_ACCESS` environment variable to `pread`.
+
+If you experience potential stalling situations that can occur with `mmap` under heavy load, `pread` may provide a suitable alternative. However, `pread` may not be as fast as `mmap` and does not provide the same memory management benefits.
+
+The current default will remain 'mmap', but may switch to 'pread' as the default option in a future release.
+
 ## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
