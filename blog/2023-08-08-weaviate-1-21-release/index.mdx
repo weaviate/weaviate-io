@@ -1,0 +1,216 @@
+---
+title: Weaviate 1.21 Release
+slug: weaviate-1-21-release
+authors: [jp, zain]
+date: 2023-08-08
+# image: ./img/hero.png
+tags: ['release', 'engineering']
+description: "Weaviate 1.21 released with new operators, performance improvements, multi-tenancy improvements, windows support and more!"
+
+---
+
+New `ContainsAny` and `ContainsAll` operators
+
+You asked for it - and it’s here! `1.21` adds `ContainsAny` and `ContainsAll` operators to make your filters (syntactically) sweeter than ever.
+
+You can use `ContainsAll` and `ContainsAny` to simplify complex queries that might otherwise be a long chain of `And` or `Or` conditions in Weaviate. Instead, they'll be reduced to simple, digestible, queries that are easier on your eye and your brain.
+
+These operators allow you to filter objects according to an array property, using a query array.
+
+`ContainsAny` will find all objects whose property contains one or more (i.e. *any*) of the query values. In other words - a series of `Or` statements.
+
+`ContainsAll`, on the other hand, will find all objects whose property contains every single one (i.e. *all*) of the query values. This can replace a series of `And` statements.
+
+This is one of our most-requested features, and we are very excited for you to try it out.
+
+<details>
+  <summary>Example usage</summary>
+
+Consider a dataset of people (class `Person`), where each `Person` object has a `name` and a `languages_spoken` property.
+
+A `ContainsAny` like this will return all `Person` objects whose `languages_spoken` values contain any of the listed languages in the query.
+
+```graphql
+{
+  Get {
+    Person (
+      where: {
+        path: ["languages_spoken"],
+        operator: ContainsAny,
+        valueText: ["Chinese", "French", "English"]
+      }
+    )
+    {
+      languages_spoken
+      name
+    }
+  }
+}
+```
+
+A `ContainsAll` query on the other hand will return all `Person` objects whose `languages_spoken` values contain every single one of the listed languages in the query.
+
+```graphql
+{
+  Get {
+    Person (
+      where: {
+        path: ["languages_spoken"],
+        operator: ContainsAny,
+        valueText: ["Chinese", "French", "English"]
+      }
+    )
+    {
+      languages_spoken
+      name
+    }
+  }
+}
+```
+
+</details>
+
+## Multi-tenancy improvements
+
+### Deactivate / activate tenant shards
+
+We introduced multi-tenancy (MT) with `1.20`, and we are thrilled by your response do far.
+
+In this release, we add an ability to deactivate or activate individual tenants. This will allow you to scale even bigger with ease, because individual tenant shards will not take up any space in memory.
+
+In our MT implementation, each [tenant is a partition shard](https://www.weaviate.io/blog/multi-tenancy-vector-search#built-in-isolation-through-lightweight-shards). While all shards were active by default in the past, shards can now be deactivated while still retaining the data.
+
+Deactivated shards do not consume memory or file descriptors, so this feature allows for an unlimited number of non-active shards, limited only by disk space.
+
+In many real-world cases, a non-insignificant subset of customers may be inactive. In this case, the tenant shards for these customers can be made inactive which will help to reduce cost and make the system more performant for others. We are very excited for you to try it out.
+
+:::warning TODO
+Add example usage below
+:::
+
+<details>
+  <summary>Example usage</summary>
+
+Usage example goes here
+
+</details>
+
+### Improved cycle management for MT
+
+As you might imagine, enabling large-scale MT requires managing a large number of processes. This requires unifying and centralizing the scheduling of background processes in each shard.
+
+While each shard is self-contained and can perform its own work, the scheduling is controlled externally.
+
+With `v1.21`, we've improved cycle management to optimize resource usage. This creates a more stable setup in a MT environment.
+
+## Performance improvements
+
+### Alternative virtual memory access (pread vs mmap)
+
+Weaviate has been using `mmap` to map a portion of disk space to virtual memory.
+
+While `mmap` is performant, it can lead to stalling situations under heavy load or memory pressure due to Weaviate not being aware that the memory is in fact virtual.
+
+To mitigate this situation, we add an option to use `pread` for memory management.
+
+`pread` provides better responsiveness and avoids inducing downtime in a cluster. The tradeoff is that `pread` does not provide the same memory management benefits as `mmap`, and may not be as fast as memory access.
+
+The current default will remain `mmap` - so if you want to change it, you must set the `PERSISTENCE_LSM_ACCESS` [environment variable](/developers/weaviate/config-refs/env-vars.md) to `pread`.
+
+:::tip Want to know more?
+There is a paper entitled ["Do you really want to use mmap in your DBMS?"](https://db.cs.cmu.edu/mmap-cidr2022/) on this topic.
+
+We also include further notes below.
+:::
+
+<details>
+  <summary>More on mmap vs pread</summary>
+
+With `mmap`, the operating system handles the disk access. If enough memory is available, it can cache the entire disk, resulting in fast access.
+
+However, under heavy load or memory pressure, the use of `mmap` can lead to scalability issues and slow down the system.
+
+On the other hand, the `pread` function performs regular disk I/O at a specific position.
+
+It is similar to `mmap` in that it reads a specified number of bytes from a specific byte position. But, the Go runtime is aware of the disk I/O operations performed with `pread`, while it is not with `mmap` (as it is handled by the OS). So, disk I/O operations are handled differently between these two functions.
+
+With `pread`, When a goroutine is waiting for disk I/O, the Go runtime parks it and works on other tasks in the meantime. This means that the goroutine is not blocked and does not cause performance issues.
+
+</details>
+
+### Arm64 neon (TBD)
+
+The 'Arm64 neon' feature in Weaviate 1.21 refers to the optimization of arm 64 CPUs using neon instructions.
+
+With this simd instructions are now used for faster distance calculations in ARM processors (note: similar feature already available for `x86-64` Intel/AMD processors). This optimization results in significant performance improvements, especially for large data sets and high-dimensional embeddings.
+
+The feature automatically detects the architecture and enables the optimization if supported.
+
+Docs to be updated:
+https://weaviate.io/developers/weaviate/config-refs/distances#distance-implementations-and-optimizations (update table w/ latest info)
+
+
+### Delta encode in HNSW (TBD)
+
+Delta encoding in HNSW involves making changes to how the graph connections are stored in memory.
+
+Currently, the graph is stored as an array with all the edges, but the proposed change would involve a different method of storing the graph. This change is expected to improve indexing time and make data writing quicker to the HNSW graph.
+
+Further testing and evaluation are needed before it can be included in the release.
+
+Docs to be updated:
+Possibly https://weaviate.io/developers/weaviate/concepts/vector-index
+
+### Reduce HNSW lock contention (TBD)
+
+The current implementation of HNSW (Hierarchical Navigable Small World) has more locks than necessary, leading to performance issues under heavy load.
+
+The goal is to reduce lock contention and improve indexing time by optimizing the locking mechanism.
+
+Docs to be updated:
+Possibly https://weaviate.io/developers/weaviate/concepts/vector-index
+
+### Hybrid fusion oversearch (TBD)
+
+Users have noticed that changing the limit parameter in queries can affect the scoring results.
+
+To address this, the team has introduced a change where for small limits, the actual limit internally is higher and the results are simply cut off. This change stabilizes the scoring results and applies only to hybrid search.
+
+Docs to be updated:
+https://weaviate.io/developers/weaviate/api/graphql/search-operators#hybrid (if necessary)
+https://weaviate.io/developers/weaviate/search/hybrid (if necessary)
+
+(Potentially explain scoring somewhere)
+
+### Backup improvements
+
+Your backups will now be more efficient, and likely lower incurred costs by cloud storage providers.
+
+The new and improved backup process combines and compresses the required files to one backup file. Where there are a large number of files - such as with multi-tenancy users - this will be particularly beneficial.
+
+Not only will it compress the data, it will reduce the number of file operations,improving efficiency and reducing cloud storage costs.
+
+:::note `v1.21` backups cannot be used in `v1.20` and below
+Due to this change, backups from `v1.21` cannot be used to restore in a `v1.20` instance.
+:::
+
+## Windows support (TBD)
+
+Binaries can now run on Windows. This will make Embedded Weaviate available on Windows.
+
+## New modules (TBD)
+
+
+
+
+
+
+============================================
+============================================
+============================================
+============================================
+============================================
+============================================
+============================================
+============================================
+
