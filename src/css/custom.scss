@@ -447,11 +447,16 @@ button.close {
 
 [data-theme='light'] {
   #__docusaurus:has(.custom-page) {
-    //background-image: url('/img/site/background-light.jpg');
-    background-color: #F5F5F5;
+    background-image: url('/img/site/background-light.jpg');
+
     background-size: cover;
     background-position: center;
   }
+
+  .custom-page.homepage {
+    background-image: none;
+    background-color: #F5F5F5;
+}
 
   .hero__logo {
     background-image: url('/img/site/weaviate-logo-light.png');

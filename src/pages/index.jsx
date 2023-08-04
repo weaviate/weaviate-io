@@ -20,11 +20,8 @@ import HomepageContact from '/src/components/Home/Contact';
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <div className="custom-page">
-      <Layout
-        title="Welcome"
-        description="Welcome to Weaviate"
-      >
+    <div className="custom-page homepage">
+      <Layout title="Welcome" description="Welcome to Weaviate">
         <MetaSEO img="og/website/home.jpg" />
         <HomepageHeader />
         <main>
@@ -36,8 +33,7 @@ export default function Home() {
           <HomepageJoinCommunity />
           <HomepageLatestInsights />
 
-          <HomepageReady/>
-
+          <HomepageReady />
         </main>
       </Layout>
     </div>
