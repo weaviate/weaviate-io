@@ -1,6 +1,6 @@
 ---
 title: multi2vec-clip
-sidebar_position: 6
+sidebar_position: 33
 image: og/docs/modules/multi2vec-clip.jpg
 # tags: ['multi2vec', 'multi2vec-clip']
 ---

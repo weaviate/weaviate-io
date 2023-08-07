@@ -1,6 +1,6 @@
 ---
 title: text2vec-contextionary
-sidebar_position: 4
+sidebar_position: 20
 image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---

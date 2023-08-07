@@ -1,6 +1,6 @@
 ---
 title: text2vec-palm
-sidebar_position: 1
+sidebar_position: 14
 image: og/docs/modules/text2vec-palm.jpg
 # tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---

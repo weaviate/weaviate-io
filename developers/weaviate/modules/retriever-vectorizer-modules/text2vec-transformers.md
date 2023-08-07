@@ -1,6 +1,6 @@
 ---
 title: text2vec-transformers
-sidebar_position: 3
+sidebar_position: 21
 image: og/docs/modules/text2vec-transformers.jpg
 # tags: ['text2vec', 'text2vec-transformers']
 ---

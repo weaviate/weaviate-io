@@ -1,6 +1,6 @@
 ---
 title: img2vec-neural
-sidebar_position: 5
+sidebar_position: 30
 image: og/docs/modules/img2vec-neural.jpg
 # tags: ['img2vec', 'img2vec-neural']
 ---

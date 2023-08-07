@@ -1,6 +1,6 @@
 ---
 title: text2vec-cohere
-sidebar_position: 1
+sidebar_position: 10
 image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
