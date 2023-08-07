@@ -304,6 +304,14 @@
 
   display: none;
 }
+
+.custom-page .toggleButton_gllP {
+
+  display: none;
+}
+
+
+
 .custom-page .hiddenSearch{
 
   display:none;
@@ -462,7 +470,6 @@ button.close {
     background-image: url('/img/site/weaviate-logo-light.png');
   }
   .navbar {
-    // background: transparent;
     background: #EDEDED;
     box-shadow: none;
   }

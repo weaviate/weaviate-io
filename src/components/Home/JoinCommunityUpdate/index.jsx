@@ -59,15 +59,6 @@ export default function HomepageJoinCommunity() {
             </p>
 
             <div className={styles.communityForm}>
-              {/*    <form className={styles.communityForm}>
-              <input
-                className={styles.subscribeInput}
-                type="field"
-                placeholder="my_email@something.com"
-              ></input>
-              <button className={styles.communityButton}>Subscribe</button>
-            </form> */}
-
               <iframe
                 src="https://embeds.beehiiv.com/15b21ebd-decd-433b-ada8-2d405e345f2e?slim=true"
                 data-test-id="beehiiv-embed"
