@@ -53,7 +53,7 @@ Another cutting edge idea in this line of thinking is [Tree-of-Thoughts sampling
 
 ## Query Understanding
 
-Rather than blindly sending a query to the search engine, Vector Databases, such as Weaviate, come with many levers to pull to achieve better search results. Firstly, a query may be better suited for a symbolic aggregation, rather than a semantic search. For example: `“What is the average age of country music singers in the United States of America?”`. This query is better answered with the SQL query: `SELECT avg(age) FROM singers WHERE genre=”country” AND origin=”United States of America”`.
+Rather than blindly sending a query to the search engine, [Vector Databases](https://weaviate.io/blog/what-is-a-vector-database), such as Weaviate, come with many levers to pull to achieve better search results. Firstly, a query may be better suited for a symbolic aggregation, rather than a semantic search. For example: `“What is the average age of country music singers in the United States of America?”`. This query is better answered with the SQL query: `SELECT avg(age) FROM singers WHERE genre=”country” AND origin=”United States of America”`.
 
 In order to bridge this gap, LLMs can be prompted to translate these kinds of questions into SQL statements which can then be executed against a database. Similarly, Weaviate has an [Aggregate API](/developers/weaviate/api/graphql/aggregate) that can be used for these kinds of queries on symbolic metadata associated with unstructured data.
 
