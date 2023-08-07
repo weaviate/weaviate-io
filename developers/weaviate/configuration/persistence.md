@@ -101,16 +101,14 @@ changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspe
 
 ## Virtual memory access method
 
-:::info Available from `v1.21` onwards
+:::info Available from version `v1.21`
 :::
 
-You can choose between `mmap` and `pread` functions to access virtual memory.
+You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS` environment variable.
 
-The default is `mmap`, but you can change it to `pread` by setting the `PERSISTENCE_LSM_ACCESS` environment variable to `pread`.
+The two functions reflect different under-the-hood memory management behaviors. `mmap` uses a memory-mapped file, which means that the file is mapped into the virtual memory of the process. `pread` is a function that reads data from a file descriptor at a given offset.
 
-If you experience potential stalling situations that can occur with `mmap` under heavy load, `pread` may provide a suitable alternative. However, `pread` may not be as fast as `mmap` and does not provide the same memory management benefits.
-
-The current default will remain 'mmap', but may switch to 'pread' as the default option in a future release.
+In general, `mmap` may be a preferred option with memory management benefits. However, if you experience stalling situations under heavy memory load, we suggest trying `pread` instead.
 
 ## More Resources
 

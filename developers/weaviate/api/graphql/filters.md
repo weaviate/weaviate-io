@@ -250,15 +250,21 @@ Each query using the `Like` operator iterates over the entire inverted index for
 
 ### `ContainsAny` / `ContainsAll`
 
-The `ContainsAny` and `ContainsAll` operators allow you to search an array (or text) using another array (or text).
+The `ContainsAny` and `ContainsAll` operators allow you to search within an array (or text) using another array (or text) as criteria.
 
-Both of these operators will take an array of values as input, and will return all objects that contain *any* or *all* (respectively) of the values in the input array.
+Both operators expect an array of values and return objects that match based on the input values.
+
+:::note Text as an array
+The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
+:::
 
 #### `ContainsAny`
 
-Consider a dataset of people (`Person` class), where each person has a `name` and a `languages_spoken` property.
+`ContainsAny` returns objects where at least one of the values from the input array is present.
 
-With `ContainsAny`, the query will return all people whose `languages_spoken` values contain *any* of the listed languages in the query.
+Consider a dataset of `Person`, where each object represents a person with a `name` and a `languages_spoken` property.
+
+Using `ContainsAny`, you can fetch all people who speak at least one of the provided languages.
 
 ```graphql
 {
@@ -278,11 +284,11 @@ With `ContainsAny`, the query will return all people whose `languages_spoken` va
 }
 ```
 
-In other words, it will return all people who can speak *at least one of* `Chinese`, `French`, or `English` in their `name` property.
+This query fetches individuals who speak **one or more of the specified languages**. That is, at least one of `Chinese`, `French`, or `English`.
 
 #### `ContainsAll`
 
-With `ContainsAll`, the query will return all people whose `languages_spoken` values contain *each one* (i.e. all) of the values in the input array.
+`ContainsAll` returns objects where all the values from the input array are present.
 
 ```graphql
 {
@@ -290,7 +296,7 @@ With `ContainsAll`, the query will return all people whose `languages_spoken` va
     Person (
       where: {
         path: ["languages_spoken"],
-        operator: ContainsAny,
+        operator: ContainsAll,
         valueText: ["Chinese", "French", "English"]
       }
     )
@@ -302,7 +308,7 @@ With `ContainsAll`, the query will return all people whose `languages_spoken` va
 }
 ```
 
-In other words, it will return all people who can speak *every single one* `Chinese`, `French`, or `English`.
+This query fetches individuals who can speak **all three languages**: `Chinese`, `French`, and `English`.
 
 ## Special cases
 

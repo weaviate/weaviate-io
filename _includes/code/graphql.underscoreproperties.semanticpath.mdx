@@ -9,7 +9,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-near_text_filter = {
+near_text_operator = {
   "concepts": ["fashion"],
   "distance": 0.6, #prior to v1.14 use certainty: 0.7
   "moveAwayFrom": {
@@ -30,7 +30,7 @@ query_result = (
   client.query
   .get("Publication", "name")
   .with_additional(additional_props)
-  .with_near_text(near_text_filter)
+  .with_near_text(near_text_operator)
   .do()
 )
 

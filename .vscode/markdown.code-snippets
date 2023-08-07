@@ -240,5 +240,15 @@
 			":::"
 		],
 		"description": "Adds a 'related pages' 'info' admonition"
-	}
+	},
+
+	"Available-from": {
+		"prefix": "docusaurus-admonition-available-from",
+        "scope": "markdown",
+		"body": [
+			":::info Available from version `v${1.xx}`",
+			":::"
+		],
+		"description": "For marking features as being availble from a certain version"
+	},
 }
