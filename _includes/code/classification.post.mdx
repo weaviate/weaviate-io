@@ -35,7 +35,7 @@ const client = weaviate.client({
 const response = await client.classifications
   .scheduler()
   .withType('<e.g. knn>')
-  .withSettings(<e.g. { k: 3 }>) // optional for knn classification
+  .withSettings(<e.g. { 'k': 3 }>) // optional for knn classification
   .withClassName('<className>')
   .withClassifyProperties(['<property1>', '<property2>'])
   .withBasedOnProperties(['<property3>'])
