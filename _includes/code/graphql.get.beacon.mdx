@@ -15,27 +15,22 @@ import UnfilteredCode from '!!raw-loader!/_includes/code/graphql.get.beacon.py';
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withFields('title url wordCount inPublication {... on Publication {name}}')
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title url wordCount inPublication {... on Publication {name}}')
+  .do();
+console.log(response);
 ```
 
 </TabItem>

@@ -83,12 +83,12 @@ Additional modules can be enabled by setting additional environment variables as
 
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   ```js
-  import weaviate, { EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+  import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
   
-  const client: EmbeddedClient = weaviate.client(
+  const client = weaviate.client(
     new EmbeddedOptions({
       env: {
         ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",

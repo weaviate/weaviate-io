@@ -40,69 +40,29 @@ print(json.dumps(result, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
 
-const where_filter = {
-  path: ['category'],
-  operator: 'Equal',
-  valueText: 'ANIMALS',
-};
-
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Question')
   .withFields('question answer category')
-  .withNearText({concepts: ['biology']})
-  .withWhere(where_filter)
-  .do()
-  .then(res => {
-    console.log(JSON.stringify(res, null, 2))
+  .withNearText({ concepts: ['biology'] })
+  .withWhere({
+    path: ['category'],
+    operator: 'Equal',
+    valueText: 'ANIMALS',
   })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
-});
-
-const where_filter = {
-  path: ['category'],
-  operator: 'Equal',
-  valueText: 'ANIMALS',
-};
-
-client.graphql
-  .get()
-  .withClassName('Question')
-  .withFields('question answer category')
-  .withNearText({concepts: ['biology']})
-  .withWhere(where_filter)
-  .do()
-  .then((res: any) => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

@@ -65,28 +65,27 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .explore()
-      .withNearText({concepts:['New Yorkers'])}, moveTo: {concepts: ['publisher', 'articles'], force: 0.5}, moveAwayFrom: {concepts: ['fashion', 'shop'], force: 0.2})})
-      .withDistance(0.95) // prior to v1.14, use withCertainty()
-      .withFields('beacon certainty distance className') // note that certainty is only supported if distance==cosine
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .explore()
+  .withNearText({
+    concepts: ['New Yorkers'],
+    moveTo: { concepts: ['publisher', 'articles'], force: 0.5 },
+    moveAwayFrom: { concepts: ['fashion', 'shop'], force: 0.2 },
+    distance: 0.95,   // prior to v1.14, use certainty
+  })
+  .withFields('beacon certainty distance className')  // certainty is only supported if distance==cosine
+  .do();
+console.log(response);
 ```
 
 </TabItem>
