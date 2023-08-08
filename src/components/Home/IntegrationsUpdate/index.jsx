@@ -17,9 +17,6 @@ export default function HomepageIntegrations() {
               for vectorization. You can also pick from a wide variety of
               well-known neural search frameworks with Weaviate integrations.
             </p>
-            {/*    <ButtonContainer position='left'>
-            <LinkButton link="/developers/weaviate/modules" newTab={false}>Learn about Weaviate modules</LinkButton>
-          </ButtonContainer> */}
           </div>
         </div>
       </div>
