@@ -23,6 +23,10 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 ## Enable multi-tenancy
 
+:::info
+Available from `v1.20` onwards
+:::
+
 Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the class definition as shown below:
 
 ```json
