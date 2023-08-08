@@ -14,7 +14,7 @@ import Badges from '/_includes/badges.mdx';
 Welcome to the documentation for **Weaviate**, an open source vector database.
 
 ### About the docs
-The majority of the content is categorized into one of three categories based on its main goal:
+The content is grouped into categories by goals:
 
 | | 🔧<br/>How-to | 📚<br/>References | 💡<br/>Concepts | 🎓<br/>Tutorials |
 | ----- | ----- | ----- | ----- | ----- |
