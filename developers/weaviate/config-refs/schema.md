@@ -68,8 +68,8 @@ An example of a complete class object including properties:
 
 ```json
 {
-  "class": "string",                        // The name of the class in string format
-  "description": "string",                  // A description for your reference
+  "class": "Article",                        // The name of the class in string format
+  "description": "An article",                  // A description for your reference
   "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema definition since this is the only available type for now
   "vectorIndexConfig": {
     ...                                     // Vector index type specific settings, including distance metric
@@ -82,8 +82,8 @@ An example of a complete class object including properties:
   },
   "properties": [                           // An array of the properties you are adding, same as a Property Object
     {
-      "name": "string",                     // The name of the property
-      "description": "string",              // A description for your reference
+      "name": "title",                     // The name of the property
+      "description": "title of the article",              // A description for your reference
       "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
         "text"
       ],
@@ -93,7 +93,8 @@ An example of a complete class object including properties:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+      "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+      "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
@@ -106,7 +107,8 @@ An example of a complete class object including properties:
   },
   "shardingConfig": {
     ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
-  }
+  },
+  "multiTenancyConfig": {"enabled": true}   // Optional, for enabling multi-tenancy for this class (default: false)
 }
 ```
 
@@ -188,9 +190,9 @@ The meaning of the individual fields in detail:
 
 ### replicationConfig
 
-Replication configurations can be set using the schema, through the `replicationConfig` parameter.
+[Replication](../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
-The `factor` parameter sets how many copies of this class will be stored.
+The `factor` parameter sets the number of copies of to be stored for objects in this class.
 
 ```json
 {
@@ -343,6 +345,24 @@ If necessary, they can be configured in the schema per class, and can optionally
 }
 ```
 
+### multiTenancyConfig
+
+:::info Available from `v1.20` onwards
+:::
+
+The `multiTenancyConfig` value will determine whether[multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this class. If enabled, objects of this class will be isolated for each tenant. It is disabled by default.
+
+To enable it, set the `enabled` key to `true`, as shown below:
+
+```json
+{
+  "class": "MultiTenancyClass",
+  // highlight-start
+  "multiTenancyConfig": {"enabled": true}
+  // highlight-end
+}
+```
+
 ## Property object
 
 Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
@@ -351,26 +371,32 @@ An example of a complete property object:
 
 ```json
 {
-    "name": "string",                     // The name of the property
-    "description": "string",              // A description for your reference
+    "name": "title",                     // The name of the property
+    "description": "title of the article",              // A description for your reference
     "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
       "text"
     ],
-    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See Property Tokenization below for more detail.
+    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See "Property tokenization" below for more detail.
     "moduleConfig": {                     // Module-specific settings
       "text2vec-contextionary": {
-          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
-          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
+          "skip": true,                   // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true   // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexFilterable": true,                // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
-    "indexSearchable": true,                // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
+    "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+    "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 }
 ```
 
 ### Property tokenization
 
-You can customize how `text` data is tokenized and indexed in the inverted index. For example:
+:::note
+This feature was introduced in `v1.12.0`.
+:::
+
+You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/search-operators.md#bm25) and [`hybrid`](../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../api/graphql/filters.md).
+
+The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
 
 ```json
 {
@@ -393,24 +419,33 @@ You can customize how `text` data is tokenized and indexed in the inverted index
 }
 ```
 
-:::note
-This feature was introduced in `v1.12.0`. This applies to the BM25/hybrid searching and filtering.
-:::
+Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
+
+| Tokenization Method | Explanation                                                                  | Indexed Tokens                   |
+|---------------------|------------------------------------------------------------------------------|----------------------------------|
+| `word` (default)    | Keep only alpha-numeric characters, lowercase them, and split by whitespace. | `hello`, `beautiful`, `world`    |
+| `lowercase`         | Lowercase the entire text and split on whitespace.                           | `hello,`, `(beautiful)`, `world` |
+| `whitespace`        | Split the text on whitespace. Searches/filters become case-sensitive.        | `Hello,`, `(beautiful)`, `world` |
+| `field`             | Index the whole field after trimming whitespace characters.                  | `Hello, (beautiful) world`       |
+
+### Tokenization and search / filtering
+
+Tokenization will impact how filters or keywords searches behave. This is because the filter or keyword search is also tokenized before being matched against the inverted index.
+
+The following table shows an example scenario showing whether a filter or keyword search would identify a `text` property with value `Hello, (beautiful) world` as a hit.
+
+- **Row**: Various tokenization methods.
+- **Column**: Various search strings.
+
+|   | `Beautiful` | `(Beautiful)` | `(beautiful)` | `Hello, (beautiful) world` |
+|---|-------------|---------------|---------------|----------------------------|
+| `word` (default)    | ✅ | ✅ | ✅ | ✅ |
+| `lowercase`         | ❌ | ✅ | ✅ | ✅ |
+| `whitespace`        | ❌ | ❌ | ✅ | ✅ |
+| `field`             | ❌ | ❌ | ❌ | ✅ |
 
 :::caution `string` is deprecated
-`string` has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
-:::
-
-Tokenization of `text` properties can be customized using `tokenization` property in the schema for the relevant class.
-
-Each token will be indexed separately in the inverted index. This would cause filtering, for example, to behave differently. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
-
-| Tokenization Method | Explanation                                                 | Example Input           | Indexed Tokens                                    |
-|---------------------|-------------------------------------------------------------|-------------------------|---------------------------------------------------|
-| `word` (default)    | Keep alpha-numeric characters, lowercase them, and split by whitespace. | `Hello, (beautiful) world` | `hello`, `beautiful`, `world`                   |
-| `whitespace`        | Split the text on whitespace.                               | `Hello, (beautiful) world` | `Hello,`, `(beautiful)`, `world`                |
-| `lowercase`         | Lowercase the text and split on whitespace.                 | `Hello, (beautiful) world` | `hello,`, `(beautiful)`, `world`                |
-| `field`             | Index the whole field after trimming whitespace characters. | `Hello, (beautiful) world` | `Hello, (beautiful) world`                      |
+The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
 
 <details>
   <summary>
@@ -438,6 +473,18 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 `text` and `string` properties default to `word` level tokenization for backward-compatibility.
 
 </details>
+:::
+
+### Inverted indexing
+
+:::info `indexInverted` is deprecated
+The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards in lieu of `indexFilterable` and `indexSearchable`.
+:::
+
+The `indexFilterable` and `indexSearchable` parameters control whether a property is going to be indexed for filtering and searching, respectively.
+
+`indexFilterable` determines whether a property is to be indexed with a Roaring Bitmap index for fast filtering.
+`indexSearchable` determines whether a property is to be indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 
 ## Configure semantic indexing
 

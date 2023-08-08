@@ -43,15 +43,15 @@ Set the index (for the missing/null properties) values to null.
 For example, imagine you have a dataset containing information about a group of people who might have food allergies. Both Noah and Emma don't have food allergies.
 
 ```json
-{
+[{
     "name": "Noah",
-    "age": "5",
+    "age": "5"
 },
 {
     "name": "Emma",
     "age": "20",
     "allergy": null
-},
+}]
 ```
 
 Although Noah is missing the allergy property, it will still be imported as if it was set to `null` (similar to Emma's).

@@ -4,7 +4,7 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-// EndToEndExample  // InstantiationExample  // NearTextExample  // CustomVectorExample
+// EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';
 
@@ -12,10 +12,10 @@ const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: {'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY'},  // Replace with your inference API key
+  headers: { 'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY' },  // Replace with your inference API key
 });
 
-// END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END CustomVectorExample
+// END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END GenerativeSearchExample  // END CustomVectorExample
 
 // ================================
 // ===== END-TO-END EXAMPLE =====
@@ -23,18 +23,18 @@ const client: WeaviateClient = weaviate.client({
 
 // EndToEndExample  // CustomVectorExample
 // Add the schema
-let classObj = {
+const classObj = {
   'class': 'Question',
   'vectorizer': 'text2vec-huggingface',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
   'moduleConfig': {
     'text2vec-huggingface': {
-        'model': 'sentence-transformers/all-MiniLM-L6-v2',  // Can be any public or private Hugging Face model.
-        'options': {
-            'waitForModel': true
-        }
-    }
-  }
-}
+      'model': 'sentence-transformers/all-MiniLM-L6-v2',  // Can be any public or private Hugging Face model.
+      'options': {
+        'waitForModel': true,
+      },
+    },
+  },
+};
 
 async function addSchema() {
   const res = await client.schema.classCreator().withClass(classObj).do();
@@ -56,7 +56,7 @@ async function importQuestions() {
   // Prepare a batcher
   let batcher: ObjectsBatcher = client.batch.objectsBatcher();
   let counter = 0;
-  let batchSize = 100;
+  const batchSize = 100;
 
   for (const question of data) {
     // Construct an object with a class and properties 'answer' and 'question'
@@ -67,7 +67,7 @@ async function importQuestions() {
         question: question.Question,
         category: question.Category,
       },
-    }
+    };
 
     // add the object to the batch queue
     batcher = batcher.withObject(obj);
@@ -102,10 +102,48 @@ async function nearTextQuery() {
     .do();
 
   console.log(JSON.stringify(res, null, 2));
-  return res
+  return res;
 }
 
 // END NearTextExample
+
+// NearTextWhereExample
+async function nearTextWhereQuery() {
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withWhere({
+      'path': ['category'],
+      'operator': 'Equal',
+      'valueText': 'ANIMALS',
+    })
+    .withLimit(2)
+    .do();
+
+  console.log(JSON.stringify(res, null, 2));
+  return res;
+}
+
+// END NearTextWhereExample
+
+// GenerativeSearchExample
+async function generativeSearchQuery() {
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withGenerate({singlePrompt: 'Explain {answer} as you might to a five-year-old.'})
+    .withLimit(2)
+    .do();
+
+  console.log(JSON.stringify(res, null, 2));
+  return res;
+}
+
+// END GenerativeSearchExample
 
 // Define test functions
 async function getNumObjects() {
@@ -117,7 +155,7 @@ async function getNumObjects() {
 }
 
 async function cleanup() {
-  client.schema.classDeleter().withClassName('Question').do();
+  await client.schema.classDeleter().withClassName('Question').do();
 }
 // END Define test functions
 
@@ -166,6 +204,18 @@ await nearTextQuery();
 // END NearTextExample
 */
 
+/*
+// NearTextExample
+await nearTextWhereQuery();
+// END NearTextExample
+*/
+
+/*
+// GenerativeSearchExample
+await generativeSearchQuery();
+// END GenerativeSearchExample
+*/
+
 
 /*
 // Add the schema
@@ -182,7 +232,7 @@ await importQuestions();
 
 
 /*
-// Import data function with custom vectors
+// Import data with custom vectors
 async function getJsonData() {
   const fname = 'jeopardy_tiny_with_vectors_all-MiniLM-L6-v2.json';
   const url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/' + fname
@@ -232,5 +282,5 @@ async function importQuestions() {
   const res = await batcher.do();
   console.log(res);
 }
-// END Import data function with custom vectors
+// END Import data with custom vectors
 */

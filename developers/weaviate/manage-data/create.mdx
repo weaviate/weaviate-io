@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'create']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -13,22 +17,43 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
 
 ## Overview
 
-This page will show you how to create individual objects in Weaviate. Note that whenever you want to create multiple objects, it's best to use [batch operations](./import.mdx).
+This page shows you how to create individual objects in Weaviate.
+
+:::tip To create multiple objects, it's best to use [batch operations](./import.mdx).
+:::
+
+:::info See also
+- [How-to: (Batch) Import items](./import.mdx)
+- [References: REST - /v1/objects](../api/rest/objects.md)
+:::
 
 
 ## Requirements
 
 To create an object, specify:
-* The object to be added, and
+* The object data to be added, and
 * The target class.
 
-### Object construction
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
 
-You do not need to specify data for all defined object properties.
+### Object data vs class definition
 
-If you specify data for any new properties when creating the object, the [auto-schema feature](../config-refs/schema.md#autoschema) will add them to the schema during creation. If this isn't desired, you can [validate](#validating-before-creation) that the object does not contain any extra properties vs. the class definition.
+Compared to the class definition, the object data:
+- Can omit defined properties.
+- Can include new properties.
 
-### Example
+:::info
+Any new properties will be added to the class definition during object creation with [auto-schema](../config-refs/schema.md#autoschema).
+:::
+
+#### Example
+
+This example shows how to create an object in the `JeopardyQuestion` class, with:
+- An existing property (`question`),
+- A new property (`somePropNotInTheSchema`), and
+- Omits an existing property (`answer`).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -53,9 +78,17 @@ If you specify data for any new properties when creating the object, the [auto-s
 
 ## Optional parameters
 
-Optionally, you can specify,
-* a custom [id](../api/graphql/additional-properties.md#id), and/or
-* a custom vector.
+Optionally, you can specify an [id](../api/graphql/additional-properties.md#id) or a vector.
+
+### `id`
+
+You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. Otherwise, Weaviate will generate a random UUID.
+
+### `vector`
+
+You can optionally specify a vector to represent each object. Otherwise, Weaviate will follow the relevant vectorizer setting.
+
+### Example
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -77,16 +110,33 @@ Optionally, you can specify,
   </TabItem>
 </Tabs>
 
-If a vectorizer is defined, and a custom vector is not supplied, Weaviate wil use the vectorizer to create a corresponding vector embedding.
-
 ## Preventing duplicates
 
-To prevent duplicates, you can [efficiently check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id). Note that Weaviate allows identical objects (in terms of property values), so the id is the only differentiator.
+In Weaviate, the only unique field is the `id`. If you try to create an object with an existing id, Weaviate will throw an error. (In [batch imports](./import.mdx#managing-potential-duplication), Weaviate will overwrite the object if one exists.)
 
+To prevent duplicates, we suggest:
+- Using a deterministic ID generation method, and
+- Checking if an object exists before creating it.
+
+### Generate deterministic ID
+
+You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+
+### Check if an object exists
+
+You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
+
+:::info IDs unique to each class and tenants
+[Classes](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different classes and/or tenants.
+:::
 
 ## Validating before creation
 
-To make sure the creation of an object will succeed, and that it doesn't have any extra properties vs. the schema, you can [validate](../api/rest/objects.md#validate-a-data-object) an object against the class definition before creating it.
+You can [validate](../api/rest/objects.md#validate-a-data-object) an object against the class definition before creating it.
+
+This will confirm:
+- Whether the creation of an object will succeed, and
+- That it doesn't have any extra properties vs. the schema.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">

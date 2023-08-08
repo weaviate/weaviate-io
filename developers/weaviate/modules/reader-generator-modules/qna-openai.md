@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 
 * The OpenAI Question and Answer (Q&A) module is a Weaviate module for answer extraction from data through the OpenAI [completions endpoint](https://platform.openai.com/docs/api-reference/completions) or the Azure OpenAI equivalent.
 * The module depends on a text vectorization module that should be running with Weaviate.
-* The module adds an `ask {}` parameter to the GraphQL `Get {}` queries
+* The module adds an `ask {}` operator to the GraphQL `Get {}` queries
 * The module returns a max. of 1 answer in the GraphQL `_additional {}` field.
 * The answer with the highest `certainty` (confidence level) will be returned.
 * Added in Weaviate `v1.16.6`
@@ -154,7 +154,7 @@ For information on how to use the individual parameters you [can check here](htt
 
 ## How to use
 
-This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This new search parameter takes the following arguments:
+This module adds a search operator to GraphQL `Get{...}` queries: `ask{}`. This operator takes the following arguments:
 
 | Field | Data Type | Required | Example value | Description |
 |- |- |- |- |- |
@@ -164,7 +164,7 @@ This module adds a search parameter to GraphQL `Get{...}` queries: `ask{}`. This
 Notes:
 
 * The GraphQL `Explore { }` function does support the `ask` searcher, but the result is only a beacon to the object containing the answer. It is thus not any different from performing a nearText semantic search with the question. No extraction is happening.
-* You cannot use the `'ask'` parameter along with a `'near'` parameter!
+* You cannot use the `'ask'` operator along with a `'neaXXX'` operator!
 
 ### Example query
 

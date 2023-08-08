@@ -1,4 +1,4 @@
-If your Weaviate instance contains data you want removed, you can manually delete the unwanted class(es).
+You can delete any unwanted class(es), along with the data that they contain.
 
 :::caution Deleting a class == Deleting its objects
 Know that **deleting a class will also delete all associated objects**!
@@ -27,21 +27,15 @@ client.schema.delete_class("YourClassName")  # Replace with your class name - e.
 ```
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="ts" label="JavaScript/TypeScript">
 
 ```ts
-var className: string = 'YourClassName';  // Replace with your class name
+const className: string = 'YourClassName';  // Replace with your class name
 
-client.schema
+await client.schema
   .classDeleter()
   .withClassName(className)
-  .do()
-  .then((res: any) => {
-  console.log(res);
-  })
-  .catch((err: Error) => {
-  console.error(err)
-  });
+  .do();
 ```
 
 </TabItem>

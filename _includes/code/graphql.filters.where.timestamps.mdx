@@ -12,7 +12,7 @@ client = weaviate.Client("http://localhost:8080")
 where_filter = {
   "path": ["_creationTimeUnix"],
   "operator": "GreaterThan",
-  # "valueDate": "2022-03-18T20:26:34.586-0500",
+  # "valueDate": "2022-03-18T20:26:34.586-05:00",  # Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
   "valueText": "1647653359063"
 }
 
@@ -42,9 +42,10 @@ client.graphql
       .withClassName('Article')
       .withFields('title')
       .withWhere({
-        operator: 'Greater',
+        operator: 'GreaterThan',
         path: ['_creationTimeUnix'],
-        valueDate: '2022-03-18T20:26:34.586-0500',
+        // valueDate: '2022-03-18T20:26:34.586-05:00',  // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
+        valueText: '1647653359063',
       })
       .do()
       .then(res => {
@@ -85,7 +86,7 @@ func main() {
 	where := filters.Where().
 		WithPath([]string{"_creationTimeUnix"}).
 		WithOperator(filters.LessThan).
-		WithValueDate(time.Now())
+		WithValueDate(time.Now())  // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
 
 	ctx := context.Background()
 
@@ -138,7 +139,7 @@ public class App {
         WhereFilter where = WhereFilter.builder()
                 .path(new String[]{ "_creationTimeUnix" })
                 .operator(Operator.GreaterThan)
-                .valueDate(date)
+                .valueDate(date)  // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
                 .build();
 
         Result<GraphQLResponse> result = client.graphQL().get()
@@ -166,7 +167,7 @@ $ echo '{
       Article(where: {
           path: [\"_creationTimeUnix\"],
           operator: GreaterThan,
-          valueDate: \"2022-03-18T20:26:34.586-0500\"
+          valueDate: \"2022-03-18T20:26:34.586-05:00\"
         }) {
         title
       }
@@ -188,7 +189,7 @@ $ echo '{
     Article(where: {
         path: ["_creationTimeUnix"],
         operator: GreaterThan,
-        valueText: "1647653359063"  # Can also use valueDate: "2022-03-18T20:29:19.063-0500"
+        valueText: "1647653359063"  # Can also use valueDate: "2022-03-18T20:26:34.586-05:00"
       }) {
       title
     }

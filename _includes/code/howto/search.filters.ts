@@ -10,10 +10,10 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // If authentication is on. Replace w/ your Weaviate instance API key.
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
 });
 

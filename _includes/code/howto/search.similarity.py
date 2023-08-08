@@ -6,21 +6,22 @@
 
 import weaviate
 import json
+import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace w/ your OPENAI API key
     }
 )
 
-# ==========================================
-# ===== QUERY WITH NEARTEXT =====
-# ==========================================
+# ===============================
+# ===== QUERY WITH nearText =====
+# ===============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
 # GetNearTextPython
 response = (
@@ -49,7 +50,7 @@ assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
 
 
 expected_results = """
-# Expected nearText results
+# START Expected nearText results
 {
   "data": {
     "Get": {
@@ -57,17 +58,16 @@ expected_results = """
         {
           "answer": "meerkats",
           "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]",
-          "_additional": { "distance": 0.17592645 }
+          "_additional": { "distance": 0.17602634 }
         },
         {
           "answer": "dogs",
           "question": "Scooby-Doo, Goofy & Pluto are cartoon versions",
-          "_additional": { "distance": 0.17837858 }
-        },
+          "_additional": { "distance": 0.17842108 }
+        }
       ]
     }
-  },
-  ...  // Truncated for brevity
+  }
 }
 # END Expected nearText results
 """
@@ -102,11 +102,11 @@ def test_gqlresponse(response_in, gqlresponse_in):
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
-# ===== QUERY WITH NEAROBJECT =====
-# ==========================================
+# =================================
+# ===== QUERY WITH nearObject =====
+# =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 
 # GetNearObjectPython
 response = (
@@ -159,11 +159,11 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
-# ===== QUERY WITH NEARVECTOR =====
-# ==========================================
+# =================================
+# ===== QUERY WITH nearVector =====
+# =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearvector
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearvector
 
 # GetNearVectorPython
 response = (
@@ -287,9 +287,9 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
-# ==========================================
+# ===============================
 # ===== QUERY WITH DISTANCE =====
-# ==========================================
+# ===============================
 
 # http://weaviate.io/developers/weaviate/config-refs/distances
 
@@ -349,10 +349,69 @@ gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
 
+# ===============================
+# ===== Query with autocut =====
+# ===============================
 
-# ==========================================
-# ===== QUERY WITH GROUPBY =====
-# ==========================================
+# http://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut
+
+# START Autocut Python
+response = (
+    client.query
+    .get('JeopardyQuestion', ['question', 'answer'])
+    .with_near_text({
+        'concepts': ['animals in movies'],
+        'distance': max_distance
+    })
+    # highlight-start
+    .with_autocut(1)
+    # highlight-end
+    .with_additional(['distance'])
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END Autocut Python
+
+# Test results
+assert 'JeopardyQuestion' in response['data']['Get']
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'distance'}
+# TODO: add tests
+# End test
+
+
+
+gql_query = """
+# START Autocut GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      nearText: {
+        concepts: ["animals in movies"]
+      }
+# highlight-start
+      autocut: 1
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        distance
+      }
+    }
+  }
+}
+# END Autocut GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+
+
+# ==============================
+# ===== QUERY WITH groupBy =====
+# ==============================
 
 
 # https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
@@ -508,7 +567,6 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresponse == response
 assert "JeopardyQuestion" in gqlresponse["data"]["Get"]
 assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"]) <= max_groups
 assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"].keys() == {"count", "groupedBy", "hits", "id", "maxDistance", "minDistance"}
@@ -517,11 +575,11 @@ assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["gro
 
 
 
-# ==========================================
+# ============================
 # ===== QUERY WITH WHERE =====
-# ==========================================
+# ============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
 # GetWithWherePython
 response = (

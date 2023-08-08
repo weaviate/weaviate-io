@@ -49,11 +49,21 @@
   color: var(--docs-base-color);
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--site-font-base-family);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--docs-header-color);
   };
+  h1, h2 {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+  h3 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
   h4 {
-    font-size: 1.2rem;
+    padding-top: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
   };
   // .theme-doc-sidebar-container, .navbar {
   //   background: var(--site-background);
@@ -61,4 +71,8 @@
   // #__docusaurus {
   //   background: var(--docs-sidebar-bg);
   // }
+}
+
+.hidden {
+  display: none !important;
 }

@@ -13,7 +13,7 @@ import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-c
 ## List data objects
 
 :::tip Do you want to list all objects from Weaviate?
-Use the [`after`](#exhaustive-listing-using-a-cursor-after) parameter.
+Use the [`after`](#exhaustive-listing-using-a-cursor-after) operator.
 :::
 
 List data objects in reverse order of creation. The data will be returned as an array of objects.
@@ -83,12 +83,12 @@ GET /v1/objects?class=MyClass&limit=10&offset=20
 :::tip
 - Available from version `v1.18.0`.
 - You can use `class`, `limit` and `after` for listing an entire object set from a class.
-- The `after` parameter is based on the order of ids. It can therefore only be applied to list queries without sorting.
+- The `after` operator is based on the order of ids. It can therefore only be applied to list queries without sorting.
 :::
 
-You can use the `after` parameter to retrieve all objects from a Weaviate instance . The `after` parameter ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
+You can use the `after` operator to retrieve all objects from a Weaviate instance . The `after` operator ("Cursor API") retrieves objects of a class based on the order of ids. You can pass the id of the last retrieved object as a cursor to start the next page.
 
-It is not possible to use the `after` parameter without specifying a `class`.
+It is not possible to use the `after` operator without specifying a `class`.
 
 For a null value similar to `offset=0`, set `after=` or `after` (i.e. with an empty string) in the request.
 
@@ -203,6 +203,12 @@ If you plan on importing a large number of objects, it's much more efficient to 
 1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
 1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
 
+:::note Idempotence of POST requests in `objects` and `batch`
+The idempotence behavior differs between these two endpoints. POST /batch/objects is idempotent, and will overwrite any existing object given an id. POST /objects will fail if an id is provided which already exists in the class.
+
+To update an existing object with the `objects` endpoint, use the [PUT or PATCH method](#update-a-data-object).
+:::
+
 #### Method and URL
 
 ```http
@@ -230,6 +236,7 @@ The request body for a new object has the following fields:
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `id` | v4 UUID | no | Optional id for the object |
 | `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
+| `tenant` | `string` | no | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -271,7 +278,7 @@ import SemanticKindCreateVector from '/_includes/code/semantic-kind.create.vecto
 You can set custom vectors for batch imports as well as single object creation.
 :::
 
-See also [how to search using custom vectors](../graphql/vector-search-parameters.md#nearvector).
+See also [how to search using custom vectors](../graphql/search-operators.md#nearvector).
 
 ## Get a data object
 
@@ -281,17 +288,23 @@ Collect an individual data object.
 
 Available since `v1.14` and the preferred way:
 ```bash
-GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
-```
-
-Available for backward compatibility and deprecated:
-```bash
-GET /v1/objects/{id}
+GET /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL&tenant={tenant}]
 ```
 
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
+<details>
+  <summary>Getting a data object without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
+GET /v1/objects/{id}
+```
+
 <RestObjectsCRUDClassnameNote/>
+
+</details>
+
 
 #### URL parameters
 
@@ -301,6 +314,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 | `{id}` | query param | uuid | The uuid of the data object to retrieve. |
 | `include` | query param | string | Include additional information, such as classification info. Allowed values include: `classification`, `vector`. |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant key. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -323,12 +337,17 @@ Available since `v1.14` and the preferred way:
 HEAD /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+<details>
+  <summary>Checking if a data object exists without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
 ```bash
 HEAD /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### URL parameters
 
@@ -337,6 +356,7 @@ HEAD /v1/objects/{id}
 | `{ClassName}` | path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to retrieve |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -358,13 +378,18 @@ PUT /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 PATCH /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
+<details>
+  <summary>Updating a data object without a class name are deprecated</summary>
+
+The below are only available for backward compatibility and deprecated:
 ```bash
 PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 :::info Recalculating vectors on update
 If the class is configured with a vectorizer, Weaviate will only compute a new vector for an updated object if the update changes the underlying text to be vectorized.
@@ -389,6 +414,7 @@ The request body for replacing (some) properties of an object has the following 
 | `properties` | array | yes | An object with the property values of the new data object |
 | `properties` > `{propertyName}` | dataType | yes | The property and its value according to the set dataType |
 | `vector` | `[float]` | no | Optional [custom vector](#with-a-custom-vector) |
+| `tenant` | `string` | no | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 #### Example request
 
@@ -409,12 +435,17 @@ Available since `v1.14` and preferred way:
 DELETE /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Deleting a data object without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 DELETE /v1/objects/{id}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### URL parameters
 
@@ -423,6 +454,8 @@ DELETE /v1/objects/{id}
 | `{ClassName}` |  path | string | The name of the class that the object belongs to |
 | `{id}` | path | uuid | The uuid of the data object to delete |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
+
 
 #### Example request
 
@@ -485,12 +518,17 @@ Available since `v1.14` and the preferred way:
 POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Adding a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 POST /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -502,6 +540,7 @@ The URL includes three required path parameters and supports an optional query p
 | `{id}` | path | uuid | The uuid of the object to add the reference to |
 | `{propertyName}` | path | string | The name of the cross-reference property, e.g. `author` |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The request body is an object with the following field:
 
@@ -532,12 +571,17 @@ Available since `v1.14` and the preferred way:
 PUT /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Updating a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 PUT /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -549,6 +593,7 @@ The URL includes three required path parameters and supports an optional query p
 | `{id}` | path | uuid | The uuid of the object to update the reference(s) of |
 | `{propertyName}` | path | string | The name of the cross-reference property |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The `PUT` request body is a list of beacons:
 
@@ -580,12 +625,17 @@ Available since `v1.14` and the preferred way:
 DELETE /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ONE|QUORUM|ALL]
 ```
 
-Available for backward compatibility and deprecated:
-```http
+<details>
+  <summary>Deleting a cross-reference without a class name is deprecated</summary>
+
+The below syntax is only available for backward compatibility and deprecated:
+```bash
 DELETE /v1/objects/{id}/references/{propertyName}
 ```
 
 <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 #### Parameters
 
@@ -596,6 +646,7 @@ The URL includes two required path parameters and supports an optional query par
 | `{id}` | path | uuid | The uuid of the object to delete the reference from |
 | `{propertyName}` | path | string | The name of the cross-reference property |
 | `consistency_level` | query param | string | Optional [consistency level](../../concepts/replication-architecture/consistency.md#tunable-write-consistency): `ONE`, `QUORUM` (default) or `ALL`. |
+| `tenant` | query param | string | Optional tenant name. [Multi-tenancy](../../concepts/data.md#multi-tenancy) must be enabled first. |
 
 The request body is a beacon object:
 
@@ -622,3 +673,16 @@ import SemanticKindObjectReferenceDelete from '/_includes/code/semantic-kind.obj
 <SemanticKindObjectReferenceDelete/>
 
 If the addition was successful, no content will be returned.
+
+### Multi-tenancy
+
+When using multi-tenancy, cross-references can only be made:
+
+- From a multi-tenancy object to a non-multi-tenancy object.
+- From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
+
+## More Resources
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

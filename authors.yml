@@ -28,6 +28,11 @@ dirk:
   title: Software Developer
   url: https://github.com/dirkkul
   image_url: /img/people/icon/dirk.jpg
+edward:
+  name: Edward Schmuhl
+  title: Machine Learning Engineer
+  url: https://github.com/thomashacker
+  image_url: /img/people/icon/edward.jpg
 erika:
   name: Erika Cardenas
   title: Developer Advocate
@@ -53,6 +58,11 @@ laura:
   title: Developer Advocate
   url: https://github.com/laura-ham
   image_url: /img/people/icon/laura.jpg
+leonie:
+  name: Leonie Monigatti
+  title: Developer Advocate
+  url: https://www.linkedin.com/in/804250ab/
+  image_url: /img/people/icon/leonie.jpg
 pete:
   name: Peter Schramm
   title: WCS Tech Lead

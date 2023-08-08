@@ -8,20 +8,28 @@ import assert from 'assert';
 
 import weaviate from 'weaviate-ts-client';
 
+// searchHybridWithFusionType
+import { FusionType } from 'weaviate-ts-client';
+
+// END searchHybridWithFusionType
+
 const client = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new weaviate.ApiKey('learn-weaviate'),  // If authentication is on. Replace w/ your Weaviate instance API key.
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
-    'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY',
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
 });
 
+// searchHybridBasic  // searchHybridWithScore  // searchHybridWithAlpha  // searchHybridWithFusionType  // searchHybridWithProperties  // searchHybridWithVector  // searchHybridWithFilter  // START limit  // START autocut
 let result;
 
-// ================================
+// END searchHybridBasic  // END searchHybridWithScore  // END searchHybridWithAlpha  // END searchHybridWithFusionType  // END searchHybridWithProperties  // END searchHybridWithVector  // END searchHybridWithFilter  // END limit  // END autocut
+
+// ==============================
 // ===== Basic Hybrid Query =====
-// ================================
+// ==============================
 
 // searchHybridBasic
 result = await client.graphql
@@ -44,13 +52,10 @@ let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchHybridBasic
-// END searchHybridBasic
 
-
-// ================================
+// ===================================
 // ===== Hybrid Query with Score =====
-// ================================
+// ===================================
 
 // searchHybridWithScore
 result = await client.graphql
@@ -75,13 +80,10 @@ const additionalKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]._
 assert.deepEqual(additionalKeys, new Set(['score', 'explainScore']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchHybridWithScore
-// END searchHybridWithScore
 
-
-// ================================
+// ===================================
 // ===== Hybrid Query with Alpha =====
-// ================================
+// ===================================
 
 // searchHybridWithAlpha
 result = await client.graphql
@@ -105,13 +107,39 @@ questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchHybridWithAlpha
-// END searchHybridWithAlpha
 
 
-// ================================
+// ============================================
+// ===== Hybrid Query with Fusion Methods =====
+// ============================================
+
+// searchHybridWithFusionType
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withHybrid({
+    query: 'food',
+    alpha: 0.25,
+    // highlight-start
+    fusionType: FusionType.rankedFusion
+    // highlight-end
+  })
+  .withLimit(3)
+  .withFields('question answer')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END searchHybridWithFusionType
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.equal(result.data.Get.JeopardyQuestion.length, 3);
+
+
+// ========================================
 // ===== Hybrid Query with Properties =====
-// ================================
+// ========================================
 
 // searchHybridWithProperties
 result = await client.graphql
@@ -136,13 +164,37 @@ questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchHybridWithProperties
-// END searchHybridWithProperties
 
+// ================================================
+// ===== Hybrid Query with Property Weighting =====
+// ================================================
 
-// ================================
+// searchHybridWithPropertyWeighting
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withHybrid({
+    query: 'food',
+    // highlight-start
+    properties: ['question^2', 'answer'],
+    // highlight-end
+    alpha: 0.25,
+  })
+  .withLimit(3)
+  .withFields('question answer')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END searchHybridWithPropertyWeighting
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer']));
+assert.equal(result.data.Get.JeopardyQuestion.length, 3);
+
+// ====================================
 // ===== Hybrid Query with Vector =====
-// ================================
+// ====================================
 
 // searchHybridWithVector
 result = await client.graphql
@@ -167,14 +219,10 @@ questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer']));
 assert.equal(result.data.Get.JeopardyQuestion.length, 3);
 
-// searchHybridWithVector
-// END searchHybridWithVector
 
-
-
-// ================================
+// ====================================
 // ===== Hybrid Query with Filter =====
-// ================================
+// ====================================
 
 // searchHybridWithFilter
 result = await client.graphql
@@ -205,5 +253,58 @@ for (const question of result.data.Get.JeopardyQuestion) {
   assert.deepEqual(question.round, 'Double Jeopardy!');
 }
 
-// searchHybridWithFilter
-// END searchHybridWithFilter
+
+// ===================================
+// ===== Hybrid Query with limit =====
+// ===================================
+
+// START limit
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withHybrid({
+    query: 'safety',
+  })
+  .withFields('question answer _additional { score }')
+// highlight-start
+  .withLimit(3)
+// highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END limit
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+assert.deepEqual(Object.keys(result.data.Get.JeopardyQuestion[0]._additional), ['score']);
+assert.equal(result.data.Get.JeopardyQuestion.length, 3);
+// assert(result.data.Get.JeopardyQuestion[0]['answer'].includes('OSHA'));
+
+
+// =====================================
+// ===== Hybrid Query with autocut =====
+// =====================================
+
+// START autocut
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withHybrid({
+    query: 'safety',
+  })
+  .withFields('question answer _additional { score }')
+// highlight-start
+  .withAutocut(1)
+// highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END autocut
+
+// Tests
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
+assert.deepEqual(Object.keys(result.data.Get.JeopardyQuestion[0]._additional), ['score']);
+// assert.equal(result.data.Get.JeopardyQuestion[0]['answer'], 'Guards');
+// TODO: too many results if autocut logic changes? assert.equal(result.data.Get.JeopardyQuestion.length, 1);

@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'delete']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -13,14 +17,22 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
 
 ## Overview
 
-This page will show you how to delete individual objects in Weaviate.
+This page will show you how to delete objects in Weaviate by their id or a set of criteria.
+
+:::info See also
+- [References: REST - /v1/objects](../api/rest/objects.md#delete-a-data-object)
+:::
 
 
 ## Requirements
 
-To delete an object, you'll need its [id](../api/graphql/additional-properties.md#id) and class name.
+To delete a specific object, you'll need its [id](../api/graphql/additional-properties.md#id) and class name.
 
-To delete multiple objects, you'll need their class name, and a filter that matches them.
+To delete objects by a set of criteria, you'll need their class name, and a `where` filter.
+
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when deleting objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
 
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
@@ -32,7 +44,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 
 ## Delete object by id
 
-To delete an object, [make a `DELETE` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below.
+To delete an object, specify its class name and id as shown below.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -54,10 +66,16 @@ To delete an object, [make a `DELETE` request to the `/v1/objects` REST API endp
   </TabItem>
 </Tabs>
 
+:::tip REST endpoint
+You can also [make a `DELETE` request to the `/v1/objects` endpoint](../api/rest/objects.md#delete-a-data-object) directly.
+:::
 
-## Error handling
 
-If the id doesn't exist in the specified class, a 404 error will be returned. You can handle errors as follows:
+<!-- ## Error handling
+
+If the id doesn't exist in the specified class, a 404 error will be returned.
+
+You can handle errors as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -77,15 +95,14 @@ If the id doesn't exist in the specified class, a 404 error will be returned. Yo
       language="ts"
     />
   </TabItem>
-</Tabs>
+</Tabs> -->
 
 
-## Batch delete multiple objects
+## Delete multiple objects
 
-To delete multiple objects at once, make a [`DELETE` request to the `/v1/batch/objects` REST API endpoint](../api/rest/batch.md#batch-delete), or use the client code below. Specify which objects to delete using the same kind of [`where` filter](../search/similarity.md) used in similarity search.
+To delete multiple objects that match a set of criteria, specify the class and a [`where` filter](../search/similarity.md).
 
-For limitations, optional parameters, and the response format, see the [Batch delete API reference](../api/rest/batch.md#batch-delete).
-
+Optionally, set `output` to `'verbose'` to see more details (ID and deletion status).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -106,6 +123,54 @@ For limitations, optional parameters, and the response format, see the [Batch de
     />
   </TabItem>
 </Tabs>
+
+:::tip REST endpoint
+You can also make [`DELETE` request to the `/v1/batch/objects` endpoint](../api/rest/batch.md#batch-delete) directly.
+:::
+
+:::info Limit per query
+There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
+:::
+
+
+### Dry-run
+
+You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START ResultsDryRun"
+  endMarker="# END ResultsDryRun"
+  language="json"
+/>
+
+</details>
 
 
 ## More Resources

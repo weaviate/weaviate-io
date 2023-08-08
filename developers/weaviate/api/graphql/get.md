@@ -1,6 +1,6 @@
 ---
 title: GraphQL - Get{}
-sidebar_position: 1
+sidebar_position: 10
 image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---
@@ -13,13 +13,26 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Get{} syntax and query structure
+## Overview
 
-The `Get{}` function fetches fields described in the schema. For example, if you've created a schema with a class `JeopardyQuestion` which has the properties `question`, `answer` and `points`, you can query it as follows:
+:::info Related pages
+- [How-to: Search: Basics](../../search/basics.md)
+:::
+
+The `Get{}` function is for retrieving individual objects.
+
+## Syntax and query structure
+
+The `Get{}` function requires the target class name, and the properties to be fetched.
+
+For example, the following will fetch `JeopardyQuestion` objects and their `question`, `answer` and `points`  properties:
 
 import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
 <GraphQLGetSimple/>
+
+<details>
+  <summary>Example response</summary>
 
 The above query will result in something like the following:
 
@@ -32,15 +45,24 @@ import GraphQLGetSimpleUnfiltered from '!!raw-loader!/_includes/code/graphql.get
   language="json"
 />
 
-:::info Get query without arguments
-The order of object retrieval is not guaranteed in a `Get` query without any search parameters or filters. Accordingly, such a `Get` query is not suitable for any substantive object retrieval strategy. Consider the [Cursor API](./additional-operators.md#cursor-with-after) for that purpose.
+</details>
+
+<details>
+  <summary>Order of retrieved objects</summary>
+
+Without any arguments, the objects are retrieved according to their ID.
+
+Accordingly, such a `Get` query is not suitable for a substantive object retrieval strategy. Consider the [Cursor API](./additional-operators.md#cursor-with-after) for that purpose.
+
+</details>
+
+:::tip Read more
+- [How-to search: Basics](../../search/basics.md)
 :::
 
 ### groupBy argument
 
-You can use a groupBy argument to retrieve groups of objects from Weaviate. This functionality offers the advantage of maintaining granular search results by searching through detailed or segmented objects (e.g. chunks of documents), while also enabling you to step back and view the broader context of the objects (e.g. documents as a whole).
-
-The `groupBy{}` argument is structured as follows for the `Get{}` function:
+You can use `groupBy` to retrieve groups of objects from Weaviate. The `groupBy{}` argument is structured as follows for the `Get{}` function:
 
 :::info Single-level grouping only
 As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference. Nested paths are current not supported.
@@ -50,7 +72,7 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
 {
   Get{
     <Class>(
-      <vectorSearchParameter>  # e.g. nearVector, nearObject, nearText
+      <vectorSearchOperator>  # e.g. nearVector, nearObject, nearText
       groupBy:{
         path: [<propertyName>]  # Property to group by (only one property or cross-reference)
         groups: <number>  # Max. number of groups
@@ -79,143 +101,9 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
 }
 ```
 
-Take a collection of `Passage` objects for example, each object belonging to a `Document`. If searching through `Passage` objects, you can group the results according to any property of the `Passage`, including the cross-reference property that represents the `Document` each `Passage` is associated with.
-
-The `groups` and `objectsPerGroup` limits are customizable. So in this example, you could retrieve the top 100 objects and group them to identify the 2 most relevant `Document` objects, based on the top 2 `Passage` objects from each `Document`.
-
-More concretely, a query such as below:
-
-<details>
-  <summary>Example Get query with groupBy</summary>
-
-```graphql
-{
-  Get{
-    Passage(
-      limit: 100
-      nearObject: {
-        id: "00000000-0000-0000-0000-000000000001"
-      }
-      groupBy: {
-        path: ["content"]
-        groups: 2
-        objectsPerGroup: 2
-      }
-    ){
-      _additional {
-        id
-        group {
-          id
-          count
-          groupedBy { value path }
-          maxDistance
-          minDistance
-          hits{
-            content
-            ofDocument {
-              ... on Document {
-                _additional {
-                  id
-                }
-              }
-            }
-            _additional {
-              id
-              distance
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-</details>
-
-Will result in the following response:
-
-<details>
-  <summary>Corresponding response</summary>
-
-```json
-{
-  "data": {
-    "Get": {
-      "Passage": [
-        {
-          "_additional": {
-            "group": {
-              "count": 1,
-              "groupedBy": {
-                "path": [
-                  "content"
-                ],
-                "value": "Content of passage 1"
-              },
-              "hits": [
-                {
-                  "_additional": {
-                    "distance": 0,
-                    "id": "00000000-0000-0000-0000-000000000001"
-                  },
-                  "content": "Content of passage 1",
-                  "ofDocument": [
-                    {
-                      "_additional": {
-                        "id": "00000000-0000-0000-0000-000000000011"
-                      }
-                    }
-                  ]
-                }
-              ],
-              "id": 0,
-              "maxDistance": 0,
-              "minDistance": 0
-            },
-            "id": "00000000-0000-0000-0000-000000000001"
-          }
-        },
-        {
-          "_additional": {
-            "group": {
-              "count": 1,
-              "groupedBy": {
-                "path": [
-                  "content"
-                ],
-                "value": "Content of passage 2"
-              },
-              "hits": [
-                {
-                  "_additional": {
-                    "distance": 0.00078231096,
-                    "id": "00000000-0000-0000-0000-000000000002"
-                  },
-                  "content": "Content of passage 2",
-                  "ofDocument": [
-                    {
-                      "_additional": {
-                        "id": "00000000-0000-0000-0000-000000000011"
-                      }
-                    }
-                  ]
-                }
-              ],
-              "id": 1,
-              "maxDistance": 0.00078231096,
-              "minDistance": 0.00078231096
-            },
-            "id": "00000000-0000-0000-0000-000000000002"
-          }
-        }
-      ]
-    }
-  }
-}
-```
-
-</details>
+:::tip Read more
+- [How-to search: Basics # groupBy](../../search/basics.md#groupby)
+:::
 
 ### Consistency levels
 
@@ -224,15 +112,46 @@ Will result in the following response:
 
 Where replication is configured, the `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
 
+The available consistency options are:
+- `ONE`
+- `QUORUM`
+- `ALL`
+
 Read more about consistency levels [here](../../concepts/replication-architecture/consistency.md).
 
 import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
 
 <GraphQLGetConsistency/>
 
-## Query beacon references
+### Multi-tenancy
 
-If you've set a beacon reference (cross-reference) in the schema, you can query it as follows:
+:::info Available from `v1.20` onwards
+:::
+
+Where multi-tenancy is configured, the `Get{}` function can be configured to return results from a specific tenant.
+
+You can do so by specifying the `tenant` parameter in the GraphQL query as shown below, or using the equivalent client function.
+
+```graphql
+{
+  Get {
+    Article (
+      tenant: "tenantA"
+      limit: 1
+    ) {
+      name
+    }
+  }
+}
+```
+
+:::tip Read more
+- [How-to manage data: Multi-tenancy operations](../../manage-data/multi-tenancy.md)
+:::
+
+## Cross-references
+
+You can retrieve any cross-referenced properties.
 
 import GraphQLGetBeacon from '/_includes/code/graphql.get.beacon.mdx';
 
@@ -252,36 +171,83 @@ import GraphQLGetBeaconUnfiltered from '!!raw-loader!/_includes/code/graphql.get
 
 </details>
 
-## Additional properties
+:::tip Read more
+- [How-to retrieve cross-referenced properties](../../search/basics.md#retrieve-cross-referenced-properties)
+:::
 
-For every Get{} request you can get additional information about the returned data object(s) by using additional properties. You can recognize these properties because they are in the object `_additional{}`. Additional properties can help you interpret query results and can for example be used for projection and visualization of the retrieved data. An overview of all additional properties and how to use them is documented [here](./additional-properties.md).
+## Additional properties / metadata
 
-## Vector Search Operators
+Various metadata properties may be retrieved with `Get{}` requests. They include:
 
-To combine `Get { }` with a vector search argument, here is an overview of the supported arguments and links to their detailed documentation:
+Property | Description |
+-------- | ----------- |
+`uuid` | Object id |
+`vector` | Object vector |
+`generate` | Generative module outputs |
+`rerank` | Reranker module outputs |
+`creationTimeUnix` | Object creation time |
+`lastUpdateTimeUnix` | Object last updated time |
+`distance` | Vector distance to query (vector search only) |
+`certainty` | Vector distance to query, normalized to certainty (vector search only) |
+`score` | Search score (BM25 and hybrid only) |
+`explainScore` | Explanation of the score (BM25 and hybrid only) |
+`classification` | Classification outputs |
+`featureProjection` | Feature projection outputs |
+
+They are returned through the `_additional` properties in the response.
+
+Refer to the below page(s) for further information.
+
+:::tip Read more
+- [References: GraphQL: Additional properties](./additional-properties.md)
+- [How-to search: Specify fetched properties](../../search/basics.md#specify-the-fetched-properties)
+:::
+
+
+## Search operators
+
+The following search operators are available.
 
 | Argument | Description | Required modules (at least one of) | Learn more |
 | --- | --- | --- | --- |
-| `nearObject` | Find the nearest neighbors of an object referenced by its id | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearobject) |
-| `nearVector` | Find the nearest neighbors to any vector | *none - works out of the box* | [Learn more](./vector-search-parameters.md#nearvector) |
-| `nearText` | Vectorize a text query and perform a vector search based on it | `text2vec-transformers`, `text2vec-contextionary`, `text2vec-openai`, `multi2vec-clip`, `text2vec-huggingface`, `text2vec-cohere` | [Transformers](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Hugging Face](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
-| `nearImage` | Vectorize an image and perform a vector search based on it | `multi2vec-clip`, `img2vec-neural` | [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
-| `hybrid` | Combine dense and sparse vectors to deliver best of both search methods |   *none - works out of the box* | [Learn more](../graphql/vector-search-parameters.md#hybrid) |
-| `bm25`   | Keyword search with BM25F ranking  | *none - works out of the box* | [Learn more](../graphql/vector-search-parameters.md#bm25) |
+| `nearObject` | Vector search using a Weaviate object | *none* | [Learn more](./search-operators.md#nearobject) |
+| `nearVector` | Vector search using a raw vector | *none* | [Learn more](./search-operators.md#nearvector) |
+| `nearText` | Vector search using a text query | `text2vec-xxx` | [Transformers](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#how-to-use), [Contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#how-to-use), [OpenAI](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai.md#how-to-use), [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#how-to-use), [Hugging Face](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface.md#how-to-use), [Cohere](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere.md#how-to-use) |
+| `nearImage` | Vector search using an image | `multi2vec-clip`, `img2vec-neural` | [CLIP](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md#neartext), [Img2Vec](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) |
+| `hybrid` | Combine vector and BM25 search results |   *none* | [Learn more](../graphql/search-operators.md#hybrid) |
+| `bm25`   | Keyword search with BM25F ranking  | *none* | [Learn more](../graphql/search-operators.md#bm25) |
 
-## Filters
+Refer to the below page(s) for further information.
 
-`Get{}` functions can be extended with search filters (both semantic filters and traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.md).
+:::tip Read more
+- [References: GraphQL: Search operators](./search-operators.md)
+- [How-to search: Similarity search](../../search/similarity.md)
+- [How-to search: Image search](../../search/image.md)
+- [How-to search: BM25 search](../../search/bm25.md)
+- [How-to search: Hybrid search](../../search/hybrid.md)
+:::
 
-### Sorting
+## Conditional filters
 
-*Note: Support for sorting was added in `v1.13.0`.*
+`Get{}` queries can be combined with a conditional filter.
 
-You can sort results by any primitive property, typically a `text`, `string`,
-`number`, or `int` property. When a query has a natural order (e.g. because of a
-`near<Media>` vector search), adding a sort operator will override the order.
+Refer to the below page(s) for further information.
 
-See [filters – sorting](./filters.md#sorting) for more information.
+:::tip Read more
+- [References: GraphQL: Conditional Filters](./filters.md)
+- [How-to search: Filters](../../search/filters.md)
+:::
+
+
+## Additional operators
+
+`Get{}` queries can be combined with additional operators such as `limit`, `offset`, `autocut`, `after` or `sort`.
+
+Refer to the below page(s) for further information.
+
+:::tip Read more
+- [References: GraphQL: Additional Operators](./additional-operators.md)
+:::
 
 ## More Resources
 

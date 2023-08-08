@@ -13,14 +13,13 @@ import Badges from '/_includes/badges.mdx';
 * This module uses a third-party API and may incur costs.
 * Make sure to check the Cohere [pricing page](https://cohere.com/pricing) before vectorizing large amounts of data.
 * Weaviate automatically parallelizes requests to the Cohere-API when using the batch endpoint.
+* You will need a Cohere API key. You can request one [here](https://dashboard.cohere.com/welcome/login).
 
 ## Introduction
 
 The `text2vec-cohere` module enables you to use [Cohere embeddings](https://docs.cohere.com/docs/embeddings) in Weaviate to represent data objects and run semantic (`nearText`) queries.
 
 ## How to enable
-
-Request a Cohere API-key via [their dashboard](https://dashboard.cohere.com/welcome/login).
 
 ### Weaviate Cloud Services
 
@@ -103,7 +102,7 @@ The multilingual models use dot product, and the English model uses cosine. Make
 ## Usage
 
 * If the Cohere API key is not set in the `text2vec-cohere` module, you can set the API key at query time by adding the following to the HTTP header: `X-Cohere-Api-Key: YOUR-COHERE-API-KEY`.
-* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/vector-search-parameters.md#neartext).
+* Using this module will enable [GraphQL vector search operators](/developers/weaviate/api/graphql/search-operators.md#neartext).
 
 ### Example
 

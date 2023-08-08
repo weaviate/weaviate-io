@@ -15,7 +15,7 @@ client = weaviate.Client(
     'http://localhost:8080',  # Replace with your Weaviate URL
     # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_APIKEY']  # Replace w/ your OPENAI API key
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
     }
 )
 
@@ -50,7 +50,8 @@ with client.batch() as batch:
     for data_obj in data_objs:
         batch.add_data_object(
             data_obj,
-            class_name
+            class_name,
+            # tenant="tenantA"  # If multi-tenancy is enabled, specify the tenant to which the object will be added.
         )
 # highlight-end
 # END BasicBatchImportExample

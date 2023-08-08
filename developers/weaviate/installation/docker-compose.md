@@ -35,8 +35,23 @@ A comprehensive of list environment variables [can be found on this page](../con
 
 It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
 
-Add the following snippet to your Docker Compose YAML file:
+Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
 
+**With named volume**
+```yaml
+services:
+  weaviate:
+    volumes:
+        - weaviate_data:/var/lib/weaviate
+    # etc
+
+volumes:
+    weaviate_data:
+```
+
+After running a `docker compose up -d`, Docker will create a named volume `weaviate_data` and mount it to the `PERSISTENCE_DATA_PATH` inside the container.
+
+**With host binding**
 ```yaml
 services:
   weaviate:
@@ -45,7 +60,7 @@ services:
     # etc
 ```
 
-Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
+After running a `docker compose up -d`, Docker will mount `/var/weaviate` on the host to the `PERSISTENCE_DATA_PATH` inside the container.
 
 ### Weaviate without any modules
 
@@ -108,12 +123,15 @@ page](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transfo
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
+
 ## Multi-node setup
 
 You can create a multi-node setup with Weaviate using Docker-Compose. To do so, you need to:
 - Set up one node as a "founding" member, and configure the other nodes in the cluster to join it using the `CLUSTER_JOIN` variable.
 - Configure `CLUSTER_GOSSIP_BIND_PORT` and `CLUSTER_DATA_BIND_PORT` for each node.
 - Optionally, you can set the hostname for each node using `CLUSTER_HOSTNAME`.
+
+(Read more about [horizontal replication in Weaviate](../concepts/cluster.md).)
 
 So, the configuration file will include environment variables for the "founding" member that looks like the below:
 
@@ -138,10 +156,11 @@ And the other members' configurations may look like this:
       CLUSTER_JOIN: 'weaviate-node-1:7100'  # This must be the service name of the "founding" member node.
 ```
 
-We provide an example `docker-compose.yml` below:
+Below is an example configuration for a 3-node setup. You may be able to test [replication](../configuration/replication.md) examples locally using this configuration.
+
 
 <details>
-  <summary>An example multi-node Docker-Compose file</summary>
+  <summary>Docker Compose configuration file for a replication setup with 3 nodes</summary>
 
 ```yaml
 services:
@@ -166,6 +185,7 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface'
       DEFAULT_VECTORIZER_MODULE: 'none'
       CLUSTER_HOSTNAME: 'node1'
       CLUSTER_GOSSIP_BIND_PORT: '7100'
@@ -192,10 +212,39 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface'
       DEFAULT_VECTORIZER_MODULE: 'none'
       CLUSTER_HOSTNAME: 'node2'
       CLUSTER_GOSSIP_BIND_PORT: '7102'
       CLUSTER_DATA_BIND_PORT: '7103'
+      CLUSTER_JOIN: 'weaviate-node-1:7100'
+
+  weaviate-node-3:
+    init: true
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8082:8080
+    - 6062:6060
+    restart: on-failure:0
+    volumes:
+      - ./data-node-3:/var/lib/weaviate
+    environment:
+      LOG_LEVEL: 'debug'
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      CLUSTER_HOSTNAME: 'node3'
+      CLUSTER_GOSSIP_BIND_PORT: '7104'
+      CLUSTER_DATA_BIND_PORT: '7105'
       CLUSTER_JOIN: 'weaviate-node-1:7100'
 ```
 
@@ -205,7 +254,6 @@ services:
 It is a Weaviate convention to set the `CLUSTER_DATA_BIND_PORT` to 1 higher than `CLUSTER_GOSSIP_BIND_PORT`.
 :::
 
-[Read more about horizontal replication in Weaviate.](../concepts/cluster.md)
 
 ## Shell attachment options
 

@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'update']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -15,6 +19,10 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
 
 This page will show you how to update objects in Weaviate, either in their entirety, or specific properties.
 
+:::info See also
+- [References: REST - /v1/objects](../api/rest/objects.md#update-a-data-object)
+:::
+
 
 ## Requirements
 
@@ -22,6 +30,10 @@ To update an object, you'll need:
 1. Its [id](../api/graphql/additional-properties.md#id)
 2. The name of its class
 3. The properties to update, in particular the entire object
+
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when updating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
 
 
 ## Update object properties

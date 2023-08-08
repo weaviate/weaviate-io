@@ -30,6 +30,10 @@ import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
 <ClientCapabilitiesOverview />
 
+### Community clients
+
+There also exist [community clients](./community.md) that were prepared by our wonderful community members. These clients are not maintained by the core Weaviate team, but by the community members themselves. If you want to contribute to these clients, please contact the maintainers of the client.
+
 ## Native vs GraphQL queries
 
 When querying Weaviate you can choose to write your queries in GraphQL and send the raw GraphQL query to Weaviate, or you can write the query natively to the client language you are using.

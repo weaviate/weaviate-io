@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'import']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -17,6 +21,11 @@ This page shows how to efficiently add data objects and cross-references to Weav
 
 We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-batch) unless you have a specific reason not to. A batch import [drastically improves](../api/rest/objects.md#objects-vs-batch) import speed by processing multiple items per request, and clients can parallelize requests.
 
+:::info See also
+- [How-to: Create objects](./create.mdx)
+- [References: REST - /v1/batch](../api/rest/batch.md)
+:::
+
 
 ## Requirements
 
@@ -27,6 +36,7 @@ To import items in batches using a Weaviate client,
    * Specify the class to add to, and
    * Add it to the batcher.
 1. Ensure that the batches are flushed (some clients require manual flushing).
+1. (If multi-tenancy is enabled) Specify the tenant name.
 
 Depending on the client, additional settings or auto-flushing of batches may be available.
 
@@ -202,14 +212,24 @@ At this point in time, the other clients do not support batch parameters, and ma
 
 ## Managing potential duplication
 
-In a Weaviate collection, each object has a unique [ID](../api/graphql/additional-properties.md#id), in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. If not supplied at object creation time, Weaviate will generate a UUID.
+In Weaviate, the only unique field is the `id`. If you try to import an object with an existing id Weaviate will overwrite the object if one exists. (In [single-object creation](./create.mdx), Weaviate will throw an error if the `id` exists.)
 
-Weaviate does not check if you are uploading items with the same properties as ones that exist already. So, to avoid duplication, we recommend using a deterministic ID generation method, such as the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+To prevent duplicates, we suggest:
+- Using a deterministic ID generation method.
 
-:::tip Duplicate IDs possible across classes
-Classes generally act like namespaces, so it is possible to have duplicate IDs across classes.
+With a deterministic ID, Weaviate will either be creating a new object or overwriting an existing one, depending on whether the object already exists.
+
+### Generate deterministic ID
+
+You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+
+### Check if an object exists
+
+You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
+
+:::info IDs unique to each class and tenants
+[Classes](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different classes and/or tenants.
 :::
-
 
 ## Tip: Stream data from large files
 

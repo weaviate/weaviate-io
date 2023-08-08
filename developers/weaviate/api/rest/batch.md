@@ -13,6 +13,10 @@ import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 
 For sending data objects to Weaviate in bulk.
 
+:::tip Multi-tenancy
+The `batch` endpoint supports classes where [multi-tenancy](../../concepts/data.md#multi-tenancy) is enabled. For example, batch creation of objects works similarly to [single object creation](./objects.md#create-a-data-object), by passing the `tenant` parameter in the object body.
+:::
+
 ### Performance
 
 :::tip

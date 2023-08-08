@@ -21,13 +21,12 @@ import Chain from 'stream-chain';
 import csv from 'csv-parser';
 // END CSV streaming
 
-// ===== Instantiation shown on snippet
+// ===== Instantiation, not shown in snippet
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8080',  // Replace with your Weaviate URL
-  // apiKey: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY),  // If auth is on. Replace w/ your Weaviate instance API key.
+  host: 'localhost:8080',
   headers: {
-    'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY,  // Replace w/ your OPENAI API key
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
 });
 
@@ -69,6 +68,7 @@ for (const dataObj of dataObjs)
   batcher5 = batcher5.withObject({
     class: className,
     properties: dataObj,
+    // tenant: 'tenantA'  // If multi-tenancy is enabled, specify the tenant to which the object will be added.
   });
 
 // Flush
@@ -184,8 +184,6 @@ async function addObject(obj: object): Promise<void> {
 
   // When the batch counter reaches batchSize, push the objects to Weaviate
   if (counter % batchSize === 0) {
-    console.log(`Imported ${counter} articles...`);
-
     // Flush the batch queue and restart it
     const response = await batcher.do();
     batcher = client.batch.objectsBatcher();
@@ -194,6 +192,8 @@ async function addObject(obj: object): Promise<void> {
     for (const r of response)
       if (r.result.errors)
         throw r.result.errors;
+
+    console.log(`Imported ${counter} articles...`);
   }
 }
 // END JSON streaming  // END CSV streaming

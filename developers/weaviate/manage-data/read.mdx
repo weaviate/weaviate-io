@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'read']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -18,6 +22,7 @@ This page will show you how to read individual objects in Weaviate.
 :::info See also
 - [How-to: Search](../search/index.md)
 - [How-to: Read all objects](./read-all-objects.mdx)
+- [References: REST - /v1/objects](../api/rest/objects.md#get-a-data-object)
 :::
 
 
@@ -32,6 +37,9 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
   <RestObjectsCRUDClassnameNote/>
 </details>
 
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
 
 ## Get object by id
 
@@ -58,7 +66,7 @@ To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API
 </Tabs>
 
 
-# Retrieve the object vector
+## Retrieve the object vector
 
 To retrieve the object vector, set the `vector` parameter:
 
