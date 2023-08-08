@@ -38,39 +38,34 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Publication')
-      .withFields('name _additional { semanticPath{ path {concept distanceToNext distanceToPrevious distanceToQuery distanceToResult}}}')
-      .withNearText({
-        concepts: ['fashion'],
-        distance: 0.6, #prior to v1.14 use certainty: 0.7
-        moveAwayFrom: {
-          concepts: ['finance'],
-          force: 0.45
-        },
-        moveTo: {
-          concepts: ['haute couture'],
-          force: 0.85
-        }
-      })
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name _additional { semanticPath { path { concept distanceToNext distanceToPrevious distanceToQuery distanceToResult } } }')
+  .withNearText({
+    concepts: ['fashion'],
+    distance: 0.6,  // prior to v1.14 use certainty: 0.7
+    moveAwayFrom: {
+      concepts: ['finance'],
+      force: 0.45,
+    },
+    moveTo: {
+      concepts: ['haute couture'],
+      force: 0.85,
+    },
+  })
+  .do();
+console.log(response);
 ```
 
 </TabItem>

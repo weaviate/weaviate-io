@@ -51,7 +51,7 @@ The `meta` property has only one sub-property (`count`) available. This returns 
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -107,7 +107,7 @@ The following example retrieves information about the most commonly occurring ex
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -157,7 +157,7 @@ The following example retrieves the sum of the `points` property values:
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -209,7 +209,7 @@ For example, to list all distinct values of a property, and the counts for each:
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -271,7 +271,7 @@ The below query retrieves the 10 `question` objects with vectors that are closes
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -325,7 +325,7 @@ The below query retrieves the 10 `question` objects with vectors that are within
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -378,7 +378,7 @@ The below example searches for objects where the `round` property equals `Double
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}

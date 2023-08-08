@@ -372,7 +372,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 />
 
 </TabItem>
-<TabItem value="js" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={TSCode}
@@ -591,7 +591,7 @@ The below example shows how to fetch one object in the `MultiTenancyClass` class
   ```
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   ```ts
   result = await client

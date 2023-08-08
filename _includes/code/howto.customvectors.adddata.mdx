@@ -22,31 +22,26 @@ client.data_object.create(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .creator()
-      .withClassName('Post')
-      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a0934')
-      .withProperties({
-        'content': 'This is a news update of May 28 2021. Today .......'
-      })
-      .withVector([0.3, 0.2, 0.1, 0.4, 0.6, 0.9])
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.data
+  .creator()
+  .withClassName('Post')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a0934')
+  .withProperties({
+    content: 'This is a news update of May 28 2021. Today .......',
+  })
+  .withVector([0.3, 0.2, 0.1, 0.4, 0.6, 0.9])
+  .do();
+console.log(response);
 ```
 
 </TabItem>

@@ -23,14 +23,14 @@ import TabItem from '@theme/TabItem';
   </TabItem>
   <TabItem value="js" label="JavaScript / TypeScript">
 
-  ```js
-  import { weaviate, EmbeddedClient, EmbeddedOptions } from 'weaviate-ts-embedded';
+  ```ts
+  import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
 
-  const client: EmbeddedClient = weaviate.client(new EmbeddedOptions());
+  const client = weaviate.client(new EmbeddedOptions());
 
   await client.embedded.start();
 
-  const result = await client.data
+  const response = await client.data
     .creator()
     .withClassName('Wine')
     .withProperties({
@@ -38,6 +38,8 @@ import TabItem from '@theme/TabItem';
       description: 'Goes with fish',
     })
     .do();
+
+  console.log(JSON.stringify(response, null, 2));
 
   client.embedded.stop();
   ```

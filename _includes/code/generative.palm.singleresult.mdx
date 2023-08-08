@@ -68,15 +68,16 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
-```js
-const weaviate = require('weaviate-ts-client');
+```ts
+import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: {'X-Palm-Api-Key': 'YOUR-PALM-API-KEY'},
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
+  headers: { 'X-Palm-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your PALM API key
 });
 
 // highlight-start
@@ -84,61 +85,19 @@ const client = weaviate.client({
 const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 // highlight-end
 
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary')
   .withNearText({
-    concepts: ['Italian food']
+    concepts: ['Italian food'],
   })
   .withGenerate({
     singlePrompt: generatePrompt,
   })
   .withLimit(5)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: {'X-Palm-Api-Key': 'YOUR-PALM-API-KEY'},
-});
-
-// highlight-start
-// instruction for the generative module
-const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
-// highlight-end
-
-client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('title summary')
-  .withNearText({
-    concepts: ['Italian food']
-  })
-  .withGenerate({
-    singlePrompt: generatePrompt,
-  })
-  .withLimit(5)
-  .do()
-  .then((res: any) => {
-    console.log(res)
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

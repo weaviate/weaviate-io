@@ -41,40 +41,16 @@ print(json.dumps(result, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
-});
-
-client.graphql
-  .aggregate()
-  .withClassName('Question')
-  .withFields('meta { count }')
-  .do()
-  .then(res => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
 
 const response = await client.graphql
@@ -82,8 +58,7 @@ const response = await client.graphql
   .withClassName('Question')
   .withFields('meta { count }')
   .do();
-
-console.log(response.data.Aggregate['Question']);
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

@@ -54,63 +54,28 @@ print(json.dumps(result, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
-
-const where_filter = {
-  path: ['category'],
-  operator: 'Equal',
-  valueText: 'ANIMALS',
-}
-
-client.graphql
-  .aggregate()
-  .withClassName('Question')
-  .withFields('meta { count }')
-  .withWhere(where_filter)
-  .do()
-  .then(res => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient, WhereFilter } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},  // Replace with your API key
-});
-
-const where_filter: WhereFilter = {
-  path: ['category'],
-  operator: 'Equal',
-  valueText: 'ANIMALS',
-}
 
 const response = await client.graphql
   .aggregate()
   .withClassName('Question')
   .withFields('meta { count }')
-  .withWhere(where_filter)
+  .withWhere({
+    path: ['category'],
+    operator: 'Equal',
+    valueText: 'ANIMALS',
+  })
   .do();
-
-console.log(response.data.Aggregate['Question']);
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

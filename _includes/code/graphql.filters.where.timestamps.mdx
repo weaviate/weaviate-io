@@ -27,33 +27,29 @@ print(response)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withFields('title')
-      .withWhere({
-        operator: 'GreaterThan',
-        path: ['_creationTimeUnix'],
-        // valueDate: '2022-03-18T20:26:34.586-05:00',  // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
-        valueText: '1647653359063',
-      })
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title')
+  .withWhere({
+    operator: 'GreaterThan',
+    path: ['_creationTimeUnix'],
+    // valueDate: '2022-03-18T20:26:34.586-05:00',
+    // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
+    valueText: '1647653359063',
+  })
+  .do();
+console.log(response);
 ```
 
 </TabItem>

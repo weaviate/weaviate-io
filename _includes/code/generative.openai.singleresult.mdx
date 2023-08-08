@@ -68,15 +68,16 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
+  host: 'edu-demo.weaviate.network',
+  apiKey: new ApiKey('learn-weaviate'),
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
 
 // highlight-start
@@ -84,61 +85,19 @@ const client = weaviate.client({
 const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
 // highlight-end
 
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary')
   .withNearText({
-    concepts: ['Italian food']
+    concepts: ['Italian food'],
   })
   .withGenerate({
     singlePrompt: generatePrompt,
   })
   .withLimit(5)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
-});
-
-// highlight-start
-// instruction for the generative module
-const generatePrompt = 'Describe the following as a Facebook Ad: {summary}';
-// highlight-end
-
-client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('title summary')
-  .withNearText({
-    concepts: ['Italian food']
-  })
-  .withGenerate({
-    singlePrompt: generatePrompt,
-  })
-  .withLimit(5)
-  .do()
-  .then((res: any) => {
-    console.log(res)
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
