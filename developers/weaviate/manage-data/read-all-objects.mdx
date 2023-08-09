@@ -69,7 +69,7 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
 
 </Tabs>
 
-### Fetch the schema
+### Fetch the class definition
 
 You can fetch the existing class definition like this:
 
@@ -77,16 +77,16 @@ You can fetch the existing class definition like this:
   <TabItem value="py" label="Python">
   <FilteredTextBlock
     text={PythonCode}
-    startMarker="# Fetch the schema"
-    endMarker="# Finished fetching the schema"
+    startMarker="# START FetchClassDefinition"
+    endMarker="# END FetchClassDefinition"
     language="py"
   />
   </TabItem>
   <TabItem value="js" label="JavaScript/TypeScript">
   <FilteredTextBlock
     text={TSCode}
-    startMarker="// Fetch the schema"
-    endMarker="// Finished fetching the schema"
+    startMarker="// START FetchClassDefinition"
+    endMarker="// END FetchClassDefinition"
     language="ts"
   />
   </TabItem>
@@ -120,7 +120,7 @@ And then restore to a target instance, by:
 
 ### Putting it together
 
-Putting the pieces together, the below example will retrieve all objects and the schema from the `WineReview` class from `https://some-endpoint.weaviate.network` and populate `https://anon-endpoint.weaviate.network` with the same:
+Putting the pieces together, the below example will retrieve the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and use them to populate `https://anon-endpoint.weaviate.network`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">

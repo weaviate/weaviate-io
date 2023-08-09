@@ -297,7 +297,7 @@ You can modify some parameters of a schema as shown below. However, many paramet
 </Tabs>
 
 
-## Review schema
+## Get the schema
 
 If you want to review the schema, you can retrieve it as shown below.
 
