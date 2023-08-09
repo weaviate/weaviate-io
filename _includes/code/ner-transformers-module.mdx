@@ -48,27 +48,22 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withFields('title _additional {tokens ( properties: [\'title\'], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition} }')
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional { tokens (properties: [\'title\'], limit: 1, certainty: 0.7) {entity property word certainty startPosition endPosition} }')
+  .do();
+console.log(response);
 ```
 
 </TabItem>

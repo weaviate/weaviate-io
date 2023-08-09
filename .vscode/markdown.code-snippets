@@ -230,4 +230,15 @@
 		],
 		"description": "Adds the tabs section for Academy python/graphql code examples"
 	},
+
+	"Related-Pages": {
+		"prefix": "docusaurus-admonition-related-pages-info",
+        "scope": "markdown",
+		"body": [
+			":::info Related pages",
+			"- [LINK](./link.md)",
+			":::"
+		],
+		"description": "Adds a 'related pages' 'info' admonition"
+	}
 }

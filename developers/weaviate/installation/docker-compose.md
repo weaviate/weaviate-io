@@ -35,8 +35,23 @@ A comprehensive of list environment variables [can be found on this page](../con
 
 It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
 
-Add the following snippet to your Docker Compose YAML file:
+Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
 
+**With named volume**
+```yaml
+services:
+  weaviate:
+    volumes:
+        - weaviate_data:/var/lib/weaviate
+    # etc
+
+volumes:
+    weaviate_data:
+```
+
+After running a `docker compose up -d`, Docker will create a named volume `weaviate_data` and mount it to the `PERSISTENCE_DATA_PATH` inside the container.
+
+**With host binding**
 ```yaml
 services:
   weaviate:
@@ -45,7 +60,7 @@ services:
     # etc
 ```
 
-Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
+After running a `docker compose up -d`, Docker will mount `/var/weaviate` on the host to the `PERSISTENCE_DATA_PATH` inside the container.
 
 ### Weaviate without any modules
 

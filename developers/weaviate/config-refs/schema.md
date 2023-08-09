@@ -68,8 +68,8 @@ An example of a complete class object including properties:
 
 ```json
 {
-  "class": "string",                        // The name of the class in string format
-  "description": "string",                  // A description for your reference
+  "class": "Article",                        // The name of the class in string format
+  "description": "An article",                  // A description for your reference
   "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema definition since this is the only available type for now
   "vectorIndexConfig": {
     ...                                     // Vector index type specific settings, including distance metric
@@ -82,8 +82,8 @@ An example of a complete class object including properties:
   },
   "properties": [                           // An array of the properties you are adding, same as a Property Object
     {
-      "name": "string",                     // The name of the property
-      "description": "string",              // A description for your reference
+      "name": "title",                     // The name of the property
+      "description": "title of the article",              // A description for your reference
       "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
         "text"
       ],
@@ -93,7 +93,8 @@ An example of a complete class object including properties:
           "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
         }
       },
-      "indexInverted": true                 // Optional, default is true. By default each property is fully indexed both for full-text, as well as vector search. You can ignore properties in searches by explicitly setting index to false.
+      "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+      "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
@@ -370,8 +371,8 @@ An example of a complete property object:
 
 ```json
 {
-    "name": "string",                     // The name of the property
-    "description": "string",              // A description for your reference
+    "name": "title",                     // The name of the property
+    "description": "title of the article",              // A description for your reference
     "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
       "text"
     ],
@@ -393,7 +394,7 @@ An example of a complete property object:
 This feature was introduced in `v1.12.0`.
 :::
 
-You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/vector-search-parameters.md#bm25) and [`hybrid`](../api/graphql/vector-search-parameters.md#hybrid) operators, and [`where` filters](../api/graphql/filters.md).
+You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/search-operators.md#bm25) and [`hybrid`](../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../api/graphql/filters.md).
 
 The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
 
@@ -473,6 +474,17 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 
 </details>
 :::
+
+### Inverted indexing
+
+:::info `indexInverted` is deprecated
+The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards in lieu of `indexFilterable` and `indexSearchable`.
+:::
+
+The `indexFilterable` and `indexSearchable` parameters control whether a property is going to be indexed for filtering and searching, respectively.
+
+`indexFilterable` determines whether a property is to be indexed with a Roaring Bitmap index for fast filtering.
+`indexSearchable` determines whether a property is to be indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 
 ## Configure semantic indexing
 

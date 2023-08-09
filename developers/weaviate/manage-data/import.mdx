@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'import']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -53,7 +57,7 @@ The following example will add objects to `YourClassName` class using a batch im
 
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -90,7 +94,7 @@ You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Univers
 
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -119,7 +123,7 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
 
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}

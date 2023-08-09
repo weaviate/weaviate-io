@@ -12,7 +12,9 @@ client = weaviate.Client(
 )
 
 class_name = 'MultiTenancyClass'  # aka JeopardyQuestion
-client.schema.delete_class(class_name)
+
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
 
 
 # ================================
@@ -48,9 +50,9 @@ tenants = client.schema.get_class_tenants(
 )
 # END ListTenants
 
-# Test - tenants are returned in nondeterministic order
-assert tenants == [Tenant(name='tenantA'), Tenant(name='tenantB')] or tenants == [Tenant(name='tenantB'), Tenant(name='tenantA')]
-
+# Test
+assert Tenant(name='tenantA') in tenants
+assert Tenant(name='tenantB') in tenants
 
 # =======================================
 # ===== Remove tenants from a class =====

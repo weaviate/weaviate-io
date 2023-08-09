@@ -58,7 +58,7 @@ You can use reranking in a GraphQL query as follows:
 }
 ```
 
-This query retrieves 50 results from the `JeopardyQuestion` class, using a hybrid search with the query “flying”. It then re-ranks the results using the `answer` property, and the query “floating”.
+This query retrieves 10 results from the `JeopardyQuestion` class, using a hybrid search with the query “flying”. It then re-ranks the results using the `answer` property, and the query “floating”.
 
 You can specify which `property` of the `JeopardyQuestion` class you want to pass to the reranker. Note that here, the returned `score` will include the score from the reranker.
 

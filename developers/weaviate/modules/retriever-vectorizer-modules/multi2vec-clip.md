@@ -222,7 +222,7 @@ image.
      schema config that was incorrectly created by Auto-schema and fix it
      yourself.
 
-## Additional GraphQL API parameters
+## Additional GraphQL API operators
 
 ### nearText
 

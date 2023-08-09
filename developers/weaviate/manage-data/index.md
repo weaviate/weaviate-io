@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'manage data', 'crud']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 ## Overview
 
 These how-to **manage data** guides aim to help you do just that, such as perform CRUD operations using Weaviate.
@@ -13,10 +17,11 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 <BasicPrereqs />
 
-We have separate how-to guides for:
+This section contains guides for how-to:
 
+- [Manage classes (object collections)](./create.mdx): How to manage collections of objects (also called classes in Weaviate).
 - [Create objects](./create.mdx): How to create individual objects.
-- [Import items](./import.mdx): For bulk imports of data.
+- [(Batch) Import items](./import.mdx): For bulk imports of data.
 - [Read objects](./read.mdx): How to read individual objects.
 - [Read all objects](./read-all-objects.mdx): How to read all objects, e.g. to manually back up a class.
 - [Update objects](./update.mdx): Update objects.

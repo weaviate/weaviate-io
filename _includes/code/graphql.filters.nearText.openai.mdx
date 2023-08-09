@@ -69,36 +69,35 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
 
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Publication')
-  .withFields('name _additional{certainty distance}') // note that certainty is only supported if distance==cosine
+  .withFields('name _additional { certainty distance }') // note that certainty is only supported if distance==cosine
   .withNearText({
     concepts: ['fashion'],
     distance: 0.6, // prior to v1.14 use certainty instead of distance
     moveAwayFrom: {
       concepts: ['finance'],
-      force: 0.45
+      force: 0.45,
     },
     moveTo: {
       concepts: ['haute couture'],
-      force: 0.85
-    }
+      force: 0.85,
+    },
   })
-  .do()
-  .then(console.log)
-  .catch(console.error);
+  .do();
+console.log(response);
 ```
 
 </TabItem>

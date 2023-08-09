@@ -20,7 +20,7 @@ All references have their individual subpages. Click on one of the references be
 - [Aggregate{}](./aggregate.md)
 - [Explore{}](./explore.md)
 - [filters](./filters.md)
-- [vector search parameters](./vector-search-parameters.md)
+- [search operators](./search-operators.md)
 - [additional properties](./additional-properties.md)
 
 ## Query structure

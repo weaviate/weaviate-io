@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -15,12 +19,12 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 This page shows you how to perform `hybrid` searches using Weaviate.
 
-The `hybrid` parameter uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
+The `hybrid` operator uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
 
 The results are determined by a weighted combination of the two search outputs.
 
 :::info Related pages
-- [API References: Vector search parameters # Hybrid](../api/graphql/vector-search-parameters.md#hybrid)
+- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 :::
 
 import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
@@ -131,8 +135,8 @@ It should produce a response like the one below:
 ## Limit the results
 
 You can limit the number of results returned by a `hybrid` search,
-- to a fixed number, using the `limit: <N>` parameter
-- to the first N "drops" in `score`, using the `autocut` parameter
+- to a fixed number, using the `limit: <N>` operator
+- to the first N "drops" in `score`, using the `autocut` operator
 
 `autocut` can be combined with `limit: N`, which would limit autocut's input to the first `N` objects.
 
@@ -363,8 +367,55 @@ It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# Expected HybridWithVector results"
-  endMarker="# END Expected HybridWithVector results"
+  startMarker="# Expected HybridWithProperties results"
+  endMarker="# END Expected HybridWithProperties results"
+  language="json"
+/>
+
+</details>
+
+### Weight (boost) searched properties
+
+You can specify weighting of object `properties` in how they affect the BM25F component of hybrid searches.
+
+The below example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithPropertyWeightingPython"
+  endMarker="# END HybridWithPropertyWeightingPython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// searchHybridWithPropertyWeighting"
+  endMarker="// END searchHybridWithPropertyWeighting"
+  language="js"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# HybridWithPropertyWeightingGraphQL"
+  endMarker="# END HybridWithPropertyWeightingGraphQL"
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Expected HybridWithPropertyWeighting results"
+  endMarker="# END Expected HybridWithPropertyWeighting results"
   language="json"
 />
 

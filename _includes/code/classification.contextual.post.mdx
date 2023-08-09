@@ -32,10 +32,10 @@ client.classification.schedule()\
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
@@ -43,36 +43,26 @@ const client = weaviate.client({
 });
 
 // the following trigger a classification without waiting
-client.classifications
-      .scheduler()
-      .withType('text2vec-contextionary-contextual')
-      .withClassName('Article')
-      .withClassifyProperties(['ofCategory'])
-      .withBasedOnProperties(['summary'])
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+let response = await client.classifications
+  .scheduler()
+  .withType('text2vec-contextionary-contextual')
+  .withClassName('Article')
+  .withClassifyProperties(['ofCategory'])
+  .withBasedOnProperties(['summary'])
+  .do();
+console.log(JSON.stringify(response, null, 2));
 
 // the following triggers a classification with waiting for completion
-client.classifications
-      .scheduler()
-      .withType('text2vec-contextionary-contextual')
-      .withClassName('Article')
-      .withClassifyProperties(['ofCategory'])
-      .withBasedOnProperties(['summary'])
-      .withWaitForCompletion()
-      .withWaitTimeout(60 * 1000)
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+response = await client.classifications
+  .scheduler()
+  .withType('text2vec-contextionary-contextual')
+  .withClassName('Article')
+  .withClassifyProperties(['ofCategory'])
+  .withBasedOnProperties(['summary'])
+  .withWaitForCompletion()
+  .withWaitTimeout(60 * 1000)
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

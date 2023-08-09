@@ -5,7 +5,7 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
 
-As a vector database, Weaviate operates using vector representations, also known as "embeddings", of data objects.
+As a [vector database](https://weaviate.io/blog/what-is-a-vector-database), Weaviate operates using vector representations, also known as "embeddings", of data objects.
 
 To generate these vector embeddings, you can employ a Weaviate ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which can generate vectors at the time of import. Alternatively, you're welcome to supply your own "custom" vector embeddings.
 
@@ -86,7 +86,7 @@ Weaviate lets you define vectorizers at the class level, with further control (e
 :::note Optional: Set a **compatible** vectorizer
 If you're using "custom" vectors that utilize the same model available through a Weaviate module, you have the option to **designate that specific model and module** as the class vectorizer.<p><br/></p>
 
-In this tutorial, the vectors were produced using the OpenAI model `ada-002`. As this model is also available through the `text2vec-openai` module, it may be set as the class vectorizer. Doing so will enable Weaviate to generate vectors if any objects are upserted without a vector, and enable the [`nearText` operator](../api/graphql/vector-search-parameters.md#neartext).<p><br/></p>
+In this tutorial, the vectors were produced using the OpenAI model `ada-002`. As this model is also available through the `text2vec-openai` module, it may be set as the class vectorizer. Doing so will enable Weaviate to generate vectors if any objects are upserted without a vector, and enable the [`nearText` operator](../api/graphql/search-operators.md#neartext).<p><br/></p>
 
 Note that if a class has a specified vectorizer but you provide a vector at the time of import, Weaviate will use your supplied vector.
 :::
@@ -112,7 +112,7 @@ import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questi
 ## Query
 
 Let's say you want to find questions related to biology. We can do that by obtaining a vector embedding for "biology", and finding objects nearest to it.
-In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` parameter](../api/graphql/vector-search-parameters.md#nearvector):
+In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` operator](../api/graphql/search-operators.md#nearvector):
 
 import NearVector from '/_includes/code/quickstart.query.nearVector.mdx';
 

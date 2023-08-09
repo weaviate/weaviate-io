@@ -61,7 +61,7 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 ## Schema configuration
 
-The `reranker-cohere` module can be configured for any class in the schema. You can also specify options such as the `model` to use, and whether to `returnDocuments` in the response.
+The `reranker-cohere` module can be configured for any class in the schema. You can also specify options such as the `model` to use.
 
 This example configures the `Document` class to use the `reranker-cohere` module, with the `rerank-multilingual-v2.0` model, and to return the documents in the response.
 
@@ -74,7 +74,6 @@ This example configures the `Document` class to use the `reranker-cohere` module
       "moduleConfig": {
         "reranker-cohere": {
             "model": "rerank-multilingual-v2.0",
-            "returnDocuments": false
         },
       }
     }
