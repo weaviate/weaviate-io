@@ -23,6 +23,10 @@ You will:
 - Build a vector database, and
 - Query it with *semantic search*.
 
+:::note For Python users
+You can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) as an interactive notebook ([or go to the file](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)).
+:::
+
 :::info Object vectors
 With Weaviate, you have options to:
 - Have **Weaviate create vectors**, or
@@ -155,7 +159,7 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 <details>
   <summary>What if I want to use a different vectorizer module?</summary>
 
-In this example, we use the `Hugging Face` inference API. But you can use others.
+In this example, we use the `OpenAI` inference API. But you can use others.
 
 :::tip Our recommendation
 Vectorizer selection is a big topic - so for now, we suggest sticking to the defaults and focus on learning the basics of Weaviate.
@@ -411,7 +415,10 @@ Well done! You have:
 - Populated it with data objects,
     - Using an inference API, or
     - Using custom vectors,
-- Performed text similarity searches.
+- Performed searches, including:
+    - Semantic search,
+    - Sementic search with a filter and
+    - Generative search.
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.
 
@@ -440,7 +447,7 @@ You should see:
         {
             "class": "Question",
             ...  // truncated additional information here
-            "vectorizer": "text2vec-huggingface"
+            "vectorizer": "text2vec-openai"
         }
     ]
 }

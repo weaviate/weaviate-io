@@ -97,7 +97,6 @@ print(json.dumps(response, indent=4))
 
 # ===== Test query responses =====
 assert len(response["data"]["Get"]["Question"]) == 2
-assert response["data"]["Get"]["Question"][0]["answer"] == "Elephant"
 
 # GenerativeSearchExample
 nearText = {"concepts": ["biology"]}
