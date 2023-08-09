@@ -131,10 +131,10 @@ From the <kbd>Details</kbd> tab in WCS, get:
 - The Weaviate **API key**, and
 - The Weaviate **URL**.
 
-And because we will use the Hugging Face inference API to generate vectors, you need:
-- A Hugging Face **inference API key** ([instructions](https://huggingface.co/docs/api-inference/quicktour#get-your-api-token)).
+And because we will use the OpenAI inference API to generate vectors, you need:
+- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup)).
 
-So, instantiate the client as follows:
+Then, instantiate the client as follows:
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
 
@@ -382,9 +382,9 @@ Using a Boolean filter allows you to combine the flexibility of vector search wi
 
 <!-- Note: Added the generative search example; but hiding it for now as it makes the workflow quite difficult for new users. 1) They will now need an OpenAI/Cohere key. 2) The schema needs to include a generative module definition. 3) Rate limit on generative API is low; so might be painful. -->
 
-<!-- ### Generative search
+### Generative search
 
-Now let's try a generative search. We'll retrieve a set of results just as we did above, before using an LLM to explain each answer in plain terms.
+Now let's try a generative search. We'll retrieve a set of results just as we did above, before using a large language model (LLM) to explain each answer in plain terms.
 
 import CodeAutoschemaGenerative from '/_includes/code/quickstart.autoschema.generativesearch.mdx'
 
@@ -399,8 +399,8 @@ import BiologyGenerativeSearchJson from '/_includes/code/quickstart.biology.gene
 Here, we see that Weaviate has retrieved the same results as before. But now it includes an additional, generated text with a plain-language explanation of each answer.
 
 :::tip Why is this useful?
-Generative search sends retrieved data from Weaviate to a large language model (LLM). This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
-::: -->
+Generative search sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
+:::
 
 <hr/>
 
