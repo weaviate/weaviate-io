@@ -1,8 +1,8 @@
 ---
-title: GraphQL - Vector search parameters
-sidebar_position: 7
+title: GraphQL - Search operators
+sidebar_position: 20
 image: og/docs/api.jpg
-# tags: ['graphql', 'vector search parameters']
+# tags: ['graphql', 'search operators']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -12,9 +12,9 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Setting search parameters
+## Setting search operators
 
-Vector search parameters are added to GraphQL queries on the class level.
+Search operators can be added to GraphQL queries on the class level.
 
 For example:
 
@@ -22,22 +22,22 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 <GraphQLFiltersExample/>
 
-## Built-in parameters
+## Built-in operators
 
-Built-in search parameters are available in all Weaviate instances and don't require any modules.
+Built-in search operators are available in all Weaviate instances and don't require any modules.
 
-Weaviate provides the following built-in parameters:
+Weaviate provides the following built-in operators:
 * [nearVector](#nearvector)
 * [nearObject](#nearobject)
 * [hybrid](#hybrid)
 * [bm25](#bm25)
 * [group](#group)
 
-## Module-specific parameters
+## Module-specific operators
 
-Module-specific search parameters are made available in certain Weaviate modules.
+Module-specific search operators are made available in certain Weaviate modules.
 
-By adding relevant modules, you can use the following parameters:
+By adding relevant modules, you can use the following operators:
 * [nearText](#neartext)
 * [ask](#ask)
 
@@ -176,7 +176,7 @@ import GraphQLFiltersHybrid from '/_includes/code/graphql.filters.hybrid.mdx';
 
 <GraphQLFiltersHybrid/>
 
-### Example with vector parameter
+### Example with vector operator
 If you're providing your own embeddings, you can supply the vector query to the `vector` variable. If Weaviate is handling the vectorization, then you can ignore the `vector` variable and use the example code snippets above.
 
 import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.vector.mdx';

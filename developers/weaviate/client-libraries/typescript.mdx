@@ -45,7 +45,7 @@ const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
 client
@@ -64,23 +64,18 @@ client
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+import weaviate from 'weaviate-ts-client';
 
-const client: WeaviateClient = weaviate.client({
+const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
-client
+const response = await client
   .schema
   .getter()
-  .do()
-  .then((res: any) => {
-    console.log(res);
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -121,8 +116,8 @@ const { default: weaviate } = require('weaviate-ts-client');
 // Instantiate the client with the auth config
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  host: 'edu-demo.weaviate.network',  // Replace with your endpoint
+  apiKey: new weaviate.ApiKey('learn-weaviate'),  // Replace w/ your Weaviate instance API key
 });
 ```
 
@@ -135,8 +130,8 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 // Instantiate the client with the auth config
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  host: 'edu-demo.weaviate.network',  // Replace with your endpoint
+  apiKey: new ApiKey('learn-weaviate'),  // Replace w/ your Weaviate instance API key
 });
 ```
 
@@ -301,7 +296,7 @@ const { default: weaviate } = require('weaviate-ts-client');
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',
-  headers: {headerName: 'HeaderValue'}
+  headers: { headerName: 'HeaderValue' }
 });
 ```
 
@@ -314,7 +309,7 @@ import weaviate, { WeaviateClient } from 'weaviate-ts-client';
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',
-  headers: {headerName: 'HeaderValue'}
+  headers: { headerName: 'HeaderValue' }
 });
 ```
 

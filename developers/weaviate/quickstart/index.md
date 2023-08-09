@@ -31,6 +31,10 @@ With Weaviate, you have options to:
 This tutorial demonstrates both methods.
 :::
 
+:::tip For more holistic learning
+Try <i class="fa-solid fa-graduation-cap"></i> [Weaviate Academy](../../academy/index.mdx), where we have built holistic courses for you to learn about Weaviate and the world of vector search.
+:::
+
 #### Source data
 
 We will use a (tiny) dataset of quizzes.
@@ -55,7 +59,7 @@ The data comes from a TV quiz show ("Jeopardy!")
 
 </details>
 
-<hr/><br/>
+<hr/>
 
 ## Create an instance
 
@@ -105,11 +109,11 @@ For the Weaviate API key, click on the <kbd><i class="fa-solid fa-key"></i></kbd
 <img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
 :::
 
-<hr/><br/>
+<hr/>
 
 ## Install a client library
 
-We suggest useing a [Weaviate client](../client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
+We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
@@ -119,7 +123,7 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 :::
 
-<hr/><br/>
+<hr/>
 
 ## Connect to Weaviate
 
@@ -128,7 +132,7 @@ From the <kbd>Details</kbd> tab in WCS, get:
 - The Weaviate **URL**.
 
 And because we will use the Hugging Face inference API to generate vectors, you need:
-- A Hugging Face **inference API key**.
+- A Hugging Face **inference API key** ([instructions](https://huggingface.co/docs/api-inference/quicktour#get-your-api-token)).
 
 So, instantiate the client as follows:
 
@@ -138,7 +142,7 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.conn
 
 Now you are connected to your Weaviate instance!
 
-<hr/><br/>
+<hr/>
 
 ## Define a class
 
@@ -256,7 +260,7 @@ This creates a class `Question`, tells Weaviate which `vectorizer` to use, and s
 
 Now you are ready to add objects to Weaviate.
 
-<hr/><br/>
+<hr/>
 
 ## Add objects
 
@@ -307,7 +311,7 @@ In this tutorial, they come from `sentence-transformers/all-MiniLM-L6-v2` - the 
 Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
 :::
 
-<hr/><br/>
+<hr/>
 
 # Putting it together
 
@@ -327,7 +331,7 @@ Congratulations, you've successfully built a vector database!
 
 </details>
 
-<hr/><br/>
+<hr/>
 
 ## Queries
 
@@ -398,7 +402,7 @@ Here, we see that Weaviate has retrieved the same results as before. But now it 
 Generative search sends retrieved data from Weaviate to a large language model (LLM). This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
 ::: -->
 
-<hr/><br/>
+<hr/>
 
 ## Recap
 

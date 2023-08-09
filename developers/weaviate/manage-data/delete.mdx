@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'delete']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -52,7 +56,7 @@ To delete an object, specify its class name and id as shown below.
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteObject"
@@ -83,7 +87,7 @@ You can handle errors as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteError"
@@ -110,7 +114,7 @@ Optionally, set `output` to `'verbose'` to see more details (ID and deletion sta
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteBatch"
@@ -143,7 +147,7 @@ You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) 
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DryRun"

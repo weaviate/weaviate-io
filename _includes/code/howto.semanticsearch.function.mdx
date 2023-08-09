@@ -63,28 +63,27 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .explore()
-      .withNearText({concepts:['fashion'], moveTo: {concepts: ['haute couture'], force: 0.85}, moveAwayFrom: {concepts: ['finance'], force: 0.45})})
-      .withCertainty(0.7)
-      .withFields('beacon certainty className')
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .explore()
+  .withNearText({
+    concepts: ['fashion'],
+    moveTo: { concepts: ['haute couture'], force: 0.85 },
+    moveAwayFrom: { concepts: ['finance'], force: 0.45 },
+    certainty: 0.7,
+  })
+  .withFields('beacon certainty className')
+  .do();
+console.log(response);
 ```
 
 </TabItem>

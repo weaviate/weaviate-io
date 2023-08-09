@@ -24,30 +24,25 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .aggregate()
-      .withClassName('Article')
-      .withFields('meta { count } wordCount { count maximum mean median minimum mode sum type } inPublication { pointingTo type }')
-      // prior to v1.14, use certainty instead of distance
-      .withNearObject({ id: '00037775-1432-35e5-bc59-443baaef7d80', distance: 0.6 })
-      .withObjectLimit(100)
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .aggregate()
+  .withClassName('Article')
+  .withFields('meta { count } wordCount { count maximum mean median minimum mode sum type } inPublication { pointingTo type }')
+  // prior to v1.14, use certainty instead of distance
+  .withNearObject({ id: '00037775-1432-35e5-bc59-443baaef7d80', distance: 0.6 })
+  .withObjectLimit(100)
+  .do();
+console.log(response);
 ```
 
 </TabItem>

@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'rank']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -78,7 +82,7 @@ Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want
       language="py"
     />
   </TabItem>
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START nearText"
@@ -121,7 +125,7 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
       language="py"
     />
   </TabItem>
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankNearText"
@@ -158,7 +162,7 @@ We can see in the `rerank`ed result set, that answers are sorted descending by t
 
 ## Reranking bm25 search results
 
-The example below is a uses `rerank` in a `bm25` query to sort towards the top results for the query "paper" that have to do with "publication"s rather than with the material paper.
+The example below uses `rerank` in a `bm25` query to sort the top results for the query `"paper"` towards `"publication"` to disambiguate from those related to other meanings, such as the material "paper".
 
 <Tabs groupId="languages">
   <TabItem value="python" label="Python">
@@ -169,7 +173,7 @@ The example below is a uses `rerank` in a `bm25` query to sort towards the top r
       language="py"
     />
   </TabItem>
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START bm25Rerank"

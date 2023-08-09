@@ -11,7 +11,7 @@ description: "Implementing HNSW + Product Quantization (PQ) vector compression i
 
 <!-- truncate -->
 
-Weaviate is already a very performant and robust vector database and with the recent release of  v1.18 we are now bringing vector compression algorithms to Weaviate users everywhere. The main goal of this new feature is to offer similar performance at a fraction of the memory requirements and cost. In this blog we expand on the details behind this delicate balance between recall performance and memory management.
+Weaviate is already a very performant and robust [vector database](https://weaviate.io/blog/what-is-a-vector-database) and with the recent release of  v1.18 we are now bringing vector compression algorithms to Weaviate users everywhere. The main goal of this new feature is to offer similar performance at a fraction of the memory requirements and cost. In this blog we expand on the details behind this delicate balance between recall performance and memory management.
 
 In our previous blog [Vamana vs. HNSW - Exploring ANN algorithms Part 1](/blog/ann-algorithms-vamana-vs-hnsw), we explained the challenges and benefits of the Vamana and HNSW indexing algorithms. However, we did not explain the underlying motivation of moving vectors to disk. In this post we explore:
 

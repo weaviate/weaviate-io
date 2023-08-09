@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'update']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -46,7 +50,7 @@ To update the values of a list of properties in an object, [make a `PATCH` reque
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// UpdateProps START"
@@ -70,7 +74,7 @@ If you want to update an object's vector embedding, you can specify the vector p
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
 
@@ -92,7 +96,7 @@ To replace an object in its entirety, [make a `PUT` request to the `/v1/objects`
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// Replace START"
@@ -126,7 +130,7 @@ To delete properties from a specific object, you can replace the object with a c
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// DelProps START"

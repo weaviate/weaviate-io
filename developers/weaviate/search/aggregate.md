@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -47,7 +51,7 @@ The `meta` property has only one sub-property (`count`) available. This returns 
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -103,7 +107,7 @@ The following example retrieves information about the most commonly occurring ex
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -153,7 +157,7 @@ The following example retrieves the sum of the `points` property values:
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -205,7 +209,7 @@ For example, to list all distinct values of a property, and the counts for each:
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -244,7 +248,7 @@ For example, to list all distinct values of a property, and the counts for each:
 
 ## With `nearXXX`
 
-When using a [similarity search](./similarity.md) parameter (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
+When using a [similarity search](./similarity.md) operator (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
 
 Thus, for the vector search to affect the `Aggregate` output, you **must** set a limit on:
 - The number of results returned (with `limit`), or
@@ -267,7 +271,7 @@ The below query retrieves the 10 `question` objects with vectors that are closes
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -321,7 +325,7 @@ The below query retrieves the 10 `question` objects with vectors that are within
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -374,7 +378,7 @@ The below example searches for objects where the `round` property equals `Double
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}

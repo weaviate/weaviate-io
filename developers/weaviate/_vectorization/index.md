@@ -6,7 +6,7 @@ image: og/docs/vectors.jpg
 ---
 
 ## Introduction
-You would have seen us describe Weaviate as a vector database. In this section, we will talk a little more about what that means. We will discuss what vectors are, how vectors are indexed in Weaviate, and even a little bit about how to choose the right vectorizer for your needs.
+You would have seen us describe Weaviate as a [vector database](https://weaviate.io/blog/what-is-a-vector-database). In this section, we will talk a little more about what that means. We will discuss what vectors are, how vectors are indexed in Weaviate, and even a little bit about how to choose the right vectorizer for your needs.
 
 ## What is a vector?
 A [vector](https://en.wikipedia.org/wiki/Euclidean_vector) is a collection of numbers, such as [1, 0] or [0.513, 0.155, 0.983, 0.001, 0.932]. It can be of any length - as short as one, or contain thousands of numbers.

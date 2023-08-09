@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'image']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -75,7 +79,7 @@ You must configure the target class to:
 - Ensure that the target class is configured to use the image vectorizer module, such as by explicitly setting it as the vectorizer for the class. And
 - Specify in the `imageFields` property the [blob](../config-refs/datatypes.md#datatype-blob) field(s) that will store the images.
 
-For using `img2vec-neural`, an example class definition may look as follows: 
+For using `img2vec-neural`, an example class definition may look as follows:
 
 ```json
 {
@@ -144,7 +148,7 @@ See the relevant module page for:
 
 ## base64 nearImage search
 
-You can find similar images by performing a [`nearImage`](../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) search for the based64-encoded representation of the image. 
+You can find similar images by performing a [`nearImage`](../modules/retriever-vectorizer-modules/img2vec-neural.md#nearimage-search) search for the based64-encoded representation of the image.
 
 You can obtain this representation (a long string) as below:
 
@@ -155,7 +159,7 @@ You can obtain this representation (a long string) as below:
   base64_string = base64.b64encode(content).decode('utf-8')  # standard library module
   ```
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   ```typescript
   base64String = content.toString('base64');
@@ -182,7 +186,7 @@ Then, you can search for similar images as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START base64"
@@ -220,7 +224,7 @@ If your target image is stored in a file, you can [use the Python client to sear
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 

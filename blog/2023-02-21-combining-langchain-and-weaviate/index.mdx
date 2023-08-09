@@ -83,7 +83,7 @@ Refine is a unique technique because it has a local memory. An example of this i
 Map Rerank involves running an initial prompt that asks the model to give a relevance score. It is then passed through the language model and assigns a score based on the certainty of the answer. The documents are then ranked and the top two are stuffed to the language model to output a single response.
 
 ## Tool Use
-The last building block we will cover is tool use. [Tool use](https://python.langchain.com/docs/modules/agents/tools/) is a way to augment language models to use tools. For example, we can hook up an LLM to vector databases, calculators, or even code executors. Of course we will dive into the vector databases next, but let’s start with an example of the code executor tool use.
+The last building block we will cover is tool use. [Tool use](https://python.langchain.com/docs/modules/agents/tools/) is a way to augment language models to use tools. For example, we can hook up an LLM to [vector databases](https://weaviate.io/blog/what-is-a-vector-database), calculators, or even code executors. Of course we will dive into the vector databases next, but let’s start with an example of the code executor tool use.
 
 <img
     src={require('./img/tool-use.gif').default}
@@ -94,7 +94,7 @@ The last building block we will cover is tool use. [Tool use](https://python.lan
 The task for the language model is to write python code for the bubble sort algorithm. The code is then passed through the Python REPL. Python REPL is a code executor implemented in LangChain. Once the code is executed, the output of the code is printed. The language model then sees this output and judges if the code is correct.
 
 ## ChatVectorDB
-One of the most exciting features of LangChain is its collection of preconfigured chains. We will look at the [ChatVectorDB chain](https://github.com/hwchase17/langchain/tree/master/langchain/chains/chat_vector_db), it lets you build an LLM that stores chat history and retrieves context from Weaviate to help with generation. To begin, the chat history in this chain uses the `stuff` configuration of CombineDocuments. This means we take as much of the chat history as we can fit in our context window and use it for a query reformulation prompt. The prompt is as follows:
+One of the most exciting features of LangChain is its collection of preconfigured chains. We will look at the [ChatVectorDB chain](https://python.langchain.com/docs/modules/chains/popular/chat_vector_db), it lets you build an LLM that stores chat history and retrieves context from Weaviate to help with generation. To begin, the chat history in this chain uses the `stuff` configuration of CombineDocuments. This means we take as much of the chat history as we can fit in our context window and use it for a query reformulation prompt. The prompt is as follows:
 
 ```python
 _template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.

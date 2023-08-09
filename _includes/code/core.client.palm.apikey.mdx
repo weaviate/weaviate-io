@@ -18,21 +18,21 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require("weaviate-ts-client");
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',
-    // highlight-start
-    // Replace with your API key
-    headers: {
-      'X-Palm-Api-Key': 'YOUR-PALM-API-KEY',
-    },
-    // highlight-end
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  // highlight-start
+  // Replace with your API key
+  headers: {
+    'X-Palm-Api-Key': 'YOUR-PALM-API-KEY',
+  },
+  // highlight-end
+});
 ```
 
 </TabItem>

@@ -27,32 +27,27 @@ print(json.dumps(response, indent=2))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withFields('title')
-      .withWhere({
-        operator: 'Equal',
-        path: ['id'],
-        valueText: '00037775-1432-35e5-bc59-443baaef7d80',
-      })
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title')
+  .withWhere({
+    operator: 'Equal',
+    path: ['id'],
+    valueText: '00037775-1432-35e5-bc59-443baaef7d80',
+  })
+  .do();
+console.log(response);
 ```
 
 </TabItem>

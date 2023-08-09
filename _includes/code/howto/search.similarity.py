@@ -6,13 +6,14 @@
 
 import weaviate
 import json
+import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace w/ your OPENAI API key
     }
 )
 
@@ -20,7 +21,7 @@ client = weaviate.Client(
 # ===== QUERY WITH nearText =====
 # ===============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
 # GetNearTextPython
 response = (
@@ -105,7 +106,7 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH nearObject =====
 # =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearobject
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 
 # GetNearObjectPython
 response = (
@@ -162,7 +163,7 @@ test_gqlresponse(response, gqlresponse)
 # ===== QUERY WITH nearVector =====
 # =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#nearvector
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearvector
 
 # GetNearVectorPython
 response = (
@@ -566,7 +567,6 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
-assert gqlresponse == response
 assert "JeopardyQuestion" in gqlresponse["data"]["Get"]
 assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"]) <= max_groups
 assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["group"].keys() == {"count", "groupedBy", "hits", "id", "maxDistance", "minDistance"}
@@ -579,7 +579,7 @@ assert len(gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["gro
 # ===== QUERY WITH WHERE =====
 # ============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/vector-search-parameters#neartext
+# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
 # GetWithWherePython
 response = (

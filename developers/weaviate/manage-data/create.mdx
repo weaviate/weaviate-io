@@ -5,6 +5,10 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'create']
 ---
 
+import Badges from '/_includes/badges.mdx';
+
+<Badges/>
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -61,7 +65,7 @@ This example shows how to create an object in the `JeopardyQuestion` class, with
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// CreateObject START"
@@ -96,7 +100,7 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// CreateObjectWithIdAndVector START"
@@ -144,7 +148,7 @@ This will confirm:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// ValidateObject START"

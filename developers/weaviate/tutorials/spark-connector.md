@@ -43,7 +43,9 @@ The Spark Connector is able to automatically infer the correct Spark DataType ba
 
 ## Initializing a Spark session
 
-The code below will create a Spark Session using the libraries mentioned above.
+Often a Spark Session will be created as part of your Spark environment (such as a Databricks notebook) and the only task is to add the Weaviate Spark Connector jar as a library to your cluster.
+
+If you want to create a local Spark Session manually the below code will create one with the connector:
 
 ```python
 from pyspark.sql import SparkSession
@@ -173,6 +175,32 @@ By now we've written our data to Weaviate, and we understand the capabilities of
 ```python
 client.query.get("Sphere", "title").do()
 ```
+
+## Additional options
+
+If using an authenticated cluster such as on [WCS](../../wcs/quickstart.mdx) you can provide `.option("apiKey", WEAVIATE_API_KEY)` for api key authentication like below:
+
+```python
+df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.Weaviate") \
+    .option("batchSize", 200) \
+    .option("scheme", "https") \
+    .option("host", "demo-env.weaviate.network") \
+    .option("apiKey", WEAVIATE_API_KEY) \
+    .option("id", "uuid") \
+    .option("className", "Sphere") \
+    .option("vector", "vector") \
+    .mode("append").save()
+```
+
+- Using `.option("retries", 2)` will set the number of retries (default 2). Note that Spark will also retry failed stages.
+
+- Using `.option("retriesBackoff", 2)` time to wait in seconds between retries (default 2 seconds).
+
+- Using `.option("timeout", 60)` will set the timeout for a single batch (default 60 seconds).
+
+- Arbitrary headers can be supplied with the option prefix `header:`. For example to provide an `OPENAI_APIKEY` header the following can be used `.option("header:OPENAI_APIKEY", ...)`.
+
+- Additionally OIDC options are supported `.option("oidc:username", ...)`, `.option("oidc:password", ...)`, `.option("oidc:clientSecret", ...)`, `.option("oidc:accessToken", ...)`, `.option("oidc:accessTokenLifetime", ...)`, `.option("oidc:refreshToken", ...)`. For more information on these options please refer to the [Java client documentation](../client-libraries/java.md#oidc-authentication).
 
 ## More resources
 

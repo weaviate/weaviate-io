@@ -39,35 +39,30 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withFields('title _additional {featureProjection(dimensions: 2) { vector }}')
-      .withNearText({
-        concepts:['music'],
-        moveTo: {
-          concepts: ['beatles'],
-          force: 0.5
-        }
-      })
-      .withLimit(12)
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional {featureProjection(dimensions: 2) { vector }}')
+  .withNearText({
+    concepts:['music'],
+    moveTo: {
+      concepts: ['beatles'],
+      force: 0.5,
+    },
+  })
+  .withLimit(12)
+  .do();
+console.log(response);
 ```
 
 </TabItem>
