@@ -23,15 +23,15 @@ query_result = (
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary')
   .withBm25({
-      query: 'how to fish',
+    query: 'how to fish',
   })
   // highlight-start
   .withWhere({
@@ -40,9 +40,8 @@ client.graphql
     valueInt: 1000,
   })
   // highlight-end
-  .do()
-  .then(console.log)
-  .catch(console.error);
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

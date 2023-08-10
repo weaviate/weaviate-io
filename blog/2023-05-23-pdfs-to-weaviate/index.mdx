@@ -367,7 +367,7 @@ There is a [GitHub issue](https://github.com/Unstructured-IO/unstructured/issues
 ## Last Thought
 This demo introduced how you can ingest PDFs into Weaviate. In this example we used two research papers; however, there is the possibility to add Powerpoint presentations or even scanned letters to your Weaviate instance. Unstructured has really simplified the process of using visual document parsing for diverse document types.
 
-We tested a few queries above, but we can take this one step further by using [LangChain](https://github.com/hwchase17/langchain/blob/master/langchain/vectorstores/weaviate.py). Once the documents are imported into Weaviate, you can build a simple chatbot to chat with your pdfs by using LangChain’s vectorstore.
+We tested a few queries above, but we can take this one step further by using [LangChain](https://python.langchain.com/docs/modules/data_connection/vectorstores/integrations/weaviate). Once the documents are imported into Weaviate, you can build a simple chatbot to chat with your pdfs by using LangChain’s vectorstore.
 
 ```python
 from langchain.vectorstores.weaviate import Weaviate

@@ -14,6 +14,8 @@ jobs:
       SLACK_BOT: ${{ secrets.SLACK_BOT }}
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       NETLIFY_URL: ${{ secrets.NETLIFY_URL }}
+      GOOGLE_CONTAINER_ID: ${{ secrets.GOOGLE_CONTAINER_ID }}
+      GOOGLE_TRACKING_ID: ${{ secrets.GOOGLE_TRACKING_ID }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

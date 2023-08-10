@@ -73,7 +73,7 @@ Weaviate is an open source vector database that stores both objects and vectors.
 
 **Weaviate in a nutshell**:
 
-* Weaviate is an open source vector database.
+* Weaviate is an open source [vector database](https://weaviate.io/blog/what-is-a-vector-database).
 * Weaviate allows you to store and retrieve data objects based on their semantic properties by indexing them with [vectors](./concepts/vector-index.md).
 * Weaviate can be used stand-alone (aka _bring your vectors_) or with a variety of [modules](./modules/index.md) that can do the vectorization for you and extend the core capabilities.
 * Weaviate has a [GraphQL-API](./api/graphql/index.md) to access your data easily.
@@ -149,6 +149,8 @@ Storing this in a traditional search engine might leverage inverted indices to i
 Weaviate uses vector indexing mechanisms at its core to represent the data. The vectorization modules (e.g., the NLP module) vectorize the above-mentioned data object in a vector-space where the data object sits _near_ the text "landmarks in France". This means that Weaviate can't find a 100% match, but it will find a very close one, and return the result.
 
 The above example is for text (i.e., NLP), but you can use vector search for any machine learning model that vectorizes, like images, audio, video, genes, etc.
+
+To learn more about vector databases, check out our [Gentle Introduction to Vector Databases](https://weaviate.io/blog/what-is-a-vector-database).
 
 ## When should I use Weaviate?
 

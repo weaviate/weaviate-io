@@ -768,6 +768,23 @@ print(query_result)
 
 Note that you need to use the `.do()` method to execute the query.
 
+:::tip
+You can use `.build()` to inspect the resulting GraphQL query
+:::
+
+```python
+query_result = client.query\
+    .get("Article", ["title"])\
+    .with_where(where_filter)\
+    .with_near_text(near_text_filter)\
+    .with_limit(50)
+
+query_result.build()
+
+>>> '{Get{Article(where: {path: ["wordCount"] operator: GreaterThan valueInt: 1000} limit: 50 nearText: {concepts: ["fashion"] certainty: 0.7 moveTo: {force: 0.85 concepts: ["haute couture"]} moveAwayFrom: {force: 0.45 concepts: ["finance"]}} ){title}}}'
+
+```
+
 ## Change logs
 
 Check the [change logs on GitHub](https://github.com/weaviate/weaviate-python-client/releases) or [readthedocs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html) for updates on the latest Python client changes.

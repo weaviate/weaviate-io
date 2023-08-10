@@ -17,23 +17,19 @@ result = (
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
-  .withFields('title summary _additional{ score explainScore }')
+  .withFields('title summary _additional { score explainScore }')
   .withHybrid({
-      query: 'Fisherman that catches salmon',
-      alpha: 0.5,  // optional, defaults to 0.75
-     }
+    query: 'Fisherman that catches salmon',
+    alpha: 0.5,  // optional, defaults to 0.75
   })
-  .do()
-  .then(res => {
-    console.log(JSON.stringify(res, null, 2))
-  })
-  .catch(console.error);
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

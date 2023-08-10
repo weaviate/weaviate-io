@@ -6,7 +6,7 @@ client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
     auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
     additional_headers = {
-        "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY"  # Replace with your inference API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your inference API key
     }
 )
 
@@ -16,14 +16,10 @@ client = weaviate.Client(
 # ===== add schema =====
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-huggingface",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    "vectorizer": "text2vec-openai",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
     "moduleConfig": {
-        "text2vec-huggingface": {
-            "model": "sentence-transformers/all-MiniLM-L6-v2",  # Can be any public or private Hugging Face model.
-            "options": {
-                "waitForModel": True
-            }
-        }
+        "text2vec-openai": {},
+        "generative-openai": {}  # Ensure the `generative-openai` module is used for generative queries
     }
 }
 
@@ -101,7 +97,6 @@ print(json.dumps(response, indent=4))
 
 # ===== Test query responses =====
 assert len(response["data"]["Get"]["Question"]) == 2
-assert response["data"]["Get"]["Question"][0]["answer"] == "Elephant"
 
 # GenerativeSearchExample
 nearText = {"concepts": ["biology"]}
@@ -132,7 +127,7 @@ client.schema.delete_class("Question")  # Cleanup after
 # Load data
 import requests
 # highlight-start
-fname = "jeopardy_tiny_with_vectors_all-MiniLM-L6-v2.json"  # This file includes vectors, created using `all-MiniLM-L6-v2`
+fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
 url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}'
 resp = requests.get(url)
 data = json.loads(resp.text)

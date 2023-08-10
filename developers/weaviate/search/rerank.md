@@ -82,7 +82,7 @@ Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want
       language="py"
     />
   </TabItem>
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START nearText"
@@ -125,7 +125,7 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
       language="py"
     />
   </TabItem>
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankNearText"
@@ -173,7 +173,7 @@ The example below uses `rerank` in a `bm25` query to sort the top results for th
       language="py"
     />
   </TabItem>
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START bm25Rerank"

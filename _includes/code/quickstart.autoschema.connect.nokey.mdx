@@ -13,15 +13,15 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require("weaviate-client");
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
-    scheme: 'https',
-    host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-  });
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+});
 ```
 
 </TabItem>
