@@ -27,6 +27,22 @@ const config = {
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
     plugins: [
+
+        [
+            '@docusaurus/plugin-google-gtag',
+            {
+                trackingID: process.env.GOOGLE_TRACKING_ID || 'None',
+                anonymizeIP: true,
+            },
+        ],
+
+        [
+            '@docusaurus/plugin-google-tag-manager',
+            {
+                containerId: process.env.GOOGLE_CONTAINER_ID || 'None',
+            },
+        ],
+
         'docusaurus-plugin-sass',
         ['@docusaurus/plugin-client-redirects', siteRedirects],
 
