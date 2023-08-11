@@ -7,6 +7,19 @@
 		"github": "abdelr"
 	},
 	{
+		"name": "Adam Chan",
+		"title": "Developer Advocate",
+		"photo": "adam.jpg",
+		"linkedin": "adam-jeremy-chan",
+		"twitter": "aj__chan"
+	},
+	{
+		"name": "André Duis",
+		"title": "Head of Cloud Strategy",
+		"photo": "andre.png",
+		"linkedin": "andre-duis"
+	},
+	{
 		"name": "Andrzej Liszka",
 		"title": "Core Engineer ",
 		"photo": "andrzej.png",
@@ -44,6 +57,12 @@
 		"github": "byronvoorbach"
 	},
 	{
+		"name": "Cari Liebenberg",
+		"title": "Platform Engineer",
+		"photo": "cari.jpeg",
+		"linkedin": "cari-liebenberg-1b40b0a6"
+	},
+	{
 		"name": "Charles Harr",
 		"title": "Software Engineer",
 		"photo": "charles.png",
@@ -59,18 +78,17 @@
 		"github": "CShorten"
 	},
 	{
-		"name": "Dan Dascalescu",
-		"title": "Developer Advocate",
-		"photo": "dan.png",
-		"linkedin": "dandv",
-		"github": "dandv"
-	},
-	{
 		"name": "Dirk Kulawiak",
 		"title": "Core Engineer",
 		"photo": "dirk.png",
 		"linkedin": "dirk-kulawiak",
 		"github": "dirkkul"
+	},
+	{
+		"name": "Duda Nogueira",
+		"title": "Community Technical Support",
+		"photo": "duda.jpg",
+		"linkedin": "dudanogueira"
 	},
 	{
 		"name": "Emma O'Keefe",
@@ -117,6 +135,12 @@
 		"twitter": "femke_plantinga"
 	},
 	{
+		"name": "Griffin Foster",
+		"title": "Enterprise Account Executive",
+		"photo": "griffin.jpg",
+		"linkedin": "griffin-foster"
+	},
+	{
 		"name": "JP Hwang",
 		"title": "Technical Curriculum Developer",
 		"photo": "jp.png",
@@ -156,9 +180,13 @@
 		"name": "Ken Macinnis",
 		"title": "Solution Engineer",
 		"photo": "ken.png",
-		"linkedin": "kmacinnis",
-		"twitter": "",
-		"github": ""
+		"linkedin": "kmacinnis"
+	},
+	{
+		"name": "Laura Stoye",
+		"title": "Executive Assistant",
+		"photo": "laura.jpg",
+		"linkedin": "laurastoye"
 	},
 	{
 		"name": "Leonie Monigatti",
@@ -175,6 +203,12 @@
 		"github": "antas-marcin"
 	},
 	{
+		"name": "Marion Nehring",
+		"title": "Community Manager",
+		"photo": "marion.jpg",
+		"linkedin": "marionnehring"
+	},
+	{
 		"name": "Mike Wyer",
 		"title": "Site Reliability Engineer",
 		"photo": "mike.jpg",
@@ -187,6 +221,12 @@
 		"photo": "parker.png",
 		"linkedin": "parkerduckworth",
 		"github": "parkerduckworth"
+	},
+	{
+		"name": "Patrick Das",
+		"title": "Executive Business Manager",
+		"photo": "patrick.jpg",
+		"linkedin": "patrickdas"
 	},
 	{
 		"name": "Paul Anderson",
@@ -262,6 +302,12 @@
 		"photo": "svitlana.png",
 		"linkedin": "svitlana-sm",
 		"twitter": "switlana_c"
+	},
+	{
+		"name": "Thomas Smith",
+		"title": "Polyglot Engineer",
+		"photo": "tommy.jpg",
+		"linkedin": "tbs181194"
 	},
 	{
 		"name": "Weronika Krajcarz",
