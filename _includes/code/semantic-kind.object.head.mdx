@@ -24,28 +24,23 @@ print(exists)
 
 </TabItem>
 
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
+const response = await client.data
   .checker()
   .withClassName('MyClass')
   .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
-  .withConsistencyLevel('QUORUM')
-  .do()
-  .then((exists) => {
-    console.log(exists)
-  })
-  .catch(err =>
-    console.error(err)
-  );
+  // .withConsistencyLevel('QUORUM')  // may not work yet - https://github.com/weaviate/typescript-client/issues/79
+  .do();
+console.log(response);
 
 // The parameter passed to `withConsistencyLevel` can be one of:
 // * 'ALL',

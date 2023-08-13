@@ -12,7 +12,7 @@ const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
-  headers: { 'X-HuggingFace-Api-Key': 'YOUR-HUGGINGFACE-API-KEY' },  // Replace with your inference API key
+  headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your inference API key
 });
 
 // END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END GenerativeSearchExample  // END CustomVectorExample
@@ -25,14 +25,10 @@ const client: WeaviateClient = weaviate.client({
 // Add the schema
 const classObj = {
   'class': 'Question',
-  'vectorizer': 'text2vec-huggingface',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+  'vectorizer': 'text2vec-openai',  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
   'moduleConfig': {
-    'text2vec-huggingface': {
-      'model': 'sentence-transformers/all-MiniLM-L6-v2',  // Can be any public or private Hugging Face model.
-      'options': {
-        'waitForModel': true,
-      },
-    },
+    'text2vec-openai': {},
+    'generative-openai': {}  // Ensure the `generative-openai` module is used for generative queries
   },
 };
 
@@ -234,7 +230,7 @@ await importQuestions();
 /*
 // Import data with custom vectors
 async function getJsonData() {
-  const fname = 'jeopardy_tiny_with_vectors_all-MiniLM-L6-v2.json';
+  const fname = 'jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json';
   const url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/' + fname
   const file = await fetch(url);
   return file.json();

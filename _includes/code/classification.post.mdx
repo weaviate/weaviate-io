@@ -22,31 +22,26 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.classifications
-      .scheduler()
-      .withType('<e.g. knn>')
-      .withSettings(<e.g. {k: 3}>) // optional for knn classification
-      .withClassName('<className>')
-      .withClassifyProperties(['<property1>', '<property2>'])
-      .withBasedOnProperties(['<property3>'])
-      .withWaitForCompletion()
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.classifications
+  .scheduler()
+  .withType('<e.g. knn>')
+  .withSettings(<e.g. { 'k': 3 }>) // optional for knn classification
+  .withClassName('<className>')
+  .withClassifyProperties(['<property1>', '<property2>'])
+  .withBasedOnProperties(['<property3>'])
+  .withWaitForCompletion()
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>

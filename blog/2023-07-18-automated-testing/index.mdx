@@ -48,7 +48,7 @@ Such complexity makes it important to test the application as a whole, and not j
   />
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
   <FilteredTextBlock
     text={TSCode}
     startMarker="// START Connect"
@@ -101,7 +101,7 @@ If you have yet to install the required dependencies, run the following command:
 
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   ```bash
   npm install weaviate-ts-embedded typescript ts-node
@@ -125,13 +125,13 @@ If you have yet to install the required dependencies, run the following command:
   />
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
     startMarker="// START ConnectAndCleanup"
     endMarker="// Client connected and schema cleared"
-    language="js"
+    language="ts"
   />
   </TabItem>
 </Tabs>
@@ -157,12 +157,12 @@ Here, the integration test will consist of checking that the class was created w
     />
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// Create the class"
       endMarker="// Class created successfully"
-      language="js"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -201,12 +201,12 @@ The test is simple; it verifies that all specified objects have been imported by
     />
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// Import objects from the JSON file"
       endMarker="// Import completed successfully"
-      language="js"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -239,12 +239,12 @@ Depending on your application and usage, you may find that the top result change
     />
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// Run a test query"
       endMarker="// Query test completed"
-      language="js"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -277,12 +277,12 @@ The code below brings together the setup and tests we've implemented so far - if
     />
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Connect"
       endMarker="// END all"
-      language="js"
+      language="ts"
     />
   </TabItem>
 </Tabs>
@@ -319,7 +319,7 @@ jobs:
 
   </TabItem>
 
-  <TabItem value="ts" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
 ```
 name: Run Node.js Automated Tests

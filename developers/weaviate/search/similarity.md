@@ -267,7 +267,7 @@ Autocut can be used as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Autocut"

@@ -31,9 +31,9 @@ def get_batch_with_cursor(client, class_name, class_properties, batch_size, curs
 # Use this function to retrieve data
 
 
-# Fetch the schema
+# START FetchClassDefinition
 class_schema = source_client.schema.get(class_name)
-# Finished fetching the schema
+# END FetchClassDefinition
 
 # Restore to a new (target) instance
 target_client = weaviate.Client(

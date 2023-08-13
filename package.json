@@ -20,6 +20,8 @@
   "dependencies": {
     "@docusaurus/core": "^2.3.1",
     "@docusaurus/plugin-client-redirects": "^2.3.1",
+    "@docusaurus/plugin-google-gtag": "^2.4.1",
+    "@docusaurus/plugin-google-tag-manager": "^2.4.1",
     "@docusaurus/preset-classic": "^2.3.1",
     "@giscus/react": "^2.2.8",
     "@mdx-js/react": "^1.6.22",

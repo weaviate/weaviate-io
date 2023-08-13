@@ -22,36 +22,30 @@ client.schema.create_class(class_obj)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-let classObj = {
-  {
-    'class': 'Post',
-    'vectorizer': 'none', // explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
-    'properties': [{
-        'name': 'content',
-        'dataType': ['text'],
-    }]
+const classObj = {
+  class: 'Post',
+  vectorizer: 'none', // explicitly tell Weaviate not to vectorize anything, we are providing the vectors ourselves through our BERT model
+  properties: [{
+    name: 'content',
+    dataType: ['text'],
+  }],
 };
 
-client.schema
-    .classCreator()
-    .withClass(classObj)
-    .do()
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.error(err)
-    });
+const response = await client.schema
+  .classCreator()
+  .withClass(classObj)
+  .do();
+console.log(response);
 ```
 
 </TabItem>

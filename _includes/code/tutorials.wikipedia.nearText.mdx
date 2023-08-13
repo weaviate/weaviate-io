@@ -46,14 +46,14 @@ print(json.dumps(result, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
 const nearTextResult = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title content')
-  .withNearText({concepts: ['modern art in Europe']})
+  .withNearText({ concepts: ['modern art in Europe'] })
   .withLimit(1)
   .do();
 

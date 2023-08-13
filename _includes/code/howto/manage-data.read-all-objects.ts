@@ -37,9 +37,9 @@ async function getBatchWithCursor(
 // Use this function to retrieve data
 
 
-// Fetch the schema
+// START FetchClassDefinition
 const classDef = await sourceClient.schema.classGetter().withClassName(className).do();
-// Finished fetching the schema
+// END FetchClassDefinition
 
 // Restore to a new (target) instance
 const targetClient = weaviate.client({

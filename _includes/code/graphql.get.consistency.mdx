@@ -21,45 +21,24 @@ print(f"resp: {resp}")
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
-```js
-const weaviate = require('weaviate-ts-client');
+```ts
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-const resp = await client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('_additional { id isConsistent }')
   .withConsistencyLevel('ONE')
   .do();
 
-console.log(`resp: ${JSON.stringify(resp)}`);
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
-
-const resp = await client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('_additional { id isConsistent }')
-  .withConsistencyLevel('ONE')
-  .do();
-
-console.log(`resp: ${JSON.stringify(resp)}`);
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
