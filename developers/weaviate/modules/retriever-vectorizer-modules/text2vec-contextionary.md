@@ -8,7 +8,24 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## Introduction
+
+## In short
+
+- This module vectorizes text data using a local container.
+- It is not available on Weaviate Cloud Services (WCS).
+- It uses a weighted mean of word embeddings (WMOWE) to produce the vector.
+
+## Overview
+
+The `text2vec-contextionary` is a lightweight vectorizer for text data that trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data.
+
+It uses a local inference container, so you do not require an API key to use this module. It is not available on Weaviate Cloud Services (WCS).
+
+:::tip When to use `text2vec-contextionary`
+As this is a lightweight model, it is well suited for testing purposes. For production use cases, we recommend using other modules that use a more modern, transformer-based architecture.
+:::
+
+<!-- ## Introduction
 
 The module `text2vec-contextionary`, herein also referred to as the 'Contextionary', is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](/developers/weaviate/modules/other-modules/custom-modules.md) if desired.
 
@@ -36,7 +53,7 @@ When a new class object is created, it will be added to a Weaviate.
   * Italian
 * Trained on Wiki
   * English
-  * Dutch
+  * Dutch -->
 
 ## How to enable
 
@@ -311,11 +328,11 @@ The meaning of the concept `API` has now changed in your Weaviate setting.
 
 Note that stopwords are automatically removed from camelCased and CamelCased names.
 
-### What stopwords are and why they matter
+<!-- ### What stopwords are and why they matter
 
 Stopwords are words that don't add semantic meaning to your concepts and are extremely common in texts across different contexts. For example, the sentence "a car is parked on the street" contains the following stopwords: "a", "is", "on", "the". If we look at the sentence "a banana is lying on the table", you would find the exact same stop words. So in those two sentences, over 50% of the words overlap. Therefore they would be considered somewhat similar (based on the overall vector position).
 
-However, if we remove stopwords from both sentences, they become "car parked street" and "banana lying table". Suddenly there are 0% identical words in the sentences, so it becomes easier to perform vector comparisons. Note at this point we cannot say whether both sentences are related or not. For this we'd need to know how close the vector position of the sentence "car parked street" is to the vector position of "banana lying table". But we do know that the result can now be calculated with a lot less noise.
+However, if we remove stopwords from both sentences, they become "car parked street" and "banana lying table". Suddenly there are 0% identical words in the sentences, so it becomes easier to perform vector comparisons. Note at this point we cannot say whether both sentences are related or not. For this we'd need to know how close the vector position of the sentence "car parked street" is to the vector position of "banana lying table". But we do know that the result can now be calculated with a lot less noise. -->
 
 ### Behavior around stop words
 
