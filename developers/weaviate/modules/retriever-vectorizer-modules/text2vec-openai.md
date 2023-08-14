@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-openai` enables Weaviate to obtain vectors using
+The `text2vec-openai` module enables Weaviate to obtain vectors using
 - [OpenAI](https://platform.openai.com/docs/guides/embeddings) or
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/understand-embeddings)
 
@@ -20,7 +20,7 @@ Key notes:
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. [OpenAI pricing page](https://openai.com/api/pricing/)), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`NearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
+- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `text-embedding-ada-002`.
 
 import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
@@ -39,10 +39,10 @@ To use `text2vec-openai`, you must enable it in your configuration file. You can
 
 #### Parameters
 
-- `ENABLE_MODULES` – the modules to enable. Include `text2vec-openai` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` – the default vectorizer module. Optional; you can set this to `text2vec-openai` to make it the default for each class.
-- `OPENAI_APIKEY` – your OpenAI API key (if using OpenAI). Optional; you can also provide the key at query time.
-- `AZURE_APIKEY` – your Azure OpenAI API key  (if using Azure OpenAI). Optional; you can also provide the key at query time.
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-openai` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-openai` to make it the default for all classes.
+- `OPENAI_APIKEY` (Optional): Your OpenAI API key (if using OpenAI). You can also provide the key at query time.
+- `AZURE_APIKEY` (Optional): Your Azure OpenAI API key (if using Azure OpenAI). You can also provide the key at query time.
 
 #### Example
 
@@ -79,9 +79,9 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-- `model` – a model family, e.g. `davinci`.
-- `modelVersion` – version string, e.g. `003`.
-- `type` – `text` or `code`.
+- `model` (Optional): A model family, e.g. `davinci`.
+- `modelVersion` (Optional): Version string, e.g. `003`.
+- `type` (Optional): Model type. Can be `text` or `code`.
 
 The default model is `text-embedding-ada-002`.
 
@@ -152,6 +152,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
 - `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
 
+#### Example
+
 ```json
 {
   "classes": [
@@ -163,7 +165,10 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
         "text2vec-openai": {
           "model": "ada",
           "modelVersion": "002",
-          "type": "text"
+          "type": "text",
+          // highlight-start
+          "vectorizeClassName": "false"
+          // highlight-end
         }
       },
       "properties": [

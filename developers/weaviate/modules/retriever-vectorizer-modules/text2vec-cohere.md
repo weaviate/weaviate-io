@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-cohere` enables Weaviate to obtain vectors using [Cohere](https://docs.cohere.com/docs/embeddings).
+The `text2vec-cohere` module enables Weaviate to obtain vectors using [Cohere](https://docs.cohere.com/docs/embeddings).
 
 Key notes:
 
@@ -18,7 +18,7 @@ Key notes:
 - **Its usage may incur costs**.
     - Please check the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`NearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
+- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `multilingual-22-12`.
 - Make sure to set the right [distance metric](#distance-metric) in your class configuration.
 
@@ -35,9 +35,9 @@ To use `text2vec-cohere`, you must enable it in your configuration file. You can
 
 #### Parameters
 
-- `ENABLE_MODULES` – the modules to enable. Include `text2vec-cohere` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` – the default vectorizer module. ; you can set this to `text2vec-cohere` to make it the default for each class.
-- `COHERE_APIKEY` – your Cohere API key. Optional; you can also provide the key at query time.
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-cohere` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-cohere` to make it the default for all classes.
+- `COHERE_APIKEY` (Optional): Your Cohere API key. You can also provide the key at query time.
 
 #### Example
 
@@ -73,8 +73,8 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-- `model` – The model to use. Defaults to `multilingual-22-12`.
-- `truncate` – API input truncation behavior. Defaults to `RIGHT`. Options: `RIGHT` or `NONE`.
+- `model` (Optional): The model to use. Defaults to `multilingual-22-12`.
+- `truncate` (Optional): Sets Cohere API input truncation behavior. Defaults to `RIGHT`. Options: `RIGHT` or `NONE`.
 
 #### Example
 
@@ -120,6 +120,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
 - `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
 
+#### Example
+
 ```json
 {
   "classes": [
@@ -133,7 +135,10 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "moduleConfig": {
         "text2vec-cohere": {
           "model": "multilingual-22-12", // Defaults to multilingual-22-12 if not set
-          "truncate": "RIGHT" // Defaults to RIGHT if not set
+          "truncate": "RIGHT", // Defaults to RIGHT if not set
+          // highlight-start
+          "vectorizeClassName": "false"
+          // highlight-end
         }
       },
       "properties": [

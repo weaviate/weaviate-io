@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-huggingface` enables Weaviate to obtain vectors using the [Hugging Face](https://huggingface.co/models) Inference API.
+The `text2vec-huggingface` module enables Weaviate to obtain vectors using the [Hugging Face](https://huggingface.co/models) Inference API.
 
 Key notes:
 
@@ -18,7 +18,7 @@ Key notes:
 - **Its usage may incur costs**.
     - Please check the inference [pricing page](https://huggingface.co/inference-api#pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`NearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
+- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.
 
 
@@ -34,9 +34,9 @@ To use `text2vec-huggingface`, you must enable it in your configuration file. Yo
 
 #### Parameters
 
-- `ENABLE_MODULES` – the modules to enable. Include `text2vec-huggingface` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` – the default vectorizer module. ; you can set this to `text2vec-huggingface` to make it the default for each class.
-- `HUGGINGFACE_APIKEY` – your Hugging Face API key. Optional; you can also provide the key at query time.
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-huggingface` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-huggingface` to make it the default for all classes.
+- `HUGGINGFACE_APIKEY` (Optional): Your Hugging Face API key. You can also provide the key at query time.
 
 #### Example
 
@@ -70,13 +70,13 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-The following parameters are available for the api. Only set one of:
+The following parameters are available for the API.
+
+Note that you should only set one of:
 
 - `model`,
 - `passageModel` and `queryModel`, or
 - `endpointURL`
-
-To specify the model to use.
 
 | setting | type | description | example | notes |
 | --- | --- | --- | --- | --- |
@@ -127,6 +127,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
 - `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
 
+#### Example
+
 ```json
 {
   "classes": [
@@ -141,7 +143,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
             "waitForModel": true,
             "useGPU": true,
             "useCache": true
-          }
+          },
+          "vectorizeClassName": "false"
         }
       },
       "properties": [

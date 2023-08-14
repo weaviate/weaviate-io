@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-palm` enables Weaviate to obtain vectors using PaLM embeddings.
+The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings.
 
 :::info Available from version `v1.19.1`
 :::
@@ -21,7 +21,7 @@ Key notes:
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`NearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
+- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `textembedding-gecko`.
 
 ## Weaviate instance configuration
@@ -36,9 +36,9 @@ To use `text2vec-palm`, you must enable it in your configuration file. You can d
 
 #### Parameters
 
-- `ENABLE_MODULES` – the modules to enable. Include `text2vec-palm` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` – the default vectorizer module. Optional; you can set this to `text2vec-palm` to make it the default for each class.
-- `PALM_APIKEY` – your PaLM API key
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-palm` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-palm` to make it the default for all classes.
+- `PALM_APIKEY` (Optional): Your PaLM API key. You can also provide the key at query time.
 
 ```yaml
 ---
@@ -111,6 +111,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
 - `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
 
+#### Example
+
 ```json
 {
   "classes": [
@@ -119,13 +121,14 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "description": "A class called document",
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
-        // highlight-start
         "text2vec-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".
+          // highlight-start
+          "vectorizeClassName": "false"
+          // highlight-end
         },
-        // highlight-end
       },
       "properties": [
         {
