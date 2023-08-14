@@ -10,20 +10,29 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-Weaviate can be configured and deployed in many different ways. This page will help you to find the right setup for your use case.
+Weaviate can be configured and deployed in many different ways. Generally, the two first decisions to make in using Weaviate involve:
 
+- The choice of modules to enable, and
+- The choice of deployment setup.
+
+This page will help you to find the right combination for your use case.
+
+:::tip
 In all cases, we recommend using [Weaviate client libraries](../client-libraries/index.md) to interact with your Weaviate instance.
+:::
 
-## Quick evaluation
+## For quick evaluation
 
 For getting started as quickly as possible, we recommend using:
 
 - An easy-to-use Weaviate instance
     - With a Weaviate Cloud Services (WCS) sandbox, or Embedded Weaviate, and
 - An inference-API based text vectorizer
-    - (e.g. `text2vec-cohere`, `text2vec-huggingface` or `text2vec-openai`).
+    - (e.g. `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`).
 
-## Based on media type & vectorizer
+## Guidelines for choosing a setup
+
+### Based on media type & vectorizer
 
 Weaviate makes various vectorizer modules available for different media types, also called modalities.
 
@@ -40,6 +49,9 @@ We recommend starting from the following table of vectorizers and their availabi
 | **Text & Image** | [`multi2vec-clip`](../modules/retriever-vectorizer-modules/multi2vec-clip.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | **Image** | [`img2vec-neural`](../modules/retriever-vectorizer-modules/img2vec-neural.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | **Vectors** | [`ref2vec-centroid`](../modules/retriever-vectorizer-modules/ref2vec-centroid.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+
+### Based on intended use
+
 
 
 ### For vectorizing image data
