@@ -26,7 +26,7 @@ import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
 <OpenAIOrAzureOpenAI/>
 
-## Module configuration
+## Weaviate instance configuration
 
 :::tip Not applicable to WCS
 This module is enabled and pre-configured on Weaviate Cloud Services.
@@ -34,7 +34,7 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Configuration file
 
-To use `text2vec-openai`, you must enable it in your configuration file (e.g. `docker-compose.yaml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
+To use `text2vec-openai`, you must enable it in your configuration file. You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) in the case of Docker-Compose.
 
 #### Parameters
 
@@ -45,7 +45,7 @@ To use `text2vec-openai`, you must enable it in your configuration file (e.g. `d
 
 #### Example
 
-This configuration enable `text2vec-openai` and set it as the default vectorizer, and sets the API keys.
+This configuration enables `text2vec-openai`, sets it as the default vectorizer, and sets the API keys.
 
 ```yaml
 ---
@@ -70,9 +70,9 @@ services:
 ...
 ```
 
-## Schema configuration
+## Class configuration
 
-You can provide additional configurations through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+YOu can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
 
 ### Model settings (OpenAI)
 
