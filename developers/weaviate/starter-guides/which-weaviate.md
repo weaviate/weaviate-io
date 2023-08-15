@@ -12,27 +12,84 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate can be configured and deployed in many different ways. Generally, the two first decisions to make in using Weaviate involve:
 
-- The choice of modules to enable, and
-- The choice of deployment setup.
+- The choice of deployment setup, and
+- The choice of vectorizer modules to enable.
 
-This page will help you to find the right combination for your use case.
+This page helps you to find the right combination for your needs.
 
 :::tip
-In all cases, we recommend using [Weaviate client libraries](../client-libraries/index.md) to interact with your Weaviate instance.
+In all cases, we recommend using a [Weaviate client library](../client-libraries/index.md) to interact with your Weaviate instance.
 :::
 
-## For quick evaluation
+## Available options
 
-For getting started as quickly as possible, we recommend using:
+Weaviate can be deployed in the following ways:
+- [Embedded Weaviate](../installation/embedded.md)
+- [Docker-Compose](../installation/docker-compose.md)
+- [Weaviate Cloud Services (WCS)](../installation/weaviate-cloud-services.md)
+- [Self-managed Kubernetes](../installation/kubernetes.md)
+- [Hybrid SaaS](https://weaviate.io/pricing)
 
-- An easy-to-use Weaviate instance
-    - With a Weaviate Cloud Services (WCS) sandbox, or Embedded Weaviate, and
+## By use case
+
+As a starting point, we recommend the following setups for different use cases.
+
+### Quick evaluation
+
+If you are evaluating Weaviate, we recommend the following easy and convenient setup:
+
+- An easy-to-use Weaviate instance, with
+    - A Weaviate Cloud Services (WCS) sandbox, or
+    - Embedded Weaviate
 - An inference-API based text vectorizer
     - (e.g. `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`).
 
-## Guidelines for choosing a setup
+This will allow you to quickly get started with Weaviate, and evaluate its capabilities. Note that the Quickstart guide uses this setup, with a WCS sandbox, and an API vectorizer.
 
-### Based on media type & vectorizer
+### Development
+
+For development, we recommend using
+
+- Docker-Compose or Weaviate Cloud Services (WCS), with
+- A vectorization strategy that at least approximates your production needs.
+
+#### Docker-Compose vs. Weaviate Cloud Services (WCS)
+
+Of the two, Docker-Compose is more flexible as it exposes all configuration options, and can be used in a local development environment. Additionally, it can use local vectorizer modules such as `text2vec-transformers` or `multi2vec-clip` for example.
+
+On the other hand, WCS instances are easier to spin up, and takes away the need to manage the deployment yourself.
+
+Note that Embedded Weaviate is currently not recommended for serious development use as it is at an experimental phase.
+
+#### Vectorization strategy
+
+For development, we recommend using a vectorizer module that at least approximates your needs.
+
+As a first point, you must choose:
+- Whether to vectorize data yourself and import it into Weaviate, or
+- To use a Weaviate vectorizer module.
+
+Then, we recommend choosing a vectorizer module that is as close as possible to your production needs. For example, if search quality is of paramount importance, we suggest using your preferred vectorizer module in development as well.
+
+Keep in mind two other factors, which are cost, and their footprint.
+- Vectorization, such as with an API-based vectorizer, can be expensive. This is especially true if you are dealing with very large datasets.
+- Vector lengths can vary by a factor of ~5, which will impact both your storage and memory requirements. This can ultimately impact cost down the line.
+
+### Production
+
+For use in production, generally we recommend
+
+- Weaviate Cloud Services (WCS),
+- Self-managed Kubernetes, or
+- Hybrid SaaS.
+
+All of these options are scalable, with Kubernetes and Hybrid SaaS options offering the most flexibility in configuration.
+
+As with the development use case, a WCS-based solution would be the easiest in terms of setup and maintenance, while a self-managed Kubernetes deployment combines the flexibility and scalability.
+
+If you wish to fully control your Weaviate deployment without having to manage it yourself, Hybrid SaaS offers the best-of-both-worlds solution.
+
+## By media type & vectorizer
 
 Weaviate makes various vectorizer modules available for different media types, also called modalities.
 
@@ -50,57 +107,8 @@ We recommend starting from the following table of vectorizers and their availabi
 | **Image** | [`img2vec-neural`](../modules/retriever-vectorizer-modules/img2vec-neural.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | **Vectors** | [`ref2vec-centroid`](../modules/retriever-vectorizer-modules/ref2vec-centroid.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
-### Based on deployment setup
+## More Resources
 
-Weaviate can be deployed in many different ways. We recommend the following setups for different use cases.
+import DocsMoreResources from '/_includes/more-resources-docs.md';
 
-#### Embedded Weaviate
-
-Embedded Weaviate is a Weaviate instance that is launched from the client library, running a local binary.
-
-It is the easiest way to get started with Weaviate.
-
-- **Use case**: Development
-
-#### Docker-Compose
-
-Docker-Compose is a way to deploy Weaviate in a Docker container.
-
-As it uses Docker, it is cross-platform and is a convenient way to use Weaviate in a development environment.
-
-- **Use case**: Development, Production
-
-#### Weaviate Cloud Services (WCS)
-
-Weaviate Cloud Services (WCS) is a way to deploy Weaviate in our cloud environment.
-
-It is a convenient way to use Weaviate in a production or development environment, without having to manage the deployment yourself.
-
-- **Use case**: Development, Production
-
-#### Self-managed Kubernetes
-
-With this option, you can deploy open-source Weaviate yourself in a Kubernetes cluster.
-
-Using Kubernetes, you can deploy Weaviate in a production environment, and scale it as needed.
-
-- **Use case**: Production
-
-
-#### Hybrid SaaS
-
-With Hybrid SaaS, we (Weaviate) will manage your Weaviate deployment on-premise based on your needs.
-
-It allows you to maintain control of your deployment and resources, while allowing us to manage the deployment.
-
-- **Use case**: Production
-
-## Summary
-
-The following table summarizes the different Weaviate setups and their general suitability for different environments.
-
-| Setup | Embedded Weaviate  | Docker-Compose | Weaviate Cloud Services | Self-managed Kubernetes | Hybrid SaaS |
-| --- | --- | --- | --- | --- | --- |
-| **Development** | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | :x: |
-| **Production** | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-
+<DocsMoreResources />
