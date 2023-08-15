@@ -13,8 +13,6 @@ description: "Learn about why you need distance metrics in vector search and the
 
 <!-- truncate -->
 
-# What are Distance Metrics in Vector Search?
-
 [Vector databases](/blog/what-is-a-vector-database) - like [Weaviate](/developers/weaviate) - use **machine learning models** to analyze data and **calculate vector embeddings**. The vector embeddings are **stored together with the data** in a database, and later are used to query the data.
 
 In a nutshell, a vector embedding is an array of numbers, that is used to describe an object. For example, strawberries could have a vector `[3, 0, 1]` – more likely the array would be a lot longer than that.
@@ -37,7 +35,12 @@ If you already have a working knowledge of vector search, then you can skip stra
 
 Vector databases keep the semantic meaning of your data by representing each object as a vector embedding. Each embedding is a point in a high-dimensional space. For example, the vector for bananas (both the text and the image) is located near apples and not cats.
 
-![Multi-Dmensional](img/vectors-example.png)
+
+<img
+  src={require('./img/vectors-example.png').default}
+  alt="Vectors Example"
+  style={{ maxWidth: "90%" }}
+/>
 
 *The above image is a visual representation of a vector space. To perform a search, your search query is converted to a vector - similar to your data vectors. The vector database then computes the similarity between the search query and the collection of data points in the vector space.*
 
@@ -100,11 +103,19 @@ A distance of 0 indicates that the vectors are identical, whereas a distance of 
 
 The dot product takes two or more vectors and multiplies them together. It is also known as the scalar product since the output is a single (scalar) value. The dot product shows the direction of two vectors. The dot product will be negative if the vectors are in different directions and positive if the vectors are in the same direction.
 
-![direction](img/direction.png)
+<img
+  src={require('./img/direction.png').default}
+  alt="Dot Product direction"
+  style={{ maxWidth: "80%" }}
+/>
 
 The dot product formula is:
 
-![dot product](img/dot-product.png)
+<img
+  src={require('./img/dot-product.png').default}
+  alt="Dot Product"
+  style={{ maxWidth: "80%" }}
+/>
 
 We will use the same example from above to calculate the dot product of the two vectors.
 
@@ -122,7 +133,11 @@ The Squared Euclidean (L2-Squared) calculates the distance between two vectors b
 
 The squared euclidean distance formula is:
 
-![Squared Euclidean](img/l2-formula.png)
+<img
+  src={require('./img/l2-formula.png').default}
+  alt="L2 Formula"
+  style={{ maxWidth: "80%" }}
+/>
 
 The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[3, 0, 1]` is equal to 1.
 
@@ -132,11 +147,19 @@ The squared euclidean distance of strawberries `[4, 0, 1]` and blueberries `[
 
 Manhattan distance, also known as "L1 norm" and "Taxicab Distance", calculates the distance between a pair of vectors. The metric is calculated by summing the absolute distance between the components of the two vectors.
 
-![Manhattan](img/manhattan.png)
+<img
+  src={require('./img/manhattan.png').default}
+  alt="Manhattan"
+  style={{ maxWidth: "80%" }}
+/>
 
 The name comes from the grid layout resembling the streets of Manhattan. The city is designed with buildings on every corner and one-way streets. If you're trying to go from point A to point B, the shortest path isn't straight through because you cannot drive through buildings. The fastest route is one with fewer twists and turns.
 
-![Manhattan Example](img/manhattan-example.png)
+<img
+  src={require('./img/manhattan-example.png').default}
+  alt="Manhattan example"
+  style={{ maxWidth: "80%" }}
+/>
 
 ### Hamming
 
@@ -164,7 +187,11 @@ Binary Passage Retrieval (BPR) translates vectors into a binary sequence. For ex
 
 To compute the Hamming distance between two strings, you compare the position of each bit in the sequence. This is done with an XOR bit operation. XOR stands for "exclusive or", meaning if the bits in the sequence do not match, then the output is 1. Keep in mind that the strings need to be of equal length to perform the comparison. Below is an example of comparing two binary sequences.
 
-![Hamming and BPR](img/hamming-and-bpr.png)
+<img
+  src={require('./img/hamming-and-bpr.png').default}
+  alt="Hamming and BPR"
+  style={{ maxWidth: "80%" }}
+/>
 
 There are three positions where the numbers are different (highlighted above). Therefore, the Hamming distance is equal to 3. [Norouzi et al.](https://papers.nips.cc/paper/2012/hash/59b90e1005a220e2ebc542eb9d950b1e-Abstract.html) stated that binary sequences are storage efficient and allow storing massive datasets in memory. There is a great page in the [Weaviate documentation](/developers/weaviate/concepts/binary-passage-retrieval) that explains this in more detail.
 
