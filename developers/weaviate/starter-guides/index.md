@@ -8,4 +8,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-In this section, you'll find the basic guides to help you get started with Weaviate.
+## Overview
+
+In this section, you'll find basic guides to help you get started with Weaviate.
+
+## Prerequisites
+
+Before reading these guides, we recommend you read the [Quickstart Tutorial](../quickstart/index.md), which will help you familiarize yourself with the basics of Weaviate.

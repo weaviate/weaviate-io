@@ -1,5 +1,5 @@
 ---
-title: Which Weaviate Setup to use?
+title: Which Weaviate setup to use?
 sidebar_position: 10
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
@@ -50,28 +50,57 @@ We recommend starting from the following table of vectorizers and their availabi
 | **Image** | [`img2vec-neural`](../modules/retriever-vectorizer-modules/img2vec-neural.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | **Vectors** | [`ref2vec-centroid`](../modules/retriever-vectorizer-modules/ref2vec-centroid.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
-### Based on intended use
+### Based on deployment setup
+
+Weaviate can be deployed in many different ways. We recommend the following setups for different use cases.
+
+#### Embedded Weaviate
+
+Embedded Weaviate is a Weaviate instance that is launched from the client library, running a local binary.
+
+It is the easiest way to get started with Weaviate.
+
+- **Use case**: Development
+
+#### Docker-Compose
+
+Docker-Compose is a way to deploy Weaviate in a Docker container.
+
+As it uses Docker, it is cross-platform and is a convenient way to use Weaviate in a development environment.
+
+- **Use case**: Development, Production
+
+#### Weaviate Cloud Services (WCS)
+
+Weaviate Cloud Services (WCS) is a way to deploy Weaviate in our cloud environment.
+
+It is a convenient way to use Weaviate in a production or development environment, without having to manage the deployment yourself.
+
+- **Use case**: Development, Production
+
+#### Self-managed Kubernetes
+
+With this option, you can deploy open-source Weaviate yourself in a Kubernetes cluster.
+
+Using Kubernetes, you can deploy Weaviate in a production environment, and scale it as needed.
+
+- **Use case**: Production
 
 
+#### Hybrid SaaS
 
-### For vectorizing image data
+With Hybrid SaaS, we (Weaviate) will manage your Weaviate deployment on-premise based on your needs.
 
-For this use case, we recommend
+It allows you to maintain control of your deployment and resources, while allowing us to manage the deployment.
 
-Weaviate's image-based vectorizers (`img2vec-neural` and `multi2vec-clip`) require you to run your own inference container.
+- **Use case**: Production
 
-### For bringing your own vector
+## Summary
 
-### For local vectorization
+The following table summarizes the different Weaviate setups and their general suitability for different environments.
 
-### For inference-API based vectorization
+| Setup | Embedded Weaviate  | Docker-Compose | Weaviate Cloud Services | Self-managed Kubernetes | Hybrid SaaS |
+| --- | --- | --- | --- | --- | --- |
+| **Development** | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | :x: |
+| **Production** | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
-## Production use-case
-
-### Weaviate Cloud Services (WCS)
-
-### Hybrid SaaS (On-Premise)
-
-### Self-deployment with Kubernetes
-
-## High-level comparisons
