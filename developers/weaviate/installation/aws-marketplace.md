@@ -47,63 +47,58 @@ This will set up the following resources:
 
 ### AWS Marketplace
 
-1. Go to Weaviate's AWS Marketplace listing
-    - (e.g. by searching for "Weaviate")
-1. Click <kbd>Continue to Subscribe</kbd>.
-    - <img src={Marketplace_1_Subscribe} width="100%" alt="Subscribe to AWS listing"/>
-1. Once ready, click <kbd>Continue to Configuration</kbd>.
-    - <img src={Marketplace_2_Continue} width="100%" alt="Continue to configuration"/>
-1. Select the fulfillment option & software version from the list. Then click <kbd>Continue to Launch</kbd>.
-    - <img src={Marketplace_3_Configure} width="100%" alt="Configure the software"/>
-1. Launch the software using a CloudFormation template (select the one for your preferred region below):
-    - [eu-central-1](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
-    - [us-east-1](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
-    - [us-east-2](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
-    - [us-west-1](https://us-west-1.console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
-    - [us-west-2](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json)
+1. Go to Weaviate's [AWS Marketplace listing](https://aws.amazon.com/marketplace/pp/prodview-cicacyv63r43i)
+1. Subscribe to the product in AWS Marketplace by following the instructions on the page. At the time of writing (August 2023), the steps are to:
+    1. Click <kbd>Continue to Subscribe</kbd>, then go to the next page
+    1. Click <kbd>Continue to Configuration</kbd>, then go to the next page
+    1. Select the fulfillment option & software version from the list. Then click <kbd>Continue to Launch</kbd>.
+1. Launch the software using a CloudFormation template (select the one for your preferred availability zone in the table below):
+
+| Region | CloudFormation template link (per Availability Zone) |
+| --- | --- |
+| AP | [ap-northeast-1](https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-northeast-2](https://ap-northeast-2.console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-northeast-3](https://ap-northeast-3.console.aws.amazon.com/cloudformation/home?region=ap-northeast-3#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-south-1](https://ap-south-1.console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-southeast-1](https://ap-southeast-1.console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [ap-southeast-2](https://ap-southeast-2.console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
+| CA | [ca-central-1](https://ca-central-1.console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
+| EU | [eu-central-1](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-north-1](https://eu-north-1.console.aws.amazon.com/cloudformation/home?region=eu-north-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-1](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-2](https://eu-west-2.console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [eu-west-3](https://eu-west-3.console.aws.amazon.com/cloudformation/home?region=eu-west-3#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
+| SA | [sa-east-1](https://sa-east-1.console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
+| US | [us-east-1](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-east-2](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-1](https://us-west-1.console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-2](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
 
 ### Configuration & Launch
 
-Once you open the CloudFormation template, you should see a set of options similar to below.
+:::info Before you get started
+#### Some settings may not be changed after launch
 
-:::info Some settings may not be changed after launch
 Not all settings may be changed after launch. For example, these settings are currently not changeable after launch:
 - weaviatePVCSize
 - albDriver
 - ebsDriver
 - vpcUseDefault
-:::
 
-:::tip Suggested configurations
+#### Some settings may lead to recreation of the cluster
+
+- Changes to the instance type will lead to recreation of the node pool.
+
+#### Suggested configurations
+
 - The default values should be suitable for a majority of cases.
 - `weaviatePVCSize`: For production environments, at least 500GB per StatefulSet pod is recommended. (Smaller disks may be sufficient for dev environments.)
 - `weaviateAuthType`: We recommend not running Weaviate with anonymous access. We suggest setting it to `apikey` and setting a key, for example by excuting `pwgen -A -s 32` to generate a random string.
 :::
 
+Once you open the CloudFormation template, you should see a set of options similar to below.
+
 Here, you can:
 
-1. Set `stack name` for identifying the stack in AWS (required).
-    - <img src={aws_config_1} width="100%" alt="Configuration 1"/>
+1. Set the `stack name` for identifying the stack in AWS (required).
 1. Set Weaviate/AWS parameters, such as:
     - number of nodes
     - instance types
     - Weaviate authentication parameters.
-    - <img src={aws_config_2} width="100%" alt="Configuration 1"/>
 1. Confirm required resources & proceed to <kbd>Create stack</kbd>.
     - This template may require additional resources and capabilities.
-    - <img src={aws_config_3} width="100%" alt="Configuration 1"/>
-
-
-:::note
-- Changes to the instance type will lead to recreation of the node pool.
-:::
 
 After clicking <kbd>Create stack</kbd>, the creation process may take a while, such as around 30 minutes.
 
-:::tip How to check the status of Stack creation
-- Once the stack has been created, the status for the stack will change to `✅ CREATE_COMPLETE`.
-- You can check the status of individual resources in the `Events` tab.
-:::
+You can check the status of individual resources in the `Events` tab. Once the stack has been created, the status for the stack will change to `✅ CREATE_COMPLETE`.
 
 ## Usage
 
