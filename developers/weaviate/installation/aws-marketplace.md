@@ -62,7 +62,7 @@ This will set up the following resources:
 | SA | [sa-east-1](https://sa-east-1.console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
 | US | [us-east-1](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-east-2](https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-1](https://us-west-1.console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json); [us-west-2](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://weaviate-aws-marketplace.s3.amazonaws.com/cdk-assets/latest/WeaviateEKS.template.json) |
 
-### Configuration & Launch
+### Configuration & Cluster creation
 
 :::info Before you get started
 #### Some settings may not be changed after launch
@@ -100,13 +100,13 @@ After clicking <kbd>Create stack</kbd>, the creation process may take a while, s
 
 You can check the status of individual resources in the `Events` tab. Once the stack has been created, the status for the stack will change to `✅ CREATE_COMPLETE`.
 
-## Usage
+## Accessing the cluster
 
 Once the stack has been created, you can access the cluster using [`kubectl`](https://kubernetes.io/docs/tasks/tools/), and Weaviate itself using the load balancer.
 
-### `kubectl` access
+### Interaction using `kubectl`
 
-You can run the following command to access the cluster using `kubectl`:
+You can run the following command which will update or create a kubeconfig file for the Weaviate cluster:
 
 ```
 aws eks update-kubeconfig --name [cluster-name] --region [aws-region]--role-arn arn:aws:iam::[AccountID]:role/[StackName]-MastersRole[XX]
@@ -121,14 +121,38 @@ Once that's set up, you can run `kubectl` commands as usual. For example
 - `kubectl get pods -n weaviate` to list all pods in the `weaviate` namespace.
 - `kubectl get svc --all-namespaces` to list all services in all namespaces.
 
-### Accessing Weaviate
+### Finding the Weaviate URL
 
 Once the stack has been created, you can access Weaviate via the load balancer URL.
 
-You can find the URL by any of:
-- Going to the CloudFormation stack, in the `Outputs` tab.
-- In the `Services` section of AWS, under `EC2` > `Load Balancers`.
+You can find the Weaviate endpoint URL by any of:
+- In the `Services` section of AWS, under `EC2` > `Load Balancers`. Find the load balancer, and look for the `DNS name` column.
 - Running `kubectl get svc -n weaviate` and looking for the `EXTERNAL-IP` of the `weaviate` service.
+
+The load balancer URL (e.g. `a520f010285b8475eb4b86095cabf265-854109584.eu-north-1.elb.amazonaws.com`) will be the Weaviate URL (e.g. `http://a520f010285b8475eb4b86095cabf265-854109584.eu-north-1.elb.amazonaws.com`).
+
+## Deleting the cluster
+
+You can delete the cluster by deleting the CloudFormation stack.
+
+Please note that this will delete your data in Weaviate. If you want to keep your data, you should back it up or export the data before deleting the cluster.
+
+### Some resources many require manual deletion
+
+:::caution
+Please make sure that all resources are deleted. If you do not delete all resources, you will continue to incur costs in AWS.
+:::
+
+There may be some AWS resources that are not deleted automatically when the CloudFormation stack is deleted. For example, EBS volumes, and Key Management Service (KMS) keys may not be deleted from time to time.
+
+You must delete these manually.
+
+#### Tips
+
+- If your CloudFormation stack indicates "DELETE_FAILED", you may be able to re-initiate deletion of these resources.
+- Review the `Resources` tab of the CloudFormation stack to find resources that may not have been deleted.
+- Key Management Service (KMS) keys may be deleted by going to the KMS console, and deleting the keys manually. You may need to schedule deletion of the keys.
+
 
 ## Billing
 
