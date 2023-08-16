@@ -46,7 +46,7 @@ with client.batch(
             "category": d["Category"],
         }
 
-        client.batch.add_data_object(
+        batch.add_data_object(
             properties,
             "Question",
         )
@@ -150,7 +150,7 @@ with client.batch(
         # highlight-start
         custom_vector = d["vector"]
         # highlight-end
-        client.batch.add_data_object(
+        batch.add_data_object(
             properties,
             "Question",
             # highlight-start

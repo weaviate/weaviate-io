@@ -24,7 +24,7 @@ resp = requests.get(url)
 data = json.loads(resp.text)
 
 # Configure a batch process
-with client.batch as batch:
+with client.batch() as batch:
     batch.batch_size=100
     # Batch import all Questions
     for i, d in enumerate(data):
@@ -36,7 +36,7 @@ with client.batch as batch:
             "category": d["Category"],
         }
 
-        client.batch.add_data_object(properties, "Question", vector=d["Vector"])
+        batch.add_data_object(properties, "Question", vector=d["Vector"])
 
 # ===== Test import =====
 schema = client.schema.get()
