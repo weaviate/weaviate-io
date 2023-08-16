@@ -1,7 +1,7 @@
 ---
 title: multi2vec-bind
 sidebar_position: 35
-image: og/docs/modules/multi2vec-clip.jpg
+image: og/docs/modules/multi2vec-bind.jpg
 # tags: ['multi2vec', 'multi2vec-bind']
 ---
 import Badges from '/_includes/badges.mdx';
@@ -61,6 +61,10 @@ services:
       ENABLE_MODULES: 'multi2vec-bind'
       BIND_INFERENCE_API: 'http://multi2vec-bind:8080'
       CLUSTER_HOSTNAME: 'node1'
+  multi2vec-bind:
+    image: semitechnologies/multi2vec-bind:imagebind
+    environment:
+      ENABLE_CUDA: '0'
 ...
 ```
 
@@ -143,7 +147,7 @@ The following example class definition sets the `multi2vec-bind` module as the `
 ```
 
 :::note
-- You can optionally add `weights` in `moduleConfig.multi2vec-bind` to weigh the difference modalities. The following example weights the `textFields` at 0.4, and the `imageFields`, `audioFields`, and `videoFields` at 0.2 each.
+- You can optionally add `weights` in `moduleConfig.multi2vec-bind` to weigh the different modalities. The following example weighs the `textFields` at 0.4, and the `imageFields`, `audioFields`, and `videoFields` at 0.2 each.
 ```json
 {
   "classes": [
