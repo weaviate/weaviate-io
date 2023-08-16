@@ -42,13 +42,13 @@ Let's try vectorizing data with the `text2vec-cohere` module. We will be using d
 Load the data into a Pandas dataframe, then populate Weaviate like this:
 
 ```python
-for i, row in df.iterrows():
-    properties = {
-        "question": row.Question,
-        "answer": row.Answer
-    }
-    client.batch.add_data_object(properties, "Question")
-client.batch.flush()
+with client.batch() as batch:
+    for i, row in df.iterrows():
+        properties = {
+            "question": row.Question,
+            "answer": row.Answer
+        }
+        batch.add_data_object(properties, "Question")
 ```
 
 This should add a series of `Question` objects with text properties like this:

@@ -9,7 +9,7 @@ import utils
         "./_includes/code/howto/manage-data.cross-refs.py",
         "./_includes/code/howto/manage-data.import.py",
         "./_includes/code/howto/manage-data.delete.py",
-        "./_includes/code/howto/manage-data.update.py"
+        "./_includes/code/howto/manage-data.update.py",
         "./_includes/code/howto/manage-data.classes.py",
         "./_includes/code/howto/manage-data.multi-tenancy.py",
     ],
@@ -27,7 +27,7 @@ def test_on_blank_instance(empty_weaviates, script_loc):
     "script_loc",
     [
         "./_includes/code/howto/manage-data.read.py",
-        "./_includes/code/howto/read-all-objects.py"
+        "./_includes/code/howto/manage-data.read-all-objects.py"
     ],
 )
 def test_on_edu_demo(empty_weaviates, script_loc):

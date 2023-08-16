@@ -153,24 +153,21 @@ def add_object(obj) -> None:
         'answer': obj['Answer'],
     }
 
-    # Add the object to the batch
-    client.batch.add_data_object(
-        data_object=properties,
-        class_name='JeopardyQuestion',
-        # If you Bring Your Own Vectors, add the `vector` parameter here
-        # vector=obj.vector
-    )
+    with client.batch() as batch:
+        # Add the object to the batch
+        batch.add_data_object(
+            data_object=properties,
+            class_name='JeopardyQuestion',
+            # If you Bring Your Own Vectors, add the `vector` parameter here
+            # vector=obj.vector
+        )
 
-    # Calculate and display progress
-    counter += 1
-    if counter % interval == 0:
-        print(f'Imported {counter} articles...')
+        # Calculate and display progress
+        counter += 1
+        if counter % interval == 0:
+            print(f'Imported {counter} articles...')
 
 
-# Configure the batch import
-client.batch.configure(
-    batch_size=10,
-)
 # END JSON streaming  # END CSV streaming
 
 # START JSON streaming
@@ -203,8 +200,6 @@ with pd.read_csv(
 
 # START JSON streaming  # START CSV streaming
 
-# Flush any remaining objects in the batch
-client.batch.flush()
 print(f'Finished importing {counter} articles.')
 # END JSON streaming  # END CSV streaming
 
