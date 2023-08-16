@@ -26,9 +26,9 @@ client.batch.configure(
   consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
-with client.batch as batch:
+with client.batch() as batch:
     # Format for batching is as follows:
-    # client.batch.add_reference(
+    # batch.add_reference(
     #   from_object_uuid=<from_object_uuid>,
     #   from_object_class_name=<from_object_class_name>,
     #   from_property_name=<from_property_name>
