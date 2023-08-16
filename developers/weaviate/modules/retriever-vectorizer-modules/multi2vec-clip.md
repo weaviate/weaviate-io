@@ -17,7 +17,7 @@ The `multi2vec-clip` module enables Weaviate to obtain vectors locally from text
 Key notes:
 
 - This module is not available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`nearText` and `nearImage` search operators](#search-operators).
+- Enabling this module will enable the [`nearText` and `nearImage` search operators](#additional-search-operators).
 - Model encapsulated in a Docker container.
 - This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
 
@@ -50,7 +50,7 @@ Inference container:
 
 #### Example
 
-This configuration enables `multi2vec-clip`, sets it as the default vectorizer, and sets the parameters for the Transformers Docker container, including setting it to use `multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1` image and to disable CUDA acceleration.
+This configuration enables `multi2vec-clip`, sets it as the default vectorizer, and sets the parameters for the Docker container, including setting it to use `multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1` image and to disable CUDA acceleration.
 
 ```yaml
 version: '3.4'
@@ -116,6 +116,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
 - `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `dataType` - the data type of the property. For use in the appropriate `<media>Fields`, must be set to `text` or `blob` as appropriate.
 
 #### Example
 
@@ -215,7 +216,7 @@ import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 
 ## Model selection
 
-To select a model, please point `text2vec-transformers` to the appropriate Docker container.
+To select a model, please point `multi2vec-clip` to the appropriate Docker container.
 
 You can use our pre-built Docker image as shown above, or build your own (with just a few lines of code).
 

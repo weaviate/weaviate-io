@@ -106,7 +106,7 @@ As an alternative, you can run the inference container independently from Weavia
 
 For example, choose [any of our pre-built transformers models](#option-1-pre-built-images) and spin it up - for example using:
 
-```
+```shell
 docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
 ```
 
@@ -139,14 +139,14 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
     {
       "class": "Document",
       "description": "A class called document",
+      // highlight-start
       "vectorizer": "text2vec-transformers",
       "moduleConfig": {
-        // highlight-start
         "text2vec-transformers": {
           "vectorizeClassName": "false"
         }
-        // highlight-end
       },
+      // highlight-end
       "properties": [
         {
           "name": "content",

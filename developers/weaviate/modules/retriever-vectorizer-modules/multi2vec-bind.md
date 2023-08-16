@@ -118,6 +118,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
 - `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `dataType` - the data type of the property. For use in the appropriate `<media>Fields`, must be set to `text` or `blob` as appropriate.
 
 #### Example
 
