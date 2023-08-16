@@ -8,17 +8,21 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## In short
+## Overview
 
-* Added in Weaviate `v1.21.0`.
-* Runs a local inference container.
-* Not available in Weaviate Cloud Services (WCS).
+:::info Available from version `v1.21`
+:::
 
-## Introduction
+The `multi2vec-bind` module enables Weaviate to use the [ImageBind](https://github.com/facebookresearch/ImageBind) model to vectorize data at import time.
 
-The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookresearch/ImageBind) model to vectorize data in Weaviate.
+Key notes:
 
-The ImageBind model allows users to generate vectors from data that includes up to 7 different modalities. This includes:
+- This module is not available on Weaviate Cloud Services (WCS).
+- Enabling this module will enable multiple [`near<Media>` search operators](#additional-search-operators).
+- Model encapsulated in Docker container.
+- This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
+
+`multi2vec-bind` allows Weaviate to generate vectors data containing any number of the following modalities:
 - text
 - images
 - videos
@@ -27,15 +31,33 @@ The ImageBind model allows users to generate vectors from data that includes up 
 - single channel depth images, and
 - single channel thermal images.
 
-## How to enable
+## Weaviate instance configuration
 
-### Weaviate Cloud Services
+:::info Not applicable to WCS
+This module is not available on Weaviate Cloud Services.
+:::
 
-The `multi2vec-bind` module is not available on the WCS.
+### Configuration file
 
-### Weaviate open source
+To use `multi2vec-bind`, you must enable it in your configuration file.
 
-You can find an example Docker Compose file below, which will spin up Weaviate with the `multi2vec-bind` module.
+:::tip Use the configuration tool
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+:::
+
+#### Parameters
+
+Weaviate:
+
+- `ENABLE_MODULES` (Required): The modules to enable. Include `multi2vec-bind` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `multi2vec-bind` to make it the default for all classes.
+- `BIND_INFERENCE_API` (Required): The URL of the inference container.
+
+Inference container:
+
+- `image` (Required): The image name of the inference container.
+- `ENABLE_CUDA` (Optional): Set to `1` to enable GPU usage. Default is `0` (CPU only).
+
 
 ```yaml
 ---
@@ -57,97 +79,98 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      # highlight-start
       DEFAULT_VECTORIZER_MODULE: 'multi2vec-bind'
       ENABLE_MODULES: 'multi2vec-bind'
       BIND_INFERENCE_API: 'http://multi2vec-bind:8080'
+      # highlight-end
       CLUSTER_HOSTNAME: 'node1'
+# highlight-start
   multi2vec-bind:
     image: semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
+# highlight-end
 ...
 ```
 
-:::tip
-- If you have a CUDA-capable GPU available, set `ENABLE_CUDA=1` to enable GPU acceleration.
-- You can also use the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose file.
+:::note Have you enabled CUDA?
+This module will benefit greatly from GPU usage. Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`).
 :::
 
-## How to use
+## Class configuration
 
-To use `multi2vec-bind` for your data, you must set it as the vectorizer for your desired class, and set the properties that you want to vectorize.
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
 
-You must map at least one of the parameters for different modalities (under `moduleConfig.multi2vec-bind`) to class properties.
+### Vectorization settings
 
-More specifically, you must set one of [`textFields`, `imageFields`, `audioFields`, `videoFields`, `depthFields`, `thermalFields`, `IMUFields`] to class properties.
+You can set vectorizer behavior using the `moduleConfig` section under each class and property:
 
-### Class definition
+#### Class-level
+
+- `vectorizer` - what module to use to vectorize the data.
+- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
+- `<media>Fields` - property names to map for different modalities (under `moduleConfig.multi2vec-bind`).
+    - i.e. one or more of [`textFields`, `imageFields`, `audioFields`, `videoFields`, `depthFields`, `thermalFields`, `IMUFields`]
+- `weights` - optional parameter to weigh the different modalities.
+
+#### Property-level
+
+- `skip` – whether to skip vectorizing the property altogether. Default: `false`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
 
 #### Example
 
 The following example class definition sets the `multi2vec-bind` module as the `vectorizer` for the class `BindExample`. It also sets:
 
-- `name` property as a `text` datatype and as the text field
-- `image` property as a `blob` datatype and as the image field
-- `audio` property as a `blob` datatype and as the audio field
-- `video` property as a `blob` datatype and as the video field
+- `name` property as a `text` datatype and as the text field,
+- `image` property as a `blob` datatype and as the image field,
+- `audio` property as a `blob` datatype and as the audio field, and
+- `video` property as a `blob` datatype and as the video field.
 
 ```json
 {
   "classes": [
     {
       "class": "BindExample",
+      // highlight-start
+      "vectorizer": "multi2vec-bind",
       "moduleConfig": {
         "multi2vec-bind": {
-          "textFields": [
-            "name"
-          ],
-          "imageFields": [
-            "image"
-          ],
-         "audioFields": [
-            "audio"
-          ],
-         "videoFields": [
-            "video"
-          ],
+          "textFields": ["name"],
+          "imageFields": ["image"],
+          "audioFields": ["audio"],
+          "videoFields": ["video"],
         }
       },
       "properties": [
         {
-          "dataType": [
-            "text"
-          ],
+          "dataType": ["text"],
           "name": "name"
         },
         {
-          "dataType": [
-            "blob"
-          ],
+          "dataType": ["blob"],
           "name": "image"
         },
         {
-          "dataType": [
-            "blob"
-          ],
+          "dataType": ["blob"],
           "name": "audio"
         },
         {
-          "dataType": [
-            "blob"
-          ],
+          "dataType": ["blob"],
           "name": "video"
         }
-      ],
-      "vectorIndexType": "hnsw",
-      "vectorizer": "multi2vec-bind"
+      ]
+      // highlight-end
     }
   ]
 }
 ```
 
-:::note
-- You can optionally add `weights` in `moduleConfig.multi2vec-bind` to weigh the different modalities. The following example weighs the `textFields` at 0.4, and the `imageFields`, `audioFields`, and `videoFields` at 0.2 each.
+#### Example with weights
+
+The following example adds weights for various properties, with the `textFields` at 0.4, and the `imageFields`, `audioFields`, and `videoFields` at 0.2 each.
+
 ```json
 {
   "classes": [
@@ -156,19 +179,22 @@ The following example class definition sets the `multi2vec-bind` module as the `
       "moduleConfig": {
         "multi2vec-bind": {
           ...
+          // highlight-start
           "weights": {
             "textFields": [0.4],
             "imageFields": [0.2],
             "audioFields": [0.2],
             "videoFields": [0.2],
           }
+          // highlight-end
         }
       }
     }
   ]
 }
 ```
-- The `blob` property must be in base64-encoded data.
+
+:::note All `blob` properties must be in base64-encoded data.
 :::
 
 ### Adding `blob` data objects
@@ -181,9 +207,11 @@ cat my_image.png | base64
 
 ## Additional search operators
 
-The `multi2vec-bind` vectorizer module will enable the following search operators in Weaviate: `nearText`, `nearImage`, `nearAudio`, `nearVideo`, `nearDepth`, `nearThermal`,  and `nearIMU`.
+The `multi2vec-bind` vectorizer module will enable the following search operators: `nearText`, `nearImage`, `nearAudio`, `nearVideo`, `nearDepth`, `nearThermal`,  and `nearIMU`.
 
-These operators can be used to perform cross-modal search and retrieval. This means that when using the `multi2vec-bind` module you can query with and retrieve any of the above combinations of modalities.
+These operators can be used to perform cross-modal search and retrieval.
+
+This means that when using the `multi2vec-bind` module any query using one modality (e.g. text) will include results in all available modalities, as all objects will be encoded into a single vector space.
 
 ## More resources
 

@@ -23,7 +23,7 @@ Key notes:
 - This module is not available on Weaviate Cloud Services (WCS).
 - This module is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml), allowing for fast inference even without a GPU.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- By default, **input text longer than 256 words is truncated**
+- By default, **input text longer than 256 tokens (word pieces) is truncated**
 - Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
 ## Weaviate instance configuration
@@ -68,7 +68,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-gpt4all'
       # highlight-start
       ENABLE_MODULES: 'text2vec-gpt4all'
-      TRANSFORMERS_INFERENCE_API: 'http://text2vec-gpt4all:8080'
+      GPT4ALL_INFERENCE_API: 'http://text2vec-gpt4all:8080'
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
@@ -106,6 +106,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Class-level
 
+- `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
 
 #### Property-level
@@ -161,7 +162,7 @@ The `text2vec-gpt4all` module is optimized for CPU inference and should be notic
 
 ### Usage advice - chunking text with `gpt4all`
 
-`text2vec-gpt4all` will truncate input text longer than `256` words.
+`text2vec-gpt4all` will truncate input text longer than `256` tokens.
 
 Accordingly, this model is not suitable for use cases where larger chunks are required. In these cases, we recommend another inference module such as [`text2vec-transformers`](./text2vec-transformers.md) and models that support longer input lengths.
 

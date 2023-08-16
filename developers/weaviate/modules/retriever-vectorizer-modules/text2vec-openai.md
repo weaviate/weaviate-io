@@ -145,6 +145,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Class-level
 
+- `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
 
 #### Property-level

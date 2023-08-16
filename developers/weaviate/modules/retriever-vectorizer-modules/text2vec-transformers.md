@@ -91,7 +91,7 @@ services:
 ```
 
 :::note Have you enabled CUDA?
-The `text2vec-transformer` module will benefit greatly from GPU usage. Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`).
+This module will benefit greatly from GPU usage. Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`).
 :::
 
 
@@ -122,6 +122,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Class-level
 
+- `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
 - `poolingStrategy` – the pooling strategy to use. Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
 
@@ -174,7 +175,7 @@ To select a model, please point `text2vec-transformers` to the appropriate Docke
 
 You can use one of our pre-built Docker images, or build your own (with just a few lines of code).
 
-This allows you to use any model from the [Hugging Face model hub](https://huggingface.co/models) or your own custom model.
+This allows you to use any suitable model from the [Hugging Face model hub](https://huggingface.co/models) or your own custom model.
 
 ### Option 1: Pre-built images
 
@@ -260,11 +261,11 @@ Now you just need to build and tag your Dockerfile, we will tag it as `my-model-
 docker build -f my-model.Dockerfile -t my-model-inference .
 ```
 
-That's it! You can now push your image to your favorite registry or reference
-it locally in your Weaviate `docker-compose.yaml` using the Docker tag
-`my-model-inference`.
+That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `my-model-inference`.
 
-To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input. To do so, you need to expose the inference container in your docker-compose by adding:
+To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
+
+To do so, you need to expose the inference container in your docker-compose by adding:
 
 ```yaml
 ports:
@@ -274,6 +275,7 @@ ports:
 to your `text2vec-transformers`.
 
 Then you can send REST requests to it directly, e.g.:
+
 ```shell
 curl localhost:9090/vectors -H 'Content-Type: application/json' -d '{"text": "foo bar"}'
 ```
