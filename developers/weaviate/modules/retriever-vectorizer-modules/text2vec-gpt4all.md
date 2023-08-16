@@ -1,6 +1,6 @@
 ---
 title: text2vec-gpt4all
-sidebar_position: 12
+sidebar_position: 22
 image: og/docs/modules/text2vec-gpt4all.jpg
 # tags: ['text2vec', 'text2vec-gpt4all', 'gpt4all']
 ---
@@ -10,21 +10,27 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-gpt4all` module enables Weaviate to obtain vectors using the [gpt4all](https://docs.gpt4all.io/gpt4all_python_embedding.html) embedding model.
+:::info Availability
+- `text2vec-gpt` is only available from Weaviate version `v1.21`
+- Currently, `text2vec-gpt4all` is only available for `amd64/x86_64` architecture devices.
+    - This is as the `gpt4all` library currently does not support ARM devices, such as Apple M-series.
+:::
+
+The `text2vec-gpt4all` module enables Weaviate to obtain vectors using the [gpt4all](https://docs.gpt4all.io/gpt4all_python_embedding.html) library.
 
 Key notes:
 
-- It is open source and free to use.
-- Inference with this model is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml)
-    - Please note that currently `gpt4all` is not optimized to be run on Apple ARM M1 and M2 chips.
-    - We only produce a `linux/amd64` docker image (no ARM support).
-- GPT4All is a light embedding model that maps sentences & paragraphs to a 384-dimensional dense vector space.
+- This module is not available on Weaviate Cloud Services (WCS).
+- This module is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml), allowing for fast inference even without a GPU.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - By default, **input text longer than 256 words is truncated**
-- The only available to be used with this model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
-
+- Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
 ## Weaviate instance configuration
+
+:::info Not applicable to WCS
+This module is not available on Weaviate Cloud Services.
+:::
 
 ### Configuration file
 
@@ -60,11 +66,15 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-gpt4all'
+      # highlight-start
       ENABLE_MODULES: 'text2vec-gpt4all'
-      BIND_INFERENCE_API: 'http://text2vec-gpt4all:8080'
+      TRANSFORMERS_INFERENCE_API: 'http://text2vec-gpt4all:8080'
+      # highlight-end
       CLUSTER_HOSTNAME: 'node1'
+# highlight-start
   text2vec-gpt4all:
     image: semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
+# highlight-end
 ...
 ```
 
@@ -141,13 +151,19 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ## Additional information
 
-### CPU Optimized Inference
+### Available models
 
-The `text2vec-gpt4all` module is optimized for CPU inference and shouild be noticeably faster then other modules when run on CPU. You can read more about expected inference times [here](https://docs.gpt4all.io/gpt4all_python_embedding.html#speed-of-embedding-generation).
+Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
-### Usage Advice - Chunking Text with `gpt4all`
+### CPU optimized inference
 
-Due to the fact that input text longer than `256` words are automatically truncated, if you pass in text chunks longer then any words after this truncation limit will not be used to generate the embedding. This also means that the model is good to use as a quick baseline but if larger text chunks need to be encoded then users may need to upgrade to more powerful embedding models.
+The `text2vec-gpt4all` module is optimized for CPU inference and should be noticeably faster then `text2vec-transformers` in CPU-only (i.e. no CUDA acceleration) usage. You can read more about expected inference times [here](https://docs.gpt4all.io/gpt4all_python_embedding.html#speed-of-embedding-generation).
+
+### Usage advice - chunking text with `gpt4all`
+
+`text2vec-gpt4all` will truncate input text longer than `256` words.
+
+Accordingly, this model is not suitable for use cases where larger chunks are required. In these cases, we recommend another inference module such as [`text2vec-transformers`](./text2vec-transformers.md) and models that support longer input lengths.
 
 ## Usage example
 
