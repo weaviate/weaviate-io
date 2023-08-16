@@ -12,8 +12,8 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate can be configured and deployed in many different ways. Generally, the two first decisions to make in using Weaviate involve:
 
-- The choice of deployment setup, and
-- The choice of vectorizer modules to enable.
+- The choice of [deployment setup](../installation/index.md), and
+- The choice of [vectorizer modules](../modules/retriever-vectorizer-modules/index.md) to enable.
 
 This page helps you to find the right combination for your needs.
 
@@ -23,12 +23,26 @@ In all cases, we recommend using a [Weaviate client library](../client-libraries
 
 ## Available options
 
+### Deployment
+
 Weaviate can be deployed in the following ways:
 - [Embedded Weaviate](../installation/embedded.md)
 - [Docker-Compose](../installation/docker-compose.md)
 - [Weaviate Cloud Services (WCS)](../installation/weaviate-cloud-services.md)
 - [Self-managed Kubernetes](../installation/kubernetes.md)
 - [Hybrid SaaS](https://weaviate.io/pricing)
+
+### Vectorization
+
+When adding data objects to Weaviate, you have two choices:
+- Specify the object vector directly, or
+- Use a Weaviate vectorizer module to generate the object vector.
+
+If you are using a vectorizer module, your choices will depend on your input medium/modality, as well as whether you would prefer a local or API-based vectorizer.
+
+Generally speaking, an API-based vectorizer will be more convenient to use, but will incur additional costs. On the other hand, a local vectorizer will be lower cost, but may require specialized hardware (such as a GPU) to run at comparable speeds.
+
+For text, [this open-source benchmark](https://huggingface.co/blog/mteb) provides a good overview of the performance of different vectorizers. Please do keep in mind that domain-specific, or real-world performance may vary.
 
 ## By use case
 
