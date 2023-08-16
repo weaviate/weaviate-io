@@ -6,9 +6,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
   return (
     <div className="container">
       <div className={styles.box}>
-        <h1>
-          <span className={styles.textGradient}>Weaviate</span> Cloud Services
-        </h1>
+        <h1 className={styles.pricingHeader}>Weaviate Cloud Services</h1>
         <h3>The power of the open-source vector database, fully managed</h3>
         <p>
           Start for free and only pay for the vector dimensions you store and
@@ -16,6 +14,14 @@ export default function PricingHeader({ selectedType, handleSelected }) {
           $0.05 per 1 million vector dimensions and scale seamlessly as your
           needs grow.
         </p>
+        <div className={styles.buttons}>
+          <Link
+            className={styles.pricingButton}
+            to="https://console.weaviate.cloud/"
+          >
+            Login to the Weaviate Cloud console
+          </Link>
+        </div>
       </div>
       <div className="container">
         <div className={styles.buttons}>
@@ -27,10 +33,12 @@ export default function PricingHeader({ selectedType, handleSelected }) {
             <div className={styles.btn} onClick={() => handleSelected('saas')}>
               <div className={styles.saasPng} />
               <h1 className={styles.test}>SaaS</h1>
-              <p>We manage everything in the Weaviate Cloud</p>
+              <p className={styles.btnText}>
+                We manage everything in the Weaviate Cloud
+              </p>
               <div className={styles.logos}>
                 <span className={styles.google} />
-                <span className={`${styles.aws} ${styles.opacity}`} />
+                <span className={`${styles.awsLight} ${styles.opacity}`} />
                 <span className={`${styles.azure} ${styles.opacity}`} />
               </div>
             </div>
@@ -41,7 +49,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
             }`}
           >
             <div
-              className={styles.btn}
+              className={`${styles.btn} ${styles.hybrid}`}
               onClick={() => handleSelected('hybrid')}
             >
               <div className={styles.hybridPng} />

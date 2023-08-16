@@ -1,10 +1,20 @@
+
+.pricingCalculator {
+  background: #130C49;
+}
 .pricingBox {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
   p {
     text-align: center;
+  }
+  h2 {
+    color: #ffffff;
+
   }
 }
 
@@ -205,11 +215,14 @@ label {
 
   .slider {
     .rc-slider-track {
-      background-color: #00b7e2;
+      background-color:  #61BD73;
     }
+    .rc-slider-dot-active {
+      border-color: #61BD73;
+  }
     .rc-slider-handle {
-      background-color: #00b7e2;
-      border-color: #00b7e2;
+      background-color: #61BD73;
+      border-color: #61BD73;
     }
   }
 
@@ -287,8 +300,9 @@ select option {
   }
 
   .buttonOutline {
-    outline: 1px solid #20e220;
-    font-weight: bold;
+    border-radius: 0.3125rem;
+    border: 1px solid #1ADB3E;
+    font-size: 20px;
   }
 }
 
@@ -296,6 +310,14 @@ select option {
 [data-theme='light'] {
 
   .buttonOutline {
-    color: rgba(46, 49, 143);
+    color: rgba(255, 255, 255);
   }
+}
+
+.toggleSwitchInner_src-components-ToggleSwitch-styles-module:before {
+  content: attr(data-yes);
+  text-transform: uppercase;
+  background-color: #61BD73;
+  padding-left: 10px;
+  color: #1C1468;
 }

@@ -17,19 +17,15 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="custom-page">
+    <div className="custom-page noBG">
       <Layout>
         <PricingHeader
           selectedType={selectedType}
           handleSelected={setSelectedType}
         />
+
         {selectedType === 'saas' ? (
           <>
-            <div className={styles.buttons} style={divStyle}>
-              <Link className={styles.buttonGradient} to="https://console.weaviate.cloud/">
-                Login to the Weaviate Cloud console
-              </Link>
-            </div>
             <PricingPlan />
             <PricingCalculator />
           </>
@@ -38,12 +34,7 @@ export default function PricingPage() {
         )}
         <PricingFAQ />
 
-        {selectedType === 'saas' ? (
-          <></>
-        ) : (
-          <ContactUsForm />
-        )}
-
+        {selectedType === 'saas' ? <></> : <ContactUsForm />}
       </Layout>
     </div>
   );

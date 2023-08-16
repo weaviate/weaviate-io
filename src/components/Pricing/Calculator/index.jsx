@@ -115,9 +115,9 @@ export default function PricingCalculator({ props }) {
           <h2 id="mainPricingArea">Pay as you grow</h2>
           <p>
             Our pricing is built around vector dimensions stored and queried,
-            and different SLA-tiers have <br /> different prices per dimension.
-            The exact calculation can be found in the FAQ below. <br /> (not
-            inclusive of discounts and taxes).
+            and different SLA-tiers have different prices per dimension. The
+            exact calculation can be found in the FAQ below. (not inclusive of
+            discounts and taxes).
           </p>
         </div>
       </div>

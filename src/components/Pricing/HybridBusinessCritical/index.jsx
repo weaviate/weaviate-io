@@ -4,68 +4,70 @@ import Link from '@docusaurus/Link';
 
 export default function HybridBusinessCritical() {
   return (
-    <div className="container">
-      <div className={styles.header}>
-        <h2>Weaviate Cloud Services Hybrid Saas</h2>
-        <p>
-          Our pricing is designed to give you all the capabilities to build and
-          test your applications for free. <br /> When you are ready to move to
-          production, simply pick a plan that best suits your needs.
-        </p>
-      </div>
-      <div className={styles.box}>
-        <div className={styles.title}>
-          <h3>Business Critical</h3>
+    <div className={styles.bgColor}>
+      <div className="container">
+        <div className={styles.header}>
+          <h2>Bring your own cloud</h2>
+          <p>
+            Our pricing is designed to give you all the capabilities to build
+            and test your applications for free. <br /> When you are ready to
+            move to production, simply pick a plan that best suits your needs.
+          </p>
         </div>
-        <div className={styles.grid}>
-          <div className={styles.features}>
-            <li>
-              <div className={styles.checkIcon}></div>
-              <span>custom pricing</span>
-            </li>
-            <li>
-              <div className={styles.checkIcon}></div>{' '}
-              <span>AWS, Azure, GCP</span>
-            </li>
-            <li>
-              <div className={styles.checkIcon}></div>
-              <span>∞ lifetime (until terminated)</span>
-            </li>
+        <div className={styles.box}>
+          <div className={styles.title}>
+            <h3>Unit Type</h3>
+            <h3>Cost / Unit</h3>
           </div>
-          <div className={styles.features}>
-            <li>
-              <div className={styles.checkIcon}></div>
-              <span>
-                Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3
-                - max 1bd
-              </span>
-            </li>
-            <li>
-              <div className={styles.checkIcon}></div> <span>Monitoring</span>
-            </li>
-            <li>
-              <div className={styles.checkIcon}></div> <span>Always on</span>
-            </li>
-          </div>
-          <div className={styles.features}>
-            <li>
-              <div className={styles.checkIcon}></div>
-              <span>Weaviate Internal Slack or Teams / Email</span>
-            </li>
-            <li>
-              <div className={styles.checkIcon}></div> <span>Multi AZ</span>
-            </li>
-            <li>
-              <div className={styles.checkIcon}></div> <span>HA optional</span>
-            </li>
+          <div className={styles.grid}>
+            <div className={styles.features}>
+              <p>CPU charge is based on the number of CPUs provisioned.</p>
+              <hr></hr>
+            </div>
+            <div className={`${styles.features} ${styles.priceCost}`}>
+              <p>$0.003</p>
+              <hr></hr>
+            </div>
+            <div className={styles.features}>
+              <p>Memory charge is based on total amount of GB provisioned.</p>
+            </div>
+            <div className={`${styles.features} ${styles.priceCost}`}>
+              <p>$0.006</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#contact-sales">
-          Register for Hybrid SaaS
-        </Link>
+        <div className={styles.marketTitle}>
+          <h2 className={styles.marketText}>
+            Find Weaviate on leading Marketplaces:
+          </h2>
+        </div>
+        <div className={styles.buttons}>
+          <div className={styles.marketBox}>
+            <div className={styles.logos}>
+              <span className={styles.google} />
+            </div>
+            <p>Google Cloud Platform</p>
+            <Link to="#contact-sales">{'Contact us for more info >'}</Link>
+          </div>
+          <div className={`${styles.marketBox} ${styles.awsBox}`}>
+            <div className={styles.logos}>
+              <span className={styles.aws} />
+            </div>
+            <p>Amazon Web Services</p>
+            <Link to="#contact-sales">{'Go to Marketplace >'}</Link>
+          </div>
+          <div className={styles.marketBox}>
+            <div className={styles.logos}>
+              <span className={styles.azure} />
+            </div>
+            <p>Microsoft Azure</p>
+            <Link to="#contact-sales">{'Contact us for more info >'}</Link>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+<Link className={styles.buttonGradient} to="#contact-sales">
+  Register for Hybrid SaaS
+</Link>;

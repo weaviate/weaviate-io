@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 export default function PricingSandBox() {
   return (
     <div className={styles.sandbox}>
-      <div className={styles.title}>
+      <div className={`${styles.title} ${styles.sandboxTitle}`}>
         <h3 className={styles.color}>Sandbox</h3> Free
       </div>
       <div className={styles.featuresLong}>
@@ -22,10 +22,7 @@ export default function PricingSandBox() {
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <a href="https://weaviate.io/slack">
-            {' '}
-            Public Slack
-          </a>
+          <a href="https://weaviate.io/slack"> Public Slack</a>
         </li>
       </div>
       <div className={styles.features}>

@@ -1,3 +1,39 @@
+
+.pricingHeader{
+
+  color: #130C49;
+text-align: center;
+font-family: Plus Jakarta Sans;
+font-size: 2.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: 120%; /* 3rem */
+
+
+}
+.pricingButton{
+
+  border-radius: 0.3125rem;
+  border: 1px solid #130C49;
+  background: #61BD73;
+  padding: 9px;
+color: #130C49;
+      text-align: center;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 157.33%;
+
+}
+
+.test{
+
+
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
 .header {
   color: var(--ifm-link-color);
 }
@@ -9,7 +45,7 @@ p {
 .box {
   text-align: center;
   margin: auto;
-  width: 85%;
+  width: 51%;
 }
 
 .opacity {
@@ -91,7 +127,7 @@ p {
     height: 40px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../../static/img/site/google_cloud-icon.svg');
+    background-image: url('../../../../static/img/site/googleCloud.svg');
   }
   .aws {
     display: flex;
@@ -100,7 +136,16 @@ p {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../../../../static/img/site/aws-dark.png');
+    background-image: url('../../../../static/img/site/awsDarkLogo.svg');
+  }
+  .awsLight {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../../static/img/site/awsLogoLight.svg');
   }
   .azure {
     display: flex;
@@ -109,7 +154,7 @@ p {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('../../../../static/img/site/azure.png');
+    background-image: url('../../../../static/img/site/azureLogo.svg');
   }
 }
 
@@ -124,8 +169,10 @@ p {
 }
 
 .outline {
-  outline: 2px solid #20e220;
-  border-radius: 0.75rem;
+  outline: #130C49 solid 1px;
+  border-radius: 0.9375rem;
+  background: #FFF;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 }
 
 .btn {
@@ -142,12 +189,30 @@ p {
   cursor: pointer;
 
   p {
-    padding: 0 45px;
+    font-size: 1rem;
+    padding: 0px 70px;
   }
 
   &:hover {
     text-decoration: none;
   }
+
+
+  &.hybrid {
+    border-radius: 0.9375rem;
+    border: 1px solid #130C49;
+    background: #130C49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    color: white;
+
+
+    .test{
+
+      color: white;
+    }
+
+}
+
 }
 
 .textGradient {
