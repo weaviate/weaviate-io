@@ -130,7 +130,6 @@ This is really useful, as it will let you experiment and work with your Weaviate
 Embedded Weaviate is currently supported on:
 - Linux
 - macOS
-- Windows <small>(Experimental, from `v1.21`)</small>
 
 
 ## Language Clients
