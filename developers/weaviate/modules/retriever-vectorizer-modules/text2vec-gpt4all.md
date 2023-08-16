@@ -68,7 +68,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-gpt4all'
       # highlight-start
       ENABLE_MODULES: 'text2vec-gpt4all'
-      TRANSFORMERS_INFERENCE_API: 'http://text2vec-gpt4all:8080'
+      GPT4ALL_INFERENCE_API: 'http://text2vec-gpt4all:8080'
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
