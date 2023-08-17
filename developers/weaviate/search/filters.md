@@ -19,6 +19,8 @@ import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts
 
 This page shows you how to add conditional filters to your search queries with the `where` operator.
 
+For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md) page.
+
 :::info Related pages
 - [API References: Filters](../api/graphql/filters.md)
 :::
