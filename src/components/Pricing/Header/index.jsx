@@ -53,7 +53,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
               onClick={() => handleSelected('hybrid')}
             >
               <div className={styles.hybridPng} />
-              <h1 className={styles.test}>Hybrid SaaS</h1>
+              <h1 className={styles.test}>Bring Your Own Cloud</h1>
               <p>We manage the data plane inside your customer-managed VPC</p>
               <div className={styles.logos}>
                 <span className={styles.google} />
