@@ -112,7 +112,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 - `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
 - `<media>Fields` - property names to map for different modalities (under `moduleConfig.multi2vec-bind`).
     - i.e. one or more of [`textFields`, `imageFields`, `audioFields`, `videoFields`, `depthFields`, `thermalFields`, `IMUFields`]
-- `weights` - optional parameter to weigh the different modalities.
+- `weights` - optional parameter to weigh the different modalities in producing the final vector.
 
 #### Property-level
 

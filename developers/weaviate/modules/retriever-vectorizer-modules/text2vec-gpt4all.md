@@ -162,9 +162,9 @@ The `text2vec-gpt4all` module is optimized for CPU inference and should be notic
 
 ### Usage advice - chunking text with `gpt4all`
 
-`text2vec-gpt4all` will truncate input text longer than `256` tokens.
+`text2vec-gpt4all` will truncate input text longer than `256` tokens (word pieces).
 
-Accordingly, this model is not suitable for use cases where larger chunks are required. In these cases, we recommend another inference module such as [`text2vec-transformers`](./text2vec-transformers.md) and models that support longer input lengths.
+Accordingly, this model is not suitable for use cases where larger chunks are required. In these cases, we recommend using another a models that support longer input lengths, such as by selecting one from the  [`text2vec-transformers`](./text2vec-transformers.md) module or [`text2vec-openai`](./text2vec-openai.md).
 
 ## Usage example
 
