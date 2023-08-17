@@ -131,7 +131,7 @@ If a tenant specified for deletion doesn't belong to the class, it is ignored.
 :::info Available from version `v1.21`
 :::
 
-You can update one or more existing tenants' activity status to .
+You can update one or more existing tenants' activity status to active ("HOT") or inactive ("COLD").
 
 :::info Client code examples coming soon
 For now, please send a [PUT request through the REST API endpoint](../api/rest/schema.md#update-tenants) to update the tenant activity status.
