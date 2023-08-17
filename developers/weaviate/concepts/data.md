@@ -209,7 +209,9 @@ For now, what's important to know is this:
 
 ## Multi-tenancy
 
-:::info Available from `v1.20` onwards
+:::info Multi-tenancy availability
+- Multi-tenancy available from version `v1.20`
+- Tenant activity status setting available from version `v1.21`
 :::
 
 For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
@@ -245,20 +247,24 @@ You **cannot** create cross-references:
 - [Multi-tenancy blog](/blog/multi-tenancy-vector-search)
 :::
 
-:::tip Monitoring metrics with multi-tenancy
-When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
-:::
+### Monitoring metrics with multi-tenancy
 
-<details>
-  <summary>What is the maximum number of tenants per node?</summary>
+When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+
+### Tenancy size per node
 
 Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 properties, we could store ~70,000 tenants on a single node before running out of file descriptors.
 
 Concretely, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 170k active tenants, with 18-19k tenants per node.
 
-These numbers may increase in the future if a proposed feature to implement inactive tenants is implemented.
+Note that these numbers relate to active tenants only. The size of tenants per node can be increased by [setting unused tenants as inactive](../api/rest/schema.md#update-tenants).
 
-</details>
+### Tenant status
+
+:::info Available from version `v1.21`
+:::
+
+Tenants can be set to be active or inactive in Weaviate. Inactive tenants will not consume memory resources, as those shards are not loaded.
 
 ## Recap
 

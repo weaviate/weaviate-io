@@ -45,18 +45,13 @@ Broadly, we categorize them into one of:
 
 ![Weaviate module ecosystem](./img/weaviate-modules.png "Weaviate module ecosystem")
 
-### Vectorization modules (*Dense Retriever* modules)
+### Vectorizer & Ranker modules
 
-Vectorization modules, like the `text2vec-*`, `multi2vec-*` or `img2vec-*` modules, transform data into vectors. These modules are also called "Dense Retriever" modules. Retrievers function as a filter to quickly find a relevant set of data to the query.
+Vectorizer modules, like the `text2vec-*`, `multi2vec-*` or `img2vec-*` modules, transform data into vectors. Ranker modules, like the `rerank-*` modules, rank the results.
 
-#### Dense retrievers vs. sparse retrievers
-Sparse vector retrievers for the task of finding relevant data (by calculating the similarity of two pieces of data) in a database are for example TF-IDF or BM25. These retrievers are not trainable; instead they rely on word frequency in documents. This type of retrievers are not possible as Weaviate modules, because the implementation sits deep in the core of Weaviate (BM25 will be released soon!).
+### Reader & Generator modules
 
-Dense vector retrievers are a relatively new approach to data retrieval, which usually outperforms traditional sparse retrieval methods because they take semantics into account and they are trainable. Dense vector retrievers can be chosen as Weaviate modules. Depending on the type of data you want to store and search (text, images, etc), and depending on the use case domain (science, healthcare, common daily language, etc), you can choose and attach a dense retriever (vectorization) module that best fits your use case.
-
-### Modules with additional functionalities (*Reader* or *Generator* modules)
-
-Reader or Generator modules can be used on top of a Retriever/Vectorization module. A Reader module takes the set of relevant documents that are retrieved by the Retriever module, and extracts a piece of relevant information per document. An example Reader module is [`qna-transformers`](../modules/reader-generator-modules/qna-transformers.md) module, which extracts an answer directly from a document that is retrieved by a Retriever module. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document.
+Reader or Generator modules can be used on top of a Vectorizer module. These modules take the set of relevant documents that are retrieved, and performs another operation, such as question answering, or a generative task. An example Reader module is [`qna-transformers`](../modules/reader-generator-modules/qna-transformers.md) module, which extracts an answer directly from a document. A Generator module would, on the other hand, use *language generation* to generate an answer from the given document.
 
 ### Other modules
 

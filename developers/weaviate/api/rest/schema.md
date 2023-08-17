@@ -459,9 +459,35 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 
 ## Multi-tenancy
 
+:::info Multi-tenancy availability
+- Multi-tenancy available from version `v1.20`
+- Tenant activity status setting available from version `v1.21`
+:::
+
+Tenants are used to separate data between different users or groups of users. They can be specified as follows:
+
 ### Add tenant(s)
 
-Pass a payload with an array of tenant objects in the form of `[{"name": TENANT_NAME1}, {"name": TENANT_NAME2}]` to add to the class. Tenants are used to separate data between different users or groups of users.
+Pass a payload with an array of tenant objects. The available fields are:
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `name` | string | (Required) The name of the tenant. |
+| `activityStatus` | string | (Optional) The activity status of the tenant. Can be `HOT` (default) or `COLD`. |
+
+#### Example payload
+
+```
+[
+  {
+    "name": "TENANT_A"
+  },
+  {
+    "name": "TENANT_B",
+    "activityStatus": "COLD"
+  }
+]
+```
 
 import TenantNameFormat from '/_includes/tenant-names.mdx';
 
@@ -483,6 +509,29 @@ Pass a payload with an array of tenant names in the form of `["TENANT_NAME1", "T
 
 ```js
 DELETE v1/schema/{class_name}/tenants
+```
+
+### Update tenants
+
+```js
+PUT v1/schema/{class_name}/tenants
+```
+
+Pass a payload with an array of tenant objects. For updating tenants, both `name` and `activityStatus` are required.
+
+#### Example payload
+
+```
+[
+  {
+    "name": "TENANT_A",
+    "activityStatus": "COLD"
+  },
+  {
+    "name": "TENANT_B",
+    "activityStatus": "HOT"
+  }
+]
 ```
 
 ## More Resources

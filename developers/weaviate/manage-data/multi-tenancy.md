@@ -23,8 +23,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 ## Enable multi-tenancy
 
-:::info
-Available from `v1.20` onwards
+:::info Multi-tenancy availability
+- Multi-tenancy available from version `v1.20`
+- Tenant activity status setting available from version `v1.21`
 :::
 
 Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the class definition as shown below:
@@ -42,7 +43,7 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
 
 ### Add tenant(s)
 
-To add tenants to a class, you must provide the tenant names to the Weaviate class.
+To add tenants to a class, you must provide the tenant names to the Weaviate class. From `1.21` onwards, you can also optionally specify whether the tenant is to be active (`HOT`, default), or inactive (`COLD`).
 
 import TenantNameFormat from '/_includes/tenant-names.mdx';
 
@@ -72,7 +73,6 @@ Code examples are shown below in which the tenants `tenantA` and `tenantB` are a
   </TabItem>
 </Tabs>
 
-
 ### List tenant(s)
 
 To list existing tenants in a class, you must provide the Weaviate class name.
@@ -98,7 +98,6 @@ Code examples are shown below for listing the existing tenants in the `MultiTena
     />
   </TabItem>
 </Tabs>
-
 
 ### Delete tenant(s)
 
@@ -126,6 +125,17 @@ If a tenant specified for deletion doesn't belong to the class, it is ignored.
     />
   </TabItem>
 </Tabs>
+
+### Update tenant(s)
+
+:::info Available from version `v1.21`
+:::
+
+You can update one or more existing tenants' activity status to .
+
+:::info Client code examples coming soon
+For now, please send a [PUT request through the REST API endpoint](../api/rest/schema.md#update-tenants) to update the tenant activity status.
+:::
 
 ## Object operations
 

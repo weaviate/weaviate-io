@@ -2,36 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get{
-    Publication(
-      nearText: {
-        concepts: ["fashion"],
-        distance: 0.6 # prior to v1.14 use "certainty" instead of "distance"
-        moveAwayFrom: {
-          concepts: ["finance"],
-          force: 0.45
-        },
-        moveTo: {
-          concepts: ["haute couture"],
-          force: 0.85
-        }
-      }
-    ){
-      name
-      _additional {
-        certainty # only supported if distance==cosine.
-        distance  # always supported
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -263,6 +233,36 @@ $ echo '{
     -H "X-Palm-Api-Key: YOUR-PALM-API-KEY" \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get{
+    Publication(
+      nearText: {
+        concepts: ["fashion"],
+        distance: 0.6 # prior to v1.14 use "certainty" instead of "distance"
+        moveAwayFrom: {
+          concepts: ["finance"],
+          force: 0.45
+        },
+        moveTo: {
+          concepts: ["haute couture"],
+          force: 0.85
+        }
+      }
+    ){
+      name
+      _additional {
+        certainty # only supported if distance==cosine.
+        distance  # always supported
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

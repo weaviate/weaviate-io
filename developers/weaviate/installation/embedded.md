@@ -71,7 +71,7 @@ Additional modules can be enabled by setting additional environment variables as
   ```python
   import weaviate
   from weaviate.embedded import EmbeddedOptions
-  
+
   client = weaviate.Client(
       embedded_options=EmbeddedOptions(
           additional_env_vars={
@@ -87,7 +87,7 @@ Additional modules can be enabled by setting additional environment variables as
 
   ```js
   import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
-  
+
   const client = weaviate.client(
     new EmbeddedOptions({
       env: {
@@ -127,7 +127,9 @@ This is really useful, as it will let you experiment and work with your Weaviate
 
 ### Operating Systems
 
-Embedded Weaviate is currently supported on Linux and macOS.
+Embedded Weaviate is currently supported on:
+- Linux
+- macOS
 
 
 ## Language Clients

@@ -1,6 +1,6 @@
 ---
 title: ref2vec-centroid
-sidebar_position: 7
+sidebar_position: 40
 image: og/docs/modules/ref2vec-centroid.jpg
 # tags: ['ref2vec', 'ref2vec-centroid', 'centroid']
 ---
