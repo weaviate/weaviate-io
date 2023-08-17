@@ -459,6 +459,11 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 
 ## Multi-tenancy
 
+:::info Multi-tenancy availability
+- Multi-tenancy available from version `v1.20`
+- Tenant activity status setting available from version `v1.21`
+:::
+
 Tenants are used to separate data between different users or groups of users. They can be specified as follows:
 
 ### Add tenant(s)

@@ -209,9 +209,9 @@ For now, what's important to know is this:
 
 ## Multi-tenancy
 
-:::info Tenancy and Weaviate versions
-- Multi-tenancy is available from `v1.20` onwards
-- Inactive tenants are available from `v1.21` onwards
+:::info Multi-tenancy availability
+- Multi-tenancy available from version `v1.20`
+- Tenant activity status setting available from version `v1.21`
 :::
 
 For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
@@ -264,7 +264,7 @@ Note that these numbers relate to active tenants only. The size of tenants per n
 :::info Available from version `v1.21`
 :::
 
-Tenants can be set to be active or inactive in Weaviate. Inactive tenants
+Tenants can be set to be active or inactive in Weaviate. Inactive tenants will not consume memory resources, as those shards are not loaded.
 
 ## Recap
 
