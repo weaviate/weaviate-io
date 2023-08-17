@@ -141,6 +141,25 @@ async function generativeSearchQuery() {
 
 // END GenerativeSearchExample
 
+// GenerativeSearchGroupedTaskExample
+async function generativeSearchGroupedQuery() {
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withGenerate({groupedTask: 'Write a tweet with emojis about these facts.'})
+    .withLimit(2)
+    .do();
+
+  console.log(res.data.Get.Question[0]._additional.generate.groupedResult);
+  return res;
+}
+
+// END GenerativeSearchGroupedTaskExample
+
+
+
 // Define test functions
 async function getNumObjects() {
   const res = await client.graphql
@@ -212,6 +231,11 @@ await generativeSearchQuery();
 // END GenerativeSearchExample
 */
 
+/*
+// GenerativeSearchGroupedTaskExample
+await generativeSearchGroupedQuery();
+// END GenerativeSearchGroupedTaskExample
+*/
 
 /*
 // Add the schema
