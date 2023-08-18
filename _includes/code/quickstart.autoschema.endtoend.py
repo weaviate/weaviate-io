@@ -121,7 +121,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=4))
+print(response["data"]["Get"]["Question"][0]["_additional"]["generate"]["groupedResult"])
 # END GenerativeSearchGroupedTaskExample
 
 # ===== Test query responses =====
