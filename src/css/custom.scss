@@ -263,9 +263,7 @@
   .__previousStepContainer .__previousStepHelper:hover {
     text-decoration: underline;
   }
-
 }
-
 
 .navbar__inner {
   display: flex;
@@ -287,12 +285,9 @@
   justify-content: flex-start;
 
   @media screen and (max-width: 568px) {
-    display:none;
+    display: none;
   }
 }
-
-
-
 
 .navbar__items.navbar__items--right {
   flex: 0 0 auto;
@@ -300,27 +295,21 @@
   justify-content: flex-start;
 }
 
-.custom-page .toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
-
+.custom-page
+  .toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
   display: none;
 }
 
 .custom-page .toggleButton_gllP {
-
   display: none;
 }
 
-
-
-.custom-page .hiddenSearch{
-
-  display:none;
+.custom-page .hiddenSearch {
+  display: none;
 }
 
 .dropdown > .navbar__link:after {
-
   border-style: none;
-
 }
 
 .separator {
@@ -330,27 +319,23 @@
   padding: 0px;
 }
 
+.tryNow {
+  border-radius: 0.3125rem;
+  border: 1px solid #1c1468;
+  background: #61bd73;
+  margin: 0 70px;
+  width: 8rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 
-.tryNow{
-
-    border-radius: 0.3125rem;
-    border: 1px solid #1C1468;
-    background: #61BD73;
-    margin: 0 70px;
-    width: 8rem;
-    height: 2.625rem;
-    flex-shrink: 0;
-    align-items: center;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-
-
-    @media screen and (max-width: 996px) {
+  @media screen and (max-width: 996px) {
     margin: 11px 9px;
     display: none;
-    }
-
+  }
 }
 
 [data-theme='light'] {
@@ -364,7 +349,6 @@
     background-color: #505050;
   }
 }
-
 
 .theme-doc-sidebar-menu {
   font-size: 0.9rem !important;
@@ -396,7 +380,8 @@ button.close {
 .footer__title {
   color: var(--site-base-color);
 }
-.footer__copyright, .footer__link-item {
+.footer__copyright,
+.footer__link-item {
   color: var(--site-base-color-shade);
 }
 
@@ -463,14 +448,14 @@ button.close {
 
   .custom-page.noBG {
     background-image: none;
-    background-color: #F5F5F5;
-}
+    background-color: #f5f5f5;
+  }
 
   .hero__logo {
     background-image: url('/img/site/weaviate-logo-light.png');
   }
   .navbar {
-    background: #EDEDED;
+    background: #ededed;
     box-shadow: none;
   }
   .navbar__logo {
@@ -491,11 +476,11 @@ button.close {
 
   .navbar {
     background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 1.0) 4%,
-        rgba(17, 11, 62, 1.0) 50%,
-        rgba(25, 16, 92, 1.0) 96%
-      );
+      90deg,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(17, 11, 62, 1) 50%,
+      rgba(25, 16, 92, 1) 96%
+    );
     box-shadow: none;
   }
 
@@ -625,8 +610,31 @@ button.close {
     border: 1px solid #d1d1d1;
     background: #f7f7f7;
   }
-
-
 }
 
+.custom-page .footer .container {
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.custom-page .footer {
+  background: #130c49;
+}
 
+.custom-page .footer__title {
+  color: #ffffff;
+}
+
+.custom-page .footer__link-item {
+  color: #ffffff;
+}
+
+.custom-page .footer__copyright {
+  color: #ffffff;
+}
+
+.custom-page .footer__links {
+  margin-bottom: 1rem;
+  margin-left: 10px;
+}

@@ -325,19 +325,32 @@ const config = {
                 style: 'dark',
                 links: [
                     {
+                        title: 'Weaviate Cloud Services',
+                        items: [
+                            {
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
+                                label: 'Console',
+                                to: 'https://console.weaviate.cloud/',
+                            },
+                        ],
+                    },
+                    {
                         title: 'Community',
                         items: [
                             {
                                 label: 'Stack Overflow',
-                                href: 'https://stackoverflow.com/tags/weaviate/',
+                                to: 'https://stackoverflow.com/tags/weaviate/',
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://weaviate.io/slack',
+                                to: 'https://weaviate.io/slack',
                             },
                             {
                                 label: 'Twitter',
-                                href: 'https://twitter.com/weaviate_io',
+                                to: 'https://twitter.com/weaviate_io',
                             },
                         ],
                     },
@@ -346,23 +359,23 @@ const config = {
                         items: [
                             {
                                 label: 'Amsterdam',
-                                href: 'https://www.meetup.com/weaviate-amsterdam',
+                                to: 'https://www.meetup.com/weaviate-amsterdam',
                             },
                             {
                                 label: 'Boston',
-                                href: 'https://www.meetup.com/weaviate-boston',
+                                to: 'https://www.meetup.com/weaviate-boston',
                             },
                             {
                                 label: 'New York',
-                                href: 'https://www.meetup.com/weaviate-NYC',
+                                to: 'https://www.meetup.com/weaviate-NYC',
                             },
                             {
                                 label: 'San Francisco',
-                                href: 'https://www.meetup.com/weaviate-san-francisco',
+                                to: 'https://www.meetup.com/weaviate-san-francisco',
                             },
                             {
                                 label: 'Toronto',
-                                href: 'https://www.meetup.com/weaviate-toronto',
+                                to: 'https://www.meetup.com/weaviate-toronto',
                             },
                         ],
                     },
@@ -383,7 +396,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate',
+                                to: 'https://github.com/weaviate/weaviate',
                             },
                         ],
                     },
