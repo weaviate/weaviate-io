@@ -21,7 +21,7 @@ This page includes details related to the schema, such as parameters and availab
 
 ### Auto-schema
 
-:::info Available in Weaviate versions `1.5.0` and higher
+:::info Available from version `v1.5`
 :::
 
 If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is on by default, but can be disabled (e.g. in `docker-compose.yml`) by setting `AUTOSCHEMA_ENABLED: 'false'`.

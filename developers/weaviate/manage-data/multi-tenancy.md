@@ -17,8 +17,8 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 :::info Related pages
 - [How to: Configure a schema](../configuration/schema-configuration.md)
-- [References: REST API: Schema](../api/rest/schema.md)
-- [Concepts: Data Structure](../concepts/data.md#multi-tenancy)
+- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
 :::
 
 ## Enable multi-tenancy
