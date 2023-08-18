@@ -17,27 +17,20 @@ import WCSApiKeyLocation from '../../wcs/img/wcs-apikey-location.png';
 
 ## Overview
 
-Welcome. Here, you'll get a quick taste of Weaviate in <i class="fa-solid fa-timer"></i> ~20 minutes.
+Welcome. In the next <i class="fa-solid fa-timer"></i> ~20 minutes, you will:
+- Build a Weaviate vector database, and
+- Query it with:
+    - *semantic search*,
+    - an added *filter* and
+    - *generative searches* to transform your search results with an LLM.
 
-You will:
-- Build a vector database, and
-- Query it with *semantic search*.
+#### Object vectors
 
-:::note For Python users
-You can try it on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) as an interactive notebook ([or go to the file](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)).
-:::
-
-:::info Object vectors
 With Weaviate, you have options to:
 - Have **Weaviate create vectors**, or
 - Specify **custom vectors**.
 
 This tutorial demonstrates both methods.
-:::
-
-:::tip For more holistic learning
-Try <i class="fa-solid fa-graduation-cap"></i> [Weaviate Academy](../../academy/index.mdx), where we have built holistic courses for you to learn about Weaviate and the world of vector search.
-:::
 
 #### Source data
 
@@ -63,61 +56,21 @@ The data comes from a TV quiz show ("Jeopardy!")
 
 </details>
 
+:::tip For Python users
+Try it directly on [Google Colab](https://colab.research.google.com/github/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb) ([or go to the file](https://github.com/weaviate-tutorials/quickstart/blob/main/quickstart_end_to_end.ipynb)).
+:::
+
 <hr/>
 
 ## Create an instance
 
-First, create a Weaviate database.
-
-1. Go to the [WCS Console](https://console.weaviate.cloud), and
-    1. Click <kbd>Sign in with the Weaviate Cloud Services</kbd>.
-    1. If you don't have a WCS account, click on <kbd>Register</kbd>.
-1. Sign in with your WCS username and password.
-1. Click <kbd>Create cluster</kbd>.
-
-:::note <i class="fa-solid fa-camera-viewfinder"></i> <small>To create a WCS instance:</small>
-<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
-:::
-
-<details>
-  <summary>Can I use another method?</summary>
-
-Yes. If you prefer another method, please see our [installation options](../installation/index.md) page.
-
-</details>
-
-
-Then:
-
-1. Select the <kbd>Free sandbox</kbd> tier.
-1. Provide a *Cluster name*.
-1. Set *Enable Authentication?* to <kbd>YES</kbd>.
-
-:::note <i class="fa-solid fa-camera-viewfinder"></i> <small>Your selections should look like this:</small>
-<img src={WCSoptionsWithAuth} width="100%" alt="Instance configuration"/>
-:::
-
-Click <kbd>Create</kbd>. This will take ~2 minutes and you'll see a tick ✔️ when finished.
-
-#### Note your cluster details
-
-You will need:
-- The Weaviate URL, and
-- Authentication details (Weaviate API key).
-
-Click <kbd>Details</kbd> to see them.
-
-For the Weaviate API key, click on the <kbd><i class="fa-solid fa-key"></i></kbd> button.
-
-:::note <i class="fa-solid fa-camera-viewfinder"></i> <small>Your WCS cluster details should look like this:</small>
-<img src={WCSApiKeyLocation} width="60%" alt="Instance API key location"/>
-:::
+[Create a sandbox instance](developers/wcs/quickstart.mdx) on Weaviate Cloud Services and come back.
 
 <hr/>
 
 ## Install a client library
 
-We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
+We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client, run the below:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
@@ -131,20 +84,17 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 ## Connect to Weaviate
 
-From the <kbd>Details</kbd> tab in WCS, get:
-- The Weaviate **API key**, and
-- The Weaviate **URL**.
+Connect to Weaviate using this information:
 
-And because we will use the OpenAI inference API to generate vectors, you need:
+- The Weaviate **URL** (get it from WCS `Details` tab),
+- The Weaviate **API key** (if enabled - get it from WCS `Details` tab), and
 - An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup)).
-
-Then, instantiate the client as follows:
 
 import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
 
 <ConnectToWeaviateWithKey />
 
-Now you are connected to your Weaviate instance!
+Now you are connected to your Weaviate instance.
 
 <hr/>
 
@@ -156,27 +106,221 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 
 <CodeAutoschemaMinimumSchema />
 
+This creates a class `Question`, tells Weaviate which `vectorizer` to use, and sets the `moduleConfig` for the vectorizer.
+
+Now you are ready to add objects to Weaviate.
+
+<hr/>
+
+## Add objects
+
+We can now add objects to Weaviate using a [batch import](../manage-data/import.mdx) process. We will cover both ways of obtaining a vector, starting with using a `vectorizer`.
+
+### *Option 1*: `vectorizer`
+
+The code below imports object data without specifying a vector. This causes Weaviate to use the `vectorizer` defined for the class to create a vector embedding for each object.
+
+import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
+
+<CodeAutoschemaImport />
+
+The above code:
+- Loads objects,
+- Initializes a batch process, and
+- Adds objects to the target class (`Question`) one by one.
+
+### *Option 2*: Custom vectors
+
+Alternatively, you can also provide your own vectors to Weaviate.
+
+Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
+
+import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autoschema.import.custom.vectors.mdx'
+
+<CodeAutoschemaImportCustomVectors />
+
+:::tip vector != object property
+Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
+:::
+
+<hr/>
+
+# Putting it together
+
+The following code puts the above steps together. You can run it yourself to import the data into your Weaviate instance.
+
 <details>
-  <summary>What if I want to use a different vectorizer module?</summary>
+  <summary>End-to-end code</summary>
+
+:::tip Remember to replace the **URL**, **Weaviate API key** and **inference API key**
+:::
+
+import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
+
+<CodeAutoschemaEndToEnd />
+
+</details>
+
+<hr/>
+
+You've already built a vector database and populated it with data! Now, we are ready to run queries.
+
+<hr/>
+
+## Queries
+
+### Semantic search
+
+Let's start with a similarity search. This `nearText` search will look for quiz objects most similar to `biology`.
+
+import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
+
+<CodeAutoschemaNeartext />
+
+You should see a result like this:
+
+import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.mdx'
+
+<BiologyQuestionsJson />
+
+The response includes a list of top 2 (due to the `limit` set) objects whose vectors are most similar to the word `biology`.
+
+:::tip Why is this useful?
+Notice that even though the word `biology` does not appear anywhere, Weaviate returns biology-related entries.
+
+This example shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
+:::
+
+### Semantic search with a filter
+
+You can add Boolean filters to searches. For example, let's run the same search, but only look in objects that have a "category" value of "ANIMALS".
+
+import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart.autoschema.neartext.where.mdx'
+
+<CodeAutoschemaNeartextWithWhere />
+
+You should see a result like this:
+
+import BiologyQuestionsWhereJson from '/_includes/code/quickstart.biology.where.questions.mdx'
+
+<BiologyQuestionsWhereJson />
+
+The response includes a list of top 2 (due to the `limit` set) objects whose vectors are most similar to the word `biology`. But, only from the `ANIMALS` category.
+
+:::tip Why is this useful?
+Using a Boolean filter allows you to combine the flexibility of vector search with the precision of `where` filters.
+:::
+
+
+<!-- Note: Added the generative search example; but hiding it for now as it makes the workflow quite difficult for new users. 1) They will now need an OpenAI/Cohere key. 2) The schema needs to include a generative module definition. 3) Rate limit on generative API is low; so might be painful. -->
+
+### Generative search (single prompt)
+
+Next, let's try a generative search, where search results are processed with a large language model (LLM).
+
+Here, we use a `single prompt` query, and the model to explain *each* answer in plain terms.
+
+import CodeAutoschemaGenerative from '/_includes/code/quickstart.autoschema.generativesearch.mdx'
+
+<CodeAutoschemaGenerative />
+
+You should see a result similar to this:
+
+import BiologyGenerativeSearchJson from '/_includes/code/quickstart.biology.generativesearch.mdx'
+
+<BiologyGenerativeSearchJson />
+
+We see that Weaviate has retrieved the same results as before. But now it includes an additional, generated text with a plain-language explanation of each answer.
+
+### Generative search (grouped task)
+
+In the next example, we will use a `grouped task` prompt instead to combine all search results and send them to the LLM with a prompt. We ask the LLM to write a tweet about all of these search results.
+
+import CodeAutoschemaGenerativeGrouped from '/_includes/code/quickstart.autoschema.generativesearch.grouped.mdx'
+
+<CodeAutoschemaGenerativeGrouped />
+
+The first response object will include the generated response. Here's our query result:
+
+import BiologyGenerativeSearchGroupedJson from '/_includes/code/quickstart.biology.generativesearch.grouped.mdx'
+
+<BiologyGenerativeSearchGroupedJson />
+
+:::tip Why is this useful?
+Generative search sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
+:::
+
+<hr/>
+
+## Recap
+
+Well done! You have:
+- Created your own cloud-based vector database with Weaviate,
+- Populated it with data objects,
+    - Using an inference API, or
+    - Using custom vectors,
+- Performed searches, including:
+    - Semantic search,
+    - Sementic search with a filter and
+    - Generative search.
+
+Where next is up to you. We include a few links below - or you can check out the sidebar.
+
+<hr/>
+
+## Next
+
+You can do much more with Weaviate. We suggest trying:
+
+- Examples from our [search how-to](../search/index.md) guides for [keyword](../search/bm25.md), [similarity](../search/similarity.md), [hybrid](../search/hybrid.md), [generative](../search/generative.md) searches and [filters](../search/filters.md) or
+- Learning [how to manage data](../manage-data/index.md), like [reading](../manage-data/read.mdx), [batch importing](../manage-data/import.mdx), [updating](../manage-data/update.mdx), [deleting](../manage-data/delete.mdx) objects or [bulk exporting](../manage-data/read-all-objects.mdx) data.
+
+For more holistic learning, try <i class="fa-solid fa-graduation-cap"></i> [Weaviate Academy](../../academy/index.mdx). We have built free courses for you to learn about Weaviate and the world of vector search.
+
+You can also try a larger, [1,000 row](https://raw.githubusercontent.com/databyjp/wv_demo_uploader/main/weaviate_datasets/data/jeopardy_1k.json) version of the Jeopardy! dataset, or [this tiny set of 50 wine reviews](https://raw.githubusercontent.com/databyjp/wv_demo_uploader/main/weaviate_datasets/data/winemag_tiny.csv).
+
+<hr/>
+
+## FAQs & Troubleshooting
+
+We provide answers to some common questions, or potential issues below.
+
+### Questions
+
+#### Can I use another deployment method?
+
+<details>
+  <summary>See answer</summary>
+
+Yes. If you prefer another method, please see our [installation options](../installation/index.md) page.
+
+</details>
+
+#### Can I use different modules?
+
+<details>
+  <summary>See answer</summary>
 
 In this example, we use the `OpenAI` inference API. But you can use others.
 
-:::tip Our recommendation
-Vectorizer selection is a big topic - so for now, we suggest sticking to the defaults and focus on learning the basics of Weaviate.
-:::
-
-If you do want to change the vectorizer, you can - as long as:
-- The module is available in the Weaviate instance you are using, and
-- You have an API key (if necessary) for that module.
+If you do want to change the vectorizer, or the generative module, you can. You will need to:
+- Ensure that the module is available in the Weaviate instance you are using,
+- Modify your class definition to suit your chosen modules, and
+- Make sure to use the right API key(s) (if necessary) for your modules.
 
 Each of the following modules is available in the free sandbox.
 
-- `text2vec-cohere`
-- `text2vec-huggingface`
-- `text2vec-openai`
-- `text2vec-palm`
+- Vectorizer modules:
+    - `text2vec-cohere`
+    - `text2vec-huggingface`
+    - `text2vec-openai`
+    - `text2vec-palm`
+- Generative modules:
+    - `generative-cohere`
+    - `generative-openai`
+    - `generative-palm`
 
-Depending on your choice, make sure to pass on the API key for the inference service by setting the header with an appropriate line from below, remembering to replace the placeholder with your actual key:
+Depending on your choice, make sure to pass on the API key(s). You can do so by setting the header with the appropriate line(s) from below, remembering to replace the placeholder with your actual key:
 
 ```js
 "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
@@ -254,179 +398,42 @@ class_obj = {
 
 </details>
 
-This creates a class `Question`, tells Weaviate which `vectorizer` to use, and sets the `moduleConfig` for the vectorizer.
+#### Is a `vectorizer` setting mandatory?
 
-:::tip Is a `vectorizer` setting mandatory?
+<details>
+  <summary>See answer</summary>
+
 - No. You always have the option of providing vector embeddings yourself.
 - Setting a `vectorizer` gives Weaviate the option of creating vector embeddings for you.
     - If you do not wish to, you can set this to `none`.
-:::
-
-Now you are ready to add objects to Weaviate.
-
-<hr/>
-
-## Add objects
-
-We'll add objects to our Weaviate instance using a **batch import** process.
-
-<details>
-  <summary>Why use batch imports?</summary>
-
-Batch imports provide significantly improved import performance, so you should almost always use batch imports unless you have a good reason not to, such as single object creation.
 
 </details>
 
-First, you will use the `vectorizer` to create object vectors.
-
-### *Option 1*: `vectorizer`
-
-The code below imports object data without specifying a vector. This causes Weaviate to use the `vectorizer` defined for the class to create a vector embedding for each object.
-
-import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
-
-<CodeAutoschemaImport />
-
-The above code:
-- Loads objects,
-- Initializes a batch process, and
-- Adds objects to the target class (`Question`) one by one.
-
-### *Option 2*: Custom `vector`s
-
-Alternatively, you can also provide your own vectors to Weaviate.
-
-Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
-
-import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autoschema.import.custom.vectors.mdx'
-
-<CodeAutoschemaImportCustomVectors />
+#### What is a sandbox, exactly?
 
 <details>
-  <summary>Custom vectors with a <code>vectorizer</code></summary>
+  <summary>Note: Sandbox expiry & options</summary>
 
-Note that you can specify a `vectorizer` and still provide a custom vector. In this scenario, make sure that the vector comes from the same model as one specified in the `vectorizer`. <p><br/></p>
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
-In this tutorial, they come from `sentence-transformers/all-MiniLM-L6-v2` - the same as specified in the vectorizer configuration.
+<SandBoxExpiry/>
 
 </details>
 
-:::tip vector != object property
-Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
-:::
+### Troubleshooting
 
-<hr/>
-
-# Putting it together
-
-The following code puts the above steps together. You can run it yourself to import the data into your Weaviate instance.
+#### If you see <code>Error: Name 'Question' already used as a name for an Object class</code>
 
 <details>
-  <summary>End-to-end code</summary>
+  <summary>See answer</summary>
 
-:::tip Remember to replace the **URL**, **Weaviate API key** and **inference API key**
-:::
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
 
-import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
-<CodeAutoschemaEndToEnd />
-
-Congratulations, you've successfully built a vector database!
+<CautionSchemaDeleteClass />
 
 </details>
-
-<hr/>
-
-## Queries
-
-Now, we can run queries.
-
-### Semantic search
-
-Let's try a similarity search. We'll use `nearText` search to look for quiz objects most similar to `biology`.
-
-import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
-
-<CodeAutoschemaNeartext />
-
-You should see a result like this (these may vary per module/model used):
-
-import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.mdx'
-
-<BiologyQuestionsJson />
-
-The response includes a list of top 2 (due to the `limit` set) objects whose vectors are most similar to the word `biology`.
-
-:::tip Why is this useful?
-Notice that even though the word `biology` does not appear anywhere, Weaviate returns biology-related entries.
-
-This example shows why vector searches are powerful. Vectorized data objects allow for searches based on degrees of similarity, as shown here.
-:::
-
-### Semantic search with a filter
-
-You can add a Boolean filter to your example. For example, let's run the same search, but only look in objects that have a "category" value of "ANIMALS".
-
-import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart.autoschema.neartext.where.mdx'
-
-<CodeAutoschemaNeartextWithWhere />
-
-You should see a result like this (these may vary per module/model used):
-
-import BiologyQuestionsWhereJson from '/_includes/code/quickstart.biology.where.questions.mdx'
-
-<BiologyQuestionsWhereJson />
-
-The response includes a list of top 2 (due to the `limit` set) objects whose vectors are most similar to the word `biology` - but only from the "ANIMALS" category.
-
-:::tip Why is this useful?
-Using a Boolean filter allows you to combine the flexibility of vector search with the precision of `where` filters.
-:::
-
-
-<!-- Note: Added the generative search example; but hiding it for now as it makes the workflow quite difficult for new users. 1) They will now need an OpenAI/Cohere key. 2) The schema needs to include a generative module definition. 3) Rate limit on generative API is low; so might be painful. -->
-
-### Generative search
-
-Now let's try a generative search. We'll retrieve a set of results just as we did above, before using a large language model (LLM) to explain each answer in plain terms.
-
-import CodeAutoschemaGenerative from '/_includes/code/quickstart.autoschema.generativesearch.mdx'
-
-<CodeAutoschemaGenerative />
-
-You should see a result like this (may vary depending on the model used):
-
-import BiologyGenerativeSearchJson from '/_includes/code/quickstart.biology.generativesearch.mdx'
-
-<BiologyGenerativeSearchJson />
-
-Here, we see that Weaviate has retrieved the same results as before. But now it includes an additional, generated text with a plain-language explanation of each answer.
-
-:::tip Why is this useful?
-Generative search sends retrieved data from Weaviate to a large language model, or LLM. This allows you to go beyond simple data retrieval, but transform the data into a more useful form, without ever leaving Weaviate.
-:::
-
-<hr/>
-
-## Recap
-
-Well done! You have:
-- Created your own cloud-based vector database with Weaviate,
-- Populated it with data objects,
-    - Using an inference API, or
-    - Using custom vectors,
-- Performed searches, including:
-    - Semantic search,
-    - Sementic search with a filter and
-    - Generative search.
-
-Where next is up to you. We include a few links below - or you can check out the sidebar.
-
-<!-- TODO - Provide a few concrete "intermediate" learning paths -->
-
-## Troubleshooting & FAQs
-
-We provide answers to some common questions, or potential issues below.
 
 #### How to confirm class creation
 
@@ -458,19 +465,6 @@ Where the schema should indicate that the `Question` class has been added.
 :::note REST & GraphQL in Weaviate
 Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful API endpoints can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
 :::
-
-</details>
-
-#### If you see <code>Error: Name 'Question' already used as a name for an Object class</code>
-
-<details>
-  <summary>See answer</summary>
-
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
-
-import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
-
-<CautionSchemaDeleteClass />
 
 </details>
 
@@ -513,23 +507,6 @@ Make sure you configured it as shown in [this section](#define-a-class).
 If it still doesn't work - please [reach out to us](#more-resources)!
 
 </details>
-
-#### Will my sandbox be deleted?
-
-<details>
-  <summary>Note: Sandbox expiry & options</summary>
-
-import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
-
-<SandBoxExpiry/>
-
-</details>
-
-## Next
-
-import WhatNext from '/_includes/quickstart.what-next.mdx';
-
-<WhatNext />
 
 ## More Resources
 

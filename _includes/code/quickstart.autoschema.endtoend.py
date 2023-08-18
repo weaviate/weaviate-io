@@ -1,4 +1,4 @@
-# EndToEndExample  # InstantiationExample  # NearTextExample  # GenerativeSearchExample
+# EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
 import json
 
@@ -10,7 +10,7 @@ client = weaviate.Client(
     }
 )
 
-# END EndToEndExample  # END InstantiationExample  # END NearTextExample  # END GenerativeSearchExample
+# END EndToEndExample  # END InstantiationExample  # END NearTextExample
 
 # EndToEndExample
 # ===== add schema =====
@@ -26,29 +26,21 @@ class_obj = {
 client.schema.create_class(class_obj)
 
 # ===== import data =====
-# Load data
 import requests
-url = 'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json'
-resp = requests.get(url)
-data = json.loads(resp.text)
+resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json')
+data = json.loads(resp.text)  # Load data
 
-# Configure a batch process
-with client.batch(
-    batch_size=100
-) as batch:
-    # Batch import all Questions
-    for i, d in enumerate(data):
+with client.batch() as batch:  # Initialize a batch process
+    for i, d in enumerate(data):  # Batch import data
         print(f"importing question: {i+1}")
-
         properties = {
             "answer": d["Answer"],
             "question": d["Question"],
             "category": d["Category"],
         }
-
         batch.add_data_object(
-            properties,
-            "Question",
+            data_object=properties,
+            class_name="Question"
         )
 
 # END EndToEndExample    # Test import
@@ -59,12 +51,12 @@ assert "Question" in [c["class"] for c in schema["classes"]]
 assert obj_count["data"]["Aggregate"]["Question"][0]["meta"]["count"] == 10
 
 # NearTextExample
-nearText = {"concepts": ["biology"]}
-
 response = (
     client.query
     .get("Question", ["question", "answer", "category"])
-    .with_near_text(nearText)
+    # highlight-start
+    .with_near_text({"concepts": ["biology"]})
+    # highlight-end
     .with_limit(2)
     .do()
 )
@@ -77,17 +69,17 @@ assert len(response["data"]["Get"]["Question"]) == 2
 assert response["data"]["Get"]["Question"][0]["answer"] == "DNA"
 
 # NearTextWhereExample
-nearText = {"concepts": ["biology"]}
-
 response = (
     client.query
     .get("Question", ["question", "answer", "category"])
-    .with_near_text(nearText)
+    .with_near_text({"concepts": ["biology"]})
+    # highlight-start
     .with_where({
         "path": ["category"],
         "operator": "Equal",
         "valueText": "ANIMALS"
     })
+    # highlight-end
     .with_limit(2)
     .do()
 )
@@ -99,13 +91,13 @@ print(json.dumps(response, indent=4))
 assert len(response["data"]["Get"]["Question"]) == 2
 
 # GenerativeSearchExample
-nearText = {"concepts": ["biology"]}
-
 response = (
     client.query
     .get("Question", ["question", "answer", "category"])
-    .with_near_text(nearText)
+    .with_near_text({"concepts": ["biology"]})
+    # highlight-start
     .with_generate(single_prompt="Explain {answer} as you might to a five-year-old.")
+    # highlight-end
     .with_limit(2)
     .do()
 )
@@ -115,8 +107,27 @@ print(json.dumps(response, indent=4))
 
 # ===== Test query responses =====
 assert len(response["data"]["Get"]["Question"]) == 2
-assert response["data"]["Get"]["Question"][0]["answer"] == "DNA"
 assert "singleResult" in response["data"]["Get"]["Question"][0]["_additional"]["generate"].keys()
+
+# GenerativeSearchGroupedTaskExample
+response = (
+    client.query
+    .get("Question", ["question", "answer", "category"])
+    .with_near_text({"concepts": ["biology"]})
+    # highlight-start
+    .with_generate(grouped_task="Write a tweet with emojis about these facts.")
+    # highlight-end
+    .with_limit(2)
+    .do()
+)
+
+print(response["data"]["Get"]["Question"][0]["_additional"]["generate"]["groupedResult"])
+# END GenerativeSearchGroupedTaskExample
+
+# ===== Test query responses =====
+assert len(response["data"]["Get"]["Question"]) == 2
+assert "groupedResult" in response["data"]["Get"]["Question"][0]["_additional"]["generate"].keys()
+
 
 # Cleanup
 
@@ -124,37 +135,27 @@ client.schema.delete_class("Question")  # Cleanup after
 
 
 # ===== import with custom vectors =====
-# Load data
 import requests
 # highlight-start
 fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
+# highlight-end
 url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}'
 resp = requests.get(url)
-data = json.loads(resp.text)
-# highlight-end
+data = json.loads(resp.text)  # Load data
 
-# Configure a batch process
-with client.batch(
-    batch_size=100
-) as batch:
-    # Batch import all Questions
-    for i, d in enumerate(data):
+with client.batch() as batch:  # Configure a batch process
+    for i, d in enumerate(data):  # Batch import all Questions
         print(f"importing question: {i+1}")
-
         properties = {
             "answer": d["Answer"],
             "question": d["Question"],
             "category": d["Category"],
         }
-
-        # highlight-start
-        custom_vector = d["vector"]
-        # highlight-end
         batch.add_data_object(
-            properties,
-            "Question",
+            data_object=properties,
+            class_name="Question",
             # highlight-start
-            vector=custom_vector  # Add custom vector
+            vector=d["vector"]  # Add custom vector
             # highlight-end
         )
 # ===== END import with custom vectors =====
