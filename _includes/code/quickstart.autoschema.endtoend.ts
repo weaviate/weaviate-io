@@ -4,6 +4,19 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
+/*
+// DockerInstantiationExample
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+import fetch from 'node-fetch';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+  headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your inference API key
+});
+// END DockerInstantiationExample
+*/
+
 // EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';

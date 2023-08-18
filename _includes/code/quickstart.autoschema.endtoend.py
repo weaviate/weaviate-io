@@ -1,3 +1,15 @@
+# DockerInstantiationExample
+import weaviate
+import json
+
+client = weaviate.Client(
+    url = "http://localhost:8080",  # Replace with your endpoint
+    additional_headers = {
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your inference API key
+    }
+)
+# END DockerInstantiationExample
+
 # EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
 import json

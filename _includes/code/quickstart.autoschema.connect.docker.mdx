@@ -9,8 +9,8 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 
 <FilteredTextBlock
   text={EndToEndPyCode}
-  startMarker="# InstantiationExample"
-  endMarker="# END InstantiationExample"
+  startMarker="# DockerInstantiationExample"
+  endMarker="# END DockerInstantiationExample"
   language="py"
 />
 
@@ -19,8 +19,8 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 
 <FilteredTextBlock
   text={EndToEndTSCode}
-  startMarker="// InstantiationExample"
-  endMarker="// END InstantiationExample"
+  startMarker="// DockerInstantiationExample"
+  endMarker="// END DockerInstantiationExample"
   language="ts"
 />
 
@@ -34,15 +34,13 @@ import (
   "context"
 
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
   "github.com/weaviate/weaviate/entities/models"
 )
 
 func main() {
   cfg := weaviate.Config{
-    Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
-    Scheme: "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Host:   "localhost:8080",  // Replace with your endpoint
+    Scheme: "http",
     Headers: map[string]string{
       "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
     },
@@ -104,10 +102,9 @@ echo '{
 }' | curl \
     -X POST \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
     -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    http://localhost:8080/v1/graphql
 ```
 
 </TabItem>
