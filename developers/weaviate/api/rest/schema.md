@@ -8,8 +8,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note
-From `v1.5.0` onwards, creating a schema is optional. Learn more about [Auto Schema](/developers/weaviate/config-refs/schema.md#auto-schema).
+:::info Related pages
+- [How-to - Configure: Schema](/developers/weaviate/configuration/schema-configuration.md)
+- [References - Configuration: Schema](/developers/weaviate/config-refs/schema.md).
 :::
 
 ## Get the schema
@@ -462,6 +463,11 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
 - Tenant activity status setting available from version `v1.21`
+:::
+
+:::info Related pages
+- [How-to manage data: Multi-tenancy operations](../../manage-data/multi-tenancy.md)
+- [Concepts: Data structure: Multi-tenancy](../../concepts/data.md#multi-tenancy)
 :::
 
 Tenants are used to separate data between different users or groups of users. They can be specified as follows:

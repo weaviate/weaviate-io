@@ -209,6 +209,11 @@ For now, what's important to know is this:
 
 ## Multi-tenancy
 
+:::info Related pages
+- [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+:::
+
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
 - Tenant activity status setting available from version `v1.21`
@@ -264,7 +269,7 @@ Note that these numbers relate to active tenants only. The size of tenants per n
 :::info Available from version `v1.21`
 :::
 
-Tenants can be set to be active or inactive in Weaviate. Inactive tenants will not consume memory resources, as those shards are not loaded.
+A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active
 
 ## Recap
 
