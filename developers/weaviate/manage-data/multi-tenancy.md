@@ -25,7 +25,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
-- Tenant activity status setting available from version `v1.21`
+- (Experimental) Tenant activity status setting available from version `v1.21`
 :::
 
 Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the class definition as shown below:

@@ -462,7 +462,7 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
-- Tenant activity status setting available from version `v1.21`
+- (Experimental) Tenant activity status setting available from version `v1.21`
 :::
 
 :::info Related pages
@@ -479,7 +479,7 @@ Pass a payload with an array of tenant objects. The available fields are:
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `name` | string | (Required) The name of the tenant. |
-| `activityStatus` | string | (Optional) The activity status of the tenant. Can be `HOT` (default) or `COLD`. |
+| `activityStatus` | string | (Optional, experimental) The activity status of the tenant. Can be `HOT` (default) or `COLD`. |
 
 #### Example payload
 
