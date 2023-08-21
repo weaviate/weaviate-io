@@ -155,7 +155,7 @@ We will need to define the data properties that we want to upload. The function 
 ```python
 def import_data():
 
-   with client.batch() as batch:
+   with client.batch as batch:
        # Iterate over all .b64 files in the base64_images folder
        for encoded_file_path in os.listdir("./base64_images"):
            with open("./base64_images/" + encoded_file_path) as file:
