@@ -266,6 +266,7 @@ for path in Path(data_folder).iterdir():
 The next step is to import the objects into Weaviate.
 
 ```python
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
     for data_object in data_objects:
         batch.add_data_object(data_object, "Document")

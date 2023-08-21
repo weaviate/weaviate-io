@@ -22,6 +22,7 @@ csv_iterator = pd.read_csv(
 
 # Iterate through the dataframe chunks and add each CSV record to the batch
 import ast
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
   for chunk in csv_iterator:
       for index, row in chunk.iterrows():
