@@ -30,15 +30,16 @@ We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-bat
 ## Requirements
 
 To import items in batches using a Weaviate client,
-1. Initialize a batcher,
-1. For each source data row:
-   * Build an item (object or cross-reference) for Weaviate,
-   * Specify the class to add to, and
-   * Add it to the batcher.
-1. Ensure that the batches are flushed (some clients require manual flushing).
-1. (If multi-tenancy is enabled) Specify the tenant name.
 
-Depending on the client, additional settings or auto-flushing of batches may be available.
+1. Initialize a batcher,
+1. Add items to the batcher, and
+1. Ensure that the last batch is sent (i.e. flushed).
+
+### Notes
+
+- On supported clients, you can also configure the batch parameters.
+- For multi-tenancy classes, you can specify the tenant name.
+- Some clients can be configured for auto-flushing.
 
 
 ## Basic batch import example
@@ -69,18 +70,18 @@ The following example will add objects to `YourClassName` class using a batch im
   </TabItem>
 </Tabs>
 
-:::note Where is the class definition?
+:::info Where is the class definition?
 In this example, if the class `YourClassName` does not already exist, it will be created by Weaviate with its [auto-schema](../configuration/schema-configuration.md#auto-schema) feature.
 :::
 
 
 ## Optional object parameters
 
-The following apply to objects only (not to cross-references).
+The following does not apply to cross-references.
 
 ### `id`
 
-You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. Otherwise, Weaviate will generate a random UUID.
+You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, or have Weaviate generate one.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -139,16 +140,33 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
 
 ## Batch parameters - Python client
 
+We recommend using `client.batch` in a context manager as it will automatically flush the last batch when exiting.
+
+### Set batch parameters
+
+You can set batch parameters using the `client.batch.configure` function.
+
+The below example specifies a batch size of 200 and parallelizes the import process with up to 2 threads:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# ConfigureBatchImportExample"
+  endMarker="# END ConfigureBatchImportExample"
+  language="py"
+/>
+
+
 ### Performance parameters
 
 The following parameters will have the greatest impact on the batch import speed:
-- `batch_size` (int) - the number of items to batch before flushing
-- `num_workers` (int) - the number of parallel workers to use for the batch
+- `batch_size` (int) - the (initial) size of the batch
+- `num_workers` (int) - the maximum number of parallel workers
 - `dynamic` (bool) - whether to dynamically adjust the `batch_size` based on the number of items in the batch
 
-We recommend starting with batch sizes of 100-300 typically, and the number of workers at 1-4. The `dynamic` parameter is useful if you are not sure what the optimal batch size is.
-
-Unless `batch_size` is set to `None`, the batch will be flushed when the number of items in the batch reaches `batch_size`.
+We recommend starting with:
+- `batch_size`: 50-200
+- `num_workers`: 1-2,
+- `dynamic`: `True` (if you are not sure what batch size to use)
 
 Using these parameters, you can set dynamic or automatic batching:
 
@@ -189,20 +207,6 @@ The following parameters will most impact error handling:
     - The default is `weaviate.util.check_batch_result`
 
 For a complete list of batch parameters and details about the types of batching, see the [Python client batching](../client-libraries/python.md#batching) section.
-
-
-### How to set batch parameters
-
-We recommend setting batch parameters via the `client.batch()` context manager, which will also automatically flush the batch when exiting.
-
-The below example specifies a batch size of 200 and parallelizes the import process with 2 threads:
-
-```python
-with client.batch(
-    batch_size=200,  # Specify the batch size for auto batching
-    num_workers=2,   # Maximum number of parallel threads used during import
-) as batch:
-```
 
 
 ## Batch parameters - other clients

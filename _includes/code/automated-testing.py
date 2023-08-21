@@ -39,7 +39,7 @@ with open('jeopardy_100.json') as f:
     data = json.load(f)
 
 # Context manager for batch import
-with client.batch() as batch:
+with client.batch as batch:
     # Build data objects & add to batch
     for i, obj in enumerate(data):
         batch.add_data_object(
