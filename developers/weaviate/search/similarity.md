@@ -267,7 +267,7 @@ Autocut can be used as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Autocut"
@@ -303,7 +303,7 @@ It should produce a response like the one below:
 
 ## Group results by a property or cross-reference
 
-:::info Requires Weaviate `v1.19.0` or higher.
+:::info Available from version `v1.19`
 :::
 
 You can group search results by any arbitrary property or cross-reference.

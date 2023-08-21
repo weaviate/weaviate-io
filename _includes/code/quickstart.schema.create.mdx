@@ -45,102 +45,41 @@ print(json.dumps(schema, indent=4))
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
 });
 
-// We will create the class 'Question'
-let classObj = {
+// Define the 'Question' class
+const classObj = {
   class: 'Question',
   description: 'Information from a Jeopardy! question',  // description of the class
   properties: [
-      {
-          dataType': ['text'],
-          description: 'The question',
-          name: 'question',
-      },
-      {
-          dataType: ['text'],
-          description: 'The answer',
-          name: 'answer',
-      },
-      {
-          dataType: ['text'],
-          description: 'The category',
-          name: 'category',
-      },
+    {
+      dataType: ['text'],
+      description: 'The question',
+      name: 'question',
+    },
+    {
+      dataType: ['text'],
+      description: 'The answer',
+      name: 'answer',
+    },
+    {
+      dataType: ['text'],
+      description: 'The category',
+      name: 'category',
+    },
   ],
   vectorizer: 'text2vec-openai',
-}
+};
 
-// add the schema
-client
-  .schema
-  .classCreator()
-  .withClass(classObj)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-
-// get and print the schema
-client
-  .schema
-  .getter()
-  .do()
-  .then(res => {
-    console.log(res);
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
-
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-});
-
-// We will create the class 'Question'
-let classObj = {
-  class: 'Question',
-  description: 'Information from a Jeopardy! question',  // description of the class
-  properties: [
-      {
-          dataType: ['text'],
-          description: 'The question',
-          name: 'question',
-      },
-      {
-          dataType: ['text'],
-          description: 'The answer',
-          name: 'answer',
-      },
-      {
-          dataType: ['text'],
-          description: 'The category',
-          name: 'category',
-      },
-  ],
-  vectorizer: 'text2vec-openai',
-}
-
-// Add the schema
+// Add the class to the schema
 await client
   .schema
   .classCreator()
@@ -148,12 +87,10 @@ await client
   .do();
 
 // Get and print the schema
-const result = await client
-  .schema
+const classInSchema = await client.schema
   .getter()
   .do();
-
-console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(classInSchema, null, 2));
 ```
 
 </TabItem>

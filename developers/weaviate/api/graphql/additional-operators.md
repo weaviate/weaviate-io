@@ -6,10 +6,15 @@ image: og/docs/api.jpg
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import AutocutPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import AutocutTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import PyCode from '!!raw-loader!/_includes/code/graphql.additional.py';
+import TSCode from '!!raw-loader!/_includes/code/graphql.additional.ts';
+import GoCode from '!!raw-loader!/_includes/code/graphql.additional.go';
+import JavaCode from '!!raw-loader!/_includes/code/graphql.additional.java';
+import CurlCode from '!!raw-loader!/_includes/code/graphql.additional.sh';
 
 <TryEduDemo />
 
@@ -132,16 +137,16 @@ Autocut can be used as follows:
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
     <FilteredTextBlock
-      text={PythonCode}
+      text={AutocutPyCode}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
       language="py"
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
-      text={TSCode}
+      text={AutocutTSCode}
       startMarker="// START Autocut"
       endMarker="// END Autocut"
       language="ts"
@@ -150,7 +155,7 @@ Autocut can be used as follows:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={AutocutPyCode}
       startMarker="# START Autocut GraphQL"
       endMarker="# END Autocut GraphQL"
       language="graphql"
@@ -164,7 +169,7 @@ Autocut can be used as follows:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={AutocutPyCode}
   startMarker="# START Expected nearText results"
   endMarker="# END Expected nearText results"
   language="json"
@@ -278,24 +283,70 @@ Examples:
 
 ### Sorting API
 
-import GraphQLGetSorting from '/_includes/code/graphql.get.sorting.mdx';
+Sorting can be performed by one or more properties. If the values for the first property are identical, Weaviate uses the second property to determine the order, and so on. Thus, the sort operator takes either an object or an array of objects with the two properties described below:
 
-### Additional properties
+| Parameter | Required | Type            | Description                                               |
+|-----------|----------|-----------------|-----------------------------------------------------------|
+| `path`    | yes      | `[text]`        | Path to the field to sort by: an array of one element containing the field name. GraphQL supports specifying directly the field name. |
+| `order`   | varies by client       | `asc` or `desc` | Which order to sort by, ascending (default) or descending |
 
-Sometimes sorting by an additional property is required, such as `id`, `creationTimeUnix`, or `lastUpdateTimeUnix`.  This can be achieved by prefixing the property name with an underscore.
 
-For example:
-```graphql
-{
-  Get {
-    Article(sort: [{path: ["_creationTimeUnix"], order: asc}]) {
-      title
-    }
-  }
-}
-```
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Sorting Python"
+      endMarker="# END Sorting Python"
+      language="py"
+    />
+  </TabItem>
 
-<GraphQLGetSorting/>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Sorting"
+      endMarker="// END Sorting"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START Sorting"
+      endMarker="// END Sorting"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START Sorting"
+      endMarker="// END Sorting"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="Curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START Sorting"
+      endMarker="# END Sorting"
+      language="shell"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Sorting GraphQL"
+      endMarker="# END Sorting GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
 
 <details>
   <summary>Expected response</summary>
@@ -304,18 +355,22 @@ For example:
 {
   "data": {
     "Get": {
-      "Article": [
+      "JeopardyQuestion": [
         {
-          "title": "#DesignforATL: This Instagram Fundraiser Is Raffling Off Home Goods to Help the Atlanta Spa Shooting\u2019s Victims and Families",
-          "url": "https://www.vogue.com/article/designforatl-instagram-fundraiser",
-          "wordCount": 366
+          "answer": "$5 (Lincoln Memorial in the background)",
+          "points": 600,
+          "question": "A sculpture by Daniel Chester French can be seen if you look carefully on the back of this current U.S. bill"
         },
         {
-          "title": "$400 for a Five Guys meal? Welcome to New Year's Eve in Dubai",
-          "url": "https://edition.cnn.com/travel/article/new-year-eve-dubai-most-expensive-restaurants/index.html",
-          "wordCount": 1203
+          "answer": "(1 of 2) Juneau, Alaska or Augusta, Maine",
+          "points": 0,
+          "question": "1 of the 2 U.S. state capitals that begin with the names of months"
         },
-        ...
+        {
+          "answer": "(1 of 2) Juneau, Alaska or Honolulu, Hawaii",
+          "points": 0,
+          "question": "One of the 2 state capitals whose names end with the letter \"U\""
+        }
       ]
     }
   }
@@ -323,6 +378,130 @@ For example:
 ```
 
 </details>
+
+#### Sorting by multiple properties
+
+To sort by more than one property, pass an array of { `path`, `order` } objects to the sort operator:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MultiplePropSorting Python"
+      endMarker="# END MultiplePropSorting Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START MultiplePropSorting"
+      endMarker="// END MultiplePropSorting"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START MultiplePropSorting"
+      endMarker="// END MultiplePropSorting"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START MultiplePropSorting"
+      endMarker="// END MultiplePropSorting"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="Curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START MultiplePropSorting"
+      endMarker="# END MultiplePropSorting"
+      language="shell"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MultiplePropSorting GraphQL"
+      endMarker="# END MultiplePropSorting GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+
+#### Additional properties
+
+Sometimes sorting by an additional property is required, such as `id`, `creationTimeUnix`, or `lastUpdateTimeUnix`.  This can be achieved by prefixing the property name with an underscore.
+
+For example:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AdditionalPropSorting Python"
+      endMarker="# END AdditionalPropSorting Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AdditionalPropSorting"
+      endMarker="// END AdditionalPropSorting"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START AdditionalPropSorting"
+      endMarker="// END AdditionalPropSorting"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START AdditionalPropSorting"
+      endMarker="// END AdditionalPropSorting"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="Curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START AdditionalPropSorting"
+      endMarker="# END AdditionalPropSorting"
+      language="shell"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AdditionalPropSorting GraphQL"
+      endMarker="# END AdditionalPropSorting GraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
 
 ## More Resources
 

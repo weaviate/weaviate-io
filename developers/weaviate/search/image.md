@@ -159,7 +159,7 @@ You can obtain this representation (a long string) as below:
   base64_string = base64.b64encode(content).decode('utf-8')  # standard library module
   ```
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   ```typescript
   base64String = content.toString('base64');
@@ -186,7 +186,7 @@ Then, you can search for similar images as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START base64"
@@ -224,7 +224,7 @@ If your target image is stored in a file, you can [use the Python client to sear
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 

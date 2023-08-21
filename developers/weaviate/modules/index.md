@@ -23,8 +23,9 @@ import Badges from '/_includes/badges.mdx';
 
 This section describes Weaviate's individual modules, including their capabilities and how to use them.
 
-- The Retrievers & Vectorizaters modules such as `text2vec-*` or `img2vec-*` convert data objects to vectors.
-- The Readers & Generators modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
+- The Vectorizer (also called Retrievers sometimes) modules such as `text2vec-*` or `img2vec-*` convert data objects and query inputs to vectors.
+- The (Re)Ranker modules such as `rerank-*` apply a(n) (additional) ranking process to the search results.
+- The Reader & Generator modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
 - The other modules include everything else, such as a spellcheck module.
 
 ## General

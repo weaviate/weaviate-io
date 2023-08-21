@@ -15,7 +15,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 />
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
@@ -44,7 +44,7 @@ func main() {
 		Scheme: "https",
 		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
 		Headers: map[string]string{
-			"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // Replace with your inference API key
+			"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
 		},
 	}
 
@@ -55,14 +55,10 @@ func main() {
 
 	classObj := &models.Class{
 			Class:      "Question",
-			Vectorizer: "text2vec-huggingface",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+			Vectorizer: "text2vec-openai",  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
 			ModuleConfig: map[string]interface{}{
-				"text2vec-huggingface": map[string]interface{}{
-					"model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
-					"options": map[string]interface{}{
-						"waitForModel": true,
-					},
-				},
+				"text2vec-openai": map[string]interface{}{},
+				"generative-openai": map[string]interface{}{},
 			},
 		}
 
@@ -98,7 +94,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-huggingface")  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+      .vectorizer("text2vec-openai")  // If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
       .build();
 
     // add the schema
@@ -117,14 +113,10 @@ public class App {
 ```bash
 echo '{
   "class": "Question",
-  "vectorizer": "text2vec-huggingface",
+  "vectorizer": "text2vec-openai",
   "moduleConfig": {
-      "text2vec-huggingface": {
-          "model": "sentence-transformers/all-MiniLM-L6-v2",
-          "options": {
-              "waitForModel": true
-          }
-      }
+      "text2vec-openai": {},
+      "generative-openai": {}
   }
 }' | curl \
   -X POST \

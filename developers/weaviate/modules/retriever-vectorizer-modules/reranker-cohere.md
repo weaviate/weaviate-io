@@ -1,6 +1,6 @@
 ---
 title: reranker-cohere
-sidebar_position: 10
+sidebar_position: 50
 image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['rerank', 'cohere']
 ---

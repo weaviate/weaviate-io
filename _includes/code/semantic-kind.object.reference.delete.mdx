@@ -20,36 +20,31 @@ client.data_object.reference.delete(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .referenceDeleter()
-      .withClassName('SourceClass')
-      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-      .withReferenceProperty('wroteArticles')
-      .withReference(
-        client.data
-          .referencePayloadBuilder()
-          .withClassName('TargetClass')
-          .withId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
-          .payload(),
-      )
-      .withConsistencyLevel('ALL')  // default QUORUM
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.data
+  .referenceDeleter()
+  .withClassName('SourceClass')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withReferenceProperty('wroteArticles')
+  .withReference(
+    client.data
+      .referencePayloadBuilder()
+      .withClassName('TargetClass')
+      .withId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
+      .payload(),
+  )
+  .withConsistencyLevel('ALL')  // default QUORUM
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
