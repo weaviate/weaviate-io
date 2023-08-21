@@ -5,6 +5,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import AboutUsHeader from '/src/components/AboutUs/header';
 import CompanyValues from '/src/components/AboutUs/values';
 import MeetTheTeam from '/src/components/AboutUs/meet-team';
+import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function AboutUsPage() {
   return (
@@ -15,6 +16,7 @@ export default function AboutUsPage() {
         <CompanyValues />
         <MeetTheTeam />
       </Layout>
+      <ThemeSwitch />
     </div>
   );
 }

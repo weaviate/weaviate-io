@@ -8,6 +8,7 @@ import PricingPlan from '../components/Pricing/Plan';
 import PricingFAQ from '../components/Pricing/FAQ';
 import ContactUsForm from '../components/ContactUsForm';
 import HybridBusinessCritical from '../components/Pricing/HybridBusinessCritical';
+import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function PricingPage() {
   const [selectedType, setSelectedType] = useState('saas');
@@ -36,6 +37,7 @@ export default function PricingPage() {
 
         {selectedType === 'saas' ? <></> : <ContactUsForm />}
       </Layout>
+      <ThemeSwitch />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Intro from '../../components/Careers/Intro';
 import InterviewProcess from '../../components/Careers/InterviewProcess';
 import Jobs from '../../components/Careers/Jobs';
 import Benefits from '../../components/Careers/Benefits';
+import ThemeSwitch from '../../components/ThemeSwitch';
 
 export default function CareersPage() {
   return (
@@ -19,6 +20,7 @@ export default function CareersPage() {
         <Jobs />
         <Benefits />
       </Layout>
+      <ThemeSwitch />
     </div>
   );
 }

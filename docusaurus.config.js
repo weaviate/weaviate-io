@@ -413,7 +413,17 @@ const config = {
                 darkTheme: darkCodeTheme,
                 additionalLanguages: ['java'],
             },
+
+            customConfig: {
+                colorMode: {
+                  defaultMode: 'light',
+                  disableSwitch: false,
+                  respectPrefersColorScheme: false,
+                },
+              },
         }),
+
+
 };
 
 module.exports = config;

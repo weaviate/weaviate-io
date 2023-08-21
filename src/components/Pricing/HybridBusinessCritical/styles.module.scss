@@ -117,11 +117,11 @@
   .title {
     background: #130c49;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    & h3 {
+      color: #ffffff;
+    }
   }
 
-  h3 {
-    color: #ffffff;
-  }
   .big {
     color: rgba(46, 49, 143);
   }
@@ -177,6 +177,13 @@
   border: 1px solid #130c49;
   background: #130c49;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 14.375rem;
+  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px;
 
   p {
     color: #ffffff;

@@ -22,11 +22,10 @@ export default function HybridBusinessCritical() {
           <div className={styles.grid}>
             <div className={styles.features}>
               <p>CPU charge is based on the number of CPUs provisioned.</p>
-              <hr></hr>
+              <hr className={styles.featuresLine}></hr>
             </div>
             <div className={`${styles.features} ${styles.priceCost}`}>
               <p>$0.003</p>
-              <hr></hr>
             </div>
             <div className={styles.features}>
               <p>Memory charge is based on total amount of GB provisioned.</p>
@@ -49,7 +48,7 @@ export default function HybridBusinessCritical() {
             <p>Google Cloud Platform</p>
             <Link to="#contact-sales">{'Contact us for more info >'}</Link>
           </div>
-          <div className={`${styles.marketBox} ${styles.awsBox}`}>
+          <div className={styles.awsBox}>
             <div className={styles.logos}>
               <span className={styles.aws} />
             </div>

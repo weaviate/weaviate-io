@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
@@ -16,9 +16,11 @@ import HomepageIntegrations from '/src/components/Home/IntegrationsUpdate';
 import HomepageTestimonials from '/src/components/Home/Testimonials';
 import HomepageLatestInsights from '/src/components/Home/LatestInsights';
 import HomepageContact from '/src/components/Home/Contact';
+import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+
   return (
     <div className="custom-page noBG">
       <Layout title="Welcome" description="Welcome to Weaviate">
@@ -36,6 +38,7 @@ export default function Home() {
           <HomepageReady />
         </main>
       </Layout>
+      <ThemeSwitch />
     </div>
   );
 }
