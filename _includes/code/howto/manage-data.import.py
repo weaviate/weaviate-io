@@ -46,7 +46,7 @@ data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
 # highlight-start
-with client.batch() as batch:
+with client.batch as batch:
     for data_obj in data_objs:
         batch.add_data_object(
             data_obj,
@@ -74,7 +74,7 @@ class_name = "YourClassName"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
-with client.batch() as batch:
+with client.batch as batch:
     for data_obj in data_objs:
         batch.add_data_object(
             data_obj,
@@ -107,7 +107,7 @@ data_objs = [
 vectors = [
     [0.25 + i/100] * 10 for i in range(5)  # Replace with your actual vectors
 ]
-with client.batch() as batch:
+with client.batch as batch:
     for i, data_obj in enumerate(data_objs):
         batch.add_data_object(
             data_obj,
@@ -153,7 +153,7 @@ def add_object(obj) -> None:
         'answer': obj['Answer'],
     }
 
-    with client.batch() as batch:
+    with client.batch as batch:
         # Add the object to the batch
         batch.add_data_object(
             data_object=properties,
