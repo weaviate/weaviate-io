@@ -128,7 +128,7 @@ This module allows you to perform local vectorization of text using the [gpt4all
 
 A key benefit of this module is that it is optimized for CPU using [`ggml`](https://github.com/ggerganov/ggml), enabling fast inference with a transformer-architecture model even without a GPU.
 
-If you are looking to perform local vectorization and don't have a GPU, this module could be a great option for you.
+If you are looking to perform local vectorization and don't have a GPU, this module could be a great option for you. Please note that currently, input text is truncated to 256 tokens. If you need to use longer chunks, you should explore a different module.
 
 :::note Available for `x86-64` devices only.
 Currently, the `gpt4all` library currently does not support ARM devices, such as Apple M-series.
@@ -141,19 +141,62 @@ Currently, the `gpt4all` library currently does not support ARM devices, such as
 
 ![New `multi2vec-bind` module](./img/multi2vec-bind.png)
 
-Expand beyond a few modalities! The `multi2vec-bind` module is able to vectorize data containing up to 7 modalities:
+With 1.21 we are introducing a second multimodal module to Weaviate! The `multi2vec-bind` module will allow users to generate embeddings using the [ImageBind](https://github.com/facebookresearch/ImageBind) model from Meta AI/FAIR out of the box.
 
-- text
-- images
-- videos
-- audio
-- inertial measurement unit (IMU, i.e. accelerometer and gyroscope data)
-- single channel depth images, and
-- single channel thermal images.
+We will cover some highlights about this great multimodal model below but for all the details have a look at this [blog](https://imagebind.metademolab.com/) and the [paper](https://arxiv.org/abs/2305.05665).
 
-Built with the [ImageBind](https://github.com/facebookresearch/ImageBind) model, this module can vectorize data containing any number of the listed modalities above.
+`multi2vec-bind` can generate vectors from an impressive 7 different modalities of data! You can now embed data containing any combination of text, image, video, audio, inertial measurement unit (IMU) - accelerometer and gyroscope data, depth images, and thermal images with Weaviate.
+
+<details>
+  <summary>How is this possible?</summary>
+
+ImageBind is able to understand multiple modalities because it actually consists of multiple models, each that specializes in understanding one modality.
+
+The embedding space for these specialist models is then unified/fused by using a contrastive loss function. This loss function, similar to its use in training the CLIP model, is used to make sure that similar concepts across different modalities are located “closer” together in vector space.
+
+So for example the vector representations of the sound of a lion roaring, the image of a lion roaring and the text “lion roaring” should all be close in vector space whereas the multimodal representation of a car, should be further away.
+
+The ability to encode and represent all of these modalities of data is quite exciting because now Weaviate can understand and perform cross-modal search and retrieval.
+
+This means that when using the `multi2vec-bind` module you can query with and retrieve any of the above combinations of modalities. For example, you can perform a `nearAudio` search by passing in a sound file of a lion roaring as a query and retrieve a picture of a lion roaring. Or perhaps you want you’ve got a tune stuck in your head but can’t remember which song it’s from? You can now record yourself humming the tune and then pass that in as a query to perform audio to audio search to retrieve the closest matching song! The possibilities are excitingly endless.
+
+</details>
 
 We know you've just been dying to vectorize that data from your accelerometer and gyroscope, and now you can! 😉
+
+Take a look at some examples of cross-modal search with `multi2vec-bind` below. Here, we are searching over a set of images using an audio file and then a video file, respectively.
+
+#### Example 1: Audio Search
+
+```python
+client.query
+.get("BindExample", ["text"])
+.with_near_audio({"audio" : "car_audio.wav"})
+.do()
+```
+
+[car_audio.wav](https://drive.google.com/file/d/1TDQ5h8ewX_DXcTv1CEiHG-b81GVm6X-W/view?usp=sharing)
+
+Top retrieved image:
+
+![Top retrieved image](./img/car.jpg)
+
+#### Example 2: Video Search
+
+```python
+client.query
+.get("BindExample", ["text"])
+.with_near_video({"video" : "bird.mp4"})
+.do()
+```
+
+[bird.mp4](https://drive.google.com/file/d/11X9ump85jtgTYx-vtEUb1p5dT-vxjbf2/view?usp=drive_link)
+
+Top retrieved image:
+
+![Top retrieved image](./img/bird.jpg)
+
+We’ll explore the awesomeness of this new module more in a blog soon but for now, you can read more about the details of how you can use `multi2vec-bind` in the [documentation](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind).
 
 > Read more:
 > - [Modules: multi2vec-bind](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind)
