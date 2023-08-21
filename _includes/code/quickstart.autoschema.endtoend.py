@@ -42,6 +42,7 @@ import requests
 resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json')
 data = json.loads(resp.text)  # Load data
 
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:  # Initialize a batch process
     for i, d in enumerate(data):  # Batch import data
         print(f"importing question: {i+1}")
@@ -155,6 +156,7 @@ url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/dat
 resp = requests.get(url)
 data = json.loads(resp.text)  # Load data
 
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:  # Configure a batch process
     for i, d in enumerate(data):  # Batch import all Questions
         print(f"importing question: {i+1}")

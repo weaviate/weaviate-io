@@ -42,6 +42,7 @@ Let's try vectorizing data with the `text2vec-cohere` module. We will be using d
 Load the data into a Pandas dataframe, then populate Weaviate like this:
 
 ```python
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
     for i, row in df.iterrows():
         properties = {

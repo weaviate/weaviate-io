@@ -46,6 +46,7 @@ data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
 # highlight-start
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
     for data_obj in data_objs:
         batch.add_data_object(
@@ -67,13 +68,14 @@ client.schema.delete_class(class_name)
 
 # BatchImportWithIDExample
 # highlight-start
-from weaviate.util import generate_uuid5
+from weaviate.util import generate_uuid5  # Generate a deterministic ID
 # highlight-end
 
 class_name = "YourClassName"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
     for data_obj in data_objs:
         batch.add_data_object(
@@ -107,6 +109,7 @@ data_objs = [
 vectors = [
     [0.25 + i/100] * 10 for i in range(5)  # Replace with your actual vectors
 ]
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
     for i, data_obj in enumerate(data_objs):
         batch.add_data_object(
@@ -145,7 +148,6 @@ import pandas as pd
 counter = 0
 interval = 20  # print progress every this many records; should be bigger than the batch_size
 
-
 def add_object(obj) -> None:
     global counter
     properties = {
@@ -153,6 +155,7 @@ def add_object(obj) -> None:
         'answer': obj['Answer'],
     }
 
+    client.batch.configure(batch_size=100)  # Configure batch
     with client.batch as batch:
         # Add the object to the batch
         batch.add_data_object(
@@ -209,3 +212,53 @@ actual_count = response['data']['Aggregate']['JeopardyQuestion'][0]['meta']['cou
 assert actual_count == MAX_ROWS_TO_IMPORT * 2, f'Expected {MAX_ROWS_TO_IMPORT * 2} but got {actual_count}'
 # END test
 '''
+
+
+# ============================================================
+# ===== Batch import with parameters explicitly set  =====
+# ============================================================
+
+class_name = "YourClassName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)
+]
+
+# ConfigureBatchImportExample
+# highlight-start
+client.batch.configure(
+    batch_size=100,  # Specify the batch size for auto batching
+    num_workers=2,   # Maximum number of parallel threads used during import
+)
+with client.batch as batch:
+# highlight-end
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+        )
+# END ConfigureBatchImportExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+client.schema.delete_class(class_name)
+
+
+# ConfigureDynamicBatchImportExample
+# highlight-start
+client.batch.configure(
+    batch_size=100,  # Specify the batch size for auto batching
+    num_workers=2,   # Maximum number of parallel threads used during import
+    dynamic=True,
+)
+with client.batch as batch:
+# highlight-end
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+        )
+# END ConfigureDynamicBatchImportExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+client.schema.delete_class(class_name)

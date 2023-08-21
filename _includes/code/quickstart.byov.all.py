@@ -24,8 +24,8 @@ resp = requests.get(url)
 data = json.loads(resp.text)
 
 # Configure a batch process
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
-    batch.batch_size=100
     # Batch import all Questions
     for i, d in enumerate(data):
         print(f"importing question: {i+1}")
