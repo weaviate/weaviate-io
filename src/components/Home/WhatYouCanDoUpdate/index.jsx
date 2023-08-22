@@ -67,8 +67,8 @@ game about?"
       <div className={styles.header}>
         <h2 className={styles.title}>Search smarter, build easier</h2>
         <p className={styles.subtitle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do{' '}
-          <br></br> eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Beyond search, Weaviate's next-gen vector database<br></br>can power a
+          wide range of innovative apps.
         </p>
       </div>
       <div className={styles.module}>

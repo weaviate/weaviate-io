@@ -9,11 +9,6 @@
   }
 }
 
-
-
-
-
-
 .tabs {
   display: flex;
   flex-direction: row;
@@ -28,17 +23,16 @@
   .left {
     display: flex;
     flex: 1;
-    border-left: 1px solid #130C49;
-
+    border-left: 1px solid #130c49;
 
     @media screen and (max-width: 768px) {
-    flex: 1;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    border-left: none;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 25%;
+      flex: 1;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      border-left: none;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 25%;
     }
 
     .tabsList {
@@ -48,13 +42,11 @@
       gap: 10px;
 
       @media screen and (max-width: 768px) {
-      display: flex;
-    flex-direction: row;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-
+        display: flex;
+        flex-direction: row;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
       }
-
 
       .tabsTrigger {
         appearance: none;
@@ -73,35 +65,31 @@
 
         p {
           text-align: left;
-          display:none;
+          display: none;
         }
-
-
-
-
       }
       .tabsTrigger[data-state='active'] {
-        border-left: 3px solid #130C49;
+        border-left: 3px solid #130c49;
 
         @media screen and (max-width: 485px) {
           border-left: none;
-    border-bottom: 7px solid #130C49;
+          border-bottom: 7px solid #130c49;
         }
 
         p {
           text-align: left;
-          display:inherit;
-
+          display: inherit;
+          text-align: left;
+          color: #1c1468;
+          font-family: 'Inter';
         }
 
         @media screen and (max-width: 485px) {
           p {
             text-align: left;
-            display:none;
-
+            display: none;
           }
         }
-
       }
     }
   }
@@ -109,62 +97,54 @@
     display: flex;
     flex: 1;
 
-
-
-
     div[data-state='active'] {
       display: flex;
       flex: 1;
 
+      .codeContainer {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-row-gap: 4px;
+        height: 444px;
+        width: 100%;
 
-        .codeContainer {
-          display: grid;
-          grid-template-rows: 1fr auto;
-          grid-row-gap: 4px;
-          height: 444px;
+        @media screen and (max-width: 485px) {
+          height: auto;
+        }
+
+        .tabsText {
+          display: none;
+        }
+
+        @media screen and (max-width: 485px) {
+          .tabsText {
+            display: block;
+            color: #130c49;
+            font-size: 1rem;
+            margin-bottom: 10px;
+          }
+        }
+
+        .codeImage {
+          background-size: contain;
+          height: 100%;
           width: 100%;
-
+          background-repeat: no-repeat;
           @media screen and (max-width: 485px) {
-            height: auto;
+            height: 270px;
           }
+        }
 
-          .tabsText{
-
-            display:none;
-
-          }
-
-          @media screen and (max-width: 485px) {
-            .tabsText{
-
-              display:block;
-              color: #130C49;
-font-size: 1rem;
-margin-bottom: 10px;
-            }
-          }
-
-          .codeImage {
-            background-size: contain;
-            height: 100%;
-            width: 100%;
-            background-repeat: no-repeat;
-            @media screen and (max-width: 485px) {
-              height: 270px;
-            }
-          }
-
-          .code1 {
-            background-image: url('/img/site/code-box-1.png');
-          }
-          .code2 {
-            background-image: url('/img/site/code-box-2.png');
-          }
-          .code3 {
-            background-image: url('/img/site/code-box-3.png');
-          }
+        .code1 {
+          background-image: url('/img/site/code-box-1.png');
+        }
+        .code2 {
+          background-image: url('/img/site/code-box-2.png');
+        }
+        .code3 {
+          background-image: url('/img/site/code-box-3.png');
+        }
       }
     }
   }
 }
-

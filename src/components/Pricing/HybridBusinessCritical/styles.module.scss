@@ -117,7 +117,7 @@
   .title {
     background: #130c49;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-    & h3 {
+    h3 {
       color: #ffffff;
     }
   }
@@ -242,4 +242,8 @@
 
 .featuresLine {
   width: 150%;
+
+  @media screen and (max-width: 668px) {
+    display: none;
+  }
 }

@@ -149,7 +149,7 @@
   }
 
   .buttonOutline {
-    outline: 1px solid #20e220;
+    border: 1px solid #130c49;
     font-weight: bold;
     color: #fff;
   }
@@ -166,7 +166,6 @@
   }
 
   .buttonOutline {
-    outline: 1px solid #130c49;
     color: #130c49;
     font-size: 1.1rem;
     font-weight: 400;
@@ -286,7 +285,7 @@
   .sandboxTitle {
     background-color: #61bd73;
     h3 {
-      color: #1c1468;
+      color: #1c1468 !important;
     }
   }
 

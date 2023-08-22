@@ -17,7 +17,7 @@ export default function PricingEnterprise() {
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            $0.100 per 1M vector dimensions stored <br /> or queried per month
+            $0.100 per 1M vector dimensions stored or queried per month
           </span>
         </li>
         <li>

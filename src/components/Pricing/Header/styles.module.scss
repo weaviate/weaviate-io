@@ -6,6 +6,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: 120%; /* 3rem */
+  @media screen and (max-width: 680px) {
+    text-align: left;
+  }
 }
 .pricingButton {
   border-radius: 0.3125rem;
@@ -38,7 +41,15 @@ p {
   text-align: center;
   margin: auto;
   width: 51%;
+  color: #130c49;
   h3 {
+    color: #130c49;
+  }
+
+  @media screen and (max-width: 680px) {
+    text-align: left;
+    margin: auto;
+    width: auto;
     color: #130c49;
   }
 }
@@ -186,6 +197,10 @@ p {
   p {
     font-size: 1rem;
     padding: 0px 70px;
+
+    @media screen and (max-width: 680px) {
+      padding: 0px;
+    }
   }
 
   &:hover {

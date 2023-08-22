@@ -7,7 +7,7 @@ export default function HybridBusinessCritical() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Bring your own cloud</h2>
+          <h2>Bring Your Own Cloud</h2>
           <p>
             Our pricing is designed to give you all the capabilities to build
             and test your applications for free. <br /> When you are ready to
@@ -53,7 +53,9 @@ export default function HybridBusinessCritical() {
               <span className={styles.aws} />
             </div>
             <p>Amazon Web Services</p>
-            <Link to="#contact-sales">{'Go to Marketplace >'}</Link>
+            <Link to="https://aws.amazon.com/marketplace/pp/prodview-cicacyv63r43i">
+              {'Go to Marketplace >'}
+            </Link>
           </div>
           <div className={styles.marketBox}>
             <div className={styles.logos}>
