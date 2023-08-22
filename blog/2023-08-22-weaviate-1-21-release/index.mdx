@@ -8,7 +8,7 @@ tags: ['release', 'engineering']
 description: "Weaviate 1.21 released with new operators, performance improvements, multi-tenancy improvements, and more!"
 
 ---
-Weaviate `1.21` is here and available on [Weaviate Cloud Services](https://console.weaviate.cloud/)!
+Weaviate `1.21` is here!
 
 Here are the ⭐️*highlights*⭐️ relating to this release:
 
@@ -16,12 +16,16 @@ Here are the ⭐️*highlights*⭐️ relating to this release:
 
 <!-- truncate -->
 1. [`ContainsAny` and `ContainsAll` operators added](#containsany-and-containsall-operators) – Convenient, new operators to simplify complex queries.
-1. [Multi-tenancy improvements](#multi-tenancy-improvements) – Experimental tenant deactivation for efficiency + improved performance.
+1. [Multi-tenancy improvements](#multi-tenancy-improvements) – Experimental tenant deactivation for efficiency, performance improvements.
 1. [New vectorizer modules](#new-modules)
     - `text2vec-gpt4all` provides fast transformer inference on CPUs; and
     - `multi2vec-bind` vectorizes multi-modal data from up to 7 modalities.
 1. [Performance improvements](#performance-improvements) – A suite of improvements to search, indexing and backup performance.
 1. [Hybrid search algorithm refinement](#hybrid-search-algorithm-refinement) - Improved scoring stability for small limits in hybrid search.
+
+:::tip Available on WCS
+`1.21` is already available on [Weaviate Cloud Services](https://console.weaviate.cloud/) - so try it out!
+:::
 
 For more details, keep scrolling ⬇️!
 
@@ -86,6 +90,8 @@ A `ContainsAll` query on the other hand will return all `Person` objects whose `
 }
 ```
 
+:::note Client libraries will be updated to support these operators soon.
+:::
 </details>
 
 ## Multi-tenancy improvements
@@ -126,12 +132,15 @@ We've improved the way Weaviate manages these processes, leading to a more stabl
 
 This module allows you to perform local vectorization of text using the [gpt4all](https://docs.gpt4all.io/gpt4all_python_embedding.html) library.
 
-A key benefit of this module is that it is optimized for CPU using [`ggml`](https://github.com/ggerganov/ggml), enabling fast inference with a transformer-architecture model even without a GPU.
+A key benefit of this module is that it is optimized for CPU using [`ggml`](https://github.com/ggerganov/ggml). For those of you without a GPU on hand, you can now take advantage of a transformer-architecture model without sacrificing speed.
 
-If you are looking to perform local vectorization and don't have a GPU, this module could be a great option for you. Please note that currently, input text is truncated to 256 tokens. If you need to use longer chunks, you should explore a different module.
+Currently, `text2vec-gpt4all` supports the [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model.
 
-:::note Available for `x86-64` devices only.
-Currently, the `gpt4all` library currently does not support ARM devices, such as Apple M-series.
+If you are looking to perform local vectorization and don't have a GPU, this module could be a great option for you.
+
+:::note Limitations
+- Input text is truncated to 256 tokens. If you need to use longer chunks, you should explore a different module.
+- Available for `x86-64` devices only.
 :::
 
 > Read more:
@@ -166,7 +175,10 @@ We know you've just been dying to vectorize that data from your accelerometer an
 
 Take a look at some examples of cross-modal search with `multi2vec-bind` below. Here, we are searching over a set of images using an audio file and then a video file, respectively.
 
-#### Example 1: Audio Search
+#### Example 1: Audio Search with [car_audio.wav](https://drive.google.com/file/d/1TDQ5h8ewX_DXcTv1CEiHG-b81GVm6X-W/view?usp=sharing)
+
+:::note Search carried out with a preview version of the Python client
+:::
 
 ```python
 client.query
@@ -175,13 +187,14 @@ client.query
 .do()
 ```
 
-[car_audio.wav](https://drive.google.com/file/d/1TDQ5h8ewX_DXcTv1CEiHG-b81GVm6X-W/view?usp=sharing)
-
 Top retrieved image:
 
 ![Image of a car representing the top retrieved image from an audio search](./img/car.jpg)
 
-#### Example 2: Video Search
+#### Example 2: Video Search with [bird.mp4](https://drive.google.com/file/d/11X9ump85jtgTYx-vtEUb1p5dT-vxjbf2/view?usp=drive_link)
+
+:::note Search carried out with a preview version of the Python client
+:::
 
 ```python
 client.query
@@ -189,8 +202,6 @@ client.query
 .with_near_video({"video" : "bird.mp4"})
 .do()
 ```
-
-[bird.mp4](https://drive.google.com/file/d/11X9ump85jtgTYx-vtEUb1p5dT-vxjbf2/view?usp=drive_link)
 
 Top retrieved image:
 
@@ -252,9 +263,9 @@ With `pread`, When a goroutine is waiting for disk I/O, the Go runtime parks it 
 > - [References: Configuration: Environment variables](/developers/weaviate/config-refs/env-vars)
 > - Paper: ["Do you really want to use mmap in your DBMS?"](https://db.cs.cmu.edu/mmap-cidr2022/)
 
-### ARM64 speedups
+### Multiprocessing speedups for ARM64 processors
 
-For those of you on ARM processors, you'll be happy to know that `simd` instructions are now used for faster distance calculations on ARM64 processors.
+For those of you on ARM processors, you'll be happy to know that `simd` multiprocessing instructions are now used for faster distance calculations on ARM64 processors.
 
 This optimization results in significant performance (up to ~40%!) improvements, especially for large data sets and high-dimensional embeddings.
 
@@ -310,7 +321,7 @@ As a user, you don't need to do anything to take advantage of this change. It is
 
 ## Summary
 
-That's it from us - we hope you enjoy the new features and improvements in Weaviate `1.21`. The new Weaviate releases are available on [WCS](https://console.weaviate.cloud/). So you can try it out yourself on a free sandbox, or by upgrading!
+That's it from us - we hope you enjoy the new features and improvements in Weaviate `1.21`. This release is already available on [WCS](https://console.weaviate.cloud/). So you can try it out yourself on a free sandbox, or by upgrading!
 
 Thanks for reading, and see you next time 👋!
 
