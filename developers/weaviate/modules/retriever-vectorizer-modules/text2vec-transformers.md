@@ -38,9 +38,9 @@ If this is the case, we recommend:
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `text2vec-transformers`, you must enable it in your configuration file.
+To use `text2vec-transformers`, you must enable it in your Docker Compose file (e.g. `docker-compose.yaml`).
 
 :::tip Use the configuration tool
 While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
@@ -99,7 +99,7 @@ This module will benefit greatly from GPU usage. Make sure to enable CUDA if you
 
 As an alternative, you can run the inference container independently from Weaviate. To do so, you can:
 
-- Enable `text2vec-transformers` in your Weaviate configuration file,
+- Enable `text2vec-transformers` in your Docker Compose file,
 - Omit `t2v-transformers` parameters,
 - Run the inference container separately, e.g. using Docker, and
 - Set `TRANSFORMERS_INFERENCE_API` to the URL of the inference container.

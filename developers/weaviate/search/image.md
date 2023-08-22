@@ -40,7 +40,7 @@ To search using an input image, you must:
 <details>
   <summary>How do I <strong>configure Weaviate</strong> with an image vectorizer module?</summary>
 
-You must enable the desired vectorizer module and specify the inference API address in the relevant configuration file (e.g. `docker-compose.yml`). You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
+You must enable the desired vectorizer module and specify the inference API address in the relevant Docker Compose file (e.g. `docker-compose.yml`). You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
 An example `img2vec-neural` configuration is shown below:
 

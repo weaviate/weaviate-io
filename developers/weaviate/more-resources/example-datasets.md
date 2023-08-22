@@ -123,7 +123,7 @@ docker run -it -e weaviate_host=$WEAVIATE_ORIGIN -e cache_dir-$CACHE_DIR -e batc
 
 Usage with Docker on **local with** Docker Compose;
 
-_Note: run this from the same directory where the Weaviate Docker Compose files are located_
+_Note: run this from the same directory where the Docker Compose files are located_
 
 {% raw %}
 ```bash
