@@ -35,7 +35,7 @@ A comprehensive of list environment variables [can be found on this page](../con
 
 It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
 
-Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
+Make sure to run `docker compose down` when shutting down. This writes all the files from memory to disk.
 
 **With named volume**
 ```yaml
@@ -64,10 +64,7 @@ After running a `docker compose up -d`, Docker will mount `/var/weaviate` on the
 
 ### Weaviate without any modules
 
-An example docker-compose setup for Weaviate without any modules can be found
-below. In this case, no model inference is performed at either import or search
-time. You will need to provide your own vectors (e.g. from an outside ML model)
-at import and search time:
+An example Docker Compose setup for Weaviate without any modules can be found below. In this case, no model inference is performed at either import or search time. You will need to provide your own vectors (e.g. from an outside ML model) at import and search time:
 
 ```yaml
 version: '3.4'
@@ -87,7 +84,7 @@ services:
 
 ### Weaviate with the `text2vec-transformers` module
 
-An example docker-compose setup file with the transformers model [`sentence-transformers/multi-qa-MiniLM-L6-cos-v1`](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) is:
+An example Docker Compose file with the transformers model [`sentence-transformers/multi-qa-MiniLM-L6-cos-v1`](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) is:
 
 ```yaml
 version: '3.4'
@@ -126,7 +123,7 @@ The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
 ## Multi-node setup
 
-You can create a multi-node setup with Weaviate using Docker-Compose. To do so, you need to:
+You can create a multi-node setup with Weaviate using docker compose. To do so, you need to:
 - Set up one node as a "founding" member, and configure the other nodes in the cluster to join it using the `CLUSTER_JOIN` variable.
 - Configure `CLUSTER_GOSSIP_BIND_PORT` and `CLUSTER_DATA_BIND_PORT` for each node.
 - Optionally, you can set the hostname for each node using `CLUSTER_HOSTNAME`.
@@ -160,7 +157,7 @@ Below is an example configuration for a 3-node setup. You may be able to test [r
 
 
 <details>
-  <summary>Docker Compose configuration file for a replication setup with 3 nodes</summary>
+  <summary>Docker Compose file for a replication setup with 3 nodes</summary>
 
 ```yaml
 services:
@@ -257,16 +254,16 @@ It is a Weaviate convention to set the `CLUSTER_DATA_BIND_PORT` to 1 higher than
 
 ## Shell attachment options
 
-The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers.
+The output of `docker compose up` is quite verbose as it attaches to the logs of all containers.
 
-You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker-compose up`:
+You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker compose up`:
 
 ```bash
 # Run Docker Compose
-$ docker-compose up -d && docker-compose logs -f weaviate
+docker compose up -d && docker compose logs -f weaviate
 ```
 
-Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
+Alternatively you can run docker compose entirely detached with `docker compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
 <!-- TODO:
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yaml config file.

@@ -33,7 +33,7 @@ This module is not available on Weaviate Cloud Services.
 To use `multi2vec-clip`, you must enable it in your configuration file.
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters

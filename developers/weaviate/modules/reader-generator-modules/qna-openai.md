@@ -39,7 +39,7 @@ You only need to provide one of the two keys, depending on which service (OpenAI
 
 You can provide your API key in two ways:
 
-1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:

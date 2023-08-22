@@ -29,9 +29,9 @@ Key notes:
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `text2vec-cohere`, you must enable it in your configuration file. You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) in the case of Docker-Compose.
+To use `text2vec-cohere`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
 
 #### Parameters
 

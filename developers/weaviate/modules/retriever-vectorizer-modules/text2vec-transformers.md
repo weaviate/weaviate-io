@@ -43,7 +43,7 @@ This module is not available on Weaviate Cloud Services.
 To use `text2vec-transformers`, you must enable it in your configuration file.
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -265,7 +265,7 @@ That's it! You can now push your image to your favorite registry or reference it
 
 To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
 
-To do so, you need to expose the inference container in your docker-compose by adding:
+To do so – you need to expose the inference container in your Docker Compose file – add something like this:
 
 ```yaml
 ports:

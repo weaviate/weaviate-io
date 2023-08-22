@@ -67,7 +67,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 [Create a sandbox instance](developers/wcs/quickstart.mdx) on Weaviate Cloud Services and come back here. <br/>
 Make sure to collect the **API key** and **URL** from the `Details` tab.
 
-:::info To use another deployment method (e.g. Docker-Compose)
+:::info To use another deployment method (e.g. Docker Compose)
 If you prefer another method, see [this section](#can-i-use-another-deployment-method).
 :::
 
@@ -309,12 +309,12 @@ Yes, you can use any method listed on our [installation options](../installation
 
 </p><br/>
 
-Using Docker-Compose may be a convenient option for many. To do so:
-1. Save this [Docker-Compose configuration file](https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?generative_cohere=false&generative_openai=true&generative_openai_key_approval=yes&generative_palm=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&ref2vec_centroid=false&reranker_cohere=false&weaviate_volume=no-volume&runtime=docker-compose&spellcheck_module=false&sum_module=false&text_module=text2vec-openai&weaviate_version=v||site.weaviate_version||) as `docker-compose.yml`,
-1. Run `docker-compose up -d` from the location of your `docker-compose.yml` file, and then
+Using Docker Compose may be a convenient option for many. To do so:
+1. Save this [`Docker Compose` file](https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?generative_cohere=false&generative_openai=true&generative_openai_key_approval=yes&generative_palm=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&ref2vec_centroid=false&reranker_cohere=false&weaviate_volume=no-volume&runtime=docker-compose&spellcheck_module=false&sum_module=false&text_module=text2vec-openai&weaviate_version=v||site.weaviate_version||) as `docker-compose.yml`,
+1. Run `docker compose up -d` from the location of your `docker-compose.yml` file, and then
 1. Connect to Weaviate at `http://localhost:8080`.
 
-If you are using this Docker-Compose configuration file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
+If you are using this `Docker Compose` file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
 
 <ConnectToWeaviateDocker />
 

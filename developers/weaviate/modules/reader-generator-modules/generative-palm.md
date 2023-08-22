@@ -64,7 +64,7 @@ Optionally (not recommended), you can provide the PaLM API key as an environment
 <details>
   <summary>How to provide the PaLM API key as an environment variable</summary>
 
-During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:

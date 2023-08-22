@@ -40,11 +40,11 @@ Here is the current list of available `SUM` modules - sourced from [Hugging Face
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The `sum-transformers` module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
+The `sum-transformers` module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
 
-An example Docker-compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
+An example Docker Compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
 
 ```yaml
 ---

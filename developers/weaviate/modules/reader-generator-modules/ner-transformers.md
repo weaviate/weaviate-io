@@ -23,9 +23,9 @@ There are currently three different NER modules available (taken from [Hugging F
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The NER module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
+The NER module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker Compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
 
 ```yaml
 ---
