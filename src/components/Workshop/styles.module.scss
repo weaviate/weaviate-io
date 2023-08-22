@@ -67,9 +67,16 @@ p {
   }
 }
 
-[data-theme='light'] {
+[data-theme='dark'] {
   .eapp-events-calendar-filter-component {
     color: white;
+  }
+  .jsx-695107531.eapp-events-calendar-controls-item.eapp-events-calendar-filter-component {
+    color: white;
+  }
+
+  .jsx-695107531.eapp-events-calendar-filter-current {
+    border-color: rgb(255 255 255);
   }
 
   .eapp-events-calendar-filter-current {
@@ -77,6 +84,10 @@ p {
   }
 
   .eapp-events-calendar-filter-currentText {
+    color: white;
+  }
+
+  .eapp-events-calendar-filter-currentText.jsx-695107531 {
     color: white;
   }
 }
