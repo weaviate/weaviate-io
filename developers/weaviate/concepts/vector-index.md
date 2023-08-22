@@ -87,6 +87,7 @@ The picture shows how a HNSW algorithm is used to go from a search query vector 
 All [distance metrics supported in Weaviate](/developers/weaviate/config-refs/distances.md) are also supported with the HNSW index type.
 
 ## HNSW with Product Quantization (PQ)
+
 When using HNSW you can also choose to also enable product quantization (PQ) to reduce memory costs. Product quantization is a technique for representing an approximation of a vector using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets with a given amount of memory.
 
 An important point to note is that product quantization is a tradeoff between recall, performance, and memory usage. This means that configuration settings reducing memory may also reduce recall. This is similar to how HNSW can be tuned to lower latency at the cost of recall by configuring its search parameters (`ef` and `maxConnections`). Please refer to [Configuration: Indexes](../configuration/indexes.md) for more information about how to configure HNSW.
@@ -99,8 +100,6 @@ Quantization is the approach of representing a range of vectors with a finite sm
 
 ![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
-Small segments (i.e. one segment per dimension) produce a higher recall while larger segments (i.e. one segment per 32 dimensions) have lower recall but also reduced memory usage. An important thing to note is that the segments must divide evenly the original vector dimension. A good initial choice is to choose one segment per 4 dimensions.
-
 From the segments a training step occurs where centroids are calculated per segment and stored as a codebook. By default Weaviate will cluster each segment into 256 centroids.
 
 Once this codebook is calculated a vector can now instead be represented by the id of the closest centroid to each of its segments.
@@ -111,30 +110,42 @@ per vector are required plus the small size of the codebook.
 
 With product quantization distances are then calculated asymmetrically with a query vector with the goal being to keep all the original information in the query vector when calculating distances.
 
-Additionally as Weaviate has the original vectors stored on disk, "rescoring" will occur when using product quantization. After HNSW PQ has produced the candidate vectors from a search the real vectors and distances
-will be fetched from disk improving recall.
+Additionally as Weaviate has the original vectors stored on disk, rescoring will occur when using product quantization. After HNSW PQ has produced the candidate vectors from a search the original vectors will be fetched from disk improving recall. Rescoring occurs by default.
 
+### Segments
+
+The PQ `segments` controls the tradeoff between memory and recall. A larger `segments` parameter means higher memory usage and recall. An important thing to note is that the segments must divide evenly the original vector dimension.
+
+Below is a list segment values for common vectorizer modules:
+
+| Module      | Model                                   | Dimensions | Segments               |
+|-------------|-----------------------------------------|------------|------------------------|
+| openai      | text-embedding-ada-002                  | 1536       | 512, 384, 256, 192, 96 |
+| cohere      | multilingual-22-12                      | 768        | 384, 256, 192, 96      |
+| huggingface | sentence-transformers/all-MiniLM-L12-v2 | 384        | 192, 128, 96           |
 
 ### Conversion of an existing Class to use PQ
-You can convert an existing class to use product quantization by changing the schema as follows. It is recommended if possible to run a backup first before enabling.
-
-:::tip
-A good recommendation is to have 10,000 to 100,000 vectors per shard loaded before enabling product quantization. To reduce fit times you can also use the `trainingLimit` parameter to limit the max vectors PQ will fit centroids to.
+:::caution Important
+If using PQ it is recommended to run Weaviate at least 1.20.5.
 :::
+
+You can convert an existing class to use product quantization by updating the vector index configuration. It is recommended to run a [backup](../configuration/backups.md) first before enabling if you are in production and may want to roll back.
+
+As PQ has a training stage, data must already exist in the class prior to enabling. To reduce training times you can also use the `trainingLimit` parameter.
 
 ```python
 client.schema.update_config("DeepImage", {
   "vectorIndexConfig": {
     "pq": {
-      "enabled": True
-#     "segments": 128
+      "enabled": True,
+      "trainingLimit": 100000,
+      "segments": 0 # see above section for recommended values
     }
   }
 })
 ```
 
 :::tip
-
 To learn more about other configuration settings for PQ refer to the documentation in [Configuration: Indexes](../configuration/indexes.md)
 :::
 
@@ -165,22 +176,6 @@ client.query.get("DeepImage", ["i"]) \
     {'_additional': {'distance': 0.21241724}, 'i': 98583},
     {'_additional': {'distance': 0.21241736}, 'i': 8064},
     {'_additional': {'distance': 0.21257097}, 'i': 537}]}}}
-```
-
-As an example please refer to the example below for the different parameters that can be set to further configure PQ:
-
-```python
-client.schema.update_config("DeepImage", {
-  "vectorIndexConfig": {
-    "pq": {
-      "enabled": True, # defaults to False
-      "segments": 32, # defaults to the number of dimensions
-      "encoder": {
-        "type": "kmeans"  # defaults to kmeans
-      }
-    }
-  }
-})
 ```
 
 ### Encoders
