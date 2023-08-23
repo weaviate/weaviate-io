@@ -8,10 +8,38 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+## Overview
+
+Weaviate supports deployment with Docker Compose, which allows you to run Weaviate on any OS supported by Docker.
+
+To start Weaviate with Docker, you can use a Docker Compose file, typically called `docker-compose.yml`. You can use the [Starter Docker Compose file](#starter-docker-compose-file), or generate one with the [configuration tool](#configurator) or alternatively pick one of the [examples](#example-configurations) below.
+
+:::note
+If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).
+:::
+
+## Starter Docker Compose file
+
+:::info Starter Docker Compose
+If you are new to Weaviate, this is a good place to start.
+:::
+
+We prepared a `Starter` Docker Compose file, which will let you do:
+* vector search with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
+* search on already vectorized data – no vectorizer required.
+* retrieval augmentated generation (RAG) with `OpenAI`(i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
+
+Download the <a target="\_blank" href={'/downloads/docker-templates/docker-compose-core.yml'} download="docker-compose.yml">docker-compose.yml here</a> and start it with Docker Compose:
+
+```bash
+docker compose up -d
+```
+
 ## Configurator
 
-You can use the configuration tool below to customize your Weaviate setup for
-your desired runtime.
+The Configurator can help you generate the Weaviate setup you need.
+
+Use it to select specific Weaviate modules, including vectorizers that run locally (i.e. `text2vec-transformers`, or `multi2vec-clip`)
 
 <!-- {% include docs-config-gen.html %} -->
 
@@ -19,17 +47,17 @@ import DocsConfigGen from '/_includes/docs-config-gen.mdx';
 
 <DocsConfigGen />
 
-## Example configurations
+## Environment variables
 
-:::note
-If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
-:::
-
-To start Weaviate with Docker Compose, you need a Docker Compose file, typically called `docker-compose.yml`. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional environment variables can be set in this file, which control your Weaviate setup, authentication and authorization, module settings, and data storage settings.
+You can use environment variables to control your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
 :::info List of environment variables
 A comprehensive of list environment variables [can be found on this page](../config-refs/env-vars.md).
 :::
+
+## Example configurations
+
+Here are some examples of how to configure `docker-compose.yml`.
 
 ### Persistent volume
 
