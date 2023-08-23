@@ -19,7 +19,7 @@ Key notes:
     - Please check the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `embed-multilingual-v2.0`.
+- The default model is `embed-multilingual-v2.0` (this is the same model as the previous `multilingual-22-12`).
 - Make sure to set the right [distance metric](#distance-metric) in your class configuration.
 
 
@@ -176,6 +176,10 @@ You can supply the API key at query time by adding it to the HTTP header:
 `text2vec-cohere` defaults to the `embed-multilingual-v2.0` embedding model unless specified otherwise.
 
 For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `embed-multilingual-v2.0` model.
+
+:::info `embed-multilingual-v2.0` == `multilingual-22-12`
+`embed-multilingual-v2.0` reflects the new name.
+:::
 
 ### Distance metric
 
