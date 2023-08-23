@@ -81,7 +81,7 @@ The following does not apply to cross-references.
 
 ### `id`
 
-You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, or have Weaviate generate one.
+You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, leave it blank to have Weaviate generate one. You can also use a deterministic UUID (UUIDv5) as shown here to [prevent duplicates](#managing-potential-duplication).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -225,7 +225,7 @@ With a deterministic ID, Weaviate will either be creating a new object or overwr
 
 ### Generate deterministic ID
 
-You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client. See the [`id` section above](#id) for a concrete example.
 
 ### Check if an object exists
 
