@@ -19,7 +19,7 @@ Key notes:
     - Please check the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `multilingual-22-12`.
+- The default model is `embed-multilingual-v2.0` (this is the same model as the previous `multilingual-22-12`).
 - Make sure to set the right [distance metric](#distance-metric) in your class configuration.
 
 
@@ -73,12 +73,12 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-- `model` (Optional): The model to use. Defaults to `multilingual-22-12`.
+- `model` (Optional): The model to use. Defaults to `embed-multilingual-v2.0`.
 - `truncate` (Optional): Sets Cohere API input truncation behavior. Defaults to `RIGHT`. Options: `RIGHT` or `NONE`.
 
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-cohere`, distance metric to `dot`, model to `multilingual-22-12` and without input truncation by the Cohere API.
+The following example configures the `Document` class by setting the vectorizer to `text2vec-cohere`, distance metric to `dot`, model to `embed-multilingual-v2.0` and without input truncation by the Cohere API.
 
 :::info
 Different Cohere models use different distance metrics. Make sure to set this accordingly. See the [distance metric](#distance-metric) section for more information.
@@ -97,7 +97,7 @@ Different Cohere models use different distance metrics. Make sure to set this ac
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "multilingual-22-12", // Defaults to multilingual-22-12 if not set
+          "model": "embed-multilingual-v2.0", // Defaults to embed-multilingual-v2.0 if not set
           "truncate": "RIGHT" // Defaults to RIGHT if not set
         }
       },
@@ -135,7 +135,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "multilingual-22-12", // Defaults to multilingual-22-12 if not set
+          "model": "embed-multilingual-v2.0", // Defaults to embed-multilingual-v2.0 if not set
           "truncate": "RIGHT", // Defaults to RIGHT if not set
           // highlight-start
           "vectorizeClassName": "false"
@@ -173,9 +173,13 @@ You can supply the API key at query time by adding it to the HTTP header:
 
 ### Available models
 
-`text2vec-cohere` defaults to the `multilingual-22-12` embedding model unless specified otherwise.
+`text2vec-cohere` defaults to the `embed-multilingual-v2.0` embedding model unless specified otherwise.
 
-For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `multilingual-22-12` model.
+For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `embed-multilingual-v2.0` model.
+
+:::info `embed-multilingual-v2.0` == `multilingual-22-12`
+`embed-multilingual-v2.0` reflects the new name.
+:::
 
 ### Distance metric
 
