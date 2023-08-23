@@ -111,7 +111,11 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.m
 
 <CodeAutoschemaMinimumSchema />
 
-This creates a class `Question`, tells Weaviate which `vectorizer` to use, and sets the `moduleConfig` for the vectorizer.
+This creates a class `Question`, specifying which `vectorizer` to use, sets the `moduleConfig` for the vectorizer and specifies the generative module to be used.
+
+:::info To use another vectorizer or generative module
+If you prefer another setup, see [this section](#can-i-use-different-modules).
+:::
 
 Now you are ready to add objects to Weaviate.
 
@@ -306,7 +310,7 @@ Yes, you can use any method listed on our [installation options](../installation
 </p><br/>
 
 Using Docker-Compose may be a convenient option for many. To do so:
-1. Save this [Docker-Compose configuration file](https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?generative_cohere=false&generative_openai=true&generative_openai_key_approval=yes&generative_palm=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&ref2vec_centroid=false&reranker_cohere=false&runtime=docker-compose&spellcheck_module=false&sum_module=false&text_module=text2vec-openai&weaviate_version=v||site.weaviate_version||) as `docker-compose.yml`,
+1. Save this [Docker-Compose configuration file](https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?generative_cohere=false&generative_openai=true&generative_openai_key_approval=yes&generative_palm=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&ref2vec_centroid=false&reranker_cohere=false&weaviate_volume=no-volume&runtime=docker-compose&spellcheck_module=false&sum_module=false&text_module=text2vec-openai&weaviate_version=v||site.weaviate_version||) as `docker-compose.yml`,
 1. Run `docker-compose up -d` from the location of your `docker-compose.yml` file, and then
 1. Connect to Weaviate at `http://localhost:8080`.
 
@@ -354,10 +358,16 @@ Additionally, we also provide suggested `vectorizer` module configurations.
 <Tabs groupId="inferenceAPIs">
 <TabItem value="cohere" label="Cohere">
 
-```json
+```js
 class_obj = {
   "class": "Question",
   "vectorizer": "text2vec-cohere",
+  "moduleConfig": {
+    "text2vec-cohere": {
+      "model": "embed-multilingual-v2.0", // Default model. This is the same model as `multilingual-22-12`
+      "truncate": "RIGHT" // Defaults to RIGHT if not set
+    }
+  }
 }
 ```
 

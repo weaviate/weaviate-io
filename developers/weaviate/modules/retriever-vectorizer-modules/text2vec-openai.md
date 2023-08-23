@@ -65,6 +65,7 @@ services:
       ENABLE_MODULES: text2vec-openai
       DEFAULT_VECTORIZER_MODULE: text2vec-openai
       OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at query time.
+      OPENAI_ORGANIZATION: your-orgname  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
@@ -199,6 +200,14 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 You can supply the API key at query time by adding it to the HTTP header:
 - `"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"` for OpenAI, and
 - `"X-Azure-Api-Key": "YOUR-AZURE-API-KEY"` for Azure OpenAI, and
+
+### Organization name
+
+:::info Available from version `v1.21.1`
+:::
+
+For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:
+- `"X-OpenAI-Organization": "YOUR-OPENAI-ORGANIZATION"` for OpenAI
 
 ## Additional information
 

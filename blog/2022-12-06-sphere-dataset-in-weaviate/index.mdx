@@ -100,7 +100,7 @@ client.schema.create_class({
 start = time.time()
 c = 0
 with open(SPHERE_DATASET) as jsonl_file:
-    with client.batch() as batch:
+    with client.batch as batch:
         for jsonl in jsonl_file:
             json_parsed = json.loads(jsonl)
             batch.add_data_object({

@@ -122,6 +122,28 @@ To prevent duplicates, we suggest:
 
 You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
 
+### Example
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectWithDeterministicId START"
+      endMarker="# CreateObjectWithDeterministicId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectWithDeterministicId START"
+      endMarker="// CreateObjectWithDeterministicId END"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ### Check if an object exists
 
 You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
