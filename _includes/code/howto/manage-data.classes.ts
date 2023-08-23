@@ -113,8 +113,4 @@ const updateClassObj = {
 }
 
 // Update the class definition
-let updatedClassResponse = await client
-  .schema
-  .classCreator()
-  .withClass(originalClassObj)
-  .do();
+// Not yet available in TS
