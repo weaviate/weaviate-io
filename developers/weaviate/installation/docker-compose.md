@@ -12,7 +12,10 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate supports deployment with Docker Compose, which allows you to run Weaviate on any OS supported by Docker.
 
-To start Weaviate with Docker, you can use a Docker Compose file, typically called `docker-compose.yml`. You can use the [Starter Docker Compose file](#starter-docker-compose-file), or generate one with the [configuration tool](#configurator) or alternatively pick one of the [examples](#example-configurations) below.
+To start Weaviate with Docker, you can use a Docker Compose file, typically called `docker-compose.yml`. You can:
+* use the [Starter Docker Compose file](#starter-docker-compose-file),
+* generate one with the [configuration tool](#configurator),
+* pick one of the [examples](#example-configurations) below.
 
 :::note
 If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).
@@ -24,10 +27,12 @@ If you are new to Docker (Compose) and containerization, check out our [Docker I
 If you are new to Weaviate, this is a good place to start.
 :::
 
-We prepared a `Starter` Docker Compose file, which will let you do:
-* vector search with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
-* search on already vectorized data – no vectorizer required.
-* retrieval augmentated generation (RAG) with `OpenAI`(i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
+We prepared a <a target="\_blank" href={'/downloads/docker-templates/docker-compose-core.yml'} download="docker-compose.yml">Starter Docker Compose file</a>, which will let you do:
+* Vector search with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
+* Search on already vectorized data – no vectorizer required.
+* Retrieval augmentated generation (RAG) with `OpenAI`(i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
+
+### Download and run
 
 Download the <a target="\_blank" href={'/downloads/docker-templates/docker-compose-core.yml'} download="docker-compose.yml">docker-compose.yml here</a> and start it with Docker Compose:
 
