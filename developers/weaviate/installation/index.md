@@ -42,7 +42,7 @@ If self-hosting, we recommend starting with Docker and gaining familiarity with 
 
 ### Run an unreleased version
 
-You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this may not be an officially release, and may contain bugs.
+You can run Weaviate with `docker compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this may not be an officially release, and may contain bugs.
 
 ```sh
 git clone https://github.com/weaviate/weaviate.git
@@ -77,7 +77,11 @@ services:
     image: semitechnologies/contextionary:en0.16.0-v1.2.1
 ```
 
-After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
+After the build is complete, you can run this Weaviate build with docker compose:
+
+```bash
+docker compose up
+```
 
 ## More Resources
 

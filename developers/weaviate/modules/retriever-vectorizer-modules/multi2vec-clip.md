@@ -27,12 +27,12 @@ Key notes:
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `multi2vec-clip`, you must enable it in your configuration file.
+To use `multi2vec-clip`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -88,7 +88,7 @@ This module will benefit greatly from GPU usage. Make sure to enable CUDA if you
 
 As an alternative, you can run the inference container independently from Weaviate. To do so, you can:
 
-- Enable `multi2vec-clip` in your Weaviate configuration file,
+- Enable `multi2vec-clip` in your Docker Compose file,
 - Omit `multi2vec-clip` parameters,
 - Run the inference container separately, e.g. using Docker, and
 - Set `CLIP_INFERENCE_API` to the URL of the inference container.
@@ -247,7 +247,7 @@ docker build -f clip.Dockerfile -t clip-inference .
 
 #### Step 3: Use the image
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the docker tag `clip-inference`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the docker tag `clip-inference`.
 
 ### Using a private or local model
 
@@ -275,11 +275,11 @@ Now you just need to build and tag your Dockerfile, we will tag it as `my-models
 docker build -f my-models.Dockerfile -t my-models-inference .
 ```
 
-That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `my-models-inference`.
+That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `my-models-inference`.
 
 To debug if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
 
-To do so, you need to expose the inference container. in your Docker-compose add something like
+To do so – you need to expose the inference container in your Docker Compose file – add something like this:
 
 ```yaml
 ports:

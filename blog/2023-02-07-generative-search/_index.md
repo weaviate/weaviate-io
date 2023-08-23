@@ -56,7 +56,7 @@ The following modules are enabled by default:
 :::
 
 ### Local deployment with Docker
-To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `docker-compose` file to enable the `generative-openai` module, alongside any other module you may need.
+To enable the Generative OpenAI module with your local deployment of Weaviate, you need to configure your `Docker Compose` file to enable the `generative-openai` module, alongside any other module you may need.
 
 For example, you can enable `text2vec-openai` (to vectorize your data and run queries) and `generative-openai`, like this:
 
@@ -64,8 +64,8 @@ For example, you can enable `text2vec-openai` (to vectorize your data and run qu
 ENABLE_MODULES: 'text2vec-openai,generative-openai'
 ```
 
-#### Docker-Compose
-Here is a full example of a `docker-compose` file - with the `text2vec-openai` and `generative-openai` modules:
+#### Docker Compose
+Here is a full example of a `Docker Compose` file - with the `text2vec-openai` and `generative-openai` modules:
 
 ```yaml
 ---
@@ -93,7 +93,7 @@ services:
       OPENAI_APIKEY: sk-foobar # this parameter is optional, as you can also provide it at insert/query time
       CLUSTER_HOSTNAME: 'node1'
 ```
-Before running the docker-compose file, you will need to request an [OpenAI API-key](https://openai.com/api/). You can either input your key in the docker-compose file in the `OPENAI_APIKEY` parameter, or provide it at insert/query time.
+Before running the Docker Compose file, you will need to request an [OpenAI API-key](https://openai.com/api/). You can either input your key in the Docker Compose file in the `OPENAI_APIKEY` parameter, or provide it at insert/query time.
 
 :::note
 Notice in `ENABLE_MODULES`, we are enabling two modules. In the above example we are using the `text2vec-openai` vectorization module; however, you can use another module of choice (Cohere or Hugging Face). Check out the [documentation](/developers/weaviate/modules/reader-generator-modules/generative-openai#introduction) to learn more about this.

@@ -48,7 +48,7 @@ dashboards](https://github.com/weaviate/weaviate-examples/tree/main/monitoring-p
 You can start up a full-setup including monitoring and dashboards with a single
 command. In this setup the following components are used:
 
-* Docker-compose is used to provide a fully-configured setup that can be
+* Docker Compose is used to provide a fully-configured setup that can be
   started with a single command.
 * Weaviate is configured to expose Prometheus metrics as outlined in the
   section above.

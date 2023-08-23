@@ -32,12 +32,12 @@ For production use cases, we recommend using other modules that use a more moder
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `text2vec-contextionary`, you must enable it in your configuration file.
+To use `text2vec-contextionary`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -430,7 +430,7 @@ To overcome this limitation the optional **Compound Splitting Feature** can be e
 Note that the newly found word (made up of the parts `thunderstorm` and `cloud` has the highest weight in the vectorization. So this meaning, which would have been lost without Compound Splitting, can now be recognized.
 
 #### How to enable
-You can enable Compound Splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#compound-splitting).
+You can enable Compound Splitting in the Docker Compose file of the `text2vec-contextionary`. See how this is done [here](#compound-splitting).
 
 #### Trade-Off Import speed vs Word recognition
 
@@ -440,7 +440,7 @@ Compound Splitting runs an any word that is otherwise not recognized. Depending 
 
 So called "noise words" are concatenated words of random words with no easily recognizable meaning. These words are present in the Contextionary training space, but are extremely rare and therefore distributed seemingly randomly. As a consequence, an "ordinary" result of querying features relying on nearest neighbors (additional properties `nearestNeighbors` or `semanticPath`) might contain such noise words as immediate neighbors.
 
-To combat this noise, a neighbor filtering feature was introduced in the contextionary, which ignores words of the configured bottom percentile - ranked by occurrence in the respective training set. By default this value is set to the bottom 5th percentile. This setting can be overridden. To set another value, e.g. to ignore the bottom 10th percentile, provide the environment variable `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE=10` to the `text2vec-contextionary` container (configuration file).
+To combat this noise, a neighbor filtering feature was introduced in the contextionary, which ignores words of the configured bottom percentile - ranked by occurrence in the respective training set. By default this value is set to the bottom 5th percentile. This setting can be overridden. To set another value, e.g. to ignore the bottom 10th percentile, provide the environment variable `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE=10` to the `text2vec-contextionary` container, in the Docker Compose file.
 
 ## More resources
 

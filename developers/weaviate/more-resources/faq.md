@@ -63,8 +63,8 @@ import Badges from '/_includes/badges.mdx';
   <summary>Answer</summary>
 
 > There are three levels:
-> 1. You have no volume configured (the default in our `docker-compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept
-> 2. You have no volume configured (the default in our `docker-compose` files), if the container is removed (e.g. from `docker-compose down` or `docker rm`) your data is gone
+> 1. You have no volume configured (the default in our `Docker Compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept
+> 2. You have no volume configured (the default in our `Docker Compose` files), if the container is removed (e.g. from `docker compose down` or `docker rm`) your data is gone
 > 3. If a volume is configured, your data is persisted regardless of what happens to the container. They can be completely removed or replaced, next time they start up with a volume, all your data will be there
 
 </details>
@@ -508,12 +508,12 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 
 </details>
 
-#### Q: How can I run the latest master branch with docker-compose?
+#### Q: How can I run the latest master branch with Docker Compose?
 
 <details>
   <summary>Answer</summary>
 
-> You can run Weaviate with `docker-compose`, you can build your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
+> You can run Weaviate with `Docker Compose`, you can build your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
 >
 > ```sh
 > git clone https://github.com/weaviate/weaviate.git
@@ -548,7 +548,11 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 >     image: semitechnologies/contextionary:en0.16.0-v1.0.2
 > ```
 >
-> After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
+> After the build is complete, you can run this Weaviate build with docker compose:
+
+```bash
+docker compose up
+```
 
 </details>
 

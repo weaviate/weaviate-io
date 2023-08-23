@@ -20,7 +20,7 @@ This module is enabled by default on the WCS.
 
 ### Weaviate open source
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. Ref2Vec-centroid can be added like this:
+Which modules to use in a Weaviate instance can be specified in the `Docker Compose` file. Ref2Vec-centroid can be added like this:
 
 ```yaml
 ---
