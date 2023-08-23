@@ -49,7 +49,7 @@ The Docker Compose file contains both Weaviate with the `text2vec-contextionary`
 Download the Docker Compose file
 
 ```bash
-curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-examples/main/weaviate-contextionary-newspublications/docker-compose.yml
+curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-examples/main/weaviate-contextionary-newspublications/docker-compose.yaml
 ```
 
 Run Docker (optional: run with `-d` to run Docker in the background)
