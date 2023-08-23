@@ -88,7 +88,7 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yaml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-palm,generative-palm'

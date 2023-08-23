@@ -70,7 +70,7 @@ If your instance is older than `1.19.0` then you need to migrate or upgrade it t
 
 ### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Cohere module in your Docker Compose file (e.g. `docker-compose.yaml`). Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Cohere module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-cohere,generative-cohere'

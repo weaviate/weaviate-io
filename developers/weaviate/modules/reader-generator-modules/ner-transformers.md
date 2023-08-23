@@ -156,7 +156,7 @@ docker build -f my-model.Dockerfile -t davlan-bert-base-multilingual-cased-ner-h
 ```
 
 #### Step 3: That's it!
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
 
 
 ## How it works (under the hood)

@@ -62,7 +62,7 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Docker Compose file (Weaviate open source only)
 
-You can enable the OpenAI Q&A module in your Docker Compose file (e.g. `docker-compose.yaml`). Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the OpenAI Q&A module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,qna-openai'

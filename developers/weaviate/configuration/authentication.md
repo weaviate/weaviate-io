@@ -140,7 +140,7 @@ Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discove
 
 - For simple use-cases such as for a single user, you can use Weaviate Cloud Services (WCS) as the OIDC token issuer. To do so:
     - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.cloud/)).
-    - In the Docker Compose file (e.g. `docker-compose.yaml`), specify:
+    - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
       - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
       - `wcs` as the client id (in `AUTHENTICATION_OIDC_CLIENT_ID`), and
       - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCS account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .

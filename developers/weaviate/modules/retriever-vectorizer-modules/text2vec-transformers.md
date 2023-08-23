@@ -40,7 +40,7 @@ This module is not available on Weaviate Cloud Services.
 
 ### Docker Compose file
 
-To use `text2vec-transformers`, you must enable it in your Docker Compose file (e.g. `docker-compose.yaml`).
+To use `text2vec-transformers`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
 While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
@@ -237,7 +237,7 @@ docker build -f distilroberta.Dockerfile -t distilroberta-inference .
 
 #### Step 3: Use the image
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `distilroberta-inference`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `distilroberta-inference`.
 
 
 ### Option 3: A private or local model
@@ -261,7 +261,7 @@ Now you just need to build and tag your Dockerfile, we will tag it as `my-model-
 docker build -f my-model.Dockerfile -t my-model-inference .
 ```
 
-That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `my-model-inference`.
+That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `my-model-inference`.
 
 To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
 

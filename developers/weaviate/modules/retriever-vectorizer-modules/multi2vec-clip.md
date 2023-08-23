@@ -29,7 +29,7 @@ This module is not available on Weaviate Cloud Services.
 
 ### Docker Compose file
 
-To use `multi2vec-clip`, you must enable it in your Docker Compose file (e.g. `docker-compose.yaml`).
+To use `multi2vec-clip`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
 While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
@@ -247,7 +247,7 @@ docker build -f clip.Dockerfile -t clip-inference .
 
 #### Step 3: Use the image
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the docker tag `clip-inference`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the docker tag `clip-inference`.
 
 ### Using a private or local model
 
@@ -275,7 +275,7 @@ Now you just need to build and tag your Dockerfile, we will tag it as `my-models
 docker build -f my-models.Dockerfile -t my-models-inference .
 ```
 
-That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `my-models-inference`.
+That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `my-models-inference`.
 
 To debug if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
 

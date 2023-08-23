@@ -161,7 +161,7 @@ docker build -f my-model.Dockerfile -t google-pegasus-pubmed .
 
 #### Step 3: Use the image with Weaviate
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `google-pegasus-pubmed`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `google-pegasus-pubmed`.
 
 
 ## How it works (under the hood)
