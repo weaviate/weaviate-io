@@ -2,7 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
@@ -194,6 +193,7 @@ echo '{
 }' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
     -H "X-OpenAI-Api-Key: YOUR_OPENAI_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint

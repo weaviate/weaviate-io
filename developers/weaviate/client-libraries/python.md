@@ -344,7 +344,7 @@ client.batch.configure(
   batch_size=5, # int value for batch_size enables auto-batching, see Batch configuration section below
 )
 
-with client.batch() as batch:
+with client.batch as batch:
   # add author
   uuid_author = generate_uuid5(author, "Author")
   batch.add_data_object(
@@ -462,7 +462,7 @@ client.batch.configure(
   dynamic=True, # makes it dynamic
 )
 
-with client.batch() as batch:
+with client.batch as batch:
   # add author
   uuid_author = generate_uuid5(author, "Author")
   batch.add_data_object(
@@ -578,7 +578,7 @@ client.batch.configure(
   batch_size=None, # None disable any automatic functionality
 )
 
-with client.batch() as batch:
+with client.batch as batch:
   # add author
   uuid_author = generate_uuid5(author, "Author")
   batch.add_data_object(

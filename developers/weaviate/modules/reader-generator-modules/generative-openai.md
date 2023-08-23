@@ -66,6 +66,14 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 <ClientKey />
 
+## Organization name
+
+:::info Available from version `v1.21.1`
+:::
+
+For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:
+- `"X-OpenAI-Organization": "YOUR-OPENAI-ORGANIZATION"` for OpenAI
+
 ## Module configuration
 
 :::tip Not applicable to WCS
@@ -107,6 +115,7 @@ services:
       // highlight-next-line
       ENABLE_MODULES: 'text2vec-openai,generative-openai'
       OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      OPENAI_ORGANIZATION: your-orgname  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```

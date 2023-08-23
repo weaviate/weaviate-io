@@ -40,7 +40,7 @@ client.batch.configure(
   consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
 )
 
-with client.batch() as batch:
+with client.batch as batch:
   # Add object without a custom vector.
   # When using vectorization modules this can be used
   # or when you don't want to set a vector

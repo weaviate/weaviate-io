@@ -127,7 +127,9 @@ This is really useful, as it will let you experiment and work with your Weaviate
 
 ### Operating Systems
 
-Embedded Weaviate is currently supported on Linux and macOS.
+Embedded Weaviate is currently supported on:
+- Linux
+- macOS
 
 
 ## Language Clients

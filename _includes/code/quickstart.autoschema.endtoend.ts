@@ -4,6 +4,19 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
+/*
+// DockerInstantiationExample
+import weaviate, { WeaviateClient, ObjectsBatcher } from 'weaviate-ts-client';
+import fetch from 'node-fetch';
+
+const client: WeaviateClient = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+  headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your inference API key
+});
+// END DockerInstantiationExample
+*/
+
 // EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 import fetch from 'node-fetch';
@@ -141,6 +154,25 @@ async function generativeSearchQuery() {
 
 // END GenerativeSearchExample
 
+// GenerativeSearchGroupedTaskExample
+async function generativeSearchGroupedQuery() {
+  const res = await client.graphql
+    .get()
+    .withClassName('Question')
+    .withFields('question answer category')
+    .withNearText({concepts: ['biology']})
+    .withGenerate({groupedTask: 'Write a tweet with emojis about these facts.'})
+    .withLimit(2)
+    .do();
+
+  console.log(res.data.Get.Question[0]._additional.generate.groupedResult);
+  return res;
+}
+
+// END GenerativeSearchGroupedTaskExample
+
+
+
 // Define test functions
 async function getNumObjects() {
   const res = await client.graphql
@@ -212,6 +244,11 @@ await generativeSearchQuery();
 // END GenerativeSearchExample
 */
 
+/*
+// GenerativeSearchGroupedTaskExample
+await generativeSearchGroupedQuery();
+// END GenerativeSearchGroupedTaskExample
+*/
 
 /*
 // Add the schema

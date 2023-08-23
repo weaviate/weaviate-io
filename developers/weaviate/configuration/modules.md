@@ -21,7 +21,17 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-You can enable and configure Weaviate's [modules](../concepts/modules.md) by setting appropriate [environment variables](../config-refs/env-vars.md) as shown below.
+Weaviate's functionality can be customized by using [modules](../concepts/modules.md). This page explains how to enable and configure modules.
+
+## Instance-level configuration
+
+At the instance (i.e. Weaviate cluster) level, you can:
+
+- Enable modules
+- Configure the default vectorizer module
+- Configure module-specific variables (e.g. API keys), where applicable
+
+This can be done by setting the appropriate [environment variables](../config-refs/env-vars.md) as shown below.
 
 :::tip What about WCS?
 Weaviate Cloud Services (WCS) instances come with modules pre-configured. See [this page](../../wcs/index.mdx#configuration) for details.
@@ -57,7 +67,11 @@ Refer to the individual [module documentation](../modules/index.md) for more det
 
 ## Vectorizer modules
 
-The [vectorization modules](../modules/retriever-vectorizer-modules/index.md) enable Weaviate to vectorize data at import, and to perform [`near<Media>`](../search/similarity.md#an-input-medium) searches such as `nearText`.
+The [vectorization modules](../modules/retriever-vectorizer-modules/index.md) enable Weaviate to vectorize data at import, and to perform [`near<Media>`](../search/similarity.md#an-input-medium) searches such as `nearText` or `nearImage`.
+
+:::info List of available vectorizer (`xxx2vec-xxx`) modules
+Can be found [in this section](../modules/retriever-vectorizer-modules/index.md).
+:::
 
 ### Enable vectorizer modules
 
@@ -69,8 +83,6 @@ services:
     environment:
       ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai'
 ```
-
-You can find a list of available vectorizer modules [in this section](../modules/retriever-vectorizer-modules/index.md).
 
 ### Default vectorizer module
 
@@ -87,19 +99,17 @@ services:
       DEFAULT_VECTORIZER_MODULE: text2vec-huggingface
 ```
 
-:::caution Multiple vectorization modules & `Explore`
-Combining text vectorization modules will disable `Explore{}`.
-:::
-
 ## Generative modules
 
 The [generative modules](../modules/reader-generator-modules/index.md) enable [generative search](../search/generative.md) functions.
 
-You can see the list of available generative (`generative-xxx`) modules [in this section](../modules/reader-generator-modules/index.md)
+:::info List of available generative (`generative-xxx`) modules
+Can be found [in this section](../modules/reader-generator-modules/index.md).
+:::
 
 ### Enable a generative module
 
-You can enable generative modules by adding the desired module to the `ENABLE_MODULES` environment variable. For example, the below will enable the `generative-cohere` module along with `text2vec-huggingface` vectorizer.
+You can enable generative modules by adding the desired module to the `ENABLE_MODULES` environment variable. For example, the below will enable the `generative-cohere` module along with the `text2vec-huggingface` vectorizer module.
 
 ```yaml
 services:
