@@ -310,9 +310,35 @@ Yes, you can use any method listed on our [installation options](../installation
 </p><br/>
 
 Using Docker Compose may be a convenient option for many. To do so:
-1. Save this [`Docker Compose` file](https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?generative_cohere=false&generative_openai=true&generative_openai_key_approval=yes&generative_palm=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&ref2vec_centroid=false&reranker_cohere=false&weaviate_volume=no-volume&runtime=docker-compose&spellcheck_module=false&sum_module=false&text_module=text2vec-openai&weaviate_version=v||site.weaviate_version||) as `docker-compose.yml`,
-1. Run `docker compose up -d` from the location of your `docker-compose.yml` file, and then
-1. Connect to Weaviate at `http://localhost:8080`.
+1. Save this `Docker Compose` file as `docker-compose.yml`,
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    restart: on-failure:0
+    environment:
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-openai,generative-openai'
+      CLUSTER_HOSTNAME: 'node1'
+...
+```
+2. Run `docker compose up -d` from the location of your `docker-compose.yml` file, and then
+3. Connect to Weaviate at `http://localhost:8080`.
 
 If you are using this `Docker Compose` file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
 
