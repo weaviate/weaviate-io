@@ -140,19 +140,21 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+# Note: prior to v1.14, use `certainty` instead of `distance`
+# Under _additional, `certainty` is only supported if distance==cosine, but `distance` is always supported
+echo '{
   "query": "{
-    Get{
+    Get {
       Publication(
         nearObject: {
-          id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",
-          distance: 0.6 # prior to v1.14 use certainty instead of distance
+          id: \"32d5a368-ace8-3bb7-ade7-9f7ff03eddb6\",
+          distance: 0.6
         }
-      ){
+      ) {
         name
         _additional {
-          certainty # only supported if distance==cosine
-          distance  # always supported
+          certainty
+          distance
         }
       }
     }
@@ -160,8 +162,9 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -172,14 +175,14 @@ $ echo '{
   Get{
     Publication(
       nearObject: {
-        id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6", # or weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6
-        distance: 0.6 # prior to v1.14, use certainty: 0.7
+        id: "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",  # or weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6
+        distance: 0.6  # prior to v1.14, use certainty: 0.7
       }
-    ){
+    ) {
       name
       _additional {
-        certainty # only works if distance==cosine
-        distance  # always works
+        certainty  # only works if distance==cosine
+        distance   # always works
       }
     }
   }
