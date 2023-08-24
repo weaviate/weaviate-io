@@ -28,12 +28,12 @@ Key notes:
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `multi2vec-clip`, you must enable it in your configuration file.
+To use `multi2vec-clip`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -81,7 +81,7 @@ services:
 
 As an alternative, you can run the inference container independently from Weaviate. To do so, you can:
 
-- Enable `img2vec-neural` in your Weaviate configuration file,
+- Enable `img2vec-neural` in your Docker Compose file,
 - Omit `img2vec-neural` parameters,
 - Run the inference container separately, e.g. using Docker, and
 - Set `IMAGE_INFERENCE_API` to the URL of the inference container.

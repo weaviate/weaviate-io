@@ -22,7 +22,7 @@ Note that Weaviate now offers native backup modules starting with `v1.15` for si
 
 ### Persistence
 
-When running Weaviate with docker-compose, you can set the `volumes` variable under the `weaviate` service and a unique cluster hostname as an environment variable.
+When running Weaviate with Docker Compose, you can set the `volumes` variable under the `weaviate` service and a unique cluster hostname as an environment variable.
 
 ```yaml
 services:

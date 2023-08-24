@@ -40,11 +40,11 @@ Here is the current list of available `SUM` modules - sourced from [Hugging Face
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The `sum-transformers` module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
+The `sum-transformers` module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
 
-An example Docker-compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
+An example Docker Compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
 
 ```yaml
 ---
@@ -161,7 +161,7 @@ docker build -f my-model.Dockerfile -t google-pegasus-pubmed .
 
 #### Step 3: Use the image with Weaviate
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `google-pegasus-pubmed`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `google-pegasus-pubmed`.
 
 
 ## How it works (under the hood)

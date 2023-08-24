@@ -157,7 +157,7 @@ This has been tested locally by building and running the site
 * For documentation changes
 
 ```text
-fix typo in getting started docker-compose example
+fix typo in getting started docker compose example
 
 What's being changed:
 

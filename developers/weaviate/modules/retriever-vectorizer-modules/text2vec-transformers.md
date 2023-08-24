@@ -38,12 +38,12 @@ If this is the case, we recommend:
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `text2vec-transformers`, you must enable it in your configuration file.
+To use `text2vec-transformers`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -99,7 +99,7 @@ This module will benefit greatly from GPU usage. Make sure to enable CUDA if you
 
 As an alternative, you can run the inference container independently from Weaviate. To do so, you can:
 
-- Enable `text2vec-transformers` in your Weaviate configuration file,
+- Enable `text2vec-transformers` in your Docker Compose file,
 - Omit `t2v-transformers` parameters,
 - Run the inference container separately, e.g. using Docker, and
 - Set `TRANSFORMERS_INFERENCE_API` to the URL of the inference container.
@@ -237,7 +237,7 @@ docker build -f distilroberta.Dockerfile -t distilroberta-inference .
 
 #### Step 3: Use the image
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `distilroberta-inference`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `distilroberta-inference`.
 
 
 ### Option 3: A private or local model
@@ -261,11 +261,11 @@ Now you just need to build and tag your Dockerfile, we will tag it as `my-model-
 docker build -f my-model.Dockerfile -t my-model-inference .
 ```
 
-That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `my-model-inference`.
+That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `my-model-inference`.
 
 To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
 
-To do so, you need to expose the inference container in your docker-compose by adding:
+To do so – you need to expose the inference container in your Docker Compose file – add something like this:
 
 ```yaml
 ports:

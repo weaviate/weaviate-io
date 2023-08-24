@@ -23,9 +23,9 @@ There are currently three different NER modules available (taken from [Hugging F
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The NER module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
+The NER module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker Compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
 
 ```yaml
 ---
@@ -156,7 +156,7 @@ docker build -f my-model.Dockerfile -t davlan-bert-base-multilingual-cased-ner-h
 ```
 
 #### Step 3: That's it!
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
 
 
 ## How it works (under the hood)

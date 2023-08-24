@@ -64,7 +64,7 @@ Optionally (not recommended), you can provide the PaLM API key as an environment
 <details>
   <summary>How to provide the PaLM API key as an environment variable</summary>
 
-During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
@@ -86,9 +86,9 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### Configuration file (Weaviate open source only)
+### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Palm module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-palm,generative-palm'

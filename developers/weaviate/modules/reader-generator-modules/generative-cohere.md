@@ -42,7 +42,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 You can provide your Cohere API key in two ways:
 
-1. During the **configuration** of your Docker instance, by adding `COHERE_APIKEY` under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `COHERE_APIKEY` under `environment` to your `Docker Compose` file, like this:
 
   ```
   environment:
@@ -68,9 +68,9 @@ Your Weaviate instance must be on `1.19.0` or newer.
 If your instance is older than `1.19.0` then you need to migrate or upgrade it to a newer version.
 :::
 
-### Configuration file (Weaviate open source only)
+### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Cohere module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Cohere module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-cohere,generative-cohere'
