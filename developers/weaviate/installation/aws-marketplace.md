@@ -1,6 +1,6 @@
 ---
 title: AWS Marketplace
-sidebar_position: 8
+sidebar_position: 10
 image: og/docs/installation.jpg
 sidebar_class_name: hidden
 # tags: ['installation', 'AWS Marketplace']
