@@ -19,9 +19,9 @@ export default function Workshops() {
           <script
             src="https://static.elfsight.com/platform/platform.js"
             data-use-service-core
-            defer
+            async
           ></script>
-          <div class="elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80"></div>
+          <div className="elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80"></div>
         </div>
       </div>
     </Layout>
