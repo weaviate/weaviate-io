@@ -62,17 +62,6 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 <hr/>
 
-## Create an instance
-
-[Create a sandbox instance](developers/wcs/quickstart.mdx) on Weaviate Cloud Services and come back here. <br/>
-Make sure to collect the **API key** and **URL** from the `Details` tab.
-
-:::info To use another deployment method (e.g. Docker Compose)
-If you prefer another method, see [this section](#can-i-use-another-deployment-method).
-:::
-
-<hr/>
-
 ## Install a client library
 
 We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client, run the below:
@@ -83,6 +72,22 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <CodeClientInstall />
 
+:::
+
+<hr/>
+
+## Create an instance
+
+Create a sandbox instance on [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) and come back here. <br/>
+Make sure to collect the **API key** and **URL** from the `Details` tab.
+
+:::tip WCS setup instructions
+Check out the [WCS quickstart](developers/wcs/quickstart.mdx) for instructions on how to create a sandbox instance and connect to it. <br/>
+Then make sure to come back here.
+:::
+
+:::info To use another deployment method (e.g. Docker Compose)
+If you prefer another method, see [this section](#can-i-use-another-deployment-method).
 :::
 
 <hr/>
