@@ -62,7 +62,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 <hr/>
 
-## Install a client library
+## Step 1: Install a client library
 
 We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client, run the below:
 
@@ -76,7 +76,7 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <hr/>
 
-## Create an instance
+## Step 2: Create an instance
 
 Create a sandbox instance on [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) and come back here. <br/>
 Make sure to collect the **API key** and **URL** from the `Details` tab.
@@ -92,7 +92,7 @@ If you prefer another method, see [this section](#can-i-use-another-deployment-m
 
 <hr/>
 
-## Connect to Weaviate
+## Step 3: Connect to Weaviate
 
 Connect to Weaviate using this information:
 
@@ -108,7 +108,7 @@ Now you are connected to your Weaviate instance.
 
 <hr/>
 
-## Define a class
+## Step 4: Define a class
 
 Next, we define a data collection (a "class" in Weaviate) to store objects in:
 
@@ -126,7 +126,7 @@ Now you are ready to add objects to Weaviate.
 
 <hr/>
 
-## Add objects
+## Step 5: Add objects
 
 We can now add objects to Weaviate using a [batch import](../manage-data/import.mdx) process. We will cover both ways of obtaining a vector, starting with using a `vectorizer`.
 
@@ -159,7 +159,7 @@ Do *not* specify object vectors as an object property. This will cause Weaviate 
 
 <hr/>
 
-# Putting it together
+## Putting it together
 
 The following code puts the above steps together. You can run it yourself to import the data into your Weaviate instance.
 
@@ -181,7 +181,7 @@ You've already built a vector database and populated it with data! Now, we are r
 
 <hr/>
 
-## Queries
+## Step 6: Queries
 
 ### Semantic search
 
