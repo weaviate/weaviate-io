@@ -9,7 +9,7 @@ export default function Workshops() {
         <script
           src="https://static.elfsight.com/platform/platform.js"
           data-use-service-core
-          async
+          defer
         ></script>
       </Head>
       <div className="custom-page">
