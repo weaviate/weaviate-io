@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import styles from '/src/components/Workshop/styles.module.scss';
+import Head from '@docusaurus/Head';
 
 export default function Workshops() {
   return (
