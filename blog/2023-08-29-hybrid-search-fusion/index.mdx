@@ -3,11 +3,13 @@ title: Unlocking the Power of Hybrid Search - A Deep Dive into Weaviate's Fusion
 slug: hybrid-search-fusion-algorithms
 authors: [dirk, jp]
 date: 2023-08-29
-# image: ./img/hero.png
+image: ./img/hero.png
 tags: ['search', 'engineering', 'concepts']
 description: "How hybrid search works, and under the hood of Weaviate's fusion algorithms."
 
 ---
+
+![Hybrid search hero image - shows a combination of results from vector and keyword search](./img/hero.png)
 
 :::info Highlights
 - There are two fusion algorithms available in Weaviate: `rankedFusion` and `relativeScoreFusion`.
@@ -32,6 +34,8 @@ In this post, we’ll dive into exactly the world of hybrid search to discuss ho
 :::
 
 ## How does hybrid search work, exactly?
+
+![Hybrid search main image - a figurative image of Weaviate bot combining results from vector and keyword search to produce hybrid search](./img/hybrid-search-illurated.png)
 
 Here is an example of a hybrid search:
 
@@ -214,7 +218,7 @@ Now, let’s take a look at the newer `relativeScoreFusion` algorithm.
 
 ![Hybrid relativeScoreFusion algorithm depicted as two judges holding up two scores](../2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_dark.png#gh-dark-mode-only)
 ![Hybrid relativeScoreFusion algorithm depicted as two judges holding up two scores](../2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_light.png#gh-light-mode-only)
-<!-- blog/2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_light.png -->
+
 The `relativeScoreFusion` algorithm was added in Weaviate version `1.20`.
 
 In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each objects score by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
