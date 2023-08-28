@@ -9,8 +9,10 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+<!-- NOTE: To show this page on the sidebar, remove the `sidebar_class_name: hidden` line above. -->
+
 :::warning TODO
-Notes: This is WIP - where we need more information, I have added TODOs and indented them as quotes. Please remove the TODOs once the information has been added.
+Notes: This is WIP - where we need more information, I have added TODOs and indented them as quotes. Please remove the TODOs, and un-indent the text once the information has been added.
 :::
 
 ## Overview
@@ -23,17 +25,17 @@ You can use [Google Cloud Marketplace](https://console.cloud.google.com/marketpl
 :::
 
 :::warning TODO
-Add a list of resources similar to [the AWS page](./aws-marketplace.md#overview) in the collapsible section below.
+Add a list of resources similar to [the AWS page](./aws-marketplace.md#overview) in the (currently hidden) collapsible section below.
 :::
 
-<details>
+<!-- <details>
   <summary>
     What resources are used & installed?
   </summary>
 
-This will set up the following resources:
+To be confirmed.
 
-</details>
+</details> -->
 
 ## Installation instructions
 
@@ -49,7 +51,8 @@ We will go through some of these steps in detail below.
 ### Configuration & Cluster creation
 
 :::warning TODO
-Review the below admonition section about immutable settings re: GCP application, and list variables & suggested config as appropriate.
+- Review the below admonition section about immutable settings re: GCP application, and list variables & suggested config as appropriate.
+- What GCP Regions are supported?
 :::
 
 :::info Before you get started
@@ -94,7 +97,7 @@ Review & confirm what the users will be actually doing.
 
 ## Accessing the cluster
 
-Once the stack has been created, you can access the cluster using [`kubectl`](https://kubernetes.io/docs/tasks/tools/), and Weaviate itself using the load balancer.
+Once the stack has been created, you can access the cluster using [`kubectl`](https://kubernetes.io/docs/tasks/tools/), and Weaviate itself using the load balancer. We show examples below.
 
 ### Interaction using `kubectl`
 
@@ -111,11 +114,11 @@ Where do the users get the cluster name / DNS address from?
 > :::tip How to find the kubectl command
 > The exact command can be found in the CloudFormation stack, in the `Outputs` tab, under the `EKSClusterConfigCommand` output.
 > :::
-
-Once that's set up, you can run `kubectl` commands as usual. For example
-
-- `kubectl get pods -n weaviate` to list all pods in the `weaviate` namespace.
-- `kubectl get svc --all-namespaces` to list all services in all namespaces.
+>
+> Once that's set up, you can run `kubectl` commands as usual. For example
+>
+> - `kubectl get pods -n weaviate` to list all pods in the `weaviate` namespace.
+> - `kubectl get svc --all-namespaces` to list all services in all namespaces.
 
 ### Finding the Weaviate URL
 
