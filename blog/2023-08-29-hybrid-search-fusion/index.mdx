@@ -217,7 +217,7 @@ Now, let’s take a look at the newer `relativeScoreFusion` algorithm.
 <!-- blog/2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_light.png -->
 The `relativeScoreFusion` algorithm was added in Weaviate version `1.20`.
 
-In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each objects score by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, and the lowest value becomes 0, and those in between are scaled linearly. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
+In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each objects score by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
 
 ## Which one to use?
 
