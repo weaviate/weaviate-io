@@ -208,6 +208,12 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.huggingface.m
 
 <CodeNearText />
 
+## Model license(s)
+
+The `text2vec-huggingface` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 ## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
