@@ -184,6 +184,12 @@ The code for the application in this repo works well with models that take in a 
 
 The Weaviate NER Module then takes this output and processes this to GraphQL output.
 
+## Model license(s)
+
+The `ner-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 ## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

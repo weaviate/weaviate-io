@@ -34,7 +34,7 @@ CPUs can be used, however, this will significantly slow down your queries.
 
 ### Available modules
 
-Here is the current list of available `SUM` modules - sourced from [Hugging Face](https://huggingface.co/):
+Here is the current list of available `SUM` modules - sourced from [Hugging Face Model Hub](https://huggingface.co/models):
 * [`bart-large-cnn`](https://huggingface.co/facebook/bart-large-cnn)
 * [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum)
 
@@ -187,6 +187,12 @@ Note that like many other language models, summarizer models can only process a 
 
 On the other hand, be aware that providing an input of insufficient length and detail may cause the transformer model to [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)).
 :::
+
+## Model license(s)
+
+The `sum-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 ## More resources
 

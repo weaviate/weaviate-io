@@ -204,6 +204,11 @@ There are two different inference models you can choose from. Depending on your 
   - Supports `CUDA`
   - Does not support multi-threaded inference
 
+## Model license(s)
+
+The `image2vec-neural` module uses the `resnet50` model.
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 ## More resources
 

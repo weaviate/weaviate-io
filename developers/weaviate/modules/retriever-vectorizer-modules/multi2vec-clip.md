@@ -296,6 +296,12 @@ localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}'
 
 and it will print the created vector(s) directly.
 
+## Model license(s)
+
+The `multi2vec-clip` module uses the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32) from the [Hugging Face model hub](https://huggingface.co/models). Please see the [model page](https://huggingface.co/sentence-transformers/clip-ViT-B-32) for the license information.
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 ## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
