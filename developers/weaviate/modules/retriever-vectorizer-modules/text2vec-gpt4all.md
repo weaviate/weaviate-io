@@ -23,7 +23,7 @@ Key notes:
 - This module is not available on Weaviate Cloud Services (WCS).
 - This module is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml), allowing for fast inference even without a GPU.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- By default, **input text longer than 256 tokens (word pieces) is truncated**
+- By default, **input text longer than 256 tokens is mean-pooled with an overlapping context window up to the number of tokens in your input.**
 - Currently, the only available model is [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2).
 
 ## Weaviate instance configuration
@@ -173,6 +173,12 @@ The below shows a code example of how to use a `nearText` query with `text2vec-g
 import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
+
+## Model license(s)
+
+The `text2vec-gpt4all` module uses the [`gpt4all`](https://docs.gpt4all.io/gpt4all_python_embedding.html) library, which in turn uses the [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model. Please refer to the respective documentation for more information on their respective licenses.
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 ## More resources
 

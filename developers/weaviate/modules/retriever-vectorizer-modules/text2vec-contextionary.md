@@ -442,6 +442,12 @@ So called "noise words" are concatenated words of random words with no easily re
 
 To combat this noise, a neighbor filtering feature was introduced in the contextionary, which ignores words of the configured bottom percentile - ranked by occurrence in the respective training set. By default this value is set to the bottom 5th percentile. This setting can be overridden. To set another value, e.g. to ignore the bottom 10th percentile, provide the environment variable `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE=10` to the `text2vec-contextionary` container, in the Docker Compose file.
 
+## Model license(s)
+
+The `text2vec-contextionary` module is based on the [`fastText`](https://github.com/facebookresearch/fastText/tree/main) library, which is released under the MIT license. Please refer to the [license file](https://github.com/facebookresearch/fastText/blob/main/LICENSE) for more information.
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 ## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
