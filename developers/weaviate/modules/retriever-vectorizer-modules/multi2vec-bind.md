@@ -216,7 +216,7 @@ This means that when using the `multi2vec-bind` module any query using one modal
 
 ## Model license(s)
 
-The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookresearch/ImageBind) model as-is. ImageBind code and model weights are released under the CC-BY-NC 4.0 license. See the [LICENSE](https://github.com/facebookresearch/ImageBind/blob/main/LICENSE) for additional details.
+The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookresearch/ImageBind) model. ImageBind code and model weights are released under the CC-BY-NC 4.0 license. See the [LICENSE](https://github.com/facebookresearch/ImageBind/blob/main/LICENSE) for additional details.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
