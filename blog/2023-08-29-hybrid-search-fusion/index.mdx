@@ -206,7 +206,7 @@ As of `1.20`, there are two algorithms available - one called `rankedFusion` (th
 
 The `rankedFusion` algorithm is the original hybrid fusion algorithm that has been available since the launch of hybrid search in Weaviate.
 
-In this algorithm, each object is scored according to its position in the results for the given search, starting from the highest score for the top-ranked object and decreasing down the order. The total score is calculated by adding these rank-based scores from the vector and keyword searches (after applying a weighting factor).
+In this algorithm, each object is scored according to its position in the results for the given search, starting from the highest score for the top-ranked object and decreasing down the order. The total score is calculated by adding these rank-based scores from the vector and keyword searches.
 
 Now, let’s take a look at the newer `relativeScoreFusion` algorithm.
 
@@ -217,7 +217,7 @@ Now, let’s take a look at the newer `relativeScoreFusion` algorithm.
 <!-- blog/2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_light.png -->
 The `relativeScoreFusion` algorithm was added in Weaviate version `1.20`.
 
-In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each objects score by *normalizing* the metrics output by the vector search and keyword search respectively. The total score is thus calculated by a scaled sum of metrics, being vector similarity for vector search and BM25F score for keyword search.
+In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each objects score by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, and the lowest value becomes 0, and those in between are scaled linearly. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
 
 ## Which one to use?
 
@@ -225,7 +225,7 @@ Now that you know more about these two algorithms, you’re probably wondering t
 
 The main reason is that it retains more information from the original searches than `rankedFusion` which only retains the rankings. More concretely, imagine the following scenario comparing the top three results from two different searches.
 
-Let’s say search A produces scores [5, 4.99, 0] and search B produces [5, 0.01, 0]. In `rankedFusion`, searches A and B would be treated similarly, as only their ranks are used to produce hybrid scores. Remember that `rankedFusion` only uses ranks of searches to produce the hybrid search results.
+Let’s say search A produces scores [5, 4.99, 0] and search B produces [5, 0.01, 0]. In `rankedFusion`, searches A and B would be treated similarly, as only their ranks are used to produce hybrid scores.
 
 On the other hand, `relativeScoreFusion`, would treat the second-ranked result very differently in each search. The second-ranked object from search A has a score of `4.99`. This would be normalized to a score only slightly below the top score of `5`. But in search B, the second-ranked object has a score of `0.01`. The relative distance between this score and the top score `5` would be retained here, and functionally this score would be nearly identical to the bottom result for the purposes of the final hybrid score.
 
