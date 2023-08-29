@@ -1,65 +1,47 @@
-
-.logoSection{
-
-  display:contents;
-
+.logoSection {
+  display: contents;
 
   @media screen and (max-width: 900px) {
     display: flex;
     overflow-x: hidden;
     column-gap: 20px;
-  animation: scrollSideCustomers 40s linear infinite;
-
-
-
+    animation: scrollSideCustomers 40s linear infinite;
   }
 
   @keyframes scrollSideCustomers {
-
-    0%{
-
-      transform: translateX(0)
-
+    0% {
+      transform: translateX(0);
     }
-    100%{
-      transform: translateX(-50%)
-
+    100% {
+      transform: translateX(-50%);
     }
   }
-
 }
 
-.innerBar:hover { .logoSection, .mobileLogoSection{
-
-  animation-play-state: paused;
+.innerBar:hover {
+  .logoSection,
+  .mobileLogoSection {
+    animation-play-state: paused;
+  }
 }
-}
 
-
-.mobileLogoSection{
-
-  display:none;
+.mobileLogoSection {
+  display: none;
 
   @media screen and (max-width: 900px) {
     display: flex;
     overflow-x: hidden;
-  animation: scrollSideCustomers 30s linear infinite;
+    animation: scrollSideCustomers 30s linear infinite;
 
-  @keyframes scrollSideCustomers {
-
-    0%{
-
-      transform: translateX(0)
-
-    }
-    100%{
-      transform: translateX(-50%)
-
+    @keyframes scrollSideCustomers {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
   }
-
-  }
-
 }
 
 .grid {
@@ -70,7 +52,6 @@
 
   @media screen and (max-width: 1100px) {
     margin-bottom: 0;
-
   }
 
   @media screen and (max-width: 950px) {
@@ -83,7 +64,6 @@
   height: 24rem;
 
   padding: 1rem 2rem;
-
 
   @media screen and (max-width: 500px) {
     height: 35rem;
@@ -100,22 +80,17 @@
   }
 }
 
-.bottomBar{
+.bottomBar {
+  height: 6rem;
 
+  background: #130c49;
 
-height: 6rem;
-
-background: #130C49;
-
-
-@media screen and (max-width: 950px) {
-  height: 20rem;
+  @media screen and (max-width: 950px) {
+    height: 11rem;
+  }
 }
 
-}
-
-.innerBar{
-
+.innerBar {
   height: 6em;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
@@ -127,9 +102,8 @@ background: #130C49;
   width: 100%;
   max-width: var(--ifm-container-width-xl);
 
-
   @media screen and (max-width: 950px) {
-    height: 19em;
+    height: 11em;
     display: flex;
     margin: 0 auto;
     padding: 0 var(--ifm-spacing-horizontal);
@@ -141,30 +115,22 @@ background: #130C49;
     align-items: flex-start;
     white-space: nowrap;
     overflow: hidden;
-
+  }
 }
 
-}
-
-.innerBar > p{
-
-
+.innerBar > p {
   text-align: left;
   padding: 20px 0;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 200px;
 
   @media screen and (max-width: 950px) {
-  text-align: left;
+    text-align: left;
     padding: 20px 0;
-    color: #FFFFFF;
+    color: #ffffff;
     grid-column: 1 / span 2;
     width: auto;
-
   }
-
-
-
 }
 
 .customerLogo {
@@ -174,72 +140,55 @@ background: #130C49;
   background-repeat: no-repeat;
 
   width: 6.9375rem;
-height: 1.5625rem;
+  height: 1.5625rem;
 
-
-@media screen and (max-width: 950px) {
-  grid-row: 1;
-  grid-column: auto;
-
+  @media screen and (max-width: 950px) {
+    grid-row: 1;
+    grid-column: auto;
+  }
 }
 
-
-
-
-}
-
-.tyroLogo{
-
+.tyroLogo {
   background-image: url('/img/site/tyro_logo.png');
   background-position: center;
 }
 
-
-.replicatedLogo{
-
+.replicatedLogo {
   background-image: url('/img/site/replicated_logo.png');
   background-position: center;
 }
 
-.hebbiaLogo{
-
+.hebbiaLogo {
   background-image: url('/img/site/hebbia_logo.png');
   background-position: center;
 }
 
-.presshookLogo{
-
+.presshookLogo {
   background-image: url('/img/site/presshook_logo.png');
   background-position: center;
 }
 
-.staircaseLogo{
-
+.staircaseLogo {
   background-image: url('/img/site/staircase_logo.png');
   background-position: center;
 }
 
-.youLogo{
-
+.youLogo {
   background-image: url('/img/site/you-com.png');
   background-position: center;
 }
 
-.instabaseLogo{
-
+.instabaseLogo {
   background-image: url('/img/site/instabase.png');
   background-position: center;
 }
-
 
 .title {
   font-size: 58px;
   font-weight: bold;
   line-height: 69.6px;
 
-
   margin-bottom: 1rem;
-
 
   @media screen and (max-width: 800px) {
     text-align: left;
@@ -257,8 +206,6 @@ height: 1.5625rem;
       display: none;
     }
   }
-
-
 }
 
 .img {
@@ -303,10 +250,9 @@ height: 1.5625rem;
     outline: 1px solid #20e220;
     font-weight: bold;
     color: #fff;
-
   }
-  .buttonOutline:focus{
-  outline: 1px solid #20e220;
+  .buttonOutline:focus {
+    outline: 1px solid #20e220;
   }
 }
 
@@ -317,16 +263,16 @@ height: 1.5625rem;
 
   .buttonGradient {
     border-radius: 0.3125rem;
-    border: 1px solid #130C49;
-    background: #61BD73;
-    color: #130C49;
+    border: 1px solid #130c49;
+    background: #61bd73;
+    color: #130c49;
     font-weight: 400;
   }
 
   .buttonOutline {
     font-weight: 400;
     border-radius: 0.3125rem;
-    outline: 1px solid #130C49;
-    color: #130C49;
+    outline: 1px solid #130c49;
+    color: #130c49;
   }
 }

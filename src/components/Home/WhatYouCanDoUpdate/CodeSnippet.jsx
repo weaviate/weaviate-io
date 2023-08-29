@@ -8,7 +8,7 @@ import { Prism } from 'react-syntax-highlighter';
 import typescript from 'react-syntax-highlighter/dist/esm/languages/hljs/typescript';
 SyntaxHighlighter.registerLanguage('typsescript', typescript);
 
-const CodeSnippet = ({ language, code }) => {
+const CodeSnippet = ({ language, code, buttonText }) => {
   const codeRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -44,7 +44,7 @@ const CodeSnippet = ({ language, code }) => {
           data-clipboard-text={code}
           className={styles.copyButton}
         >
-          Try Vector Search
+          {buttonText}
         </button>
       </Link>
     </div>

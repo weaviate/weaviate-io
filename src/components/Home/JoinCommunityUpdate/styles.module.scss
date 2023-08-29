@@ -12,20 +12,12 @@
   }
 }
 
-
-
-
-
-.rightText{
-
+.rightText {
   margin: 0 0 22px;
 }
 
-.mobileSocialBox{
-
-
+.mobileSocialBox {
   @media screen and (max-width: 768px) {
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -33,17 +25,12 @@
     gap: 7px;
     align-content: center;
     justify-content: space-around;
-
   }
 }
 
-
-
-.communityForm{
-
-  display:flex;
+.communityForm {
+  display: flex;
   width: inherit;
-
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -52,15 +39,13 @@
     justify-content: center;
     column-gap: 60px;
     row-gap: 20px;
-    width:100%;
+    width: 100%;
   }
 }
 
-.communityButton{
-
-
+.communityButton {
   border-radius: 0.3125rem;
-  background: #61BD73;
+  background: #61bd73;
   width: 10.0625rem;
   height: 2.625rem;
   flex-shrink: 0;
@@ -68,61 +53,48 @@
   margin-left: -158px;
 
   @media screen and (max-width: 768px) {
-
-
-      margin-left: unset;
-
-
+    margin-left: unset;
   }
 }
 
-.subscribeInput{
-
+.subscribeInput {
   width: 31.25rem;
-    height: 2.625rem;
-    flex-shrink: 0;
-    border-radius: 0.3125rem;
-    background: #1C1468;
-    border-style: none;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #1c1468;
+  border-style: none;
 
-    @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     width: 100%;
-    }
-
-
-
+  }
 }
-
 
 .subscribeInput::placeholder {
+  color: #c3c5d8 !important;
 
-  color: #C3C5D8!important;
-
-font-size: 1rem;
-font-style: normal;
-font-weight: 300;
-line-height: 144.9%; /* 1.449rem */
-letter-spacing: -0.01rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 144.9%; /* 1.449rem */
+  letter-spacing: -0.01rem;
 }
-.communityWrapper{
-
-  background: #130C49;
+.communityWrapper {
+  background: #130c49;
 }
-
-
 
 .wrapper {
   display: flex;
   flex-direction: row;
-  row-gap:50px;
+  row-gap: 50px;
   flex-wrap: wrap;
   justify-content: space-evenly;
-color: #FFFFFF;
+  color: #ffffff;
+  margin-top: 60px;
 
-h2{
-
-  color: #FFFFFF;
-}
+  h2 {
+    color: #ffffff;
+  }
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -133,11 +105,10 @@ h2{
 }
 .rightSide {
   display: flex;
-    gap: 25px;
-    width: 22rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-
+  gap: 25px;
+  width: 22rem;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 400px) {
     flex-direction: row;
@@ -146,12 +117,9 @@ h2{
   }
 }
 .leftSide {
-
   display: flex;
-    width: 33rem;
-    flex-wrap: wrap;
-
-
+  width: 33rem;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -162,15 +130,14 @@ h2{
   }
 }
 .socialBox {
-
   display: flex;
   flex: 35%;
   flex-direction: column;
   align-items: center;
   padding: 8px;
   border-radius: 0.9375rem;
-  border: 1px solid #130C49;
-  background: #FFF;
+  border: 1px solid #130c49;
+  background: #fff;
   background-size: contain;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 8.75rem;
@@ -178,22 +145,20 @@ h2{
   justify-content: center;
 
   @media screen and (max-width: 500px) {
-  width: 9.38156rem;
-height: 3.875rem;
-flex-shrink: 0;
-
+    width: 9.38156rem;
+    height: 3.875rem;
+    flex-shrink: 0;
   }
-
 
   .slack {
     display: flex;
     width: 3.75rem;
     height: 3.75rem;
     @media screen and (max-width: 500px) {
-    width: 2.25rem;
-    height: 2.25rem;
-    flex-shrink: 0;
-}
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-shrink: 0;
+    }
 
     background-size: contain;
     background-repeat: no-repeat;
@@ -202,7 +167,7 @@ flex-shrink: 0;
   .text {
     padding-top: 10px;
     text-align: center;
-    color: #130C49;
+    color: #130c49;
   }
 
   .github {
@@ -217,7 +182,7 @@ flex-shrink: 0;
       width: 2.25rem;
       height: 2.25rem;
       flex-shrink: 0;
-  }
+    }
   }
   .twitter {
     display: flex;
@@ -231,7 +196,7 @@ flex-shrink: 0;
       width: 2.25rem;
       height: 2.25rem;
       flex-shrink: 0;
-  }
+    }
   }
 
   .forum {
@@ -246,12 +211,11 @@ flex-shrink: 0;
       width: 2.25rem;
       height: 2.25rem;
       flex-shrink: 0;
-  }
+    }
   }
 }
 
-
 .sc-VigVT.dbVBAB {
-  background: #61BD73!important;
-  color: #1C1468;
+  background: #61bd73 !important;
+  color: #1c1468;
 }

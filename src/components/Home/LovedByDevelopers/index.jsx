@@ -71,8 +71,13 @@ export default function HomepageLovedByDevelopers() {
       <div className={styles.header}>
         <h2 className={styles.title}>Loved by Developers</h2>
         <p className={styles.subtitle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do{' '}
-          <br></br> eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Developer Experience is at the core of everything we do. Weaviate is
+          not just a tool;<br></br> it's a community-driven ecosystem carefully
+          crafted to empower developers to build<br></br> end-to-end AI
+          applications fast and easy. From our documentation to the open-source
+          <br></br>
+          community, Weaviate is designed to be the go-to solution that
+          developers love.
         </p>
       </div>
 

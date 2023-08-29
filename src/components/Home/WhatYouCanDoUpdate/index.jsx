@@ -80,7 +80,11 @@ game about?"
                   Perform lightning-fast pure vector similarity<br></br>search
                   over raw vectors or data objects,<br></br> even with filters.
                 </p>
-                <CodeSnippet language="typescript" code={codeExample} />
+                <CodeSnippet
+                  language="typescript"
+                  code={codeExample}
+                  buttonText="Vector Search"
+                />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab2">
@@ -89,7 +93,11 @@ game about?"
                   Combine keyword-based search with vector search techniques for
                   state-of-the-art results.
                 </p>
-                <CodeSnippet language="typescript" code={codeExample2} />
+                <CodeSnippet
+                  language="typescript"
+                  code={codeExample2}
+                  buttonText="Hybrid Search"
+                />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab3">
@@ -98,7 +106,11 @@ game about?"
                   Use any generative model in combination with your data, for
                   example to do Q&A over your dataset.
                 </p>
-                <CodeSnippet language="typescript" code={codeExample3} />
+                <CodeSnippet
+                  language="typescript"
+                  code={codeExample3}
+                  buttonText="Generative Search"
+                />
               </div>
             </Tabs.Content>
           </div>

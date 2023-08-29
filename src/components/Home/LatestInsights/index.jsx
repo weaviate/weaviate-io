@@ -12,8 +12,7 @@ export default function HomepageLatestInsights() {
       <div className={styles.header}>
         <h2 className={styles.title}>Latest Insights</h2>
         <p className={styles.subtitle}>
-          Blog, podcast and more.<br></br>
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Learn and explore the latest insights and trends in the AI world.
         </p>
       </div>
       <div className={styles.latestModule}>
@@ -55,26 +54,30 @@ export default function HomepageLatestInsights() {
             </div>
           </div>
         </Link>
-        <Link to="/blog/healthsearch-demo">
+        <Link to="/learn/workshops">
           <div className={styles.latestBox}>
-            <div
-              className={`${styles.insideBox} ${styles.blogImageHealth}`}
-            ></div>
+            <div className={`${styles.insideBox} ${styles.blogWorkshop}`}></div>
             <div className={styles.textBox}>
-              <h3>Blog</h3>
-              <p>
-                Discover Healthsearch Unlocking Health with Semantic Search ✨
-              </p>
+              <h3>Workshop</h3>
+              <p>Workshop: Introduction to Weaviate</p>
             </div>
             <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_edward.png"></img>
+              <img src="/img/site/avatar_zain.png"></img>
               <p className={styles.smallText}>
-                Edward Schmuhl<br></br>
-                Machine Learning Engineer
+                Zain Hasan<br></br>
+                Senior Dev Advocate
               </p>
-              <span className={styles.smallText}>Jul 26, 2023</span>
+              <span className={styles.smallText}>Sept 14, 2023</span>
             </div>
           </div>
+        </Link>
+      </div>
+      <div className={styles.buttons}>
+        <Link className={styles.buttonGradient} to="/blog">
+          Go to Blog
+        </Link>
+        <Link className={styles.buttonOutline} to="/learn/workshop">
+          Check the Podcast
         </Link>
       </div>
     </div>
