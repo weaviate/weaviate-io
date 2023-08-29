@@ -216,7 +216,7 @@ import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybr
 
 When `relativeScoreFusion` is used as the `fusionType` with a small search `limit`, a result set can be very sensitive to the limit parameter due to the normalization of the scores.
 
-To mitigate this effect, Weaviate automatically performs a search with a higher limit and then trims the results down to the requested limit.
+To mitigate this effect, Weaviate automatically performs a search with a higher limit (100) and then trims the results down to the requested limit.
 
 
 ## BM25
