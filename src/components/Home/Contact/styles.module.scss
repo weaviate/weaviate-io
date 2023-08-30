@@ -97,6 +97,14 @@
     height: 2.625rem;
     flex-shrink: 0;
     align-self: center;
+    transition: all 1s ease-out;
+  }
+  button:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
   }
 }
 

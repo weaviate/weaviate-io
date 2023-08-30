@@ -234,18 +234,31 @@
 
   .buttonGradient {
     border-radius: 0.3125rem;
-    border: 1px solid #130c49;
+    outline: 1px solid #130c49;
     background: #61bd73;
     color: #130c49;
     text-align: center;
+    transition: all 1s ease-out;
+  }
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
   }
 
   .buttonOutline {
     color: #130c49;
     border-radius: 0.3125rem;
     outline: 1px solid #130c49;
+    transition: all 1s ease-out;
   }
-  .buttonOutline:focus {
-    outline: 1px solid #20e220;
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
   }
 }

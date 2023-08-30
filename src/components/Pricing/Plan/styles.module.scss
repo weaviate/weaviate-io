@@ -163,11 +163,27 @@
     color: #130c49;
     font-size: 1.2rem;
     font-weight: 400;
+    transition: all 1s ease-out;
+  }
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
   }
 
   .buttonOutline {
     color: #130c49;
     font-size: 1.1rem;
+    font-weight: 400;
+    transition: all 1s ease-out;
+  }
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
     font-weight: 400;
   }
 }

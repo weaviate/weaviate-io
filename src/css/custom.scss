@@ -331,10 +331,17 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  transition: all 1s ease-out;
 
   @media screen and (max-width: 996px) {
     margin: 11px 9px;
     display: none;
+  }
+
+  &:hover {
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
   }
 }
 

@@ -170,6 +170,16 @@
   justify-content: center;
   align-items: center;
   margin: 10px 10px;
+  transition: all 1s ease-out;
+  &:hover {
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
+
+    .test {
+      color: white;
+    }
+  }
 }
 
 .awsBox {
@@ -184,9 +194,21 @@
   justify-content: center;
   align-items: center;
   margin: 10px 10px;
+  transition: all 1s ease-out;
+  color: #ffffff;
 
-  p {
-    color: #ffffff;
+  &:hover {
+    background: #ffffff;
+    color: #130c49;
+    font-weight: 400;
+
+    .p {
+      color: #130c49;
+    }
+
+    .aws {
+      background-image: url('../../../../static/img/site/awsLogo.svg');
+    }
   }
 }
 
@@ -199,6 +221,7 @@
   align-items: center;
   margin-top: 10px;
   padding: 1rem;
+
   .google {
     display: flex;
     width: 40px;
@@ -215,6 +238,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('../../../../static/img/site/awsDarkLogo.svg');
+    transition: all 1s ease-out;
   }
   .awsLight {
     display: flex;

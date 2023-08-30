@@ -22,6 +22,14 @@
   font-style: normal;
   font-weight: 400;
   line-height: 157.33%;
+  transition: all 1s ease-out;
+}
+.pricingButton:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
 }
 
 .test {
@@ -143,6 +151,7 @@ p {
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('../../../../static/img/site/awsDarkLogo.svg');
+    transition: all 1s ease-out;
   }
   .awsLight {
     display: flex;
@@ -152,6 +161,7 @@ p {
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('../../../../static/img/site/awsLogoLight.svg');
+    transition: all 1s ease-out;
   }
   .azure {
     display: flex;
@@ -193,6 +203,7 @@ p {
   min-height: 280px;
   padding: 5px;
   cursor: pointer;
+  transition: all 1s ease-out;
 
   p {
     font-size: 1rem;
@@ -204,7 +215,17 @@ p {
   }
 
   &:hover {
-    text-decoration: none;
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
+
+    .test {
+      color: white;
+    }
+
+    .awsLight {
+      background-image: url('../../../../static/img/site/awsDarkLogo.svg');
+    }
   }
 
   &.hybrid {
@@ -213,9 +234,24 @@ p {
     background: #130c49;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
     color: white;
+    transition: all 1s ease-out;
 
     .test {
       color: white;
+    }
+
+    &:hover {
+      background: #ffffff;
+      color: #130c49;
+      font-weight: 400;
+
+      .test {
+        color: #130c49;
+      }
+
+      .aws {
+        background-image: url('../../../../static/img/site/awsLogo.svg');
+      }
     }
   }
 }
