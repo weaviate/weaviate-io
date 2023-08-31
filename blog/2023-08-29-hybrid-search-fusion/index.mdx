@@ -227,7 +227,7 @@ In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each obje
 
 After reviewing each algorithm, let’s go through a complete example to demonstrate the difference between them.
 
-Let's say that a search returns **five objects** with **document id** (from 0 to 5), and **scores** from **keyword** and **vector search**, **ordered by score**:
+Let's say that a search returns **five objects** with **document id** (from 0 to 4), and **scores** from **keyword** and **vector search**, **ordered by score**:
 
 <table>
   <tr>
@@ -280,7 +280,7 @@ The score depends on the rank of each result and is computed according to `1/(RA
   </tr>
   <tr>
     <td>Vector</td>
-    <td>(1): 0.0164</td><td>(0): 0.0161</td><td>(2): 0.0159</td><td>(4): 0.0156</td><td>(3): 0.0154</td>
+    <td>(2): 0.0164</td><td>(4): 0.0161</td><td>(0): 0.0159</td><td>(1): 0.0156</td><td>(3, 0.0154)</td>
   </tr>
 </table>
 
@@ -328,7 +328,11 @@ Now, we can add the scores for each document up and compare the results from bot
 
 ### What can we learn from this?
 
-For the vector scores, the first 4 results (IDs 2, 4, 0, 1) were almost identical, and all of them were good results, while for the keyword search, the first result (ID 1) was much better than the rest. This is captured much better in the final result of relative_score_fusion, where Document 1 is the top score. This is justified because this document was the best result in the keyword search with a big gap to the next-best score and in the top group of vector search. In contrast, for ranked fusion, Document 2 is the top result, closely followed by 1 and 0.
+For the vector search, the scores for the top 4 objects (IDs: 2, 4, 0, 1) were almost identical, and all of them were good results. While for the keyword search, one object (ID: 1) was much better than the rest.
+
+This is captured in the final result of `relativeScoreFusion`, where the object with ID 1 is the top score. This is justified because this document was the best result in the keyword search with a big gap to the next-best score and in the top group of vector search.
+
+In contrast, for `rankedFusion`, the object with ID 2 is the top result, closely followed by IDs 1 and 0.
 
 ## Which one to use?
 
