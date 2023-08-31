@@ -84,9 +84,10 @@ def test_on_blank_instance_java(empty_weaviates):
 def test_on_blank_instance_go(empty_weaviates):
     command = shlex.split("go test -v -run ^Test_ManageData ./...")
     cwd="_includes/code/howto/go"
+    env=dict(os.environ, WEAVIATE_PORT="8099")
 
     try:
         # If the script throws an error, this will raise a CalledProcessError
-        subprocess.check_call(command, cwd=cwd)
+        subprocess.check_call(command, cwd=cwd, env=env)
     except subprocess.CalledProcessError as error:
         pytest.fail(f'Go CRUD tests failed with error: {error}')

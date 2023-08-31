@@ -11,12 +11,16 @@ import (
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
   "github.com/weaviate/weaviate/entities/models"
   "github.com/weaviate/weaviate/entities/vectorindex/hnsw"
+  "weaviate.io/docs/docs/helper"
 )
 
 func Test_ManageDataClasses(t *testing.T) {
   ctx := context.Background()
+  scheme := helper.EnvScheme("http")
+  host := helper.EnvHost("localhost")
+  port := helper.EnvPort("8080")
 
-  client, err := weaviate.NewClient(weaviate.Config{Scheme: "http", Host: "localhost:8080"})
+  client, err := weaviate.NewClient(weaviate.Config{Scheme: scheme, Host: host + ":" + port})
   require.NoError(t, err)
 
   err = client.Schema().AllDeleter().Do(ctx)
