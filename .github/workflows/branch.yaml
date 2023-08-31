@@ -38,6 +38,7 @@ jobs:
         run: |
           yarn build
   Validate-links-and-deploy:
+    needs: Build
     name: Deploy-draft
     runs-on: ubuntu-latest
     env:
