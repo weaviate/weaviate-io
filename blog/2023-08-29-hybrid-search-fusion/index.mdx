@@ -227,6 +227,8 @@ In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each obje
 
 After reviewing each algorithm, let’s go through a complete example to demonstrate the difference between them.
 
+### Base Search Results
+
 Let's say that a search returns **five objects** with **document id** (from 0 to 4), and **scores** from **keyword** and **vector search**, **ordered by score**:
 
 <table>
@@ -263,7 +265,6 @@ Let’s assume `alpha=0.5`, meaning both search types contribute equally to the 
 </table>
 
 Now, the results are scaled by each fusion algorithm, we can analyze them.
-
 
 ### Ranked Fusion
 
@@ -330,9 +331,9 @@ Now, we can add the scores for each document up and compare the results from bot
 
 For the vector search, the scores for the top 4 objects (**IDs 2, 4, 0, 1**) were almost identical, and all of them were good results. While for the keyword search, one object (**ID 1**) was much better than the rest.
 
-This is captured in the final result of `relativeScoreFusion`, which identified the object **ID 1** is the top score. This is justified because this document was the best result in the keyword search with a big gap to the next-best score and in the top group of vector search.
+This is captured in the final result of `relativeScoreFusion`, which identified the object **ID 1** the top result. This is justified because this document was the best result in the keyword search with a big gap to the next-best score and in the top group of vector search.
 
-In contrast, for `rankedFusion`, the object **ID 2** is the top result, closely followed by **IDs 1** and **0**.
+In contrast, for `rankedFusion`, the object **ID 2** is the top result, closely followed by objects **ID 1** and **ID 0**.
 
 ## Which one to use?
 
