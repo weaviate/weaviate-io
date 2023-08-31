@@ -1,3 +1,4 @@
+// How-to: Manage-Data -> Classes
 package docs
 
 import (

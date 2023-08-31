@@ -2,6 +2,7 @@ import subprocess
 import pytest
 import utils
 import shlex
+import os
 
 
 @pytest.mark.parametrize(
@@ -66,20 +67,21 @@ def test_on_blank_instance_ts(empty_weaviates, script_loc):
 
 @pytest.mark.java
 @pytest.mark.crud
-def test_on_blank_instance_java():
+def test_on_blank_instance_java(empty_weaviates):
     command = shlex.split("mvn -Dgroups=crud clean test")
     cwd="_includes/code/howto/java"
+    env=dict(os.environ, WEAVIATE_PORT="8099")
 
     try:
         # If the script throws an error, this will raise a CalledProcessError
-        subprocess.check_call(command, cwd=cwd)
+        subprocess.check_call(command, cwd=cwd, env=env)
     except subprocess.CalledProcessError as error:
         pytest.fail(f'Java CRUD tests failed with error: {error}')
 
 
 @pytest.mark.go
 @pytest.mark.crud
-def test_on_blank_instance_go():
+def test_on_blank_instance_go(empty_weaviates):
     command = shlex.split("go test -v -run ^Test_ManageData ./...")
     cwd="_includes/code/howto/go"
 

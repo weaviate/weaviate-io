@@ -9,6 +9,7 @@ import io.weaviate.client.v1.misc.model.DistanceType;
 import io.weaviate.client.v1.misc.model.VectorIndexConfig;
 import io.weaviate.client.v1.schema.model.Schema;
 import io.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.docs.helper.EnvHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,11 @@ class ManageDataClassesTest {
 
   @BeforeAll
   public static void beforeAll() {
-    Config config = new Config("http", "localhost:8080");
+    String scheme = EnvHelper.scheme("http");
+    String host = EnvHelper.host("localhost");
+    String port = EnvHelper.port("8080");
+
+    Config config = new Config(scheme, host + ":" + port);
     client = new WeaviateClient(config);
 
     Result<Boolean> result = client.schema().allDeleter().run();
