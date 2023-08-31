@@ -25,6 +25,7 @@ jobs:
       - name: Build a dev version
         run: yarn build-dev
   Validate-links:
+    needs: Build
     name: Validate links
     runs-on: ubuntu-latest
     steps:
