@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  Validate-links:
+  Build:
     name: Validate links
     runs-on: ubuntu-latest
     steps:
@@ -18,11 +18,15 @@ jobs:
           rm -vrf node_modules/.cache/webpack
           yarn install
       - name: Update versions from GitHub
-        env:
-          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+        # env:
+        #   GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
         run: |
           node _build_scripts/update-config-versions.js
       - name: Build a dev version
         run: yarn build-dev
+  Validate-links:
+    name: Validate links
+    runs-on: ubuntu-latest
+    steps:
       - name: Validate links from the build.dev folder
         run: source _build_scripts/verify-links-build-dev.sh

@@ -5,15 +5,18 @@ on:
     branches:
       - '**'
 
+# env:
+#   GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+#   GOOGLE_CONTAINER_ID: ${{ secrets.GOOGLE_CONTAINER_ID }}
+#   GOOGLE_TRACKING_ID: ${{ secrets.GOOGLE_TRACKING_ID }}
+
+
 jobs:
-  Build-and-deploy:
-    name: Build and Deploy
+  Build:
+    name: Build
     runs-on: ubuntu-latest
     env:
       GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
-      SLACK_BOT: ${{ secrets.SLACK_BOT }}
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_URL: ${{ secrets.NETLIFY_URL }}
       GOOGLE_CONTAINER_ID: ${{ secrets.GOOGLE_CONTAINER_ID }}
       GOOGLE_TRACKING_ID: ${{ secrets.GOOGLE_TRACKING_ID }}
     steps:
@@ -34,6 +37,14 @@ jobs:
       - name: Build Docusarus project
         run: |
           yarn build
+  Validate-links-and-deploy:
+    name: Deploy-draft
+    runs-on: ubuntu-latest
+    env:
+      SLACK_BOT: ${{ secrets.SLACK_BOT }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_URL: ${{ secrets.NETLIFY_URL }}
+    steps:
       - name: Deploy draft to Netlify
         run: |
           source _build_scripts/publish-draft-to-netlify.sh
