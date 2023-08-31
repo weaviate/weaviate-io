@@ -223,22 +223,68 @@ The `relativeScoreFusion` algorithm was added in Weaviate version `1.20`.
 
 In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each objects score by *normalizing* the metrics output by the vector search and keyword search respectively. The highest value becomes 1, the lowest value becomes 0, and others end up in between according to this scale. The total score is thus calculated by a scaled sum of normalized vector similarity and normalized BM25 score.
 
+## Full example
+
+After reviewing each algorithm, let’s go through a complete example to demonstrate the difference between them.
+
+Suppose we are getting these scores from keyword and vector search:
+
+```
+(format is (document_id, score) )
+score_keyword = [(1, 5),   (0, 2.6),   (2, 2.3),   (4, 0.2),   (3, 0.09)]
+score_vector =  [(2, 0.6), (4, 0.598), (0, 0.596), (1, 0.594), (3, 0.009)]
+```
+
+First, these scores are weighted according to the alpha parameter. Let’s assume alpha=0.5, meaning both search types contribute equally to the final result:
+
+```
+score_keyword = [(1, 2.5), (0, 1.3),   (2, 1.15),  (4, 0.1),   (3, 0.045)]
+score_vector =  [(2, 0.3), (4, 0.299), (0, 0.298), (1, 0.296), (3, 0.0045)]
+```
+
+Now, the results are scaled by each fusion algorithm, we can analyze them.
+
+
+### Ranked Fusion
+The score depends on the rank of each result and is computed according to `1/(RANK + 60 +1)`, resulting in:
+
+```
+score_keyword = [(1, 0.0164), (0, 0.0161), (2, 0.0159), (4, 0.0156), (3, 0.0154)]
+score_vector =  [(2, 0.0164), (4, 0.0161), (0, 0.0159), (1, 0.0156), (3, 0.0154)]
+```
+
+As you can see, the results of each rank is identical, regardless of the input score.
+
+### Relative Score Fusion
+Here, we normalize the scores – the largest score is set to 1 and the lowest to 0, and all entries in-between are scaled according to their relative distance to the maximum and minimum values.
+
+```
+score_keyword = [(1, 1.0), (0, 0.511), (2, 0.450), (4, 0.022), (3, 0.0)]
+score_vector =  [(2, 1.0), (4, 0.996), (0, 0.993), (1, 0.986), (3, 0.0)]
+```
+
+Here, the scores reflect the relative distribution of the original scores. For example, the scores of the first 4 documents were almost identical, which is still the case for the normalized scores.
+
+### Summary
+
+Now, we can add the scores for each document up and compare the results from both fusion algorithms.
+
+```
+Ranked :  [(2, 0.0323), (1, 0.032), (0, 0.032), (4, 0.0317), (3, 0.0308)]
+Relative: [(1, 1.986),  (0, 1.504), (2, 1.450), (4, 1.018),  (3, 0.0)]
+```
+
+### What can we learn from this?
+
+For the vector scores, the first 4 results (IDs 2, 4, 0, 1) were almost identical, and all of them were good results, while for the keyword search, the first result (ID 1) was much better than the rest. This is captured much better in the final result of relative_score_fusion, where Document 1 is the top score. This is justified because this document was the best result in the keyword search with a big gap to the next-best score and in the top group of vector search. In contrast, for ranked fusion, Document 2 is the top result, closely followed by 1 and 0.
+
 ## Which one to use?
 
 Now that you know more about these two algorithms, you’re probably wondering this key question: which one to use, and when? Generally, we think that `relativeScoreFusion` might be a good choice.
 
-The main reason is that it retains more information from the original searches than `rankedFusion` which only retains the rankings. More concretely, imagine the following scenario comparing the top three results from two different searches.
-
-Let’s say search A produces scores [5, 4.99, 0] and search B produces [5, 0.01, 0]. In `rankedFusion`, searches A and B would be treated similarly, as only their ranks are used to produce hybrid scores.
-
-On the other hand, `relativeScoreFusion`, would treat the second-ranked result very differently in each search. The second-ranked object from search A has a score of `4.99`. This would be normalized to a score only slightly below the top score of `5`. But in search B, the second-ranked object has a score of `0.01`. The relative distance between this score and the top score `5` would be retained here, and functionally this score would be nearly identical to the bottom result for the purposes of the final hybrid score.
-
-As a result, `relativeScoreFusion` is likely to rank the second object in search A higher than in search B.
-
-More generally we believe that the nuances captured in the vector and keyword search metrics are more likely to be reflected in rankings produced by `relativeScoreFusion`.
+The main reason is that `relativeScoreFusion` retains more information from the original searches than `rankedFusion`, which only retains the rankings. More generally we believe that the nuances captured in the vector and keyword search metrics are more likely to be reflected in rankings produced by relativeScoreFusion.
 
 Here are some additional notes on how we see these two:
-
 
 ### Recall performance / benchmarks
 
@@ -257,6 +303,8 @@ Given our earlier explanations, you might be wondering why `rankedFusion` is the
 The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](/developers/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
 
 So far, the reaction has been positive. But we are still in the evaluation phase, and we would love to get additional feedback from you, our users. We have prepared [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link). We would really appreciate your input. Please let us know what you think!
+
+
 
 ## Wrap-up
 
