@@ -227,41 +227,104 @@ In contrast  to `rankedFusion`, however, `relativeScoreFusion` derives each obje
 
 After reviewing each algorithm, let’s go through a complete example to demonstrate the difference between them.
 
-Suppose we are getting these scores from keyword and vector search:
+Let's say that a search returns **five objects** with **document id** (from 0 to 5), and **scores** from **keyword** and **vector search**, **ordered by score**:
 
-```
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 5</td><td>(0): 2.6</td><td>(2): 2.3</td><td>(4): 0.2</td><td>(3): 0.09</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(2): 0.6</td><td>(4): 0.598</td><td>(0): 0.596</td><td>(1): 0.594</td><td>(3): 0.009</td>
+  </tr>
+</table>
+
+<!-- ```
 (format is (document_id, score) )
 score_keyword = [(1, 5),   (0, 2.6),   (2, 2.3),   (4, 0.2),   (3, 0.09)]
 score_vector =  [(2, 0.6), (4, 0.598), (0, 0.596), (1, 0.594), (3, 0.009)]
-```
+``` -->
 
-First, these scores are weighted according to the alpha parameter. Let’s assume alpha=0.5, meaning both search types contribute equally to the final result:
+First, these scores are weighted according to the alpha parameter.<br/>
+Let’s assume `alpha=0.5`, meaning both search types contribute equally to the final result:
 
-```
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 2.5</td><td>(0): 1.3</td><td>(2): 1.15</td><td>(4): 0.1</td><td>(3): 0.045</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(2): 0.6</td><td>(4): 0.598</td><td>(0): 0.596</td><td>(1): 0.594</td><td>(3): 0.009</td>
+  </tr>
+</table>
+
+<!-- ```
 score_keyword = [(1, 2.5), (0, 1.3),   (2, 1.15),  (4, 0.1),   (3, 0.045)]
 score_vector =  [(2, 0.3), (4, 0.299), (0, 0.298), (1, 0.296), (3, 0.0045)]
-```
+``` -->
 
 Now, the results are scaled by each fusion algorithm, we can analyze them.
 
 
 ### Ranked Fusion
+
 The score depends on the rank of each result and is computed according to `1/(RANK + 60 +1)`, resulting in:
 
-```
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 0.0164</td><td>(0): 0.0161</td><td>(2): 0.0159</td><td>(4): 0.0156</td><td>(3): 0.0154</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(1): 0.0164</td><td>(0): 0.0161</td><td>(2): 0.0159</td><td>(4): 0.0156</td><td>(3): 0.0154</td>
+  </tr>
+</table>
+
+<!-- ```
 score_keyword = [(1, 0.0164), (0, 0.0161), (2, 0.0159), (4, 0.0156), (3, 0.0154)]
 score_vector =  [(2, 0.0164), (4, 0.0161), (0, 0.0159), (1, 0.0156), (3, 0.0154)]
-```
+``` -->
 
 As you can see, the results of each rank is identical, regardless of the input score.
 
 ### Relative Score Fusion
-Here, we normalize the scores – the largest score is set to 1 and the lowest to 0, and all entries in-between are scaled according to their relative distance to the maximum and minimum values.
 
-```
+Here, we normalize the scores – the largest score is set to 1 and the lowest to 0, and all entries in-between are scaled according to their **relative distance** to the **maximum** and **minimum values**.
+
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 1.0</td><td>(0): 0.511</td><td>(2): 0.450</td><td>(4): 0.022</td><td>(3): 0.0</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(2): 1.0</td><td>(4): 0.996</td><td>(0): 0.993</td><td>(1): 0.986</td><td>(3): 0.0</td>
+  </tr>
+</table>
+
+<!-- ```
 score_keyword = [(1, 1.0), (0, 0.511), (2, 0.450), (4, 0.022), (3, 0.0)]
 score_vector =  [(2, 1.0), (4, 0.996), (0, 0.993), (1, 0.986), (3, 0.0)]
-```
+``` -->
 
 Here, the scores reflect the relative distribution of the original scores. For example, the scores of the first 4 documents were almost identical, which is still the case for the normalized scores.
 
@@ -269,10 +332,25 @@ Here, the scores reflect the relative distribution of the original scores. For e
 
 Now, we can add the scores for each document up and compare the results from both fusion algorithms.
 
-```
+<table>
+  <tr>
+    <th>Algorithm Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Ranked</td>
+    <td>(2): 0.0323</td><td>(1): 0.032</td><td>(0): 0.032</td><td>(4): 0.0317</td><td>(3): 0.0308</td>
+  </tr>
+  <tr>
+    <td>Relative</td>
+    <td>(1): 1.986</td><td>(0): 1.504</td><td>(2): 1.450</td><td>(4): 1.018</td><td>(3): 0.0</td>
+  </tr>
+</table>
+
+<!-- ```
 Ranked :  [(2, 0.0323), (1, 0.032), (0, 0.032), (4, 0.0317), (3, 0.0308)]
 Relative: [(1, 1.986),  (0, 1.504), (2, 1.450), (4, 1.018),  (3, 0.0)]
-```
+``` -->
 
 ### What can we learn from this?
 
