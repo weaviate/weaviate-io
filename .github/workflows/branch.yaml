@@ -4,13 +4,6 @@ on:
   push:
     branches:
       - '**'
-
-# env:
-#   GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
-#   GOOGLE_CONTAINER_ID: ${{ secrets.GOOGLE_CONTAINER_ID }}
-#   GOOGLE_TRACKING_ID: ${{ secrets.GOOGLE_TRACKING_ID }}
-
-
 jobs:
   Build:
     name: Build
@@ -39,7 +32,7 @@ jobs:
           yarn build
   Validate-links-and-deploy:
     needs: Build
-    name: Deploy-draft
+    name: Validate links and deploy to prod
     runs-on: ubuntu-latest
     env:
       SLACK_BOT: ${{ secrets.SLACK_BOT }}

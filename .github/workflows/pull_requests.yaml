@@ -5,7 +5,7 @@ on:
 
 jobs:
   Build:
-    name: Validate links
+    name: Dev Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
