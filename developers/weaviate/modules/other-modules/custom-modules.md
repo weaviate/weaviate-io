@@ -71,7 +71,7 @@ A module is a custom code that can extend Weaviate by hooking into specific life
 
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
 - Naming convention:
-  - Vectorizer: `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.
+  - Vectorizer: `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `img2vec-neural` or `text2vec-transformers`.
   - Other modules: `<functionality>-<name>-<optional>`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.

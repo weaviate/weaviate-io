@@ -40,8 +40,8 @@ While you can do so manually, we recommend using the [Weaviate configuration too
 
 Weaviate:
 
-- `ENABLE_MODULES` (Required): The modules to enable. Include `image2vec-neural` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `image2vec-neural` to make it the default for all classes.
+- `ENABLE_MODULES` (Required): The modules to enable. Include `img2vec-neural` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `img2vec-neural` to make it the default for all classes.
 - `IMAGE_INFERENCE_API` (Required): The URL of the inference container.
 
 Inference container:
@@ -114,7 +114,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Example
 
-The following example class definition sets the `image2vec-neural` module as the `vectorizer` for the class `FashionItem`. It also sets:
+The following example class definition sets the `img2vec-neural` module as the `vectorizer` for the class `FashionItem`. It also sets:
 
 - `image` property as a `blob` datatype and as the image field,
 
@@ -178,7 +178,7 @@ cat my_image.png | base64
 
 ## Additional search operator
 
-The `image2vec-neural` vectorizer module will enable the `nearImage` search operator.
+The `img2vec-neural` vectorizer module will enable the `nearImage` search operator.
 
 ## Usage example
 
@@ -206,7 +206,7 @@ There are two different inference models you can choose from. Depending on your 
 
 ## Model license(s)
 
-The `image2vec-neural` module uses the `resnet50` model.
+The `img2vec-neural` module uses the `resnet50` model.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
