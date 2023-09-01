@@ -22,7 +22,7 @@ description: "How hybrid search works, and under the hood of Weaviate's fusion a
 
 As you might know already, Weaviate can perform many different types of searches, including vector search and keyword search. Vector search is based on similarities of meaning to the input, whereas keyword search is based on how often the input words occur in the results.
 
-Vector and keyword based search each have their strengths and weaknesses that arise from this difference, where vector search is more forgiving semantically and keyword search is more precise. Hybrid search enables a “best-of-both-worlds” type capability using both of these search types.
+Vector and keyword based search each have their strengths and weaknesses that arise from this difference, where vector search is more forgiving semantically and keyword search is more precise. Hybrid search enables a "best-of-both-worlds" type capability using both of these search types.
 
 That probably sounds simple enough. But do you know **how** hybrid search combines these results? And that Weaviate recently added a new algorithm for how this is done?
 
@@ -287,7 +287,7 @@ Here, we normalize the scores – the largest score is set to 1 and the lowest t
   </tr>
 </table>
 
-Here, the scores reflect the relative distribution of the original scores. For example, the scores of the first 4 documents were almost identical, which is still the case for the normalized scores.
+Here, the scores reflect the relative distribution of the original scores. For example, the vector search scores of the first 4 documents were almost identical, which is still the case for the normalized scores.
 
 ### Summary
 
@@ -334,7 +334,9 @@ This is quite a significant improvement. So in the absence of specific character
 
 ### Use with AutoCut
 
-In `1.20` we introduced the [AutoCut](/blog/2023-07-11-weaviate-1-20-release/index.mdx#autocut) feature, which can intelligently retrieve groups of objects from a search. AutoCut relies on there being natural “clusters” of results objects by score. Therefore it makes sense to use AutoCut with `relativeScoreFusion`, where the scores retain information from the original vector similarities and BM25 scores as output by the vector and keyword searches.
+In `1.20` we introduced the [AutoCut](/blog/2023-07-11-weaviate-1-20-release/index.mdx#autocut) feature, which can intelligently retrieve groups of objects from a search. AutoCut relies on there being natural "clusters" (groups of objects with close scores).
+
+AutoCut works well with `relativeScoreFusion`, which often results in natural clusters that autocut can detect.
 
 ### Why the default choice?
 
