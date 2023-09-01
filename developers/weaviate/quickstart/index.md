@@ -275,7 +275,7 @@ Well done! You have:
     - Using custom vectors,
 - Performed searches, including:
     - Semantic search,
-    - Sementic search with a filter and
+    - Semantic search with a filter and
     - Generative search.
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.

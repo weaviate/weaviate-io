@@ -81,7 +81,7 @@ Not all settings may be changed after launch. For example, these settings are cu
 
 - The default values should be suitable for a majority of cases.
 - `weaviatePVCSize`: For production environments, at least 500GB per StatefulSet pod is recommended. (Smaller disks may be sufficient for dev environments.)
-- `weaviateAuthType`: We recommend not running Weaviate with anonymous access. We suggest setting it to `apikey` and setting a key, for example by excuting `pwgen -A -s 32` to generate a random string.
+- `weaviateAuthType`: We recommend not running Weaviate with anonymous access. We suggest setting it to `apikey` and setting a key, for example by executing `pwgen -A -s 32` to generate a random string.
 :::
 
 Once you open the CloudFormation template, you should see a set of options similar to below.
