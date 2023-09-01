@@ -23,7 +23,7 @@ public class EnvHelper {
     return env(ENV_PORT, defaultPort);
   }
 
-  private static String env(String envName, String def) {
+  public static String env(String envName, String def) {
     return Optional.ofNullable(System.getenv(envName)).orElse(def);
   }
 }

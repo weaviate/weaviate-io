@@ -14,7 +14,7 @@ services:
     - 8099:8099
     restart: on-failure:0
     environment:
-      OPENAI_APIKEY: $OPENAI_APIKEY
+      OPENAI_APIKEY: ${OPENAI_APIKEY}
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("crud")
+@Tag("classes")
 class ManageDataClassesTest {
 
   private static WeaviateClient client;
@@ -32,7 +33,9 @@ class ManageDataClassesTest {
 
     Result<Boolean> result = client.schema().allDeleter().run();
     assertThat(result).isNotNull()
+      .withFailMessage(() -> result.getError().toString())
       .returns(false, Result::hasErrors)
+      .withFailMessage(null)
       .returns(true, Result::getResult);
   }
 
@@ -63,7 +66,9 @@ class ManageDataClassesTest {
     // END CreateClass
 
     assertThat(result).isNotNull()
+      .withFailMessage(() -> result.getError().toString())
       .returns(false, Result::hasErrors)
+      .withFailMessage(null)
       .returns(true, Result::getResult);
   }
 
@@ -76,7 +81,9 @@ class ManageDataClassesTest {
     // END ReadOneClass
 
     assertThat(result).isNotNull()
+      .withFailMessage(() -> result.getError().toString())
       .returns(false, Result::hasErrors)
+      .withFailMessage(null)
       .extracting(Result::getResult).isNotNull()
       .extracting(WeaviateClass::getClassName).isEqualTo(className);
 
@@ -91,7 +98,9 @@ class ManageDataClassesTest {
     // END ReadAllClasses
 
     assertThat(result).isNotNull()
+      .withFailMessage(() -> result.getError().toString())
       .returns(false, Result::hasErrors)
+      .withFailMessage(null)
       .extracting(Result::getResult).isNotNull()
       .extracting(Schema::getClasses).asList()
       .hasSize(1);
@@ -105,6 +114,7 @@ class ManageDataClassesTest {
       .run();
 
     assertThat(delResult).isNotNull()
+      .withFailMessage(() -> delResult.getError().toString())
       .returns(false, Result::hasErrors)
       .returns(true, Result::getResult);
 
@@ -125,7 +135,9 @@ class ManageDataClassesTest {
     // END UpdateClassTODO
 
     assertThat(result).isNotNull()
+      .withFailMessage(() -> result.getError().toString())
       .returns(false, Result::hasErrors)
+      .withFailMessage(null)
       .returns(true, Result::getResult);
 
     // START UpdateClassTODO
@@ -147,7 +159,6 @@ class ManageDataClassesTest {
     // START ReadOneClass // START ReadAllClasses
     String json = new GsonBuilder().setPrettyPrinting().create().toJson(result.getResult());
     System.out.println(json);
-
     // END ReadOneClass // END ReadAllClasses
   }
 }
