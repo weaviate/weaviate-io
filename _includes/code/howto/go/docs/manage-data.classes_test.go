@@ -20,7 +20,8 @@ func Test_ManageDataClasses(t *testing.T) {
   host := helper.EnvHost("localhost")
   port := helper.EnvPort("8080")
 
-  client, err := weaviate.NewClient(weaviate.Config{Scheme: scheme, Host: host + ":" + port})
+  config := weaviate.Config{Scheme: scheme, Host: host + ":" + port}
+  client, err := weaviate.NewClient(config)
   require.NoError(t, err)
 
   err = client.Schema().AllDeleter().Do(ctx)

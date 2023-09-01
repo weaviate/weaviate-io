@@ -91,7 +91,7 @@ class ManageDataCreateTest {
   private void createObject(String className) {
     // CreateObject START
     Result<WeaviateObject> result = client.data().creator()
-      .withClassName(className)
+      .withClassName("JeopardyQuestion")
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         // put("answer", "Weaviate");  // schema properties can be omitted
@@ -118,7 +118,7 @@ class ManageDataCreateTest {
   private void createObjectWithIdAndVector(String className) {
     // CreateObjectWithIdAndVector START
     Result<WeaviateObject> result = client.data().creator()
-      .withClassName(className)
+      .withClassName("JeopardyQuestion")
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         put("answer", "Weaviate");
@@ -157,8 +157,8 @@ class ManageDataCreateTest {
 
     Result<WeaviateObject> result = client.data().creator()
       .withClassName(className)
-      .withID(id)
       .withProperties(properties)
+      .withID(id)
       .run();
 
     // the returned value is the object
@@ -181,7 +181,7 @@ class ManageDataCreateTest {
       // highlight-start
       .validator()
       // highlight-end
-      .withClassName(className)
+      .withClassName("JeopardyQuestion")
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         put("answer", "Weaviate");

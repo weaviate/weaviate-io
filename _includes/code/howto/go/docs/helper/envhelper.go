@@ -9,18 +9,18 @@ const (
 )
 
 func EnvScheme(defaultScheme string) string {
-  return env(envScheme, defaultScheme)
+  return Env(envScheme, defaultScheme)
 }
 
 func EnvHost(defaulHost string) string {
-  return env(envHost, defaulHost)
+  return Env(envHost, defaulHost)
 }
 
 func EnvPort(defaultPort string) string {
-  return env(envPort, defaultPort)
+  return Env(envPort, defaultPort)
 }
 
-func env(envName string, def string) string {
+func Env(envName string, def string) string {
   if env := os.Getenv(envName); env != "" {
     return env
   }
