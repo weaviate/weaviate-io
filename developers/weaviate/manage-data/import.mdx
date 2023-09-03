@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
 ## Overview
 
@@ -68,6 +70,24 @@ The following example will add objects to `YourClassName` class using a batch im
   />
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// BasicBatchImportExample"
+      endMarker="// END BasicBatchImportExample"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// BasicBatchImportExample"
+      endMarker="// END BasicBatchImportExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 :::info Where is the class definition?
@@ -106,6 +126,23 @@ You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_un
 
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// BatchImportWithIDExample"
+      endMarker="// END BatchImportWithIDExample"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// BatchImportWithIDExample"
+      endMarker="// END BatchImportWithIDExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 ### `vector`
@@ -135,6 +172,23 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
 
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// BatchImportWithVectorExample"
+      endMarker="// END BatchImportWithVectorExample"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// BatchImportWithVectorExample"
+      endMarker="// END BatchImportWithVectorExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 

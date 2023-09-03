@@ -3,7 +3,9 @@ package io.weaviate.docs;
 
 import com.google.gson.GsonBuilder;
 import io.weaviate.client.Config;
+// START JSON streaming  // START CSV streaming
 import io.weaviate.client.WeaviateClient;
+// END JSON streaming  // END CSV streaming
 import io.weaviate.client.base.Result;
 import io.weaviate.client.base.WeaviateError;
 import io.weaviate.client.v1.data.model.WeaviateObject;
@@ -27,6 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("create")
 class ManageDataCreateTest {
 
+  private static final int MAX_ROWS_TO_IMPORT = 50;  // limit vectorization calls
   private static WeaviateClient client;
 
   @BeforeAll
