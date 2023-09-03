@@ -61,7 +61,7 @@ Inference container:
 
 #### Example
 
-This configuration enables `text2vec-transformers`, sets it as the default vectorizer, and sets the parameters for the Transformers Docker container, including setting it to use `entence-transformers-multi-qa-MiniLM-L6-cos-v1` image and to disable CUDA acceleration.
+This configuration enables `text2vec-transformers`, sets it as the default vectorizer, and sets the parameters for the Transformers Docker container, including setting it to use `sentence-transformers-multi-qa-MiniLM-L6-cos-v1` image and to disable CUDA acceleration.
 
 ```yaml
 version: '3.4'
@@ -212,7 +212,7 @@ a custom image as outlined below.
 
 You can explicitly set the version through a suffix.
 - Use `-1.0.0` to pin to a specific version. E.g. `semitechnologies/transformers-inference:distilbert-base-uncased-1.0.0` will always use the version with git tag `1.0.0` of the `distilbert-base-uncased` repository.
-- You can explicity set `-latest` to always use the latest version, however this is the default behavior.
+- You can explicitly set `-latest` to always use the latest version, however this is the default behavior.
 
 ### Option 2: A Hugging Face model
 

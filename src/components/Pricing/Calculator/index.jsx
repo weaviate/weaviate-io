@@ -90,7 +90,7 @@ export default function PricingCalculator({props}) {
 
       // Add code to animate the button here
       const btnText = event.target.innerText;
-      event.target.innerText = "Coppied to clipboard"
+      event.target.innerText = "Copied to clipboard"
       setTimeout(
         ()=> {event.target.innerText = btnText},
         1000

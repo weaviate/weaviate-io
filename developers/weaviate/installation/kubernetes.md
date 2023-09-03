@@ -16,7 +16,7 @@ This can be done through either explicitly setting it as part of the `values.yam
 
 ## Requirements
 
-* A Kuberentes Cluster with a recent version (e.g. >=1.23).
+* A Kubernetes Cluster with a recent version (e.g. >=1.23).
 * The cluster needs to be able to provision `PersistentVolumes` through
   `PersistentVolumeClaims`. No special file systems are required. Any default
   file system capable of `ReadWriteOnce` access mode is sufficient.

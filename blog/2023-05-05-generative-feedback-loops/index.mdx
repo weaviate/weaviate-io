@@ -302,7 +302,7 @@ Personalized digital experiences have been taken to a new level with the latest 
 Having illustrated the general concept of Generative Feedback Loops, where we use data from the database to supplement the factual knowledge of generative models and then write the generated outputs back to the database for future use, let’s discuss when to kick this off.
 
 ## Data Ingestion
-Data Ingestion is a shorthand reference to importing data into the database. For example, everytime a new User is added to the AirBnB database, we may want to kick off a Generative Feedback Loop of retrieving information about a listing and this new user and save the new ads targeted to this user. On the other hand, we may want to kick this off when a new Listing is added, writing ads for each of our users!
+Data Ingestion is a shorthand reference to importing data into the database. For example, every time a new User is added to the AirBnB database, we may want to kick off a Generative Feedback Loop of retrieving information about a listing and this new user and save the new ads targeted to this user. On the other hand, we may want to kick this off when a new Listing is added, writing ads for each of our users!
 
 As another example, imagine that we have a collection of podcast episodes. Every time a new episode is added to the database, we want to kick off generation of a summary and a comparison of the podcast compared to the existing podcasts in the database. To further reinforce the idea of Generative Feedback Loops, we may retrieve a previously generated podcast summary that has been saved and indexed with semantic vector search, and use this to prompt the generative model to analyze the uniqueness of the latest podcast episode!
 

@@ -250,7 +250,7 @@ Weaviate makes use of ANN indices to serve vector searches. An ANN index is an a
 
 Generally if you need a higher recall than the default parameters provide you with, you can use stronger parameters. This can either be done at build time (`efConstruction`, `maxConnections`) or at query time (`ef`). Roughly speaking, a higher `ef` value at query time means a more thorough search. It will have a slightly higher latency, but also lead to a slightly better recall.
 
-By changing the specified limit, you are implicitly changing the `ef` parameter. This is because the default `ef` value is set to `-1`, indicating that Weaviate should pick the paremeter based on the limit. The dynamic `ef` value is controlled using the configuration fields `dynamicEfMin` which acts as a lower boundary, `dynamicEfMax` which acts as an upper boundary and `dynamicEfFactor` which is the factor to derive the target `ef` based on the limit within the lower and upper boundary.
+By changing the specified limit, you are implicitly changing the `ef` parameter. This is because the default `ef` value is set to `-1`, indicating that Weaviate should pick the parameter based on the limit. The dynamic `ef` value is controlled using the configuration fields `dynamicEfMin` which acts as a lower boundary, `dynamicEfMax` which acts as an upper boundary and `dynamicEfFactor` which is the factor to derive the target `ef` based on the limit within the lower and upper boundary.
 
 Example: Using the default parameters `ef=-1`, `dynamicEfMin=100`, `dynamicEfMax=500`, `dynamicEfFactor=8`, you will end up with the following `ef` values based on the limit:
 
