@@ -17,7 +17,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 ## Overview
 
-This page shows you how to rerank a search result set returned by [vector](similarity.md), [bm25](bm25.md), or [hybrid](hybrid.md) operators.
+This page shows you how to rerank a result set returned by a search.
+
+As a reranker algorithm operates on the results returned by the search, it can be different to a search algorithm. For example, a reranker algorithm can be more computationally expensive (and accurate) than a search algorithm, as it is only applied to a subset of the data.
 
 :::info Related pages
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
@@ -25,10 +27,6 @@ This page shows you how to rerank a search result set returned by [vector](simil
 - [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 :::
-
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
-
-<BasicPrereqs />
 
 
 ## Requirements

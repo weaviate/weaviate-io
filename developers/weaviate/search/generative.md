@@ -17,7 +17,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 ## Overview
 
-This page shows you how to perform `generative` searches using Weaviate.
+This page shows you how to perform `generative` searches.
+
+A generative search uses a large language model (LLM) to generate text based on the search results and a user-provided prompt. It is also called retrieval augmented generation (RAG).
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)
