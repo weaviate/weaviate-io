@@ -17,19 +17,13 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 ## Overview
 
-This page shows you how to perform `hybrid` searches using Weaviate.
+This page shows you how to perform `hybrid` searches.
 
-The `hybrid` operator uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
-
-The results are determined by a weighted combination of the two search outputs.
+The `hybrid` operator produces results based on a weighted combination of results from a keyword (`bm25`) search and a vector (`nearXXX`) search.
 
 :::info Related pages
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 :::
-
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
-
-<BasicPrereqs />
 
 ## Basic hybrid search
 

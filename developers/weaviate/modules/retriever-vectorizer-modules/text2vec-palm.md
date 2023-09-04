@@ -17,12 +17,16 @@ The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddi
 
 Key notes:
 
-- As it uses a third-party API, you will need an API key.
+- As it uses a third-party API, you will need an API key. The module uses the Google Cloud `access token`.
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `textembedding-gecko`.
+
+:::caution Ensure PaLM API is enabled on your Google Cloud project
+As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
+:::
 
 ## Weaviate instance configuration
 
@@ -61,7 +65,6 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```
-
 
 ## Class configuration
 
