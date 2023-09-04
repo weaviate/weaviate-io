@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 This page shows you how to perform `generative` searches.
 
-A generative search uses a large language model (LLM) to generate text based on the search results and a user-provided prompt. It is also called retrieval augmented generation (RAG).
+A generative search uses a large language model (LLM) to generate text based on the search results and a user-provided prompt. This technique is also called *retrieval augmented generation*, or RAG.
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)

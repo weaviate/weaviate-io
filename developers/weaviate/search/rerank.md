@@ -19,7 +19,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 This page shows you how to rerank a result set returned by a search.
 
-As a reranker algorithm operates on the results returned by the search, it can be different to a search algorithm. For example, a reranker algorithm can be more computationally expensive (and accurate) than a search algorithm, as it is only applied to a subset of the data.
+A reranker algorithm is applied after a search on the retrieved results. Thus a reranker algorithm can apply a different set of criteria, or simply use a different algorithm.
+
+For example, a more computationally expensive (and accurate) algorithm can be used for reranking, as it is only applied to a subset of the data.
 
 :::info Related pages
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)

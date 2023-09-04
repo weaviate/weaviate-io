@@ -15,10 +15,6 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
-:::info Related pages
-- [API References: Search operators](../api/graphql/search-operators.md)
-:::
-
 ## Overview
 
 This page shows you how to perform similarity-based searches with the `nearXXX` operators.
@@ -26,6 +22,7 @@ This page shows you how to perform similarity-based searches with the `nearXXX` 
 These operators work by searching for objects with the most similar vector representation to the query. Note that due to differences in configuration and data, we have a [separate page for image searches](./image.md).
 
 :::info Related pages
+- [API References: Search operators](../api/graphql/search-operators.md)
 - [How-to: Image search](./image.md)
 :::
 
