@@ -383,14 +383,35 @@ The length of properties is calculated differently depending on the type:
 ```graphql
 {
   Get {
-    <Class>(where: {
+    <Class>(
+      where: {
         operator: <Operator>,
-        valueInt: <value>
-        path: [len(<property>)]
+        valueInt: <value>,
+        path: ["len(<property>)"]
+      }
+    )
   }
 }
 ```
 Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
+
+Note that the `path` value is a string, where the property name is wrapped in `len()`. For example, to filter for objects based on the length of the `title` property, you would use `path: ["len(title)"]`.
+
+To filter for `Article` class objects with `title` length greater than 10, you would use:
+
+```graphql
+{
+  Get {
+    Article(
+      where: {
+        operator: GreaterThan,
+        valueInt: 10,
+        path: ["len(title)"]
+      }
+    )
+  }
+}
+```
 
 :::note
 Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength).
