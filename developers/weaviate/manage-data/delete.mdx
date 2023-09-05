@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.delete.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.delete_test.go';
 
 ## Overview
 
@@ -62,6 +64,24 @@ To delete an object, specify its class name and id as shown below.
       startMarker="// START DeleteObject"
       endMarker="// END DeleteObject"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -122,6 +142,24 @@ Optionally, set `output` to `'verbose'` to see more details (ID and deletion sta
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 :::tip REST endpoint
@@ -153,6 +191,24 @@ You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) 
       startMarker="// START DryRun"
       endMarker="// END DryRun"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="go"
     />
   </TabItem>
 </Tabs>

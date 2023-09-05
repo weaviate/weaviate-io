@@ -8,6 +8,7 @@ import io.weaviate.client.v1.batch.api.ObjectsBatcher;
 import io.weaviate.client.v1.data.model.WeaviateObject;
 import io.weaviate.client.v1.graphql.model.GraphQLResponse;
 import io.weaviate.client.v1.graphql.query.fields.Field;
+import io.weaviate.docs.helper.AssertHelper;
 import io.weaviate.docs.helper.EnvHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,33 +49,6 @@ class ManageDataImportTest {
       .returns(true, Result::getResult);
   }
 
-  private static void deleteClass(String className) {
-    Result<Boolean> result = client.schema().classDeleter().withClassName(className).run();
-    assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .returns(true, Result::getResult);
-  }
-
-  private static void checkNumberOfResults(String className) {
-    Result<GraphQLResponse> result = client.graphQL()
-      .aggregate()
-      .withClassName(className)
-      .withFields(Field.builder().name("meta { count }").build())
-      .run();
-    assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .extracting(Result::getResult).isNotNull()
-      .extracting(resp -> ((Map<?, ?>) resp.getData()).get("Aggregate")).isNotNull()
-      .extracting(aggregate -> ((Map<?, ?>) aggregate).get(className)).isNotNull()
-      .extracting(clazz -> ((List<?>) clazz).get(0)).isNotNull()
-      .extracting(meta -> ((Map<?, ?>) meta).get("meta")).isNotNull()
-      .returns(5.0, count -> ((Map<?, ?>) count).get("count"));
-  }
-
   @Test
   public void shouldManageDataImport() {
     basicBatchImport();
@@ -109,8 +83,8 @@ class ManageDataImportTest {
     // highlight-end
     // END BasicBatchImportExample
 
-    checkNumberOfResults(className);
-    deleteClass(className);
+    AssertHelper.checkNumberOfResults(client, className, 5.0);
+    AssertHelper.deleteClass(client, className);
   }
 
   private void basicBatchImportWithCustomId() {
@@ -140,7 +114,7 @@ class ManageDataImportTest {
     batcher.run();
     // END BatchImportWithIDExample
 
-    checkNumberOfResults(className);
+    AssertHelper.checkNumberOfResults(client, className, 5.0);
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName(className)
@@ -169,7 +143,7 @@ class ManageDataImportTest {
         }
       });
 
-    deleteClass(className);
+    AssertHelper.deleteClass(client, className);
   }
 
   private void basicBatchImportWithCustomVector() {
@@ -205,7 +179,7 @@ class ManageDataImportTest {
     batcher.run();
     // END BatchImportWithVectorExample
 
-    checkNumberOfResults(className);
+    AssertHelper.checkNumberOfResults(client, className, 5.0);
 
     Result<GraphQLResponse> result = client.graphQL().get()
       .withClassName(className)
@@ -234,7 +208,7 @@ class ManageDataImportTest {
         }
       });
 
-    deleteClass(className);
+    AssertHelper.deleteClass(client, className);
   }
 
   private void streamingImport() {
