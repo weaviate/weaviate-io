@@ -191,6 +191,10 @@ const config = {
                                 to: '/company/about-us',
                             },
                             {
+                                label: 'Partners',
+                                to: '/partners',
+                            },
+                            {
                                 label: 'Playbook',
                                 to: '/company/playbook',
                             },
@@ -351,6 +355,18 @@ const config = {
                             {
                                 label: 'Twitter',
                                 to: 'https://twitter.com/weaviate_io',
+                            },
+                            {
+                                label: 'Instagram',
+                                to: 'https://instagram.com/weaviate',
+                            },
+                            {
+                                label: 'GitHub',
+                                to: 'https://twitter.com/weaviate_io',
+                            },
+                            {
+                                label: 'Forum',
+                                to: 'https://forum.weaviate.io',
                             },
                         ],
                     },
