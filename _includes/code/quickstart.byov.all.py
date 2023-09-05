@@ -11,7 +11,7 @@ client = weaviate.Client(
 # Class definition object. Weaviate's autoschema feature will infer properties when importing.
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-openai",
+    "vectorizer": "none",
 }
 
 # Add the class to the schema
