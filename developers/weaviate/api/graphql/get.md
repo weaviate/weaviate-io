@@ -181,7 +181,7 @@ Various metadata properties may be retrieved with `Get{}` requests. They include
 
 Property | Description |
 -------- | ----------- |
-`uuid` | Object id |
+`id` | Object id |
 `vector` | Object vector |
 `generate` | Generative module outputs |
 `rerank` | Reranker module outputs |
