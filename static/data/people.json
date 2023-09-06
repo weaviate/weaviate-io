@@ -14,6 +14,12 @@
 		"twitter": "aj__chan"
 	},
 	{
+		"name": "Alea Abed",
+		"title": "Head of Marketing",
+		"photo": "alea.png",
+		"linkedin": "alea-abed"
+	},
+	{
 		"name": "André Duis",
 		"title": "Head of Cloud Strategy",
 		"photo": "andre.png",
@@ -76,6 +82,12 @@
 		"linkedin": "connor-shorten-34923a178/",
 		"twitter": "cshorten30",
 		"github": "CShorten"
+	},
+	{
+		"name": "David Cuthbert",
+		"title": "Technical Documentation Writer",
+		"photo": "dave.jpg",
+		"linkedin": "davecuthbert"
 	},
 	{
 		"name": "Dirk Kulawiak",
@@ -308,6 +320,13 @@
 		"title": "Polyglot Engineer",
 		"photo": "tommy.jpg",
 		"linkedin": "tbs181194"
+	},
+	{
+		"name": "Victoria Slocum",
+		"title": "Machine Learning Engineer",
+		"photo": "victoria.jpg",
+		"linkedin": "victorialslocum",
+		"twitter": "victorialslocum"
 	},
 	{
 		"name": "Weronika Krajcarz",
