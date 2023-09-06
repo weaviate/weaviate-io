@@ -119,15 +119,17 @@ func Test_ManageDataImport(t *testing.T) {
 
 		resp, err := client.GraphQL().Get().
 			WithClassName(className).
-			WithFields(graphql.Field{Name: "title"}, graphql.Field{Name: "_additional{id}"}).
+			WithFields(graphql.Field{Name: "title"}, graphql.Field{Name: "_additional{id vector}"}).
 			Do(ctx)
 		require.NoError(t, err)
 		require.Empty(t, resp.Errors)
-		agg := resp.Data["Get"].(map[string]interface{})
-		objects := agg[className].([]interface{})
+		get := resp.Data["Get"].(map[string]interface{})
+		objects := get[className].([]interface{})
 		require.Len(t, objects, 5)
 		for _, obj := range objects {
 			id := obj.(map[string]interface{})["_additional"].(map[string]interface{})["id"].(string)
+			v, ok := obj.(map[string]interface{})["_additional"].(map[string]interface{})["vector"].([]interface{})
+			fmt.Printf("vector: %T ok: %v\n", v[0], ok)
 			title := obj.(map[string]interface{})["title"].(string)
 			assert.Equal(t, id, generateUUID(title).String())
 		}

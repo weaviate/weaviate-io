@@ -19,7 +19,7 @@ async function getBatchWithCursor(
   client: WeaviateClient,
   className: string, classProperties: string[],
   batchSize: number, cursor?: string
-): Promise<{data: any}> {
+): Promise<{ data: any }> {
   const query = client.graphql.get()
     .withClassName(className)
     // highlight-start
