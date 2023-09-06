@@ -1,13 +1,60 @@
 .partnersHead {
-  background: #130c49;
+  background: #f5f5f5;
 
   p {
-    color: white;
+    color: #130c49;
   }
 }
+
+.logoSection {
+  display: contents;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    overflow-x: hidden;
+    column-gap: 20px;
+    animation: scrollSideCustomers 40s linear infinite;
+  }
+
+  @keyframes scrollSideCustomers {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.innerBar:hover {
+  .logoSection,
+  .mobileLogoSection {
+    animation-play-state: paused;
+  }
+}
+
+.mobileLogoSection {
+  display: none;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    overflow-x: hidden;
+    animation: scrollSideCustomers 30s linear infinite;
+
+    @keyframes scrollSideCustomers {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
 .grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr;
 
   padding: 2rem 0 2rem 0;
 
@@ -41,6 +88,16 @@
   }
 }
 
+.bottomBar {
+  height: 6rem;
+
+  background: #130c49;
+
+  @media screen and (max-width: 950px) {
+    height: 11rem;
+  }
+}
+
 .innerBar {
   height: 6em;
   display: grid;
@@ -67,6 +124,71 @@
     white-space: nowrap;
     overflow: hidden;
   }
+}
+
+.innerBar > p {
+  text-align: left;
+  padding: 20px 0;
+  color: #ffffff;
+  width: 200px;
+
+  @media screen and (max-width: 950px) {
+    text-align: left;
+    padding: 20px 0;
+    color: #ffffff;
+    grid-column: 1 / span 2;
+    width: auto;
+  }
+}
+
+.customerLogo {
+  background-image: url('/img/site/logo_01.png');
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 6.9375rem;
+  height: 1.5625rem;
+
+  @media screen and (max-width: 950px) {
+    grid-row: 1;
+    grid-column: auto;
+  }
+}
+
+.tyroLogo {
+  background-image: url('/img/site/tyro_logo.png');
+  background-position: center;
+}
+
+.replicatedLogo {
+  background-image: url('/img/site/replicated_logo.png');
+  background-position: center;
+}
+
+.hebbiaLogo {
+  background-image: url('/img/site/hebbia_logo.png');
+  background-position: center;
+}
+
+.presshookLogo {
+  background-image: url('/img/site/presshook_logo.png');
+  background-position: center;
+}
+
+.staircaseLogo {
+  background-image: url('/img/site/staircase_logo.png');
+  background-position: center;
+}
+
+.youLogo {
+  background-image: url('/img/site/you-com.png');
+  background-position: center;
+}
+
+.instabaseLogo {
+  background-image: url('/img/site/instabase.png');
+  background-position: center;
 }
 
 .title {
@@ -103,7 +225,7 @@
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('/img/site/partners_header.png');
+  background-image: url('/img/site/aws_header.png');
 }
 
 .buttons {
@@ -139,7 +261,7 @@
 
   .buttonGradient:hover {
     border-radius: 0.3125rem;
-    outline: 1px solid #2fc513;
+    outline: 1px solid rgb(15, 0, 50);
     background: rgb(15, 0, 50);
     color: #fff;
     font-weight: 400;
@@ -163,7 +285,9 @@
 
 [data-theme='light'] {
   .img {
-    background-image: url('/img/site/partners_header.svg');
+    background-image: url('/img/site/aws_header.png');
+    height: 78%;
+    margin-left: 3rem;
   }
 
   .buttonGradient {

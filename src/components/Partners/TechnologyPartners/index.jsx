@@ -19,16 +19,24 @@ export default function TechnologyPartners() {
         <div className={styles.techContainer}>
           <div className={styles.techList}>
             <div className={styles.techBox}>
-              <span className={styles.aws} />
+              <Link to="/partners/aws">
+                <span className={styles.aws} />
+              </Link>
             </div>
             <div className={styles.techBox}>
-              <span className={styles.aws} />
+              <Link to="/partners/aws">
+                <span className={styles.aws} />
+              </Link>
             </div>
             <div className={styles.techBox}>
-              <span className={styles.aws} />
+              <Link to="/partners/aws">
+                <span className={styles.aws} />
+              </Link>
             </div>
             <div className={styles.techBox}>
-              <span className={styles.aws} />
+              <Link to="/partners/aws">
+                <span className={styles.aws} />
+              </Link>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ export default function partnerOpportunities() {
     <div className={styles.benefits}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Unlock the full potential of your data</h2>
+          <h2>Partnership opportunities</h2>
         </div>
         <div className={styles.features}>
           <div className={styles.box}>
