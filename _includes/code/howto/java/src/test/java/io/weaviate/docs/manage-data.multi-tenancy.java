@@ -11,6 +11,7 @@ import io.weaviate.client.v1.misc.model.MultiTenancyConfig;
 import io.weaviate.client.v1.schema.model.Property;
 import io.weaviate.client.v1.schema.model.Tenant;
 import io.weaviate.client.v1.schema.model.WeaviateClass;
+import io.weaviate.docs.helper.AssertHelper;
 import io.weaviate.docs.helper.EnvHelper;
 import java.util.Collections;
 import java.util.HashMap;
@@ -233,21 +234,6 @@ class ManageDataMultiTenancyTest {
     // END AddCrossRef
 
     Result<List<WeaviateObject>> result = client.data().objectsGetter().withID(object.getId()).withClassName(className).withTenant("tenantA").run();
-    assertThat(result).isNotNull()
-      .withFailMessage(() -> result.getError().toString())
-      .returns(false, Result::hasErrors)
-      .withFailMessage(null)
-      .extracting(Result::getResult).isNotNull()
-      .extracting(l -> l.get(0)).isNotNull()
-      .extracting(WeaviateObject::getProperties).isNotNull()
-      .extracting(props -> props.get("hasCategory")).isNotNull()
-      .satisfies(p -> {
-        assertThat(p)
-          .isInstanceOf(List.class)
-          .extracting(prop -> ((List<?>) prop).get(0)).isNotNull()
-          .isInstanceOf(Map.class)
-          .extracting(prop2 -> ((Map<?, ?>) prop2).get("href")).isNotNull()
-          .isEqualTo(String.format("http://localhost:8080/v1/objects/JeopardyCategory/%s", category.getId()));
-      });
+    AssertHelper.assertCrossRefHref(result, "hasCategory", String.format("http://localhost:8080/v1/objects/JeopardyCategory/%s", category.getId()));
   }
 }
