@@ -46,14 +46,16 @@ Let’s walk through a simple example of how LlamaIndex can be used with Weaviat
 
 The full code can be found in the [Weaviate recipes repo](https://github.com/weaviate/recipes/tree/main/integrations/llamaindex/simple-query-engine).
 
-The first step is to setup your Weaviate client. In this example, we connect to a local Weaviate instance through port `http://localhost:8080`:
+The first step is to setup your Weaviate client. In this example, we connect to an [Embedded Weaviate](https://weaviate.io/developers/weaviate/installation/embedded) instance.
 
 ```python
 import weaviate
 
 # connect to your weaviate instance
-client = weaviate.Client("http://localhost:8080")
+client = weaviate.Client(embedded_options=weaviate.embedded.EmbeddedOptions(), additional_headers={ 'X-OpenAI-Api-Key': os.environ["OPENAI_API_KEY"]})
 ```
+
+Ensure you have an Open AI API Key set up in your environment variables for use by the Weaviate client.
 
 The next step is to ingest the Weaviate documentation and parse the documents into chunks. You can choose to use one of our many web page readers to scrape any website yourself - but luckily, the downloaded files are already readily available in the recipes repo.
 
