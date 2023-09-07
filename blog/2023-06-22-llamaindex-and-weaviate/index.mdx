@@ -58,13 +58,14 @@ client = weaviate.Client("http://localhost:8080")
 The next step is to ingest the Weaviate documentation and parse the documents into chunks. You can choose to use one of our many web page readers to scrape any website yourself - but luckily, the downloaded files are already readily available in the recipes repo.
 
 ```python
+from llama_index import SimpleDirectoryReader
 from llama_index.node_parser import SimpleNodeParser
 
 # load the blogs in using the reader
 blogs = SimpleDirectoryReader('./data').load_data()
 
 # chunk up the blog posts into nodes
-parser = SimpleNodeParser()
+parser = SimpleNodeParser.from_defaults(chunk_size=1024, chunk_overlap=20)
 nodes = parser.get_nodes_from_documents(blogs)
 ```
 
@@ -73,6 +74,9 @@ Here, we use the SimpleDirectoryReader to load in all documents from a given dir
 The next step is to 1) define a `WeaviateVectorStore`, and 2) build a vector index over this vector store using LlamaIndex.
 
 ```python
+from llama_index.vector_stores import WeaviateVectorStore
+from llama_index import VectorStoreIndex, StorageContext
+
 # construct vector store
 vector_store = WeaviateVectorStore(weaviate_client = client, index_name="BlogPost", text_key="content")
 
