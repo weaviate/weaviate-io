@@ -22,18 +22,34 @@
   justify-content: space-around;
 
   @media screen and (max-width: 860px) {
-    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    padding: 5px 10px 20px;
+    scroll-padding: 20%;
+    scroll-snap-type: x mandatory;
   }
 }
 
 .techContainer {
   margin: auto;
   width: 90%;
+
+  @media screen and (max-width: 860px) {
+    width: 100%;
+  }
 }
 
 .bgColor {
   background: #f5f5f5;
   padding: 70px;
+
+  @media screen and (max-width: 860px) {
+    padding: 0px;
+  }
 }
 
 .aws {
