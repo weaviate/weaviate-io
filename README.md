@@ -1,28 +1,123 @@
-# Website
+# How to Build this Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+Weaviate uses [Docusaurus 2](https://docusaurus.io/) to build the
+documentation. Docusaurus is a  static website generator that runs under
+[Node.js](https://nodejs.org/). When you run the [yarn](https://yarnpkg.com/)
+package manager, it installs Docusaurus along with other project
+dependencies.
 
-### Installation
+If you do not have Node.js and `yarn` on your system, install them first.
+
+### Node.js Installation
+
+Use the `nvm` package manager to install Node.js.  The
+[nvm project](https://github.com/nvm-sh/nvm) provides an installation script.
 
 ```
-$ yarn
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 ```
 
-### Local Development
+Use `nvm` to install Node.js.
 
 ```
-$ yarn start
+nvm install node
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+By default, `nvm` installs the most recent version of Node.js. Use `nvm` to
+install Node.js 19.9.0 as well. This version is more compatibile with the
+current project dependencies.
 
-### Build
+```
+nvm install node 19.9.0
+nvm use 19.9.0
+```
+
+### yarn Installation
+
+Node.js includes the [npm](https://www.npmjs.com/) package manager. Use `npm`
+to install `yarn`.
+
+```
+npm install --global yarn
+```
+
+### Get the Code
+
+To contribute to this web site, fork this repository and create a local copy to
+work on.
+
+1. Log into your Github account.
+2. Fork the upstream repository, https://github.com/weaviate/weaviate-io.
+3. Clone the repository to your local system.
+
+   ```
+   git clone git@github.com:YOUR-GITHUB-HANDLE/weaviate-io.git
+   ```
+
+4. Set the remote tracking branch.
+
+   ```
+   git remote add upstream https://github.com/weaviate/weaviate-io.git
+   ```
+
+5. Check the remotes.
+
+   ```
+   git remote -v
+
+   # The output resembles:
+
+   origin	https://github.com/YOUR-GITHUB-HANDLE/weaviate-io.git (fetch)
+   origin	https://github.com/YOUR-GITHUB-HANDLE/weaviate-io.git (push)
+   upstream	https://github.com/weaviate/weaviate-io.git (fetch)
+   upstream	https://github.com/weaviate/weaviate-io.git (push)
+   ```
+
+### Update Dependencies
+
+Once you have a local copy of the repository, you need to install Docusaurus and
+the other project dependencies.
+
+Switch to the project directory, then use yarn to update the dependencies.
+
+```
+cd weaviate.io
+yarn install
+```
+
+You may see some warnings during the installation.
+
+### Start the yarn Server
+
+When the installation completes, start the `yarn` server to test your build.
+
+```
+$ yarn start &
+```
+
+`yarn` builds the project as a static web site and starts a server to host it.
+`yarn` also opens a broswer window conncted to http://localhost:3000/ where
+you can see your changes.
+
+Most changes are reflected live without having to restart the server.
+
+If you run ``yarn start`` in the foreground (without the "&"), you have to open
+a second ternimal to continue working on the command line. If you open a second
+terminal, be sure to set the correct Node.js version before running additional
+`yarn` commands.
+
+```
+nvm use node 19.9.0
+```
+
+### Build the Web Site
+
+This command generates static content into the ``build`` directory and can be
+served using any static contents hosting service.
 
 ```
 $ yarn build
 ```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ### Deployment
 

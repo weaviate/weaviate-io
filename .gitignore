@@ -17,6 +17,7 @@ tests/temp.*
 # Generated files
 .docusaurus
 .cache-loader
+yarn.lock
 
 # Ignore Academy for now
 # /developers/academy
