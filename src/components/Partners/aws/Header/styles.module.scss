@@ -226,7 +226,7 @@
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('/img/site/aws_header.png');
+  background-image: url('/img/site/aws_header.svg');
 }
 
 .buttons {
@@ -286,9 +286,10 @@
 
 [data-theme='light'] {
   .img {
-    background-image: url('/img/site/aws_header.png');
-    height: 78%;
+    background-image: url('/img/site/aws_header.svg');
+    height: 140%;
     margin-left: 3rem;
+    margin-top: -100px;
   }
 
   .buttonGradient {
