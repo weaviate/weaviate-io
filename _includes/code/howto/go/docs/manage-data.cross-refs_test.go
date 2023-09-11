@@ -1,4 +1,6 @@
 // How-to: Manage-data -> (Batch) Import items
+
+// TODO - review tests
 package docs
 
 import (
@@ -14,8 +16,8 @@ import (
 
 func Test_ManageDataCrossRefs(t *testing.T) {
 	ctx := context.Background()
-	scheme := "https"
-	host := "anon-endpoint.weaviate.network"
+	scheme := "http"
+	host := "localhost:8080"
 
 	config := weaviate.Config{Scheme: scheme, Host: host}
 	client, err := weaviate.NewClient(config)

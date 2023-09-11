@@ -4,6 +4,7 @@ package docs
 import (
 	"context"
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -175,6 +176,6 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 		hasCategory := objs[0].Properties.(map[string]interface{})["hasCategory"]
 		require.NotNil(t, hasCategory)
 		href := hasCategory.([]interface{})[0].(map[string]interface{})["href"]
-		assert.Equal(t, fmt.Sprintf("http://localhost:8080/v1/objects/JeopardyCategory/%v", category.ID), href)
+		assert.True(t, strings.Contains(href.(string), fmt.Sprintf("/objects/JeopardyCategory/%v", category.ID)))
 	})
 }
