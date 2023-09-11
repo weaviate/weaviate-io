@@ -1,31 +1,32 @@
 # How to Build this Website
 
-Weaviate uses [Docusaurus 2](https://docusaurus.io/) to build the
+Weaviate uses [Docusaurus 2](https://docusaurus.io/) to build our
 documentation. Docusaurus is a  static website generator that runs under
-[Node.js](https://nodejs.org/). When you run the [yarn](https://yarnpkg.com/)
-package manager, it installs Docusaurus along with other project
+[Node.js](https://nodejs.org/). We use a Node.js project management tool called
+[yarn](https://yarnpkg.com/) to install Docusaurus and to manage project
 dependencies.
 
-If you do not have Node.js and `yarn` on your system, install them first.
+If you do not have Node.js and `yarn` installed on your system, install them
+first.
 
 ### Node.js Installation
 
-Use the `nvm` package manager to install Node.js.  The
-[nvm project](https://github.com/nvm-sh/nvm) provides an installation script.
+Use the [nvm](https://github.com/nvm-sh/nvm) package manager to install Node.js.
+The `nvm` project page provides an installation script.
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 ```
 
-Use `nvm` to install Node.js.
+After you install `nvm`, use `nvm` to install Node.js.
 
 ```
 nvm install node
 ```
 
-By default, `nvm` installs the most recent version of Node.js. Use `nvm` to
-install Node.js 19.9.0 as well. This version is more compatibile with the
-current project dependencies.
+By default, `nvm` installs the most recent version of Node.js. Install Node.js
+19.9.0 as well. Version 19.9.0 is more compatibile with the current
+`weaviate.io` project dependencies.
 
 ```
 nvm install node 19.9.0
@@ -43,8 +44,8 @@ npm install --global yarn
 
 ### Get the Code
 
-To contribute to this web site, fork this repository and create a local copy to
-work on.
+To contribute to this web site, first fork this repository and create a local
+copy to work on.
 
 1. Log into your Github account.
 2. Fork the upstream repository, https://github.com/weaviate/weaviate-io.
@@ -102,9 +103,9 @@ you can see your changes.
 Most changes are reflected live without having to restart the server.
 
 If you run ``yarn start`` in the foreground (without the "&"), you have to open
-a second ternimal to continue working on the command line. If you open a second
-terminal, be sure to set the correct Node.js version before running additional
-`yarn` commands.
+a second ternimal to continue working on the command line. When you open a
+second terminal, be sure to set the correct Node.js version before running
+additional `yarn` commands.
 
 ```
 nvm use node 19.9.0
@@ -113,11 +114,15 @@ nvm use node 19.9.0
 ### Build the Web Site
 
 This command generates static content into the ``build`` directory and can be
-served using any static contents hosting service.
+served using any static content hosting service.
 
 ```
 $ yarn build
 ```
+
+The `build` command is useful when you are finished editing. If you used
+`yarn start` to start a local web server, you do not have to run `yarn build` to
+see you changes while you are editing.
 
 ### Deployment
 
