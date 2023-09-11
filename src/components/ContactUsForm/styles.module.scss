@@ -28,6 +28,7 @@
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
+    padding: 2.5rem 1rem;
   }
 
   .formWrapper {
@@ -173,4 +174,9 @@
   background: #130c49;
   margin-top: 260px;
   max-height: 500px;
+
+  @media screen and (max-width: 860px) {
+    margin-top: 260px;
+    max-height: 579px;
+  }
 }
