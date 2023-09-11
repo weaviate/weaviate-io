@@ -5,7 +5,6 @@ image: og/wcs/user_guides.jpg
 ---
 
 import WCSGetKey from './img/wcs-get-key.png';
-import WCSKeyExample from './img/wcs-key-example.png';
 import WCSHeadersAuth from './img/wcs-headers-auth.png';
 
 ## Overview
@@ -15,8 +14,8 @@ To ensure security in a production environment, Weaviate instances on Weaviate C
 ### Authentication options
 
 You have two options for authenticating into a WCS instance.
-- Using the account owner's **WCS username and password**, or
-- Using an **API key** (recommended method).
+- Using an **API key** (recommended method), or
+- Using the account owner's **WCS username and password**.
 
 :::tip Recommendation: Use the API key + a Weaviate client
 Generally, we recommend authenticating with the API key, using a Weaviate client (e.g. Python client).
@@ -28,17 +27,17 @@ All Weaviate instances with authentication will generate API keys with full admi
 
 Each paid WCS instance will also come with a read-only API key in addition to the full admin API key.
 
-## Access API key(s)
+### Manage API keys
 
-For instances with authentication enabled, the API key(s) can be accessed by clicking the key 🔑 icon:
+You can create and delete individual API keys for your (non-sandbox) instances, as well as get their details.
 
-<img src={WCSGetKey} width="100%" alt="Instance configuration"/>
+To do so, first click <kbd>Details</kbd> button for your cluster, followed by the <kbd>API keys <i class="fa-solid fa-key"></i></kbd> button.
 
-That should bring up a screen like this, containing your API key(s) and an authorization header:
+This will show a list of your available keys as a table, as well as their permissions (scope).
 
-<img src={WCSKeyExample} width="100%" alt="WCS key example"/>
-
-Use the API key or the authorization header to authenticate against Weaviate as described below.
+- To create a key, click the <kbd>Add key</kbd> button and follow the instructions.
+- To delete a key, click on the trash can icon <kbd><i class="fa-solid fa-trash-can"></i></kbd> next to the relevant key.
+- To copy a key, click on the copy can icon <kbd><i class="fa-solid fa-copy"></i></kbd> next to the relevant key.
 
 :::warning Keep your API key secret
 Please ensure that your API key is kept secret for security. The above image is for demonstration purposes only.
@@ -120,9 +119,9 @@ This will authenticate your requests against the Weaviate instance.
 
 ## Resetting credentials
 
-If you would like to reset your credentials for whatever reason, you can do so as follows:
+If you would like to reset your credentials, you can do so as follows:
 
-- To revoke your API key, please [contact us directly](https://console.weaviate.cloud/contact).
+- To revoke your API key, navigate to the [Details button as described here](#manage-api-keys).
 - To reset your WCS password, you can do so [from WCS](https://console.weaviate.cloud) (click "Sign In" and then "Forgot Password").
 
 ## Read more

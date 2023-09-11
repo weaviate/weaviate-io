@@ -2,7 +2,7 @@
 set -e
 set -o errexit # stop script immediately on error
 
-URL_IGNORES="jsonlines.org/|arxiv.org/|linkedin.com/in/|crunchbase.com|www.nytimes.com|www.researchgate.net|www.meetup.com|wiki.pathmind.com|twitter.com|towardsdatascience.com|medium.com|openai.com|www.hr-brew.com|www.battery.com"
+URL_IGNORES="jsonlines.org/|arxiv.org/|linkedin.com/in/|crunchbase.com|www.nytimes.com|www.researchgate.net|www.meetup.com|wiki.pathmind.com|twitter.com|towardsdatascience.com|medium.com|openai.com|www.hr-brew.com|www.battery.com|docs.cohere.com/|www.googletagmanager.com|12factor.net|github.com|github.com/weaviate/howto*|instagram.com|kaggle.com"
 DOCUSAURUS_IGNORES="github.com/.*github.com/|github.com/weaviate/weaviate-io|github.com/weaviate/howto-weaviate-retrieval-plugin*"
 # Note #1 github.com/.*github.com/ - is to ignore meta links that include blog co-authors
 # Note #2 github.com/weaviate/weaviate-io/tree/ - is for edit on github links

@@ -1,5 +1,5 @@
 ---
-title: Filtered Vector Search
+title: Filtering (with search)
 sidebar_position: 26
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']

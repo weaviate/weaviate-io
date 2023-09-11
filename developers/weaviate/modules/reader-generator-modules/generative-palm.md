@@ -14,8 +14,14 @@ import Badges from '/_includes/badges.mdx';
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.19.1`.
-* You need an API key for a PaLM API to use this module.
+* You need an API key for a PaLM API to use this module. The module uses the Google Cloud `access token`.
+* **Its usage may incur costs**.
+    * Please check the vendor pricing (e.g. check Google Vertex AI pricing).
 * The default model is `chat-bison`.
+
+:::caution Ensure PaLM API is enabled on your Google Cloud project
+As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
+:::
 
 ## Introduction
 

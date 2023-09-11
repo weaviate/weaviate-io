@@ -17,7 +17,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
 ## Overview
 
-This section shows how to retrieve aggregate data from a results set using the `Aggregate` function. `Aggregate` is largely similar to `Get`, with the difference being that `Aggregate` returns summary data about the results set instead of individual objects in the results set.
+This section shows how to retrieve aggregate data from a results set using the `Aggregate` function.
+
+Generally, the usage of `Aggregate` is similar to that of searches using the `Get` function. The main difference is that `Aggregate` returns aggregated data, rather than objects. As `Aggregate` deals with aggregated data, it enables additional (meta) properties such as object counts, as well as aggregated properties such as sums and averages.
 
 :::info Related pages
 - [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)

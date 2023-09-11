@@ -19,7 +19,11 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
 This page covers additional, unique aspects related to similarity searches using an image as an input.
 
-If you wish to search for images using a vector or another object, please refer to the [How-to: similarity search ](./similarity.md) page.
+If you wish to search for images using a vector or another object, please refer to the [How-to: similarity search](./similarity.md) page.
+
+:::info Related pages
+- [How-to: Similarity search](./similarity.md)
+:::
 
 :::info Not available in WCS
 Image-based search is currently not available in WCS, as the required modules are not available.
