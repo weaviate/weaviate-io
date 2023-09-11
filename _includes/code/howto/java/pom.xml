@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.weaviate</groupId>
+  <artifactId>docs</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <developers>
+    <developer>
+      <name>Andrzej Liszka</name>
+      <email>andrzej@weaviate.io</email>
+      <organization>Weaviate B.V.</organization>
+      <organizationUrl>https://www.weaviate.io</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.sourceEncoding>UTF-8</project.reporting.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <weaviate.client.version>4.3.0</weaviate.client.version>
+    <junit.version>5.9.3</junit.version>
+    <assertj-core.version>3.24.2</assertj-core.version>
+    <surefire-plugin.version>3.1.2</surefire-plugin.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.weaviate</groupId>
+      <artifactId>client</artifactId>
+      <version>${weaviate.client.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj-core.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
