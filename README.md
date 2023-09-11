@@ -55,6 +55,9 @@ copy to work on.
    git clone git@github.com:YOUR-GITHUB-HANDLE/weaviate-io.git
    ```
 
+   For details on cloning a repository, including setting up an SSH key, see the
+   [GitHub documentation](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories).
+
 4. Set the remote tracking branch.
 
    ```
