@@ -247,23 +247,23 @@ Almost there! But unfortunately the missing comma from the `bm25` to `where` que
 
 ## Research Questions
 
-### RQ1: Does WeaviateGraphQLGorilla generalize to new schemas?
+**RQ1: Does WeaviateGraphQLGorilla generalize to new schemas?**
 
 Probably the most imporatnt test for productizing WeaviateGraphQLGorilla in something like the `Auto` API proposal – Does WeaviateGraphQLGorilla generalize to a Weaviate Schema not seen in training?
 
 We measure RQ1 by splitting the 50 toy schemas into 40 to use in training, and 10 for testing.
 
-### RQ2: How well does WeaviateGraphQLGorilla generalize to new APIs?
+**RQ2: How well does WeaviateGraphQLGorilla generalize to new APIs?**
 
 Maybe the most important test when considering the maintenance of WeaviateGraphQLGorilla – If we add a new API to Weaviate, do we need to re-train Gorilla?
 
 We measure RQ2 by splitting the 46 API references into 37 for training, and 9 for testing.
 
-### RQ3: How well does WeaviateGraphQLGorilla generalize from Atomic to Compositional APIs?
+**RQ3: How well does WeaviateGraphQLGorilla generalize from Atomic to Compositional APIs?**
 
 An Atomic API illustrates a single concept, such as a BM25 query, retrieving the vector for an object, or counting the number of objects. A Compositional API combines say BM25 + Where + Get Vector.
 
-### RQ4: Retrieving the correct API reference
+**RQ4: Retrieving the correct API reference**
 
 Shown below, the original Gorilla paper from Patil et al. [1] finds a massive improvement with Oracle context versus tested retrieval systems.
 
@@ -281,13 +281,13 @@ Classification retrieval describes classifying the query into one of several cat
 
 Let’s contrast this with Vector Search retrieval particularly where we might use the `nlcommand` as our query vector to hit an HNSW index of vectorized API references. This works fairly well, additionally supplemented by BM25, Hybrid Search, and Reranking Search APIs. The interesting research question is: At what scale does this become an information retrieval problem? Please see our discussion on the `WeaviateIntegrationGorilla`.
 
-### RQ5: How robust is WeaviateGraphQLGorilla to noisy retrieval?
+**RQ5: How robust is WeaviateGraphQLGorilla to noisy retrieval?**
 
 What is Weaviate returns the wrong API reference for an nlcommand?
 
 To conclude, we have exciting plans for this project! As discussed, we are currently focused on collecting quantitative metrics to better understand the performance of WeaviateGraphQLGorilla, and the impact of miscellaneous tweaks such as adding more training data or maybe fine-tuning from the new Code LlaMA checkpoint!
 
-RQ6: How robust is WeaviateGraphQLGorilla to paraphrases of the nlcommands?
+**RQ6: How robust is WeaviateGraphQLGorilla to paraphrases of the nlcommands?**
 
 In order to package WeaviateGraphQLGorilla in something like the `Auto` API, we want to be able to support diverse styles in the `nlcommands`. In order to measure this we aim to prompt GPT-4 to produce paraphrases of the original nlcommands and report if the model is still able to generate the correct query.
 
