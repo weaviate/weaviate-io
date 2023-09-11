@@ -5,7 +5,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',  // TODO: https
-  host: 'localhost:8080', // TODO: edu-demo.weaviate.network
+  host: 'localhost:8090', // TODO: edu-demo.weaviate.network
   // apiKey: new weaviate.ApiKey('learn-weaviate'),
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],

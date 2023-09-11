@@ -9,7 +9,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8080',
+  host: 'localhost:8090',
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
