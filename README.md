@@ -25,7 +25,7 @@ nvm install node
 ```
 
 By default, `nvm` installs the most recent version of Node.js. Install Node.js
-19.9.0 as well. Version 19.9.0 is more compatibile with the current
+19.9.0 as well. Version 19.9.0 is more compatible with the current
 `weaviate.io` project dependencies.
 
 ```
@@ -100,13 +100,13 @@ $ yarn start &
 ```
 
 `yarn` builds the project as a static web site and starts a server to host it.
-`yarn` also opens a broswer window conncted to http://localhost:3000/ where
+`yarn` also opens a browser window connected to http://localhost:3000/ where
 you can see your changes.
 
 Most changes are reflected live without having to restart the server.
 
 If you run ``yarn start`` in the foreground (without the "&"), you have to open
-a second ternimal to continue working on the command line. When you open a
+a second terminal to continue working on the command line. When you open a
 second terminal, be sure to set the correct Node.js version before running
 additional `yarn` commands.
 
