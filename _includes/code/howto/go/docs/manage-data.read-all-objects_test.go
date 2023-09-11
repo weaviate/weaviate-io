@@ -21,6 +21,7 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 	ctx := context.Background()
 	t.Run("Read all objects", func(t *testing.T) {
 		// CursorExample  // Retrieve data
+
 		sourceClient, err := weaviate.NewClient(weaviate.Config{
 			Scheme: "https",
 			Host:   "some-endpoint.weaviate.network", // Replace with your Weaviate URL
@@ -66,6 +67,7 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 		require.NoError(t, err)
 
 		// Restore to a new (target) instance
+
 		targetClient, err := weaviate.NewClient(weaviate.Config{
 			Scheme: "https",
 			Host:   "some-endpoint.weaviate.network", // Replace with your Weaviate URL
