@@ -116,15 +116,15 @@ nvm use node 19.9.0
 
 ### Build the Web Site
 
-This command generates static content into the ``build`` directory and can be
-served using any static content hosting service.
+This command generates static content into the ``build`` directory. You can use
+a hosting service to serve the static content.
 
 ```
 $ yarn build
 ```
 
-The `build` command is useful when you are finished editing. If you used
-`yarn start` to start a local web server, you do not have to run `yarn build` to
+The `build` command is useful when you are finished editing. If you ran
+`yarn start` to start a local web server, you do not need to use `yarn build` to
 see you changes while you are editing.
 
 ### Deployment
