@@ -170,6 +170,81 @@ You can also make [`DELETE` request to the `/v1/batch/objects` endpoint](../api/
 There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
 :::
 
+### ContainsAny / ContainsAll
+
+You can use `ContainsAny` / `ContainsAll` filters with the `where` argument to delete objects that contains a specific value in a property.
+
+Note that when using `ContainsAny` or `ContainsAll`, the query must be entered as an array of values. The client-specific syntax varies as follows:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+client.batch.delete_objects(
+    class_name='EphemeralObject',
+    where={
+        'path': ['name'],
+        # highlight-start
+        'operator': 'ContainsAny',
+        'valueTextArray': ['asia', 'europe']  # Note the array syntax
+        # highlight-end
+    },
+)
+```
+
+</TabItem>
+<TabItem value="ts" label="JavaScript/TypeScript">
+
+```js
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  .withWhere({
+    path: ['name'],
+    // highlight-start
+    operator: 'ContainsAny',
+    valueTextArray: ['asia', 'europe'],  // Note the array syntax
+    // highlight-end
+  })
+  // highlight-end
+  .do();
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+client.batch().objectsBatchDeleter()
+  .withClassName("EphemeralObject")
+  .withWhere(WhereFilter.builder()
+    .path("name")
+    // highlight-start
+    .operator(Operator.ContainsAny)
+    .valueText("asia", "europe")    // Note the array syntax
+    // highlight-end
+    .build())
+  .run();
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+  response, err := client.Batch().ObjectsBatchDeleter().
+    WithClassName("EphemeralObject").
+    WithOutput("minimal").
+    WithWhere(filters.Where().
+      WithPath([]string{"name"}).
+      // highlight-start
+      WithOperator(filters.ContainsAny).
+      WithValueText("asia", "europe")).  // Note the array syntax
+      // highlight-end
+    Do(ctx)
+```
+
+</TabItem>
+</Tabs>
+
 
 ### Dry-run
 

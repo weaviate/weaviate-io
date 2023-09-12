@@ -140,7 +140,6 @@ class ManageDataDeleteTest {
     client.batch().objectsBatchDeleter()
       .withClassName("EphemeralObject")
       // highlight-start
-      // Same `where` filter as in the GraphQL API
       .withWhere(WhereFilter.builder()
         .path("name")
         .operator(Operator.Like)

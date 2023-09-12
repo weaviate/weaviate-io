@@ -258,6 +258,10 @@ Both operators expect an array of values and return objects that match based on 
 The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
 :::
 
+#### Use with batch delete
+
+When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the GraphQL usage such as in search, where the `valueText` argument that can be used.
+
 #### `ContainsAny`
 
 `ContainsAny` returns objects where at least one of the values from the input array is present.

@@ -101,7 +101,6 @@ func Test_ManageDataDelete(t *testing.T) {
 			WithClassName("EphemeralObject").
 			WithOutput("minimal").
 			// highlight-start
-			// Same `where` filter as in the GraphQL API
 			WithWhere(filters.Where().
 				WithPath([]string{"name"}).
 				WithOperator(filters.Like).
