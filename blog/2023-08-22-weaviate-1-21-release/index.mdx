@@ -218,7 +218,7 @@ We’ll explore the awesomeness of this new module more in a blog soon but for n
 
 ### Alternative virtual memory access (pread vs mmap)
 
-There is now an option to use `pread` for virtual memory access by setting it in the `PERSISTENCE_LSM_ACCESS` [environment variable](/developers/weaviate/config-refs/env-vars).
+There is now an option to use `pread` for virtual memory access by setting it in the `PERSISTENCE_LSM_ACCESS_STRATEGY` [environment variable](/developers/weaviate/config-refs/env-vars).
 
 Weaviate has been using `mmap` to map a portion of disk space to virtual memory. While `mmap` is performant, it can lead to stalling situations under heavy load or memory pressure due to Weaviate not being aware that the memory is in fact virtual.
 
@@ -226,7 +226,7 @@ If this is an issue for you, you can use `pread` for virtual memory access.
 
 `pread` provides better responsiveness and avoids inducing downtime in a cluster. The tradeoff is that `pread` does not provide the same memory management benefits as `mmap`, and may not be as fast as memory access.
 
-The current default will remain `mmap` - so if you want to change it, you must set the `PERSISTENCE_LSM_ACCESS` [environment variable](/developers/weaviate/config-refs/env-vars) to `pread`.
+The current default will remain `mmap` - so if you want to change it, you must set the `PERSISTENCE_LSM_ACCESS_STRATEGY` [environment variable](/developers/weaviate/config-refs/env-vars) to `pread`.
 
 <details>
   <summary>Further technical details</summary>

@@ -17,15 +17,14 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
 
-This page shows you how to perform similarity-based searches using Weaviate with the `nearXXX` operators.
+This page shows you how to perform similarity-based searches with the `nearXXX` operators.
+
+These operators work by searching for objects with the most similar vector representation to the query. Note that due to differences in configuration and data, we have a [separate page for image searches](./image.md).
 
 :::info Related pages
 - [API References: Search operators](../api/graphql/search-operators.md)
+- [How-to: Image search](./image.md)
 :::
-
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
-
-<BasicPrereqs />
 
 ## Similarity-based operators
 

@@ -27,7 +27,7 @@ These clients, and all future clients are and will be developed according to the
 # Design philosophy and API patterns
 
 As a rule of thumb it is more important that a client feels native to
-developers used to a specific language than it is to have all clients exaclty
+developers used to a specific language than it is to have all clients exactly
 identical. When developers make their first contact with a Weaviate client,
 they should think "This feels like proper Java [Go/Python/JavaScript...]", as
 opposed to "I guess it was designed like this to be consistent with other
@@ -37,7 +37,7 @@ native to those with experience in that language.
 This can also mean that specific patterns deviate from one client to another.
 For example, python has keyword arguments next to positional arguments. This
 makes it easy to add optional arguments with defaults. Golang, on the other
-hand, has a fixed set of arguments per funtion call making it much better
+hand, has a fixed set of arguments per function call making it much better
 suited for a builder pattern.
 
 Casing in object, property and method names should follow best-practicies for
@@ -48,7 +48,7 @@ the respective language.
 Test coverage is very important for clients to make it possible to easily test
 the client against various Weaviate versions. As a client is an integration
 point to Weaviate, the [Test pyramid](../weaviate-core/tests.md#test-pyramid)
-willl look upside down.
+will look upside down.
 
 Contrary to Weaviate Core it is most important that [Journey
 Tests](../weaviate-core/tests.md#journey-tests) are present, which verify all

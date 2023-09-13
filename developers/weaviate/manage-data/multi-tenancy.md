@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
 
 :::info Related pages
 - [How to: Configure a schema](../configuration/schema-configuration.md)
@@ -71,6 +73,24 @@ Code examples are shown below in which the tenants `tenantA` and `tenantB` are a
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 ### List tenant(s)
@@ -95,6 +115,24 @@ Code examples are shown below for listing the existing tenants in the `MultiTena
       startMarker="// START ListTenants"
       endMarker="// END ListTenants"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -122,6 +160,24 @@ If a tenant specified for deletion doesn't belong to the class, it is ignored.
       startMarker="// START RemoveTenants"
       endMarker="// END RemoveTenants"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -163,6 +219,24 @@ Code examples are shown below for creating an object in the `MultiTenancyClass` 
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateMtObject"
+      endMarker="// END CreateMtObject"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateMtObject"
+      endMarker="// END CreateMtObject"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -190,6 +264,24 @@ Code examples are shown below for fetching one object in the `MultiTenancyClass`
       startMarker="// START Search"
       endMarker="// END Search"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START Search"
+      endMarker="// END Search"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START Search"
+      endMarker="// END Search"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -221,6 +313,24 @@ The example below creates a cross-reference between two objects. It links an obj
       startMarker="// START AddCrossRef"
       endMarker="// END AddCrossRef"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START AddCrossRef"
+      endMarker="// END AddCrossRef"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START AddCrossRef"
+      endMarker="// END AddCrossRef"
+      language="go"
     />
   </TabItem>
 </Tabs>

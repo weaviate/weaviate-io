@@ -62,18 +62,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 <hr/>
 
-## Create an instance
-
-[Create a sandbox instance](developers/wcs/quickstart.mdx) on Weaviate Cloud Services and come back here. <br/>
-Make sure to collect the **API key** and **URL** from the `Details` tab.
-
-:::info To use another deployment method (e.g. Docker-Compose)
-If you prefer another method, see [this section](#can-i-use-another-deployment-method).
-:::
-
-<hr/>
-
-## Install a client library
+## Step 1: Install a client library
 
 We suggest using a [Weaviate client](../client-libraries/index.md). To install your preferred client, run the below:
 
@@ -87,7 +76,23 @@ import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
 <hr/>
 
-## Connect to Weaviate
+## Step 2: Create an instance
+
+Create a sandbox instance on [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) and come back here. <br/>
+Make sure to collect the **API key** and **URL** from the `Details` tab.
+
+:::tip WCS setup instructions
+Check out the [WCS quickstart](developers/wcs/quickstart.mdx) for instructions on how to create a sandbox instance and connect to it. <br/>
+Then make sure to come back here.
+:::
+
+:::info To use another deployment method (e.g. Docker Compose)
+If you prefer another method, see [this section](#can-i-use-another-deployment-method).
+:::
+
+<hr/>
+
+## Step 3: Connect to Weaviate
 
 Connect to Weaviate using this information:
 
@@ -103,7 +108,7 @@ Now you are connected to your Weaviate instance.
 
 <hr/>
 
-## Define a class
+## Step 4: Define a class
 
 Next, we define a data collection (a "class" in Weaviate) to store objects in:
 
@@ -121,7 +126,7 @@ Now you are ready to add objects to Weaviate.
 
 <hr/>
 
-## Add objects
+## Step 5: Add objects
 
 We can now add objects to Weaviate using a [batch import](../manage-data/import.mdx) process. We will cover both ways of obtaining a vector, starting with using a `vectorizer`.
 
@@ -154,7 +159,7 @@ Do *not* specify object vectors as an object property. This will cause Weaviate 
 
 <hr/>
 
-# Putting it together
+## Putting it together
 
 The following code puts the above steps together. You can run it yourself to import the data into your Weaviate instance.
 
@@ -176,7 +181,7 @@ You've already built a vector database and populated it with data! Now, we are r
 
 <hr/>
 
-## Queries
+## Step 6: Queries
 
 ### Semantic search
 
@@ -270,7 +275,7 @@ Well done! You have:
     - Using custom vectors,
 - Performed searches, including:
     - Semantic search,
-    - Sementic search with a filter and
+    - Semantic search with a filter and
     - Generative search.
 
 Where next is up to you. We include a few links below - or you can check out the sidebar.
@@ -309,12 +314,38 @@ Yes, you can use any method listed on our [installation options](../installation
 
 </p><br/>
 
-Using Docker-Compose may be a convenient option for many. To do so:
-1. Save this [Docker-Compose configuration file](https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?generative_cohere=false&generative_openai=true&generative_openai_key_approval=yes&generative_palm=false&media_type=text&modules=modules&ner_module=false&openai_key_approval=yes&qna_module=false&ref2vec_centroid=false&reranker_cohere=false&weaviate_volume=no-volume&runtime=docker-compose&spellcheck_module=false&sum_module=false&text_module=text2vec-openai&weaviate_version=v||site.weaviate_version||) as `docker-compose.yml`,
-1. Run `docker-compose up -d` from the location of your `docker-compose.yml` file, and then
-1. Connect to Weaviate at `http://localhost:8080`.
+Using Docker Compose may be a convenient option for many. To do so:
+1. Save this `Docker Compose` file as `docker-compose.yml`,
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    restart: on-failure:0
+    environment:
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-openai,generative-openai'
+      CLUSTER_HOSTNAME: 'node1'
+...
+```
+2. Run `docker compose up -d` from the location of your `docker-compose.yml` file, and then
+3. Connect to Weaviate at `http://localhost:8080`.
 
-If you are using this Docker-Compose configuration file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
+If you are using this `Docker Compose` file, Weaviate will not require API-key authentication. So your [connection code](#connect-to-weaviate) will change to:
 
 <ConnectToWeaviateDocker />
 

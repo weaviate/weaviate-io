@@ -38,12 +38,12 @@ If this is the case, we recommend:
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `text2vec-transformers`, you must enable it in your configuration file.
+To use `text2vec-transformers`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -61,7 +61,7 @@ Inference container:
 
 #### Example
 
-This configuration enables `text2vec-transformers`, sets it as the default vectorizer, and sets the parameters for the Transformers Docker container, including setting it to use `entence-transformers-multi-qa-MiniLM-L6-cos-v1` image and to disable CUDA acceleration.
+This configuration enables `text2vec-transformers`, sets it as the default vectorizer, and sets the parameters for the Transformers Docker container, including setting it to use `sentence-transformers-multi-qa-MiniLM-L6-cos-v1` image and to disable CUDA acceleration.
 
 ```yaml
 version: '3.4'
@@ -99,7 +99,7 @@ This module will benefit greatly from GPU usage. Make sure to enable CUDA if you
 
 As an alternative, you can run the inference container independently from Weaviate. To do so, you can:
 
-- Enable `text2vec-transformers` in your Weaviate configuration file,
+- Enable `text2vec-transformers` in your Docker Compose file,
 - Omit `t2v-transformers` parameters,
 - Run the inference container separately, e.g. using Docker, and
 - Set `TRANSFORMERS_INFERENCE_API` to the URL of the inference container.
@@ -212,7 +212,7 @@ a custom image as outlined below.
 
 You can explicitly set the version through a suffix.
 - Use `-1.0.0` to pin to a specific version. E.g. `semitechnologies/transformers-inference:distilbert-base-uncased-1.0.0` will always use the version with git tag `1.0.0` of the `distilbert-base-uncased` repository.
-- You can explicity set `-latest` to always use the latest version, however this is the default behavior.
+- You can explicitly set `-latest` to always use the latest version, however this is the default behavior.
 
 ### Option 2: A Hugging Face model
 
@@ -237,7 +237,7 @@ docker build -f distilroberta.Dockerfile -t distilroberta-inference .
 
 #### Step 3: Use the image
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `distilroberta-inference`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `distilroberta-inference`.
 
 
 ### Option 3: A private or local model
@@ -261,11 +261,11 @@ Now you just need to build and tag your Dockerfile, we will tag it as `my-model-
 docker build -f my-model.Dockerfile -t my-model-inference .
 ```
 
-That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `my-model-inference`.
+That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `my-model-inference`.
 
 To debug and test if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
 
-To do so, you need to expose the inference container in your docker-compose by adding:
+To do so – you need to expose the inference container in your Docker Compose file – add something like this:
 
 ```yaml
 ports:
@@ -286,6 +286,12 @@ and it will print the created vector directly.
 import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
+
+## Model license(s)
+
+The `text2vec-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 ## More resources
 

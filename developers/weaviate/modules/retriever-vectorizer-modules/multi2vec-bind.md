@@ -37,12 +37,12 @@ Key notes:
 This module is not available on Weaviate Cloud Services.
 :::
 
-### Configuration file
+### Docker Compose file
 
-To use `multi2vec-bind`, you must enable it in your configuration file.
+To use `multi2vec-bind`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
 :::tip Use the configuration tool
-While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the Docker-Compose configuration file.
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
 :::
 
 #### Parameters
@@ -213,6 +213,12 @@ The `multi2vec-bind` vectorizer module will enable the following search operator
 These operators can be used to perform cross-modal search and retrieval.
 
 This means that when using the `multi2vec-bind` module any query using one modality (e.g. text) will include results in all available modalities, as all objects will be encoded into a single vector space.
+
+## Model license(s)
+
+The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookresearch/ImageBind) model. ImageBind code and model weights are released under the CC-BY-NC 4.0 license. See the [LICENSE](https://github.com/facebookresearch/ImageBind/blob/main/LICENSE) for additional details.
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 ## More resources
 

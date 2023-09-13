@@ -96,7 +96,7 @@ An example configuration:
     "class": "Author",
     "moduleConfig": { // <== module config on class level
         "text2vec-transformers": { // <== the name of the module (in this case `text2vec-transformers`)
-            // the settings based on the choosed modules
+            // the settings based on the chosen modules
         }
     },
     "properties": [ ]

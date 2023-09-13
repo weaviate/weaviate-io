@@ -1,5 +1,5 @@
 ---
-title: Filtered Vector Search
+title: Filtering (with search)
 sidebar_position: 26
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
@@ -88,7 +88,7 @@ The cutoff value can be configured as [part of the `vectorIndexConfig` settings 
 From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
 :::
 
-## Cachable Filters
+## Cacheable Filters
 
 Starting with `v1.8.0`, the inverted index portion of a filter can be cached and reused - even across different vector searches. As outlined in the sections above, pre-filtering is a two-step process. First, the inverted index is queried and potential matches are retrieved. This list is then passed to the HNSW index. Reading the potential matches from disk (step 1) can become a bottleneck in the following scenarios:
 

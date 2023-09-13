@@ -11,7 +11,7 @@ export default function Header() {
         </h1>
         <h3>Join us and be part of the future of search</h3>
         <p>
-          At Weaviate we are commited to our values - the foundation of <br />
+          At Weaviate we are committed to our values - the foundation of <br />
           our company. They guide our decisions in ways that are <br />
           better for our people, our business, and the future.
         </p>

@@ -204,7 +204,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 ---
 
-### 7. Create a SQL to Weaviate schema convertor
+### 7. Create a SQL to Weaviate schema converter
 
 **Project Description:** Weaviate's schema is suited to represent SQL schemas. The idea is to create a converter from SQL to Weaviate. It might be nice to even integrate an import function based on this schema. Because SQL doesn't have a concept as vector representation or vectorizers. You might want to add an example like WordPress to Weaviate.
 

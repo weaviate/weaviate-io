@@ -51,7 +51,7 @@ You only need to provide one of the two keys, depending on which service (OpenAI
 
 You can provide your API key in two ways:
 
-1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
@@ -80,9 +80,9 @@ For requests that require the OpenAI organization name, you can provide it at qu
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### Configuration file (Weaviate open source only)
+### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative OpenAI module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative OpenAI module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,generative-openai'

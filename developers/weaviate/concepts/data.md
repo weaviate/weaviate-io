@@ -89,7 +89,7 @@ Nobel Prize Winner
 "Paul Robin Krugman is an American economist and public intellectual, who is..."
 ] -->
 
-Following on our author example, Weaviate can store multipe authors like this:
+Following on our author example, Weaviate can store multiple authors like this:
 
 ```json
 [{

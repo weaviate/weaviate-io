@@ -307,7 +307,7 @@ To bring in upstream changes to your fork, you need to fetch and pull the upstre
 git checkout main
 ```
 
-> Note, the `weaviate` project uses `master` as its default branch, while `weaviate-io` uses `main`. Pick tbe right branch name based on the project you use.
+> Note, the `weaviate` project uses `master` as its default branch, while `weaviate-io` uses `main`. Pick the right branch name based on the project you use.
 
 * Then pull the changes into local repository
 

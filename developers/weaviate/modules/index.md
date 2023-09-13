@@ -32,7 +32,7 @@ This section describes Weaviate's individual modules, including their capabiliti
 
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
 - Naming convention:
-  - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.
+  - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `img2vec-neural` or `text2vec-transformers`.
   - Other modules: `<functionality>-<name>-<optional>`, for example `qna-transformers`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
@@ -44,7 +44,7 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
 
 ## Default vectorizer module
 
-Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the docker-compose configuration file:
+Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the Docker Compose file:
 
 ``` yaml
 services:

@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read_test.go';
 
 ## Overview
 
@@ -63,6 +65,24 @@ To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -86,6 +106,24 @@ To retrieve the object vector, set the `vector` parameter:
       startMarker="// ReadObjectWithVector START"
       endMarker="// ReadObjectWithVector END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="go"
     />
   </TabItem>
 </Tabs>

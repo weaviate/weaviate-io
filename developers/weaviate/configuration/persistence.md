@@ -22,7 +22,7 @@ Note that Weaviate now offers native backup modules starting with `v1.15` for si
 
 ### Persistence
 
-When running Weaviate with docker-compose, you can set the `volumes` variable under the `weaviate` service and a unique cluster hostname as an environment variable.
+When running Weaviate with Docker Compose, you can set the `volumes` variable under the `weaviate` service and a unique cluster hostname as an environment variable.
 
 ```yaml
 services:
@@ -104,7 +104,7 @@ changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspe
 :::info Available from version `v1.21`
 :::
 
-You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS` environment variable.
+You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable.
 
 The two functions reflect different under-the-hood memory management behaviors. `mmap` uses a memory-mapped file, which means that the file is mapped into the virtual memory of the process. `pread` is a function that reads data from a file descriptor at a given offset.
 

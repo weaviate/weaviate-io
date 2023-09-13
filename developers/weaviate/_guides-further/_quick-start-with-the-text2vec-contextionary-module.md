@@ -20,7 +20,7 @@ curl -o docker-compose.yml https://raw.githubusercontent.com/weaviate/weaviate-e
 Run Docker (optional: run with `-d` to run Docker in the background)
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 Weaviate will be available and preloaded with the news article demo dataset on:
