@@ -31,7 +31,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
           >
             <div className={styles.btn} onClick={() => handleSelected('saas')}>
               <div className={styles.saasPng} />
-              <h1 className={styles.test}>SaaS</h1>
+              <h1 className={styles.test}>Software as a Service</h1>
               <p className={styles.btnText}>
                 We manage everything in the Weaviate Cloud
               </p>
