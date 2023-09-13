@@ -44,22 +44,13 @@ export default function HomepageHeader() {
             Community of users <br></br> and customers
           </p>
           <div className={styles.logoSection}>
-            <div className={styles.customerLogo} />
-            <div className={`${styles.customerLogo} ${styles.youLogo}`} />
+            <div className={`${styles.customerLogo} ${styles.redhatLogo}`} />
             <div
-              className={`${styles.customerLogo} ${styles.replicatedLogo}`}
+              className={`${styles.customerLogo} ${styles.stackoverflowLogo}`}
             />
-            <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
-            <div className={`${styles.customerLogo} ${styles.staircaseLogo}`} />
-            <div className={`${styles.customerLogo} ${styles.presshookLogo}`} />
-            <div className={styles.customerLogo} />
             <div className={`${styles.customerLogo} ${styles.youLogo}`} />
-            <div
-              className={`${styles.customerLogo} ${styles.replicatedLogo}`}
-            />
+            <div className={`${styles.customerLogo} ${styles.ericssonLogo}`} />
             <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
-            <div className={`${styles.customerLogo} ${styles.staircaseLogo}`} />
-            <div className={`${styles.customerLogo} ${styles.presshookLogo}`} />
           </div>
         </div>
       </div>

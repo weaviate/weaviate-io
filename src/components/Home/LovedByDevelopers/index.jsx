@@ -84,94 +84,94 @@ export default function HomepageLovedByDevelopers() {
       <div>
         <StyledSlider {...settings}>
           <div className={styles.xbox}>
-            <TwitterTweetEmbed
-              options={{
-                cards: 'hidden',
-                hideCard: true,
-                hideThread: false,
-                maxWidth: 300,
-                theme: 'dark',
-                width: 300,
-
-                conversation: 'none',
-              }}
-              tweetId={'1624058429584322560'}
-            />
+            <div className={styles.quoteBox}>
+              <p>
+                With Weaviate's cloud and self-hosted services at our disposal
+                and an innovative feature set in our toolkit, Kreoh is equipped
+                to rapidly deliver high-value AI solutions to all of our
+                clients, irrespective of their technology infrastructure.
+              </p>
+              <span>
+                <strong>Fareed Idris</strong>
+                <br></br>
+                Kreoh
+              </span>
+            </div>
           </div>
           <div className={styles.xbox}>
-            <TwitterTweetEmbed
-              options={{
-                cards: 'hidden',
-                hideCard: true,
-                hideThread: false,
-                maxWidth: 300,
-                theme: 'dark',
-                width: 300,
-
-                conversation: 'none',
-              }}
-              tweetId={'1631317445326643201'}
-            />
+            <div className={styles.quoteBox}>
+              <p>
+                With Weaviate's cloud and self-hosted services at our disposal
+                and an innovative feature set in our toolkit, Kreoh is equipped
+                to rapidly deliver high-value AI solutions to all of our
+                clients, irrespective of their technology infrastructure.
+              </p>
+              <span>
+                <strong>Fareed Idris</strong>
+                <br></br>
+                Kreoh
+              </span>
+            </div>
           </div>
           <div className={styles.xbox}>
-            <TwitterTweetEmbed
-              options={{
-                cards: 'hidden',
-                hideCard: true,
-                hideThread: false,
-                maxWidth: 300,
-                theme: 'dark',
-                width: 300,
-
-                conversation: 'none',
-              }}
-              tweetId={'1629383824395366402'}
-            />
+            <div className={styles.quoteBox}>
+              <p>
+                With Weaviate's cloud and self-hosted services at our disposal
+                and an innovative feature set in our toolkit, Kreoh is equipped
+                to rapidly deliver high-value AI solutions to all of our
+                clients, irrespective of their technology infrastructure.
+              </p>
+              <span>
+                <strong>Fareed Idris</strong>
+                <br></br>
+                Kreoh
+              </span>
+            </div>
           </div>
           <div className={styles.xbox}>
-            <TwitterTweetEmbed
-              options={{
-                cards: 'hidden',
-                hideCard: true,
-                hideThread: false,
-                maxWidth: 300,
-                theme: 'dark',
-                width: 300,
-
-                conversation: 'none',
-              }}
-              tweetId={'1625045987017256960'}
-            />
+            <div className={styles.quoteBox}>
+              <p>
+                With Weaviate's cloud and self-hosted services at our disposal
+                and an innovative feature set in our toolkit, Kreoh is equipped
+                to rapidly deliver high-value AI solutions to all of our
+                clients, irrespective of their technology infrastructure.
+              </p>
+              <span>
+                <strong>Fareed Idris</strong>
+                <br></br>
+                Kreoh
+              </span>
+            </div>
           </div>
           <div className={styles.xbox}>
-            <TwitterTweetEmbed
-              options={{
-                cards: 'hidden',
-                hideCard: true,
-                hideThread: false,
-                maxWidth: 300,
-                theme: 'dark',
-                width: 300,
-
-                conversation: 'none',
-              }}
-              tweetId={'1632430609610973185'}
-            />
+            <div className={styles.quoteBox}>
+              <p>
+                With Weaviate's cloud and self-hosted services at our disposal
+                and an innovative feature set in our toolkit, Kreoh is equipped
+                to rapidly deliver high-value AI solutions to all of our
+                clients, irrespective of their technology infrastructure.
+              </p>
+              <span>
+                <strong>Fareed Idris</strong>
+                <br></br>
+                Kreoh
+              </span>
+            </div>
           </div>
           <div className={styles.xbox}>
-            <TwitterTweetEmbed
-              options={{
-                cards: 'hidden',
-                hideCard: true,
-                hideThread: false,
-                maxWidth: 300,
-                theme: 'dark',
-                width: 300,
-
-                conversation: 'none',
-              }}
-              tweetId={'1631351144042594304'}
-            />
+            <div className={styles.quoteBox}>
+              <p>
+                With Weaviate's cloud and self-hosted services at our disposal
+                and an innovative feature set in our toolkit, Kreoh is equipped
+                to rapidly deliver high-value AI solutions to all of our
+                clients, irrespective of their technology infrastructure.
+              </p>
+              <span>
+                <strong>Fareed Idris</strong>
+                <br></br>
+                Kreoh
+              </span>
+            </div>
           </div>
         </StyledSlider>
       </div>

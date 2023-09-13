@@ -25,6 +25,13 @@
   }
 }
 
+.mobileSection {
+  display: none;
+  @media screen and (max-width: 900px) {
+    display: block;
+  }
+}
+
 .mobileLogoSection {
   display: none;
 
@@ -134,13 +141,14 @@
 }
 
 .customerLogo {
-  background-image: url('/img/site/logo_01.png');
+  background-image: url('/img/site/redhat-logo.svg');
 
   background-size: contain;
   background-repeat: no-repeat;
 
-  width: 6.9375rem;
-  height: 1.5625rem;
+  width: 8rem;
+  height: 3rem;
+  margin: 0px 10px;
 
   @media screen and (max-width: 950px) {
     grid-row: 1;
@@ -148,6 +156,22 @@
   }
 }
 
+.redhatLogo {
+  background-image: url('/img/site/redhat-logo.svg');
+  background-position: center;
+}
+
+.stackoverflowLogo {
+  background-image: url('/img/site/stackoverflow-logo.svg');
+  background-position: center;
+  width: 9rem;
+  height: 4rem;
+}
+
+.ericssonLogo {
+  background-image: url('/img/site/ericsson-logo.svg');
+  background-position: center;
+}
 .tyroLogo {
   background-image: url('/img/site/tyro_logo.png');
   background-position: center;
