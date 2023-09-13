@@ -315,3 +315,43 @@
     color: #130c49;
   }
 }
+
+.bottomBars {
+  height: 10rem;
+  display: flex;
+  background: #130c49;
+  flex-direction: row;
+  gap: 80px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+
+  .barText {
+    color: #2fc514;
+    font-family: Plus Jakarta Sans;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 2.7rem */
+
+    span {
+      color: #fff;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 157.33%; /* 1.57331rem */
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

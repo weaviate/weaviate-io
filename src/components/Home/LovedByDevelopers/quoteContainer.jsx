@@ -8,12 +8,19 @@ export default function Quotecontainer(props) {
     <div className={styles.xbox}>
       <div className={styles.quoteBox}>
         <p>{details.statement}</p>
-        <span>
-          <strong>{details.name}</strong>
-          <br></br>
-          {details.company}
-          <img src={details.logo}></img>
-        </span>
+        {details.logo ? (
+          <span>
+            <strong>{details.name}</strong>
+            <br></br>
+            <img src={details.logo} alt={details.name}></img>
+          </span>
+        ) : (
+          <span>
+            <strong>{details.name}</strong>
+            <br></br>
+            {details.company}
+          </span>
+        )}
       </div>
     </div>
   );
