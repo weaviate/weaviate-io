@@ -3,31 +3,103 @@
 		"statement": "With Weaviate's cloud and self-hosted services at our disposal and an innovative feature set in our toolkit, Kreoh is equipped to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
 		"name": "Fareed Idris",
         "company": "Kreoh"
+	},
+	{
+		"statement": "Weaviate has been instrumental in allowing our customers to accurately categorize and search customer feedback. We especially appreciate its ability to filter on top of its vector search.",
+		"name": "Patrick Philbin",
+        "company": "Feedback Sync"
 
 	},
 	{
-		"statement": "With Weaviate's cloud and self-hosted services at our disposal and an innovative feature set in our toolkit, Kreoh is equipped to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
-		"name": "Fareed Idris",
-        "company": "Kreoh"
+		"statement": "The entire [Weaviate] ecosystem is very clearly designed with developers top of mind, and the community is the best I've ever been part of for responsiveness to questions. ",
+		"name": "Charles Pierse",
+        "company": "Tactic"
 
 	},
 	{
-		"statement": "With Weaviate's cloud and self-hosted services at our disposal and an innovative feature set in our toolkit, Kreoh is equipped to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
-		"name": "Fareed Idris",
-        "company": "Kreoh"
+
+		"statement": "Despite being novices in the realm of vector databases, the comprehensive documentation Weaviate provided ensured that we were up and running in no time. It was the perfect solution to our needs.",
+		"name": "Matthew Rappard",
+        "company": "Vaultie"
 
 	},
 	{
-		"statement": "With Weaviate's cloud and self-hosted services at our disposal and an innovative feature set in our toolkit, Kreoh is equipped to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
-		"name": "Fareed Idris",
-        "company": "Kreoh"
+
+		"statement": "After trying all the options out there, we decided to power our most sophisticated use cases using Weaviate, handling thousands of queries at a time while ensuring a flawless execution.",
+		"name": "Antoni Rosinol",
+        "company": "Stack-AI"
 
 	},
 	{
-		"statement": "With Weaviate's cloud and self-hosted services at our disposal and an innovative feature set in our toolkit, Kreoh is equipped to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
-		"name": "Fareed Idris",
-        "company": "Kreoh"
+
+		"statement": "Weaviate consistently exceeds our expectations for a vector database with its out of the box accuracy, flexibility, low learning curve, and constant improvements.",
+		"name": "Jonathan Modene",
+        "company": "Stratagem"
+
+	},
+	{
+
+		"statement": "Weaviate's developer tools, end-to-end functionality as a vector store, and rock-solid stability and performance are allowing us to enable businesses of all sizes to build AI apps in minutes.",
+		"name": "Robert Ong",
+        "company": "Moonnox"
+
+	},
+	{
+
+		"statement": "Weaviate offers unparalleled flexibility in schema definition which streamlines the process of storing unstructured data. Their AI native tooling helps our users get up and running with RAG based applications faster than ever before.",
+		"name": "Brian Raymond",
+        "company": "Unstructured.io"
+
+	},
+	{
+
+		"statement": "Within a couple of weeks we had a novel, production-ready AI-powered search engine. Easy to set-up, decent documentation, and responsive support. Exactly what we needed.",
+		"name": "David Wood",
+        "company": "Moonsift"
+
+	},
+	{
+
+		"statement": "We had started building our own solution and it was super complex, but after we migrated to Weaviate, we were up and running with our customers’ data within a day.",
+		"name": "Victor Skovbæk Skytte",
+        "company": "Applai"
+
+	},
+	{
+
+		"statement": "When I found Weaviate, the QuickStart guides actually worked on the first try! I felt right at home and my costs were cut by ~1/4 from closed-source alternative.",
+		"name": "Evan McFarland",
+        "company": "Uncensored Greats"
+
+	},
+	{
+
+		"statement": "Installing and configuring Weaviate to run on Openshift was straightforward thanks to the helm chart examples and docs. Once deployed, the Weaviate console made it easy to validate and make queries.",
+		"name": "Bob Kozdemba",
+        "company": "Red Hat"
+
+	},
+	{
+
+		"statement": "Weaviate's batteries included model serving and multi-tenant implementation which have helped us quickly prototype and build our vector search at Stack.",
+		"name": "Constantine Kokkinos",
+        "company": "Stack Overflow"
+
+	},
+	{
+
+		"statement": "Weaviate is my go-to vector store for every AI and LLM integration that I build. The design and engineering philosophy of the team behind it makes it one of the most exciting platforms for building AI applications.",
+		"name": "Gregory Lindsey",
+        "company": "AWS Consultant"
+
+	},{
+		"statement": "Giving our chatbot long-term memory took not more than just few hours.",
+		"name": "Abhimanyu Grover",
+        "company": "Zapdroid"
 
 	}
 
+
+
 ]
+

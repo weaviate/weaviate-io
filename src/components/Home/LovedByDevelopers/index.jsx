@@ -27,26 +27,29 @@ export default function HomepageLovedByDevelopers() {
   `;
 
   var settings = {
-    dots: true,
-    cssEase: 'linear',
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    dots: false,
     infinite: true,
-    initialSlide: 0,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    speed: 10000,
+    autoplaySpeed: 4000,
+    arrows: false,
     pauseOnHover: true,
+    pauseOnFocus: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          arrows: false,
+          dots: false,
           infinite: true,
-          dots: true,
+          slidesToShow: 4,
+          slidesToScroll: 1,
           autoplay: true,
-          autoplaySpeed: 2000,
+          speed: 1000,
+          autoplaySpeed: 1000,
+
           pauseOnHover: true,
         },
       },
@@ -69,20 +72,22 @@ export default function HomepageLovedByDevelopers() {
   };
 
   return (
-    <div className="container">
-      <div className={styles.header}>
-        <h2 className={styles.title}>Loved by Developers</h2>
-        <p className={styles.subtitle}>
-          Developer Experience is at the core of everything we do. Weaviate is
-          not just a tool;<br></br> it's a community-driven ecosystem carefully
-          crafted to empower developers to build<br></br> end-to-end AI
-          applications fast and easy. From our documentation to the open-source
-          <br></br>
-          community, Weaviate is designed to be the go-to solution that
-          developers love.
-        </p>
+    <>
+      <div className="container">
+        <div className={styles.header}>
+          <h2 className={styles.title}>Loved by Developers</h2>
+          <p className={styles.subtitle}>
+            Developer Experience is at the core of everything we do. Weaviate is
+            not just a tool;<br></br> it's a community-driven ecosystem
+            carefully crafted to empower developers to build<br></br> end-to-end
+            AI applications fast and easy. From our documentation to the
+            open-source
+            <br></br>
+            community, Weaviate is designed to be the go-to solution that
+            developers love.
+          </p>
+        </div>
       </div>
-
       <div>
         <StyledSlider {...settings}>
           {quotes.map((quote) => {
@@ -90,6 +95,6 @@ export default function HomepageLovedByDevelopers() {
           })}
         </StyledSlider>
       </div>
-    </div>
+    </>
   );
 }

@@ -133,13 +133,12 @@
 }
 
 .xbox {
-  margin-left: 16%;
-
-  @media screen and (max-width: 485px) {
-    margin-left: 0%;
-  }
+  margin-left: 10%;
 }
 
+.slick-track:hover {
+  transition: -webkit-transform ease 0s !important;
+}
 .slick-prev:before,
 .slick-next:before {
   font-size: 48px !important;
@@ -155,6 +154,11 @@
   background: #130c49;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
   padding: 28px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
   p {
     color: #fff;
     font-size: 1rem;

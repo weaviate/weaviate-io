@@ -36,9 +36,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
                 We manage everything in the Weaviate Cloud
               </p>
               <div className={styles.logos}>
-                <span className={styles.google} />
-                <span className={`${styles.awsLight} ${styles.opacity}`} />
-                <span className={`${styles.azure} ${styles.opacity}`} />
+                <span className={styles.weaviate} />
               </div>
             </div>
           </div>
@@ -48,7 +46,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
             }`}
           >
             <div
-              className={`${styles.btn} ${styles.hybrid}`}
+              className={styles.btn}
               onClick={() => handleSelected('hybrid')}
             >
               <div className={styles.hybridPng} />
