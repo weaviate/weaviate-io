@@ -190,10 +190,10 @@ const config = {
                                 label: 'About us',
                                 to: '/company/about-us',
                             },
-                            {
+                            /* {
                                 label: 'Partners',
                                 to: '/partners',
-                            },
+                            }, */
                             {
                                 label: 'Playbook',
                                 to: '/company/playbook',
