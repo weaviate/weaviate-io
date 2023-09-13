@@ -12,6 +12,7 @@ export default function Quotecontainer(props) {
           <strong>{details.name}</strong>
           <br></br>
           {details.company}
+          <img src={details.logo}></img>
         </span>
       </div>
     </div>
