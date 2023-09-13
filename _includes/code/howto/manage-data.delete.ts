@@ -122,7 +122,6 @@ await client.batch
   .objectsBatchDeleter()
   .withClassName('EphemeralObject')
   // highlight-start
-  // Same `where` filter as in the GraphQL API
   .withWhere({
     path: ['name'],
     operator: 'Like',
