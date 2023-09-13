@@ -77,6 +77,22 @@ copy to work on.
    upstream	https://github.com/weaviate/weaviate-io.git (push)
    ```
 
+6. Fetch the upstream branches
+
+   This step lets you track upstream changes while you work on your update.
+
+   First, prepare your local repository.
+
+   ```
+   git fetch upstream
+   ```
+
+   When you create a local branch, add `upstream/main` as the tracking branch.
+
+   ```
+   git checkout -b your-update-branch-name upstream/main
+   ```
+
 ### Update Dependencies
 
 Once you have a local copy of the repository, you need to install Docusaurus and
