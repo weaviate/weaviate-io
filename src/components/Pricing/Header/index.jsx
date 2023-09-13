@@ -9,9 +9,10 @@ export default function PricingHeader({ selectedType, handleSelected }) {
         <h1 className={styles.pricingHeader}>Weaviate Cloud Services</h1>
         <h3>The power of the open-source vector database, fully managed</h3>
         <p>
-          Regardless of whether you are a startup wanting to get started
-          with Weaviate in minutes (SaaS) or an enterprise user with specific deployment
-          needs (BYOC), we are here to help with pricing models tailored to your needs.
+          Regardless of whether you are a startup wanting to get started with
+          Weaviate in minutes (SaaS) or an enterprise user with specific
+          deployment needs (BYOC), we are here to help with pricing models
+          tailored to your needs.
         </p>
         {/* <div className={styles.buttons}>
           <Link

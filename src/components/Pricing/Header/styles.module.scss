@@ -138,7 +138,7 @@ p {
   .weaviate {
     display: flex;
     width: 67px;
-    height: 60px;
+    height: 40px;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../../../../static/img/site/wcs-logo.svg');
@@ -212,6 +212,7 @@ p {
   padding: 5px;
   cursor: pointer;
   transition: all 1s ease-out;
+  color: #130c49;
 
   p {
     font-size: 1rem;
