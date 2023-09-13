@@ -167,59 +167,24 @@ const config = {
                 },
                 items: [
                     {
-                        type: 'dropdown',
-                        label: 'Weaviate Cloud Services',
+                        // type: 'dropdown',
+                        label: 'Products',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Pricing',
-                                to: '/pricing',
-                            },
-                            {
-                                label: 'Weaviate Cloud console',
-                                href: 'https://console.weaviate.cloud',
-                            },
-                        ],
+                        to: '/pricing',
+                        // items: [
+                        //     {
+                        //         label: 'Pricing',
+                        //         to: '/pricing',
+                        //     },
+                        //     {
+                        //         label: 'Weaviate Cloud console',
+                        //         href: 'https://console.weaviate.cloud',
+                        //     },
+                        // ],
                     },
                     {
                         type: 'dropdown',
-                        label: 'About',
-                        position: 'right',
-                        items: [
-                            {
-                                label: 'About us',
-                                to: '/company/about-us',
-                            },
-                            {
-                                label: 'Partners',
-                                to: '/partners',
-                            },
-                            {
-                                label: 'Playbook',
-                                to: '/company/playbook',
-                            },
-                            {
-                                label: 'Careers',
-                                to: '/company/careers',
-                            },
-                            {
-                                label: 'Investors',
-                                to: '/company/investors',
-                            },
-                            {
-                                label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io',
-                            },
-                        ],
-                    },
-                    {
-                        label: 'Blog',
-                        to: '/blog',
-                        position: 'right',
-                    },
-                    {
-                        type: 'dropdown',
-                        label: 'For Developers',
+                        label: 'Developers',
                         position: 'right',
                         items: [
                             {
@@ -259,6 +224,42 @@ const config = {
                                 href: 'https://forum.weaviate.io',
                             },
                         ],
+                    },
+                    {
+                        type: 'dropdown',
+                        label: 'Company',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'About us',
+                                to: '/company/about-us',
+                            },
+                            {
+                                label: 'Partners',
+                                to: '/partners',
+                            },
+                            {
+                                label: 'Playbook',
+                                to: '/company/playbook',
+                            },
+                            {
+                                label: 'Careers',
+                                to: '/company/careers',
+                            },
+                            {
+                                label: 'Investors',
+                                to: '/company/investors',
+                            },
+                            {
+                                label: 'Contact us',
+                                href: 'mailto:hello@weaviate.io',
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Blog',
+                        to: '/blog',
+                        position: 'right',
                     },
                     {
                         label: 'Try Now',
