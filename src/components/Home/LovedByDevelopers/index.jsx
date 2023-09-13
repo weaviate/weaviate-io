@@ -9,6 +9,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
+import quotes from '/data/quotes.json';
+import Quotecontainer from './quoteContainer';
 
 export default function HomepageLovedByDevelopers() {
   const StyledSlider = styled(Slider)`
@@ -83,96 +85,9 @@ export default function HomepageLovedByDevelopers() {
 
       <div>
         <StyledSlider {...settings}>
-          <div className={styles.xbox}>
-            <div className={styles.quoteBox}>
-              <p>
-                With Weaviate's cloud and self-hosted services at our disposal
-                and an innovative feature set in our toolkit, Kreoh is equipped
-                to rapidly deliver high-value AI solutions to all of our
-                clients, irrespective of their technology infrastructure.
-              </p>
-              <span>
-                <strong>Fareed Idris</strong>
-                <br></br>
-                Kreoh
-              </span>
-            </div>
-          </div>
-          <div className={styles.xbox}>
-            <div className={styles.quoteBox}>
-              <p>
-                With Weaviate's cloud and self-hosted services at our disposal
-                and an innovative feature set in our toolkit, Kreoh is equipped
-                to rapidly deliver high-value AI solutions to all of our
-                clients, irrespective of their technology infrastructure.
-              </p>
-              <span>
-                <strong>Fareed Idris</strong>
-                <br></br>
-                Kreoh
-              </span>
-            </div>
-          </div>
-          <div className={styles.xbox}>
-            <div className={styles.quoteBox}>
-              <p>
-                With Weaviate's cloud and self-hosted services at our disposal
-                and an innovative feature set in our toolkit, Kreoh is equipped
-                to rapidly deliver high-value AI solutions to all of our
-                clients, irrespective of their technology infrastructure.
-              </p>
-              <span>
-                <strong>Fareed Idris</strong>
-                <br></br>
-                Kreoh
-              </span>
-            </div>
-          </div>
-          <div className={styles.xbox}>
-            <div className={styles.quoteBox}>
-              <p>
-                With Weaviate's cloud and self-hosted services at our disposal
-                and an innovative feature set in our toolkit, Kreoh is equipped
-                to rapidly deliver high-value AI solutions to all of our
-                clients, irrespective of their technology infrastructure.
-              </p>
-              <span>
-                <strong>Fareed Idris</strong>
-                <br></br>
-                Kreoh
-              </span>
-            </div>
-          </div>
-          <div className={styles.xbox}>
-            <div className={styles.quoteBox}>
-              <p>
-                With Weaviate's cloud and self-hosted services at our disposal
-                and an innovative feature set in our toolkit, Kreoh is equipped
-                to rapidly deliver high-value AI solutions to all of our
-                clients, irrespective of their technology infrastructure.
-              </p>
-              <span>
-                <strong>Fareed Idris</strong>
-                <br></br>
-                Kreoh
-              </span>
-            </div>
-          </div>
-          <div className={styles.xbox}>
-            <div className={styles.quoteBox}>
-              <p>
-                With Weaviate's cloud and self-hosted services at our disposal
-                and an innovative feature set in our toolkit, Kreoh is equipped
-                to rapidly deliver high-value AI solutions to all of our
-                clients, irrespective of their technology infrastructure.
-              </p>
-              <span>
-                <strong>Fareed Idris</strong>
-                <br></br>
-                Kreoh
-              </span>
-            </div>
-          </div>
+          {quotes.map((quote) => {
+            return <Quotecontainer key={quote.name} details={quote} />;
+          })}
         </StyledSlider>
       </div>
     </div>
