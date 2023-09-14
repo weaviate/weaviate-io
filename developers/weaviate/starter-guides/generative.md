@@ -11,6 +11,15 @@ import TabItem from '@theme/TabItem';
 
 <Badges/>
 
+:::info This page is a preview
+This documentation page is a beta preview.
+
+For now, the code examples are in <i class="fa-brands fa-python"></i> Python only. Please be patient while we add code examples for other languages.
+
+<!-- We would love to get your feedback. Please provide us with any feedback through [TODO - this forum post](LINK). -->
+:::
+
+
 ## Overview
 
 :::info Related pages
@@ -18,37 +27,194 @@ import TabItem from '@theme/TabItem';
 - [How-to: Generative search](../search/generative.md)
 :::
 
-### About this guide
+This pages introduces you to generative search with Weaviate. It covers:
 
-This guide provides a brief overview of how to implement generative search in Weaviate, including best practices and tips. It primarily covers:
-
-- Weaviate setup,
-- Class configuration, and
-- Generative queries.
-
-### About generative search / RAG
-
-Generative search (also called retrieval augmented generation (RAG)) is a powerful technique that can expand the capabilities of large language models (LLMs).
-
-At its core, generative search enhances LLMs by supplying them with relevant and up-to-date data sourced directly from search results.
-
-Weaviate provides this integration with generative models natively. This makes it easier, faster and more efficient to implement generative search workflows in your application.
+- What generative search, or RAG, is,
+- How to configure Weaviate for generative search,
+- How to perform generative searches, and
+- Importing data with generative search in mind.
 
 ### Prerequisites
 
-This guide is for developers who are familiar with Weaviate and have a basic understanding of generative search. If you're unfamiliar with Weaviate, start with the [Weaviate Quickstart guide](../quickstart/index.md).
+This guide assumes some familiarity with Weaviate, but it is not required. If you are new to Weaviate, we suggest starting with the [Weaviate Quickstart guide](../quickstart/index.md).
+
+## Background
+
+### What is generative search?
+
+Generative search is a powerful technique that uses retrieved data with large language models (LLMs). Another name for generative search is retrieval augmented generation, or RAG.
+
+### Why generative search?
+
+LLM are incredibly powerful, but can suffer from two important limitations. These limitation are that:
+- They can confidently produce incorrect, or outdated, information (also called 'hallucination'); and
+- They might simply not be trained on the information you need.
+
+Generative search remedies this problem with a two-step process.
+
+:::warning Two-step process
+FIGURE GOES HERE
+:::
+
+The first step is to retrieve relevant data through a query. Then, in the second step, the LLM is prompted with a combination of the retrieve data with a user-provided query.
+
+This provides in-context learning for the LLM, which causes it to use the relevant and up-to-date data rather than rely on recall from its training, or even worse, hallucinated outputs.
+
+### Weaviate and generative search
+
+Weaviate incorporates key functionalities to make generative search easier and faster.
+
+For one, Weaviate's search capabilities make it easier to find relevant information. You can use any of similarity, keyword and hybrid searches, along with filtering capabilities to find the information you need.
+
+Additionally, Weaviate has integrated generative search capabilities, so that the retrieval and generation steps are combined into a single query. This means that you can use Weaviate's search capabilities to retrieve the data you need, and then in the same query, prompt the LLM with the same data.
+
+This makes it easier, faster and more efficient to implement generative search workflows in your application.
+
+## Examples of generative search
+
+Let's begin by viewing examples of generative search in action. We will then explore how to configure Weaviate for generative search.
+
+We will use the publicly available `https://edu-demo.weaviate.network` instance, which you can access with the `learn-weaviate` read-only API key. These examples are configured with the `generative-openai` module and the `gpt-3.5-turbo` model, so you will need an OpenAI API key.
+
+Connect to the instance like so, remembering to replace the API key for the LLM used (OpenAI in this case) with your own API key:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client(
+    url="https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey(api_key="learn-weaviate"),
+    additional_headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # <-- Replace with your API key
+    }
+)
+```
+
+</TabItem>
+</Tabs>
+
+### Transform result sets
+
+Let's take an illustrative example with passages from a book. Here, the Weaviate instance contains a collection of passages from the [Pro Git book](https://git-scm.com/book/en/v2). We will use generative search in a `grouped task` prompt to summarize the key takeaways from the passages.
+
+Run the below code snippet, and inspect the results:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+collection_name = "GitBookChunk"
+
+response = (
+    client.query
+    .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
+    .with_near_text({"concepts": ["history of git"]})
+    .with_limit(5)
+    .with_generate(grouped_task="Summarize the key information here in bullet points")
+    .do()
+)
+```
+
+</TabItem>
+</Tabs>
+
+Your response should include a result like the following:
+
+:::note Example output
+- Git began as a replacement for the proprietary DVCS called BitKeeper, which was used by the Linux kernel project.
+- The relationship between the Linux development community and BitKeeper broke down in 2005, leading to the development of Git by Linus Torvalds.
+- Git was designed with goals such as speed, simple design, strong support for non-linear development, and the ability to handle large projects efficiently.
+- Most operations in Git only require local files and resources, making them fast and efficient.
+- Git allows browsing project history instantly and can calculate differences between file versions locally.
+- Git allows offline work and does not require a network connection for most operations.
+- This book was written using Git version 2, but most commands should work in older versions as well.
+:::
+
+The result may vary according to your model, but should be largely similar.
+
+Here, Weaviate has:
+- Retrieved five most similar passages to the meaning of `history of git`.
+- Prompted the LLM with a combination of:
+    - Text from the search results, and
+    - The user-provided prompt, `Summarize the key information here in bullet points`.
+
+Note that the user-provided prompt (deliberately) did not contain any information about the subject matter. The result is that Weaviate returned a passage which is not contained in the database, but is a grounded transformation of the retrieved data.
+
+### Transform individual objects
+
+In this example, we will use generative search to translate wine reviews into French, using emojis. The reviews is a subset from a [publicly available dataset of wine reviews](https://www.kaggle.com/zynicide/wine-reviews).
+
+Note that in this query, we apply a `single prompt` parameter. This means that the LLM is prompted with each object individually, rather than with the entire result set.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+collection_name = "WineReview"
+
+response = (
+    client.query
+    .get(class_name=collection_name, properties=["review_body", "title", "country", "points"])
+    .with_near_text({"concepts": ["fruity white wine"]})
+    .with_limit(5)
+    .with_generate(single_prompt="""
+        Translate this review into French, using emojis:
+        ===== Country of origin: {country}, Title: {title}, Review body: {review_body}
+    """)
+    .do()
+)
+```
+
+</TabItem>
+</Tabs>
+
+As the query was run with a limit of 5, you should see 5 objects returned, including generated texts.
+
+Your results should look somewhat like the following (it will vary due to the randomness of the LLM, and depending on the model):
+
+:::note Example output
+===== Generated text =====<br/>
+🇺🇸🍷🌿🍑🌼🍯🍊🍮🍽️🌟<br/>
+<br/>
+
+Origine : États-Unis<br/>
+Titre : Schmitz 24 Brix 2012 Sauvignon Blanc (Sierra Foothills)<br/>
+Corps de la critique : Pas du tout un Sauvignon Blanc typique, il sent l'abricot et le chèvrefeuille et a le goût de la marmelade. Il est sec, mais a le goût d'un vin de dessert tardif. Attendez-vous à une petite aventure gustative ici.
+
+<br/>
+
+===== Original review =====<br/>
+Country: US<br/>
+Title: Schmitz 24 Brix 2012 Sauvignon Blanc (Sierra Foothills)<br/>
+Review body Not at all a typical Sauvignon Blanc, this smells like apricot and honeysuckle and tastes like marmalade. It is dry, yet tastes like a late-harvest dessert wine. Expect a little taste adventure here.
+:::
+
+Here, Weaviate has:
+- Retrieved five most similar wine reviews to the meaning of `fruity white wine`.
+- For each result, prompted the LLM with:
+    - The user-provided prompt, replacing `{country}`, `{title}`, and `{review_body}` with the corresponding text.
+
+In both examples, you saw Weaviate return new text that is original, but grounded in the retrieved data. This is what makes generative search powerful, by combining the best of data retrieval and language generation.
+
+Now, let's explore how to configure Weaviate for generative search.
 
 ## Configuration
 
 ### Weaviate configuration
 
-To use generative search, a `generative` module must be available,
-1. *enabled* in your Weaviate instance, and
-2. *specified* to use in your class.
+You can configure Weaviate for generative search by enabling the appropriate `generative-xxx` modules, and specifying them in the class definition.
 
-#### Are the right modules enabled?
+Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-palm` for PaLM models.
 
-In many cases, you will not need to do anything to enable the required modules. You can check which modules are enabled by viewing the `meta` information for your Weaviate instance, as shown below:
+If you are using WCS, you will not need to do anything to enable modules.
+
+<details>
+  <summary>How to list enabled modules</summary>
+
+You can check which modules are enabled by viewing the `meta` information for your Weaviate instance, as shown below:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -68,9 +234,12 @@ await client.misc
 </TabItem>
 </Tabs>
 
-The response will include a list of modules. On Weaviate Cloud Services (WCS) instances, for example, multiple `generative` and `text2vec` are enabled by default.
+The response will include a list of modules. Check that your desired module is enabled.
 
-### How to enable modules
+</details>
+
+<details>
+  <summary>How to enable modules</summary>
 
 For configurable deployments, you can specify enabled modules. For example, in a Docker deployment, you can do so by listing them on the `ENABLE_MODULES` environment variable, as shown below:
 
@@ -82,6 +251,9 @@ services:
 ```
 
 Check the specific documentation for your deployment method ([Docker](../installation/docker-compose.md), [Kubernetes](../installation/kubernetes.md), [Embedded Weaviate](../installation/embedded.md)) for more information on how to configure it.
+
+
+</details>
 
 ### Class configuration
 
@@ -103,11 +275,22 @@ You can specify the vectorizer module by setting the `vectorizer` parameter in t
 }
 ```
 
-## Generative search
+:::caution Generative module cannot be changed
+Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
+<br/>
 
-:::info Data used
-For this guide, we will use a Weaviate instance that is pre-populated with a small subset of data from a [publicly available dataset of wine reviews](https://www.kaggle.com/zynicide/wine-reviews).
+If you would like us to priorize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
 :::
+
+## Data import
+
+Adding data to Weaviate for generative search is similar to adding data for other purposes. However, there are some important considerations to keep in mind, such as chunking and data structure.
+
+In this example, we will use a chunk length of 150 words and a 25-word overlap. We will also include the title of the book, the chapter it is from, and the chunk number. You can read the further discussions about chunking and data structure in the [Best practices & tips](#best-practices--tips) section.
+
+
+
+## Generative queries
 
 ### Single (per-object) prompts
 
@@ -127,7 +310,7 @@ response = (
 )
 ```
 
-The braces (`{}`) indicate where the object's data should be inserted, specifying which property to use. In this case, the `review_body` property of the object is used.
+The braces `{}` indicate where the object's data should be inserted, specifying which property to use. In this case, the `review_body` property of the object is used.
 
 This produces results like the following:
 
@@ -233,21 +416,38 @@ As you can see, Weaviate allows you to use the full power of search to retrieve 
 
 ## Best practices & tips
 
+
 ### Chunking
 
 In the context of language processing, "chunking" refers to the process of splitting texts into smaller pieces of texts, i.e. "chunks".
 
-For generative search, chunking affects both the information retrieval stage and the provision of context.
+For generative search, chunking affects both the information retrieval and the amount of contextual information provided.
 
-While there is no one-size-fits all chunking strategy that we can recommend, we can provide some general guidelines. For many, we think one of two strategies can be effective starting points:
+While there is no one-size-fits all chunking strategy that we can recommend, we can provide some general guidelines. Chunking by semantic markers, or text length may both be viable strategies.
 
-1. Chunking by semantic markers, such as paragraphs, or sections. This is a good strategy that will allows you to retain related information in each chunk. Some potential risks are that chunk lengths may vary significantly, and outlier conditions may occur common (e.g. chunks with headers that are not particularly meaningful).
+#### Chunking by semantic markers
 
-2. Chunking by word length, such as 100-150. This is a robust baseline strategy that will allow you to retrieve relevant information without having to worry about the exact length of the text. One potential risk is that chunks may be cut off where they are not semantically meaningful, cutting off important contextual information.
+Using semantic markers, such as paragraphs, or sections can be a good strategy that will allows you to retain related information in each chunk. Some potential risks are that chunk lengths may vary significantly, and outlier conditions may occur common (e.g. chunks with headers that are not particularly meaningful).
+
+#### Chunking by text length
+
+Using text length, such as 100-150 words, can be a robust baseline strategy. This will allow you to retrieve relevant information without having to worry about the exact length of the text. One potential risk is that chunks may be cut off where they are not semantically meaningful, cutting off important contextual information.
+
+You could use a sliding window approach to mitigate this risk, by overlapping chunks. The length of each chunk can be adjusted to your needs, and based on any unit, such as words, tokens, or even characters.
 
 A baseline strategy could involve using chunks created with a 100-200 word sliding window and a 50-word overlap.
 
+#### Mixed-strategy chunking
+
 Another, slightly more complicated strategy may be using paragraph-based chunks with a maximum and a minimum length, say of 200 words and 50 words respectively.
+
+### Data structure
+
+Another important consideration is the data structure. For example, your chunk object could also contain any additional source-level data, such as the title of the book, the chapter it is from, and the chunk number.
+
+This will allow you to search through the chunks, as well as filter it. Then, you could use this information to control the generation process, such as by prompting the LLM with contextual data (chunks) in the order that they appear in the source document.
+
+Additionally, you could link the chunks to the source document, allowing you to retrieve the source document, or even the entire source document, if needed.
 
 ### Complex prompts
 
