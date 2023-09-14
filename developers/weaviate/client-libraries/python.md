@@ -822,8 +822,6 @@ import MatrixIntro from '/_includes/clients/matrix-intro.md';
 |[2.0.0](https://github.com/weaviate/weaviate-python-client/releases/tag/v2.0.0)|2021-01-11|[0.23.2](https://github.com/weaviate/weaviate/releases/tag/v0.23.2)|
 |[1.0.0](https://github.com/weaviate/weaviate-python-client/releases/tag/1.0.0)|2020-09-15|[0.22.16](https://github.com/weaviate/weaviate/releases/tag/v0.22.16)|
 
-
-
 ## Change logs
 
 For more detailed information on client updates, check the change logs. The logs
