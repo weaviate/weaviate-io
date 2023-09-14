@@ -77,17 +77,23 @@ copy to work on.
    upstream	https://github.com/weaviate/weaviate-io.git (push)
    ```
 
-6. Fetch the upstream branches
+6. Configure a tracking branch.
 
-   This step lets you track upstream changes while you work on your update.
+   This step lets you track upstream changes while you work on your update. When
+   you are ready to contribute your changes, create a pull request against the
+   `upstream/main` branch.
 
-   First, prepare your local repository.
+   Get the upstream branches.
 
    ```
    git fetch upstream
    ```
 
-   When you create a local branch, add `upstream/main` as the tracking branch.
+   Add `upstream/main` as a tracking branch when you create a new project
+   branch.
+
+   You can use `git checkout` to set the tracking branch, or choose an
+   alternative method that fits your `git` workflow.
 
    ```
    git checkout -b your-update-branch-name upstream/main
