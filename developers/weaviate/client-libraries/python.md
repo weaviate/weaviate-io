@@ -784,18 +784,6 @@ query_result.build()
 >>> '{Get{Article(where: {path: ["wordCount"] operator: GreaterThan valueInt: 1000} limit: 50 nearText: {concepts: ["fashion"] certainty: 0.7 moveTo: {force: 0.85 concepts: ["haute couture"]} moveAwayFrom: {force: 0.45 concepts: ["finance"]}} ){title}}}'
 
 ```
-## Releases
-
-This chart matches Weaviate versions with client releases. It shows the most
-recent Weaviate version when the client version was released.
-
-The chart includes point releases for the most recent major and minor version of
-the client. Earlier releases only show the Weaviate version for the first minor
-release.
-
-| Client Version | Release Date | Weaviate Version |
-|:-|:-|:-|
-
 
 ## Change logs
 
