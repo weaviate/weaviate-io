@@ -9,6 +9,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info This page is a work-in-progress preview
+:::
+
 ## Overview
 
 In this section, you'll find basic guides to help you get started with Weaviate.
