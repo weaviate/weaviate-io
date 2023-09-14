@@ -9,6 +9,9 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
+:::info This page is a work-in-progress preview
+:::
+
 ## Overview
 
 Weaviate can be configured and deployed in many different ways. Generally, the two first decisions to make in using Weaviate involve:

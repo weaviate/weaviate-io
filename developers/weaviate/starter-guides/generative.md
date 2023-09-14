@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 :::info This page is a work-in-progress preview
 For now, the code examples are in <i class="fa-brands fa-python"></i> Python only. Please be patient while we add code examples for other languages.
 
-<!-- We would love to get your feedback. Please provide us with any feedback through [TODO - this forum post](LINK). -->
+We would love to get your feedback. Please provide us with any feedback through [this forum post](https://forum.weaviate.io/t/generative-search-rag-guide-preview-feedback-thread).
 :::
 
 :::caution Generative module cannot be changed
