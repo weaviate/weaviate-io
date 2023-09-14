@@ -2,6 +2,7 @@
 title: Which Weaviate setup to use?
 sidebar_position: 10
 image: og/docs/tutorials.jpg
+sidebar_class_name: hidden
 # tags: ['getting started']
 ---
 import Badges from '/_includes/badges.mdx';

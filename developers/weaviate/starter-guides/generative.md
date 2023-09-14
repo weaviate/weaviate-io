@@ -2,6 +2,7 @@
 title: Generative search (RAG)
 sidebar_position: 30
 image: og/docs/tutorials.jpg
+sidebar_class_name: hidden
 # tags: ['getting started']
 ---
 
@@ -11,14 +12,18 @@ import TabItem from '@theme/TabItem';
 
 <Badges/>
 
-:::info This page is a preview
-This documentation page is a beta preview.
-
+:::info This page is a work-in-progress preview
 For now, the code examples are in <i class="fa-brands fa-python"></i> Python only. Please be patient while we add code examples for other languages.
 
 <!-- We would love to get your feedback. Please provide us with any feedback through [TODO - this forum post](LINK). -->
 :::
 
+:::caution Generative module cannot be changed
+Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
+<br/>
+
+If you would like us to priorize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
+:::
 
 ## Overview
 
@@ -29,9 +34,9 @@ For now, the code examples are in <i class="fa-brands fa-python"></i> Python onl
 
 This pages introduces you to generative search with Weaviate. It covers:
 
-- What generative search, or RAG, is,
-- How to configure Weaviate for generative search,
-- How to perform generative searches, and
+- What generative search, or RAG, is.
+- How to configure Weaviate for generative search.
+- How to perform generative searches.
 - Importing data with generative search in mind.
 
 ### Prerequisites
@@ -42,7 +47,7 @@ This guide assumes some familiarity with Weaviate, but it is not required. If yo
 
 ### What is generative search?
 
-Generative search is a powerful technique that uses retrieved data with large language models (LLMs). Another name for generative search is retrieval augmented generation, or RAG.
+Generative search is a powerful technique that retrieves data to ground large language models (LLMs). It is also called retrieval augmented generation (RAG), or in-context learning in some cases.
 
 ### Why generative search?
 
@@ -51,10 +56,10 @@ LLM are incredibly powerful, but can suffer from two important limitations. Thes
 - They might simply not be trained on the information you need.
 
 Generative search remedies this problem with a two-step process.
-
+<!--
 :::warning Two-step process
 FIGURE GOES HERE
-:::
+::: -->
 
 The first step is to retrieve relevant data through a query. Then, in the second step, the LLM is prompted with a combination of the retrieve data with a user-provided query.
 
@@ -96,9 +101,62 @@ client = weaviate.Client(
 </TabItem>
 </Tabs>
 
+### Data retrieval
+
+Let's take an illustrative example with passages from a book. Here, the Weaviate instance contains a collection of passages from the [Pro Git book](https://git-scm.com/book/en/v2).
+
+Before we can generate text, we need to retrieve relevant data. Let's retrieve the three most similar passages to the meaning of `history of git` with a semantic search.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+collection_name = "GitBookChunk"
+
+response = (
+    client.query
+    .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
+    .with_near_text({"concepts": ["history of git"]})
+    .with_limit(3)
+    .do()
+)
+```
+
+</TabItem>
+</Tabs>
+
+This should return a set of results like the following (truncated for brevity):
+
+```
+{
+  "data": {
+    "Get": {
+      "GitBookChunk": [
+        {
+          "chapter_title": "01-introduction",
+          "chunk": "=== A Short History of Git\n\nAs with many great things in life, Git began with a bit of creative ...",
+          "chunk_index": 0
+        },
+        {
+          "chapter_title": "01-introduction",
+          "chunk": "== Nearly Every Operation Is Local\n\nMost operations in Git need only local files and resources ...",
+          "chunk_index": 2
+        },
+        {
+          "chapter_title": "02-git-basics",
+          "chunk": "==\nYou can specify more than one instance of both the `--author` and `--grep` search criteria...",
+          "chunk_index": 2
+        },
+      ]
+    }
+  }
+}
+
+```
+
 ### Transform result sets
 
-Let's take an illustrative example with passages from a book. Here, the Weaviate instance contains a collection of passages from the [Pro Git book](https://git-scm.com/book/en/v2). We will use generative search in a `grouped task` prompt to summarize the key takeaways from the passages.
+We can transform this result set into new text using generative search with just a minor modification of the code. First, let's use a `grouped task` prompt to summarize this information.
 
 Run the below code snippet, and inspect the results:
 
@@ -112,18 +170,22 @@ response = (
     client.query
     .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
     .with_near_text({"concepts": ["history of git"]})
-    .with_limit(5)
+    .with_limit(3)
+    # highlight-start
     .with_generate(grouped_task="Summarize the key information here in bullet points")
+    # highlight-end
     .do()
 )
+
+print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
 ```
 
 </TabItem>
 </Tabs>
 
-Your response should include a result like the following:
+Here is our generated text:
 
-:::note Example output
+```
 - Git began as a replacement for the proprietary DVCS called BitKeeper, which was used by the Linux kernel project.
 - The relationship between the Linux development community and BitKeeper broke down in 2005, leading to the development of Git by Linus Torvalds.
 - Git was designed with goals such as speed, simple design, strong support for non-linear development, and the ability to handle large projects efficiently.
@@ -131,21 +193,27 @@ Your response should include a result like the following:
 - Git allows browsing project history instantly and can calculate differences between file versions locally.
 - Git allows offline work and does not require a network connection for most operations.
 - This book was written using Git version 2, but most commands should work in older versions as well.
-:::
+```
 
-The result may vary according to your model, but should be largely similar.
-
-Here, Weaviate has:
-- Retrieved five most similar passages to the meaning of `history of git`.
-- Prompted the LLM with a combination of:
-    - Text from the search results, and
+In a `grouped task` generative search, Weaviate:
+- Retrieves the three most similar passages to the meaning of `history of git`.
+- Then prompts the LLM with a combination of:
+    - Text from all of the search results, and
     - The user-provided prompt, `Summarize the key information here in bullet points`.
 
-Note that the user-provided prompt (deliberately) did not contain any information about the subject matter. The result is that Weaviate returned a passage which is not contained in the database, but is a grounded transformation of the retrieved data.
+Note that the user-provided prompt did not contain any information about the subject matter. But because Weaviate retrieve the relevant data about the history of git, it was able to summarize the information relating to this subject matter using verifiable data.
+
+That's how easy it is to use generative search in Weaviate.
+
+:::note Your results may vary
+There will be variability in the actual text that has been generated. This due to the randomness in LLMs' behaviors, and variability across models. This is perfectly normal.
+:::
 
 ### Transform individual objects
 
-In this example, we will use generative search to translate wine reviews into French, using emojis. The reviews is a subset from a [publicly available dataset of wine reviews](https://www.kaggle.com/zynicide/wine-reviews).
+In this example, we will take a look at how to transform individual objects. This is useful when you want to generate text for each object individually, rather than for the entire result set.
+
+Here we prompt the model to translate individual wine reviews into French, using emojis. The reviews is a subset from a [publicly available dataset of wine reviews](https://www.kaggle.com/zynicide/wine-reviews).
 
 Note that in this query, we apply a `single prompt` parameter. This means that the LLM is prompted with each object individually, rather than with the entire result set.
 
@@ -173,24 +241,21 @@ response = (
 
 As the query was run with a limit of 5, you should see 5 objects returned, including generated texts.
 
-Your results should look somewhat like the following (it will vary due to the randomness of the LLM, and depending on the model):
+Here is our generated text for the first object, and the source text:
 
-:::note Example output
-===== Generated text =====<br/>
-🇺🇸🍷🌿🍑🌼🍯🍊🍮🍽️🌟<br/>
-<br/>
+```
+===== Generated text =====
+🇺🇸🍷🌿🍑🌼🍯🍊🍮🍽️🌟
 
-Origine : États-Unis<br/>
-Titre : Schmitz 24 Brix 2012 Sauvignon Blanc (Sierra Foothills)<br/>
+Origine : États-Unis
+Titre : Schmitz 24 Brix 2012 Sauvignon Blanc (Sierra Foothills)
 Corps de la critique : Pas du tout un Sauvignon Blanc typique, il sent l'abricot et le chèvrefeuille et a le goût de la marmelade. Il est sec, mais a le goût d'un vin de dessert tardif. Attendez-vous à une petite aventure gustative ici.
 
-<br/>
-
-===== Original review =====<br/>
-Country: US<br/>
-Title: Schmitz 24 Brix 2012 Sauvignon Blanc (Sierra Foothills)<br/>
+===== Original review =====
+Country: US,
+Title: Schmitz 24 Brix 2012 Sauvignon Blanc (Sierra Foothills)
 Review body Not at all a typical Sauvignon Blanc, this smells like apricot and honeysuckle and tastes like marmalade. It is dry, yet tastes like a late-harvest dessert wine. Expect a little taste adventure here.
-:::
+```
 
 Here, Weaviate has:
 - Retrieved five most similar wine reviews to the meaning of `fruity white wine`.
@@ -199,13 +264,19 @@ Here, Weaviate has:
 
 In both examples, you saw Weaviate return new text that is original, but grounded in the retrieved data. This is what makes generative search powerful, by combining the best of data retrieval and language generation.
 
-Now, let's explore how to configure Weaviate for generative search.
+## Generative search, end-to-end
 
-## Configuration
+Now, let's go through an end-to-end example for using Weaviate for generative search.
 
-### Weaviate configuration
+### Your own Weaviate instance
 
-You can configure Weaviate for generative search by enabling the appropriate `generative-xxx` modules, and specifying them in the class definition.
+For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCS instance.
+
+### Configure Weaviate
+
+To use generative search, the appropriate `generative-xxx` module must be:
+- Enabled in Weaviate, and
+- Specified in the class definition.
 
 Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-palm` for PaLM models.
 
@@ -252,165 +323,281 @@ services:
 
 Check the specific documentation for your deployment method ([Docker](../installation/docker-compose.md), [Kubernetes](../installation/kubernetes.md), [Embedded Weaviate](../installation/embedded.md)) for more information on how to configure it.
 
-
 </details>
 
-### Class configuration
+### Populate database
 
-The vectorizer and generative module must be specified at the class level.
+Adding data to Weaviate for generative search is similar to adding data for other purposes. However, there are some important considerations to keep in mind, such as chunking and data structure.
 
-You can specify the vectorizer module by setting the `vectorizer` parameter in the class definition to your preferred module (e.g. `text2vec-openai`), and specify the generative module by including your preferred module in the `moduleConfig` parameter (e.g. `generative-openai`).
+You can read further discussions in the [Best practices & tips](#best-practices--tips) section. Here, we will use a chunk length of 150 words and a 25-word overlap. We will also include the title of the book, the chapter it is from, and the chunk number. This will allow us to search through the chunks, as well as filter it.
 
-```yaml
-{
-    "class": "WineReview",
+#### Download & chunk
+
+In the following snippet, we download a chapter of the `Pro Git` book, clean it and chunk it.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+from typing import List
+
+
+def download_and_chunk(src_url: str, chunk_size: int, overlap_size: int) -> List[str]:
+    import requests
+    import re
+
+    response = requests.get(src_url)  # Retrieve source text
+    source_text = re.sub(r"\s+", " ", response.text)  # Remove multiple whitespaces
+    text_words = re.split(r"\s", source_text)  # Split text by single whitespace
+
+    chunks = []
+    for i in range(0, len(text_words), chunk_size):  # Iterate through & chunk data
+        chunk = " ".join(text_words[max(i - overlap_size, 0): i + chunk_size])  # Join a set of words into a string
+        chunks.append(chunk)
+    return chunks
+
+
+pro_git_chapter_url = "https://raw.githubusercontent.com/progit/progit2/main/book/01-introduction/sections/what-is-git.asc"
+chunked_text = download_and_chunk(pro_git_chapter_url, 150, 25)
+```
+
+</TabItem>
+</Tabs>
+
+This will download the text from the chapter, and return a list/array of strings of 150 word chunks, with a 25-word overlap added in front.
+
+#### Create class definitions
+
+We can now create a class definition for the chunks. To use generative search, your desired generative module must be specified at the class level as shown below.
+
+he below class definition for the `GitBookChunk` class specifies `text2vec-openai` as the vectorizer and `generative-openai` as the generative module. Note that the `generative-openai` parameter can have an empty dictionary/object as its value, which will use the default parameters.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+collection_name = "GitBookChunk"
+
+chunk_class = {
+    "class": collection_name,
+    "properties": [
+        {
+            "name": "chunk",
+            "dataType": ["string"],
+        },
+        {
+            "name": "chapter_title",
+            "dataType": ["string"],
+        },
+        {
+            "name": "chunk_index",
+            "dataType": ["int"],
+        }
+    ],
     # highlight-start
     "vectorizer": "text2vec-openai",  # Use `text2vec-openai` as the vectorizer
     # highlight-end
     # highlight-start
     "moduleConfig": {
         "generative-openai": {}  # Use `generative-openai` with default parameters
-    },
+    }
     # highlight-end
 }
+
+if client.schema.exists(collection_name):  # In case we've created this collection before
+    client.schema.delete_class(collection_name)  # THIS WILL DELETE ALL DATA IN THE CLASS
+
+client.schema.create_class(chunk_class)
 ```
 
-:::caution Generative module cannot be changed
-Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
-<br/>
+</TabItem>
+</Tabs>
 
-If you would like us to priorize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
-:::
+#### Import data
 
-## Data import
+Now, we can import the data into Weaviate.
 
-Adding data to Weaviate for generative search is similar to adding data for other purposes. However, there are some important considerations to keep in mind, such as chunking and data structure.
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
-In this example, we will use a chunk length of 150 words and a 25-word overlap. We will also include the title of the book, the chapter it is from, and the chunk number. You can read the further discussions about chunking and data structure in the [Best practices & tips](#best-practices--tips) section.
+```python
+client.batch.configure(batch_size=100)
+with client.batch as batch:
+    for i, chunk in enumerate(chunked_text):
+        data_object = {
+            "chapter_title": "What is Git",
+            "chunk": chunk,
+            "chunk_index": i
+        }
+        batch.add_data_object(data_object=data_object, class_name=collection_name)
+```
 
+</TabItem>
+</Tabs>
 
+Once this is done, you should have imported a collection of chunks from the chapter into Weaviate. You can check this by running a simple aggregation query:
 
-## Generative queries
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
-### Single (per-object) prompts
+```python
+client.query.aggregate("GitBookChunk").with_meta_count().do()
+```
 
-You can use generative search to generate text based on a single object. This allows you to prompt the language model with a template, that is then filled in with the object's data.
+</TabItem>
+</Tabs>
 
-In the below example, for instance, we prompt the language model to write a haiku based on the body text of a wine review.
+Which should indicate that there are `10` chunks in the database.
+
+### Generative queries
+
+Now that we have configured Weaviate and populated it with data, we can perform generative queries as you saw in the examples above.
+
+#### Single (per-object) prompts
+
+Single prompts tell Weaviate to generate text based on each retrieved object and the user-provided prompt. In the below example, we retrieve two objects, and prompt the language model to write a haiku based on the text of each chunk.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
 ```python
 response = (
     client.query
-    .get("WineReview", ["review_body", "title"])
+    .get(collection_name, ["chunk", "chunk_index"])
     .with_generate(
-        single_prompt="Write {review_body} as a haiku"
+        single_prompt="Write the following as a haiku: ===== {chunk} "
     )
     .with_limit(2)
     .do()
 )
+
+for r in response["data"]["Get"][collection_name]:
+    print(f"\n===== Object index: [{r['chunk_index']}] =====")
+    print(r["_additional"]["generate"]["singleResult"])
 ```
 
-The braces `{}` indicate where the object's data should be inserted, specifying which property to use. In this case, the `review_body` property of the object is used.
+</TabItem>
+</Tabs>
 
-This produces results like the following:
+It should return haiku-like text, such as:
 
-:::note Generated results
-Response 1:
+```
+===== Object index: [1] =====
+Git's data stored
+As snapshots of files, not changes
+Efficient and unique
 
-Full-bodied wine shines,
-Fruit dances with sweet oak's touch,
-Lusciousness in sips.
+===== Object index: [6] =====
+Git has three states:
+Untracked, modified, staged.
+Commit to save changes.
+```
 
-Response 2:
+#### Grouped tasks
 
-Firm tannins hold tight,
-Banana and cherry blend,
-Wait, 2017.
-:::
+A grouped task is a prompt that is applied to a group of objects. This allows you to prompt the language model with the entire set of search results, such as source documents or relevant passages.
 
-Each response here differs based on the data of the object, reflecting the body of the review.
+In the below example, we prompt the language model to write a trivia tweet based on the result.
 
-### Grouped tasks
-
-A grouped task is a prompt that is applied to a group of objects. This allows you to prompt the language model with the entire set of search results, such as source documents, relevant passages, or individual reviews in this case.
-
-In the below example, we prompt the language model to write a recommendation for a wine to pair with a salmon steak, based on 10 retrieved reviews.
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
 ```python
 response = (
     client.query
-    .get("WineReview", ["review_body", "title"])
+    .get(collection_name, ["chunk", "chunk_index"])
     .with_generate(
-        grouped_task="Based on these reviews, make a short recommendation on which wine to drink with a nice salmon steak. Keep in mind that it is now 2023"
+        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
     )
-    .with_limit(10)
+    .with_limit(2)
     .do()
 )
+
+print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
 ```
 
-:::note Generated results
-Based on the reviews, I would recommend pairing the salmon steak with the Maison de la Villette 2016 Viognier (Vin de France). This wine is described as ripe and full, with prominent apricot flavors and a warm, rounded aftertaste. Its richness and fruitiness make it a good match for the salmon, while its poise adds balance to the dish. Enjoy!
-:::
+</TabItem>
+</Tabs>
 
-### Pairing with search
+It should return a factoid written for social media, such as:
+
+```
+Did you know? 🤔 Git thinks of its data as snapshots, not just changes to files.
+📸 Every time you commit, Git takes a picture of all your files and stores a reference to that snapshot.
+📂🔗 #GitTrivia
+```
+
+#### Pairing with search
 
 Generative search in Weaviate is a two-step process under the hood, involving retrieval of objects and then generation of text. This means that you can use the full power of Weaviate's search capabilities to retrieve the objects you want to use for generation.
 
-In the below example, we search the [Pro Git book](https://git-scm.com/book/en/v2) (pre-loaded in our Weaviate instance) for passages that mention the history of Git, and then generate a summary of the key facts.
+In the below example, we search the chapter for passages that relate to the states of git, before generating a tweet as before.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
 ```python
 response = (
     client.query
+    .get(collection_name, ["chunk", "chunk_index"])
     # highlight-start
-    .get("GitBookChunk", ["chunk", "chapter_title"])
-    .with_near_text({"concepts": "history of git"})
-    .with_generate(
-        grouped_task="""
-        Summarize 5 key facts or takeaways from these passages,
-        preferably in concise, short form
-        """
-    )
+    .with_near_text({"concepts": "states of git"})
     # highlight-end
-    .with_limit(5)
+    .with_generate(
+        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
+    )
+    .with_limit(2)
     .do()
 )
+
+print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
 ```
 
-:::note Generated results
-1. Git was developed as a response to the breakdown of the relationship between the Linux development community and the company that developed BitKeeper.
-2. Git was created with goals of speed, simple design, strong support for non-linear development, full distribution, and efficient handling of large projects.
-3. Git operates mostly with local files and resources, making operations fast and allowing for offline work.
-4. Git allows for multiple instances of search criteria, limiting commit output to matches of any of the specified patterns.
-5. Git is backwards compatible and most commands should work even in older versions.
-:::
+</TabItem>
+</Tabs>
 
-Now, simply by changing the search query, we can generate a summary of the key takeaways from the book about undoing actions in Git.
+This should return text like:
+
+```
+📝 Did you know? Git has three main states for files: modified, staged, and committed.
+🌳📦📂 Learn more about these states and how they affect your Git project!
+#GitBasics #Trivia
+```
+
+Now, simply by changing the search query, we can generate similar content about different topics.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
 
 ```python
 response = (
     client.query
-    .get("GitBookChunk", ["chunk", "chapter_title"])
+    .get(collection_name, ["chunk", "chunk_index"])
     # highlight-start
-    .with_near_text({"concepts": "undoing actions in git"})
+    .with_near_text({"concepts": "how git saves data"})
     # highlight-end
     .with_generate(
-        grouped_task="""
-        Summarize 5 key facts or takeaways from these passages,
-        preferably in concise, short form
-        """
+        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
     )
-    .with_limit(5)
+    .with_limit(2)
     .do()
 )
+
+print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
 ```
 
-:::note Generated results
-1. One of the common undos in Git is when you commit too early or mess up your commit message. You can redo the commit by using the `git commit --amend` command.
-2. When amending your last commit, you are replacing it entirely with a new commit. The previous commit will not show up in your repository history.
-3. The `git reset` command can be dangerous, but in certain scenarios, such as the one described above, it is relatively safe as it does not touch the file in your working directory.
-4. If you want to keep the changes made to a file but need to get it out of the way temporarily, it is better to use stashing or branching.
-5. Anything that is committed in Git can almost always be recovered, even if it was on deleted branches or overwritten with an `--amend` commit. However, anything that was never committed is likely to be lost permanently.
-:::
+</TabItem>
+</Tabs>
+
+In this case, the result should be something like:
+
+```
+Did you know? 🤔 Git stores everything by the hash value of its contents, not by file name!
+📁🔍 It's hard to lose data in Git, making it a joy to use!
+😄🔒 Git thinks of its data as a stream of snapshots, making it more than just a VCS!
+📸🌟 Most Git operations are local, so no need for network latency!
+🌐💨 #GitTrivia
+```
 
 As you can see, Weaviate allows you to use the full power of search to retrieve the objects you want to use for generation. This allows you to ground the language model in the context of up-to-date information, which you can retrieve with the full power of Weaviate's search capabilities.
 

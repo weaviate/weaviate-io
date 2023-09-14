@@ -2,6 +2,7 @@
 title: Getting Started Guides
 sidebar_position: 0
 image: og/docs/tutorials.jpg
+sidebar_class_name: hidden
 # tags: ['getting started']
 ---
 import Badges from '/_includes/badges.mdx';
