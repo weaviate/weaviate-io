@@ -2,7 +2,6 @@
 title: AWS Marketplace
 sidebar_position: 8
 image: og/docs/installation.jpg
-sidebar_class_name: hidden
 # tags: ['installation', 'AWS Marketplace']
 ---
 import Badges from '/_includes/badges.mdx';
