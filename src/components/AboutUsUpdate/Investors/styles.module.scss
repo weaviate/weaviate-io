@@ -12,22 +12,34 @@
 }
 .pricingButton {
   border-radius: 0.3125rem;
-  border: 1px solid #130c49;
+  border: 1px solid #130e46;
   background: #61bd73;
   padding: 9px;
-
   color: #130c49;
-  text-align: center;
-
-  font-size: 1rem;
-
+  margin-right: 10px;
   font-weight: 400;
-
   transition: all 1s ease-out;
 }
 .pricingButton:hover {
   border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
+  border: 1px solid #ffffff;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+.boardButton {
+  padding: 9px;
+  margin: 10px;
+  border-radius: 0.3125rem;
+  border: 1px solid #2fc514;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+.boardButton:hover {
+  border-radius: 0.3125rem;
+  border: 1px solid #ffffff;
   background: rgb(15, 0, 50);
   color: #fff;
   font-weight: 400;
@@ -84,7 +96,7 @@ p {
 }
 
 .investorsContainer {
-  background: #130c49;
+  background: #130e46;
 }
 
 .investorBox {
@@ -93,8 +105,19 @@ p {
   h2 {
     color: white;
   }
+
+  p {
+    margin-bottom: 20px;
+  }
 }
 
 .investorButton {
   margin-top: 25px;
+}
+
+.investorDiagram {
+  background: url('/img/site/investors-diagram.png');
+  background-size: cover;
+  width: 90%;
+  height: 330px;
 }

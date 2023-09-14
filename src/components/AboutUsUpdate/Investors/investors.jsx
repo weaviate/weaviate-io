@@ -13,27 +13,38 @@ export default function Investors({ selectedType, handleSelected }) {
             <p>
               Thanks for your interest in our journey to bring AI Native vector
               database infrastructure to developers and operators (DevOps /
-              MLOps) all over the world. We are a company backed by Index
-              Ventures, Battery Ventures, New Enterprise Associates, Cortical
-              Ventures, Zetta Venture Partners, ING Ventures, GTM-fund, Scale
-              Asia Ventures, and Alex van Leeuwen.
+              MLOps) all over the world.
+            </p>
+            <p>
+              We are a company backed by <Link to="">Index Ventures</Link>,
+              <Link to="">Battery Ventures</Link>,{' '}
+              <Link to="">New Enterprise Associates</Link>,{' '}
+              <Link to="">Cortical Ventures</Link>,
+              <Link to="">Zetta Venture Partners</Link>,{' '}
+              <Link to="">ING Ventures</Link>, <Link to="">GTM-fund</Link>,{' '}
+              <Link to="">Scale Asia Ventures</Link>, and{' '}
+              <Link to="">Alex van Leeuwen</Link>.
+            </p>
+            <p>
+              <strong>Find more information about us:</strong>
             </p>
             <div className={styles.investorButton}>
               <Link
                 className={styles.pricingButton}
                 to="https://console.weaviate.cloud/"
               >
-                Login to the Weaviate Cloud console
+                Crunchbase
+              </Link>
+              <Link
+                className={styles.boardButton}
+                to="https://console.weaviate.cloud/"
+              >
+                Board & Advisors
               </Link>
             </div>
           </div>
           <div className={styles.investorLogos}>
-            <Link
-              className={styles.pricingButton}
-              to="https://console.weaviate.cloud/"
-            >
-              Login to the Weaviate Cloud console
-            </Link>
+            <div className={styles.investorDiagram}></div>
           </div>
         </div>
       </div>

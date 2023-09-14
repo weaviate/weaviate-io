@@ -117,7 +117,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
   }
 }
@@ -158,7 +158,7 @@
   }
 
   .buttonOutline {
-    outline: 1px solid #130c49;
+    border: 1px solid #130c49;
     color: #130c49;
     transition: all 1s ease-out;
   }
