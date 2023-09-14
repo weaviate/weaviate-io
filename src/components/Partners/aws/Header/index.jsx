@@ -13,8 +13,8 @@ export default function PartnersHeader() {
             <div className={styles.leftGrid}>
               <p className={styles.title}>Weaviate on AWS</p>
               <p className={styles.text}>
-                Powerful technology, simplified with certified and tested
-                product integrations so you can go fast, with confidence.
+                Powerful AI-native vector database. Simple, secure deployment on
+                AWS.
               </p>
               <div className={styles.buttons}>
                 <Link

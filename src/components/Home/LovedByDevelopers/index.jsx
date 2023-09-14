@@ -54,6 +54,16 @@ export default function HomepageLovedByDevelopers() {
         },
       },
       {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+          speed: 2000,
+          autoplaySpeed: 4000,
+        },
+      },
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
@@ -88,12 +98,14 @@ export default function HomepageLovedByDevelopers() {
           </p>
         </div>
       </div>
-      <div>
+      <div className={styles.sliderContainer}>
+        <div className={styles.shadowL}></div>
         <StyledSlider {...settings}>
           {quotes.map((quote) => {
             return <Quotecontainer key={quote.name} details={quote} />;
           })}
         </StyledSlider>
+        <div className={styles.shadowR}></div>
       </div>
     </>
   );

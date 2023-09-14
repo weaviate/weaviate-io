@@ -177,3 +177,42 @@
     width: 35%;
   }
 }
+
+.sliderContainer {
+  max-height: 450px;
+}
+
+.shadowL {
+  z-index: 11;
+  position: relative;
+
+  @media screen and (max-width: 485px) {
+    display: none;
+  }
+}
+.shadowL:before {
+  content: ' ';
+  height: 167%;
+  left: -20px;
+  position: absolute;
+  top: 180px;
+
+  box-shadow: 0px 0px 110px 209px #f5f5f538;
+}
+
+.shadowR {
+  z-index: 11;
+  position: relative;
+  @media screen and (max-width: 485px) {
+    display: none;
+  }
+}
+.shadowR:after {
+  content: ' ';
+  height: 167%;
+  right: -83px;
+  position: absolute;
+  top: -211px;
+
+  box-shadow: 0px 0px 110px 209px #f5f5f538;
+}

@@ -9,24 +9,23 @@ export default function enterpriseSupport() {
     <div className={styles.benefits}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Seamless Deployment and Enterprise Support</h2>
+          <h2>End-to-end vector search and generative AI apps, faster</h2>
           <p>
-            The ​Weaviate Kubernetes​ offering is part of Weaviate's Bring Your
-            Own Cloud (BYOC)<br></br> offering, allowing you to deploy the
-            vector database cluster inside your AWS tenant<br></br> and VPC. The
-            deployment is end-to-end and comes with the Weaviate Enterprise
-            <br></br>
-            Terms​ (support) and Enterprise Service License Agreement.
+            Weaviate is an open source vector database that's purpose-built for
+            AI.<br></br> Tight integrations with AWS infrastructure and services
+            like SageMaker<br></br> and Bedrock help developers build and deploy
+            production-ready<br></br> generative AI applications with less
+            hassle.
           </p>
         </div>
         <div className={styles.features}>
           <div className={styles.box}>
             <div className={styles.icon1}>
-              <h3 className={styles.title}>Build.</h3>
+              <h4 className={styles.title}>AI-native architecture</h4>
             </div>
             <p className={styles.subTitle}>
-              Scale event processing on AWS to build real-time apps and
-              analytics faster at a lower TCO.
+              Sub-second semantic search performance and ability to scale to
+              handle billions of vectors and millions of tenants.
             </p>
             <p className={styles.boxed}>Stream Governance</p>
             <p className={styles.boxed}>Stream Processing/ ksiqlDB</p>
@@ -35,11 +34,12 @@ export default function enterpriseSupport() {
           </div>
           <div className={styles.box}>
             <div className={styles.icon2}>
-              <h3 className={styles.title}>Scale.</h3>
+              <h4 className={styles.title}>Modular integration framework</h4>
             </div>
             <p className={styles.subTitle}>
-              Scale event processing on AWS to build real-time apps and
-              analytics faster at a lower TCO.
+              Natively integrate with AWS SageMaker, AWS Bedrock, and model
+              providers like Cohere, OpenAI, Hugging Face, and more. Or, use
+              custom models.
             </p>
             <p className={styles.boxed}>120+ Pre-built Connectors</p>
             <p className={styles.boxed}>Cluster Linking</p>
@@ -48,11 +48,11 @@ export default function enterpriseSupport() {
           </div>
           <div className={styles.box}>
             <div className={styles.icon3}>
-              <h3 className={styles.title}>Intergrate.</h3>
+              <h4 className={styles.title}>Secure deployment on AWS</h4>
             </div>
             <p className={styles.subTitle}>
-              Scale event processing on AWS to build real-time apps and
-              analytics faster at a lower TCO.
+              Weaviate is available in AWS marketplace and allows one-click
+              container based scalable deployment inside the customers tenant.
             </p>
             <p className={styles.boxed}>Marketplace Integration</p>
             <p className={styles.boxed}>Flexible Payment Term</p>
