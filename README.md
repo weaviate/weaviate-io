@@ -90,10 +90,8 @@ copy to work on.
    ```
 
    Add `upstream/main` as a tracking branch when you create a new project
-   branch.
-
-   You can use `git checkout` to set the tracking branch, or choose an
-   alternative method that fits your `git` workflow.
+   branch. You can use `git checkout` to set the tracking branch, or choose an
+   alternative method that fits your workflow.
 
    ```
    git checkout -b your-update-branch-name upstream/main
