@@ -173,3 +173,69 @@ p {
     background-image: none;
   }
 }
+
+.sectionL {
+  float: right;
+  width: 50%;
+  margin: 60px 60px;
+
+  padding: 10px 10px;
+  @media screen and (max-width: 700px) {
+    padding: 10px 10px;
+    float: none;
+    width: 100%;
+    margin: auto;
+
+    p {
+      font-size: 18px;
+    }
+  }
+}
+.date {
+  font-weight: 200;
+  margin-top: 30px;
+}
+.sectionR {
+  float: left;
+  width: 50%;
+  margin: 60px 60px;
+
+  .date {
+    margin-top: 60px;
+  }
+
+  @media screen and (max-width: 700px) {
+    padding: 10px 10px;
+    float: none;
+    width: 100%;
+    margin: auto;
+
+    p {
+      font-size: 18px;
+    }
+    .date {
+      margin-top: 115px;
+    }
+  }
+}
+
+.sectionB {
+  float: right;
+  width: 68%;
+  margin: auto;
+  padding: 38px;
+
+  @media screen and (max-width: 700px) {
+    padding: 10px 10px;
+    float: none;
+    width: 100%;
+    margin: auto;
+
+    p {
+      font-size: 18px;
+    }
+    .date {
+      margin-top: 40px;
+    }
+  }
+}

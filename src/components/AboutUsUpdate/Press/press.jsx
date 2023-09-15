@@ -18,14 +18,40 @@ export default function Press() {
           </p>
         </div>
         <div className={styles.parent}>
-          <div className={styles.div1}> </div>
-          <div className={styles.div2}> </div>
-          <div className={styles.div3}> </div>
-        </div>
-        <div className={styles.buttonsContainer}>
-          <Link className={styles.buttonOutline} to="/company/careers">
-            Go to Playbook
-          </Link>
+          <div className={styles.div1}>
+            <div className={styles.sectionL}>
+              <h3>Press release</h3>
+              <p className={styles.pressText}>
+                Weaviate Raises $50 Million Series B Funding to Meet Soaring
+                Demand for AI Native Vector Database Technology
+              </p>
+              <p className={styles.date}>21 Apr, 2023</p>
+            </div>
+          </div>
+          <div className={styles.div2}>
+            <div className={styles.sectionR}>
+              <h3>The Information</h3>
+              <p className={styles.pressText}>
+                Index Ventures Leads<br></br> $50 Million Investment<br></br> in
+                AI Startup Weaviate
+              </p>
+              <p className={styles.date}>20 Apr, 2023</p>
+            </div>
+          </div>
+          <div className={styles.div3}>
+            <div className={styles.sectionB}>
+              <h3>Tech Crunch</h3>
+              <p className={styles.pressText}>
+                Weaviate’ search engine opens up new ways to query your data
+              </p>
+              <p>
+                Companies sit on a lot of unstructured data and often don’t have
+                the capabilities to get much out of it. Now imagine having a way
+                to store data and actually be able to ask it questions...
+              </p>
+              <p className={styles.date}>22 Feb, 2022</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

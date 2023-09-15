@@ -16,14 +16,18 @@ export default function Investors({ selectedType, handleSelected }) {
               MLOps) all over the world.
             </p>
             <p>
-              We are a company backed by <Link to="">Index Ventures</Link>,
-              <Link to="">Battery Ventures</Link>,{' '}
-              <Link to="">New Enterprise Associates</Link>,{' '}
-              <Link to="">Cortical Ventures</Link>,
-              <Link to="">Zetta Venture Partners</Link>,{' '}
-              <Link to="">ING Ventures</Link>, <Link to="">GTM-fund</Link>,{' '}
-              <Link to="">Scale Asia Ventures</Link>, and{' '}
-              <Link to="">Alex van Leeuwen</Link>.
+              We are a company backed by{' '}
+              <Link to="https://www.indexventures.com/">Index Ventures</Link>,{' '}
+              <Link to="https://www.battery.com/">Battery Ventures</Link>,{' '}
+              <Link to="https://www.nea.com/">New Enterprise Associates</Link>,{' '}
+              <Link to="https://cortical.vc/">Cortical Ventures</Link>,{' '}
+              <Link to="https://www.zettavp.com/">Zetta Venture Partners</Link>,{' '}
+              <Link to="https://www.ingwb.com/en/corporate-investments/ing-ventures">
+                ING Ventures
+              </Link>
+              , <Link to="https://www.gtmfund.com/">GTM-fund</Link>,{' '}
+              <Link to="https://www.sav.vc/">Scale Asia Ventures</Link>, and{' '}
+              <Link to="https://www.alexvanleeuwen.co/">Alex van Leeuwen</Link>.
             </p>
             <p>
               <strong>Find more information about us:</strong>
@@ -31,13 +35,13 @@ export default function Investors({ selectedType, handleSelected }) {
             <div className={styles.investorButton}>
               <Link
                 className={styles.pricingButton}
-                to="https://console.weaviate.cloud/"
+                to="https://www.crunchbase.com/organization/weaviate"
               >
                 Crunchbase
               </Link>
               <Link
                 className={styles.boardButton}
-                to="https://console.weaviate.cloud/"
+                to="https://theorg.com/org/weaviate/teams/board-and-advisors"
               >
                 Board & Advisors
               </Link>
