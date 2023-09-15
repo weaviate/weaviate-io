@@ -14,7 +14,7 @@ Embedded Weaviate is a new deployment model, which allows you to start a Weaviat
 :::caution Experimental
 Embedded Weaviate is still in the **Experimental** phase.
 
-Some of the APIs and parameters might change over time, as we work towards a perfect implementation.
+Some of the APIs and parameters might change over time, as we refine and improve it.
 :::
 
 ### How does it work?

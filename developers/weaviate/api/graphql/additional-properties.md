@@ -249,7 +249,7 @@ certainty = 1 - distance/2
 
 Given that a cosine distance is always a number between 0 and 2, this will
 result in certainties between 0 and 1, with 1 indicating identical vectors, and
-0 indiating opposing angles. This definition only exists in an angular space.
+0 indicating opposing angles. This definition only exists in an angular space.
 
 ### Classification
 

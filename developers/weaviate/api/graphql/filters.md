@@ -258,6 +258,10 @@ Both operators expect an array of values and return objects that match based on 
 The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
 :::
 
+#### Use with batch delete
+
+When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the GraphQL usage such as in search, where the `valueText` argument that can be used.
+
 #### `ContainsAny`
 
 `ContainsAny` returns objects where at least one of the values from the input array is present.
@@ -383,14 +387,35 @@ The length of properties is calculated differently depending on the type:
 ```graphql
 {
   Get {
-    <Class>(where: {
+    <Class>(
+      where: {
         operator: <Operator>,
-        valueInt: <value>
-        path: [len(<property>)]
+        valueInt: <value>,
+        path: ["len(<property>)"]
+      }
+    )
   }
 }
 ```
 Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
+
+Note that the `path` value is a string, where the property name is wrapped in `len()`. For example, to filter for objects based on the length of the `title` property, you would use `path: ["len(title)"]`.
+
+To filter for `Article` class objects with `title` length greater than 10, you would use:
+
+```graphql
+{
+  Get {
+    Article(
+      where: {
+        operator: GreaterThan,
+        valueInt: 10,
+        path: ["len(title)"]
+      }
+    )
+  }
+}
+```
 
 :::note
 Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength).

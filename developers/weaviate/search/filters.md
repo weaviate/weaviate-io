@@ -17,17 +17,17 @@ import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts
 
 ## Overview
 
-This page shows you how to add conditional filters to your search queries with the `where` operator.
+This page shows you how to add conditional filters to your searches with the `where` operator.
 
-For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md) page.
+A filter is a set of Boolean (i.e. `True` or `False`) conditions. Accordingly, a filter will only include or exclude objects and will not affect their rankings.
 
 :::info Related pages
 - [API References: Filters](../api/graphql/filters.md)
 :::
 
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
+## List of filter operators
 
-<BasicPrereqs />
+For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md) page.
 
 ## A single-condition filter
 
@@ -283,7 +283,7 @@ You can filter objects using properties from a cross-referenced object.
 
 The following example filters `JeopardyQuestion` objects using properties of `JeopardyCategory` that they are cross-referencing.
 
-More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
+More specifically, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
 
 :::note Case-sensitivity
 The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).

@@ -163,9 +163,9 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar',
+                id: 'announcement-bar-1',
                 content:
-                    'We are excited to announce a huge update to <a target="_blank" rel="noopener noreferrer" href="https://console.weaviate.cloud/">Weaviate Cloud Services (WCS)</a> · check out the dedicated <a target="_blank" rel="noopener noreferrer" href="/developers/wcs">WCS docs</a>.',
+                    'Weaviate 1.21 is here!!! Learn all about it from the <a target="_blank" rel="noopener noreferrer" href="/blog/weaviate-1-21-release">release post</a>.',
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,

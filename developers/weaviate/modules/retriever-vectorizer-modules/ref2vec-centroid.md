@@ -58,7 +58,7 @@ For example, here is an `Article` class which is configured to use ref2vec-centr
 
 The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector.
 
-It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/image2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
+It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/img2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
 
 In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector representation of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
 
