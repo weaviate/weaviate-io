@@ -116,7 +116,7 @@ You may see some warnings during the installation.
 When the installation completes, start the `yarn` server to test your build.
 
 ```
-$ yarn start &
+yarn start &
 ```
 
 `yarn` builds the project as a static web site and starts a server to host it.
@@ -140,7 +140,7 @@ This command generates static content into the ``build`` directory. You can use
 a hosting service to serve the static content.
 
 ```
-$ yarn build
+yarn build
 ```
 
 The `build` command is useful when you are finished editing. If you ran
@@ -152,13 +152,13 @@ see you changes while you are editing.
 Using SSH:
 
 ```
-$ USE_SSH=true yarn deploy
+USE_SSH=true yarn deploy
 ```
 
 Not using SSH:
 
 ```
-$ GIT_USER=<Your GitHub username> yarn deploy
+GIT_USER=<Your GitHub username> yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
