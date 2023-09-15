@@ -1,9 +1,9 @@
 ---
-title: GCP Marketplace
+title: Google Cloud Marketplace
 sidebar_position: 15
 image: og/docs/installation.jpg
 sidebar_class_name: hidden
-# tags: ['installation', 'GCP Marketplace']
+# tags: ['installation', 'Google Cloud Marketplace']
 ---
 import Badges from '/_includes/badges.mdx';
 
@@ -26,7 +26,7 @@ Broadly, the steps are as follows:
 
 1. Go to Weaviate's Google Cloud Marketplace listing page and click <kbd>Configure</kbd>.
 1. Configure the deployment options as required, by following the on-screen instructions.
-<!-- 1. Review the GCP Marketplace Terms of Service, and if you agree with the terms, confirm accordingly. -->
+<!-- 1. Review the GC Marketplace Terms of Service, and if you agree with the terms, confirm accordingly. -->
 <!-- 1. Select Deploy to start deploying Weaviate on your GKE cluster.  -->
 
 We will go through some of these steps in detail below.
@@ -77,7 +77,7 @@ Once the application has been created, you can access the cluster using [`kubect
 You can run the following command which will update or create a kubeconfig file for the Weaviate cluster:
 
 ```
-gcloud container clusters get-credentials [YOUR_CLUSTER_NAME] --zone [YOUR_GCP_ZONE] --project [YOUR_GCP_PROJECT]
+gcloud container clusters get-credentials [YOUR_CLUSTER_NAME] --zone [YOUR_GC_ZONE] --project [YOUR_GC_PROJECT]
 ```
 
 :::tip How to find the kubectl command
