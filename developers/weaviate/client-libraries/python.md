@@ -785,7 +785,7 @@ query_result.build()
 
 ```
 
-## Releases
+## Client releases
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 

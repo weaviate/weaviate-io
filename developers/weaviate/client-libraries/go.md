@@ -397,7 +397,7 @@ After:
 client.Data().Validator().WithProperties(properties)
 ```
 
-## Releases
+## Client releases
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 

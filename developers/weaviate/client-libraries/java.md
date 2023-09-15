@@ -423,7 +423,7 @@ WhereFilter where = WhereFilter.builder()
 client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 ```
 
-## Releases
+## Client releases
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
