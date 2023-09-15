@@ -77,6 +77,26 @@ copy to work on.
    upstream	https://github.com/weaviate/weaviate-io.git (push)
    ```
 
+6. Configure a tracking branch.
+
+   This step lets you track upstream changes while you work on your update. When
+   you are ready to contribute your changes, create a pull request against the
+   `upstream/main` branch.
+
+   Get the upstream branches.
+
+   ```
+   git fetch upstream
+   ```
+
+   Add `upstream/main` as a tracking branch when you create a new project
+   branch. You can use `git checkout` to set the tracking branch, or choose an
+   alternative method that fits your workflow.
+
+   ```
+   git checkout -b your-update-branch-name upstream/main
+   ```
+
 ### Update Dependencies
 
 Once you have a local copy of the repository, you need to install Docusaurus and
