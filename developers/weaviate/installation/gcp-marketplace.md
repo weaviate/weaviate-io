@@ -11,10 +11,6 @@ import Badges from '/_includes/badges.mdx';
 
 <!-- NOTE: To show this page on the sidebar, remove the `sidebar_class_name: hidden` line above. -->
 
-:::warning TODO
-Notes: This is WIP - where we need more information, I have added TODOs and indented them as quotes. Please remove the TODOs, and un-indent the text once the information has been added.
-:::
-
 ## Overview
 
 You can use [Google Cloud Marketplace](https://console.cloud.google.com/marketplace) to directly launch a Weaviate cluster.
@@ -24,39 +20,22 @@ You can use [Google Cloud Marketplace](https://console.cloud.google.com/marketpl
 - (Recommended) Familiarity with Google Cloud and the Google Cloud console.
 :::
 
-:::warning TODO
-Add a list of resources similar to [the AWS page](./aws-marketplace.md#overview) in the (currently hidden) collapsible section below.
-:::
-
-<!-- <details>
-  <summary>
-    What resources are used & installed?
-  </summary>
-
-To be confirmed.
-
-</details> -->
-
 ## Installation instructions
 
 Broadly, the steps are as follows:
 
-1. Go to Weaviate's [Google Cloud Marketplace listing] (ADD LINK HERE; REMOVE SPACE IN MD)
+1. Go to Weaviate's Google Cloud Marketplace listing page and click <kbd>Configure</kbd>.
 1. Configure the deployment options as required, by following the on-screen instructions.
-1. Review the GCP Marketplace Terms of Service, and if you agree with the terms, confirm accordingly.
-1. Select Deploy to start deploying Weaviate on your GKE cluster. This may take a while, such as around 30 minutes.
+<!-- 1. Review the GCP Marketplace Terms of Service, and if you agree with the terms, confirm accordingly. -->
+<!-- 1. Select Deploy to start deploying Weaviate on your GKE cluster.  -->
 
 We will go through some of these steps in detail below.
 
-### Configuration & Cluster creation
-
-:::warning TODO
-- Review the below admonition section about immutable settings re: GCP application, and list variables & suggested config as appropriate.
-- What GCP Regions are supported?
-:::
+### Configuration options
 
 :::info Before you get started
-#### Some settings may not be changed after launch
+
+<!-- #### Some settings may not be changed after launch
 
 Not all settings may be changed after launch. For example, these settings are currently not changeable after launch:
 - weaviatePVCSize
@@ -66,108 +45,77 @@ Not all settings may be changed after launch. For example, these settings are cu
 
 #### Some settings may lead to recreation of the cluster
 
-- Changes to the instance type will lead to recreation of the node pool.
+- Changes to the instance type will lead to recreation of the node pool. -->
 
 #### Suggested configurations
 
-- The default values should be suitable for a majority of cases.
-- `weaviatePVCSize`: For production environments, at least 500GB per StatefulSet pod is recommended. (Smaller disks may be sufficient for dev environments.)
-- `weaviateAuthType`: We recommend not running Weaviate with anonymous access. We suggest setting it to `apikey` and setting a key, for example by excuting `pwgen -A -s 32` to generate a random string.
+- The default values for settings such as `global query limit`, `modules` and `storage size` should be suitable for a majority of cases.
+- `Storage size`: For production environments, at least 500GB per pod is recommended. (Smaller disks may be sufficient for dev environments.)
+<!-- - `weaviateAuthType`: We recommend not running Weaviate with anonymous access. We suggest setting it to `apikey` and setting a key, for example by excuting `pwgen -A -s 32` to generate a random string. -->
+
 :::
 
-Once you are at the deployment options, you should see a set of options.
+Once you are at the deployment page, you should see a set of options.
 
-:::warning TODO
-Review & confirm what the users will be actually doing.
-:::
+You will need to:
+1. Select a GKE cluster to deploy Weaviate to.
+    - You can create a cluster here and then select it.
+1. Set the `namespace` (for dividing cluster resources) and a unique `app instance name` for identifying the application.
+1. Set the service account for billing.
+1. Set Weaviate parameters, such as `number of nodes`, `global query limit`, `modules` and `storage size`.
+    <!-- - Weaviate authentication parameters. -->
+1. If you agree, accept the terms of service and click <kbd>Deploy</kbd>.
 
-> Here, you can:
->
-> 1. Set the `stack name` for identifying the stack in AWS (required).
-> 1. Set Weaviate/AWS parameters, such as:
->     - number of nodes
->     - instance types
->     - Weaviate authentication parameters.
-> 1. Confirm required resources & proceed to <kbd>Create stack</kbd>.
->     - This template may require additional resources and capabilities.
->
-> After clicking <kbd>Create stack</kbd>, the creation process may take a while, such as around 30 minutes.
->
-> You can check the status of individual resources in the `Events` tab. Once the stack has been created, the status for the stack will change to `✅ CREATE_COMPLETE`.
+Once you have done so, Weaviate will be deployed to the selected cluster. This should take a few minutes.
 
 ## Accessing the cluster
 
-Once the stack has been created, you can access the cluster using [`kubectl`](https://kubernetes.io/docs/tasks/tools/), and Weaviate itself using the load balancer. We show examples below.
+Once the application has been created, you can access the cluster using [`kubectl`](https://kubernetes.io/docs/tasks/tools/), and Weaviate itself using the load balancer. We show examples below.
 
 ### Interaction using `kubectl`
 
 You can run the following command which will update or create a kubeconfig file for the Weaviate cluster:
 
-:::warning TODO
-Where do the users get the cluster name / DNS address from?
+```
+gcloud container clusters get-credentials [YOUR_CLUSTER_NAME] --zone [YOUR_GCP_ZONE] --project [YOUR_GCP_PROJECT]
+```
+
+:::tip How to find the kubectl command
+The exact command can be found in the Kubernetes Engine page, by clicking on the vertical ellipsis ( <i class="fa-solid fa-ellipsis-vertical"></i> ) for your cluster, and clicking <kbd>Connect</kbd>.
 :::
 
-> ```
-> aws eks update-kubeconfig --name [cluster-name] --region [aws-region]--role-arn arn:aws:iam::[AccountID]:role/[StackName]-MastersRole[XX]
-> ```
->
-> :::tip How to find the kubectl command
-> The exact command can be found in the CloudFormation stack, in the `Outputs` tab, under the `EKSClusterConfigCommand` output.
-> :::
->
-> Once that's set up, you can run `kubectl` commands as usual. For example
->
-> - `kubectl get pods -n weaviate` to list all pods in the `weaviate` namespace.
-> - `kubectl get svc --all-namespaces` to list all services in all namespaces.
+Once that's set up, you can run `kubectl` commands as usual. For example
+- `kubectl get pods -n default` to list all pods in the `default` namespace (or whatever namespace you specified).
+- `kubectl get svc --all-namespaces` to list all services in all namespaces.
 
 ### Finding the Weaviate URL
 
-Once the stack has been created, you can access Weaviate via the load balancer URL.
+Once the application has been created, you can access Weaviate via the load balancer URL.
 
-> You can find the Weaviate endpoint URL by any of:
-> - In the `Services` section of AWS, under `EC2` > `Load Balancers`. Find the load balancer, and look for the `DNS name` column.
-> - Running `kubectl get svc -n weaviate` and looking for the `EXTERNAL-IP` of the `weaviate` service.
->
-> The load balancer URL (e.g. `a520f010285b8475eb4b86095cabf265-854109584.eu-north-1.elb.amazonaws.com`) will be the Weaviate URL (e.g. `http://a520f010285b8475eb4b86095cabf265-854109584.eu-north-1.elb.amazonaws.com`).
+You can find the Weaviate endpoint URL by any of:
+- Going to the `Kubernetes Engine` section of Google Cloud, under `Service & Ingress`. Find the load balancer, and look for the `Endpoints` column.
+- Running `kubectl get svc -n [YOUR_NAMESPACE_NAME]` and looking for the `EXTERNAL-IP` of the `weaviate` service.
+The load balancer URL (e.g. `34.38.6.240`) will be the Weaviate URL (e.g. `http://34.38.6.240`).
 
-## Deleting the cluster
+## Removing Weaviate and the cluster
 
-:::warning TODO
-How do the users delete the cluster?
+:::caution
+Please make sure that all unused resources are deleted. You will continue to incur costs for any remaining resources.
 :::
 
-> You can delete the cluster by deleting the CloudFormation stack.
->
-> Please note that this will delete your data in Weaviate. If you want to keep your data, you should back it up or export the data before deleting the cluster.
+### Removing Weaviate
 
-### Some resources many require manual deletion
+To remove Weaviate and the associated services, go to the `Applications` section of `Kubernetes Engine` in Google Cloud, and delete the Weaviate deployment.
 
-:::warning TODO
-Is this still true for GCP?
-:::
+Review the `Services & Ingress` section as well as the `Storage` section to ensure that all associated services and storage are removed. You may need to delete any remaining resources manually.
 
-> :::caution
-> Please make sure that all resources are deleted. If you do not delete all resources, you will continue to incur costs in AWS.
-> :::
->
-> There may be some AWS resources that are not deleted automatically when the CloudFormation stack is deleted. For example, EBS volumes, and Key Management Service (KMS) keys may not be deleted from time to time.
->
-> You must delete these manually.
+### Removing the cluster
 
-#### Tips
-
-:::warning TODO
-What tips do we have for GCP users?
-:::
-
-> - If your CloudFormation stack indicates "DELETE_FAILED", you may be able to re-initiate deletion of these resources.
-> - Review the `Resources` tab of the CloudFormation stack to find resources that may not have been deleted.
-> - Key Management Service (KMS) keys may be deleted by going to the KMS console, and deleting the keys manually. You may need to schedule deletion of the keys.
-
+If you no longer require the cluster (e.g. if you created a new cluster for Weaviate), you can delete the cluster by going to the `Applications` section of `Kubernetes Engine` in Google Cloud. Delete the cluster by selecting it from the list, clicking <kbd>DELETE</kbd>, and following the prompts.
 
 ## Billing
 
-You will be charged for the Weaviate cluster directly by Google Cloud, based on the resources used.
+You will be charged for Weaviate and associated resources directly by Google Cloud.
 
 This will, for example, include the compute instances, volumes, and any other resources used by the cluster.
 
