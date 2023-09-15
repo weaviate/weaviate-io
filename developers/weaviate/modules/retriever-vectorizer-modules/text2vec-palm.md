@@ -22,7 +22,7 @@ Key notes:
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `textembedding-gecko`.
+- The default model is `textembedding-gecko@001`.
 
 :::caution Ensure PaLM API is enabled on your Google Cloud project
 As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
@@ -76,7 +76,7 @@ You can configure how the module will behave in each class through the [Weaviate
 
 - `projectId` (Required): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko`
+- `modelId` (Optional): e.g. `textembedding-gecko@001` or `textembedding-gecko-multilingual@latest`
 
 #### Example
 
@@ -92,7 +92,7 @@ You can configure how the module will behave in each class through the [Weaviate
         "text2vec-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".
+          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
         },
         // highlight-end
       },
@@ -128,7 +128,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
         "text2vec-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".
+          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
           // highlight-start
           "vectorizeClassName": "false"
           // highlight-end
@@ -179,13 +179,16 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ## Additional information
 
-### Available model
+### Available models
 
 You can specify the model as a part of the schema as shown earlier.
 
-Currently, the only available model is `textembedding-gecko`.
+The available models are:
+- `textembedding-gecko@001` (stable)
+- `textembedding-gecko@latest` (public preview: an embeddings model with enhanced AI quality)
+- `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
 
-The `textembedding-gecko` model accepts a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings.
+At the time of writing, the `textembedding-gecko` models accept a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings. For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 
 ### API rate limits
 
