@@ -15,13 +15,13 @@ Use the [nvm](https://github.com/nvm-sh/nvm) package manager to install Node.js.
 The `nvm` project page provides an installation script.
 
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 ```
 
 After you install `nvm`, use `nvm` to install Node.js.
 
 ```
-nvm install node
+$ nvm install node
 ```
 
 By default, `nvm` installs the most recent version of Node.js. Install Node.js
@@ -29,8 +29,8 @@ By default, `nvm` installs the most recent version of Node.js. Install Node.js
 `weaviate.io` project dependencies.
 
 ```
-nvm install node 19.9.0
-nvm use 19.9.0
+$ nvm install node 19.9.0
+$ nvm use 19.9.0
 ```
 
 ### yarn Installation
@@ -39,7 +39,7 @@ Node.js includes the [npm](https://www.npmjs.com/) package manager. Use `npm`
 to install `yarn`.
 
 ```
-npm install --global yarn
+$ npm install --global yarn
 ```
 
 ### Get the Code
@@ -52,7 +52,7 @@ copy to work on.
 3. Clone the repository to your local system.
 
    ```
-   git clone git@github.com:YOUR-GITHUB-HANDLE/weaviate-io.git
+   $ git clone git@github.com:YOUR-GITHUB-HANDLE/weaviate-io.git
    ```
 
    For details on cloning a repository, including setting up an SSH key, see the
@@ -61,13 +61,13 @@ copy to work on.
 4. Set the remote tracking branch.
 
    ```
-   git remote add upstream https://github.com/weaviate/weaviate-io.git
+   $ git remote add upstream https://github.com/weaviate/weaviate-io.git
    ```
 
 5. Check the remotes.
 
    ```
-   git remote -v
+   $ git remote -v
 
    # The output resembles:
 
@@ -86,7 +86,7 @@ copy to work on.
    Get the upstream branches.
 
    ```
-   git fetch upstream
+   $ git fetch upstream
    ```
 
    Add `upstream/main` as a tracking branch when you create a new project
@@ -94,7 +94,7 @@ copy to work on.
    alternative method that fits your workflow.
 
    ```
-   git checkout -b your-update-branch-name upstream/main
+   $ git checkout -b your-update-branch-name upstream/main
    ```
 
 ### Update Dependencies
@@ -105,8 +105,8 @@ the other project dependencies.
 Switch to the project directory, then use yarn to update the dependencies.
 
 ```
-cd weaviate.io
-yarn install
+$ cd weaviate.io
+$ yarn install
 ```
 
 You may see some warnings during the installation.
@@ -131,7 +131,7 @@ second terminal, be sure to set the correct Node.js version before running
 additional `yarn` commands.
 
 ```
-nvm use node 19.9.0
+$ nvm use node 19.9.0
 ```
 
 ### Build the Web Site
