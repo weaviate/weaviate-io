@@ -1,5 +1,5 @@
 ---
-title: Product Quanitzation in Weaviate - How to Reduce Memory Requirements by 90%+
+title: Product Quantization in Weaviate - How to Reduce Memory Requirements by 90%+
 slug: pq-rescoring
 authors: [abdel, zain]
 date: 2023-09-19
@@ -13,7 +13,7 @@ description: "The details behind how you can compress vectors using PQ with litt
 :::info Highlights
 - [Product Quantization](#product-quantizationpq) - how PQ reduces the memory requirements of running Weaviate
 - [Improving PQ with Rescoring](#the-problem-with-pq) - why compressing vectors decreases recall and how the rescoring trick can help reduce this
-- [Experimental results](#experiment-results) - QPS vs recall, indexing times, and memory savings
+- [Experimental results](#experiment-results) - QPS vs. recall, indexing times, and memory savings
 - [Benchmarking PQ](#benchmarking-pq-with-your-own-data) - scripts for benchmarking PQ with your own data
 :::
 
@@ -21,9 +21,9 @@ description: "The details behind how you can compress vectors using PQ with litt
 
 ## 📚What is Product Quantization(PQ)?
 
-Product Quanitzation is a way to compress vectors, allowing users to save on memory requirements. To understand how product quantization (PQ) compression works, imagine every vector you want to store is a unique house address. This address allows you to precisely locate where someone lives including country, state, city, street number, and even down to the house number. The price you pay for this pin-point accuracy is that each address takes up more memory to store. Now, imagine instead of storing a unique address for each house we store just the city the house is located in. With this new representation, you can no longer precisely differentiate between houses that are all in the same city. The advantage however is that you require less memory to store the data in this new format. This is why PQ is a lossy algorithm; we lose information as a result of the compression - or in other words, you trade accuracy/recall for memory savings.
+Product Quantization is a way to compress vectors, allowing users to save on memory requirements. To understand how product quantization (PQ) compression works, imagine every vector you want to store is a unique house address. This address allows you to precisely locate where someone lives including country, state, city, street number, and even down to the house number. The price you pay for this pin-point accuracy is that each address takes up more memory to store. Now, imagine instead of storing a unique address for each house we store just the city the house is located in. With this new representation, you can no longer precisely differentiate between houses that are all in the same city. The advantage however is that you require less memory to store the data in this new format. This is why PQ is a lossy algorithm; we lose information as a result of the compression - or in other words, you trade accuracy/recall for memory savings.
 
-Want to further reduce memory usage at the price of recall? Zoom out further and represent each address instead with the state it’s located in. Require more recall at the price of increased memory? Zoom in and represent the address on a more accurate scale. This tunable balancing of memory usage vs. recall is what makes PQ a great way to improve the flexibility of Weaviate for different use-cases and customers.
+Want to further reduce memory usage at the price of recall? Zoom out further and represent each address instead with the state it’s located in. Require more recall at the price of increased memory? Zoom in and represent the address on a more accurate scale. This tunable balancing of memory usage vs. recall is what makes PQ a great way to improve the flexibility of Weaviate for different use cases and customers.
 
 ![pq compression](./img/Weaviate-release-1-18-vector-indexing-map.png#gh-light-mode-only)
 ![pq compression](./img/Weaviate-release-1-18-vector-indexing-map_1.png#gh-dark-mode-only)
@@ -44,7 +44,7 @@ Our goal with the use of PQ is to reduce memory usage while maintaining a high q
 
 To demonstrate this loss of recall due to compression we show a compressed vs. uncompressed graph below. These results compare the HNSW+PQ compressed implementation versus using HNSW with uncompressed vectors.
 
-For our tests below, we use two different datasets: [Sphere](https://github.com/facebookresearch/sphere) and [DBPedia](https://www.dbpedia.org/about/). The original Sphere dataset contains nearly 1 billion vectors of 768 dimensionality, however in these initial experiments, we use a subset containing only 1 million vectors. We will revisit the entire dataset at the end of this post. DBPedia is a set of 1 million objects vectorized using the `Ada002` vectorizer from OpenAI. These are both sizable and high-dimensional realistic datasets that could very well be used for real-world applications.
+For our tests below, we use two different datasets: [Sphere](https://github.com/facebookresearch/sphere) and [DBPedia](https://www.dbpedia.org/about/). The original Sphere dataset contains nearly 1 billion vectors of 768 dimensionality, however, in these initial experiments, we use a subset containing only 1 million vectors. We will revisit the entire dataset at the end of this post. DBPedia is a set of 1 million objects vectorized using the `Ada002` vectorizer from OpenAI. These are both sizable and high-dimensional realistic datasets that could very well be used for real-world applications.
 
 ![graph1](./img/im2.png)
 **Fig. 1**: *The figure above shows results on a 1M subset of Sphere. The orange curve represents the results obtained with the uncompressed version. The blue curve shows the results of compressing using 6 dimensions per segment. This would achieve a 24:1 compression rate. Notice how the performance is comparable but the recall drops drastically.*
@@ -52,7 +52,7 @@ For our tests below, we use two different datasets: [Sphere](https://github.com/
 ![graph2](./img/im3.png)
 **Fig. 2**: *The figure above shows results on the DBPedia dataset. The orange curve represents the results obtained with the uncompressed version. The blue curve shows the results of compressing using 6 dimensions per segment - compressing by a factor of 24x. Again, performance is preserved but the recall drops drastically.*
 
-A quick explanation for the dip in the graph at the left end. Those curves were obtained querying the server right after indexing the data. After the indexing, it normally follows intense operations such as compactions or  garbage collection cycles. After those operations finish, the full CPUs are again ready and there are no locks on the data. Notice how normally the second point in the curve is always smooth again.
+A quick explanation for the dip in the graph at the left end. Those curves were obtained by querying the server right after indexing the data. After the indexing, it normally follows intense operations such as compactions or  garbage collection cycles. After those operations finish, the full CPUs are again ready and there are no locks on the data. Notice how normally the second point in the curve is always smooth again.
 
 Coming back to the main thread, this graph paints a pretty bleak picture! It seems inevitable that the more you compress the vectors, the more you will distort them and the further recall will drop. So how do we reduce this drop in recall while still achieving high compression ratios?🤔It starts with understanding: Why did the recall drop so drastically in the first place?
 
@@ -83,9 +83,9 @@ We use PQ because we want to save on memory. If we only have a few hundred thous
 
 ![100kVec_space](./img/100kVec_space.png)
 ![1BVec_space](./img/1BVec_space.png)
-**Fig. 4**: *Notice how the vector space representation on the bottom is alot more crowded, due to there being more vectors(represented as black dots). Each of the vectors in a region will have the coordinates of the centroid for the region(represented as white dots). This means that all vectors in a region after compression become indistinguishable. Note that in PQ this is not exactly what happens but this does give us a good intuition of how the distortion is more noticeable when we have more vectors*
+**Fig. 4**: *Notice how the vector space representation on the bottom is a lot more crowded, due to there being more vectors(represented as black dots). Each of the vectors in a region will have the coordinates of the centroid for the region(represented as white dots). This means that all vectors in a region after compression become indistinguishable. Note that in PQ this is not exactly what happens but this does give us a good intuition of how the distortion is more noticeable when we have more vectors*
 
-So the conundrum is this: the more data you have the more you will want to use PQ to compress it, but on the other hand you’ll have more crowding which will distort data more and potentially reduce recall.
+So the conundrum is this: the more data you have the more you will want to use PQ to compress it, but on the other hand, you’ll have more crowding which will distort data more and potentially reduce recall.
 
 To address this we explored two implementation strategies for our rescoring solution explained in the section above:
 
@@ -102,11 +102,11 @@ In the PQ implementation of Weaviate `v1.21`, we have decided to adopt Strategy 
 
 ## 🔬Experiment Results
 
-Below we show experiments comparing the new in improved `v1.21` PQ. Our experiments focus on recall, latency, indexing time and memory savings.
+Below we show experiments comparing the new in improved `v1.21` PQ. Our experiments focus on recall, latency, indexing time, and memory savings.
 
 ### QPS vs Recall Experiments:
 
-First, we show the comparison of results of our old implementation (without rescoring nor the last optimizations) with the last implementation (v1.21). Our first point of comparison is in terms of performance (measured in QPS) against quality (measured in recall)
+First, we show the comparison of the results of our old implementation (without rescoring nor the last optimizations) with the last implementation (v1.21). Our first point of comparison is in terms of performance (measured in QPS) against quality (measured in recall)
 
 ![graph3](./img/im3.png)
 **Fig. 5**: *The image above shows the results in the Sphere dataset. We have included the four curves now. The results labeled as `compressed/uncompressed-1-18` refer to the old implementation while the other two represent the new `1.21` results achieved using rescoring and better code optimization.*
@@ -116,11 +116,11 @@ First, we show the comparison of results of our old implementation (without resc
 
 As you might notice, both datasets follow similar profiles. There is a huge difference also between the uncompressed cases. This is because with version `1.19` of Weaviate we have introduced gRPC support and querying is much faster overall. We have also included SIMD optimizations for the distance calculations for the uncompressed case. Unfortunately, those SIMD optimizations cannot be used for our current compressed version - but those are details for another time!
 
-That being said, notice how the recall is no longer lower for the compressed version. To stress this out, if we would compare the orange curve (compressed using `v1.18`) to the green curve (uncompressed using `v1.18`) we can notice the shifting to the left in the recall axis. Notice also that this shifting is not small. Now comparing the red curve (compressed using `v1.21`) to the blue curve (uncompressed using `v1.21`) the two curves are very close together in terms of QPS and recall.
+That being said, notice how the recall is no longer lower for the compressed version. To stress this out, if we compare the orange curve (compressed using `v1.18`) to the green curve (uncompressed using `v1.18`) we can notice the shifting to the left in the recall axis. Notice also that this shift is not small. Now comparing the red curve (compressed using `v1.21`) to the blue curve (uncompressed using `v1.21`) the two curves are very close together in terms of QPS and recall.
 
 ### Indexing Time Results
 
-Previously we were also experiencing longer indexing times when using PQ. The main bottleneck were distance calculations between already compressed vectors in the implementation of our pruning heuristic. To help with this issue, we have introduced a special lookup table with distances between compressed segments. This acts similarly to the lookup table centered at each query, but unlike the former which is more volatile, it will reside in memory during the full indexing process.
+Previously we were also experiencing longer indexing times when using PQ. The main bottleneck was distance calculations between already compressed vectors in the implementation of our pruning heuristic. To help with this issue, we have introduced a special lookup table with distances between compressed segments. This acts similarly to the lookup table centered at each query, but unlike the former which is more volatile, it will reside in memory during the full indexing process.
 
 Due to these improvements we now see improved indexing times, please refer to the profiles below. The table below shows the indexing times measured for all cases. Notice how the `v1.21` needs approximately the same time to index the data for both, compressed and uncompressed cases. This was not the case in earlier `v1.18` and was only possible with the introduction of the global lookup table.
 
@@ -134,7 +134,7 @@ Due to these improvements we now see improved indexing times, please refer to th
 
 ### Memory savings
 
-Last but not least, our goal with compression is to save memory. We have seen two implementations indexing the data at the same speed and serving queries also at very similar performance/quality profiles. The main benefit here is the memory footprint. The table below shows the heap memory used for both cases. We keep it simple this time and only show our last version (`1.21`) since the memory footprint is similar to the older version `1.18`.
+Last but not least, our goal with compression is to save memory. We have seen two implementations indexing the data at the same speed and serving queries at very similar performance/quality profiles. The main benefit here is the memory footprint. The table below shows the heap memory used for both cases. We keep it simple this time and only show our last version (`1.21`) since the memory footprint is similar to the older version `1.18`.
 
 | Memory footprint (MB)  | Compressed (hours) | Uncompressed (hours)|
 |----------------|--------------------|-------------|
@@ -150,7 +150,7 @@ To close the results up, we have also indexed the full Sphere dataset (nearly 1 
 
 If you're trying to finetune HNSW and PQ parameters on your own data to optimally balance recall, latency, and memory footprint you might want to replicate these experiments yourself. While doing so, please pay special attention to the segments parameter. We have obtained the best results using segments of length 6 in our experiments with both: Sphere and OpenAI embeddings.
 
-We have included some very useful tools in our [chaos pipelines](https://github.com/weaviate/weaviate-chaos-engineering). To easily run these tests (or any test using your own data) you would need the data to be in `hdf5` format with the same specifications as described in the [ANN Benchmarks](https://ann-benchmarks.com). You could index your data using the `run.py` script under the [ann-benchmarks](https://github.com/weaviate/weaviate-chaos-engineering/tree/main/apps/ann-benchmarks) folder. It admits several parameters that you could explore but in our runs we use the following commands:
+We have included some very useful tools in our [chaos pipelines](https://github.com/weaviate/weaviate-chaos-engineering). To easily run these tests (or any test using your own data) you would need the data to be in `hdf5` format with the same specifications as described in the [ANN Benchmarks](https://ann-benchmarks.com). You could index your data using the `run.py` script under the [ann-benchmarks](https://github.com/weaviate/weaviate-chaos-engineering/tree/main/apps/ann-benchmarks) folder. It admits several parameters that you could explore but in our runs, we use the following commands:
 
 To run uncompressed (PQ disabled):
 
@@ -166,14 +166,14 @@ To run compressed (PQ enabled):
 python3 run.py -v sphere-1M-meta-dpr.hdf5 -d dot -m 32 --dim-to-segment-ratio 6 -c -l run=compressed
 ```
 
-Notice the `-c` flag to set compression on and the `–dim-to-segment-ratio` to specify how long you want your segments to be. In this case we are using 6 dimensions per segment.
+Notice the `-c` flag to set compression on and the `–dim-to-segment-ratio` to specify how long you want your segments to be. In this case, we are using 6 dimensions per segment.
 
-Once you run the script, you will see the different metrics in your terminal at the end of the run. Pay special attention to the `qps`, `recall` and `heap_mb` (heap size in MB). You will also have the results in json format under a repository named `results` in the same path as the script. Next you can also run the `visualize.py` script to produce the same graphs we show in this post. Your graphs will be available in the same path as the script as `output.png`. To differentiate between your different runs, use a different value for the run parameter when using the `run.py` script. The label you use for the run will be used for the curve generated after running the `visualize.py` script.
+Once you run the script, you will see the different metrics in your terminal at the end of the run. Pay special attention to the `qps`, `recall` and `heap_mb` (heap size in MB). You will also have the results in JSON format under a repository named `results` in the same path as the script. Next, you can also run the `visualize.py` script to produce the same graphs we show in this post. Your graphs will be available in the same path as the script as `output.png`. To differentiate between your different runs, use a different value for the run parameter when using the `run.py` script. The label you use for the run will be used for the curve generated after running the `visualize.py` script.
 
 
 ## Conclusions
 
-In this post we explore the details behind how we improved the implementation of PQ in Weaviate to reduce the loss of recall by introducing a rescoring trick that reads in uncompressed vectors fropm disk and recalcualtes exact distances during the search process.
+In this post, we explore the details behind how we improved the implementation of PQ in Weaviate to reduce the loss of recall by introducing a rescoring trick that reads in uncompressed vectors from disk and recalculates exact distances during the search process.
 
 As a result of rescoring when using PQ in Weaviate the trade-off between memory savings and recall is great. For this reason, most applications and users of Weaviate can now use PQ as the default. To further improve your results when using PQ we suggest you benchmark with your own data to balance compression ratios against reduction in recall. Happy compressing!🚀
 
