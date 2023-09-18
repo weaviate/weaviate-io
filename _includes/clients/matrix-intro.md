@@ -7,9 +7,10 @@ of the client. Earlier client releases have less detailed version information.
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-|:-|:-|:-|
-|[1.20.3](https://github.com/weaviate/weaviate/releases/tag/v1.20.3)|2023-07-26|3.22.1|1.4.0|4.9.0|4.2.1|
-|[1.20.2](https://github.com/weaviate/weaviate/releases/tag/v1.20.2)|2023-07-19|3.22.1|1.4.0|4.9.0|4.2.0|
-|[1.20.1](https://github.com/weaviate/weaviate/releases/tag/v1.20.1)|2023-07-13|3.22.1|1.4.0|4.9.0|4.2.0|
+|[1.21.3](https://github.com/weaviate/weaviate/releases/tag/v1.21.3)|2023-09-13|3.24.1|1.5.0|4.10.0|4.3.0|
+|[1.21.2](https://github.com/weaviate/weaviate/releases/tag/v1.21.2)|2023-08-30|3.23.1|1.5.0|4.10.0|4.3.0|
+|[1.21.1](https://github.com/weaviate/weaviate/releases/tag/v1.21.1)|2023-08-22|3.23.0|1.5.0|4.10.0|4.3.0|
+|[1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0)|2023-08-17|3.22.1|1.4.0|4.9.0|4.2.1|
 |[1.20.0](https://github.com/weaviate/weaviate/releases/tag/v1.20.0)|2023-07-06|3.22.0|1.4.0|4.9.0|4.2.0|
 |[1.19.0](https://github.com/weaviate/weaviate/releases/tag/v1.19.0)|2023-05-04|3.17.0|1.1.0[^1]|4.7.1|4.0.1|
 |[1.18.0](https://github.com/weaviate/weaviate/releases/tag/v1.18.0)|2023-03-07|3.13.0|2.14.5|4.6.2|3.6.4|
