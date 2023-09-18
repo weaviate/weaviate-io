@@ -102,6 +102,11 @@ We use PQ because we want to save on memory. If we only have a few hundred thous
 
 ![100kVec_space](./img/100kVec_space.png)
 ![1BVec_space](./img/1BVec_space.png)
+
+100K Vector Space             |  1B Vector Space
+:-------------------------:|:-------------------------:
+
+![100kVec_space](./img/100kVec_space.png)  |  ![1BVec_space](./img/1BVec_space.png)
 **Fig. 4**: *Notice how the vector space representation on the bottom is a lot more crowded, due to there being more vectors(represented as black dots). Each of the vectors in a region will have the coordinates of the centroid for the region(represented as white dots). This means that all vectors in a region after compression become indistinguishable. Note that in PQ this is not exactly what happens but this does give us a good intuition of how the distortion is more noticeable when we have more vectors*
 
 So the conundrum is this: the more data you have the more you will want to use PQ to compress it, but on the other hand, you’ll have more crowding which will distort data more and potentially reduce recall.
