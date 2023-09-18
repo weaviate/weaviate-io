@@ -12,6 +12,10 @@ import Badges from '/_includes/badges.mdx';
 
 Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages.
 
+:::tip GraphQL is case-sensitive
+GraphQL is case-sensitive ([reference](https://spec.graphql.org/June2018/#sec-Names)), so make sure to use the correct casing when writing your queries.
+:::
+
 ## All references
 
 All references have their individual subpages. Click on one of the references below for more information.
