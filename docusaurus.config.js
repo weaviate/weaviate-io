@@ -170,6 +170,12 @@ const config = {
                 textColor: '#F5F5F5',
                 isCloseable: true,
             },
+            docs: {
+                sidebar: {
+                    hideable: true,
+                    autoCollapseCategories: true
+                },
+            },
             navbar: {
                 title: '',
                 // hideOnScroll: true,
