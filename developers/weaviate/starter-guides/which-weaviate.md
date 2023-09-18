@@ -113,7 +113,7 @@ Weaviate makes various vectorizer & reranker modules available for different med
 
 We recommend starting from the following table of vectorizers and their availability in different Weaviate setups.
 
-| Module type | Modality | Model | Embedded Weaviate  | Weaviate Cloud Services | Docker-Compose | Kubernetes | Hybrid SaaS |
+| Module type | Modality | Module | Embedded Weaviate  | Weaviate Cloud Services | Docker-Compose | Kubernetes | Hybrid SaaS |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Vectorizer | **Text** | [`text2vec-cohere`](../modules/retriever-vectorizer-modules/text2vec-cohere.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Vectorizer | **Text** | [`text2vec-huggingface`](../modules/retriever-vectorizer-modules/text2vec-huggingface.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
