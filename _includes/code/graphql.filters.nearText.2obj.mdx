@@ -179,34 +179,38 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
-  Get{
-    Article(
-      nearText: {
-        concepts: [\"travelling in Asia\"],
-        certainty: 0.7,
-        moveTo: {
-          objects: [{
-            # this ID is of the article:
-            # "Tohoku: A Japan destination for all seasons."
-            id: \"c4209549-7981-3699-9648-61a78c2124b9\"
-          }]
-          force: 0.85
+# The ID belongs to the article "Tohoku: A Japan destination for all seasons."
+
+echo '{
+  "query": "{
+    Get {
+      Article(
+        nearText: {
+          concepts: [\"travelling in Asia\"],
+          certainty: 0.7,
+          moveTo: {
+            objects: [{
+              id: \"c4209549-7981-3699-9648-61a78c2124b9\"
+            }]
+            force: 0.85
+          }
+        }
+      ) {
+        title
+        summary
+        _additional {
+          certainty
         }
       }
-    ){
-      title
-      summary
-      _additional {
-        certainty
-      }
     }
-  }
+  }"
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -214,7 +218,7 @@ $ echo '{
 
 ```graphql
 {
-  Get{
+  Get {
     Article(
       nearText: {
         concepts: ["travelling in Asia"],
@@ -228,7 +232,7 @@ $ echo '{
           force: 0.85
         }
       }
-    ){
+    ) {
       title
       summary
       _additional {

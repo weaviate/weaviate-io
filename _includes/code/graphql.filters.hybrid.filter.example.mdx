@@ -99,11 +99,11 @@ echo '{
   "query": "{
       Get {
         Article (
-          hybrid: {query: \"How to catch an Alaskan Pollock\", alpha: 0.5}
+          hybrid: { query: \"How to catch an Alaskan Pollock\", alpha: 0.5 }
           # highlight-start
-          where: {path: [\"wordCount\"], operator: LessThan, valueInt: 1000}
+          where: { path: [\"wordCount\"], operator: LessThan, valueInt: 1000 }
           # highlight-end
-        ){
+        ) {
           title
           summary
       }
@@ -112,8 +112,10 @@ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -123,7 +125,7 @@ echo '{
 {
   Get {
     Article (
-      hybrid: {query: "how to fish", alpha: 0.5}
+      hybrid: { query: "how to fish", alpha: 0.5 }
     # highlight-start
       where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
     # highlight-end

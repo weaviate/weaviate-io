@@ -168,14 +168,14 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Article(
         limit: 1
       ) {
         title
-        _additional{
+        _additional {
           tokens(
             properties: [\"title\"],
             limit: 10,

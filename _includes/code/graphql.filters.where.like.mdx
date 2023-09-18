@@ -140,14 +140,14 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Publication(where: {
-            path: [\"name\"],
-            operator: Like,
-            valueText: \"New *\"
-        }) {
+        path: [\"name\"],
+        operator: Like,
+        valueText: \"New *\"
+      }) {
         name
       }
     }
@@ -155,8 +155,9 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -166,10 +167,10 @@ $ echo '{
 {
   Get {
     Publication(where: {
-          path: ["name"],
-          operator: Like,
-          valueText: "New *"
-      }) {
+      path: ["name"],
+      operator: Like,
+      valueText: "New *"
+    }) {
       name
     }
   }

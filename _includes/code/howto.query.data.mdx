@@ -184,30 +184,31 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
-    "query": "{
-      Get {
-        Article (where: {
-          operator: Equal,
-          valueText:\"Wired\",
-          path: [\"inPublication\", \"Publication\", \"name\"]
-        }){
-          title
-          url
-          wordCount
-          hasAuthors{
-            ... on Author {
-              name
-            }
+echo '{
+  "query": "{
+    Get {
+      Article(where: {
+        operator: Equal,
+        valueText: \"Wired\",
+        path: [\"inPublication\", \"Publication\", \"name\"]
+      }) {
+        title
+        url
+        wordCount
+        hasAuthors{
+          ... on Author {
+            name
           }
         }
       }
-    }"
-  }' | curl \
+    }
+  }"
+}' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

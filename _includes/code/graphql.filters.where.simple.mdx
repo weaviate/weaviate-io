@@ -141,14 +141,14 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Article(where: {
-          path: [\"wordCount\"],
-          operator: GreaterThan,
-          valueInt: 1000
-        }) {
+        path: [\"wordCount\"],
+        operator: GreaterThan,
+        valueInt: 1000
+      }) {
         title
       }
     }
@@ -156,8 +156,9 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -167,10 +168,10 @@ $ echo '{
 {
   Get {
     Article(where: {
-        path: ["wordCount"],    # Path to the property that should be used
-        operator: GreaterThan,  # operator
-        valueInt: 1000          # value (which is always = to the type of the path property)
-      }) {
+      path: ["wordCount"],    # Path to the property that should be used
+      operator: GreaterThan,  # operator
+      valueInt: 1000          # value (which is always = to the type of the path property)
+    }) {
       title
     }
   }

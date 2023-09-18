@@ -159,28 +159,29 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
-    "query": "{
-      Get {
-        Article(where: {
-            path: [\"inPublication\", \"Publication\", \"name\"],
-            operator: Equal,
-            valueText: \"New Yorker\"
-          }) {
-          title
-          inPublication{
-            ... on Publication{
-              name
-            }
+echo '{
+  "query": "{
+    Get {
+      Article(where: {
+        path: [\"inPublication\", \"Publication\", \"name\"],
+        operator: Equal,
+        valueText: \"New Yorker\"
+      }) {
+        title
+        inPublication{
+          ... on Publication{
+            name
           }
         }
       }
-    }"
-  }' | curl \
+    }
+  }"
+}' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -190,10 +191,10 @@ $ echo '{
 {
   Get {
     Article(where: {
-        path: ["inPublication", "Publication", "name"],
-        operator: Equal,
-        valueText: "New Yorker"
-      }) {
+      path: ["inPublication", "Publication", "name"],
+      operator: Equal,
+      valueText: "New Yorker"
+    }) {
       title
       inPublication{
         ... on Publication{

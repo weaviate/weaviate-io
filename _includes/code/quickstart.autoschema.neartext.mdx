@@ -158,13 +158,13 @@ public class App {
 ```bash
 echo '{
   "query": "{
-    Get{
+    Get {
       Question (
         limit: 2
         nearText: {
           concepts: [\"biology\"],
         }
-      ){
+      ) {
         question
         answer
         category
@@ -174,8 +174,8 @@ echo '{
 }' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
-    -H "X-OpenAI-Api-Key: YOUR_OPENAI_API_KEY" \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
 ```

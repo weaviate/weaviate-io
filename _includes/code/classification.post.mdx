@@ -9,14 +9,16 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-query_result = client.classification.schedule()\
-    .with_type("<e.g. knn>")\
-    .with_class_name("<className>")\
-    .with_based_on_properties(["<property3>"])\
-    .with_classify_properties(["<property1>", "<property2>"])\
-    .with_settings(<additional classification settings>)\
-    .with_wait_for_completion()\
+query_result = (
+    client.classification.schedule()
+    .with_type("knn")
+    .with_class_name("<className>")
+    .with_based_on_properties(["<property3>"])  # must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+    .with_classify_properties(["<property1>", "<property2>"])  # at least one property must be specified
+    .with_settings({"k": 3})  # additional classification settings, optional for KNN
+    .with_wait_for_completion()
     .do()
+)
 
 print(query_result)
 ```
@@ -35,10 +37,10 @@ const client = weaviate.client({
 const response = await client.classifications
   .scheduler()
   .withType('<e.g. knn>')
-  .withSettings(<e.g. { 'k': 3 }>) // optional for knn classification
+  .withSettings(<e.g. { 'k': 3 }>)  // additional classification settings, optional for KNN
   .withClassName('<className>')
-  .withClassifyProperties(['<property1>', '<property2>'])
-  .withBasedOnProperties(['<property3>'])
+  .withClassifyProperties(['<property1>', '<property2>'])  // at least one property must be specified
+  .withBasedOnProperties(['<property3>'])  // must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
   .withWaitForCompletion()
   .do();
 console.log(JSON.stringify(response, null, 2));
@@ -73,8 +75,8 @@ func main() {
     WithType(classifications.<e.g. KNN>).
     WithSettings(<&classification.ParamsKNN{K: 3}>).
     WithClassName("<ClassName>").
-    WithClassifyProperties([]string{"<property1>", "<property2>"}).
-    WithBasedOnProperties([]string{"<property3>"}).
+    WithClassifyProperties([]string{"<property1>", "<property2>"}).  // at least one property must be specified
+    WithBasedOnProperties([]string{"<property3>"}).  // must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
     WithWaitForCompletion.
     Do(context.Background())
 
@@ -108,8 +110,8 @@ public class App {
       .withType(classifications.<e.g. ClassificationType.KNN>)
       .withSettings(ParamsKNN.builder().k(3).build())
             .withClassName("<ClassName>")
-      .withClassifyProperties(new String[]{"<property1>", "<property2>"})
-      .withBasedOnProperties(new String[]{"property3"})
+      .withClassifyProperties(new String[]{"<property1>", "<property2>"})  // at least one property must be specified
+      .withBasedOnProperties(new String[]{"property3"})  // must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
       .withWaitForCompletion()
       .run();
 
@@ -126,13 +128,15 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+# At least one property needs to be specified for "classifyProperties"
+# "basedOnProperties" must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
         "class": "className",
-        "classifyProperties": ["<property1>", "<property2>"], // at least one property needs to be specified
-        "basedOnProperties": ["<property3>"],  // This field must be specified, but for contextual classifications the current implementation takes the whole vector of the class (objects) into account
+        "classifyProperties": ["<property1>", "<property2>"],
+        "basedOnProperties": ["<property3>"],
         "type": "<e.g. knn>"
       }' \
     http://localhost:8080/v1/classifications
