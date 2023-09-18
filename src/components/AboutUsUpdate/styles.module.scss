@@ -208,12 +208,14 @@ p {
     overflow-x: scroll;
     flex-direction: row;
     scroll-snap-type: x mandatory;
-    width: 100%;
+    white-space: nowrap;
 
     a {
       color: #130c49;
       font-style: normal;
       font-weight: 200;
+      border: none;
+      background: whitesmoke;
       transition: all 0.2s ease-out;
     }
 
@@ -337,4 +339,8 @@ p {
   align-items: center;
   gap: 30px;
   padding: 20px 0px 10px;
+}
+
+.applied-research {
+  display: block;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
@@ -7,6 +8,12 @@ import people from '/data/people.json';
 import { ButtonContainer } from '../../theme/Buttons';
 
 export default function MeetTheTeam() {
+  const [selectedTeam, setSelectedTeam] = useState('All'); // Initialize with 'All' to show all by default
+
+  const handleTeamFilter = (team) => {
+    setSelectedTeam(team);
+  };
+
   return (
     <div className={styles.teamBG}>
       <div className="container" id="meet_the_team">
@@ -18,9 +25,11 @@ export default function MeetTheTeam() {
             someone to work remotely from fun places.
           </p>
           <div className={styles.teamFilter}>
-            <Link className={styles.pricingButton} to="#applied-research">
+            <Link onClick={() => handleTeamFilter('All')}>#All</Link>
+            <Link onClick={() => handleTeamFilter('applied-research')}>
               #Applied Research
             </Link>
+            <Link onClick={() => handleTeamFilter('wcs')}>#Cloud Services</Link>
             <Link className={styles.pricingButton} to="#board-advisors">
               #Board&Advisors
             </Link>
@@ -44,10 +53,9 @@ export default function MeetTheTeam() {
             <Link className={styles.pricingButton} to="#cx0">
               #CxO leadership
             </Link>
-            <Link className={styles.pricingButton} to="#design">
-              #Design
-            </Link>
-            <Link className={styles.pricingButton} to="#developer-growth">
+            <Link onClick={() => handleTeamFilter('database')}>#Database</Link>
+            <Link onClick={() => handleTeamFilter('design')}>#Design</Link>
+            <Link onClick={() => handleTeamFilter('developer-growth')}>
               #Developer Growth
             </Link>
             <Link className={styles.pricingButton} to="#devrel">
@@ -72,9 +80,16 @@ export default function MeetTheTeam() {
           <hr></hr>
         </div>
 
-        <div className={styles.peopleContainer}>
+        <div
+          className={`${
+            styles.peopleContainer
+          } ${selectedTeam.toLowerCase()}-team`}
+        >
           {people.map((person) => {
-            return <Person key={person.name} details={person} />;
+            if (selectedTeam === 'All' || person.team === selectedTeam) {
+              return <Person key={person.name} details={person} />;
+            }
+            return null;
           })}
         </div>
         <div className={styles.buttonsContainer}>
