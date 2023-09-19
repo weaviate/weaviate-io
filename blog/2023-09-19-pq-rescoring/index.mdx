@@ -25,10 +25,6 @@ Product Quantization is a way to compress vectors, allowing users to save on mem
 
 Want to further reduce memory usage at the price of recall? Zoom out further and represent each address instead with the state it’s located in. Require more recall at the price of increased memory? Zoom in and represent the address on a more accurate scale. This tunable balancing of memory usage vs. recall is what makes PQ a great way to improve the flexibility of Weaviate for different use cases and customers.
 
-<p align="center">
-<img src="img/Weaviate-release-1-18-vector-indexing-map_1.png" alt="pq compression" width="600">
-</p>
-
 ![pq compression](./img/Weaviate-release-1-18-vector-indexing-map.png#gh-light-mode-only)
 ![pq compression](./img/Weaviate-release-1-18-vector-indexing-map_1.png#gh-dark-mode-only)
 
@@ -50,17 +46,8 @@ To demonstrate this loss of recall due to compression we show a compressed vs. u
 
 For our tests below, we use two different datasets: [Sphere](https://github.com/facebookresearch/sphere) and [DBPedia](https://www.dbpedia.org/about/). The original Sphere dataset contains nearly 1 billion vectors of 768 dimensionality, however, in these initial experiments, we use a subset containing only 1 million vectors. We will revisit the entire dataset at the end of this post. DBPedia is a set of 1 million objects vectorized using the `Ada002` vectorizer from OpenAI. These are both sizable and high-dimensional realistic datasets that could very well be used for real-world applications.
 
-<p align="center">
-<img src="/img/im2.png" alt="graph1" width="600">
-<em>**Fig. 1**: *The figure above shows results on a 1M subset of Sphere. The orange curve represents the results obtained with the uncompressed version. The blue curve shows the results of compressing using 6 dimensions per segment. This would achieve a 24:1 compression rate. Notice how the performance is comparable but the recall drops drastically.*</em>
-</p>
-
 ![graph1](./img/im2.png)
 **Fig. 1**: *The figure above shows results on a 1M subset of Sphere. The orange curve represents the results obtained with the uncompressed version. The blue curve shows the results of compressing using 6 dimensions per segment. This would achieve a 24:1 compression rate. Notice how the performance is comparable but the recall drops drastically.*
-
-<p align="center">
-<img src="img/im3.png" alt="graph2" width="600"/>
-</p>
 
 ![graph2](./img/im3.png)
 **Fig. 2**: *The figure above shows results on the DBPedia dataset. The orange curve represents the results obtained with the uncompressed version. The blue curve shows the results of compressing using 6 dimensions per segment - compressing by a factor of 24x. Again, performance is preserved but the recall drops drastically.*
@@ -73,14 +60,7 @@ Coming back to the main thread, this graph paints a pretty bleak picture! It see
 
 The reason for this reduction in recall, across both experiments, is that after compression you only have 1/24th the amount of information stored in the vectors - the vectors are only a fuzzy estimation of what they used to be. Originally, we had a continuous vector space. After compression, we only have a discrete/quantized vector space. This is because all the vectors are now encoded with approximate groups of regions rather than unique coordinates - refer to the diagram below for a better understanding of what we mean by “regions”.
 
-
-
 ![pqSpace](./img/xyzPQ.jpg)
-
-<p align="center">
-<img src="img/xyzPQ.jpg" alt="pqSpace" width="600"/>
-</p>
-
 **Fig. 3**: *Here all the vectors that lie inside a region will have the same code - the coordinates of the white dot in that region - this is shown using a dotted line from the vector to the centroid. This is what allows us to save space, but also reduces recall since the vectors within the regions become indistinguishable from each other.*
 
 If we have three vectors $x$, $y$ and $z$ represented with the closest centroids to them shown in white above, and if we measure the distance between $x$ and $z$ compared to $x$ and $y$ and if these are equal, $|x - z| = |x - y|$, then all we know about $z$ and $y$ is that they used to be close to each other prior to compression - we can’t calculate how close they were, additionally we can no longer calculate if $y$ is closer to $x$ or $z$ since we don’t have exact distances to compare. As a result, when the nearest neighbors algorithm calculates the distances between the query and compressed vectors it might not always identify the most relevant vectors to return to the user.
@@ -129,20 +109,10 @@ Below we show experiments comparing the new in improved `v1.21` PQ. Our experime
 
 First, we show the comparison of the results of our old implementation (without rescoring nor the last optimizations) with the last implementation (v1.21). Our first point of comparison is in terms of performance (measured in QPS) against quality (measured in recall)
 
-![graph3](./img/im3.png)
-
-<p align="center">
-<img src="img/im4.png" alt="graph4" width="600"/>
-</p>
-
+![graph3](./img/im4.png)
 **Fig. 5**: *The image above shows the results in the Sphere dataset. We have included the four curves now. The results labeled as `compressed/uncompressed-1-18` refer to the old implementation while the other two represent the new `1.21` results achieved using rescoring and better code optimization.*
 
 ![graph4](./img/im5.png)
-
-<p align="center">
-<img src="img/im5.png" alt="graph4" width="600"/>
-</p>
-
 **Fig. 6**: *The image above shows the results in the DBPedia dataset. We have included the four curves now. The results labeled as `compressed/uncompressed-1-18` refer to the old implementation while the other two represent the new results achieved using rescoring and better code optimization.*
 
 As you might notice, both datasets follow similar profiles. There is a huge difference also between the uncompressed cases. This is because with version `1.19` of Weaviate we have introduced gRPC support and querying is much faster overall. We have also included SIMD optimizations for the distance calculations for the uncompressed case. Unfortunately, those SIMD optimizations cannot be used for our current compressed version - but those are details for another time!
