@@ -27,7 +27,13 @@ A filter is a set of Boolean (i.e. `True` or `False`) conditions. Accordingly, a
 
 ## List of filter operators
 
-For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md) page.
+For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md#filter-structure) page.
+
+### `ContainsAny` and `ContainsAll`
+
+The `ContainsAny` and `ContainsAll` operators filter objects using values of an array as criteria.
+
+To use either of these operators, provide the filter criterion array as `valueText`. Note that the usage of `ContainsAny` and `ContainsAll` is different for batch deletion operations ([read more](../manage-data/delete.mdx#containsany--containsall)).
 
 ## A single-condition filter
 
@@ -330,6 +336,11 @@ It should produce a response like the one below:
 
 </details>
 
+## Filter by metadata
+
+You can filter by any number of metadata properties, such as object id, property length, timestamp, null state and more.
+
+See the [API references: Filters](../api/graphql/filters.md#special-cases) page for the full list of available metadata filters and any special usage patterns.
 
 ## More Resources
 

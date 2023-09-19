@@ -250,7 +250,7 @@ Each query using the `Like` operator iterates over the entire inverted index for
 
 ### `ContainsAny` / `ContainsAll`
 
-The `ContainsAny` and `ContainsAll` operators allow you to search within an array (or text) using another array as criteria.
+The `ContainsAny` and `ContainsAll` operators filter objects using values of an array as criteria.
 
 Both operators expect an array of values and return objects that match based on the input values.
 
