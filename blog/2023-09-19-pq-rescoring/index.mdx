@@ -26,7 +26,7 @@ Product Quantization is a way to compress vectors, allowing users to save on mem
 Want to further reduce memory usage at the price of recall? Zoom out further and represent each address instead with the state it’s located in. Require more recall at the price of increased memory? Zoom in and represent the address on a more accurate scale. This tunable balancing of memory usage vs. recall is what makes PQ a great way to improve the flexibility of Weaviate for different use cases and customers.
 
 <p align="center">
-<img src="img/Weaviate-release-1-18-vector-indexing-map_1.png" alt="pq compression" width="600"/>
+<img src="/img/Weaviate-release-1-18-vector-indexing-map_1.png" alt="pq compression" width="600"/>
 </p>
 
 ![pq compression](./img/Weaviate-release-1-18-vector-indexing-map.png#gh-light-mode-only)
@@ -51,7 +51,8 @@ To demonstrate this loss of recall due to compression we show a compressed vs. u
 For our tests below, we use two different datasets: [Sphere](https://github.com/facebookresearch/sphere) and [DBPedia](https://www.dbpedia.org/about/). The original Sphere dataset contains nearly 1 billion vectors of 768 dimensionality, however, in these initial experiments, we use a subset containing only 1 million vectors. We will revisit the entire dataset at the end of this post. DBPedia is a set of 1 million objects vectorized using the `Ada002` vectorizer from OpenAI. These are both sizable and high-dimensional realistic datasets that could very well be used for real-world applications.
 
 <p align="center">
-<img src="img/im2.png" alt="graph1" width="600"/>
+<img src="/img/im2.png" alt="graph1" width="600"/>
+<em>**Fig. 1**: *The figure above shows results on a 1M subset of Sphere. The orange curve represents the results obtained with the uncompressed version. The blue curve shows the results of compressing using 6 dimensions per segment. This would achieve a 24:1 compression rate. Notice how the performance is comparable but the recall drops drastically.*</em>
 </p>
 
 ![graph1](./img/im2.png)
@@ -100,13 +101,9 @@ Before digging deeper, let's think about the final goal we’re trying to solve.
 
 We use PQ because we want to save on memory. If we only have a few hundred thousand vectors we wouldn’t consider using PQ - as memory usage would be negligible. On the other hand, if we need to store billions of vectors then PQ becomes critically important - without it, we might not even be able to store all of our data. The problem that arises, however, is that a billion object vector space is quite crowded and since vectors are represented using regions/clusters with PQ encoding you’re likely to find more vectors in any given region - each of which will have the same coded representation. Refer to the diagram below for an intuitive representation of this “crowding” effect.
 
-![100kVec_space](./img/100kVec_space.png)
-![1BVec_space](./img/1BVec_space.png)
-
 |100K Vector Space             |  1B Vector Space |
 |:-------------------------:|:-------------------------: |
 | ![100kVec_space](./img/100kVec_space.png)  |  ![1BVec_space](./img/1BVec_space.png) |
-
 **Fig. 4**: *Notice how the vector space representation on the bottom is a lot more crowded, due to there being more vectors(represented as black dots). Each of the vectors in a region will have the coordinates of the centroid for the region(represented as white dots). This means that all vectors in a region after compression become indistinguishable. Note that in PQ this is not exactly what happens but this does give us a good intuition of how the distortion is more noticeable when we have more vectors*
 
 So the conundrum is this: the more data you have the more you will want to use PQ to compress it, but on the other hand, you’ll have more crowding which will distort data more and potentially reduce recall.
