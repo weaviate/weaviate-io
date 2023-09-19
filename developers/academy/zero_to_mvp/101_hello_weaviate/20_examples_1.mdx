@@ -17,7 +17,7 @@ You will also compare vector search with keyword search to compare and contrast 
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector search demo
 
-For our first example, let's look through our demo dataset which contains a small sample of questions from the quiz show *Jeopardy!*.
+For our first example, let's search our demo dataset. It contains a small sample of questions from the quiz show *Jeopardy!*.
 
 Imagine that you're running a quiz night, and you want to get some questions about "animals in movies". In a traditional database you could look for word matches, perhaps something like:
 
@@ -103,13 +103,13 @@ Weaviate retrieved these as the top answers:
 
 </details>
 
-Note just how relevant the results are, despite none of them including the word "animal" or the word "movie", let alone both!
+Note how relevant the results are, despite none of them including the word "animal" or the word "movie", let alone both!
 
-This is exactly why vector searches are so useful. They can identify related objects without the need to match exact texts.
+This is exactly why vector searches are so useful. They can identify related objects without the need to match exact text.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector similarities demo
 
-What if we run *this* query? What will we get back?
+If we run *this* query, you might expect to see a random set of responses about European countries.
 
 ```graphql
 {
@@ -213,8 +213,8 @@ Input box for user to put answer in and get back a similarity score & our defini
 
 ### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
 
-- Vector searches can be very effective as they can identify related objects without the need for exact text matches.
-- When using vector searches, distance values indicate the degree of similarity between the returned object and the query.
+- Vector searches can identify related objects without the need for exact text matches.
+- In vector searches, distance values indicate the degree of similarity between the returned object and the query.
 - Smaller distances indicate greater similarity.
 - Vector searches can be combined with keyword searches and filtering techniques for more refined search results.
 
