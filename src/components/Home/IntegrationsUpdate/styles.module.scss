@@ -34,43 +34,31 @@
   }
 }
 
-
-.integrationsSection{
-
-  background: #EDEDED;
+.integrationsSection {
+  background: #ededed;
 }
-
 
 .integrationsLogos {
   display: flex;
   flex-direction: row;
   flex: 1;
   justify-content: space-around;
-  overflow:hidden;
-
-
-
+  overflow: hidden;
 
   @media screen and (max-width: 500px) {
-
     padding: 9px;
     height: 140px;
     overflow: hidden;
   }
 
-
-
-
-  .logoBg{
-
-
+  .logoBg {
     border-radius: 0.9375rem;
-    border: 1px solid #130C49;
+    border: 1px solid #130c49;
     width: 14.375rem;
     display: flex;
     height: 5.9375rem;
     flex-shrink: 0;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
     align-items: center;
     scroll-snap-align: center;
@@ -81,29 +69,20 @@
     display: flex;
     padding-bottom: 4rem;
 
+    animation: scrollSide 40s linear infinite;
 
-  animation: scrollSide 50s linear infinite;
-
-  @keyframes scrollSide {
-
-    0%{
-
-      transform: translateX(50%)
-
+    @keyframes scrollSide {
+      0% {
+        transform: translateX(50%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
-    100%{
-      transform: translateX(-50%)
 
+    .integrationsLogos:hover {
+      animation-play-state: paused;
     }
-  }
-
-  .integrationsLogos:hover{
-
-    animation-play-state: paused;
-  }
-
-
-
 
     .logoAI {
       width: 100%;
@@ -181,29 +160,18 @@
   }
 }
 
-
-
-.integrationsLogos:hover { .inside{
-
-  animation-play-state: paused;
+.integrationsLogos:hover {
+  .inside {
+    animation-play-state: paused;
+  }
 }
-}
-.mobileIntegrations{
-
-display:none!important;
+.mobileIntegrations {
+  display: none !important;
 
   @media screen and (max-width: 500px) {
-display:flex!important;
-
-}
-
-
+    display: flex !important;
   }
-
-
-
-
-
+}
 
 .box {
   display: flex;
@@ -312,12 +280,6 @@ display:flex!important;
 
     @media screen and (max-width: 768px) {
       width: 100%;
-
     }
   }
-
-
-
-
-
 }

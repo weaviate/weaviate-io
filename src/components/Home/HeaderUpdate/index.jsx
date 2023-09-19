@@ -53,7 +53,7 @@ export default function HomepageHeader() {
             <div className={`${styles.customerLogo} ${styles.instabaseLogo}`} />
           </div>
         </div>
-      </div> */}
+      </div>
       <div className={styles.bottomBars}>
         <div className={styles.barText}>
           2,500,000+<br></br>
@@ -71,7 +71,7 @@ export default function HomepageHeader() {
           4,000+<br></br>
           <span>Community members</span>
         </div>
-      </div>
+      </div>*/}
     </header>
   );
 }

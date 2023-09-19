@@ -71,7 +71,7 @@ export default function HomePage() {
             </p>
 
             <p className={styles.boxLink}>
-              <Link to="/blog/tutorial-backup-and-restore-in-weaviate">
+              <Link to="https://console.weaviate.cloud/">
                 Try it now {'>'}{' '}
               </Link>
             </p>

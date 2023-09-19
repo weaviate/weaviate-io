@@ -89,9 +89,10 @@ p {
   gap: 30px;
   flex: 1;
 
-  @media screen and (max-width: 680px) {
+  @media screen and (max-width: 780px) {
     flex-direction: column;
     gap: 20px;
+    display: none;
   }
 }
 

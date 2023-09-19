@@ -1,5 +1,17 @@
+.lovedBg {
+  background: #130c49;
+}
+
 .header {
   margin-bottom: 40px;
+
+  .title {
+    color: #ffffff;
+  }
+
+  p {
+    color: #ffffff;
+  }
 }
 .info {
   flex: 1;
@@ -147,11 +159,11 @@
 }
 
 .quoteBox {
-  width: 20rem;
+  width: 18rem;
   height: 21.0625rem;
   flex-shrink: 0;
   border-radius: 1.3125rem;
-  background: #130c49;
+  background: #1c1468;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
   padding: 28px 28px;
   display: flex;
@@ -197,7 +209,7 @@
   position: absolute;
   top: 180px;
 
-  box-shadow: 0px 0px 110px 209px #f5f5f538;
+  box-shadow: 0px 0px 110px 209px #130c496e;
 }
 
 .shadowR {
@@ -214,5 +226,5 @@
   position: absolute;
   top: -211px;
 
-  box-shadow: 0px 0px 110px 209px #f5f5f538;
+  box-shadow: 0px 0px 110px 209px #130c496e;
 }

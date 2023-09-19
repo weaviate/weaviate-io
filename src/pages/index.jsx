@@ -27,11 +27,12 @@ export default function Home() {
         <MetaSEO img="og/website/home.jpg" />
         <HomepageHeader />
         <main>
+          <HomepageLovedByDevelopers />
           <HomepageFeatures />
           <HomepageTestimonials />
           <HomepageWhatYouCanDo />
           <HomepageIntegrations />
-          <HomepageLovedByDevelopers />
+
           <HomepageJoinCommunity />
           <HomepageLatestInsights />
 

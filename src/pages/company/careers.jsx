@@ -11,7 +11,7 @@ import ThemeSwitch from '../../components/ThemeSwitch';
 
 export default function CareersPage() {
   return (
-    <div className="custom-page">
+    <div className="custom-page noBG">
       <Layout>
         <MetaSEO img="og/company/careers.jpg" />
         <Header />

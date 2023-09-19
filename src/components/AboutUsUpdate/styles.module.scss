@@ -203,12 +203,13 @@ p {
     display: flex;
     gap: 40px;
     margin: 10px 0px 10px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     overflow-x: scroll;
     flex-direction: row;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
+    width: 100%;
 
     a {
       color: #130c49;

@@ -11,7 +11,7 @@ export default function Resources() {
     <div className={styles.resourceBg}>
       <div className="container">
         <div className={styles.header}>
-          <h2 className={styles.title}>Resources</h2>
+          <h2 className={styles.title}>More Resources</h2>
           <p className={styles.subtitle}>
             Learn and explore the latest from Weaviate across the web.
           </p>

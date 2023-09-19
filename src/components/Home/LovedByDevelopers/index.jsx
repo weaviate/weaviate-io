@@ -26,15 +26,20 @@ export default function HomepageLovedByDevelopers() {
     }
   `;
 
+  var rand = Math.floor(Math.random() * quotes.length); // random number
+
   var settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 10000,
+    speed: 2000,
+    initialSlide: rand,
     autoplaySpeed: 4000,
     arrows: false,
+    /* rows: 2,
+    slidesPerRow: 1, */
     pauseOnHover: true,
     pauseOnFocus: true,
     responsive: [
@@ -82,7 +87,7 @@ export default function HomepageLovedByDevelopers() {
   };
 
   return (
-    <>
+    <div className={styles.lovedBg}>
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.title}>Loved by Developers</h2>
@@ -107,6 +112,6 @@ export default function HomepageLovedByDevelopers() {
         </StyledSlider>
         <div className={styles.shadowR}></div>
       </div>
-    </>
+    </div>
   );
 }

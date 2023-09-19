@@ -1,3 +1,7 @@
+.benefitsBg {
+  background: #ededed;
+}
+
 .title {
   text-align: center;
   padding: 1rem 0 2rem 0;
@@ -18,7 +22,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-
 
   @media screen and (max-width: 860px) {
     flex-direction: column;
@@ -43,15 +46,15 @@
 }
 
 .img {
-    width: 100%;
-    height: 6rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  width: 100%;
+  height: 6rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .flowerImg {
-    background-image: url('../../../../static/img/company/careers/flower.png');
+  background-image: url('../../../../static/img/company/careers/flower.png');
 }
 
 .facesImg {
@@ -74,17 +77,17 @@
 [data-theme='light'] {
   .title {
     p {
-      color: rgba(46, 49, 143);
+      color: #1c1468;
     }
 
     h2 {
-      color: rgba(46, 49, 143);
+      color: #1c1468;
     }
   }
 
   .itemText {
     h3 {
-      color: rgba(46, 49, 143);
+      color: #1c1468;
     }
   }
 

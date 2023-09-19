@@ -244,11 +244,11 @@ export default function PricingCalculator({ props }) {
             </div>
           </div>
         </div>
-        <div className={'buttons'}>
+        {/*  <div className={'buttons'}>
           <div className={'buttonOutline'} onClick={redirectWithPrice}>
             Share this pricing
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
