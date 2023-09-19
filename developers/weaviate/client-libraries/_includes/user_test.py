@@ -71,6 +71,7 @@ articles = client.collection.create(
         # Try creating a new property 'url', with the text datatype and field tokenization
     ],
     vectorizer_config=wvc.VectorizerFactory.text2vec_openai(),
+    generative_config=wvc.GenerativeFactory.openai(),
     replication_config=wvc.ConfigFactory.replication(factor=1),
     # Try adding an inverted index config with property length
 )
@@ -88,6 +89,9 @@ authors = client.collection.create(
     # Add a Contextionary vectorizer
 )
 # END PartialCreation
+
+for collection_name in ["TestArticle", "TestAuthor"]:
+    client.collection.delete(collection_name)
 
 # Creation
 # user_test.py
