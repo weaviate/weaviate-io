@@ -9,28 +9,28 @@ import ReactPlayer from 'react-player/lazy'
 <ReactPlayer url='https://youtu.be/iFUeV3aYynI' controls='true'/>
 <br/>
 
-We've covered that Weaviate is a vector database, and that a vector search is similarity-based. But what is a vector?
+We've covered that Weaviate is a vector database, and that a vector search is similarity-based, but what is a vector?
 
 A vector in this context is just a series of numbers like `[1, 0]` or `[0.513, 0.155, 0.983, ..., 0.001, 0.932]`. Vectors like these are used to capture meaning.
 
-This might seem like an odd concept. But in fact, many people have used vectors already without realizing it - for example if they have tried photo editing, or MS Paint.
+This might seem like an odd concept. But in fact, you may have already used vectors to capture meaning without realizing it. If you have tried photo editing, or used MS Paint you might have encountered the RGB color system.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How do numbers represent meaning?
 
-The RGB system uses numbers to represent colors. For example:
+The RGB system uses groups of three numbers to represent colors. For example:
 
 - (255, 0, 0) = red
 - (80, 200, 120) = emerald
 
 In these examples, each number can be thought of as a dial for how red, green or blue a color is.
 
-Now, imagine having hundreds, or even thousands of these dials. That’s how vectors are used to represent meaning. Modern models such as GPT-x, or those used with Weaviate, use vectors in this manner to represent some "essence", or "meaning" of objects. This can be done for any object type, such as text, code, images, videos and more.
-
-The vector representation of an object's "meaning" is called a "vector embedding".
+Now, imagine having hundreds, or even thousands, of these dials. That’s how vectors are used to represent meaning. Modern machine learning models such as GPT-x, or those used with Weaviate, use vectors to represent some "essence", or "meaning" of objects. This can be done for any object type, such as text, code, images, videos and more.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector embeddings in Weaviate
 
 <!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+The vector representation of an object's meaning is called a "vector embedding".
 
 Weaviate enables vector searches by indexing and storing data objects and their corresponding vector embeddings. The vector embeddings come from machine learning models.
 

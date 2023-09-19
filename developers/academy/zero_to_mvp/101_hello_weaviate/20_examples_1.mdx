@@ -19,19 +19,28 @@ You will also compare vector search with keyword search to compare and contrast 
 
 For our first example, let's look through our demo dataset which contains a small sample of questions from the quiz show *Jeopardy!*.
 
-Imagine that you're running a quiz night, and want to get some questions around the category of "animals in movies". You could look for word matches - perhaps something like:
+Imagine that you're running a quiz night, and you want to get some questions about "animals in movies". In a traditional database you could look for word matches, perhaps something like:
 
 ```sql
 SELECT question, answer
 FROM jeopardy_questions
-WHERE (question LIKE '%animal%' OR question LIKE '%creature%' OR question LIKE '%beast%')
-AND (question LIKE '%movie%' OR question LIKE '%film%' OR question LIKE '%picture%' OR question LIKE '%cinema%')
+WHERE (
+         question LIKE '%animal%'
+         OR question LIKE '%creature%'
+         OR question LIKE '%beast%'
+      )
+AND (
+       question LIKE '%movie%'
+       OR question LIKE '%film%'
+       OR question LIKE '%picture%'
+       OR question LIKE '%cinema%'
+    )
 
 ```
 
-But this is very difficult. You likely need to know the names of the specific animals to carry this out.
+This is a difficult query to write. Even worse, you would probably have to add the names of the specific animals to the query as well.
 
-Not so much with Weaviate, though. See what happens when we run the following query:
+The Weaviate query is much more intuitive. See what happens when we run the following query:
 
 :::note We searched Weaviate for:
 animals in movies
