@@ -136,7 +136,7 @@ It should return `True`. If you get an error, it may be gRPC port related. See t
 
 #### Deletion
 
-You can delete any existing collections like this.
+If you're like me and running this multiple times, you may want to delete existing collections with the same name. You can do so like this.
 
 <FilteredTextBlock
   text={PythonCode}
