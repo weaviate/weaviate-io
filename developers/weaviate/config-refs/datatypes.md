@@ -166,7 +166,7 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
-### Number of linked instances
+## Number of linked instances
 
 The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
 
