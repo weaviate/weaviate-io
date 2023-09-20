@@ -2,7 +2,7 @@
 # user_test.py
 import weaviate
 from weaviate import Config
-import weaviate.weaviate_classes as wvc
+import weaviate.classes as wvc
 import os
 
 client = weaviate.Client(
@@ -19,8 +19,7 @@ print(client.is_ready())
 
 # Deletion
 # user_test.py
-for collection_name in ["TestArticle", "TestAuthor"]:
-    client.collection.delete(collection_name)
+client.collection.delete(["TestArticle", "TestAuthor"])
 # END Deletion
 
 # OldSchemaDef
@@ -39,8 +38,7 @@ collection_definition = {
 client.schema.create_class(collection_definition)
 # END OldSchemaDef
 
-for collection_name in ["TestArticle", "TestAuthor"]:
-    client.collection.delete(collection_name)
+client.collection.delete(["TestArticle", "TestAuthor"])
 
 # SimpleCreation
 articles = client.collection.create(
@@ -51,12 +49,11 @@ articles = client.collection.create(
             data_type=wvc.DataType.TEXT,
         ),
     ],
-    vectorizer_config=wvc.VectorizerFactory.text2vec_openai(),
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai()
 )
 # END SimpleCreation
 
-for collection_name in ["TestArticle", "TestAuthor"]:
-    client.collection.delete(collection_name)
+client.collection.delete(["TestArticle", "TestAuthor"])
 
 # PartialCreation
 # Edit the following to create collection definitions
@@ -70,8 +67,8 @@ articles = client.collection.create(
         # Try creating a new property 'body', with the text datatype
         # Try creating a new property 'url', with the text datatype and field tokenization
     ],
-    vectorizer_config=wvc.VectorizerFactory.text2vec_openai(),
-    generative_config=wvc.GenerativeFactory.openai(),
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
+    generative_config=wvc.ConfigFactory.Generative.openai(),
     replication_config=wvc.ConfigFactory.replication(factor=1),
     # Try adding an inverted index config with property length
 )
@@ -86,12 +83,12 @@ authors = client.collection.create(
         # Try creating a new property 'birth_year', with the int datatype
         # Try creating a new cross-reference 'wroteArticle', linking to `TestArticle` collection
     ],
-    # Add a Contextionary vectorizer
+    generative_config=wvc.ConfigFactory.Generative.openai(),
+    # Add a vectorizer
 )
 # END PartialCreation
 
-for collection_name in ["TestArticle", "TestAuthor"]:
-    client.collection.delete(collection_name)
+client.collection.delete(["TestArticle", "TestAuthor"])
 
 # Creation
 # user_test.py
@@ -112,7 +109,8 @@ articles = client.collection.create(
             tokenization=wvc.Tokenization.FIELD,
         ),
     ],
-    vectorizer_config=wvc.VectorizerFactory.text2vec_openai(),
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
+    generative_config=wvc.ConfigFactory.Generative.openai(),
     replication_config=wvc.ConfigFactory.replication(factor=1),
     inverted_index_config=wvc.ConfigFactory.inverted_index(
         index_property_length=True
@@ -132,7 +130,8 @@ authors = client.collection.create(
         ),
         wvc.ReferenceProperty(name="wroteArticle", target_collection="TestArticle")
     ],
-    vectorizer_config=wvc.VectorizerFactory.text2vec_openai(),
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
+    generative_config=wvc.ConfigFactory.Generative.openai(),
 )
 # END Creation
 
@@ -274,14 +273,12 @@ dataset.upload_dataset(client, 300)
 
 # GroupedTask
 # user_test.py
-from weaviate.collection.classes.grpc import Generate  # <-- This class will be available from `wvc` shortly
-
 questions = client.collection.get("JeopardyQuestion")
 
 response = questions.query.near_text(
     query="Moon landing",
     limit=3,
-    generate=Generate(grouped_task="Write a haiku from these facts")
+    generate=wvc.Generate(grouped_task="Write a haiku from these facts")
 )
 
 print(response)
@@ -295,7 +292,7 @@ print(response.generated)
 response = questions.query.near_text(
     query="European history",
     limit=2,
-    generate=Generate(single_prompt="Re-write this in Japanese: {question}")
+    generate=wvc.Generate(single_prompt="Re-write this in Japanese: {question}")
 )
 
 print(response)

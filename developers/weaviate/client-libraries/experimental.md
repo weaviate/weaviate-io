@@ -47,7 +47,41 @@ pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@pydan
 
 #### Start Weaviate
 
-You will also need a pre-release version of Weaviate. Save [this `docker-compose.yml` file](https://raw.githubusercontent.com/databyjp/wv_python_usertest/main/docker-compose.yml)  in your project directory. Then, go to the directory and run `docker compose up -d`.
+You will also need a pre-release version of Weaviate. Either [download this `docker-compose.yml` file](https://raw.githubusercontent.com/databyjp/wv_python_usertest/main/docker-compose.yml) or save the below in your project directory. Then, go to the directory and run `docker compose up -d`.
+
+<details>
+  <summary><code>docker-compose.yml</code></summary>
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:preview-automatically-request-properties-that-are-needed-for-groupby-e98008c
+    restart: on-failure:0
+    ports:
+     - "8080:8080"
+     - "50051:50051"
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      QUERY_MAXIMUM_RESULTS: 10000
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-openai,text2vec-cohere,text2vec-huggingface,text2vec-palm,generative-openai,generative-cohere'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTOSCHEMA_ENABLED: 'false'
+...
+```
+
+</details>
 
 Note that you will need the `gRPC` ports open also. This will likely be simplified to one port in the future.
 
@@ -58,6 +92,10 @@ Note that you will need the `gRPC` ports open also. This will likely be simplifi
 
 We're good to go! Fire up your preferred way to edit / run Python code (Jupyter, VSCode, PyCharm, vim, whatever) and follow along.
 
+:::tip For Jupyter users
+If use Jupyter, you might find [this extension](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/hinterland/README.html) useful as it enables auto-completion without pressing tab.
+:::
+
 ### Key ideas
 
 We call this the `collections` client, because the main interactions will be with a collection (currently called `Class` in Weaviate). (From here, we will use `collections` instead of `Class`.)
@@ -65,7 +103,7 @@ We call this the `collections` client, because the main interactions will be wit
 This client also includes custom Python classes to provide IDE assistance and typing help. You can import them individually, like so:
 
 ```
-from weaviate.weaviate_classes import Property, ConfigFactory, VectorizerFactory, DataObject
+from weaviate.weaviate_classes import Property, ConfigFactory, DataObject
 ```
 
 But we will import the whole set of classes like this.
@@ -169,7 +207,7 @@ You can also create an object from existing collections in Weaviate like this:
 
 You should now see code autocomplete suggestions for the `articles` / `authors` objects. Two key submodules are:
 
--  `data`: CRUD operations
+-  `modify`: CUD operations (read operations are in `query`)
 -  `query`: Search operations (old GraphQL, now gRPC)
 
 ### CRUD operations
@@ -283,7 +321,17 @@ All your other favorite queries are available - like near text.
 
 #### Filters
 
-You can add filters like so, with a `Filter` object:
+We've improved filters, which are currently untyped dictionary objects like:
+
+```python
+{
+    "path": "birth_year",
+    "operator": "GreaterThanEqual",
+    "valueInt": [1971],
+}
+```
+
+Now you can add filters with a `Filter` object, like so:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -291,6 +339,8 @@ You can add filters like so, with a `Filter` object:
   endMarker="# END FetchWithFilter"
   language="py"
 />
+
+
 
 **Suggestion**: Try constructing different filters!
 
