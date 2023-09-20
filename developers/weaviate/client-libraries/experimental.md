@@ -11,7 +11,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!./_includes/user_test.py';
-import Feedback from './_includes/feedback.mdx';
 
 <Badges/>
 
@@ -27,11 +26,12 @@ Please note that this is an early **pre-release** version, and is not yet ready 
 
 #### Feedback
 
-You will see sections marked for feedback. But if you have feedback about any part of this, please tell us. No answers or impressions are wrong.
+:::caution important
+:::
 
-Upon completion, please send the results to JP.
-- Internally if you are a Weaviate team member.
-- Via community Slack DM `JP (Weaviate)` if you are a community member.
+**Please provide your feedback [through this form](https://forms.gle/8ZzP2BuCbnFc7jA88).** We suggest having it open while you try out the client.
+
+You can also provide any other feedback directly to JP on Slack, internal or via the Community slack (he's `JP (Weaviate)` there).
 
 ## Setup
 
@@ -196,10 +196,6 @@ You can also create an object from existing collections in Weaviate like this:
   language="py"
 />
 
-#### Feedback - collection creation
-
-<Feedback/>
-
 -----
 -----
 
@@ -207,7 +203,7 @@ You can also create an object from existing collections in Weaviate like this:
 
 You should now see code autocomplete suggestions for the `articles` / `authors` objects. Two key submodules are:
 
--  `modify`: CUD operations (read operations are in `query`)
+-  `data`: CUD operations (read operations are in `query`)
 -  `query`: Search operations (old GraphQL, now gRPC)
 
 ### CRUD operations
@@ -277,10 +273,6 @@ Take a look at:
   language="py"
 />
 
-#### Feedback - CRUD operations
-
-<Feedback/>
-
 -----
 -----
 
@@ -344,10 +336,6 @@ Now you can add filters with a `Filter` object, like so:
 
 **Suggestion**: Try constructing different filters!
 
-#### Feedback - Queries
-
-<Feedback/>
-
 -----
 -----
 
@@ -406,33 +394,17 @@ With generated output attached to each object, like this:
   language="py"
 />
 
-#### Feedback - Generative search
-
-<Feedback/>
-
 -----
 -----
 
-## Overall feedback
+## Reminder: feedback
 
-- How was the new API compared to the existing one? (Better: 5, Worse: 1)
-    - Could you explain why?
+:::caution important
+:::
 
-- How intuitive was the syntax? (Very intuitive: 5, Not intuitive: 1)
-    - Could you give specific examples or reasons?
+If you haven't, **please provide your feedback [through this form](https://forms.gle/8ZzP2BuCbnFc7jA88).**
 
-- What development environment did you use? (PyCharm? Jupyter? VSCode + ipynb notebooks? vim?)
-
-- How was the typing / IDE assistance? (Very good: 5, Not good: 1)
-    - Could you give specific examples or reasons?
-
-#### Some specific questions:
-
-- Was the use of classes helpful? (Yes: 5, No: 1)
-- Do you wish there were fewer classes? (Yes / No)
-- Was the use of factories intuitive? (Yes: 5, No: 1)
-- Did you like having typed objects return vs `dicts`? (Yes: 5, No: 1)
-- Did you find the `Filter` class intuitive? (Yes: 5, No: 1)
+You can also provide any other feedback directly to JP on Slack, internal or via the Community slack (he's `JP (Weaviate)` there).
 
 ## Notes & Troubleshooting
 
@@ -462,7 +434,6 @@ You can check that the containers are up and available by running `docker ps` fr
 
 ```shell
 CONTAINER ID   IMAGE                                                                                        COMMAND                  CREATED          STATUS         PORTS                                              NAMES
-4be7efdff229   semitechnologies/contextionary:en0.16.0-v1.2.1                                               "/contextionary-serv…"   10 seconds ago   Up 9 seconds   0.0.0.0:9999->9999/tcp                             try_new_wv_api_202306-contextionary-1
 e90a63fe1e15   semitechnologies/weaviate:preview-automatically-return-all-props-metadata-for-refs-07fce6f   "/bin/weaviate --hos…"   10 seconds ago   Up 9 seconds   0.0.0.0:8080->8080/tcp, 0.0.0.0:50055->50051/tcp   try_new_wv_api_202306-weaviate-1
 ```
 
