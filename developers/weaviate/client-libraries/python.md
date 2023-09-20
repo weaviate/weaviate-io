@@ -785,11 +785,21 @@ query_result.build()
 
 ```
 
+## Client releases
+
+import MatrixIntro from '/_includes/clients/matrix-intro.md';
+
+<MatrixIntro />
+
 ## Change logs
 
-Check the [change logs on GitHub](https://github.com/weaviate/weaviate-python-client/releases) or [readthedocs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html) for updates on the latest Python client changes.
+For more detailed information on client updates, check the change logs. The logs
+are hosted here:
 
-## More Resources
+- [GitHub](https://github.com/weaviate/weaviate-python-client/releases)
+- [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
+
+## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
