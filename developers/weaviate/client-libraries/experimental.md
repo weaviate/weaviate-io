@@ -103,13 +103,13 @@ We call this the `collections` client, because the main interactions will be wit
 This client also includes custom Python classes to provide IDE assistance and typing help. You can import them individually, like so:
 
 ```
-from weaviate.weaviate_classes import Property, ConfigFactory, DataObject
+from weaviate.classes import Property, ConfigFactory, DataObject
 ```
 
 But we will import the whole set of classes like this.
 
 ```
-import weaviate.weaviate_classes as wvc
+import weaviate.classes as wvc
 ```
 
 ### Instantiation
