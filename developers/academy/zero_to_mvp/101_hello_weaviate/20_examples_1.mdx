@@ -38,7 +38,7 @@ AND (
 
 ```
 
-This is a difficult query to write. Even worse, you would probably have to add the names of the specific animals to the query as well.
+This is a difficult query to write. Even worse, you would probably have to add the names of specific animals to the query as well.
 
 The Weaviate query is much more intuitive. See what happens when we run the following query:
 
@@ -109,7 +109,7 @@ This is exactly why vector searches are so useful. They can identify related obj
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector similarities demo
 
-If we run *this* query, you might expect to see a random set of responses about European countries.
+If we run *this* query, you might expect to see responses like the ones we saw earlier.
 
 ```graphql
 {
@@ -130,7 +130,7 @@ If we run *this* query, you might expect to see a random set of responses about 
 }
 ```
 
-Take a look at this response. Do you notice any additional information?
+But, take a look at this response. Do you notice any additional information?
 
 ```json
 {
@@ -190,7 +190,7 @@ Take a look at this response. Do you notice any additional information?
 
 </details>
 
-The difference is that the response now contains a `distance` value.
+The difference is that these responses contain a `distance` value.
 
 A `distance` is indicative of the degree of similarity between the returned object and the query.
 
