@@ -20,8 +20,10 @@ import PythonCode from '!!raw-loader!./_includes/user_test.py';
 
 This page introduces our new Python client. We are excited for you to try it out and provide feedback for us.
 
-:::note NOT FOR PRODUCTION USE
+:::note LIMITATIONS
 Please note that this is an early **pre-release** version, and is not yet ready for production use.
+
+Currently, it is only compatible with locally spun up Weaviate instances.
 :::
 
 #### Feedback
@@ -42,7 +44,7 @@ We recommend you create a **new environment** for this, in a new project directo
 Get into your desired environment, and run:
 
 ```shell
-pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@pydantic_experiment#egg=weaviate-client[GRPC]"
+pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@v3.99.0a2#egg=weaviate-client[GRPC]"
 ```
 
 #### Start Weaviate
