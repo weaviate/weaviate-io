@@ -12,7 +12,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
-
+import ThemeSwitch from '/src/components/ThemeSwitch';
 
 function BlogListPageMetadata(props) {
   const {metadata} = props;
@@ -48,13 +48,16 @@ function BlogListPageContent(props) {
 }
 export default function BlogListPage(props) {
   return (
+    <div className="custom-page noBG">
     <HtmlClassNameProvider
       className={clsx(
         ThemeClassNames.wrapper.blogPages,
         ThemeClassNames.page.blogListPage,
       )}>
+        <ThemeSwitch />
       <BlogListPageMetadata {...props} />
       <BlogListPageContent {...props} />
     </HtmlClassNameProvider>
+    </div>
   );
 }

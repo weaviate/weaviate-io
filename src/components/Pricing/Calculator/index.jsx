@@ -13,13 +13,12 @@ export default function PricingCalculator({ props }) {
   const [highAvailability, setHighAvailability] = useState(false);
   const [price, setPrice] = useState({});
 
-  const [storageType, setStorageType] = useState('compression');
-  const [activeBtn, setActiveBtn] = useState('compression');
+  const [storageType, setStorageType] = useState(null);
+  const [activeBtn, setActiveBtn] = useState(null);
 
   const storageHandleClick = (type) => {
     setStorageType(type);
     setActiveBtn(type);
-    console.log(type);
   };
 
   /* https://us-central1-semi-production.cloudfunctions.net/pricing-calculator-v2?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&slaTier=${slaTier}&highAvailability=${

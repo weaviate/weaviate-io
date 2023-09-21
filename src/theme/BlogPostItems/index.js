@@ -2,12 +2,14 @@ import React from 'react';
 import {BlogPostProvider} from '@docusaurus/theme-common/internal';
 import BlogPostItem from '@theme/BlogPostItem';
 import styles from './styles.module.scss';
+import ThemeSwitch from '../../components/ThemeSwitch';
 
 export default function BlogPostItems({
   items,
   component: BlogPostItemComponent = BlogPostItem,
 }) {
   return (
+
     <div className={styles.blogs}>
       {items.map(({content: BlogPostContent}) => (
         <BlogPostProvider
@@ -49,5 +51,6 @@ export default function BlogPostItems({
         </BlogPostProvider>
       ))}
     </div>
+
   );
 }

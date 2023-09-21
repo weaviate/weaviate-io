@@ -339,6 +339,11 @@ select option {
   button {
     font-size: 15px;
   }
+
+  @media screen and (max-width: 668px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 .btn-peformance {
