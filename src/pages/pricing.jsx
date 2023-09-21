@@ -34,8 +34,7 @@ export default function PricingPage() {
           <HybridBusinessCritical />
         )}
         <PricingFAQ />
-
-        {selectedType === 'saas' ? <></> : <ContactUsForm />}
+        <ContactUsForm />
       </Layout>
       <ThemeSwitch />
     </div>

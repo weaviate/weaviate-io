@@ -89,15 +89,15 @@
 }
 
 .priceBox {
-  display: grid;
-  grid-template-columns: 3fr 4fr 2fr;
+  display: flex;
   gap: 1rem;
   margin-bottom: 40px;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
+
   @media screen and (max-width: 668px) {
-    // flex-direction: column;
-    grid-template-columns: 1fr;
     margin-bottom: 20px;
+    justify-content: center;
   }
   .price {
     margin-top: 20px;
@@ -105,7 +105,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 230px;
 
     span {
       margin-bottom: 10px;
@@ -151,6 +150,14 @@ select {
 
   // Remove focus outline, will add on alternate element
   outline: none;
+}
+
+.selectYes {
+  width: 376px;
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
+  }
 }
 
 .select {
@@ -379,4 +386,26 @@ select option {
   width: 111px;
   border-style: none;
   transition: color 0.5s ease-in-out;
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: #61bd73;
+  transition: all 1s ease-out;
+  color: #130c49;
+  width: 200px;
+  text-align: center;
+  padding: 7px;
+
+  a {
+    background-color: none;
+  }
+}
+
+.buttonGradient:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
 }

@@ -4,16 +4,17 @@ import { useState, useEffect } from 'react';
 import ToggleSwitch from '/src/components/ToggleSwitch';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import Link from '@docusaurus/Link';
 
 export default function PricingCalculator({ props }) {
   const [embeddingSize, setEmbeddingSize] = useState(768);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
   const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
-  const [highAvailability, setHighAvailability] = useState(false);
+  const [highAvailability, setHighAvailability] = useState(null);
   const [price, setPrice] = useState({});
 
-  const [storageType, setStorageType] = useState(null);
+  const [storageType, setStorageType] = useState('performance');
   const [activeBtn, setActiveBtn] = useState(null);
 
   const storageHandleClick = (type) => {
@@ -24,8 +25,21 @@ export default function PricingCalculator({ props }) {
   const handleChange = (e) => {
     const value = e.target.value;
     setStorageType(value);
-    onChange(value);
   };
+
+  function SelectSwitch({ checked, onChange }) {
+    return (
+      <div className="select">
+        <select
+          value={checked ? 'yes' : 'no'}
+          onChange={(e) => onChange(e.target.value === 'yes')}
+        >
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+    );
+  }
 
   /* https://us-central1-semi-production.cloudfunctions.net/pricing-calculator-v2?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&slaTier=${slaTier}&highAvailability=${
     highAvailability ? 'true' : 'false'
@@ -149,8 +163,8 @@ export default function PricingCalculator({ props }) {
             </div>
             <Slider
               dots={true}
-              step={250}
-              min={90}
+              step={128}
+              min={128}
               max={1536}
               value={embeddingSize}
               onChange={(embeddingSize) => setEmbeddingSize(embeddingSize)}
@@ -172,10 +186,8 @@ export default function PricingCalculator({ props }) {
               <label>Data Objects:</label>
             </div>
             <Slider
-              dots={true}
-              step={10000000}
               min={0}
-              max={100000000}
+              max={50000000}
               value={amountOfDataObjs}
               onChange={(amountOfDataObjs) =>
                 setAmountOfDataObjs(amountOfDataObjs)
@@ -265,17 +277,25 @@ export default function PricingCalculator({ props }) {
               </select>
             </div>
           </div>
-          <div className="priceBox">
+          <div className="selectContainer">
             <div className="highAva">
               <label htmlFor="highAvailability">High Availability:</label>{' '}
             </div>
-            <div className="switchContainer">
+            {/*   <div className="switchContainer">
               <ToggleSwitch
                 id="highAvailability"
                 checked={highAvailability}
                 onChange={onHighAvailabilityChange}
               />
+            </div> */}
+            <div className="switchContainer">
+              <SelectSwitch
+                checked={highAvailability}
+                onChange={setHighAvailability}
+              />
             </div>
+          </div>
+          <div className="priceBox">
             <div className="price">
               {price.error === false && (
                 <>
@@ -292,9 +312,9 @@ export default function PricingCalculator({ props }) {
                 </>
               )}
               {price.error === true && (
-                <a href="mailto:hello@weaviate.io" className="salesBtn">
-                  Contact Us
-                </a>
+                <Link className={'buttonGradient'} to="#contact-sales">
+                  Contact us for more info
+                </Link>
               )}
             </div>
           </div>
