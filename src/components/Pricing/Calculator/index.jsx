@@ -239,7 +239,6 @@ export default function PricingCalculator({ props }) {
                 <option value="enterprise">Enterprise</option>
                 <option value="businessCritical">Business Critical</option>
               </select>
-              <span className="focus"></span>
             </div>
           </div>
           {/*  <div className="btn-group">
