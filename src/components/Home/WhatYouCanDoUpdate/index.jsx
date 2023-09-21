@@ -94,7 +94,7 @@ game about?"
                   state-of-the-art results.
                 </p>
                 <CodeSnippet
-                  language="typescript"
+                  language="graphql"
                   code={codeExample2}
                   buttonText="Hybrid Search"
                 />
@@ -107,7 +107,7 @@ game about?"
                   example to do Q&A over your dataset.
                 </p>
                 <CodeSnippet
-                  language="typescript"
+                  language="graphql"
                   code={codeExample3}
                   buttonText="Generative Search"
                 />

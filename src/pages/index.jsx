@@ -16,6 +16,7 @@ import HomepageIntegrations from '/src/components/Home/IntegrationsUpdate';
 import HomepageTestimonials from '/src/components/Home/Testimonials';
 import HomepageLatestInsights from '/src/components/Home/LatestInsights';
 import HomepageContact from '/src/components/Home/Contact';
+import ContactForm from '/src/components/Home/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
@@ -32,11 +33,9 @@ export default function Home() {
           <HomepageTestimonials />
           <HomepageWhatYouCanDo />
           <HomepageIntegrations />
-
           <HomepageJoinCommunity />
           <HomepageLatestInsights />
-
-          <HomepageReady />
+          <ContactForm />
         </main>
       </Layout>
       <ThemeSwitch />

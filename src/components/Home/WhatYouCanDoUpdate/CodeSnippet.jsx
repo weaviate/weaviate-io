@@ -6,7 +6,9 @@ import ClipboardJS from 'clipboard';
 import styles from './codeStyles.module.scss';
 import { Prism } from 'react-syntax-highlighter';
 import typescript from 'react-syntax-highlighter/dist/esm/languages/hljs/typescript';
-SyntaxHighlighter.registerLanguage('typsescript', typescript);
+import graphql from 'react-syntax-highlighter/dist/esm/languages/prism/graphql';
+
+SyntaxHighlighter.registerLanguage('typescript', typescript);
 
 const CodeSnippet = ({ language, code, buttonText }) => {
   const codeRef = React.useRef(null);

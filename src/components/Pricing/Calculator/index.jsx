@@ -13,11 +13,24 @@ export default function PricingCalculator({ props }) {
   const [highAvailability, setHighAvailability] = useState(false);
   const [price, setPrice] = useState({});
 
+  const [storageType, setStorageType] = useState('compression');
+  const [activeBtn, setActiveBtn] = useState('compression');
+
+  const storageHandleClick = (type) => {
+    setStorageType(type);
+    setActiveBtn(type);
+    console.log(type);
+  };
+
+  /* https://us-central1-semi-production.cloudfunctions.net/pricing-calculator-v2?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&slaTier=${slaTier}&highAvailability=${
+    highAvailability ? 'true' : 'false'
+  } */
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
-      const url = `https://us-central1-semi-production.cloudfunctions.net/pricing-calculator?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&queriesPerMonth=${queriesPerMonth}&slaTier=${slaTier}&highAvailability=${
+      const url = `https://us-central1-semi-production.cloudfunctions.net/pricing-calculator-v2?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&slaTier=${slaTier}&highAvailability=${
         highAvailability ? 'true' : 'false'
-      }`;
+      }&storageType=${storageType}`;
       const response = await fetch(url);
       const data = await response.json();
       setPrice(data);
@@ -29,7 +42,8 @@ export default function PricingCalculator({ props }) {
     slaTier,
     embeddingSize,
     amountOfDataObjs,
-    queriesPerMonth,
+    /* queriesPerMonth, */
+    storageType,
   ]);
 
   useEffect(() => {
@@ -38,12 +52,13 @@ export default function PricingCalculator({ props }) {
     if (params.get('dimensions')) setEmbeddingSize(params.get('dimensions'));
     if (params.get('object_count'))
       setAmountOfDataObjs(params.get('object_count'));
-    if (params.get('monthly_queries'))
-      setQueriesPerMonth(params.get('monthly_queries'));
+    /*  if (params.get('monthly_queries'))
+      setQueriesPerMonth(params.get('monthly_queries')); */
     if (params.get('high_availability'))
       setHighAvailability(
         params.get('high_availability') === 'true' ? true : false
       );
+    if (params.get('storage_type')) setStorageType(params.get('storage_type'));
   }, []);
 
   const handleLabel = (value) => {
@@ -75,7 +90,7 @@ export default function PricingCalculator({ props }) {
 
   const redirectWithPrice = async (event) => {
     const data = {
-      url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&monthly_queries=${queriesPerMonth}&sla=${slaTier}&high_availability=${
+      url: `https://weaviate.io/pricing?dimensions=${embeddingSize}&object_count=${amountOfDataObjs}&storage_type=${storageType}&sla=${slaTier}&high_availability=${
         highAvailability ? 'true' : 'false'
       }#mainPricingArea`,
       domain: 'link.weaviate.io',
@@ -210,6 +225,32 @@ export default function PricingCalculator({ props }) {
               <span className="focus"></span>
             </div>
           </div>
+          <div className="btn-group">
+            <label htmlFor="storageType">Storage Type:</label>{' '}
+            <div className="btn-inner">
+              <button
+                className={
+                  activeBtn === 'performance'
+                    ? 'btn-performanceHold'
+                    : 'btn-peformance'
+                }
+                onClick={() => storageHandleClick('performance')}
+              >
+                Performance
+              </button>
+
+              <button
+                className={
+                  activeBtn === 'compression'
+                    ? 'btn-compressionHold'
+                    : 'btn-compression'
+                }
+                onClick={() => storageHandleClick('compression')}
+              >
+                Compression
+              </button>
+            </div>
+          </div>
           <div className="priceBox">
             <div className="highAva">
               <label htmlFor="highAvailability">High Availability:</label>{' '}
@@ -244,11 +285,11 @@ export default function PricingCalculator({ props }) {
             </div>
           </div>
         </div>
-        {/*  <div className={'buttons'}>
+        <div className={'buttons'}>
           <div className={'buttonOutline'} onClick={redirectWithPrice}>
             Share this pricing
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

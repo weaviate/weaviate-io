@@ -319,3 +319,55 @@ select option {
   padding-left: 10px;
   color: #1c1468;
 }
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 2fr 4fr 60px;
+  gap: 1rem;
+  margin: 7px 0px;
+
+  .btn-inner {
+    border-radius: 6px;
+    border: 1px solid #02b7e1;
+    width: 210px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    font-size: 15px;
+  }
+}
+
+.btn-peformance {
+  background-color: #f9f9f9;
+  color: #130c49;
+  border: none;
+}
+
+.btn-performanceHold {
+  background-color: #130c49;
+  color: #ffffff;
+  height: 34px;
+  border-radius: 5px 0px 0px 5px;
+  width: 111px;
+  border-style: none;
+}
+
+.btn-compression {
+  background-color: #f9f9f9;
+  color: #130c49;
+  border: none;
+  //border-left: 1px solid #02b7e1;
+}
+
+.btn-compressionHold {
+  background-color: #130c49;
+  color: #ffffff;
+  height: 34px;
+  border-radius: 0px 5px 5px 0px;
+  width: 111px;
+  border-style: none;
+}
