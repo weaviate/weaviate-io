@@ -21,6 +21,12 @@ export default function PricingCalculator({ props }) {
     setActiveBtn(type);
   };
 
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setStorageType(value);
+    onChange(value);
+  };
+
   /* https://us-central1-semi-production.cloudfunctions.net/pricing-calculator-v2?embeddingSize=${embeddingSize}&amountOfDataObjs=${amountOfDataObjs}&slaTier=${slaTier}&highAvailability=${
     highAvailability ? 'true' : 'false'
   } */
@@ -224,7 +230,7 @@ export default function PricingCalculator({ props }) {
               <span className="focus"></span>
             </div>
           </div>
-          <div className="btn-group">
+          {/*  <div className="btn-group">
             <label htmlFor="storageType">Storage Type:</label>{' '}
             <div className="btn-inner">
               <button
@@ -248,6 +254,15 @@ export default function PricingCalculator({ props }) {
               >
                 Compression
               </button>
+            </div>
+          </div> */}
+          <div className="selectContainer">
+            <label htmlFor="storageType">Storage Type:</label>
+            <div className="select">
+              <select value={storageType} onChange={handleChange}>
+                <option value="compression">Compression</option>
+                <option value="performance">Performance</option>
+              </select>
             </div>
           </div>
           <div className="priceBox">

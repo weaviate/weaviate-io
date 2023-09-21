@@ -15,6 +15,7 @@ export default function ToggleSwitch(props) {
         onChange={(e) => onChange(e.target.checked)}
         disabled={disabled}
       />
+      <label htmlFor="checkbox">{checked ? 'Yes' : 'No'}</label>
       {id ? (
         <label className={styles.toggleSwitchLabel} htmlFor={id}>
           <span
