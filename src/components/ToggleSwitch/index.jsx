@@ -43,7 +43,7 @@ export default function ToggleSwitch(props) {
 
 // Set optionLabels for rendering.
 ToggleSwitch.defaultProps = {
-  optionLabels: ['Yes', 'No'],
+  optionLabels: [' Yes', 'No'],
 };
 
 ToggleSwitch.propTypes = {
