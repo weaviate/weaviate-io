@@ -9,10 +9,9 @@ import Badges from '/_includes/badges.mdx';
 <Badges/>
 
 
+This page illustrates various use cases for [vector databases](https://weaviate.io/blog/what-is-a-vector-database) by way of open-source demo projects. You can fork and modify any of them.
 
-This page provides an overview of the different use cases of [vector datases](https://weaviate.io/blog/what-is-a-vector-database) alongside some open-source demo projects, you can fork and modify.
-
-If you would like to contribute your demo to this gallery, connect with us on [Slack](https://weaviate.slack.com/join/shared_invite/zt-230mg7ofo-k__CuUfA0nXtQJYEL80_Pw#/shared-invite/email) or the [community forum](https://forum.weaviate.io/).
+If you would like to contribute your own project to this page, please let us know by creating an issue on [GitHub](https://github.com/weaviate/weaviate-io/issues).
 
 :::info
 During October 1-31, 2023, we are hosting a community sprint to onboard engineers and machine learning practitioners to their first open source contribution.
@@ -22,7 +21,7 @@ Demos that are marked with a pumpkin 🎃 sign are looking for contributions.
 
 ## Similarity search
 
-The original use case of vector databases is for search. Vector searches can be performed on and across any modalities, such as text or images, or their combinations. Because a vector database can help find similar objects,they are also used in recommendation systems in classical machine learning applications as a restated task of search.
+A vector databases enables fast, efficient similarity searches on and across any modalities, such as text or images, as well as their combinations. Vector database' similarity search capabilities can be used for other complex use cases, such as recommendation systems in classical machine learning applications.
 
 |Title | Description | Modality | Code | Demo |
 | --- | --- | --- | --- | --- |
@@ -39,7 +38,9 @@ The original use case of vector databases is for search. Vector searches can be 
 
 ## LLMs and search
 
-Because vector databases can address some of Large language models (LLMs) limitations, such as hallucinations, by acting as an external knowledge database, vector databases and LLMs go together like cookies and milk.
+Vector databases and LLMs go together like cookies and milk!
+
+Vector databases help to address some of large language models (LLMs) limitations, such as hallucinations, by helping to retrieve the relevant information to provide to the LLM as a part of its input.
 
 |Title | Description | Subcategory | Code | Demo |
 | --- | --- | --- | --- | --- |
@@ -51,7 +52,7 @@ Learn more in our [LLMs and Search](https://weaviate.io/blog/llms-and-search) bl
 
 ## Classification
 
-A vector database like Weaviate understands the context of concepts, which allows automatic, real-time classification of unseen, new concepts. For example, a flight ticket from an airline needs to be classified as "international travel" but this is often not done correctly, not done at all or not done in a way that it works for a specific business question (e.g., an airline ticket classified as "international travel" can't answer the question "How much money has been spent on non-ground travel"). Because Weaviate knows what "international travel" and "air travel" means, airline tickets can automatically be classified as "travel expenses" or "flight tickets", and "national travel" or "international travel".
+Weaviate can leverage its vectorization capabilities to enable automatic, real-time classification of unseen, new concepts based on its semantic understanding.
 
 |Title | Category | Modality | Code | Demo |
 | --- | --- | --- | --- | --- |
