@@ -19,6 +19,7 @@ _includes/code/howto/go/vendor
 # Generated files
 .docusaurus
 .cache-loader
+CURRENT_BRANCH
 
 # Ignore Academy for now
 # /developers/academy
