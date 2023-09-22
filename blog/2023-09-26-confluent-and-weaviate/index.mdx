@@ -40,11 +40,8 @@ Reduce innovation friction as new AI apps and models become available. Decouple 
 ## Weaviate and Confluent enable simple development of real-time AI applications
 Our new Confluent integration enables all your teams to tap into a continuously enriched real-time knowledge base, so they can quickly scale and build AI-enabled applications using trusted data streams. Let’s take a look at how it works:
 
-<img
-  src={require('./img/fig1.png').default}
-  alt="Figure 1 Solution Architecture"
-  style={{ maxWidth: "40%" }}
-/>
+![Figure1Dark](./img/fig1-dark.png#gh-dark-mode-only)
+![Figure1Light](./img/fig1-light.png#gh-light-mode-only)
 
 The integration architecture is designed to be both robust and straightforward, ensuring a seamless flow of real-time data from Confluent Cloud to Weaviate Cloud Services.
 
@@ -102,7 +99,7 @@ After initializing your Spark environment, the next step is to configure the Kaf
 In this example, we've already set up a topic on Confluent Cloud that receives data from the DataGen source, specifically utilizing the clickstream user template.
 :::
 
-```
+```python
 clickstreamDF = (
     spark.readStream.format("kafka")
     .option("kafka.bootstrap.servers", confluentBootstrapServers)
@@ -122,6 +119,7 @@ clickstreamDF = (
     .load()
 )
 ```
+
 This code snippet creates a streaming DataFrame named **`clickstreamDF`** in Spark, configured to read from your Kafka topic in Confluent Cloud. It specifies various options like the bootstrap servers, topic name, and security protocols, ensuring a secure and efficient data stream. The **`confluentApiKey`** and **`confluentSecret`** are used for authentication, and the stream is set to start reading from the latest available data. By running this code, you establish a real-time data stream from Confluent Cloud to your Spark environment, setting the stage for the next step: writing this data into Weaviate.
 
 ### Define A Function To Write The Kafka Messages Into Weaviate
@@ -156,6 +154,7 @@ def f(df, batch_id):
         "append"
     ).save()
 ```
+
 This code snippet defines a function **`f`** that takes a DataFrame **`df`** and a **`batch_id`** as inputs. The function writes the DataFrame into Weaviate using the confluent-connector library. It specifies various options, such as the batch size, Weaviate host, and API key for authentication.
 
 One of the key features of this integration is its seamless interaction with Confluent's Schema Registry. The integration automatically extracts the schema ID from the message's value and queries the Schema Registry to retrieve the associated schema. This schema is then used to deserialize the rest of the data, ensuring that the data is accurately streamed into Weaviate.
