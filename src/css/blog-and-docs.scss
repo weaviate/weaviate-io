@@ -3,7 +3,9 @@
 
 // Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
-.blog-post-page, .docs-doc-page, .podcast-page {
+.blog-post-page,
+.docs-doc-page,
+.podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
   // #docusaurus_skipToContent_fallback {
@@ -26,12 +28,16 @@
 }
 
 // Set Background
-.docs-doc-page, .blog-list-page, .blog-post-page, .podcast-page {
+.docs-doc-page,
+.blog-list-page,
+.blog-post-page,
+.podcast-page {
   #__docusaurus {
     background-image: none;
   }
 
-  #__docusaurus, .navbar {
+  #__docusaurus,
+  .navbar {
     background: var(--site-background);
   }
 
@@ -47,12 +53,18 @@
 .docs-doc-page {
   font-family: var(--site-font-base-family);
   color: var(--docs-base-color);
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--site-font-base-family);
     font-weight: 700;
     color: var(--docs-header-color);
-  };
-  h1, h2 {
+  }
+  h1,
+  h2 {
     padding-top: 30px;
     padding-bottom: 10px;
   }
@@ -64,7 +76,7 @@
     padding-top: 15px;
     font-size: 1.3rem;
     font-weight: 700;
-  };
+  }
   // .theme-doc-sidebar-container, .navbar {
   //   background: var(--site-background);
   // }
@@ -75,4 +87,12 @@
 
 .hidden {
   display: none !important;
+}
+
+.toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: none;
+}
+
+.toggleButton_gllP {
+  display: none;
 }

@@ -10,12 +10,16 @@ export default function BlogPostItems({
 }) {
   return (
 
-    <div className={styles.blogs}>
+
+<div className={styles.blogs}>
+
       {items.map(({content: BlogPostContent}) => (
+
         <BlogPostProvider
           key={BlogPostContent.metadata.permalink}
           content={BlogPostContent}>
           <BlogPostItemComponent>
+
             <div className={styles.blogCard}>
 
               <a className={styles.blogCardImage} href={BlogPostContent.metadata.permalink}>
@@ -47,8 +51,11 @@ export default function BlogPostItems({
                 <span>{BlogPostContent.metadata.formattedDate} · {Math.round(BlogPostContent.metadata.readingTime)} min read</span>
               </div>
             </div>
+
+<ThemeSwitch/>
           </BlogPostItemComponent>
         </BlogPostProvider>
+
       ))}
     </div>
 

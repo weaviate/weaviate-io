@@ -175,8 +175,13 @@
   margin-top: 260px;
   max-height: 500px;
 
+  @media only screen and (device-width: 768px) {
+    margin-top: 260px;
+    max-height: 809px;
+  }
+
   @media screen and (max-width: 860px) {
     margin-top: 260px;
-    max-height: 579px;
+    max-height: 700px;
   }
 }

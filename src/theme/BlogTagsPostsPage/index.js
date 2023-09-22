@@ -69,7 +69,9 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
       </header>
       <BlogPostItems items={items} />
       <BlogListPaginator metadata={listMetadata} />
+
     </BlogLayout>
+
   );
 }
 export default function BlogTagsPostsPage(props) {

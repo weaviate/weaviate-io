@@ -54,10 +54,11 @@ export default function BlogListPage(props) {
         ThemeClassNames.wrapper.blogPages,
         ThemeClassNames.page.blogListPage,
       )}>
-        <ThemeSwitch />
+
       <BlogListPageMetadata {...props} />
       <BlogListPageContent {...props} />
     </HtmlClassNameProvider>
+    <ThemeSwitch />
     </div>
   );
 }
