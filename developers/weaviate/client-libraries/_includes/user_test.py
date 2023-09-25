@@ -260,10 +260,14 @@ dataset.upload_dataset(client, 300)
 # GroupedTask
 questions = client.collection.get("JeopardyQuestion")
 
+# highlight-start
 response = questions.generate.near_text(
+# highlight-end
     query="Moon landing",
     limit=3,
+    # highlight-start
     grouped_task="Write a haiku from these facts"
+    # highlight-end
 )
 
 print(response)
@@ -288,3 +292,17 @@ for o in response.objects:
     print(f"Original text: {o.properties['question']}")
     print(f"Generated text: {o.generated}")
 # END OutputSinglePrompt
+
+# GroupByExample
+response = questions.query_group_by.near_text(
+    query="Moon landing",
+    limit=3,
+    group_by=wvc.GroupBy(
+        prop="points",
+        number_of_groups=2,
+        objects_per_group=2
+    )
+)
+print(response.groups)  # Results, grouped by the points property
+print(response.objects)  # Individual results, with an added `belongs_to_group` property
+# END GroupByExample

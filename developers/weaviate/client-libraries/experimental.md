@@ -371,7 +371,9 @@ Import some demo data. This is pre-vectorized data, so it will load quickly.
   language="py"
 />
 
-RAG functionality is now available from within each search, through an additional argument. Grouped task, for example is like this:
+RAG functionality is now available through a different `generate` submodule. Converting a search query to a RAG query is as simple as changing the submodule, and supplying the required generative parameters.
+
+So a grouped task, for example looks like this:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -406,6 +408,32 @@ With generated output attached to each object, like this:
   endMarker="# END OutputSinglePrompt"
   language="py"
 />
+
+### Choose your own adventure
+
+With these basics in place, you should be ready to try out all of the other operations available in the `collections` client.
+
+One suggestion is for you to translate any existing scripts you have to use the new API.
+
+Or alternatively, you can try all the different operations - many of which we just haven not had time to cover here. They are available through submodules, so for an `articles` collection, you can try:
+
+```python
+articles.data  # For data operations
+articles.query  # For searches
+articles.generate  # For retrieval augmented generations
+articles.query_group_by  # For object-level groupby operation
+```
+
+We think you'll be pleasantly surprised by many of these. For example, the `groupby` operations has become refreshingly simple:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# GroupByExample"
+  endMarker="# END GroupByExample"
+  language="py"
+/>
+
+The options are (nearly) endless!
 
 -----
 -----
