@@ -1,0 +1,169 @@
+---
+title: Shape the Future - Try Our New Python Client API
+slug: new-python-client
+authors: [dirk, tommy, sebastian, jp]
+date: 2023-09-26
+tags: ['engineering','release']
+# image: ./img/hero.png
+description: "A preview release of our new Python client is now available for you to try! We are looking for feedback and contributions to make it the best Python client for Weaviate."
+---
+
+<!-- ![The pre-release Weaviate Python client with a new API](./img/hero.png) -->
+
+:::info Outline
+
+- Introduction
+- `collections` API - motivation and key ideas
+- `collections` API - usage examples
+- How to get started
+- What's next
+:::
+
+## Introduction
+
+We want to ensure that Weaviate is not just powerful, but also user-friendly.
+
+After all, the best tools are those that are accessible and easy to integrate into your projects. This is why we prioritize client libraries for different programming languages.
+
+Today, we're thrilled to unveil our pre-release `collections` Python client API. We've designed it to be more Pythonic, leveraging modern IDE features like code completion and type hints. Moreover, we've revamped the way you work with your data.
+
+While our internal tests have yielded positive results, we are excited to see what you, the community, think. So, we invite you to explore this new API, share your insights, and even contribute to its evolution.
+
+Let's dive into the inspiration and core concepts behind this innovation.
+
+:::note 'Collection' vs 'Class' nomenclature
+Going forward, we will use the term `collection` instead of `class` to refer to the sets of objects to be stored in Weaviate. This is to avoid confusion with the generic word `class` in object-oriented programming, and in Python.
+:::
+
+## `collections` API - An overview
+
+There are two key changes to the way the `collections` client works in comparison to the existing Python client (let's call this the `Classic` client). They relate to the object typing and the way you interact with the data.
+
+| **Aspect** | **`Classic` Client** | **`Collections` Client** |
+| --- | --- | --- |
+| **Object Typing** | Primarily relied on untyped `dict` / JSONs. | Utilizes strong typing through custom Python classes. |
+| **Unit of Interaction** | Interacts with the entire database. | Focuses on individual collections for interaction. |
+
+Let's look at each of these in more detail.
+
+### Object Typing
+
+The `Classic` client primarily relied on untyped data structures like dictionaries and JSONs. While this approach offered flexibility, we saw this sometimes lead to ambiguity and potential runtime errors. Recognizing this, the collections client takes a leap forward by adding strong typing through custom Python classes in many places.
+
+Compare the following syntax, for example:
+
+:::note Classic client syntax
+
+```python
+collection_definition = {
+    "class": "Article",
+    "vectorizer": "text2vec-openai",
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+    ]
+}
+client.schema.add_class(collection_definition)
+```
+
+:::
+
+:::info `Collections` client syntax
+
+```python
+import weaviate.classes as wvc  # <-- import the custom classes
+
+client.collection.create(
+    name="Article",
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
+    properties=[
+        wvc.Property(
+            name="title",
+            data_type=wvc.DataType.TEXT,
+        ),
+    ]
+)
+```
+
+:::
+
+And what's more, you get all the benefits of strong typing, including code completion and type hints in your IDE.
+Take a look at how little actual typing is required to create the above collection, thanks to the IDE support:
+
+import codeCompletionImgUrl from './img/code-completion.gif';
+
+<img src={codeCompletionImgUrl} alt="Code completion and type hints in the new Python client" width="85%"/>
+
+Another benefit is that you do not have to remember the exact parameter names, as the IDE will show you the available options. This can be a boon when you are working with less often-used options or when you are new to Weaviate.
+
+Take a look at the next example, where we are configuring the `invertedIndexConfig` for a property. The IDE shows us the available options and their descriptions.
+
+import invertedIndexHintsImgUrl from './img/inverted-index-hints.png';
+
+<img src={invertedIndexHintsImgUrl} alt="Tool tip hints for inverted index configurations" width="85%"/>
+
+Types are introduced for the data objects as well at creation time, as well as when retrieving them from the database. This means that you can access the properties of the data object directly.
+
+So syntax that is currently like this:
+
+:::note Classic client syntax
+```python
+response['data']['Get']['Article'][0]['title']  # Get the `title` property of the first object
+response['data']['Get']['Article'][0]['_additional']['id']  # Get the ID of the first object
+response['data']['Get']['Article'][0]['_additional']['generate']['groupedResult']  # Get the generated text from a `groupedTask` request
+```
+
+:::
+
+Become:
+
+:::info `Collections` client syntax
+
+```python
+response.objects[0].properties['title']  # Get the `title` property of the first object
+response.objects[0].metadata.uuid  # Get the ID of the first object
+response.generated  # Get the generated text from a `groupedTask` request
+```
+
+:::
+
+We think that these changes will reduce errors, increase productivity, and make the code easier to read and understand.
+
+### Unit of Interaction
+
+The other big change is that the `collections` client focuses on individual collections for interaction.
+
+This means that you will no longer need to specify the collection name in every request. Instead, you will create an object for each collection that you want to interact with, and then use that object for all subsequent requests.
+
+For example, take the following syntax for performing a simple `Get` request to retrieve a few objects from the database:
+
+:::note Classic client syntax
+
+```python
+response = (
+    client.query.get(
+        class_name="Article",
+        properties=["title", "body", "url"]
+    )
+    .with_limit(2)
+)
+```
+
+:::
+
+Becomes:
+
+:::info `Collections` client syntax
+
+```python
+articles = client.collection.get("Article")
+response = articles.query.fetch_objects(limit=2)
+```
+
+:::
+
+Now, the search is now a method that cascades from the collection object. We have observed that in most cases, you will be working with a single collection at a time. So, we think that this change will improve your efficiency and make the code more readable.
+
+You might also notice that the properties to be returned do not need to be specified! We have changed the default behavior to return all properties and most of the metadata, so that you can get started quickly. You can still specify the properties to be returned, if you wish.
