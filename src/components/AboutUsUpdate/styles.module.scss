@@ -345,3 +345,25 @@ p {
 .applied-research {
   display: block;
 }
+
+.teamFilter::-webkit-scrollbar-thumb:horizontal {
+  background: #ebe8e8;
+  border-radius: 10px;
+}
+
+.teamFilter::-webkit-scrollbar {
+  height: 14px;
+}
+
+.teamFilter::-webkit-scrollbar-thumb {
+  margin-bottom: 10px;
+  width: 85px;
+}
+
+.teamFilter::-webkit-scrollbar-thumb:hover {
+  background: #bab7b7;
+}
+
+.teamFilter::-webkit-scrollbar-track {
+  border-radius: 8px;
+}

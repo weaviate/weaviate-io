@@ -206,6 +206,11 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                                label: 'Workshops',
+                                to: 'learn/workshops'
+
+                            },
+                            {
                                 label: 'Contributor Guide',
                                 docId: 'contributor-guide/index',
                                 sidebarid: 'contributorSidebar',

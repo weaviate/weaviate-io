@@ -30,50 +30,47 @@ export default function MeetTheTeam() {
               #Applied Research
             </Link>
             <Link onClick={() => handleTeamFilter('wcs')}>#Cloud Services</Link>
-            <Link className={styles.pricingButton} to="#board-advisors">
+            <Link onClick={() => handleTeamFilter('board-advisors')}>
               #Board&Advisors
             </Link>
-            <Link className={styles.pricingButton} to="#ceo-team">
-              #CEO team
-            </Link>
-            <Link className={styles.pricingButton} to="#cloud-services">
+            <Link onClick={() => handleTeamFilter('ceo-team')}>#CEO team</Link>
+
+            <Link onClick={() => handleTeamFilter('cloud-services')}>
               #Cloud Services
             </Link>
-            <Link className={styles.pricingButton} to="#cloud-strategy">
+            <Link onClick={() => handleTeamFilter('cloud-strategy')}>
               #Cloud Strategy
             </Link>
-            <Link className={styles.pricingButton} to="#core-engineering">
+            <Link onClick={() => handleTeamFilter('core-engineering')}>
               #Core Engineering
             </Link>
-            <Link className={styles.pricingButton} to="#customer-success">
+            <Link onClick={() => handleTeamFilter('customer-success')}>
               #Customer Success
             </Link>
           </div>
           <div className={styles.teamFilter}>
-            <Link className={styles.pricingButton} to="#cx0">
-              #CxO leadership
-            </Link>
+            <Link onClick={() => handleTeamFilter('cx0')}>#CxO Leadership</Link>
             <Link onClick={() => handleTeamFilter('database')}>#Database</Link>
             <Link onClick={() => handleTeamFilter('design')}>#Design</Link>
             <Link onClick={() => handleTeamFilter('developer-growth')}>
               #Developer Growth
             </Link>
-            <Link className={styles.pricingButton} to="#devrel">
-              #DevRel
+
+            <Link onClick={() => handleTeamFilter('developer-relations')}>
+              #Developer Relations
             </Link>
-            <Link className={styles.pricingButton} to="#marketing">
+            <Link onClick={() => handleTeamFilter('marketing')}>
               #Marketing
             </Link>
-            <Link className={styles.pricingButton} to="#partnerships">
+            <Link onClick={() => handleTeamFilter('partnerships')}>
               #Partnerships
             </Link>
-            <Link className={styles.pricingButton} to="#people-culture">
-              #People&Culture
+            <Link onClick={() => handleTeamFilter('people-and-culture')}>
+              #People & Culture
             </Link>
-            <Link className={styles.pricingButton} to="#sales">
-              #Sales
-            </Link>
-            <Link className={styles.pricingButton} to="#sales-engineering">
+            <Link onClick={() => handleTeamFilter('sales')}>#Sales</Link>
+
+            <Link onClick={() => handleTeamFilter('sales-engineering')}>
               #Sales Engineering
             </Link>
           </div>

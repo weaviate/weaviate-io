@@ -19,7 +19,8 @@
 		"name": "Ara Gonzalez",
 		"title": "People Operations Manager",
 		"photo": "ara.jpg",
-		"linkedin": "aranzazugonzalez"
+		"linkedin": "aranzazugonzalez",
+		"team": "people-and-culture"
 	},
 	{
 		"name": "Asdine El Hrychy",
@@ -27,7 +28,8 @@
 		"photo": "asdine.jpg",
 		"linkedin": "asdine",
 		"twitter": "asdine_",
-		"github": "asdine"
+		"github": "asdine",
+		"team": "applied-research"
 	},
 	{
 		"name": "Bob van Luijt",
@@ -35,7 +37,8 @@
 		"photo": "bob.png",
 		"linkedin": "bobvanluijt",
 		"twitter": "bobvanluijt",
-		"github": "bobvanluijt"
+		"github": "bobvanluijt",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Byron Voorbach",
@@ -43,14 +46,16 @@
 		"photo": "byron.png",
 		"linkedin": "byronvoorbach",
 		"twitter": "byronvoorbach",
-		"github": "byronvoorbach"
+		"github": "byronvoorbach",
+		"team": "sales-engineering"
 	},
 	{
 		"name": "Charles Harr",
 		"title": "Software Engineer",
 		"photo": "charles.png",
 		"linkedin": "ceharr",
-		"github": "harrlight00"
+		"github": "harrlight00",
+		"team": "wcs"
 	},
 	{
 		"name": "Connor Shorten",
@@ -59,13 +64,6 @@
 		"linkedin": "connor-shorten-34923a178/",
 		"twitter": "cshorten30",
 		"github": "CShorten"
-	},
-	{
-		"name": "Dan Dascalescu",
-		"title": "Developer Advocate",
-		"photo": "dan.png",
-		"linkedin": "dandv",
-		"github": "dandv"
 	},
 	{
 		"name": "Dirk Kulawiak",
@@ -79,7 +77,8 @@
 		"name": "Emma O'Keefe",
 		"title": "Head of Customer Success",
 		"photo": "emma.png",
-		"linkedin": "emma-o-keefe-03777b80"
+		"linkedin": "emma-o-keefe-03777b80",
+		"team": "customer-success"
 	},
 	{
 		"name": "Edward Schmuhl",
@@ -113,7 +112,8 @@
 		"photo": "etienne.png",
 		"linkedin": "etienne-dilocker-60727b175",
 		"twitter": "etiennedi",
-		"github": "etiennedi"
+		"github": "etiennedi",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Femke Plantinga",
@@ -129,7 +129,8 @@
 		"photo": "jp.png",
 		"linkedin": "jphwang",
 		"twitter": "_jphwang",
-		"github": "databyjp"
+		"github": "databyjp",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Jeremy Price",
@@ -143,14 +144,16 @@
 		"title": "Head of People & Culture",
 		"photo": "jessie.png",
 		"linkedin": "jessiedegroot/",
-		"twitter": "jessie_groot"
+		"twitter": "jessie_groot",
+		"team": "people-and-culture"
 	},
 	{
 		"name": "Jobi George",
 		"title": "Head of Partnerships",
 		"photo": "jobi.png",
 		"linkedin": "jobigeorge",
-		"twitter": "jobig630"
+		"twitter": "jobig630",
+		"team": "partnerships"
 	},
 	{
 		"name": "John Trengrove",
@@ -158,7 +161,8 @@
 		"photo": "john.png",
 		"linkedin": "trengrj",
 		"twitter": "trengrj",
-		"github": "trengrj"
+		"github": "trengrj",
+		"team": "applied-research"
 	},
 	{
 		"name": "Ken Macinnis",
@@ -166,7 +170,8 @@
 		"photo": "ken.png",
 		"linkedin": "kmacinnis",
 		"twitter": "",
-		"github": ""
+		"github": "",
+		"team": "customer-success"
 	},
 	{
 		"name": "Leonie Monigatti",
@@ -201,12 +206,6 @@
 		"team": "database"
 	},
 	{
-		"name": "Paul Anderson",
-		"title": "Recruitment Lead",
-		"photo": "paul.png",
-		"linkedin": "paulanderson9"
-	},
-	{
 		"name": "Peter Schramm",
 		"title": "Head of WCS",
 		"photo": "peter.png",
@@ -227,13 +226,15 @@
 		"title": "Core Engineer",
 		"photo": "redo.png",
 		"linkedin": "redouan-el-rhazouani-295082111",
-		"github": "redouan-rhazouani"
+		"github": "redouan-rhazouani",
+		"team": "cloud"
 	},
 	{
 		"name": "Rodrigo DeCossio",
 		"title": "Head of Sales",
 		"photo": "rodrigo.png",
-		"linkedin": "rodrigodecossio"
+		"linkedin": "rodrigodecossio",
+		"team": "sales"
 	},
 	{
 		"name": "Sebastian Witalec",
@@ -241,7 +242,8 @@
 		"photo": "sebastian.png",
 		"linkedin": "sebawita",
 		"twitter": "sebawita",
-		"github": "sebawita"
+		"github": "sebawita",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Shan Blackwood",
@@ -255,21 +257,24 @@
 		"title": "Community Solution Engineer",
 		"photo": "shukri.png",
 		"linkedin": "mohdshukrihasan",
-		"twitter": "MohdShukriHasa1"
+		"twitter": "MohdShukriHasa1",
+		"team": "sales-engineering"
 	},
 	{
 		"name": "Sila Uygun",
 		"title": "Account Manager",
 		"photo": "sila.png",
 		"linkedin": "silauygun",
-		"twitter": "silauygun"
+		"twitter": "silauygun",
+		"team": "sales"
 	},
 	{
 		"name": "Stefan Bogdan",
 		"title": "Solution Engineer ",
 		"photo": "stefan.png",
 		"linkedin": "stefan-bogdan",
-		"github": "StefanBogdan"
+		"github": "StefanBogdan",
+		"team": "customer-success"
 	},
 	{
 		"name": "Svitlana Smolianova",
@@ -291,6 +296,7 @@
 		"name": "Zain Hasan",
 		"title": "Senior Developer Advocate",
 		"photo": "zain.png",
-		"linkedin": "zainhas"
+		"linkedin": "zainhas",
+		"team": "developer-relations"
 	}
 ]
