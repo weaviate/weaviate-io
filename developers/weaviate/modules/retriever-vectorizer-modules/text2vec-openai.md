@@ -83,6 +83,7 @@ You can configure how the module will behave in each class through the [Weaviate
 - `model` (Optional): A model family, e.g. `davinci`.
 - `modelVersion` (Optional): Version string, e.g. `003`.
 - `type` (Optional): Model type. Can be `text` or `code`.
+- `baseURL` (Optional): Sets a proxy or other URL instead of the default OpenAI URL. To specify the URL, use protocol domain format. `https://your.domain.com`. The default value is: `https://api.openai.com`.
 
 The default model is `text-embedding-ada-002`.
 
@@ -103,6 +104,7 @@ The following example configures the `Document` class by setting the vectorizer 
           "model": "ada",
           "modelVersion": "002",
           "type": "text"
+          "baseURL": "https://proxy.yourCompanyDomain.com"
         }
       },
       // highlight-end
