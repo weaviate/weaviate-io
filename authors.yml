@@ -30,7 +30,7 @@ dan:
   image_url: /img/people/icon/dan.jpg
 dirk:
   name: Dirk Kulawiak
-  title: Software Developer
+  title: Core Engineer
   url: https://github.com/dirkkul
   image_url: /img/people/icon/dirk.jpg
 edward:
@@ -104,7 +104,7 @@ shukri:
   url: https://github.com/hsm207
   image_url: /img/people/icon/shukri.jpeg
 tommy:
-  name: Thomas Benjamin Smith
+  name: Thommy Smith
   title: Polyglot Engineer
   url: https://github.com/tsmith023
   image_url: /img/people/icon/tommy.jpg

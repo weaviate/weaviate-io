@@ -8,6 +8,9 @@ tags: ['engineering','release']
 description: "A preview release of our new Python client is now available for you to try! We are looking for feedback and contributions to make it the best Python client for Weaviate."
 ---
 
+:::warning TODO; TL;DR
+:::
+
 <!-- ![The pre-release Weaviate Python client with a new API](./img/hero.png) -->
 
 :::info Outline
@@ -35,7 +38,9 @@ Let's dive into the inspiration and core concepts behind this innovation.
 Going forward, we will use the term `collection` instead of `class` to refer to the sets of objects to be stored in Weaviate. This is to avoid confusion with the generic word `class` in object-oriented programming, and in Python.
 :::
 
-## `collections` API - An overview
+## Key changes
+
+> **Highlights: Strong typing through custom Python classes, focus on individual collections for interaction**
 
 There are two key changes to the way the `collections` client works in comparison to the existing Python client (let's call this the `Classic` client). They relate to the object typing and the way you interact with the data.
 
@@ -46,9 +51,9 @@ There are two key changes to the way the `collections` client works in compariso
 
 Let's look at each of these in more detail.
 
-### Object Typing
+### Object typing
 
-The `Classic` client primarily relied on untyped data structures like dictionaries and JSONs. While this approach offered flexibility, we saw this sometimes lead to ambiguity and potential runtime errors. Recognizing this, the collections client takes a leap forward by adding strong typing through custom Python classes in many places.
+The `Classic` client primarily relied on untyped data structures like dictionaries and JSONs. While this approach offered flexibility, we saw this lead to runtime errors. Recognizing this, the collections client takes a leap forward by adding strong typing through custom Python classes in many places.
 
 Compare the following syntax, for example:
 
@@ -94,9 +99,9 @@ Take a look at how little actual typing is required to create the above collecti
 
 import codeCompletionImgUrl from './img/code-completion.gif';
 
-<img src={codeCompletionImgUrl} alt="Code completion and type hints in the new Python client" width="85%"/>
+<img src={codeCompletionImgUrl} alt="Code completion and type hints are added in the new Python client" width="85%"/>
 
-Another benefit is that you do not have to remember the exact parameter names, as the IDE will show you the available options. This can be a boon when you are working with less often-used options or when you are new to Weaviate.
+As a user, you will now only interact with the Python API itself and its surface rather than needing know the underlying API's surface as well. In other words, you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a boon when you are working with less often-used options or when you are new to Weaviate.
 
 Take a look at the next example, where we are configuring the `invertedIndexConfig` for a property. The IDE shows us the available options and their descriptions.
 
@@ -112,6 +117,7 @@ So syntax that is currently like this:
 ```python
 response['data']['Get']['Article'][0]['title']  # Get the `title` property of the first object
 response['data']['Get']['Article'][0]['_additional']['id']  # Get the ID of the first object
+response['data']['Get']['Article'][0]['_additional']['generate']['singleResult']  # Get the generated text from a `singlePrompt` request
 response['data']['Get']['Article'][0]['_additional']['generate']['groupedResult']  # Get the generated text from a `groupedTask` request
 ```
 
@@ -124,6 +130,7 @@ Become:
 ```python
 response.objects[0].properties['title']  # Get the `title` property of the first object
 response.objects[0].metadata.uuid  # Get the ID of the first object
+response.objects[0].generated  # Get the generated text from a `singlePrompt` request
 response.generated  # Get the generated text from a `groupedTask` request
 ```
 
@@ -131,7 +138,7 @@ response.generated  # Get the generated text from a `groupedTask` request
 
 We think that these changes will reduce errors, increase productivity, and make the code easier to read and understand.
 
-### Unit of Interaction
+### Collections-first approach
 
 The other big change is that the `collections` client focuses on individual collections for interaction.
 
@@ -148,6 +155,7 @@ response = (
         properties=["title", "body", "url"]
     )
     .with_limit(2)
+    .do()
 )
 ```
 
@@ -164,6 +172,177 @@ response = articles.query.fetch_objects(limit=2)
 
 :::
 
-Now, the search is now a method that cascades from the collection object. We have observed that in most cases, you will be working with a single collection at a time. So, we think that this change will improve your efficiency and make the code more readable.
+You'll see that a search is now a method that originates from the collection object.
 
-You might also notice that the properties to be returned do not need to be specified! We have changed the default behavior to return all properties and most of the metadata, so that you can get started quickly. You can still specify the properties to be returned, if you wish.
+We have observed that in most cases, you will be working with a single collection at a time. So, we think that this change will improve your efficiency and make the code more readable.
+
+This is the same for all searches, retrieval augmented generations, and data operations such as insertion, deletion, and updating. You can access these methods through submodules like:
+
+```python
+articles.data  # For data operations
+articles.query  # For searches
+articles.generate  # For retrieval augmented generations
+```
+
+## Quality-of-life improvements
+
+As well as making these big philosophical changes, we've also made a number of quality-of-life improvements to the API.
+
+### Simplified methods
+
+Standalone methods with parameters now replace the builder pattern (`with_` methods) for queries. So what used to be a chain of methods like this:
+
+:::note Classic client syntax
+
+```python
+response = (
+    client.query.get(
+        class_name="JeopardyQuestion",
+        properties=["question", "answer"]
+    )
+    .with_near_text({"concepts": ["the space race"]})
+    .with_generate(
+        grouped_task="Write a haiku about these facts!",
+    )
+    .with_limit(2)
+    .do()
+)
+```
+
+:::
+
+Becomes:
+
+:::info `Collections` client syntax
+
+```python
+questions = client.collection.get("JeopardyQuestion")
+response = questions.generate.near_text(
+    query="the space race",
+    limit=2,
+    grouped_task="Write a haiku about these facts!"
+)
+```
+
+:::
+
+### Easier defaults
+
+You might have noticed that above examples do not specify properties to be returned!
+
+We have changed the default behavior to return all properties and even most of the metadata such as the object ID, creation time, vector search distance and so on. We think this will make it easier to get started, and for production use-cases where you want to optimize the response size, you can still specify the properties you want to return.
+
+### Import error handling
+
+:::warning more stuff needed here
+:::
+
+## Performance improvements
+
+> **Highlights: Up to 60-80% faster imports, 3-4x faster queries**
+
+While a big part of this `collections` client release has been about improving the developer experience, there has been some significant performance improvements as well.
+
+Under the hood, we expand on Weaviate's gRPC [(what is it?)](https://grpc.io/) capabilities that has been ongoing since [`v1.19` release](/blog/weaviate-1-19-release#grpc-api-support-experimental).
+
+The short story is that your query performance and import performance will be significantly improved.
+
+### Import speeds
+
+We've internally seen that data import with new client using gRPC achieves a 60-80% speedup compared to the current client using REST. For production use cases involving tens or hundreds of millions of objects, this can mean significant reduction in the hours spent getting your database ready.
+
+### Query speeds
+
+But that's not all. Even a query will execute much faster with the new client using gRPC, in comparison with the current client using GraphQL. We've seen that a small query executes 3-4 times faster(!) with the new client.
+
+### How was this achieved?
+
+These speed-ups come from two benefits of using gRPC, which is a binary protocol. This means that one, the data is sent in a compact binary format, rather than as text, which reduces the volume of data to be sent. The other factor is that to send data as text, it needs to be marshalled which is a computationally expensive process. With gRPC, the data is sent in a binary format, which is much faster to marshall and unmarshall.
+
+We won't get into the details of gRPC here, but if you are interested, you can read more about it [here](https://grpc.io/docs/what-is-grpc/introduction/). We will also be writing more about it in the future.
+
+## More about object typing
+
+We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples:
+
+### Collection definition
+
+You've seen some of these benefits already, so we won't go into too much detail here. But note that many of the previously complex options such as vectorizer, generative module, index configurations, and so on are now defined through a `ConfigFactory` class:
+
+```python
+articles = client.collection.create(
+    name="Article",
+    # highlight-start
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
+    generative_config=wvc.ConfigFactory.Generative.openai(),
+    replication_config=wvc.ConfigFactory.replication(factor=1),
+    inverted_index_config=wvc.ConfigFactory.inverted_index(
+        index_property_length=True
+    )
+    # highlight-end
+)
+```
+
+### Queries
+
+Because each query is now one method, you can see the available options in your IDE. Furthermore, options like defining filters or metadata that were defined through string parameters in the `Classic` client are now defined through custom Python classes.
+
+import nearTextQueryImgUrl from './img/neartext_query_hints.gif';
+
+<img src={nearTextQueryImgUrl} alt="IDE autocompletion in queries have been added" width="85%"/>
+
+### Retrieval augmented generation
+
+As you saw briefly earlier, we have a `.generate` submodule for retrieval augmented generation.
+
+The structure of these mirror those of the queries, with additional parameters added for the generation task. For example, this query:
+
+```python
+response = questions.query.near_text(
+    query="the space race",
+    limit=2,
+)
+```
+
+Can be converted to a retrieval augmented generation task by switching the submodule to `.generate` and adding the `grouped_task` parameter:
+
+```python
+# highlight-start
+response = questions.generate.near_text(
+# highlight-end
+    query="the space race",
+    limit=2,
+    # highlight-start
+    grouped_task="Write a haiku about these facts!"
+    # highlight-end
+)
+```
+
+### Data operations
+
+Object insertion also gets a refresh, with the introduction of a `DataObject` class. This class is used to define the properties of the object to be inserted, and is then passed to the `insert_many` method.
+
+```python
+from weaviate.util import generate_uuid5
+
+articles_to_add = list()
+for i, row in enumerate(data_source):
+    # highlight-start
+    article_obj = wvc.DataObject(
+        properties={
+            "title": row["title"],
+            "body": row["title"],
+        },
+        vector=vectors[i],
+        uuid=generate_uuid5(row["title"])
+    )
+    # highlight-end
+    articles_to_add.append(article_obj)
+
+
+response = articles.data.insert_many(articles_to_add)
+print(response)
+```
+
+This provides a more intuitive and structured way to define objects, where each object can be validated through the `DataObject` class.
+
