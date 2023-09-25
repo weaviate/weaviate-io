@@ -1,5 +1,5 @@
 ---
-title: Example use cases
+title: Example use cases and demos
 sidebar_position: 6
 image: og/docs/more-resources.jpg
 # tags: ['use cases']
@@ -8,37 +8,64 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-Most use cases of Weaviate benefit from the following two core concepts:
 
-1. **Semantic search.**  
-  [80% of data is unstructured](https://www.forbes.com/sites/forbestechcouncil/2019/01/29/the-80-blind-spot-are-you-ignoring-unstructured-organizational-data/) and the largest search engine in the world has only indexed [0.004%](https://www.seeker.com/how-much-of-the-internet-is-hidden-1792697912.html) of all data available. With Weaviate and its Contextionary, semantic search in unstructured data becomes possible. Various use cases benefit from unlocking this potential of unstructured data by semantic search, see [Document search and analysis](#document-search-and-analysis) and [Product search for E-commerce](#product-search-for-e-commerce).
-2. **Automatic classification.**  
-   With your data represented by their meaning in a high dimensional vector space, it becomes possible to automatically find relations between objects and concepts. This can be based on its context, or existing neighboring data objects in your data. See [Classification for ERP](#classification-for-erp) and [Cybersecurity analysis](#cybersecurity-analysis) for examples.
+This page illustrates various use cases for [vector databases](https://weaviate.io/blog/what-is-a-vector-database) by way of open-source demo projects. You can fork and modify any of them.
 
-## Document search and analysis
+If you would like to contribute your own project to this page, please let us know by creating an issue on [GitHub](https://github.com/weaviate/weaviate-io/issues).
 
-**Challenge**: Text is often stored in unstructured documents. From PDFs to Word documents and from website input fields to emails. The current problem is that data only can be retrieved by searching for keywords rather than the context in which the data is represented. For example, when searching for "science fiction" in a traditional book search engine, you might find anything related to "science" or "fiction" so this would include "neuro**science**" but not "a book about the future".
+:::info
+During October 1-31, 2023, we are hosting a community sprint to onboard engineers and machine learning practitioners to their first open source contribution.
 
-**Solution with Weaviate**: Weaviate indexes data from any source based on its meaning. This is achieved by leveraging machine learning models that index text in a space, similar documents are placed close to similar concepts and words. This allows you to easily find documents based on fuzzy search terms that are not present in the documents but will be realtime processed by Weaviate.
+Demos that are marked with a pumpkin 🎃 sign are looking for contributions.
+:::
 
-## Product search for E-commerce
+## Similarity search
 
-**Challenge**: A product search bar is an important feature of e-commerce websites, but often a potential customer cannot find what they are looking for. Traditional search methods retrieve products based on matching keywords, with the problem that products with different keywords but the same context cannot be found by the user. If potential customers cannot find what they are looking for, this might lead to lost sales.
+A vector databases enables fast, efficient similarity searches on and across any modalities, such as text or images, as well as their combinations. Vector database' similarity search capabilities can be used for other complex use cases, such as recommendation systems in classical machine learning applications.
 
-**Solution with Weaviate**: Weaviate adds machine learning to traditional search capabilities allowing people to not only search for fixed keywords, but also for context. For example, a category that was never created can be realtime processed by Weaviate (e.g., showing pumpkin products when searching for Halloween).
+|Title | Description | Modality | Code | Demo |
+| --- | --- | --- | --- | --- |
+| 🎃 Plant search | Semantic search over plants.  | Text | [Javascript](https://github.com/weaviate/weaviate-examples/tree/main/plant-information-searching-using-NodeJs) | n/a |
+| 🎃 Wine search | Semantic search over wines. | Text | [Python](https://github.com/weaviate/weaviate-examples/tree/main/semanticsearch-transformers-wines) | n/a |
+| Movie recommender system | Find similar movies. | Text | 🛠️ | 🛠️ |
+| 🎃 Multilingual Wikipedia Search | Search through Wikipedia in multiple languages. | Text | [TypeScript](https://github.com/weaviate/weaviate-examples/tree/main/cohere-multilingual-wikipedia-search/frontend) |n/a |
+| 🎃 Podcast search | Semantic search over podcast episodes. | Text | [Python](https://github.com/weaviate/weaviate-examples/tree/main/podcast-semantic) | n/a |
+| 🎃 Video Caption Search| Find the timestamp of the answer to your question in a video. | Text | [Python](https://github.com/weaviate/weaviate-examples/tree/main/caption%20search) | n/a |
+| 🎃 Facial Recognition | Identify people in images | Image | [Python](https://github.com/weaviate/weaviate-examples/tree/main/attendance-system-example), [Python](https://github.com/weaviate/weaviate-examples/tree/main/face-recognition-app) | n/a |
+| 🎃 [Dog Search](https://weaviate.io/blog/how-to-build-an-image-search-application-with-weaviate) | Find images of similar dog breeds based on uploaded image. | Image | [Python](https://github.com/weaviate/weaviate-examples/tree/main/nearest-neighbor-dog-search) | n/a |
+| 🎃 Text to image search | Find images most similar to a text query. | Multimodal | [Javascript](https://github.com/weaviate/weaviate-examples/tree/main/clip-multi-modal-text-image-search) | n/a |
+| 🎃 Text to image and image to image search | Find images most similar to a text or image query. | Multimodal | [Python](https://github.com/weaviate/weaviate-examples/tree/main/exploring-multi2vec-clip-with-Python-and-flask) | n/a |
 
-## Classification for ERP
+## LLMs and search
 
-**Challenge**: Business users create reports (e.g., financial) based on how data is structured in ERP systems. For example, a flight ticket from an airline needs to be classified as "international travel" but this is often not done correctly, not done at all or not done in a way that it works for a specific business question (e.g., an airline ticket classified as "international travel" can't answer the question "How much money has been spent on non-ground travel"). This is currently often solved by manually classifying the data, or hiring data scientists, which is expensive and time-consuming.
+Vector databases and LLMs go together like cookies and milk!
 
-**Solution with Weaviate**: Weaviate understands the context of concepts, which allows automatic, real-time classification of unseen, new concepts. For example, because Weaviate knows what "international travel" and "air travel" means, airline tickets can automatically be classified as "travel expenses" or "flight tickets", and "national travel" or "international travel".
+Vector databases help to address some of large language models (LLMs) limitations, such as hallucinations, by helping to retrieve the relevant information to provide to the LLM as a part of its input.
 
-## Cybersecurity analysis
+|Title | Description | Subcategory | Code | Demo |
+| --- | --- | --- | --- | --- |
+| Verba, the golden RAGtriever | Chat with Weaviate documentation and blog posts. | Retrieval-Augmented Generation | [code](https://github.com/weaviate/Verba) | [Python](https://verba.weaviate.io/) |
+| [HealthSearch](https://weaviate.io/blog/healthsearch-demo) | Recommendation system of health products based on symptoms. | Generative search  | [code](https://github.com/weaviate/healthsearch-demo) | [Python](https://healthsearch-frontend.onrender.com/) |
+| [AirBnB Listings](https://weaviate.io/blog/generative-feedback-loops-with-llms) | Generation of customized advertisements for AirBnB listings. | Generative feedback loops | [Python](https://github.com/weaviate/Generative-Feedback-Loops/) | n/a |
 
-**Challenge**: Cybersecurity SIEM (Security information and event management) platforms have to deal with large amounts of streaming security-related data, but indexing and analyzing free-text data is still a challenge to do on a large scale resulting in threat mitigation happening too late or not at all.
+Learn more in our [LLMs and Search](https://weaviate.io/blog/llms-and-search) blog post.
 
-**Solution with Weaviate**: Weaviate helps in the automation of free text analysis and automatically classify which mitigation should be taken. This can be done based on existing frameworks or custom build mitigations.
+## Classification
 
+Weaviate can leverage its vectorization capabilities to enable automatic, real-time classification of unseen, new concepts based on its semantic understanding.
+
+|Title | Category | Modality | Code | Demo |
+| --- | --- | --- | --- | --- |
+| 🎃 Toxic Comment Classification | Clasify whether a comment is toxic or non-toxic. | Text | [code](https://github.com/weaviate/weaviate-examples/tree/main/weaviate-toxic-comment-classifier) | n/a |
+| 🎃 Audio Genre Classification | Classify the music genre of an audio file. | Image | [code](https://github.com/weaviate/weaviate-examples/tree/main/audio-genre-classification) | n/a |
+
+## Other use cases
+
+Weaviate's [modular ecosystem](https://weaviate.io/developers/weaviate/modules) unlocks many other use cases of the Weaviate vector database, such as [Named Entity Recogniction](https://weaviate.io/developers/weaviate/modules/reader-generator-modules/ner-transformers) or [spell checking](https://weaviate.io/developers/weaviate/modules/other-modules/spellcheck).
+
+|Title | Description | Subcategory | Code | Demo |
+| --- | --- | --- | --- | --- |
+| 🎃 Named Entity Recognition (NER)| tbd | NER | [code](https://github.com/weaviate/weaviate-examples/tree/main/example-with-NER-module) | n/a |
 
 ## More Resources
 
