@@ -18,12 +18,19 @@ import PythonCode from '!!raw-loader!./_includes/user_test.py';
 
 ## Python `Collections` client
 
-This page introduces our new Python client. We are excited for you to try it out and provide feedback for us.
+Currently, we have a new Python client in an experimental phase. We are excited for you to try it out and provide feedback for us. This client is designed provide further developer support and improve usability with strong typing and a collection-focussed interaction.
+
+If you haven't read it, [check out our announcement blog here](/blog/collections-python-client-preview).
 
 :::note LIMITATIONS
-Please note that this is an early **pre-release** version, and is not yet ready for production use.
+Please note that this is an early **pre-release** version. It is not yet ready for production use, and not yet feature-complete.
 
-Currently, it is only compatible with locally spun up Weaviate instances.
+- It is only compatible with local Weaviate instances.
+- It implements:
+    - `CUD` operations (previously REST)
+    - `query` operations (previously GraphQL `Get`), including `Generative` and `GroupBy` operations.
+- It does not yet implement `aggregate` operations.
+
 :::
 
 #### Feedback
@@ -118,8 +125,6 @@ import weaviate.classes as wvc
 
 Run the below to connect to Weaviate. Note that you need a `grpc` port specified.
 
-If you don't have an OpenAI key, contact JP for a throwaway key. 😉
-
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# Instantiation"
@@ -136,7 +141,7 @@ It should return `True`. If you get an error, it may be gRPC port related. See t
 
 #### Deletion
 
-If you're like me and running this multiple times, you may want to delete existing collections with the same name. You can do so like this.
+We'll be creating collections named `TestArticle`, `TestAuthor`, `JeopardyQuestion` and `JeopardyCategory` in this example code. If you are running the code multiple times, or want to delete existing collections with the same name, you can do so like this.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -203,10 +208,16 @@ You can also create an object from existing collections in Weaviate like this:
 
 ### Collection methods
 
-You should now see code autocomplete suggestions for the `articles` / `authors` objects. Two key submodules are:
+You should now see code autocomplete suggestions for the `articles` / `authors` objects. Operations are grouped into submodules. The key submodules are:
 
--  `data`: CUD operations (read operations are in `query`)
--  `query`: Search operations (old GraphQL, now gRPC)
+- `data`: CUD operations (read operations are in `query`)
+- `query`: Search operations
+- `generate`: Retrieval augmented generation operations
+- `groupby`: Object-level group by operations
+
+:::note `Aggregate` not yet available
+At the time of writing, `aggregate` operations are not yet available.
+:::
 
 ### CRUD operations
 

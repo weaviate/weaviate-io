@@ -1,5 +1,4 @@
 # Instantiation
-# user_test.py
 import weaviate
 from weaviate import Config
 import weaviate.classes as wvc
@@ -18,7 +17,6 @@ print(client.is_ready())
 # END Instantiation
 
 # Deletion
-# user_test.py
 client.collection.delete(["TestArticle", "TestAuthor"])
 # END Deletion
 
@@ -91,7 +89,6 @@ authors = client.collection.create(
 client.collection.delete(["TestArticle", "TestAuthor"])
 
 # Creation
-# user_test.py
 articles = client.collection.create(
     name="TestArticle",
     properties=[
@@ -139,13 +136,11 @@ assert client.collection.exists("TestAuthor")
 assert client.collection.exists("TestArticle")
 
 # GetCollections
-# user_test.py
 articles = client.collection.get("TestArticle")
 authors = client.collection.get("TestAuthor")
 # END GetCollections
 
 # AddOneObject
-# user_test.py
 my_first_obj = {
     "title": "Something something dark side",
     "body": "A long long time ago, in a galaxy far, far away...",
@@ -157,7 +152,6 @@ print(article_uuid)
 # END AddOneObject
 
 # AddAnotherObject
-# user_test.py
 author_uuid = authors.data.insert(
     {
         "name": "G Lucas",
@@ -170,7 +164,6 @@ print(author_uuid)
 # END AddAnotherObject
 
 # AddArticles
-# user_test.py
 articles_to_add = [
     wvc.DataObject(
         properties={
@@ -187,7 +180,6 @@ print(response)
 # END AddArticles
 
 # AddAuthors
-# user_test.py
 authors_to_add = [
     wvc.DataObject(
         properties={
@@ -206,7 +198,6 @@ print(response)
 # END AddAuthors
 
 # InsertsWithErrors
-# user_test.py
 articles_to_add = [
     wvc.DataObject(
         properties={
@@ -227,13 +218,11 @@ print(response.errors)
 # END PrintErrors
 
 # BasicFetch
-# user_test.py
 response = articles.query.fetch_objects(limit=2)
 print(response)
 # END BasicFetch
 
 # FetchWithProps
-# user_test.py
 response = articles.query.fetch_objects(
     limit=2,
     return_properties=["title"],
@@ -244,7 +233,6 @@ print(response)
 # END FetchWithProps
 
 # NearText
-# user_test.py
 response = articles.query.near_text(
     query="The dark side",
     limit=2,
@@ -254,7 +242,6 @@ print(response)
 # END NearText
 
 # FetchWithFilter
-# user_test.py
 response = authors.query.fetch_objects(
   filters=wvc.Filter(path=["birth_year"]).greater_or_equal(1971)    # Filter object is used to specify the filter
 )
@@ -264,7 +251,6 @@ for o in response.objects:
 # END FetchWithFilter
 
 # ImportData
-# user_test.py
 import weaviate_datasets as wd
 
 dataset = wd.JeopardyQuestions1k()  # <-- Comes with pre-vectorized data
@@ -272,13 +258,12 @@ dataset.upload_dataset(client, 300)
 # END ImportData
 
 # GroupedTask
-# user_test.py
 questions = client.collection.get("JeopardyQuestion")
 
-response = questions.query.near_text(
+response = questions.generate.near_text(
     query="Moon landing",
     limit=3,
-    generate=wvc.Generate(grouped_task="Write a haiku from these facts")
+    grouped_task="Write a haiku from these facts"
 )
 
 print(response)
@@ -289,16 +274,17 @@ print(response.generated)
 # END OutputGroupedTask
 
 # SinglePrompt
-response = questions.query.near_text(
+response = questions.generate.near_text(
     query="European history",
     limit=2,
-    generate=wvc.Generate(single_prompt="Re-write this in Japanese: {question}")
+    single_prompt="Re-write this in Japanese: {question}"
 )
 
 print(response)
 # END SinglePrompt
 
 # OutputSinglePrompt
-print(response.objects[0].metadata.generative)
-print(response.objects[0].metadata.generative)
+for o in response.objects:
+    print(f"Original text: {o.properties['question']}")
+    print(f"Generated text: {o.generated}")
 # END OutputSinglePrompt
