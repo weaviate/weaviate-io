@@ -217,6 +217,18 @@ print(response)
 print(response.errors)
 # END PrintErrors
 
+# IteratorBasic
+all_objects = [article for article in articles.iterator()]
+# END IteratorBasic
+
+# IteratorTitleOnly
+all_object_titles_ids = [article for article in articles.iterator(return_properties=["title"])]
+# END IteratorTitleOnly
+
+# IteratorMetadataOnly
+all_object_ids = [article for article in articles.iterator(return_metadata=wvc.MetadataQuery(uuid=True))]  # Only return IDs
+# END IteratorMetadataOnly
+
 # BasicFetch
 response = articles.query.fetch_objects(limit=2)
 print(response)

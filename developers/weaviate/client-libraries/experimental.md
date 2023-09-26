@@ -44,6 +44,12 @@ You can also provide any other feedback directly to JP on Slack, internal or via
 
 We recommend you create a **new environment** for this, in a new project directory. If you're not sure how, [read this](#how-to-create-a-virtual-environment-with-venv).
 
+#### External API use
+
+For convenience, the code examples here uses the OpenAI API with `text2vec-openai` and `generative-openai` modules. At the time of writing, you can sign up with OpenAI at [this address](https://platform.openai.com/signup). You can then provide the key to the Weaviate client as shown below as an environment variable, or a string (not recommended).
+
+If you are unable to obtain a key, you can try contacting JP on the Community slack (he's `JP (Weaviate)` there) for a key for this evaluation only. (He may not be able to respond to all requests.)
+
 #### Client installation
 
 Get into your desired environment, and run:
@@ -242,9 +248,9 @@ This is how we add some articles to 'authors', with a cross-reference to `articl
   language="py"
 />
 
-#### Errors
+#### Batch import error handling
 
-The client will now automatically capture errors. Try this example, where the `url` property is erroneously provided a numerical value for one of the inputs:
+The client will now automatically capture errors that occur during batch imports (now called `insert_many`). Try this example, where the `url` property is erroneously provided a numerical value for one of the inputs:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -276,6 +282,39 @@ If you are running the code multiple times, or want to delete existing collectio
 />
 
 Note this will not throw if you try to delete a collection that does not exist.
+
+#### Collection iterator (`cursor` API)
+
+The `collections` client adds a Pythonic iterator method for each collection. This wraps the `cursor` API and allows you to iterate over all objects in a collection.
+
+This will fetch all objects in the `articles` collection, including most of its properties and metadata.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# IteratorBasic"
+  endMarker="# END IteratorBasic"
+  language="py"
+/>
+
+You can specify what properties to retrieve. This will only fetch the `title` property. Doing so will switch off default metadata retrieval.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# IteratorTitleOnly"
+  endMarker="# END IteratorTitleOnly"
+  language="py"
+/>
+
+You can also specify what metadata to retrieve. This will only fetch the `uuid` metadata. Doing so will switch off default property retrieval.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# IteratorMetadataOnly"
+  endMarker="# END IteratorMetadataOnly"
+  language="py"
+/>
+
+Note that as the `cursor` API inherently requires the object UUID for indexing, the `uuid` metadata is always retrieved.
 
 ### Queries
 
