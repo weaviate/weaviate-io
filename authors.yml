@@ -30,7 +30,7 @@ dan:
   image_url: /img/people/icon/dan.jpg
 dirk:
   name: Dirk Kulawiak
-  title: Software Developer
+  title: Core Engineer
   url: https://github.com/dirkkul
   image_url: /img/people/icon/dirk.jpg
 edward:
@@ -103,6 +103,11 @@ shukri:
   title: Community Solution Engineer
   url: https://github.com/hsm207
   image_url: /img/people/icon/shukri.jpeg
+tommy:
+  name: Tommy Smith
+  title: Polyglot Engineer
+  url: https://github.com/tsmith023
+  image_url: /img/people/icon/tommy.jpg
 jerry:
   name: Jerry Liu
   title: Co-Founder/CEO LlamaIndex
