@@ -10,8 +10,8 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-openai` module enables Weaviate to obtain vectors using
-- [OpenAI](https://platform.openai.com/docs/guides/embeddings) or
+The `text2vec-openai` module enables Weaviate to obtain vectors.
+- [OpenAI](https://platform.openai.com/docs/guides/embeddings)
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/understand-embeddings)
 
 Key notes:
@@ -118,8 +118,10 @@ The following example configures the `Document` class by setting the vectorizer 
 
 #### Parameters
 
-- `resourceName` – Azure resource name
-- `deploymentId` – Azure deployment ID (your model name)
+|Parameter||Purpose|
+|:-|:-|
+|`resourceName`|Azure resource name|
+|`deploymentId`|Azure deployment ID (your model name)|
 
 #### Example
 
@@ -149,13 +151,17 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Class-level
 
-- `vectorizer` - what module to use to vectorize the data.
-- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
+|Parameter|Default|Purpose|
+|:-|:-|:-|
+|`vectorizer`| Use this module to vectorize the data.|
+|`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
 
 #### Property-level
 
-- `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+|Parameter|Default|Purpose|
+|:-|:-|:-|
+|`skip`|`false`|When `true``, does not vectorize the property.|
+|`vectorizePropertyName`|`true`|When `true`, vectorizes the property name.
 
 #### Example
 
@@ -200,9 +206,12 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ### API key
 
-You can supply the API key at query time by adding it to the HTTP header:
-- `"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"` for OpenAI, and
-- `"X-Azure-Api-Key": "YOUR-AZURE-API-KEY"` for Azure OpenAI, and
+You can supply the API key at query time by adding it to the HTTP header.
+
+|HTTP Header|Value|Purpose|
+|:-|:-|:-|
+|`"X-OpenAI-Api-Key"|"YOUR-OPENAI-API-KEY"`|OpenAI key|
+|`"X-Azure-Api-Key"|"YOUR-AZURE-API-KEY"`|Azure OpenAI key|
 
 ### Organization name
 
