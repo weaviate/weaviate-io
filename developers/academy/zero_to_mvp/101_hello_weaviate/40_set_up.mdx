@@ -18,7 +18,7 @@ import ReactPlayer from 'react-player/lazy'
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Options for running Weaviate
 
-Weaviate Cloud Services (WCS) can run Weaviate for you as a managed service. You can also manage your own Weavaite instances using Docker, Kubernetes, or Embedded Weaviate.
+Weaviate Cloud Services (WCS) is a managed service that runs Weaviate for you. You can also manage your own Weaviate instances using Docker, Kubernetes, or Embedded Weaviate.
 
 No matter how you run Weaviate, the underlying code is identical. However, there are some operational differences to be aware of.
 
@@ -28,7 +28,7 @@ No matter how you run Weaviate, the underlying code is identical. However, there
 
 As it is managed by Weaviate (the company - the software is not sentient... *yet*). WCS is the fastest way to create a new instance of Weaviate and requires the least amount of effort for users.
 
-The Weaviate instances in WCS are pre-configured for your convenience. They include a number of Weaviate modules by default. They also have built-in support for user authentication.
+WCS has Weaviate instances that are pre-configured for your convenience. They include a number of Weaviate modules by default. They also have built-in support for user authentication.
 
 WCS includes a free "sandbox" tier. The WCS sandbox is our recommended method of running Weaviate in this course.
 
@@ -62,22 +62,12 @@ Currently, Embedded Weaviate is only recommended for evaluation purposes.
 
 To create a new Weaviate Cluster, click the "Create cluster" button.
 
-[comment]: # (The UI has changed slightly, we should update or drop this image)
-
-<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
-
 On the Create a Cluster page:
 
 1. Select the **Free sandbox** plan tier.
 1. Provide a *cluster name*. The sandbox URL is based on the cluster-name. WCS adds a suffix to ensure uniqueness.
 1. Set the `Enable Authentication?` option to `YES`.
-
-[comment]: # (The image shows 'no for authentication. We should update or delete)
-[comment]: # (Your selections should look like this:)
-
-[comment]: # (<img src={WCSoptions} width="100%" alt="Instance configuration"/>)
-
-4. Press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
+1. Press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
 
 <img src={WCScreate} width="100%" alt="Create instance"/>
 
