@@ -10,8 +10,8 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-openai` module enables Weaviate to obtain vectors using
-- [OpenAI](https://platform.openai.com/docs/guides/embeddings) or
+Weaviate uses the `text2vec-openai` module to obtain vectors.
+- [OpenAI](https://platform.openai.com/docs/guides/embeddings)
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/understand-embeddings)
 
 Key notes:
@@ -39,10 +39,12 @@ To use `text2vec-openai`, you must enable it in your Docker Compose file (`docke
 
 #### Parameters
 
-- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-openai` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-openai` to make it the default for all classes.
-- `OPENAI_APIKEY` (Optional): Your OpenAI API key (if using OpenAI). You can also provide the key at query time.
-- `AZURE_APIKEY` (Optional): Your Azure OpenAI API key (if using Azure OpenAI). You can also provide the key at query time.
+|Parameter|Required|Purpose|
+|:-|:-|:-|
+|`ENABLE_MODULES`|Required|The modules to enable. Include `text2vec-openai` to enable the module.|
+|`DEFAULT_VECTORIZER_MODULE|Optional|The default vectorizer module. You can set this to `text2vec-openai` to make it the default for all classes.|
+|`OPENAI_APIKEY`|Optional|Your OpenAI API key (if using OpenAI). You can also provide the key at query time.|
+|`AZURE_APIKEY`|Optional|Your Azure OpenAI API key (if using Azure OpenAI). You can also provide the key at query time.|
 
 #### Example
 
@@ -80,17 +82,12 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-- `model` (Optional): A model family, e.g. `davinci`.
-
-   The default model is `text-embedding-ada-002`.
-- `modelVersion` (Optional): Version string, e.g. `003`.
-- `type` (Optional): Model type. Can be `text` or `code`.
-- `baseURL` (Optional): Sets a proxy or other URL instead of the default OpenAI URL. To specify the URL, use protocol domain format: `https://your.domain.com`.
-
-   The default value is: `https://api.openai.com`.
-
-
-
+|Parameter|Required|Default|Purpose|
+|:-|:-|:-|:-|
+|`model`|Optional|`text-embedding-ada-002`|A model family, e.g. `davinci`.|
+|`modelVersion`|Optional||Version string, e.g. `003`.|
+|`type`|Optional||Model type. Can be `text` or `code`.|
+|`baseURL`|Optional|`https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL.<BR />&nbsp;<BR /> To specify the URL, use protocol domain format: `https://your.domain.com`.|
 #### Example
 
 The following example configures the `Document` class by setting the vectorizer to `text2vec-openai`, model to `ada`, the model version to `002` and the type to `text`:
@@ -121,8 +118,10 @@ The following example configures the `Document` class by setting the vectorizer 
 
 #### Parameters
 
-- `resourceName` – Azure resource name
-- `deploymentId` – Azure deployment ID (your model name)
+|Parameter||Purpose|
+|:-|:-|
+|`resourceName`|Azure resource name|
+|`deploymentId`|Azure deployment ID (your model name)|
 
 #### Example
 
@@ -152,13 +151,17 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Class-level
 
-- `vectorizer` - what module to use to vectorize the data.
-- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
+|Parameter|Default|Purpose|
+|:-|:-|:-|
+|`vectorizer`|| Use this module to vectorize the data.|
+|`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
 
 #### Property-level
 
-- `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+|Parameter|Default|Purpose|
+|:-|:-|:-|
+|`skip`|`false`|When `true`, does not vectorize the property.|
+|`vectorizePropertyName`|`true`|When `true`, vectorizes the property name.
 
 #### Example
 
@@ -203,9 +206,12 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ### API key
 
-You can supply the API key at query time by adding it to the HTTP header:
-- `"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"` for OpenAI, and
-- `"X-Azure-Api-Key": "YOUR-AZURE-API-KEY"` for Azure OpenAI, and
+You can supply the API key at query time by adding it to the HTTP header.
+
+|HTTP Header|Value|Purpose|
+|:-|:-|:-|
+|`"X-OpenAI-Api-Key"|"YOUR-OPENAI-API-KEY"`|OpenAI key|
+|`"X-Azure-Api-Key"|"YOUR-AZURE-API-KEY"`|Azure OpenAI key|
 
 ### Organization name
 
