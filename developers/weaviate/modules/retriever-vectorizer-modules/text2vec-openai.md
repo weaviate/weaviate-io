@@ -160,7 +160,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 |Parameter|Default|Purpose|
 |:-|:-|:-|
-|`skip`|`false`|When `true``, does not vectorize the property.|
+|`skip`|`false`|When `true`, does not vectorize the property.|
 |`vectorizePropertyName`|`true`|When `true`, vectorizes the property name.
 
 #### Example
