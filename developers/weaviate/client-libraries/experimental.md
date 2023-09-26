@@ -55,7 +55,7 @@ If you are unable to obtain a key, you can try contacting JP on the Community sl
 Get into your desired environment, and run:
 
 ```shell
-pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@v3.99.0a2#egg=weaviate-client[GRPC]"
+pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@v3.99.0a3#egg=weaviate-client[GRPC]"
 ```
 
 #### Start Weaviate
@@ -448,7 +448,7 @@ articles.generate  # For retrieval augmented generations
 articles.query_group_by  # To group results by a property
 ```
 
-We think you'll be pleasantly surprised by many of these. For example, the `groupby` operations has become refreshingly simple:
+We think you'll be pleasantly surprised by many of these. For example, the `group by` operations have become refreshingly simple:
 
 <FilteredTextBlock
   text={PythonCode}

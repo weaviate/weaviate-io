@@ -309,11 +309,9 @@ for o in response.objects:
 response = questions.query_group_by.near_text(
     query="Moon landing",
     limit=3,
-    group_by=wvc.GroupBy(
-        prop="points",
-        number_of_groups=2,
-        objects_per_group=2
-    )
+    group_by_property="points",
+    number_of_groups=2,
+    objects_per_group=2
 )
 print(response.groups)  # Results, grouped by the points property
 print(response.objects)  # Individual results, with an added `belongs_to_group` property
