@@ -54,6 +54,16 @@ The [`cross-reference`](../more-resources/glossary.md) type is the graph element
 }
 ```
 
+### Number of linked instances
+
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
+
+In the above example, our objects can be linked to:
+* **0** Articles and **1** Blog
+* **1** Article and **3** Blogs
+* **2** Articles and **5** Blogs
+* etc.
+
 ## DataType: `date`
 
 Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.
@@ -165,16 +175,6 @@ There are two fields that accept input. `input` must always be set, while `defau
 - When you entered a national number (e.g. `"020 1234567"`), you need to specify the country in `defaultCountry` (in this case, `"nl"`), so that the parse can correctly convert the number into all formats. The string in `defaultCountry` should be an [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
-
-### Number of linked instances
-
-The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
-
-In the above example, our objects can be linked to:
-* **0** Articles and **1** Blog
-* **1** Article and **3** Blogs
-* **2** Articles and **5** Blogs
-* etc.
 
 ## More Resources
 

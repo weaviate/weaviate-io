@@ -9,36 +9,37 @@ import ReactPlayer from 'react-player/lazy'
 <ReactPlayer url='https://youtu.be/iFUeV3aYynI' controls='true'/>
 <br/>
 
-We've covered that Weaviate is a vector database, and that a vector search is similarity-based. But what is a vector?
+We've covered that Weaviate is a vector database, and that a vector search is similarity-based. But, what is a vector?
 
-A vector in this context is just a series of numbers - like `[1, 0]` or `[0.513, 0.155, 0.983, ..., 0.001, 0.932]`. Vectors like these are used to capture meaning as a series of numbers.
+A vector in this context is just a series of numbers like `[1, 0]` or `[0.513, 0.155, 0.983, ..., 0.001, 0.932]`. Vectors like these are used to capture meaning.
 
-This might seem like an odd concept. But in fact, many people have used vectors already without realizing - for example if they have tried photo editing, or MS Paint.
+This might seem like an odd concept. But in fact, you may have already used vectors to capture meaning without realizing it. If you have tried photo editing, or used MS Paint you might have encountered the RGB color system.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How do numbers represent meaning?
 
-The RGB system use numbers to represent colors. For example:
+The RGB system uses groups of three numbers to represent colors. For example:
+
 - (255, 0, 0) = red
 - (80, 200, 120) = emerald
 
 In these examples, each number can be thought of as a dial for how red, green or blue a color is.
 
-Now, imagine having hundreds, or even thousands of these dials. That’s how vectors are used to represent meaning. Modern models such as GPT-x, or those used with Weaviate use vectors in this manner to represent some "essence", or "meaning" of objects. And this can be done for any object type, such as text, code, images, videos and more.
-
-Each vector representation of such "meaning" is called a vector embedding.
+Now, imagine having hundreds, or even thousands, of these dials. That’s how vectors are used to represent meaning. Modern machine learning models such as GPT-x, or those used with Weaviate, use vectors to represent some "essence", or "meaning" of objects. This can be done for any object type, such as text, code, images, videos and more.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector embeddings in Weaviate
 
 <!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
 
-Weaviate enables vector searches by indexing and storing data objects and corresponding vector embeddings from machine learning models.
+The vector representation of an object's meaning is called a "vector embedding".
 
-In plain terms, Weaviate processes and organizes your data in such a way that objects can be retrieved based on their similarity to a query. In order for it to perform these tasks at speed, Weaviate does two things that traditional databases do not. They are:
+Weaviate enables vector searches by indexing and storing data objects and their corresponding vector embeddings. The vector embeddings come from machine learning models.
 
-- Quantifying similarity, and
-- Indexing vector data
+In plain terms, Weaviate processes and organizes your data in such a way that objects can be retrieved based on their similarity to a query. To perform these tasks at speed, Weaviate does two things that traditional databases do not. Weaviate:
 
-These aspects enable Weaviate to do what it does.
+- Quantifies similarity
+- Indexes vector data
+
+These operations enable Weaviate to do what it does.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Quantifying similarity
 
@@ -46,19 +47,19 @@ As we've mentioned, vector searches are similarity-based, but what does that act
 
 This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details.
 
-But for now, you should know that machine learning (ML) models are key to this whole process. Similar models to those that allows clever text generation from prompts power vector searches. Instead of generating new text, here these models capture "meaning" of pieces of text or other media. We will cover this in more detail later on.
+But for now, you should know that machine learning (ML) models are the key to this whole process. The ML models that power vector searches share similarities with those that generate text responses from prompts. Instead of generating new text, these (vectorizer) models capture the "meaning" of text or other media. We will cover this in more detail later on.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Indexing (vector) data
 
-Vector searches can be very computationally intensive.
+Vector searches can be very intensive computationally.
 
-To overcome this problem, Weaviate uses a combination of indexes including an approximate nearest neighbor (ANN) index and an inverted index. They respectively allow Weaviate to perform extremely fast vector searches, as well as to filter data using Boolean criteria on data.
+To overcome this problem, Weaviate uses a combination of indexes including an approximate nearest neighbor (ANN) index and an inverted index. The ANN index lets Weaviate perform extremely fast vector searches. The inverted index lets Weaviate filter data using Boolean criteria.
 
 We will get into this in more detail later - but for now, it's enough to know that Weaviate can perform fast vector searches as well as filtering.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
-In this section, you learned about what vectors are and how Weaviate utilizes them at a very high level. You have also been introduced to Weaviate's two key capabilities that helps it to enable vector search at speed.
+In this section, you learned about what vectors are and how Weaviate utilizes them at a very high level. You have also been introduced to two of Weaviate's key capabilities that help it to enable vector search at speed.
 
 ### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
 

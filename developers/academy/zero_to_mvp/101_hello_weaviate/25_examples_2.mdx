@@ -10,11 +10,11 @@ import ReactPlayer from 'react-player/lazy'
 <ReactPlayer url='https://youtu.be/ezMZKEFteUA' controls='true'/>
 <br/>
 
-You can do a lot more with Weaviate than to simply retrieve static information.
+You can do a lot more with Weaviate than simply retrieve static information.
 
-Let's take a look at a couple of examples, where we do more than simply retrieve objects from the database.
+Let's take a look at a couple of examples where we do more than simply retrieve objects from the database.
 
-We'll use this Wiki entry from which we will extract information:
+We will extract information from this Wikipedia entry.
 
 <details>
   <summary>"The Sydney Opera House" Wikipedia summary</summary>
@@ -27,9 +27,11 @@ On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, hav
 
 </details>
 
+Weaviate creates [data objects](https://weaviate.io/developers/weaviate/concepts/data) when it processes the Wikipedia entry. The data objects are stored in classes. A class is roughly analogous to a table in a relational database. An object is similar to an entry in that table.
+
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Question-answering demo
 
-For one, Weaviate can extract knowledge from text.
+Weaviate can extract knowledge from the text.
 
 ```graphql
 {
@@ -56,7 +58,7 @@ For one, Weaviate can extract knowledge from text.
 }
 ```
 
-Given this question, Weaviate can not only identify the most relevant object, but also the actual answer, based on the textual information above!
+Given this query, Weaviate doesn't just identify the most relevant data object. Weaviate also answers the question based on the textual information in the Wikipedia article.
 
 <details>
   <summary>See response</summary>
@@ -69,7 +71,7 @@ Construction for the Sydney Opera House started in 1958.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Generative search
 
-Weaviate can do even more with these entries, too. You can ask it to grab an object from its store, like the Wikipedia entry above for the Sydney Opera House, and generate derivative text.
+Weaviate can do even more with these entries. You can ask Weaviate to grab an object from its data store and use that object to generate new text. For example, Weaviate can use the object that contains the entry for the Sydney Opera House to derive new text.
 
 ```graphql
 {
@@ -100,7 +102,7 @@ Weaviate can do even more with these entries, too. You can ask it to grab an obj
 }
 ```
 
-For example, the above will generate a Tweet based on the Wikipedia entry!
+The sample code generates a Tweet based on the Wikipedia entry!
 
 <details>
   <summary>See response</summary>
@@ -111,13 +113,13 @@ Explore the world-famous Sydney Opera House and its incredible architecture! Fro
 
 </details>
 
-This is an example of a `generative search`, where Weaviate has retrieved information, and then leveraged a large language model (LLM) to re-shape it. This is a powerful feature that can transform how you deal with information.
+This process is an example of `generative search`. In a generative search, Weaviate retrieves information, and then leverages a large language model (LLM) to re-shape it. This is a powerful feature that can transform how you deal with information.
 
-You can vary the prompt to build any number of other outputs from this input.
+You can vary the prompt to generate different results.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;What next?
 
-Tools like Q&A and generative search really start to bring your information to life. In the next sections, we'll get you set up to use Weaviate, and have you performing queries before we wrap up this unit.
+Tools like Q&A and generative search really start to bring your information to life. In the next sections, you will set up Weaviate and run your own queries.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
