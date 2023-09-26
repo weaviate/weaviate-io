@@ -259,6 +259,18 @@ Error(message="invalid text property 'url' on class 'TestArticle': not a string,
 
 The other is that the overall response object will indicate whether there were any errors (`has_errors` Boolean), and where they occurred (`errors` dictionary).
 
+### `Collection`-level iterator
+
+The `cursor` API has been a popular tool for iterating through an entire collection, for example to create manual backups or retrieving the entire set of IDs.
+
+We've simplified the API here with a Pythonic iterator, so the syntax to extract all objects from a collection is now as simple as:
+
+```python
+all_objects = [article for article in articles.iterator()]
+```
+
+You can also choose what properties/metadata to return.
+
 ## Performance improvements
 
 ![Top Gun - Tom Cruise feels the need for speed](https://media.giphy.com/media/26AHLNr8en8J3ovOo/giphy.gif )
