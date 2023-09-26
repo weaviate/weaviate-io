@@ -5,8 +5,11 @@ import { LinkButton } from '/src/theme/Buttons';
 import { ButtonContainer } from '../../../theme/Buttons';
 import Image from 'react';
 import Link from '@docusaurus/Link';
+import posts from '/data/blogposts.json';
+import PlayItem from './playitem';
 
 export default function Playbook() {
+  const option2Data = posts.playbook;
   return (
     <div className="container">
       <div className={styles.header}>
@@ -17,57 +20,9 @@ export default function Playbook() {
         </p>
       </div>
       <div className={styles.latestModule}>
-        <Link to="/blog/distance-metrics-in-vector-search">
-          <div className={styles.latestBox}>
-            <div className={`${styles.insideBox} ${styles.playbook1}`}></div>
-            <div className={styles.textBox}>
-              <h3>Blog</h3>
-              <p>Weaviate celebrates a fourth birthday!</p>
-            </div>
-            <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_erika.png"></img>
-              <p className={styles.smallText}>
-                Erika Cardena<br></br>
-                Developer Advocate
-              </p>
-              <span className={styles.smallText}>Jun 22, 2023</span>
-            </div>
-          </div>
-        </Link>
-        <Link to="/blog/what-is-a-vector-database">
-          <div className={styles.latestBox}>
-            <div className={`${styles.insideBox} ${styles.playbook2}`}></div>
-            <div className={styles.textBox}>
-              <h3>Blog</h3>
-              <p>Hiring at Weaviate - finding our perfect matches!</p>
-            </div>
-            <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_connor.png"></img>
-              <p className={styles.smallText}>
-                Connor Shorten<br></br>
-                Developer Advocate
-              </p>
-              <span className={styles.smallText}>Aug 01, 2023</span>
-            </div>
-          </div>
-        </Link>
-        <Link to="/learn/workshops">
-          <div className={styles.latestBox}>
-            <div className={`${styles.insideBox} ${styles.playbook3}`}></div>
-            <div className={styles.textBox}>
-              <h3>Blog</h3>
-              <p>Cell Theory - Planning for organic growth</p>
-            </div>
-            <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_erika.png"></img>
-              <p className={styles.smallText}>
-                Erika Cardena<br></br>
-                Developer Advocate
-              </p>
-              <span className={styles.smallText}>Sept 14, 2023</span>
-            </div>
-          </div>
-        </Link>
+        {option2Data.map((post) => {
+          return <PlayItem key={post.tagline} details={post} />;
+        })}
       </div>
       <div className={styles.buttons}>
         <Link className={styles.buttonOutline} to="/company/playbook">

@@ -1,14 +1,34 @@
 {
     "playbook": [
       {
-        "link": "/blog/distance-metrics-in-vector-search",
+        "link": "/company/playbook/weaviate-celebrates-a-fourth-birthday",
         "type": "Blog",
-        "backgroundImage": "/img/site/distance-metrics-blog.png",
-        "tagline": "Distance Metrics in Vector Search",
-        "photo": "avatar_erika.png",
-        "name": "Erika Cardena",
-        "title": "Developer Advocate",
-        "date": "Aug 15, 2023"
+        "backgroundImage": "/img/site/about-playbook-01.png",
+        "tagline": "Weaviate celebrates a fourth birthday!",
+        "photo": "avatar_bob.png",
+        "name": "Bob van Luijt",
+        "title": "CEO",
+        "date": "July 11, 2023"
+      },
+      {
+        "link": "/company/playbook/hiring-at-weaviate-finding-our-perfect-matches",
+        "type": "Blog",
+        "backgroundImage": "/img/site/about-playbook-02.png",
+        "tagline": "Hiring at Weaviate - finding our perfect matches!",
+        "photo": "avatar_jessie.png",
+        "name": "Jessie de Groot",
+        "title": "Head of People and Culture",
+        "date": "July 7, 2023"
+      },
+      {
+        "link": "/company/playbook/cell-theory-planning-for-organic-growth",
+        "type": "Blog",
+        "backgroundImage": "/img/site/about-playbook-03.png",
+        "tagline": "Cell Theory - Planning for organic growth",
+        "photo": "avatar_bob.png",
+        "name": "Bob van Luijt",
+        "title": "CEO",
+        "date": "June 23, 2023"
       }
     ],
     "blog": [
