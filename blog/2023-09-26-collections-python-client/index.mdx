@@ -12,7 +12,7 @@ description: "A preview release of our new Python client is now available! Help 
 
 :::info TL;DR
 
-We've released a pre-release version of our new Python client API. It's available for you to try out and provide feedback. We've made a number of major improvements, including strong typing, a collections-first approach, and performance improvements.
+We've released a pre-release version of our new Python client API. It's available for you to try out and provide feedback [through this form](https://forms.gle/8ZzP2BuCbnFc7jA88). We've made a number of major improvements, including strong typing, a collections-first approach, and performance improvements.
 
 <br/>
 
@@ -147,7 +147,7 @@ This is the same for all searches, retrieval augmented generations, and data ope
 articles.data  # For data operations
 articles.query  # For searches
 articles.generate  # For retrieval augmented generations
-articles.query_group_by  # For object-level groupby operation
+articles.query_group_by  # To group results by a property
 ```
 
 We think that these changes will make the code more readable and intuitive.
@@ -156,7 +156,7 @@ We think that these changes will make the code more readable and intuitive.
 
 ![Look how comfortable this guy is in the hammock](https://media.giphy.com/media/NWK7H5cypMH4c/giphy.gif)
 
-> **Highlights: Simplified methods, easier defaults, import error handling**
+> **Highlights: Simplified methods, easier defaults, batch import error handling**
 
 As well as making these big philosophical changes, we've also made a number of quality-of-life improvements to the API.
 
@@ -204,9 +204,52 @@ You might have noticed that above examples do not specify properties to be retur
 
 We have changed the default behavior to return most properties and metadata such as the object ID, creation time, vector search distance and so on. We think this will make it easier to get started, and for production use-cases where you want to optimize the response size, you can still specify the properties you want to return.
 
-### Import error handling
+### Batch import typing
 
-Another big improvement is how we handle errors during data import. Many of you let us know that you would like to get more information around any errors at a macro and micro level. So, we've added a couple of features to help with this.
+Batch object, now called `insert_many`, also gets a refresh with the introduction of a `DataObject` class. This class is used to define the properties of the object to be inserted, and is then passed to the `insert_many` method.
+
+```python
+from weaviate.util import generate_uuid5
+
+articles_to_add = list()
+for i, row in enumerate(data_source):
+    # highlight-start
+    article_obj = wvc.DataObject(
+        properties={
+            "title": row["title"],
+            "body": row["title"],
+        },
+        vector=vectors[i],
+        uuid=generate_uuid5(row["title"])
+    )
+    # highlight-end
+    articles_to_add.append(article_obj)
+
+response = articles.data.insert_many(articles_to_add)
+print(response)
+```
+
+This provides a more intuitive and structured way to define objects, where each object can be validated through the `DataObject` class.
+
+Oh, and if you don't need to manually specify an object ID or a vector, you can just pass in a list of dictionaries!
+
+```python
+for i, row in enumerate(data_source):
+    # highlight-start
+    article_obj = {
+        "title": row["title"],
+        "body": row["title"],
+    }
+    # highlight-end
+    articles_to_add.append(article_obj)
+
+response = articles.data.insert_many(articles_to_add)
+print(response)
+```
+
+### Batch import error handling
+
+Another big improvement is how we handle errors during batch data import. Many of you let us know that you would like to get more information around any errors at a macro and micro level. So, we've added a couple of features to help with this.
 
 One is the introduction of an `Error` class that will be returned amongst the successful ID response. Here's one that we triggered by supplying an incorrect datatype:
 
@@ -368,41 +411,13 @@ response = questions.generate.near_text(
 )
 ```
 
-### Data operations
-
-Object insertion also gets a refresh, with the introduction of a `DataObject` class. This class is used to define the properties of the object to be inserted, and is then passed to the `insert_many` method.
-
-```python
-from weaviate.util import generate_uuid5
-
-articles_to_add = list()
-for i, row in enumerate(data_source):
-    # highlight-start
-    article_obj = wvc.DataObject(
-        properties={
-            "title": row["title"],
-            "body": row["title"],
-        },
-        vector=vectors[i],
-        uuid=generate_uuid5(row["title"])
-    )
-    # highlight-end
-    articles_to_add.append(article_obj)
-
-
-response = articles.data.insert_many(articles_to_add)
-print(response)
-```
-
-This provides a more intuitive and structured way to define objects, where each object can be validated through the `DataObject` class.
-
 ## Now it's your turn
 
 ![Tell us what you think](https://media.giphy.com/media/g2QPc8eIPrYkTBwC4v/giphy.gif)
 
 If you've made it this far, you're probably excited to try out the new client. We're soo excited for you to try it out too!
 
-We have prepared a [dedicated page](/developers/weaviate/client-libraries/experimental) with instructions on how to install and use the new client. The page also includes a link to a feedback form where you can share your thoughts and suggestions.
+We have prepared a [dedicated page](/developers/weaviate/client-libraries/experimental) with instructions on how to install and use the new client. The page also includes a link to [the feedback form](https://forms.gle/8ZzP2BuCbnFc7jA88) where you can share your thoughts and suggestions.
 
 We can't wait to hear what you think.
 

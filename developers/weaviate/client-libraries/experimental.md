@@ -14,8 +14,6 @@ import PythonCode from '!!raw-loader!./_includes/user_test.py';
 
 <Badges/>
 
-## Experimental clients
-
 ## Python `Collections` client
 
 Currently, we have a new Python client in an experimental phase. We are excited for you to try it out and provide feedback for us. This client is designed provide further developer support and improve usability with strong typing and a collection-focussed interaction.
@@ -94,9 +92,6 @@ services:
 
 Note that you will need the `gRPC` ports open also. This will likely be simplified to one port in the future.
 
------
------
-
 ## Try out the client
 
 We're good to go! Fire up your preferred way to edit / run Python code (Jupyter, VSCode, PyCharm, vim, whatever) and follow along.
@@ -134,23 +129,9 @@ Run the below to connect to Weaviate. Note that you need a `grpc` port specified
 
 It should return `True`. If you get an error, it may be gRPC port related. See the Troubleshooting section below.
 
------
------
-
 ### Create a collection
 
-#### Deletion
-
-We'll be creating collections named `TestArticle`, `TestAuthor`, `JeopardyQuestion` and `JeopardyCategory` in this example code. If you are running the code multiple times, or want to delete existing collections with the same name, you can do so like this.
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# Deletion"
-  endMarker="# END Deletion"
-  language="py"
-/>
-
-Note this will not throw if you try to delete a collection that does not exist.
+We'll be creating collections named `TestArticle`, `TestAuthor`, `JeopardyQuestion` and `JeopardyCategory` in this example code. Feel free to change these names to whatever you like.
 
 #### Existing API
 
@@ -202,9 +183,6 @@ You can also create an object from existing collections in Weaviate like this:
   endMarker="# END GetCollections"
   language="py"
 />
-
------
------
 
 ### Collection methods
 
@@ -286,8 +264,18 @@ Take a look at:
   language="py"
 />
 
------
------
+#### Deletion
+
+If you are running the code multiple times, or want to delete existing collections, you can do so like this.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# Deletion"
+  endMarker="# END Deletion"
+  language="py"
+/>
+
+Note this will not throw if you try to delete a collection that does not exist.
 
 ### Queries
 
@@ -348,9 +336,6 @@ Now you can add filters with a `Filter` object, like so:
 
 
 **Suggestion**: Try constructing different filters!
-
------
------
 
 ### Retrieval augmented generation (RAG)
 
@@ -421,7 +406,7 @@ Or alternatively, you can try all the different operations - many of which we ju
 articles.data  # For data operations
 articles.query  # For searches
 articles.generate  # For retrieval augmented generations
-articles.query_group_by  # For object-level groupby operation
+articles.query_group_by  # To group results by a property
 ```
 
 We think you'll be pleasantly surprised by many of these. For example, the `groupby` operations has become refreshingly simple:
@@ -434,9 +419,6 @@ We think you'll be pleasantly surprised by many of these. For example, the `grou
 />
 
 The options are (nearly) endless!
-
------
------
 
 ## Reminder: feedback
 
