@@ -1,0 +1,46 @@
+{
+    "playbook": [
+      {
+        "link": "/blog/distance-metrics-in-vector-search",
+        "type": "Blog",
+        "backgroundImage": "/img/site/distance-metrics-blog.png",
+        "tagline": "Distance Metrics in Vector Search",
+        "photo": "avatar_erika.png",
+        "name": "Erika Cardena",
+        "title": "Developer Advocate",
+        "date": "Aug 15, 2023"
+      }
+    ],
+    "blog": [
+      {
+        "link": "/blog/distance-metrics-in-vector-search",
+        "type": "Blog",
+        "backgroundImage": "/img/site/distance-metrics-blog.png",
+        "tagline": "Distance Metrics in Vector Search",
+        "photo": "avatar_erika.png",
+        "name": "Erika Cardena",
+        "title": "Developer Advocate",
+        "date": "Aug 15, 2023"
+      },
+      {
+        "link": "/blog/what-is-a-vector-database",
+        "type": "Blog",
+        "backgroundImage": "/img/site/vector-databases-blog.png",
+        "tagline": "A Gentle Introduction to Vector Databases",
+        "photo": "avatar_leonie.png",
+        "name": "Leonie Monigatti",
+        "title": "Developer Advocate",
+        "date": "Aug 01, 2023"
+      },
+      {
+        "link": "/learn/workshops",
+        "type": "Workshop",
+        "backgroundImage": "/img/site/Zain-workshop.jpg",
+        "tagline": "Workshop: Introduction to Weaviate",
+        "photo": "avatar_zain.png",
+        "name": "Zain Hasan",
+        "title": "Senior Dev Advocate",
+        "date": "Sept 14, 2023"
+      }
+    ]
+  }

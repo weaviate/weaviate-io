@@ -16,6 +16,7 @@
 
 .header {
   text-align: center;
+  margin-top: 110px;
 
   @media screen and (max-width: 500px) {
     text-align: left;
@@ -30,13 +31,11 @@
   }
 }
 
-.benefits{
-
-  background: #EDEDED;
+.benefits {
+  background: #ededed;
 }
 
-
-.bottomFeatures{
+.bottomFeatures {
   padding-top: 8rem;
   gap: 50px;
   display: flex;
@@ -49,88 +48,63 @@
     gap: unset;
   }
 
-  .bottomBox, .cloudBox {
+  .bottomBox,
+  .cloudBox {
     padding: 60px;
     border-radius: 1.3125rem;
-border: 1px solid #130C49;
-background: #61BD73;
-box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+    border: 1px solid #130c49;
+    background: #61bd73;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
 
-width: 31.25rem;
-height: 17.4375rem;
-flex-shrink: 0;
-
-
-@media screen and (max-width: 500px) {
-
-  padding: 38px;
-    border-radius: unset;
-    border: none;
-    width: 24.25rem;
+    width: 31.25rem;
     height: 17.4375rem;
     flex-shrink: 0;
-}
 
-.boxLink{
-
-  padding-top: 2rem;
-  text-align: end;
-
-  a{
-    color:inherit;
-  }
-
-}
-
-
-}
-
-.cloudBox{
-
-  color:#ffffff;
-  border-radius: 1.3125rem;
-  background: #130C49;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
-
-
-
-  @media screen and (max-width: 500px) {
-
-    padding: 38px;
+    @media screen and (max-width: 500px) {
+      padding: 38px;
       border-radius: unset;
       border: none;
+      width: 24.25rem;
+      height: 17.4375rem;
+      flex-shrink: 0;
+    }
 
+    .boxLink {
+      padding-top: 2rem;
+      text-align: end;
+
+      a {
+        color: inherit;
+      }
+    }
   }
 
-.title{
-  color:#ffffff;
+  .cloudBox {
+    color: #ffffff;
+    border-radius: 1.3125rem;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
 
-}
+    @media screen and (max-width: 500px) {
+      padding: 38px;
+      border-radius: unset;
+      border: none;
+    }
 
-.boxLink{
+    .title {
+      color: #ffffff;
+    }
 
-  padding-top: 2rem;
-  text-align: end;
+    .boxLink {
+      padding-top: 2rem;
+      text-align: end;
 
-  a{
-    color:#ffffff;
+      a {
+        color: #ffffff;
+      }
+    }
   }
-
 }
-
-  }
-
-
-
-
-
-
-
-
-
-}
-
-
 
 .features {
   padding-top: 8rem;
@@ -193,5 +167,19 @@ flex-shrink: 0;
       font-size: 1rem;
       text-align: left;
     }
+  }
+}
+
+.featuresDark {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  border-radius: 1.5625rem;
+  background: #130c49;
+  color: white;
+
+  h4 {
+    color: white;
   }
 }

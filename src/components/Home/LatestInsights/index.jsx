@@ -5,8 +5,11 @@ import { LinkButton } from '/src/theme/Buttons';
 import { ButtonContainer } from '../../../theme/Buttons';
 import Image from 'react';
 import Link from '@docusaurus/Link';
+import posts from '/data/blogposts.json';
+import BlogItem from './blogItem';
 
 export default function HomepageLatestInsights() {
+  const option2Data = posts.blog;
   return (
     <div className="container">
       <div className={styles.header}>
@@ -16,61 +19,9 @@ export default function HomepageLatestInsights() {
         </p>
       </div>
       <div className={styles.latestModule}>
-        <Link to="/blog/distance-metrics-in-vector-search">
-          <div className={styles.latestBox}>
-            <div
-              className={`${styles.insideBox} ${styles.blogImageDistance}`}
-            ></div>
-            <div className={styles.textBox}>
-              <h3>Blog</h3>
-              <p>Distance Metrics in Vector Search</p>
-            </div>
-            <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_erika.png"></img>
-              <p className={styles.smallText}>
-                Erika Cardena<br></br>
-                Developer Advocate
-              </p>
-              <span className={styles.smallText}>Aug 15, 2023</span>
-            </div>
-          </div>
-        </Link>
-        <Link to="/blog/what-is-a-vector-database">
-          <div className={styles.latestBox}>
-            <div
-              className={`${styles.insideBox} ${styles.blogImageVector}`}
-            ></div>
-            <div className={styles.textBox}>
-              <h3>Blog</h3>
-              <p>A Gentle Introduction to Vector Databases</p>
-            </div>
-            <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_leonie.png"></img>
-              <p className={styles.smallText}>
-                Leonie Monigatti<br></br>
-                Developer Advocate
-              </p>
-              <span className={styles.smallText}>Aug 01, 2023</span>
-            </div>
-          </div>
-        </Link>
-        <Link to="/learn/workshops">
-          <div className={styles.latestBox}>
-            <div className={`${styles.insideBox} ${styles.blogWorkshop}`}></div>
-            <div className={styles.textBox}>
-              <h3>Workshop</h3>
-              <p>Workshop: Introduction to Weaviate</p>
-            </div>
-            <div className={styles.bottomBox}>
-              <img src="/img/site/avatar_zain.png"></img>
-              <p className={styles.smallText}>
-                Zain Hasan<br></br>
-                Senior Dev Advocate
-              </p>
-              <span className={styles.smallText}>Sept 14, 2023</span>
-            </div>
-          </div>
-        </Link>
+        {option2Data.map((post) => {
+          return <BlogItem key={post.tagline} details={post} />;
+        })}
       </div>
       <div className={styles.buttons}>
         <Link className={styles.buttonGradient} to="/blog">
