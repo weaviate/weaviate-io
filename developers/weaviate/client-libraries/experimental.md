@@ -1,9 +1,8 @@
 ---
 title: Experimental clients
 sidebar_position: 99
-sidebar_class_name: hidden
 image: og/docs/client-libraries.jpg
-# tags: ['python', 'client library']
+# tags: ['python', 'client library', 'experimental']
 ---
 
 import Badges from '/_includes/badges.mdx';
@@ -18,7 +17,7 @@ import PythonCode from '!!raw-loader!./_includes/user_test.py';
 
 Currently, we have a new Python client in an experimental phase. We are excited for you to try it out and provide feedback for us. This client is designed provide further developer support and improve usability with strong typing and a collection-focussed interaction.
 
-If you haven't read it, [check out our announcement blog here](/blog/collections-python-client-preview).
+If you haven't read it, [check out our announcement blog here](/blog/collections-python-client-preview) where we discuss more of the background, motivations and changes.
 
 :::note LIMITATIONS
 Please note that this is an early **pre-release** version. It is not yet ready for production use, and not yet feature-complete.
