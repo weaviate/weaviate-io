@@ -153,7 +153,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 |Parameter|Default|Purpose|
 |:-|:-|:-|
-|`vectorizer`| Use this module to vectorize the data.|
+|`vectorizer`|| Use this module to vectorize the data.|
 |`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
 
 #### Property-level
