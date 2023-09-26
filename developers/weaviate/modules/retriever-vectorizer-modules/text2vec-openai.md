@@ -10,7 +10,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Overview
 
-The `text2vec-openai` module enables Weaviate to obtain vectors.
+Weaviate uses the `text2vec-openai` module to obtain vectors.
 - [OpenAI](https://platform.openai.com/docs/guides/embeddings)
 - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/understand-embeddings)
 
