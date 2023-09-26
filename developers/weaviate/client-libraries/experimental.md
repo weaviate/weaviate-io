@@ -23,7 +23,7 @@ If you haven't read it, [check out our announcement blog here](/blog/collections
 :::note LIMITATIONS
 Please note that this is an early **pre-release** version. It is not yet ready for production use, and not yet feature-complete.
 
-- It is only compatible with local Weaviate instances.
+- It is only compatible with local Weaviate instances. It will not work with WCS, for example.
 - It implements:
     - `CUD` operations (previously REST)
     - `query` operations (previously GraphQL `Get`), including `Generative` and `GroupBy` operations.
@@ -36,7 +36,7 @@ Please note that this is an early **pre-release** version. It is not yet ready f
 :::caution important
 :::
 
-**Please provide your feedback [through this form](https://forms.gle/8ZzP2BuCbnFc7jA88).** We suggest having it open while you try out the client.
+**Please provide your feedback [through this form](https://tally.so/r/wa4NDB).** We suggest having it open while you try out the client.
 
 You can also provide any other feedback directly to JP on Slack, internal or via the Community slack (he's `JP (Weaviate)` there).
 
@@ -464,7 +464,7 @@ The options are (nearly) endless!
 :::caution important
 :::
 
-If you haven't, **please provide your feedback [through this form](https://forms.gle/8ZzP2BuCbnFc7jA88).**
+If you haven't, **please provide your feedback [through this form](https://tally.so/r/wa4NDB).**
 
 You can also provide any other feedback directly to JP on Slack, internal or via the Community slack (he's `JP (Weaviate)` there).
 

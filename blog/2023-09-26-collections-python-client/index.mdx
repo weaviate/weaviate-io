@@ -12,7 +12,7 @@ description: "A preview release of our new Python client is now available! Help 
 
 :::info TL;DR
 
-We've released a pre-release version of our new Python client API. It's available for you to try out and provide feedback [through this form](https://forms.gle/8ZzP2BuCbnFc7jA88). We've made a number of major improvements, including strong typing, a collections-first approach, and performance improvements.
+We've released a pre-release version of our new Python client API. It's available for you to try out and provide feedback [through this form](https://tally.so/r/wa4NDB). We've made a number of major improvements, including strong typing, a collections-first approach, and performance improvements.
 
 <br/>
 
@@ -198,7 +198,7 @@ response = questions.generate.near_text(
 
 :::
 
-### Easier defaults
+### Property/metadata return defaults
 
 You might have noticed that above examples do not specify properties to be returned!
 
@@ -297,11 +297,13 @@ These speed-ups come from two benefits of using gRPC, which is a binary protocol
 
 We won't get into the details of gRPC here, but if you are interested, you can read more about it [here](https://grpc.io/docs/what-is-grpc/introduction/). We will also be writing more about it in the future.
 
-## Object typing, all the way down
+## Object typing in focus
 
 > **Highlights: Strong typing in queries, retrieval augmented generation, data operations, ...**
 
-We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. To get started you can import the set of submodules like shown below, and use them as needed.
+We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. Here you can see the new syntax for collection definition, queries and retrieval augmented generation, as well as types for each of thees tasks.
+
+To get started you can import the set of submodules like shown below, and use them as needed.
 
 ```python
 import weaviate.classes as wvc  # <-- import the custom classes
@@ -429,7 +431,7 @@ response = questions.generate.near_text(
 
 If you've made it this far, you're probably excited to try out the new client. We're soo excited for you to try it out too!
 
-We have prepared a [dedicated page](/developers/weaviate/client-libraries/experimental) with instructions on how to install and use the new client. The page also includes a link to [the feedback form](https://forms.gle/8ZzP2BuCbnFc7jA88) where you can share your thoughts and suggestions.
+We have prepared a [dedicated page](/developers/weaviate/client-libraries/experimental) with instructions on how to install and use the new client. The page also includes a link to [the feedback form](https://tally.so/r/wa4NDB) where you can share your thoughts and suggestions.
 
 We can't wait to hear what you think.
 
