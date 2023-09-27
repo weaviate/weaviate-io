@@ -16,7 +16,7 @@ If you would like to contribute your own project to this page, please let us kno
 :::info
 During October 1-31, 2023, we are hosting a community sprint to onboard engineers and machine learning practitioners to their first open source contribution.
 
-Demos that are marked with a pumpkin 🎃 sign are looking for contributions. For more info, checkout the [Hacktoberfest 2023 blog post](https://weaviate.io/blog/hacktoberfest-2023).
+Demos that are marked with a pumpkin 🎃 sign are looking for contributions.
 :::
 
 ## Similarity search
