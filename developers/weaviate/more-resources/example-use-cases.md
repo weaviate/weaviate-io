@@ -16,25 +16,25 @@ If you would like to contribute your own project to this page, please let us kno
 :::info
 During October 1-31, 2023, we are hosting a community sprint to onboard engineers and machine learning practitioners to their first open source contribution.
 
-Demos that are marked with a pumpkin 🎃 sign are looking for contributions.
+Demos that are marked with a pumpkin 🎃 sign are looking for contributions. For more info, checkout the [Hacktoberfest 2023 blog post](https://weaviate.io/blog/hacktoberfest-2023).
 :::
 
 ## Similarity search
 
 A vector databases enables fast, efficient similarity searches on and across any modalities, such as text or images, as well as their combinations. Vector database' similarity search capabilities can be used for other complex use cases, such as recommendation systems in classical machine learning applications.
 
-|Title | Description | Modality | Code | Demo |
-| --- | --- | --- | --- | --- |
-| 🎃 Plant search | Semantic search over plants.  | Text | [Javascript](https://github.com/weaviate/weaviate-examples/tree/main/plant-information-searching-using-NodeJs) | n/a |
-| 🎃 Wine search | Semantic search over wines. | Text | [Python](https://github.com/weaviate/weaviate-examples/tree/main/semanticsearch-transformers-wines) | n/a |
-| Movie recommender system | Find similar movies. | Text | 🛠️ | 🛠️ |
-| 🎃 Multilingual Wikipedia Search | Search through Wikipedia in multiple languages. | Text | [TypeScript](https://github.com/weaviate/weaviate-examples/tree/main/cohere-multilingual-wikipedia-search/frontend) |n/a |
-| 🎃 Podcast search | Semantic search over podcast episodes. | Text | [Python](https://github.com/weaviate/weaviate-examples/tree/main/podcast-semantic) | n/a |
-| 🎃 Video Caption Search| Find the timestamp of the answer to your question in a video. | Text | [Python](https://github.com/weaviate/weaviate-examples/tree/main/caption%20search) | n/a |
-| 🎃 Facial Recognition | Identify people in images | Image | [Python](https://github.com/weaviate/weaviate-examples/tree/main/attendance-system-example), [Python](https://github.com/weaviate/weaviate-examples/tree/main/face-recognition-app) | n/a |
-| 🎃 [Dog Search](https://weaviate.io/blog/how-to-build-an-image-search-application-with-weaviate) | Find images of similar dog breeds based on uploaded image. | Image | [Python](https://github.com/weaviate/weaviate-examples/tree/main/nearest-neighbor-dog-search) | n/a |
-| 🎃 Text to image search | Find images most similar to a text query. | Multimodal | [Javascript](https://github.com/weaviate/weaviate-examples/tree/main/clip-multi-modal-text-image-search) | n/a |
-| 🎃 Text to image and image to image search | Find images most similar to a text or image query. | Multimodal | [Python](https://github.com/weaviate/weaviate-examples/tree/main/exploring-multi2vec-clip-with-Python-and-flask) | n/a |
+|Title | Description | Modality | Code |
+| --- | --- | --- | --- |
+| 🎃 Plant search | Semantic search over plants.  | Text | [Javascript](https://github.com/weaviate-tutorials/DEMO-text-search-plants) |
+| 🎃 Wine search | Semantic search over wines. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-text-search-wines) |
+| Movie recommender system | Find similar movies. | Text | 🛠️ |
+| Multilingual Wikipedia Search | Search through Wikipedia in multiple languages. | Text | [TypeScript](https://github.com/weaviate/weaviate-examples/tree/main/cohere-multilingual-wikipedia-search/frontend) |
+| 🎃 Podcast search | Semantic search over podcast episodes. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-semantic-search-podcast) |
+| 🎃 Video Caption Search| Find the timestamp of the answer to your question in a video. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-text-search-video-captions) |
+| 🎃 Facial Recognition | Identify people in images | Image | [Python](https://github.com/weaviate-tutorials/DEMO-face-recognition) |
+| 🎃 Image Search over dogs ([Blog](https://weaviate.io/blog/how-to-build-an-image-search-application-with-weaviate)) | Find images of similar dog breeds based on uploaded image. | Image | [Python](https://github.com/weaviate-tutorials/DEMO-image-search-dogs) |
+| 🎃 Text to image search | Find images most similar to a text query. | Multimodal | [Javascript](https://github.com/weaviate-tutorials/DEMO-multimodal-text-to-image-search) |
+| 🎃 Text to image and image to image search | Find images most similar to a text or image query. | Multimodal | [Python](https://github.com/weaviate-tutorials/DEMO-multimodal-search) |
 
 ## LLMs and search
 
@@ -42,11 +42,13 @@ Vector databases and LLMs go together like cookies and milk!
 
 Vector databases help to address some of large language models (LLMs) limitations, such as hallucinations, by helping to retrieve the relevant information to provide to the LLM as a part of its input.
 
-|Title | Description | Subcategory | Code | Demo |
-| --- | --- | --- | --- | --- |
-| Verba, the golden RAGtriever | Chat with Weaviate documentation and blog posts. | Retrieval-Augmented Generation | [code](https://github.com/weaviate/Verba) | [Python](https://verba.weaviate.io/) |
-| [HealthSearch](https://weaviate.io/blog/healthsearch-demo) | Recommendation system of health products based on symptoms. | Generative search  | [code](https://github.com/weaviate/healthsearch-demo) | [Python](https://healthsearch-frontend.onrender.com/) |
-| [AirBnB Listings](https://weaviate.io/blog/generative-feedback-loops-with-llms) | Generation of customized advertisements for AirBnB listings. | Generative feedback loops | [Python](https://github.com/weaviate/Generative-Feedback-Loops/) | n/a |
+|Title | Description | Subcategory | Code |
+| --- | --- | --- | --- |
+| Verba, the golden RAGtriever ([Demo](https://verba.weaviate.io/)) | Chat with Weaviate documentation and blog posts. | Retrieval-Augmented Generation | [Python](https://github.com/weaviate/Verba) |
+| HealthSearch ([Blog](https://weaviate.io/blog/healthsearch-demo), [Demo](https://healthsearch-frontend.onrender.com/)) | Recommendation system of health products based on symptoms. | Generative search  | [Python](https://github.com/weaviate/healthsearch-demo) |
+| AirBnB Listings ([Blog](https://weaviate.io/blog/generative-feedback-loops-with-llms)) | Generation of customized advertisements for AirBnB listings. | Generative feedback loops | [Python](https://github.com/weaviate/Generative-Feedback-Loops/) |
+| Distyll | Summarize text or video content. | tbd | [Python](https://github.com/databyjp/distyll) |
+
 
 Learn more in our [LLMs and Search](https://weaviate.io/blog/llms-and-search) blog post.
 
@@ -54,18 +56,18 @@ Learn more in our [LLMs and Search](https://weaviate.io/blog/llms-and-search) bl
 
 Weaviate can leverage its vectorization capabilities to enable automatic, real-time classification of unseen, new concepts based on its semantic understanding.
 
-|Title | Category | Modality | Code | Demo |
-| --- | --- | --- | --- | --- |
-| 🎃 Toxic Comment Classification | Clasify whether a comment is toxic or non-toxic. | Text | [code](https://github.com/weaviate/weaviate-examples/tree/main/weaviate-toxic-comment-classifier) | n/a |
-| 🎃 Audio Genre Classification | Classify the music genre of an audio file. | Image | [code](https://github.com/weaviate/weaviate-examples/tree/main/audio-genre-classification) | n/a |
+|Title | Category | Modality | Code |
+| --- | --- | --- | --- |
+| 🎃 Toxic Comment Classification | Clasify whether a comment is toxic or non-toxic. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-classification-toxic-comment) |
+| 🎃 Audio Genre Classification | Classify the music genre of an audio file. | Image | [Python](https://github.com/weaviate-tutorials/DEMO-classification-audio-genre/) |
 
 ## Other use cases
 
-Weaviate's [modular ecosystem](https://weaviate.io/developers/weaviate/modules) unlocks many other use cases of the Weaviate vector database, such as [Named Entity Recogniction](https://weaviate.io/developers/weaviate/modules/reader-generator-modules/ner-transformers) or [spell checking](https://weaviate.io/developers/weaviate/modules/other-modules/spellcheck).
+Weaviate's [modular ecosystem](https://weaviate.io/developers/weaviate/modules) unlocks many other use cases of the Weaviate vector database, such as [Named Entity Recognition](https://weaviate.io/developers/weaviate/modules/reader-generator-modules/ner-transformers) or [spell checking](https://weaviate.io/developers/weaviate/modules/other-modules/spellcheck).
 
-|Title | Description | Subcategory | Code | Demo |
-| --- | --- | --- | --- | --- |
-| 🎃 Named Entity Recognition (NER)| tbd | NER | [code](https://github.com/weaviate/weaviate-examples/tree/main/example-with-NER-module) | n/a |
+|Title | Description | Code |
+| --- | --- | --- |
+| Named Entity Recognition (NER)| tbd |  [Python](https://github.com/weaviate/weaviate-examples/tree/main/example-with-NER-module) |
 
 ## More Resources
 
