@@ -14,6 +14,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
+
 // import BlogPostItems from '../BlogPostItems';
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -86,6 +87,7 @@ export default function BlogTagsPostsPage(props) {
       <BlogTagsPostsPageContent {...props} />
     </HtmlClassNameProvider>
     <ThemeSwitch />
+
     </div>
   );
 }

@@ -14,6 +14,7 @@ import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
+
 function BlogListPageMetadata(props) {
   const {metadata} = props;
   const {
@@ -28,6 +29,7 @@ function BlogListPageMetadata(props) {
       <MetaSEO img={ogimg} />
       <PageMetadata title={title} description={blogDescription} />
       <SearchMetadata tag="blog_posts_list" />
+
     </>
   );
 }
@@ -48,7 +50,7 @@ function BlogListPageContent(props) {
 }
 export default function BlogListPage(props) {
   return (
-    <div className="custom-page noBG">
+    <div >
     <HtmlClassNameProvider
       className={clsx(
         ThemeClassNames.wrapper.blogPages,
@@ -59,6 +61,7 @@ export default function BlogListPage(props) {
       <BlogListPageContent {...props} />
     </HtmlClassNameProvider>
     <ThemeSwitch />
+
     </div>
   );
 }

@@ -4,6 +4,7 @@ import BlogPostItem from '@theme/BlogPostItem';
 import styles from './styles.module.scss';
 import ThemeSwitch from '../../components/ThemeSwitch';
 
+
 export default function BlogPostItems({
   items,
   component: BlogPostItemComponent = BlogPostItem,
@@ -57,6 +58,7 @@ export default function BlogPostItems({
         </BlogPostProvider>
 
       ))}
+
     </div>
 
   );

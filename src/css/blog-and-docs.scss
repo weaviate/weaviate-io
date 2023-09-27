@@ -89,10 +89,12 @@
   display: none !important;
 }
 
-.toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+//Hides light toggle on docs
+/* #__docusaurus
+  .toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
   display: none;
 }
 
-.toggleButton_gllP {
+#__docusaurus .toggleButton_gllP {
   display: none;
-}
+} */

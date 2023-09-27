@@ -9,6 +9,14 @@ function ThemeSwitch() {
     const currentTheme =
       preferredTheme || siteConfig.themeConfig.colorMode.defaultMode;
     document.documentElement.setAttribute('data-theme', 'light');
+    console.log('ITS WORKING!!!');
+    const darkModeToggleButton = document.querySelector(
+      '[class*="toggle_node_modules-@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module"]'
+    );
+
+    if (darkModeToggleButton) {
+      darkModeToggleButton.style.display = 'none';
+    }
   }, [siteConfig.themeConfig.colorMode.defaultMode]);
 
   return null;
