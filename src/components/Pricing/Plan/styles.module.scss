@@ -325,10 +325,14 @@
   margin-top: 4px;
   width: 18px;
   height: 18px;
-  border-radius: 10px;
+  border-radius: 50%;
   background: #61bd73;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.doubleIcon {
+  width: 30px;
 }
 
 .linkContact {
