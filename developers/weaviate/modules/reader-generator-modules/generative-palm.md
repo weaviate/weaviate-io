@@ -80,7 +80,7 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 
 </details>
 
-### Token expiry for Google Cloud users
+### Token expiration for Google Cloud users
 
 import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
