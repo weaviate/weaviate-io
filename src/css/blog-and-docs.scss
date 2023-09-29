@@ -66,28 +66,77 @@
   }
 }
 
+
+// .docs-doc-page {
+//   .container {
+//     [data-theme='light'] {
+//       background-color: white;
+//     }
+//   }
+// }
+
+.docs-doc-page .container  {
+  background-color: var(--docs-body-bg);;
+}
+
+.docs-doc-page article {
+  padding-left: 7%;
+  padding-right: 5%;
+}
+
 // Set Fonts
 .docs-doc-page {
   font-family: var(--site-font-base-family);
+  font-size: 15px;
   color: var(--docs-base-color);
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--site-font-base-family);
     font-weight: 700;
     color: var(--docs-header-color);
   };
-  h1, h2 {
-    padding-top: 35px;
-    padding-bottom: 20px;
+  h1 {
+    line-height: 1.2;
+    font-size: 49px;
   }
+
+  h2 {
+    line-height: 1.2;
+    font-size: 38px;
+  }
+
   h3 {
-    padding-top: 30px;
-    padding-bottom: 20px;
+    line-height: 1.2;
+    font-size: 32px;
   }
+
   h4 {
-    padding-top: 25px;
-    padding-bottom: 15px;
-    font-size: 1.3rem;
-  };
+    line-height: 1.5;
+    font-size: 25px;
+  }
+
+  h5 {
+    line-height: 1.45;
+    font-size: 20px;
+  }
+
+  h6 {
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+  // h1, h2 {
+  //   padding-top: 35px;
+  //   padding-bottom: 20px;
+  // }
+  // h3 {
+  //   padding-top: 30px;
+  //   padding-bottom: 20px;
+  // }
+  // h4 {
+  //   padding-top: 25px;
+  //   padding-bottom: 15px;
+  //   font-size: 1.3rem;
+  // };
   p {
     padding-left: 5px;
     font-weight: 400;
