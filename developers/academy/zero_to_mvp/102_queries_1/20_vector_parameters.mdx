@@ -178,13 +178,11 @@ The principle with all of these operators are the same, which is to retrieve out
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Adding a threshold
 
-Vector search is based on similarity, it does not inherently exclude any of the results. To limit the number of results, set a threshold on the similarity metric. Otherwise, vector search returns up to `QUERY_MAXIMUM_RESULTS`. (The default is 10,000.)
-
-To restirct the number of results, set a distance threshold or use `limit`.
+Vector search is based on similarity, it does not inherently exclude any of the results. By default, vector search returns up to `QUERY_MAXIMUM_RESULTS`. To limit the number of results, set a threshold or limit on the similarity metric.
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Distance thresholds
 
-You've also seen how to limit the search space to exclude irrelevant objects using a `distance` argument. You may recall this example in the earlier section demonstrating how to retrieve `additional` parameters:
+You've already seen how to use a `distance` argument to limit the search space and exclude irrelevant objects. You may recall this example that demonstrates how to retrieve `additional` parameters:
 
 import GetWithAdditional from './_snippets/academy.queries.get.with.additional.mdx';
 
@@ -224,7 +222,7 @@ And this response:
 
 </details>
 
-A threshold value such as `distance` or `certainty` specify the maximum distance (or, looked from the other direction, minimum similarity) required for objects being retrieved.
+A threshold value such as `distance` or `certainty` specifies the maximum distance (or, looked from the other direction, minimum similarity) required to retrieve an object.
 
 :::tip Exercise: Threshold distances
 Try changing the one of the above queries to:
