@@ -110,6 +110,118 @@
 		"statement": "With Weaviate's cloud and self-hosted services at our disposal and an innovative feature set in our toolkit, Kreoh is equipped to rapidly deliver high-value AI solutions to all of our clients, irrespective of their technology infrastructure.",
 		"name": "Fareed Idris",
         "company": "Kreoh"
+	},{
+		"statement": "We have been using Weaviate for a long time before GenerativeAI became hot. They have been a great thought partner, and have been ready to help every step of the way. ",
+		"name": "Vibhanshu Abhishek",
+        "company": "Alltius"
+	},{
+		"statement": "In my 12 years of teaching at top US business schools, the most empowering moment was when I showed students how to use Weaviate database, LangChain and GPT4 to automate generation of deep economic insights.",
+		"name": "Michael Gofman",
+        "company": "N/A"
+	},{
+		"statement": "Weaviate Cloud make it super simple for us to build and launch a ChatGPT service with embeddings. In particular we love that Weaviate makes the requests to fetch OpenAI embeddings on our behalf, as it simplifies our codebase.",
+		"name": "Damien Tanner",
+        "company": "UseChat.ai"
+	},{
+		"statement": "I love using Weaviate for my personal projects, especially for LLM apps in Generative AI, because it offers efficient vector search combined with the advantage of open-source accessibility and community support.",
+		"name": "Kevin Leffew",
+        "company": "Replit"
+	},{
+		"statement": "Weaviate is awesome because it has the most complete features we needed (K8 native, GQL, plugins, etc).",
+		"name": "Darpan Patel",
+        "company": "N/A"
+	},{
+		"statement": "Weaviate is the most popular vector DB among PromptTools users. They love the level of customization it supports, and the fact that it's open source.",
+		"name": "Kevin Tse",
+        "company": "Hegel AI"
+	},{
+		"statement": "We owe our efficiency to Weaviate's multi-tenanted vector database, which seamlessly processes and searches embeddings, making our services possible.",
+		"name": "Babu MunavarBasha",
+        "company": "Whautomate"
+	},{
+		"statement": "Through the Weaviate Cloud Service intuitive API or the integration with Langchain and Llamaindex, we create applications for our customers in days not weeks.",
+		"name": "Jettro Counradie",
+        "company": "Luminis"
+	},{
+		"statement": "We switched from a proprietary vendor to Weaviate and immediately noticed improved search accuracy, and the overall developer experience was great.",
+		"name": "Shyjal Raazi",
+        "company": "help.center"
+	},{
+		"statement": "Weaviate facilitates fast development of generative AI applications by our team, removing the need for creating boilerplate code, setting up databases, and managing infrastructure.",
+		"name": "Ben Selleslagh",
+        "company": "Vectrix"
+	},{
+		"statement": "Weaviate enables Engage AI to act as your long-term memory, storing and retrieving conversational data for future interactions to deepen relationships on LinkedIn.",
+		"name": "Jason Tan",
+        "company": "Engage AI "
+	},{
+		"statement": "Weaviate is easy to use with a nice graphQL query language and very good documentation.",
+		"name": "Manu Ekkati",
+        "company": "Freelance full-stack developer"
+	},{
+		"statement": "The integration of Weaviate into Katie was super easy and enhances Katie with a great vector search and much more!",
+		"name": "Michael Wechner",
+        "company": "Katie / Wyona"
+	},{
+		"statement": "Weaviate provides best in class hybrid search. It's incredible, easy to set up and provides integrations with major LLM models like those from OpenAI.",
+		"name": "Ronit Kumar",
+        "company": "siva.sh"
+	},{
+		"statement": "I'm a big fan of Weaviate! Been using it for over 7 months now. It's been a wonderful experience building our product with weaviate.",
+		"name": "Vamsidhar Reddy",
+        "company": "Cedience"
+	},{
+		"statement": "With LLM apps landscape evolving so rapidly, choosing the right tools can very difficult. After serving thousands of users, I think we made the right decision of picking Weaviate as our VectorDBs.",
+		"name": "Vinit Agrawal",
+        "company": "Tars"
+	},{
+		"statement": "At AcademicID, we power our natural language academic expert finder, ExpertID, with the help of Weaviate which has proven to be extremely reliable and was equally as easy to set up.",
+		"name": "Kieran Lindsay",
+        "company": "AcademicID"
+	},{
+		"statement": "Weaviate gave us the flexibility to quickly prototype, iterate and release or Cognigy Knowledge AI product. Weaviate is easy to install, simple to operate and so-far scales very well.",
+		"name": "Benjamin Mayr",
+        "company": "Cognigy"
+	},{
+		"statement": "We love Weaviate at BitBuilder - there's no better way for us to take our complex code generation agents from prototype to production.",
+		"name": "Hunter Brooks",
+        "company": "BitBuilder"
+	},{
+		"statement": "With Weaviate's hybrid search, Source can now turbocharge the hunt for tech talents, pinpointing both precise and related skills in a flash.",
+		"name": "Tony Nguyen",
+        "company": "Source (source.hr)"
+	},{
+		"statement": "We are a Media Intelligence company that has chosen to use Weaviate for performing advanced NLP and Generative AI tasks. We appreciate its versatility and its ability to handle large amounts of data (in our case, over 4 million news articles per day in 120 languages).",
+		"name": "Marco D'Ambra",
+        "company": "Volocom"
+	},{
+		"statement": "Weaviate is essential for Ordalie, masterfully striking the balance between stability and the bleeding edge in our quest for pioneering French legal research.",
+		"name": "Baudouin Arbarétier",
+        "company": "Ordalie"
+	},{
+		"statement": "We're redefining how students, scholars and the public discover and engage with our unique digitized collections at Northwestern University using generative AI, and Weaviate vector search has quickly become an foundational component of our infrastructure.",
+		"name": "Brendan Quinn",
+        "company": "Northwestern University Libraries"
+	},{
+		"statement": "LLMStack, our open-source low-code platform for building LLM apps, includes Weaviate as the default vector database due to its powerful feature set, ease of deployment, and manageability.",
+		"name": "Ajay Chintala",
+        "company": "Promptly"
+	},{
+		"statement": "One of the critical components that have contributed significantly to our success is the Weaviate. We've found it precious, especially compared to other vector databases. One of the standout features that aligns perfectly with our requirements is Weaviate's support for graph relations navigation.",
+		"name": "Mohamad Amin Katebsaber",
+        "company": "N/A"
+	},{
+		"statement": "Weaviate simplifies the process of setting up a vector store and integrating with vectorization models. The plugin design is impressive, and its cross-platform functionality stands out.",
+		"name": "William Whispell",
+        "company": "N/A"
+	},{
+		"statement": "Weaviate’s functionality around multi-tenancy is a game changer for any future looking SaaS product.",
+		"name": "Juraj Bezdek",
+        "company": "N/A"
+	},{
+		"statement": "I’m incredibly enthusiastic about our collaboration with Weaviate. Together, we are paving the way for a future where our AI Platform can effortlessly interact with diverse data sources and provide businesses with unparalleled insights and capabilities.",
+		"name": "Ahmed Joudad",
+        "company": "Beewant"
 	}
 
 

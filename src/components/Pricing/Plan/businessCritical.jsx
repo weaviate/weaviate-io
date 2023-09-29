@@ -28,17 +28,26 @@ export default function PricingBusinessCritical() {
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> <span>Monitoring</span>
-        </li>
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>Weaviate Internal Slack or Teams / Email</span>
+          <div className={styles.checkIcon}></div>{' '}
+          <span>
+            Monitoring -<br />
+            access to dedicated status page,
+            <br /> access to monitoring metrics
+          </span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 -
-            max 1bd
+            Email support during business hours,
+            <br /> phone escalation
+          </span>
+        </li>
+        <li>
+          <div className={styles.checkIcon}></div>
+          <span>
+            Severity 1 - 1h (24/7)
+            <br /> Severity 2 - 4h (24/7) <br /> Severity 3 - 8h (24/7) <br />
+            Severity 4 - 1bd
           </span>
         </li>
         <li>

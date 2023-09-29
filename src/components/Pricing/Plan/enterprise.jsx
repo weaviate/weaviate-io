@@ -17,7 +17,7 @@ export default function PricingEnterprise() {
         <li>
           <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
           <span>
-            $0.100 per 1M vector dimensions stored or queried per month
+            $0.145 per 1M vector dimensions stored or queried per month
           </span>
         </li>
         <li>
@@ -28,17 +28,24 @@ export default function PricingEnterprise() {
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> <span>Monitoring</span>
-        </li>
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>Weaviate Internal Slack or Teams / Email</span>
+          <div className={styles.checkIcon}></div>{' '}
+          <span>
+            Monitoring -<br />
+            access to dedicated status page
+          </span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 -
-            max 1bd
+            Email support during business hours,
+            <br /> phone escalation
+          </span>
+        </li>
+        <li>
+          <div className={styles.checkIcon}></div>
+          <span>
+            Severity 1 - 4h (24/7) <br /> Severity 2 - 8h (24/7) <br /> Severity
+            3 - 1bd <br /> Severity 4 - 2bd
           </span>
         </li>
         <li>

@@ -17,7 +17,7 @@ export default function PricingStandard() {
         <li>
           <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
           <span>
-            $0.050 per 1M vector dimensions stored or queried per month
+            $0.095 per 1M vector dimensions stored or queried per month
           </span>
         </li>
         <li>
@@ -29,16 +29,21 @@ export default function PricingStandard() {
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> <span>Monitoring</span>
+          <div className={styles.checkIcon}></div>{' '}
+          <span>
+            Monitoring -<br />
+            access to regional status pages
+          </span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> <span>Public Slack</span>
+          <div className={styles.checkIcon}></div>{' '}
+          <span>Email support during business hours</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - max 1h <br /> Severity 2 - max 4h <br /> Severity 3 -
-            max 1bd
+            Severity 1 - 1bd <br /> Severity 2 - 2bd <br /> Severity 3 - 3bd{' '}
+            <br /> Severity 4 - 5bd
           </span>
         </li>
         <li>
