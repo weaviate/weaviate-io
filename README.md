@@ -147,6 +147,16 @@ The `build` command is useful when you are finished editing. If you ran
 `yarn start` to start a local web server, you do not need to use `yarn build` to
 see you changes while you are editing.
 
+The build command runs a link checker. If you are having trouble with broken links, you can update the `URL_IGNORES` variable to disable checking for that link.
+
+To disable link checking, add the broken URL to the `URL_IGNORES` list in these scripts:
+
+- [verify-links.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links.sh)
+- [verify-links-build-dev.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links-build-dev.sh).
+
+Be sure to restore normal link checking before creating a pull request.
+
+
 ### Deployment
 
 Using SSH:
