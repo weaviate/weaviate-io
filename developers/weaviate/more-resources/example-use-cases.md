@@ -16,7 +16,7 @@ If you would like to contribute your own project to this page, please let us kno
 :::info
 During October 1-31, 2023, we are hosting a community sprint to onboard engineers and machine learning practitioners to their first open source contribution.
 
-Demos that are marked with a pumpkin 🎃 sign are looking for contributions.
+Demos that are marked with a pumpkin 🎃 sign are looking for contributions. For more info, checkout the [Hacktoberfest 2023 blog post](https://weaviate.io/blog/hacktoberfest-2023).
 :::
 
 ## Similarity search
@@ -27,6 +27,7 @@ A vector databases enables fast, efficient similarity searches on and across any
 | --- | --- | --- | --- |
 | 🎃 Plant search | Semantic search over plants.  | Text | [Javascript](https://github.com/weaviate-tutorials/DEMO-text-search-plants) |
 | 🎃 Wine search | Semantic search over wines. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-text-search-wines) |
+| Book recommender system ([Video](https://www.youtube.com/watch?v=SF1ZlRjVsxw), [Demo](https://bookrecs.weaviate.io/)) | Find book recommendations based on search query. | Text | [TypeScript](https://github.com/weaviate/BookRecs) |
 | Movie recommender system | Find similar movies. | Text | 🛠️ |
 | Multilingual Wikipedia Search | Search through Wikipedia in multiple languages. | Text | [TypeScript](https://github.com/weaviate/weaviate-examples/tree/main/cohere-multilingual-wikipedia-search/frontend) |
 | 🎃 Podcast search | Semantic search over podcast episodes. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-semantic-search-podcast) |
@@ -42,12 +43,13 @@ Vector databases and LLMs go together like cookies and milk!
 
 Vector databases help to address some of large language models (LLMs) limitations, such as hallucinations, by helping to retrieve the relevant information to provide to the LLM as a part of its input.
 
-|Title | Description | Subcategory | Code |
+|Title | Description | Modality | Code |
 | --- | --- | --- | --- |
-| Verba, the golden RAGtriever ([Demo](https://verba.weaviate.io/)) | Chat with Weaviate documentation and blog posts. | Retrieval-Augmented Generation | [Python](https://github.com/weaviate/Verba) |
-| HealthSearch ([Blog](https://weaviate.io/blog/healthsearch-demo), [Demo](https://healthsearch-frontend.onrender.com/)) | Recommendation system of health products based on symptoms. | Generative search  | [Python](https://github.com/weaviate/healthsearch-demo) |
-| AirBnB Listings ([Blog](https://weaviate.io/blog/generative-feedback-loops-with-llms)) | Generation of customized advertisements for AirBnB listings. | Generative feedback loops | [Python](https://github.com/weaviate/Generative-Feedback-Loops/) |
-| Distyll | Summarize text or video content. | tbd | [Python](https://github.com/databyjp/distyll) |
+| Verba, the golden RAGtriever ([Video](https://www.youtube.com/watch?v=OSt3sFT1i18 ), [Demo](https://verba.weaviate.io/)) | Retrieval-Augmented Generation (RAG) system to chat with Weaviate documentation and blog posts. | Text | [Python](https://github.com/weaviate/Verba) |
+| HealthSearch ([Blog](https://weaviate.io/blog/healthsearch-demo), [Demo](https://healthsearch-frontend.onrender.com/)) | Recommendation system of health products based on symptoms. | Text  | [Python](https://github.com/weaviate/healthsearch-demo) |
+| Magic Chat | Search through Magic The Gathering cards | Text | [Python](https://github.com/weaviate/st-weaviate-connection/tree/main) |
+| AirBnB Listings ([Blog](https://weaviate.io/blog/generative-feedback-loops-with-llms)) | Generation of customized advertisements for AirBnB listings with Generative Feedback Loops | Text | [Python](https://github.com/weaviate/Generative-Feedback-Loops/) |
+| Distyll | Summarize text or video content. | Text | [Python](https://github.com/databyjp/distyll) |
 
 
 Learn more in our [LLMs and Search](https://weaviate.io/blog/llms-and-search) blog post.
@@ -56,7 +58,7 @@ Learn more in our [LLMs and Search](https://weaviate.io/blog/llms-and-search) bl
 
 Weaviate can leverage its vectorization capabilities to enable automatic, real-time classification of unseen, new concepts based on its semantic understanding.
 
-|Title | Category | Modality | Code |
+|Title | Description | Modality | Code |
 | --- | --- | --- | --- |
 | 🎃 Toxic Comment Classification | Clasify whether a comment is toxic or non-toxic. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-classification-toxic-comment) |
 | 🎃 Audio Genre Classification | Classify the music genre of an audio file. | Image | [Python](https://github.com/weaviate-tutorials/DEMO-classification-audio-genre/) |
