@@ -22,10 +22,6 @@ export default function PricingStandard() {
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>Round robin region: AWS, Azure, GCP</span>
-        </li>
-        <li>
-          <div className={styles.checkIcon}></div>
           <span>∞ lifetime (until terminated)</span>
         </li>
         <li>

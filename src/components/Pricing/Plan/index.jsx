@@ -11,7 +11,7 @@ export default function PricingPlan() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Weaviate Cloud Services Saas</h2>
+          <h2>Weaviate Cloud Services &bull; Serverless</h2>
           <p>
             Our pricing is designed to give you all the capabilities to build
             and test your applications for free. When you are ready to move to

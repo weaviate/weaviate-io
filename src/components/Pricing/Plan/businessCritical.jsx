@@ -21,9 +21,6 @@ export default function PricingBusinessCritical() {
           </span>
         </li>
         <li>
-          <div className={styles.checkIcon}></div> <span>AWS, Azure, GCP</span>
-        </li>
-        <li>
           <div className={styles.checkIcon}></div>
           <span>∞ lifetime (until terminated)</span>
         </li>

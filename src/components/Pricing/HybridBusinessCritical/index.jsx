@@ -46,7 +46,9 @@ export default function HybridBusinessCritical() {
               <span className={styles.google} />
             </div>
             <p>Google Cloud Platform</p>
-            <Link to="#contact-sales">{'Contact us for more info >'}</Link>
+            <Link to="https://console.cloud.google.com/marketplace/product/mp-container-public/weaviate-gcp-k8s">
+              {'Go to Marketplace >'}
+            </Link>
           </div>
           <div className={styles.awsBox}>
             <div className={styles.logos}>

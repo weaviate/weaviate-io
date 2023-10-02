@@ -10,7 +10,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
         <h3>The power of the open-source vector database, fully managed</h3>
         <p>
           Regardless of whether you are a startup wanting to get started with
-          Weaviate in minutes (SaaS) or an enterprise user with specific
+          Weaviate in minutes (Serverless) or an enterprise user with specific
           deployment needs (BYOC), we are here to help with pricing models
           tailored to your needs.
         </p>
@@ -32,7 +32,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
           >
             <div className={styles.btn} onClick={() => handleSelected('saas')}>
               <div className={styles.saasPng} />
-              <h1 className={styles.test}>Software as a Service</h1>
+              <h1 className={styles.test}>Serverless</h1>
               <p className={styles.btnText}>
                 We manage everything in the Weaviate Cloud
               </p>
