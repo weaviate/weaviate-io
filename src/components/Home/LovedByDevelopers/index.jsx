@@ -40,7 +40,6 @@ export default function HomepageLovedByDevelopers() {
     arrows: false,
     /* rows: 2,
     slidesPerRow: 1, */
-    pauseOnHover: true,
     pauseOnFocus: true,
     responsive: [
       {
@@ -54,8 +53,6 @@ export default function HomepageLovedByDevelopers() {
           autoplay: true,
           speed: 1000,
           autoplaySpeed: 1000,
-
-          pauseOnHover: true,
         },
       },
       {
