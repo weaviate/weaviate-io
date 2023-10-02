@@ -182,7 +182,7 @@ Vector search is based on similarity, it does not inherently exclude any of the 
 
 ### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Distance thresholds
 
-You've already seen how to use a `distance` argument to limit the search space and exclude irrelevant objects. You may recall this example that demonstrates how to retrieve `additional` parameters:
+A threshold value such as `distance` or `certainty` specifies the maximum distance (or, looked from the other direction, minimum similarity) required to retrieve an object. You've [already seen](/developers/academy/zero_to_mvp/queries_1/get#example-1) how to use a `distance` argument to limit the search space and exclude irrelevant objects. This example demonstrates how to view `additional` parameters like `distance`.
 
 import GetWithAdditional from './_snippets/academy.queries.get.with.additional.mdx';
 
@@ -221,8 +221,6 @@ And this response:
 ```
 
 </details>
-
-A threshold value such as `distance` or `certainty` specifies the maximum distance (or, looked from the other direction, minimum similarity) required to retrieve an object.
 
 :::tip Exercise: Threshold distances
 Try changing the one of the above queries to:
