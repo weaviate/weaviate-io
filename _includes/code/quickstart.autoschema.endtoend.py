@@ -13,6 +13,11 @@ client = weaviate.Client(
 # EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
 import json
+# END EndToEndExample  # END InstantiationExample  # END NearTextExample
+# ===== import data =====  # EndToEndExample
+import requests
+# END EndToEndExample  # Test import
+# EndToEndExample  # InstantiationExample  # NearTextExample
 
 client = weaviate.Client(
     url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
@@ -38,7 +43,6 @@ class_obj = {
 client.schema.create_class(class_obj)
 
 # ===== import data =====
-import requests
 resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json')
 data = json.loads(resp.text)  # Load data
 
@@ -149,6 +153,7 @@ client.schema.delete_class("Question")  # Cleanup after
 
 # ===== import with custom vectors =====
 import requests
+
 # highlight-start
 fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
 # highlight-end
