@@ -152,7 +152,7 @@ The build command runs a link checker. If you are having trouble with temporaril
 To disable link checking, add the broken URL to the `URL_IGNORES` lists in these scripts:
 
 - [verify-links.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links.sh)
-- [verify-links-build-dev.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links-build-dev.sh).
+- [verify-links-build-dev.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links-build-dev.sh)
 
 Be sure to restore normal link checking before creating a pull request.
 
