@@ -30,11 +30,15 @@ export default function PricingPage() {
           <>
             <PricingPlan />
             <PricingCalculator />
+            <Soc2 socLight="dark" />
           </>
         ) : (
-          <HybridBusinessCritical />
+          <>
+            <HybridBusinessCritical />
+            <Soc2 socLight="light" />
+          </>
         )}
-        <Soc2 />
+
         <PricingFAQ />
         <ContactUsForm />
       </Layout>

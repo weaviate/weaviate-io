@@ -1,130 +1,144 @@
-.pricingHeader {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 2.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%; /* 3rem */
-  @media screen and (max-width: 680px) {
+.light {
+  .box {
     text-align: left;
-  }
-}
-.pricingButton {
-  border-radius: 0.3125rem;
-  border: 1px solid #130e46;
-  background: #61bd73;
-  padding: 9px;
-  color: #130c49;
-  margin-right: 10px;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.pricingButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-.boardButton {
-  padding: 9px;
-  margin: 10px;
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.boardButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
 
-.test {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.header {
-  color: var(--ifm-link-color);
-}
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  margin: 0;
-}
-.box {
-  text-align: left;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  h3 {
-    color: #130c49;
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
   }
 
-  @media screen and (max-width: 680px) {
+  .soc2Container {
+    background: #130e46;
+  }
+
+  .soc2Box {
+    flex: 1 290px;
+    h2 {
+      color: white;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.dark {
+  .box {
     text-align: left;
-    margin: auto;
-    width: auto;
     color: #130c49;
-  }
-}
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
 
-.opacity {
-  opacity: 35%;
-}
-
-.investorLogos {
-  justify-content: center;
-  align-items: center;
-  padding-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 30px;
-  flex: 1;
-
-  @media screen and (max-width: 780px) {
-    flex-direction: column;
-    gap: 20px;
-    display: none;
-  }
-}
-
-.investorsContainer {
-  background: #130e46;
-}
-
-.soc2Box {
-  h2 {
-    color: white;
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
   }
 
-  p {
-    margin-bottom: 20px;
-    color: white;
+  .soc2Container {
+    background: #ededed;
   }
-}
 
-.investorButton {
-  margin-top: 25px;
-}
+  .soc2Box {
+    flex: 1 290px;
+    h2 {
+      color: #130c49;
+    }
 
-.drataLogo {
-  background: url('/img/site/drata-logo.svg');
-  background-size: 100% 100%;
-  width: 50%;
-  height: 70px;
-}
+    p {
+      margin-bottom: 20px;
+      color: #130c49;
+    }
 
-.soc2Logo {
-  background: url('/img/site/soc2-logo.svg');
-  background-size: 100% 100%;
-  width: 100%;
-  height: 70px;
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-dark-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
 }
