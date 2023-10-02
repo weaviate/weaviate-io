@@ -4,17 +4,11 @@ sidebar_position: 8
 image: og/docs/installation.jpg
 # tags: ['installation', 'AWS Marketplace']
 ---
+
 import Badges from '/_includes/badges.mdx';
+import ReactPlayer from 'react-player/lazy'
 
 <Badges/>
-
-import Marketplace_1_Subscribe from './img/marketplace_1_subscribe.png';
-import Marketplace_2_Continue from './img/marketplace_2_continue.png';
-import Marketplace_3_Configure from './img/marketplace_3_configure.png';
-import Marketplace_4_Launch from './img/marketplace_4_launch.png';
-import aws_config_1 from './img/aws_config_1.png';
-import aws_config_2 from './img/aws_config_2.png';
-import aws_config_3 from './img/aws_config_3.png';
 
 ## Overview
 
@@ -43,6 +37,13 @@ This will set up the following resources:
 </details>
 
 ## Installation instructions
+
+### Video
+
+If you prefer to follow along with a video, you can watch the following video. Please note that it was recorded in September 2023, and some details may have changed since then.
+
+<ReactPlayer url='https://youtu.be/_2rBrKp83iM' controls='true'/>
+<br/>
 
 ### AWS Marketplace
 
