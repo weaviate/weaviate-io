@@ -226,7 +226,7 @@ Yes. Each class itself acts like namespaces. Additionally, you can use the [mult
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
-> The below `Aggregate` query will retrieve the total object count in a class.
+> This `Aggregate` query returns the total object count in a class.
 
 <HowToGetObjectCount/>
 

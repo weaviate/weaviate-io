@@ -217,7 +217,7 @@ import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.examp
 
 ## Usage example
 
-The below shows a code example of how to use a `nearText` query with `text2vec-cohere`.
+This is an example of a `nearText` query with `text2vec-cohere`.
 
 import GraphQLFiltersNearNextCohere from '/_includes/code/graphql.filters.nearText.cohere.mdx';
 

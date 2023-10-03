@@ -185,7 +185,7 @@ Author
 
 ## Usage example
 
-The below shows a code example of how to use a `nearText` query with `text2vec-contextionary`.
+This is an example of a `nearText` query with `text2vec-contextionary`.
 
 import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
