@@ -61,7 +61,9 @@ pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@v3.99
 
 You will also need a pre-release version of Weaviate. Either [download this `docker-compose.yml` file](https://raw.githubusercontent.com/databyjp/wv_python_usertest/main/docker-compose.yml) or save the following code in your project directory as `docker-compose.yml`.
 
-Go to the directory with your `docker-compose.yml` file and run `docker compose up -d`.
+```
+docker compose up -d
+```
 
 <details>
   <summary><code>docker-compose.yml</code></summary>
@@ -94,6 +96,8 @@ services:
       AUTOSCHEMA_ENABLED: 'false'
 ...
 ```
+
+Go to the directory with your `docker-compose.yml` file and run
 
 </details>
 

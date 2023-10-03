@@ -50,7 +50,7 @@ services:
 
 If multiple modules are to be used, each of them can be separate by a comma.
 
-This example code enables, the `'text2vec-huggingface`, `generative-cohere`, and `qna-openai` modules.
+This example code enables the `'text2vec-huggingface`, `generative-cohere`, and `qna-openai` modules.
 
 ```yaml
 services:
@@ -75,7 +75,7 @@ Can be found [in this section](../modules/retriever-vectorizer-modules/index.md)
 
 ### Enable vectorizer modules
 
-You can enable vectorizer modules by adding them to the `ENABLE_MODULES` environment variable. For example, this code enables the `text2vec-cohere`, `text2vec-huggingface` and `text2vec-openai` vectorizer modules.
+You can enable vectorizer modules by adding them to the `ENABLE_MODULES` environment variable. For example, this code enables the `text2vec-cohere`, `text2vec-huggingface`, and `text2vec-openai` vectorizer modules.
 
 ```yaml
 services:
