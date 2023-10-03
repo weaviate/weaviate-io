@@ -26,7 +26,7 @@
   },
   {
     "question": "Is Weaviate Cloud Services SOC2 compliant?",
-    "answer": "Yes"
+    "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
   },
   {
     "question": "Do I pay for data objects without embeddings?",
