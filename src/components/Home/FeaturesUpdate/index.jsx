@@ -58,8 +58,8 @@ export default function HomePage() {
               AI-native apps easier.
             </p>
             <p className={styles.boxLink}>
-              <Link to="/blog/tutorial-backup-and-restore-in-weaviate">
-                Start learning {'>'}{' '}
+              <Link href="https://github.com/weaviate/weaviate">
+                Github {'>'}{' '}
               </Link>
             </p>
           </div>
