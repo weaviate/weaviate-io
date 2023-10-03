@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
-import PricingHeader from '../components/Pricing/Header';
-import PricingPlan from '../components/Pricing/Plan';
-import PricingCalculator from '../components/Pricing/Calculator';
-import PricingFAQ from '../components/Pricing/FAQ';
+import PricingHeader from '../components/Products/Header';
+import PricingPlan from '../components/Products/Plan';
+import PricingCalculator from '../components/Products/Calculator';
+import PricingFAQ from '../components/Products/FAQ';
 import ContactUsForm from '../components/ContactUsForm';
-import HybridBusinessCritical from '../components/Pricing/HybridBusinessCritical';
+import HybridBusinessCritical from '../components/Products/HybridBusinessCritical';
 import ThemeSwitch from '/src/components/ThemeSwitch';
-import Soc2 from '../components/Pricing/SOC2/soc2';
+import Soc2 from '../components/Products/SOC2/soc2';
 
-export default function PricingPage() {
+export default function ProductPage() {
   const [selectedType, setSelectedType] = useState('serverless');
   const divStyle = {
     marginTop: '0px',
