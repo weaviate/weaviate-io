@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import faq from './faq.json';
+import faqByoc from './faqByoc.json';
 
-export default function PricingFAQ() {
+const faqType = 'byoc';
+
+export default function PricingFAQ(props) {
   const [more, setMore] = useState(false);
+  const { faqType } = props;
+  let faqData = [];
+
+  if (faqType === 'Serverless') {
+    faqData = faq;
+  } else if (faqType === 'BYOC') {
+    faqData = faqByoc;
+  }
 
   return (
     <div className={styles.faqBG}>
@@ -14,7 +25,7 @@ export default function PricingFAQ() {
         </div>
 
         <div className={styles.boxGrid}>
-          {faq.map((item, index) => {
+          {faqData.map((item, index) => {
             if (!more && index > 1) {
               return;
             }

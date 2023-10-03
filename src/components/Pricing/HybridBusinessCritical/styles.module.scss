@@ -185,7 +185,7 @@
 .awsBox {
   border-radius: 0.9375rem;
   border: 1px solid #130c49;
-  background: #130c49;
+  background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 14.375rem;
   height: 12rem;
@@ -195,11 +195,10 @@
   align-items: center;
   margin: 10px 10px;
   transition: all 1s ease-out;
-  color: #ffffff;
 
   &:hover {
-    background: #ffffff;
-    color: #130c49;
+    background: #130c49;
+    color: #fff;
     font-weight: 400;
 
     .p {
@@ -207,7 +206,7 @@
     }
 
     .aws {
-      background-image: url('../../../../static/img/site/awsLogo.svg');
+      background-image: url('../../../../static/img/site/awsDarkLogo.svg');
     }
   }
 }
@@ -237,7 +236,7 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../../../../static/img/site/awsDarkLogo.svg');
+    background-image: url('../../../../static/img/site/awsLogo.svg');
     transition: all 1s ease-out;
   }
   .awsLight {

@@ -170,7 +170,7 @@ const config = {
                         // type: 'dropdown',
                         label: 'Products',
                         position: 'right',
-                        to: '/pricing',
+                        to: '/products',
                         // items: [
                         //     {
                         //         label: 'Pricing',

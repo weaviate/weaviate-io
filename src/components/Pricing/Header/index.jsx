@@ -27,10 +27,13 @@ export default function PricingHeader({ selectedType, handleSelected }) {
         <div className={styles.buttons}>
           <div
             className={`${styles.border} ${
-              selectedType === 'saas' ? styles.outline : null
+              selectedType === 'serverless' ? styles.outline : null
             }`}
           >
-            <div className={styles.btn} onClick={() => handleSelected('saas')}>
+            <div
+              className={styles.btn}
+              onClick={() => handleSelected('serverless')}
+            >
               <div className={styles.saasPng} />
               <h1 className={styles.test}>Serverless</h1>
               <p className={styles.btnText}>
@@ -43,13 +46,10 @@ export default function PricingHeader({ selectedType, handleSelected }) {
           </div>
           <div
             className={`${styles.border} ${
-              selectedType === 'hybrid' ? styles.outline : null
+              selectedType === 'byoc' ? styles.outline : null
             }`}
           >
-            <div
-              className={styles.btn}
-              onClick={() => handleSelected('hybrid')}
-            >
+            <div className={styles.btn} onClick={() => handleSelected('byoc')}>
               <div className={styles.hybridPng} />
               <h1 className={styles.test}>Bring Your Own Cloud</h1>
               <p>We manage the data plane inside your customer-managed VPC</p>
