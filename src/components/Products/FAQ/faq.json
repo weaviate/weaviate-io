@@ -13,8 +13,8 @@
   },
   {
     "question": "What's the Weaviate pricing formula?",
-    "answer": "You pay for the total amount of embedding dimensions stored per data object and per data object queried. For example, if you have a 100-dimensional embedding and you store 1k documents that you query 1k times per month. You pay for 200k dimensions.",
-    "code": "<code>(stored objects + objects queried) * embedding dimension size * SLA tier price per dimension</code>"
+    "answer": "You pay for the total amount of embedding dimensions stored per data object. For example, if you have a 100-dimensional embedding and you store 1k documents. You pay for 100k dimensions.",
+    "code": "<code>stored objects * embedding dimension size * SLA tier price per dimension</code>"
   },
   {
     "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCS?",
@@ -26,11 +26,7 @@
   },
   {
     "question": "Is Weaviate Cloud Services SOC2 compliant?",
-    "answer": "Not yet; we are currently in the process of becoming SOC2 compliant. Feel free to email us for a status update on <a href='mailto:hello+soc2@weaviate.io'>hello+soc2@weaviate.io</a>"
-  },
-  {
-    "question": "What is round-robin provisioning?",
-    "answer": "If your SLA tier contains round-robin provisioning, the Weaviate Cloud Service will provision on Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure where enough resources are available."
+    "answer": "Yes"
   },
   {
     "question": "Do I pay for data objects without embeddings?",
@@ -38,7 +34,7 @@
   },
   {
     "question": "Which Weaviate modules are available?",
-    "answer": "Weaviate modules based on inference APIs are automatically integrated in the cloud service. These modules currently include Hugging Face Inference and OpenAI's embeddings end-points."
+    "answer": "Weaviate modules based on inference APIs are automatically integrated in the cloud service."
   },
   {
     "question": "Can I store data from different models with different embedding sizes?",
