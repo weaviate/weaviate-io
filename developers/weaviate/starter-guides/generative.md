@@ -153,7 +153,7 @@ This should return a set of results like the following (truncated for brevity):
 
 We can transform this result set into new text using generative search with just a minor modification of the code. First, let's use a `grouped task` prompt to summarize this information.
 
-Run the below code snippet, and inspect the results:
+Run the following code snippet, and inspect the results:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -489,7 +489,7 @@ Now that we have configured Weaviate and populated it with data, we can perform 
 
 #### Single (per-object) prompts
 
-Single prompts tell Weaviate to generate text based on each retrieved object and the user-provided prompt. In the below example, we retrieve two objects, and prompt the language model to write a haiku based on the text of each chunk.
+Single prompts tell Weaviate to generate text based on each retrieved object and the user-provided prompt. In this example, we retrieve two objects and prompt the language model to write a haiku based on the text of each chunk.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -531,7 +531,7 @@ Commit to save changes.
 
 A grouped task is a prompt that is applied to a group of objects. This allows you to prompt the language model with the entire set of search results, such as source documents or relevant passages.
 
-In the below example, we prompt the language model to write a trivia tweet based on the result.
+In this example, we prompt the language model to write a trivia tweet based on the result.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -565,7 +565,7 @@ Did you know? 🤔 Git thinks of its data as snapshots, not just changes to file
 
 Generative search in Weaviate is a two-step process under the hood, involving retrieval of objects and then generation of text. This means that you can use the full power of Weaviate's search capabilities to retrieve the objects you want to use for generation.
 
-In the below example, we search the chapter for passages that relate to the states of git, before generating a tweet as before.
+In this example, we search the chapter for passages that relate to the states of git before generating a tweet as before.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">

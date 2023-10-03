@@ -80,7 +80,7 @@ If you don't want to vectorize a property at all, you can simply skip it.
 
 ## Example
 
-The below is a complete example of a schema.
+The following code is a complete example of a schema.
 
 Let's take a look at the definition for the `Article` class. Look for the `"moduleConfig"` entries on the class and on the property level.
 
