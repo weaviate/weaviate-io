@@ -63,7 +63,7 @@ Traditional search systems use "lexical" searches, based on a "vocabulary" of th
 
 A lexical search relies on matching exact strings or substrings and using various operators to manipulate sets of information that either meets or does not meet certain criteria.
 
-For example, looking through a database of recipes to retrieve all objects containing the ingredient "chili" is an example of a lexical search. You might typically combine multiple conditions. For example, the entry below looks for "chili" entries that where added after the year 2010.
+For example, looking through a database of recipes to retrieve all objects containing the ingredient "chili" is a lexical search. You might typically combine multiple conditions. The following query looks for entries with "chili" that where added after the year 2010.
 
 ```sql
 SELECT * FROM recipe_table WHERE (ingredients LIKE '%chili%') AND (entry_year > 2010)

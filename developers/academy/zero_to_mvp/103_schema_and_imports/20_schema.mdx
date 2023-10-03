@@ -57,7 +57,7 @@ To define a class, you can use this syntax.
 
 Each `class` definition will include one or more properties, which must have a data type. If you do not specify a data type, Weaviate will automatically assign one based on your data. But for more predictable results, we recommend that you manually specify them in the schema if possible.
 
-Currently, the following data types are supported:
+Currently, Weaviate support includes the following data types:
 
 import DataTypes from '/_includes/datatypes.mdx';
 
@@ -197,7 +197,7 @@ You can set the `moduleConfig` parameter at the class-level to set class-wide se
 
 You can also set the `moduleConfig` parameter at the property level to set module behavior for each property. For example, you could set whether to vectorize the property name (`vectorizePropertyName`), or whether to skip the property from vectorization altogether (`skip`).
 
-In the following example the `skip` parameter is set to `True` for the `url` property, so that the URL text will be skipped when producing a vector embedding for the object.
+In the following example, the `skip` parameter is set to `True` for the `url` property, so that the URL text will be skipped when producing a vector embedding for the object.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
