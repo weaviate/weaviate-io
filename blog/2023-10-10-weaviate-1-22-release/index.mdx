@@ -1,0 +1,245 @@
+---
+title: Weaviate 1.22 Release
+slug: weaviate-1-22-release
+authors: [jp]
+date: 2023-10-10
+# image: ./img/hero.png
+tags: ['release', 'engineering']
+description: "Weaviate 1.22 released with nest JSON storage, async indexing, further gRPC support, and more!"
+
+---
+Weaviate `1.22` is here!
+
+Here are the ⭐️*highlights*⭐️ relating to this release:
+
+<!-- ![Weaviate 1.22](./img/hero.png) -->
+
+<!-- truncate -->
+1. Nested JSON object storage - store nested JSON objects directly in Weaviate as a property value
+2. Async vector indexing - import large datasets faster by indexing vectors asynchronously
+3. Additional gRPC support - preparing for the future with more gRPC support
+4. New Python client API - the future is (almost) here
+
+:::tip Available on WCS
+`1.22` is already available on [Weaviate Cloud Services](https://console.weaviate.cloud/) - so try it out!
+:::
+
+For more details, keep scrolling ⬇️!
+
+## Nested JSON object storage
+
+`1.22` welcomes a new member to the Weaviate data type family, with `object` and `object[]` joining the available list.
+
+This allows you to store nested JSON objects directly in Weaviate as a property value. In other words, you can store them without having to flatten the object or use cross-references to other Weaviate classes.
+
+This is particularly useful for storing data that is not easily represented as a flat structure, such as an address or a product, which may itself comprise multiple properties.
+
+An example class definition is shown below, where a `Nested` class has a `parent` property with an `object` datatype. Because the `parent` property is an `object`, it can have its own properties (`nestedProperties`), such as `child` in this example, which is a `text` datatype.
+
+```json
+{
+    "class": "Nested",
+    "properties": [
+        {
+            "dataType": ["object"],
+            "name": "parent",
+            "nestedProperties": [
+                {
+                    "dataType": ["text"],
+                    "name": "child"
+                }
+            ],
+        }
+    ],
+}
+```
+
+An example object of this class may look like this:
+
+```json
+{
+    "parent": {"child": "I'm nested!"}
+}
+```
+
+Each nested property can have its own data type, including being an `object` itself. This allows you to create nested structures of arbitrary depth.
+
+<details>
+  <summary>Two-level depth example</summary>
+
+The following class definition shows a `DoublyNested` class with a `parent` property that is an `object` datatype, similarly to above. Here, hwoever, the `child` property is itself an `object` datatype, and has its own `nestedProperties` of `childname` and `grandchild`.
+
+```json
+{
+    "class": "DoublyNested",
+    "properties": [
+        {
+            "dataType": ["object"],
+            "name": "parent",
+            "nestedProperties": [
+                {
+                    "dataType": ["object"],
+                    "name": "child",
+                    "nestedProperties": [
+                        {
+                            "dataType": ["text"],
+                            "name": "childname",
+                        },
+                        {
+                            "dataType": ["text"],
+                            "name": "grandchild"
+                        },
+                    ],
+                },
+            ],
+        }
+    ],
+}
+```
+
+An example object of this class may look like this:
+
+```json
+{
+    "parent": {
+        "child": {
+            "childname": "Nested child",
+            "granchild": "I'm doubly nested!"
+        }
+    }
+},
+```
+
+</details>
+
+More practically, this type of structure may be applied to capture addresses, product information, or any other nested data structure. Take a look at the following example, which shows a `Person` class with an `address` property that is an `object` datatype. The `address` property is able to store its own `nestedProperties` of `street` and `city`.
+
+```json
+{
+    "class": "Person",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+The user may then create an object of this class, such as:
+
+```json
+{
+    "last_name": "Franklin",
+    "address": {
+        "city": "London",
+        "street": "King Street"
+    }
+}
+```
+
+### Future improvements
+
+Please keep in mind that this is the first iteration of nested JSON object storage in Weaviate, and we have further improvements planned.
+
+In the initial implementation, any properties with `object` datatype do not affect the object vector, or the inverted index. This behavior is similar to what would happen with a cross-reference property, where the cross-referenced object is not indexed.
+
+Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
+
+## Async vector indexing
+
+This feature will improve import speed for large datasets by allowing the vector indexing to be performed asynchronously to object creation.
+
+In the past, when importing a large dataset, creation of the HNSW would be performed synchronously to object creation. This meant that the import process would be blocked until the indexing process was complete. While indexing does occur relatively quickly, it was still a bottleneck for the process.
+
+With `1.22`, the vector indexing process is now performed asynchronously to object creation. This means that the import process is no longer blocked by the indexing process, and can continue to create objects while the indexing process is ongoing.
+
+Outwardly, this change does not affect the user experience, other than the import process returning a response faster than before.
+
+The user can still perform a search immediately after import, as Weaviate will search any un-indexed data using brute force. This means that the user will not have to wait for the indexing process to complete before being able to search the newly imported data.
+
+The `nodes` REST endpoint has been updated to reflect this change.
+
+`INDEXING` has been added to the list of available node statuses, and the `stats` field now includes an `vectorQueueLength` field, which contains the number of objects currently being indexed.
+
+As of `1.22`, this is an opt-in feature. It can be enabled by setting the `WEAVIATE_ASYNC_INDEXING` setting to `true`, such as in the `docker-compose.yml` file.
+
+## Additional gRPC support
+
+The team continues to add gRPC support under the hood, with a big part of the equivalent GraphQL `Get` queries, and batch import functionality now available via gRPC.
+
+With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, and multiple times faster `Get` queries. A big part of this comes from the fact that gRPC is a binary protocol, which is more efficient than the text-based GraphQL protocol, as well as it being based on HTTP/2.
+
+## New Python client API
+
+If you are wondering how to use the new gRPC functionality, we have you covered with the new Python client. This client is a pre-release version with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience through custom classes and methods, which will trigger IDE auto-completion in place of untyped dictionaries.
+
+As one example, a class creation requests that used to look like:
+
+```python
+# Existing (v3) Python client syntax
+class_obj = {
+    "class": "Question",
+    "vectorizer": "text2vec-openai",
+    "moduleConfig": {
+        "generative-openai": {}
+    }
+}
+
+client.schema.create_class(class_obj)
+```
+
+Now looks like:
+
+```python
+# Proposed (v4) Python client syntax
+client.collection.create(
+    name="Question",
+    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
+    generative_config=wvc.ConfigFactory.Generative.openai()
+)
+```
+
+And a `near text` query like the following:
+
+```python
+# Existing (v3) Python client syntax
+response = (
+    client.query
+    .get("Question", ["question", "answer", "category"])
+    .with_near_text({"concepts": ["biology"]})
+    .with_limit(2)
+    .do()
+)
+```
+
+Now looks like:
+
+```python
+# Proposed (v4) Python client syntax
+questions = client.collection.get("Question")
+questions.query.near_text(query="biology", limit=2)
+```
+
+You may already have seen [a blog post](../2023-09-26-collections-python-client/index.mdx) and [a documentation page](/developers/weaviate/client-libraries/experimental.md) about this new client. If you have yet to try it out, we encourage you to do so!
+
+This is a pre-release version, so we would love to hear your feedback on the new API. Please try it and let us know what you think through this [feedback form](https://tally.so/r/wa4NDB). We will use your feedback to improve the API before the official release.
+
+## Summary
+
+That's it from us - we hope you enjoy the new features and improvements in Weaviate `1.22`. This release is already available on [WCS](https://console.weaviate.cloud/). So you can try it out yourself on a free sandbox, or by upgrading!
+
+Thanks for reading, and see you next time 👋!
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />
+
