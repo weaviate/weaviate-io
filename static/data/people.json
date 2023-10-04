@@ -385,5 +385,67 @@
 		"photo": "zain.png",
 		"linkedin": "zainhas",
 		"team": "developer-relations"
+	},{
+		"name": "Chrétien Minke",
+		"title": "Advisor",
+		"photo": "chretien.jpeg",
+		"linkedin": "chretienminke",
+		"team": "board-advisors"
+	},{
+		"name": "Erik Bernhardsson",
+		"title": "Advisor",
+		"photo": "erik.jpeg",
+		"linkedin": "erikbern",
+		"twitter": "bernhardsson",
+		"team": "board-advisors"
+	},{
+		"name": "Erin Price-Wright",
+		"title": "Board Member",
+		"photo": "erin.jpeg",
+		"team": "board-advisors"
+	},{
+		"name": "Igor Taber",
+		"title": "Board Member",
+		"photo": "igor.jpeg",
+		"linkedin": "itaber",
+		"team": "board-advisors"
+	},{
+		"name": "James Alcorn",
+		"title": "Board Member",
+		"photo": "james-alcorn.jpeg",
+		"linkedin": "james-alcorn-b04880ba",
+		"team": "board-advisors"
+	},{
+		"name": "Marcus Eagan",
+		"title": "Advisor",
+		"photo": "marcus.jpeg",
+		"linkedin": "marcuseagan",
+		"team": "board-advisors"
+	},{
+		"name": "Sam Ramji",
+		"title": "Advisor",
+		"photo": "sam-ramji.jpeg",
+		"linkedin": "sramji",
+		"twitter": "sramji",
+		"team": "board-advisors"
+	},{
+		"name": "Tal Shaked",
+		"title": "Advisor",
+		"photo": "tal.jpeg",
+		"linkedin": "tshaked",
+		"team": "board-advisors"
+	},{
+		"name": "Tony Florence",
+		"title": "Board Member",
+		"photo": "tony-florence.jpeg",
+		"linkedin": "toflorence",
+		"team": "board-advisors"
+	},{
+		"name": "Zack Kass",
+		"title": "Advisor",
+		"photo": "zack.jpeg",
+		"linkedin": "zackkass",
+		"twitter": "iamthezack",
+		"team": "board-advisors"
 	}
 ]

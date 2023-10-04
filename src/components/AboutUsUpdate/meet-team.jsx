@@ -47,7 +47,6 @@ export default function MeetTheTeam() {
             </Link>
           </div>
           <div className={styles.teamFilter}>
-            <Link onClick={() => handleTeamFilter('cx0')}>#CxO Leadership</Link>
             <Link onClick={() => handleTeamFilter('database')}>#Database</Link>
             <Link onClick={() => handleTeamFilter('design')}>#Design</Link>
             <Link onClick={() => handleTeamFilter('developer-growth')}>
