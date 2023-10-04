@@ -86,13 +86,13 @@
 //   }
 // }
 
-.docs-doc-page .container {
+.docs-doc-page .container  {
   background-color: var(--docs-body-bg);
-}
-
-.docs-doc-page article {
-  padding-left: 7%;
+  padding-left: 5%;
   padding-right: 5%;
+  margin-left: 0%;
+  margin-right: 0%;
+  max-width: 100%;
 }
 
 // Set Fonts
