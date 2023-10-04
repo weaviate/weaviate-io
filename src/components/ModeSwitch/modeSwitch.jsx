@@ -13,7 +13,6 @@ const ModeSwitch = () => {
       if (darkModeToggleButton) {
         darkModeToggleButton.style.display = 'none';
       }
-      console.log('MODE SWITCH!!');
     }
   }, []);
 
