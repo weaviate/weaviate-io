@@ -154,8 +154,7 @@ To disable link checking, add the broken URL to the `URL_IGNORES` lists in these
 - [verify-links.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links.sh)
 - [verify-links-build-dev.sh](https://github.com/weaviate/weaviate-io/blob/main/_build_scripts/verify-links-build-dev.sh)
 
-Be sure to restore normal link checking before creating a pull request.
-
+Check the link again before you submit a merge request. If the link works, remove it from the `URL_IGNORES` list. If the link doesn't work, tell us about it in the pull request.
 
 ### Deployment
 
