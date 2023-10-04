@@ -36,8 +36,9 @@ export default function HomepageLovedByDevelopers() {
     autoplay: true,
     speed: 2000,
     initialSlide: rand,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000,
     arrows: false,
+    swipeToSlide: true,
     /* rows: 2,
     slidesPerRow: 1, */
     pauseOnFocus: true,
