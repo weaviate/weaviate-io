@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import Link from '@docusaurus/Link';
 
 export default function PricingStandard() {
   return (
@@ -49,6 +50,13 @@ export default function PricingStandard() {
         <li>
           <div className={styles.checkIcon}></div> <span>HA optional</span>
         </li>
+      </div>
+      <br />
+      <br />
+      <div className={styles.buttonBox}>
+        <Link className={styles.buttonTry} to="https://console.weaviate.cloud/">
+          Try Now
+        </Link>
       </div>
     </div>
   );

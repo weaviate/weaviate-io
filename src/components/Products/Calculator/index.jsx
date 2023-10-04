@@ -7,7 +7,7 @@ import 'rc-slider/assets/index.css';
 import Link from '@docusaurus/Link';
 
 export default function PricingCalculator({ props }) {
-  const [embeddingSize, setEmbeddingSize] = useState(768);
+  const [embeddingSize, setEmbeddingSize] = useState(1536);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
   const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
@@ -148,10 +148,11 @@ export default function PricingCalculator({ props }) {
         <div className="pricingBox">
           <h2 id="mainPricingArea">Pay as you grow</h2>
           <p>
-            Our pricing is built around vector dimensions stored and queried,
-            and different SLA-tiers have different prices per dimension. The
-            exact calculation can be found in the FAQ below. (not inclusive of
-            discounts and taxes).
+            Our pricing is built around vector dimensions stored. Different
+            SLA's have different pricing.
+            <br /> For more information on the pricing have a look at the FAQ
+            below or go to the{' '}
+            <Link to="developers/weaviate">Weaviate docs</Link>
           </p>
         </div>
       </div>
@@ -164,8 +165,8 @@ export default function PricingCalculator({ props }) {
             <Slider
               dots={true}
               step={128}
-              min={128}
-              max={1536}
+              min={1536}
+              max={4096}
               value={embeddingSize}
               onChange={(embeddingSize) => setEmbeddingSize(embeddingSize)}
             />
@@ -317,6 +318,10 @@ export default function PricingCalculator({ props }) {
               )}
             </div>
           </div>
+          <p>
+            Does your use case not fit these parameters?{' '}
+            <Link to="#contact-sales">Contact us for more info</Link>
+          </p>
         </div>
         <div className={'buttons'}>
           <div className={'buttonOutline'} onClick={redirectWithPrice}>

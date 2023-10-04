@@ -360,7 +360,16 @@ const siteRedirects = {
           {
             to: "/learn/workshops",
             from: "/learn/workshop"
-          }
+          },
+           // Partners to AWS whilst in development
+           {
+            to: "/",
+            from: "/partners"
+          },
+          {
+            to: "/",
+            from: "/partners/aws"
+          },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

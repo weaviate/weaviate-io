@@ -261,10 +261,6 @@ const config = {
                                 to: '/company/about-us',
                             },
                             {
-                                label: 'Partners',
-                                to: '/partners',
-                            },
-                            {
                                 label: 'Playbook',
                                 to: '/company/playbook',
                             },
@@ -371,10 +367,7 @@ const config = {
                     {
                         title: 'Community',
                         items: [
-                            {
-                                label: 'Stack Overflow',
-                                to: 'https://stackoverflow.com/tags/weaviate/',
-                            },
+
                             {
                                 label: 'Slack',
                                 to: 'https://weaviate.io/slack',
@@ -382,10 +375,6 @@ const config = {
                             {
                                 label: 'Twitter',
                                 to: 'https://twitter.com/weaviate_io',
-                            },
-                            {
-                                label: 'Instagram',
-                                to: 'https://instagram.com/weaviate',
                             },
                             {
                                 label: 'GitHub',
