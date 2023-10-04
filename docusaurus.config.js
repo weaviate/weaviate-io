@@ -261,10 +261,6 @@ const config = {
                                 to: '/company/about-us',
                             },
                             {
-                                label: 'Partners',
-                                to: '/partners/aws',
-                            },
-                            {
                                 label: 'Playbook',
                                 to: '/company/playbook',
                             },

@@ -363,9 +363,13 @@ const siteRedirects = {
           },
            // Partners to AWS whilst in development
            {
-            to: "/partners/aws",
+            to: "/",
             from: "/partners"
-          }
+          },
+          {
+            to: "/",
+            from: "/partners/aws"
+          },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
