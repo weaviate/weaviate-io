@@ -186,28 +186,28 @@
 }
 
 .latestModule::-webkit-scrollbar-thumb:horizontal {
-  background: #000;
-  border-radius: 10px;
+  background: #000 !important;
+  border-radius: 10px !important;
 }
 
 .latestModule::-webkit-scrollbar {
-  background-color: #f5f5f5;
-  height: 14px;
+  background-color: #f5f5f5 !important;
+  height: 14px !important;
 }
 
 .latestModule::-webkit-scrollbar-thumb {
-  background: #2b3854;
-  margin-bottom: 10px;
-  width: 85px;
+  background: #2b3854 !important;
+  margin-bottom: 10px !important;
+  width: 85px !important;
 }
 
 .latestModule::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
+  background: #b30000 !important;
 }
 
 .latestModule::-webkit-scrollbar-track {
-  border: 1px solid #130c49;
-  border-radius: 8px;
+  border: 1px solid #130c49 !important;
+  border-radius: 8px !important;
 }
 
 .buttons {
