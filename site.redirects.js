@@ -343,6 +343,24 @@ const siteRedirects = {
             to: '/developers/weaviate/installation',
             from: '/developers/weaviate/current/getting-started/installation',
         },
+        // Pricing to Products redirects
+        {
+            to: "/products",
+            from: "/pricing",
+          },
+          {
+            to: "/products/serverless",
+            from: "/pricing/saas",
+          },
+          {
+            to: "/products/byoc",
+            from: "/pricing/hybrid",
+          },
+          // workshops
+          {
+            to: "/learn/workshops",
+            from: "/learn/workshop"
+          }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

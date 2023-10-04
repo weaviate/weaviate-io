@@ -56,49 +56,50 @@ export default function Jobs() {
   }, [rawJobs]);
 
   return (
-    <div className="container" id="jobs">
-      <div className={styles.title}>
-        <h2>Let’s work together</h2>
-        <p>
-          All positions at Weaviate are fully remote. However, certain positions
-          are located in specific regions.
-        </p>
-      </div>
-
-      <div className={styles.fakeWidth}>
-        <div className={styles.jobBox}>
-          <div className={styles.jobHeader}>
-            <p>ROLE</p>
-            <p className={styles.removeInMobile}>TEAM</p>
-            <p className={styles.removeInMobile}>LOCATION</p>
-          </div>
-          {tailorjobs &&
-            tailorjobs.length > 0 &&
-            tailorjobs.map((job) => (
-              <a
-                key={job.id}
-                className={styles.jobContent}
-                href={job.link}
-                target="_blank"
-              >
-                <p>{job.title}</p>
-                <p className={styles.removeInMobile}>{job.departament}</p>
-                <p className={styles.removeInMobile}>
-                  {job.remote && 'Remote'}
-                </p>
-              </a>
-            ))}
+    <div className={styles.jobBoard}>
+      <div className="container" id="jobs">
+        <div className={styles.title}>
+          <h2>Let’s work together</h2>
+          <p>
+            All positions at Weaviate are fully remote. However, certain
+            positions are located in specific regions.
+          </p>
         </div>
-      </div>
-      <div className={styles.titleFooter}>
-        <p>
-        Do you have any questions? Feel free to reach out, we're happy to help!
-        </p>
-      </div>
-      <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="mailto:careers@weaviate.io">
-          Contact us
-        </Link>
+
+        <div className={styles.fakeWidth}>
+          <div className={styles.jobBox}>
+            <div className={styles.jobHeader}>
+              <p>ROLE</p>
+              <p className={styles.removeInMobile}>TEAM</p>
+              <p className={styles.removeInMobile}>LOCATION</p>
+            </div>
+            {tailorjobs &&
+              tailorjobs.length > 0 &&
+              tailorjobs.map((job) => (
+                <a
+                  key={job.id}
+                  className={styles.jobContent}
+                  href={job.link}
+                  target="_blank"
+                >
+                  <p>{job.title}</p>
+                  <p className={styles.removeInMobile}>{job.departament}</p>
+                  <p className={styles.removeInMobile}>
+                    {job.remote && 'Remote'}
+                  </p>
+                </a>
+              ))}
+          </div>
+        </div>
+        <div className={styles.titleFooter}></div>
+        <div className={styles.buttons}>
+          <Link
+            className={styles.buttonOutline}
+            to="mailto:careers@weaviate.io"
+          >
+            Let’s have a chat
+          </Link>
+        </div>
       </div>
     </div>
   );

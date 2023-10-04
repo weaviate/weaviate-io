@@ -1,3 +1,12 @@
+.introBg {
+  background: #130c49;
+  color: white;
+
+  h2 {
+    color: white;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: 4fr 2fr 2fr 1fr;
@@ -85,17 +94,4 @@
   // @media screen and (max-width: 860px) {
   //     display: none;
   // }
-}
-
-
-
-[data-theme='light'] {
-  .textGrid {
-    p {
-      color: rgba(46, 49, 143);
-    }
-    h2 {
-      color: rgba(46, 49, 143);
-    }
-  }
 }

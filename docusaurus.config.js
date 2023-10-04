@@ -12,6 +12,8 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+
+
     title: 'Weaviate - vector database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
@@ -102,6 +104,7 @@ const config = {
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
 
+
         {
             // styles for math equations
             href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -110,6 +113,7 @@ const config = {
                 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
+
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -185,51 +189,20 @@ const config = {
                 },
                 items: [
                     {
-                        type: 'dropdown',
-                        label: 'Weaviate Cloud Services',
+                        // type: 'dropdown',
+                        label: 'Products',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Pricing',
-                                to: '/pricing',
-                            },
-                            {
-                                label: 'Weaviate Cloud console',
-                                href: 'https://console.weaviate.cloud',
-                            },
-                        ],
-                    },
-                    {
-                        type: 'dropdown',
-                        label: 'Company',
-                        position: 'right',
-                        items: [
-                            {
-                                label: 'About us',
-                                to: '/company/about-us',
-                            },
-                            {
-                                label: 'Playbook',
-                                to: '/company/playbook',
-                            },
-                            {
-                                label: 'Careers',
-                                to: '/company/careers',
-                            },
-                            {
-                                label: 'Investors',
-                                to: '/company/investors',
-                            },
-                            {
-                                label: 'Contact us',
-                                href: 'mailto:hello@weaviate.io',
-                            },
-                        ],
-                    },
-                    {
-                        label: 'Blog',
-                        to: '/blog',
-                        position: 'right',
+                        to: '/products',
+                        // items: [
+                        //     {
+                        //         label: 'Pricing',
+                        //         to: '/pricing',
+                        //     },
+                        //     {
+                        //         label: 'Weaviate Cloud console',
+                        //         href: 'https://console.weaviate.cloud',
+                        //     },
+                        // ],
                     },
                     {
                         type: 'dropdown',
@@ -279,6 +252,49 @@ const config = {
                         ],
                     },
                     {
+                        type: 'dropdown',
+                        label: 'Company',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'About us',
+                                to: '/company/about-us',
+                            },
+                            {
+                                label: 'Partners',
+                                to: '/partners',
+                            },
+                            {
+                                label: 'Playbook',
+                                to: '/company/playbook',
+                            },
+                            {
+                                label: 'Careers',
+                                to: '/company/careers',
+                            },
+                            {
+                                label: 'Investors',
+                                to: '/company/investors',
+                            },
+                            {
+                                label: 'Contact us',
+                                href: 'mailto:hello@weaviate.io',
+                            },
+                        ],
+                    },
+                    {
+                        label: 'Blog',
+                        to: '/blog',
+                        position: 'right',
+                    },
+                    {
+                        label: 'Try Now',
+                        className: 'tryNow',
+                        to: 'https://console.weaviate.cloud',
+                        position: 'right',
+
+                    },
+                   /*  {
                         to: '/developers/academy',
                         label: ' ',
                         position: 'right',
@@ -327,10 +343,11 @@ const config = {
                         position: 'right',
                         // target: '_blank',
                         className: 'fas fa-lg fa-microphone',
-                    },
+                    },*/
                     {
                         type: 'search',
                         position: 'right',
+                        className: 'hiddenSearch'
                     },
                 ],
             },
@@ -339,19 +356,44 @@ const config = {
                 style: 'dark',
                 links: [
                     {
+                        title: 'Weaviate Cloud Services',
+                        items: [
+                            {
+                                label: 'Pricing',
+                                to: '/pricing',
+                            },
+                            {
+                                label: 'Console',
+                                to: 'https://console.weaviate.cloud/',
+                            },
+                        ],
+                    },
+                    {
                         title: 'Community',
                         items: [
                             {
                                 label: 'Stack Overflow',
-                                href: 'https://stackoverflow.com/tags/weaviate/',
+                                to: 'https://stackoverflow.com/tags/weaviate/',
                             },
                             {
                                 label: 'Slack',
-                                href: 'https://weaviate.io/slack',
+                                to: 'https://weaviate.io/slack',
                             },
                             {
                                 label: 'Twitter',
-                                href: 'https://twitter.com/weaviate_io',
+                                to: 'https://twitter.com/weaviate_io',
+                            },
+                            {
+                                label: 'Instagram',
+                                to: 'https://instagram.com/weaviate',
+                            },
+                            {
+                                label: 'GitHub',
+                                to: 'https://twitter.com/weaviate_io',
+                            },
+                            {
+                                label: 'Forum',
+                                to: 'https://forum.weaviate.io',
                             },
                         ],
                     },
@@ -360,23 +402,23 @@ const config = {
                         items: [
                             {
                                 label: 'Amsterdam',
-                                href: 'https://www.meetup.com/weaviate-amsterdam',
+                                to: 'https://www.meetup.com/weaviate-amsterdam',
                             },
                             {
                                 label: 'Boston',
-                                href: 'https://www.meetup.com/weaviate-boston',
+                                to: 'https://www.meetup.com/weaviate-boston',
                             },
                             {
                                 label: 'New York',
-                                href: 'https://www.meetup.com/weaviate-NYC',
+                                to: 'https://www.meetup.com/weaviate-NYC',
                             },
                             {
                                 label: 'San Francisco',
-                                href: 'https://www.meetup.com/weaviate-san-francisco',
+                                to: 'https://www.meetup.com/weaviate-san-francisco',
                             },
                             {
                                 label: 'Toronto',
-                                href: 'https://www.meetup.com/weaviate-toronto',
+                                to: 'https://www.meetup.com/weaviate-toronto',
                             },
                         ],
                     },
@@ -397,7 +439,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate',
+                                to: 'https://github.com/weaviate/weaviate',
                             },
                         ],
                     },
@@ -405,16 +447,26 @@ const config = {
                 copyright: `Copyright © ${new Date().getFullYear()} Weaviate, B.V. Built with Docusaurus.`,
             },
             colorMode: {
-                defaultMode: 'dark',
+                defaultMode: 'light',
                 disableSwitch: false,
-                respectPrefersColorScheme: true,
+                respectPrefersColorScheme: false,
             },
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
                 additionalLanguages: ['java'],
             },
+
+            customConfig: {
+                colorMode: {
+                  defaultMode: 'light',
+                  disableSwitch: false,
+                  respectPrefersColorScheme: false,
+                },
+              },
         }),
+
+
 };
 
 module.exports = config;
