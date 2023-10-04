@@ -28,7 +28,7 @@ export default function HomepageLatestInsights() {
           Go to Blog
         </Link>
         <Link className={styles.buttonOutline} to="/learn/workshops">
-          Check the Podcast
+          Go to Workshops
         </Link>
       </div>
     </div>
