@@ -1,0 +1,30 @@
+[
+  {
+    "question": "Can I use my committed discount for the Weaviate BYOC cluster?",
+    "answer": "Yes, you can. Our team can also help negotiate the best price for you."
+  },
+  {
+    "question": "Can you tailor my infrastructure needs to optimize for pricing?",
+    "answer": "Yes, in some cases, we can get to a 75% reduction in infrastructure costs when we optimize specifically for your use case."
+  },
+  {
+    "question": "How does performance and storage optimization work?",
+    "answer": "Within Weaviate you can store vector embeddings for both storage optimization as well as performance optimization. If you <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#conversion-of-an-existing-class-to-use-pq\" target=\"_blank\">enable compression</a>, Weaviate will automatically count these as compressed vectors."
+  },
+  {
+    "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCS?",
+    "answer": "No, Weaviate Cloud Services (WCS) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
+  },
+  {
+    "question": "Is there a discount for non-profits, startups, or students?",
+    "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
+  },
+  {
+    "question": "Is Weaviate Cloud Services SOC2 compliant?",
+    "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
+  },
+  {
+    "question": "Can I store data from different models with different embedding sizes?",
+    "answer": "Yes."
+  }
+]

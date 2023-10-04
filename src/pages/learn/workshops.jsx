@@ -1,32 +1,27 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import styles from '/src/components/Workshop/styles.module.scss';
-import Head from '@docusaurus/Head';
+import { MetaSEO } from '/src/theme/MetaSEO';
 
-export default function Workshops() {
+import Header from '/src/components/Workshops/header';
+
+import ThemeSwitch from '/src/components/ThemeSwitch';
+
+export default function WorkshopPage() {
   return (
-    <Layout title="Workshops" description="Weaviate Workshops Page">
-      <Head>
+    <div className="custom-page noBG">
+      <Layout>
+        <MetaSEO img="og/company/investors.jpg" />
+        <Header />
         <script
           src="https://static.elfsight.com/platform/platform.js"
           data-use-service-core
           defer
         ></script>
-      </Head>
-      <div className="custom-page">
         <div className="container">
-          <div className={styles.box}>
-            <h1>Weaviate Workshops</h1>
-            <p className="text-center">
-              We believe that the next wave of software infrastructure is
-              AI-first and that a strong open-source community is a basis for
-              creating high-quality software. Our workshops deliver new
-              information and details on our service.
-            </p>
-          </div>
-          <div className="elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80"></div>
+          <div class="elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80"></div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+      <ThemeSwitch />
+    </div>
   );
 }

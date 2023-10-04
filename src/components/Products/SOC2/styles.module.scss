@@ -1,0 +1,144 @@
+.light {
+  .box {
+    text-align: left;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #130e46;
+  }
+
+  .soc2Box {
+    flex: 1 290px;
+    h2 {
+      color: white;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.dark {
+  .box {
+    text-align: left;
+    color: #130c49;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #ededed;
+  }
+
+  .soc2Box {
+    flex: 1 290px;
+    h2 {
+      color: #130c49;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #130c49;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-dark-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}

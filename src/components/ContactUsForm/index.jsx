@@ -7,7 +7,10 @@ export default function ContactUsForm() {
   const [name, setName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const options = [
-    { value: 'conferenceTalk', text: 'Conference Talk' },
+    {
+      value: 'conferenceTalk',
+      text: 'Conference Talk',
+    },
     { value: 'blogPost', text: 'Blog post' },
     {
       value: 'searchEngine',
@@ -43,65 +46,74 @@ export default function ContactUsForm() {
   };
 
   return (
-    <div className="container">
-      <form className={styles.form} id="contact-sales" onSubmit={handleSubmit}>
-        <div className={styles.intro}>
-          <div className={styles.hybridPng} />
-          <h2 id="contact-sales">Get Started with Weaviate Hybrid-SaaS</h2>
-          <p>
-            Please leave your contact details below and one of our sales representatives will reach out to you within 24 hours.
-          </p>
-        </div>
-        <div className={styles.formWrapper}>
-          <input
-            autoComplete="off"
-            className={styles.input}
-            type="text"
-            name="name"
-            placeholder="Name"
-            required={true}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            autoComplete="off"
-            className={styles.input}
-            type="email"
-            name="email"
-            required={true}
-            placeholder="Email"
-            value={emailAddress}
-            onChange={(e) => setEmailAddress(e.target.value)}
-          />
-        </div>
-        <div className={styles.selectWrapper}>
-          <label htmlFor="foundHow">How did you find us:</label>
+    <div className={styles.contactBg}>
+      <div className="container">
+        <form
+          className={styles.form}
+          id="contact-sales"
+          onSubmit={handleSubmit}
+        >
+          <div className={styles.intro}>
+            <div className={styles.hybridPng} />
+            <h2 id="contact-sales">
+              Get Started with Weaviate Bring Your Own Cloud
+            </h2>
+            <p>
+              Please leave your contact details below and one of our sales
+              representatives will reach out to you within 24 hours.
+            </p>
+          </div>
+          <div className={styles.formWrapper}>
+            <input
+              autoComplete="off"
+              className={styles.input}
+              type="text"
+              name="name"
+              placeholder="Name"
+              required={true}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              autoComplete="off"
+              className={styles.input}
+              type="email"
+              name="email"
+              required={true}
+              placeholder="Email"
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
+            />
+          </div>
+          <div className={styles.selectWrapper}>
+            <label htmlFor="foundHow">How did you hear about Weaviate?*</label>
 
-          <select
-            value={selected}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            {options.map((option, index) => {
-              return (
-                <option key={option.value} value={option.value}>
-                  {option.text}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div className={styles.actionBtn}>
-          {thx === false && (
-            <button className={styles.button} type="submit">
-              Complete registration
-            </button>
-          )}
-          {thx === true && (
-            <p>Thank you! You've received a confirmation email 🙏</p>
-          )}
-        </div>
-      </form>
+            <select
+              value={selected}
+              onChange={handleChange}
+              className={styles.select}
+            >
+              {options.map((option, index) => {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.text}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={styles.actionBtn}>
+            {thx === false && (
+              <button className={styles.button} type="submit">
+                Complete registration
+              </button>
+            )}
+            {thx === true && (
+              <p>Thank you! You've received a confirmation email 🙏</p>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

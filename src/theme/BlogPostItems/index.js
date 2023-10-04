@@ -2,18 +2,25 @@ import React from 'react';
 import {BlogPostProvider} from '@docusaurus/theme-common/internal';
 import BlogPostItem from '@theme/BlogPostItem';
 import styles from './styles.module.scss';
+import ThemeSwitch from '../../components/ThemeSwitch';
+
 
 export default function BlogPostItems({
   items,
   component: BlogPostItemComponent = BlogPostItem,
 }) {
   return (
-    <div className={styles.blogs}>
+
+
+<div className={styles.blogs}>
+
       {items.map(({content: BlogPostContent}) => (
+
         <BlogPostProvider
           key={BlogPostContent.metadata.permalink}
           content={BlogPostContent}>
           <BlogPostItemComponent>
+
             <div className={styles.blogCard}>
 
               <a className={styles.blogCardImage} href={BlogPostContent.metadata.permalink}>
@@ -45,9 +52,14 @@ export default function BlogPostItems({
                 <span>{BlogPostContent.metadata.formattedDate} · {Math.round(BlogPostContent.metadata.readingTime)} min read</span>
               </div>
             </div>
+
+<ThemeSwitch/>
           </BlogPostItemComponent>
         </BlogPostProvider>
+
       ))}
+
     </div>
+
   );
 }
