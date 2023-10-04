@@ -12,19 +12,23 @@
 		"title": "Developer Advocate",
 		"photo": "adam.jpg",
 		"linkedin": "adam-jeremy-chan",
-		"twitter": "aj__chan"
+		"twitter": "aj__chan",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Alea Abed",
 		"title": "Head of Marketing",
 		"photo": "alea.png",
-		"linkedin": "alea-abed"
+		"linkedin": "alea-abed",
+		"team": "marketing"
 	},
 	{
 		"name": "André Duis",
 		"title": "Head of Cloud Strategy",
 		"photo": "andre.png",
-		"linkedin": "andre-duis"
+		"linkedin": "andre-duis",
+		"team": "cloud-strategy"
+
 	},
 	{
 		"name": "Andrzej Liszka",
@@ -72,7 +76,8 @@
 		"name": "Cari Liebenberg",
 		"title": "Platform Engineer",
 		"photo": "cari.jpeg",
-		"linkedin": "cari-liebenberg-1b40b0a6"
+		"linkedin": "cari-liebenberg-1b40b0a6",
+		"team": "wcs"
 	},
 	{
 		"name": "Charles Harr",
@@ -88,13 +93,15 @@
 		"photo": "connor.png",
 		"linkedin": "connor-shorten-34923a178/",
 		"twitter": "cshorten30",
-		"github": "CShorten"
+		"github": "CShorten",
+		"team": "applied-research"
 	},
 	{
 		"name": "David Cuthbert",
 		"title": "Technical Documentation Writer",
 		"photo": "dave.jpg",
-		"linkedin": "davecuthbert"
+		"linkedin": "davecuthbert",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Dirk Kulawiak",
@@ -108,7 +115,8 @@
 		"name": "Duda Nogueira",
 		"title": "Community Technical Support",
 		"photo": "duda.jpg",
-		"linkedin": "dudanogueira"
+		"linkedin": "dudanogueira",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Emma O'Keefe",
@@ -164,7 +172,8 @@
 		"name": "Griffin Foster",
 		"title": "Enterprise Account Executive",
 		"photo": "griffin.jpg",
-		"linkedin": "griffin-foster"
+		"linkedin": "griffin-foster",
+		"team": "sales"
 	},
 	{
 		"name": "JP Hwang",
@@ -211,13 +220,16 @@
 		"name": "Ken Macinnis",
 		"title": "Solution Engineer",
 		"photo": "ken.png",
-		"linkedin": "kmacinnis"
+		"linkedin": "kmacinnis",
+		"team": "customer-success"
+
 	},
 	{
 		"name": "Laura Stoye",
 		"title": "Executive Assistant",
 		"photo": "laura.jpg",
-		"linkedin": "laurastoye"
+		"linkedin": "laurastoye",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Leonie Monigatti",
@@ -239,7 +251,8 @@
 		"name": "Marion Nehring",
 		"title": "Community Manager",
 		"photo": "marion.jpg",
-		"linkedin": "marionnehring"
+		"linkedin": "marionnehring",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Mike Wyer",
@@ -254,13 +267,15 @@
 		"title": "Core Engineer",
 		"photo": "parker.png",
 		"linkedin": "parkerduckworth",
-		"github": "parkerduckworth"
+		"github": "parkerduckworth",
+		"team": "cloud"
 	},
 	{
 		"name": "Patrick Das",
 		"title": "Executive Business Manager",
 		"photo": "patrick.jpg",
-		"linkedin": "patrickdas"
+		"linkedin": "patrickdas",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Peter Schramm",
@@ -345,14 +360,16 @@
 		"name": "Thomas Smith",
 		"title": "Polyglot Engineer",
 		"photo": "tommy.jpg",
-		"linkedin": "tbs181194"
+		"linkedin": "tbs181194",
+		"team": "customer-success"
 	},
 	{
 		"name": "Victoria Slocum",
 		"title": "Machine Learning Engineer",
 		"photo": "victoria.jpg",
 		"linkedin": "victorialslocum",
-		"twitter": "victorialslocum"
+		"twitter": "victorialslocum",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Weronika Krajcarz",

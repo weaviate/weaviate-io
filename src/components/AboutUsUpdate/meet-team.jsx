@@ -35,9 +35,7 @@ export default function MeetTheTeam() {
             </Link>
             <Link onClick={() => handleTeamFilter('ceo-team')}>#CEO team</Link>
 
-            <Link onClick={() => handleTeamFilter('cloud-services')}>
-              #Cloud Services
-            </Link>
+            <Link onClick={() => handleTeamFilter('cloud')}>#Cloud</Link>
             <Link onClick={() => handleTeamFilter('cloud-strategy')}>
               #Cloud Strategy
             </Link>
