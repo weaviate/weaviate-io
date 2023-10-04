@@ -39,7 +39,7 @@ export default function MeetTheTeam() {
             <Link onClick={() => handleTeamFilter('cloud-strategy')}>
               #Cloud Strategy
             </Link>
-            <Link onClick={() => handleTeamFilter('core-engineering')}>
+            <Link onClick={() => handleTeamFilter('database')}>
               #Core Engineering
             </Link>
             <Link onClick={() => handleTeamFilter('customer-success')}>
@@ -47,7 +47,6 @@ export default function MeetTheTeam() {
             </Link>
           </div>
           <div className={styles.teamFilter}>
-            <Link onClick={() => handleTeamFilter('database')}>#Database</Link>
             <Link onClick={() => handleTeamFilter('design')}>#Design</Link>
             <Link onClick={() => handleTeamFilter('developer-growth')}>
               #Developer Growth

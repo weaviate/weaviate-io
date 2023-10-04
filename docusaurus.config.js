@@ -445,7 +445,7 @@ const config = {
                 respectPrefersColorScheme: false,
             },
             prism: {
-                theme: darkCodeTheme,
+                theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
                 additionalLanguages: ['java'],
             },
