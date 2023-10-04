@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import Link from '@docusaurus/Link';
 
 export default function PricingBusinessCritical() {
   return (
@@ -54,6 +55,11 @@ export default function PricingBusinessCritical() {
         <li>
           <div className={styles.checkIcon}></div> <span>HA optional</span>
         </li>
+      </div>
+      <div className={styles.buttonBox}>
+        <Link className={styles.buttonTry} to="#contact-sales">
+          Contact us
+        </Link>
       </div>
     </div>
   );

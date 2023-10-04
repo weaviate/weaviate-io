@@ -360,6 +360,11 @@ const siteRedirects = {
           {
             to: "/learn/workshops",
             from: "/learn/workshop"
+          },
+           // Partners to AWS whilst in development
+           {
+            to: "/partners/aws",
+            from: "/partners"
           }
     ],
     createRedirects(existingPath) {

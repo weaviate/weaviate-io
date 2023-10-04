@@ -173,6 +173,32 @@
     font-weight: 400;
   }
 
+  .buttonBox {
+    margin: auto;
+  }
+  .buttonTry {
+    border-radius: 0.3125rem;
+    border: 1px solid #1c1468;
+    background: #61bd73;
+    margin: 0 70px;
+    width: 8rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    align-items: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    transition: all 1s ease-out;
+    color: #1c1468;
+    margin: 0px 0px 20px;
+  }
+  .buttonTry:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
+  }
   .buttonOutline {
     color: #130c49;
     font-size: 1.1rem;
