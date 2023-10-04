@@ -373,6 +373,10 @@ const config = {
                                 to: 'https://weaviate.io/slack',
                             },
                             {
+                                label: 'Instagram',
+                                to: 'https://instagram.com/weaviate.io',
+                            },
+                            {
                                 label: 'Twitter',
                                 to: 'https://twitter.com/weaviate_io',
                             },
