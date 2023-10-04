@@ -160,7 +160,7 @@ client = weaviate.Client(
 There is a variety of neural search frameworks that use Weaviate under the hood to store, search through, and retrieve vectors.
 
 - deepset's [haystack](https://www.deepset.ai/weaviate-vector-search-engine-integration)
-- Jina's [DocArray](https://docarray.jina.ai/advanced/document-store/weaviate/)
+- Jina's [DocArray](https://github.com/docarray/docarray)
 
 # References documentation
 
