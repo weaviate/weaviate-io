@@ -363,11 +363,11 @@ const siteRedirects = {
           },
            // Partners to AWS whilst in development
            {
-            to: "/",
+            to: "/pricing",
             from: "/partners"
           },
           {
-            to: "/",
+            to: "/pricing",
             from: "/partners/aws"
           },
     ],
