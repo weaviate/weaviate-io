@@ -359,8 +359,8 @@ const config = {
                         title: 'Weaviate Cloud Services',
                         items: [
                             {
-                                label: 'Pricing',
-                                to: '/pricing',
+                                label: 'Products',
+                                to: '/products',
                             },
                             {
                                 label: 'Console',
