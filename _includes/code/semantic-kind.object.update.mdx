@@ -31,42 +31,37 @@ client.data_object.replace(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-var className = 'Author';
-var id = '36ddd591-2dee-4e7e-a3cc-eb86d30a4303';
+const className = 'Author';
+const id = '36ddd591-2dee-4e7e-a3cc-eb86d30a4303';
 
-client.data
-    .getterById()
-    .withClassName(className)
-    .withId(id)
-    .do()
-    .then(res => {
-        // alter the schema
-        const schema = res.properties;
-        schema.name = 'J. Kantor';
-        return client.data
-            .updater()
-            .withId(id)
-            .withClassName(thingClassName)
-            .withProperties(schema)
-            .withConsistencyLevel('ALL')  // default QUORUM
-            .do();
-        })
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => {
-        console.error(err)
-    });
+const response = await client.data
+  .getterById()
+  .withClassName(className)
+  .withId(id)
+  .do()
+  .then(res => {
+    // alter the schema
+    const schema = res.properties;
+    schema.name = 'J. Kantor';
+    return client.data
+      .updater()
+      .withId(id)
+      .withClassName(className)
+      .withProperties(schema)
+      .withConsistencyLevel('ALL')  // default QUORUM
+      .do();
+  });
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -150,7 +145,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X PATCH \
     -H "Content-Type: application/json" \
     -d '{

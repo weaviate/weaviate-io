@@ -2,7 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
@@ -35,7 +34,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 />
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
@@ -51,12 +50,12 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 package main
 
 import (
-  "context"
-  "fmt"
+	"context"
+	"encoding/json"
+	"fmt"
 
-  "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
 func main() {
@@ -64,37 +63,41 @@ func main() {
     Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
     Scheme:  "https",
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
-    Headers: map[string]string{"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY"},  // Replace with your inference API key
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
   }
-  client, err := weaviate.NewClient(cfg)
-  if err != nil {
-    panic(err)
-  }
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
 
-  fields := []graphql.Field{
-    {Name: "question"},
-    {Name: "answer"},
-    {Name: "category"},
-  }
+	fields := []graphql.Field{
+		{Name: "question"},
+		{Name: "answer"},
+		{Name: "category"},
+	}
 
-  nearText := client.GraphQL().
-    NearTextArgBuilder().
-    WithConcepts([]string{"biology"})
+	nearText := client.GraphQL().
+		NearTextArgBuilder().
+		WithConcepts([]string{"biology"})
 
-  generativeSearch := graphql.NewGenerativeSearch().SingleResult("\"Explain {answer} as you might to a five-year-old.\"")
+	generativeSearch := graphql.NewGenerativeSearch().SingleResult("Explain {answer} as you might to a five-year-old.")
 
-  result, err := client.GraphQL().Get().
-    WithClassName("Question").
-    WithFields(fields...).
-    WithNearText(nearText).
-    WithLimit(2).
-	WithGenerativeSearch(generativeSearch).
-    Do(context.Background())
-  if err != nil {
-    panic(err)
-  }
+	result, err := client.GraphQL().Get().
+		WithClassName("Question").
+		WithFields(fields...).
+		WithNearText(nearText).
+		WithLimit(2).
+		WithGenerativeSearch(generativeSearch).
+		Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
 
-  fmt.Printf("%v", result)
+	jsonOutput, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(jsonOutput))
 }
 ```
 
@@ -118,7 +121,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-HuggingFace-Api-Key", "YOUR-HUGGINGFACE-API-KEY");
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
     Config config = new Config("https", "some-endpoint.weaviate.network/", headers);  // Replace with your endpoint
     WeaviateClient client = new WeaviateClient(config);
@@ -162,13 +165,13 @@ public class App {
 ```bash
 echo '{
   "query": "{
-    Get{
+    Get {
       Question (
         limit: 2
         nearText: {
           concepts: [\"biology\"],
         }
-      ){
+      ) {
         question
         answer
         category
@@ -187,10 +190,11 @@ echo '{
       }
     }
   }"
-}' | tr -d "\n" | curl \
+}' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-HuggingFace-Api-Key: YOUR_HUGGINGFACE_API_KEY" \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
 ```

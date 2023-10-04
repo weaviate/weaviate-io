@@ -63,6 +63,7 @@ You need to configure the CLI tool before you can interact with you Weaviate ins
   {
     "url": "http://localhost:8080",
     "auth": {
+        "type": "client_secret",
         "secret": <your_client_secret>
     }
   }
@@ -73,8 +74,20 @@ You need to configure the CLI tool before you can interact with you Weaviate ins
   {
     "url": "http://localhost:8080",
     "auth": {
+        "type": "username_and_password",
         "user": <user name>,
         "pass": <user password>
+    }
+  }
+  ```
+  or
+
+  ```json
+  {
+    "url": "http://localhost:8080",
+    "auth": {
+        "type": "api_key",
+        "api_key": <api key>
     }
   }
   ```

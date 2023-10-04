@@ -1,6 +1,6 @@
 ---
 title: reranker-transformers
-sidebar_position: 11
+sidebar_position: 55
 image: og/docs/modules/text2vec-transformers.jpg
 # tags: ['rerank', 'transformers']
 ---

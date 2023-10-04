@@ -11,7 +11,7 @@ client = weaviate.Client(
 # Class definition object. Weaviate's autoschema feature will infer properties when importing.
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-openai",
+    "vectorizer": "none",
 }
 
 # Add the class to the schema
@@ -24,8 +24,8 @@ resp = requests.get(url)
 data = json.loads(resp.text)
 
 # Configure a batch process
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
-    batch.batch_size=100
     # Batch import all Questions
     for i, d in enumerate(data):
         print(f"importing question: {i+1}")
@@ -36,14 +36,7 @@ with client.batch as batch:
             "category": d["Category"],
         }
 
-        client.batch.add_data_object(properties, "Question", vector=d["Vector"])
-
-# ===== Test import =====
-schema = client.schema.get()
-obj_count = client.query.aggregate("Question").with_meta_count().do()
-
-assert "Question" in [c["class"] for c in schema["classes"]]
-assert obj_count["data"]["Aggregate"]["Question"][0]["meta"]["count"] == 10
+        batch.add_data_object(properties, "Question", vector=d["Vector"])
 
 # ===== Query =====
 nearVector = {
@@ -57,6 +50,13 @@ result = client.query.get(
     ).with_limit(2).with_additional(['certainty']).do()
 
 print(json.dumps(result, indent=4))
+
+# ===== Test import =====
+schema = client.schema.get()
+obj_count = client.query.aggregate("Question").with_meta_count().do()
+
+assert "Question" in [c["class"] for c in schema["classes"]]
+assert obj_count["data"]["Aggregate"]["Question"][0]["meta"]["count"] == 10
 
 # ===== Test query results =====
 assert len(result["data"]["Get"]["Question"]) == 2

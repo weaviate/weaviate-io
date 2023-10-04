@@ -34,7 +34,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 />
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
@@ -64,7 +64,7 @@ func main() {
     Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
     Scheme:  "https",
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
-    Headers: map[string]string{"X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY"},  // Replace with your inference API key
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -121,7 +121,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-HuggingFace-Api-Key", "YOUR-HUGGINGFACE-API-KEY");
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
     Config config = new Config("https", "some-endpoint.weaviate.network/", headers);  // Replace with your endpoint
     WeaviateClient client = new WeaviateClient(config);
@@ -165,7 +165,7 @@ public class App {
 ```bash
 echo '{
   "query": "{
-    Get{
+    Get {
       Question (
         limit: 2
         where: {
@@ -176,17 +176,18 @@ echo '{
         nearText: {
           concepts: [\"biology\"],
         }
-      ){
+      ) {
         question
         answer
         category
       }
     }
   }"
-}' | tr -d "\n" | curl \
+}' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-HuggingFace-Api-Key: YOUR_HUGGINGFACE_API_KEY" \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
 ```

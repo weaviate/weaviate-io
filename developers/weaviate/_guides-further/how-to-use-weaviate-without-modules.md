@@ -32,7 +32,7 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ## Set up Weaviate
 
-### Download the Docker Compose configuration file.
+### Download the Docker Compose file.
 <!-- TODO: {{site.weaviate_version needs to be replaced}} -->
 ```bash
 curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
@@ -59,7 +59,7 @@ Since we do not need any vectorizer modules, we can leave the `ENABLE_MODULES` e
 ### Start up Weaviate
 Start up an instance of Weaviate by running:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Weaviate should now be running and exposed on your host port `8080`. You can verify with `docker ps` or simply send a test query to Weaviate, such as the below:

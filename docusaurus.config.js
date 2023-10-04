@@ -29,6 +29,22 @@ const config = {
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
     plugins: [
+
+        [
+            '@docusaurus/plugin-google-gtag',
+            {
+                trackingID: process.env.GOOGLE_TRACKING_ID || 'None',
+                anonymizeIP: true,
+            },
+        ],
+
+        [
+            '@docusaurus/plugin-google-tag-manager',
+            {
+                containerId: process.env.GOOGLE_CONTAINER_ID || 'None',
+            },
+        ],
+
         'docusaurus-plugin-sass',
         ['@docusaurus/plugin-client-redirects', siteRedirects],
 
@@ -151,12 +167,18 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar',
+                id: 'announcement-bar-python-client',
                 content:
-                    'We are excited to announce a huge update to <a target="_blank" rel="noopener noreferrer" href="https://console.weaviate.cloud/">Weaviate Cloud Services (WCS)</a> · check out the dedicated <a target="_blank" rel="noopener noreferrer" href="/developers/wcs">WCS docs</a>.',
+                    `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/blog/collections-python-client-preview">Shape the Future - Try Our New Python Client API</a> to learn more.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
+            },
+            docs: {
+                sidebar: {
+                    hideable: true,
+                    autoCollapseCategories: true
+                },
             },
             navbar: {
                 title: '',
@@ -207,8 +229,7 @@ const config = {
                             },
                             {
                                 label: 'Workshops',
-                                to: 'learn/workshops'
-
+                                to: '/learn/workshops',
                             },
                             {
                                 label: 'Contributor Guide',

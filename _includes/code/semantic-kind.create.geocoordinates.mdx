@@ -25,33 +25,29 @@ data_uuid = client.data_object.create(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .creator()
-      .withClassName('Publication')
-      .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
-      .withProperties({
-        'name': 'Elsevier',
-        'headquartersGeoLocation': {
-          'latitude': 52.3932696,
-          'longitude': 4.8374263
-        })
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.data
+  .creator()
+  .withClassName('Publication')
+  .withId('df48b9f6-ba48-470c-bf6a-57657cb07390')
+  .withProperties({
+    'name': 'Elsevier',
+    'headquartersGeoLocation': {
+      'latitude': 52.3932696,
+      'longitude': 4.8374263,
+    },
+  })
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -142,7 +138,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

@@ -14,8 +14,14 @@ import Badges from '/_includes/badges.mdx';
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
 * Added in Weaviate `v1.19.1`.
-* You need an API key for a PaLM API to use this module.
+* You need an API key for a PaLM API to use this module. The module uses the Google Cloud `access token`.
+* **Its usage may incur costs**.
+    * Please check the vendor pricing (e.g. check Google Vertex AI pricing).
 * The default model is `chat-bison`.
+
+:::caution Ensure PaLM API is enabled on your Google Cloud project
+As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
+:::
 
 ## Introduction
 
@@ -64,7 +70,7 @@ Optionally (not recommended), you can provide the PaLM API key as an environment
 <details>
   <summary>How to provide the PaLM API key as an environment variable</summary>
 
-During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `docker-compose` file, like this:
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
@@ -74,7 +80,7 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 
 </details>
 
-### Token expiry for Google Cloud users
+### Token expiration for Google Cloud users
 
 import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
@@ -86,9 +92,9 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### Configuration file (Weaviate open source only)
+### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Palm module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-palm,generative-palm'

@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.update.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.update_test.go';
 
 ## Overview
 
@@ -50,12 +52,30 @@ To update the values of a list of properties in an object, [make a `PATCH` reque
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// UpdateProps START"
       endMarker="// UpdateProps END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -74,9 +94,21 @@ If you want to update an object's vector embedding, you can specify the vector p
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+  >  Coming soon
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+  >  Coming soon
 
   </TabItem>
 </Tabs>
@@ -96,12 +128,30 @@ To replace an object in its entirety, [make a `PUT` request to the `/v1/objects`
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// Replace START"
       endMarker="// Replace END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -130,12 +180,30 @@ To delete properties from a specific object, you can replace the object with a c
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// DelProps START"
       endMarker="// DelProps END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="go"
     />
   </TabItem>
 </Tabs>

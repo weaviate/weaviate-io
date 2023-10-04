@@ -50,30 +50,25 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withFields('title _additional {spellCheck { change {corrected original} didYouMean location originalText}}')
-      .withNearText({
-        concepts: ['houssing prices'],
-      })
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional { spellCheck { change {corrected original} didYouMean location originalText } }')
+  .withNearText({
+    concepts: ['houssing prices'],
+  })
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -193,11 +188,11 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Article(nearText: {
-        concepts: ["houssing prices"]
+        concepts: [\"houssing prices\"]
       }) {
         title
         _additional {

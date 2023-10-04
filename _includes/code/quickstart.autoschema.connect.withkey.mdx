@@ -15,7 +15,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 />
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
@@ -44,22 +44,13 @@ func main() {
     Scheme: "https",
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
     Headers: map[string]string{
-      "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // Replace with your inference API key
+      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
     },
   }
 
   client, err := weaviate.NewClient(cfg)
   if err != nil {
       panic(err)
-  }
-
-  classObj := &models.Class{
-      Class:      "Question",
-      Vectorizer: "text2vec-huggingface",
-  }
-
-  if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
-    panic(err)
   }
 }
 ```
@@ -88,7 +79,7 @@ public class App {
     // we will create the class "Question" and the properties
     WeaviateClass clazz = WeaviateClass.builder()
       .className("Question")
-      .vectorizer("text2vec-huggingface")
+      .vectorizer("text2vec-openai")
       .build();
 
     // add the schema
@@ -114,7 +105,7 @@ echo '{
     -X POST \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
-    -H "X-HuggingFace-Api-Key: YOUR-HUGGINGFACE-API-KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```

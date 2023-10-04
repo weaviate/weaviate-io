@@ -20,10 +20,10 @@ client.schema.property.create("Article", add_prop)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
@@ -36,17 +36,12 @@ const prop = {
   name: 'onHomepage',
 };
 
-client.schema
-      .propertyCreator()
-      .withClassName(className)
-      .withProperty(prop)
-      .do()
-      .then(res => {
-    console.log(res);
-  })
-  .catch(err => {
-    console.error(err)
-  });
+const response = await client.schema
+  .propertyCreator()
+  .withClassName(className)
+  .withProperty(prop)
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -129,7 +124,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

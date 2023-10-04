@@ -17,7 +17,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 ## Overview
 
-This page shows you how to perform `generative` searches using Weaviate.
+This page shows you how to perform `generative` searches.
+
+A generative search uses a large language model (LLM) to generate text based on the search results and a user-provided prompt. This technique is also called *retrieval augmented generation*, or RAG.
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)
@@ -38,9 +40,9 @@ To use the generative search feature, you must:
 <details>
   <summary>How do I <strong>configure Weaviate</strong> with a generator module?</summary>
 
-  You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant configuration file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
+  You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant Docker Compose file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
-  Here are the relevant settings from the configuration file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
+  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
 
   <Tabs groupId="modules">
 <TabItem value="OpenAI" label="OpenAI">
@@ -286,7 +288,7 @@ It should produce a response like the one below:
 
 ### Grouped task property selection
 
-:::info Requires Weaviate `v1.18.3` or higher
+:::info Available from version `v1.18.3`
 :::
 
 You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.

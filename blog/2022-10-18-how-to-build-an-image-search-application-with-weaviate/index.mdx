@@ -52,7 +52,7 @@ The `img2vec-neural` module in Weaviate is designed to solve this exact problem!
 The demo contains a `docker-compose.yml` file, which defines all the Weaviate modules required to run this demo. In this file, you will see the module, which in our case is `img2vec-neural` trained on the `ResNet-50` model. To spin up your Weaviate instance, navigate to the `nearest-neighbor-dog-search` directory from the cloned git repository, and run;
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 Once Weaviate is up, check that it is running with:
 
@@ -155,29 +155,30 @@ We will need to define the data properties that we want to upload. The function 
 ```python
 def import_data():
 
-   with client.batch as batch:
-       # Iterate over all .b64 files in the base64_images folder
-       for encoded_file_path in os.listdir("./base64_images"):
-           with open("./base64_images/" + encoded_file_path) as file:
-               file_lines = file.readlines()
+    client.batch.configure(batch_size=100)  # Configure batch
+    with client.batch as batch:
+        # Iterate over all .b64 files in the base64_images folder
+        for encoded_file_path in os.listdir("./base64_images"):
+            with open("./base64_images/" + encoded_file_path) as file:
+                file_lines = file.readlines()
 
-           base64_encoding = " ".join(file_lines)
-           base64_encoding = base64_encoding.replace("\n", "").replace(" ", "")
+                base64_encoding = " ".join(file_lines)
+                base64_encoding = base64_encoding.replace("\n", "").replace(" ", "")
 
-           # remove .b64 to get the original file name
-           image_file = encoded_file_path.replace(".b64", "")
+                # remove .b64 to get the original file name
+                image_file = encoded_file_path.replace(".b64", "")
 
-           # remove image file extension and swap - for " " to get the breed name
-           breed = re.sub(".(jpg|jpeg|png)", "", image_file).replace("-", " ")
+                # remove image file extension and swap - for " " to get the breed name
+                breed = re.sub(".(jpg|jpeg|png)", "", image_file).replace("-", " ")
 
-           # The properties from our schema
-           data_properties = {
-               "breed": breed,
-               "image": base64_encoding,
-               "filepath": image_file,
-           }
+                # The properties from our schema
+                data_properties = {
+                    "breed": breed,
+                    "image": base64_encoding,
+                    "filepath": image_file,
+                }
 
-           batch.add_data_object(data_properties, "Dog")
+                batch.add_data_object(data_properties, "Dog")
 ```
 
 Now we will connect to the local host and upload the data objects.

@@ -17,7 +17,7 @@ example_data = {
 client.data_object.create(
   example_data,
   "Author",
-  uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", # optional, if not provided ons is going to be generated
+  uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", # optional, if not provided one is going to be generated
 )
 
 client.data_object.reference.add(
@@ -30,48 +30,38 @@ client.data_object.reference.add(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .creator()
-      .withClassName('Author')
-      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-      .withProperties({
-        'name': 'Jodi Kantor'
-      })
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+let response = await client.data
+  .creator()
+  .withClassName('Author')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withProperties({
+    name: 'Jodi Kantor',
+  })
+  .do();
+console.log(response);
 
-client.data
-      .referenceCreator()
-      .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-      .withReferenceProperty('writesFor')
-      .withReference(
-        client.data
-          .referencePayloadBuilder()
-          .withId('f81bfe5e-16ba-4615-a516-46c2ae2e5a80')
-          .payload(),
-      )
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+response = await client.data
+  .referenceCreator()
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withReferenceProperty('writesFor')
+  .withReference(
+    client.data
+      .referencePayloadBuilder()
+      .withId('f81bfe5e-16ba-4615-a516-46c2ae2e5a80')
+      .payload(),
+  )
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -174,7 +164,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
@@ -185,7 +175,8 @@ $ curl \
       }
   }' \
     http://localhost:8080/v1/objects
-$ curl \
+
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

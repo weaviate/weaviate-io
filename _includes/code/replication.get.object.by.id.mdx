@@ -26,29 +26,23 @@ print(data_object)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client
-    .data
-    .getterById()
-    .withClassName('MyClass')
-    .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-    .withConsistencyLevel('ONE')  // default QUORUM
-    .do()
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => {
-        console.error(err)
-    });
+const response = await client.data
+  .getterById()
+  .withClassName('MyClass')
+  .withId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  .withConsistencyLevel('ONE')  // default QUORUM
+  .do();
+console.log(JSON.stringify(response, null, 2));
 
 // The parameter passed to `withConsistencyLevel` can be one of:
 // * 'ALL',
@@ -57,7 +51,6 @@ client
 //
 // It determines how many replicas must acknowledge a request
 // before it is considered successful.
-
 ```
 
 </TabItem>
@@ -152,7 +145,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl http://localhost:8080/v1/objects/MyClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=QUORUM
+curl http://localhost:8080/v1/objects/MyClass/36ddd591-2dee-4e7e-a3cc-eb86d30a4303?consistency_level=QUORUM
 
 # The parameter "consistency_level" can be one of ALL, QUORUM (default), or ONE. Determines how many
 # replicas must acknowledge a request before it is considered successful.

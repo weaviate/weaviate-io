@@ -79,93 +79,88 @@ client.schema.create_class(class_obj)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-let classObj = {
-    'class': 'Article',
-    'description': 'A written text, for example a news article or blog post',
-    'vectorIndexType': 'hnsw',
-    'vectorIndexConfig': {
-        'distance': 'cosine',
-        'efConstruction': 128,
-        'maxConnections': 64
+const classObj = {
+  class: 'Article',
+  description: 'A written text, for example a news article or blog post',
+  vectorIndexType: 'hnsw',
+  vectorIndexConfig: {
+    distance: 'cosine',
+    efConstruction: 128,
+    maxConnections: 64,
+  },
+  vectorizer: 'text2vec-contextionary',
+  moduleConfig: {
+    'text2vec-contextionary': {
+      vectorizeClassName: true,
     },
-    'vectorizer': 'text2vec-contextionary',
-    'moduleConfig': {
-      'text2vec-contextionary': {
-        'vectorizeClassName': true
-      }
-    },
-    'properties': [
-        {
-            'dataType': [
-                'text'
-            ],
-            'description': 'Title of the article',
-            'name': 'title',
-            'indexInverted': true,
-            'moduleConfig': {
-                'text2vec-contextionary': {
-                  'skip': false,
-                  'vectorizePropertyName': false
-                }
-              }
+  },
+  properties: [
+    {
+      dataType: [
+        'text',
+      ],
+      description: 'Title of the article',
+      name: 'title',
+      indexInverted: true,
+      moduleConfig: {
+        'text2vec-contextionary': {
+          skip: false,
+          vectorizePropertyName: false,
         },
-        {
-            'dataType': [
-                'text'
-            ],
-            'description': 'The content of the article',
-            'name': 'content',
-            'indexInverted': true,
-            'moduleConfig': {
-                'text2vec-contextionary': {
-                  'skip': false,
-                  'vectorizePropertyName': false
-                }
-              }
-        }
-    ],
-    'shardingConfig': {
-      'virtualPerPhysical': 128,
-      'desiredCount': 1,
-      'desiredVirtualCount': 128,
-      'key': '_id',
-      'strategy': 'hash',
-      'function': 'murmur3'
-    },
-    'invertedIndexConfig': {
-      'stopwords': {
-        'preset': 'en',
-        'additions': ['star', 'nebula'],
-        'removals': ['a', 'the']
       },
-      'indexTimestamps': true
     },
-    'replicationConfig': {
-      'factor': 3
-    }
-}
+    {
+      dataType: [
+        'text',
+      ],
+      description: 'The content of the article',
+      name: 'content',
+      indexInverted: true,
+      moduleConfig: {
+        'text2vec-contextionary': {
+          skip: false,
+          vectorizePropertyName: false,
+        },
+      },
+    },
+  ],
+  shardingConfig: {
+    virtualPerPhysical: 128,
+    desiredCount: 1,
+    desiredVirtualCount: 128,
+    key: '_id',
+    strategy: 'hash',
+    function: 'murmur3',
+  },
+  invertedIndexConfig: {
+    stopwords: {
+      preset: 'en',
+      additions: ['star', 'nebula'],
+      removals: ['a', 'the'],
+    },
+    indexTimestamps: true,
+  },
+  replicationConfig: {
+    factor: 3,
+  },
+};
 
-client
+const response = await client
   .schema
   .classCreator()
   .withClass(classObj)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -334,7 +329,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
 -X POST \
 -H "Content-Type: application/json" \
 -d '{

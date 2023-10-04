@@ -59,33 +59,28 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
+  headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },
 });
 
-client.graphql
-      .get()
-      .withClassName('Article')
-      .withAsk({
-        question: 'Who is Stanley Kubrick?',
-        properties: ['summary'],
-      })
-      .withFields('title _additional { answer { hasAnswer property result startPosition endPosition } }')
-      .withLimit(1)
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withAsk({
+    question: 'Who is Stanley Kubrick?',
+    properties: ['summary'],
+  })
+  .withFields('title _additional { answer { hasAnswer property result startPosition endPosition } }')
+  .withLimit(1)
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -206,7 +201,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Article(
@@ -233,9 +228,10 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

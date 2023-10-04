@@ -63,28 +63,27 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .explore()
-      .withNearText({concepts:['fashion'], moveTo: {concepts: ['haute couture'], force: 0.85}, moveAwayFrom: {concepts: ['finance'], force: 0.45})})
-      .withCertainty(0.7)
-      .withFields('beacon certainty className')
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .explore()
+  .withNearText({
+    concepts: ['fashion'],
+    moveTo: { concepts: ['haute couture'], force: 0.85 },
+    moveAwayFrom: { concepts: ['finance'], force: 0.45 },
+    certainty: 0.7,
+  })
+  .withFields('beacon certainty className')
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -191,28 +190,28 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
-    "query": "{
-      Explore (
-        nearText: {
-          concepts: [\"fashion\"],
-          certainty: 0.7,
-          moveTo: {
-            concepts: [\"haute couture\"],
-            force: 0.45
-          },
-          moveAwayFrom: {
-            concepts: [\"finance\"],
-            force: 0.85
-          }
+echo '{
+  "query": "{
+    Explore(
+      nearText: {
+        concepts: [\"fashion\"],
+        certainty: 0.7,
+        moveTo: {
+          concepts: [\"haute couture\"],
+          force: 0.45
+        },
+        moveAwayFrom: {
+          concepts: [\"finance\"],
+          force: 0.85
         }
-      ) {
-        beacon
-        certainty
-        className
       }
-    }"
-  }' | curl \
+    ) {
+      beacon
+      certainty
+      className
+    }
+  }"
+}' | curl \
       -X POST \
       -H 'Content-Type: application/json' \
       -d @- \

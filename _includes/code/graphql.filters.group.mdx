@@ -29,31 +29,26 @@ print(query_result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .get()
-      .withClassName('Publication')
-      .withFields('name')
-      .withGroup({
-        type: 'merge',
-        force: 0.05
-      })
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name')
+  .withGroup({
+    type: 'merge',
+    force: 0.05,
+  })
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -140,13 +135,13 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Publication(
-        group:{
+        group: {
           type: merge,
-          force:0.05
+          force: 0.05
         }
       ) {
         name
@@ -156,8 +151,9 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -167,9 +163,9 @@ $ echo '{
 {
   Get {
     Publication(
-      group:{
+      group: {
         type: merge,
-        force:0.05
+        force: 0.05
       }
     ) {
       name

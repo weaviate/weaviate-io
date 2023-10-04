@@ -22,16 +22,16 @@ query_result = (
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary')
   .withHybrid({
-      query: 'How to catch Alaskan Pollock',
-      alpha: 0.5
+    query: 'How to catch Alaskan Pollock',
+    alpha: 0.5,
   })
   // highlight-start
   .withWhere({
@@ -40,9 +40,8 @@ client.graphql
     valueInt: 1000,
   })
   // highlight-end
-  .do()
-  .then(console.log)
-  .catch(console.error);
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -100,11 +99,11 @@ echo '{
   "query": "{
       Get {
         Article (
-          hybrid: {query: \"How to catch an Alaskan Pollock\", alpha: 0.5}
+          hybrid: { query: \"How to catch an Alaskan Pollock\", alpha: 0.5 }
           # highlight-start
-          where: {path: [\"wordCount\"], operator: LessThan, valueInt: 1000}
+          where: { path: [\"wordCount\"], operator: LessThan, valueInt: 1000 }
           # highlight-end
-        ){
+        ) {
           title
           summary
       }
@@ -113,8 +112,10 @@ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -124,7 +125,7 @@ echo '{
 {
   Get {
     Article (
-      hybrid: {query: "how to fish", alpha: 0.5}
+      hybrid: { query: "how to fish", alpha: 0.5 }
     # highlight-start
       where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
     # highlight-end

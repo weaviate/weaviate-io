@@ -8,7 +8,7 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-:::note Vector spaces and Expore{}
+:::note Vector spaces and Explore{}
 
 The `Explore` function is currently not available on Weaviate Cloud Services (WCS) instances, or others where it is likely that multiple vector spaces will exist.
 
@@ -18,13 +18,13 @@ As WCS by default enables multiple inference-API modules and therefore multiple 
 
 ## Explore{} query structure and syntax
 
-The `Explore{}` function is always defined based on the following principle:
+The `Explore{}` function has the following syntax:
 
 ```graphql
 {
   Explore (
-    limit: <Int>,               # The maximum amount of objects to return
-    nearText: {                 # Either this or 'nearVector' is required
+    limit: <Int>,              # The maximum amount of objects to return
+    nearText: {                # Either this or 'nearVector' is required
       concepts: [<String>]!,   # Required - An array of search items. If the text2vec-contextionary is the vectorization module, the concepts should be present in the Contextionary.
       certainty: <Float>,      # Minimal level of certainty, computed by normalized distance
       moveTo: {                # Optional - Giving directions to the search
@@ -42,7 +42,7 @@ The `Explore{}` function is always defined based on the following principle:
     }
   ) {
     beacon
-    certainty                # certainty value based on a normalized distance calculation
+    certainty                  # certainty value based on a normalized distance calculation
     className
   }
 }

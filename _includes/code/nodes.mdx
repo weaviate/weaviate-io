@@ -14,21 +14,20 @@ print(nodes_status)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.cluster
+const response = await client.cluster
   .nodesStatusGetter()
-  .do()
-  .then(console.log)
-  .catch(console.error);
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -98,7 +97,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl http://localhost:8080/v1/nodes
+curl http://localhost:8080/v1/nodes
 ```
 
 </TabItem>

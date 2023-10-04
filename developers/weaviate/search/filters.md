@@ -17,15 +17,23 @@ import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts
 
 ## Overview
 
-This page shows you how to add conditional filters to your search queries with the `where` operator.
+This page shows you how to add conditional filters to your searches with the `where` operator.
+
+A filter is a set of Boolean (i.e. `True` or `False`) conditions. Accordingly, a filter will only include or exclude objects and will not affect their rankings.
 
 :::info Related pages
 - [API References: Filters](../api/graphql/filters.md)
 :::
 
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
+## List of filter operators
 
-<BasicPrereqs />
+For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md#filter-structure) page.
+
+### `ContainsAny` and `ContainsAll`
+
+The `ContainsAny` and `ContainsAll` operators filter objects using values of an array as criteria.
+
+To use either of these operators, provide the filter criterion array as `valueText`. Note that the usage of `ContainsAny` and `ContainsAll` is different for batch deletion operations ([read more](../manage-data/delete.mdx#containsany--containsall)).
 
 ## A single-condition filter
 
@@ -281,7 +289,7 @@ You can filter objects using properties from a cross-referenced object.
 
 The following example filters `JeopardyQuestion` objects using properties of `JeopardyCategory` that they are cross-referencing.
 
-More speficially, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
+More specifically, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
 
 :::note Case-sensitivity
 The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).
@@ -328,6 +336,11 @@ It should produce a response like the one below:
 
 </details>
 
+## Filter by metadata
+
+You can filter by any number of metadata properties, such as object id, property length, timestamp, null state and more.
+
+See the [API references: Filters](../api/graphql/filters.md#special-cases) page for the full list of available metadata filters and any special usage patterns.
 
 ## More Resources
 

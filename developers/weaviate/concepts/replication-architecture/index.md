@@ -12,7 +12,7 @@ import Badges from '/_includes/badges.mdx';
 - [Configuration: Replication](../../configuration/replication.md)
 :::
 
-:::info Available in Weaviate `v1.17.0` and higher
+:::info Available from version `v1.17`
 :::
 
 Weaviate can automatically replicate data across nodes in the background in a cluster with multiple server nodes. This enables a variety of [use cases](./motivation.md). For example, if a node goes down, another node can shoulder the load without loss of availability or data. Database replication improves reliability, scalability, and/or performance.

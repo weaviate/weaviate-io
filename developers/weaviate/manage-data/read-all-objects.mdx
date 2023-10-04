@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read-all-objects.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read-all-objects_test.go';
 
 ## Overview
 
@@ -58,7 +60,7 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// Retrieve data"
@@ -67,9 +69,26 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
-### Fetch the schema
+### Fetch the class definition
 
 You can fetch the existing class definition like this:
 
@@ -77,18 +96,34 @@ You can fetch the existing class definition like this:
   <TabItem value="py" label="Python">
   <FilteredTextBlock
     text={PythonCode}
-    startMarker="# Fetch the schema"
-    endMarker="# Finished fetching the schema"
+    startMarker="# START FetchClassDefinition"
+    endMarker="# END FetchClassDefinition"
     language="py"
   />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
   <FilteredTextBlock
     text={TSCode}
-    startMarker="// Fetch the schema"
-    endMarker="// Finished fetching the schema"
+    startMarker="// START FetchClassDefinition"
+    endMarker="// END FetchClassDefinition"
     language="ts"
   />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START FetchClassDefinition"
+      endMarker="// END FetchClassDefinition"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FetchClassDefinition"
+      endMarker="// END FetchClassDefinition"
+      language="go"
+    />
   </TabItem>
 </Tabs>
 
@@ -107,7 +142,7 @@ And then restore to a target instance, by:
     language="py"
   />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
   <FilteredTextBlock
     text={TSCode}
     startMarker="// Restore to a new (target) instance"
@@ -115,12 +150,28 @@ And then restore to a target instance, by:
     language="ts"
   />
   </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Restore to a new (target) instance"
+      endMarker="// Finished restoring to the target instance"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Restore to a new (target) instance"
+      endMarker="// Finished restoring to the target instance"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
 ### Putting it together
 
-Putting the pieces together, the below example will retrieve all objects and the schema from the `WineReview` class from `https://some-endpoint.weaviate.network` and populate `https://anon-endpoint.weaviate.network` with the same:
+Putting the pieces together, the below example will retrieve the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and use them to populate `https://anon-endpoint.weaviate.network`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -131,13 +182,29 @@ Putting the pieces together, the below example will retrieve all objects and the
     language="py"
   />
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
   <FilteredTextBlock
     text={TSCode}
     startMarker="// CursorExample"
     endMarker="// END CursorExample"
     language="ts"
   />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CursorExample"
+      endMarker="// END CursorExample"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CursorExample"
+      endMarker="// END CursorExample"
+      language="go"
+    />
   </TabItem>
 </Tabs>
 

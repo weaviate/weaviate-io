@@ -17,7 +17,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
 ## Overview
 
-This section shows how to retrieve aggregate data from a results set using the `Aggregate` function. `Aggregate` is largely similar to `Get`, with the difference being that `Aggregate` returns summary data about the results set instead of individual objects in the results set.
+This section shows how to retrieve aggregate data from a results set using the `Aggregate` function.
+
+Generally, the usage of `Aggregate` is similar to that of searches using the `Get` function. The main difference is that `Aggregate` returns aggregated data, rather than objects. As `Aggregate` deals with aggregated data, it enables additional (meta) properties such as object counts, as well as aggregated properties such as sums and averages.
 
 :::info Related pages
 - [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
@@ -51,7 +53,7 @@ The `meta` property has only one sub-property (`count`) available. This returns 
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -107,7 +109,7 @@ The following example retrieves information about the most commonly occurring ex
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -157,7 +159,7 @@ The following example retrieves the sum of the `points` property values:
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -209,7 +211,7 @@ For example, to list all distinct values of a property, and the counts for each:
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -271,7 +273,7 @@ The below query retrieves the 10 `question` objects with vectors that are closes
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -325,7 +327,7 @@ The below query retrieves the 10 `question` objects with vectors that are within
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}
@@ -378,7 +380,7 @@ The below example searches for objects where the `round` property equals `Double
   />
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   <FilteredTextBlock
     text={TSCode}

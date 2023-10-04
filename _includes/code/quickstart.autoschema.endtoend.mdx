@@ -2,7 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndJSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.js';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
 
 <Tabs groupId="languages">
@@ -16,7 +15,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 />
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
@@ -47,7 +46,7 @@ func main() {
     Scheme: "https",
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
     Headers: map[string]string{
-      "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // Replace with your inference API key
+      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
     },
   }
   client, err := weaviate.NewClient(cfg)
@@ -60,9 +59,7 @@ func main() {
     Class:      "Question",
     Vectorizer: "text2vec-openai",
     ModuleConfig: map[string]interface{}{
-      "text2vec-huggingface": map[string]interface{}{
-        "model": "sentence-transformers/paraphrase-MiniLM-L6-v2",
-      },
+      "generative-openai": map[string]interface{}{},
     },
   }
 
@@ -177,7 +174,7 @@ function send_data() {
   curl --no-progress-meter -X POST "$BATCH_API_URL" \
        -H "Content-Type: application/json" \
        -H "Authorization: Bearer $WEAVIATE_API_KEY" \
-       -H "X-HuggingFace-Api-Key: $HUGGINGFACE_API_KEY" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
        -d "$1" \
        -o /dev/null  # suppress the output because vectors are long
 }
@@ -188,11 +185,9 @@ curl -X DELETE $SCHEMA_API_URL/Question -H "Authorization: Bearer $WEAVIATE_API_
 echo "Creating the schema. Weaviate's autoschema feature will infer class properties when importing..."
 echo '{
   "class": "Question",
-  "vectorizer": "text2vec-huggingface",
+  "vectorizer": "text2vec-openai",
   "moduleConfig": {
-      "text2vec-huggingface": {
-          "model": "sentence-transformers/all-MiniLM-L6-v2",
-      }
+      "generative-openai": {}
   }
 }' | curl --no-progress-meter \
   -X POST \

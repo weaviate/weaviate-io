@@ -28,7 +28,7 @@ client.batch.configure(
 
 with client.batch as batch:
     # Format for batching is as follows:
-    # client.batch.add_reference(
+    # batch.add_reference(
     #   from_object_uuid=<from_object_uuid>,
     #   from_object_class_name=<from_object_class_name>,
     #   from_property_name=<from_property_name>
@@ -52,90 +52,73 @@ with client.batch as batch:
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.batch
-      .referencesBatcher()
-      .withReference({
-        from: `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
-        to: `weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064`,
-        // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
-      })
-      .withReference({
-        from: `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles`,
-        to: `weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32`,
-        // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
-      })
-      .withReference({
-        from: `weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles`,
-        to: `weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32`,
-        // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
-      })
-      .withConsistencyLevel('ALL')  // default QUORUM
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.batch
+  .referencesBatcher()
+  .withReference({
+    from: 'weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles',
+    to: 'weaviate://localhost/Article/6bb06a43-e7f0-393e-9ecf-3c0f4e129064',
+    // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
+  })
+  .withReference({
+    from: 'weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4303/wroteArticles',
+    to: 'weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32',
+    // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
+  })
+  .withReference({
+    from: 'weaviate://localhost/Author/36ddd591-2dee-4e7e-a3cc-eb86d30a4304/wroteArticles',
+    to: 'weaviate://localhost/Article/b72912b9-e5d7-304e-a654-66dc63c55b32',
+    // prior to v1.14 omit the class name as part of the 'to' beacon and specify it as weaviate://localhost/<id>
+  })
+  .withConsistencyLevel('ALL')  // default QUORUM
+  .do();
+console.log(JSON.stringify(response, null, 2));
 
 /* This is also possible with a builder pattern:
-const weaviate = require('weaviate-client');
-
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-});
-
-client.batch
-      .referencesBatcher()
-      .withReference(
-        client.batch
-          .referencePayloadBuilder()
-          .withFromClassName('Author')
-          .withFromRefProp('wroteArticles')
-          .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-          .withToClassName('Article') // prior to v1.14 omit .withToClassName()
-          .withToId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
-          .payload()
-      )
-      .withReference(
-        client.batch
-          .referencePayloadBuilder()
-          .withFromClassName('Author')
-          .withFromRefProp('wroteArticles')
-          .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
-          .withToClassName('Article') // prior to v1.14 omit .withToClassName()
-          .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
-          .payload()
-      )
-      .withReference(
-        client.batch
-          .referencePayloadBuilder()
-          .withFromClassName('Author')
-          .withFromRefProp('wroteArticles')
-          .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4304')
-          .withToClassName('Article') // prior to v1.14 omit .withToClassName()
-          .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
-          .payload()
-      )
-      .withConsistencyLevel('ALL')  // default QUORUM
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.batch
+  .referencesBatcher()
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
+      .payload()
+  )
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
+      .payload()
+  )
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4304')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
+      .payload()
+  )
+  .withConsistencyLevel('ALL')  // default QUORUM
+  .do();
+console.log(JSON.stringify(response, null, 2));
 */
 ```
 
@@ -265,7 +248,7 @@ public class App {
 # Note that for this query to work with Weaviate versions older than v1.14 you
 # need to omit the class name in the "to" beacon and specify it as
 # weaviate://localhost/<id>. The long-form beacon used in "from" is unchanged.
-$ curl \
+curl \
 -X POST \
 -H "Content-Type: application/json" \
 -d '[{

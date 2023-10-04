@@ -20,7 +20,7 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
 import weaviate from 'weaviate-ts-client';
@@ -121,16 +121,16 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
       "class": "FashionItem",
       "properties": {
-        "labelName": "Mickey Mouse T-shirt"
+        "labelName": "Mickey Mouse T-shirt",
         "image": "iVBORw0KGgoAAAANS..."
-    }
-  }' \
+      }
+    }' \
     http://localhost:8080/v1/objects
 ```
 

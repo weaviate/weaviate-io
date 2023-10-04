@@ -15,27 +15,22 @@ import UnfilteredCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-ts-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
 });
 
-client.graphql
-      .get()
-      .withClassName('JeopardyQuestion')
-      .withFields('question answer points')
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('question answer points')
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -116,7 +111,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       JeopardyQuestion {
@@ -129,8 +124,9 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

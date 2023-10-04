@@ -9,12 +9,12 @@ services:
     - '8099'  # Specify different port to avoid confusion
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.20.2
+    image: semitechnologies/weaviate:1.21.2
     ports:
     - 8099:8099
     restart: on-failure:0
     environment:
-      OPENAI_APIKEY: $OPENAI_APIKEY
+      OPENAI_APIKEY: ${OPENAI_APIKEY}
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'

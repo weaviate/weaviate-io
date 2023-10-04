@@ -19,7 +19,7 @@ async function getBatchWithCursor(
   client: WeaviateClient,
   className: string, classProperties: string[],
   batchSize: number, cursor?: string
-): Promise<{data: any}> {
+): Promise<{ data: any }> {
   const query = client.graphql.get()
     .withClassName(className)
     // highlight-start
@@ -37,9 +37,9 @@ async function getBatchWithCursor(
 // Use this function to retrieve data
 
 
-// Fetch the schema
+// START FetchClassDefinition
 const classDef = await sourceClient.schema.classGetter().withClassName(className).do();
-// Finished fetching the schema
+// END FetchClassDefinition
 
 // Restore to a new (target) instance
 const targetClient = weaviate.client({

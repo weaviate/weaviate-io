@@ -30,47 +30,42 @@ client.schema.create_class(class_obj)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-let classObj = {
+const classObj = {
   'class': 'Article',
   'description': 'A written text, for example a news article or blog post',
   'vectorizeClassName': true,
   'properties': [
     {
       'name': 'title',
-      'dataType': [ 'string' ],
+      'dataType': ['string'],
       'description': 'Title of the article',
       'vectorizePropertyName': true,
-      'index': true
+      'index': true,
     },
     {
       'name': 'content',
-      'dataType': [ 'text' ],
-      'description': 'The content of the article'
-    }
-  ]
-}
+      'dataType': ['text'],
+      'description': 'The content of the article',
+    },
+  ],
+};
 
-client
+const response = await client
   .schema
   .classCreator()
   .withClass(classObj)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -170,7 +165,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

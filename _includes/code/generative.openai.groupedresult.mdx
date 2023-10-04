@@ -65,52 +65,16 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-ts-client');
-
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
-});
-
-// highlight-start
-// instruction for the generative module
-const generateTask = 'Explain why these magazines or newspapers are about finance';
-// highlight-end
-
-client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('name')
-  .withNearText({
-    concepts: ['magazine or newspaper about finance']
-  })
-  .withGenerate({
-    groupedTask: generateTask,
-  })
-  .withLimit(5)
-  .do()
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.error(err)
-  });
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+import weaviate, { ApiKey } from 'weaviate-ts-client';
 
-const client: WeaviateClient = weaviate.client({
+const client= weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: {'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'},
+  host: 'edu-demo.weaviate.network',
+  apiKey: new ApiKey('learn-weaviate'),
+  headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },
 });
 
 // highlight-start
@@ -118,24 +82,19 @@ const client: WeaviateClient = weaviate.client({
 const generateTask = 'Explain why these magazines or newspapers are about finance';
 // highlight-end
 
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
-  .withFields('name')
+  .withFields('title')
   .withNearText({
-    concepts: ['magazine or newspaper about finance']
+    concepts: ['magazine or newspaper about finance'],
   })
   .withGenerate({
     groupedTask: generateTask,
   })
   .withLimit(5)
-  .do()
-  .then((res: any) => {
-    console.log(res)
-  })
-  .catch((err: Error) => {
-    console.error(err)
-  });
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -247,7 +206,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Publication(
@@ -273,12 +232,13 @@ $ echo '{
     }
   }
   "
-}' | tr -d "\n" | curl \
+}' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

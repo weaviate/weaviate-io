@@ -23,29 +23,24 @@ print(result)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.graphql
-      .aggregate()
-      .withClassName('Article')
-      .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
-      .withNearVector({ vector: [0.1, 0.2, -0.3], certainty: 0.7 })
-      .withObjectLimit(100)
-      .do()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      });
+const response = await client.graphql
+  .aggregate()
+  .withClassName('Article')
+  .withFields('meta { count } wordCount {count maximum mean median minimum mode sum type}')
+  .withNearVector({ vector: [0.1, 0.2, -0.3], certainty: 0.7 })
+  .withObjectLimit(100)
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -176,7 +171,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
     "query": "{
       Aggregate {
         Article(nearVector:{
@@ -207,8 +202,9 @@ $ echo '{
   }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

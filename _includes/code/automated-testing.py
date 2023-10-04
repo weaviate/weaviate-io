@@ -42,7 +42,7 @@ with open('jeopardy_100.json') as f:
 with client.batch as batch:
     # Build data objects & add to batch
     for i, obj in enumerate(data):
-        client.batch.add_data_object(
+        batch.add_data_object(
             data_object={
                 'question': obj['Question'],
                 'answer': obj['Answer'],

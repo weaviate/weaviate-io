@@ -14,6 +14,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.create.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.create.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.create_test.go';
 
 ## Overview
 
@@ -65,12 +67,30 @@ This example shows how to create an object in the `JeopardyQuestion` class, with
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// CreateObject START"
       endMarker="// CreateObject END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -100,12 +120,30 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// CreateObjectWithIdAndVector START"
       endMarker="// CreateObjectWithIdAndVector END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CreateObjectWithIdAndVector START"
+      endMarker="// CreateObjectWithIdAndVector END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CreateObjectWithIdAndVector START"
+      endMarker="// CreateObjectWithIdAndVector END"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -121,6 +159,44 @@ To prevent duplicates, we suggest:
 ### Generate deterministic ID
 
 You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+
+### Example
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectWithDeterministicId START"
+      endMarker="# CreateObjectWithDeterministicId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectWithDeterministicId START"
+      endMarker="// CreateObjectWithDeterministicId END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// This feature is under development
+```
+
+  </TabItem>
+</Tabs>
 
 ### Check if an object exists
 
@@ -148,12 +224,30 @@ This will confirm:
     />
   </TabItem>
 
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// ValidateObject START"
       endMarker="// ValidateObject END"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="go"
     />
   </TabItem>
 </Tabs>

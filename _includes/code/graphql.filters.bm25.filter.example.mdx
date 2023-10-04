@@ -23,15 +23,15 @@ query_result = (
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-client.graphql
+const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('title summary')
   .withBm25({
-      query: 'how to fish',
+    query: 'how to fish',
   })
   // highlight-start
   .withWhere({
@@ -40,9 +40,8 @@ client.graphql
     valueInt: 1000,
   })
   // highlight-end
-  .do()
-  .then(console.log)
-  .catch(console.error);
+  .do();
+console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
@@ -98,25 +97,26 @@ Result<GraphQLResponse> result = client.graphQL().get()
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
-      Get {
-        Article(
-          bm25: {query: "how to fish", properties: ["title"]}
-          # highlight-start
-          where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
-          # highlight-end
-        ){
-          summary
-          title
+    Get {
+      Article(
+        bm25: { query: \"how to fish\", properties: [\"title\"] }
+        # highlight-start
+        where: { path: [\"wordCount\"], operator: LessThan, valueInt: 1000 }
+        # highlight-end
+      ) {
+        summary
+        title
       }
     }
   }"
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -126,11 +126,11 @@ $ echo '{
 {
   Get {
     Article (
-      bm25: {query: "how to fish", properties: ["title"]}
+      bm25: { query: "how to fish", properties: ["title"] }
     # highlight-start
-      where: {path: ["wordCount"], operator: LessThan, valueInt: 1000}
+      where: { path: ["wordCount"], operator: LessThan, valueInt: 1000 }
     # highlight-end
-    ){
+    ) {
       summary
       title
     }

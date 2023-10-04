@@ -16,35 +16,30 @@ example_data = {
 client.data_object.create(
   example_data,
   "Publication",
-  "f81bfe5e-16ba-4615-a516-46c2ae2e5a80", # optional, if not provided ons is going to be generated
+  "f81bfe5e-16ba-4615-a516-46c2ae2e5a80", # optional, if not provided one is going to be generated
 )
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-const weaviate = require('weaviate-client');
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
 });
 
-client.data
-      .creator()
-      .withClassName('Publication')
-      .withId('f81bfe5e-16ba-4615-a516-46c2ae2e5a80')
-      .withProperties({
-        'name': 'New York Times'
-      })
-      .do()
-      .then(res => {
-          console.log(res)
-      })
-      .catch(err => {
-          console.error(err)
-      });
+const response = await client.data
+  .creator()
+  .withClassName('Publication')
+  .withId('f81bfe5e-16ba-4615-a516-46c2ae2e5a80')
+  .withProperties({
+    name: 'New York Times',
+  })
+  .do();
+console.log(response);
 ```
 
 </TabItem>
@@ -127,7 +122,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

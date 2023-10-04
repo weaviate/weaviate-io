@@ -107,7 +107,7 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
 
 ### Consistency levels
 
-:::info Available from `v1.19` onwards
+:::info Available from version `v1.19`
 :::
 
 Where replication is configured, the `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
@@ -125,7 +125,7 @@ import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
 
 ### Multi-tenancy
 
-:::info Available from `v1.20` onwards
+:::info Available from version `v1.20`
 :::
 
 Where multi-tenancy is configured, the `Get{}` function can be configured to return results from a specific tenant.
@@ -181,7 +181,7 @@ Various metadata properties may be retrieved with `Get{}` requests. They include
 
 Property | Description |
 -------- | ----------- |
-`uuid` | Object id |
+`id` | Object id |
 `vector` | Object vector |
 `generate` | Generative module outputs |
 `rerank` | Reranker module outputs |

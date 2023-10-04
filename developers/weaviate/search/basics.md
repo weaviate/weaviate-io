@@ -17,13 +17,13 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 ## Overview
 
-This section includes the essentials of performing searches and retrieving objects with the `Get` function.
+This page shows the core concepts on how to perform searches and retrieve objects.
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)
 :::
 
-## `Get` function requirements
+## Basic requirements
 
 To retrieve objects from Weaviate, you must use the [`Get` function](../api/graphql/get.md) and specify at least:
 - The target `class` to search, and
@@ -372,7 +372,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 />
 
 </TabItem>
-<TabItem value="js" label="TypeScript">
+<TabItem value="js" label="JavaScript/TypeScript">
 
 <FilteredTextBlock
   text={TSCode}
@@ -591,7 +591,7 @@ The below example shows how to fetch one object in the `MultiTenancyClass` class
   ```
 
   </TabItem>
-  <TabItem value="js" label="TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
 
   ```ts
   result = await client

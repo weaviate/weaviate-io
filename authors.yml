@@ -3,6 +3,11 @@ abdel:
   title: Vector Index Researcher
   url: https://github.com/abdelr
   image_url: /img/people/icon/abdel.jpg
+ara:
+  name: Ara Gonzalez
+  title: People Operations Manager
+  url: https://linkedin.com/in/aranzazugonzalez
+  image_url: /img/people/icon/ara.png
 bob:
   name: Bob van Luijt
   title: CEO
@@ -25,7 +30,7 @@ dan:
   image_url: /img/people/icon/dan.jpg
 dirk:
   name: Dirk Kulawiak
-  title: Software Developer
+  title: Core Engineer
   url: https://github.com/dirkkul
   image_url: /img/people/icon/dirk.jpg
 edward:
@@ -98,8 +103,18 @@ shukri:
   title: Community Solution Engineer
   url: https://github.com/hsm207
   image_url: /img/people/icon/shukri.jpeg
+tommy:
+  name: Tommy Smith
+  title: Polyglot Engineer
+  url: https://github.com/tsmith023
+  image_url: /img/people/icon/tommy.jpg
 jerry:
   name: Jerry Liu
   title: Co-Founder/CEO LlamaIndex
   url: https://github.com/jerryjliu
   image_url: /img/people/icon/jerry.png
+sam:
+  name: Sam Stoelinga
+  title: Contributor to Substratus.AI
+  url: https://github.com/samos123
+  image_url:  /img/people/icon/sam.png
