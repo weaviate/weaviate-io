@@ -356,6 +356,11 @@ const siteRedirects = {
             to: "/products/byoc",
             from: "/pricing/hybrid",
           },
+          // workshops
+          {
+            to: "/learn/workshops",
+            from: "/learn/workshop"
+          }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
