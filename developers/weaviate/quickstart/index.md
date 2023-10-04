@@ -232,9 +232,9 @@ Using a Boolean filter allows you to combine the flexibility of vector search wi
 
 Next, let's try a generative search. A generative search, also called retrieval augmented generation, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
 
-To see what happens when we ask a LLM to use query results to perform a task based on our prompt, run the code below.
+To see what happens when an LLM uses query results to perform a task that is based on our prompt, run the code below.
 
-Note that it uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
+Note that the code uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
 
 import CodeAutoschemaGenerative from '/_includes/code/quickstart.autoschema.generativesearch.mdx'
 
