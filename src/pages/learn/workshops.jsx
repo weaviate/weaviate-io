@@ -17,7 +17,9 @@ export default function WorkshopPage() {
           data-use-service-core
           defer
         ></script>
-        <div class="elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80"></div>
+        <div className="container">
+          <div class="elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80"></div>
+        </div>
       </Layout>
       <ThemeSwitch />
     </div>
