@@ -168,7 +168,7 @@ Accordingly, this model is not suitable for use cases where larger chunks are re
 
 ## Usage example
 
-The below shows a code example of how to use a `nearText` query with `text2vec-gpt4all`.
+This is an example of a `nearText` query with `text2vec-gpt4all`.
 
 import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 

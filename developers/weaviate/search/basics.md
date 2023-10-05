@@ -574,7 +574,7 @@ This will result in the following response:
 
 For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you must specify the tenant parameter in each query.
 
-The below example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
+This example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">

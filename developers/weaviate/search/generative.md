@@ -109,7 +109,7 @@ You can configure additional module parameters here also. Please refer to the "S
 
 A **single prompt** generative search returns a generated response for each object in the query results. For **single prompt** generative searches, you must specify which object *properties* to use in the prompt.
 
-In the below example, the query:
+In this example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
 1. Prepares a prompt for each object, based on the prompt `"Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."`, where `{question}` is an object property, and
 1. Retrieves a generated text for each object (2 total), and
@@ -168,7 +168,7 @@ When using generative search with single prompts, you must specify which object 
 
 The properties to use as a part of the prompt do *not* need to be among the properties retrieved in the query.
 
-In the below example, the query:
+In this example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
 1. Prepares a prompt for each object, based on the prompt `"Convert this quiz question: {question} and answer: {answer} into a trivia tweet.` where `{question}` and `{answer}` are object properties, and
 1. Retrieves a generated text for each object (2 total), and
@@ -231,7 +231,7 @@ When using generative search with a **grouped task**, the required parameter is 
 
 ### Example
 
-In the below example, the query:
+In this example, the query:
 1. Retrieves three `JeopardyQuestion` objects related to `cute animals`,
 1. Combines the user prompt with the set of retrieved objects to build the grouped task,
 1. Retrieves one generated text using the grouped task, and
@@ -293,7 +293,7 @@ It should produce a response like the one below:
 
 You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.
 
-In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but is used by the prompt.
+In this example, the prompt only includes the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but it is used by the prompt.
 
 <!-- TODO - add client code when made available -->
 
