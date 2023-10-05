@@ -162,7 +162,7 @@ To use EFS with Weaviate, you need to:
 - Create Weaviate Volumes, where each volume has a different AccessPoint for VolumeHandle(as mentioned above).
 - Deploy Weaviate.
 
-The below is an example of a PV for `weaviate-0` Pod:
+This code is an example of a PV for `weaviate-0` Pod:
 
 ```yaml
 apiVersion: v1

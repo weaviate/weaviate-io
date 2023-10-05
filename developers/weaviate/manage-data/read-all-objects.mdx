@@ -41,9 +41,9 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 
 ### List every object
 
-You can list (i.e. retrieve) every object as shown in the below example, looping through the data with the `after` operator.
+To list every object, use the `after` operator to loop through the data as shown in the example below.
 
-The below example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor.
+The example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor.
 
 :::tip
 To retrieve (and restore) vectors as well, include the `vector` parameter as shown in the highlighted lines.
@@ -171,7 +171,7 @@ And then restore to a target instance, by:
 
 ### Putting it together
 
-Putting the pieces together, the below example will retrieve the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and use them to populate `https://anon-endpoint.weaviate.network`:
+Putting the pieces together, the example code retrieves the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and uses them to populate the database at `https://anon-endpoint.weaviate.network`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">

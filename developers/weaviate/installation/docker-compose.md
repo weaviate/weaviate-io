@@ -163,7 +163,7 @@ You can create a multi-node setup with Weaviate using docker compose. To do so, 
 
 (Read more about [horizontal replication in Weaviate](../concepts/cluster.md).)
 
-So, the Docker Compose file will include environment variables for the "founding" member that looks like the below:
+So, the Docker Compose file includes environment variables for the "founding" member that look like this:
 
 ```yaml
   weaviate-node-1:  # Founding member service name

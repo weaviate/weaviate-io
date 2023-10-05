@@ -59,7 +59,11 @@ pip install -U "git+https://github.com/weaviate/weaviate-python-client.git@v3.99
 
 #### Start Weaviate
 
-You will also need a pre-release version of Weaviate. Either [download this `docker-compose.yml` file](https://raw.githubusercontent.com/databyjp/wv_python_usertest/main/docker-compose.yml) or save the below in your project directory. Then, go to the directory and run `docker compose up -d`.
+You will also need a pre-release version of Weaviate. Either [download this `docker-compose.yml` file](https://raw.githubusercontent.com/databyjp/wv_python_usertest/main/docker-compose.yml) or save the following code in your project directory as `docker-compose.yml`.
+
+```
+docker compose up -d
+```
 
 <details>
   <summary><code>docker-compose.yml</code></summary>
@@ -93,6 +97,8 @@ services:
 ...
 ```
 
+Go to the directory with your `docker-compose.yml` file and run
+
 </details>
 
 Note that you will need the `gRPC` ports open also. This will likely be simplified to one port in the future.
@@ -123,7 +129,7 @@ import weaviate.classes as wvc
 
 ### Instantiation
 
-Run the below to connect to Weaviate. Note that you need a `grpc` port specified.
+To connect to Weaviate, copy and update the following code with your `grpc` port. Then, run the code to connect.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -132,7 +138,7 @@ Run the below to connect to Weaviate. Note that you need a `grpc` port specified
   language="py"
 />
 
-It should return `True`. If you get an error, it may be gRPC port related. See the Troubleshooting section below.
+If you connect successfully, the code returns `True`. If you get an error, it may be gRPC port related. See the Troubleshooting section below.
 
 ### Create a collection
 
@@ -162,7 +168,7 @@ Note the use of types, and the use of a factory to create the vectorizer and rep
 
 Factory classes are instantiated with class methods, like `text2vec_openai()`.
 
-The below is a partially complete collection definition. Please see if you can edit the below based on the comments:
+The following collection definition is incomplete. Please see if you can complete the collection definition based on the comments:
 
 <FilteredTextBlock
   text={PythonCode}
