@@ -2,9 +2,6 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import ClipboardJS from 'clipboard';
 import styles from './codeStyles.module.scss';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-graphql';
-import 'prismjs/themes/prism.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { twilight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
