@@ -32,6 +32,7 @@ It has the following characteristics:
 * If an object being added contains a property that conflicts with an existing schema type, an error is thrown. (e.g. trying to import text into a field that exists in the schema as `int`).
 * When an object is imported to a new class, the class is created including all properties.
 * The auto-schema also automatically recognizes array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
+* Auto-schema can automatically create nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
 
 ### Datatypes
 
