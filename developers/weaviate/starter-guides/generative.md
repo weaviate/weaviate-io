@@ -355,7 +355,7 @@ And the `generative-openai` module may be configured as follows:
     }
 ```
 
-Please see the [documentation](../modules/reader-generator-modules/) for the appropriate module for more information on configurable properties.
+Please see the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
 
 </details>
 
