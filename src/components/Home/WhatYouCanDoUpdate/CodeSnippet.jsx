@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import ClipboardJS from 'clipboard';
 import styles from './codeStyles.module.scss';
-import Prism from 'prismjs'; // Import Prism
+import Prism from 'prismjs';
 import 'prismjs/components/prism-graphql';
 import 'prismjs/themes/prism.css';
 
@@ -23,7 +23,6 @@ const CodeSnippet = ({ code, buttonText }) => {
 
   return (
     <div className={styles.codeSnip}>
-      {/* Use Prism for syntax highlighting */}
       <pre>
         <code className={`language-graphql`}>{code}</code>
       </pre>
