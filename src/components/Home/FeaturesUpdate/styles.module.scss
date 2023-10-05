@@ -48,6 +48,10 @@
     gap: unset;
   }
 
+  .linkBox {
+    color: #1c1468;
+  }
+
   .bottomBox,
   .cloudBox {
     padding: 60px;
@@ -72,10 +76,6 @@
     .boxLink {
       padding-top: 2rem;
       text-align: end;
-
-      a {
-        color: inherit;
-      }
     }
   }
 
@@ -99,7 +99,8 @@
       padding-top: 2rem;
       text-align: end;
 
-      a {
+      a,
+      p {
         color: #ffffff;
       }
     }
