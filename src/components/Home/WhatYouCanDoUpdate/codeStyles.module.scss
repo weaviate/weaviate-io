@@ -15,11 +15,25 @@
     display: block;
     overflow-x: auto;
     background: rgb(19, 12, 73) !important;
-    color: rgb(192, 197, 206);
-    padding: 1.5em 0em 2em 0.5em;
     width: 100%;
-    font-size: 14px;
   }
+}
+
+code[class*='language-graphql'],
+pre[class*='language-graphql'] {
+  color: white !important;
+  background: rgb(19, 12, 73) !important;
+  text-shadow: none !important;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em !important;
+  text-align: left !important;
+  white-space: pre !important;
+  word-spacing: normal !important;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  line-height: 1.5 !important;
+  tab-size: 4 !important;
+  hyphens: none !important;
 }
 
 .copyButton {

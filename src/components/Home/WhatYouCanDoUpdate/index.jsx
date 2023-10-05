@@ -28,7 +28,8 @@ export default function HomepageWhatYouCanDo() {
   Get {
    Article(
     hybrid: {
-      query: "Board games people are looking out
+      query: "Board games people
+      are looking out
 for"}
    limit: 10
  ) {
@@ -44,8 +45,9 @@ for"}
   Get {
    Article(
     ask: {
-      question: "What movie did Ravensburger create a board
-game about?"
+      question: "What movie did
+      Ravensburger create
+      a board game about?"
 }
    limit: 1
  ) {
@@ -81,7 +83,7 @@ game about?"
                   over raw vectors or data objects,<br></br> even with filters.
                 </p>
                 <CodeSnippet
-                  language="typescript"
+                  language="graphql"
                   code={codeExample}
                   buttonText="Vector Search"
                 />

@@ -186,10 +186,14 @@ p {
     color: #130c49;
     text-align: center;
     font-family: Plus Jakarta Sans;
-    font-size: 3.375rem;
+    font-size: 53px;
     font-style: normal;
-    font-weight: 700;
+
     line-height: 120%; /* 4.05rem */
+
+    font-weight: bold;
+    line-height: 69.6px;
+    margin-bottom: 1rem;
   }
 
   .headerBox {
@@ -366,4 +370,8 @@ p {
 
 .teamFilter::-webkit-scrollbar-track {
   border-radius: 8px;
+}
+
+.linkActive {
+  font-weight: 500 !important;
 }
