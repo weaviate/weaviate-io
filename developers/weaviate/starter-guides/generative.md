@@ -267,7 +267,7 @@ Now, let's go through an end-to-end example for using Weaviate for generative se
 
 For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCS instance.
 
-### Configure Weaviate
+### Configure generative search
 
 To use generative search, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and
