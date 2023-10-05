@@ -82,11 +82,7 @@ for"}
                   Perform lightning-fast pure vector similarity<br></br>search
                   over raw vectors or data objects,<br></br> even with filters.
                 </p>
-                <CodeSnippet
-                  language="graphql"
-                  code={codeExample}
-                  buttonText="Vector Search"
-                />
+                <CodeSnippet code={codeExample} buttonText="Vector Search" />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab2">
@@ -95,11 +91,7 @@ for"}
                   Combine keyword-based search with vector search techniques for
                   state-of-the-art results.
                 </p>
-                <CodeSnippet
-                  language="graphql"
-                  code={codeExample2}
-                  buttonText="Hybrid Search"
-                />
+                <CodeSnippet code={codeExample2} buttonText="Hybrid Search" />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab3">
@@ -109,7 +101,6 @@ for"}
                   example to do Q&A over your dataset.
                 </p>
                 <CodeSnippet
-                  language="graphql"
                   code={codeExample3}
                   buttonText="Generative Search"
                 />
