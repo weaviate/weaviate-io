@@ -1,8 +1,7 @@
 ---
 title: Generative search (RAG)
-sidebar_position: 30
+sidebar_position: 50
 image: og/docs/tutorials.jpg
-sidebar_class_name: hidden
 # tags: ['getting started']
 ---
 
@@ -22,7 +21,7 @@ We would love to get your feedback. Please provide us with any feedback through 
 Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
 <br/>
 
-If you would like us to priorize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
+If you would like us to prioritize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
 :::
 
 ## Overview
@@ -47,7 +46,7 @@ This guide assumes some familiarity with Weaviate, but it is not required. If yo
 
 ### What is generative search?
 
-Generative search is a powerful technique that retrieves data to ground large language models (LLMs). It is also called retrieval augmented generation (RAG), or in-context learning in some cases.
+Generative search is a powerful technique that retrieves relevant data to provide to large language models (LLMs) as context, along with the task prompt. It is also called retrieval augmented generation (RAG), or in-context learning in some cases.
 
 ### Why generative search?
 
@@ -56,10 +55,6 @@ LLM are incredibly powerful, but can suffer from two important limitations. Thes
 - They might simply not be trained on the information you need.
 
 Generative search remedies this problem with a two-step process.
-<!--
-:::warning Two-step process
-FIGURE GOES HERE
-::: -->
 
 The first step is to retrieve relevant data through a query. Then, in the second step, the LLM is prompted with a combination of the retrieve data with a user-provided query.
 
@@ -272,7 +267,7 @@ Now, let's go through an end-to-end example for using Weaviate for generative se
 
 For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCS instance.
 
-### Configure Weaviate
+### Configure generative search
 
 To use generative search, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and
@@ -322,6 +317,45 @@ services:
 ```
 
 Check the specific documentation for your deployment method ([Docker](../installation/docker-compose.md), [Kubernetes](../installation/kubernetes.md), [Embedded Weaviate](../installation/embedded.md)) for more information on how to configure it.
+
+</details>
+
+<details>
+  <summary>How to configure the language model</summary>
+
+Model properties are exposed through the Weaviate module configuration. Accordingly, you can customize them through the `moduleConfig` parameter in the class definition.
+
+For example, the `generative-cohere` module has the following properties:
+
+```json
+    "moduleConfig": {
+        "generative-cohere": {
+            "model": "command-xlarge-nightly",  // Optional - Defaults to `command-xlarge-nightly`. Can also use`command-xlarge-beta` and `command-xlarge`
+            "temperatureProperty": <temperature>,  // Optional
+            "maxTokensProperty": <maxTokens>,  // Optional
+            "kProperty": <k>, // Optional
+            "stopSequencesProperty": <stopSequences>, // Optional
+            "returnLikelihoodsProperty": <returnLikelihoods>, // Optional
+        }
+    }
+```
+
+And the `generative-openai` module may be configured as follows:
+
+```json
+    "moduleConfig": {
+        "generative-openai": {
+            "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
+            "temperatureProperty": <temperature>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "maxTokensProperty": <max_tokens>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "frequencyPenaltyProperty": <frequency_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "presencePenaltyProperty": <presence_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "topPProperty": <top_p>,  // Optional, applicable to both OpenAI and Azure OpenAI
+        },
+    }
+```
+
+Please see the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
 
 </details>
 
