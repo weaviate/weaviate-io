@@ -146,6 +146,14 @@ The user may then create an object of this class, such as:
 }
 ```
 
+### Auto-schema support for nested properties
+
+Given that the `object` data types allow nested properties of arbitrary depth, you will be pleased to know that auto-schema supports nested properties. This means that you can create a class with nested properties without having to manually define the class schema.
+
+In other words - you can create an `object` property, and Weaviate will automatically create the nested properties for you at import time.
+
+As with before, you will get the most granular and exact control over the schema by defining it manually. However, auto-schema may save you a lot of time, for example if you have a large number of nested properties.
+
 ### Future improvements
 
 Please keep in mind that this is the first iteration of nested JSON object storage in Weaviate, and we have further improvements planned.
@@ -156,11 +164,11 @@ Future plans include the ability to index nested properties, for example to allo
 
 ## Async vector indexing
 
-This feature will improve import speed for large datasets by allowing the vector indexing to be performed asynchronously to object creation.
+Weaviate now offers the option of asynchronous vector indexing to object creation. In turn, it enables you to optimize imports for speed where vector indexing is not required immediately.
 
-In the past, when importing a large dataset, creation of the HNSW would be performed synchronously to object creation. This meant that the import process would be blocked until the indexing process was complete. While indexing does occur relatively quickly, it was still a bottleneck for the process.
+In the past, the HNSW index would be built synchronously with object creation. This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
 
-With `1.22`, the vector indexing process is now performed asynchronously to object creation. This means that the import process is no longer blocked by the indexing process, and can continue to create objects while the indexing process is ongoing.
+With `1.22`, the vector indexing process can now be performed asynchronously to object creation. This means that the import process can go on independently to the indexing process and continue to create objects while the indexing process is ongoing.
 
 Outwardly, this change does not affect the user experience, other than the import process returning a response faster than before.
 
