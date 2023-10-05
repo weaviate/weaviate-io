@@ -684,3 +684,10 @@ button.close {
     font-size: 64% !important;
   }
 }
+
+.dropdown__link:hover,
+.dropdown__link--active {
+  background-color: rgb(97 189 115 / 32%);
+  color: black;
+  text-decoration: none;
+}
