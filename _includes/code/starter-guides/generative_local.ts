@@ -1,5 +1,7 @@
 // Starter-guides: Generative search (RAG)
 
+import assert from 'assert';
+
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
@@ -13,6 +15,9 @@ const client: WeaviateClient = weaviate.client({
   headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY },  // Replace with your inference API key
 });
 // END Instantiation
+
+const is_ready = await client.misc.liveChecker().do()
+assert.equal(is_ready, true, 'Weaviate is not ready')
 
 
 // ChunkText
@@ -32,10 +37,11 @@ async function downloadAndChunk(srcUrl, chunkSize, overlapSize) {
 }
 
 const proGitChapterUrl = 'https://raw.githubusercontent.com/progit/progit2/main/book/01-introduction/sections/what-is-git.asc';
-// downloadAndChunk(proGitChapterUrl, 150, 25).then(chunkedText => {
-//     console.log(chunkedText);
-// });
+const chunks = await downloadAndChunk(proGitChapterUrl, 150, 25)
 // END ChunkText
+
+assert(Array.isArray(chunks), 'Returned object is not an array')
+assert(typeof chunks[0] === 'string', 'Chunk is not a string')
 
 
 // CreateClass
@@ -88,6 +94,10 @@ result = await client
 // console.log(JSON.stringify(result, null, 2));
 // END CreateClass
 
+result = await client.schema.exists(`GitBookChunk`);
+assert(result == true, "The 'GitBookChunk' class does not exist")
+
+
 // ImportData
 await downloadAndChunk(proGitChapterUrl, 150, 25).then(async (chunkedText) => {
   // Prepare a batcher
@@ -133,6 +143,9 @@ result = await client
 console.log(JSON.stringify(result, null, 2));
 // END CountObjects
 
+assert(result.data.Aggregate['GitBookChunk'][0]['meta']['count'] > 0, "The 'GitBookChunk' class has no data")
+
+
 // SinglePrompt
 result = await client.graphql
   .get()
@@ -150,6 +163,11 @@ for (const r of result.data.Get['GitBookChunk']) {
 }
 // END SinglePrompt
 
+for (const r of result.data.Get['GitBookChunk']) {
+  assert(typeof r._additional.generate.singleResult === 'string', 'The generated object is not a string')
+}
+
+
 // GroupedTask
 result = await client.graphql
   .get()
@@ -163,6 +181,9 @@ result = await client.graphql
 
 console.log(result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult);
 // END GroupedTask
+
+assert(typeof result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')
+
 
 // NearTextGroupedTask
 result = await client.graphql
@@ -179,6 +200,9 @@ result = await client.graphql
 console.log(result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult);
 // END NearTextGroupedTask
 
+assert(typeof result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')
+
+
 // SecondNearTextGroupedTask
 result = await client.graphql
   .get()
@@ -193,3 +217,5 @@ result = await client.graphql
 
 console.log(result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult);
 // END SecondNearTextGroupedTask
+
+assert(typeof result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')

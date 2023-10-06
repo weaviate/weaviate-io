@@ -1,5 +1,7 @@
 // Starter-guides: Generative search (RAG)
 
+import assert from 'assert';
+
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
@@ -14,6 +16,9 @@ const client: WeaviateClient = weaviate.client({
   headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY },  // Replace with your inference API key
 });
 // END Instantiation
+
+const is_ready = await client.misc.liveChecker().do()
+assert.equal(is_ready, true, 'Weaviate is not ready')
 
 
 // DataRetrieval  // TransformResultSets  // TransformIndividualObjects
@@ -33,6 +38,8 @@ result = await client.graphql
 console.log(JSON.stringify(result, null, 2));
 // END DataRetrieval
 
+assert(result.data.Get['GitBookChunk'].length == 2, "Wrong number of objects returned.")
+
 
 // TransformResultSets
 result = await client.graphql
@@ -48,6 +55,9 @@ result = await client.graphql
 
 console.log(result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult);
 // END TransformResultSets
+
+assert(typeof result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')
+
 
 // TransformIndividualObjects
 result = await client.graphql
@@ -67,3 +77,7 @@ for (const r of result.data.Get['WineReview']) {
   console.log(r._additional.generate.singleResult)
 }
 // END TransformIndividualObjects
+
+for (const r of result.data.Get['WineReview']) {
+  assert(typeof r._additional.generate.singleResult === 'string', 'The generated object is not a string')
+}
