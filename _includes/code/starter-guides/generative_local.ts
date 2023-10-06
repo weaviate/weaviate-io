@@ -91,7 +91,7 @@ result = await client
   .withClass(classDefinition)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END CreateClass
 
 result = await client.schema.exists(`GitBookChunk`);
@@ -128,7 +128,7 @@ await downloadAndChunk(proGitChapterUrl, 150, 25).then(async (chunkedText) => {
 
   // Flush the remaining objects
   const res = await batcher.do();
-  // console.log(res);
+  console.log(res);
 });
 // END ImportData
 
