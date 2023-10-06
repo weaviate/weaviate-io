@@ -21,10 +21,10 @@ const is_ready = await client.misc.liveChecker().do()
 assert.equal(is_ready, true, 'Weaviate is not ready')
 
 
-// DataRetrieval  // TransformResultSets  // TransformIndividualObjects
+// DataRetrieval  // TransformResultSets  // TransformIndividualObjects  // ListModules
 let result;
 
-// END DataRetrieval  // END TransformResultSets  // END TransformIndividualObjects
+// END DataRetrieval  // END TransformResultSets  // END TransformIndividualObjects  // END ListModules
 
 // DataRetrieval
 result = await client.graphql
@@ -81,3 +81,9 @@ for (const r of result.data.Get['WineReview']) {
 for (const r of result.data.Get['WineReview']) {
   assert(typeof r._additional.generate.singleResult === 'string', 'The generated object is not a string')
 }
+
+// ListModules
+result = await client.misc
+  .metaGetter().do();
+console.log(result)
+// END ListModules

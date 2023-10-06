@@ -190,7 +190,9 @@ result = await client.graphql
   .get()
   .withClassName('GitBookChunk')
   .withFields('chunk chunk_index')
+  // highlight-start
   .withNearText({concepts: ['states of git']})
+  // highlight-end
   .withLimit(2)
   .withGenerate({
     groupedTask: 'Write a trivia tweet based on this text. Use emojis and make it succinct and cute.s'
@@ -208,7 +210,9 @@ result = await client.graphql
   .get()
   .withClassName('GitBookChunk')
   .withFields('chunk chunk_index')
+  // highlight-start
   .withNearText({concepts: ['how git saves data']})
+  // highlight-end
   .withLimit(2)
   .withGenerate({
     groupedTask: 'Write a trivia tweet based on this text. Use emojis and make it succinct and cute.s'
