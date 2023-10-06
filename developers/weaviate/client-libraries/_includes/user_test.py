@@ -316,3 +316,18 @@ response = questions.query_group_by.near_text(
 print(response.groups)  # Results, grouped by the points property
 print(response.objects)  # Individual results, with an added `belongs_to_group` property
 # END GroupByExample
+
+# GenericsExample
+from typing import TypedDict
+
+articles = client.collection.get("TestArticle")
+
+class Article(TypedDict):
+    title: str
+
+response = articles.query.fetch_objects(
+    limit=2,
+    return_properties=Article,  # Your generic class is used to extract the return properties and statically type the response
+    return_metadata=wvc.MetadataQuery(uuid=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
+)
+# END GenericsExample

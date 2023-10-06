@@ -438,6 +438,17 @@ With generated output attached to each object, like this:
   language="py"
 />
 
+### Data model / generics
+
+You can choose to provide a generic type to a query or data operation. This can be beneficial as the generic class is used to extract the return properties and statically type the response.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# TestArticle"
+  endMarker="# END TestArticle"
+  language="py"
+/>
+
 ### Choose your own adventure
 
 With these basics in place, you should be ready to try out all of the other operations available in the `collections` client.
