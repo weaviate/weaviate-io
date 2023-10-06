@@ -8,14 +8,11 @@ image: og/docs/tutorials.jpg
 import Badges from '/_includes/badges.mdx';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSCodeEduDemo from '!!raw-loader!/_includes/code/starter-guides/generative_edudemo.ts';
+import TSCodeLocal from '!!raw-loader!/_includes/code/starter-guides/generative_local.ts';
 
 <Badges/>
-
-:::info This page is a work-in-progress preview
-For now, the code examples are in <i class="fa-brands fa-python"></i> Python only. Please be patient while we add code examples for other languages.
-
-We would love to get your feedback. Please provide us with any feedback through [this forum post](https://forum.weaviate.io/t/generative-search-rag-guide-preview-feedback-thread).
-:::
 
 :::caution Generative module cannot be changed
 Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
@@ -94,6 +91,14 @@ client = weaviate.Client(
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// Instantiation"
+  endMarker="// END Instantiation"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 ### Data retrieval
@@ -117,6 +122,14 @@ response = (
 )
 ```
 
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// DataRetrieval"
+  endMarker="// END DataRetrieval"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -176,6 +189,14 @@ print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["gr
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// TransformResultSets"
+  endMarker="// END TransformResultSets"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 Here is our generated text:
@@ -231,6 +252,14 @@ response = (
 )
 ```
 
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// TransformIndividualObjects"
+  endMarker="// END TransformIndividualObjects"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -396,6 +425,14 @@ chunked_text = download_and_chunk(pro_git_chapter_url, 150, 25)
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// ChunkText"
+  endMarker="// END ChunkText"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 This will download the text from the chapter, and return a list/array of strings of 150 word chunks, with a 25-word overlap added in front.
@@ -417,11 +454,11 @@ chunk_class = {
     "properties": [
         {
             "name": "chunk",
-            "dataType": ["string"],
+            "dataType": ["text"],
         },
         {
             "name": "chapter_title",
-            "dataType": ["string"],
+            "dataType": ["text"],
         },
         {
             "name": "chunk_index",
@@ -445,6 +482,14 @@ client.schema.create_class(chunk_class)
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// CreateClass"
+  endMarker="// END CreateClass"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 #### Import data
@@ -467,6 +512,14 @@ with client.batch as batch:
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// ImportData"
+  endMarker="// END ImportData"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 Once this is done, you should have imported a collection of chunks from the chapter into Weaviate. You can check this by running a simple aggregation query:
@@ -475,9 +528,18 @@ Once this is done, you should have imported a collection of chunks from the chap
 <TabItem value="py" label="Python">
 
 ```python
-client.query.aggregate("GitBookChunk").with_meta_count().do()
+response = client.query.aggregate("GitBookChunk").with_meta_count().do()
+print(response)
 ```
 
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// CountObjects"
+  endMarker="// END CountObjects"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -510,6 +572,14 @@ for r in response["data"]["Get"][collection_name]:
     print(r["_additional"]["generate"]["singleResult"])
 ```
 
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// SinglePrompt"
+  endMarker="// END SinglePrompt"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -551,6 +621,14 @@ print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["gr
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// GroupedTask"
+  endMarker="// END GroupedTask"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 It should return a factoid written for social media, such as:
@@ -588,6 +666,14 @@ print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["gr
 ```
 
 </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// NearTextGroupedTask"
+  endMarker="// END NearTextGroupedTask"
+  language="ts"
+/>
+</TabItem>
 </Tabs>
 
 This should return text like:
@@ -620,6 +706,14 @@ response = (
 print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
 ```
 
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// SecondNearTextGroupedTask"
+  endMarker="// END SecondNearTextGroupedTask"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
