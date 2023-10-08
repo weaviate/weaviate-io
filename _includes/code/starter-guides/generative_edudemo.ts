@@ -21,13 +21,8 @@ const is_ready = await client.misc.liveChecker().do()
 assert.equal(is_ready, true, 'Weaviate is not ready')
 
 
-// DataRetrieval  // TransformResultSets  // TransformIndividualObjects  // ListModules
-let result;
-
-// END DataRetrieval  // END TransformResultSets  // END TransformIndividualObjects  // END ListModules
-
 // DataRetrieval
-result = await client.graphql
+const dataRetrievalResult = await client.graphql
   .get()
   .withClassName('GitBookChunk')
   .withNearText({ concepts: ['history of git'] })
@@ -35,14 +30,14 @@ result = await client.graphql
   .withLimit(2)
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(dataRetrievalResult, null, 2));
 // END DataRetrieval
 
-assert(result.data.Get['GitBookChunk'].length == 2, "Wrong number of objects returned.")
+assert(dataRetrievalResult.data.Get['GitBookChunk'].length == 2, "Wrong number of objects returned.")
 
 
 // TransformResultSets
-result = await client.graphql
+const groupedTaskResponse = await client.graphql
   .get()
   .withClassName('GitBookChunk')
   .withNearText({ concepts: ['history of git'] })
@@ -53,14 +48,14 @@ result = await client.graphql
   })
   .do();
 
-console.log(result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult);
+console.log(groupedTaskResponse.data.Get['GitBookChunk'][0]._additional.generate.groupedResult);
 // END TransformResultSets
 
-assert(typeof result.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')
+assert(typeof groupedTaskResponse.data.Get['GitBookChunk'][0]._additional.generate.groupedResult === 'string', 'The generated object is not a string')
 
 
 // TransformIndividualObjects
-result = await client.graphql
+const singlePromptresult = await client.graphql
   .get()
   .withClassName('WineReview')
   .withNearText({ concepts: ['fruity white wine'] })
@@ -73,17 +68,17 @@ result = await client.graphql
   })
   .do();
 
-for (const r of result.data.Get['WineReview']) {
+for (const r of singlePromptresult.data.Get['WineReview']) {
   console.log(r._additional.generate.singleResult)
 }
 // END TransformIndividualObjects
 
-for (const r of result.data.Get['WineReview']) {
+for (const r of singlePromptresult.data.Get['WineReview']) {
   assert(typeof r._additional.generate.singleResult === 'string', 'The generated object is not a string')
 }
 
 // ListModules
-result = await client.misc
+const metaResponse = await client.misc
   .metaGetter().do();
-console.log(result)
+console.log(metaResponse)
 // END ListModules
