@@ -417,8 +417,8 @@ Now, we can import the data into Weaviate.
 <TabItem value="py" label="Python">
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# CreateClass"
-  endMarker="# END CreateClass"
+  startMarker="# ImportData"
+  endMarker="# END ImportData"
   language="py"
 />
 </TabItem>
