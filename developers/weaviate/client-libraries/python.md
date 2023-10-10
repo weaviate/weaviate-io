@@ -17,7 +17,7 @@ The current Python client version is `v||site.python_client_version||`
 The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be easily installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 ```bash
-$ pip install weaviate-client
+pip install weaviate-client
 ```
 
 Now you can use the client in your Python scripts as follows:

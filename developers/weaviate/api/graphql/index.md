@@ -32,7 +32,7 @@ All references have their individual subpages. Click on one of the references be
 You can query Weaviate for semantic kinds based on standard GraphQL queries. The examples below only contain the GraphQL query. You can POST a GraphQL query to Weaviate as follows:
 
 ```bash
-$ curl http://localhost/v1/graphql -X POST -H 'Content-type: application/json' -d '{GraphQL query}'
+curl http://localhost/v1/graphql -X POST -H 'Content-type: application/json' -d '{GraphQL query}'
 ```
 
 A GraphQL JSON object is defined as:

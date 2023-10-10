@@ -223,7 +223,7 @@ The result contains the following fields:
 #### Example
 
 ```bash
-$ curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/magazine
+curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/magazine
 ```
 
 or (note the camelCased compound concept)
@@ -339,7 +339,7 @@ Note that it is not (yet) possible to extend the Contextionary with concatenated
 You can also overwrite current concepts with this endpoint. Let's say you are using the abbreviation `API` for `Academic Performance Index` instead of `Application Programming Interface`, and you want to reposition this concept in the Contextionary:
 
 ```bash
-$ curl \
+curl \
   -X POST \
   -H 'Content-Type: application/json' \
   -d '{
