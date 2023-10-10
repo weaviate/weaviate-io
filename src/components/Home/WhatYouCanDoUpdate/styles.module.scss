@@ -45,7 +45,11 @@
         display: flex;
         flex-direction: row;
         flex: 0 0 auto;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 10px;
+        width: 100%;
       }
 
       .tabsTrigger {
