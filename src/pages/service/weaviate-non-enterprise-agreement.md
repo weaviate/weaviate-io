@@ -1,13 +1,13 @@
 ---
 title: Weaviate Non Enterprise Agreement
-# image: og/service/weaviate-non-enterprise-agreement.jpg
+# image: og/service/_title.jpg
 ---
 
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-<MetaSEO img="og/service/weaviate-non-enterprise-agreement.jpg" />
+<MetaSEO img="og/service/_title.jpg" />
 
-**TERMS OF SERVICE**
+### **TERMS OF SERVICE**
 
 **Last Updated: September, 2023**
 
@@ -20,8 +20,7 @@ In this Agreement, “you,” “your” and “Customer” will refer to you. I
 Weaviate may revise these Terms from time to time. If Weaviate does revise these Terms, the revised Terms will supersede prior versions. Revisions will be effective upon the effective date indicated at the top of these Terms, unless you have purchased a paid subscription to the Weaviate Database, in which case such revisions will be effective upon the next renewal of your subscription. Weaviate will provide you advance notice of any material revisions. This notice will be provided via the account portal and/or via an email to the email address Weaviate has on file. For other revisions, Weaviate will update the effective date of these Terms at the top of the page. Weaviate encourages you to check the effective date of these Terms whenever you visit Weaviate’s website or account portal. Your continued access or use of the Weaviate Database constitutes your acceptance of any revisions. If you do not agree to the revisions, you should stop using the Weaviate Database and Weaviate is not obligated to provide you with the Weaviate Database.
 
 ---
-
-1. **Definitions**
+### 1. **Definitions**
 
    1.1 The following terms, when used in this Agreement will have the following meanings:
 
@@ -34,40 +33,39 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 “**_Weaviate Database”_** means the open-sourced vector database that permits you to store data objects and vector embeddings made available by Weaviate, and all related documentation, software and intellectual property provided by Weaviate in relation thereto.
 
 ---
+### 2.  **Weaviate Database**
 
-2.  **Weaviate Database**
+2.1. Provision of Weaviate Database.  Subject to the terms and conditions of this Agreement, Weaviate will use commercially reasonable efforts to make the Weaviate Database available to Customer pursuant to this Agreement, and hereby grants Customer a non-exclusive right to access and use the Weaviate Database for its internal business purposes to manage employee profiles, application and device assignments and onboarding and offboarding events.
 
-    2.1. Provision of Weaviate Database.  Subject to the terms and conditions of this Agreement, Weaviate will use commercially reasonable efforts to make the Weaviate Database available to Customer pursuant to this Agreement, and hereby grants Customer a non-exclusive right to access and use the Weaviate Database for its internal business purposes to manage employee profiles, application and device assignments and onboarding and offboarding events.
+2.2. Customer Limitations.  The rights granted herein are subject to the following restrictions (the “**_License Restrictions_**”).  Customer will not directly or indirectly:
 
-    2.2. Customer Limitations.  The rights granted herein are subject to the following restrictions (the “**_License Restrictions_**”).  Customer will not directly or indirectly:
+2.2.1. reverse engineer, decompile, disassemble, modify, create derivative works of, or otherwise create, attempt to create or derive, or permit or assist any third party to create or derive, the proprietary source code underlying the Weaviate Database;
 
-    2.2.1. reverse engineer, decompile, disassemble, modify, create derivative works of, or otherwise create, attempt to create or derive, or permit or assist any third party to create or derive, the proprietary source code underlying the Weaviate Database;
+2.2.2. attempt to probe, scan or test the vulnerability of the Weaviate Database, breach the security or authentication measures of the Weaviate Database without proper authorization or wilfully render any part of the Weaviate Database unusable;
 
-    2.2.2. attempt to probe, scan or test the vulnerability of the Weaviate Database, breach the security or authentication measures of the Weaviate Database without proper authorization or wilfully render any part of the Weaviate Database unusable;
+2.2.3. attack, or attempt to attack, the Weaviate Database using a denial-of-service attack, a distributed denial-of-service attack or any other attack;
 
-    2.2.3. attack, or attempt to attack, the Weaviate Database using a denial-of-service attack, a distributed denial-of-service attack or any other attack;
+2.2.4. use or access the Weaviate Database to develop a product or service that is competitive with Weaviate’s products or Product;
 
-    2.2.4. use or access the Weaviate Database to develop a product or service that is competitive with Weaviate’s products or Product;
+2.2.5. transfer, distribute, resell, lease, license, or assign the Weaviate Product or otherwise offer the Weaviate Product on a standalone basis, use the Client Software in an application service provider or managed service provider environment, or copy the Client Software onto any public or distributed network, except for an internal and secure cloud computing environment;
 
-    2.2.5. transfer, distribute, resell, lease, license, or assign the Weaviate Product or otherwise offer the Weaviate Product on a standalone basis, use the Client Software in an application service provider or managed service provider environment, or copy the Client Software onto any public or distributed network, except for an internal and secure cloud computing environment;
+2.2.6. use the Weaviate Database to engage in any misleading or deceptive comparisons involving the Weaviate Database or other products or services; or
 
-    2.2.6. use the Weaviate Database to engage in any misleading or deceptive comparisons involving the Weaviate Database or other products or services; or
+2.2.7. otherwise use the Weaviate Database (i) to engage in any illegal activity, (ii) to infringe or violate any third party rights, or (iii) otherwise outside the scope expressly permitted hereunder and in the applicable Order Form.
 
-    2.2.7. otherwise use the Weaviate Database (i) to engage in any illegal activity, (ii) to infringe or violate any third party rights, or (iii) otherwise outside the scope expressly permitted hereunder and in the applicable Order Form.
+2.3. Customer Responsibilities. Customer will (a) be responsible for all use of the Weaviate Database under its account, (b) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Database and notify Weaviate promptly of any such unauthorized access or use, and (c) be responsible for obtaining and maintaining any equipment, software and ancillary services needed to connect to, access or otherwise use the Weaviate Database, including as set forth in the Documentation.  Customer will be solely responsible for its failure to maintain such equipment, software and services, and Weaviate will have no liability for such failure.
 
-    2.3. Customer Responsibilities. Customer will (a) be responsible for all use of the Weaviate Database under its account, (b) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Database and notify Weaviate promptly of any such unauthorized access or use, and (c) be responsible for obtaining and maintaining any equipment, software and ancillary services needed to connect to, access or otherwise use the Weaviate Database, including as set forth in the Documentation.  Customer will be solely responsible for its failure to maintain such equipment, software and services, and Weaviate will have no liability for such failure.
+2.4. Customer Support.  Weaviate is committed to providing continuous support to all our customers. Here are the support provisions available to non-enterprise customers. Weaviate reserves the right to update its support terms from time to time.
 
-    2.4. Customer Support.  Weaviate is committed to providing continuous support to all our customers. Here are the support provisions available to non-enterprise customers. Weaviate reserves the right to update its support terms from time to time.
+2.4.1. Support Access: Customers can report incidents and ask questions 24x7 through Weaviate's ticketing system, operated by our technical team with product expertise.
 
-    2.4.1. Support Access: Customers can report incidents and ask questions 24x7 through Weaviate's ticketing system, operated by our technical team with product expertise.
+2.4.2. Support Tickets: Customers can report issues through the user interface as documented on our website. The tickets should, where applicable, include a description of the issue, error message, and relevant screenshots or log files. Weaviate assures that no personally identifiable information is required during this process.
 
-    2.4.2. Support Tickets: Customers can report issues through the user interface as documented on our website. The tickets should, where applicable, include a description of the issue, error message, and relevant screenshots or log files. Weaviate assures that no personally identifiable information is required during this process.
+2.4.3. Slack Community: Our Slack community is a platform where everyone can discuss and share insights, although it is not an official channel for support.
 
-    2.4.3. Slack Community: Our Slack community is a platform where everyone can discuss and share insights, although it is not an official channel for support.
+2.4.4. Documentation Library: Customers have access to Weaviate's online documentation, which includes a wide range of resources such as technical and user documentation, API references, troubleshooting techniques, and more.
 
-    2.4.4. Documentation Library: Customers have access to Weaviate's online documentation, which includes a wide range of resources such as technical and user documentation, API references, troubleshooting techniques, and more.
-
-    2.4.5. Support Plans and Response Time SLAs: The standard support tier offers different response times based on the severity of the issue reported:
+2.4.5. Support Plans and Response Time SLAs: The standard support tier offers different response times based on the severity of the issue reported:
 
     Severity 1 (Critical): 1 Business day
 
@@ -81,8 +79,7 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 2.4.7. Severity Levels and Target Response Times: Weaviate categorizes support tickets based on the customer's characterization of the severity level. The response times are as mentioned in 2.4.5.
 
 ---
-
-3. **Fees**
+### 3. **Fees**
 
    3.1. Fees. If Customer has purchased a subscription or has otherwise agreed to pay any fees in an Order Form, Customer will pay Weaviate the fees set forth in the applicable Order Form.
 
@@ -90,7 +87,8 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 
    3.3. Net of Taxes.  All applicable use, sales and other similar taxes and government charges will be payable by Customer. Customer will not withhold any taxes from any amounts due to Weaviate.
 
-4. **Proprietary Rights and Confidentiality**
+---
+### 4. **Proprietary Rights and Confidentiality**
 
    4.1. Weaviate’s Ownership Rights.  As between the parties, Weaviate exclusively owns all right, title and interest in and to the Weaviate Database.  Except for the express rights granted hereunder, Weaviate reserves all rights, title and interests in and to the Weaviate Database and Weaviate’s Confidential Information.
 
@@ -100,7 +98,8 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 
    4.4. Aggregated Information.  Notwithstanding anything to the contrary, Weaviate shall have the right to aggregate, collect and analyze data and other information relating to the provision, use and performance of the Weaviate Database and shall be free (during and after the term hereof) to (i) use such data and other information to develop and improve the Weaviate Database and other Weaviate offerings, and (ii) disclose such data and other information solely in an aggregated and anonymized format that does not identify Customer or any individual.
 
-5. **Warranties and Disclaimers**
+---
+### 5. **Warranties and Disclaimers**
 
    5.1. Customer.  Customer warrants that it has all rights necessary to provide any information, data or other materials that it provides hereunder, and to permit Weaviate to use the same as contemplated hereunder.
 
@@ -108,17 +107,19 @@ Weaviate may revise these Terms from time to time. If Weaviate does revise these
 
    5.3. BETA SERVICES.  FROM TIME TO TIME, CUSTOMER MAY HAVE THE OPTION TO PARTICIPATE IN A PROGRAM WITH WEAVIATE WHERE CUSTOMER GETS TO USE ALPHA OR BETA SERVICES, PRODUCTS, FEATURES OR DOCUMENTATION (COLLECTIVELY, “BETA SERVICES”) OFFERED BY WEAVIATE. THE BETA SERVICES ARE NOT GENERALLY AVAILABLE AND ARE PROVIDED “AS IS”.  CUSTOMER OR WEAVIATE MAY TERMINATE CUSTOMER’S ACCESS TO THE BETA SERVICES AT ANY TIME.
 
-6. **Indemnification**
+---
+### 6. **Indemnification**
 
 Customer will indemnify, defend and hold harmless Weaviate against any claim made or brought against Weaviate by a third party arising out of or relating to Customer’s use or misuse of the Weaviate Database.  Weaviate will cooperate as reasonably required in the defense of any such claim, at Customer’s expense. Weaviate reserves the right, at Customer’s expense, to retain separate counsel for itself in connection with any such claim or, if Customer has not responded reasonably to such claim, to assume the exclusive defense and control of such claim. Customer will also be liable to Weaviate for any costs and attorneys’ fees Weaviate incurs to successfully establish or enforce Weaviate’s right to indemnification under this Section.
 
 ---
 
-7. **Limitation of Liability**
+### 7. **Limitation of Liability**
 
 UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL WEAVIATE BE LIABLE TO CUSTOMER FOR (A) ANY INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES OF ANY CHARACTER, INCLUDING DAMAGES FOR LOSS OF GOODWILL, LOST PROFITS, LOST SALES OR BUSINESS, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, LOST CONTENT OR DATA, OR FOR ANY AND ALL OTHER DAMAGES OR LOSSES, EVEN IF A REPRESENTATIVE OF WEAVIATE HAS BEEN ADVISED, KNEW OR SHOULD HAVE KNOWN OF THE POSSIBILITY OF SUCH DAMAGES, OR (B) ANY AGGREGATE DAMAGES, COSTS OR LIABILITIES IN EXCESS OF THE AMOUNTS PAID BY CUSTOMER UNDER THE APPLICABLE ORDER FORM DURING THE TWELVE (12) MONTHS PRECEDING THE INCIDENT OR CLAIM.  THE FOREGOING PROVISIONS ALLOCATE THE RISKS UNDER THIS AGREEMENT BETWEEN THE PARTIES, AND THE PARTIES HAVE RELIED ON THE LIMITATIONS SET FORTH HEREIN IN DETERMINING WHETHER TO ENTER INTO THIS AGREEMENT.
 
-8. **Termination**
+---
+### 8. **Termination**
 
    8.1. Term.  The term of this Agreement will commence on the date these Terms are accepted by you and continue until your account is terminated as set forth below.
 
@@ -126,7 +127,8 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL WEAVIATE BE
 
    8.3. Survival.  Upon expiration or termination of this Agreement, all rights and obligations will immediately terminate except that any terms or conditions that by their nature should survive such termination will survive, including the License Restrictions and terms and conditions relating to proprietary rights and confidentiality, disclaimers, indemnification, limitations of liability and termination and the general provisions below. Upon expiration or termination of this Agreement, if applicable, Customer will destroy any copies of BYOC Offerings provided hereunder.
 
-9. **General**
+---
+### 9. **General**
 
    9.1. Export Compliance.  Each party will comply with the export laws and regulations of the United States, European Union and other applicable jurisdictions in providing and using the Weaviate Database.
 

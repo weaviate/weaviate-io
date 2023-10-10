@@ -19,6 +19,8 @@ For more information related to one of the documents below, please reach out to 
   - [General Terms](/service/general-terms)
   - [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement)
   - [Weaviate Non Enterprise Agreement](/service/weaviate-non-enterprise-agreement)
+  - [End-User License Agreement](/service/EULA)
+  - [Service Level Agreement](/service/sla)
   - [Service Schedule](/service/service-schedule)
 
 

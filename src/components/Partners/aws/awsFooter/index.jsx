@@ -10,7 +10,7 @@ export default function awsFoot() {
           <p>
             Contact aws-marketplace@weaviate.io to receive details about your
             critical response SLA, the setup of support<br></br> channels
-            (Slack, email, and phone), and to receive optional complementary
+            (Slack, email, and phone), and to receive optional complimentary
             training from experts at Weaviate.
           </p>
         </div>
