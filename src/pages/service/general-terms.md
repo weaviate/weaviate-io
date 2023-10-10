@@ -14,7 +14,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 
 1.1. The Agreement applies to those of our Solutions that you purchase or for which you acquire the right to access or use. You may order our Solutions from us by submitting an Order Form.
 
-1.2 The Agreement consists of three parts: (1) the General Terms; (2) the Solution Descriptions (which may include end user license agreements) applicable to your Solutions; and (3) any Order Forms. Certain terms are defined at the end of these General Terms or in the Order Form. 
+1.2 The Agreement consists of three parts: (1) the General Terms; (2) the Solution Descriptions (which may include end user license agreements) applicable to your Solutions; and (3) any Order Forms. Certain terms are defined at the end of these General Terms or in the Order Form.
 
 1.3 In the event of any conflict among these documents, the above order of precedence applies to the extent of the conflict unless it’s clear that a lower ranked document explicitly deviates from a higher ranked document.
 
@@ -23,7 +23,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 2.1 The Agreement begins on the Start Date and continues until it is terminated as set out below.
 
 2.2 The Service that you order will start on the earlier of (a) your first use of the Service, (b) the date you purchased the Service, or (c) the start date contained in the Order Form, and, in each case, will end at the expiration of the Services Term unless terminated earlier as set out below. [If the Service you have purchased is a subscription, it will automatically renew for successive terms of the same duration as the original Services Term, unless either party gives written notice to the other party of its intention not to renew at least 30 days before the expiration of the applicable Services Term (or any subsequent renewal).]
- 
+
 ### 3. FEES
 
 3.1 You must pay us the Fees in the amount and in the manner specified on any Order Form.
@@ -36,7 +36,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 
 4.3 The termination or suspension of an individual Order Form or Solution will not terminate or suspend any other Order Form Solution or the remainder of the Agreement unless specified in the notice of termination or suspension. If the Agreement is terminated in whole, all outstanding Order Form(s) and Services will terminate. If this Agreement, any Order Form or Business Partner order is terminated, you agree to pay any amounts to us, on demand, for Services supplied by us up until the date of termination. [For the avoidance of doubt, termination of this Agreement will not affect the Customer’s right to continue to use the Open Source Software].
 
-### 5. WARRANTIES 
+### 5. WARRANTIES
 
 5.1 We warrant that (a) we have the authority to enter into this Agreement, (b) the Services will be performed in a professional and workmanlike manner, (c) to our knowledge, the Software does not, at the time of delivery to you, include malicious mechanisms or code for the purpose of damaging or corrupting the Software; and (d) the Services will comply in all material respects with laws applicable to us as the provider of the Services.
 
@@ -58,7 +58,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 
 7.2 We grant you only those rights expressly granted in the Agreement with respect to the Solutions and reserve all other rights in and to the Solutions (including all intellectual property rights). Nothing in this Agreement limits us from providing software, materials, or services for ourselves or other clients, irrespective of the possible similarity of such software, materials or services to those that might be delivered to you. The terms of Section 9 per se will not prohibit or restrict either party's right to develop, use or market solutions or services similar to or competitive with the other party; provided, however, that both of us must comply with this Agreement.
 
-### 8. LIABILITY 
+### 8. LIABILITY
 
 8.1 You acknowledge that you have satisfied yourself as to the quality and suitability of the Solutions for your purposes and specific business operational requirements, and have not relied solely on our representations, descriptions, skill or judgement.
 
@@ -76,7 +76,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 
 9.3 Either party may upon written notice: (a) assign this Agreement to an Affiliate if the Affiliate’s financial condition and creditworthiness are sufficient to satisfy the assigning party’s obligations under the Agreement and the assignment will not affect the nonassigning party’s obligations under the Agreement; and (b) assign this Agreement to a successor or acquirer pursuant to a merger or sale of all or substantially all of such party’s assets. Any other assignment will be deemed void and ineffective without the prior written consent of the other party. Subject to the foregoing, this Agreement will be bind and benefit the parties and their respective successors and permitted assigns.
 
-9.4 If a provision of the Agreement is or becomes illegal, invalid, void or unenforceable, this shall not affect the validity or enforceability of any other provision of the Agreement. Parties will agree on a new provision with the same purpose, on the condition that the spirit of the original provision of the Agreement is affected as little as possible. 
+9.4 If a provision of the Agreement is or becomes illegal, invalid, void or unenforceable, this shall not affect the validity or enforceability of any other provision of the Agreement. Parties will agree on a new provision with the same purpose, on the condition that the spirit of the original provision of the Agreement is affected as little as possible.
 
 9.5 This Agreement may be executed in counterparts, each of which will be deemed an original and all of which will constitute one and the same document. The parties may exchange signature pages by email or electronic signature process and such signatures will be effective to bind the parties to the Agreement.
 
@@ -84,7 +84,7 @@ Please read this Agreement carefully before purchasing and/or using our software
 
 ### 10 GOVERNING LAW AND DISPUTES
 
-10.1 The Agreement is governed by and shall be construed in accordance with the laws of the Netherlands. 
+10.1 The Agreement is governed by and shall be construed in accordance with the laws of the Netherlands.
 
 10.2 To the extent permitted by law, the United Nations Convention on Contracts for the International Sale of Goods does not apply.
 
