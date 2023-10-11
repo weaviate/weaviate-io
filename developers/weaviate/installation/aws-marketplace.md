@@ -1,6 +1,6 @@
 ---
 title: AWS Marketplace
-sidebar_position: 8
+sidebar_position: 10
 image: og/docs/installation.jpg
 # tags: ['installation', 'AWS Marketplace']
 ---
@@ -11,6 +11,8 @@ import ReactPlayer from 'react-player/lazy'
 <Badges/>
 
 ## Overview
+
+<!-- NOTE: To show this page on the sidebar, remove the `sidebar_class_name: hidden` line above. -->
 
 You can use [AWS Marketplace](https://aws.amazon.com/marketplace) to directly launch a Weaviate cluster.
 
@@ -126,7 +128,7 @@ Once that's set up, you can run `kubectl` commands as usual. For example
 Once the stack has been created, you can access Weaviate via the load balancer URL.
 
 You can find the Weaviate endpoint URL by any of:
-- In the `Services` section of AWS, under `EC2` > `Load Balancers`. Find the load balancer, and look for the `DNS name` column.
+- Going to the `Services` section of AWS, under `EC2` > `Load Balancers`. Find the load balancer, and look for the `DNS name` column.
 - Running `kubectl get svc -n weaviate` and looking for the `EXTERNAL-IP` of the `weaviate` service.
 
 The load balancer URL (e.g. `a520f010285b8475eb4b86095cabf265-854109584.eu-north-1.elb.amazonaws.com`) will be the Weaviate URL (e.g. `http://a520f010285b8475eb4b86095cabf265-854109584.eu-north-1.elb.amazonaws.com`).
@@ -140,7 +142,7 @@ Please note that this will delete your data in Weaviate. If you want to keep you
 ### Some resources many require manual deletion
 
 :::caution
-Please make sure that all resources are deleted. If you do not delete all resources, you will continue to incur costs in AWS.
+Please make sure that all unused resources are deleted. You will continue to incur costs for any remaining resources.
 :::
 
 There may be some AWS resources that are not deleted automatically when the CloudFormation stack is deleted. For example, EBS volumes, and Key Management Service (KMS) keys may not be deleted from time to time.
@@ -156,7 +158,7 @@ You must delete these manually.
 
 ## Billing
 
-You will be charged for the Weaviate cluster directly by AWS, based on the resources used.
+You will be charged for Weaviate and associated resources directly by AWS.
 
 This will, for example, include the EC2 instances, EBS volumes, and any other resources used by the cluster.
 
