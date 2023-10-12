@@ -20,7 +20,7 @@ export default function Header() {
           </div>
 
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#meet_the_team">
+            <Link className={styles.buttonGradient} to="#meetingForm">
               Book A Meeting
             </Link>
           </div>

@@ -118,8 +118,11 @@
 
   @media screen and (max-width: 500px) {
     padding-top: 1rem;
-    flex-direction: column;
+    display: flex;
     gap: 79px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .box {
