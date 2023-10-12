@@ -70,8 +70,7 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   color: #130c49;
   margin-top: 60px;
@@ -91,7 +90,7 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 768px) {
     flex-direction: row;
     display: flex;
     flex-wrap: wrap;
