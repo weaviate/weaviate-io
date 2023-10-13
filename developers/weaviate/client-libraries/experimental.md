@@ -444,8 +444,8 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# TestArticle"
-  endMarker="# END TestArticle"
+  startMarker="# GenericsExample"
+  endMarker="# END GenericsExample"
   language="py"
 />
 
