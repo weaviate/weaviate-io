@@ -30,10 +30,10 @@ To obtain and install the Weaviate chart on your Kubernetes cluster, take the fo
 
 ```bash
 # Check if helm is installed
-$ helm version
+helm version
 # Make sure `kubectl` is configured correctly and you can access the cluster.
 # For example, try listing the pods in the currently configured namespace.
-$ kubectl get pods
+kubectl get pods
 ```
 
 ### Obtain the Helm Chart
@@ -121,10 +121,10 @@ You can deploy the helm charts as follows:
 
 ```bash
 # Create a Weaviate namespace
-$ kubectl create namespace weaviate
+kubectl create namespace weaviate
 
 # Deploy
-$ helm upgrade --install \
+helm upgrade --install \
   "weaviate" \
   weaviate/weaviate \
   --namespace "weaviate" \

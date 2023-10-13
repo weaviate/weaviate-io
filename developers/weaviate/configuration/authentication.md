@@ -212,7 +212,7 @@ services:
 If you have authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
 
 ```bash
-$ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
+curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 ```
 
 ## OIDC - A client-side perspective
@@ -347,7 +347,7 @@ For example, you can use a CURL command as shown below:
 
 ```bash
 # List objects using a Bearer token
-$ curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
+curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
 ```
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.

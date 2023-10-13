@@ -106,13 +106,13 @@ The dataType `blob` can be used as property dataType in the data schema as follo
 To obtain the base64-encoded value of an image, you can run the following command - or use the helper methods in the Weaviate clients - to do so:
 
 ```bash
-$ cat my_image.png | base64
+cat my_image.png | base64
 ```
 
 You can then import data with `blob` dataType to Weaviate as follows:
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

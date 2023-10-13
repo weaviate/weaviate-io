@@ -19,13 +19,13 @@ The Weaviate CLI is available on [Pypi.org](https://pypi.org/project/weaviate-cl
 The Weaviate CLI can be installed with:
 
 ```sh
-$ pip install weaviate-cli
+pip install weaviate-cli
 ```
 
 To check if the cli is installed correctly, run:
 
 ```sh
-$ weaviate version
+weaviate version
 ```
 
 which should return ||site.weaviate_cli_version||.
@@ -37,18 +37,18 @@ which should return ||site.weaviate_cli_version||.
 You need to configure the CLI tool before you can interact with you Weaviate instance. This can be done manually or by adding flags to commands.
 - Manually (interactive):
   ```sh
-  $ weaviate config set
+  weaviate config set
   ```
   or
   ```sh
-  $ weaviate init
+  weaviate init
   ```
   After which you will be asked to enter the Weaviate URL and authentication mode.
 
 - Flags: if you didn't configure the CLI manually, you can add a configuration flag pointing to a configuration json file (`--config-file myconfig.json`) with every command you execute.
 
   ```bash
-  $ weaviate --config-file myconfig.json
+  weaviate --config-file myconfig.json
   ```
 
   in which `myconfig.json` should look like:
@@ -95,13 +95,13 @@ You need to configure the CLI tool before you can interact with you Weaviate ins
 You can view the configuration with the command:
 
 ```sh
-$ weaviate config view
+weaviate config view
 ```
 
 ### Ping
 You can ping the Weaviate URL you're connected to with:
 ```sh
-$ weaviate ping
+weaviate ping
 ```
 
 Which returns `Weaviate is reachable!` if the connection with the Weaviate server is set up correctly.
@@ -115,7 +115,7 @@ There are three operations available with regard to the schema: [import](#import
 Adding a schema can be done via:
 
 ```sh
-$ weaviate schema import my_schema.json
+weaviate schema import my_schema.json
 ```
 
 Where `my_schema.json` contains the schema as described [here](../tutorials/schema.md).
@@ -123,14 +123,14 @@ Where `my_schema.json` contains the schema as described [here](../tutorials/sche
 To overwrite your schema you can use the `--force` flag, this will clear the index and replace your schema:
 
 ```sh
-$ weaviate schema import --force my_schema.json # using --force will delete your data
+weaviate schema import --force my_schema.json # using --force will delete your data
 ```
 
 #### Export
 You can export a schema to a json file that is present in the Weaviate instance by:
 
 ```sh
-$ weaviate schema export my_schema.json
+weaviate schema export my_schema.json
 ```
 
 Where `my_schema.json` can be replaces by a json file and local location. Naturally this function only outputs the schema to the given location when a schema is present in Weaviate.
@@ -140,7 +140,7 @@ Where `my_schema.json` can be replaces by a json file and local location. Natura
 With `delete` you can remove the entire schema and all the data that is associated with it. You will be asked for confirmation unless the `--force` flag is added.
 
 ```sh
-$ weaviate schema delete
+weaviate schema delete
 ```
 
 ### Data
@@ -149,7 +149,7 @@ $ weaviate schema delete
 The `import` function enables data import from a json file. When the flag `--fail-on-error` is added, this command execution will fail if an error was thrown by Weaviate when loading the data object in.
 
 ```sh
-$ weaviate data import my_data_objects.json
+weaviate data import my_data_objects.json
 ```
 
 The json file and location is passed in the command. The file needs to be formatted according to the Weaviate data schema, for example:
@@ -183,7 +183,7 @@ The json file and location is passed in the command. The file needs to be format
 With `delete` you can remove all data objects in Weaviate. You will be asked for confirmation unless the `--force` flag is added.
 
 ```sh
-$ weaviate data delete
+weaviate data delete
 ```
 ## Change logs
 
