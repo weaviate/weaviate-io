@@ -32,7 +32,7 @@ export default function PartnersHeader() {
                   className={styles.buttonOutline}
                   to="https://weaviate.io/developers/weaviate"
                 >
-                  Find a Partner
+                  Register a Deal
                 </Link>
               </div>
             </div>

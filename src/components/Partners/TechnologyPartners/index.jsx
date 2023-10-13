@@ -8,7 +8,7 @@ export default function TechnologyPartners() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Technology Partners</h2>
+          <h2>Strategic Partners</h2>
           <p>
             If you have a complementary technology or product, we want to
             collaborate with you.<br></br> Integrate Weaviate's powerful AI
@@ -19,23 +19,18 @@ export default function TechnologyPartners() {
         <div className={styles.techContainer}>
           <div className={styles.techList}>
             <div className={styles.techBox}>
-              <Link to="/partners/aws">
+              <Link to="/partners/awsOff">
                 <span className={styles.aws} />
               </Link>
             </div>
             <div className={styles.techBox}>
               <Link to="/partners/aws">
-                <span className={styles.aws} />
+                <span className={styles.gcp} />
               </Link>
             </div>
             <div className={styles.techBox}>
               <Link to="/partners/aws">
-                <span className={styles.aws} />
-              </Link>
-            </div>
-            <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.aws} />
+                <span className={styles.azure} />
               </Link>
             </div>
           </div>

@@ -64,3 +64,29 @@
   margin: auto;
   margin-top: 37px;
 }
+
+.gcp {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/google_cloud-icon.svg');
+  transition: all 1s ease-out;
+  width: 50%;
+  height: 70px;
+  margin: auto;
+  margin-top: 37px;
+}
+
+.azure {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/azureLogo.svg');
+  transition: all 1s ease-out;
+  width: 50%;
+  height: 70px;
+  margin: auto;
+  margin-top: 37px;
+}
