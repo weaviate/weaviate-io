@@ -202,7 +202,7 @@ You should now see code autocomplete suggestions for the `articles` / `authors` 
 - `data`: CUD operations (read operations are in `query`)
 - `query`: Search operations
 - `generate`: Retrieval augmented generation operations
-- `groupby`: Object-level group by operations
+- `query_group_by`: Object-level group by operations
 
 :::note `Aggregate` not yet available
 At the time of writing, `aggregate` operations are not yet available.
