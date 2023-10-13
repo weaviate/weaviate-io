@@ -14,14 +14,14 @@ export default function Header() {
             <div className={styles.headerBox}>
               <p className="text-center">
                 Visit us at AWS re:Invent to learn how to simplify building
-                generative AI applications with our AI-native vector database.
+                AI-native applications with our open source vector database.
               </p>
             </div>
           </div>
 
           <div className={styles.buttons}>
             <Link className={styles.buttonGradient} to="#meetingForm">
-              Book A Meeting
+              Book a meeting + receive gifts
             </Link>
           </div>
         </div>

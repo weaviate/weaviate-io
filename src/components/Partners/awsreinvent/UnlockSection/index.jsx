@@ -8,7 +8,7 @@ export default function UnlockSection() {
   return (
     <div className={styles.benefits}>
       <div className="container">
-        <h2>Uncover the potential of GenAI</h2>
+        <h2>Establish foundations to scale</h2>
         <div className={styles.wrapper}>
           <div className={styles.rightSide}>
             <div className={styles.teamImage}></div>
@@ -31,9 +31,9 @@ export default function UnlockSection() {
               Attend our speaking session
             </h4>
             <p>
-              Hear our CEO share what’s possible when you combine our Weaviate’s
-              vector database with AWS. Read our session description for more
-              information and make sure to add it to your schedule!
+              Hear our CEO share what’s possible when you combine Weaviate with
+              AWS infrastructure and services. Read our session description for
+              more information and make sure to add it to your schedule!
             </p>
 
             <div className={styles.communityForm}></div>
