@@ -162,23 +162,27 @@ In the initial implementation, any properties with `object` datatype do not affe
 
 Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
 
-## Async vector indexing
+## Async vector indexing (experimental)
 
-Weaviate now offers the option of asynchronous vector indexing to object creation. In turn, it enables you to optimize imports for speed where vector indexing is not required immediately.
+:::caution Experimental
+Given the experimental nature of this feature, we do not recommend that you use this in production.
+:::
+
+This release includes an experimental preview of our async vector indexing feature. With this, Weaviate now offers you the option de-coupling vector indexing from object creation. You can enable this to optimize imports for speed where vector indexing is not required immediately.
+
+As of `1.22`, this is an opt-in feature. It can be enabled by setting the `ASYNC_INDEXING` setting to `true`, such as in the `docker-compose.yml` file.
 
 In the past, the HNSW index would be built synchronously with object creation. This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
 
-With `1.22`, the vector indexing process can now be performed asynchronously to object creation. This means that the import process can go on independently to the indexing process and continue to create objects while the indexing process is ongoing.
+Starting with `1.22`, the vector indexing process can now be performed asynchronously to object creation. This means that the import process can go on independently to the indexing process and continue to create objects while the indexing process is ongoing.
 
-Outwardly, this change does not affect the user experience, other than the import process returning a response faster than before.
+The user can still perform vector searches as import progresses. Weaviate will search the vector index built to date as well as up to 100,000 un-indexed objects using brute force.
 
-The user can still perform a search immediately after import, as Weaviate will search any un-indexed data using brute force. This means that the user will not have to wait for the indexing process to complete before being able to search the newly imported data.
+### Updated `nodes` endpoint
 
 The `nodes` REST endpoint has been updated to reflect this change.
 
 `INDEXING` has been added to the list of available node statuses, and the `stats` field now includes an `vectorQueueLength` field, which contains the number of objects currently being indexed.
-
-As of `1.22`, this is an opt-in feature. It can be enabled by setting the `WEAVIATE_ASYNC_INDEXING` setting to `true`, such as in the `docker-compose.yml` file.
 
 ## Additional gRPC support
 
