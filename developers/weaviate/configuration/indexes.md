@@ -50,7 +50,7 @@ The HNSW index can be customized using the following parameters:
     :::
 
     - `enabled`: Whether product quantization is enabled or not (defaults to `false`). To enable set to `true`.
-    - `trainingLimit`: The maximum number of objects, per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled.
+    - `trainingLimit`: The maximum number of objects per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled.
     - `segments`: The number of segments to use. By default this is equal to the number of dimensions. Reducing the number of segments will further reduce the size of the quantized vectors. The number of segments must be divisible by the number of dimensions of each vector.
     - `centroids`: The number of centroids to use. Reducing the number of centroids will further reduce the size of quantized vectors at the price of recall. When using the `kmeans` encoder, centroids is set to 256 or one byte by default in Weaviate.
     - `encoder`: An object with encoder specific information. Here you can specify the `type` of encoder as either `kmeans`(default) or `tile`. If using the `tile` encoder you can also specify the `distribution` as `log-normal` (default) or `normal`.
@@ -116,11 +116,11 @@ Note that the vector index type only specifies how the vectors of data objects a
 As of `v1.22`, this is an experimental feature. Please use with caution.
 :::
 
-You can switch on the asynchronous indexing feature in Weaviate version `1.22` and higher. This feature decouples the object creation process in Weaviate from updating the vector index. This allows objects to be created faster, while the vector index is being updated in the background. This is especially useful for importing large amounts of data.
+Starting in Weaviate `1.22`, you can use asynchronous indexing. Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
 
-This can be done by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all classes.
+Asynchronous indexing is off by default. It can be enabled by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all classes.
 
-Please note that the un-indexed data will be searched by brute force (i.e. without the vector index) until the vector index has been updated. This means that the search performance will be slower until the vector index has been fully updated.
+A maximum of 100,000 un-indexed objects will be searched by brute force (i.e. without the vector index) until the vector index has been updated. This means that the search performance will be slower until the vector index has been fully updated, and any objects outside of the first 100,000 objects in the queue will not be searched.
 
 The index status can be found through the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint. The `nodes/shards/vectorQueueLength` field will show the number of remaining objects to be indexed.
 

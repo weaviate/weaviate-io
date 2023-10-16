@@ -33,9 +33,9 @@ Under the hood, these are carried out through the [`schema` REST endpoint](../ap
 
 ## Create a class
 
-You can create a class:
+You can create a class either:
 - Manually, or
-- Have Weaviate create it as needed, such as at import time. The [`Auto-schema` feature](../config-refs/schema.md#auto-schema) must be enabled for this to occur.
+- Automatically. Weaviate can create classes as needed, such as at import time. The [`Auto-schema` feature](../config-refs/schema.md#auto-schema) must be enabled for this to occur.
 
 :::tip Manual class creation recommended
 We recommend you create classes manually, as:
@@ -97,7 +97,7 @@ The class definition can include properties, which are the data fields to be sto
 A class configuration is shown below, which defines:
 - The class name (`Article`)
 - The [vectorizer module](../modules/retriever-vectorizer-modules/index.md) (`text2vec-cohere`)
-- Which [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
+- The [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
 - A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `body` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
     - Note that the `body` property is an array of objects.
     - The `object` and `object[]` data types are available from `1.22`.
@@ -157,9 +157,9 @@ See:
 
 ### Auto-schema
 
-If you create objects into a class that does not yet exist, or if you create objects with properties that do not yet exist, Weaviate can create the class and/or properties for you. This is known as the `Auto-schema` feature.
+If you add objects to a class that does not yet exist, or if you create objects with properties that do not yet exist, Weaviate can automatically create the missing class or the missing properties. This is known as the `Auto-schema` feature.
 
-Generally, we recommend you create classes and properties manually, as you will gain greater control over your data model.
+For most cases, we recommend you create classes and properties manually, as you will gain greater control over your data model.
 
 :::info Read more about Auto-schema
 See [this page](../config-refs/schema.md#auto-schema)
@@ -210,10 +210,11 @@ The following code defines:
 <details>
   <summary>With nested objects</summary>
 
-Weaviate `1.22` added support for nested objects. This can be very useful for storing structured data, such as an address containing a street, city and country.
+Weaviate `1.22` adds support for nested objects. This can be very useful for storing structured data such as an address containing a street, city and country.
 
 <br/>
-The below defines:
+The following code defines:
+
 - The class name (`Person`)
 - The vectorizer module (`text2vec-huggingface`)
 - A set of properties (`last_name`, `address`), with `last_name` having a `text` data type and `address` having `object` data type.
