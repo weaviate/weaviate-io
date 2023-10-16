@@ -5,11 +5,11 @@ Another line.
 
 More stuff.
 
-Here re some ohr problems.
+Here be some other quandries.
 
-Morem, and more.
+More, and more.
 
-AnError
+An Error
 
-Anot her error.
+Another error.
 
