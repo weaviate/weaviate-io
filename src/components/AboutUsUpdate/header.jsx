@@ -34,21 +34,23 @@ export default function AboutUsHeader() {
         </div>
       </div>
       <div className={styles.bottomBar}>
-        <div className={styles.barText}>
-          2,500,000+<br></br>
-          <span>Downloads</span>
-        </div>
-        <div className={styles.barText}>
-          7,000+<br></br>
-          <span>GitHub stars</span>
-        </div>
-        <div className={styles.barText}>
-          8,000+<br></br>
-          <span>Twitter followers</span>
-        </div>
-        <div className={styles.barText}>
-          4,000+<br></br>
-          <span>Community members</span>
+        <div className={styles.innerBar}>
+          <div className={styles.barText}>
+            2,500,000+<br></br>
+            <span>Downloads</span>
+          </div>
+          <div className={styles.barText}>
+            7,000+<br></br>
+            <span>GitHub stars</span>
+          </div>
+          <div className={styles.barText}>
+            8,000+<br></br>
+            <span>Twitter followers</span>
+          </div>
+          <div className={styles.barText}>
+            4,000+<br></br>
+            <span>Community members</span>
+          </div>
         </div>
       </div>
     </header>

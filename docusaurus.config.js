@@ -362,6 +362,10 @@ const config = {
                                 label: 'Console',
                                 to: 'https://console.weaviate.cloud/',
                             },
+                            {
+                                label: 'Terms & Policies',
+                                to: 'service',
+                            },
                         ],
                     },
                     {
@@ -434,6 +438,7 @@ const config = {
                                 label: 'GitHub',
                                 to: 'https://github.com/weaviate/weaviate',
                             },
+
                         ],
                     },
                 ],

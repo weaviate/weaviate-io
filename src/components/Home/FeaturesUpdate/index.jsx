@@ -51,31 +51,30 @@ export default function HomePage() {
         </div>
 
         <div className={styles.bottomFeatures}>
-          <div className={styles.bottomBox}>
-            <h3 className={styles.title}>Open Source</h3>
-            <p className={styles.subTitle}>
-              Try our open-source vector database technology and build your
-              AI-native apps easier.
-            </p>
-            <p className={styles.boxLink}>
-              <Link href="https://github.com/weaviate/weaviate">
-                Github {'>'}{' '}
-              </Link>
-            </p>
-          </div>
-          <div className={styles.cloudBox}>
-            <h3 className={styles.title}>Cloud Services</h3>
-            <p className={styles.subTitle}>
-              Simplify your cloud management with our Cloud solutions and scale
-              seamlessly as your needs grow.
-            </p>
+          <Link
+            className={styles.linkBox}
+            href="https://github.com/weaviate/weaviate"
+          >
+            <div className={styles.bottomBox}>
+              <h3 className={styles.title}>Open Source</h3>
+              <p className={styles.subTitle}>
+                Try our open-source vector database technology and build your
+                AI-native apps easier.
+              </p>
+              <p className={styles.boxLink}>Github {'>'} </p>
+            </div>
+          </Link>
+          <Link to="https://console.weaviate.cloud/">
+            <div className={styles.cloudBox}>
+              <h3 className={styles.title}>Cloud Services</h3>
+              <p className={styles.subTitle}>
+                Simplify your cloud management with our Cloud solutions and
+                scale seamlessly as your needs grow.
+              </p>
 
-            <p className={styles.boxLink}>
-              <Link to="https://console.weaviate.cloud/">
-                Try it now {'>'}{' '}
-              </Link>
-            </p>
-          </div>
+              <p className={styles.boxLink}>Try it now {'>'} </p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

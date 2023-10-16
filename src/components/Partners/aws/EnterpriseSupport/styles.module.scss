@@ -27,9 +27,9 @@
   margin-top: 50px;
 
   @media screen and (max-width: 500px) {
-    padding-top: 1rem;
     flex-direction: column;
     gap: 79px;
+    padding: 1rem 0rem;
   }
 
   .box {

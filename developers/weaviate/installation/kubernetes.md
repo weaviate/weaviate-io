@@ -30,10 +30,10 @@ To obtain and install the Weaviate chart on your Kubernetes cluster, take the fo
 
 ```bash
 # Check if helm is installed
-$ helm version
+helm version
 # Make sure `kubectl` is configured correctly and you can access the cluster.
 # For example, try listing the pods in the currently configured namespace.
-$ kubectl get pods
+kubectl get pods
 ```
 
 ### Obtain the Helm Chart
@@ -121,10 +121,10 @@ You can deploy the helm charts as follows:
 
 ```bash
 # Create a Weaviate namespace
-$ kubectl create namespace weaviate
+kubectl create namespace weaviate
 
 # Deploy
-$ helm upgrade --install \
+helm upgrade --install \
   "weaviate" \
   weaviate/weaviate \
   --namespace "weaviate" \
@@ -162,7 +162,7 @@ To use EFS with Weaviate, you need to:
 - Create Weaviate Volumes, where each volume has a different AccessPoint for VolumeHandle(as mentioned above).
 - Deploy Weaviate.
 
-The below is an example of a PV for `weaviate-0` Pod:
+This code is an example of a PV for `weaviate-0` Pod:
 
 ```yaml
 apiVersion: v1

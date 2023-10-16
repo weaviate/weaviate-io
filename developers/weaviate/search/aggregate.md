@@ -260,7 +260,7 @@ Thus, for the vector search to affect the `Aggregate` output, you **must** set a
 
 You can set the `objectLimit` argument to specify the maximum number of results to be aggregated.
 
-The below query retrieves the 10 `question` objects with vectors that are closest to `"animals in space"`, and return the sum total of the `point` property.
+The query below retrieves the 10 `question` objects that have the vectors that are closest to the vector for `"animals in space"`. The query also returns the sum total of the `point` property.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -313,8 +313,7 @@ The below query retrieves the 10 `question` objects with vectors that are closes
 
 You can set the `distance` operator to specify the maximum dissimilarity (i.e. minimum similarity) of results to be aggregated.
 
-The below query retrieves the 10 `question` objects with vectors that are within a distance of `0.19` to `"animals in space"`, and returns the sum total of the `point` property.
-
+The query below retrieves the 10 `question` objects that have vectors that are within a distance of `0.19` to the vector for `"animals in space"`. It also returns the sum total of the `point` property.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -365,9 +364,9 @@ The below query retrieves the 10 `question` objects with vectors that are within
 
 ## Add a conditional (`where`) filter
 
-You can add a conditional filter to any aggregate search query, which will filter the results set.
+You can add a conditional filter to any aggregate search query to filter the results set.
 
-The below example searches for objects where the `round` property equals `Double Jeopardy!` and returns the object count.
+This example searches for objects where the `round` property equals `Double Jeopardy!` and returns the object count.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">

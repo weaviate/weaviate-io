@@ -76,7 +76,7 @@ If you prefer another method, see [this section](#can-i-use-another-deployment-m
 
 We suggest using a Weaviate client ([read more](../client-libraries/index.md)) to work with your preferred programming language.
 
-To install your preferred client, run the below:
+To install your preferred client, run the installation code for your language:
 
 import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
 
@@ -149,7 +149,7 @@ The above code:
 
 Alternatively, you can also provide your own vectors to Weaviate. Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
 
-Run the below code to import data with corresponding pre-computed vectors. This causes Weaviate to use the vector provided for each object.
+To import data with corresponding pre-computed vectors, run the code below. This causes Weaviate to use the vector provided for each object.
 
 import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autoschema.import.custom.vectors.mdx'
 
@@ -163,7 +163,7 @@ Do *not* specify object vectors as an object property. This will cause Weaviate 
 
 The following code puts the above steps together.
 
-If you have not been following along with the snippets, you can run the below code block as a whole. This will let you run queries in the next section.
+If you have not been following along with the snippets, run the code block below. This will let you run queries in the next section.
 
 <details>
   <summary>End-to-end code</summary>
@@ -207,7 +207,7 @@ This example shows why vector searches are powerful. Vectorized data objects all
 
 ### Semantic search with a filter
 
-You can add Boolean filters to searches. For example, the above search can be modified to only in objects that have a "category" value of "ANIMALS". Run the below to see the results:
+You can add Boolean filters to searches. For example, the above search can be modified to only in objects that have a "category" value of "ANIMALS". Run the following code to see the results:
 
 import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart.autoschema.neartext.where.mdx'
 
@@ -232,9 +232,9 @@ Using a Boolean filter allows you to combine the flexibility of vector search wi
 
 Next, let's try a generative search. A generative search, also called retrieval augmented generation, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
 
-Run the below to see what happens when we ask a LLM to perform a task based on our prompt, using the results of our query.
+To see what happens when an LLM uses query results to perform a task that is based on our prompt, run the code below.
 
-Note that it uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
+Note that the code uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
 
 import CodeAutoschemaGenerative from '/_includes/code/quickstart.autoschema.generativesearch.mdx'
 
@@ -252,7 +252,7 @@ We see that Weaviate has retrieved the same results as before. But now it includ
 
 The next example uses a `grouped task` prompt instead to combine all search results and send them to the LLM with a prompt.
 
-Run the below to ask the LLM to write a tweet about all of these search results.
+To ask the LLM to write a tweet about these search results, run the following code.
 
 import CodeAutoschemaGenerativeGrouped from '/_includes/code/quickstart.autoschema.generativesearch.grouped.mdx'
 
@@ -492,7 +492,7 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 <details>
   <summary>See answer</summary>
 
-You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can delete the class following the below instructions.
+You may see this error if you try to create a class that already exists in your instance of Weaviate. In this case, you can follow these instructions to delete the class.
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 

@@ -22,9 +22,29 @@ export default function ContactUsForm() {
     { value: 'friend', text: 'A friend' },
     { value: 'other', text: 'Other' },
   ];
+
+  const packageOptions = [
+    {
+      value: 'Enterprise',
+      text: 'Enterprise',
+    },
+    {
+      value: 'Business Critical',
+      text: 'Business Critical',
+    },
+  ];
+
   const [selected, setSelected] = useState(options[0].value);
+
+  const [packageSelected, setSelectedPackage] = useState(
+    packageOptions[0].value
+  );
   const handleChange = (event) => {
     setSelected(event.target.value);
+  };
+
+  const handlePackageChange = (e) => {
+    setSelectedPackage(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -39,7 +59,9 @@ export default function ContactUsForm() {
         '&name=' +
         name +
         '&foundHow=' +
-        selected
+        selected +
+        '&packageSelected=' +
+        packageSelected
     );
     xmlHttp.send(null);
     return xmlHttp.status;
@@ -97,6 +119,28 @@ export default function ContactUsForm() {
                 return (
                   <option key={option.value} value={option.value}>
                     {option.text}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={styles.selectWrapper}>
+            <label htmlFor="whichPackage">
+              What package are you interested in?*
+            </label>
+
+            <select
+              value={packageSelected}
+              onChange={handlePackageChange}
+              className={styles.select}
+            >
+              {packageOptions.map((packageOptions, index) => {
+                return (
+                  <option
+                    key={packageOptions.value}
+                    value={packageOptions.value}
+                  >
+                    {packageOptions.text}
                   </option>
                 );
               })}

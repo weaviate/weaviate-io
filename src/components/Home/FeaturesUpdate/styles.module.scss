@@ -48,6 +48,10 @@
     gap: unset;
   }
 
+  .linkBox {
+    color: #1c1468;
+  }
+
   .bottomBox,
   .cloudBox {
     padding: 60px;
@@ -72,10 +76,6 @@
     .boxLink {
       padding-top: 2rem;
       text-align: end;
-
-      a {
-        color: inherit;
-      }
     }
   }
 
@@ -99,7 +99,8 @@
       padding-top: 2rem;
       text-align: end;
 
-      a {
+      a,
+      p {
         color: #ffffff;
       }
     }
@@ -109,21 +110,25 @@
 .features {
   padding-top: 8rem;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  gap: 100px;
+  align-items: center;
+  align-content: space-between;
+  flex-direction: row;
+  justify-content: space-around;
 
   @media screen and (max-width: 500px) {
     padding-top: 1rem;
-    flex-direction: column;
+    display: flex;
     gap: 79px;
+    align-items: stretch;
+    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .box {
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    flex: 1;
 
     .icon1 {
       background-image: url('/img/site/features_01.png');

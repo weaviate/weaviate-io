@@ -308,10 +308,6 @@
   display: none;
 }
 
-.dropdown > .navbar__link:after {
-  border-style: none;
-}
-
 .separator {
   height: 1px;
   border: none;
@@ -656,7 +652,12 @@ button.close {
   background: rgb(15, 0, 50);
   color: #fff;
   font-weight: 400;
-} */
+}
+
+Dropdown style removed.
+.dropdown > .navbar__link:after {
+  border-style: none;
+}*/
 
 .custom-page .footer__links:before {
   content: '';
@@ -683,4 +684,11 @@ button.close {
   @media screen and (max-width: 768px) {
     font-size: 64% !important;
   }
+}
+
+.dropdown__link:hover,
+.dropdown__link--active {
+  background-color: rgb(97 189 115 / 32%);
+  color: black;
+  text-decoration: none;
 }

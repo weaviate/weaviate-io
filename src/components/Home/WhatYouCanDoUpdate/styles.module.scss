@@ -45,7 +45,11 @@
         display: flex;
         flex-direction: row;
         flex: 0 0 auto;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 10px;
+        width: 100%;
       }
 
       .tabsTrigger {
@@ -105,7 +109,7 @@
         display: grid;
         grid-template-rows: 1fr auto;
         grid-row-gap: 4px;
-        height: 444px;
+        height: 654px;
         width: 100%;
 
         @media screen and (max-width: 485px) {
@@ -146,5 +150,43 @@
         }
       }
     }
+  }
+}
+
+.copyButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #0073b4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 157.33%;
+  background: none;
+  margin: auto 10px 0px auto;
+
+  @media screen and (max-width: 485px) {
+    margin-bottom: 48px;
+    margin-right: 10px;
+  }
+}
+.generativeButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #0073b4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 157.33%;
+  background: none;
+  margin-bottom: 48px;
+  margin-right: 10px;
+
+  @media screen and (max-width: 485px) {
+    margin-bottom: 48px;
+    margin-right: 10px;
   }
 }

@@ -296,7 +296,8 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 <details>
   <summary>Getting a data object without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 GET /v1/objects/{id}
 ```
@@ -340,7 +341,8 @@ HEAD /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 <details>
   <summary>Checking if a data object exists without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 HEAD /v1/objects/{id}
 ```
@@ -381,7 +383,8 @@ PATCH /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 <details>
   <summary>Updating a data object without a class name are deprecated</summary>
 
-The below are only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
@@ -438,7 +441,8 @@ DELETE /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 <details>
   <summary>Deleting a data object without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 DELETE /v1/objects/{id}
 ```
@@ -521,7 +525,8 @@ POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=O
 <details>
   <summary>Adding a cross-reference without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 POST /v1/objects/{id}/references/{propertyName}
 ```
@@ -574,7 +579,8 @@ PUT /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ON
 <details>
   <summary>Updating a cross-reference without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 PUT /v1/objects/{id}/references/{propertyName}
 ```
@@ -628,7 +634,8 @@ DELETE /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level
 <details>
   <summary>Deleting a cross-reference without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 DELETE /v1/objects/{id}/references/{propertyName}
 ```

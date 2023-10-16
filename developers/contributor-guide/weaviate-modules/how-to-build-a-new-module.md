@@ -132,14 +132,14 @@ During development of the new Module, you can run Weaviate locally. Make sure to
 Inside the Weaviate project folder, run
 
 ```bash
-$ tools/dev/restart_dev_environment.sh --<SERVICE-NAME>
+tools/dev/restart_dev_environment.sh --<SERVICE-NAME>
 # e.g. tools/dev/restart_dev_environment.sh --i2v-neural
 ```
 
 to restart the development server. Then, run
 
 ```bash
-$ tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>
+tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>
 # e.g. tools/dev/run_dev_server.sh --local-image
 ```
 
