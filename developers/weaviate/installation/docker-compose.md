@@ -27,14 +27,46 @@ If you are new to Docker (Compose) and containerization, check out our [Docker I
 If you are new to Weaviate, this is a good place to start.
 :::
 
-We prepared a <a target="\_blank" href={'/downloads/docker-templates/docker-compose-core.yml'} download="docker-compose.yml">Starter Docker Compose file</a>, which will let you do:
-* Vector search with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
-* Search on already vectorized data – no vectorizer required.
-* Retrieval augmentated generation (RAG) with `OpenAI`(i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
+We prepared a starter Docker Compose file, which will let you:
+* Run vector searches with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
+* Search already vectorized data – no vectorizer required.
+* Retrieval augmentated generation (RAG) with `OpenAI` (i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
 
 ### Download and run
 
-Download the <a target="\_blank" href={'/downloads/docker-templates/docker-compose-core.yml'} download="docker-compose.yml">docker-compose.yml here</a> and start it with Docker Compose:
+First, save the text below as `docker-compose.yml`:
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-palm,text2vec-openai,generative-openai,generative-cohere,generative-palm,ref2vec-centroid,reranker-cohere,qna-openai'
+      CLUSTER_HOSTNAME: 'node1'
+volumes:
+  weaviate_data:
+...
+```
+
+Then, navigate to the directory containing the `docker-compose.yml` file and run this command from your shell:
 
 ```bash
 docker compose up -d
