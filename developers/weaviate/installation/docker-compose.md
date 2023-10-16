@@ -34,7 +34,7 @@ We prepared a starter Docker Compose file, which will let you:
 
 ### Download and run
 
-Save the below text as `docker-compose.yml` and run Weaviate with Docker:
+First, save the text below as `docker-compose.yml`:
 
 ```yaml
 ---
@@ -65,6 +65,8 @@ volumes:
   weaviate_data:
 ...
 ```
+
+Then, navigate to the directory containing the `docker-compose.yml` file and run this command from your shell:
 
 ```bash
 docker compose up -d
