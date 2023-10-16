@@ -1,29 +1,19 @@
 ---
 title: Generative search (RAG)
-sidebar_position: 30
+sidebar_position: 50
 image: og/docs/tutorials.jpg
-sidebar_class_name: hidden
 # tags: ['getting started']
 ---
 
 import Badges from '/_includes/badges.mdx';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/starter-guides/generative.py';
+import TSCodeEduDemo from '!!raw-loader!/_includes/code/starter-guides/generative_edudemo.ts';
+import TSCodeLocal from '!!raw-loader!/_includes/code/starter-guides/generative_local.ts';
 
 <Badges/>
-
-:::info This page is a work-in-progress preview
-For now, the code examples are in <i class="fa-brands fa-python"></i> Python only. Please be patient while we add code examples for other languages.
-
-We would love to get your feedback. Please provide us with any feedback through [this forum post](https://forum.weaviate.io/t/generative-search-rag-guide-preview-feedback-thread).
-:::
-
-:::caution Generative module cannot be changed
-Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
-<br/>
-
-If you would like us to priorize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
-:::
 
 ## Overview
 
@@ -47,7 +37,7 @@ This guide assumes some familiarity with Weaviate, but it is not required. If yo
 
 ### What is generative search?
 
-Generative search is a powerful technique that retrieves data to ground large language models (LLMs). It is also called retrieval augmented generation (RAG), or in-context learning in some cases.
+Generative search is a powerful technique that retrieves relevant data to provide to large language models (LLMs) as context, along with the task prompt. It is also called retrieval augmented generation (RAG), or in-context learning in some cases.
 
 ### Why generative search?
 
@@ -56,10 +46,6 @@ LLM are incredibly powerful, but can suffer from two important limitations. Thes
 - They might simply not be trained on the information you need.
 
 Generative search remedies this problem with a two-step process.
-<!--
-:::warning Two-step process
-FIGURE GOES HERE
-::: -->
 
 The first step is to retrieve relevant data through a query. Then, in the second step, the LLM is prompted with a combination of the retrieve data with a user-provided query.
 
@@ -85,19 +71,20 @@ Connect to the instance like so, remembering to replace the API key for the LLM 
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-import weaviate
-
-client = weaviate.Client(
-    url="https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey(api_key="learn-weaviate"),
-    additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # <-- Replace with your API key
-    }
-)
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Instantiation"
+  endMarker="# END Instantiation"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// Instantiation"
+  endMarker="// END Instantiation"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -109,19 +96,20 @@ Before we can generate text, we need to retrieve relevant data. Let's retrieve t
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-collection_name = "GitBookChunk"
-
-response = (
-    client.query
-    .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
-    .with_near_text({"concepts": ["history of git"]})
-    .with_limit(3)
-    .do()
-)
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# DataRetrieval"
+  endMarker="# END DataRetrieval"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// DataRetrieval"
+  endMarker="// END DataRetrieval"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -158,28 +146,24 @@ This should return a set of results like the following (truncated for brevity):
 
 We can transform this result set into new text using generative search with just a minor modification of the code. First, let's use a `grouped task` prompt to summarize this information.
 
-Run the below code snippet, and inspect the results:
+Run the following code snippet, and inspect the results:
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-collection_name = "GitBookChunk"
-
-response = (
-    client.query
-    .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
-    .with_near_text({"concepts": ["history of git"]})
-    .with_limit(3)
-    # highlight-start
-    .with_generate(grouped_task="Summarize the key information here in bullet points")
-    # highlight-end
-    .do()
-)
-
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TransformResultSets"
+  endMarker="# END TransformResultSets"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// TransformResultSets"
+  endMarker="// END TransformResultSets"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -219,23 +203,20 @@ Note that in this query, we apply a `single prompt` parameter. This means that t
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-collection_name = "WineReview"
-
-response = (
-    client.query
-    .get(class_name=collection_name, properties=["review_body", "title", "country", "points"])
-    .with_near_text({"concepts": ["fruity white wine"]})
-    .with_limit(5)
-    .with_generate(single_prompt="""
-        Translate this review into French, using emojis:
-        ===== Country of origin: {country}, Title: {title}, Review body: {review_body}
-    """)
-    .do()
-)
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TransformIndividualObjects"
+  endMarker="# END TransformIndividualObjects"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// TransformIndividualObjects"
+  endMarker="// END TransformIndividualObjects"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -272,7 +253,14 @@ Now, let's go through an end-to-end example for using Weaviate for generative se
 
 For this example, you will need access to a Weaviate instance that you can write to. You can use any Weaviate instance, such as a local Docker instance, or a WCS instance.
 
-### Configure Weaviate
+### Configure generative search
+
+:::caution Generative module cannot be changed
+Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
+<br/>
+
+If you would like for us to prioritize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
+:::
 
 To use generative search, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and
@@ -289,19 +277,20 @@ You can check which modules are enabled by viewing the `meta` information for yo
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-client.get_meta()
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ListModules"
+  endMarker="# END ListModules"
+  language="py"
+/>
 </TabItem>
 <TabItem value="ts" label="JavaScript/TypeScript">
-
-```ts
-await client.misc
-  .metaGetter().do();
-```
-
+<FilteredTextBlock
+  text={TSCodeEduDemo}
+  startMarker="// ListModules"
+  endMarker="// END ListModules"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -325,6 +314,45 @@ Check the specific documentation for your deployment method ([Docker](../install
 
 </details>
 
+<details>
+  <summary>How to configure the language model</summary>
+
+Model properties are exposed through the Weaviate module configuration. Accordingly, you can customize them through the `moduleConfig` parameter in the class definition.
+
+For example, the `generative-cohere` module has the following properties:
+
+```json
+    "moduleConfig": {
+        "generative-cohere": {
+            "model": "command-xlarge-nightly",  // Optional - Defaults to `command-xlarge-nightly`. Can also use`command-xlarge-beta` and `command-xlarge`
+            "temperatureProperty": <temperature>,  // Optional
+            "maxTokensProperty": <maxTokens>,  // Optional
+            "kProperty": <k>, // Optional
+            "stopSequencesProperty": <stopSequences>, // Optional
+            "returnLikelihoodsProperty": <returnLikelihoods>, // Optional
+        }
+    }
+```
+
+And the `generative-openai` module may be configured as follows:
+
+```json
+    "moduleConfig": {
+        "generative-openai": {
+            "model": "gpt-3.5-turbo",  // Optional - Defaults to `gpt-3.5-turbo`
+            "temperatureProperty": <temperature>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "maxTokensProperty": <max_tokens>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "frequencyPenaltyProperty": <frequency_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "presencePenaltyProperty": <presence_penalty>,  // Optional, applicable to both OpenAI and Azure OpenAI
+            "topPProperty": <top_p>,  // Optional, applicable to both OpenAI and Azure OpenAI
+        },
+    }
+```
+
+Please see the [documentation](../modules/reader-generator-modules/index.md) for the appropriate module for more information on configurable properties.
+
+</details>
+
 ### Populate database
 
 Adding data to Weaviate for generative search is similar to adding data for other purposes. However, there are some important considerations to keep in mind, such as chunking and data structure.
@@ -337,30 +365,20 @@ In the following snippet, we download a chapter of the `Pro Git` book, clean it 
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-from typing import List
-
-
-def download_and_chunk(src_url: str, chunk_size: int, overlap_size: int) -> List[str]:
-    import requests
-    import re
-
-    response = requests.get(src_url)  # Retrieve source text
-    source_text = re.sub(r"\s+", " ", response.text)  # Remove multiple whitespaces
-    text_words = re.split(r"\s", source_text)  # Split text by single whitespace
-
-    chunks = []
-    for i in range(0, len(text_words), chunk_size):  # Iterate through & chunk data
-        chunk = " ".join(text_words[max(i - overlap_size, 0): i + chunk_size])  # Join a set of words into a string
-        chunks.append(chunk)
-    return chunks
-
-
-pro_git_chapter_url = "https://raw.githubusercontent.com/progit/progit2/main/book/01-introduction/sections/what-is-git.asc"
-chunked_text = download_and_chunk(pro_git_chapter_url, 150, 25)
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ChunkText"
+  endMarker="# END ChunkText"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// ChunkText"
+  endMarker="// END ChunkText"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -374,42 +392,20 @@ he below class definition for the `GitBookChunk` class specifies `text2vec-opena
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-collection_name = "GitBookChunk"
-
-chunk_class = {
-    "class": collection_name,
-    "properties": [
-        {
-            "name": "chunk",
-            "dataType": ["string"],
-        },
-        {
-            "name": "chapter_title",
-            "dataType": ["string"],
-        },
-        {
-            "name": "chunk_index",
-            "dataType": ["int"],
-        }
-    ],
-    # highlight-start
-    "vectorizer": "text2vec-openai",  # Use `text2vec-openai` as the vectorizer
-    # highlight-end
-    # highlight-start
-    "moduleConfig": {
-        "generative-openai": {}  # Use `generative-openai` with default parameters
-    }
-    # highlight-end
-}
-
-if client.schema.exists(collection_name):  # In case we've created this collection before
-    client.schema.delete_class(collection_name)  # THIS WILL DELETE ALL DATA IN THE CLASS
-
-client.schema.create_class(chunk_class)
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# CreateClass"
+  endMarker="# END CreateClass"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// CreateClass"
+  endMarker="// END CreateClass"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -419,19 +415,20 @@ Now, we can import the data into Weaviate.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-client.batch.configure(batch_size=100)
-with client.batch as batch:
-    for i, chunk in enumerate(chunked_text):
-        data_object = {
-            "chapter_title": "What is Git",
-            "chunk": chunk,
-            "chunk_index": i
-        }
-        batch.add_data_object(data_object=data_object, class_name=collection_name)
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ImportData"
+  endMarker="# END ImportData"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// ImportData"
+  endMarker="// END ImportData"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -439,11 +436,20 @@ Once this is done, you should have imported a collection of chunks from the chap
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-client.query.aggregate("GitBookChunk").with_meta_count().do()
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# CountObjects"
+  endMarker="# END CountObjects"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// CountObjects"
+  endMarker="// END CountObjects"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -455,27 +461,24 @@ Now that we have configured Weaviate and populated it with data, we can perform 
 
 #### Single (per-object) prompts
 
-Single prompts tell Weaviate to generate text based on each retrieved object and the user-provided prompt. In the below example, we retrieve two objects, and prompt the language model to write a haiku based on the text of each chunk.
+Single prompts tell Weaviate to generate text based on each retrieved object and the user-provided prompt. In this example, we retrieve two objects and prompt the language model to write a haiku based on the text of each chunk.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    .with_generate(
-        single_prompt="Write the following as a haiku: ===== {chunk} "
-    )
-    .with_limit(2)
-    .do()
-)
-
-for r in response["data"]["Get"][collection_name]:
-    print(f"\n===== Object index: [{r['chunk_index']}] =====")
-    print(r["_additional"]["generate"]["singleResult"])
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# SinglePrompt"
+  endMarker="# END SinglePrompt"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// SinglePrompt"
+  endMarker="// END SinglePrompt"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -497,25 +500,24 @@ Commit to save changes.
 
 A grouped task is a prompt that is applied to a group of objects. This allows you to prompt the language model with the entire set of search results, such as source documents or relevant passages.
 
-In the below example, we prompt the language model to write a trivia tweet based on the result.
+In this example, we prompt the language model to write a trivia tweet based on the result.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    .with_generate(
-        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
-    )
-    .with_limit(2)
-    .do()
-)
-
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GroupedTask"
+  endMarker="# END GroupedTask"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// GroupedTask"
+  endMarker="// END GroupedTask"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -531,28 +533,24 @@ Did you know? 🤔 Git thinks of its data as snapshots, not just changes to file
 
 Generative search in Weaviate is a two-step process under the hood, involving retrieval of objects and then generation of text. This means that you can use the full power of Weaviate's search capabilities to retrieve the objects you want to use for generation.
 
-In the below example, we search the chapter for passages that relate to the states of git, before generating a tweet as before.
+In this example, we search the chapter for passages that relate to the states of git before generating a tweet as before.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    # highlight-start
-    .with_near_text({"concepts": "states of git"})
-    # highlight-end
-    .with_generate(
-        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
-    )
-    .with_limit(2)
-    .do()
-)
-
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# NearTextGroupedTask"
+  endMarker="# END NearTextGroupedTask"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// NearTextGroupedTask"
+  endMarker="// END NearTextGroupedTask"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 
@@ -568,24 +566,20 @@ Now, simply by changing the search query, we can generate similar content about 
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
-
-```python
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    # highlight-start
-    .with_near_text({"concepts": "how git saves data"})
-    # highlight-end
-    .with_generate(
-        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
-    )
-    .with_limit(2)
-    .do()
-)
-
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
-```
-
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# SecondNearTextGroupedTask"
+  endMarker="# END SecondNearTextGroupedTask"
+  language="py"
+/>
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCodeLocal}
+  startMarker="// SecondNearTextGroupedTask"
+  endMarker="// END SecondNearTextGroupedTask"
+  language="ts"
+/>
 </TabItem>
 </Tabs>
 

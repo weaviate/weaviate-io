@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
+import Link from '@docusaurus/Link';
 
 export default function awsFoot() {
   return (
@@ -10,14 +11,18 @@ export default function awsFoot() {
           <p>
             Contact aws-marketplace@weaviate.io to receive details about your
             critical response SLA, the setup of support<br></br> channels
-            (Slack, email, and phone), and to receive optional complementary
+            (Slack, email, and phone), and to receive optional complimentary
             training from experts at Weaviate.
           </p>
         </div>
 
         <div className={styles.buttons}>
-          <div className={styles.buttonGradient}>Learn More</div>
-          <div className={styles.buttonOutline}>Pricing</div>
+          <Link to="mailto:aws-marketplace@weaviate.io">
+            <div className={styles.buttonGradient}>Learn More</div>
+          </Link>
+          <Link to="/pricing">
+            <div className={styles.buttonOutline}>Pricing</div>
+          </Link>
         </div>
       </div>
     </div>

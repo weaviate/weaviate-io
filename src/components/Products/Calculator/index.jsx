@@ -7,7 +7,7 @@ import 'rc-slider/assets/index.css';
 import Link from '@docusaurus/Link';
 
 export default function PricingCalculator({ props }) {
-  const [embeddingSize, setEmbeddingSize] = useState(1536);
+  const [embeddingSize, setEmbeddingSize] = useState(128);
   const [amountOfDataObjs, setAmountOfDataObjs] = useState(0);
   const [queriesPerMonth, setQueriesPerMonth] = useState(0);
   const [slaTier, setSlaTier] = useState('standard');
@@ -165,7 +165,7 @@ export default function PricingCalculator({ props }) {
             <Slider
               dots={true}
               step={128}
-              min={1536}
+              min={128}
               max={4096}
               value={embeddingSize}
               onChange={(embeddingSize) => setEmbeddingSize(embeddingSize)}

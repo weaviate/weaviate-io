@@ -17,7 +17,10 @@ const client = weaviate.client({
   },
 });
 
+// GetNearText  // GetNearVector  // GetNearObject  // GetLimitOffset  // GetWithDistance  // START Autocut  // GetWithGroupBy  // GetWithFilter
 let result;
+
+// END GetNearText  // END GetNearVector  // END GetNearObject  // END GetLimitOffset  // END GetWithDistance  // END Autocut  // END GetWithGroupBy  // END GetWithFilter
 
 // =========================
 // ===== With NearText =====

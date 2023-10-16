@@ -370,6 +370,15 @@ const siteRedirects = {
             to: "/products",
             from: "/partners/aws"
           },
+            // Terms and Policies Changes
+            {
+                to: "/service",
+                from: "/service/EULA"
+              },
+              {
+                to: "/service",
+                from: "/service/sla"
+              },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

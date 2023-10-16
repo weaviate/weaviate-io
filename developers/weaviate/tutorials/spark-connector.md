@@ -45,7 +45,7 @@ The Spark Connector is able to automatically infer the correct Spark DataType ba
 
 Often a Spark Session will be created as part of your Spark environment (such as a Databricks notebook) and the only task is to add the Weaviate Spark Connector jar as a library to your cluster.
 
-If you want to create a local Spark Session manually the below code will create one with the connector:
+If you want to create a local Spark Session manually, use the following code to create a session with the connector:
 
 ```python
 from pyspark.sql import SparkSession

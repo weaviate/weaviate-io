@@ -64,6 +64,7 @@
       }
     }
     span {
+      height: auto;
     }
   }
 }
@@ -89,13 +90,12 @@
   background: #61bd73;
   background-size: contain;
   background-repeat: no-repeat;
-
-  &:after {
-    content: '✓';
-    color: white;
-    margin: auto;
-    font-size: 12px;
-  }
+}
+.checkIcon:after {
+  content: '✓';
+  color: white;
+  margin: auto;
+  font-size: 12px;
 }
 
 .header {
@@ -224,7 +224,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   margin-top: 5rem;
   border-radius: 12px;
   overflow: hidden;
@@ -363,9 +363,10 @@
 
 .linkContact {
   text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  }
+}
+
+.linkContact:hover {
+  text-decoration: none;
 }
 
 .bgColor {

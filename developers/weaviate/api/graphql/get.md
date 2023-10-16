@@ -196,7 +196,7 @@ Property | Description |
 
 They are returned through the `_additional` properties in the response.
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Additional properties](./additional-properties.md)
@@ -217,7 +217,7 @@ The following search operators are available.
 | `hybrid` | Combine vector and BM25 search results |   *none* | [Learn more](../graphql/search-operators.md#hybrid) |
 | `bm25`   | Keyword search with BM25F ranking  | *none* | [Learn more](../graphql/search-operators.md#bm25) |
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Search operators](./search-operators.md)
@@ -231,7 +231,7 @@ Refer to the below page(s) for further information.
 
 `Get{}` queries can be combined with a conditional filter.
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Conditional Filters](./filters.md)
@@ -243,7 +243,7 @@ Refer to the below page(s) for further information.
 
 `Get{}` queries can be combined with additional operators such as `limit`, `offset`, `autocut`, `after` or `sort`.
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Additional Operators](./additional-operators.md)

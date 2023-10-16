@@ -86,12 +86,6 @@
   height: 10rem;
   display: flex;
   background: #130c49;
-  flex-direction: row;
-  gap: 80px;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
 
   .barText {
     color: #2fc514;
@@ -112,13 +106,44 @@
   }
 
   @media screen and (max-width: 800px) {
-    overflow-x: auto;
+    overflow-x: hidden;
     width: 100%;
+    overscroll-behavior: none;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+  }
+}
+
+.innerBar {
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  margin: auto;
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    animation: scrollSide 13s linear infinite;
+
+    @keyframes scrollSide {
+      0% {
+        transform: translateX(70%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   }
 }
 
@@ -186,10 +211,14 @@ p {
     color: #130c49;
     text-align: center;
     font-family: Plus Jakarta Sans;
-    font-size: 3.375rem;
+    font-size: 43px;
     font-style: normal;
-    font-weight: 700;
+
     line-height: 120%; /* 4.05rem */
+
+    font-weight: bold;
+    line-height: 69.6px;
+    margin-bottom: 1rem;
   }
 
   .headerBox {
@@ -366,4 +395,8 @@ p {
 
 .teamFilter::-webkit-scrollbar-track {
   border-radius: 8px;
+}
+
+.linkActive {
+  font-weight: 500 !important;
 }

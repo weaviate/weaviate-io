@@ -106,13 +106,13 @@ As you can see, the same arguments are applied in the "explore" filter and the `
 If you are interested in property values of the returned objects, you will need to do a second query to to retrieve data of the beacon:
 
 ```bash
-$ curl -s http://localhost:8080/v1/objects/{id}
+curl -s http://localhost:8080/v1/objects/{id}
 ```
 
 So querying all property values of the first result can be done as follows:
 
 ```bash
-$ curl -s http://localhost:8080/v1/objects/65010df4-da64-333d-b1ce-55c3fc9174ab
+curl -s http://localhost:8080/v1/objects/65010df4-da64-333d-b1ce-55c3fc9174ab
 ```
 
 ## Next steps

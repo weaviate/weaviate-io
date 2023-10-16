@@ -49,7 +49,7 @@ The figure below gives a 30,000 feet view of Weaviate's architecture.
 
 [![Weaviate module APIs overview](./img/weaviate-architecture-overview.svg "Weaviate System and Architecture Overview")](./img/weaviate-architecture-overview.svg)
 
-You can learn more about the individual components in this figure by following the below guides:
+You can learn more about the individual components in this figure by following these guides:
 
 **[Learn about storage inside a shard](./storage.md)**
   * How Weaviate stores data

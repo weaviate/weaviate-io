@@ -117,7 +117,7 @@ This approach of combining a vector search with a filter is a powerful way to fi
 
 </details>
 
-We can apply the query to filter the data in any number of ways. For example, consider the below query:
+We can apply the query to filter the data in any number of ways. For example, consider this query:
 
 import FilterWhereGreater from './_snippets/academy.queries.filter.where.greater.mdx';
 
@@ -275,9 +275,9 @@ import FilterPaginationNeartext from './_snippets/academy.queries.filter.paginat
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-This query retrieves the 2 results (`limit`: 2) after the first 2 results (`offset`: 2).
+This query retrieves the next 2 results (`limit`: 2) after the first 2 results (`offset`: 2).
 
-We can confirm this by comparing the results to the below query, which retrieves the top 4 results. The last two results from the below query are the same as the two results from the above query.
+We can confirm this by comparing the results of two queries with different result limits. The query below retrieves the top 4 results. The last two results from that query are the same as the result in the query that uses limit with pagination.
 
 ```graphql
 {
