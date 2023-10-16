@@ -9,7 +9,7 @@ Here be some other quandries.
 
 Morem, and more.
 
-AnError
+An Error
 
 Anot her error.
 
