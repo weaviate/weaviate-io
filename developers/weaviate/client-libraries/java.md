@@ -435,7 +435,6 @@ Check the
 [change logs on GitHub](https://github.com/weaviate/weaviate-java-client/releases)
 for updates on the latest `Java client` changes.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -285,7 +285,6 @@ You can use any of
 * `command-xlarge-beta`
 * `command-xlarge`
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

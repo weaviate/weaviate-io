@@ -142,7 +142,6 @@ docker run -it --network=$WEAVIATE_NETWORK -e weaviate_host=$WEAVIATE_ORIGIN -e 
 ```
 {% endraw %}
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

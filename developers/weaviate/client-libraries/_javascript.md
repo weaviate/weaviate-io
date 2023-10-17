@@ -153,7 +153,6 @@ The code snippet at the top of this page shows a simple query corresponding to t
 
 See the [change logs on GitHub](https://github.com/weaviate/weaviate-javascript-client/releases).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

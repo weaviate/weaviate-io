@@ -421,7 +421,6 @@ Take the words rain and drought for example. While these are opposite concepts, 
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

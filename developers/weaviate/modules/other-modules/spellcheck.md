@@ -159,7 +159,6 @@ The module extends existing `text2vec-*` modules with an `autoCorrect` flag, whi
 }
 ```
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

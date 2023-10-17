@@ -8,7 +8,6 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## More resources
 
 These pages can help with common questions:
 

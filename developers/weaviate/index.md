@@ -173,7 +173,6 @@ Want to get started or want to learn more? These resources might help you furthe
 - Learn about Weaviate:
     - [Concepts](./concepts/index.md)
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

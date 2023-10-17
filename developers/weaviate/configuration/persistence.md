@@ -110,7 +110,6 @@ The two functions reflect different under-the-hood memory management behaviors. 
 
 In general, `mmap` may be a preferred option with memory management benefits. However, if you experience stalling situations under heavy memory load, we suggest trying `pread` instead.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -71,7 +71,6 @@ Weaviate's [modular ecosystem](https://weaviate.io/developers/weaviate/modules) 
 | --- | --- | --- |
 | Named Entity Recognition (NER)| tbd |  [Python](https://github.com/weaviate/weaviate-examples/tree/main/example-with-NER-module) |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -102,7 +102,6 @@ GraphQL _integer_ data currently only supports `int32`, and does not support `in
 
 GraphQL (`Get`) queries are run with a tunable [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

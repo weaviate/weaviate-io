@@ -125,7 +125,6 @@ We recommend starting from the following table of vectorizers and their availabi
 | Reranker | **Text** | [`reranker-cohere`](../modules/retriever-vectorizer-modules/reranker-cohere.md) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Reranker | **Text** | [`reranker-transformers`](../modules/retriever-vectorizer-modules/reranker-transformers.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

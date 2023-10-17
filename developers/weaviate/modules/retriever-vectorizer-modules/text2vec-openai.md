@@ -274,7 +274,6 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.openai.mdx';
 
 <CodeNearText />
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

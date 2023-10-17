@@ -78,7 +78,6 @@ collector_proxy:
 
 Deploy the helm chart and make sure to use the proxy service for your requests.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -158,7 +158,6 @@ Let's say an `Article` object, `"On the Philosophy of Modern Ant Colonies"`, ref
 
 If we want `"On the Philosophy of Modern Ant Colonies"`'s centroid vector to be recalculated, we would need to otherwise trigger an update. For example, we could either remove the reference to `"body"` and add it back, or simply `PUT` the `Article` object with an identical object.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

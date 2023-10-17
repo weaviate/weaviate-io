@@ -249,7 +249,6 @@ For further information see:
 - [References: GraphQL: Additional Operators](./additional-operators.md)
 :::
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

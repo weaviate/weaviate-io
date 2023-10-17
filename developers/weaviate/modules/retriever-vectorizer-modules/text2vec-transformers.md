@@ -293,7 +293,6 @@ The `text2vec-transformers` module is compatible with various models, each with 
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -27,7 +27,6 @@ You can read more about these concepts below.
 - [Vector index](./vector-index.md)
 - [Comparison of vectorizers](./vectorizer-comparisons.md)
 
-## More Resources
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />

@@ -41,7 +41,6 @@ This section includes references for the RESTful and GraphQL APIs. RESTful API e
 - [/v1/.well-known](./rest/well-known.md)
 - [/v1/modules](./rest/modules.md)
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
