@@ -1,0 +1,125 @@
+---
+title: Manage relationships with cross-references
+sidebar_position: 40
+image: og/docs/tutorials.jpg
+# tags: ['tutorial']
+---
+
+## Overview
+
+Many applications require the ability to manage relationships between objects. For example, a blog application might need to store information about the author of each post. Or, a document store may chunk documents into smaller pieces and store them in separate objects, each with a reference to the original document.
+
+In Weaviate, you can use cross-references to manage relationships between objects. Cross-references are a special type of property that can be used to link objects together. In the above examples, each blog post could have a cross-reference property called `hasAuthor` to link each post to its author, or each chunk could have a cross-reference property called `sourceDocument` to link each chunk to its original document.
+
+In this tutorial, you will learn how to use cross-references to manage relationships between objects, and to use them to enhance your search queries.
+
+We will refer to the originating object as the **source** object, and the object that is being linked to (cross-referenced object) as the **target** object.
+
+### Prerequisites
+
+This tutorial assumes that you have completed the [QuickStart tutorial](../quickstart/index.md) and have access to a Weaviate instance with write access.
+
+## When to use cross-references
+
+Cross-references are useful when you need to establish relationships between objects in Weaviate. For example, you might want to link:
+
+- A blog post (source) to its author (target).
+- A document chunk (source) to its original document (target).
+- A product (source) to its manufacturer (target).
+
+In each of these cases, you can use a cross-reference property to link the objects together.
+
+## How cross-references work
+
+In Weaviate, cross-reference relationships are defined as class properties. Each of these properties is characterized by a name and a data type. Each cross-reference property can be directed to one or more target classes. For example, a `hasAuthor` cross-reference property might be directed to the `Author` class, while a `sourceDocument` cross-reference property might be directed to the `Document` class.
+
+Cross-references are uni-directional; to establish a bi-directional relationship, two distinct cross-reference properties are required, facilitating linkage in both directions.
+
+### Cross references and vectors
+
+Linking objects with cross-references does not affect the vectorization of the objects. For example, if you link a blog post to its author, the vector of the blog post object will not include, or be affected by, the vector of the author object.
+
+## Managing cross-references
+
+Each cross-reference can be created, updated, and deleted independently of the objects that it links. This allows you to manage relationships between objects without having to modify the objects themselves.
+
+To create a cross-reference, you must include the cross-reference property in the source class, and then add the cross-reference to the source object.
+
+### Include a cross-reference property
+
+A cross-reference property must be included in the class definition. For example, to create a `hasAuthor` cross-reference property in the `BlogPost` class, you would include the following in the class definition:
+
+```json
+{
+    "class": "BlogPost",
+    "properties": [
+        ...  // other class properties
+        // highlight-start
+        {
+            "name": "hasAuthor",
+            "dataType": ["Author"],
+        },
+        // highlight-end
+    ],
+    ...  // other class attributes (e.g. vectorizer)
+}
+```
+
+### Create a cross-reference
+
+To create a cross-reference, Weaviate requires the following information:
+
+- The class and UUID of the source (from) object.
+- The class and UUID of the target (to) object.
+- The name of the cross-reference property.
+
+:::warning Add example
+:::
+
+## Queries with cross-references
+
+Once you have established cross-references between objects, you can use them to enhance your search queries. For example, you can use cross-references to:
+
+- Retrieve properties of target objects.
+- Filter objects based on properties of target objects.
+
+### Retrieve properties of a target object
+
+You can retrieve properties of a target object just as you would retrieve properties of the source object.
+
+For example, where a document chunk includes a cross-reference to its original document, you can use the cross-reference to retrieve properties of the original document. Accordingly, you can retrieve the title of the document or the author of the document, just as you would retrieve a property of the chunk itself such as the text of the chunk.
+
+:::warning Add example
+:::
+
+### Filter using cross-references
+
+You can configure a filter to include or exclude objects based on properties of the target object.
+
+For example, you can filter articles based on an attribute of the author, such as the author's name or the author's location.
+
+:::warning Add example
+:::
+
+#### Two-stage queries
+
+Because cross-references do not affect vectors, you cannot use vector searches to filter objects based on properties of the target object.
+
+However, you can use a two-stage query to achieve a similar result. In this example, we will use a first query to search the target class, and then use the results of that query to filter the source class.
+
+:::warning Add example
+:::
+
+## Further information
+
+### Managing cross-references
+
+For further information on how to manage cross-references, see the [how-to guide](../manage-data/cross-references.mdx). It includes information on how to:
+
+- [Create a cross-reference](../manage-data/cross-references.mdx#add-a-one-way-cross-reference-property)
+- [Update a cross-reference](../manage-data/cross-references.mdx#update-a-cross-reference)
+- [Delete a cross-reference](../manage-data/cross-references.mdx#delete-a-cross-reference)
+- [Retrieve a cross-reference](../manage-data/cross-references.mdx#retrieve-cross-references)
+
+## Summary
+

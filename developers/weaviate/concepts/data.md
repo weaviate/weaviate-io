@@ -152,7 +152,7 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author` like this:
+We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author`. An object containing a cross-reference may look like this:
 
 ```json
 {
@@ -179,10 +179,6 @@ Each cross-reference relationship in Weaviate is directional.
 So, in addition to the `Author` class having a `writesFor` property that points to the `Publication` class, you could have a `hasAuthors` property in the `Publication` class that points to the `Author` class.
 
 Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
-
-:::tip `Hrefs` vs `beacons`
-`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We will discuss the difference further as we go forward.
-:::
 
 ## Weaviate Schema
 
