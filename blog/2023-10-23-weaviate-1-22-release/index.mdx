@@ -148,11 +148,15 @@ The user may then create an object of this class, such as:
 
 ### Auto-schema support for nested properties
 
-Given that the `object` data types allow nested properties of arbitrary depth, you will be pleased to know that auto-schema supports nested properties. This means that you can create a class with nested properties without having to manually define the class schema.
+Given that the `object` data types allow nested properties of arbitrary depth, you will be pleased to know that auto-schema supports nested properties. This means that you can create a class with nested properties without having to manually define the class structure.
 
-In other words - you can create an `object` property, and Weaviate will automatically create the nested properties for you at import time.
+In other words, you can create an `object` property, and Weaviate will automatically create the nested properties for you at import time. This may allow you to create a class from a large number of nested properties with ease.
 
-As with before, you will get the most granular and exact control over the schema by defining it manually. However, auto-schema may save you a lot of time, for example if you have a large number of nested properties.
+This can provide a level of convenience for experimentation or evaluation, although as always you will get the most granular and exact control over the schema by defining it manually.
+
+:::tip Not recommended for production use
+Parsing objects at import time to infer the class definition may be slow for nested properties. Accordingly, we recommend that you manually specify the nested properties in the class definition as much as possible, especially in a production setting.
+:::
 
 ### Future improvements
 
