@@ -256,7 +256,7 @@ Learn more about the schema configuration [here](/developers/weaviate/config-ref
 | `vectorIndexType` | body | string | Defaults to hnsw. Can be omitted in schema definition since this is the only available type for now. |
 | `vectorIndexConfig` | body | object | Vector index type specific settings. |
 | `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
-| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | Include the class name in vector calculation (default true). Learn more about [semantic indexing in Weaviate](/developers/weaviate/config-refs/schema.md#configure-semantic-indexing). |
+| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | boolean | Include the class name in vector calculation (default true). Learn more about [semantic indexing in Weaviate](/developers/weaviate/config-refs/schema.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
 | `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md). |
 | `properties` > `description` | body | string | Description of the property. |
@@ -354,7 +354,7 @@ Parameters in the PUT body:
 | `vectorIndexType` | body | string | Defaults to hnsw. Can be omitted in schema definition since this is the only available type for now. |
 | `vectorIndexConfig` | body | object | Vector index type specific settings. |
 | `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
-| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | object | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/config-refs/schema.md#configure-semantic-indexing). |
+| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | boolean | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/config-refs/schema.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
 | `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md) |
 | `properties` > `description` | body | string | Description of the property. |

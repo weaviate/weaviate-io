@@ -143,7 +143,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-transformers",
       "moduleConfig": {
         "text2vec-transformers": {
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
       },
       // highlight-end

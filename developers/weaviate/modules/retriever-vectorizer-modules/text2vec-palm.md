@@ -130,7 +130,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         },
       },

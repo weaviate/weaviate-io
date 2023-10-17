@@ -138,7 +138,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "model": "embed-multilingual-v2.0", // Defaults to embed-multilingual-v2.0 if not set
           "truncate": "RIGHT", // Defaults to RIGHT if not set
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         }
       },
