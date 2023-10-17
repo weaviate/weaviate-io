@@ -129,7 +129,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "moduleConfig": {
         // highlight-start
         "text2vec-contextionary": {
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
         // highlight-end
       },

@@ -178,7 +178,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "modelVersion": "002",
           "type": "text",
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         }
       },

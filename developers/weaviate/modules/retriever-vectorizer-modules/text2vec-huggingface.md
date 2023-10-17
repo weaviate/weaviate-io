@@ -145,7 +145,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
             "useGPU": true,
             "useCache": true
           },
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
       },
       "properties": [

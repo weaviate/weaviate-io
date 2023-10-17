@@ -126,7 +126,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "moduleConfig": {
         "text2vec-gpt4all": {
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         }
       },
