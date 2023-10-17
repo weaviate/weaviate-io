@@ -5,6 +5,9 @@ For additional information, try these sources.
 - [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug)
 - [Weaviate slack channel](https://weaviate.io/slack)
 
+&NewLine;
+&NewLine;
+
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment />
