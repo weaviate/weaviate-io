@@ -288,7 +288,6 @@ import HowtoSchemaPropertyAdd from '/_includes/code/howto.schema.property.add.md
 - Check out the [RESTful API reference](../api/rest/schema.md) for an overview of all schema API operations.
 - Read this article on [Weaviate and schema creation](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

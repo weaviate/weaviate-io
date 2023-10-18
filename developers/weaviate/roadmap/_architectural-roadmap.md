@@ -153,7 +153,6 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   You can download the complete roadmap (as an image) here too
 </a> -->
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -281,7 +281,6 @@ A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, 
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
 * You can use multi-tenancy to isolate data for each tenant.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -44,7 +44,7 @@ Currently the only index type is HNSW, so all data objects will be indexed using
   - `"cleanupIntervalSeconds"`: How often the async process runs that "repairs" the HNSW graph after deletes and updates. (Prior to the repair/cleanup process, deleted objects are simply marked as deleted, but still a fully connected member of the HNSW graph. After the repair has run, the edges are reassigned and the datapoints deleted for good). Typically this value does not need to be adjusted, but if deletes or updates are very frequent it might make sense to adjust the value up or down. (Higher value means it runs less frequently, but cleans up more in a single batch. Lower value means it runs more frequently, but might not be as efficient with each run).
   - `"pq"`: Used to enable [product quantization](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) which is a technique that allows for Weaviate’s HNSW vector index to store vectors using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets on a given amount of memory. *Weaviate’s HNSW implementation assumes that product quantization will occur after some data has already been loaded. The reason for this is that the codebook needs to be trained on existing data. A good recommendation is to have 10,000 to 100,000 vectors per shard loaded before enabling product quantization.* Please refer to the parameters that can be configured for `"pq"` below:
     - `enabled`: Whether product quantization is enabled or not (defaults to `false`). To enable set to `true`.
-    - `trainingLimit`: The maximum number of objects, per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled. 
+    - `trainingLimit`: The maximum number of objects, per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled.
     - `segments`: The number of segments to use. By default this is equal to the number of dimensions. Reducing the number of segments will further reduce the size of the quantized vectors. The number of segments must be divisible by the number of dimensions of each vector.
     - `centroids`: The number of centroids to use. Reducing the number of centroids will further reduce the size of quantized vectors at the price of recall. When using the `kmeans` encoder, centroids is set to 256 or one byte by default in Weaviate.
     - `encoder`: An object with encoder specific information. Here you can specify the `type` of encoder as either `kmeans`(default) or `tile`. If using the `tile` encoder you can also specify the `distribution` as `log-normal` (default) or `normal`.
@@ -211,7 +211,6 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 }
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

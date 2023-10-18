@@ -260,7 +260,6 @@ You can set a threshold for similarity search by setting a maximum `distance`. T
 The syntax is the same as for [the other `nearXXX` operators](./similarity.md#distance-threshold).
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

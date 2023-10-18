@@ -199,7 +199,6 @@ For more, general information on running EFS with Fargate, we recommend reading 
     198.19.0.0/16
     ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

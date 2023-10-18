@@ -62,7 +62,6 @@ This query retrieves 10 results from the `JeopardyQuestion` class, using a hybri
 
 You can specify which `property` of the `JeopardyQuestion` class you want to pass to the reranker. Note that here, the returned `score` will include the score from the reranker.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

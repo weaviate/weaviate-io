@@ -524,7 +524,6 @@ class_obj = {
 client.schema.create_class(class_obj)
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -80,7 +80,6 @@ Internal providers coordinate the storage and retrieval of backed-up Weaviate da
 
 As of Weaviate `v1.16`, the only supported internal backup provider is the [filesystem](/developers/weaviate/configuration/backups.md#filesystem) provider.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -340,7 +340,6 @@ As described above, the `JeopardyCategory` class object can be either:
 - A non-multi-tenancy object or
 - A multi-tenancy object belonging to `tenantA`.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

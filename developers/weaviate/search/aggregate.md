@@ -416,7 +416,6 @@ This example searches for objects where the `round` property equals `Double Jeop
 </details>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

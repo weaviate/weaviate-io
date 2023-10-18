@@ -60,7 +60,6 @@ More fine-grained Role-Based Access Control (RBAC) coming soon. As of now the
 only possible distinction is between Admins (CRUD), Read-Only Users and
 entirely unauthorized users.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

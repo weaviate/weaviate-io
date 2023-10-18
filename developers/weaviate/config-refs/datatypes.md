@@ -179,7 +179,6 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

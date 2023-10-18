@@ -87,7 +87,6 @@ Example output (format may slightly vary depending on the client used):
 }
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

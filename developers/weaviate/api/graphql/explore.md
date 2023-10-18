@@ -109,7 +109,6 @@ Because pagination is not possible in multidimensional storage, you can improve 
 
 `Explore{}` functions can be extended with search filters (both semantic filters as traditional filters). Because the filters work on multiple core functions (like `Aggregate{}`) there is a [specific documentation page dedicated to filters](filters.md).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

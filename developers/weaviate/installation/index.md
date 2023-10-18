@@ -80,7 +80,6 @@ After the build is complete, you can run this Weaviate build with docker compose
 docker compose up
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

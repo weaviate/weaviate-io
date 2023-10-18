@@ -22,7 +22,6 @@ This section does not need to be read linearly. We do recommend that you read th
 
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

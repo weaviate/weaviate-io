@@ -189,7 +189,6 @@ weaviate data delete
 
 Check the [change logs on GitHub](https://github.com/weaviate/weaviate-cli/releases) for updates on the latest `CLI` changes.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

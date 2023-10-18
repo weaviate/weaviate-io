@@ -135,7 +135,6 @@ See the [Replication Usage page](/developers/weaviate/configuration/replication.
 * Not scheduled yet
   * Multi-Datacenter replication (you can upvote this feature [here](https://github.com/weaviate/weaviate/issues/2436))
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

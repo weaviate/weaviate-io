@@ -30,7 +30,6 @@ Please feel free to engage with us about the roadmap on [Weaviate's GitHub](http
 
 <Roadmap label="backlog"/>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

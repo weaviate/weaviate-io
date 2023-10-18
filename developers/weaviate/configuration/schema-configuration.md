@@ -424,7 +424,6 @@ The response will be a JSON object, such as the example shown below.
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

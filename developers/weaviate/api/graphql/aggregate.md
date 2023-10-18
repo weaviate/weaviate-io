@@ -281,7 +281,6 @@ import GraphQLAggNearText from '/_includes/code/graphql.aggregate.nearText.mdx';
 
 <GraphQLAggNearText/>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

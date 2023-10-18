@@ -103,7 +103,6 @@ Shards were assigned to 'live' nodes in a round-robin fashion starting with a ra
 * As of `v1.8.0`, dynamically scaling a cluster is not fully supported yet. New nodes can be added to an existing cluster, however it does not affect the ownership of shards. Existing nodes can not yet be removed if data is present, as shards are not yet being moved to other nodes prior to a removal of a node. ([See Roadmap](/developers/weaviate/roadmap/index.md)).
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
