@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Concepts: Vector Indexing](./vector-index.md)

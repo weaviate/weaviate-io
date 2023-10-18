@@ -4,9 +4,7 @@ sidebar_position: 19
 image: og/docs/api.jpg
 # tags: ['graphql', 'explore{}']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note Vector spaces and Explore{}
 

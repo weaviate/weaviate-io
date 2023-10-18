@@ -4,9 +4,7 @@ sidebar_position: 7
 image: og/docs/more-resources.jpg
 # tags: ['performance']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Unclear whether this page should be incorporated into another page, e.g. something to do with indexing, resource planning or architecture. -->
 ## Index types

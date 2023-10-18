@@ -4,9 +4,7 @@ sidebar_position: 10
 image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `Core knowledge/Basics`

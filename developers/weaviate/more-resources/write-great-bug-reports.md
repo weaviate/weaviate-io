@@ -4,9 +4,7 @@ sidebar_position: 99
 image: og/docs/more-resources.jpg
 # tags: ['how to', 'reporting a bug', 'bugfix', 'reproducing example']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Write great bug reports!
 

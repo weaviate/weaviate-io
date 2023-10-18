@@ -4,9 +4,7 @@ sidebar_position: 10
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

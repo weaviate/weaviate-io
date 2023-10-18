@@ -4,9 +4,7 @@ sidebar_position: 90
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['Weaviate console']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

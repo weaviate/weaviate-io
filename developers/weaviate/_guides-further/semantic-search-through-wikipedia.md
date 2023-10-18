@@ -4,9 +4,7 @@ sidebar_position: 99
 image: og/docs/further-guides.jpg
 # tags: ['semantic search', 'wikipedia']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

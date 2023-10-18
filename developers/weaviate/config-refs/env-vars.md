@@ -7,9 +7,7 @@ image: og/docs/configuration.jpg
 
 <!-- TODO - create OG image -->
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/more-resources.jpg
 # tags: ['glossary', 'terminology']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 | Term | Description |
 | ---- | ----------- |

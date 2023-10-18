@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Schema](../configuration/schema-configuration.md)

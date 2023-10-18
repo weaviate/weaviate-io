@@ -4,9 +4,7 @@ sidebar_position: 45
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Backups](./backups.md)

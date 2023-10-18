@@ -4,9 +4,7 @@ sidebar_position: 16
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'meta']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Usage
 

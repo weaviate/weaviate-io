@@ -4,9 +4,7 @@ sidebar_position: 6
 image: og/docs/more-resources.jpg
 # tags: ['use cases']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 
 This page illustrates various use cases for [vector databases](https://weaviate.io/blog/what-is-a-vector-database) by way of open-source demo projects. You can fork and modify any of them.

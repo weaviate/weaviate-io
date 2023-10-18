@@ -4,9 +4,7 @@ sidebar_position: 90
 image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

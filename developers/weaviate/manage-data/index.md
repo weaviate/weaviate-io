@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'manage data', 'crud']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

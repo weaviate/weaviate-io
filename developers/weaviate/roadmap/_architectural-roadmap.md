@@ -4,9 +4,7 @@ sidebar_position: 2
 image: og/docs/roadmap.jpg
 # tags: ['architecture', 'roadmap']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- style for roadmap table -->
 <!-- <style>

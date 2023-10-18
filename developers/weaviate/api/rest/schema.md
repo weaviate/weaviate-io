@@ -4,9 +4,7 @@ sidebar_position: 11
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'schema']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [How-to - Configure: Schema](/developers/weaviate/configuration/schema-configuration.md)

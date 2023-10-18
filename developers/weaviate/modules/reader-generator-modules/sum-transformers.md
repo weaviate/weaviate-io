@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/modules/sum-transformers.jpg
 # tags: ['transformers']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 

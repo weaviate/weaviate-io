@@ -4,9 +4,7 @@ sidebar_position: 5
 image: og/docs/more-resources.jpg
 # tags: ['example datasets']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Multi-Modal Text/Image search using CLIP
 

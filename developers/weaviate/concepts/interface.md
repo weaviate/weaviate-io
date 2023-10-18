@@ -4,9 +4,7 @@ sidebar_position: 85
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'interface', 'API design']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [References: GraphQL API](../api/graphql/index.md)

@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Replication](../../configuration/replication.md)

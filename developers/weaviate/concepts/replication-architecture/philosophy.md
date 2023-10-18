@@ -4,9 +4,7 @@ sidebar_position: 2
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## A design modeled after how our users use Weaviate
 
