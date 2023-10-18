@@ -1,6 +1,6 @@
 ---
 title: Imports in detail
-sidebar_position: 20
+sidebar_position: 30
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
