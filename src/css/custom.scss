@@ -478,17 +478,24 @@ button.close {
     background-position: center;
   }
 
-  .navbar {
+  .custom-page .navbar {
     background: #ededed;
     color: #2c3854;
     box-shadow: none;
   }
 
-  .navbar__link {
+  .custom-page .navbar__link {
     color: #2c3854;
   }
 
-  /*  .navbar {
+  .custom-page .navbar__logo {
+    img {
+      display: none;
+    }
+    background-image: url('/img/site/weaviate-nav-logo-light.svg');
+  }
+
+  .navbar {
     background: linear-gradient(
       90deg,
       rgba(0, 0, 0, 1) 4%,
@@ -504,7 +511,7 @@ button.close {
     }
     background-image: url('/img/site/weaviate-nav-logo-dark.svg');
   }
-  */
+
   .footer--dark {
     background: transparent;
 
@@ -703,23 +710,4 @@ Dropdown style removed.
   background-color: rgb(97 189 115 / 32%);
   color: black;
   text-decoration: none;
-}
-
-//********************* Themed colour variables for custom pages (dark) *********************
-[data-theme='dark'] .custom-page {
-  --site-base-color: #1c1468;
-  --site-base-color-shade: #2c3854;
-  --site-primary: #00a142;
-  --site-primary-dark: #00c342;
-  --site-accent: #fc3988;
-  --site-accent-dark: #fb0b6d;
-  --site-background: #f5f5f5;
-  --site-font-main-color: #1c1468;
-  --site-font-header-color: #2c3854;
-  --site-font-accent-color: #00a142;
-  --site-font-link-color: #00a142;
-  --docs-base-color: #000000;
-  --docs-header-color: #160f52;
-  --docs-sidebar-bg: #ffffff;
-  --docs-body-bg: #ffffff;
 }
