@@ -1,3 +1,0 @@
-The values in versions-config.json are used for yarn local yarn builds.
-
-Build time values are set in _build_scripts/update-config-versions.js.
