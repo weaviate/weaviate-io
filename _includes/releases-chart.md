@@ -12,16 +12,16 @@ of the client. Earlier client releases have less detailed version information.
 |[1.21.1](https://github.com/weaviate/weaviate/releases/tag/v1.21.1)|2023-08-22|3.23.0| " | " | " |
 |[1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0)|2023-08-17|3.22.1|1.4.0|4.9.0|4.2.1|
 |[1.20.0](https://github.com/weaviate/weaviate/releases/tag/v1.20.0)|2023-07-06|3.22.0| " | " |4.2.0|
-|[1.19.0](https://github.com/weaviate/weaviate/releases/tag/v1.19.0)|2023-05-04|3.17.0|1.1.0[^1]|4.7.1|4.0.1|
-|[1.18.0](https://github.com/weaviate/weaviate/releases/tag/v1.18.0)|2023-03-07|3.13.0|2.14.5|4.6.2|3.6.4|
-|[1.17.0](https://github.com/weaviate/weaviate/releases/tag/v1.17.0)|2022-12-20|3.9.0|2.14.0|4.5.0|3.5.0|
-|[1.16.0](https://github.com/weaviate/weaviate/releases/tag/v1.16.0)|2022-10-31|3.8.0|2.13.0|4.4.0|3.4.0|
-|[1.15.0](https://github.com/weaviate/weaviate/releases/tag/v1.15.0)|2022-09-07| " |2.12.0|4.3.0|3.3.0|
-|[1.14.0](https://github.com/weaviate/weaviate/releases/tag/v1.14.0)|2022-07-07|3.6.0|2.11.0|4.2.0|3.2.0|
-|[1.13.0](https://github.com/weaviate/weaviate/releases/tag/v1.13.0)|2022-05-03|3.4.2|2.9.0|4.0.0|2.4.0|
-|[1.12.0](https://github.com/weaviate/weaviate/releases/tag/v1.12.0)|2022-04-05|3.4.0|2.8.0|3.0.0| " |
-|[1.11.0](https://github.com/weaviate/weaviate/releases/tag/v1.11.0)|2022-03-14|3.2.5|2.7.0|2.6.0|2.3.0|
-|[1.10.0](https://github.com/weaviate/weaviate/releases/tag/v1.10.0)|2022-01-27| " |2.5.0|2.4.1|2.1.1|
+|[1.19.0][c1.19.0]|2023-05-04|3.17.0|1.1.0[^1]|4.7.1|4.0.1|
+|[1.18.0][c1.18.0]|2023-03-07|3.13.0|2.14.5|4.6.2|3.6.4|
+|[1.17.0][c1.17.0]|2022-12-20|3.9.0|2.14.0|4.5.0|3.5.0|
+|[1.16.0][c1.16.0]|2022-10-31|3.8.0|2.13.0|4.4.0|3.4.0|
+|[1.15.0][c1.15.0]|2022-09-07| " |2.12.0|4.3.0|3.3.0|
+|[1.14.0][c1.14.0]|2022-07-07|3.6.0|2.11.0|4.2.0|3.2.0|
+|[1.13.0][c1.13.0]|2022-05-03|3.4.2|2.9.0|4.0.0|2.4.0|
+|[1.12.0][c1.12.0]|2022-04-05|3.4.0|2.8.0|3.0.0| " |
+|[1.11.0][c1.11.0]|2022-03-14|3.2.5|2.7.0|2.6.0|2.3.0|
+|[1.10.0][c1.10.0]|2022-01-27| " |2.5.0|2.4.1|2.1.1|
 |[1.9.0][c1.9.0]|2021-12-10| " | " |2.4.0|2.1.0|
 |[1.8.0][c1.8.0]|2021-11-30| " | " | " | " |
 |[1.7.0][c1.7.0]|2021-09-01|3.1.1|2.4.0|2.3.0|1.1.0|
@@ -35,7 +35,16 @@ of the client. Earlier client releases have less detailed version information.
 
 [^1]: The TypeScript client replaced the JavaScript client on 2023-03-17.
 
-
+[c1.19.0]: https://github.com/weaviate/weaviate/releases/tag/v1.19.0
+[c1.18.0]: https://github.com/weaviate/weaviate/releases/tag/v1.18.0
+[c1.17.0]: https://github.com/weaviate/weaviate/releases/tag/v1.17.0
+[c1.16.0]: https://github.com/weaviate/weaviate/releases/tag/v1.16.0
+[c1.15.0]: https://github.com/weaviate/weaviate/releases/tag/v1.15.0
+[c1.14.0]: https://github.com/weaviate/weaviate/releases/tag/v1.14.0
+[c1.13.0]: https://github.com/weaviate/weaviate/releases/tag/v1.13.0
+[c1.12.0]: https://github.com/weaviate/weaviate/releases/tag/v1.12.0
+[c1.11.0]: https://github.com/weaviate/weaviate/releases/tag/v1.11.0
+[c1.10.0]: https://github.com/weaviate/weaviate/releases/tag/v1.10.0
 [c1.9.0]: https://github.com/weaviate/weaviate/releases/tag/v1.9.0
 [c1.8.0]: https://github.com/weaviate/weaviate/releases/tag/v1.8.0
 [c1.7.0]: https://github.com/weaviate/weaviate/releases/tag/v1.7.0
