@@ -386,7 +386,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                to: 'https://twitter.com/weaviate_io',
+                                to: 'https://github.com/weaviate/weaviate',
                             },
                             {
                                 label: 'Forum',
@@ -434,10 +434,7 @@ const config = {
                                 label: 'Playbook',
                                 to: 'company/playbook',
                             },
-                            {
-                                label: 'GitHub',
-                                to: 'https://github.com/weaviate/weaviate',
-                            },
+
 
                         ],
                     },
