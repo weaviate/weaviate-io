@@ -35,6 +35,16 @@ of the client. Earlier client releases have less detailed version information.
 
 [^1]: The TypeScript client replaced the JavaScript client on 2023-03-17.
 
+
+[c1.21.7]: https://github.com/weaviate/weaviate/releases/tag/v1.21.7
+[c1.21.6]: https://github.com/weaviate/weaviate/releases/tag/v1.21.6
+[c1.21.5]: https://github.com/weaviate/weaviate/releases/tag/v1.21.5
+[c1.21.4]: https://github.com/weaviate/weaviate/releases/tag/v1.21.4
+[c1.21.3]: https://github.com/weaviate/weaviate/releases/tag/v1.21.3
+[c1.21.2]: https://github.com/weaviate/weaviate/releases/tag/v1.21.2
+[c1.21.1]: https://github.com/weaviate/weaviate/releases/tag/v1.21.1
+[c1.21.0]: https://github.com/weaviate/weaviate/releases/tag/v1.21.0
+[c1.20.0]: https://github.com/weaviate/weaviate/releases/tag/v1.20.0
 [c1.19.0]: https://github.com/weaviate/weaviate/releases/tag/v1.19.0
 [c1.18.0]: https://github.com/weaviate/weaviate/releases/tag/v1.18.0
 [c1.17.0]: https://github.com/weaviate/weaviate/releases/tag/v1.17.0
