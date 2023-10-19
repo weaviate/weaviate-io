@@ -215,7 +215,7 @@ For now, what's important to know is this:
 - Tenant activity status setting available from version `v1.21`
 :::
 
-For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
+If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
 
 Where multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. This ensures not only data isolation but also fast and efficient querying, as well as easy and robust on/off-boarding. From `v1.20` onwards, shards have become a lot more lightweight, easily allowing 50,000+ active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
 
