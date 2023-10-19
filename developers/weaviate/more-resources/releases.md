@@ -5,6 +5,6 @@ image: og/docs/more-resources.jpg
 # tags: ['releases']
 ---
 
-import ReleasesChart from '_includes/releases-chart.md';
+import ReleasesChart from '/_includes/releases-chart.md';
 
 <ReleasesChart />
