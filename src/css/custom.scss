@@ -476,23 +476,23 @@ button.close {
     background-color: #f5f5f5;
     background-size: cover;
     background-position: center;
-  }
 
-  .custom-page .navbar {
-    background: #ededed;
-    color: #2c3854;
-    box-shadow: none;
-  }
-
-  .custom-page .navbar__link {
-    color: #2c3854;
-  }
-
-  .custom-page .navbar__logo {
-    img {
-      display: none;
+    .custom-page .navbar {
+      background: #ededed;
+      color: #2c3854;
+      box-shadow: none;
     }
-    background-image: url('/img/site/weaviate-nav-logo-light.svg');
+
+    .custom-page .navbar__link {
+      color: #2c3854;
+    }
+
+    .custom-page .navbar__logo {
+      img {
+        display: none;
+      }
+      background-image: url('/img/site/weaviate-nav-logo-light.svg');
+    }
   }
 
   .navbar {
