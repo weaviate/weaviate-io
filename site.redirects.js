@@ -379,6 +379,14 @@ const siteRedirects = {
                 to: "/service",
                 from: "/service/sla"
               },
+              {
+                to: "/service",
+                from: "/service/general-terms"
+              },
+              {
+                to: "/service",
+                from: "/service/service-schedule"
+              },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
