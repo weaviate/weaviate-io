@@ -20,7 +20,7 @@ export default function InterviewProcess() {
               </h3>
             </div>
           </div>
-          <div className={styles.contentDiv} className={styles.contentDiv}>
+          <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
               Introduce yourself. Tell us about your ambitions and life goals.
               We’d like to know about you as a person - so feel free to tell us
@@ -34,11 +34,11 @@ export default function InterviewProcess() {
               <div className={styles.cardHeaderLeft}>
                 <div className={`${styles.img} ${styles.startImg}`} />
               </div>
-              <p>Jessie de Groot, head of People & Culture</p>
+              <p>Member of the People & Culture team</p>
             </div>
             <div className={styles.cardFooterDiv}>
               <div className={`${styles.img} ${styles.clockSmallImg}`} />
-              <p>45 min</p>
+              <p>30 min</p>
             </div>
           </div>
         </div>
@@ -128,11 +128,11 @@ export default function InterviewProcess() {
           <div className={styles.cardFooter}>
             <div className={styles.cardFooterDiv}>
               <div className={`${styles.img} ${styles.startImg}`} />
-              <p>Jessie de Groot, head of People & Culture</p>
+              <p>Member of the People & Culture team</p>
             </div>
             <div className={styles.cardFooterDiv}>
               <div className={`${styles.img} ${styles.clockSmallImg}`} />
-              <p>1 hour</p>
+              <p>45 min</p>
             </div>
           </div>
         </div>
