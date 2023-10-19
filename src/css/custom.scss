@@ -471,11 +471,11 @@ button.close {
 
 /* Styling one class specially in dark mode */
 [data-theme='dark'] {
-  #__docusaurus:has(div.custom-page) {
+  /*  #__docusaurus:has(div.custom-page) {
     background-image: url('/img/site/background-dark.jpg');
     background-size: cover;
     background-position: center;
-  }
+  } */
 
   .navbar {
     background: linear-gradient(
@@ -691,4 +691,27 @@ Dropdown style removed.
   background-color: rgb(97 189 115 / 32%);
   color: black;
   text-decoration: none;
+}
+
+//********************* Themed colour variables *********************
+[data-theme='dark'] .custom-page {
+  --site-base-color: #1c1468;
+  --site-base-color-shade: #2c3854;
+
+  --site-primary: #00a142;
+  --site-primary-dark: #00c342;
+  --site-accent: #fc3988;
+  --site-accent-dark: #fb0b6d;
+
+  --site-background: #f5f5f5;
+
+  --site-font-main-color: #1c1468;
+  --site-font-header-color: #2c3854;
+  --site-font-accent-color: #00a142;
+  --site-font-link-color: #00a142;
+
+  --docs-base-color: #000000;
+  --docs-header-color: #160f52;
+  --docs-sidebar-bg: #ffffff;
+  --docs-body-bg: #ffffff;
 }
