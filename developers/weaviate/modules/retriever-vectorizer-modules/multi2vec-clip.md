@@ -302,7 +302,6 @@ The `multi2vec-clip` module uses the [`clip-ViT-B-32` model](https://huggingface
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

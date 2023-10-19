@@ -16,9 +16,8 @@ For more information related to one of the documents below, please reach out to 
   - [Contributor License Agreement](/service/contributor-license-agreement)
 - Customers
 
-  - [General Terms](/service/general-terms)
   - [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement)
   - [Weaviate Non Enterprise Agreement](/service/weaviate-non-enterprise-agreement)
-  - [Service Schedule](/service/service-schedule)
+
 
 

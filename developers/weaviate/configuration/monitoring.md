@@ -120,7 +120,6 @@ your uses perfectly:
 | [Startup](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/startup.json) | Visualize the startup process, including recovery operations | ![Startup](./img/weaviate-sample-dashboard-startup.png "Vector Index") |
 | [Usage](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/usage.json) | Obtain usage metrics, such as number of objects imported, etc.| ![Usage](./img/weaviate-sample-dashboard-usage.png "Usage") |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

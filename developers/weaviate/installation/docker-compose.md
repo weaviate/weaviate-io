@@ -334,7 +334,6 @@ Alternatively you can run docker compose entirely detached with `docker compose 
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yaml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

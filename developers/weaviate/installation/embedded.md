@@ -155,7 +155,6 @@ GitHub repositories:
 * [Original TypeScript client](https://github.com/weaviate/typescript-client)
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

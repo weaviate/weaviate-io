@@ -87,7 +87,6 @@ import WellknownReady from '/_includes/code/wellknown.ready.mdx';
 
 returns nothing (a 200 response), you know the application is able to respond to HTTP requests.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

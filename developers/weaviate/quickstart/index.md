@@ -573,7 +573,6 @@ If it still doesn't work - please [reach out to us](#more-resources)!
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

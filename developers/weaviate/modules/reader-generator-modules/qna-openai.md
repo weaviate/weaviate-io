@@ -238,7 +238,6 @@ OpenAI has multiple models available for the extraction of answers from a given 
 
 These models can be configured
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

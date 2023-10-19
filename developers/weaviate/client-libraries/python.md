@@ -799,7 +799,6 @@ are hosted here:
 - [GitHub](https://github.com/weaviate/weaviate-python-client/releases)
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

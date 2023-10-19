@@ -378,7 +378,6 @@ services:
 
 Send REST requests to Weaviate without any additional authentication headers or parameters.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

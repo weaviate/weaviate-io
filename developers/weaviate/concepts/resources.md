@@ -104,7 +104,6 @@ Weaviate Core itself does not make use of GPUs, however some of the models inclu
 
 Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning hard-disks can be used with some performance penalties.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

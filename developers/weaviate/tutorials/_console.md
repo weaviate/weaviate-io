@@ -73,7 +73,6 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 - [Roadmap](../roadmap/index.md)
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

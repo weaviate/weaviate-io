@@ -70,7 +70,6 @@ If the cluster size is 3 and the replication factor is also 3, then all nodes ca
 If the cluster size is 10 and the replication factor is 3, the 3 nodes which contain that data (class) can serve queries, coordinated by the coordinator node. The client waits until x (the consistency level) nodes have responded.
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

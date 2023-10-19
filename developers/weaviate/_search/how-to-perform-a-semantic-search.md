@@ -120,7 +120,6 @@ curl -s http://localhost:8080/v1/objects/65010df4-da64-333d-b1ce-55c3fc9174ab
 - Look for more ways to query your dataset in Weaviate with GraphQL queries, semantic search and other filters in the [GraphQL references guide](../api/graphql/index.md).
 - Stay tuned for new tutorials, for example on interpretation of the semantic search results or how to set up a classification model!
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

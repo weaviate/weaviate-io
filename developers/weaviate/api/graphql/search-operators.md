@@ -537,7 +537,6 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 The `_additional{}` property is extended with the answer and a certainty of the answer.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

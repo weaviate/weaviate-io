@@ -122,7 +122,6 @@ If you choose to build a completely new module including a Weaviate Go interface
 - Weaviate APIs internal to a module are not guaranteed to be stable. Even on a non-breaking Weaviate release, 'internal' APIS could always change.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

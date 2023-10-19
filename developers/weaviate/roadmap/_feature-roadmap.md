@@ -45,7 +45,6 @@ The following is an overview of features planned for Weaviate. By clicking the l
 {% endfor %}
 </ul> -->
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

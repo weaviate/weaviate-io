@@ -608,7 +608,6 @@ This example shows how to fetch one object in the `MultiTenancyClass` class from
   </TabItem>
 </Tabs>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

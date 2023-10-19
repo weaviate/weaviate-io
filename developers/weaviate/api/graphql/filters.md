@@ -571,7 +571,6 @@ Filtering by null-state requires the target class to be configured to index this
 :::
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

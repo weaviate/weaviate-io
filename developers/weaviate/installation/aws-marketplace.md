@@ -162,7 +162,6 @@ You will be charged for Weaviate and associated resources directly by AWS.
 
 This will, for example, include the EC2 instances, EBS volumes, and any other resources used by the cluster.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

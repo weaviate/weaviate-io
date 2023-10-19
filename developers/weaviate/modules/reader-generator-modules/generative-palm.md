@@ -324,7 +324,6 @@ The `chat-bison` model is used by default. The model has the following propertie
 - Max output tokens: 1,024
 - Training data: Up to Feb 2023
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

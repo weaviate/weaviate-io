@@ -223,7 +223,6 @@ import GraphQLFiltersNearNextCohere from '/_includes/code/graphql.filters.nearTe
 
 <GraphQLFiltersNearNextCohere/>
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -8,7 +8,8 @@ import Badges from '/_includes/badges.mdx';
 
 <Badges/>
 
-## More information
+
+These pages can help with common questions:
 
 - [FAQ](./faq.md)
 - [Glossary](./glossary.md)
@@ -16,9 +17,14 @@ import Badges from '/_includes/badges.mdx';
 - [Example use cases](./example-use-cases.md)
 - [Index types and performance](./performance.md)
 - [Migration Guide](./migration-guide.md)
-<!-- - [Deprecation messages]---(./_deprecation-messages.md) -->
 
-## (Even) more Resources
+## (Even) more resources
+
+For additional information, try these sources.
+
+- [Weaviate Community Forum](https://forum.weaviate.io/)
+- [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug)
+- [Weaviate slack channel](https://weaviate.io/slack)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -220,7 +220,6 @@ The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookrese
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

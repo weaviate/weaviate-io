@@ -1,6 +1,6 @@
 ---
 title: Schemas in detail
-sidebar_position: 10
+sidebar_position: 20
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
@@ -282,7 +282,6 @@ You can read more about various schema, data types, modules, and index configura
 - [Tutorial: Introduction to modules](./modules.md)
 - [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

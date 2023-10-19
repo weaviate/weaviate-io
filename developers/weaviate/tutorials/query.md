@@ -287,7 +287,6 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 
 `certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.md#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty?).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

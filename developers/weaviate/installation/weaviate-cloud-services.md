@@ -26,7 +26,6 @@ You can learn more about WCS from the dedicated [WCS documentation](/developers/
 
 :::
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

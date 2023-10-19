@@ -78,7 +78,6 @@ Additional to complete reflection of the RESTful and GraphQL API, the clients ha
 ## Command Line Interface (CLI)
 You can interact with Weaviate via a command line interface. Information about how to install and use can be found [here](./cli.md).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

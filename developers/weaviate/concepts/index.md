@@ -81,7 +81,6 @@ You can learn more about the individual components in this figure by following t
   * Weaviate's implementation
   * Use cases
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

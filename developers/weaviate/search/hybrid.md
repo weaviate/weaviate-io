@@ -511,7 +511,6 @@ It should produce a response like the one below:
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -69,7 +69,6 @@ Weaviate can also be used without any modules, as pure vector native database an
 
 It is possible for anyone to create a custom module for use with Weaviate. Click [here](../modules/other-modules/custom-modules.md) to see how you can create and use your own modules.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

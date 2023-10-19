@@ -328,7 +328,6 @@ The above result can be plotted as follows (where the result in red is the first
 * Currently only root elements (not resolved cross-references) are taken into consideration for the featureProjection.
 * Due to the relatively high cost of the underlying algorithm, we recommend to limit requests including a `featureProjection` in high-load situations where response time matters. Avoid parallel requests including a `featureProjection`, so that some threads stay available to serve other, time-critical requests.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
