@@ -194,6 +194,14 @@ The team continues to add gRPC support under the hood, with a big part of the eq
 
 With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, and multiple times faster `Get` queries. A big part of this comes from the fact that gRPC is a binary protocol, which is more efficient than the text-based GraphQL protocol, as well as it being based on HTTP/2.
 
+:::note gRPC is still experimental / API changes
+
+Please keep in mind that gRPC is still experimental, and we do not recommend that you use it in production.
+
+The gRPC implementation is still evolving as we will continue to add more functionality to it. This release, for example, changes the implementation under the hood. If you were trying out gRPC in the past, this version may not be compatible with your existing code.
+
+:::
+
 ## New Python client API
 
 If you are wondering how to use the new gRPC functionality, we have you covered with the new Python client. This client is a pre-release version with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience through custom classes and methods, which will trigger IDE auto-completion in place of untyped dictionaries.
