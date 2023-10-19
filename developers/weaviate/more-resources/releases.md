@@ -1,10 +1,10 @@
 ---
 title: Releases
-# sidebar_position: 7
+sidebar_position: 8
 image: og/docs/more-resources.jpg
 # tags: ['releases']
 ---
 
-import MatrixIntro from '_includes/releases-chart.md';
+import ReleasesChart from '_includes/releases-chart.md';
 
-<MatrixIntro />
+<ReleasesChart />
