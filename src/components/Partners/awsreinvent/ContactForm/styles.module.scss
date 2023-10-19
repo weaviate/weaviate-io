@@ -22,7 +22,7 @@
   border-radius: 0.9375rem;
   border: 1px solid #130c49;
   background: #fff;
-  width: 42.4375rem;
+
   height: auto;
   margin-top: -270px;
   flex-shrink: 0;
@@ -37,6 +37,12 @@
     flex-shrink: 0;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
     padding: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  iframe {
+    width: 100%;
   }
 }
 

@@ -21,7 +21,7 @@ export default function Header() {
 
           <div className={styles.buttons}>
             <Link className={styles.buttonGradient} to="#meetingForm">
-              Book a meeting + receive gifts
+              Book a meeting
             </Link>
           </div>
         </div>
