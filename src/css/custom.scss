@@ -471,11 +471,12 @@ button.close {
 
 /* Styling one class specially in dark mode */
 [data-theme='dark'] {
-  /*  #__docusaurus:has(div.custom-page) {
-    background-image: url('/img/site/background-dark.jpg');
+  #__docusaurus:has(div.custom-page) {
+    background-image: none;
+    background-color: #f5f5f5;
     background-size: cover;
     background-position: center;
-  } */
+  }
 
   .navbar {
     background: linear-gradient(
