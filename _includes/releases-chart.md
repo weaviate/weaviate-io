@@ -218,8 +218,8 @@ To see release notes for a particular version, click on the version number.
 <details>
   <summary>Releases</summary>
 
-   |Client Version|Release Date|
-   |:-|:-|
+  |Client Version|Release Date|
+  |:-|:-|
   |[4.10.0][g4.10.0]|2023-08-22|
   |[4.9.0][g4.9.0]|2023-07-06|
   |[4.8.1][g4.8.1]|2023-05-26|
@@ -498,7 +498,7 @@ To see release notes for a particular version, click on the version number.
 [j3.6.4]: https://github.com/weaviate/java-client/releases/tag/3.5.4
 [j3.6.3]: https://github.com/weaviate/java-client/releases/tag/3.6.3
 [j3.6.2]: https://github.com/weaviate/java-client/releases/tag/3.6.2
-[j]3.6.1: https://github.com/weaviate/java-client/releases/tag/3.6.1
+[j3.6.1]: https://github.com/weaviate/java-client/releases/tag/3.6.1
 [j3.6.0]: https://github.com/weaviate/java-client/releases/tag/3.6.0
 [j3.5.0]: https://github.com/weaviate/java-client/releases/tag/3.5.0
 [j3.4.2]: https://github.com/weaviate/java-client/releases/tag/3.4.2
