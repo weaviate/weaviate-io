@@ -370,6 +370,7 @@ const siteRedirects = {
             to: "/products",
             from: "/partners/aws"
           },
+
             // Terms and Policies Changes
             {
                 to: "/service",

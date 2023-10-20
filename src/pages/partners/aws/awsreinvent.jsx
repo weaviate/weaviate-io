@@ -6,7 +6,7 @@ import UnlockSection from '/src/components/Partners/awsreinvent/UnlockSection';
 import CallingSection from '/src/components/Partners/awsreinvent/CallingSection';
 import Resources from '/src/components/Partners/awsreinvent/Resources/resources';
 import Footer from '/src/components/Partners/awsreinvent/awsFooter';
-import ContactForm from '../../components/Partners/awsreinvent/ContactForm/contactForm';
+import ContactForm from '../../../components/Partners/awsreinvent/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import Head from '@docusaurus/Head';
 
