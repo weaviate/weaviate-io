@@ -217,14 +217,79 @@ To see release notes for a particular version, click on the version number.
 
 <details>
   <summary>Releases</summary>
-  World!
+
+   |Client Version|Release Date|
+   |:-|:-|
+  |[4.10.0][g4.10.0]|2023-08-22|
+  |[4.9.0][g4.9.0]|2023-07-06|
+  |[4.8.1][g4.8.1]|2023-05-26|
+  |[4.8.0][g4.8.0]|2023-05-05|
+  |[4.7.1][g4.7.1]|2023-04-14|
+  |[4.7.0][g4.7.0]|2023-04-03|
+  |[4.6.4][g4.6.4]|2023-03-25|
+  |[4.6.3][g4.6.3]|2023-03-14|
+  |[4.6.2][g4.6.2]|2023-03-07|
+  |[4.6.1][g4.6.1]|2023-02-01|
+  |[4.6.0][g4.6.0]|2023-02-01|
+  |[4.5.2][g4.5.2]|2023-01-19|
+  |[4.5.1][g4.5.1]|2023-01-17|
+  |[4.5.0][g4.5.0]|2022-12-20|
+  |[4.4.0][g4.4.0]|2022-10-31|
+  |[4.3.1][g4.3.1]|2022-09-27|
+  |[4.3.0][g4.3.0]|2022-09-07|
+  |[4.2.1][g4.2.1]|2022-07-12|
+  |[4.2.0][g4.2.0]|2022-07-07|
+  |[4.1.0][g4.1.0]|2022-05-25|
+  |[4.0.0][g4.0.0]|2022-05-03|
+  |[3.0.0][g3.0.0]|2022-04-05|
+  |[2.6.2][g2.6.2]|2022-10-31|
+  |[2.6.1][g2.6.1]|2022-05-04|
+  |[2.6.0][g2.6.0]|2022-03-11|
+  |[2.5.0][g2.5.0]|2022-02-01|
+  |[2.4.1][g2.4.1]|2021-12-15|
+  |[2.4.0][g2.4.0]|2021-11-30|
+  |[2.3.0][g2.3.0]|2021-08-31|
+  |[2.2.0][g2.2.0]|2021-06-07|
+  |[2.1.0][g2.1.0]|2021-04-23|
+  |[2.0.1][g2.0.1]|2021-03-25|
+  |[2.0.0][g2.0.0]|2021-03-23|
+  |[1.1.2][g1.1.2]|2022-10-31|
+  |[1.1.1][g1.1.1]|2022-05-04|
+
 </details>
 
 ## Java Client
 
 <details>
   <summary>Releases</summary>
-  World!
+
+  |[4.3.0][j4.3.0]|2023-08-22|
+  |[4.2.1][j4.2.1]|2023-07-26|
+  |[4.2.0][j4.2.0]|2023-07-06|
+  |[4.1.2][j4.1.2]|2023-05-26|
+  |[4.1.1][j4.1.1]|2023-05-21|
+  |[4.1.0][j4.1.0]|2023-05-05|
+  |[4.0.2][j4.0.2]|2023-03-28|
+  |[4.0.1][j4.0.1]|2023-03-16|
+  |[4.0.0][j4.0.0]|2023-03-14|
+  |[3.6.5][j3.6.5]|2023-03-13|
+  |[3.6.4][j3.6.4]|2023-03-07|
+  |[3.6.3][j3.6.3]|2023-03-01|
+  |[3.6.2][j3.6.2]|2023-02-23|
+  |[3.6.1][j3.6.1]|2023-02-22|
+  |[3.6.0][j3.6.0]|2023-02-09|
+  |[3.5.0][j3.5.0]|2022-12-20|
+  |[3.4.2][j3.4.2]|2022-11-21|
+  |[3.4.1][j3.4.1]|2022-11-18|
+  |[3.4.0][j3.4.0]|2022-10-31|
+  |[3.3.2][j3.3.2]|2022-10-29|
+  |[3.3.1][j3.3.1]|2022-09-29|
+  |[3.3.0][j3.3.0]|2022-09-07|
+  |[3.2.1][j3.2.1]|2022-07-12|
+  |[3.2.0][j3.2.0]|2022-07-07|
+  |[3.1.1][j3.1.1]|2022-06-02|
+  |[3.1.0][j3.1.0]|2022-05-25|
+
 </details>
 
 
@@ -379,8 +444,70 @@ To see release notes for a particular version, click on the version number.
 
 [comment]: # ( go client links )
 
+[g4.10.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.10.0
+[g4.9.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.9.0
+[g4.8.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.8.1
+[g4.8.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.8.0
+[g4.7.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.7.1
+[g4.7.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.7.0
+[g4.6.4]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.4
+[g4.6.3]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.3
+[g4.6.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.2
+[g4.6.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.1
+[g4.6.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.0
+[g4.5.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.5.2
+[g4.5.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.5.1
+[g4.5.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.5.0
+[g4.4.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.4.0
+[g4.3.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.3.1
+[g4.3.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.3.0
+[g4.2.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.2.1
+[g4.2.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.2.0
+[g4.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.1.0
+[g4.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.0.0
+[g3.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/3.0.0
+[g2.6.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.6.2
+[g2.6.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.6.1
+[g2.6.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.6.0
+[g2.5.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.5.0
+[g2.4.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.4.1
+[g2.4.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.4.0
+[g2.3.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.3.0
+[g2.2.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.2.0
+[g2.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.1.0
+[g2.0.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.0.1
+[g2.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.0.0
+[g1.1.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.2
+[g1.1.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.1
 
 [comment]: # ( javascript typescript client links )
 
 
 [comment]: # ( java client links )
+
+[j4.3.0]: https://github.com/weaviate/java-client/releases/tag/4.3.0
+[j4.2.1]: https://github.com/weaviate/java-client/releases/tag/4.2.1
+[j4.2.0]: https://github.com/weaviate/java-client/releases/tag/4.2.0
+[j4.1.2]: https://github.com/weaviate/java-client/releases/tag/4.1.2
+[j4.1.1]: https://github.com/weaviate/java-client/releases/tag/4.1.1
+[j4.1.0]: https://github.com/weaviate/java-client/releases/tag/4.1.0
+[j4.0.2]: https://github.com/weaviate/java-client/releases/tag/4.0.2
+[j4.0.1]: https://github.com/weaviate/java-client/releases/tag/4.0.1
+[j4.0.0]: https://github.com/weaviate/java-client/releases/tag/4.0.0
+[j3.6.5]: https://github.com/weaviate/java-client/releases/tag/3.6.5
+[j3.6.4]: https://github.com/weaviate/java-client/releases/tag/3.5.4
+[j3.6.3]: https://github.com/weaviate/java-client/releases/tag/3.6.3
+[j3.6.2]: https://github.com/weaviate/java-client/releases/tag/3.6.2
+[j]3.6.1: https://github.com/weaviate/java-client/releases/tag/3.6.1
+[j3.6.0]: https://github.com/weaviate/java-client/releases/tag/3.6.0
+[j3.5.0]: https://github.com/weaviate/java-client/releases/tag/3.5.0
+[j3.4.2]: https://github.com/weaviate/java-client/releases/tag/3.4.2
+[j3.4.1]: https://github.com/weaviate/java-client/releases/tag/3.4.1
+[j3.4.0]: https://github.com/weaviate/java-client/releases/tag/3.4.0
+[j3.3.2]: https://github.com/weaviate/java-client/releases/tag/3.3.2
+[j3.3.1]: https://github.com/weaviate/java-client/releases/tag/3.3.1
+[j3.3.0]: https://github.com/weaviate/java-client/releases/tag/3.3.0
+[j3.2.1]: https://github.com/weaviate/java-client/releases/tag/3.2.1
+[j3.2.0]: https://github.com/weaviate/java-client/releases/tag/3.2.0
+[j3.1.1]: https://github.com/weaviate/java-client/releases/tag/3.1.1
+[j3.1.0]: https://github.com/weaviate/java-client/releases/tag/3.1.0
