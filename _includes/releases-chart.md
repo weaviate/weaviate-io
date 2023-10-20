@@ -4,38 +4,383 @@ lists the most recent database version when each client version was released.
 The chart includes point releases for the most recent major and minor versions
 of the client. Earlier client releases have less detailed version information.
 
+To see release notes for a particular version, click on the version number.
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-|[1.21.3](https://github.com/weaviate/weaviate/releases/tag/v1.21.3)|2023-09-13|3.24.1|1.5.0|4.10.0|4.3.0|
-|[1.21.2](https://github.com/weaviate/weaviate/releases/tag/v1.21.2)|2023-08-30|3.23.1| " | " | " |
-|[1.21.1](https://github.com/weaviate/weaviate/releases/tag/v1.21.1)|2023-08-22|3.23.0| " | " | " |
-|[1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0)|2023-08-17|3.22.1|1.4.0|4.9.0|4.2.1|
-|[1.20.0](https://github.com/weaviate/weaviate/releases/tag/v1.20.0)|2023-07-06|3.22.0| " | " |4.2.0|
-|[1.19.0][c1.19.0]|2023-05-04|3.17.0|1.1.0[^1]|4.7.1|4.0.1|
-|[1.18.0][c1.18.0]|2023-03-07|3.13.0|2.14.5|4.6.2|3.6.4|
-|[1.17.0][c1.17.0]|2022-12-20|3.9.0|2.14.0|4.5.0|3.5.0|
-|[1.16.0][c1.16.0]|2022-10-31|3.8.0|2.13.0|4.4.0|3.4.0|
-|[1.15.0][c1.15.0]|2022-09-07| " |2.12.0|4.3.0|3.3.0|
-|[1.14.0][c1.14.0]|2022-07-07|3.6.0|2.11.0|4.2.0|3.2.0|
-|[1.13.0][c1.13.0]|2022-05-03|3.4.2|2.9.0|4.0.0|2.4.0|
-|[1.12.0][c1.12.0]|2022-04-05|3.4.0|2.8.0|3.0.0| " |
-|[1.11.0][c1.11.0]|2022-03-14|3.2.5|2.7.0|2.6.0|2.3.0|
-|[1.10.0][c1.10.0]|2022-01-27| " |2.5.0|2.4.1|2.1.1|
-|[1.9.0][c1.9.0]|2021-12-10| " | " |2.4.0|2.1.0|
-|[1.8.0][c1.8.0]|2021-11-30| " | " | " | " |
-|[1.7.0][c1.7.0]|2021-09-01|3.1.1|2.4.0|2.3.0|1.1.0|
-|[1.6.0][c1.6.0]|2021-08-11|2.4.0|2.3.0|2.2.0| " |
-|[1.5.0][c1.5.0]|2021-07-13| " | " | " | " |
-|[1.4.0][c1.4.0]|2021-06-09| " | " | " | " |
-|[1.3.0][c1.3.0]|2021-04-23| " |2.1.0|2.1.0|1.0.0|
-|[1.2.0][c1.2.0]|2021-03-15|2.2.0|2.0.0|1.1.0|-|
-|[1.1.0][c1.1.0]|2021-02-10|2.1.0| " | " |-|
-|[1.0.0][c1.0.0]|2021-01-14|2.0.0| " | " |-|
+|[1.21.7][c1.21.7]|2023-10-19|[3.24.2][p3.24.2]|1.5.0|4.10.0|4.3.0|
+|[1.21.6][c1.21.6]|2023-10-13|''|1.5.0|4.10.0|4.3.0|
+|[1.21.5][c1.21.5]|2023-09-30|[3.24.1][p3.24.1]|1.5.0|4.10.0|4.3.0|
+|[1.21.4][c1.21.4]|2023-09-25|''|1.5.0|4.10.0|4.3.0|
+|[1.21.3][c1.21.3]|2023-09-13|''|1.5.0|4.10.0|4.3.0|
+|[1.21.2][c1.21.2]|2023-08-30|[3.23.1][p3.23.1]| '' | '' | '' |
+|[1.21.1][c1.21.1]|2023-08-22|[3.23.0][p3.23.0]| '' | '' | '' |
+|[1.21.0][c1.21.0]|2023-08-17|[3.22.1][p3.22.1]|1.4.0|4.9.0|4.2.1|
+|[1.20.0][c1.20.0]|2023-07-06|[3.22.0][p3.22.0]| '' | '' |4.2.0|
+|[1.19.0][c1.19.0]|2023-05-04|[3.17.0][p3.17.0]|1.1.0[^1]|4.7.1|4.0.1|
+|[1.18.0][c1.18.0]|2023-03-07|[3.13.0][p3.13.0]|2.14.5|4.6.2|3.6.4|
+|[1.17.0][c1.17.0]|2022-12-20|[3.9.0][p3.9.0]|2.14.0|4.5.0|3.5.0|
+|[1.16.0][c1.16.0]|2022-10-31|[3.8.0][p3.8.0]|2.13.0|4.4.0|3.4.0|
+|[1.15.0][c1.15.0]|2022-09-07| '' |2.12.0|4.3.0|3.3.0|
+|[1.14.0][c1.14.0]|2022-07-07|[3.6.0][p3.6.0]|2.11.0|4.2.0|3.2.0|
+|[1.13.0][c1.13.0]|2022-05-03|[3.4.2][p3.4.2]|2.9.0|4.0.0|2.4.0|
+|[1.12.0][c1.12.0]|2022-04-05|[3.4.0][p3.4.0]|2.8.0|3.0.0| '' |
+|[1.11.0][c1.11.0]|2022-03-14|[3.2.5][p3.2.5]|2.7.0|2.6.0|2.3.0|
+|[1.10.0][c1.10.0]|2022-01-27| '' |2.5.0|2.4.1|2.1.1|
+|[1.9.0][c1.9.0]|2021-12-10| '' | '' |2.4.0|2.1.0|
+|[1.8.0][c1.8.0]|2021-11-30| '' | '' | '' | '' |
+|[1.7.0][c1.7.0]|2021-09-01|[3.1.1][p3.1.1]|2.4.0|2.3.0|1.1.0|
+|[1.6.0][c1.6.0]|2021-08-11|[2.4.0][p2.4.0]|2.3.0|2.2.0| '' |
+|[1.5.0][c1.5.0]|2021-07-13| '' | '' | '' | '' |
+|[1.4.0][c1.4.0]|2021-06-09| '' | '' | '' | '' |
+|[1.3.0][c1.3.0]|2021-04-23| '' |2.1.0|2.1.0|1.0.0|
+|[1.2.0][c1.2.0]|2021-03-15|[2.2.0][p2.2.0]|2.0.0|1.1.0|-|
+|[1.1.0][c1.1.0]|2021-02-10|[2.1.0][p2.1.0]| '' | '' |-|
+|[1.0.0][c1.0.0]|2021-01-14|[2.0.0][p2.0.0]| '' | '' |-|
 
 [^1]: The TypeScript client replaced the JavaScript client on 2023-03-17.
 
+## Weaviate Core
 
-import ReleasesLinks from '/_includes/releases-links.md';
+<details>
+  <summary>Releases</summary>
 
-<ReleasesLinks />
+  |Weaviate Version|Release Date|
+  |:-|:-|
+  |[1.21.7][c1.21.7]|2023-10-19|
+  |[1.21.6][c1.21.6]|2023-10-13|
+  |[1.21.5][c1.21.5]|2023-09-30|
+  |[1.21.4][c1.21.4]|2023-09-25|
+  |[1.21.3][c1.21.3]|2023-09-13|
+  |[1.21.2][c1.21.2]|2023-08-30|
+  |[1.21.1][c1.21.1]|2023-08-22|
+  |[1.21.0][c1.21.0]|2023-08-17|
+  |[1.20.6][c1.20.6]|2023-08-22|
+  |[1.20.5][c1.20.5]|2023-08-05|
+  |[1.20.4][c1.20.4]|2023-08-01|
+  |[1.20.3][c1.20.3]|2023-07-26|
+  |[1.20.2][c1.20.2]|2023-07-19|
+  |[1.20.1][c1.20.1]|2023-07-13|
+  |[1.20.0][c1.20.0]|2023-07-06|
+  |[1.19.13][c1.19.13]|2023-08-22|
+  |[1.19.12][c1.19.12]|2023-07-06|
+  |[1.19.11][c1.19.11]|2023-06-29|
+  |[1.19.10][c1.19.10]|2023-06-28|
+  |[1.19.9][c1.19.9]|2023-06-22|
+  |[1.19.8][c1.19.8]|2023-06-14|
+  |[1.19.7][c1.19.7]|2023-06-12|
+  |[1.19.6][c1.19.6]|2023-05-24|
+  |[1.19.5][c1.19.5]|2023-05-18|
+  |[1.19.4][c1.19.4]|2023-05-17|
+  |[1.19.3][c1.19.3]|2023-05-12|
+  |[1.19.2][c1.19.2]|2023-05-11|
+  |[1.19.1][c1.19.1]|2023-05-10|
+  |[1.19.0][c1.19.0]|2023-05-04|
+  |[1.18.6][c1.18.6]|2023-08-22|
+  |[1.18.5][c1.18.5]|2023-05-17|
+  |[1.18.4][c1.18.4]|2023-04-24|
+  |[1.18.3][c1.18.3]|2023-04-04|
+  |[1.18.2][c1.18.2]|2023-03-24|
+  |[1.18.1][c1.18.1]|2023-03-16|
+  |[1.18.0][c1.18.0]|2023-03-07|
+  |[1.17.6][c1.17.6]|2023-03-07|
+  |[1.17.5][c1.17.5]|2023-02-28|
+  |[1.17.4][c1.17.4]|2023-02-19|
+  |[1.17.3][c1.17.3]|2023-02-07|
+  |[1.17.2][c1.17.2]|2023-01-26|
+  |[1.17.1][c1.17.1]|2023-01-17|
+  |[1.17.0][c1.17.0]|2022-12-20|
+  |[1.16.9][c1.16.9]|2022-12-18|
+  |[1.16.8][c1.16.8]|2022-12-16|
+  |[1.16.7][c1.16.7]|2022-12-15|
+  |[1.16.6][c1.16.6]|2022-12-06|
+  |[1.16.5][c1.16.5]|2022-11-21|
+  |[1.16.4][c1.16.4]|2022-11-18|
+  |[1.16.3][c1.16.3]|2022-11-15|
+  |[1.16.2][c1.16.2]|2022-11-15|
+  |[1.16.1][c1.16.1]|2022-11-10|
+  |[1.16.0][c1.16.0]|2022-10-31|
+  |[1.15.5][c1.15.5]|2022-10-18|
+  |[1.15.4][c1.15.4]|2022-10-11|
+  |[1.15.3][c1.15.3]|2022-09-28|
+  |[1.15.2][c1.15.2]|2022-09-26|
+  |[1.15.1][c1.15.1]|2022-09-21|
+  |[1.15.0][c1.15.0]|2022-09-07|
+  |[1.14.1][c1.14.1]|2022-07-08|
+  |[1.14.0][c1.14.0]|2022-07-07|
+  |[1.13.2][c1.13.2]|2022-05-20|
+  |[1.13.1][c1.13.1]|2022-05-03|
+  |[1.13.0][c1.13.0]|2022-05-03|
+  |[1.12.2][c1.12.2]|2022-04-13|
+  |[1.12.1][c1.12.1]|2022-04-07|
+  |[1.12.0][c1.12.0]|2022-04-05|
+  |[1.11.0][c1.11.0]|2022-03-14|
+  |[1.10.1][c1.10.1]|2022-02-01|
+  |[1.10.0][c1.10.0]|2022-01-27|
+  |[1.9.1][c1.9.1]|2022-01-19|
+  |[1.9.0][c1.9.0]|2021-12-10|
+  |[1.8.0][c1.8.0]|2021-11-30|
+  |[1.7.2][c1.7.2]|2021-09-28|
+  |[1.7.1][c1.7.1]|2021-09-17|
+  |[1.7.0][c1.7.0]|2021-09-01|
+  |[1.6.0][c1.6.0]|2021-08-11|
+  |[1.5.2][c1.5.2]|2021-08-10|
+  |[1.5.1][c1.5.1]|2021-07-29|
+  |[1.5.0][c1.5.0]|2021-07-13|
+  |[1.4.1][c1.4.1]|2021-06-15|
+  |[1.4.0][c1.4.0]|2021-06-09|
+  |[1.3.0][c1.3.0]|2021-04-23|
+  |[1.2.1][c1.2.1]|2021-03-25|
+  |[1.2.0][c1.2.0]|2021-03-15|
+  |[1.1.0][c1.1.0]|2021-02-10|
+  |[1.0.4][c1.0.0]|2021-02-01|
+  |[1.0.3][c1.0.0]|2021-01-15|
+  |[1.0.2][c1.0.0]|2021-01-14|
+  |[1.0.1][c1.0.0]|2021-01-14|
+  |[1.0.0][c1.0.0]|2021-01-14|
+
+</details>
+
+## Python Client
+
+<details>
+  <summary>Releases</summary>
+
+   |Client Version|Release Date|
+   |:-|:-|
+   |[3.24.2][p3.24.2]|2023-10-04|
+   |[3.24.1][p3.24.1]|2023-09-11|
+   |[3.23.2][p3.23.2]|2023-08-29|
+   |[3.23.1][p3.23.1]|2023-08-25|
+   |[3.23.0][p3.23.0]|2023-08-22|
+   |[3.22.1][p3.22.1]|2023-07-10|
+   |[3.22.0][p3.22.0]|2023-07-06|
+   |[3.21.0][p3.21.0]|2023-06-18|
+   |[3.20.1][p3.20.1]|2023-06-14|
+   |[3.20.0][p3.20.0]|2023-06-12|
+   |[3.19.2][p3.19.2]|2023-05-25|
+   |[3.19.1][p3.19.1]|2023-05-18|
+   |[3.19.0][p3.19.0]|2023-05-18|
+   |[3.18.0][p3.18.0]|2023-05-09|
+   |[3.17.1][p3.17.1]|2023-05-08|
+   |[3.17.0][p3.17.0]|2023-05-04|
+   |[3.16.2][p3.16.2]|2023-04-26|
+   |[3.16.1][p3.16.1]|2023-04-24|
+   |[3.16.0][p3.16.0]|2023-04-24|
+   |[3.15.6][p3.15.6]|2023-04-15|
+   |[3.15.5][p3.15.5]|2023-04-09|
+   |[3.15.4][p3.15.4]|2023-04-08|
+   |[3.15.3][p3.15.3]|2023-03-23|
+   |[3.15.2][p3.15.2]|2023-03-15|
+   |[3.15.1][p3.15.1]|2023-03-13|
+   |[3.15.0][p3.15.0]|2023-03-12|
+   |[3.14.0][p3.14.0]|2023-03-07|
+   |[3.13.0][p3.13.0]|2023-03-02|
+   |[3.12.0][p3.12.0]|2023-02-24|
+   |[3.11.0][p3.11.0]|2023-01-20|
+   |[3.10.0][p3.10.0]|2022-12-21|
+   |[3.9.0][p3.9.0]|2022-11-09|
+   |[3.8.0][p3.8.0]|2022-09-07|
+   |[3.7.0][p3.7.0]|2022-07-29|
+   |[3.6.0][p3.6.0]|2022-07-06|
+   |[3.5.1][p3.5.1]|2022-05-18|
+   |[3.5.0][p3.5.0]|2022-05-08|
+   |[3.4.2][p3.4.2]|2022-04-12|
+   |[3.4.1][p3.4.1]|2022-04-06|
+   |[3.4.0][p3.4.0]|2022-04-04|
+   |[3.2.5][p3.2.5]|2021-10-26|
+   |[3.2.4][p3.2.4]|2021-10-26|
+   |[3.2.3][p3.2.3]|2021-10-13|
+   |[3.2.2][p3.2.2]|2021-09-27|
+   |[3.2.1][p3.2.1]|2021-09-02|
+   |[3.2.0][p3.2.0]|2021-09-02|
+   |[3.1.1][p3.1.1]|2021-08-24|
+   |[3.1.0][p3.1.0]|2021-08-17|
+   |[3.0.0][p3.0.0]|2021-08-17|
+   |[2.5.0][p2.5.0]|2021-06-03|
+   |[2.4.0][p2.4.0]|2021-04-23|
+   |[2.3.0][p2.3.0]|2021-03-26|
+   |[2.2.0][p2.2.0]|2021-02-17|
+   |[2.1.0][p2.1.0]|2021-02-08|
+   |[2.0.0][p2.0.0]|2021-01-11|
+
+</details>
+
+## Typescript, Javascript Client
+
+<details>
+  <summary>Releases</summary>
+  World!
+</details>
+
+## Go Client
+
+<details>
+  <summary>Releases</summary>
+  World!
+</details>
+
+## Java Client
+
+<details>
+  <summary>Releases</summary>
+  World!
+</details>
+
+
+[comment]: # ( core links )
+
+[c1.21.7]: https://github.com/weaviate/weaviate/releases/tag/v1.21.7
+[c1.21.6]: https://github.com/weaviate/weaviate/releases/tag/v1.21.6
+[c1.21.5]: https://github.com/weaviate/weaviate/releases/tag/v1.21.5
+[c1.21.4]: https://github.com/weaviate/weaviate/releases/tag/v1.21.4
+[c1.21.3]: https://github.com/weaviate/weaviate/releases/tag/v1.21.3
+[c1.21.2]: https://github.com/weaviate/weaviate/releases/tag/v1.21.2
+[c1.21.1]: https://github.com/weaviate/weaviate/releases/tag/v1.21.1
+[c1.21.0]: https://github.com/weaviate/weaviate/releases/tag/v1.21.0
+[c1.20.6]: https://github.com/weaviate/weaviate/releases/tag/v1.20.6
+[c1.20.5]: https://github.com/weaviate/weaviate/releases/tag/v1.20.5
+[c1.20.4]: https://github.com/weaviate/weaviate/releases/tag/v1.20.4
+[c1.20.3]: https://github.com/weaviate/weaviate/releases/tag/v1.20.3
+[c1.20.2]: https://github.com/weaviate/weaviate/releases/tag/v1.20.2
+[c1.20.1]: https://github.com/weaviate/weaviate/releases/tag/v1.20.1
+[c1.20.0]: https://github.com/weaviate/weaviate/releases/tag/v1.20.0
+[c1.19.13]: https://github.com/weaviate/weaviate/releases/tag/v1.19.13
+[c1.19.12]: https://github.com/weaviate/weaviate/releases/tag/v1.19.12
+[c1.19.11]: https://github.com/weaviate/weaviate/releases/tag/v1.19.11
+[c1.19.10]: https://github.com/weaviate/weaviate/releases/tag/v1.19.10
+[c1.19.9]: https://github.com/weaviate/weaviate/releases/tag/v1.19.9
+[c1.19.8]: https://github.com/weaviate/weaviate/releases/tag/v1.19.8
+[c1.19.7]: https://github.com/weaviate/weaviate/releases/tag/v1.19.7
+[c1.19.6]: https://github.com/weaviate/weaviate/releases/tag/v1.19.6
+[c1.19.5]: https://github.com/weaviate/weaviate/releases/tag/v1.19.5
+[c1.19.4]: https://github.com/weaviate/weaviate/releases/tag/v1.19.4
+[c1.19.3]: https://github.com/weaviate/weaviate/releases/tag/v1.19.3
+[c1.19.2]: https://github.com/weaviate/weaviate/releases/tag/v1.19.2
+[c1.19.1]: https://github.com/weaviate/weaviate/releases/tag/v1.19.1
+[c1.19.0]: https://github.com/weaviate/weaviate/releases/tag/v1.19.0
+[c1.18.6]: https://github.com/weaviate/weaviate/releases/tag/v1.18.6
+[c1.18.5]: https://github.com/weaviate/weaviate/releases/tag/v1.18.5
+[c1.18.4]: https://github.com/weaviate/weaviate/releases/tag/v1.18.4
+[c1.18.3]: https://github.com/weaviate/weaviate/releases/tag/v1.18.3
+[c1.18.2]: https://github.com/weaviate/weaviate/releases/tag/v1.18.2
+[c1.18.1]: https://github.com/weaviate/weaviate/releases/tag/v1.18.1
+[c1.18.0]: https://github.com/weaviate/weaviate/releases/tag/v1.18.0
+[c1.17.6]: https://github.com/weaviate/weaviate/releases/tag/v1.17.6
+[c1.17.5]: https://github.com/weaviate/weaviate/releases/tag/v1.17.5
+[c1.17.4]: https://github.com/weaviate/weaviate/releases/tag/v1.17.4
+[c1.17.3]: https://github.com/weaviate/weaviate/releases/tag/v1.17.3
+[c1.17.2]: https://github.com/weaviate/weaviate/releases/tag/v1.17.2
+[c1.17.1]: https://github.com/weaviate/weaviate/releases/tag/v1.17.1
+[c1.17.0]: https://github.com/weaviate/weaviate/releases/tag/v1.17.0
+[c1.16.9]: https://github.com/weaviate/weaviate/releases/tag/v1.16.9
+[c1.16.8]: https://github.com/weaviate/weaviate/releases/tag/v1.16.8
+[c1.16.7]: https://github.com/weaviate/weaviate/releases/tag/v1.16.7
+[c1.16.6]: https://github.com/weaviate/weaviate/releases/tag/v1.16.6
+[c1.16.5]: https://github.com/weaviate/weaviate/releases/tag/v1.16.5
+[c1.16.4]: https://github.com/weaviate/weaviate/releases/tag/v1.16.4
+[c1.16.3]: https://github.com/weaviate/weaviate/releases/tag/v1.16.3
+[c1.16.2]: https://github.com/weaviate/weaviate/releases/tag/v1.16.2
+[c1.16.1]: https://github.com/weaviate/weaviate/releases/tag/v1.16.1
+[c1.16.0]: https://github.com/weaviate/weaviate/releases/tag/v1.16.0
+[c1.15.5]: https://github.com/weaviate/weaviate/releases/tag/v1.15.5
+[c1.15.4]: https://github.com/weaviate/weaviate/releases/tag/v1.15.4
+[c1.15.3]: https://github.com/weaviate/weaviate/releases/tag/v1.15.3
+[c1.15.2]: https://github.com/weaviate/weaviate/releases/tag/v1.15.2
+[c1.15.1]: https://github.com/weaviate/weaviate/releases/tag/v1.15.1
+[c1.15.0]: https://github.com/weaviate/weaviate/releases/tag/v1.15.0
+[c1.14.1]: https://github.com/weaviate/weaviate/releases/tag/v1.14.1
+[c1.14.0]: https://github.com/weaviate/weaviate/releases/tag/v1.14.0
+[c1.13.2]: https://github.com/weaviate/weaviate/releases/tag/v1.13.2
+[c1.13.1]: https://github.com/weaviate/weaviate/releases/tag/v1.13.1
+[c1.13.0]: https://github.com/weaviate/weaviate/releases/tag/v1.13.0
+[c1.12.2]: https://github.com/weaviate/weaviate/releases/tag/v1.12.2
+[c1.12.1]: https://github.com/weaviate/weaviate/releases/tag/v1.12.1
+[c1.12.0]: https://github.com/weaviate/weaviate/releases/tag/v1.12.0
+[c1.11.0]: https://github.com/weaviate/weaviate/releases/tag/v1.11.0
+[c1.10.1]: https://github.com/weaviate/weaviate/releases/tag/v1.10.1
+[c1.10.0]: https://github.com/weaviate/weaviate/releases/tag/v1.10.0
+[c1.9.1]: https://github.com/weaviate/weaviate/releases/tag/v1.9.1
+[c1.9.0]: https://github.com/weaviate/weaviate/releases/tag/v1.9.0
+[c1.8.0]: https://github.com/weaviate/weaviate/releases/tag/v1.8.0
+[c1.7.2]: https://github.com/weaviate/weaviate/releases/tag/v1.7.2
+[c1.7.1]: https://github.com/weaviate/weaviate/releases/tag/v1.7.1
+[c1.7.0]: https://github.com/weaviate/weaviate/releases/tag/v1.7.0
+[c1.6.0]: https://github.com/weaviate/weaviate/releases/tag/v1.6.0
+[c1.5.2]: https://github.com/weaviate/weaviate/releases/tag/v1.5.2
+[c1.5.1]: https://github.com/weaviate/weaviate/releases/tag/v1.5.1
+[c1.5.0]: https://github.com/weaviate/weaviate/releases/tag/v1.5.0
+[c1.4.1]: https://github.com/weaviate/weaviate/releases/tag/v1.4.1
+[c1.4.0]: https://github.com/weaviate/weaviate/releases/tag/v1.4.0
+[c1.3.0]: https://github.com/weaviate/weaviate/releases/tag/v1.3.0
+[c1.2.1]: https://github.com/weaviate/weaviate/releases/tag/v1.2.1
+[c1.2.0]: https://github.com/weaviate/weaviate/releases/tag/v1.2.0
+[c1.1.0]: https://github.com/weaviate/weaviate/releases/tag/v1.1.0
+[c1.0.0]: https://github.com/weaviate/weaviate/releases/tag/v1.0.0
+
+[comment]: # ( python client links )
+
+[p3.24.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.2
+[p3.24.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.1
+[p3.24.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.24.0
+[p3.23.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.2
+[p3.23.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.1
+[p3.23.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.23.0
+[p3.22.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.22.1
+[p3.22.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.22.0
+[p3.21.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.21.0
+[p3.20.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.20.1
+[p3.20.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.20.0
+[p3.19.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.2
+[p3.19.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.1
+[p3.19.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.0
+[p3.18.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.19.0
+[p3.17.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.17.1
+[p3.17.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.17.0
+[p3.16.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.2
+[p3.16.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.1
+[p3.16.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.16.0
+[p3.15.6]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.6
+[p3.15.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.5
+[p3.15.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.4
+[p3.15.3]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.3
+[p3.15.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.2
+[p3.15.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.1
+[p3.15.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.15.0
+[p3.14.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.14.0
+[p3.13.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.13.0
+[p3.12.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.12.0
+[p3.11.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.11.0
+[p3.10.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.10.0
+[p3.9.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.9.0
+[p3.8.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.8.0
+[p3.7.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.7.0
+[p3.6.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.6.0
+[p3.5.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.5.1
+[p3.5.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.5.0
+[p3.4.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.2
+[p3.4.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.1
+[p3.4.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.4.0
+[p3.2.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.5
+[p3.2.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.4
+[p3.2.3]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.3
+[p3.2.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.2
+[p3.2.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.1
+[p3.2.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.2.0
+[p3.1.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.1.1
+[p3.1.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.1.0
+[p3.0.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.0.0
+[p2.5.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v2.5.0
+[p2.4.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v2.4.0
+[p2.3.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v2.3.0
+[p2.2.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v2.2.0
+[p2.1.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v2.1.0
+[p2.0.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v2.0.0
+
+[comment]: # ( go client links )
+
+
+[comment]: # ( javascript typescript client links )
+
+
+[comment]: # ( java client links )
