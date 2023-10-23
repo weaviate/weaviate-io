@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Schema](../configuration/schema-configuration.md)

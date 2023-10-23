@@ -4,9 +4,7 @@ sidebar_position: 22
 image: og/docs/modules/text2vec-gpt4all.jpg
 # tags: ['text2vec', 'text2vec-gpt4all', 'gpt4all']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

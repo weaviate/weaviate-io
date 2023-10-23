@@ -4,9 +4,7 @@ sidebar_position: 11
 image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'transformers', 'cohere']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 

@@ -4,9 +4,7 @@ sidebar_position: 35
 image: og/docs/modules/multi2vec-bind.jpg
 # tags: ['multi2vec', 'multi2vec-bind']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

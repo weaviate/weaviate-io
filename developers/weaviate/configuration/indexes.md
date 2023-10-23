@@ -4,9 +4,7 @@ sidebar_position: 13
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - Adds text re: configuration options from `Vector index plugins/HNSW`

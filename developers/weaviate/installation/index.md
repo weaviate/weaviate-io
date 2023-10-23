@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/installation.jpg
 # tags: ['installation']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [WCS Quickstart](../../wcs/quickstart.mdx)

@@ -4,9 +4,7 @@ sidebar_position: 11
 image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'classification']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Start a classification
 

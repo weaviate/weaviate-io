@@ -4,9 +4,7 @@ sidebar_position: 8
 image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Migration for version 1.19.0
 

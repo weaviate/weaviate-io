@@ -4,9 +4,7 @@ sidebar_position: 13
 image: og/docs/modules/text2vec-openai.jpg
 # tags: ['text2vec', 'text2vec-openai', 'openai']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

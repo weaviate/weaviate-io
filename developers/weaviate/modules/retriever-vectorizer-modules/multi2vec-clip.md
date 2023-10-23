@@ -4,9 +4,7 @@ sidebar_position: 33
 image: og/docs/modules/multi2vec-clip.jpg
 # tags: ['multi2vec', 'multi2vec-clip']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

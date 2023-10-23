@@ -5,9 +5,7 @@ image: og/docs/api.jpg
 # tags: ['graphql', 'filters']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 

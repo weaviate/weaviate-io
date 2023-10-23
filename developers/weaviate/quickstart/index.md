@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

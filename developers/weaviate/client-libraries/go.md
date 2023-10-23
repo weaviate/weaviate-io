@@ -4,9 +4,7 @@ sidebar_position: 7
 image: og/docs/client-libraries.jpg
 # tags: ['go', 'client library']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note Go client version
 The current Go client version is `v||site.go_client_version||`.

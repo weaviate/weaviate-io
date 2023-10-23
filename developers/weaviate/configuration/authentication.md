@@ -4,9 +4,7 @@ sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/api.jpg
 # tags: ['graphql', 'search operators']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 

@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/installation.jpg
 tags: ['installation', 'Google Cloud Marketplace']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

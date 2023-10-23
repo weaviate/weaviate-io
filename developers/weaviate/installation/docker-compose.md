@@ -4,9 +4,7 @@ sidebar_position: 2
 image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

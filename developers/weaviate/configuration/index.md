@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `Configuration`
