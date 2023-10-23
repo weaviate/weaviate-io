@@ -42,6 +42,8 @@ To see release notes for a particular version, click on the version number.
 
 ## Weaviate Core
 
+For links to all Weaviate Core releases, expand this section.
+
 <details>
   <summary>Releases</summary>
 
@@ -143,6 +145,8 @@ To see release notes for a particular version, click on the version number.
 
 ## Python Client
 
+For links to all Python Client releases, expand this section.
+
 <details>
   <summary>Releases</summary>
 
@@ -208,12 +212,16 @@ To see release notes for a particular version, click on the version number.
 
 ## Typescript, Javascript Client
 
+For links to all TypeScript and JavaScript Client releases, expand this section.
+
 <details>
   <summary>Releases</summary>
   World!
 </details>
 
 ## Go Client
+
+For links to all Go Client releases, expand this section.
 
 <details>
   <summary>Releases</summary>
@@ -259,6 +267,8 @@ To see release notes for a particular version, click on the version number.
 </details>
 
 ## Java Client
+
+For links to all Java Client releases, expand this section.
 
 <details>
   <summary>Releases</summary>
