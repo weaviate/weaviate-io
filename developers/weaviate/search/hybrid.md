@@ -317,7 +317,7 @@ It should produce a response like the one below:
 
 ## Selected properties only
 
-You can specify the object `properties` for the `bm25` portion of the search.
+Starting in v1.19.0, you can specify the object `properties` for the `bm25` portion of the search.
 
 The next example performs a `bm25` search for the keyword `food` in the `question` property only. It combines the results of the keyword search with the vector search results for `food`.
 
