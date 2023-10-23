@@ -8,37 +8,37 @@ To see release notes for a particular version, click on the version number.
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-|[1.21.7][c1.21.7]|2023-10-19|[3.24.2][p3.24.2]|1.5.0|4.10.0|4.3.0|
-|[1.21.6][c1.21.6]|2023-10-13|''|1.5.0|4.10.0|4.3.0|
-|[1.21.5][c1.21.5]|2023-09-30|[3.24.1][p3.24.1]|1.5.0|4.10.0|4.3.0|
-|[1.21.4][c1.21.4]|2023-09-25|''|1.5.0|4.10.0|4.3.0|
-|[1.21.3][c1.21.3]|2023-09-13|''|1.5.0|4.10.0|4.3.0|
+|[1.21.7][c1.21.7]|2023-10-19|[3.24.2][p3.24.2]|[1.5.0][ts1.5.0]|[4.10.0][g4.10.0]|[4.3.0][j4.3.0]|
+|[1.21.6][c1.21.6]|2023-10-13|''|''|''|''|
+|[1.21.5][c1.21.5]|2023-09-30|[3.24.1][p3.24.1]|''|''|''|
+|[1.21.4][c1.21.4]|2023-09-25|''|''|''|''|
+|[1.21.3][c1.21.3]|2023-09-13|''|''|''|''|
 |[1.21.2][c1.21.2]|2023-08-30|[3.23.1][p3.23.1]| '' | '' | '' |
 |[1.21.1][c1.21.1]|2023-08-22|[3.23.0][p3.23.0]| '' | '' | '' |
-|[1.21.0][c1.21.0]|2023-08-17|[3.22.1][p3.22.1]|1.4.0|4.9.0|4.2.1|
-|[1.20.0][c1.20.0]|2023-07-06|[3.22.0][p3.22.0]| '' | '' |4.2.0|
-|[1.19.0][c1.19.0]|2023-05-04|[3.17.0][p3.17.0]|1.1.0[^1]|4.7.1|4.0.1|
-|[1.18.0][c1.18.0]|2023-03-07|[3.13.0][p3.13.0]|2.14.5|4.6.2|3.6.4|
-|[1.17.0][c1.17.0]|2022-12-20|[3.9.0][p3.9.0]|2.14.0|4.5.0|3.5.0|
-|[1.16.0][c1.16.0]|2022-10-31|[3.8.0][p3.8.0]|2.13.0|4.4.0|3.4.0|
-|[1.15.0][c1.15.0]|2022-09-07| '' |2.12.0|4.3.0|3.3.0|
-|[1.14.0][c1.14.0]|2022-07-07|[3.6.0][p3.6.0]|2.11.0|4.2.0|3.2.0|
-|[1.13.0][c1.13.0]|2022-05-03|[3.4.2][p3.4.2]|2.9.0|4.0.0|2.4.0|
-|[1.12.0][c1.12.0]|2022-04-05|[3.4.0][p3.4.0]|2.8.0|3.0.0| '' |
-|[1.11.0][c1.11.0]|2022-03-14|[3.2.5][p3.2.5]|2.7.0|2.6.0|2.3.0|
-|[1.10.0][c1.10.0]|2022-01-27| '' |2.5.0|2.4.1|2.1.1|
-|[1.9.0][c1.9.0]|2021-12-10| '' | '' |2.4.0|2.1.0|
+|[1.21.0][c1.21.0]|2023-08-17|[3.22.1][p3.22.1]|[1.4.0][ts1.4.0]|[4.9.0][g4.9.0]|[4.2.1][j4.2.1]|
+|[1.20.0][c1.20.0]|2023-07-06|[3.22.0][p3.22.0]| '' | '' |[4.2.0][j4.2.0]|
+|[1.19.0][c1.19.0]|2023-05-04|[3.17.0][p3.17.0]|[1.1.0][ts1.1.0][*](#typescriptChange)|[4.7.1][g4.7.1]|[4.0.1][j4.0.1]|
+|[1.18.0][c1.18.0]|2023-03-07|[3.13.0][p3.13.0]|[2.14.5][js2.14.5]|[4.6.2][g4.6.2]|[3.6.4][j3.6.4]|
+|[1.17.0][c1.17.0]|2022-12-20|[3.9.0][p3.9.0]|[2.14.0][js2.14.0]|[4.5.0][g4.5.0]|[3.5.0][j3.5.0]|
+|[1.16.0][c1.16.0]|2022-10-31|[3.8.0][p3.8.0]|[2.13.0][js2.13.0]|[4.4.0][g4.4.0]|[3.4.0][j3.4.0]|
+|[1.15.0][c1.15.0]|2022-09-07| '' |[2.12.0][js2.12.0]|[4.3.0][g4.3.0]|[3.3.0][j3.3.0]|
+|[1.14.0][c1.14.0]|2022-07-07|[3.6.0][p3.6.0]|[2.11.0][js2.11.0]|[4.2.0][g4.2.0]|[3.2.0][j3.2.0]|
+|[1.13.0][c1.13.0]|2022-05-03|[3.4.2][p3.4.2]|[2.9.0][js2.9.0]|[4.0.0][g4.0.0]|[2.4.0][j2.4.0]|
+|[1.12.0][c1.12.0]|2022-04-05|[3.4.0][p3.4.0]|[2.8.0][js2.8.0]|[3.0.0][g3.0.0]| '' |
+|[1.11.0][c1.11.0]|2022-03-14|[3.2.5][p3.2.5]|[2.7.0][js2.7.0]|[2.6.0][g2.6.0]|[2.3.0][j2.3.0]|
+|[1.10.0][c1.10.0]|2022-01-27| '' |[2.5.0][js2.5.0]|[2.4.1][g2.4.1]|[2.1.1][j2.1.1]|
+|[1.9.0][c1.9.0]|2021-12-10| '' | '' |[2.4.0][g2.4.0]|[2.1.0][j2.1.0]|
 |[1.8.0][c1.8.0]|2021-11-30| '' | '' | '' | '' |
-|[1.7.0][c1.7.0]|2021-09-01|[3.1.1][p3.1.1]|2.4.0|2.3.0|1.1.0|
-|[1.6.0][c1.6.0]|2021-08-11|[2.4.0][p2.4.0]|2.3.0|2.2.0| '' |
+|[1.7.0][c1.7.0]|2021-09-01|[3.1.1][p3.1.1]|[2.4.0][js2.4.0]|[2.3.0][g2.3.0]|[1.1.0][j1.1.0]|
+|[1.6.0][c1.6.0]|2021-08-11|[2.4.0][p2.4.0]|[2.3.0][js2.3.0]|[2.2.0][g2.2.0]| '' |
 |[1.5.0][c1.5.0]|2021-07-13| '' | '' | '' | '' |
 |[1.4.0][c1.4.0]|2021-06-09| '' | '' | '' | '' |
-|[1.3.0][c1.3.0]|2021-04-23| '' |2.1.0|2.1.0|1.0.0|
-|[1.2.0][c1.2.0]|2021-03-15|[2.2.0][p2.2.0]|2.0.0|1.1.0|-|
+|[1.3.0][c1.3.0]|2021-04-23| '' |[2.1.0][js2.1.0]|[2.1.0][g2.1.0]|[1.0.0][j1.0.0]|
+|[1.2.0][c1.2.0]|2021-03-15|[2.2.0][p2.2.0]|[2.0.0][js2.0.0]|[1.1.0][g1.1.0]|-|
 |[1.1.0][c1.1.0]|2021-02-10|[2.1.0][p2.1.0]| '' | '' |-|
 |[1.0.0][c1.0.0]|2021-01-14|[2.0.0][p2.0.0]| '' | '' |-|
 
-[^1]: The TypeScript client replaced the JavaScript client on 2023-03-17.
+<a name="typescriptChange">*</a>The TypeScript client replaced the JavaScript client on 2023-03-17.
 
 ## Weaviate Core
 
@@ -219,6 +219,46 @@ For links to all TypeScript and JavaScript Client releases, expand this section.
   World!
 </details>
 
+|Client Version|Release Date|
+  |:-|:-|
+  |[1.5.0][ts1.5.0]|2023-08-22|
+  |[1.4.0][ts1.4.0]|2023-07-06|
+  |[1.3.3][ts1.3.3]|2023-06-14|
+  |[1.3.2][ts1.3.2]|2023-05-26|
+  |[1.3.1][ts1.3.1]|2023-05-16|
+  |[1.3.0][ts1.3.0]|2023-05-08|
+  |[1.2.0][ts1.2.0]|2023-05-05|
+  |[1.1.0][ts1.1.0]|2023-04-21|
+  |[1.0.0][ts1.0.0]|2023-05-04|
+  |[2.14.5][js2.14.5]|2023-03-21|
+  |[2.14.4][js2.14.4]|2023-02-07|
+  |[2.14.3][js2.14.3]|2023-01-27|
+  |[2.14.2][js2.14.2]|2022-12-27|
+  |[2.14.1][js2.14.1]|2022-12-27|
+  |[2.14.0][js2.14.0]|2022-12-20|
+  |[2.13.0][js2.13.0]|2022-10-31|
+  |[2.12.1][js2.12.1]|2023-09-27|
+  |[2.12.0][js2.12.0]|2022-09-07|
+  |[2.11.1][js2.11.1]|2022-07-12|
+  |[2.11.0][js2.11.0]|2022-07-07|
+  |[2.10.1][js2.10.1]|2022-05-31|
+  |[2.10.0][js2.10.0]|2022-05-25|
+  |[2.9.0][js2.9.0]|2022-05-03|
+  |[2.8.0][js2.8.0]|2022-04-05|
+  |[2.7.0][js2.7.0]|2022-03-11|
+  |[2.6.0][js2.6.0]|2021-11-30|
+  |[2.5.0][js2.6.0]|2021-11-30|
+  |[2.4.0][js2.4.0]|2021-08-31|
+  |[2.3.0][js2.3.0]|2021-06-07|
+  |[2.2.0][js2.2.0]|2021-04-23|
+  |[2.1.0][js2.1.0]|2021-04-20|
+  |[2.0.0][js2.0.0]|2021-01-13|
+  |[1.1.2][js1.1.2]|2020-10-03|
+  |[1.1.1][js1.1.1]|2020-10-03|
+  |[1.1.0][js1.1.0]|2020-10-03|
+  |[1.0.0][js1.0.0]|2020-09-15|
+
+
 ## Go Client
 
 For links to all Go Client releases, expand this section.
@@ -261,8 +301,11 @@ For links to all Go Client releases, expand this section.
   |[2.1.0][g2.1.0]|2021-04-23|
   |[2.0.1][g2.0.1]|2021-03-25|
   |[2.0.0][g2.0.0]|2021-03-23|
-  |[1.1.2][g1.1.2]|2022-10-31|
-  |[1.1.1][g1.1.1]|2022-05-04|
+  |[1.1.2][g1.1.2]|2021-10-31|
+  |[1.1.1][g1.1.1]|2021-05-04|
+  |[1.1.0][g1.1.0]|2020-11-09|
+  |[1.0.0][g1.0.0]|2020-11-06|
+
 
 </details>
 
@@ -299,6 +342,23 @@ For links to all Java Client releases, expand this section.
   |[3.2.0][j3.2.0]|2022-07-07|
   |[3.1.1][j3.1.1]|2022-06-02|
   |[3.1.0][j3.1.0]|2022-05-25|
+  |[3.0.0][j3.1.0]|2022-05-04|
+  |[2.4.0][j2.4.0]|2022-04-05|
+  |[2.3.0][j2.3.0]|2022-03-11|
+  |[2.2.2][j2.2.2]|2022-02-08|
+  |[2.2.1][j2.2.1]|2022-02-07|
+  |[2.2.0][j2.2.0]|2022-02-01|
+  |[2.1.1][j2.1.1]|2021-12-15|
+  |[2.1.0][j2.1.0]|2021-11-30|
+  |[2.0.0][j2.0.0]|2021-11-04|
+  |[1.2.1][j1.2.1]|2021-09-28|
+  |[1.2.0][j1.2.0]|2021-09-10|
+  |[1.1.2][j1.1.2]|2021-08-31|
+  |[1.1.1][j1.1.1]|2021-08-10|
+  |[1.1.0][j1.1.0]|2021-06-07|
+  |[1.0.2][j1.0.2]|2021-04-26|
+  |[1.0.1][j1.0.1]|2021-04-23|
+  |[1.0.0][j1.0.0]|2021-04-22|
 
 </details>
 
@@ -489,9 +549,48 @@ For links to all Java Client releases, expand this section.
 [g2.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.0.0
 [g1.1.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.2
 [g1.1.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.1
+[g1.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.0
+[g1.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.0.0
+
 
 [comment]: # ( javascript typescript client links )
 
+ [ts1.5.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.5.0
+ [ts1.4.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.4.0
+ [ts1.3.3]: https://github.com/weaviate/typescript-client/releases/tag/v1.3.3
+ [ts1.3.2]: https://github.com/weaviate/typescript-client/releases/tag/v1.3.2
+ [ts1.3.1]: https://github.com/weaviate/typescript-client/releases/tag/v1.3.1
+ [ts1.3.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.3.0
+ [ts1.2.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.2.0
+ [ts1.1.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.1.0
+ [ts1.0.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.0.0
+ [js2.14.5]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.14.5
+ [js2.14.4]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.14.4
+ [js2.14.3]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.14.3
+ [js2.14.2]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.14.2
+ [js2.14.1]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.14.1
+ [js2.14.0]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.14.0
+ [js2.13.0]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.13.0
+ [js2.12.1]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.12.1
+ [js2.12.0]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.12.0
+ [js2.11.1]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.11.1
+ [js2.11.0]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.11.0
+ [js2.10.1]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.10.1
+ [js2.10.0]: https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.10.0
+ [js2.9.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.9.0
+ [js2.8.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.8.0
+ [js2.7.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.7.0
+ [js2.6.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.6.0
+ [js2.5.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.5.0
+ [js2.4.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.4.0
+ [js2.3.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.3.0
+ [js2.2.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.2.0
+ [js2.1.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.1.0
+ [js2.0.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v2.0.0
+ [js1.1.2]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v1.1.2
+ [js1.1.1]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v1.1.1
+ [js1.1.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v.1.1.0
+ [js1.0.0]:  https://github.com/weaviate/weaviate-javascript-client/releases/tag/v.1.0.0
 
 [comment]: # ( java client links )
 
@@ -521,3 +620,20 @@ For links to all Java Client releases, expand this section.
 [j3.2.0]: https://github.com/weaviate/java-client/releases/tag/3.2.0
 [j3.1.1]: https://github.com/weaviate/java-client/releases/tag/3.1.1
 [j3.1.0]: https://github.com/weaviate/java-client/releases/tag/3.1.0
+[j3.0.0]: https://github.com/weaviate/java-client/releases/tag/3.0.0
+[j2.4.0]: https://github.com/weaviate/java-client/releases/tag/2.4.0
+[j2.3.0]: https://github.com/weaviate/java-client/releases/tag/2.3.0
+[j2.2.2]: https://github.com/weaviate/java-client/releases/tag/2.2.2
+[j2.2.1]: https://github.com/weaviate/java-client/releases/tag/2.2.1
+[j2.2.0]: https://github.com/weaviate/java-client/releases/tag/2.2.0
+[j2.1.1]: https://github.com/weaviate/java-client/releases/tag/2.1.1
+[j2.1.0]: https://github.com/weaviate/java-client/releases/tag/2.1.0
+[j2.0.0]: https://github.com/weaviate/java-client/releases/tag/2.0.0
+[j1.2.1]: https://github.com/weaviate/java-client/releases/tag/1.2.1
+[j1.2.0]: https://github.com/weaviate/java-client/releases/tag/1.2.0
+[j1.1.2]: https://github.com/weaviate/java-client/releases/tag/1.1.2
+[j1.1.1]: https://github.com/weaviate/java-client/releases/tag/1.1.1
+[j1.1.0]: https://github.com/weaviate/java-client/releases/tag/1.1.0
+[j1.0.2]: https://github.com/weaviate/java-client/releases/tag/1.0.2
+[j1.0.1]: https://github.com/weaviate/java-client/releases/tag/1.0.1
+[j1.0.0]: https://github.com/weaviate/java-client/releases/tag/1.0.0

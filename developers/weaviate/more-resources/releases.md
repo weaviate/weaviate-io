@@ -1,5 +1,5 @@
 ---
-title: Releases
+title: Release Notes
 sidebar_position: 8
 image: og/docs/more-resources.jpg
 # tags: ['releases']
