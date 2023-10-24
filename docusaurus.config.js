@@ -232,6 +232,10 @@ const config = {
                                 to: '/learn/workshops',
                             },
                             {
+                                label: 'Partners',
+                                to: '/partners/aws',
+                            },
+                            {
                                 label: 'Contributor Guide',
                                 docId: 'contributor-guide/index',
                                 sidebarid: 'contributorSidebar',
@@ -361,6 +365,10 @@ const config = {
                             {
                                 label: 'Console',
                                 to: 'https://console.weaviate.cloud/',
+                            },
+                            {
+                                label: 'Partners',
+                                to: '/partners/aws',
                             },
                             {
                                 label: 'Terms & Policies',
