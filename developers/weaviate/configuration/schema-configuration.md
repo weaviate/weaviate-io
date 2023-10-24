@@ -19,7 +19,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
 
 This page describes collection schemas in Weaviate.
 
-import Terminology from '_includes/collection-class-terminology.md';
+import Terminology from '/_includes/collection-class-terminology.md';
 
 <Terminology />
 
@@ -39,10 +39,9 @@ A schema describes the data objects that make up a collection. To create a colle
 
 As a minimum, you must specify the `class` parameter for the collection name.
 
-:::info Capitalization
-Even though initial capitalization is not actually significant, code for Weaviate typically follows GraphQL conventions. Collection names should start with a capital letter and property names should start with a lowercase letter.
+import initialCaps from '/_includes/schemas/initial-capitalization.md'
 
-:::
+<initialCaps />
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
