@@ -57,6 +57,7 @@
   grid-template-columns: 1fr 1fr;
 
   padding: 2rem 0 2rem 0;
+  column-gap: 60px;
 
   @media screen and (max-width: 1100px) {
     margin-bottom: 0;
@@ -244,7 +245,7 @@
 
   a {
     height: 45px;
-    width: 220px;
+    width: 240px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +289,7 @@
   .img {
     background-image: url('/img/site/aws_header.svg');
     height: 140%;
-    margin-left: 3rem;
+
     margin-top: -100px;
   }
 
