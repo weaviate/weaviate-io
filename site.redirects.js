@@ -361,14 +361,10 @@ const siteRedirects = {
             to: "/learn/workshops",
             from: "/learn/workshop"
           },
-           // Partners to AWS whilst in development
+           // Partners to products whilst in development
            {
             to: "/products",
             from: "/partners"
-          },
-          {
-            to: "/products",
-            from: "/partners/aws"
           },
             // Terms and Policies Changes
             {

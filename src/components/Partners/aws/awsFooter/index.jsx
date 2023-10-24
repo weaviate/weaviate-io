@@ -20,7 +20,7 @@ export default function awsFoot() {
           <Link to="mailto:aws-marketplace@weaviate.io">
             <div className={styles.buttonGradient}>Learn More</div>
           </Link>
-          <Link to="/pricing">
+          <Link to="/products">
             <div className={styles.buttonOutline}>Pricing</div>
           </Link>
         </div>
