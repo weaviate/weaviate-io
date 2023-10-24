@@ -1,23 +1,21 @@
 ---
-title: Schema
+title: Collection schema
 sidebar_position: 2
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
 import Badges from '/_includes/badges.mdx';
 
-:::info Related pages
-- [Tutorial: Schema](../tutorials/schema.md)
-- [How to: Configure a schema](../configuration/schema-configuration.md)
-- [References: REST API: Schema](../api/rest/schema.md)
-- [Concepts: Data Structure](../concepts/data.md)
-:::
 
 ## Introduction
 
-This page includes details related to the schema, such as parameters and available configurations.
+This page includes details related to the collection schema, such as parameters and available configurations.
 
-## Schema creation
+import Terminology from '_includes/collection-class-terminology.md';
+
+<Terminology />
+
+## Collection schema creation
 
 ### Auto-schema
 
@@ -30,7 +28,7 @@ It has the following characteristics:
 
 * If an object being added contains a property that does not exist in the schema, a corresponding property will be added prior to import.
 * If an object being added contains a property that conflicts with an existing schema type, an error is thrown. (e.g. trying to import text into a field that exists in the schema as `int`).
-* When an object is imported to a new class, the class is created including all properties.
+* When an object is imported to a new collection, the collection is created including all properties.
 * The auto-schema also automatically recognizes array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
 
 ### Datatypes
@@ -42,11 +40,11 @@ Additional configurations are available to help the auto-schema infer properties
 
 The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
-* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
+* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the ClassName to be able to alter the schema.
 
-### Class
+### Collection
 
-A class describes a data object, such as in the form of a noun (e.g., *Person*, *Product*, *Timezone*) or a verb (e.g., *Move*, *Buy*, *Eat*).
+A collection describes a data object, such as in the form of a noun (e.g., *Person*, *Product*, *Timezone*) or a verb (e.g., *Move*, *Buy*, *Eat*).
 
 Classes are always written with a **capital letter** first. This helps in distinguishing classes from primitive data types when used in properties. For example, `dataType: ["text"]` means that a property is a text, whereas `dataType: ["Text"]` means that a property is a cross-reference type to a class named `Text`.
 
@@ -524,6 +522,11 @@ class_obj = {
 client.schema.create_class(class_obj)
 ```
 
+## Related pages
+- [Tutorial: Schema](../tutorials/schema.md)
+- [How to: Configure a schema](../configuration/schema-configuration.md)
+- [References: REST API: Schema](../api/rest/schema.md)
+- [Concepts: Data Structure](../concepts/data.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
