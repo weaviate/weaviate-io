@@ -1,7 +1,7 @@
 ---
 title: Release Notes
 sidebar_position: 0
-# image: og/docs/roadmap.jpg
+image: og/docs/more-resources.jpg
 # tags: ['release notes']
 ---
 
