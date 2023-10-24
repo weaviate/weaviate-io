@@ -49,7 +49,7 @@ A collection describes a data object.
 Collection names are always written with a **capital letter** first. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
 
 - `dataType: ["text"]` is a text
-- `dataType: ["Text"]` is a cross-reference type to a class named `Text`.
+- `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
 After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
