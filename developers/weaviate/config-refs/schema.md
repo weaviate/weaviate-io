@@ -46,9 +46,9 @@ The following are not allowed:
 
 A collection describes a data object.
 
-Collection names are always written with a **capital letter** first. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
+Collection names are always written with an initial **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
 
-- `dataType: ["text"]` is a text
+- `dataType: ["text"]` is `text`
 - `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
 After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
@@ -59,7 +59,9 @@ import initialCaps from '/_includes/schemas/initial-capitalization.md'
 
 ### Properties
 
-Every collection has properties. Properties define the kinds of data that you add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](../config-refs/datatypes.md). Property names contain the following characters: `/[_A-Za-z][_0-9A-Za-z]*/`.
+Every collection has properties. Properties define the kinds of data that you add to an object in Weaviate. For each property in the schema, you define at least the name and its [dataType](../config-refs/datatypes.md).
+
+Property names can contain the following characters: `/[_A-Za-z][_0-9A-Za-z]*/`.
 
 ## Collection object
 
@@ -148,7 +150,7 @@ Check the [`hnsw` page](/developers/weaviate/configuration/indexes.md#how-to-con
 Introduced in v1.8.0.
 :::
 
-The `"shardingConfig"` controls how a collection should be [sharded and distributed across multiple nodes](/developers/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
+The `"shardingConfig"` controls how a collection is [sharded and distributed across multiple nodes](/developers/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
 
 ```json
   "shardingConfig": {
@@ -324,7 +326,7 @@ To configure indexing based on property length, set `indexPropertyLength` to `tr
 ```
 
 :::note
-Using these features requires more resources, as the additional inverted indices must be created and maintained for the lifetime of the collection.
+Using these features requires more resources. The additional inverted indices must be created and maintained for the lifetime of the collection.
 :::
 
 ### invertedIndexConfig > bm25

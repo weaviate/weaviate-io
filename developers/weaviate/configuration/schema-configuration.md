@@ -25,19 +25,18 @@ import Terminology from '/_includes/collection-class-terminology.md';
 
 ### Auto-schema
 
-We recommend that you define your schema manually to ensure that it aligns with your specific requirements.
+We recommend that you define your schema manually to ensure that it aligns with your specific requirements. However, Weaviate also provides an auto-schema feature.
 
-However, Weaviate also provides an auto-schema feature. When a collection definition is missing, or when it is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on system defaults the properties of the imported objects.  For more information, see ([Auto-schema](../config-refs/schema.md#auto-schema)).
+When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema.md#auto-schema)).
 
 
 ## Create a collection
 
-A schema describes the data objects that make up a collection. To create a collection, follow the example your preferred language.
-
+A schema describes the data objects that make up a collection. To create a collection, follow the example below in your preferred language.
 
 ### Minimal example
 
-As a minimum, you must specify the `class` parameter for the collection name.
+At a minimum, you must specify the `class` parameter for the collection name.
 
 import initialCaps from '/_includes/schemas/initial-capitalization.md'
 
@@ -66,7 +65,7 @@ import initialCaps from '/_includes/schemas/initial-capitalization.md'
 
 ### Property definition
 
-You can use `properties` to specify properties. A collection definition can include any number of properties.
+You can use the `properties` field to specify properties for the collection. A collection definition can include any number of properties.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -89,7 +88,7 @@ You can use `properties` to specify properties. A collection definition can incl
 </Tabs>
 
 
-In addition to the property name, you can configure parameters such as the data type, inverted index tokenization and more.
+In addition to the property name, you can use properties to configure parameters such as the data type, inverted index tokenization and more.
 
 - [Property object configuration references](../config-refs/schema.md#property-object)
 - [Available data types](../config-refs/datatypes.md)
@@ -97,7 +96,7 @@ In addition to the property name, you can configure parameters such as the data 
 
 ### Specify a vectorizer
 
-You can set an optional `vectorizer` for each collection. If you specify a vectorizer, the specification overrides any default values present in the configuration such as [environment variables](../config-refs/env-vars.md).
+You can set an optional `vectorizer` for each collection. If you specify a vectorizer for a collection, the specification overrides any default values that are present in the general configuration such as [environment variables](../config-refs/env-vars.md).
 
 The following code sets the `text2vec-openai` module as the vectorizer for the `Article` collection.
 
@@ -148,7 +147,7 @@ Configure the `moduleConfig` parameter at the collection-level to set collection
   </TabItem>
 </Tabs>
 
-The available parameters vary according to the module ([learn more](../modules/index.md)).
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
 
 
 ### Property-level module settings
@@ -175,7 +174,7 @@ Configure the `moduleConfig` parameter at the property-level to set property-lev
   </TabItem>
 </Tabs>
 
-The available parameters vary according to the module ([learn more](../modules/index.md)).
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
 
 
 ### Indexing, sharding and replication settings
@@ -245,7 +244,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 Some parts of a collection definition are immutable, but you can modify other parts.
 
-The following sections describe how to add a property to a collection, or modify collection parameters.
+The following sections describe how to add a property to a collection and how to modify collection parameters.
 
 ### Add a property
 
@@ -291,7 +290,7 @@ You can modify some parameters of a schema as shown below. However, many paramet
 
   <TabItem value="js" label="JavaScript/TypeScript">
 
-  >  Coming soon ([vote for the feature request](https://github.com/weaviate/typescript-client/issues/72))
+  >  Coming soon. ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
   </TabItem>
 </Tabs>
