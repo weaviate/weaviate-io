@@ -20,10 +20,17 @@ image: og/docs/configuration.jpg
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
 ## Weaviate's vector index
-The first vector index Weaviate supports is [HNSW](/developers/weaviate/concepts/vector-index.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when in the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
+The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly during the building process (adding data with vectors).
 
-### How to configure HNSW
+If fast data upload is more important for your application than fast query time and high scalability, then a different type of vector index may be a better solution for you. [Spotify's Annoy](https://github.com/spotify/annoy) index is one example.
+
+If you want to contribute to developing a new index type at Weaviate, you can always contact us or make a pull request in our GitHub project. Stay tuned for updates!
+
+### HNSW configuration parameters
+
+
 Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/developers/weaviate/configuration/schema-configuration.md).
+
 
 - `vectorIndexType` is the ANN algorithm you want to use. By default, Weaviate selects `hnsw` -- the Hierarchical Navigable Small World (HNSW) algorithm.
 - `"vectorIndexConfig"`: an object where you can set specific parameters to the chosen vector index type, in this case to hnsw, which has the following parameters:
