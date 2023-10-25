@@ -9,7 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **TERMS OF SERVICE**
 
-**Last Updated: September, 2023**
+**Last Updated: October, 2023**
 
 Thank you for using the Weaviate Database (as defined below), an open-sourced vector database that permits customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless SaaS Offering_**”) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
 
@@ -142,7 +142,11 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL WEAVIATE BE
 
    9.6. Unenforceability.  If a court of competent jurisdiction determines that any provision of this Agreement is invalid, illegal, or otherwise unenforceable, such provision will be enforced as nearly as possible in accordance with the stated intention of the parties, while the remainder of this Agreement will remain in full force and effect and bind the parties according to its terms.
 
-   9.7. Governing Law; Venue.  This Agreement will be governed by the laws of the Netherlands, exclusive of its rules governing choice of law and conflict of laws.  This Agreement will not be governed by the United Nations Convention on Contracts for the International Sale of Goods.
+   9.7. Governing Law; Venue.  This Agreement shall be governed by and construed in accordance with the
+   laws of the Netherlands, excluding the rules governing conflict of laws and the United Nations
+   Convention on Contracts for the International Sale of Goods. Any dispute arising out of or in connection
+   with this Agreement shall be referred to and finally and exclusively resolved by the competent court in
+   Amsterdam, the Netherlands.
 
    9.8. Notices.  Any notice required or permitted to be given hereunder will be given in writing by personal delivery, certified mail, return receipt requested, or by overnight delivery.  Notices to Customer must be sent to Customer’s email or other address as set forth in Customer’s account information.   Notices to Weaviate must be sent to the following address: Weaviate B.V., Prinsengracht 769a, 1017JZ Amsterdam, Attn: Legal.
 
