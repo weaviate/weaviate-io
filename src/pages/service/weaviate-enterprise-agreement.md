@@ -9,7 +9,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **CUSTOMER AGREEMENT**
 
-**Last Updated: September, 2023**
+**Last Updated: October, 2023**
 
 This Customer Agreement (this “**_Agreement_**”) is between Weaviate, B.V., a private limited company (“**_Weaviate_**”), and \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (“**_Customer_**”) and is effective as of \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (the “**_Effective Date_**”).
 
@@ -30,12 +30,12 @@ Weaviate has developed and makes available an open-sourced vector database that 
 
 “**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Product (other than third party data hosting services used by Weaviate).  For clarity, the Weaviate Product excludes Non-Weaviate Products.
 
-“**_Order Form_**” means an order form, quote or other similar document that sets forth the specific Weaviate Product and pricing therefor (including in relation to overages), permitted number of users and subscription term, and that references this Agreement and is mutually executed by the parties.  Order Form #1 is attached hereto in Exhibit A and is deemed mutually executed as of the Effective Date.
+“**_Order Form_**” means an order form, quote or other similar document that sets forth the specific Weaviate Product and pricing therefor (including in relation to overages), permitted number of users and subscription term, and that references this Agreement and is mutually executed by the parties.  Order Form #1 is attached hereto in **Exhibit A** and is deemed mutually executed as of the Effective Date.
 
 ---
 ### 2. **Weaviate Product**
 
-   1. Provision of Weaviate Product.  Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Product available to Customer pursuant to this Agreement, the SLA attached in Exhibit B and the applicable Order Form, and hereby grants Customer a non-exclusive right to access and use the Weaviate Product for its internal business.
+   1. Provision of Weaviate Product.  Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Product available to Customer pursuant to this Agreement, the SLA attached in **Exhibit B** and the applicable Order Form, and hereby grants Customer a non-exclusive right to access and use the Weaviate Product for its internal business.
 
    2. Data Security.  With respect to the Serverless SaaS Offering, Weaviate will maintain a security program materially in accordance with industry standards that is designed to (i) ensure the security and integrity of Customer data uploaded by or on behalf of Customer to the Weaviate Product (“**_Customer Data_**”); (ii) protect against threats or hazards to the security or integrity of Customer Data; and (iii) prevent unauthorized access to Customer Data.  .
 
@@ -103,7 +103,11 @@ EXCEPT FOR A PARTY’S INDEMNIFICATION OBLIGATIONS, A BREACH OF SECTION 5 OR A P
 3. Amendment; Waiver.  No amendment or modification to this Agreement, nor any waiver of any rights hereunder, will be effective unless assented to in writing by both parties.  Any such waiver will be only to the specific provision and under the specific circumstances for which it was given, and will not apply with respect to any repeated or continued violation of the same provision or any other provision.  Failure or delay by either party to enforce any provision of this Agreement will not be deemed a waiver of future enforcement of that or any other provision.
 4. Relationship.  Nothing contained herein will in any way constitute any association, partnership, agency, employment or joint venture between the parties hereto, or be construed to evidence the intention of the parties to establish any such relationship. Neither party will have the authority to obligate or bind the other in any manner, and nothing herein contained will give rise or is intended to give rise to any rights of any kind to any third parties.
 5. Unenforceability.  If a court of competent jurisdiction determines that any provision of this Agreement is invalid, illegal, or otherwise unenforceable, such provision will be enforced as nearly as possible in accordance with the stated intention of the parties, while the remainder of this Agreement will remain in full force and effect and bind the parties according to its terms.
-6. Governing Law.  This Agreement will be governed by the laws of the Netherlands, exclusive of its rules governing choice of law and conflict of laws.  This Agreement will not be governed by the United Nations Convention on Contracts for the International Sale of Goods.
+6. Governing Law.  This Agreement shall be governed by and construed in accordance with the laws of the
+Netherlands, excluding the rules governing conflict of laws and the United Nations Convention on
+Contracts for the International Sale of Goods. Any dispute arising out of or in connection with this
+Agreement shall be referred to and finally and exclusively resolved by the competent court in
+Amsterdam, the Netherlands.
 7. Notices.  Any notice required or permitted to be given hereunder will be given in writing by personal delivery, certified mail, return receipt requested, or by overnight delivery.  Notices to the parties must be sent to the respective address set forth in the signature blocks below, or such other address designated pursuant to this Section.
 8. Entire Agreement.  This Agreement comprises the entire agreement between Customer and Weaviate with respect to its subject matter, and supersedes all prior and contemporaneous proposals, statements, sales materials or presentations and agreements (oral and written).  No oral or written information or advice given by Weaviate, its agents or employees will create a warranty or in any way increase the scope of the warranties in this Agreement.
 9. Force Majeure.  Neither Party will be deemed in breach hereunder for any cessation, interruption or delay in the performance of its obligations due to causes beyond its reasonable control (“**_Force Majeure Event_**”), including earthquake, flood, or other natural disaster, act of God, labor controversy, civil disturbance, terrorism, war (whether or not officially declared), cyber attacks (e.g., denial of service attacks), or the inability to obtain sufficient supplies, transportation, or other essential commodity or service required in the conduct of its business, or any change in or the adoption of any law, regulation, judgment or decree.
@@ -128,6 +132,8 @@ IN WITNESS WHEREOF, the duly authorized representatives of each of the parties h
 
 ---
 ### **Exhibit A**
+
+**Weaviate Order Form**
 
 | Your Details            |                                  |
 | ------------------------| ---------------------------------|
@@ -162,13 +168,17 @@ IN WITNESS WHEREOF, the duly authorized representatives of each of the parties h
 ---
 ### **Exhibit B**
 
-Weaviate Support Program Terms
+**Weaviate Support Program Terms**
 
 Weaviate shall provide the following Support to Customer for the licensed products:
 
-Support Access Weaviate provides a ticketing system to support Weaviate’s customers. The support system is operated by the Weaviate technical team that brings product expertise. Support Tickets can be opened 24x7.
+**Support Access**
 
-Support Tickets Incidents and questions should be reported through the user interface as documented in the relevant section of our website. Where applicable, tickets should include the following resources:
+Weaviate provides a ticketing system to support Weaviate’s customers. The support system is operated by the Weaviate technical team that brings product expertise. Support Tickets can be opened 24x7.
+
+**Support Tickets**
+
+Incidents and questions should be reported through the user interface as documented in the relevant section of our website. Where applicable, tickets should include the following resources:
 
 - Description of the issue and steps to reproduce
 - Error message
@@ -181,7 +191,9 @@ Customer will work with Weaviate support personnel during the investigation of S
 
 Our Slack community is always available for everyone to discuss and share insights, although it is not an official channel for support.
 
-Documentation Library Weaviate’s online documentation includes technical and user documentation and API reference documents. The documentation covers a range of topics, API details, troubleshooting techniques, relevant conceptual articles, tutorials, external integration examples, and more.
+**Documentation Library**
+
+Weaviate’s online documentation includes technical and user documentation and API reference documents. The documentation covers a range of topics, API details, troubleshooting techniques, relevant conceptual articles, tutorials, external integration examples, and more.
 
 **Support Plans and Response Time SLAs**
 
@@ -200,7 +212,9 @@ Documentation Library Weaviate’s online documentation includes technical and u
 - Business Critical Support: Email; 24/7 Phone hotline for escalations
 - Premium Enterprise Support: Email; 24/7 Phone hotline for escalations
 
-Severity Levels and Target Response Times Weaviate shall categorize Support Tickets based on Customer’s characterization of the Severity Level. Customer will characterize the Severity Level based on the business impact of the incident or question to Customer using the Severity Levels described in the table above. If Weaviate disagrees with Customer’s characterization of the Severity Level, Weaviate will notify Customer and the parties will act in good faith to establish a Severity Level.
+**Severity Levels and Target Response Times**
+
+Weaviate shall categorize Support Tickets based on Customer’s characterization of the Severity Level. Customer will characterize the Severity Level based on the business impact of the incident or question to Customer using the Severity Levels described in the table above. If Weaviate disagrees with Customer’s characterization of the Severity Level, Weaviate will notify Customer and the parties will act in good faith to establish a Severity Level.
 
 Weaviate shall provide an update on the investigation, resolution, or escalation of the Support Ticket within the response times set out in the table based on the Severity of the Support Ticket.
 
@@ -210,11 +224,11 @@ Weaviate shall provide an update on the investigation, resolution, or escalation
 
 **Weaviate Service Level Agreement**
 
-Introduction
+**Introduction**
 
 This Service Level Agreement (“SLA”) delineates the service levels for Weaviate's vector database services, including the Standard, and Enterprise tiers, valid during the term of the Agreement. The infrastructure of the services is designed for Normal Use, and the Availability is applicable solely for Normal Use of the services. Any usage beyond Normal Use may lead to a degradation of service quality and availability. Issues accessing the service due to application errors (like misuse, misconfiguration, etc.) are excluded from Availability calculations and are not considered downtime, as these are the responsibility of the Customer.
 
-Normal Use
+**Normal Use**
 
 Normal Use refers to the utilization of the service within the parameters outlined in our official documentation. The specifics of these parameters, including any limitations or restrictions, are detailed in the documentation available to all customers. In instances where a customer wishes to operate outside of these parameters, arrangements can be discussed and agreed upon in writing between the parties. For further details, please refer to our documentation.
 
