@@ -38,6 +38,9 @@ export default function HomepageHeader() {
           </div>
         </div>
       </div>
+      <Link href="/partners/aws/awsreinvent">
+        <div className={styles.awsBanner}></div>
+      </Link>
       {/*    <div className={styles.bottomBar}>
         <div className={styles.innerBar}>
           <p className={styles.text}>
