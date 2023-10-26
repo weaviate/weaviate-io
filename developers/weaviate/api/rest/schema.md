@@ -328,34 +328,36 @@ Update settings of an existing schema class. Use this endpoint to alter an exist
 :::caution Limitations
 
 - Please note that not all settings are mutable. The list of mutable settings are shown below:
-- description
-- invertedIndexConfig
-  - bm25
-    - b
-    - k1
-  - cleanupIntervalSeconds
-  - stopwords
-    - additions
-    - preset
-    - removals
-- replicationConfig
-  - factor
-- vectorIndexConfig
-  - dynamicEfFactor
-  - dynamicEfMin
-  - dynamicEfMax
-  - flatSearchCutoff
-  - skip
-  - vectorCacheMaxObjects
-  - pq
-    - bitCompression
-    - centroids
-    - enabled
-    - segments
-    - trainingLimit
-    - encoder
-      - type
-      - distribution
+
+  - `description`
+  - `invertedIndexConfig`
+    - `bm25`
+      - `b`
+      - `k1`
+    - `cleanupIntervalSeconds`
+    - `stopwords`
+      - `additions`
+      - `preset`
+      - `removals`
+  - `replicationConfig`
+    - `factor`
+  - `vectorIndexConfig`
+    - `dynamicEfFactor`
+    - `dynamicEfMin`
+    - `dynamicEfMax`
+    - `flatSearchCutoff`
+    - `skip`
+    - `vectorCacheMaxObjects`
+    - `pq`
+      - `bitCompression`
+      - `centroids`
+      - `enabled`
+      - `segments`
+      - `trainingLimit`
+      - `encoder`
+        - `type`
+        - `distribution`
+
 - To update any other (i.e. immutable) setting, you need to delete the class, re-create it with the correct setting and then re-import the data.
 
 :::

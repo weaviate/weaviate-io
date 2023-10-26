@@ -23,36 +23,36 @@ This page includes details related to the schema, such as parameters and availab
 
 Please note that only the following parameters are mutable after creation.
 
-Other parameters cannot be changed after class creation. If you wish to change these parameters, you must delete the class and create it again.
+- `description`
+- `invertedIndexConfig`
+  - `bm25`
+    - `b`
+    - `k1`
+  - `cleanupIntervalSeconds`
+  - `stopwords`
+    - `additions`
+    - `preset`
+    - `removals`
+- `replicationConfig`
+  - `factor`
+- `vectorIndexConfig`
+  - `dynamicEfFactor`
+  - `dynamicEfMin`
+  - `dynamicEfMax`
+  - `flatSearchCutoff`
+  - `skip`
+  - `vectorCacheMaxObjects`
+  - `pq`
+    - `bitCompression`
+    - `centroids`
+    - `enabled`
+    - `segments`
+    - `trainingLimit`
+    - `encoder`
+      - `type`
+      - `distribution`
 
-- description
-- invertedIndexConfig
-  - bm25
-    - b
-    - k1
-  - cleanupIntervalSeconds
-  - stopwords
-    - additions
-    - preset
-    - removals
-- replicationConfig
-  - factor
-- vectorIndexConfig
-  - dynamicEfFactor
-  - dynamicEfMin
-  - dynamicEfMax
-  - flatSearchCutoff
-  - skip
-  - vectorCacheMaxObjects
-  - pq
-    - bitCompression
-    - centroids
-    - enabled
-    - segments
-    - trainingLimit
-    - encoder
-      - type
-      - distribution
+Other parameters cannot be changed after class creation. If you wish to change these parameters, you must delete the class and create it again.
 
 Properties can be added to a class after creation, but existing properties cannot be modified after creation.
 
