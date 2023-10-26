@@ -4,9 +4,7 @@ sidebar_position: 8
 image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Migration for version 1.19.0
 
@@ -900,7 +898,6 @@ The default vectorizer module can be specified in a new environment variable so 
 Official release notes can be found on [GitHub](https://github.com/weaviate/weaviate/releases/tag/0.23.0).
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

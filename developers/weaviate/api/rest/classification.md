@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'classification']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Start a classification
 
@@ -244,7 +242,6 @@ A classification is started, and will run in the background. The following respo
 ### Evaluation of single data object results
 After the classification is completed, the concerning reference properties data objects in the Weaviate instance are updated according to the classification. These data objects will be represented similarly to other data objects. The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](../rest/objects.md) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

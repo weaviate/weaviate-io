@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/advanced-concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 <!-- :::caution Migrated From:
@@ -22,7 +20,6 @@ This section does not need to be read linearly. We do recommend that you read th
 
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

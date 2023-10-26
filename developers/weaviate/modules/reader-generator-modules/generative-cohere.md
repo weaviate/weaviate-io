@@ -4,9 +4,7 @@ sidebar_position: 11
 image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'transformers', 'cohere']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -285,7 +283,6 @@ You can use any of
 * `command-xlarge-beta`
 * `command-xlarge`
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

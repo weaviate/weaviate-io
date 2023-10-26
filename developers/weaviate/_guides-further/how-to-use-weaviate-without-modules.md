@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/further-guides.jpg
 # tags: ['how to', 'no modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Finish this page! -->
 <!-- :::caution Under construction.
@@ -143,7 +141,6 @@ As you see, manual vectorization involves some additional steps in comparison to
 
 But if you require a particular vectorizer or have external sources of vectorization, you can incorporate Weaviate to use your own vectors like in this example.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

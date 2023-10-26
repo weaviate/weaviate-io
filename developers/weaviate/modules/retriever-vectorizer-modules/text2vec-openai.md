@@ -4,9 +4,7 @@ sidebar_position: 13
 image: og/docs/modules/text2vec-openai.jpg
 # tags: ['text2vec', 'text2vec-openai', 'openai']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -178,7 +176,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "modelVersion": "002",
           "type": "text",
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         }
       },
@@ -274,7 +272,6 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.openai.mdx';
 
 <CodeNearText />
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

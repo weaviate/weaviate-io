@@ -4,9 +4,7 @@ sidebar_position: 99
 image: og/docs/further-guides.jpg
 # tags: ['semantic search', 'wikipedia']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -323,7 +321,6 @@ Get all Wikipedia graph connections for _"jazz saxophone players"_ [try it live!
 | Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs](/developers/weaviate/) or join our [Slack](https://weaviate.io/slack) to get started. |
 | Can I run the dataset without the Q&A module? | Yes, see [this](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/issues/2#issuecomment-995595909) answer |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

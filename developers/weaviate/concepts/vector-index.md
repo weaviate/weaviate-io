@@ -5,9 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - From `Vector Index (ANN) Plugins:Index` + `HNSW`
@@ -187,7 +185,6 @@ In the configuration above you can see that you can set the `encoder` object to 
 
 Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter that controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details about configuration please refer to [Configuration: Indexes](../configuration/indexes.md).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

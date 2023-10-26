@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/installation.jpg
 # tags: ['installation', 'Kubernetes']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::tip <b>Important</b> Set the correct Weaviate version
 Make sure to set your desired Weaviate version.
@@ -199,7 +197,6 @@ For more, general information on running EFS with Fargate, we recommend reading 
     198.19.0.0/16
     ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

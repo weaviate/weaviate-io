@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -113,7 +111,6 @@ services:
 
 ### RAG
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

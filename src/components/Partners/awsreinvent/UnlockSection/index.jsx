@@ -8,18 +8,18 @@ export default function UnlockSection() {
   return (
     <div className={styles.benefits}>
       <div className="container">
-        <h2>Establish foundations to scale</h2>
+        <h2>Uncover the potential of GenAI</h2>
         <div className={styles.wrapper}>
           <div className={styles.rightSide}>
             <div className={styles.teamImage}></div>
           </div>
           <div className={styles.leftSide}>
             <h4 className={styles.unlockHeaders}>
-              Unlock AI-powered apps in days, not weeks
+              Establish foundations to scale
             </h4>
             <p>
-              Explore the purpose-built vector database for secure, state, and
-              explainable generative AI applications.
+              Explore the purpose-built vector database for secure, stateful,
+              and explainable generative AI applications.
             </p>
             <h4 className={styles.unlockHeaders}>See it in action</h4>
             <p>

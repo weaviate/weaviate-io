@@ -5,9 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'schema']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -424,7 +422,6 @@ The response will be a JSON object, such as the example shown below.
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

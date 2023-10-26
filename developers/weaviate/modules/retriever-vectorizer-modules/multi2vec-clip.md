@@ -4,9 +4,7 @@ sidebar_position: 33
 image: og/docs/modules/multi2vec-clip.jpg
 # tags: ['multi2vec', 'multi2vec-clip']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -115,7 +113,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 - `dataType` - the data type of the property. For use in the appropriate `<media>Fields`, must be set to `text` or `blob` as appropriate.
 
 #### Example
@@ -302,7 +300,6 @@ The `multi2vec-clip` module uses the [`clip-ViT-B-32` model](https://huggingface
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

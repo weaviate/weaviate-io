@@ -1,6 +1,6 @@
 ---
 title: Imports in detail
-sidebar_position: 20
+sidebar_position: 30
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
@@ -167,7 +167,6 @@ A request with a `200` response may still include object-level errors, which is 
 
 All other CRUD object operations are available in the [objects RESTful API documentation](../api/rest/index.md) and the [batch RESTful API documentation](../api/rest/batch.md).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

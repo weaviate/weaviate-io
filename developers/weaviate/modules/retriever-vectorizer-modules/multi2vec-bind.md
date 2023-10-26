@@ -4,9 +4,7 @@ sidebar_position: 35
 image: og/docs/modules/multi2vec-bind.jpg
 # tags: ['multi2vec', 'multi2vec-bind']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -117,7 +115,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 - `dataType` - the data type of the property. For use in the appropriate `<media>Fields`, must be set to `text` or `blob` as appropriate.
 
 #### Example
@@ -220,7 +218,6 @@ The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookrese
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

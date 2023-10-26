@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/more-resources.jpg
 # tags: ['FAQ']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## General
 

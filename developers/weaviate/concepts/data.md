@@ -4,9 +4,7 @@ sidebar_position: 10
 image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `Core knowledge/Basics`
@@ -152,7 +150,7 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author` like this:
+We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author`. An object containing a cross-reference may look like this:
 
 ```json
 {
@@ -179,10 +177,6 @@ Each cross-reference relationship in Weaviate is directional.
 So, in addition to the `Author` class having a `writesFor` property that points to the `Publication` class, you could have a `hasAuthors` property in the `Publication` class that points to the `Author` class.
 
 Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
-
-:::tip `Hrefs` vs `beacons`
-`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We will discuss the difference further as we go forward.
-:::
 
 ## Weaviate Schema
 
@@ -219,11 +213,19 @@ For now, what's important to know is this:
 - Tenant activity status setting available from version `v1.21`
 :::
 
-For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
+If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
 
-Where multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. This ensures not only data isolation but also fast and efficient querying, as well as easy and robust on/off-boarding. From `v1.20` onwards, shards have become a lot more lightweight, easily allowing 50,000+ active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+When multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. Sharding has several benefits:
 
-Multi-tenancy is especially useful for use-cases where you want to store data for multiple customers, or where you want to store data for multiple projects.
+- Data isolation
+- Fast, efficient querying
+- Easy and robust setup and clean up
+
+Staring in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+
+Starting in `v1.20.1`, you can specify tenants as active (`HOT`) or inactive (`COLD`). For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
+
+Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects.
 
 ### Tenancy and IDs
 
@@ -285,7 +287,6 @@ A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, 
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
 * You can use multi-tenancy to isolate data for each tenant.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

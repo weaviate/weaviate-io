@@ -4,9 +4,7 @@ sidebar_position: 13
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - Adds text re: configuration options from `Vector index plugins/HNSW`
@@ -50,7 +48,7 @@ The HNSW index can be customized using the following parameters:
     :::
 
     - `enabled`: Whether product quantization is enabled or not (defaults to `false`). To enable set to `true`.
-    - `trainingLimit`: The maximum number of objects per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled.
+    - `trainingLimit`: The maximum number of objects, per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled.
     - `segments`: The number of segments to use. By default this is equal to the number of dimensions. Reducing the number of segments will further reduce the size of the quantized vectors. The number of segments must be divisible by the number of dimensions of each vector.
     - `centroids`: The number of centroids to use. Reducing the number of centroids will further reduce the size of quantized vectors at the price of recall. When using the `kmeans` encoder, centroids is set to 256 or one byte by default in Weaviate.
     - `encoder`: An object with encoder specific information. Here you can specify the `type` of encoder as either `kmeans`(default) or `tile`. If using the `tile` encoder you can also specify the `distribution` as `log-normal` (default) or `normal`.
@@ -234,7 +232,6 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 }
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

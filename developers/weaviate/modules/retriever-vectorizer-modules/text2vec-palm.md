@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/modules/text2vec-palm.jpg
 # tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -113,7 +111,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 
 #### Example
 
@@ -130,7 +128,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         },
       },
@@ -217,7 +215,6 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.palm.mdx';
 
 <CodeNearText />
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 11
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - Mostly newly written
@@ -125,7 +123,6 @@ Your choice of the `text2vec` module does not restrict your choice of `generativ
 ## Custom modules
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

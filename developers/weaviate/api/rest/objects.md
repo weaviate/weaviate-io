@@ -688,7 +688,6 @@ When using multi-tenancy, cross-references can only be made:
 - From a multi-tenancy object to a non-multi-tenancy object.
 - From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

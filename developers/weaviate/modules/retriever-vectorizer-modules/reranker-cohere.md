@@ -127,7 +127,6 @@ The `reranker-cohere` module supports the following models:
 * For usage examples, see the [Howto: Search - Reranking](../../search/rerank.md) page.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

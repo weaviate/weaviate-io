@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'manage data', 'crud']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -31,7 +29,6 @@ This section contains guides for how-to:
 
 Each guide is self-contained. So you can read them in any order.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

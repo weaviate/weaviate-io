@@ -135,8 +135,8 @@ const config = {
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
 
                     // TODO: Update to 'main' for release
-                    editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/main/',
+                    // editUrl:
+                       // 'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace, math],
                     rehypePlugins: [katex],
                 },
@@ -230,6 +230,10 @@ const config = {
                             {
                                 label: 'Workshops',
                                 to: '/learn/workshops',
+                            },
+                            {
+                                label: 'Partners',
+                                to: '/partners/aws',
                             },
                             {
                                 label: 'Contributor Guide',
@@ -363,6 +367,10 @@ const config = {
                                 to: 'https://console.weaviate.cloud/',
                             },
                             {
+                                label: 'Partners',
+                                to: '/partners/aws',
+                            },
+                            {
                                 label: 'Terms & Policies',
                                 to: 'service',
                             },
@@ -386,7 +394,7 @@ const config = {
                             },
                             {
                                 label: 'GitHub',
-                                to: 'https://twitter.com/weaviate_io',
+                                to: 'https://github.com/weaviate/weaviate',
                             },
                             {
                                 label: 'Forum',
@@ -434,10 +442,7 @@ const config = {
                                 label: 'Playbook',
                                 to: 'company/playbook',
                             },
-                            {
-                                label: 'GitHub',
-                                to: 'https://github.com/weaviate/weaviate',
-                            },
+
 
                         ],
                     },

@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Replication](../../configuration/replication.md)
@@ -135,7 +133,6 @@ See the [Replication Usage page](/developers/weaviate/configuration/replication.
 * Not scheduled yet
   * Multi-Datacenter replication (you can upvote this feature [here](https://github.com/weaviate/weaviate/issues/2436))
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

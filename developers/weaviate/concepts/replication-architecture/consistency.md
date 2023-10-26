@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
@@ -138,7 +136,6 @@ An object that never existed will be propagated to the other nodes only if the o
 * if write was `QUORUM`, the read consistency level can be >= `QUORUM`
 * if the write was `ONE`, the object must be read with `ALL` to guarantee repair. This is because if only `ONE` node received the write request, then a `QUORUM` read request might only hit nodes that don't have the object, while an `ALL` request will reach that node as well.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

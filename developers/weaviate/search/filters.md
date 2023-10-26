@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -342,7 +340,6 @@ You can filter by any number of metadata properties, such as object id, property
 
 See the [API references: Filters](../api/graphql/filters.md#special-cases) page for the full list of available metadata filters and any special usage patterns.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

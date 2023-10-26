@@ -4,9 +4,7 @@ sidebar_position: 22
 image: og/docs/modules/text2vec-gpt4all.jpg
 # tags: ['text2vec', 'text2vec-gpt4all', 'gpt4all']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -112,7 +110,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 
 #### Example
 
@@ -126,7 +124,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "moduleConfig": {
         "text2vec-gpt4all": {
           // highlight-start
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
           // highlight-end
         }
       },
@@ -180,7 +178,6 @@ The `text2vec-gpt4all` module uses the [`gpt4all`](https://docs.gpt4all.io/gpt4a
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

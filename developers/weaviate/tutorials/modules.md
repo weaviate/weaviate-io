@@ -4,9 +4,7 @@ sidebar_position: 90
 image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -301,7 +299,6 @@ Some such modules can enables the GraphQL API, for example as shown here.
 
 Modules are add-ons to Weaviate that can perform additional functions. You don't have to use them, but you can.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 5
 image: og/docs/more-resources.jpg
 # tags: ['example datasets']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Multi-Modal Text/Image search using CLIP
 
@@ -142,7 +140,6 @@ docker run -it --network=$WEAVIATE_NETWORK -e weaviate_host=$WEAVIATE_ORIGIN -e 
 ```
 {% endraw %}
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

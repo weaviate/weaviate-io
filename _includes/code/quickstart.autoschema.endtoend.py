@@ -16,6 +16,7 @@ import json
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 # ===== import data =====  # EndToEndExample
 import requests
+import json
 # END EndToEndExample  # Test import
 # EndToEndExample  # InstantiationExample  # NearTextExample
 

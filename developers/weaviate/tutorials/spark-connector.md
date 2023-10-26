@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/tutorials.jpg
 # tags: ['how to', 'spark connector', 'spark']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -229,7 +227,6 @@ df.limit(1500).withColumnRenamed("id", "uuid").write.format("io.weaviate.spark.W
 
 - Additionally OIDC options are supported `.option("oidc:username", ...)`, `.option("oidc:password", ...)`, `.option("oidc:clientSecret", ...)`, `.option("oidc:accessToken", ...)`, `.option("oidc:accessTokenLifetime", ...)`, `.option("oidc:refreshToken", ...)`. For more information on these options please refer to the [Java client documentation](../client-libraries/java.md#oidc-authentication).
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

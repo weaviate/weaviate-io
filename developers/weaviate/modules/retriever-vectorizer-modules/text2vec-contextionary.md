@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 
 ## Overview
@@ -115,7 +113,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 
 #### Example
 
@@ -129,7 +127,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "moduleConfig": {
         // highlight-start
         "text2vec-contextionary": {
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
         // highlight-end
       },
@@ -448,7 +446,6 @@ The `text2vec-contextionary` module is based on the [`fastText`](https://github.
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
