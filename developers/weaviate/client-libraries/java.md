@@ -4,9 +4,7 @@ sidebar_position: 5
 image: og/docs/client-libraries.jpg
 # tags: ['java', 'client library']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note Java client version
 The current Java client version is `v||site.java_client_version||`.

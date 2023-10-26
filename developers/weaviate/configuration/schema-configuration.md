@@ -5,9 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'schema']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

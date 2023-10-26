@@ -4,9 +4,7 @@ sidebar_position: 40
 image: og/docs/modules/ref2vec-centroid.jpg
 # tags: ['ref2vec', 'ref2vec-centroid', 'centroid']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Introduction
 

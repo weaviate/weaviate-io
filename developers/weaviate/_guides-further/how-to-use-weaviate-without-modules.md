@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/further-guides.jpg
 # tags: ['how to', 'no modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Finish this page! -->
 <!-- :::caution Under construction.

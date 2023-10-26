@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note
 BPR support in Weaviate is under development.

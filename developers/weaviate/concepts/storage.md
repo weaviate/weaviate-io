@@ -4,9 +4,7 @@ sidebar_position: 18
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'storage']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Introduction
 

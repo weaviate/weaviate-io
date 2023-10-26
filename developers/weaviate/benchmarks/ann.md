@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/benchmarks.jpg
 # tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 # About this benchmark
 

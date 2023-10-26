@@ -4,9 +4,7 @@ sidebar_position: 9
 image: og/docs/client-libraries.jpg
 # tags: ['cli']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note Weaviate CLI version
 The current Weaviate CLI version is `v||site.weaviate_cli_version||`.

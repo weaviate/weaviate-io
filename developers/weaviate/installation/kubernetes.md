@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/installation.jpg
 # tags: ['installation', 'Kubernetes']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::tip <b>Important</b> Set the correct Weaviate version
 Make sure to set your desired Weaviate version.

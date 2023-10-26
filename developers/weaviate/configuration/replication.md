@@ -4,9 +4,7 @@ sidebar_position: 60
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Prerequisites
 - [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)

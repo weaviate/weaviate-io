@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 This page describes how the nodes or clusters in Weaviate's replication design behave in a leaderless fashion.
 

@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/installation.jpg
 # tags: ['installation', 'Weaviate Cloud Services']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/concepts.jpg
 # tags: ['modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`. e.g.:

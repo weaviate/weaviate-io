@@ -4,9 +4,7 @@ sidebar_position: 9
 image: og/docs/modules/custom-modules.jpg
 # tags: ['modules', 'other modules', 'custom modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Introduction
 

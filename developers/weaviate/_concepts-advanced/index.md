@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/advanced-concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Remove explanatory header once layout review complete -->
 <!-- :::caution Migrated From:

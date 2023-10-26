@@ -3,9 +3,7 @@ title: Deprecation messages
 image: og/docs/more-resources.jpg
 # tags: ['Deprecation messages']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 The list below contains deprecation messages:
 <!--

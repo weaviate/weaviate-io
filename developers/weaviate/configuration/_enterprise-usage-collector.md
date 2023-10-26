@@ -4,9 +4,7 @@ sidebar_position: 7
 image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- Hidden for now as no longer used; to be removed in the future. -->
 ## Introduction

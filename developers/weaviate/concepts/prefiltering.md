@@ -4,9 +4,7 @@ sidebar_position: 26
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [References: GraphQL API](../api/graphql/index.md)
