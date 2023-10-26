@@ -30,9 +30,11 @@ This directory contains the following files:
 
 ### Server-side
 
-To take advantage of the gRPC API, we recommend using the latest version of Weaviate. We suggest using port `50051` for gRPC. This can be set in the configuration file for Weaviate.
+To take advantage of the gRPC API, we recommend using the latest version of Weaviate. We suggest using port `50051` for gRPC calls. This can be set in the configuration file for Weaviate.
 
-As an example, the snippet below shows how to set up a Weaviate instance with Docker Compose with gRPC enabled:
+As an example, the snippet below maps `50051` as the host port so that it can be accessed from outside the container. The `50051` port is mapped to the `50051` port inside the container for gRPC calls, and the `8080` port is mapped to the `8080` port inside the container for REST calls.
+
+```yaml:
 
 ```yaml
 ---
@@ -41,8 +43,8 @@ services:
   weaviate:
     # ... Other settings
     ports:
-     - "8080:8080"
-     - "50051:50051"
+     - "8080:8080"  # REST calls
+     - "50051:50051"  # gRPC calls
   # ... Other settings
 ```
 
