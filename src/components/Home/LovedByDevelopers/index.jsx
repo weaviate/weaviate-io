@@ -44,7 +44,7 @@ export default function HomepageLovedByDevelopers() {
     pauseOnFocus: true,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1380,
         settings: {
           arrows: false,
           dots: false,
@@ -54,6 +54,42 @@ export default function HomepageLovedByDevelopers() {
           autoplay: true,
           speed: 1000,
           autoplaySpeed: 1000,
+        },
+      },
+      {
+        breakpoint: 1224,
+        settings: {
+          arrows: false,
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 1000,
+          autoplaySpeed: 1000,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          arrows: false,
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 1000,
+          autoplaySpeed: 1000,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+          speed: 2000,
+          autoplaySpeed: 4000,
         },
       },
       {
