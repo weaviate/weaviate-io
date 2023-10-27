@@ -48,10 +48,7 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 |`dynamicEfFactor`|integer|8|*New in `v1.10.0`.* <br/><br/> If using dynamic `ef`, this value controls how `ef` is determined based on the given limit. E.g. with a factor of `8`, `ef` will be set to `8*limit` as long as this value is between the lower and upper boundary. It will be capped on either end, otherwise. <br/><br/>This setting is only used when `ef` is -1.|
 |`flatSearchCutoff`|integer|40000|Optional. Threshold for the [flat-search cutoff](/developers/weaviate/concepts/prefiltering.md#flat-search-cutoff). To force a vector index search, set `"flatSearchCutoff": 0`.|
 |`skip`|boolean|`false`| When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> See [When to skip indexing](#when-to-skip-indexing). <br/><br/> This setting cannot be changed after a collection is initialized.|
-|`"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new collection, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the collection.
-Generally we recommend that:
-  - During imports set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
-  - When only or mostly querying (as opposed to bulk importing) you can experiment with vector cache limits which are lower than your total dataset size. Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full it is dropped entirely and all future vectors need to be read from disk for the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.|
+|`vectorCacheMaxObjects`|integer|`1e12`| Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. <br/><br/> This setting can be changed after a collection is initialized. For sizing recommendations, see [Vector cache considerations](#vector-cache-considerations).|
 |`pq`||| Enables [product quantization](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) which is a technique that allows for Weaviate’s HNSW vector index to store vectors using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets on a given amount of memory. *Weaviate’s HNSW implementation assumes that product quantization will occur after some data has already been loaded. The reason for this is that the codebook needs to be trained on existing data. A good recommendation is to have 10,000 to 100,000| vectors per shard loaded before enabling product quantization.* Please refer to the parameters that can be configured for `"pq"` below:
 
 #### PQ configuration parameters
@@ -126,6 +123,16 @@ Importing duplicate vectors into HNSW is very expensive. The import algorithm ch
 
 To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
 
+### Vector cache considerations
+
+For optimal search and import performance, previously imported vectors need to be in memory. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the disk cache should be used sparingly. However, Weaviate can limit the number of vectors in memory. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created.
+
+During import set `vectorCacheMaxObjects` high enough that all vectors can be held in memory. Each import requires multiple searches. Import performance drop drastically when there isn't enough memory to hold all of the vectors in the cache.
+
+After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
+
+ Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full it is dropped entirely and all future vectors need to be read from disk for the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+
 ### Deletions
 
 Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
@@ -133,11 +140,12 @@ Cleanup is an async process runs that rebuilds the HNSW graph after deletes and 
 ### Asynchronous indexing (experimental)
 >>>>>>> 56e583f (HNSW params)
 
-:::info Available from version `v1.22`
-:::
-
 :::caution Experimental
+<<<<<<< HEAD
 As of `v1.22`, this is an experimental, opt-in feature. Please use with caution.
+=======
+Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+>>>>>>> f87fd84 (Vector cache considerations)
 :::
 
 Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
