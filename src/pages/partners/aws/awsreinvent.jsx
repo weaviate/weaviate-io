@@ -8,15 +8,14 @@ import Resources from '/src/components/Partners/awsreinvent/Resources/resources'
 import Footer from '/src/components/Partners/awsreinvent/awsFooter';
 import ContactForm from '../../../components/Partners/awsreinvent/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
-import Head from '@docusaurus/Head';
 
 export default function awsReinventPage() {
   return (
     <div className="custom-page noBG">
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <Layout>
+      <Layout
+        title="AWS Re:Invent 2023"
+        description="Weaviate -  AWS Re:Invent 2023"
+      >
         <Header />
         <UnlockSection />
         <CallingSection />
