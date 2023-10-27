@@ -20,14 +20,15 @@ image: og/docs/configuration.jpg
 Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. This makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
 ## Weaviate's vector index
+The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly during the building process (adding data with vectors).
 
-Currently, Weaviate uses the [HNSW (Hierarchical Navigable Small World)](/developers/weaviate/concepts/vector-index.md#hnsw) algorithm to build its vector index.
+If you want to contribute to developing a new index type at Weaviate, you can always contact us or make a pull request in our GitHub project. Stay tuned for updates!
 
-### How to configure HNSW
+### HNSW configuration parameters
 
-The HNSW index can be customized using the following parameters:
+Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/developers/weaviate/configuration/schema-configuration.md).
 
-- `vectorIndexType` is the ANN algorithm you want to use. Currently, `hnsw` is the only available option.
+- `vectorIndexType` is the ANN algorithm you want to use. By default, Weaviate selects `hnsw` -- the Hierarchical Navigable Small World (HNSW) algorithm.
 - `"vectorIndexConfig"`: an object where you can set specific parameters to the chosen vector index type, in this case to hnsw, which has the following parameters:
   - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](/developers/weaviate/config-refs/distances.md).
   - `"ef"`: The higher `ef` is chosen, the more accurate, but also slower a search becomes. This helps in the recall/performance trade-off that is possible with HNSW. If you omit setting this field it will default to `-1` which means "Let Weaviate pick the right `ef` value". `ef` can be updated over time, and is not immutable like `efConstruction` and `maxConnections`.
