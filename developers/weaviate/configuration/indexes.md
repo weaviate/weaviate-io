@@ -32,7 +32,7 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 |:--|:--|:--|:--|
 |`vectorIndexType`|string|`hnsw`|Optional. The ANN algorithm to use to create your index. HNSW is the only index type currently available.|
 |`vectorIndexConfig`|object|-|Optional. Set parameters that are specific to the vector index type. See [HSNW specific parameters](#hnsw-index-parameters)|
-|`skip"`|boolean|`false`|There are situations where it doesn't make sense to vectorize a class. For example if the class is just meant as glue between two other class (consisting only of references) or if the class contains mostly duplicate elements (Note that importing duplicate vectors into HNSW is very expensive as the algorithm uses a check whether a candidate's distance is higher than the worst candidate's distance for an early exit condition. With (mostly) identical vectors, this early exit condition is never met leading to an exhaustive search on each import or query). In this case, you can `skip` indexing a vector all-together. To do so, set `"skip"` to `"true"`. if not set to `true`, classes will be indexed normally. This setting is immutable after class initialization. _Note that the creation of a vector through a module is decoupled from storing the vector in Weaviate. So, simply skipping the indexing does not skip the generation of a vector if a vectorizer other than `none` is configured on the class (for example through a global default). It is therefore recommended to always set: `"vectorizer": "none"` explicitly when skipping the vector indexing. If vector indexing is skipped, but a vectorizer is configured (or a vector is provided manually) a warning is logged on each import._|
+|`skip"`|boolean|`false`|There are situations where it doesn't make sense to vectorize a collection. For example if the collection is just meant as glue between two other collection (consisting only of references) or if the collection contains mostly duplicate elements (Note that importing duplicate vectors into HNSW is very expensive as the algorithm uses a check whether a candidate's distance is higher than the worst candidate's distance for an early exit condition. With (mostly) identical vectors, this early exit condition is never met leading to an exhaustive search on each import or query). In this case, you can `skip` indexing a vector all-together. To do so, set `"skip"` to `"true"`. if not set to `true`, collectiones will be indexed normally. This setting is immutable after collection initialization. _Note that the creation of a vector through a module is decoupled from storing the vector in Weaviate. So, simply skipping the indexing does not skip the generation of a vector if a vectorizer other than `none` is configured on the collection (for example through a global default). It is therefore recommended to always set: `"vectorizer": "none"` explicitly when skipping the vector indexing. If vector indexing is skipped, but a vectorizer is configured (or a vector is provided manually) a warning is logged on each import._|
 |a|s|d|f \
   g\
   h\
@@ -47,12 +47,12 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 
   - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](/developers/weaviate/config-refs/distances.md).
   - `"ef"`: The higher `ef` is chosen, the more accurate, but also slower a search becomes. This helps in the recall/performance trade-off that is possible with HNSW. If you omit setting this field it will default to `-1` which means "Let Weaviate pick the right `ef` value". `ef` can be updated over time, and is not immutable like `efConstruction` and `maxConnections`.
-  - `"efConstruction"`: controls index search speed/build speed tradeoff. The tradeoff here is on importing. So a high `efConstruction` means that you can lower your `ef` settings but that importing will be slower. Default is set to 128, the integer should be greater than 0. This setting is immutable after class initialization.
-  - `"maxConnections"`: the maximum number of connections per element in all layers. Default is set to 64, the integer should be greater than 0. This setting is immutable after class initialization.
+  - `"efConstruction"`: controls index search speed/build speed tradeoff. The tradeoff here is on importing. So a high `efConstruction` means that you can lower your `ef` settings but that importing will be slower. Default is set to 128, the integer should be greater than 0. This setting is immutable after collection initialization.
+  - `"maxConnections"`: the maximum number of connections per element in all layers. Default is set to 64, the integer should be greater than 0. This setting is immutable after collection initialization.
   - `"dynamicEfMin"`: If using dynamic `ef` (set to `-1`), this value acts as a lower boundary. Even if the limit is small enough to suggest a lower value, `ef` will never drop below this value. This helps in keeping search accuracy high even when setting very low limits, such as 1, 2, or 3. *Not available prior to `v1.10.0`. Defaults to `100`. This setting has no effect if `ef` has a value other than `-1`.*
   - `"dynamicEfMax"`: If using dynamic `ef` (set to `-1`), this value acts as an upper boundary. Even if the limit is large enough to suggest a lower value, `ef` will be capped at this value. This helps to keep search speed reasonable when retrieving massive search result sets, e.g. 500+. Note that the maximum will not have any effect if the limit itself is higher than this maximum. In this case the limit will be chosen as `ef` to avoid a situation where `limit` would higher than `ef` which is impossible with HNSW. *Not available prior to `v1.10.0`. Defaults to `500`. This setting has no effect if `ef` has a value other than `-1`.*
   - `"dynamicEfFactor"`: If using dynamic `ef` (set to `-1`), this value controls how `ef` is determined based on the given limit. E.g. with a factor of `8`, `ef` will be set to `8*limit` as long as this value is between the lower and upper boundary. It will be capped on either end, otherwise. *Not available prior to `v1.10.0`. Defaults to `8`. This setting has no effect if `ef` has a value other than `-1`.*
-  - `"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new class, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the class.
+  - `"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new collection, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the collection.
   Generally we recommend that:
     - During imports set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
     - When only or mostly querying (as opposed to bulk importing) you can experiment with vector cache limits which are lower than your total dataset size. Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full it is dropped entirely and all future vectors need to be read from disk for the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
@@ -70,7 +70,7 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 |`centroids`|integer|-|The number of centroids to use. Reducing the number of centroids will further reduce the size of quantized vectors at the price of recall. When using the `kmeans` encoder, centroids is set to 256 or one byte by default in Weaviate.|
 |`encoder`|string|`kmeans`|An object with encoder specific information. Here you can specify the `type` of encoder as either `kmeans`(default) or `tile`. If using the `tile` encoder you can also specify the `distribution` as `log-normal` (default) or `normal`.|
 
-Example of a class could be [configured in your data schema](/developers/weaviate/configuration/schema-configuration.md):
+Example of a collection could be [configured in your data schema](/developers/weaviate/configuration/schema-configuration.md):
 
 ```json
 {
@@ -134,7 +134,7 @@ Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
 
 Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
 
-Asynchronous indexing is off by default. It can be enabled by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all classes.
+Asynchronous indexing is off by default. It can be enabled by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all collections.
 
 <details>
   <summary>Example Docker Compose configuration</summary>
@@ -262,7 +262,7 @@ You can also enable an inverted index to search [based on timestamps](/developer
 }
 ```
 
-### Classes without indices
+### Collections without indices
 
 If you don't want to set an index at all, neither ANN nor inverted, this is possible too.
 
@@ -271,7 +271,7 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 ```js
 {
     "class": "Author",
-    "description": "A description of this class, in this case, it's about authors",
+    "description": "A description of this collection, in this case, it's about authors",
     "vectorIndexConfig": {
         "skip": true // <== disable vector index
     },
