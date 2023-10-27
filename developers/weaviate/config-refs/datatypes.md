@@ -65,6 +65,47 @@ In the above example, our objects can be linked to:
 * **2** Articles and **5** Blogs
 * etc.
 
+## DataType: `object`
+
+:::info Available from version `v1.22`
+:::
+
+The `object` type allows you to store nested data structures in Weaviate. The data structure is a JSON object, and can be nested to any depth.
+
+For example, a `Person` class could have an `address` property, as an object. It could in turn include nested properties such as `street` and `city`:
+
+```json
+{
+    "class": "Person",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+An object for this class may have a structure such as follows:
+
+```json
+{
+    "last_name": "Franklin",
+    "address": {
+        "city": "London",
+        "street": "King Street"
+    }
+}
+```
+
 ## DataType: `date`
 
 Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.

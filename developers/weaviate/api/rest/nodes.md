@@ -14,18 +14,19 @@ The nodes endpoint accepts a `GET` request:
 GET /v1/nodes
 ```
 
-And it returns a `nodes` field containing array of nodes with following fields:
+And it returns a `nodes` field containing array of nodes with the following fields:
 - `name`: Name of the node.
-- `status`: Status of the node (one of: HEALTHY, UNHEALTHY, UNAVAILABLE).
+- `status`: Status of the node (one of: HEALTHY, UNHEALTHY, UNAVAILABLE, INDEXING).
 - `version`: Version of Weaviate running on the node.
 - `gitHash`: Short git hash of latest commit of Weaviate running on the node.
-- `stats`: Statistics of the node with following fields:
+- `stats`: Statistics of the node with the following fields:
     - `shardCount`: Total number of shards on the node.
-    - `objectCount` Total number of objects on the node.
-- `shards`: Array of shards with following fields:
+    - `objectCount` Total number of indexed objects on the node.
+- `shards`: Array of shards with the following fields:
     - `name`: Name of the shard.
     - `class`: Name of the objects' class stored on the shard.
-    - `objectCount`: Number of objects on the shard.
+    - `objectCount`: Number of indexed objects on the shard.
+    - `vectorQueueLength`: Number of objects waiting to be indexed on the shard. (Available in Weaviate `1.22` and higher, if `ASYNC_INDEXING` is enabled.)
 
 ## Example
 
@@ -53,11 +54,13 @@ Example output (format may slightly vary depending on the client used):
         {
           "name":"azuawSAd9312F",
           "class": "Class_7",
-          "objectCount": 13328
+          "objectCount": 13328,
+          "vectorQueueLength": 0
         }, {
           "name":"cupazAaASdfPP",
           "class": "Foo",
-          "objectCount": 10000
+          "objectCount": 10000,
+          "vectorQueueLength": 0
         }
       ]
     }, {
@@ -73,11 +76,13 @@ Example output (format may slightly vary depending on the client used):
         {
           "name":"hh8gXiaNaO2K",
           "class": "Bar",
-          "objectCount": 10000
+          "objectCount": 10000,
+          "vectorQueueLength": 0
         }, {
           "name":"zmb16QK4PYZ4",
           "class": "Baz",
-          "objectCount": 2345
+          "objectCount": 2345,
+          "vectorQueueLength": 0
         }
       ]
     }

@@ -38,12 +38,15 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 ![Supermarket map visualization](./img/supermarket.svg "Supermarket map visualization")
 
 ## How to choose the right vector index type
+
 The first vector-storage type Weaviate supports is [HNSW](./vector-index.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
 
 ## Configuration of vector index type
-The index type can be specified per data class. Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/developers/weaviate/configuration/schema-configuration.md).
+
+The index type can be specified per data class via the [class definition](/developers/weaviate/configuration/schema-configuration.md). Currently the only index type is HNSW.
 
 Example of a class [vector index configuration in your data schema](/developers/weaviate/configuration/schema-configuration.md):
+
 ```json
 {
   "class": "Article",
@@ -123,8 +126,9 @@ Below is a list segment values for common vectorizer modules:
 | huggingface | sentence-transformers/all-MiniLM-L12-v2 | 384        | 192, 128, 96           |
 
 ### Conversion of an existing Class to use PQ
+
 :::caution Important
-If using PQ it is recommended to run Weaviate at least 1.20.5.
+To use PQ, we recommend using Weaviate 1.20.5 or higher.
 :::
 
 You can convert an existing class to use product quantization by updating the vector index configuration. It is recommended to run a [backup](../configuration/backups.md) first before enabling if you are in production and may want to roll back.
