@@ -13,8 +13,8 @@ export default function awsReinventPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="AWS Reinvent 2023"
-        description="Weaviate -  AWS Reinvent 2023"
+        title="AWS Re:Invent 2023"
+        description="Weaviate -  AWS Re:Invent 2023"
       >
         <Header />
         <UnlockSection />
