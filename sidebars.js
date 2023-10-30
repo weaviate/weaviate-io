@@ -23,11 +23,6 @@ const sidebars = {
       value: '<div class="separator"></div>',
     },
     {
-     type: 'link',
-     label: '→ Release notes',
-     href: 'https://github.com/weaviate/weaviate/releases/',
-    },
-    {
       type: 'link',
       label: '→ Weaviate Cloud Services docs',
       href: '/developers/wcs',
