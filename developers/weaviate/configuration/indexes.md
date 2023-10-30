@@ -20,7 +20,7 @@ image: og/docs/configuration.jpg
 Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. When vector indexes are combined with horizontal scaling and sharding, you can store and search *very* large amounts of data without decreasing performance.
 
 ## Weaviate's vector index
-The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process.
+The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process. (For an alternative approach to indexing see [Asynchronous indexing](/developers/weaviate/configuration/indexes#asynchronous-indexing-experimental)).
 
 If you want to contribute to developing a new index type at Weaviate, please contact us or make a pull request in our GitHub project. Stay tuned for updates!
 
@@ -36,22 +36,22 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 
 ### HNSW index parameters
 
-The HNSW algorithm builds a list of nearest neighbors. The `ef` parameter controls the size of the nearest neighbors list and balances search speed and accuracy. You can set an explicit `ef` value or let Weaviate set a [`dynamic ef`](#dynamic-ef). These parameters let you tune `ef`, `dynamic ef`, and other aspects of the HNSW algorithm.
+The HNSW algorithm builds a list of approximate nearest neighbors (ANN). The `ef` parameter controls the size of the nearest neighbors list and helps to balance search speed and accuracy. You can set an explicit `ef` value or let Weaviate set a [dynamic `ef`](#dynamic-ef). These parameters let you tune `ef`, dynamic `ef`, and other aspects of the HNSW algorithm.
 
 |Parameter|Type|Default|Details|
 |:--|:--|:--|:--|
 |`cleanupIntervalSeconds`|integer|300| Cleanup frequency. This value does not normally need to be adjusted. <br/><br/> A higher value means cleanup runs less frequently, but it does more in a single batch. A lower value means cleanup is more frequent, but it may be less efficient on each run.|
 |`distance`|string|`cosine`|Distance metric. Defines the metric that measures the distance between two arbitrary vectors. For available distance metrics, see [supported distance metrics](/developers/weaviate/config-refs/distances.md).
-|`ef`|integer|-1| Balance search speed and accuracy. Search is more accurate when `ef` is higher, but it is also slower. `ef` values greater than 512 show diminishing improvements in accuracy. <br/><br/> Dynamic `ef`. Weaviate automatically adjusts the `ef` value to create a `dynamic ef` list when `ef` is set to -1|
-|`efConstruction`|integer|128| Balance index search and build speeds. A high `efConstruction` value means you can lower your `ef` settings, but importing is slower.<br/><br/>`efConstruction` must be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized.|
-|`maxConnections`|integer|64| Maximum number of connections per element. `maxConnections` is the limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections) connections. <br/><br/> `maxConnections` must be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized.|
-|`dynamicEfMin`|integer|100|*New in `v1.10.0`.* <br/><br/> Lower bound for [`dynamic ef`](#dynamic-ef). Protects against a creating search list that is too short.<br/><br/> This setting is only used when `ef` is -1.|
-|`dynamicEfMax`|integer|500|*New in `v1.10.0`.* <br/><br/> Upper bound for [`dynamic ef`](#dynamic-ef). Protects against a creating search list that is too long.<br/><br/>This setting is only used when `ef` is -1.|
-|`dynamicEfFactor`|integer|8|*New in `v1.10.0`.* <br/><br/> Multiplier for [`dynamic ef`](#dynamic-ef). Sets the starting length of the search list.<br/><br/>This setting is only used when `ef` is -1.|
+|`ef`|integer|-1| Balance search speed and accuracy. Search is more accurate when `ef` is higher, but it is also slower. `ef` values greater than 512 show diminishing improvements in accuracy. <br/><br/> Dynamic `ef`. Weaviate automatically adjusts the `ef` value to create a dynamic `ef` list when `ef` is set to -1. For more details, see [dynamic ef](#dynamic-ef).|
+|`efConstruction`|integer|128| Balance index search speed and build speed. A high `efConstruction` value means you can lower your `ef` settings, but importing is slower.<br/><br/>`efConstruction` must be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized.|
+|`maxConnections`|integer|64| Maximum number of connections per element. `maxConnections` is the connection limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections) connections. <br/><br/> `maxConnections` must be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized.|
+|`dynamicEfMin`|integer|100|*New in `v1.10.0`.* <br/><br/> Lower bound for [dynamic `ef`](#dynamic-ef). Protects against a creating search list that is too short.<br/><br/> This setting is only used when `ef` is -1.|
+|`dynamicEfMax`|integer|500|*New in `v1.10.0`.* <br/><br/> Upper bound for [dynamic `ef`](#dynamic-ef). Protects against creating a search list that is too long.<br/><br/>This setting is only used when `ef` is -1.|
+|`dynamicEfFactor`|integer|8|*New in `v1.10.0`.* <br/><br/> Multiplier for [dynamic `ef`](#dynamic-ef). Sets the potential length of the search list.<br/><br/>This setting is only used when `ef` is -1.|
 |`flatSearchCutoff`|integer|40000|Optional. Threshold for the [flat-search cutoff](/developers/weaviate/concepts/prefiltering.md#flat-search-cutoff). To force a vector index search, set `"flatSearchCutoff": 0`.|
-|`skip`|boolean|`false`| Toggle for collection indexing. When true, Weaviate does not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](#when-to-skip-indexing). <br/><br/> This setting cannot be changed after a collection is initialized.|
+|`skip`|boolean|`false`| Toggle for collection indexing. When true, Weaviate does not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](#when-to-skip-indexing). <br/><br/> This setting cannot be changed after a collection is initialized.|
 |`vectorCacheMaxObjects`|integer|`1e12`| Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. <br/><br/> This setting can be changed after a collection is initialized. For sizing recommendations, see [Vector cache considerations](#vector-cache-considerations).|
-|`pq`|document|-| Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration, see [PQ configuration parameters](#pq-configuration-parameters).
+|`pq`|document|-| Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters).
 
 #### PQ configuration parameters
 
@@ -64,10 +64,10 @@ These parameters let you fine tune `pq`.
 
 |Parameter|Type|Default|Details|
 |:--|:--|:--|:--|
-|`enabled`|boolean|`false`| Enable PQ. Weaviate use PQ compression when `true`.|
-|`trainingLimit`|integer|100000| Object limit. The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit centroids when PQ is enabled.|
+|`enabled`|boolean|`false`| Enable PQ. Weaviate uses PQ compression when `true`.|
+|`trainingLimit`|integer|100000| Object limit. The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids.|
 |`segments`|integer|-| The number of segments to use. By default `segments` is equal to the number of vector dimensions. Reducing the number of segments reduces the size of the quantized (PQ compressed) vectors. <br/><br/> The number of segments must be divisible by the number of dimensions in each vector.|
-|`centroids`|integer|256|The number of centroids to use. Reducing the number of centroids reduces the size of the quantized (PQ compressed) vectors at the price of recall. <br/><br/> If you use the `kmeans` encoder, centroids is set to 256 (one byte) by default.|
+|`centroids`|integer|256|The number of centroids to use. Reducing the number of centroids reduces the size of the quantized (PQ compressed) vectors at the price of recall. <br/><br/> If you use the `kmeans` encoder, `centroids` is set to 256 (one byte) by default.|
 |`encoder`|string|`kmeans`|Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`.|
 |`distribution`|string|`log-normal`| Encoder distribution type. Optional. If you use the `tile` encoder you can specify the `distribution` as `log-normal` (default) or `normal`.|
 
@@ -97,7 +97,7 @@ This is a sample of collection that shows the [data schema](/developers/weaviate
 ```
 
 #### Dynamic ef
-The `ef` parameter controls the size of the nearest neighbors list. You can configure a specific size or else let Weaviate configure the list dynamically. If you choose `dynamic ef`, Weaviate provides several options to control the size of the ANN list.
+The `ef` parameter controls the size of the approximate nearest neighbors (ANN) list. You can configure a specific size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
 
 The length of the list is determined by the query response limit that you set in your query. Weaviate uses the query limit as an anchor and modifies the size of ANN list according to the values you set for the `dynamicEf` parameters.
 
@@ -105,9 +105,9 @@ The length of the list is determined by the query response limit that you set in
 - `dynamicEfMax` sets an upper bound on the list length.
 - `dynamicEfFactor` sets a range for the list.
 
-To keep search accuracy high, the `dynamic ef` value stays above `dynamicEfMin` even if the query limit is small enough to suggest a lower value.
+To keep search accuracy high, the actual dynamic `ef` value stays above `dynamicEfMin` even if the query limit is small enough to suggest a lower value.
 
-To keep search speed reasonable even when retrieving large result sets, the `dynamic ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the query limit is large enough to suggest a higher value. If `dynamicEfMax` is higher than the query limit, `dynamicEfMax` does not have any effect. In this case, the `dynamic ef` value is the limit.
+To keep search speed reasonable even when retrieving large result sets, the dynamic `ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the query limit is large enough to suggest a higher value. If the query limit is higher than `dynamicEfMax`, `dynamicEfMax` does not have any effect. In this case, dynamic `ef` value is equal to the query limit.
 
 To determine the length of the ANN list, Weaviate multiples the query limit by `dynamicEfFactor`. The list range is modified by `dynamicEfMin` and `dynamicEfMax`.
 
@@ -124,7 +124,7 @@ Consider this GraphQL query that sets a limit of 4.
 }
 ```
 
-Imagine the collection has `dynamic ef` configured.
+Imagine the collection has dynamic `ef` configured.
 
 ```json
   "vectorIndexConfig": {
@@ -140,9 +140,11 @@ The resulting ANN search list has these characteristics.
 - A potential length of 40 objects ( ("dynamicEfFactor": 10) * (limit: 4) ).
 - A minimum length of 5 objects ("dynamicEfMin": 5).
 - A maximum length of 25 objects ("dynamicEfMax": 25).
-- An actual size to 5 to 25 objects.
+- An actual size of 5 to 25 objects.
 
-If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/installation/docker-compose) to run your local instance, the file has an environment variable that sets a default query limit. To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT`.
+If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/installation/docker-compose) to run your local instance, the file has an environment variable that sets a reasonable default query limit, `QUERY_DEFAULTS_LIMIT`. The value is significantly lower than QUERY_MAXIMUM_RESULTS to prevent out of memory errors.
+
+To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
 
 ### Configuration tips
 
@@ -156,17 +158,17 @@ To determine this, you need to ask yourself the following questions and compare 
 
 | Number of queries | Imports or updates | Recall level | Configuration suggestions |
 | --- | --- | --- | --- |
-| not many | no | low | This is the ideal scenario, just keep increasing both the `ef` and `efConstruction` settings low. You don't need a big machine and you will still be happy with the results. |
-| not many | no | high | Here the tricky thing is that your recall needs to be high, the fact you're not expecting a lot of requests or imports means that you can increase both the `ef` and `efConstruction` settings. Just keep increasing them until you are happy with the recall. In this case, you can get pretty close to 100%. |
-| not many | yes | low | Here the tricky thing is the high volume of imports and updates. Whatever you do, make sure to keep `efConstruction` low. Luckily you don't need a high recall, and you're not expecting a lot of queries, so you can play around with the `ef` setting until you've reached the desired recall. |
-| not many | yes | high | Now we need to start and pay attention, you need high recall _and_ you're dealing with a lot of imports or updates. This means that we need to keep the `efConstruction` setting low but we can significantly increase the `ef` settings because your queries per second will be low. |
-| many | no | low | Many queries per second means a low `ef` setting. Luckily you don't need high accuracy and or recall so you can significantly increase the `efConstruction` value. |
-| many | no | high | Many queries per second means a low `ef` setting. Because you need a high recall but are not expecting a lot of imports or updates, you can increase your `efConstruction` until you've reached the desired recall. |
-| many | yes | low | Many queries per second means a low `ef` setting and a high amount of imports and updates means a low `efConstruction` as well. Luckily your recall does not have to be as close to 100% as possible, so you can set the `efConstruction` relatively low to support your input or update throughput while throttling the query per second speed with the `ef` setting. |
-| many | yes | high | Aha, this means you're a perfectionist _or_ that you have a use case which needs the best of all three worlds. What we advise you to do is this: keep increasing your `efConstruction` until you've hit the time limit of imports and updates. Next, keep increasing the `ef` setting until you've reached the desired query per second vs recall trade-off. For what it's worth, many people _think_ they need this, but often they don't. We leave it up to you to decide, or ask for help in [our forum](https://forum.weaviate.io).
+| not many | no | low | This is the ideal scenario, just keep both the `ef` and `efConstruction` settings low. You don't need a big machine and you will still be happy with the results. |
+| not many | no | high | Here the tricky thing is that your recall needs to be high. Since you're not expecting a lot of requests or imports, you can increase both the `ef` and `efConstruction` settings. Keep increasing them until you are happy with the recall. In this case, you can get pretty close to 100%. |
+| not many | yes | low | Here the tricky thing is the high volume of imports and updates. Whatever you do, make sure to keep `efConstruction` low. Since you don't need a high recall, and you're not expecting a lot of queries, you can play around with the `ef` setting until you've reached the desired recall. |
+| not many | yes | high | The trade-offs are getting harder. You need high recall _and_ you're dealing with a lot of imports or updates. This means you need to keep the `efConstruction` setting low, but you can significantly increase your `ef` setting because your queries per second rate is low.|
+| many | no | low | Many queries per second means you need a low `ef` setting. Luckily you don't need high accuracy and or recall so you can significantly increase the `efConstruction` value. |
+| many | no | high | Many queries per second means a low `ef` setting. Since you need a high recall but you are not expecting a lot of imports or updates, you can increase your `efConstruction` until you've reached the desired recall. |
+| many | yes | low | Many queries per second means you need a low `ef` setting. A high number of imports and updates also means you need a low `efConstruction` setting. Luckily your recall does not have to be as close to 100% as possible. You can set `efConstruction` relatively low to support your input or update throughput, and you can use the `ef` setting to regulate the query per second speed. |
+| many | yes | high | Aha, this means you're a perfectionist _or_  you have a use case which needs the best of all three worlds. Increase your `efConstruction` value until you hit the time limit of imports and updates. Next, increase your `ef` setting until you reach your desired balance of queries per second versus recall. <br/><br/>  While many people think they need maximize all three dimensions, in practice that's usually not the case. We leave it up to you to decide, and you can always ask for help in [our forum](https://forum.weaviate.io).
 
 :::tip
-These values are a good starting point for many uses cases.
+These values are a good starting point for many use cases.
 
 |Parameter|Value|
 |:--|:--|
@@ -177,7 +179,7 @@ These values are a good starting point for many uses cases.
 :::
 
 
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/configuration/schema-configuration.md).
+Note that the vector index type only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search. The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors). To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
 
 <<<<<<< HEAD
 ### Asynchronous indexing
@@ -198,7 +200,7 @@ During import set `vectorCacheMaxObjects` high enough that all vectors can be he
 
 After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
 
- Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full it is dropped entirely and all future vectors need to be read from disk for the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+ Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries runs against the cache, until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
 
 ### Deletions
 
@@ -219,8 +221,9 @@ Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
 
 Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
 
-Asynchronous indexing is off by default. It can be enabled by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all collections.
+Asynchronous indexing is off by default. To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration (the `docker-compose.yml` file if you use Docker Compose). This setting enables asynchronous indexing for all collections.
 
+<<<<<<< HEAD
 <details>
   <summary>Example Docker Compose configuration</summary>
 
@@ -257,8 +260,11 @@ services:
 </details>
 
 If asynchronous indexing is enabled, and search is performed before vectir indexing is complete, a maximum of 100,000 un-indexed objects will be searched by brute force along with the indexed objects. This means that the search performance will be slower until the vector index has been fully updated, and any objects outside of the first 100,000 objects in the queue will not be searched.
+=======
+Weaviate searches a maximum of 100,000 un-indexed objects by brute force, without the vector index,while the vector index is updating. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
+>>>>>>> bd27a75 (proofread)
 
-The index status can be found through the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint. The `nodes/shards/vectorQueueLength` field will show the number of remaining objects to be indexed.
+The index status can be found through the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint. The `nodes/shards/vectorQueueLength` field shows the number of objects  remaining to be indexed.
 
 import Nodes from '/_includes/code/nodes.mdx';
 
@@ -351,7 +357,7 @@ You can also enable an inverted index to search [based on timestamps](/developer
 
 If you don't want to set an index at all, neither ANN nor inverted, this is possible too.
 
-If we don't want to index the `Authors` we can simply skip all indices (vector _and_ inverted) like this:
+To create the `Authors` collection without any indexes, skip indexing (vector _and_ inverted) on the collection and on the properties.
 
 ```js
 {
