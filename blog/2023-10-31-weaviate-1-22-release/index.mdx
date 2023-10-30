@@ -18,7 +18,7 @@ Here are the ⭐️*highlights*⭐️ relating to this release:
 1. **Nested JSON object storage** - store nested JSON objects directly in Weaviate as a property value
 2. **Async vector indexing** - import large datasets faster by indexing vectors asynchronously
 3. **Additional gRPC support** - preparing for the future with more gRPC support
-4. **New Python client API** - the future is (almost) here
+4. **`v4` Python client beta** - try it out and let us know what you think!
 
 :::tip Available on WCS
 `1.22` is already available on [Weaviate Cloud Services](https://console.weaviate.cloud/) - so try it out!
@@ -220,11 +220,13 @@ The gRPC implementation is still evolving as we will continue to add more functi
 
 :::
 
-## New Python client API
+## `v4` Python client beta
 
 ![Python client](./img/Weaviate-release-1-22-python.png)
 
-If you are wondering how to use the new gRPC functionality, we have you covered with the new Python client. This client is a pre-release version with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience through custom classes and methods, which will trigger IDE auto-completion in place of untyped dictionaries.
+If you are wondering how to use the new gRPC functionality, we have you covered with the new Python client.
+
+This client marks the first beta release of the `v4` client, with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience through custom classes and methods, which will trigger IDE auto-completion in place of untyped dictionaries.
 
 As one example, a class creation requests that used to look like:
 
@@ -244,11 +246,13 @@ client.schema.create_class(class_obj)
 Now looks like:
 
 ```python
-# Proposed (v4) Python client syntax
-client.collection.create(
+# New (v4) Python client syntax
+import weaviate.classes as wvc
+
+client.collections.create(
     name="Question",
-    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
-    generative_config=wvc.ConfigFactory.Generative.openai()
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    generative_config=wvc.Configure.Generative.openai()
 )
 ```
 
@@ -268,16 +272,18 @@ response = (
 Now looks like:
 
 ```python
-# Proposed (v4) Python client syntax
-questions = client.collection.get("Question")
+# New (v4) Python client syntax
+questions = client.collections.get("Question")
 questions.query.near_text(query="biology", limit=2)
 ```
 
-You may already have seen [a blog post](../2023-09-26-collections-python-client/index.mdx) and [a documentation page](/developers/weaviate/client-libraries/experimental) about this new client. If you have yet to try it out, we encourage you to do so!
+You may already have seen [a blog post](../2023-09-26-collections-python-client/index.mdx) about this new client, but we are excited to announce that it is now available in beta!
 
-This is a pre-release version, so we would love to hear your feedback on the new API. Please try it and let us know what you think through this [feedback form](https://tally.so/r/wa4NDB). We will use your feedback to improve the API before the official release.
+The documentation can be found on [this page](/developers/weaviate/client-libraries/python)
 
-A beta of the `v4` client will be released shortly for you to try.
+Given that this is a beta, please try it and let us know of any feedback [on this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892).
+
+It can be as small as a typo, or as big as a missing feature, or anything in between. It can also be a positive comment, of course! We really look forward to hearing from you.
 
 ## Summary
 
