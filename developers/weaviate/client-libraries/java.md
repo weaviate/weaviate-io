@@ -1,6 +1,6 @@
 ---
 title: Java
-sidebar_position: 5
+sidebar_position: 50
 image: og/docs/client-libraries.jpg
 # tags: ['java', 'client library']
 ---

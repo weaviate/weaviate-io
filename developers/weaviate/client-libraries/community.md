@@ -1,6 +1,6 @@
 ---
 title: Community clients
-sidebar_position: 90
+sidebar_position: 95
 image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']
 ---
