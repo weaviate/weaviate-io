@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Schema](../configuration/schema-configuration.md)
@@ -84,7 +82,6 @@ For backward compatibility, `certainty` can still be used when the distance is
 
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

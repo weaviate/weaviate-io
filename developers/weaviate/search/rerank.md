@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'rank']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -206,7 +204,6 @@ The response should look like this:
 </details>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 10
 image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'transformers', 'openai']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -317,7 +315,6 @@ The module also supports these legacy models (not recommended)
 * [davinci 002](https://platform.openai.com/docs/models/overview)
 * [davinci 003](https://platform.openai.com/docs/models/overview)
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

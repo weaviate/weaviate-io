@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/modules/text-spellcheck.jpg
 # tags: ['modules', 'other modules', 'spellcheck']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -159,7 +157,6 @@ The module extends existing `text2vec-*` modules with an `autoCorrect` flag, whi
 }
 ```
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

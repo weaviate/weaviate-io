@@ -5,9 +5,7 @@ image: og/docs/api.jpg
 # tags: ['graphql', 'filters']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -571,7 +569,6 @@ Filtering by null-state requires the target class to be configured to index this
 :::
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

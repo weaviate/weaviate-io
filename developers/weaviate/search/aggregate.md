@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -416,7 +414,6 @@ This example searches for objects where the `round` property equals `Double Jeop
 </details>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

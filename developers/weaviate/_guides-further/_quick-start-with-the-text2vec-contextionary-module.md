@@ -957,7 +957,6 @@ In this tutorial you learned about how to quickly set up a Weaviate with a demo 
 - Install one of the [client libraries](/developers/weaviate/client-libraries/index.md) for smooth interaction with the Weaviate APIs.
 - Consult the [RESTful API references](/developers/weaviate/api/rest/index.md) and the [GraphQL references](../api/graphql/index.md) to learn about all interaction possibilities with Weaviate.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

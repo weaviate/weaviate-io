@@ -4,9 +4,7 @@ sidebar_position: 5
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 Multi-Datacenter (Multi-DC) replication enables you to have multiple copies of the data on multiple servers across more than one data center. This form of replication is not yet supported in v1.17 and v1.18. The current version of replication is designed to support Multi-DC later on. If you are interested in this feature, please upvote [this GitHub issue](https://github.com/weaviate/weaviate/issues/2436).
 
@@ -18,7 +16,6 @@ For now, you can work under the assumption that all replica nodes are in the sam
 <p align="center"><img src="/img/docs/replication-architecture/replication-regional-proximity-3.png" alt="Replication multi-dc" width="75%"/></p>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -378,7 +376,6 @@ services:
 
 Send REST requests to Weaviate without any additional authentication headers or parameters.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

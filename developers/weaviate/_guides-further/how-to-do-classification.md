@@ -351,7 +351,6 @@ There is no one optimal value for kNN. The optimal value is different for every 
 - k is usually chosen not too high. This depends also on the amount of classes. A good start is taking k between 3 and 7 (3 <= k <=7).
 - Check the distanceWinning and distanceLosing values of individual classified data objects. If distanceWinning is way larger than distanceLosing, then the k could be set too high. k can be optimized just like every other hyper parameter in other ML-algorithms just by plotting the overall validation error against k.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

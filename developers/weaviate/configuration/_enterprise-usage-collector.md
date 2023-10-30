@@ -4,9 +4,7 @@ sidebar_position: 7
 image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- Hidden for now as no longer used; to be removed in the future. -->
 ## Introduction
@@ -78,7 +76,6 @@ collector_proxy:
 
 Deploy the helm chart and make sure to use the proxy service for your requests.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

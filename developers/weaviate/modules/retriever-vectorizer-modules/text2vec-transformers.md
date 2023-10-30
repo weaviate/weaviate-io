@@ -4,9 +4,7 @@ sidebar_position: 21
 image: og/docs/modules/text2vec-transformers.jpg
 # tags: ['text2vec', 'text2vec-transformers']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -129,7 +127,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 
 #### Example
 
@@ -143,7 +141,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-transformers",
       "moduleConfig": {
         "text2vec-transformers": {
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
       },
       // highlight-end
@@ -293,7 +291,6 @@ The `text2vec-transformers` module is compatible with various models, each with 
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

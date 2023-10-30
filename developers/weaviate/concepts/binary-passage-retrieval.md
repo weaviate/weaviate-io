@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note
 BPR support in Weaviate is under development.
@@ -83,7 +81,6 @@ BPR support will be provided for all uses-cases including your own vectors from 
 
 From a purely technical perspective, there is no impediment to using any model with BPR. Since the hashing function is very simple, any existing vector can be hashed. However, it is unlikely that your hashes will hold a lot of semantic meaning if the model has not been specifically trained to produce good hashes alongside good vectors. Typically this is done by including the binary loss as part of the loss function during the training process.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

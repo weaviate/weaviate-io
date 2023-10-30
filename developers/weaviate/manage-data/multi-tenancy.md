@@ -5,9 +5,7 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'multi-tenancy']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -340,7 +338,6 @@ As described above, the `JeopardyCategory` class object can be either:
 - A non-multi-tenancy object or
 - A multi-tenancy object belonging to `tenantA`.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

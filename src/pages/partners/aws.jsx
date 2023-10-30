@@ -12,9 +12,6 @@ import Head from '@docusaurus/Head';
 export default function PartnersPage() {
   return (
     <div className="custom-page noBG">
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
       <Layout>
         <PartnersHeader />
         <EnterpriseSupport />

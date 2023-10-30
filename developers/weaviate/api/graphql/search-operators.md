@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/api.jpg
 # tags: ['graphql', 'search operators']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -537,7 +535,6 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 The `_additional{}` property is extended with the answer and a certainty of the answer.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

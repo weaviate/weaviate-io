@@ -4,9 +4,7 @@ sidebar_position: 45
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional properties', 'additional', 'underscore']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -328,7 +326,6 @@ The above result can be plotted as follows (where the result in red is the first
 * Currently only root elements (not resolved cross-references) are taken into consideration for the featureProjection.
 * Due to the relatively high cost of the underlying algorithm, we recommend to limit requests including a `featureProjection` in high-load situations where response time matters. Avoid parallel requests including a `featureProjection`, so that some threads stay available to serve other, time-critical requests.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

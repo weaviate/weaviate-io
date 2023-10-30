@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/modules/sum-transformers.jpg
 # tags: ['transformers']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -194,7 +192,6 @@ The `sum-transformers` module is compatible with various models, each with their
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

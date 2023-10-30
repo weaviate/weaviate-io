@@ -4,9 +4,7 @@ sidebar_position: 11
 image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -126,7 +124,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `true`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
 
 #### Example
 
@@ -145,7 +143,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
             "useGPU": true,
             "useCache": true
           },
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
       },
       "properties": [
@@ -214,7 +212,6 @@ The `text2vec-huggingface` module is compatible with various models, each with t
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

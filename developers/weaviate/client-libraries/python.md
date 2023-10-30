@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note Python client version
 The current Python client version is `v||site.python_client_version||`
@@ -799,7 +797,6 @@ are hosted here:
 - [GitHub](https://github.com/weaviate/weaviate-python-client/releases)
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

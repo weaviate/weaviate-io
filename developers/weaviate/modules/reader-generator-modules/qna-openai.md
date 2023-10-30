@@ -4,9 +4,7 @@ sidebar_position: 21
 image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -238,7 +236,6 @@ OpenAI has multiple models available for the extraction of answers from a given 
 
 These models can be configured
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

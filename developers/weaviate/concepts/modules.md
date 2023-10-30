@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/concepts.jpg
 # tags: ['modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - Combines theoretical explanations from `Configuration/Modules` + `Modules/Index`. e.g.:
@@ -69,7 +67,6 @@ Weaviate can also be used without any modules, as pure vector native database an
 
 It is possible for anyone to create a custom module for use with Weaviate. Click [here](../modules/other-modules/custom-modules.md) to see how you can create and use your own modules.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

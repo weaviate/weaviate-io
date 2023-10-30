@@ -4,9 +4,7 @@ sidebar_position: 2
 image: og/docs/roadmap.jpg
 # tags: ['architecture', 'roadmap']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- style for roadmap table -->
 <!-- <style>
@@ -153,7 +151,6 @@ Scalability is one of Weaviate's core features. The following roadmap aims to gi
   You can download the complete roadmap (as an image) here too
 </a> -->
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

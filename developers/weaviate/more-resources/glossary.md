@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/more-resources.jpg
 # tags: ['glossary', 'terminology']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 | Term | Description |
 | ---- | ----------- |
@@ -24,7 +22,6 @@ import Badges from '/_includes/badges.mdx';
 | **Weaviate Cloud Services (WCS)** | WCS is our SaaS for providing cloud instances of Weaviate |
 | **Vector index** | A data storage mechanism where data is stored as vectors (long arrays of numbers, also seen as coordinates in a high dimensional space), allowing for context-based search |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

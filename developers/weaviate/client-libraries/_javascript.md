@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/client-libraries.jpg
 # tags: ['JavaScript', 'client library']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note JavaScript client version
 The current JavaScript client version is `v||site.javascript_client_version||`.
@@ -153,7 +151,6 @@ The code snippet at the top of this page shows a simple query corresponding to t
 
 See the [change logs on GitHub](https://github.com/weaviate/weaviate-javascript-client/releases).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -170,7 +168,6 @@ The `qna-transformers` module is compatible with various models, each with their
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

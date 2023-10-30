@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -345,7 +343,6 @@ It should produce a response like the one below:
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

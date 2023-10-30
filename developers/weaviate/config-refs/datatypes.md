@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Schema](../configuration/schema-configuration.md)
@@ -66,6 +64,47 @@ In the above example, our objects can be linked to:
 * **1** Article and **3** Blogs
 * **2** Articles and **5** Blogs
 * etc.
+
+## DataType: `object`
+
+:::info Available from version `v1.22`
+:::
+
+The `object` type allows you to store nested data structures in Weaviate. The data structure is a JSON object, and can be nested to any depth.
+
+For example, a `Person` class could have an `address` property, as an object. It could in turn include nested properties such as `street` and `city`:
+
+```json
+{
+    "class": "Person",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+An object for this class may have a structure such as follows:
+
+```json
+{
+    "last_name": "Franklin",
+    "address": {
+        "city": "London",
+        "street": "King Street"
+    }
+}
+```
 
 ## DataType: `date`
 
@@ -179,7 +218,6 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

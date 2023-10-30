@@ -4,9 +4,7 @@ sidebar_position: 7
 image: og/docs/more-resources.jpg
 # tags: ['performance']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Unclear whether this page should be incorporated into another page, e.g. something to do with indexing, resource planning or architecture. -->
 ## Index types
@@ -50,7 +48,6 @@ If you have a nested reference filter, Weaviate starts by resolving the deepest 
 A tip is to avoid deeply nested filters in the queries. Additionally, try to make your queries as restrictive as possible, because a ten-level deep query would for example not be so expensive if all levels return only a single ID. In that case only ten one ID searches need to be performed, which is a lot of searches in one query, but each search is very cheap.
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

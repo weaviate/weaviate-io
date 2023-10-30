@@ -251,7 +251,6 @@ with client.batch(batch_size=100, callback=check_batch_result) as batch:
 This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validations at the object and reference level. Adding this validation on single data objects like above makes it less likely for errors to go undiscovered.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

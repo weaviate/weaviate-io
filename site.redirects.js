@@ -361,14 +361,10 @@ const siteRedirects = {
             to: "/learn/workshops",
             from: "/learn/workshop"
           },
-           // Partners to AWS whilst in development
+           // Partners to products whilst in development
            {
             to: "/products",
             from: "/partners"
-          },
-          {
-            to: "/products",
-            from: "/partners/aws"
           },
             // Terms and Policies Changes
             {
@@ -378,6 +374,14 @@ const siteRedirects = {
               {
                 to: "/service",
                 from: "/service/sla"
+              },
+              {
+                to: "/service",
+                from: "/service/general-terms"
+              },
+              {
+                to: "/service",
+                from: "/service/service-schedule"
               },
     ],
     createRedirects(existingPath) {

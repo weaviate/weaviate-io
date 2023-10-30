@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/installation.jpg
 # tags: ['installation']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [WCS Quickstart](../../wcs/quickstart.mdx)
@@ -80,7 +78,6 @@ After the build is complete, you can run this Weaviate build with docker compose
 docker compose up
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

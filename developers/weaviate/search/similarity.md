@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'similarity search']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -421,7 +419,6 @@ Take the words rain and drought for example. While these are opposite concepts, 
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
