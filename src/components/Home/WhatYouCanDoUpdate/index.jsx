@@ -25,21 +25,21 @@ export default function HomepageWhatYouCanDo() {
 `;
 
   const codeExample2 = `{
-  Get {
-   Article(
-    hybrid: {
-      query: "Board games people
-      are looking out
-for"}
-   limit: 10
- ) {
-   summary
-  title
-  url
-  wordCount
+    Get {
+     Article(
+      hybrid: {
+        query: "Board games people
+        are looking out for"
+      }
+     limit: 10
+   ) {
+     summary
+     title
+     url
+     wordCount
+    }
   }
-}
-}`;
+  }`;
 
   const codeExample3 = `{
   Get {
