@@ -182,6 +182,8 @@ Starting with `1.22`, the vector indexing process can now be performed asynchron
 
 The user can still perform vector searches as import progresses. Weaviate will search the vector index built to date as well as up to 100,000 un-indexed objects using brute force.
 
+Currently, if async indexing is enabled, importing geo properties is slower than before. We expect to improve import speeds in an upcoming patch release.
+
 ### Updated `nodes` endpoint
 
 The `nodes` REST endpoint has been updated to reflect this change.
