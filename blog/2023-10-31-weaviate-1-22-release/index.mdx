@@ -2,7 +2,7 @@
 title: Weaviate 1.22 Release
 slug: weaviate-1-22-release
 authors: [jp]
-date: 2023-10-10
+date: 2023-10-23
 image: ./img/hero.png
 tags: ['release', 'engineering']
 description: "Weaviate 1.22 released with nest JSON storage, async indexing, further gRPC support, and more!"
@@ -27,6 +27,8 @@ Here are the ⭐️*highlights*⭐️ relating to this release:
 For more details, keep scrolling ⬇️!
 
 ## Nested JSON object storage
+
+![Illustration of nested objects being added into Weaviate](./img/Weaviate-release-1-22-full-object-storage.png)
 
 `1.22` welcomes a new member to the Weaviate data type family, with `object` and `object[]` joining the available list.
 
@@ -166,7 +168,15 @@ In the initial implementation, any properties with `object` datatype do not affe
 
 Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
 
-## Async vector indexing (experimental)
+## Performance improvements
+
+The following features unlock further performance improvements in Weaviate `1.22`. Note that these are opt-in features at this point.
+
+The `async vector indexing` feature must be enabled in the Weaviate configuration file, and the gRPC API is currently only supported through the new `v4` Python client (which is in beta).
+
+### Async vector indexing (experimental)
+
+![Indexing progress](./img/Weaviate-release-1-22-indexing-progress.png)
 
 :::caution Experimental
 Given the experimental nature of this feature, we do not recommend that you use this in production.
@@ -184,17 +194,23 @@ The user can still perform vector searches as import progresses. Weaviate will s
 
 Currently, if async indexing is enabled, importing geo properties is slower than before. We expect to improve import speeds in an upcoming patch release.
 
-### Updated `nodes` endpoint
+#### Updated `nodes` endpoint
 
 The `nodes` REST endpoint has been updated to reflect this change.
 
 `INDEXING` has been added to the list of available node statuses, and the `stats` field now includes an `vectorQueueLength` field, which contains the number of objects currently being indexed.
 
-## Additional gRPC support
+### Additional gRPC support
+
+![gRPC & Weaviate](./img/Weaviate-release-1-22-grpc.png)
 
 The team continues to add gRPC support under the hood, with a big part of the equivalent GraphQL `Get` queries, and batch import functionality now available via gRPC.
 
 With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, and multiple times faster `Get` queries. A big part of this comes from the fact that gRPC is a binary protocol, which is more efficient than the text-based GraphQL protocol, as well as it being based on HTTP/2.
+
+The upcoming `v4` Python client supports gRPC, which will allow you to take advantage of these performance improvements.
+
+If you are interested in the gRPC API, you can find the documentation including links to the proto files [on this page](https://weaviate.io/developers/weaviate/api/grpc).
 
 :::note gRPC is still experimental / API changes
 
@@ -205,6 +221,8 @@ The gRPC implementation is still evolving as we will continue to add more functi
 :::
 
 ## New Python client API
+
+![Python client](./img/Weaviate-release-1-22-python.png)
 
 If you are wondering how to use the new gRPC functionality, we have you covered with the new Python client. This client is a pre-release version with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience through custom classes and methods, which will trigger IDE auto-completion in place of untyped dictionaries.
 
