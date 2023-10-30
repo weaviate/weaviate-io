@@ -50,7 +50,7 @@ An example class definition is shown below, where a `Nested` class has a `parent
                     "dataType": ["text"],
                     "name": "child"
                 }
-            ],
+            ]
         }
     ],
 }
@@ -91,11 +91,11 @@ The following class definition shows a `DoublyNested` class with a `parent` prop
                             "dataType": ["text"],
                             "name": "grandchild"
                         },
-                    ],
-                },
-            ],
+                    ]
+                }
+            ]
         }
-    ],
+    ]
 }
 ```
 
@@ -106,7 +106,7 @@ An example object of this class may look like this:
     "parent": {
         "child": {
             "childname": "Nested child",
-            "granchild": "I'm doubly nested!"
+            "grandchild": "I'm doubly nested!"
         }
     }
 },
@@ -179,14 +179,14 @@ The `async vector indexing` feature must be enabled in the Weaviate configuratio
 ![Indexing progress](./img/Weaviate-release-1-22-indexing-progress.png)
 
 :::caution Experimental
-Given the experimental nature of this feature, we do not recommend that you use this in production.
+Due to the experimental nature of this feature, we recommend against using it in production environments.
 :::
 
 This release includes an experimental preview of our async vector indexing feature. With this, Weaviate now offers you the option de-coupling vector indexing from object creation. You can enable this to optimize imports for speed where vector indexing is not required immediately.
 
 As of `1.22`, this is an opt-in feature. It can be enabled by setting the `ASYNC_INDEXING` setting to `true`, such as in the `docker-compose.yml` file.
 
-In the past, the HNSW index would be built synchronously with object creation. This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
+Previously, the HNSW index was built synchronously with object creation.This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
 
 Starting with `1.22`, the vector indexing process can now be performed asynchronously to object creation. This means that the import process can go on independently to the indexing process and continue to create objects while the indexing process is ongoing.
 
@@ -208,7 +208,7 @@ The team continues to add gRPC support under the hood, with a big part of the eq
 
 With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, and multiple times faster `Get` queries. A big part of this comes from the fact that gRPC is a binary protocol, which is more efficient than the text-based GraphQL protocol, as well as it being based on HTTP/2.
 
-The upcoming `v4` Python client supports gRPC, which will allow you to take advantage of these performance improvements.
+The upcoming `v4` Python client, supporting gRPC, will enable you to leverage these performance improvements.
 
 If you are interested in the gRPC API, you can find the documentation including links to the proto files [on this page](https://weaviate.io/developers/weaviate/api/grpc).
 
@@ -283,11 +283,11 @@ The documentation can be found on [this page](/developers/weaviate/client-librar
 
 Given that this is a beta, please try it and let us know of any feedback [on this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892).
 
-It can be as small as a typo, or as big as a missing feature, or anything in between. It can also be a positive comment, of course! We really look forward to hearing from you.
+Feedback can range from minor typos to missing features and everything in between. It can also be a positive comment, of course! We really look forward to hearing from you.
 
 ## Summary
 
-That's it from us - we hope you enjoy the new features and improvements in Weaviate `1.22`. This release is already available on [WCS](https://console.weaviate.cloud/). So you can try it out yourself on a free sandbox, or by upgrading!
+That's all from us - we hope you enjoy the new features and improvements in Weaviate `1.22`. This release is already available on [WCS](https://console.weaviate.cloud/). So you can try it out yourself on a free sandbox, or by upgrading!
 
 Thanks for reading, and see you next time 👋!
 
