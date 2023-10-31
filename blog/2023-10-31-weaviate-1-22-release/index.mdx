@@ -10,13 +10,13 @@ description: "Weaviate 1.22 released with nest JSON storage, async indexing, fur
 ---
 Weaviate `1.22` is here!
 
-Here are the ⭐️*highlights*⭐️ relating to this release:
+Here are the release ⭐️*highlights*⭐️ relating to this release:
 
 ![Weaviate 1.22](./img/hero.png)
 
 <!-- truncate -->
-1. **Nested JSON object storage** - store nested JSON objects directly in Weaviate as a property value
-2. **Async vector indexing** - import large datasets faster by indexing vectors asynchronously
+1. **Nested JSON object storage** - store nested JSON objects directly in Weaviate as property values
+2. **asynchronous vector indexing** - import large datasets faster by indexing vectors asynchronously
 3. **Additional gRPC support** - preparing for the future with more gRPC support
 4. **`v4` Python client beta** - try it out and let us know what you think!
 
@@ -30,11 +30,11 @@ For more details, keep scrolling ⬇️!
 
 ![Illustration of nested objects being added into Weaviate](./img/Weaviate-release-1-22-full-object-storage.png)
 
-`1.22` welcomes a new member to the Weaviate data type family, with `object` and `object[]` joining the available list.
+`1.22` welcomes new members to the Weaviate data type family, with `object` and `object[]` joining the available list.
 
-This allows you to store nested JSON objects directly in Weaviate as a property value. In other words, you can store them without having to flatten the object or use cross-references to other Weaviate classes.
+This allows you to store nested JSON objects directly in Weaviate as property values. In other words, you can store them without having to flatten the object or use cross-references to other Weaviate classes.
 
-This is particularly useful for storing data that is not easily represented as a flat structure, such as an address or a product, which may itself comprise multiple properties.
+This is particularly useful for storing data that is not easily represented in a flat structure. For example, nested properties let you work with an `address` value that has `number`, `street`, and city` properties of its own.
 
 An example class definition is shown below, where a `Nested` class has a `parent` property with an `object` datatype. Because the `parent` property is an `object`, it can have its own properties (`nestedProperties`), such as `child` in this example, which is a `text` datatype.
 
@@ -64,7 +64,7 @@ An example object of this class may look like this:
 }
 ```
 
-Each nested property can have its own data type, including being an `object` itself. This allows you to create nested structures of arbitrary depth.
+Each nested property has its own data type. A nested property can be an `object` itself. This allows you to create nested structures of arbitrary depth.
 
 <details>
   <summary>Two-level depth example</summary>
@@ -114,7 +114,7 @@ An example object of this class may look like this:
 
 </details>
 
-More practically, this type of structure may be applied to capture addresses, product information, or any other nested data structure. Take a look at the following example, which shows a `Person` class with an `address` property that is an `object` datatype. The `address` property is able to store its own `nestedProperties` of `street` and `city`.
+More practically, this type of structure may be applied to capture addresses, product information, or any other nested data structure. Take a look at the following example that shows a `Person` class with an `address` property that is an `object` datatype. The `address` property is able to store its own `nestedProperties` of `street` and `city`.
 
 ```json
 {
@@ -136,7 +136,7 @@ More practically, this type of structure may be applied to capture addresses, pr
 }
 ```
 
-The user may then create an object of this class, such as:
+You can create a nested object for this class:
 
 ```json
 {
@@ -152,7 +152,7 @@ The user may then create an object of this class, such as:
 
 Given that the `object` data types allow nested properties of arbitrary depth, you will be pleased to know that auto-schema supports nested properties. This means that you can create a class with nested properties without having to manually define the class structure.
 
-In other words, you can create an `object` property, and Weaviate will automatically create the nested properties for you at import time. This may allow you to create a class from a large number of nested properties with ease.
+If you create a property with the `object` datatype, Weaviate can automatically create the nested properties for you at import time. This may allow you to create a class from a large number of nested properties with ease.
 
 This can provide a level of convenience for experimentation or evaluation, although as always you will get the most granular and exact control over the schema by defining it manually.
 
@@ -164,7 +164,7 @@ Parsing objects at import time to infer the class definition may be slow for nes
 
 Please keep in mind that this is the first iteration of nested JSON object storage in Weaviate, and we have further improvements planned.
 
-In the initial implementation, any properties with `object` datatype do not affect the object vector, or the inverted index. This behavior is similar to what would happen with a cross-reference property, where the cross-referenced object is not indexed.
+In the current implementation, properties with `object` datatype do not affect the object vector, or the inverted index. Cross-reference properties have similar behavior whe the cross-referenced object is not indexed.
 
 Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
 
@@ -172,9 +172,9 @@ Future plans include the ability to index nested properties, for example to allo
 
 The following features unlock further performance improvements in Weaviate `1.22`. Note that these are opt-in features at this point.
 
-The `async vector indexing` feature must be enabled in the Weaviate configuration file, and the gRPC API is currently only supported through the new `v4` Python client (which is in beta).
+The `asynchronous vector indexing` feature must be enabled in the Weaviate configuration file, and the gRPC API is currently only supported through the new `v4` Python client (which is in beta).
 
-### Async vector indexing (experimental)
+### Asynchronous vector indexing (experimental)
 
 ![Indexing progress](./img/Weaviate-release-1-22-indexing-progress.png)
 
@@ -182,11 +182,11 @@ The `async vector indexing` feature must be enabled in the Weaviate configuratio
 Due to the experimental nature of this feature, we recommend against using it in production environments.
 :::
 
-This release includes an experimental preview of our async vector indexing feature. With this, Weaviate now offers you the option de-coupling vector indexing from object creation. You can enable this to optimize imports for speed where vector indexing is not required immediately.
+This release includes an experimental preview of our asynchronous vector indexing feature. With this, Weaviate now offers you the option de-coupling vector indexing from object creation. You can enable this to optimize imports for speed where vector indexing is not required immediately.
 
-As of `1.22`, this is an opt-in feature. It can be enabled by setting the `ASYNC_INDEXING` setting to `true`, such as in the `docker-compose.yml` file.
+As of `1.22`, this is an opt-in feature. To enable asynchronous index, set `ASYNC_INDEXING` to true in your `docker-compose.yml` or equivalent configuration file.
 
-Previously, the HNSW index was built synchronously with object creation. This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
+In earlier versions of Weaviate, the HNSW index builds synchronously with object creation. A benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, synchronous index creation slows down the import process.
 
 Starting with `1.22`, the vector indexing process can now be performed asynchronously to object creation. This means that the import process can go on independently to the indexing process and continue to create objects while the indexing process is ongoing.
 
@@ -196,9 +196,9 @@ Currently, if async indexing is enabled, importing geo properties is slower than
 
 #### Updated `nodes` endpoint
 
-The `nodes` REST endpoint has been updated to reflect this change.
+The `nodes` REST endpoint reflects these changes.
 
-`INDEXING` has been added to the list of available node statuses, and the `stats` field now includes an `vectorQueueLength` field, which contains the number of objects currently being indexed.
+The `nodes` endpoint now has a new `INDEXING` status. The `stats` field now includes a `vectorQueueLength` field that contains the number of objects currently being indexed.
 
 ### Additional gRPC support
 
@@ -206,7 +206,7 @@ The `nodes` REST endpoint has been updated to reflect this change.
 
 The team continues to add gRPC support under the hood, with a big part of the equivalent GraphQL `Get` queries, and batch import functionality now available via gRPC.
 
-With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, and multiple times faster `Get` queries. A big part of this comes from the fact that gRPC is a binary protocol, which is more efficient than the text-based GraphQL protocol, as well as it being based on HTTP/2.
+With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, `Get` queries are many times faster, too. A big part of this speedup is because gRPC is a binary, and HTTP/2 protocol is more efficient than the text-based GraphQL protocol.
 
 The upcoming `v4` Python client, supporting gRPC, will enable you to leverage these performance improvements.
 
@@ -226,13 +226,13 @@ The gRPC implementation is still evolving as we will continue to add more functi
 
 If you are wondering how to use the new gRPC functionality, we have you covered with the new Python client.
 
-This client marks the first beta release of the `v4` client, with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience through custom classes and methods, which will trigger IDE auto-completion in place of untyped dictionaries.
+This client marks the first beta release of the `v4` client, with not only gRPC support but also an improved API. The new API is more Pythonic, with a focus on improving the user/developer experience. Custom classes and methods now trigger IDE auto-completion in place of untyped dictionaries.
 
-As one example, a class creation requests that used to look like:
+As one example, an older collection creation requests that used to look like:
 
 ```python
 # Existing (v3) Python client syntax
-class_obj = {
+definition = {
     "class": "Question",
     "vectorizer": "text2vec-openai",
     "moduleConfig": {
@@ -240,7 +240,7 @@ class_obj = {
     }
 }
 
-client.schema.create_class(class_obj)
+client.schema.create_class(definition)
 ```
 
 Now looks like:
@@ -256,7 +256,7 @@ client.collections.create(
 )
 ```
 
-And a `near text` query like the following:
+And an older `near text` query like the following:
 
 ```python
 # Existing (v3) Python client syntax
