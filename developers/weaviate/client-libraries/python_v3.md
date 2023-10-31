@@ -25,7 +25,7 @@ The `v3` client is only compatible with Weaviate `1.21.x` and lower (i.e `< 1.22
 The `v3` Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 ```bash
-pip install weaviate-client
+pip install "weaviate-client==3.*"
 ```
 
 ### Set-up

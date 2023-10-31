@@ -31,7 +31,7 @@ The full set of features will be covered in the client documentation page. This 
 The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.8 to 3.12.
 
 ```bash
-pip install weaviate-client==4.0.0b0
+pip install --pre "weaviate-client==4.*"
 ```
 
 ### Requirements
