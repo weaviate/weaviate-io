@@ -77,37 +77,47 @@ In rare situations - typically on large machines with very high import speeds - 
 
 The following tactics can help to reduce Weaviate's memory usage:
 
-- **Use vector compression (i.e. product quantization)**. This is a technique that can reduce the memory footprint of vectors. This can be enabled by setting `vectorIndexConfig/pq/enabled` to `true` in the collection definition. This may impact recall performance, so we recommend to test this setting on your dataset before using it in production. For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq).
+- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend tests this setting on your dataset before using it in production.
 
-- **Reduce the dimensionality of your vectors.** The most effective approach reduce the number of dimensions per fector. Consider whether a model that uses fewer dimensions may be suitable for your use-case (e.g. 384d instead of 1536).
+To enable PQ, update `pq` under `vectorIndexConfig` in your collection definition. For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq).
 
-- **Reduce the number of `maxConnections` in your HNSW index settings**. Because each edge uses 8-10B of memory, reducing the maximum number can reduce the memory footprint. If this change adversely affects the recall performance of the HNSW index, you can mitigate this effect by increasing one or both of the `efConstruction` and `ef` parameters. Increasing `efConstruction` will increase the import time without affecting query times. Increasing `ef` will increase query times without affecting import times.
+- **Reduce the dimensionality of your vectors.** The most effective approach to reducing memory size, is to reduce the number of dimensions per vector. If you have high dimension vectors, consider using a model that uses fewer dimensions. For example, a model that has 384 dimensions uses far less memory than a model with 1536 dimensions.
 
-- **Use a vector cache that is smaller than the total amount of your vectors (not recommended)**. This strategy is described under [Vector Cache](#vector-cache) below. It can have a significant performance impact, and thus it is only recommended in specific situations.
+- **Reduce the number of `maxConnections` in your HNSW index settings**. Each object in memory has up to `maxConnections` connections. Each of those connections uses 8-10B of memory. To reduce the overall memory footprint, reduce `maxConnections`.
+
+Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate this effect,increase one or both of the `efConstruction` and `ef` parameters.
+
+- Increasing `efConstruction` increases import time without affecting query times.
+- Increasing `ef` increases query times without affecting import times.
+
+- **Use a vector cache that is smaller than the total amount of your vectors (not recommended)**. This strategy is described under [Vector Cache](#vector-cache) below. It has a significant performance impact, and is only recommended in specific, limited situations.
 
 ## Vector Cache
 
-For optimal search and import performance, all previously imported vectors need to be held in memory. The size of the vector cache is specified by the `vectorIndexConfig/vectorCacheMaxObjects` parameter in the collection definition. By default, when creating a new collection, this limit is set to one trillion (i.e. `1e12`) objects.
+For optimal search and import performance, all previously imported vectors need to be held in memory. The size of the vector cache is specified by the [`vectorCacheMaxObjects`](/developers/weaviate/configuration/indexes) parameter in the collection definition. By default this limit is set to one trillion (`1e12`) objects when you create a new collection.
 
-A disk lookup for a vector is orders of magnitudes slower than memory lookup, so reducing the `vectorCacheMaxObjects` should be done with care and we suggest this be done only as a last resort.
+You can reduce the size of `vectorCacheMaxObjects`, but a disk lookup for a vector is orders of magnitudes slower than memory lookup. Only reduce the size of `vectorCacheMaxObjects` with care and as a last resort.
 
 Generally we recommend that:
-- During imports, set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
-- When only or mostly querying (as opposed to bulk importing), you can experiment with vector cache limits which are lower than your total dataset size. Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full, it is dropped entirely and all future vectors need to be read from disk the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case, you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+- During import set `vectorCacheMaxObjects` high enough that all vectors can be held in memory. Each import requires multiple searches. Import performance drop drastically when there isn't enough memory to hold all of the vectors in the cache.
+
+- After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
+
+  Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries runs against the cache, until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
 
 ### When to add more Memory to your Weaviate machine or cluster
 
-Typically you should consider adding more memory if:
-- (more common) you want to import a larger dataset
-- (less common) exact lookups are disk-bound and could be sped up by more memory for page-caching.
+Consider adding more memory if:
+- You want to import a larger dataset (more common).
+- Exact lookups are disk-bound and more memory will improve page-caching (less common).
 
 ## The role of GPUs in Weaviate
 
-Weaviate Core itself does not make use of GPUs, however some of the models included in various modules (`text2vec-transformers`, `qna-transformers`, `ner-transformers`, etc.) are meant to be run with GPUs. These modules run in isolated containers, so you can run them on GPU-accelerated hardware while running Weaviate Core on low-cost CPU-only hardware.
+Weaviate Core itself does not make use of GPUs. However, some of the models that Weaviate includes as modules are meant to run with GPUs, for example `text2vec-transformers`, `qna-transformers`, and `ner-transformers`. These modules run in isolated containers, so you can run the module containers on GPU-accelerated hardware while running Weaviate Core on low-cost CPU-only hardware.
 
 ## Disks: SSD vs Spinning Disk
 
-Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning hard-disks can be used with some performance penalties.
+Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning hard-disks can also be used with some performance penalties.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
