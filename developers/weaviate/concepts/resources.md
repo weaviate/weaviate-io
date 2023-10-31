@@ -20,7 +20,7 @@ Vector search is the most CPU intensive process in Weaviate operations. Queries 
 
 Each insert, or search, is single-threaded. However, if you make multiple searches or inserts at the same time, Weaviate can make use of multiple threads. [Batch inserts](/developers/weaviate/manage-data/import) use multiple threads to process data in parallel.
 
-### When to add more CPUs to your Weaviate machine or cluster
+### When to add more CPUs
 
 When CPU utilization is high during importing, add CPUs to increases import speed.
 
@@ -59,7 +59,7 @@ For example, if you have a model that uses 384-dimensional vectors of type `floa
 
 For a more accurate calculation you also need to take the `maxConnections` setting into account.
 
-Assuming `maxConnections` is 64 and the other values are the same. A more accurate memory estimate is `1e6 * (1536B + 64*10) = 2.2 GB`.
+Assuming `maxConnections` is 64 and the other values are the same, a more accurate memory estimate is `1e6 * (1536B + 64*10) = 2.2 GB`.
 
 The estimate that includes `maxConnections` is smaller than the rule of thumb estimate. However, the `maxConnections` estimate doesn't account for garbage collection. Garbage collection adds overhead that is explained in the next section.
 
