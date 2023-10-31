@@ -206,7 +206,7 @@ The `nodes` endpoint now has a new `INDEXING` status. The `stats` field now incl
 
 The team continues to add gRPC support under the hood, with a big part of the equivalent GraphQL `Get` queries, and batch import functionality now available via gRPC.
 
-With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, `Get` queries are many times faster, too. A big part of this speedup is because gRPC is a binary, and HTTP/2 protocol is more efficient than the text-based GraphQL protocol.
+With these changes, we have seen improvements in import speeds of around ~60-80% for batch imports, `Get` queries are many times faster, too. A big part of this speedup is because gRPC sends binary payloads over HTTP/2, and this provides improvements over GraphQL which uses JSON-based payloads over HTTP/1.
 
 The upcoming `v4` Python client, supporting gRPC, will enable you to leverage these performance improvements.
 
