@@ -40,7 +40,7 @@ import SchemaDef from '/_includes/definition-schema.md';
 
 In the [Quickstart tutorial](../quickstart/index.md), you saw how to specify the name and the vectorizer for a data collection, called a "class" in Weaviate:
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
 
 <CodeAutoschemaMinimumSchema />
 

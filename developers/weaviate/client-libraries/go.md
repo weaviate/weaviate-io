@@ -1,6 +1,6 @@
 ---
 title: Go
-sidebar_position: 7
+sidebar_position: 70
 image: og/docs/client-libraries.jpg
 # tags: ['go', 'client library']
 ---

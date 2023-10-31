@@ -1,8 +1,9 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
@@ -24,12 +25,22 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 ```
 
 </TabItem> */}
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 
 <FilteredTextBlock
   text={EndToEndPyCode}
-  startMarker="# GenerativeSearchExample"
-  endMarker="# END GenerativeSearchExample"
+  startMarker="# GenerativeSearchGroupedTaskExample"
+  endMarker="# END GenerativeSearchGroupedTaskExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
+
+<FilteredTextBlock
+  text={EndToEndPy3Code}
+  startMarker="# GenerativeSearchGroupedTaskExample"
+  endMarker="# END GenerativeSearchGroupedTaskExample"
   language="py"
 />
 
@@ -38,8 +49,8 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 
 <FilteredTextBlock
   text={EndToEndTSCode}
-  startMarker="// GenerativeSearchExample"
-  endMarker="// END GenerativeSearchExample"
+  startMarker="// GenerativeSearchGroupedTaskExample"
+  endMarker="// END GenerativeSearchGroupedTaskExample"
   language="ts"
 />
 
@@ -80,7 +91,7 @@ func main() {
 		NearTextArgBuilder().
 		WithConcepts([]string{"biology"})
 
-	generativeSearch := graphql.NewGenerativeSearch().SingleResult("Explain {answer} as you might to a five-year-old.")
+	generativeSearch := graphql.NewGenerativeSearch().GroupedResult("Write a tweet with emojis about these facts.")
 
 	result, err := client.GraphQL().Get().
 		WithClassName("Question").
@@ -177,9 +188,9 @@ echo '{
         category
         _additional {
           generate(
-            singleResult: {
+            groupedTask: {
               prompt: \"\"\"
-                Explain {answer} as you might to a five-year-old.
+                Write a tweet with emojis about these facts.
               \"\"\"
             }
           ) {

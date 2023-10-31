@@ -76,7 +76,7 @@ We suggest using a Weaviate client ([read more](../client-libraries/index.md)) t
 
 To install your preferred client, run the installation code for your language:
 
-import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
+import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 :::info Install client libraries
 
@@ -94,7 +94,7 @@ To connect to your Weaviate instance, you need the following information:
 
 Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
 
-import ConnectToWeaviateWithKey from '/_includes/code/quickstart.autoschema.connect.withkey.mdx'
+import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
 <ConnectToWeaviateWithKey />
 
@@ -106,13 +106,12 @@ The following code:
 - Configures a class object with:
   - Name `Question`
   - Vectorizer module `text2vec-openai`
-  - Default options for `text2vec-openai`
   - Generative module `generative-openai`
 - Then creates the class.
 
 Run it to create the class in your Weaviate instance.
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
@@ -134,13 +133,12 @@ If you are not sure which option to follow, use Option 1, as it is the simplest 
 
 Run the code below to import data without specifying a vector. This causes Weaviate to use the `vectorizer` defined for the class to create a vector embedding for each object.
 
-import CodeAutoschemaImport from '/_includes/code/quickstart.autoschema.import.mdx'
+import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
 <CodeAutoschemaImport />
 
 The above code:
-- Loads objects,
-- Initializes a batch process, and
+- Loads objects, and
 - Adds objects to the target class (`Question`) one by one.
 
 ### *Option 2*: Custom vectors
@@ -149,7 +147,7 @@ Alternatively, you can also provide your own vectors to Weaviate. Regardless of 
 
 To import data with corresponding pre-computed vectors, run the code below. This causes Weaviate to use the vector provided for each object.
 
-import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart.autoschema.import.custom.vectors.mdx'
+import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart/import.custom.vectors.mdx'
 
 <CodeAutoschemaImportCustomVectors />
 
@@ -169,7 +167,7 @@ If you have not been following along with the snippets, run the code block below
 :::tip Remember to replace the **URL**, **Weaviate API key** and **inference API key**
 :::
 
-import CodeAutoschemaEndToEnd from '/_includes/code/quickstart.autoschema.endtoend.mdx'
+import CodeAutoschemaEndToEnd from '/_includes/code/quickstart/endtoend.mdx'
 
 <CodeAutoschemaEndToEnd />
 
@@ -185,13 +183,13 @@ Let's start with a similarity search. A `nearText` search looks for objects in W
 
 Run the following code to search for objects whose vectors are most similar to that of `biology`.
 
-import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
+import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
 
 <CodeAutoschemaNeartext />
 
 You should see results like this:
 
-import BiologyQuestionsJson from '/_includes/code/quickstart.biology.questions.mdx'
+import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx'
 
 <BiologyQuestionsJson />
 
@@ -207,13 +205,13 @@ This example shows why vector searches are powerful. Vectorized data objects all
 
 You can add Boolean filters to searches. For example, the above search can be modified to only in objects that have a "category" value of "ANIMALS". Run the following code to see the results:
 
-import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart.autoschema.neartext.where.mdx'
+import CodeAutoschemaNeartextWithWhere from '/_includes/code/quickstart/neartext.where.mdx'
 
 <CodeAutoschemaNeartextWithWhere />
 
 You should see results like this:
 
-import BiologyQuestionsWhereJson from '/_includes/code/quickstart.biology.where.questions.mdx'
+import BiologyQuestionsWhereJson from '/_includes/code/quickstart/response.biology.where.questions.mdx'
 
 <BiologyQuestionsWhereJson />
 
@@ -234,13 +232,13 @@ To see what happens when an LLM uses query results to perform a task that is bas
 
 Note that the code uses a `single prompt` query, which asks the model generate an answer for *each* retrieved database object.
 
-import CodeAutoschemaGenerative from '/_includes/code/quickstart.autoschema.generativesearch.mdx'
+import CodeAutoschemaGenerative from '/_includes/code/quickstart/generativesearch.single.mdx'
 
 <CodeAutoschemaGenerative />
 
 You should see results similar to this:
 
-import BiologyGenerativeSearchJson from '/_includes/code/quickstart.biology.generativesearch.mdx'
+import BiologyGenerativeSearchJson from '/_includes/code/quickstart/response.biology.generativesearch.single.mdx'
 
 <BiologyGenerativeSearchJson />
 
@@ -252,13 +250,13 @@ The next example uses a `grouped task` prompt instead to combine all search resu
 
 To ask the LLM to write a tweet about these search results, run the following code.
 
-import CodeAutoschemaGenerativeGrouped from '/_includes/code/quickstart.autoschema.generativesearch.grouped.mdx'
+import CodeAutoschemaGenerativeGrouped from '/_includes/code/quickstart/generativesearch.grouped.mdx'
 
 <CodeAutoschemaGenerativeGrouped />
 
 The first returned object will include the generated text. Here's one that we got:
 
-import BiologyGenerativeSearchGroupedJson from '/_includes/code/quickstart.biology.generativesearch.grouped.mdx'
+import BiologyGenerativeSearchGroupedJson from '/_includes/code/quickstart/response.biology.generativesearch.grouped.mdx'
 
 <BiologyGenerativeSearchGroupedJson />
 

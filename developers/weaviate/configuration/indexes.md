@@ -106,22 +106,96 @@ If you're looking for a starting point for values, we would advise an `efConstru
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/configuration/schema-configuration.md).
 
-### Asynchronous indexing (experimental)
+### Asynchronous indexing
 
 :::info Available from version `v1.22`
 :::
 
 :::caution Experimental
-As of `v1.22`, this is an experimental feature. Please use with caution.
+As of `v1.22`, this is an experimental, opt-in feature. Please use with caution.
 :::
 
-Starting in Weaviate `1.22`, you can use asynchronous indexing. Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+
+Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
 
 Asynchronous indexing is off by default. It can be enabled by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all classes.
 
-A maximum of 100,000 un-indexed objects will be searched by brute force (i.e. without the vector index) until the vector index has been updated. This means that the search performance will be slower until the vector index has been fully updated, and any objects outside of the first 100,000 objects in the queue will not be searched.
+<details>
+  <summary>Example Docker Compose configuration</summary>
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    restart: on-failure:0
+    ports:
+     - "8080:8080"
+     - "50051:50051"
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      QUERY_MAXIMUM_RESULTS: 10000
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-palm,generative-cohere,generative-openai,generative-palm'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTOSCHEMA_ENABLED: 'false'
+      ASYNC_INDEXING: 'true'
+...
+```
+
+</details>
+
+If asynchronous indexing is enabled, and search is performed before vectir indexing is complete, a maximum of 100,000 un-indexed objects will be searched by brute force along with the indexed objects. This means that the search performance will be slower until the vector index has been fully updated, and any objects outside of the first 100,000 objects in the queue will not be searched.
 
 The index status can be found through the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint. The `nodes/shards/vectorQueueLength` field will show the number of remaining objects to be indexed.
+
+import Nodes from '/_includes/code/nodes.mdx';
+
+<Nodes/>
+
+Then, you can check the status of the vector index queue by inspecting the output. The `vectorQueueLength` field will show the number of remaining objects to be indexed. In the example below, the vector index queue has 425 objects remaining to be indexed on the `TestArticle` shard, out of a total of 1000 objects.
+
+```json
+{
+  "nodes": [
+    {
+      "batchStats": {
+        "ratePerSecond": 0
+      },
+      "gitHash": "e6b37ce",
+      "name": "weaviate-0",
+      "shards": [
+        {
+          "class": "TestArticle",
+          "name": "nq1Bg9Q5lxxP",
+          "objectCount": 1000,
+          // highlight-start
+          "vectorIndexingStatus": "INDEXING",
+          "vectorQueueLength": 425
+          // highlight-end
+        },
+      ],
+      "stats": {
+        "objectCount": 1000,
+        "shardCount": 1
+      },
+      "status": "HEALTHY",
+      "version": "1.22.1"
+    },
+  ]
+}
+```
 
 ## Inverted index
 

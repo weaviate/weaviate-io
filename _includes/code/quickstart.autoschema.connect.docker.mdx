@@ -1,14 +1,14 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={EndToEndPyCode}
+  text={EndToEndPy3Code}
   startMarker="# DockerInstantiationExample"
   endMarker="# END DockerInstantiationExample"
   language="py"

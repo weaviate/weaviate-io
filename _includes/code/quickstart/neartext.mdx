@@ -1,8 +1,9 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
@@ -24,12 +25,22 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 ```
 
 </TabItem> */}
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 
 <FilteredTextBlock
   text={EndToEndPyCode}
-  startMarker="# NearTextWhereExample"
-  endMarker="# END NearTextWhereExample"
+  startMarker="# NearTextExample"
+  endMarker="# END NearTextExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
+
+<FilteredTextBlock
+  text={EndToEndPy3Code}
+  startMarker="# NearTextExample"
+  endMarker="# END NearTextExample"
   language="py"
 />
 
@@ -38,8 +49,8 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 
 <FilteredTextBlock
   text={EndToEndTSCode}
-  startMarker="// NearTextWhereExample"
-  endMarker="// END NearTextWhereExample"
+  startMarker="// NearTextExample"
+  endMarker="// END NearTextExample"
   language="ts"
 />
 
@@ -55,7 +66,6 @@ import (
 
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
   "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
-  "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
   "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
@@ -81,16 +91,10 @@ func main() {
     NearTextArgBuilder().
     WithConcepts([]string{"biology"})
 
-  where := filters.Where().
-      WithPath([]string{"category"}).
-      WithOperator(filters.Equal).
-      WithValueText("ANIMALS")
-
   result, err := client.GraphQL().Get().
     WithClassName("Question").
     WithFields(fields...).
     WithNearText(nearText).
-    WithWhere(where).
     WithLimit(2).
     Do(context.Background())
   if err != nil {
@@ -168,11 +172,6 @@ echo '{
     Get {
       Question (
         limit: 2
-        where: {
-          path: [\"category\"],
-          operator: Equal,
-          valueText: \"ANIMALS\"
-        }
         nearText: {
           concepts: [\"biology\"],
         }
@@ -183,7 +182,7 @@ echo '{
       }
     }
   }"
-}' | curl \
+}' | tr -d "\n" | curl \
     -X POST \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \

@@ -2,12 +2,25 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+
+Add `weaviate-client` to your Python environment with `pip`.
+
+**Please note that the `v4` client requires Weaviate `1.22` or higher.**
+
+(The `v4` client is currently in beta.)
+
+```bash
+pip install --pre "weaviate-client==4.*"
+```
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 Add `weaviate-client` to your Python environment with `pip`:<br/><br/>
 
 ```bash
-pip install weaviate-client
+pip install "weaviate-client==3.*"
 ```
 
 </TabItem>
