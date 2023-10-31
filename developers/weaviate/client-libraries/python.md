@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import UserTestCode from '!!raw-loader!./_includes/user_test.py';
-import PythonCode from '!!raw-loader!./_includes/python_v4.py';
+import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 <Badges/>
 
