@@ -15,7 +15,7 @@ This section links to the release note summaries for Weaviate core.
 |[1.22.0](/developers/weaviate/release-notes/900_1_22)|2023-10-27|
 |[1.21.0](/developers/weaviate/release-notes/901_1_21)|2023-08-17|
 
-### Weaviate core and client releases developer notes
+### Weaviate releases developer notes
 
 This section provides links to the developer release notes for the Weaviate core database and the client libraries.
 
