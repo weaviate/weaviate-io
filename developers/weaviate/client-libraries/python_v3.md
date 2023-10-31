@@ -16,11 +16,19 @@ The Python client is available in two versions: `v3` and `v4`. The `v4` client (
 
 ## Installation and setup
 
+### Requirements
+
+The `v3` client is only compatible with Weaviate `1.21.x` and lower (i.e `< 1.22`). This is due to its user of gRPC. If you are using an older version of Weaviate, please use the `v3` client.
+
+### Installation
+
 The `v3` Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 ```bash
 pip install weaviate-client
 ```
+
+### Set-up
 
 Now you can use the client in your Python scripts as follows:
 

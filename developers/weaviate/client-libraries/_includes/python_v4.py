@@ -18,10 +18,9 @@ assert client.is_ready()
 
 # DirectInstantiation
 import weaviate
-from weaviate import ConnectionParams
 
 client = weaviate.WeaviateClient(
-    ConnectionParams.from_url("http://localhost:8080", 50051)
+    weaviate.ConnectionParams.from_url("http://localhost:8080", 50051)
 )
 # END DirectInstantiation
 
@@ -48,12 +47,11 @@ assert client.is_ready()
 """
 # DirectInstantiationWithOIDC
 import weaviate
-from weaviate import ConnectionParams, AuthClientPassword
 import os
 
 client = weaviate.WeaviateClient(
-    ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
-    auth_client_secret=AuthClientPassword(
+    weaviate.ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
+    auth_client_secret=weaviate.AuthClientPassword(
         username=os.environ["WCS_USERNAME"],
         password=os.environ["WCS_PASSWORD"]
     )
@@ -64,11 +62,10 @@ client = weaviate.WeaviateClient(
 """
 # DirectInstantiationWithAPIKey
 import weaviate
-from weaviate import ConnectionParams, AuthApiKey
 
 client = weaviate.WeaviateClient(
-    ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
-    auth_client_secret=AuthApiKey("learn-weaviate")
+    weaviate.ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate")
 )
 # END DirectInstantiationWithAPIKey
 """

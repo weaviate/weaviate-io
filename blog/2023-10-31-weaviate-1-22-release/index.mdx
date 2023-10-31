@@ -186,7 +186,7 @@ This release includes an experimental preview of our async vector indexing featu
 
 As of `1.22`, this is an opt-in feature. It can be enabled by setting the `ASYNC_INDEXING` setting to `true`, such as in the `docker-compose.yml` file.
 
-Previously, the HNSW index was built synchronously with object creation.This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
+Previously, the HNSW index was built synchronously with object creation. This meant that the import process would occur in lockstep with the indexing process. The benefit of the synchronous approach is that the user can perform a search immediately after import, as the data is already indexed. However, if your only goal was fastest data ingestion, this could slow down the import process.
 
 Starting with `1.22`, the vector indexing process can now be performed asynchronously to object creation. This means that the import process can go on independently to the indexing process and continue to create objects while the indexing process is ongoing.
 
