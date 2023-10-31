@@ -10,15 +10,10 @@ image: og/docs/more-resources.jpg
 This section links to the release note summaries for Weaviate core.
 
 
-import Core122 from '/_includes/release-note-summaries/core-1-22.mdx' ;
-
-<Core122 />
-
-
-import Core121 from '/_includes/release-note-summaries/core-1-21.mdx' ;
-
-<Core121 />
-
+|Release|Release Date|
+|:--|:--|
+|[1.22.0](/developers/weaviate/release-notes/900_1_22)|2023-10-27|
+|[1.21.0](/developers/weaviate/release-notes/901_1_21)|2023-08-17|
 
 ### Weaviate core and client releases developer notes
 
