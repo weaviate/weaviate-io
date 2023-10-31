@@ -50,7 +50,7 @@ Of course, in most cases we would want to retrieve information on some criteria.
 
 This is a vector search using a `Get` query.
 
-import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
+import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
 
 <CodeAutoschemaNeartext />
 

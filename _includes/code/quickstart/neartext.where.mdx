@@ -1,8 +1,9 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.py';
-import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.endtoend.ts';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
@@ -24,12 +25,22 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 ```
 
 </TabItem> */}
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 
 <FilteredTextBlock
   text={EndToEndPyCode}
-  startMarker="# GenerativeSearchGroupedTaskExample"
-  endMarker="# END GenerativeSearchGroupedTaskExample"
+  startMarker="# NearTextWhereExample"
+  endMarker="# END NearTextWhereExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
+
+<FilteredTextBlock
+  text={EndToEndPy3Code}
+  startMarker="# NearTextWhereExample"
+  endMarker="# END NearTextWhereExample"
   language="py"
 />
 
@@ -38,8 +49,8 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 
 <FilteredTextBlock
   text={EndToEndTSCode}
-  startMarker="// GenerativeSearchGroupedTaskExample"
-  endMarker="// END GenerativeSearchGroupedTaskExample"
+  startMarker="// NearTextWhereExample"
+  endMarker="// END NearTextWhereExample"
   language="ts"
 />
 
@@ -50,12 +61,13 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart.autoschema.e
 package main
 
 import (
-	"context"
-	"encoding/json"
-	"fmt"
+  "context"
+  "fmt"
 
-	"github.com/weaviate/weaviate-go-client/v4/weaviate"
-	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/filters"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
 )
 
 func main() {
@@ -65,39 +77,38 @@ func main() {
     AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
     Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
   }
-	client, err := weaviate.NewClient(cfg)
-	if err != nil {
-		panic(err)
-	}
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
 
-	fields := []graphql.Field{
-		{Name: "question"},
-		{Name: "answer"},
-		{Name: "category"},
-	}
+  fields := []graphql.Field{
+    {Name: "question"},
+    {Name: "answer"},
+    {Name: "category"},
+  }
 
-	nearText := client.GraphQL().
-		NearTextArgBuilder().
-		WithConcepts([]string{"biology"})
+  nearText := client.GraphQL().
+    NearTextArgBuilder().
+    WithConcepts([]string{"biology"})
 
-	generativeSearch := graphql.NewGenerativeSearch().GroupedResult("Write a tweet with emojis about these facts.")
+  where := filters.Where().
+      WithPath([]string{"category"}).
+      WithOperator(filters.Equal).
+      WithValueText("ANIMALS")
 
-	result, err := client.GraphQL().Get().
-		WithClassName("Question").
-		WithFields(fields...).
-		WithNearText(nearText).
-		WithLimit(2).
-		WithGenerativeSearch(generativeSearch).
-		Do(context.Background())
-	if err != nil {
-		panic(err)
-	}
+  result, err := client.GraphQL().Get().
+    WithClassName("Question").
+    WithFields(fields...).
+    WithNearText(nearText).
+    WithWhere(where).
+    WithLimit(2).
+    Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
 
-	jsonOutput, err := json.MarshalIndent(result, "", "  ")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(jsonOutput))
+  fmt.Printf("%v", result)
 }
 ```
 
@@ -168,6 +179,11 @@ echo '{
     Get {
       Question (
         limit: 2
+        where: {
+          path: [\"category\"],
+          operator: Equal,
+          valueText: \"ANIMALS\"
+        }
         nearText: {
           concepts: [\"biology\"],
         }
@@ -175,18 +191,6 @@ echo '{
         question
         answer
         category
-        _additional {
-          generate(
-            groupedTask: {
-              prompt: \"\"\"
-                Write a tweet with emojis about these facts.
-              \"\"\"
-            }
-          ) {
-            singleResult
-            error
-          }
-        }
       }
     }
   }"

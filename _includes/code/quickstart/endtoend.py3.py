@@ -31,7 +31,7 @@ client = weaviate.Client(
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 
 # EndToEndExample
-# ===== add schema =====
+# ===== define collection =====
 class_obj = {
     "class": "Question",
     "vectorizer": "text2vec-openai",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
