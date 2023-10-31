@@ -106,7 +106,6 @@ The following code:
 - Configures a class object with:
   - Name `Question`
   - Vectorizer module `text2vec-openai`
-  - Default options for `text2vec-openai`
   - Generative module `generative-openai`
 - Then creates the class.
 
@@ -139,8 +138,7 @@ import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 <CodeAutoschemaImport />
 
 The above code:
-- Loads objects,
-- Initializes a batch process, and
+- Loads objects, and
 - Adds objects to the target class (`Question`) one by one.
 
 ### *Option 2*: Custom vectors

@@ -53,14 +53,14 @@ data = json.loads(resp.text)  # Load data
 question_objs = list()
 questions = client.collections.get("Question")
 
-for i, d in enumerate(data):  # Batch import data
+for i, d in enumerate(data):
     question_objs.append({
         "answer": d["Answer"],
         "question": d["Question"],
         "category": d["Category"],
     })
 
-questions.data.insert_many(question_objs)
+questions.data.insert_many(question_objs)  # This uses batching under the hood
 
 # END EndToEndExample    # Test import
 questions_definition = questions.config.get()
@@ -143,7 +143,7 @@ data = json.loads(resp.text)  # Load data
 question_objs = list()
 questions = client.collections.get("Question")
 
-for i, d in enumerate(data):  # Batch import data
+for i, d in enumerate(data):
     question_objs.append(wvc.DataObject(
         properties={
             "answer": d["Answer"],
@@ -153,7 +153,7 @@ for i, d in enumerate(data):  # Batch import data
         vector=d["vector"]
     ))
 
-questions.data.insert_many(question_objs)
+questions.data.insert_many(question_objs)    # This uses batching under the hood
 # ===== END import with custom vectors =====
 
 questions_definition = questions.config.get()
