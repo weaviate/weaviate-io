@@ -4,11 +4,6 @@ sidebar_position: 12
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'class']
 ---
-import Badges from '/_includes/badges.mdx';
-import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
-import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-class.md'
-
-<Badges/>
 
 ## List data objects
 
