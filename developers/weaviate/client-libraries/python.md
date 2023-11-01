@@ -5,6 +5,12 @@ image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library', 'experimental']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import UserTestCode from '!!raw-loader!./_includes/user_test.py';
+import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+
 :::caution Beta version
 The Python client is currently in beta, and we want to hear from you.
 
