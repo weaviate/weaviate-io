@@ -5,7 +5,6 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-
 :::info Related pages
 - [WCS Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)

@@ -5,10 +5,7 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'AWS Marketplace']
 ---
 
-import Badges from '/_includes/badges.mdx';
 import ReactPlayer from 'react-player/lazy'
-
-<Badges/>
 
 ## Overview
 

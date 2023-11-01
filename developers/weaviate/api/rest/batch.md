@@ -4,10 +4,8 @@ sidebar_position: 13
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'batching']
 ---
-import Badges from '/_includes/badges.mdx';
-import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 
-<Badges/>
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 
 ## Batch create objects
 
