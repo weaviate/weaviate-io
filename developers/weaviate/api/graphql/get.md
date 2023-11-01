@@ -5,6 +5,8 @@ image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---
 
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />

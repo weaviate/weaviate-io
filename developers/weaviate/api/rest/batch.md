@@ -5,6 +5,8 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'batching']
 ---
 
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
+
 ## Batch create objects
 
 For sending data objects to Weaviate in bulk.

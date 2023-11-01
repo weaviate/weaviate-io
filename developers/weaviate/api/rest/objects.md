@@ -5,6 +5,9 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'class']
 ---
 
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
+import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-class.md'
+
 ## List data objects
 
 :::tip Do you want to list all objects from Weaviate?
