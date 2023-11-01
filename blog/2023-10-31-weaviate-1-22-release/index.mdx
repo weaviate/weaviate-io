@@ -5,7 +5,7 @@ authors: [jp]
 date: 2023-10-23
 image: ./img/hero.png
 tags: ['release', 'engineering']
-description: "Weaviate 1.22 released with nest JSON storage, async indexing, further gRPC support, and more!"
+description: "Weaviate 1.22 released with nest object storage, async indexing, further gRPC support, and more!"
 
 ---
 Weaviate `1.22` is here!
@@ -15,7 +15,7 @@ Here are the release ⭐️*highlights*⭐️ relating to this release:
 ![Weaviate 1.22](./img/hero.png)
 
 <!-- truncate -->
-1. **Nested JSON object storage** - store nested JSON objects directly in Weaviate as property values
+1. **Nested object storage** - store nested objects directly in Weaviate as property values
 2. **asynchronous vector indexing** - import large datasets faster by indexing vectors asynchronously
 3. **Additional gRPC support** - preparing for the future with more gRPC support
 4. **`v4` Python client beta** - try it out and let us know what you think!
@@ -26,13 +26,13 @@ Here are the release ⭐️*highlights*⭐️ relating to this release:
 
 For more details, keep scrolling ⬇️!
 
-## Nested JSON object storage
+## Nested object storage
 
 ![Illustration of nested objects being added into Weaviate](./img/Weaviate-release-1-22-full-object-storage.png)
 
 `1.22` welcomes new members to the Weaviate data type family, with `object` and `object[]` joining the available list.
 
-This allows you to store nested JSON objects directly in Weaviate as property values. In other words, you can store them without having to flatten the object or use cross-references to other Weaviate classes.
+This allows you to store nested objects directly in Weaviate as property values. In other words, you can store them without having to flatten the object or use cross-references to other Weaviate classes.
 
 This is particularly useful for storing data that is not easily represented in a flat structure. For example, nested properties let you work with an `address` value that has `number`, `street`, and city` properties of its own.
 
@@ -162,7 +162,7 @@ Parsing objects at import time to infer the class definition may be slow for nes
 
 ### Future improvements
 
-Please keep in mind that this is the first iteration of nested JSON object storage in Weaviate, and we have further improvements planned.
+Please keep in mind that this is the first iteration of nested object storage in Weaviate, and we have further improvements planned.
 
 In the current implementation, properties with `object` datatype do not affect the object vector, or the inverted index. Cross-reference properties have similar behavior whe the cross-referenced object is not indexed.
 
@@ -200,7 +200,7 @@ The `nodes` REST endpoint reflects these changes.
 
 The `nodes` endpoint now has a new `INDEXING` status. The `stats` field now includes a `vectorQueueLength` field that contains the number of objects currently being indexed.
 
-### Additional gRPC support
+### Official gRPC support
 
 ![gRPC & Weaviate](./img/Weaviate-release-1-22-grpc.png)
 
@@ -212,11 +212,9 @@ The upcoming `v4` Python client, supporting gRPC, will enable you to leverage th
 
 If you are interested in the gRPC API, you can find the documentation including links to the proto files [on this page](https://weaviate.io/developers/weaviate/api/grpc).
 
-:::note gRPC is still experimental / API changes
+:::note gRPC API changes
 
-Please keep in mind that gRPC is still experimental, and we do not recommend that you use it in production.
-
-The gRPC implementation is still evolving as we will continue to add more functionality to it. This release, for example, changes the implementation under the hood. If you were trying out gRPC in the past, this version may not be compatible with your existing code.
+This release changes the implementation under the hood. If you were trying out gRPC in the past, this version may not be compatible with your existing code.
 
 :::
 
