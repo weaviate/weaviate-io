@@ -10,7 +10,7 @@ export default function CallingSection() {
       <div className="container">
         <div className={styles.header}>
           <h2>
-            Calling developers, data scientists, and AI builders of all levels
+            Calling developers, architects, and (AI) builders of all levels
           </h2>
           <p>
             Meet with our leadership team to hear what’s ahead for AI-native

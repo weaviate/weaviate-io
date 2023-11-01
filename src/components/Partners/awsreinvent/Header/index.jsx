@@ -13,8 +13,9 @@ export default function Header() {
             <h1>Weaviate at AWS re:Invent</h1>
             <div className={styles.headerBox}>
               <p className="text-center">
-                Visit us at AWS re:Invent to learn how to simplify building
-                AI-native applications with our open source vector database.
+                Visit us at booth #1620 at AWS re:Invent to learn how to
+                simplify building AI-native applications with our open source
+                vector database.
               </p>
             </div>
           </div>
