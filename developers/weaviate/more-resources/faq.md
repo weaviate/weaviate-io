@@ -31,7 +31,7 @@ image: og/docs/more-resources.jpg
 <details>
   <summary>Answer</summary>
 
-> Yes, we do - check out [Weaviate Cloud Services](/pricing).
+> Yes, we do - check out [Weaviate Cloud Services](/products).
 
 </details>
 
