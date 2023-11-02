@@ -8,7 +8,7 @@ sidebar_position: 13
 ## Overview
 
 Weaviate uses the `text2vec-jinaai` module to obtain vectors.
-- [JinaAI](https://jina.ai/)
+- [JinaAI Embeddings](https://jina.ai/embeddings/)
 
 Key notes:
 
