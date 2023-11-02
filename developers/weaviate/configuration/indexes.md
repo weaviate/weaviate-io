@@ -65,28 +65,17 @@ These parameters let you fine tune `pq`.
  
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `enabled` | boolean | `false` |  Enables product quantization (PQ) compression when enabled. |
-| `trainingLimit` | integer | 100000 |  The maximum number of objects, per shard, used to fit the centroids.Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled. |
-| `segments` | integer |  |  The number of segments to use. By default this is equal to the number of dimensions. Reducing the number of segments will further reduce the size of the quantized vectors. The number of segments must be divisible by the number of dimensions of each vector. |
-| `centroids` | integer | - | The number of centroids to use. Reducing the number of centroids will further reduce the size of quantized vectors at the price of recall. When using the `kmeans` encoder, centroids is set to 256 or one byte by default in Weaviate. |
-| `encoder` | string | `kmeans` | An object with encoder specific information. Here you can specify the `type` of encoder as either `kmeans`(default) or `tile`. If using the `tile` encoder you can also specify the `distribution` as `log-normal` (default) or `normal`. |
+| `enabled` | boolean | `false` |  Enable PQ. Weaviate use product quantization (PQ) compression when `true`. |
+| `trainingLimit` | integer | 100000 |  Object limit. The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids. |
+| `segments` | integer | - |T he number of segments to use. By default `segments` is equal to the number of vector dimensions. Reducing the number of segments reduces the size of the quantized (PQ compressed) vectors. <br/><br/> The number of segments must be divisible by the number of dimensions in each vector. |
+| `centroids` | integer | 256 | The number of centroids to use. Reducing the number of centroids reduces the size of the quantized (PQ compressed) vectors at the price of recall. <br/><br/> If you use the `kmeans` encoder, `centroids` is set to 256 (one byte) by default. |
+| `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`. | 
+|`distribution`|string|`log-normal`| Encoder distribution type. Only used with the `tile` encoder. If you use the `tile` encoder, you can specify the `distribution` as `log-normal` (default) or `normal`. |
 
-### Dynamic ef
+#### Collection configuration example 
 
-The `ef` parameter controls the size of the approximate nearest neighbors (ANN) list at query time. You can configure a specific size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
-
-The length of the list is determined by the query response limit that you set in your query. Weaviate uses the query limit as an anchor and modifies the size of ANN list according to the values you set for the `dynamicEf` parameters.
-
-- `dynamicEfMin` sets a lower bound on the list length.
-- `dynamicEfMax` sets an upper bound on the list length.
-- `dynamicEfFactor` sets a range for the list.
-
--To keep search recall high, the actual dynamic `ef` value stays above `dynamicEfMin` even if the query limit is small enough to suggest a lower value.
- 
- 
- 
+This is a sample of collection that shows the [data schema](/developers/weaviate/configuration/schema-configuration.md):
   
-Example of a collection could be [configured in your data schema](/developers/weaviate/configuration/schema-configuration.md):
 
 ```json
 {
@@ -109,6 +98,58 @@ Example of a collection could be [configured in your data schema](/developers/we
 }
 ```
 
+### Dynamic ef
+
+The `ef` parameter controls the size of the approximate nearest neighbors (ANN) list at query time. You can configure a specific size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
+
+The length of the list is determined by the query response limit that you set in your query. Weaviate uses the query limit as an anchor and modifies the size of ANN list according to the values you set for the `dynamicEf` parameters.
+
+- `dynamicEfMin` sets a lower bound on the list length.
+- `dynamicEfMax` sets an upper bound on the list length.
+- `dynamicEfFactor` sets a range for the list.
+
+To keep search recall high, the actual dynamic `ef` value stays above `dynamicEfMin` even if the query limit is small enough to suggest a lower value.
+
+To keep search speed reasonable even when retrieving large result sets, the dynamic `ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the query limit is large enough to suggest a higher value. If the query limit is higher than `dynamicEfMax`, `dynamicEfMax` does not have any effect. In this case, dynamic `ef` value is equal to the query limit.
+
+To determine the length of the ANN list, Weaviate multiples the query limit by `dynamicEfFactor`. The list range is modified by `dynamicEfMin` and `dynamicEfMax`.
+
+Consider this GraphQL query that sets a limit of 4.
+
+```graphql
+{
+  Get {
+    JeopardyQuestion(limit: 4) {
+      answer
+      question
+    }
+  }
+}
+```
+
+Imagine the collection has dynamic `ef` configured.
+
+```json
+  "vectorIndexConfig": {
+     "ef": -1,
+     "dynamicEfMin": 5
+     "dynamicEfMax": 25
+     "dynamicEfFactor": 10
+  }
+```
+
+The resulting ANN search list has these characteristics.
+
+- A potential length of 40 objects ( ("dynamicEfFactor": 10) * (limit: 4) ).
+- A minimum length of 5 objects ("dynamicEfMin": 5).
+- A maximum length of 25 objects ("dynamicEfMax": 25).
+- An actual size of 5 to 25 objects.
+
+If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/installation/docker-compose) to run your local instance, the file has an environment variable that sets a reasonable default query limit, `QUERY_DEFAULTS_LIMIT`. The value is significantly lower than QUERY_MAXIMUM_RESULTS to prevent out of memory errors.
+
+To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
+
+
 ### Configuration tips
 
 Now you might be wondering: "What settings do I need for my use case?"
@@ -121,7 +162,7 @@ To determine this, you need to ask yourself the following questions and compare 
 
 | Number of queries | Imports or updates | Recall level | Configuration suggestions |
 | --- | --- | --- | --- |
-| not many | no | low | This is the ideal scenario, just keep increasing both the `ef` and `efConstruction` settings low. You don't need a big machine and you will still be happy with the results. |
+| not many | no | low | This is the ideal scenario. Keep both the `ef` and `efConstruction` settings low. You don't need a big machine and you will still be happy with the results. |
 | not many | no | high | Here the tricky thing is that your recall needs to be high, the fact you're not expecting a lot of requests or imports means that you can increase both the `ef` and `efConstruction` settings. Just keep increasing them until you are happy with the recall. In this case, you can get pretty close to 100%. |
 | not many | yes | low | Here the tricky thing is the high volume of imports and updates. Whatever you do, make sure to keep `efConstruction` low. Luckily you don't need a high recall, and you're not expecting a lot of queries, so you can play around with the `ef` setting until you've reached the desired recall. |
 | not many | yes | high | Now we need to start and pay attention, you need high recall _and_ you're dealing with a lot of imports or updates. This means that we need to keep the `efConstruction` setting low but we can significantly increase the `ef` settings because your queries per second will be low. |
