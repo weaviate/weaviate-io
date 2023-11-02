@@ -1,5 +1,5 @@
 ---
-title: What is chunking and why?
+title: A brief introduction to chunking
 ---
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
@@ -8,53 +8,46 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;What is chunking?
 
-In the context of natural language processing, "chunking" refers to the process of splitting texts into smaller pieces of texts, i.e. "chunks".
+Chunking is the process of splitting texts into smaller pieces of texts, i.e. "chunks". Consider a case where the source text comprises a set of books. A chunking method could conceivably split the text into a set of chapters, paragraphs, sentences, or even words, into chunks.
 
-For reasons that we'll discuss soon, chunking is a very common and important pre-processing step both in the context of vector databases as well as large language models (LLMs).
+While this is a simple concept, it can have a significant impact on the performance of vector databases, and outputs of language models.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Why chunk data?
 
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;For information retrieval
+
+You know by now that a vector database stores objects by corresponding vectors to capture their meaning. But how much text each vector capture?
+
+Chunking defines this. Each chunk is the unit of information that vectorized and stored in the database.
+
+Let's go back to the above example, building a vector database from a set of books.
+
+At one extreme, you could catalog each book as one vector. This would build a database akin to a library catalog. Each search would do a good job of finding the right book. But it would not be so good for finding specific information within a book.
+
+At the other extreme, cataloging each sentence as a vector would build a database akin to a (sentence-level) thesaurus. This would be good for finding specific concepts or information conveyed by the writer. But it would not be so good for finding broader information, such as the idea conveyed by a book, or even a chapter.
+
+Whether to choose one or the other approach, or a third approach in-between, depends on your use case. But the key point is that chunking defines the unit of information that is stored in the database, and therefore each unit of information to be retrieved.
+
+As we will see later on, this has implications not only search, but also retrieval augmented generation (RAG) use case downstream.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;To meet model requirements
+
+In fact, text data can often be very long. Think about lengths of articles, transcripts, or even books. Instead of a few words, these texts can be thousands, or tens of thousands of words long if not longer. *The Lord of the Rings*, for example, is over 500,000 words long!
+
+That's great for readers, but less great for language models. Long texts like these can pose problems to modern language models. Thse models typically have a finite "window" of text input lengths, and source texts often exceed this length.
+
+To deal with this limitation, a technique called chunking is often used. Like the name suggests, chunking splits longer bodies of text into smaller portions that can be handled by the model. However, there are many ways to chunk a text, and the choice of chunking strategy can have a significant impact on the performance of your model.
+
+
 There are many potential reasons for chunking data, but for vector databases and LLMs, there are important, but different reasons for doing so.
+
+At the core, this is a simple concept. But there are many ways to chunk a text, and the choice of chunking strategy can have a significant impact on the final results. But before we get all that - let's start with the basics. Why do we need to chunk data in the first place when we're dealing with vector databases and language models?
+
+
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Information retrieval
 
-For vector databases (and therefore vector search), chunking has the effect of defining a unit of information to be retrieved. A chunk will become a smallest quantum of information to be catalogued or retrieved by the vector database.
 
-So, it is very important to get chunk sizing right for your use case. Failure modes can include chunks being too small, or chunks being too big.
-
-:::warning TODO
-Add conceptual figure showing big/small chunks
-:::
-
-#### (Too) Small chunks
-
-If chunks are too small, each text object may not contain enough information or context for meaningful search to be performed.
-
-Imagine a book that is chunked into individual words and vectorized.
-
-These vectors would be likely too granular to provide any kind of meaningful, contextual results in a search. (Unless you were using it as a thesaurus!)
-
-Note that chunks that are a few words may be okay in some situations. Such as when you are looking for a specific phrase, or information.
-
-:::warning TODO
-ADD FIGURES OF SMALL CARDS SHOWING WORD-SIZED CHUNKS
-:::
-
-#### (Too) Large chunks
-
-On the other hand, if chunks are too large, each chunk could not be meaningfully represented by a vector embedding.
-
-Imagine a book that is saved as one "chunk", or even chapters. Is this a good idea?
-
-Such an arrangement would not be suitable if what you were after was discovery of relevant snippets, or sections. But it may be reasonable, if you are looking to find the right chapter, or section, in - say - a library of books.
-
-:::warning TODO
-ADD FIGURES OF SMALL CARDS SHOWING WORD-SIZED CHUNKS
-:::
-
-Look at it this way - a vector embedding is a representation of the underlying object's "meaning". And a vector database catalogs those meanings so that they can be searched.
-
-Accordingly, each chunk needs to be an appropriate size that the captured meaning reflects the kind of search to be performed.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vectorization token limit
 

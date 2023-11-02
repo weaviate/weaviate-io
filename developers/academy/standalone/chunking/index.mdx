@@ -1,5 +1,5 @@
 ---
-title: Chunking texts
+title: Chunking - Work with long texts
 sidebar_position: 101  # Like a subject number (e.g. CS101)
 ---
 
@@ -10,27 +10,33 @@ import ReactPlayer from 'react-player/lazy'
 <!-- <ReactPlayer url='https://youtu.be/FU7l5pr2FmU' controls='true'/> -->
 <br/>
 
-:::warning TODO
+<!-- :::warning TODO
 Intro video here
-:::
+::: -->
 
 <!-- Provide context for this course, in addition to the concrete learning goals and outcomes. Why would someone want to do this unit? -->
 
-For simplicity, many of the examples in our documentation or Academy use relatively short texts such as trivia quizzes as our source data. But real-world texts can of course be very long - think about lengths of articles, transcripts, or even books. They can be orders of magnitude longer than a simple question/answer pair!
+Chunking is an important concept in the world of vector databases and language models. Although we've looked at relatively small pieces of text in previous units, real-world text data can be much longer.
 
-Although long texts occur very commonly in the wild, modern language models can find it difficult to deal with them. Both vectorizer models and generative large language models have a finite "window" of text input lengths, and source texts often exceed this length.
+Think about lengths of articles, transcripts, or even books. Instead of a few words, these texts can be thousands, or tens of thousands of words long if not longer. *The Lord of the Rings*, for example, is over 500,000 words long!
 
-To deal with this limitation, a technique called chunking is often used. Like the name suggests, chunking splits longer bodies of text into smaller portions that can be handled by the model. However, there are many ways to chunk a text, and the choice of chunking strategy can have a significant impact on the performance of your model.
+Chunking splits texts like these into smaller pieces of texts, i.e. "chunks", before storing them in a vector database, or passing them to a language model.
 
-This unit covers this seemingly simple, but nuanced topic from the perspective of a user. We'll begin by covering what chunking is, and why it has become necessary, even though the existence of long texts is certainly not new.
+This can seem relatively innocuous at first. Like deciding where to split a sentence or a paragraph into two. But the choice of chunking strategy can have a significant impact on the final results.
 
-We'll then move on to cover various chunking methods before discussing key considerations when deciding on a chunking strategy, as well as some suggested starting points.
+Although this may seem glance, chunking decisions can significantly impact the search performance and behavior of vector databases as well as outputs language models. This unit covers this seemingly simple, but nuanced topic from the perspective of a user. We will begin by covering what chunking is, and why it is used.
+
+We will then move on to cover various chunking methods before discussing key considerations when deciding on a chunking strategy, as well as some suggested starting points. Lastly, we will discuss data structure considerations for Weaviate, such as collection (class) definition implications.
 
 By the end of this unit, you will have a good understanding of chunking in general, and be able to implement some solid chunking strategies based on your actual needs.
 
 ### <i class="fa-solid fa-clipboard-list-check"></i>&nbsp;&nbsp;Prerequisites
 
-- None
+- (**Required**) A Python (3) environment with `weaviate-client` installed.
+- (**Required**) Complete [101A Weaviate Academy Preparation](../setup.mdx)
+- (*Recommended*) Complete [Hello, Weaviate](../101_hello_weaviate/index.mdx)
+- (*Recommended*) Complete [Queries 1](../102_queries_1/index.mdx)
+- (*Recommended*) Complete [Schema and Imports](../103_schema_and_imports/index.mdx)
 
 ## <i class="fa-solid fa-chalkboard-user"></i>&nbsp;&nbsp;Learning objectives
 
