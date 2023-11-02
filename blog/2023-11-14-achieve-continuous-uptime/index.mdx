@@ -5,11 +5,12 @@ authors: [etienne,jp]
 date: 2023-11-13
 # image: ./img/hero.png
 tags: ['concepts', 'engineering', 'how-to']
+# tags: ['replication']  # Added for further SEO without changing the original tags
 description: "Learn about high-availability setups with Weaviate, which can allow upgrades and other maintenance with zero downtime. "
 
 ---
 
-## The tyranny of downtime
+## The tyranny of database downtime
 
 Like the old saying goes, a chain is only as strong as its weakest link. For tech infrastructure products, the weak link can often be its uptime. Think about how big a deal it is when social networks, web apps or databases are not available.
 
@@ -29,18 +30,18 @@ In fact, configuring replication is actually easy and simple, and using it can l
 - **Tenant**: In the context of Weaviate, an isolated environment or subsection within the system, designed to separate data and access between different end users or groups.
 :::
 
-## Replication to the rescue
+## Enabling replication in Weaviate
 
 Just the simple act of enabling replication on a Weaviate cluster will provide huge benefits. Doing so might actually be simpler than you might imagine.
 
-### Replication on Weaviate Cloud Services (WCS)
+### How to enable replication on Weaviate Cloud Services (WCS)
 
 Enabling replication on a Weaviate Cloud Services cluster is as simple as selecting the `Enable High Availability` button at cluster creation time. (Not available on sandboxes.)
 
 
 This will enable a multi-node configuration in Weaviate and ensures that each class is configured with the appropriate replication factor.
 
-### Replication on self-deployed Weaviate
+### How to enable replication on self-deployed Weaviate
 
 Enabling replication in a self-deployment setup such as a Docker or Kubernetes setup involves the following two steps. First, modify the configuration file to enable a multi-node setup (e.g. 3), and add the `replicationConfig` setting to the class definition like so:
 
@@ -180,7 +181,7 @@ And when you insert objects into `ClassWithReplication`, they will be replicated
 
 </details>
 
-## Benefits
+## Benefits of replication
 
 So, let’s cover the implications of doing this. What does replication get us? A big one is *availability*. With no replication, any node being down will make its data unavailable.
 
@@ -196,7 +197,7 @@ Weaviate provides further configurability and nuance for you in this area by way
 - The replication algorithm makes sure that no node holds a tenant twice. Replication is always spread out across nodes.
 :::
 
-## Implications for maintenance
+## Implications for database maintenance
 
 In production, this can dramatically reduce the critical downtime. Let’s take an example three-pod Kubernetes setup with 10,000 tenants, and see how replication affects availability during a rolling update of Weaviate versions.
 
@@ -206,7 +207,7 @@ Each Weaviate pod will restart one by one, as demonstrated in the example below 
 
 What will the cluster availability be like during this period? We performed an experiment simulating non-trivial load with ~3,800 queries per second to approximate a real-life scenario. Here are the results:
 
-### Without replication
+### Queries during maintenance - without replication
 
 The below figure shows results from our setup with no replication. The area chart at the top shows how many requests failed, and the line graph shows pod readiness.
 
@@ -220,7 +221,7 @@ And at times, it is even worse, with the failure rate being as high as one in th
 The failure rate here is less than one in three, as Weaviate is capable of loading tech tenant’s data (i.e. shard) and making them available. This makes the restarting node ‘partly’ available.
 :::
 
-### With replication
+### Queries during maintenance - with replication
 
 On the other hand, this figure shows results from a scenario with replication configured with a factor of 3.
 
