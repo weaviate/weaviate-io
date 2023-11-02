@@ -1,0 +1,232 @@
+.lovedBg {
+  background: #130c49;
+  min-height: 730px;
+}
+
+.header {
+  margin-bottom: 40px;
+
+  .title {
+    color: #ffffff;
+  }
+
+  p {
+    color: #ffffff;
+  }
+}
+.info {
+  flex: 1;
+  h3,
+  p {
+    margin-left: 15px;
+  }
+}
+
+.module {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.twitterBox {
+  border-radius: 1.3125rem;
+  border: 0.5px solid #8d98a4;
+  background: #17202a;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+
+  width: 20rem;
+  height: 17.90369rem;
+  flex-shrink: 0;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .left {
+    display: flex;
+    flex: 1;
+    border-left: 1px solid #130c49;
+
+    .tabsList {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+
+      .tabsTrigger {
+        appearance: none;
+        box-shadow: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex: 1;
+        cursor: pointer;
+        background-color: transparent;
+        gap: 5px;
+        padding: 0.5rem;
+        border-left: 3px solid transparent;
+
+        p {
+          text-align: left;
+          display: none;
+        }
+      }
+      .tabsTrigger[data-state='active'] {
+        border-left: 3px solid #130c49;
+
+        p {
+          text-align: left;
+          display: inherit;
+        }
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex: 1;
+
+    div[data-state='active'] {
+      display: flex;
+      // flex-direction: column;
+      flex: 1;
+
+      .codeContainer {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-row-gap: 4px;
+
+        height: 460px;
+        width: 100%;
+
+        .codeImage {
+          background-size: contain;
+          height: 100%;
+          width: 100%;
+          background-repeat: no-repeat;
+          @media screen and (max-width: 485px) {
+            height: 270px;
+          }
+        }
+
+        .code1 {
+          background-image: url('/img/site/code-box-1.png');
+        }
+        .code2 {
+          background-image: url('/img/site/code-box-2.png');
+        }
+        .code3 {
+          background-image: url('/img/site/code-box-3.png');
+        }
+      }
+    }
+  }
+}
+
+.twitter-tweet.twitter-tweet-rendered {
+  margin-left: 16% !important;
+  width: 20rem !important;
+  height: 17.90369rem;
+  flex-shrink: 0;
+}
+
+.xbox {
+  margin-left: 14%;
+}
+
+.slick-track:hover {
+  transition: -webkit-transform ease 0s !important;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-size: 48px !important;
+
+  color: #2021246e !important;
+}
+
+.quoteBox {
+  width: 18rem;
+  height: 22rem;
+  flex-shrink: 0;
+  border-radius: 1.3125rem;
+  background: #1c1468;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+  padding: 28px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  p {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+
+  span {
+    color: #36b44d;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 60px;
+  }
+
+  img {
+    margin: 7px 0px;
+    max-width: 70px;
+  }
+}
+
+.sliderContainer {
+  max-height: 450px;
+}
+
+.shadowL {
+  z-index: 11;
+  position: relative;
+
+  @media screen and (max-width: 485px) {
+    display: none;
+  }
+}
+.shadowL:before {
+  content: ' ';
+  height: 167%;
+  left: -20px;
+  position: absolute;
+  top: 180px;
+
+  box-shadow: 0px 0px 110px 209px #130c496e;
+}
+
+.shadowR {
+  z-index: 11;
+  position: relative;
+  @media screen and (max-width: 485px) {
+    display: none;
+  }
+}
+.shadowR:after {
+  content: ' ';
+  height: 167%;
+  right: -83px;
+  position: absolute;
+  top: -211px;
+
+  box-shadow: 0px 0px 110px 209px #130c496e;
+}

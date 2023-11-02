@@ -1,26 +1,28 @@
-| Weaviate Type     | Exact Data Type       | Formatting                                                                         |
-|-------------------|-----------------------|------------------------------------------------------------------------------------|
-| text              | string                  | `string`                                                                           |
-| text[]            | list of strings         | `["string one", "string two"]`                                                     |
-| int               | int64 (*)             | `0`                                                                                |
-| int[]             | list of int64 (*)     | `[0, 1]`                                                                           |
-| boolean           | boolean               | `true`/`false`                                                                     |
-| boolean[]         | list of booleans      | `[true, false]`                                                                    |
-| number            | float64               | `0.0`                                                                              |
-| number[]          | list of float64       | `[0.0, 1.1]`                                                                       |
-| date              | string                | [more info](/developers/weaviate/config-refs/datatypes#datatype-date)            |
-| date[]            | list of string        | [more info](/developers/weaviate/config-refs/datatypes#datatype-date)            |
-| uuid | string | `"c8f8176c-6f9b-5461-8ab3-f3c7ce8c2f5c"` |
-| uuid[] | list of strings | `["c8f8176c-6f9b-5461-8ab3-f3c7ce8c2f5c", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"]` |
-| geoCoordinates    | string                | [more info](/developers/weaviate/config-refs/datatypes#datatype-geocoordinates)  |
-| phoneNumber       | string                | [more info](/developers/weaviate/config-refs/datatypes#datatype-phonenumber)     |
-| blob              | base64 encoded string | [more info](/developers/weaviate/config-refs/datatypes#datatype-blob)            |
-| *cross reference* | string                | [more info](/developers/weaviate/config-refs/datatypes#datatype-cross-reference) |
+| Weaviate Type | Exact Data Type | Formatting | Note |
+|---------------|-----------------|------------|------|
+| text | string | `string` | |
+| text[] | list of strings | `["string one", "string two"]` | |
+| object | object | `{"child": "I'm nested!"}` | Available from `1.22` |
+| object[] | list of objects | `[{"child": "I'm nested!"}, {"child": "I'm nested too!"}` | Available from `1.22` |
+| int | int64 (see note) | `0` | |
+| int[] | list of int64 (see note) | `[0, 1]` | |
+| boolean | boolean | `true`/`false` | |
+| boolean[] | list of booleans | `[true, false]` | |
+| number | float64 | `0.0` | |
+| number[] | list of float64 | `[0.0, 1.1]` | |
+| date | string | [more info](/developers/weaviate/config-refs/datatypes#datatype-date) | |
+| date[] | list of string | [more info](/developers/weaviate/config-refs/datatypes#datatype-date) | |
+| uuid | string | `"c8f8176c-6f9b-5461-8ab3-f3c7ce8c2f5c"` | |
+| uuid[] | list of strings | `["c8f8176c-6f9b-5461-8ab3-f3c7ce8c2f5c", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"]` | |
+| geoCoordinates | string | [more info](/developers/weaviate/config-refs/datatypes#datatype-geocoordinates) | |
+| phoneNumber | string | [more info](/developers/weaviate/config-refs/datatypes#datatype-phonenumber) | |
+| blob | base64 encoded string | [more info](/developers/weaviate/config-refs/datatypes#datatype-blob) | |
+| *cross reference* | string | [more info](/developers/weaviate/config-refs/datatypes#datatype-cross-reference) | |
 
 
 ### Deprecated types
 
-| Weaviate Type     | Exact Data Type       | Formatting          | Deprecated from |
-|-------------------|-----------------------|---------------------|-----------------|
-| string            | string                | `"string"` | `v1.19` |
-| string[]          | list of strings       | `["string", "second string"]` | `v1.19` |
+| Weaviate Type | Exact Data Type | Formatting | Deprecated from |
+|---------------|-----------------|------------|-----------------|
+| string | string | `"string"` | `v1.19` |
+| string[] | list of strings | `["string", "second string"]` | `v1.19` |

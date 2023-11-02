@@ -24,8 +24,8 @@ resp = requests.get(url)
 data = json.loads(resp.text)
 
 # Prepare a batch process
+client.batch.configure(batch_size=100)  # Configure batch
 with client.batch as batch:
-    batch.batch_size=100
     # Batch import all Questions
     for i, d in enumerate(data):
         # print(f"importing question: {i+1}")  # To see imports
@@ -36,7 +36,7 @@ with client.batch as batch:
             "category": d["Category"],
         }
 
-        client.batch.add_data_object(properties, "Question")
+        batch.add_data_object(properties, "Question")
 ```
 
 </TabItem>
@@ -155,7 +155,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
 -X POST \
 -H "Content-Type: application/json" \
 -d '{

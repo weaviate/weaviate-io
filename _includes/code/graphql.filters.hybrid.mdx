@@ -70,24 +70,26 @@ Result<GraphQLResponse> result = client.graphQL().get().withClassName("Article")
 ```bash
 echo '{
   "query": "{
-      Get {
-        Article(
-          hybrid: {
-            query: \"Fisherman that catches salmon\"
-            alpha: 0.5
-          })
-        {
-          title
-          summary
-          _additional { score explainScore }
+    Get {
+      Article(
+        hybrid: {
+          query: \"Fisherman that catches salmon\"
+          alpha: 0.5
+        }
+      ) {
+        title
+        summary
+        _additional { score explainScore }
       }
     }
   }"
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -100,8 +102,8 @@ echo '{
       hybrid: {
         query: "Fisherman that catches salmon"
         alpha: 0.5
-      })
-     {
+      }
+    ) {
       title
       summary
       _additional { score, explainScore }

@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -17,7 +15,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 ## Overview
 
-This page shows you how to perform `generative` searches using Weaviate.
+This page shows you how to perform `generative` searches.
+
+A generative search uses a large language model (LLM) to generate text based on the search results and a user-provided prompt. This technique is also called *retrieval augmented generation*, or RAG.
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)
@@ -38,9 +38,9 @@ To use the generative search feature, you must:
 <details>
   <summary>How do I <strong>configure Weaviate</strong> with a generator module?</summary>
 
-  You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant configuration file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
+  You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant Docker Compose file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
-  Here are the relevant settings from the configuration file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
+  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
 
   <Tabs groupId="modules">
 <TabItem value="OpenAI" label="OpenAI">
@@ -107,7 +107,7 @@ You can configure additional module parameters here also. Please refer to the "S
 
 A **single prompt** generative search returns a generated response for each object in the query results. For **single prompt** generative searches, you must specify which object *properties* to use in the prompt.
 
-In the below example, the query:
+In this example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
 1. Prepares a prompt for each object, based on the prompt `"Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."`, where `{question}` is an object property, and
 1. Retrieves a generated text for each object (2 total), and
@@ -166,7 +166,7 @@ When using generative search with single prompts, you must specify which object 
 
 The properties to use as a part of the prompt do *not* need to be among the properties retrieved in the query.
 
-In the below example, the query:
+In this example, the query:
 1. Retrieves two `JeopardyQuestion` objects related to `World history`,
 1. Prepares a prompt for each object, based on the prompt `"Convert this quiz question: {question} and answer: {answer} into a trivia tweet.` where `{question}` and `{answer}` are object properties, and
 1. Retrieves a generated text for each object (2 total), and
@@ -229,7 +229,7 @@ When using generative search with a **grouped task**, the required parameter is 
 
 ### Example
 
-In the below example, the query:
+In this example, the query:
 1. Retrieves three `JeopardyQuestion` objects related to `cute animals`,
 1. Combines the user prompt with the set of retrieved objects to build the grouped task,
 1. Retrieves one generated text using the grouped task, and
@@ -286,12 +286,12 @@ It should produce a response like the one below:
 
 ### Grouped task property selection
 
-:::info Requires Weaviate `v1.18.3` or higher
+:::info Available from version `v1.18.3`
 :::
 
 You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.
 
-In the below example, the prompt will only include the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but is used by the prompt.
+In this example, the prompt only includes the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but it is used by the prompt.
 
 <!-- TODO - add client code when made available -->
 
@@ -343,7 +343,6 @@ It should produce a response like the one below:
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

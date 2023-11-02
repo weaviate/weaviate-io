@@ -78,26 +78,26 @@ console.log('nearText: modern art in Europe = ', JSON.stringify(nearTextResult.d
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
-    Get{
+    Get {
       Article(
         nearText: {
           concepts: [\"modern art in Europe\"],
         },
         limit: 1
-      ){
+      ) {
         title
-        content
       }
     }
   }"
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

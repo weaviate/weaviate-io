@@ -12,6 +12,9 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
+import ThemeSwitch from '/src/components/ThemeSwitch';
+
+
 // import BlogPostItems from '../BlogPostItems';
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -67,11 +70,14 @@ function BlogTagsPostsPageContent({tag, items, sidebar, listMetadata}) {
       </header>
       <BlogPostItems items={items} />
       <BlogListPaginator metadata={listMetadata} />
+
     </BlogLayout>
+
   );
 }
 export default function BlogTagsPostsPage(props) {
   return (
+    <div className="custom-page noBG">
     <HtmlClassNameProvider
       className={clsx(
         ThemeClassNames.wrapper.blogPages,
@@ -80,5 +86,8 @@ export default function BlogTagsPostsPage(props) {
       <BlogTagsPostsPageMetadata {...props} />
       <BlogTagsPostsPageContent {...props} />
     </HtmlClassNameProvider>
+    <ThemeSwitch />
+
+    </div>
   );
 }

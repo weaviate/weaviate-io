@@ -4,9 +4,7 @@ sidebar_position: 15
 image: og/docs/api.jpg
 # tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -203,7 +201,7 @@ Aggregating data makes the `topOccurrences` sub-property available. Note that th
 
 ### Multi-tenancy
 
-:::info Available from `v1.20` onwards
+:::info Available from version `v1.20`
 :::
 
 Where multi-tenancy is configured, the `Aggregate{}` function can be configured to aggregate results from a specific tenant.
@@ -281,7 +279,6 @@ import GraphQLAggNearText from '/_includes/code/graphql.aggregate.nearText.mdx';
 
 <GraphQLAggNearText/>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

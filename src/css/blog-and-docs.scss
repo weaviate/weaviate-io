@@ -3,7 +3,9 @@
 
 // Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
-.blog-post-page, .docs-doc-page, .podcast-page {
+.blog-post-page,
+.docs-doc-page,
+.podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
   // #docusaurus_skipToContent_fallback {
@@ -12,6 +14,35 @@
   //     font-family: var(--site-font-heading-family);
   //   }
   // }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--site-font-base-family);
+    font-weight: 700;
+    color: var(--docs-header-color);
+  }
+  h1,
+  h2 {
+    padding-top: 35px;
+    padding-bottom: 25px;
+  }
+  h3 {
+    padding-top: 25px;
+    padding-bottom: 20px;
+  }
+  h4 {
+    padding-top: 25px;
+    padding-bottom: 15px;
+    font-size: 1.3rem;
+  }
+  p {
+    padding-left: 5px;
+    font-weight: 400;
+  }
 
   pre code {
     max-height: 700px;
@@ -26,12 +57,16 @@
 }
 
 // Set Background
-.docs-doc-page, .blog-list-page, .blog-post-page, .podcast-page {
+.docs-doc-page,
+.blog-list-page,
+.blog-post-page,
+.podcast-page {
   #__docusaurus {
     background-image: none;
   }
 
-  #__docusaurus, .navbar {
+  #__docusaurus,
+  .navbar {
     background: var(--site-background);
   }
 
@@ -43,28 +78,85 @@
   }
 }
 
+// .docs-doc-page {
+//   .container {
+//     [data-theme='light'] {
+//       background-color: white;
+//     }
+//   }
+// }
+
+.docs-doc-page .container  {
+  background-color: var(--docs-body-bg);
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 0%;
+  margin-right: 0%;
+  max-width: 100%;
+}
+
 // Set Fonts
 .docs-doc-page {
   font-family: var(--site-font-base-family);
+  font-size: 15px;
   color: var(--docs-base-color);
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--site-font-base-family);
     font-weight: 700;
     color: var(--docs-header-color);
-  };
-  h1, h2 {
-    padding-top: 30px;
-    padding-bottom: 10px;
   }
+  h1 {
+    line-height: 1.2;
+    font-size: 49px;
+  }
+
+  h2 {
+    line-height: 1.2;
+    font-size: 38px;
+  }
+
   h3 {
-    padding-top: 20px;
-    padding-bottom: 10px;
+    line-height: 1.2;
+    font-size: 32px;
   }
+
   h4 {
-    padding-top: 15px;
-    font-size: 1.3rem;
-    font-weight: 700;
-  };
+    line-height: 1.5;
+    font-size: 25px;
+  }
+
+  h5 {
+    line-height: 1.45;
+    font-size: 20px;
+  }
+
+  h6 {
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+  // h1, h2 {
+  //   padding-top: 35px;
+  //   padding-bottom: 20px;
+  // }
+  // h3 {
+  //   padding-top: 30px;
+  //   padding-bottom: 20px;
+  // }
+  // h4 {
+  //   padding-top: 25px;
+  //   padding-bottom: 15px;
+  //   font-size: 1.3rem;
+  // };
+  p {
+    padding-left: 5px;
+    font-weight: 400;
+  }
   // .theme-doc-sidebar-container, .navbar {
   //   background: var(--site-background);
   // }
@@ -76,3 +168,5 @@
 .hidden {
   display: none !important;
 }
+
+//Hides light toggle on docs

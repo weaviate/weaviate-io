@@ -36,15 +36,11 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
     common_replace_pairs = [
         ["http://localhost:8080", "http://localhost:8099"],  # Specify different port from usual to avoid confusion
         ["https://some-endpoint.weaviate.network", "http://localhost:8099"],
-        ["https://anon-endpoint.weaviate.network", "http://localhost:8090"],
+        ["https://anon-endpoint.weaviate.network", "http://localhost:8080"],
+        ["some-endpoint.weaviate.network", "localhost:8099"],
+        ["anon-endpoint.weaviate.network", "localhost:8080"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
     ]
-
-    for replace_pair in custom_replace_pairs:
-        proc_codeblock = proc_codeblock.replace(*replace_pair)
-
-    for replace_pair in common_replace_pairs:
-        proc_codeblock = proc_codeblock.replace(*replace_pair)
 
     if lang == "js" or lang == "ts":
         pattern = r"\s*  scheme: 'https',\n?\s*  host: 'some-endpoint.weaviate.network',"
@@ -55,6 +51,12 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
         '''
 
         proc_codeblock = re.sub(pattern, replacement, proc_codeblock, flags=re.DOTALL)
+
+    for replace_pair in custom_replace_pairs:
+        proc_codeblock = proc_codeblock.replace(*replace_pair)
+
+    for replace_pair in common_replace_pairs:
+        proc_codeblock = proc_codeblock.replace(*replace_pair)
 
     proc_codeblock = populate_inference_api_keys(proc_codeblock)
 

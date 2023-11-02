@@ -9,7 +9,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-near_text_filter = {
+near_text_operator = {
   "concepts": ["fashion"],
   "distance": 0.6, #prior to v1.14 use certainty: 0.7
   "moveAwayFrom": {
@@ -30,7 +30,7 @@ query_result = (
   client.query
   .get("Publication", "name")
   .with_additional(additional_props)
-  .with_near_text(near_text_filter)
+  .with_near_text(near_text_operator)
   .do()
 )
 
@@ -210,21 +210,23 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+# Note: Under nearText, use `certainty` instead of `distance` prior to v1.14
+
+echo '{
   "query": "{
     Get {
       Publication (
-        nearText:{
-            concepts: [\"fashion\"],
-            distance: 0.6, #prior to v1.14 use certainty: 0.7
-            moveAwayFrom: {
-              concepts: [\"finance\"],
-              force: 0.45
-            },
-            moveTo: {
-              concepts: [\"haute couture\"],
-              force: 0.85
-            }
+        nearText: {
+          concepts: [\"fashion\"],
+          distance: 0.6,
+          moveAwayFrom: {
+            concepts: [\"finance\"],
+            force: 0.45
+          },
+          moveTo: {
+            concepts: [\"haute couture\"],
+            force: 0.85
+          }
         }
       ) {
         name
@@ -245,8 +247,10 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -257,21 +261,21 @@ $ echo '{
   Get {
     Publication (
       nearText:{
-          concepts: ["fashion"],
-          distance: 0.6, #prior to v1.14 use certainty: 0.7
-          moveAwayFrom: {
-            concepts: ["finance"],
-            force: 0.45
-          },
-          moveTo: {
-            concepts: ["haute couture"],
-            force: 0.85
-          }
+        concepts: ["fashion"],
+        distance: 0.6,  # prior to v1.14 use certainty: 0.7
+        moveAwayFrom: {
+          concepts: ["finance"],
+          force: 0.45
+        },
+        moveTo: {
+          concepts: ["haute couture"],
+          force: 0.85
+        }
       }
     ) {
       name
       _additional {
-        semanticPath{
+        semanticPath {
           path {
             concept
             distanceToNext

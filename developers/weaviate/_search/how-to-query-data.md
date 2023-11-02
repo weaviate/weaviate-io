@@ -211,7 +211,6 @@ import HowtoQueryData from '/_includes/code/howto.query.data.mdx';
 - Make more advanced queries, for example to explore data with semantic search, in the [next tutorial](./how-to-perform-a-semantic-search.md).
 - View other GraphQL methods in the [GraphQL documentation](../api/graphql/index.md).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

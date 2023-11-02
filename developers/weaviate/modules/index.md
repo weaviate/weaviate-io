@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/modules/_title.jpg
 # tags: ['modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `Modules`
@@ -23,15 +21,16 @@ import Badges from '/_includes/badges.mdx';
 
 This section describes Weaviate's individual modules, including their capabilities and how to use them.
 
-- The Retrievers & Vectorizaters modules such as `text2vec-*` or `img2vec-*` convert data objects to vectors.
-- The Readers & Generators modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
+- The Vectorizer (also called Retrievers sometimes) modules such as `text2vec-*` or `img2vec-*` convert data objects and query inputs to vectors.
+- The (Re)Ranker modules such as `rerank-*` apply a(n) (additional) ranking process to the search results.
+- The Reader & Generator modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
 - The other modules include everything else, such as a spellcheck module.
 
 ## General
 
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
 - Naming convention:
-  - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.
+  - Vectorizer (Retriever module): `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `img2vec-neural` or `text2vec-transformers`.
   - Other modules: `<functionality>-<name>-<optional>`, for example `qna-transformers`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
@@ -43,7 +42,7 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
 
 ## Default vectorizer module
 
-Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the docker-compose configuration file:
+Unless you specify a default vectorization module in Weaviate's configuration, you'll need to specify which vectorization module is used per class you add to the data schema (or you need to enter a vector for each data point you add manually). Set the default with the environment variable `DEFAULT_VECTORIZER_MODULE` to `text2vec-contextionary` in the Docker Compose file:
 
 ``` yaml
 services:
@@ -79,7 +78,6 @@ Internal providers coordinate the storage and retrieval of backed-up Weaviate da
 
 As of Weaviate `v1.16`, the only supported internal backup provider is the [filesystem](/developers/weaviate/configuration/backups.md#filesystem) provider.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

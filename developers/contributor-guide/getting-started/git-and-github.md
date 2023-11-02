@@ -31,7 +31,7 @@ Generally speaking, the process to contribute using git and GitHub goes like thi
     - [Create a new branch and make changes](#create-a-new-branch-to-work-on)
     - [Push your changes and create a pull request](#pull-request-process)
 
-The below are some information on git and GitHub, as well as these steps.
+Here is some information on working with git and GitHub.
 
 ## Git
 
@@ -292,7 +292,7 @@ upstream  https://github.com/weaviate/weaviate.git (fetch)
 upstream  https://github.com/weaviate/weaviate.git (push)
 ```
 
-To bring in upstream changes to your fork, you need to fetch and pull the upstream repo's branches and commits. The below are two ways that you can do this:
+To bring in upstream changes to your fork, you need to fetch and pull the upstream repo's branches and commits. Here are two ways that you can do this:
 
 * [Using GitHub and git CLI](#fetch-upstream-with-github-and-git-cli)
 * [Using git CLI](#fetch-upstream-with-git-cli)
@@ -307,7 +307,7 @@ To bring in upstream changes to your fork, you need to fetch and pull the upstre
 git checkout main
 ```
 
-> Note, the `weaviate` project uses `master` as its default branch, while `weaviate-io` uses `main`. Pick tbe right branch name based on the project you use.
+> Note, the `weaviate` project uses `master` as its default branch, while `weaviate-io` uses `main`. Pick the right branch name based on the project you use.
 
 * Then pull the changes into local repository
 

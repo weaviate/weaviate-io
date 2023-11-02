@@ -9,7 +9,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8080',
+  host: 'anon-endpoint.weaviate.network',
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
@@ -122,7 +122,6 @@ await client.batch
   .objectsBatchDeleter()
   .withClassName('EphemeralObject')
   // highlight-start
-  // Same `where` filter as in the GraphQL API
   .withWhere({
     path: ['name'],
     operator: 'Like',

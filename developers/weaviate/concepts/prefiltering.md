@@ -1,12 +1,10 @@
 ---
-title: Filtered Vector Search
+title: Filtering (with search)
 sidebar_position: 26
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'filtered vector search', 'pre-filtering']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [References: GraphQL API](../api/graphql/index.md)
@@ -88,7 +86,7 @@ The cutoff value can be configured as [part of the `vectorIndexConfig` settings 
 From `v1.18.0` onwards, Weaviate implements 'Roaring bitmaps' for the inverted index which decreased filtering times, especially for large allow lists. In terms of the above graphs, the *blue* areas will be reduced the most, especially towards the left of the figures.
 :::
 
-## Cachable Filters
+## Cacheable Filters
 
 Starting with `v1.8.0`, the inverted index portion of a filter can be cached and reused - even across different vector searches. As outlined in the sections above, pre-filtering is a two-step process. First, the inverted index is queried and potential matches are retrieved. This list is then passed to the HNSW index. Reading the potential matches from disk (step 1) can become a bottleneck in the following scenarios:
 
@@ -145,7 +143,6 @@ Wildcard filters show considerably worse performance than exact match filters. T
 
 The cache is built in a way that it cannot ever serve a stale entry. Any write to the inverted index updates a hash for the specific row. This hash is used as part of the key in the cache. This means that if the underlying inverted index is changed, the new query would first read the updated hash and then run into a cache miss (as opposed to ever serving a stale entry). The cache has a fixed size and entries for stale hashes - which cannot be accessed anymore - are overwritten when it runs full.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

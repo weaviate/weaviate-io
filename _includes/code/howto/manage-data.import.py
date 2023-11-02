@@ -46,7 +46,8 @@ data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
 # highlight-start
-with client.batch() as batch:
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
     for data_obj in data_objs:
         batch.add_data_object(
             data_obj,
@@ -67,14 +68,15 @@ client.schema.delete_class(class_name)
 
 # BatchImportWithIDExample
 # highlight-start
-from weaviate.util import generate_uuid5
+from weaviate.util import generate_uuid5  # Generate a deterministic ID
 # highlight-end
 
 class_name = "YourClassName"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
-with client.batch() as batch:
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
     for data_obj in data_objs:
         batch.add_data_object(
             data_obj,
@@ -107,7 +109,8 @@ data_objs = [
 vectors = [
     [0.25 + i/100] * 10 for i in range(5)  # Replace with your actual vectors
 ]
-with client.batch() as batch:
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
     for i, data_obj in enumerate(data_objs):
         batch.add_data_object(
             data_obj,
@@ -145,7 +148,6 @@ import pandas as pd
 counter = 0
 interval = 20  # print progress every this many records; should be bigger than the batch_size
 
-
 def add_object(obj) -> None:
     global counter
     properties = {
@@ -153,24 +155,22 @@ def add_object(obj) -> None:
         'answer': obj['Answer'],
     }
 
-    # Add the object to the batch
-    client.batch.add_data_object(
-        data_object=properties,
-        class_name='JeopardyQuestion',
-        # If you Bring Your Own Vectors, add the `vector` parameter here
-        # vector=obj.vector
-    )
+    client.batch.configure(batch_size=100)  # Configure batch
+    with client.batch as batch:
+        # Add the object to the batch
+        batch.add_data_object(
+            data_object=properties,
+            class_name='JeopardyQuestion',
+            # If you Bring Your Own Vectors, add the `vector` parameter here
+            # vector=obj.vector
+        )
 
-    # Calculate and display progress
-    counter += 1
-    if counter % interval == 0:
-        print(f'Imported {counter} articles...')
+        # Calculate and display progress
+        counter += 1
+        if counter % interval == 0:
+            print(f'Imported {counter} articles...')
 
 
-# Configure the batch import
-client.batch.configure(
-    batch_size=10,
-)
 # END JSON streaming  # END CSV streaming
 
 # START JSON streaming
@@ -203,8 +203,6 @@ with pd.read_csv(
 
 # START JSON streaming  # START CSV streaming
 
-# Flush any remaining objects in the batch
-client.batch.flush()
 print(f'Finished importing {counter} articles.')
 # END JSON streaming  # END CSV streaming
 
@@ -214,3 +212,53 @@ actual_count = response['data']['Aggregate']['JeopardyQuestion'][0]['meta']['cou
 assert actual_count == MAX_ROWS_TO_IMPORT * 2, f'Expected {MAX_ROWS_TO_IMPORT * 2} but got {actual_count}'
 # END test
 '''
+
+
+# ============================================================
+# ===== Batch import with parameters explicitly set  =====
+# ============================================================
+
+class_name = "YourClassName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)
+]
+
+# ConfigureBatchImportExample
+# highlight-start
+client.batch.configure(
+    batch_size=100,  # Specify the batch size for auto batching
+    num_workers=2,   # Maximum number of parallel threads used during import
+)
+with client.batch as batch:
+# highlight-end
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+        )
+# END ConfigureBatchImportExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+client.schema.delete_class(class_name)
+
+
+# ConfigureDynamicBatchImportExample
+# highlight-start
+client.batch.configure(
+    batch_size=100,  # Specify the batch size for auto batching
+    num_workers=2,   # Maximum number of parallel threads used during import
+    dynamic=True,
+)
+with client.batch as batch:
+# highlight-end
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+        )
+# END ConfigureDynamicBatchImportExample
+
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+client.schema.delete_class(class_name)

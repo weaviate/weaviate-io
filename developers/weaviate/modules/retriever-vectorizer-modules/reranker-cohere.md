@@ -1,6 +1,6 @@
 ---
 title: reranker-cohere
-sidebar_position: 10
+sidebar_position: 50
 image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['rerank', 'cohere']
 ---
@@ -127,7 +127,6 @@ The `reranker-cohere` module supports the following models:
 * For usage examples, see the [Howto: Search - Reranking](../../search/rerank.md) page.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

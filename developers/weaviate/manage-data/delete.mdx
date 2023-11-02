@@ -5,15 +5,15 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'delete']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.delete.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.delete_test.go';
 
 ## Overview
 
@@ -62,6 +62,24 @@ To delete an object, specify its class name and id as shown below.
       startMarker="// START DeleteObject"
       endMarker="// END DeleteObject"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -122,6 +140,24 @@ Optionally, set `output` to `'verbose'` to see more details (ID and deletion sta
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 :::tip REST endpoint
@@ -131,6 +167,81 @@ You can also make [`DELETE` request to the `/v1/batch/objects` endpoint](../api/
 :::info Limit per query
 There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
 :::
+
+### ContainsAny / ContainsAll
+
+You can use `ContainsAny` / `ContainsAll` filters with the `where` argument to delete objects that contains a specific value in a property.
+
+Note that when using `ContainsAny` or `ContainsAll`, the query must be entered as an array of values. The client-specific syntax varies as follows:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+client.batch.delete_objects(
+    class_name='EphemeralObject',
+    where={
+        'path': ['name'],
+        # highlight-start
+        'operator': 'ContainsAny',
+        'valueTextArray': ['asia', 'europe']  # Note the array syntax
+        # highlight-end
+    },
+)
+```
+
+</TabItem>
+<TabItem value="ts" label="JavaScript/TypeScript">
+
+```js
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  .withWhere({
+    path: ['name'],
+    // highlight-start
+    operator: 'ContainsAny',
+    valueTextArray: ['asia', 'europe'],  // Note the array syntax
+    // highlight-end
+  })
+  // highlight-end
+  .do();
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+client.batch().objectsBatchDeleter()
+  .withClassName("EphemeralObject")
+  .withWhere(WhereFilter.builder()
+    .path("name")
+    // highlight-start
+    .operator(Operator.ContainsAny)
+    .valueText("asia", "europe")    // Note the array syntax
+    // highlight-end
+    .build())
+  .run();
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+  response, err := client.Batch().ObjectsBatchDeleter().
+    WithClassName("EphemeralObject").
+    WithOutput("minimal").
+    WithWhere(filters.Where().
+      WithPath([]string{"name"}).
+      // highlight-start
+      WithOperator(filters.ContainsAny).
+      WithValueText("asia", "europe")).  // Note the array syntax
+      // highlight-end
+    Do(ctx)
+```
+
+</TabItem>
+</Tabs>
 
 
 ### Dry-run
@@ -155,6 +266,24 @@ You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) 
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -173,7 +302,6 @@ It should produce a response like the one below:
 </details>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

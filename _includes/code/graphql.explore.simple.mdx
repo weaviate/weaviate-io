@@ -41,7 +41,7 @@ explore_articles_query = """
     Explore (
       nearText: {
         concepts: ["New Yorker"],
-        distance: 0.1, // use certainty instead of distance prior to v1.14
+        distance: 0.1,  # use certainty instead of distance prior to v1.14
         moveAwayFrom: {
           concepts: ["fashion", "shop"],
           force: 0.2
@@ -81,7 +81,7 @@ const response = await client.graphql
     concepts: ['New Yorkers'],
     moveTo: { concepts: ['publisher', 'articles'], force: 0.5 },
     moveAwayFrom: { concepts: ['fashion', 'shop'], force: 0.2 },
-    distance: 0.95,   // prior to v1.14, use certainty
+    distance: 0.95,  // prior to v1.14, use certainty
   })
   .withFields('beacon certainty distance className')  // certainty is only supported if distance==cosine
   .do();
@@ -124,15 +124,15 @@ func main() {
   }
   withNearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
-    WithDistance(0.6). // prior to v1.14, use WithCertainty()
+    WithDistance(0.6).  // prior to v1.14, use WithCertainty()
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
   result, err := client.GraphQL().Explore().
     WithFields(
       graphql.Beacon,
-      graphql.Certainty, // only supported if distance==cosine
-      graphql.Distance,  // always supported
+      graphql.Certainty,  // only supported if distance==cosine
+      graphql.Distance,   // always supported
       graphql.ClassName).
     WithNearText(withNearText).
     Do(context.Background())
@@ -179,8 +179,8 @@ public class App {
 
     Result<GraphQLResponse> result = client.graphQL().explore()
       .withFields(ExploreFields.BEACON,
-        ExploreFields.CERTAINTY, // only supported if distance==cosine
-        ExploreFields.DISTANCE,  // always supported
+        ExploreFields.CERTAINTY,  // only supported if distance==cosine
+        ExploreFields.DISTANCE,   // always supported
         ExploreFields.CLASS_NAME)
       .withNearText(nearText)
       .run();
@@ -198,7 +198,8 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+Note: `certainty` is only supported if distance==cosine. `distance` is always supported.
+echo '{
   "query": "{
     Explore (
       nearText: {
@@ -215,8 +216,8 @@ $ echo '{
       }
     ) {
       beacon
-      certainty # only supported if distance==cosine.
-      distance  # always supported
+      certainty
+      distance
       className
     }
   }"

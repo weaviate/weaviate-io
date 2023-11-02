@@ -9,6 +9,7 @@ import weaviate
 
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
 )
 
 client.schema.get()
@@ -18,11 +19,12 @@ client.schema.get()
 <TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-import weaviate from 'weaviate-ts-client';
+import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 
-const client = weaviate.client({
+const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
 });
 
 const response = await client
@@ -48,6 +50,7 @@ func main() {
     cfg := weaviate.Config{
         Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
         Scheme: "https",
+        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
     }
 
     client, err := weaviate.NewClient(cfg)
@@ -70,15 +73,14 @@ func main() {
 package io.weaviate;
 
 import io.weaviate.client.Config;
-import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.WeaviateAuthClient;
 import io.weaviate.client.base.Result;
 import io.weaviate.client.v1.misc.model.Meta;
 
 public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "some-endpoint.weaviate.network/");  // Replace with your endpoint
-
-    WeaviateClient client = new WeaviateClient(config);
+    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your Weaviate instance API key
 
     // get the schema
     Result<Schema> result = client.schema().getter().run();
@@ -97,7 +99,9 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-curl https://some-endpoint.weaviate.network/v1/schema
+curl \
+-H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" \
+https://some-endpoint.weaviate.network/v1/schema
 ```
 
 </TabItem>

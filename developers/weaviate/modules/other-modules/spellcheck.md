@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/modules/text-spellcheck.jpg
 # tags: ['modules', 'other modules', 'spellcheck']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -21,9 +19,9 @@ The Spell Check module is a Weaviate module for checking spelling in raw texts i
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The Spell Check module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `text-spellcheck` module with the `text2vec-contextionary` is here:
+The Spell Check module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker Compose file for using the `text-spellcheck` module with the `text2vec-contextionary` is here:
 
 ```yaml
 ---
@@ -159,7 +157,6 @@ The module extends existing `text2vec-*` modules with an `autoCorrect` flag, whi
 }
 ```
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -17,25 +15,19 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 ## Overview
 
-This page shows you how to perform `hybrid` searches using Weaviate.
+This page shows you how to perform `hybrid` searches.
 
-The `hybrid` operator uses both the `bm25` (i.e. sparse vector) and vector (i.e. dense vector) search algorithms, and combines their outputs to produce results.
-
-The results are determined by a weighted combination of the two search outputs.
+The `hybrid` operator produces results based on a weighted combination of results from a keyword (`bm25`) search and a vector (`nearXXX`) search.
 
 :::info Related pages
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 :::
 
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
-
-<BasicPrereqs />
-
 ## Basic hybrid search
 
 To use hybrid search, you must provide a search string as a minimum.
 
-The below example uses default settings, looking for:
+This example uses default settings to look for:
 - Objects containing the keyword `food` anywhere in the object, and
 - Objects most similar to the vector of `food`.
 
@@ -87,7 +79,7 @@ It should produce a response like the one below:
 
 The `score` and `explainScore` sub-properties aim to explain the outputs. They can be retrieved under the `_additional` property.
 
-The below example adds the two properties to the list of retrieved properties.
+This example adds the two properties to the list of retrieved properties.
 
 
 <Tabs groupId="languages">
@@ -325,9 +317,9 @@ It should produce a response like the one below:
 
 ## Selected properties only
 
-You can specify the object `properties` for the `bm25` portion of the search.
+Starting in v1.19.0, you can specify the object `properties` for the `bm25` portion of the search.
 
-The below example performs a `bm25` search for the keyword `food` in the `question` property only, and combines it with vector search results for `food`.
+The next example performs a `bm25` search for the keyword `food` in the `question` property only. It combines the results of the keyword search with the vector search results for `food`.
 
 :::info Why does this not affect the vector search?
 This is not possible as doing so will require the entire database to be re-vectorized and re-indexed with the new vectorization options.
@@ -378,7 +370,7 @@ It should produce a response like the one below:
 
 You can specify weighting of object `properties` in how they affect the BM25F component of hybrid searches.
 
-The below example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
+This example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -426,7 +418,7 @@ It should produce a response like the one below:
 
 You can provide your own `vector` input to the hybrid query. In this scenario, Weaviate will use the query string for the `bm25` search and the input vector for the vector search.
 
-The below example supplies the vector for "italian food", while using "food" as the query text. Note how the results have now skewed towards Italian food.
+This example supplies the vector for "italian food", while using "food" as the query text. Note how the results have now skewed towards Italian food.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -473,7 +465,7 @@ It should produce a response like the one below:
 
 You can add a conditional filter to any hybrid search query, which will filter the outputs but not impact the ranking.
 
-The below example performs a hybrid search for `food` in any field from objects that have the `round` property of `Double Jeopardy!`, and returns the top 3.
+This example performs a hybrid search for `food` in any field on objects that have the `round` property of `Double Jeopardy!`. It returns the top 3.
 
 
 <Tabs groupId="languages">
@@ -517,7 +509,6 @@ It should produce a response like the one below:
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

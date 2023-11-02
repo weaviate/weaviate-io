@@ -104,7 +104,7 @@ class_obj = {
     'moduleConfig': {
         'text2vec-cohere': {  # this must match the vectorizer used
             'vectorizeClassName': True,
-            'model': 'multilingual-22-12',
+            'model': 'embed-multilingual-v2.0',
         }
     }
     # highlight-end
@@ -116,7 +116,7 @@ client.schema.create_class(class_obj)
 # Test
 result = client.schema.get(class_name)
 assert result['vectorizer'] == 'text2vec-cohere'
-assert result['moduleConfig']['text2vec-cohere']['model'] == 'multilingual-22-12'
+assert result['moduleConfig']['text2vec-cohere']['model'] == 'embed-multilingual-v2.0'
 
 # Delete the class to recreate it
 client.schema.delete_class(class_name)

@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/more-resources.jpg
 # tags: ['Architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ...
 

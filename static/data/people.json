@@ -4,20 +4,46 @@
 		"title": "Vector Index Researcher",
 		"photo": "abdel.jpg",
 		"linkedin": "abdel-rodriguez-36533b53",
-		"github": "abdelr"
+		"github": "abdelr",
+		"team": "applied-research"
+	},
+	{
+		"name": "Adam Chan",
+		"title": "Developer Advocate",
+		"photo": "adam.jpg",
+		"linkedin": "adam-jeremy-chan",
+		"twitter": "aj__chan",
+		"team": "developer-growth"
+	},
+	{
+		"name": "Alea Abed",
+		"title": "Head of Marketing",
+		"photo": "alea.png",
+		"linkedin": "alea-abed",
+		"team": "marketing"
+	},
+	{
+		"name": "André Duis",
+		"title": "Head of Cloud Strategy",
+		"photo": "andre.png",
+		"linkedin": "andre-duis",
+		"team": "cloud-strategy"
+
 	},
 	{
 		"name": "Andrzej Liszka",
 		"title": "Core Engineer ",
 		"photo": "andrzej.png",
 		"linkedin": "andrzej-liszka-897ab8234",
-		"github": "aliszka"
+		"github": "aliszka",
+		"team": "database"
 	},
 	{
 		"name": "Ara Gonzalez",
 		"title": "People Operations Manager",
 		"photo": "ara.jpg",
-		"linkedin": "aranzazugonzalez"
+		"linkedin": "aranzazugonzalez",
+		"team": "people-and-culture"
 	},
 	{
 		"name": "Asdine El Hrychy",
@@ -25,7 +51,8 @@
 		"photo": "asdine.jpg",
 		"linkedin": "asdine",
 		"twitter": "asdine_",
-		"github": "asdine"
+		"github": "asdine",
+		"team": "applied-research"
 	},
 	{
 		"name": "Bob van Luijt",
@@ -33,7 +60,8 @@
 		"photo": "bob.png",
 		"linkedin": "bobvanluijt",
 		"twitter": "bobvanluijt",
-		"github": "bobvanluijt"
+		"github": "bobvanluijt",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Byron Voorbach",
@@ -41,14 +69,23 @@
 		"photo": "byron.png",
 		"linkedin": "byronvoorbach",
 		"twitter": "byronvoorbach",
-		"github": "byronvoorbach"
+		"github": "byronvoorbach",
+		"team": "sales-engineering"
+	},
+	{
+		"name": "Cari Liebenberg",
+		"title": "Platform Engineer",
+		"photo": "cari.jpeg",
+		"linkedin": "cari-liebenberg-1b40b0a6",
+		"team": "wcs"
 	},
 	{
 		"name": "Charles Harr",
 		"title": "Software Engineer",
 		"photo": "charles.png",
 		"linkedin": "ceharr",
-		"github": "harrlight00"
+		"github": "harrlight00",
+		"team": "wcs"
 	},
 	{
 		"name": "Connor Shorten",
@@ -56,27 +93,37 @@
 		"photo": "connor.png",
 		"linkedin": "connor-shorten-34923a178/",
 		"twitter": "cshorten30",
-		"github": "CShorten"
+		"github": "CShorten",
+		"team": "applied-research"
 	},
 	{
-		"name": "Dan Dascalescu",
-		"title": "Developer Advocate",
-		"photo": "dan.png",
-		"linkedin": "dandv",
-		"github": "dandv"
+		"name": "David Cuthbert",
+		"title": "Technical Documentation Writer",
+		"photo": "dave.jpg",
+		"linkedin": "davecuthbert",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Dirk Kulawiak",
 		"title": "Core Engineer",
 		"photo": "dirk.png",
 		"linkedin": "dirk-kulawiak",
-		"github": "dirkkul"
+		"github": "dirkkul",
+		"team": "database"
+	},
+	{
+		"name": "Duda Nogueira",
+		"title": "Community Technical Support",
+		"photo": "duda.jpg",
+		"linkedin": "dudanogueira",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Emma O'Keefe",
 		"title": "Head of Customer Success",
 		"photo": "emma.png",
-		"linkedin": "emma-o-keefe-03777b80"
+		"linkedin": "emma-o-keefe-03777b80",
+		"team": "customer-success"
 	},
 	{
 		"name": "Edward Schmuhl",
@@ -84,14 +131,16 @@
 		"photo": "edward.png",
 		"linkedin": "edward-schmuhl-563161195",
 		"twitter": "aestheticedwar1",
-		"github": "thomashacker"
+		"github": "thomashacker",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Eric Caleb",
 		"title": "Senior Software Engineer",
 		"photo": "eric.png",
 		"linkedin": "iamcaleberic",
-		"twitter": "iamcaleberic"
+		"twitter": "iamcaleberic",
+		"team": "wcs"
 	},
 	{
 		"name": "Erika Cardenas",
@@ -99,7 +148,8 @@
 		"photo": "erika.png",
 		"linkedin": "erikacardenas300",
 		"twitter": "ecardenas300",
-		"github": "erika-cardenas"
+		"github": "erika-cardenas",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Etienne Dilocker",
@@ -107,14 +157,23 @@
 		"photo": "etienne.png",
 		"linkedin": "etienne-dilocker-60727b175",
 		"twitter": "etiennedi",
-		"github": "etiennedi"
+		"github": "etiennedi",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Femke Plantinga",
 		"title": "Developer Marketing Manager",
 		"photo": "femke.png",
 		"linkedin": "femke-plantinga-a60b9a172",
-		"twitter": "femke_plantinga"
+		"twitter": "femke_plantinga",
+		"team": "developer-growth"
+	},
+	{
+		"name": "Griffin Foster",
+		"title": "Enterprise Account Executive",
+		"photo": "griffin.jpg",
+		"linkedin": "griffin-foster",
+		"team": "sales"
 	},
 	{
 		"name": "JP Hwang",
@@ -122,27 +181,31 @@
 		"photo": "jp.png",
 		"linkedin": "jphwang",
 		"twitter": "_jphwang",
-		"github": "databyjp"
+		"github": "databyjp",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Jeremy Price",
 		"title": "Core Engineer",
 		"photo": "jeremy.png",
-		"github": "donomii"
+		"github": "donomii",
+		"team": "database"
 	},
 	{
 		"name": "Jessie de Groot",
 		"title": "Head of People & Culture",
 		"photo": "jessie.png",
 		"linkedin": "jessiedegroot/",
-		"twitter": "jessie_groot"
+		"twitter": "jessie_groot",
+		"team": "people-and-culture"
 	},
 	{
 		"name": "Jobi George",
 		"title": "Head of Partnerships",
 		"photo": "jobi.png",
 		"linkedin": "jobigeorge",
-		"twitter": "jobig630"
+		"twitter": "jobig630",
+		"team": "partnerships"
 	},
 	{
 		"name": "John Trengrove",
@@ -150,21 +213,30 @@
 		"photo": "john.png",
 		"linkedin": "trengrj",
 		"twitter": "trengrj",
-		"github": "trengrj"
+		"github": "trengrj",
+		"team": "applied-research"
 	},
 	{
 		"name": "Ken Macinnis",
 		"title": "Solution Engineer",
 		"photo": "ken.png",
 		"linkedin": "kmacinnis",
-		"twitter": "",
-		"github": ""
+		"team": "customer-success"
+
+	},
+	{
+		"name": "Laura Stoye",
+		"title": "Executive Assistant",
+		"photo": "laura.jpg",
+		"linkedin": "laurastoye",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Leonie Monigatti",
 		"title": "Developer Advocate",
 		"photo": "leonie.jpg",
-		"linkedin": "804250ab"
+		"linkedin": "804250ab",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Marcin Antas",
@@ -172,54 +244,69 @@
 		"photo": "marcin.png",
 		"linkedin": "antasmarcin",
 		"twitter": "antas_marcin",
-		"github": "antas-marcin"
+		"github": "antas-marcin",
+		"team": "database"
+	},
+	{
+		"name": "Marion Nehring",
+		"title": "Community Manager",
+		"photo": "marion.jpg",
+		"linkedin": "marionnehring",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Mike Wyer",
 		"title": "Site Reliability Engineer",
 		"photo": "mike.jpg",
 		"linkedin": "mikewyer",
-		"twitter": "BigBeardyGeek"
+		"twitter": "BigBeardyGeek",
+		"team": "wcs"
 	},
 	{
 		"name": "Parker Duckworth",
 		"title": "Core Engineer",
 		"photo": "parker.png",
 		"linkedin": "parkerduckworth",
-		"github": "parkerduckworth"
+		"github": "parkerduckworth",
+		"team": "cloud"
 	},
 	{
-		"name": "Paul Anderson",
-		"title": "Recruitment Lead",
-		"photo": "paul.png",
-		"linkedin": "paulanderson9"
+		"name": "Patrick Das",
+		"title": "Executive Business Manager",
+		"photo": "patrick.jpg",
+		"linkedin": "patrickdas",
+		"team": "ceo-team"
 	},
 	{
 		"name": "Peter Schramm",
 		"title": "Head of WCS",
 		"photo": "peter.png",
 		"linkedin": "peter-schramm-cologne",
-		"github": "Glockenbeat"
+		"github": "Glockenbeat",
+		"team": "wcs"
 	},
 	{
 		"name": "Philip Vollet",
 		"title": "Head of Developer Growth",
 		"photo": "philip.png",
 		"linkedin": "philipvollet",
-		"twitter": "philipvollet"
+		"twitter": "philipvollet",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Redouan 'Red' El Rhazouani",
 		"title": "Core Engineer",
 		"photo": "redo.png",
 		"linkedin": "redouan-el-rhazouani-295082111",
-		"github": "redouan-rhazouani"
+		"github": "redouan-rhazouani",
+		"team": "cloud"
 	},
 	{
 		"name": "Rodrigo DeCossio",
 		"title": "Head of Sales",
 		"photo": "rodrigo.png",
-		"linkedin": "rodrigodecossio"
+		"linkedin": "rodrigodecossio",
+		"team": "sales"
 	},
 	{
 		"name": "Sebastian Witalec",
@@ -227,53 +314,138 @@
 		"photo": "sebastian.png",
 		"linkedin": "sebawita",
 		"twitter": "sebawita",
-		"github": "sebawita"
+		"github": "sebawita",
+		"team": "developer-relations"
 	},
 	{
 		"name": "Shan Blackwood",
 		"title": "Web Developer",
 		"photo": "shan.jpg",
-		"linkedin": "shan-blackwood-79251876"
+		"linkedin": "shan-blackwood-79251876",
+		"team": "design"
 	},
 	{
 		"name": "Shukri Hasan",
 		"title": "Community Solution Engineer",
 		"photo": "shukri.png",
 		"linkedin": "mohdshukrihasan",
-		"twitter": "MohdShukriHasa1"
+		"twitter": "MohdShukriHasa1",
+		"team": "sales-engineering"
 	},
 	{
 		"name": "Sila Uygun",
 		"title": "Account Manager",
 		"photo": "sila.png",
 		"linkedin": "silauygun",
-		"twitter": "silauygun"
+		"twitter": "silauygun",
+		"team": "sales"
 	},
 	{
 		"name": "Stefan Bogdan",
 		"title": "Solution Engineer ",
 		"photo": "stefan.png",
 		"linkedin": "stefan-bogdan",
-		"github": "StefanBogdan"
+		"github": "StefanBogdan",
+		"team": "customer-success"
 	},
 	{
 		"name": "Svitlana Smolianova",
 		"title": "Head of Design",
 		"photo": "svitlana.png",
 		"linkedin": "svitlana-sm",
-		"twitter": "switlana_c"
+		"twitter": "switlana_c",
+		"team": "design"
+	},
+	{
+		"name": "Thomas Smith",
+		"title": "Polyglot Engineer",
+		"photo": "tommy.jpg",
+		"linkedin": "tbs181194",
+		"team": "customer-success"
+	},
+	{
+		"name": "Victoria Slocum",
+		"title": "Machine Learning Engineer",
+		"photo": "victoria.jpg",
+		"linkedin": "victorialslocum",
+		"twitter": "victorialslocum",
+		"team": "developer-growth"
 	},
 	{
 		"name": "Weronika Krajcarz",
 		"title": "Frontend Engineer",
 		"photo": "wera.png",
 		"linkedin": "wera-kr",
-		"github": "Weroiko"
+		"github": "Weroiko",
+		"team": "wcs"
 	},
 	{
 		"name": "Zain Hasan",
 		"title": "Senior Developer Advocate",
 		"photo": "zain.png",
-		"linkedin": "zainhas"
+		"linkedin": "zainhas",
+		"team": "developer-relations"
+	},{
+		"name": "Chrétien Minke",
+		"title": "Advisor",
+		"photo": "chretien.jpeg",
+		"linkedin": "chretienminke",
+		"team": "board-advisors"
+	},{
+		"name": "Erik Bernhardsson",
+		"title": "Advisor",
+		"photo": "erik.jpeg",
+		"linkedin": "erikbern",
+		"twitter": "bernhardsson",
+		"team": "board-advisors"
+	},{
+		"name": "Erin Price-Wright",
+		"title": "Board Member",
+		"photo": "erin.jpeg",
+		"team": "board-advisors"
+	},{
+		"name": "Igor Taber",
+		"title": "Board Member",
+		"photo": "igor.jpeg",
+		"linkedin": "itaber",
+		"team": "board-advisors"
+	},{
+		"name": "James Alcorn",
+		"title": "Board Member",
+		"photo": "james-alcorn.jpeg",
+		"linkedin": "james-alcorn-b04880ba",
+		"team": "board-advisors"
+	},{
+		"name": "Marcus Eagan",
+		"title": "Advisor",
+		"photo": "marcus.jpeg",
+		"linkedin": "marcuseagan",
+		"team": "board-advisors"
+	},{
+		"name": "Sam Ramji",
+		"title": "Advisor",
+		"photo": "sam-ramji.jpeg",
+		"linkedin": "sramji",
+		"twitter": "sramji",
+		"team": "board-advisors"
+	},{
+		"name": "Tal Shaked",
+		"title": "Advisor",
+		"photo": "tal.jpeg",
+		"linkedin": "tshaked",
+		"team": "board-advisors"
+	},{
+		"name": "Tony Florence",
+		"title": "Board Member",
+		"photo": "tony-florence.jpeg",
+		"linkedin": "toflorence",
+		"team": "board-advisors"
+	},{
+		"name": "Zack Kass",
+		"title": "Advisor",
+		"photo": "zack.jpeg",
+		"linkedin": "zackkass",
+		"twitter": "iamthezack",
+		"team": "board-advisors"
 	}
 ]

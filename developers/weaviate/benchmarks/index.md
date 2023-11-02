@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/benchmarks.jpg
 # tags: ['Weaviate', 'performance', 'benchmarks', 'ann benchmarks']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 You can find the following performance benchmarks:
 

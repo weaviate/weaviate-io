@@ -1,12 +1,10 @@
 ---
 title: ref2vec-centroid
-sidebar_position: 7
+sidebar_position: 40
 image: og/docs/modules/ref2vec-centroid.jpg
 # tags: ['ref2vec', 'ref2vec-centroid', 'centroid']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Introduction
 
@@ -20,7 +18,7 @@ This module is enabled by default on the WCS.
 
 ### Weaviate open source
 
-Which modules to use in a Weaviate instance can be specified in the docker-compose configuration file. Ref2Vec-centroid can be added like this:
+Which modules to use in a Weaviate instance can be specified in the `Docker Compose` file. Ref2Vec-centroid can be added like this:
 
 ```yaml
 ---
@@ -58,7 +56,7 @@ For example, here is an `Article` class which is configured to use ref2vec-centr
 
 The `Article` class specifies its `hasParagraphs` property as the only reference property to be used in the calculation of an `Article` object's vector.
 
-It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/image2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
+It is important to note that unlike the other vectorizer modules (e.g. text2vec/multi2vec/img2vec), ref2vec-centroid does not generate embeddings based on the contents of an object. Rather, the point of this module is to calculate an object's vector based on vectors of its *references*.
 
 In this case, the `Paragraph` class is configured to generate vectors using the text2vec-contextionary module. Thus, the vector representation of the `Article` class is an average of text2vec-contextionary vectors sourced from referenced `Paragraph` instances.
 
@@ -158,7 +156,6 @@ Let's say an `Article` object, `"On the Philosophy of Modern Ant Colonies"`, ref
 
 If we want `"On the Philosophy of Modern Ant Colonies"`'s centroid vector to be recalculated, we would need to otherwise trigger an update. For example, we could either remove the reference to `"body"` and add it back, or simply `PUT` the `Article` object with an identical object.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'image']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,7 +17,11 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
 This page covers additional, unique aspects related to similarity searches using an image as an input.
 
-If you wish to search for images using a vector or another object, please refer to the [How-to: similarity search ](./similarity.md) page.
+If you wish to search for images using a vector or another object, please refer to the [How-to: similarity search](./similarity.md) page.
+
+:::info Related pages
+- [How-to: Similarity search](./similarity.md)
+:::
 
 :::info Not available in WCS
 Image-based search is currently not available in WCS, as the required modules are not available.
@@ -40,7 +42,7 @@ To search using an input image, you must:
 <details>
   <summary>How do I <strong>configure Weaviate</strong> with an image vectorizer module?</summary>
 
-You must enable the desired vectorizer module and specify the inference API address in the relevant configuration file (e.g. `docker-compose.yml`). You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
+You must enable the desired vectorizer module and specify the inference API address in the relevant Docker Compose file (e.g. `docker-compose.yml`). You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
 An example `img2vec-neural` configuration is shown below:
 
@@ -256,7 +258,6 @@ You can set a threshold for similarity search by setting a maximum `distance`. T
 The syntax is the same as for [the other `nearXXX` operators](./similarity.md#distance-threshold).
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

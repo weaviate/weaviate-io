@@ -4,11 +4,9 @@ sidebar_position: 12
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'class']
 ---
-import Badges from '/_includes/badges.mdx';
+
 import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-class.md'
-
-<Badges/>
 
 ## List data objects
 
@@ -296,7 +294,8 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 <details>
   <summary>Getting a data object without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 GET /v1/objects/{id}
 ```
@@ -340,7 +339,8 @@ HEAD /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 <details>
   <summary>Checking if a data object exists without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 HEAD /v1/objects/{id}
 ```
@@ -381,7 +381,8 @@ PATCH /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 <details>
   <summary>Updating a data object without a class name are deprecated</summary>
 
-The below are only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 PUT /v1/objects/{id}
 PATCH /v1/objects/{id}
@@ -438,7 +439,8 @@ DELETE /v1/objects/{ClassName}/{id}[?consistency_level=ONE|QUORUM|ALL]
 <details>
   <summary>Deleting a data object without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 DELETE /v1/objects/{id}
 ```
@@ -521,7 +523,8 @@ POST /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=O
 <details>
   <summary>Adding a cross-reference without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 POST /v1/objects/{id}/references/{propertyName}
 ```
@@ -574,7 +577,8 @@ PUT /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level=ON
 <details>
   <summary>Updating a cross-reference without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 PUT /v1/objects/{id}/references/{propertyName}
 ```
@@ -628,7 +632,8 @@ DELETE /v1/objects/{ClassName}/{id}/references/{propertyName}[?consistency_level
 <details>
   <summary>Deleting a cross-reference without a class name is deprecated</summary>
 
-The below syntax is only available for backward compatibility and deprecated:
+The following syntax is deprecated. It is only available for backward compatibility.
+
 ```bash
 DELETE /v1/objects/{id}/references/{propertyName}
 ```
@@ -681,7 +686,6 @@ When using multi-tenancy, cross-references can only be made:
 - From a multi-tenancy object to a non-multi-tenancy object.
 - From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

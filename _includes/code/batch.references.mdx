@@ -28,7 +28,7 @@ client.batch.configure(
 
 with client.batch as batch:
     # Format for batching is as follows:
-    # client.batch.add_reference(
+    # batch.add_reference(
     #   from_object_uuid=<from_object_uuid>,
     #   from_object_class_name=<from_object_class_name>,
     #   from_property_name=<from_property_name>
@@ -248,7 +248,7 @@ public class App {
 # Note that for this query to work with Weaviate versions older than v1.14 you
 # need to omit the class name in the "to" beacon and specify it as
 # weaviate://localhost/<id>. The long-form beacon used in "from" is unchanged.
-$ curl \
+curl \
 -X POST \
 -H "Content-Type: application/json" \
 -d '[{

@@ -12,6 +12,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
+import ThemeSwitch from '/src/components/ThemeSwitch';
 
 
 function BlogListPageMetadata(props) {
@@ -28,6 +29,7 @@ function BlogListPageMetadata(props) {
       <MetaSEO img={ogimg} />
       <PageMetadata title={title} description={blogDescription} />
       <SearchMetadata tag="blog_posts_list" />
+
     </>
   );
 }
@@ -48,13 +50,18 @@ function BlogListPageContent(props) {
 }
 export default function BlogListPage(props) {
   return (
+    <div >
     <HtmlClassNameProvider
       className={clsx(
         ThemeClassNames.wrapper.blogPages,
         ThemeClassNames.page.blogListPage,
       )}>
+
       <BlogListPageMetadata {...props} />
       <BlogListPageContent {...props} />
     </HtmlClassNameProvider>
+    <ThemeSwitch />
+
+    </div>
   );
 }

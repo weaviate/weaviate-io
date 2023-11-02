@@ -4,9 +4,6 @@ sidebar_position: 0
 image: og/docs/installation.jpg
 # tags: ['installation']
 ---
-import Badges from '/_includes/badges.mdx';
-
-<Badges/>
 
 :::info Related pages
 - [WCS Quickstart](../../wcs/quickstart.mdx)
@@ -19,16 +16,13 @@ This section shows you available options for running Weaviate, and how to instal
 
 ## How to run Weaviate
 
-You have multiple options for running Weaviate.
+You can run Weaviate with any of the following methods:
 
-* [Weaviate Cloud Services](../../wcs/quickstart.mdx) – a managed Weaviate service; suitable for development and production.
-* [Docker Compose](./docker-compose.md) – typically for development.
-* [Kubernetes](./kubernetes.md) – typically for production setups.
-* [Embedded Weaviate](./embedded.md) - in-line instantiation from a client (experimental).
-
-:::tip Weaviate Cloud Services docs have a new home
-[Check it out here](../../wcs/index.mdx). Or go straight to the [WCS quickstart guide](../../wcs/quickstart.mdx) which covers installation.
-:::
+* [Weaviate Cloud Services](../../wcs/quickstart.mdx) – Use this managed Weaviate service for both development and production environments.
+* [Docker Compose](./docker-compose.md) – Opt for this containerized deployment method primarily for development projects.
+* [Kubernetes](./kubernetes.md) – Ideal for scalable, containerized deployments, this method is typically employed for production setups.
+* [Embedded Weaviate](./embedded.md) - For in-line instantiation from a client; currently in experimental stage and great for evaluation.
+* [AWS Marketplace](./aws-marketplace.md) - Conveniently deploy directly from the AWS Marketplace.
 
 The Weaviate library is identical regardless of whether it is used via Weaviate Cloud Services (WCS) or by downloading an open source version. The only difference that WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
@@ -42,7 +36,7 @@ If self-hosting, we recommend starting with Docker and gaining familiarity with 
 
 ### Run an unreleased version
 
-You can run Weaviate with `docker-compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this may not be an officially release, and may contain bugs.
+You can run Weaviate with `docker compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this may not be an officially release, and may contain bugs.
 
 ```sh
 git clone https://github.com/weaviate/weaviate.git
@@ -77,9 +71,12 @@ services:
     image: semitechnologies/contextionary:en0.16.0-v1.2.1
 ```
 
-After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
+After the build is complete, you can run this Weaviate build with docker compose:
 
-## More Resources
+```bash
+docker compose up
+```
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

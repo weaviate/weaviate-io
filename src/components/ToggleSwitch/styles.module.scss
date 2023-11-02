@@ -8,6 +8,11 @@
   }
 }
 
+.toggleSwitch > label {
+  color: black;
+  font-size: 25px;
+  font-weight: 400;
+}
 .toggleSwitch {
   position: relative;
   margin-right: 10px;
@@ -16,15 +21,20 @@
   vertical-align: middle;
   text-align: left;
   &Checkbox {
-    display: none;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
   }
+
   &Label {
-    display: block;
+    display: none;
     overflow: hidden;
     cursor: pointer;
     border: 0 solid #bbb;
     border-radius: 20px;
     margin: 0;
+
     &:focus {
       outline: none;
       > span {
@@ -50,15 +60,14 @@
       line-height: 34px;
       font-size: 14px;
       color: #fff;
-      font-weight: bold;
       box-sizing: border-box;
     }
     &:before {
       content: attr(data-yes);
       text-transform: uppercase;
-      background-color: #2e318f;
+      background-color: #61bd73;
       padding-left: 10px;
-      color: #fff;
+      color: #1c1468;
     }
   }
   &Disabled {

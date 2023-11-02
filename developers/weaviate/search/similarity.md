@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'similarity search']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -17,15 +15,14 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
 
-This page shows you how to perform similarity-based searches using Weaviate with the `nearXXX` operators.
+This page shows you how to perform similarity-based searches with the `nearXXX` operators.
+
+These operators work by searching for objects with the most similar vector representation to the query. Note that due to differences in configuration and data, we have a [separate page for image searches](./image.md).
 
 :::info Related pages
 - [API References: Search operators](../api/graphql/search-operators.md)
+- [How-to: Image search](./image.md)
 :::
-
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
-
-<BasicPrereqs />
 
 ## Similarity-based operators
 
@@ -303,7 +300,7 @@ It should produce a response like the one below:
 
 ## Group results by a property or cross-reference
 
-:::info Requires Weaviate `v1.19.0` or higher.
+:::info Available from version `v1.19`
 :::
 
 You can group search results by any arbitrary property or cross-reference.
@@ -422,7 +419,6 @@ Take the words rain and drought for example. While these are opposite concepts, 
 
 </details>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

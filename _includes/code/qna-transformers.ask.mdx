@@ -6,8 +6,15 @@ import TabItem from '@theme/TabItem';
 
 ```python
 import weaviate
+import os
 
-client = weaviate.Client("http://localhost:8080")
+client = weaviate.Client(
+    "https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    additional_headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace w/ your OPENAI API key
+    }
+)
 
 ask = {
   "question": "Who is the king of the Netherlands?",
@@ -16,7 +23,7 @@ ask = {
 
 result = (
   client.query
-  .get("Article", ["title", "_additional {answer {hasAnswer certainty property result startPosition endPosition} }"])
+  .get("Article", ["title", "_additional {answer {hasAnswer property result startPosition endPosition} }"])
   .with_ask(ask)
   .with_limit(1)
   .do()
@@ -32,8 +39,12 @@ print(result)
 import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
+  scheme: 'https',
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
+  headers: {
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
+  },
 });
 
 const response = await client.graphql
@@ -43,10 +54,11 @@ const response = await client.graphql
     question: 'Who is the king of the Netherlands?',
     properties: ['summary'],
   })
-  .withFields('title _additional { answer { hasAnswer certainty property result startPosition endPosition } }')
+  .withFields('title _additional { answer { hasAnswer property result startPosition endPosition } }')
   .withLimit(1)
   .do();
 console.log(response);
+
 ```
 
 </TabItem>
@@ -165,7 +177,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Article(
@@ -179,7 +191,6 @@ $ echo '{
         _additional {
           answer {
             hasAnswer
-            certainty
             property
             result
             startPosition
@@ -193,8 +204,10 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -207,7 +220,6 @@ $ echo '{
       ask: {
         question: "Who is the king of the Netherlands?",
         properties: ["summary"],
-        rerank: false # supported from v1.10.0 on
       },
       limit: 1
     ) {
@@ -215,7 +227,6 @@ $ echo '{
       _additional {
         answer {
           hasAnswer
-          certainty
           property
           result
           startPosition

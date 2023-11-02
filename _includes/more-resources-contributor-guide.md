@@ -1,10 +1,13 @@
-If you can't find the answer to your question here, please look at the:
+For additional information, try these sources.
 
-1. [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug). Or,
-1. For questions: [Stackoverflow](https://stackoverflow.com/questions/tagged/weaviate). Or,
-1. For issues: [GitHub](https://github.com/weaviate/weaviate/issues). Or,
-1. For more involved discussion: [Weaviate Community Forum](https://forum.weaviate.io/). Or,
-1. We also have a [Slack channel](https://weaviate.io/slack).
+- [Frequently Asked Questions](/developers/weaviate/more-resources/faq)
+- [Weaviate Community Forum](https://forum.weaviate.io/)
+- [Knowledge base of old issues](https://github.com/weaviate/weaviate/issues?utf8=%E2%9C%93&q=label%3Abug)
+- [Weaviate slack channel](https://weaviate.io/slack)
+
+[comment]: # (The # by itself creates vertical space )
+
+#
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 

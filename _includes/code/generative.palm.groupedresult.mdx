@@ -206,7 +206,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Publication(
@@ -232,10 +232,11 @@ $ echo '{
     }
   }
   "
-}' | tr -d "\n" | curl \
+}' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-Palm-Api-Key: YOUR-PALM-API-KEY" \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-Palm-Api-Key: $PALM_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```

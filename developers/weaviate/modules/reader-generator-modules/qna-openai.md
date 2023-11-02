@@ -4,9 +4,7 @@ sidebar_position: 21
 image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -35,11 +33,19 @@ This module can be used in GraphQL `Get{...}` queries, as a search operator. The
 You only need to provide one of the two keys, depending on which service (OpenAI or Azure OpenAI) you are using.
 :::
 
+## Organization name
+
+:::info Available from version `v1.21.1`
+:::
+
+For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:
+- `"X-OpenAI-Organization": "YOUR-OPENAI-ORGANIZATION"` for OpenAI
+
 ### Providing the key to Weaviate
 
 You can provide your API key in two ways:
 
-1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
@@ -60,9 +66,9 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### Configuration file (Weaviate open source only)
+### Docker Compose file (Weaviate open source only)
 
-You can enable the OpenAI Q&A module in your configuration file (e.g. `docker-compose.yaml`). Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the OpenAI Q&A module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `qna-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,qna-openai'
@@ -94,6 +100,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
       ENABLE_MODULES: 'text2vec-openai,qna-openai'
       OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      OPENAI_ORGANIZATION: your-orgname  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
@@ -229,7 +236,6 @@ OpenAI has multiple models available for the extraction of answers from a given 
 
 These models can be configured
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

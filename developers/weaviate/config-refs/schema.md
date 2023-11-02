@@ -1,27 +1,62 @@
 ---
-title: Schema
+title: Collection schema
 sidebar_position: 2
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
 import Badges from '/_includes/badges.mdx';
 
-:::info Related pages
-- [Tutorial: Schema](../tutorials/schema.md)
-- [How to: Configure a schema](../configuration/schema-configuration.md)
-- [References: REST API: Schema](../api/rest/schema.md)
-- [Concepts: Data Structure](../concepts/data.md)
-:::
 
 ## Introduction
 
-This page includes details related to the schema, such as parameters and available configurations.
+This page includes details related to the collection schema, such as parameters and available configurations.
 
-## Schema creation
+import Terminology from '/_includes/collection-class-terminology.md';
+
+<Terminology />
+
+## Collection schema creation
+
+### Mutability
+
+Please note that only the following parameters are mutable after creation.
+
+- `description`
+- `invertedIndexConfig`
+  - `bm25`
+    - `b`
+    - `k1`
+  - `cleanupIntervalSeconds`
+  - `stopwords`
+    - `additions`
+    - `preset`
+    - `removals`
+- `replicationConfig`
+  - `factor`
+- `vectorIndexConfig`
+  - `dynamicEfFactor`
+  - `dynamicEfMin`
+  - `dynamicEfMax`
+  - `flatSearchCutoff`
+  - `skip`
+  - `vectorCacheMaxObjects`
+  - `pq`
+    - `bitCompression`
+    - `centroids`
+    - `enabled`
+    - `segments`
+    - `trainingLimit`
+    - `encoder`
+      - `type`
+      - `distribution`
+
+Other parameters cannot be changed after class creation. If you wish to change these parameters, you must delete the class and create it again.
+
+Properties can be added to a class after creation, but existing properties cannot be modified after creation.
 
 ### Auto-schema
 
-:::info Available in Weaviate versions `1.5.0` and higher
+:::info Available from version `v1.5`
 :::
 
 If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is on by default, but can be disabled (e.g. in `docker-compose.yml`) by setting `AUTOSCHEMA_ENABLED: 'false'`.
@@ -30,8 +65,13 @@ It has the following characteristics:
 
 * If an object being added contains a property that does not exist in the schema, a corresponding property will be added prior to import.
 * If an object being added contains a property that conflicts with an existing schema type, an error is thrown. (e.g. trying to import text into a field that exists in the schema as `int`).
-* When an object is imported to a new class, the class is created including all properties.
+* When an object is imported to a new collection, the collection is created including all properties.
 * The auto-schema also automatically recognizes array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
+* Auto-schema can automatically create nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
+
+:::tip Define the class manually for production use
+Generally speaking, we recommend that you disable auto-schema for production use. For one, a manual class definition will provide more precise control. Another reasons is that there is a performance penalty associated with inferring the data structure at import time. This may be small in most cases, but in some cases such as with complex nested properties, this may be a costly operation.
+:::
 
 ### Datatypes
 
@@ -42,59 +82,75 @@ Additional configurations are available to help the auto-schema infer properties
 
 The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
-* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what the class of the resolved beacon is, since it needs the ClassName to be able to alter the schema.
+* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the ClassName to be able to alter the schema.
 
-### Class
+### Collection
 
-A class describes a data object, such as in the form of a noun (e.g., *Person*, *Product*, *Timezone*) or a verb (e.g., *Move*, *Buy*, *Eat*).
+A collection describes a data object.
 
-Classes are always written with a **capital letter** first. This helps in distinguishing classes from primitive data types when used in properties. For example, `dataType: ["text"]` means that a property is a text, whereas `dataType: ["Text"]` means that a property is a cross-reference type to a class named `Text`.
+Collection names are always written with an initial **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
 
-After the first letter, classes may use any GraphQL-compatible characters. The current (as of `v1.10.0+`) class name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
+- `dataType: ["text"]` is `text`
+- `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
-:::info Capitalization
-Class and property names are treated equally no matter how the first letter is cased, eg "Article" == "article".
+After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
-Generally, however, Weaviate follows GraphQL conventions where classes start with a capital letter and properties start with a lowercase letter.
-:::
+import initialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<initialCaps />
 
 ### Properties
 
-Every class has properties. Properties define what kind of data values you will add to an object in Weaviate. In the schema, you define at least the name of the property and its [dataType](../config-refs/datatypes.md). Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
+Every collection has properties. Properties define the kinds of data that you add to an object in Weaviate. For each property in the schema, you define at least the name and its [dataType](../config-refs/datatypes.md).
 
-## Class object
+Property names can contain the following characters: `/[_A-Za-z][_0-9A-Za-z]*/`.
 
-An example of a complete class object including properties:
+## Collection object
+
+An example of a complete collection object including properties:
 
 ```json
 {
-  "class": "Article",                        // The name of the class in string format
-  "description": "An article",                  // A description for your reference
-  "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema definition since this is the only available type for now
+  "class": "Article",                       // The name of the collection in string format
+  "description": "An article",              // A description for your reference
+  "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema
+                                            //    definition since this is the only available type
+                                            //    for now
   "vectorIndexConfig": {
     ...                                     // Vector index type specific settings, including distance metric
   },
   "vectorizer": "text2vec-contextionary",   // Vectorizer to use for data objects added to this class
   "moduleConfig": {
     "text2vec-contextionary": {
-      "vectorizeClassName": true            // Include the class name in vector calculation (default true)
+      "vectorizeClassName": true            // Include the collection name in vector calculation (default true)
     }
   },
   "properties": [                           // An array of the properties you are adding, same as a Property Object
     {
       "name": "title",                     // The name of the property
       "description": "title of the article",              // A description for your reference
-      "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple data types, hence the array syntax.
+      "dataType": [                         // The data type of the object as described above. When
+                                            //    creating cross-references, a property can have
+                                            //    multiple data types, hence the array syntax.
         "text"
       ],
       "moduleConfig": {                     // Module-specific settings
         "text2vec-contextionary": {
-          "skip": true,                     // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
-          "vectorizePropertyName": true,    // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
+          "skip": true,                     // If true, the whole property will NOT be included in
+                                            //    vectorization. Default is false, meaning that the
+                                            //    object will be NOT be skipped.
+          "vectorizePropertyName": true,    // Whether the name of the property is used in the
+                                            //    calculation for the vector position of data
+                                            //    objects. Default false.
         }
       },
-      "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
-      "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
+      "indexFilterable": true,              // Optional, default is true. By default each property
+                                            //    is indexed with a roaring bitmap index where
+                                            //     available for efficient filtering.
+      "indexSearchable": true               // Optional, default is true. By default each property
+                                            //    is indexed with a searchable index for
+                                            //    BM25-suitable Map index for BM25 or hybrid
+                                            //    searching.
     }
   ],
   "invertedIndexConfig": {                  // Optional, index configuration
@@ -106,19 +162,21 @@ An example of a complete class object including properties:
     "indexPropertyLength": false            // Optional, maintains inverted indices for each property by its length
   },
   "shardingConfig": {
-    ...                                     // Optional, controls behavior of class in a multi-node setting, see section below
+    ...                                     // Optional, controls behavior of the collection in a
+                                            //    multi-node setting, see section below
   },
-  "multiTenancyConfig": {"enabled": true}   // Optional, for enabling multi-tenancy for this class (default: false)
+  "multiTenancyConfig": {"enabled": true}   // Optional, for enabling multi-tenancy for this
+                                            //    collection (default: false)
 }
 ```
 
 ### vectorizer
 
-The vectorizer (`"vectorizer": "..."`) can be specified per class in the schema object. Check the [modules page](/developers/weaviate/modules/index.md) for available vectorizer modules.
+The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](/developers/weaviate/modules/index.md) for available vectorizer modules.
 
 #### Weaviate without a vectorizer
 
-You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This may be useful in case you wish to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#with-a-custom-vector)), or wish to create a class without any vectors.
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
 
 ### vectorIndexType
 
@@ -134,7 +192,7 @@ Check the [`hnsw` page](/developers/weaviate/configuration/indexes.md#how-to-con
 Introduced in v1.8.0.
 :::
 
-The `"shardingConfig"` controls how a class should be [sharded and distributed across multiple nodes](/developers/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
+The `"shardingConfig"` controls how a collection is [sharded and distributed across multiple nodes](/developers/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
 
 ```json
   "shardingConfig": {
@@ -152,11 +210,10 @@ The `"shardingConfig"` controls how a class should be [sharded and distributed a
 The meaning of the individual fields in detail:
 
 * `"desiredCount"`: *integer, immutable, optional*, defaults to the number of nodes in the
-  cluster. This value controls how many shards should be created for this class
-  index. The typical setting is that a class should be distributed across all
+  cluster. This value controls how many shards should be created for this collection
+  index. The typical setting is that a collection should be distributed across all
   the nodes in the cluster, but you can explicitly set this value to a lower
-  value. If the `"desiredCount"` is larger than the amount of physical nodes in the cluster, then some nodes
-  will contain multiple shards.
+  value. If the `"desiredCount"` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.
 
 * `"actualCount"`: *integer, read-only*. Typically matches desired count, unless there was
   a problem initiating the shards at creation time.
@@ -192,7 +249,7 @@ The meaning of the individual fields in detail:
 
 [Replication](../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
-The `factor` parameter sets the number of copies of to be stored for objects in this class.
+The `factor` parameter sets the number of copies of to be stored for objects in this collection.
 
 ```json
 {
@@ -226,7 +283,7 @@ The stopword configuration uses a preset system. You can select a preset to use 
   }
 ```
 
-This configuration allows stopwords to be configured by class. If not set, these values are set to the following defaults:
+This configuration allows stopwords to be configured by collection. If not set, these values are set to the following defaults:
 
 | Parameter | Default value | Acceptable values |
 | --- | --- | --- |
@@ -235,8 +292,8 @@ This configuration allows stopwords to be configured by class. If not set, these
 | `"removals"` | `[]` | *any list of custom words* |
 
 :::note
-- If none is the selected preset, then the class' stopwords will consist entirely of the additions list.
-- If the same item is included in both additions and removals, then an error is returned
+- If `preset` is `none`, then the collection only uses stopwords from the `additions` list.
+- If the same item is included in both `additions` and `removals`, Weaviate returns an error.
 :::
 
 As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
@@ -268,7 +325,9 @@ client.schema.update_config("Article", class_obj)
 This feature was introduced in `v1.13.0`.
 :::
 
-To perform queries which are filtered by timestamps, the target class must first be configured to maintain an inverted index for each object by their internal timestamps -- currently these include `creationTimeUnix` and `lastUpdateTimeUnix`. This configuration is done by setting the `indexTimestamps` field of the `invertedIndexConfig` object to `true`.
+To perform queries that are filtered by timestamps, configure the target collection to maintain an inverted index based on the objects' internal timestamps. Currently the timestamps include `creationTimeUnix` and `lastUpdateTimeUnix`.
+
+To configure timestamp based indexing, set `indexTimestamps` to `true` in the `invertedIndexConfig` object.
 
 ```json
   "invertedIndexConfig": {
@@ -282,7 +341,9 @@ To perform queries which are filtered by timestamps, the target class must first
 This feature was introduced in `v1.16.0`.
 :::
 
-To perform queries which are filtered by being null or not null, the target class must first be configured to maintain an inverted index for each property of a class that tracks if objects are null or not. This configuration is done by setting the `indexNullState` field of the `invertedIndexConfig` object to `true`.
+To perform queries that filter on `null`, configure the target collection to maintain an inverted index that tracks `null` values for each property in a collection .
+
+To configure `null` based indexing, setting `indexNullState` to `true` in the `invertedIndexConfig` object.
 
 ```json
   "invertedIndexConfig": {
@@ -296,7 +357,9 @@ To perform queries which are filtered by being null or not null, the target clas
 This feature was introduced in `v1.16.0`.
 :::
 
-To perform queries which are filtered by the length of a property, the target class must first be configured to maintain an inverted index for this. This configuration is done by setting the `indexPropertyLength` field of the `invertedIndexConfig` object to `true`.
+To perform queries that filter by the length of a property, configure the target collection to maintain an inverted index based on the length of the properties.
+
+To configure indexing based on property length, set `indexPropertyLength` to `true` in the `invertedIndexConfig` object.
 
 ```json
   "invertedIndexConfig": {
@@ -305,14 +368,14 @@ To perform queries which are filtered by the length of a property, the target cl
 ```
 
 :::note
-Using these features requires more resources, as the additional inverted indices must be created/maintained for the lifetime of the class.
+Using these features requires more resources. The additional inverted indices must be created and maintained for the lifetime of the collection.
 :::
 
 ### invertedIndexConfig > bm25
 
 The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
 
-If necessary, they can be configured in the schema per class, and can optionally be overridden per property:
+If necessary, they can be configured in the schema per collection, and can optionally be overridden per property:
 
 ```json
 {
@@ -350,7 +413,7 @@ If necessary, they can be configured in the schema per class, and can optionally
 :::info Available from `v1.20` onwards
 :::
 
-The `multiTenancyConfig` value will determine whether[multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this class. If enabled, objects of this class will be isolated for each tenant. It is disabled by default.
+The `multiTenancyConfig` value determines if [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this collection. If enabled, objects of this collection will be isolated for each tenant. It is disabled by default.
 
 To enable it, set the `enabled` key to `true`, as shown below:
 
@@ -373,18 +436,30 @@ An example of a complete property object:
 {
     "name": "title",                     // The name of the property
     "description": "title of the article",              // A description for your reference
-    "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
+    "dataType": [                         // The data type of the object as described above. When
+                                          //    creating cross-references, a property can have
+                                          //    multiple dataTypes.
       "text"
     ],
-    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See "Property tokenization" below for more detail.
+    "tokenization": "word",               // Split field contents into word-tokens when indexing
+                                          //    into the inverted index. See "Property
+                                          //    Tokenization" below for more detail.
     "moduleConfig": {                     // Module-specific settings
       "text2vec-contextionary": {
-          "skip": true,                   // If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped.
-          "vectorizePropertyName": true   // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
+          "skip": true,                   // If true, the whole property is NOT included in
+                                          //    vectorization. Default is false, meaning that the
+                                          //    object will be NOT be skipped.
+          "vectorizePropertyName": true   // Whether the name of the property is used in the
+                                          //    calculation for the vector position of data
+                                          //    objects. Default false.
       }
     },
-    "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
-    "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
+    "indexFilterable": true,              // Optional, default is true. By default each property is
+                                          //    indexed with a roaring bitmap index where available
+                                          //    for efficient filtering.
+    "indexSearchable": true               // Optional, default is true. By default each property is
+                                          //    indexed with a searchable index for BM25-suitable
+                                          //    Map index for BM25 or hybrid searching.
 }
 ```
 
@@ -460,7 +535,7 @@ Each of these tokens will be indexed separately in the inverted index. This mean
 
 **Tokenization with `string`**
 
-`string` properties allow the user to set whether it should be tokenized, by setting the `tokenization` class property.
+`string` properties allow the user to set whether it should be tokenized, by setting the `tokenization` collection property.
 
 If `tokenization` for a `string` property is set to `word`, the field will be tokenized. The tokenization behavior for `string` is different from `text`, however, as `string` values are only tokenized by white spaces, and casing is not altered.
 
@@ -507,11 +582,15 @@ will be vectorized as:
 article cows lose their jobs as milk prices drop as his diary cows lumbered over for their monday...
 ```
 
-By default, the `class name` and all property `values` *will* be taken in the calculation, but the property `names` *will not* be indexed. The vectorization behavior can be configured on a per-class basis with `vectorizeClassName` and per-property basis with `skip` and `vectorizePropertyName`.
+By default, the calculation includes the  `collection name` and all property `values`, but the property `names` *are not* indexed.
+
+To configure vectorization behavior on a per-collection basis, use `vectorizeClassName`.
+
+To configure vectorization on a per-property basis, use `skip` and `vectorizePropertyName`.
 
 ### Default distance metric
 
-Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every class unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
+Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every collection unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
 ```python
 class_obj = {
@@ -524,7 +603,11 @@ class_obj = {
 client.schema.create_class(class_obj)
 ```
 
-## More Resources
+## Related pages
+- [Tutorial: Schema](../tutorials/schema.md)
+- [How to: Configure a schema](../configuration/schema-configuration.md)
+- [References: REST API: Schema](../api/rest/schema.md)
+- [Concepts: Data Structure](../concepts/data.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 On this page you will find four use cases which motivate replication for Weaviate. Each of them serves a different purpose and, as a result, may require different configuration.
 
@@ -83,7 +81,6 @@ Note, Regional Proximity depends on the Multi-Datacenter feature of replication,
 
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

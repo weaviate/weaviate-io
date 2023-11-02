@@ -4,9 +4,7 @@ sidebar_position: 10
 image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'transformers', 'openai']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -51,7 +49,7 @@ You only need to provide one of the two keys, depending on which service (OpenAI
 
 You can provide your API key in two ways:
 
-1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `docker-compose` file, like this:
+1. During the **configuration** of your Docker instance, by adding `OPENAI_APIKEY` or `AZURE_APIKEY` as appropriate under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
@@ -66,15 +64,23 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 <ClientKey />
 
+## Organization name
+
+:::info Available from version `v1.21.1`
+:::
+
+For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:
+- `"X-OpenAI-Organization": "YOUR-OPENAI-ORGANIZATION"` for OpenAI
+
 ## Module configuration
 
 :::tip Not applicable to WCS
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-### Configuration file (Weaviate open source only)
+### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative OpenAI module in your configuration file (e.g. `docker-compose.yaml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative OpenAI module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-openai` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
 ENABLE_MODULES: 'text2vec-openai,generative-openai'
@@ -107,6 +113,7 @@ services:
       // highlight-next-line
       ENABLE_MODULES: 'text2vec-openai,generative-openai'
       OPENAI_APIKEY: sk-foobar  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
+      OPENAI_ORGANIZATION: your-orgname  # For use with OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       AZURE_APIKEY: sk-foobar  # For use with Azure OpenAI. Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
@@ -308,7 +315,6 @@ The module also supports these legacy models (not recommended)
 * [davinci 002](https://platform.openai.com/docs/models/overview)
 * [davinci 003](https://platform.openai.com/docs/models/overview)
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

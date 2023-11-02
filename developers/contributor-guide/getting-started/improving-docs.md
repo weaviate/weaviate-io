@@ -57,7 +57,7 @@ The documentation repository is structured as below:
 ├── podcast.md                          #podcast page of the site
 ├── product.md                          #product page of the site
 ├── resources.md                        #resource page of the site
-├── robots.txt                          #tells search engine crawlers which URLs are accesible
+├── robots.txt                          #tells search engine crawlers which URLs are accessible
 ├── run.sh                              #script for previewing the site
 └── setup.sh                            #script for setting up the website
 ```

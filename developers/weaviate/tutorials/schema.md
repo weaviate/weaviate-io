@@ -1,12 +1,10 @@
 ---
 title: Schemas in detail
-sidebar_position: 10
+sidebar_position: 20
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -42,7 +40,7 @@ import SchemaDef from '/_includes/definition-schema.md';
 
 In the [Quickstart tutorial](../quickstart/index.md), you saw how to specify the name and the vectorizer for a data collection, called a "class" in Weaviate:
 
-import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart.autoschema.minimum.schema.mdx'
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
 
 <CodeAutoschemaMinimumSchema />
 
@@ -89,7 +87,7 @@ Our **Question** class will:
     - name `category`: type `text`
 - Use a `text2vec-openai` vectorizer
 
-Run the below code with your client to define the schema for the **Question** class and display the created schema information.
+Run this code with your client to define the schema for the **Question** class and display the created schema information.
 
 import CodeCreateSchema from '/_includes/code/quickstart.schema.create.mdx';
 
@@ -282,7 +280,6 @@ You can read more about various schema, data types, modules, and index configura
 - [Tutorial: Introduction to modules](./modules.md)
 - [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

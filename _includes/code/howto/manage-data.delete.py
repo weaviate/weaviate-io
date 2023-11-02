@@ -82,7 +82,6 @@ assert response["data"]["Aggregate"]["EphemeralObject"][0]["meta"]["count"] == 5
 client.batch.delete_objects(
     class_name='EphemeralObject',
     # highlight-start
-    # Same `where` filter as in the GraphQL API
     where={
         'path': ['name'],
         'operator': 'Like',

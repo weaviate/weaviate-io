@@ -7,9 +7,7 @@ image: og/docs/configuration.jpg
 
 <!-- TODO - create OG image -->
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -32,8 +30,10 @@ This page includes a comprehensive list of environment variables that can be use
 | `LOG_FORMAT` | Set the Weaviate logging format <br/><br/>Default: Outputs log data to json. e.g.: `{"action":"startup","level":"debug","msg":"finished initializing modules","time":"2023-04-12T05:07:43Z"}` <br/>`text`: Outputs log data to a string. e.g. `time="2023-04-12T04:54:23Z" level=debug msg="finished initializing modules" action=startup` | `string` |  |
 | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
 | <code>PERSISTENCE<wbr />_DATA<wbr />_PATH</code> | Where should Weaviate Standalone store its data? | `string - file path` | `/var/lib/weaviate` |
+| <code>PERSISTENCE<wbr />_LSM<wbr />_ACCESS<wbr />_STRATEGY</code> | Function used to access disk data in virtual memory | `string` | `mmap` (default) or `pread` |
 | <code>DISK_USE<wbr />_WARNING<wbr />_PERCENTAGE</code> | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | <code>DISK_USE<wbr />_READONLY<wbr />_PERCENTAGE</code> | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
+| <code>ASYNC<wbr />_INDEXING</code> | (Experimental as of `v1.22`.) <br/><br/>If set, Weaviate creates vector indexes asynchronously to the object creation process. This can be useful for importing large amounts of data. (default: `false`) | `string - true/false` | `false` |
 | <code>REINDEX<wbr />_SET_TO<wbr />_ROARINGSET<wbr />_AT_STARTUP</code> | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `string - true/false` | `true` |
 | <code>PROMETHEUS<wbr />_MONITORING<wbr />_ENABLED</code>  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `string - true/false` | `false` |
 | <code>PROMETHEUS<wbr />_MONITORING<wbr />_GROUP</code> | If set, Weaviate will group metrics for the same class across all shards. | `string - true/false` | `true` |
@@ -74,7 +74,6 @@ This page includes a comprehensive list of environment variables that can be use
 | <code>CLUSTER<wbr />_DATA<wbr />_BIND<wbr />_PORT</code> | Port for exchanging data. | `string - number` | `7103` |
 | <code>CLUSTER<wbr />_JOIN</code> | The service name of the "founding" member node in a cluster setup | `string` | `weaviate-node-1:7100` |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

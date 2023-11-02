@@ -5,15 +5,13 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'import']
 ---
 
-import Badges from '/_includes/badges.mdx';
-
-<Badges/>
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
 ## Overview
 
@@ -30,16 +28,47 @@ We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-bat
 ## Requirements
 
 To import items in batches using a Weaviate client,
+
 1. Initialize a batcher,
-1. For each source data row:
-   * Build an item (object or cross-reference) for Weaviate,
-   * Specify the class to add to, and
-   * Add it to the batcher.
-1. Ensure that the batches are flushed (some clients require manual flushing).
-1. (If multi-tenancy is enabled) Specify the tenant name.
+1. Add items to the batcher, and
+1. Ensure that the last batch is sent (i.e. flushed).
 
-Depending on the client, additional settings or auto-flushing of batches may be available.
+### Optimizing for import speed
 
+To maximise import speed, enable asynchronous indexing in Weaviate and use gRPC batch imports. Asynchronous indexing decouples vector indexing from object creation ([read more](../configuration/indexes.md#asynchronous-indexing)), and gRPC batch imports are faster than REST batch imports.
+
+Both features are available in Weaviate `1.22` and higher. (Note that asynchronous indexing is still experimental as of `1.22`, and we do not yet recommend using it in production.)
+
+#### How to use asynchronous indexing
+
+To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file).
+
+For example, the `docker-compose.yml` file might look like this (note the `environment` section):
+
+```yaml
+weaviate:
+  image: semitechnologies/weaviate:||site.weaviate_version||
+  ...
+  environment:
+    ASYNC_INDEXING: 'true'
+  ...
+```
+
+As the asynchronous indexing is being carried out, you can choose to wait for the indexing to complete. For example, the Python client includes a `client.batch.wait_for_vector_indexing()` function to wait for the indexing to complete.
+
+:::info See also
+- [Configuration: Indexes](../configuration/indexes.md#asynchronous-indexing)
+:::
+
+#### How to use gRPC batch imports
+
+The easiest way to use gRPC batch imports is to use the [`v4` Python client](../client-libraries/python.md). Alternatively, you can use the gRPC API ([read more](../api/grpc.md)) if you so wish.
+
+### Notes
+
+- On supported clients, you can also configure the batch parameters.
+- For multi-tenancy classes, you can specify the tenant name.
+- Some clients can be configured for auto-flushing.
 
 ## Basic batch import example
 
@@ -67,20 +96,38 @@ The following example will add objects to `YourClassName` class using a batch im
   />
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// BasicBatchImportExample"
+      endMarker="// END BasicBatchImportExample"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// BasicBatchImportExample"
+      endMarker="// END BasicBatchImportExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
-:::note Where is the class definition?
+:::info Where is the class definition?
 In this example, if the class `YourClassName` does not already exist, it will be created by Weaviate with its [auto-schema](../configuration/schema-configuration.md#auto-schema) feature.
 :::
 
 
 ## Optional object parameters
 
-The following apply to objects only (not to cross-references).
+The following does not apply to cross-references.
 
 ### `id`
 
-You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. Otherwise, Weaviate will generate a random UUID.
+You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, leave it blank to have Weaviate generate one. You can also use a deterministic UUID (UUIDv5) as shown here to [prevent duplicates](#managing-potential-duplication).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -105,6 +152,23 @@ You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Univers
 
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// BatchImportWithIDExample"
+      endMarker="// END BatchImportWithIDExample"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// BatchImportWithIDExample"
+      endMarker="// END BatchImportWithIDExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 ### `vector`
@@ -134,21 +198,54 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
 
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// BatchImportWithVectorExample"
+      endMarker="// END BatchImportWithVectorExample"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// BatchImportWithVectorExample"
+      endMarker="// END BatchImportWithVectorExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
-
 ## Batch parameters - Python client
+
+We recommend using `client.batch` in a context manager as it will automatically flush the last batch when exiting.
+
+### Set batch parameters
+
+You can set batch parameters using the `client.batch.configure` function.
+
+The following example specifies a batch size of 200 and parallelizes the import process with up to 2 threads:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# ConfigureBatchImportExample"
+  endMarker="# END ConfigureBatchImportExample"
+  language="py"
+/>
+
 
 ### Performance parameters
 
 The following parameters will have the greatest impact on the batch import speed:
-- `batch_size` (int) - the number of items to batch before flushing
-- `num_workers` (int) - the number of parallel workers to use for the batch
+- `batch_size` (int) - the (initial) size of the batch
+- `num_workers` (int) - the maximum number of parallel workers
 - `dynamic` (bool) - whether to dynamically adjust the `batch_size` based on the number of items in the batch
 
-We recommend starting with batch sizes of 100-300 typically, and the number of workers at 1-4. The `dynamic` parameter is useful if you are not sure what the optimal batch size is.
-
-Unless `batch_size` is set to `None`, the batch will be flushed when the number of items in the batch reaches `batch_size`.
+We recommend starting with:
+- `batch_size`: 50-200
+- `num_workers`: 1-2,
+- `dynamic`: `True` (if you are not sure what batch size to use)
 
 Using these parameters, you can set dynamic or automatic batching:
 
@@ -191,20 +288,6 @@ The following parameters will most impact error handling:
 For a complete list of batch parameters and details about the types of batching, see the [Python client batching](../client-libraries/python.md#batching) section.
 
 
-### How to set batch parameters
-
-We recommend setting batch parameters via the `client.batch()` context manager, which will also automatically flush the batch when exiting.
-
-The below example specifies a batch size of 200 and parallelizes the import process with 2 threads:
-
-```python
-with client.batch(
-    batch_size=200,  # Specify the batch size for auto batching
-    num_workers=2,   # Maximum number of parallel threads used during import
-) as batch:
-```
-
-
 ## Batch parameters - other clients
 
 At this point in time, the other clients do not support batch parameters, and manual flushing is required.
@@ -221,7 +304,7 @@ With a deterministic ID, Weaviate will either be creating a new object or overwr
 
 ### Generate deterministic ID
 
-You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client. See the [`id` section above](#id) for a concrete example.
 
 ### Check if an object exists
 
@@ -279,7 +362,6 @@ A good practice for importing large datasets is to stream the input file rather 
 </Tabs>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

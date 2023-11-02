@@ -212,6 +212,7 @@ def upsert(doc: Document, client=Depends(get_weaviate_client)):
     """
     Insert a document into weaviate
     """
+    client.batch.configure(batch_size=100)  # Configure batch
     with client.batch as batch:
         batch.add_data_object(
             data_object=doc.dict(),

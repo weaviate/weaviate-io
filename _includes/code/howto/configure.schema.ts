@@ -127,7 +127,7 @@ const classWithModuleSettings = {
   moduleConfig: {
     'text2vec-cohere': {  // this must match the vectorizer used
       vectorizeClassName: true,
-      model: 'multilingual-22-12',
+      model: 'embed-multilingual-v2.0',
     },
   },
   // highlight-end
@@ -146,7 +146,7 @@ console.log(JSON.stringify(result, null, 2));
 
 // Test
 assert.equal(result.vectorizer, 'text2vec-cohere');
-assert.equal(result.moduleConfig['text2vec-cohere']['model'], 'multilingual-22-12');
+assert.equal(result.moduleConfig['text2vec-cohere']['model'], 'embed-multilingual-v2.0');
 
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();

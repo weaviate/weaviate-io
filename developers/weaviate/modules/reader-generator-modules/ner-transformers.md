@@ -4,9 +4,7 @@ sidebar_position: 50
 image: og/docs/modules/ner-transformers.jpg
 # tags: ['ner-transformers', 'transformers', 'token classification']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -23,9 +21,9 @@ There are currently three different NER modules available (taken from [Hugging F
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The NER module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
+The NER module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker Compose file for using the `ner-transformers` module (`dbmdz-bert-large-cased-finetuned-conll03-english`) in combination with the `text2vec-contextionary`:
 
 ```yaml
 ---
@@ -156,7 +154,7 @@ docker build -f my-model.Dockerfile -t davlan-bert-base-multilingual-cased-ner-h
 ```
 
 #### Step 3: That's it!
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `davlan-bert-base-multilingual-cased-ner-hrl`.
 
 
 ## How it works (under the hood)
@@ -184,7 +182,12 @@ The code for the application in this repo works well with models that take in a 
 
 The Weaviate NER Module then takes this output and processes this to GraphQL output.
 
-## More resources
+## Model license(s)
+
+The `ner-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

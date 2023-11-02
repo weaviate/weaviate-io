@@ -190,28 +190,28 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
-    "query": "{
-      Explore (
-        nearText: {
-          concepts: [\"fashion\"],
-          certainty: 0.7,
-          moveTo: {
-            concepts: [\"haute couture\"],
-            force: 0.45
-          },
-          moveAwayFrom: {
-            concepts: [\"finance\"],
-            force: 0.85
-          }
+echo '{
+  "query": "{
+    Explore(
+      nearText: {
+        concepts: [\"fashion\"],
+        certainty: 0.7,
+        moveTo: {
+          concepts: [\"haute couture\"],
+          force: 0.45
+        },
+        moveAwayFrom: {
+          concepts: [\"finance\"],
+          force: 0.85
         }
-      ) {
-        beacon
-        certainty
-        className
       }
-    }"
-  }' | curl \
+    ) {
+      beacon
+      certainty
+      className
+    }
+  }"
+}' | curl \
       -X POST \
       -H 'Content-Type: application/json' \
       -d @- \

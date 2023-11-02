@@ -74,7 +74,7 @@ with target_client.batch(
             new_object = dict()
             for prop in class_properties:
                 new_object[prop] = retrieved_object[prop]
-            target_client.batch.add_data_object(
+            batch.add_data_object(
                 new_object,
                 class_name=class_name,
                 # highlight-start

@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/api.jpg
 # tags: ['schema']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `GraphQL`
@@ -41,7 +39,6 @@ This section includes references for the RESTful and GraphQL APIs. RESTful API e
 - [/v1/.well-known](./rest/well-known.md)
 - [/v1/modules](./rest/modules.md)
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,9 +4,7 @@ sidebar_position: 99
 image: og/docs/further-guides.jpg
 # tags: ['semantic search', 'wikipedia']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -19,7 +17,7 @@ Migrated from "semantic-search-through-wikipedia" tutorial from Weaviate Docs Cl
 
 In this tutorial, we imported the complete English language Wikipedia article dataset into a single Weaviate instance to conduct semantic search queries through the Wikipedia articles, besides this, we've made all the graph relations between the articles too. We have made the import scripts, pre-processed articles, and backup available so that you can run the complete setup yourself.
 
-In this tutorial, you'll find the 3-steps needed to replicate the import, but there are also downlaods available to skip the first two steps.
+In this tutorial, you'll find the 3-steps needed to replicate the import, but there are also downloads available to skip the first two steps.
 
 ## Stats & Links
 
@@ -62,26 +60,26 @@ In this process, the Wikipedia dataset is processed and cleaned (the markup is r
 Process from the Wikimedia dump:
 
 ```sh
-$ cd step-1
-$ wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
-$ bunzip2 enwiki-latest-pages-articles.xml.bz2
-$ mv enwiki-latest-pages-articles.xml latest-pages-articles.xml
-$ pip3 install -r requirements.txt
-$ python3 process.py
+cd step-1
+wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
+bunzip2 enwiki-latest-pages-articles.xml.bz2
+mv enwiki-latest-pages-articles.xml latest-pages-articles.xml
+pip3 install -r requirements.txt
+python3 process.py
 ```
 
 The process takes a few hours, so probably you want to do something like:
 
 ```sh
-$ nohup python3 -u process.py &
+nohup python3 -u process.py &
 ```
 
 You can also download the processed file from May 15th, 2022, and skip the above steps
 
 ```sh
-$ curl -o wikipedia-en-articles.json.tar.gz https://storage.googleapis.com/semi-technologies-public-data/wikipedia-en-articles.json.tar.gz
-$ tar -xzvf wikipedia-en-articles.json.tar.gz
-$ mv articles.json wikipedia-en-articles.json
+curl -o wikipedia-en-articles.json.tar.gz https://storage.googleapis.com/semi-technologies-public-data/wikipedia-en-articles.json.tar.gz
+tar -xzvf wikipedia-en-articles.json.tar.gz
+mv articles.json wikipedia-en-articles.json
 ```
 
 ### Step 2: Import the dataset and vectorize the content
@@ -94,23 +92,23 @@ We will be using a single Weaviate instance, but four Tesla P4 GPUs that we will
 
 * Every Weaviate [text2vec-module)[/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) will be using a [sentence-transformers/paraphrase-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L6-v2) sentence transformer.
 * The volume is mounted _outside_ the container to `/var/weaviate`. This allows us to use this folder as a backup that can be imported in the next step.
-* Make sure to have Docker-compose _with_ GPU support [installed](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8).
+* Make sure to have Docker Compose _with_ GPU support [installed](https://gist.github.com/bobvanluijt/af6fe0fa392ca8f93e1fdc96fc1c86d8).
 * The import scripts assumes that the JSON file is called `wikipedia-en-articles.json`.
 
 ```sh
-$ cd step-2
-$ docker-compose up -d
-$ pip3 install -r requirements.txt
-$ python3 import.py
+cd step-2
+docker compose up -d
+pip3 install -r requirements.txt
+python3 import.py
 ```
 
 The import takes a few hours, so probably you want to do something like:
 
 ```sh
-$ nohup python3 -u import.py &
+nohup python3 -u import.py &
 ```
 
-After the import is done, you can shut down the Docker containers by running `docker-compose down`.
+After the import is done, you can shut down the Docker containers by running `docker compose down`.
 
 You can now query the dataset!
 
@@ -124,15 +122,15 @@ Note that Weaviate needs some time to import the backup (if you use the setup me
 
 ```sh
 # clone this repository
-$ git clone https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate/
+git clone https://github.com/weaviate/semantic-search-through-Wikipedia-with-Weaviate/
 # go into the backup dir
-$ cd step-3
+cd step-3
 # download the Weaviate backup
-$ curl https://storage.googleapis.com/semi-technologies-public-data/weaviate-wikipedia-1.13.2.tar.gz -o weaviate-wikipedia-1.13.2.tar.gz
+curl https://storage.googleapis.com/semi-technologies-public-data/weaviate-wikipedia-1.13.2.tar.gz -o weaviate-wikipedia-1.13.2.tar.gz
 # untar the backup (112G unpacked)
-$ tar -xvzf weaviate-wikipedia-1.13.2.tar.gz
+tar -xvzf weaviate-wikipedia-1.13.2.tar.gz
 # get the unpacked directory
-$ echo $(pwd)/var/weaviate
+echo $(pwd)/var/weaviate
 # use the above result (e.g., /home/foobar/var/weaviate)
 #   update volumes in docker-compose.yml (NOT PERSISTENCE_DATA_PATH!) to the above output
 #   (e.g.,
@@ -147,15 +145,15 @@ $ echo $(pwd)/var/weaviate
 #### With GPU
 
 ```sh
-$ cd step-3
-$ docker-compose -f docker-compose-gpu.yml up -d
+cd step-3
+docker compose -f docker-compose-gpu.yml up -d
 ```
 
 #### Without GPU
 
 ```sh
-$ cd step-3
-$ docker-compose -f docker-compose-no-gpu.yml up -d
+cd step-3
+docker compose -f docker-compose-no-gpu.yml up -d
 ```
 
 ## Example queries
@@ -323,7 +321,6 @@ Get all Wikipedia graph connections for _"jazz saxophone players"_ [try it live!
 | Can I run this with my own data? | Yes! This is just a demo dataset, you can use any data you have and like. Go to the [Weaviate docs](/developers/weaviate/) or join our [Slack](https://weaviate.io/slack) to get started. |
 | Can I run the dataset without the Q&A module? | Yes, see [this](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/issues/2#issuecomment-995595909) answer |
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

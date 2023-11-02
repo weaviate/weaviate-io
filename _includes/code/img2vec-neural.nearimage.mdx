@@ -2,21 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    FashionItem(nearImage: {
-      image: "/9j/4AAQSkZJRgABAgE..."
-    }) {
-      image
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -144,7 +129,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       FashionItem(nearImage: {
@@ -159,6 +144,21 @@ $ echo '{
     -H 'Content-Type: application/json' \
     -d @- \
     http://localhost:8080/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    FashionItem(nearImage: {
+      image: "/9j/4AAQSkZJRgABAgE..."
+    }) {
+      image
+    }
+  }
+}
 ```
 
 </TabItem>

@@ -1,52 +1,60 @@
 ---
 title: text2vec-contextionary
-sidebar_position: 4
+sidebar_position: 20
 image: og/docs/modules/text2vec-contextionary.jpg
 # tags: ['text2vec', 'text2vec-contextionary', 'contextionary']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
-## Introduction
 
-The module `text2vec-contextionary`, herein also referred to as the 'Contextionary', is Weaviate's own language vectorizer. It gives context to the language used in your dataset (there are Contextionary versions available for multiple languages). `text2vec-contextionary` is a Weighted Mean of Word Embeddings (WMOWE) vectorizer module which works with popular models such as fastText and GloVe. The most recent `text2vec-contextionary` is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data. We aim to make the Contextionary available for use cases in any domain, regardless if they are business-related, academic or other. But you can also [create your own vectorizer](/developers/weaviate/modules/other-modules/custom-modules.md) if desired.
+## Overview
 
-The `text2vec-contextionary` places data into a 300-dimensional space. Each datapoint will thus have a vector of 300 numbers. This vector is computed from the pre-trained Contextionary (you never have to do any training yourself), that contains the contextual representation that allows Weaviate to store data based on its contextual meaning. An empty Weaviate with the preloaded `text2vec-contextionary` module, could be envisioned like this (in a simplified 3D visualization):
+The `text2vec-contextionary` module enables Weaviate to obtain vectors locally using a lightweight model.
 
-![3D Vectors visualization](./img/vectors-3d.svg "3D Vectors visualization")
+Key notes:
 
-When you add data, `text2vec-contextionary` calculates the position in the vector space that represents the real-world entity.
+- This module is not available on Weaviate Cloud Services (WCS).
+- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
+- This module is based on FastText and uses a weighted mean of word embeddings (WMOWE) to produce the vector.
+- Available for multiple languages
 
-The process from a data object to a vector position is calculated based on the centroid of the words weighted by the occurrences of the individual words in the original training text-corpus (e.g., the word `"has"` is seen as less important than the word `"apples"`).
+:::tip When to use `text2vec-contextionary`
+As a lightweight model, it is well suited for testing purposes.
 
-![data to vector with contextionary](./img/data2vec-c11y.svg "data to vector with contextionary")
+For production use cases, we recommend using other modules that use a more modern, transformer-based architecture.
+:::
 
-When a new class object is created, it will be added to a Weaviate.
+## Weaviate instance configuration
 
-![3D Vectors visualization with new data object](./img/vectors-3d-dataobject.svg "3D Vectors visualization with new data object")
+:::info Not applicable to WCS
+This module is not available on Weaviate Cloud Services.
+:::
 
-### Available modules and languages
+### Docker Compose file
 
-* Trained with on CommonCrawl and Wiki, using GloVe
-  * English
-  * Dutch
-  * German
-  * Czech
-  * Italian
-* Trained on Wiki
-  * English
-  * Dutch
+To use `text2vec-contextionary`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
 
-## How to enable
+:::tip Use the configuration tool
+While you can do so manually, we recommend using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to generate the `Docker Compose` file.
+:::
 
-### Weaviate Cloud Services
+#### Parameters
 
-The `text2vec-contextionary` module is not available on the WCS.
+Weaviate:
 
-### Weaviate open source
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-contextionary` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-contextionary` to make it the default for all classes.
 
-You can find an example Docker Compose file below, which will spin up Weaviate with the `text2vec-contextionary` module.
+Contextionary:
+
+* `EXTENSIONS_STORAGE_MODE`: Location of storage for extensions to the Contextionary
+* `EXTENSIONS_STORAGE_ORIGIN`: The host of the custom extension storage
+* `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE`: this can be used to hide very rare words. If you set it to '5', this means the 5th percentile of words by occurrence are removed in the nearestNeighbor search (for example used in the GraphQL `_additional { nearestNeighbors }` feature).
+* `ENABLE_COMPOUND_SPLITTING`: see [here](#compound-splitting).
+
+#### Example
+
+This configuration enables `text2vec-contextionary`, sets it as the default vectorizer, and sets the parameters for the Contextionary Docker container.
 
 ```yaml
 ---
@@ -69,9 +77,12 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
+      # highlight-start
       ENABLE_MODULES: 'text2vec-contextionary'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
+      # highlight-end
       CLUSTER_HOSTNAME: 'node1'
+  # highlight-start
   contextionary:
     environment:
       OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
@@ -79,23 +90,32 @@ services:
       EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
       NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
       ENABLE_COMPOUND_SPLITTING: 'false'
-    image: semitechnologies/contextionary:en0.16.0-v1.0.2
+    image: semitechnologies/contextionary:en0.16.0-v1.2.1
     ports:
     - 9999:9999
+  # highlight-end
 ...
 ```
 
-Variable explanations:
-* `EXTENSIONS_STORAGE_MODE`: where custom extensions to the Contextionary are stored
-* `EXTENSIONS_STORAGE_ORIGIN`: the host of the custom extension storage
-* `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE`: this can be used to hide very rare words. If you set it to '5', this means the 5th percentile of words by occurrence are removed in the nearestNeighbor search (for example used in the GraphQL `_additional { nearestNeighbors }` feature).
-* `ENABLE_COMPOUND_SPLITTING`: see [here](#compound-splitting).
+## Class configuration
 
-## How to configure
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
 
-In your Weaviate schema, you must define how you want this module to vectorize your data. If you are new to Weaviate schemas, you might want to check out the [tutorial on the Weaviate schema](/developers/weaviate/tutorials/schema.md) first.
+### Vectorization settings
 
-For example
+You can set vectorizer behavior using the `moduleConfig` section under each class and property:
+
+#### Class-level
+
+- `vectorizer` - what module to use to vectorize the data.
+- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
+
+#### Property-level
+
+- `skip` – whether to skip vectorizing the property altogether. Default: `false`
+- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
+
+#### Example
 
 ```json
 {
@@ -103,48 +123,45 @@ For example
     {
       "class": "Document",
       "description": "A class called document",
+      "vectorizer": "text2vec-contextionary",
       "moduleConfig": {
+        // highlight-start
         "text2vec-contextionary": {
-          "vectorizeClassName": "false"
+          "vectorizeClassName": false
         }
+        // highlight-end
       },
       "properties": [
         {
+          "name": "content",
           "dataType": [
             "text"
           ],
           "description": "Content that will be vectorized",
+          // highlight-start
           "moduleConfig": {
             "text2vec-contextionary": {
               "skip": false,
               "vectorizePropertyName": false
             }
-          },
-          "name": "content"
+          }
+          // highlight-end
         }
       ],
-      "vectorizer": "text2vec-contextionary"
     }
   ]
 }
 ```
 
-### Schema Configuration
+### Class/property names
 
 If you are using this module and are vectorizing the class or property name, the name(s) must be a part of the `text2vec-contextionary`.
 
-#### Class/property names
+To use multiple words as a class or property definition, concatenate them as:
+- camel case (e.g. `bornIn`) for class or property names, or
+- snake case (e.g. `born_in`) for property names.
 
-Sometimes you might want to use multiple words to set as a class or property
-definition. For example, the year a person is born in, you might want to define
-with the two words: `born` and `in`. You can do this by capitalizing per word
-(CamelCase), for example, `bornIn`. When using the `text2vec-contextionary`
-module, the camel case words will be split up to try and derive its semantic
-meaning. Without this particular module there is no semantic meaning to
-camel-casing. Starting with `v1.7.2` you can also use underscores in properties
-names (`snake_case`), e.g. `has_articles`, `publication_date`, etc.
-
-For example:
+For example, the following are acceptable:
 
 ```yaml
 Publication
@@ -164,11 +181,9 @@ Author
   writesFor
 ```
 
-## How to use
+## Usage example
 
-The module makes available a [`nearText`](/developers/weaviate/api/graphql/search-operators.md#neartext) search operator.
-
-### Example
+This is an example of a `nearText` query with `text2vec-contextionary`.
 
 import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
@@ -184,11 +199,11 @@ To find concepts or words or to check if a concept is part of the Contextionary,
 GET /v1/modules/text2vec-contextionary/concepts/<concept>
 ```
 
-### Parameters
+#### Parameters
 
 The only parameter `concept` is a string that should be camelCased in case of compound words or a list of words.
 
-### Response
+#### Response
 <!-- TODO: (phase 2) can we make a list of parameters like this look better? -->
 The result contains the following fields:
 - `"individualWords"`: a list of the results of individual words or concepts in the query, which contains:
@@ -203,10 +218,10 @@ The result contains the following fields:
       - `"concatenatedVector"`: a list of vector values of the concatenated concept.
       - `"concatenatedNearestNeighbors"`: a list with the nearest neighbors, containing `"word"` and `"distance"` (between the two words in the high dimensional space). Note that `"word"` can also be a data object.
 
-### Example
+#### Example
 
 ```bash
-$ curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/magazine
+curl http://localhost:8080/v1/modules/text2vec-contextionary/concepts/magazine
 ```
 
 or (note the camelCased compound concept)
@@ -260,22 +275,50 @@ with a result similar to:
 }
 ```
 
-## Extending the Contextionary
+### Model details
 
-Custom words or abbreviations (i.e., "concepts") can be added to Weaviate directly by extending the Contextionary. Using this endpoint will enrich the Contextionary with your own words, abbreviations or concepts in context by [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning). Using the `v1/modules/text2vec-contextionary/extensions/` endpoint teaches Weaviate the new concepts in real-time. You can also overwrite concepts with this endpoint. Note that you need to introduce the new concepts in to Weaviate before adding data.
+`text2vec-contextionary` (Contextionary) is Weaviate's own language vectorizer that is trained using [fastText](https://fasttext.cc/) on Wiki and CommonCrawl data.
 
-### Parameters
+The `text2vec-contextionary` model outputs a 300-dimensional vector. This vector is computed by using a Weighted Mean of Word Embeddings (WMOWE) technique.
+
+The vector is calculated based on the centroid of the words weighted by the occurrences of the individual words in the original training text-corpus (e.g., the word `"has"` is seen as less important than the word `"apples"`).
+
+![data to vector with contextionary](./img/data2vec-c11y.svg "data to vector with contextionary")
+
+### Available languages
+
+Contextionary models are available for the following languages:
+
+* Trained with on CommonCrawl and Wiki, using GloVe
+  * English
+  * Dutch
+  * German
+  * Czech
+  * Italian
+* Trained on Wiki
+  * English
+  * Dutch
+
+### Extending the Contextionary
+
+Custom words or abbreviations (i.e., "concepts") can be added to `text2vec-contextionary` through the `v1/modules/text2vec-contextionary/extensions/` endpoint.
+
+Using this endpoint will enrich the Contextionary with your own words, abbreviations or concepts in context by [transfer learning](https://en.wikipedia.org/wiki/Transfer_learning). Using the `v1/modules/text2vec-contextionary/extensions/` endpoint adds or updates the concepts in real-time.
+
+Note that you need to introduce the new concepts in to Weaviate before adding the data, as this will note cause Weaviate to automatically update the vectors.
+
+#### Parameters
 
 A body (in JSON or YAML) with the extension word or abbreviation you want to add to the Contextionary with the following fields includes a:
 - `"concept"`: a string with the word, compound word or abbreviation
 - `"definition"`: a clear description of the concept, which will be used to create the context of the concept and place it in the high dimensional Contextionary space.
 - `"weight"`: a float with the relative weight of the concept (default concepts in the Contextionary have a weight of 1.0)
 
-### Response
+#### Response
 
 The same fields as the input parameters will be in the response body if the extension was successful.
 
-### Example
+#### Example
 
 Let's add the concept `"weaviate"` to the Contextionary.
 
@@ -294,7 +337,7 @@ Note that it is not (yet) possible to extend the Contextionary with concatenated
 You can also overwrite current concepts with this endpoint. Let's say you are using the abbreviation `API` for `Academic Performance Index` instead of `Application Programming Interface`, and you want to reposition this concept in the Contextionary:
 
 ```bash
-$ curl \
+curl \
   -X POST \
   -H 'Content-Type: application/json' \
   -d '{
@@ -307,19 +350,19 @@ $ curl \
 
 The meaning of the concept `API` has now changed in your Weaviate setting.
 
-## Stopwords
+### Stopwords
 
 Note that stopwords are automatically removed from camelCased and CamelCased names.
 
-### What stopwords are and why they matter
+<!-- ### What stopwords are and why they matter
 
 Stopwords are words that don't add semantic meaning to your concepts and are extremely common in texts across different contexts. For example, the sentence "a car is parked on the street" contains the following stopwords: "a", "is", "on", "the". If we look at the sentence "a banana is lying on the table", you would find the exact same stop words. So in those two sentences, over 50% of the words overlap. Therefore they would be considered somewhat similar (based on the overall vector position).
 
-However, if we remove stopwords from both sentences, they become "car parked street" and "banana lying table". Suddenly there are 0% identical words in the sentences, so it becomes easier to perform vector comparisons. Note at this point we cannot say whether both sentences are related or not. For this we'd need to know how close the vector position of the sentence "car parked street" is to the vector position of "banana lying table". But we do know that the result can now be calculated with a lot less noise.
+However, if we remove stopwords from both sentences, they become "car parked street" and "banana lying table". Suddenly there are 0% identical words in the sentences, so it becomes easier to perform vector comparisons. Note at this point we cannot say whether both sentences are related or not. For this we'd need to know how close the vector position of the sentence "car parked street" is to the vector position of "banana lying table". But we do know that the result can now be calculated with a lot less noise. -->
 
-### Behavior around stop words
+#### Vectorization behavior
 
-Stopwords are useful for humans, so we don't want to encourage you to leave them out completely. Instead Weaviate will remove them whenever your schema information is translated to vector positions.
+Stopwords can be useful, so we don't want to encourage you to leave them out completely. Instead Weaviate will remove them during vectorization.
 
 In most cases you won't even notice that this happens in the background, however, there are a few edge cases that might cause a validation error:
 
@@ -327,15 +370,15 @@ In most cases you won't even notice that this happens in the background, however
 
 * If your keyword list contains stop words, they will be removed. However, if every single keyword is a stop word, validation will fail.
 
-### How does Weaviate decide whether a word is a stop word or not?
+#### How does Weaviate decide whether a word is a stop word or not?
 
 The list of stopwords is derived from the Contextionary version used and is published alongside the Contextionary files.
 
-## Compound splitting
+### Compound splitting
 
 Sometimes Weaviate's Contextionary does not understand words which are compounded out of words it would otherwise understand. This impact is far greater in languages that allow for arbitrary compounding (such as Dutch or German) than in languages where compounding is not very common (such as English).
 
-### Effect
+#### Effect
 
 Imagine you import an object of class `Post` with content `This is a thunderstormcloud`. The arbitrarily compounded word `thunderstormcloud` is not present in the Contextionary. So your object's position will be made up of the only words it recognizes: `"post", "this"` (`"is"` and `"a"` are removed as stopwords).
 
@@ -384,19 +427,25 @@ To overcome this limitation the optional **Compound Splitting Feature** can be e
 
 Note that the newly found word (made up of the parts `thunderstorm` and `cloud` has the highest weight in the vectorization. So this meaning, which would have been lost without Compound Splitting, can now be recognized.
 
-### How to enable
-You can enable Compound Splitting in the configuration file of the `text2vec-contextionary`. See how this is done [here](#compound-splitting).
+#### How to enable
+You can enable Compound Splitting in the Docker Compose file of the `text2vec-contextionary`. See how this is done [here](#compound-splitting).
 
-### Trade-Off Import speed vs Word recognition
+#### Trade-Off Import speed vs Word recognition
+
 Compound Splitting runs an any word that is otherwise not recognized. Depending on your dataset, this can lead to a significantly longer import time (up to 100% longer). Therefore, you should carefully evaluate whether the higher precision in recognition or the faster import times are more important to your use case. As the benefit is larger in some languages (e.g. Dutch, German) than in others (e.g. English) this feature is turned off by default.
 
-## Noise filtering
+### Noise filtering
 
 So called "noise words" are concatenated words of random words with no easily recognizable meaning. These words are present in the Contextionary training space, but are extremely rare and therefore distributed seemingly randomly. As a consequence, an "ordinary" result of querying features relying on nearest neighbors (additional properties `nearestNeighbors` or `semanticPath`) might contain such noise words as immediate neighbors.
 
-To combat this noise, a neighbor filtering feature was introduced in the contextionary, which ignores words of the configured bottom percentile - ranked by occurrence in the respective training set. By default this value is set to the bottom 5th percentile. This setting can be overridden. To set another value, e.g. to ignore the bottom 10th percentile, provide the environment variable `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE=10` to the `text2vec-contextionary` container (configuration file).
+To combat this noise, a neighbor filtering feature was introduced in the contextionary, which ignores words of the configured bottom percentile - ranked by occurrence in the respective training set. By default this value is set to the bottom 5th percentile. This setting can be overridden. To set another value, e.g. to ignore the bottom 10th percentile, provide the environment variable `NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE=10` to the `text2vec-contextionary` container, in the Docker Compose file.
 
-## More resources
+## Model license(s)
+
+The `text2vec-contextionary` module is based on the [`fastText`](https://github.com/facebookresearch/fastText/tree/main) library, which is released under the MIT license. Please refer to the [license file](https://github.com/facebookresearch/fastText/blob/main/LICENSE) for more information.
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

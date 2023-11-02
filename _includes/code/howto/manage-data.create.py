@@ -57,6 +57,33 @@ assert result['properties']['somePropNotInTheSchema'] == 123
 
 
 # ============================================
+# ===== Create object with deterministic id =====
+# ============================================
+
+# CreateObjectWithDeterministicId START
+# highlight-start
+from weaviate.util import generate_uuid5  # Generate a deterministic ID
+# highlight-end
+
+data_object = {
+    'question': 'This vector DB is OSS and supports automatic property type inference on import',
+    'answer': 'Weaviate',
+}
+uuid = client.data_object.create(
+    data_object=data_object,
+    class_name='JeopardyQuestion',
+    # highlight-start
+    uuid=generate_uuid5(data_object),
+    # highlight-end
+)
+# CreateObjectWithDeterministicId END
+
+# Test
+assert generate_uuid5(data_object) == uuid
+client.data_object.delete(uuid)  # Clean up
+
+
+# ============================================
 # ===== Create object with id and vector =====
 # ============================================
 

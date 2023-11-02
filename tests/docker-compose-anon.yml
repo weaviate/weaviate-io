@@ -6,12 +6,12 @@ services:
     - --host
     - 0.0.0.0
     - --port
-    - '8090'  # Specify different port to avoid confusion
+    - '8080'  # Specify different port to avoid confusion
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.20.2
+    image: semitechnologies/weaviate:1.21.2
     ports:
-    - 8090:8090
+    - 8080:8080
     restart: on-failure:0
     environment:
       OPENAI_APIKEY: $OPENAI_APIKEY

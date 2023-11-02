@@ -1,0 +1,192 @@
+.header {
+  margin-bottom: 40px;
+}
+.info {
+  flex: 1;
+  h3,
+  p {
+    margin-left: 15px;
+  }
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 30px;
+    display: flex;
+  }
+
+  .left {
+    display: flex;
+    flex: 1;
+    border-left: 1px solid #130c49;
+
+    @media screen and (max-width: 768px) {
+      flex: 1;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      border-left: none;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 25%;
+    }
+
+    .tabsList {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        flex: 0 0 auto;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 10px;
+        width: 100%;
+      }
+
+      .tabsTrigger {
+        appearance: none;
+        box-shadow: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex: 1;
+        cursor: pointer;
+        background-color: transparent;
+        gap: 5px;
+        padding: 0.5rem;
+        border-left: 3px solid transparent;
+        scroll-snap-align: start;
+
+        p {
+          text-align: left;
+          display: none;
+        }
+      }
+      .tabsTrigger[data-state='active'] {
+        border-left: 3px solid #130c49;
+
+        @media screen and (max-width: 485px) {
+          border-left: none;
+          border-bottom: 7px solid #130c49;
+        }
+
+        p {
+          text-align: left;
+          display: inherit;
+          text-align: left;
+          color: #1c1468;
+          font-family: 'Inter';
+        }
+
+        @media screen and (max-width: 485px) {
+          p {
+            text-align: left;
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex: 1;
+
+    div[data-state='active'] {
+      display: flex;
+      flex: 1;
+
+      .codeContainer {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-row-gap: 4px;
+        height: 654px;
+        width: 100%;
+
+        @media screen and (max-width: 485px) {
+          height: auto;
+        }
+
+        .tabsText {
+          display: none;
+        }
+
+        @media screen and (max-width: 485px) {
+          .tabsText {
+            display: block;
+            color: #130c49;
+            font-size: 1rem;
+            margin-bottom: 10px;
+          }
+        }
+
+        .codeImage {
+          background-size: contain;
+          height: 100%;
+          width: 100%;
+          background-repeat: no-repeat;
+          @media screen and (max-width: 485px) {
+            height: 270px;
+          }
+        }
+
+        .code1 {
+          background-image: url('/img/site/code-box-1.png');
+        }
+        .code2 {
+          background-image: url('/img/site/code-box-2.png');
+        }
+        .code3 {
+          background-image: url('/img/site/code-box-3.png');
+        }
+      }
+    }
+  }
+}
+
+.copyButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #0073b4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 157.33%;
+  background: none;
+  margin: auto 10px 0px auto;
+
+  @media screen and (max-width: 485px) {
+    margin-bottom: 48px;
+    margin-right: 10px;
+  }
+}
+.generativeButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #0073b4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 157.33%;
+  background: none;
+  margin-bottom: 48px;
+  margin-right: 10px;
+
+  @media screen and (max-width: 485px) {
+    margin-bottom: 48px;
+    margin-right: 10px;
+  }
+}

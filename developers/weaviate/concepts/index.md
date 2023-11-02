@@ -4,9 +4,7 @@ sidebar_position: 0
 image: og/docs/concepts.jpg
 # tags: ['getting started']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `Core knowledge`
@@ -49,7 +47,7 @@ The figure below gives a 30,000 feet view of Weaviate's architecture.
 
 [![Weaviate module APIs overview](./img/weaviate-architecture-overview.svg "Weaviate System and Architecture Overview")](./img/weaviate-architecture-overview.svg)
 
-You can learn more about the individual components in this figure by following the below guides:
+You can learn more about the individual components in this figure by following these guides:
 
 **[Learn about storage inside a shard](./storage.md)**
   * How Weaviate stores data
@@ -81,7 +79,6 @@ You can learn more about the individual components in this figure by following t
   * Weaviate's implementation
   * Use cases
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

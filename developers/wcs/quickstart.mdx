@@ -29,50 +29,48 @@ And if you wish, you will be ready to move onto our [Weaviate Quickstart tutoria
 
 ## Sign in to WCS
 
-1. First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
-    1. If you don't have an account with WCS yet, click on the "Register" button and create a new account.
-1. Then, sign in with your WCS username and password.
+1. First, go to the [WCS Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
+    1. Click <kbd>Sign in with the Weaviate Cloud Services</kbd>.
+    1. If you don't have a WCS account, click on <kbd>Register</kbd>.
+1. Sign in with your WCS username and password.
 
 ## Create a Weaviate Cluster
 
-To create a new Weaviate Cluster, click the "Create cluster" button.
-
-<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
+To create a new Weaviate Cluster, click the <kbd>Create cluster</kbd> button.
 
 Then:
 
-1. Select the **Free sandbox** *plan tier*.
-1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
-1. Set the `Enable Authentication?` option to `NO`.
+1. Select the <kbd>Free sandbox</kbd> tier.
+1. Provide a *Cluster name*. This will become a part of its URL, with a suffix added to ensure uniqueness.
+1. Set *Enable Authentication?* to <kbd>YES</kbd>.
 
-Your selections should look like this:
-
-<img src={WCSoptions} width="100%" alt="Instance configuration"/>
-
-Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
-
-<img src={WCScreate} width="100%" alt="Create instance"/>
+Click <kbd>Create</kbd>. This will take ~2 minutes and you'll see a tick ✔️ when finished.
 
 This will start the process to create a new instance, and you will see a progress indicator.
 
-<img src={WCScreationProgress} width="100%" alt="Creation in progress"/>
+<img src={WCScreationProgress} width="65%" alt="Creation in progress"/>
 
 Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
 
-<details>
-  <summary>Sandbox expiry & options</summary>
+#### Your cluster details
+
+To access your cluster, you will need:
+- The Weaviate URL, and
+- Authentication details (Weaviate API key).
+
+Click <kbd>Details</kbd> to see them.
+
+For the Weaviate API key, click on the <kbd>API keys <i class="fa-solid fa-key"></i></kbd> button.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <SandBoxExpiry/>
 
-</details>
-
 In the meantime, let's start installing a client library.
 
 ## Install a client library
 
-You can communicate with Weaviate using the available [client libraries](../weaviate/client-libraries/index.md) (currently for `Python`, `JavaScript`, `TypeScript`, `Java` and `Go`), the [GraphQL API](../weaviate/api/graphql/index.md), or the [RESTful API](../weaviate/api/rest/index.md).
+We suggest using a [Weaviate client](/developers/weaviate/client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
 
 import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
@@ -80,7 +78,7 @@ import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
 Install your preferred client by following the relevant instructions below:
 
-import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
+import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
@@ -90,28 +88,20 @@ By now, you should have:
 * Set up a sandbox instance of Weaviate on WCS, and
 * Installed a Weaviate client library.
 
-Let's put the pieces together by connecting to the Weaviate instance and retrieving the existing schema, which should be empty.
+From the <kbd>Details</kbd> tab in WCS, get:
+- The Weaviate **API key**, and
+- The Weaviate **URL**.
 
-This can be done by sending a request to the `schema` endpoint.
-
-:::tip Authentication
-If you have enabled authentication in your sandbox for added security, this step will require that you pass on the authentication credentials. Please see the [authentication guide](./guides/authentication.mdx) for how.
-:::
-
-Run the below code for your preferred client, replacing the endpoint address with your own:
-
-:::tip Where to get the instance URL
-You can get the URL for your WCS instance from the WCS dashboard, once you've logged in and the instance creation is complete. Click through to see the detail on your cluster, and you'll see the URL there.
-:::
+Replace the endpoint address and API key in the following code with your address and key, then run the code for your preferred client:
 
 import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
 
 <WCSClientInstantiation/>
 
-You should receive a response confirming the instance to be empty.
+You should receive a response confirming the server is ready.
 
 ```json
-{'classes': []}
+True
 ```
 
 Congratulations! You have successfully set up a cloud-based vector database with WCS.

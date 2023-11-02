@@ -1,0 +1,214 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
+
+<Tabs groupId="languages">
+{/* <TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Question(
+      nearText: {
+        concepts: ["biology"],
+      }
+    ) {
+      question
+      answer
+      category
+    }
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="py" label="Python (v4)">
+
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# GenerativeSearchExample"
+  endMarker="# END GenerativeSearchExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
+
+<FilteredTextBlock
+  text={EndToEndPy3Code}
+  startMarker="# GenerativeSearchExample"
+  endMarker="# END GenerativeSearchExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// GenerativeSearchExample"
+  endMarker="// END GenerativeSearchExample"
+  language="ts"
+/>
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+
+	"github.com/weaviate/weaviate-go-client/v4/weaviate"
+	"github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:    "some-endpoint.weaviate.network/",  // Replace with your endpoint
+    Scheme:  "https",
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},  // Replace with your inference API key
+  }
+	client, err := weaviate.NewClient(cfg)
+	if err != nil {
+		panic(err)
+	}
+
+	fields := []graphql.Field{
+		{Name: "question"},
+		{Name: "answer"},
+		{Name: "category"},
+	}
+
+	nearText := client.GraphQL().
+		NearTextArgBuilder().
+		WithConcepts([]string{"biology"})
+
+	generativeSearch := graphql.NewGenerativeSearch().SingleResult("Explain {answer} as you might to a five-year-old.")
+
+	result, err := client.GraphQL().Get().
+		WithClassName("Question").
+		WithFields(fields...).
+		WithNearText(nearText).
+		WithLimit(2).
+		WithGenerativeSearch(generativeSearch).
+		Do(context.Background())
+	if err != nil {
+		panic(err)
+	}
+
+	jsonOutput, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(jsonOutput))
+}
+```
+
+</TabItem>
+{/* <TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class App {
+  public static void main(String[] args) {
+    Map<String, String> headers = new HashMap<String, String>() { {
+      put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
+    } };
+    Config config = new Config("https", "some-endpoint.weaviate.network/", headers);  // Replace with your endpoint
+    WeaviateClient client = new WeaviateClient(config);
+
+    NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "haute couture" }).force(0.85f).build();
+
+    NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "finance" }).force(0.45f)
+      .build();
+
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "fashion" })
+      .distance(0.6f) // use .certainty(0.7f) prior to v1.14
+      .moveTo(moveTo)
+      .moveAwayFrom(moveAway)
+      .build();
+
+    Field question = Field.builder().name("question").build();
+    Field answer = Field.builder().name("answer").build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Question")
+      .withFields(question, answer)
+      .withNearText(nearText)
+      .withLimit(1)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      Question (
+        limit: 2
+        nearText: {
+          concepts: [\"biology\"],
+        }
+      ) {
+        question
+        answer
+        category
+        _additional {
+          generate(
+            singleResult: {
+              prompt: \"\"\"
+                Explain {answer} as you might to a five-year-old.
+              \"\"\"
+            }
+          ) {
+            singleResult
+            error
+          }
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+    -d @- \
+    https://some-endpoint.weaviate.network/v1/graphql  # Replace this with your endpoint
+```
+
+</TabItem>
+</Tabs>

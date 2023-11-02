@@ -18,7 +18,8 @@ The [Hybrid search](/developers/weaviate/api/graphql/search-operators#hybrid) fe
 In this blog post, you will learn about the implementation of hybrid search in Weaviate and how to use it.
 
 ## Sparse and Dense Vectors
-Sparse and dense vectors are calculated with distinct algorithms. Sparse vectors have mostly zero values with only a few non-zero values, while dense vectors mostly contain non-zero values. Sparse embeddings are generated from algorithms like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [SPLADE](https://arxiv.org/abs/2107.05720). Dense embeddings are generated from machine learning models like [GloVe](https://text2vec.org/glove.html) and [Transformers](https://huggingface.co/docs/transformers/index).
+Sparse and dense vectors are calculated with distinct algorithms. Sparse vectors have mostly zero values with only a few non-zero values, while dense vectors mostly contain non-zero values. Sparse embeddings are generated from algorithms like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [SPLADE](https://arxiv.org/abs/2107.05720). Dense embeddings are generated from machine learning models like
+[GloVe](https://text2vec.org/glove.html) and [Transformers](https://huggingface.co/docs/transformers/index).
 
 Note, the current implementation of hybrid search in Weaviate uses BM25/BM25F and vector search.
 

@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/roadmap.jpg
 # tags: ['functional', 'roadmap']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 The following is an overview of features planned for Weaviate. By clicking the link, you can upvote the feature or engage in a discussion about it. You can also join our [forum](https://forum.weaviate.io/) to discuss the roadmap in more detail.
 
@@ -45,7 +43,6 @@ The following is an overview of features planned for Weaviate. By clicking the l
 {% endfor %}
 </ul> -->
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

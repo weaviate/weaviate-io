@@ -138,7 +138,8 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+# Note: `certainty` is only supported if distance==cosine. `distance` is always supported.
+echo '{
   "query": "{
     Explore (
       nearVector: {
@@ -146,8 +147,8 @@ $ echo '{
       }
     ) {
       beacon
-      certainty  // only supported if distance==cosine
-      distance   // always supported
+      certainty
+      distance
       className
     }
   }"
@@ -169,8 +170,8 @@ $ echo '{
     }
   ) {
     beacon
-    certainty // only supported if distance==cosine
-    distance  // always supported
+    certainty  # only supported if distance==cosine
+    distance   # always supported
     className
   }
 }

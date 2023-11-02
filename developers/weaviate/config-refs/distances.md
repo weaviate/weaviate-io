@@ -4,9 +4,7 @@ sidebar_position: 4
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Schema](../configuration/schema-configuration.md)
@@ -52,8 +50,8 @@ You can use the following overview to find the best possible combination of dist
 | Distance | `linux/amd64 AVX2` | `darwin/amd64 AVX2` | `linux/amd64 AVX512` | `linux/arm64` | `darwin/arm64` |
 | --- | --- | --- | --- | --- | --- |
 | `cosine` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | no SIMD | no SIMD | no SIMD |
-| `dot` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | no SIMD | no SIMD | no SIMD |
-| `l2-squared` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_amd64.s) | no SIMD | no SIMD | no SIMD |
+| `dot` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_amd64.s) | no SIMD | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_arm64.s)<br/><small>From `v1.21`</small> | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/dot_arm64.s)<br/><small>From `v1.21`</small> |
+| `l2-squared` | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_amd64.s) | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_amd64.s) | no SIMD | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_arm64.s)<br/><small>From `v1.21`</small> | [optimized](https://github.com/weaviate/weaviate/blob/master/adapters/repos/db/vector/hnsw/distancer/asm/l2_arm64.s)<br/><small>From `v1.21`</small> |
 | `hamming` | no SIMD | no SIMD | no SIMD | no SIMD | no SIMD |
 | `manhattan` | no SIMD | no SIMD | no SIMD | no SIMD | no SIMD |
 
@@ -84,7 +82,6 @@ For backward compatibility, `certainty` can still be used when the distance is
 
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -5,15 +5,15 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'create', 'collections']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
 ## Overview
 
@@ -31,9 +31,9 @@ Under the hood, these are carried out through the [`schema` REST endpoint](../ap
 
 ## Create a class
 
-You can create a class:
+You can create a class either:
 - Manually, or
-- Have Weaviate create it as needed (with [`Auto-schema`](../config-refs/schema.md#auto-schema)).
+- Automatically. Weaviate can create classes as needed, such as at import time. The [`Auto-schema` feature](../config-refs/schema.md#auto-schema) must be enabled for this to occur.
 
 :::tip Manual class creation recommended
 We recommend you create classes manually, as:
@@ -63,27 +63,48 @@ To create a class, you must specify the class name with the `class` parameter.
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateClass"
+      endMarker="// END CreateClass"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateClass"
+      endMarker="// END CreateClass"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
-Typically, you would specify additional configurations. We include some examples in the following sections.
+Typically, you would specify additional configurations. We include examples in the following sections.
+
+
+#### Define Properties
+
+The class definition can include properties, which are the data fields to be stored in Weaviate. Each property must have a name and a data type. The `Auto-schema` feature can create properties at import time and infer the data type from the data, but we recommend you specify the data type manually.
 
 ### Sample configuration
 
-One example configuration is shown below, which defines:
+A class configuration is shown below, which defines:
 - The class name (`Article`)
 - The [vectorizer module](../modules/retriever-vectorizer-modules/index.md) (`text2vec-cohere`)
-- The [vector distance metric](../config-refs/distances.md) (`cosine`)
-- Which [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
-- A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `chunk`, `chunk_no` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
+- The [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
+- A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `body` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
+    - Note that the `body` property is an array of objects.
+    - The `object` and `object[]` data types are available from `1.22`.
 - [Tokenization](../config-refs/schema.md#property-tokenization) option for the `url` property.
 
 ```json
 {
     "class": "Article",
     "vectorizer": "text2vec-cohere",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-    },
     "moduleConfig": {
         "generative-openai": {}
     },
@@ -99,6 +120,20 @@ One example configuration is shown below, which defines:
         {
             "name": "chunk_no",
             "dataType": ["int"]
+        },
+        {
+            "name": "body",
+            "dataType": ["object[]"],  // Array of objects. `object` and `object[]` are available from `1.22`.
+            "nestedProperties": [
+                {
+                    "name": "chunk",
+                    "dataType": ["text"],
+                },
+                {
+                    "name": "chunk_no",
+                    "dataType": ["int"],
+                },
+            ]
         },
         {
             "name": "url",
@@ -120,7 +155,9 @@ See:
 
 ### Auto-schema
 
-If you create objects into a class that does not yet exist, Weaviate will create the class by inferring necessary information as required.
+If you add objects to a class that does not yet exist, or if you create objects with properties that do not yet exist, Weaviate can automatically create the missing class or the missing properties. This is known as the `Auto-schema` feature.
+
+For most cases, we recommend you create classes and properties manually, as you will gain greater control over your data model.
 
 :::info Read more about Auto-schema
 See [this page](../config-refs/schema.md#auto-schema)
@@ -134,9 +171,10 @@ We include a few sample class configurations below as starting points.
 <details>
   <summary>For simple text objects</summary>
 
-The below defines:
+The following code defines:
+
 - The class name (`Article`)
-- The vectorizer module (`text2vec-cohere`) and model (`multilingual-22-12`)
+- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
 - A set of properties (`title`, `body`) with `text` data types.
 
 ```json
@@ -145,7 +183,7 @@ The below defines:
     "vectorizer": "text2vec-cohere",
     "moduleConfig": {
         "text2vec-cohere": {
-            "model": "multilingual-22-12",
+            "model": "embed-multilingual-v2.0",
         },
     },
     "properties": [
@@ -168,12 +206,48 @@ The below defines:
 </details>
 
 <details>
+  <summary>With nested objects</summary>
+
+Weaviate `1.22` adds support for nested objects. This can be very useful for storing structured data such as an address containing a street, city and country.
+
+<br/>
+The following code defines:
+
+- The class name (`Person`)
+- The vectorizer module (`text2vec-huggingface`)
+- A set of properties (`last_name`, `address`), with `last_name` having a `text` data type and `address` having `object` data type.
+- The `address` property has two nested properties (`street` and `city`), with `text` data types.
+
+```json
+{
+    "class": "Person",
+    "vectorizer": "text2vec-huggingface",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+</details>
+
+<details>
   <summary>For text objects and generative search</summary>
 
-The below defines:
+The following code defines:
+
 - The class name (`Article`)
 - The vectorizer module (`text2vec-openai`) and default model
-- The vector index distance metric (`cosine`)
 - Which generative module to use (`generative-openai`)
 - A set of properties (`title`, `chunk`, `chunk_no` and `url`), with data types set accordingly.
 - Tokenization option for the `url` property.
@@ -226,7 +300,8 @@ The below defines:
 <details>
   <summary>For image objects</summary>
 
-The below defines:
+The following code defines:
+
 - The class name (`Image`)
 - The vectorizer module (`img2vec-neural`), with the `image` property set as the store of image data.
 - The vector index distance metric (`cosine`)
@@ -283,6 +358,24 @@ You can retrieve a class definition from the schema using the class name.
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadOneClass"
+      endMarker="// END ReadOneClass"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadOneClass"
+      endMarker="// END ReadOneClass"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 ### Read all class definitions
@@ -305,6 +398,24 @@ You can also retrieve all class definitions by fetching the entire schema.
       startMarker="// START ReadAllClasses"
       endMarker="// END ReadAllClasses"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadAllClasses"
+      endMarker="// END ReadAllClasses"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadAllClasses"
+      endMarker="// END ReadAllClasses"
+      language="go"
     />
   </TabItem>
 </Tabs>
@@ -339,6 +450,22 @@ A typical use case for this functionality is to update configuration, such as th
 ```
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// This feature is under development
+```
+
+  </TabItem>
 </Tabs>
 
 <details>
@@ -354,7 +481,6 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

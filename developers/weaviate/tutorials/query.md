@@ -4,9 +4,7 @@ sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -52,7 +50,7 @@ Of course, in most cases we would want to retrieve information on some criteria.
 
 This is a vector search using a `Get` query.
 
-import CodeAutoschemaNeartext from '/_includes/code/quickstart.autoschema.neartext.mdx'
+import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
 
 <CodeAutoschemaNeartext />
 
@@ -232,13 +230,13 @@ Note that the results are confined to the choices from the 'animals' category. N
 
 As the name suggests, the `Aggregate` function can be used to show aggregated data such as on entire classes or groups of objects.
 
-For example, the below query will return the number of data objects in the `Question` class:
+For example, the following query will return the number of data objects in the `Question` class:
 
 import CodeQueryAggregate1 from '/_includes/code/quickstart.query.aggregate.1.mdx'
 
 <CodeQueryAggregate1 />
 
-And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function above. The below query for example will return the number of **Question** objects with the category "ANIMALS".
+And you can also use the `Aggregate` function with filters, just as you saw with the `Get` function above. For example, this query will return the number of **Question** objects with the category "ANIMALS".
 
 import CodeQueryAggregate2 from '/_includes/code/quickstart.query.aggregate.2.mdx'
 
@@ -287,7 +285,6 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 
 `certainty` in Weaviate is a measure of distance from the vector to the data objects. You can also calculate the cosine similarity based on the certainty as described [here](../more-resources/faq.md#q-how-do-i-get-the-cosine-similarity-from-weaviates-certainty?).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

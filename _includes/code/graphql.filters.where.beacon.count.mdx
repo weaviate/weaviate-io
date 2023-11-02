@@ -160,7 +160,7 @@ func main() {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
     Get {
       Author(
@@ -182,8 +182,9 @@ $ echo '{
   }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>
@@ -193,7 +194,7 @@ $ echo '{
 {
   Get {
     Author(
-      where:{
+      where: {
         valueInt: 2,
         operator: GreaterThanEqual,
         path: ["writesFor"]

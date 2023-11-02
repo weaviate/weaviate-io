@@ -4,10 +4,8 @@ sidebar_position: 10
 image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---
-import Badges from '/_includes/badges.mdx';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-<Badges/>
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -107,7 +105,7 @@ As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference
 
 ### Consistency levels
 
-:::info Available from `v1.19` onwards
+:::info Available from version `v1.19`
 :::
 
 Where replication is configured, the `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
@@ -125,7 +123,7 @@ import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
 
 ### Multi-tenancy
 
-:::info Available from `v1.20` onwards
+:::info Available from version `v1.20`
 :::
 
 Where multi-tenancy is configured, the `Get{}` function can be configured to return results from a specific tenant.
@@ -181,7 +179,7 @@ Various metadata properties may be retrieved with `Get{}` requests. They include
 
 Property | Description |
 -------- | ----------- |
-`uuid` | Object id |
+`id` | Object id |
 `vector` | Object vector |
 `generate` | Generative module outputs |
 `rerank` | Reranker module outputs |
@@ -196,7 +194,7 @@ Property | Description |
 
 They are returned through the `_additional` properties in the response.
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Additional properties](./additional-properties.md)
@@ -217,7 +215,7 @@ The following search operators are available.
 | `hybrid` | Combine vector and BM25 search results |   *none* | [Learn more](../graphql/search-operators.md#hybrid) |
 | `bm25`   | Keyword search with BM25F ranking  | *none* | [Learn more](../graphql/search-operators.md#bm25) |
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Search operators](./search-operators.md)
@@ -231,7 +229,7 @@ Refer to the below page(s) for further information.
 
 `Get{}` queries can be combined with a conditional filter.
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Conditional Filters](./filters.md)
@@ -243,13 +241,12 @@ Refer to the below page(s) for further information.
 
 `Get{}` queries can be combined with additional operators such as `limit`, `offset`, `autocut`, `after` or `sort`.
 
-Refer to the below page(s) for further information.
+For further information see:
 
 :::tip Read more
 - [References: GraphQL: Additional Operators](./additional-operators.md)
 :::
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

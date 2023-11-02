@@ -66,7 +66,8 @@ Result<GraphQLResponse> result = client.graphQL().get().withClassName("Article")
 <TabItem value="curl" label="Curl">
 
 ```bash
-# The `vector` below is optional. Not needed if Weaviate handles the vectorization. If you provide your own embeddings, put the vector query there.
+# The `vector` below is optional. Not needed if Weaviate handles the vectorization.
+# If you provide your own embeddings, put the vector query there, and make sure it has the correct number of dimensions.
 echo '{
   "query": "{
       Get {
@@ -86,8 +87,10 @@ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

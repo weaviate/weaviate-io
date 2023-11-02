@@ -23,6 +23,7 @@
   --docs-base-color: #000000;
   --docs-header-color: #160f52;
   --docs-sidebar-bg: #ffffff;
+  --docs-body-bg: #ffffff;
 }
 [data-theme='dark'] {
   --site-base-color: #F7F9FD;
@@ -43,6 +44,7 @@
   --docs-base-color: #ffffff;
   --docs-header-color: #dddddd;
   --docs-sidebar-bg: #000000;
+  --docs-body-bg: #000000;
 }
 
 //********************* FONTS *********************
@@ -56,9 +58,19 @@
   src: url('/fonts/Niramit-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/PlusJakartaSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.ttf');
+}
+
 :root {
   --site-font-base-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
   --site-font-heading-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-  --site-font-fun-heading-family: 'FredokaOneRegular';
-  --site-font-fun-base-family: 'NiramitRegular';
+  --site-font-fun-heading-family: 'Plus Jakarta Sans';
+  --site-font-fun-base-family: 'Inter';
 }

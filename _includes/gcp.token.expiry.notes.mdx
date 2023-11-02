@@ -1,13 +1,13 @@
 :::caution Important
 :::
 
-Google Cloud's OAuth 2.0 access tokens are configured to have a standard lifetime of 1 hour.
+By default, Google Cloud's OAuth 2.0 access tokens have a lifetime of 1 hour. You can create tokens that last up to 12 hours. To create longer lasting tokens, follow the [instructions in the Google Cloud IAM Guide](https://cloud.google.com/iam/docs/create-short-lived-credentials-direct#rest_2).
 
-Therefore, you **must** periodically replace the token with a valid one and supply it to Weaviate by re-instantiating the client with the new key.
+Since the OAuth token is only valid for a limited time, you **must** periodically replace the token with a new one. After you generate the new token, you have to re-instantiate your Weaviate client to use it.
 
-You can do this manually.
+You can update the OAuth token manually, but manual updates may not be appropriate for your use case.
 
-Automating this is a complex, advanced process that is outside the scope of our control. However, here are a couple of possible options for doing so:
+You can also automate the OAth token update. Automating this procedure is a complex process that is outside our control. However, here are some automation options:
 
 <details>
   <summary>With Google Cloud CLI</summary>

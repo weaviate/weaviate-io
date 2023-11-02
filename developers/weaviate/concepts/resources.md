@@ -4,15 +4,13 @@ sidebar_position: 90
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'resource', 'cpu', 'memory', 'gpu']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Introduction
 
 When using Weaviate for medium to large-scale cases, it is recommended to plan your resources accordingly. Typically, small use cases (less than 1M objects) do not require resource planning. For use cases larger than that, you should be aware of the roles of CPU and memory which are the primary resources used by Weaviate. Depending on the (optional) modules used, GPUs may also play a role.
 
-Note that Weaviate has an option to limit the amount of vectors held in memory to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely configurable and by default is set to one trillion (i.e. `1e12`) objects per class.
+Note that Weaviate has an option to limit the amount of vectors held in memory to prevent unexpected Out-of-Memory ("OOM") situations. This limit is entirely configurable and by default is set to one trillion (i.e. `1e12`) objects per collection.
 
 ## The role of CPUs
 
@@ -77,20 +75,23 @@ In rare situations - typically on large machines with very high import speeds - 
 
 Noticeably, the `v1.8.0` release contains a large series of memory improvements which make the above situation considerably more unlikely. These improvements include rewriting structures to be allocation-free or reduce the number of allocations required. This means temporary memory can be used on the stack and does not have to be allocated on the heap. As a result, this temporary memory is not subject to garbage collection. This is an ongoing improvement process and future releases will further reduce the number of heap-allocations for temporary usage.
 
-## Strategies to reduce Memory Requirements
+## Strategies to reduce memory usage
 
-If memory usage (or expected memory usage) is higher than your resources permit, you may choose one of the following strategies to reduce memory requirements:
+The following tactics can help to reduce Weaviate's memory usage:
 
-- **Reduce the dimensionality of your vectors.** The most effective approach is often to make sure that vectors have fewer dimensions. If you are using one of the out-of-the-box models, consider using a model that uses fewer dimensions (e.g. 384d instead of 768d or 300d instead of 600d). Very often, there is no noticeable quality impact on real-life queries.
+- **Use vector compression (i.e. product quantization)**. This is a technique that can reduce the memory footprint of vectors. This can be enabled by setting `vectorIndexConfig/pq/enabled` to `true` in the collection definition. This may impact recall performance, so we recommend to test this setting on your dataset before using it in production. For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq).
 
-- **Reduce the number of `maxConnections` in your HNSW index**. Reducing this setting will typically reduce the quality of your HNSW index. However, you can make up for the quality loss of fewer edges by increasing either the `efConstruction` or `ef` parameters. Increasing the `efConstruction` parameter will increase the import time without affecting query times. Increasing the `ef` parameter, will increase query times without affecting import times.
+- **Reduce the dimensionality of your vectors.** The most effective approach reduce the number of dimensions per fector. Consider whether a model that uses fewer dimensions may be suitable for your use-case (e.g. 384d instead of 1536).
 
-- **Use a vector cache that is smaller than the total amount of your vectors**. This strategy is described under [Vector Cache](#vector-cache) below. It does however come with a drastic performance impact and is only recommended in specific situations.
+- **Reduce the number of `maxConnections` in your HNSW index settings**. Because each edge uses 8-10B of memory, reducing the maximum number can reduce the memory footprint. If this change adversely affects the recall performance of the HNSW index, you can mitigate this effect by increasing one or both of the `efConstruction` and `ef` parameters. Increasing `efConstruction` will increase the import time without affecting query times. Increasing `ef` will increase query times without affecting import times.
+
+- **Use a vector cache that is smaller than the total amount of your vectors (not recommended)**. This strategy is described under [Vector Cache](#vector-cache) below. It can have a significant performance impact, and thus it is only recommended in specific situations.
 
 ## Vector Cache
 
-For optimal search and import performance, all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new class, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector
-is orders of magnitudes slower than memory lookup, so the cache should be used sparingly.
+For optimal search and import performance, all previously imported vectors need to be held in memory. The size of the vector cache is specified by the `vectorIndexConfig/vectorCacheMaxObjects` parameter in the collection definition. By default, when creating a new collection, this limit is set to one trillion (i.e. `1e12`) objects.
+
+A disk lookup for a vector is orders of magnitudes slower than memory lookup, so reducing the `vectorCacheMaxObjects` should be done with care and we suggest this be done only as a last resort.
 
 Generally we recommend that:
 - During imports, set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
@@ -104,7 +105,6 @@ Weaviate Core itself does not make use of GPUs, however some of the models inclu
 
 Weaviate is optimized to work with Solid-State Disks (SSDs). However, spinning hard-disks can be used with some performance penalties.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -1,0 +1,248 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
+import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
+import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+
+<FilteredTextBlock
+  text={EndToEndPyCode}
+  startMarker="# EndToEndExample"
+  endMarker="# END EndToEndExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
+
+<FilteredTextBlock
+  text={EndToEndPy3Code}
+  startMarker="# EndToEndExample"
+  endMarker="# END EndToEndExample"
+  language="py"
+/>
+
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+<FilteredTextBlock
+  text={EndToEndTSCode}
+  startMarker="// EndToEndExample"
+  endMarker="// END EndToEndExample"
+  language="ts"
+/>
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "encoding/json"
+  "net/http"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/auth"
+  "github.com/weaviate/weaviate/entities/models"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:   "some-endpoint.weaviate.network/", // Replace with your endpoint
+    Scheme: "https",
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    Headers: map[string]string{
+      "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
+    },
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+      panic(err)
+  }
+
+  // add the schema
+  classObj := &models.Class{
+    Class:      "Question",
+    Vectorizer: "text2vec-openai",
+    ModuleConfig: map[string]interface{}{
+      "generative-openai": map[string]interface{}{},
+    },
+  }
+
+  if client.Schema().ClassCreator().WithClass(classObj).Do(context.Background()) != nil {
+    panic(err)
+  }
+
+  // Retrieve the data
+  items, err := getJSONdata()
+  if err != nil {
+    panic(err)
+  }
+
+  // convert items into a slice of models.Object
+  objects := make([]*models.Object, len(items))
+  for i := range items {
+    objects[i] = &models.Object{
+      Class: "Question",
+      Properties: map[string]any{
+        "category": items[i]["Category"],
+        "question": items[i]["Question"],
+        "answer":   items[i]["Answer"],
+      },
+    }
+  }
+
+  // batch write items
+  batchRes, err := client.Batch().ObjectsBatcher().WithObjects(objects...).Do(context.Background())
+  if err != nil {
+    panic(err)
+  }
+  for _, res := range batchRes {
+    if res.Result.Errors != nil {
+      panic(res.Result.Errors.Error)
+    }
+  }
+}
+
+func getJSONdata() ([]map[string]string, error) {
+  // Retrieve the data
+  data, err := http.DefaultClient.Get("https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json")
+  if err != nil {
+    return nil, err
+  }
+  defer data.Body.Close()
+
+  // Decode the data
+  var items []map[string]string
+  if err := json.NewDecoder(data.Body).Decode(&items); err != nil {
+    return nil, err
+  }
+  return items, nil
+}
+```
+</TabItem>
+{/* <TabItem value="java" label="Java">
+
+```java
+
+package io.weaviate;
+
+import java.util.ArrayList;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.schema.model.DataType;
+import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.WeaviateClass;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "some-endpoint.weaviate.network/");  // replace with your endpoint
+
+    WeaviateClient client = new WeaviateClient(config);
+
+    // we will create the class "Question" and the properties
+    WeaviateClass clazz = WeaviateClass.builder()
+      .className("Question")
+      .vectorizer("text2vec-openai")
+      .build();
+
+    // add the schema
+    Result<Boolean> result = client.schema().classCreator().withClass(clazz).run();
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+  }
+}
+```
+
+</TabItem> */}
+<TabItem value="curl" label="Curl">
+
+```bash
+#!/bin/bash
+# Requiring `bash` above enables process substitution support, used when redirecting the output of jq to the while loop.
+echo "Downloading the data file..."
+curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json" --no-progress-meter
+
+# Replace with your endpoint and API keys
+WEAVIATE_URL=https://some-endpoint.weaviate.network
+WEAVIATE_API_KEY=YOUR_WEAVIATE_API_KEY
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+
+SCHEMA_API_URL="$WEAVIATE_URL/v1/schema"
+BATCH_API_URL="$WEAVIATE_URL/v1/batch/objects"
+BATCH_SIZE=100
+
+# Send to the batch endpoint valid JSON data (no comments, no newlines - https://github.com/weaviate/weaviate/issues/2745)
+function send_data() {
+  curl --no-progress-meter -X POST "$BATCH_API_URL" \
+       -H "Content-Type: application/json" \
+       -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+       -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
+       -d "$1" \
+       -o /dev/null  # suppress the output because vectors are long
+}
+
+# Uncomment to delete all Question objects if you see a "Name 'Question' already used" error
+curl -X DELETE $SCHEMA_API_URL/Question -H "Authorization: Bearer $WEAVIATE_API_KEY"
+
+echo "Creating the schema. Weaviate's autoschema feature will infer class properties when importing..."
+echo '{
+  "class": "Question",
+  "vectorizer": "text2vec-openai",
+  "moduleConfig": {
+      "generative-openai": {}
+  }
+}' | curl --no-progress-meter \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+  -d @- \
+  -o /dev/null \
+  $SCHEMA_API_URL
+
+# Read the JSON file and loop through its entries
+lines_processed=0
+batch_data='{"objects": ['
+
+while read -r line; do
+  # Create the class object out of the JSON data
+  line=$(echo "$line" | jq '{class: "Question", properties: {answer: .Answer, question: .Question, category: .Category}}')
+
+  if [ $lines_processed -eq 0 ]; then
+    batch_data+=$line
+  else
+    batch_data+=",$line"
+  fi
+
+  lines_processed=$((lines_processed + 1))
+
+  # If the batch is full, send it to the API
+  if [ $lines_processed -eq $BATCH_SIZE ]; then
+    batch_data+="]}"
+
+    send_data "$batch_data"
+
+    # Reset the batch data and counter
+    lines_processed=0
+    batch_data='{"objects": ['
+  fi
+done < <(jq -c '.[]' jeopardy_tiny.json)  # process substitution
+
+echo "Sending the remaining data (if any) to the API..."
+if [ $lines_processed -ne 0 ]; then
+  batch_data+="]}"
+  send_data "$batch_data"
+fi
+echo "Import finished."
+```
+
+</TabItem>
+</Tabs>

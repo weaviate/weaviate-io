@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 res = client.query.get(
     "WikiCity", ["city_name", "wiki_summary"]
 ).with_near_text({
-    "concepts": ["Popular South-East Asian tourist destination"]
+    "concepts": ["Popular Southeast Asian tourist destination"]
 }).with_limit(3).with_generate(
     single_prompt=\
     "Write a tweet with a potentially surprising fact from {wiki_summary}"

@@ -4,9 +4,7 @@ sidebar_position: 7
 image: og/docs/configuration.jpg
 # tags: ['configuration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- Hidden for now as no longer used; to be removed in the future. -->
 ## Introduction
@@ -18,9 +16,9 @@ When using Weaviate Enterprise, a proxy service is placed in between the user (o
 - Login into the [Weaviate Console](https://console.weaviate.cloud).
 - Click the profile symbol in the top menu and collect the key, which is shown to you. Note, this key is a secret, and you should not make this available in public repositories.
 
-## 2. Add the Weaviate Enterprise Usage Collector to your Docker-compose file
+## 2. Add the Weaviate Enterprise Usage Collector to your Docker Compose file
 
-If you are using the Docker-compose file from the installation configurator, you need to add the following block to your YAML file.
+If you are using the Docker Compose file from the installation configurator, you need to add the following block to your YAML file.
 
 ```yaml
 services:
@@ -78,7 +76,6 @@ collector_proxy:
 
 Deploy the helm chart and make sure to use the proxy service for your requests.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

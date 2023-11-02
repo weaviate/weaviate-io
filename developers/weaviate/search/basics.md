@@ -5,9 +5,7 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -17,13 +15,13 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 ## Overview
 
-This section includes the essentials of performing searches and retrieving objects with the `Get` function.
+This page shows the core concepts on how to perform searches and retrieve objects.
 
 :::info Related pages
 - [API References: GraphQL: Get](../api/graphql/get.md)
 :::
 
-## `Get` function requirements
+## Basic requirements
 
 To retrieve objects from Weaviate, you must use the [`Get` function](../api/graphql/get.md) and specify at least:
 - The target `class` to search, and
@@ -574,7 +572,7 @@ This will result in the following response:
 
 For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you must specify the tenant parameter in each query.
 
-The below example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
+This example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -608,7 +606,6 @@ The below example shows how to fetch one object in the `MultiTenancyClass` class
   </TabItem>
 </Tabs>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -4,6 +4,7 @@ Unless specified otherwise in the schema, the default behavior is to:
 
 - Only vectorize properties that use the `text` data type (unless [skip](/developers/weaviate/configuration/schema-configuration#property-level-module-settings)ped)
 - Sort properties in alphabetical (a-z) order before concatenating values
-- Prepend the property name to each property value (unless `vectorizePropertyName` is false) then join them with spaces, and
-- Prepend the class name (unless `vectorizeClassName` is false)
+- If `vectorizePropertyName` is `true` (`false` by default) prepend the property name to each property value
+- Join the (prepended) property values with spaces
+- Prepend the class name (unless `vectorizeClassName` is `false`)
 - Convert the produced string to lowercase

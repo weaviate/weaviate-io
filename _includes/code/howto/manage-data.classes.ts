@@ -9,7 +9,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8080',
+  host: 'anon-endpoint.weaviate.network',
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
@@ -113,8 +113,4 @@ const updateClassObj = {
 }
 
 // Update the class definition
-let updatedClassResponse = await client
-  .schema
-  .classCreator()
-  .withClass(originalClassObj)
-  .do();
+// Not yet available in TS

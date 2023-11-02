@@ -36,7 +36,8 @@
   --ifm-font-family-base: var(--site-font-base-family);
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-heading-font-weight: 500;
+  --ifm-heading-font-weight: 700;
+  --ifm-font-weight-semibold: 400;
 
   // TODO: make sure this doesn't mess up anything unexpected
   // Base color for all text
@@ -264,11 +265,80 @@
   }
 }
 
+.navbar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.navbar__items {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.custom-page .navbar__items.navbar__items--right {
+  flex: 0 0 auto;
+  gap: 40px;
+  justify-content: flex-start;
+
+  @media screen and (max-width: 568px) {
+    display: none;
+  }
+}
+
+.navbar__items.navbar__items--right {
+  flex: 0 0 auto;
+  gap: 13px;
+  justify-content: flex-start;
+}
+
+.custom-page
+  .toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: none;
+}
+
+.custom-page .toggleButton_gllP {
+  display: none;
+}
+
+.custom-page .hiddenSearch {
+  display: none;
+}
+
 .separator {
   height: 1px;
   border: none;
   margin: 5px;
   padding: 0px;
+}
+
+.tryNow {
+  border-radius: 0.3125rem;
+  border: 1px solid #1c1468;
+  background: #61bd73;
+  margin: 0 70px;
+  width: 8rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: all 1s ease-out;
+
+  @media screen and (max-width: 996px) {
+    margin: 11px 9px;
+    display: none;
+  }
+
+  &:hover {
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
+  }
 }
 
 [data-theme='light'] {
@@ -282,7 +352,6 @@
     background-color: #505050;
   }
 }
-
 
 .theme-doc-sidebar-menu {
   font-size: 0.9rem !important;
@@ -314,7 +383,8 @@ button.close {
 .footer__title {
   color: var(--site-base-color);
 }
-.footer__copyright, .footer__link-item {
+.footer__copyright,
+.footer__link-item {
   color: var(--site-base-color-shade);
 }
 
@@ -374,21 +444,21 @@ button.close {
 [data-theme='light'] {
   #__docusaurus:has(.custom-page) {
     background-image: url('/img/site/background-light.jpg');
+
     background-size: cover;
     background-position: center;
+  }
+
+  .custom-page.noBG {
+    background-image: none;
+    background-color: #f5f5f5;
   }
 
   .hero__logo {
     background-image: url('/img/site/weaviate-logo-light.png');
   }
   .navbar {
-    // background: transparent;
-    background: linear-gradient(
-      90deg,
-      rgba(208, 228, 236, 1.0) 0%,
-      rgba(224, 238, 211, 1.0) 47%,
-      rgba(207, 228, 237, 1.0) 100%
-    );
+    background: #ededed;
     box-shadow: none;
   }
   .navbar__logo {
@@ -402,18 +472,36 @@ button.close {
 /* Styling one class specially in dark mode */
 [data-theme='dark'] {
   #__docusaurus:has(div.custom-page) {
-    background-image: url('/img/site/background-dark.jpg');
+    background-image: none;
+    background-color: #f5f5f5;
     background-size: cover;
     background-position: center;
+
+    .custom-page .navbar {
+      background: #ededed;
+      color: #2c3854;
+      box-shadow: none;
+    }
+
+    .custom-page .navbar__link {
+      color: #2c3854;
+    }
+
+    .custom-page .navbar__logo {
+      img {
+        display: none;
+      }
+      background-image: url('/img/site/weaviate-nav-logo-light.svg');
+    }
   }
 
   .navbar {
     background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 1.0) 4%,
-        rgba(17, 11, 62, 1.0) 50%,
-        rgba(25, 16, 92, 1.0) 96%
-      );
+      90deg,
+      rgba(0, 0, 0, 1) 4%,
+      rgba(17, 11, 62, 1) 50%,
+      rgba(25, 16, 92, 1) 96%
+    );
     box-shadow: none;
   }
 
@@ -423,6 +511,7 @@ button.close {
     }
     background-image: url('/img/site/weaviate-nav-logo-dark.svg');
   }
+
   .footer--dark {
     background: transparent;
 
@@ -543,4 +632,82 @@ button.close {
     border: 1px solid #d1d1d1;
     background: #f7f7f7;
   }
+}
+
+.custom-page .footer .container {
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.custom-page .footer {
+  background: #130c49;
+}
+
+.custom-page .footer__title {
+  color: #ffffff;
+}
+
+.custom-page .footer__link-item {
+  color: #ffffff;
+}
+
+.custom-page .footer__copyright {
+  color: #ffffff;
+}
+
+.custom-page .footer__links {
+  margin-bottom: 1rem;
+  margin-left: 10px;
+}
+
+.custom-page .footer__col {
+  white-space: nowrap;
+}
+
+/* .custom-page *:not(input):focus {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+Dropdown style removed.
+.dropdown > .navbar__link:after {
+  border-style: none;
+}*/
+
+.custom-page .footer__links:before {
+  content: '';
+  background-image: url('/img/site/weaviate-nav-logo-dark.svg');
+  background-size: cover;
+  width: 139px;
+  height: 45px;
+  top: -11px;
+  margin: -3px 69px 0px 0px;
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    margin: -3px 69px 12px 14px;
+  }
+}
+
+.content_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-Content-styles-module {
+  @media screen and (max-width: 768px) {
+    font-size: 73% !important;
+  }
+}
+
+.content_knG7.announcementBarContent_xLdY {
+  @media screen and (max-width: 768px) {
+    font-size: 64% !important;
+  }
+}
+
+.dropdown__link:hover,
+.dropdown__link--active {
+  background-color: rgb(97 189 115 / 32%);
+  color: black;
+  text-decoration: none;
 }

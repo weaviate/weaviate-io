@@ -1,5 +1,5 @@
 // Howto: Search -> Generative search - TypeScript examples
-
+// Run with: node --loader=ts-node/esm search.generative.ts
 import assert from 'assert';
 
 // ================================

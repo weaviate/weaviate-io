@@ -5,15 +5,15 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'cursor']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read-all-objects.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read-all-objects_test.go';
 
 ## Overview
 
@@ -39,9 +39,9 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 
 ### List every object
 
-You can list (i.e. retrieve) every object as shown in the below example, looping through the data with the `after` operator.
+To list every object, use the `after` operator to loop through the data as shown in the example below.
 
-The below example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor.
+The example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor.
 
 :::tip
 To retrieve (and restore) vectors as well, include the `vector` parameter as shown in the highlighted lines.
@@ -67,6 +67,23 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
     />
   </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Retrieve data"
+      endMarker="// Use this function to retrieve data"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 ### Fetch the class definition
@@ -89,6 +106,22 @@ You can fetch the existing class definition like this:
     endMarker="// END FetchClassDefinition"
     language="ts"
   />
+  </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START FetchClassDefinition"
+      endMarker="// END FetchClassDefinition"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START FetchClassDefinition"
+      endMarker="// END FetchClassDefinition"
+      language="go"
+    />
   </TabItem>
 </Tabs>
 
@@ -115,12 +148,28 @@ And then restore to a target instance, by:
     language="ts"
   />
   </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Restore to a new (target) instance"
+      endMarker="// Finished restoring to the target instance"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Restore to a new (target) instance"
+      endMarker="// Finished restoring to the target instance"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
 ### Putting it together
 
-Putting the pieces together, the below example will retrieve the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and use them to populate `https://anon-endpoint.weaviate.network`:
+Putting the pieces together, the example code retrieves the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and uses them to populate the database at `https://anon-endpoint.weaviate.network`:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -139,10 +188,25 @@ Putting the pieces together, the below example will retrieve the `WineReview` cl
     language="ts"
   />
   </TabItem>
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CursorExample"
+      endMarker="// END CursorExample"
+      language="java"
+    />
+  </TabItem>
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CursorExample"
+      endMarker="// END CursorExample"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

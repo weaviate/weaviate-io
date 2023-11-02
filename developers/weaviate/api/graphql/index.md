@@ -4,13 +4,15 @@ sidebar_position: 0
 image: og/docs/api.jpg
 # tags: ['GraphQL references']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## GraphQL
 
 Weaviate's basic query language is [GraphQL](https://graphql.org/). GraphQL is a query language built on using graph data structures. It is an efficient method of data retrieval and mutation, since it mitigates the common over-fetching and under-fetching problems of other query languages.
+
+:::tip GraphQL is case-sensitive
+GraphQL is case-sensitive ([reference](https://spec.graphql.org/June2018/#sec-Names)), so make sure to use the correct casing when writing your queries.
+:::
 
 ## All references
 
@@ -28,7 +30,7 @@ All references have their individual subpages. Click on one of the references be
 You can query Weaviate for semantic kinds based on standard GraphQL queries. The examples below only contain the GraphQL query. You can POST a GraphQL query to Weaviate as follows:
 
 ```bash
-$ curl http://localhost/v1/graphql -X POST -H 'Content-type: application/json' -d '{GraphQL query}'
+curl http://localhost/v1/graphql -X POST -H 'Content-type: application/json' -d '{GraphQL query}'
 ```
 
 A GraphQL JSON object is defined as:
@@ -98,7 +100,6 @@ GraphQL _integer_ data currently only supports `int32`, and does not support `in
 
 GraphQL (`Get`) queries are run with a tunable [consistency level](../../concepts/replication-architecture/consistency.md#tunable-read-consistency).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

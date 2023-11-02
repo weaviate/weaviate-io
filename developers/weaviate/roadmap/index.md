@@ -18,15 +18,18 @@ If you find any of the issues of interest, follow the link and upvote <i classNa
 
 Please feel free to engage with us about the roadmap on [Weaviate's GitHub](https://github.com/weaviate/weaviate) or on [the forum](https://forum.weaviate.io/).
 
-## Planned for Weaviate 1.21
+## Planned for Weaviate 1.23
 
-<Roadmap label="planned-1.21"/>
+<Roadmap label="planned-1.23"/>
+
+## Planned for Weaviate 1.22
+
+<Roadmap label="planned-1.22"/>
 
 ## Backlog
 
 <Roadmap label="backlog"/>
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

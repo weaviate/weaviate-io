@@ -139,15 +139,15 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
         "class": "Post",
         "vectorizer": "none",
         "properties": [{
-            "name": "content",
-            "dataType": ["text"],
+          "name": "content",
+          "dataType": ["text"]
         }]
     }' \
     http://localhost:8080/v1/schema

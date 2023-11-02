@@ -4,9 +4,7 @@ sidebar_position: 85
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'interface', 'API design']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [References: GraphQL API](../api/graphql/index.md)
@@ -147,7 +145,6 @@ Weaviate has several client libraries: in [Go](/developers/weaviate/client-libra
 
 Weaviate also has a [Command Line Interface](/developers/weaviate/client-libraries/cli.md), enabling basic management from the command line to your Weaviate instances.
 
-## More Resources
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />

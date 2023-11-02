@@ -9,7 +9,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'http',
-  host: 'localhost:8080',
+  host: 'anon-endpoint.weaviate.network',
   headers: {
     'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
   },
@@ -69,6 +69,34 @@ console.log(JSON.stringify(result, null, 2));  // the returned value is the obje
 result = await client.data.getterById().withClassName(className).withId(result.id).do();
 assert.equal(result.properties['somePropNotInTheSchema'], 123);
 
+// ============================================
+// ===== Create object with deterministic id =====
+// ============================================
+
+// CreateObjectWithDeterministicId START
+// highlight-start
+import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
+// highlight-end
+
+const dataObj = {
+  question: 'This vector DB is OSS and supports automatic property type inference on import',
+  answer: 'Weaviate'
+}
+
+result = await client.data
+  .creator()
+  .withClassName('JeopardyQuestion')
+  .withProperties(dataObj)
+  // highlight-start
+  .withId(generateUuid5(JSON.stringify(dataObj)))
+  // highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+// CreateObjectWithDeterministicId END
+
+result = await client.data.getterById().withClassName(className).withId(result.id).do();
+assert.equal(result.id, generateUuid5(JSON.stringify(dataObj)));
 
 // ============================================
 // ===== Create object with id and vector =====

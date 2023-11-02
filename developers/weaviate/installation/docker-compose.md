@@ -4,14 +4,77 @@ sidebar_position: 2
 image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
+
+## Overview
+
+Weaviate supports deployment with Docker Compose, which allows you to run Weaviate on any OS supported by Docker.
+
+To start Weaviate with Docker, you can use a Docker Compose file, typically called `docker-compose.yml`. You can:
+* use the [Starter Docker Compose file](#starter-docker-compose-file),
+* generate one with the [configuration tool](#configurator),
+* pick one of the [examples](#example-configurations) below.
+
+:::note
+If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).
+:::
+
+## Starter Docker Compose file
+
+:::info Starter Docker Compose
+If you are new to Weaviate, this is a good place to start.
+:::
+
+We prepared a starter Docker Compose file, which will let you:
+* Run vector searches with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
+* Search already vectorized data – no vectorizer required.
+* Retrieval augmentated generation (RAG) with `OpenAI` (i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
+
+### Download and run
+
+First, save the text below as `docker-compose.yml`:
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-palm,text2vec-openai,generative-openai,generative-cohere,generative-palm,ref2vec-centroid,reranker-cohere,qna-openai'
+      CLUSTER_HOSTNAME: 'node1'
+volumes:
+  weaviate_data:
+...
+```
+
+Then, navigate to the directory containing the `docker-compose.yml` file and run this command from your shell:
+
+```bash
+docker compose up -d
+```
 
 ## Configurator
 
-You can use the configuration tool below to customize your Weaviate setup for
-your desired runtime.
+The Configurator can help you generate the Weaviate setup you need.
+
+Use it to select specific Weaviate modules, including vectorizers that run locally (i.e. `text2vec-transformers`, or `multi2vec-clip`)
 
 <!-- {% include docs-config-gen.html %} -->
 
@@ -19,23 +82,23 @@ import DocsConfigGen from '/_includes/docs-config-gen.mdx';
 
 <DocsConfigGen />
 
-## Example configurations
+## Environment variables
 
-:::note
-If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](https://medium.com/semi-technologies/what-weaviate-users-should-know-about-docker-containers-1601c6afa079).
-:::
-
-To start Weaviate with docker-compose, you need a docker-compose configuration file, typically called `docker-compose.yml`. You can obtain it from the configuration tool above or alternatively pick one of the examples below. Additional environment variables can be set in this file, which control your Weaviate setup, authentication and authorization, module settings, and data storage settings.
+You can use environment variables to control your Weaviate setup, authentication and authorization, module settings, and data storage settings.
 
 :::info List of environment variables
 A comprehensive of list environment variables [can be found on this page](../config-refs/env-vars.md).
 :::
 
+## Example configurations
+
+Here are some examples of how to configure `docker-compose.yml`.
+
 ### Persistent volume
 
 It's recommended to set a persistent volume to avoid data loss and improve reading and writing speeds.
 
-Make sure to run `docker-compose down` when shutting down. This writes all the files from memory to disk.
+Make sure to run `docker compose down` when shutting down. This writes all the files from memory to disk.
 
 **With named volume**
 ```yaml
@@ -64,10 +127,7 @@ After running a `docker compose up -d`, Docker will mount `/var/weaviate` on the
 
 ### Weaviate without any modules
 
-An example docker-compose setup for Weaviate without any modules can be found
-below. In this case, no model inference is performed at either import or search
-time. You will need to provide your own vectors (e.g. from an outside ML model)
-at import and search time:
+An example Docker Compose setup for Weaviate without any modules can be found below. In this case, no model inference is performed at either import or search time. You will need to provide your own vectors (e.g. from an outside ML model) at import and search time:
 
 ```yaml
 version: '3.4'
@@ -87,7 +147,7 @@ services:
 
 ### Weaviate with the `text2vec-transformers` module
 
-An example docker-compose setup file with the transformers model [`sentence-transformers/multi-qa-MiniLM-L6-cos-v1`](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) is:
+An example Docker Compose file with the transformers model [`sentence-transformers/multi-qa-MiniLM-L6-cos-v1`](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1) is:
 
 ```yaml
 version: '3.4'
@@ -126,14 +186,14 @@ The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
 ## Multi-node setup
 
-You can create a multi-node setup with Weaviate using Docker-Compose. To do so, you need to:
+You can create a multi-node setup with Weaviate using docker compose. To do so, you need to:
 - Set up one node as a "founding" member, and configure the other nodes in the cluster to join it using the `CLUSTER_JOIN` variable.
 - Configure `CLUSTER_GOSSIP_BIND_PORT` and `CLUSTER_DATA_BIND_PORT` for each node.
 - Optionally, you can set the hostname for each node using `CLUSTER_HOSTNAME`.
 
 (Read more about [horizontal replication in Weaviate](../concepts/cluster.md).)
 
-So, the configuration file will include environment variables for the "founding" member that looks like the below:
+So, the Docker Compose file includes environment variables for the "founding" member that look like this:
 
 ```yaml
   weaviate-node-1:  # Founding member service name
@@ -160,7 +220,7 @@ Below is an example configuration for a 3-node setup. You may be able to test [r
 
 
 <details>
-  <summary>Docker Compose configuration file for a replication setup with 3 nodes</summary>
+  <summary>Docker Compose file for a replication setup with 3 nodes</summary>
 
 ```yaml
 services:
@@ -257,22 +317,21 @@ It is a Weaviate convention to set the `CLUSTER_DATA_BIND_PORT` to 1 higher than
 
 ## Shell attachment options
 
-The output of `docker-compose up` is quite verbose as it attaches to the logs of all containers.
+The output of `docker compose up` is quite verbose as it attaches to the logs of all containers.
 
-You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker-compose up`:
+You can attach the logs only to Weaviate itself, for example, by running the following command instead of `docker compose up`:
 
 ```bash
 # Run Docker Compose
-$ docker-compose up -d && docker-compose logs -f weaviate
+docker compose up -d && docker compose logs -f weaviate
 ```
 
-Alternatively you can run docker-compose entirely detached with `docker-compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
+Alternatively you can run docker compose entirely detached with `docker compose up -d` _and_ then poll `{bindaddress}:{port}/v1/meta` until you receive a status `200 OK`.
 
 <!-- TODO:
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yaml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

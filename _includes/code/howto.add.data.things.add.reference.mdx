@@ -17,7 +17,7 @@ example_data = {
 client.data_object.create(
   example_data,
   "Author",
-  uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", # optional, if not provided ons is going to be generated
+  uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303", # optional, if not provided one is going to be generated
 )
 
 client.data_object.reference.add(
@@ -164,7 +164,7 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
@@ -175,7 +175,8 @@ $ curl \
       }
   }' \
     http://localhost:8080/v1/objects
-$ curl \
+
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{

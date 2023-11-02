@@ -5,15 +5,15 @@ image: og/docs/howto.jpg
 # tags: ["howto"]
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.cross-refs.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.cross-refs_test.go';
 
 ## Overview
 
@@ -117,6 +117,24 @@ To add a cross-reference from an object to another, specify its source class and
   />
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// OneWay Java"
+      endMarker="// END OneWay Java"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// OneWay Go"
+      endMarker="// END OneWay Go"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -175,6 +193,24 @@ To set up a two-way cross-reference between two objects, set each cross-referenc
   />
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// TwoWay Java"
+      endMarker="// END TwoWay Java"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// TwoWay Go"
+      endMarker="// END TwoWay Go"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -205,6 +241,24 @@ For example, to mark that the "San Francisco" Q&A belongs to multiple categories
   />
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Multiple Java"
+      endMarker="// END Multiple Java"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Multiple Go"
+      endMarker="// END Multiple Go"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -234,6 +288,24 @@ To delete a cross-reference, specify the class, id and cross-reference property 
     language="ts"
   />
 
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Delete Java"
+      endMarker="// END Delete Java"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Delete Go"
+      endMarker="// END Delete Go"
+      language="go"
+    />
   </TabItem>
 </Tabs>
 
@@ -268,6 +340,24 @@ To update the cross-references stored in a property of an object, specify the ob
   />
 
   </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Update Java"
+      endMarker="// END Update Java"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Update Go"
+      endMarker="// END Update Go"
+      language="go"
+    />
+  </TabItem>
 </Tabs>
 
 ## Batch creation
@@ -283,7 +373,6 @@ Cross-references in Weaviate are not themselves objects, but properties of objec
 1. [Retrieve the object](../api/rest/objects.md#get-a-data-object) that it belongs to. This will return the cross-reference as a property of the object.
 1. [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query. Just as you can retrieve any other property of search results, you can retrieve cross-reference properties.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

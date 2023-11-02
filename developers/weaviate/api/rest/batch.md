@@ -4,10 +4,8 @@ sidebar_position: 13
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'batching']
 ---
-import Badges from '/_includes/badges.mdx';
-import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 
-<Badges/>
+import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 
 ## Batch create objects
 
@@ -251,7 +249,6 @@ with client.batch(batch_size=100, callback=check_batch_result) as batch:
 This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validations at the object and reference level. Adding this validation on single data objects like above makes it less likely for errors to go undiscovered.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

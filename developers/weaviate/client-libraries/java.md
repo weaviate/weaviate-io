@@ -1,12 +1,10 @@
 ---
 title: Java
-sidebar_position: 5
+sidebar_position: 50
 image: og/docs/client-libraries.jpg
 # tags: ['java', 'client library']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note Java client version
 The current Java client version is `v||site.java_client_version||`.
@@ -423,13 +421,18 @@ WhereFilter where = WhereFilter.builder()
 client.classifications().scheduler().withTrainingSetWhereFilter(where)...
 ```
 
+## Client releases
+
+import MatrixIntro from '/_includes/clients/matrix-intro.md';
+
+<MatrixIntro />
 
 ## Change logs
 
+Check the
+[change logs on GitHub](https://github.com/weaviate/weaviate-java-client/releases)
+for updates on the latest `Java client` changes.
 
-Check the [change logs on GitHub](https://github.com/weaviate/weaviate-java-client/releases) for updates on the latest `Java client` changes.
-
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

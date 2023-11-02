@@ -503,7 +503,6 @@ For example:
 </Tabs>
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

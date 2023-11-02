@@ -18,72 +18,67 @@ import ReactPlayer from 'react-player/lazy'
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Options for running Weaviate
 
-You can run Weaviate as a managed service (Weaviate Cloud Services, or WCS), or manage your own instances using Docker, Kubernetes, or Embedded Weaviate.
+Weaviate Cloud Services (WCS) is a managed service that runs Weaviate for you. You can also manage your own Weaviate instances using Docker, Kubernetes, or Embedded Weaviate.
 
-As mentioned before, the underlying Weaviate code is identical regardless of the method. There are some differences to be aware of.
+No matter how you run Weaviate, the underlying code is identical. However, there are some operational differences to be aware of.
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;WCS (Recommended)
 
 [WCS, or Weaviate Cloud Services](https://console.weaviate.cloud/), is a managed SaaS service that requires no maintenance at your end.
 
-As it is managed by Weaviate (the company - the software is not sentient... *yet*), it is the fastest way to create a new instance of Weaviate and requires the least amount of effort for the users.
+As it is managed by Weaviate (the company - the software is not sentient... *yet*). WCS is the fastest way to create a new instance of Weaviate and requires the least amount of effort for users.
 
-Weaviate instances on WCS come pre-configured for convenience. They include a number of Weaviate "modules" by default, as well as built-in support for user authentication for security.
+WCS has Weaviate instances that are pre-configured for your convenience. They include a number of Weaviate modules by default. They also have built-in support for user authentication.
 
-WCS includes a free "sandbox" tier, which is our recommended method of running Weaviate throughout this course unless otherwise specified.
+WCS includes a free "sandbox" tier. The WCS sandbox is our recommended method of running Weaviate in this course.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Docker / Kubernetes
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Docker and Kubernetes
 
-You can run Weaviate instances using containerization solutions such as [Docker](https://docs.docker.com/) and/or [Kubernetes](https://kubernetes.io/docs/home/).
+You can run Weaviate instances using containerization solutions such as [Docker](https://docs.docker.com/) and [Kubernetes](https://kubernetes.io/docs/home/).
 
-This provides you with the same code base as one that is used in WCS, although you will need to manage its configuration and deployment yourself.
+Running your own instance provides you with the same Weaviate code base as a WCS instance, but you have to manage configuration and deployment yourself.
 
-Self-managed set ups using Docker or Kubernetes will be discussed in standalone, separate units in the future.
+This course doesn't cover self-managed instances. We will cover Docker and Kubernetes in separate course units in the future.
 
-If you are familiar with either solutions and would prefer to install Weaviate through them, we refer you to our documentation for installation with [Docker-Compose](/developers/weaviate/installation/docker-compose.md) or [Kubernetes](/developers/weaviate/installation/kubernetes.md).
+If you are familiar with either solution and want to use them to install Weaviate now, see the documentation for [Docker-Compose](/developers/weaviate/installation/docker-compose.md) or [Kubernetes](/developers/weaviate/installation/kubernetes.md).
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Embedded Weaviate
 
 We also have an experimental feature called [Embedded Weaviate](/developers/weaviate/installation/embedded.md), where you can directly instantiate a Weaviate database from a client library.
 
-It is however in an experimental phase only, and is not recommended for anything other than evaluation.
+Currently, Embedded Weaviate is only recommended for evaluation purposes.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Get started with WCS
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp; Get started with WCS
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Sign in to WCS
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Sign in to WCS
 
-1. First, access WCS by navigating to the [Weaviate Cloud Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
-    1. If you don't have an account with WCS yet, click on the "Register" button and create a new account.
-1. Then, sign in with your WCS username and password.
+1. To access WCS, go to the [Weaviate Cloud Console](https://console.weaviate.cloud)
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Create a Weaviate Cluster
+1. If you don't have a WCS account, click on the "Register" button to create a new account.
+
+1. Click on "Sign in with the Weaviate Cloud Services" and sign in with your WCS username and password.
+
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Create a Weaviate Cluster
 
 To create a new Weaviate Cluster, click the "Create cluster" button.
 
-<img src={WCScreateButton} width="100%" alt="Button to create WCS instance"/>
+On the Create a Cluster page:
 
-Then:
-
-1. Select the **Free sandbox** *plan tier*.
-1. Provide a *cluster name*, which will become a part of its URL. A suffix will be added to this to ensure uniqueness.
+1. Select the **Free sandbox** plan tier.
+1. Provide a *cluster name*. The sandbox URL is based on the cluster-name. WCS adds a suffix to ensure uniqueness.
 1. Set the `Enable Authentication?` option to `YES`.
-
-Your selections should look like this:
-
-<img src={WCSoptions} width="100%" alt="Instance configuration"/>
-
-Finally, press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
+1. Press **Create** to create your sandbox instance. Note that the sandbox will expire after a set number of days.
 
 <img src={WCScreate} width="100%" alt="Create instance"/>
 
-This will start the process to create a new instance, and you will see a progress indicator.
+This starts the process to create a new instance. WCS displays a progress indicator while the sandbox builds.
 
 <img src={WCScreationProgress} width="100%" alt="Creation in progress"/>
 
-Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
+Instance creation takes a minute or two. WCS displays a checkmark (✔️) next to your sandbox when the instance is ready.
 
 <details>
-  <summary>Sandbox expiry & options</summary>
+  <summary>Sandbox expiration & options</summary>
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
@@ -91,13 +86,17 @@ import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 </details>
 
-You can communicate with Weaviate with the available [client libraries](/developers/weaviate/client-libraries/index.md) or directly with the [RESTful API](/developers/weaviate/api/rest/index.md) and the [GraphQL API](/developers/weaviate/api/graphql/index.md).
+There are several ways to work with your sandbox.
+
+- [Client libraries](/developers/weaviate/client-libraries/index.md)
+- [RESTful API](/developers/weaviate/api/rest/index.md)
+- [GraphQL API](/developers/weaviate/api/graphql/index.md)
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Install Weaviate client
 
 :::info Academy material in Python
 For the initial release of Weaviate Academy units, our materials are written around Python examples.<br/><br/>
-But we are working to add versions for other clients, starting with TypeScript/JavaScript examples. We appreciate your patience as we build up our educational material.
+We are working to add examples for other client languages, starting with TypeScript. We appreciate your patience as we build up our educational material.
 :::
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Available clients
@@ -105,7 +104,7 @@ But we are working to add versions for other clients, starting with TypeScript/J
 Currently, Weaviate clients are available in:
 
 - <i class="fa-brands fa-python"></i> Python
-- <i class="fa-brands fa-js"></i> TypeScript/JavaScript
+- <i class="fa-brands fa-js"></i> TypeScript
 - <i class="fa-brands fa-java"></i> Java
 - <i class="fa-brands fa-golang"></i> Go
 
@@ -119,7 +118,7 @@ import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
 
 Install your preferred client by following the relevant instructions below:
 
-import CodeClientInstall from '/_includes/code/quickstart.clients.install.mdx';
+import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 <CodeClientInstall />
 
@@ -154,7 +153,7 @@ const instanceOptions = [{
       feedback: 'WCS *is* our recommended option for running Weaviate.',
     },
     {
-      answerText: 'The newest versions of Weaviate will only be available on WCS.',
+      answerText: 'The newest versions of Weaviate are available for WCS and locally hosted instances.',
       isCorrect: false,
       feedback: 'You can run the latest version of Weaviate anywhere, on Docker/Kubernetes or WCS.',
     },
@@ -166,7 +165,7 @@ const instanceOptions = [{
   ]
 }];
 const wcsSetup = [{
-  questionText: 'Which of the following is necessary for a Weaviate instance to use with Weaviate Academy?',
+  questionText: 'Which of the following is necessary to configure a Weaviate instance for Weaviate Academy exercises?',
   answerOptions: [
     {
       answerText: 'A paid instance of WCS.',

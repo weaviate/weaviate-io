@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/api.jpg
 # tags: ['graphql', 'search operators']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -43,17 +41,17 @@ By adding relevant modules, you can use the following operators:
 
 ## nearVector
 
-This filter allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
+This operator allows you to find data objects in the vicinity of an input vector. It's supported by the `Get{}` function.
 
 * Note: this argument is different from the [GraphQL `Explore{}` function](./explore.md)
-* Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md) filter
+* Note: Cannot use multiple `'near'` arguments, or a `'near'` argument along with an [`'ask'`](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md) operator.
 
 ### Variables
 
 | Variable | Required | Type | Description |
 | --- | --- | --- | --- |
 | `vector` | yes | `[float]` | This variable takes a vector embedding in the form of an array of floats. The array should have the same length as the vectors in this class. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
+| `distance` | no | `float` | The maximum allowed distance to the provided search input. Cannot be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
 
 ### Example
@@ -72,11 +70,11 @@ non-cosine distance metrics.
 
 ## nearObject
 
-This filter allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
+This operator allows you to find data objects in the vicinity of other data objects by UUID. It's supported by the `Get{}` function.
 
 * Note: You cannot use multiple `near<Media>` arguments, or a `near<Media>` argument along with an [`ask`](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md) argument.
 * Note: You can specify an object's `id` or `beacon` in the argument, along with a desired `certainty`.
-* Note that the first result will always be the object in the filter itself.
+* Note that the first result will always be the object used for search.
 * Near object search can also be combined with `text2vec` modules.
 
 ### Variables
@@ -85,7 +83,7 @@ This filter allows you to find data objects in the vicinity of other data object
 | --------- | -------- | ---- | ----------- |
 | `id` | yes | `UUID` | Data object identifier in the uuid format. |
 | `beacon` | yes | `url` | Data object identifier in the beacon URL format. E.g., `weaviate://<hostname>/<kind>/id`. |
-| `distance` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values. Can't be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
+| `distance` | no | `float` | The maximum allowed distance to the provided search input. Cannot be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
 
 ### Example
@@ -136,7 +134,8 @@ import GraphQLFiltersNearObject from '/_includes/code/graphql.filters.nearObject
 </details>
 
 ## hybrid
-This filter allows you to combine [BM25](#bm25) and vector search to get the best of both search methods. It's supported by the `Get{}` function.
+
+This operator allows you to combine [BM25](#bm25) and vector search to get the best of both search methods. It's supported by the `Get{}` function.
 
 ### Variables
 
@@ -183,9 +182,12 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 
 <GraphQLFiltersHybridVector/>
 
-### Hybrid with Where filter
+### Hybrid with a conditional filter
 
-Starting with `v1.18`, you can use [`where` filters](../graphql/filters.md#where-filter) with `hybrid`.
+:::info Available from version `v1.18.0`
+:::
+
+A [conditional (`where`) filter](../graphql/filters.md#where-filter) can be used with `hybrid`.
 
 import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.hybrid.filter.example.mdx';
 
@@ -194,13 +196,25 @@ import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.h
 
 ### Limiting BM25 properties
 
-Starting with `v1.19`, `hybrid` accepts a `properties` array of strings that limits the set of properties that will be searched by the BM25 component of the search. If not specified, all text properties will be searched.
+:::info Available from version `v1.19`
+:::
+
+A `hybrid` operator can accept a `properties` array of strings that limits the set of properties that will be searched by the BM25 component of the search. If not specified, all text properties will be searched.
 
 In the examples below, the `alpha` parameter is set close to 0 to favor BM25 search, and changing the `properties` from `"question"` to `"answer"` will yield a different set of results.
 
 import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybrid.properties.mdx';
 
 <GraphQLFiltersHybridProperties/>
+
+### Oversearch with `relativeScoreFusion`
+
+:::info Available from version `v1.21`
+:::
+
+When `relativeScoreFusion` is used as the `fusionType` with a small search `limit`, a result set can be very sensitive to the limit parameter due to the normalization of the scores.
+
+To mitigate this effect, Weaviate automatically performs a search with a higher limit (100) and then trims the results down to the requested limit.
 
 
 ## BM25
@@ -270,8 +284,12 @@ The `_additional` property in the GraphQL result exposes the score:
 
 </details>
 
-### BM25 with Where Filter
-Introduced in `v1.18`, you can now use [`where` filters](../graphql/filters.md#where-filter) with `bm25`.
+### BM25 with a conditional filter
+
+:::info Available from version `v1.18`
+:::
+
+A [conditional (`where`) filter](../graphql/filters.md#where-filter) can be used with `bm25`.
 
 import GraphQLFiltersBM25FilterExample from '/_includes/code/graphql.filters.bm25.filter.example.mdx';
 
@@ -379,17 +397,18 @@ Enabled by the modules:
 - [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md),
 - [text2vec-transformers](../../modules/retriever-vectorizer-modules/text2vec-transformers.md),
 - [text2vec-contextionary](../../modules/retriever-vectorizer-modules/text2vec-contextionary.md).
+- [text2vec-palm](../../modules/retriever-vectorizer-modules/text2vec-palm.md).
 - [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md).
 
-This filter allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.
+This operator allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.
 
 ### Variables
 
 | Variable | Required | Type | Description |
 | --- | --- | --- | --- |
 | `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
-| `certainty` | no | `float` | The required degree of similarity between an object's characteristics and the provided filter values.<br/>Values can be between 0 (no match) and 1 (perfect match).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `distance` variable. |
-| `distance` | no | `float` | Normalized Distance between the result item and the search vector.<br/>The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md).<br/><i className="fas fa-triangle-exclamation"/> Can't be used together with the `certainty` variable.|
+| `distance` | no | `float` | The maximum allowed distance to the provided search input. Cannot be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
+| `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
 | `autocorrect` | no | `boolean` | Autocorrect input text values |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
 | `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
@@ -402,7 +421,7 @@ This filter allows you to find data objects in the vicinity of the vector repres
 
 ### Example I
 
-This example shows a basic overview of using the `nearText` filter.
+This example shows a basic overview of using the `nearText` operator.
 
 import GraphQLFiltersNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
@@ -461,7 +480,7 @@ non-cosine distance metrics.
 
 Strings written in the concepts array are your fuzzy search terms. An array of concepts is required to set in the Explore query, and all words in this array should be present in the Contextionary.
 
-There are three ways to define the concepts array argument in the filter.
+There are three ways to define the concepts array argument in `nearText`.
 
 - `["New York Times"]` = one vector position is determined based on the occurrences of the words
 - `["New", "York", "Times"]` = all concepts have a similar weight.
@@ -483,7 +502,7 @@ The semantic path returns an array of concepts from the query to the data object
 | `distanceToQuery` | the distance of this step to the query. |
 | `distanceToResult` | the distance of the step to this result. |
 
-_Note: Building a semantic path is only possible if a [`nearText: {}` filter](#neartext) is set as the explore term represents the beginning of the path and each search result represents the end of the path. Since `nearText: {}` queries are currently exclusively possible in GraphQL, the `semanticPath` is therefore not available in the REST API._
+_Note: Building a semantic path is only possible if a [`nearText: {}` operator](#neartext) is set as the explore term represents the beginning of the path and each search result represents the end of the path. Since `nearText: {}` queries are currently exclusively possible in GraphQL, the `semanticPath` is therefore not available in the REST API._
 
 Example: showing a semantic path without edges.
 
@@ -495,7 +514,7 @@ import GraphQLUnderscoreSemanticpath from '/_includes/code/graphql.underscorepro
 
 Enabled by the module: [Question Answering](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md).
 
-This filter allows you to return answers to questions by running the results through a Q&A model.
+This operator allows you to return answers to questions by running the results through a Q&A model.
 
 ### Variables
 
@@ -516,7 +535,6 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 The `_additional{}` property is extended with the answer and a certainty of the answer.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

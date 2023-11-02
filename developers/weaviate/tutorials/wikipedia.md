@@ -181,7 +181,6 @@ In this tutorial, we've learned
 - [Tutorial: Introduction to modules](./modules.md)
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -56,7 +56,7 @@ While [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-t
 
 To put it as bluntly as possible, what makes `dangvantuan/sentence-camembert-large` better at French sentence embeddings than `sentence-transformers/all-MiniLM-L6-v2` is that… it was trained on **French** sentences! There are many examples like this, models trained on **biomedical text**, **legal documents**, or **Spanish** are generally going to perform better when tested on that domain compared to models that haven't been explicitly trained for the domain.
 
-Note that these tags are a part of Hugging Face’s **model cards**, an impressive effort to continue advancing the organization of Machine Learning models. At the time of this writing, model cards still rely on **manual tagging**. It may be the case that the developer uploading the model hasn’t filled out these details. If you are new to Hugging Face, please consider annotating your uploaded models by [adding a model card](https://huggingface.co/docs/hub/model-cards) - YAML sections in the `README.md`, like this:
+Note that these tags are a part of Hugging Face’s **model cards**, an impressive effort to continue advancing the organization of Machine Learning models. At the time of this writing, model cards still rely on **manual tagging**. It may be the case that the developer uploading the model hasn’t filled out these details. If you are new to Hugging Face, please consider annotating your uploaded models by adding a model card - YAML sections in the `README.md`, like this:
 
 <img
     src={require('./img/how-to-populate-model-card-min.png').default}
@@ -102,7 +102,7 @@ I believe the core difference between **Exact Semantic Match** and **Relational 
 ### Question Answering vs Fact Verification
 These two high-level categories are a good starting place for taxonomizing these datasets. However, there are still noticeable differences within each category. For example, what makes **Question Answering** different from **Fact Verification** for evaluating the quality of a Sentence Transformer? Quite simply, questions have a unique style compared to facts. So while the retrieval task is similar in returning the most suitable answers or evidence, the slight difference in question versus stated fact will have an impact on performance. We advise readers to look for these subtle differences when choosing a Sentence Transformer for their use case.
 
-### Task contruction
+### Task construction
 Another important idea in **Task** construction – that leads nicely to the next topic of **Scale** – is to discuss Supervised and Self-Supervised Learning. Supervised Learning requires humans to annotate the data, whereas Self-Supervised does not. Self-Supervised lets us take advantage of Internet-scale data. However, unlike the autoregressive GPT style algorithm, embedding learning hasn’t converged to a single task within Self-Supervised data.
 
 The most common Self-Supervised **Task** heuristic is to use neighboring passages as positive pairs. This works pretty well since most neighboring passages tend to be semantically related. As shown in the 1B training pairs example below, there are many natural cases of this on the Internet as well – such as Reddit post-comment pairs or Stack Exchange question-answer pairs.

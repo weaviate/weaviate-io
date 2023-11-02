@@ -104,7 +104,7 @@ assert "Article" in response["data"]["Get"]
 assert len(response["data"]["Get"]["Article"]) == 3
 assert response["data"]["Get"]["Article"][0].keys() == {"title", "summary", "_additional"}
 assert response["data"]["Get"]["Article"][0]["_additional"].keys() == {"generate"}
-assert "grouped_task" in response["data"]["Get"]["Article"][0]["_additional"]["generate"].keys()
+assert "groupedResult" in response["data"]["Get"]["Article"][0]["_additional"]["generate"].keys()
 # End test
 
 expected_response = """
@@ -167,9 +167,9 @@ print(json.dumps(response, indent=2))
 # Tests
 assert "Article" in response["data"]["Get"]
 assert len(response["data"]["Get"]["Article"]) == 3
-assert response["data"]["Get"]["Article"][0].keys() == {"title", "summary", "_additional"}
+assert response["data"]["Get"]["Article"][0].keys() == {"title", "_additional"}
 assert response["data"]["Get"]["Article"][0]["_additional"].keys() == {"generate"}
-assert "grouped_task" in response["data"]["Get"]["Article"][0]["_additional"]["generate"].keys()
+assert "groupedResult" in response["data"]["Get"]["Article"][0]["_additional"]["generate"].keys()
 # End test
 
 expected_response = """

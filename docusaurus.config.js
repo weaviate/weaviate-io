@@ -12,6 +12,8 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+
+
     title: 'Weaviate - vector database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
@@ -102,6 +104,7 @@ const config = {
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
 
+
         {
             // styles for math equations
             href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -110,6 +113,7 @@ const config = {
                 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
+
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
@@ -131,8 +135,8 @@ const config = {
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
 
                     // TODO: Update to 'main' for release
-                    editUrl:
-                        'https://github.com/weaviate/weaviate-io/tree/main/',
+                    // editUrl:
+                       // 'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace, math],
                     rehypePlugins: [katex],
                 },
@@ -163,12 +167,18 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar',
+                id: 'announcement-bar-python-client',
                 content:
-                    'We are excited to announce a huge update to <a target="_blank" rel="noopener noreferrer" href="https://console.weaviate.cloud/">Weaviate Cloud Services (WCS)</a> · check out the dedicated <a target="_blank" rel="noopener noreferrer" href="/developers/wcs">WCS docs</a>.',
+                    `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/blog/collections-python-client-preview">Shape the Future - Try Our New Python Client API</a> to learn more.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
+            },
+            docs: {
+                sidebar: {
+                    hideable: true,
+                    autoCollapseCategories: true
+                },
             },
             navbar: {
                 title: '',
@@ -179,17 +189,69 @@ const config = {
                 },
                 items: [
                     {
+                        // type: 'dropdown',
+                        label: 'Products',
+                        position: 'right',
+                        to: '/products',
+                        // items: [
+                        //     {
+                        //         label: 'Pricing',
+                        //         to: '/pricing',
+                        //     },
+                        //     {
+                        //         label: 'Weaviate Cloud console',
+                        //         href: 'https://console.weaviate.cloud',
+                        //     },
+                        // ],
+                    },
+                    {
                         type: 'dropdown',
-                        label: 'Weaviate Cloud Services',
+                        label: 'Developers',
                         position: 'right',
                         items: [
                             {
-                                label: 'Pricing',
-                                to: '/pricing',
+                                label: 'Weaviate Docs',
+                                docId: 'weaviate/index',
+                                sidebarid: 'docsSidebar',
+                                type: 'doc',
                             },
                             {
-                                label: 'Weaviate Cloud console',
-                                href: 'https://console.weaviate.cloud',
+                                label: 'Weaviate Cloud Services Docs',
+                                docId: 'wcs/index',
+                                sidebarid: 'wcsSidebar',
+                                type: 'doc',
+                            },
+                            {
+                                label: 'Academy',
+                                docId: 'academy/index',
+                                sidebarid: 'academySidebar',
+                                type: 'doc',
+                            },
+                            {
+                                label: 'Workshops',
+                                to: '/learn/workshops',
+                            },
+                            {
+                                label: 'Partners',
+                                to: '/partners/aws',
+                            },
+                            {
+                                label: 'Contributor Guide',
+                                docId: 'contributor-guide/index',
+                                sidebarid: 'contributorSidebar',
+                                type: 'doc',
+                            },
+                            {
+                                label: 'GitHub',
+                                href: 'https://github.com/weaviate/weaviate',
+                            },
+                            {
+                                label: 'Slack',
+                                href: 'https://weaviate.io/slack',
+                            },
+                            {
+                                label: 'Forum',
+                                href: 'https://forum.weaviate.io',
                             },
                         ],
                     },
@@ -226,49 +288,13 @@ const config = {
                         position: 'right',
                     },
                     {
-                        type: 'dropdown',
-                        label: 'Developers',
+                        label: 'Try Now',
+                        className: 'tryNow',
+                        to: 'https://console.weaviate.cloud',
                         position: 'right',
-                        items: [
-                            {
-                                label: 'Weaviate Docs',
-                                docId: 'weaviate/index',
-                                sidebarid: 'docsSidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Weaviate Cloud Services Docs',
-                                docId: 'wcs/index',
-                                sidebarid: 'wcsSidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Academy',
-                                docId: 'academy/index',
-                                sidebarid: 'academySidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'Contributor Guide',
-                                docId: 'contributor-guide/index',
-                                sidebarid: 'contributorSidebar',
-                                type: 'doc',
-                            },
-                            {
-                                label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate',
-                            },
-                            {
-                                label: 'Slack',
-                                href: 'https://weaviate.io/slack',
-                            },
-                            {
-                                label: 'Forum',
-                                href: 'https://forum.weaviate.io',
-                            },
-                        ],
+
                     },
-                    {
+                   /*  {
                         to: '/developers/academy',
                         label: ' ',
                         position: 'right',
@@ -317,10 +343,11 @@ const config = {
                         position: 'right',
                         // target: '_blank',
                         className: 'fas fa-lg fa-microphone',
-                    },
+                    },*/
                     {
                         type: 'search',
                         position: 'right',
+                        className: 'hiddenSearch'
                     },
                 ],
             },
@@ -329,19 +356,49 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Community',
+                        title: 'Weaviate Cloud Services',
                         items: [
                             {
-                                label: 'Stack Overflow',
-                                href: 'https://stackoverflow.com/tags/weaviate/',
+                                label: 'Products',
+                                to: '/products',
                             },
                             {
+                                label: 'Console',
+                                to: 'https://console.weaviate.cloud/',
+                            },
+                            {
+                                label: 'Partners',
+                                to: '/partners/aws',
+                            },
+                            {
+                                label: 'Terms & Policies',
+                                to: 'service',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Community',
+                        items: [
+
+                            {
                                 label: 'Slack',
-                                href: 'https://weaviate.io/slack',
+                                to: 'https://weaviate.io/slack',
+                            },
+                            {
+                                label: 'Instagram',
+                                to: 'https://instagram.com/weaviate.io',
                             },
                             {
                                 label: 'Twitter',
-                                href: 'https://twitter.com/weaviate_io',
+                                to: 'https://twitter.com/weaviate_io',
+                            },
+                            {
+                                label: 'GitHub',
+                                to: 'https://github.com/weaviate/weaviate',
+                            },
+                            {
+                                label: 'Forum',
+                                to: 'https://forum.weaviate.io',
                             },
                         ],
                     },
@@ -350,23 +407,23 @@ const config = {
                         items: [
                             {
                                 label: 'Amsterdam',
-                                href: 'https://www.meetup.com/weaviate-amsterdam',
+                                to: 'https://www.meetup.com/weaviate-amsterdam',
                             },
                             {
                                 label: 'Boston',
-                                href: 'https://www.meetup.com/weaviate-boston',
+                                to: 'https://www.meetup.com/weaviate-boston',
                             },
                             {
                                 label: 'New York',
-                                href: 'https://www.meetup.com/weaviate-NYC',
+                                to: 'https://www.meetup.com/weaviate-NYC',
                             },
                             {
                                 label: 'San Francisco',
-                                href: 'https://www.meetup.com/weaviate-san-francisco',
+                                to: 'https://www.meetup.com/weaviate-san-francisco',
                             },
                             {
                                 label: 'Toronto',
-                                href: 'https://www.meetup.com/weaviate-toronto',
+                                to: 'https://www.meetup.com/weaviate-toronto',
                             },
                         ],
                     },
@@ -385,26 +442,34 @@ const config = {
                                 label: 'Playbook',
                                 to: 'company/playbook',
                             },
-                            {
-                                label: 'GitHub',
-                                href: 'https://github.com/weaviate/weaviate',
-                            },
+
+
                         ],
                     },
                 ],
                 copyright: `Copyright © ${new Date().getFullYear()} Weaviate, B.V. Built with Docusaurus.`,
             },
             colorMode: {
-                defaultMode: 'dark',
+                defaultMode: 'light',
                 disableSwitch: false,
-                respectPrefersColorScheme: true,
+                respectPrefersColorScheme: false,
             },
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
                 additionalLanguages: ['java'],
             },
+
+            customConfig: {
+                colorMode: {
+                  defaultMode: 'light',
+                  disableSwitch: false,
+                  respectPrefersColorScheme: false,
+                },
+              },
         }),
+
+
 };
 
 module.exports = config;

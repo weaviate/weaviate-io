@@ -1,12 +1,10 @@
 ---
-title: Retrievers, Vectorizers and Rerankers
+title: Vectorizers and Rerankers
 sidebar_position: 0
 image: og/docs/modules/vectorizers-overview.jpg
 # tags: ['modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 

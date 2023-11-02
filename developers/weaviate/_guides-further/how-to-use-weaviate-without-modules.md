@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/further-guides.jpg
 # tags: ['how to', 'no modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- TODO: Finish this page! -->
 <!-- :::caution Under construction.
@@ -32,13 +30,13 @@ import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
 
 ## Set up Weaviate
 
-### Download the Docker Compose configuration file.
+### Download the Docker Compose file.
 <!-- TODO: {{site.weaviate_version needs to be replaced}} -->
 ```bash
 curl -o docker-compose.yml "https://configuration.weaviate.io/v2/docker-compose/docker-compose.yml?modules=standalone&runtime=docker-compose&weaviate_version={{ site.weaviate_version }}"
 ```
 
-This will download the `docker-compose.yml` file. If you inspect its contents with your favorite text editor, you should see the below lines amongst others:
+This will download the `docker-compose.yml` file. If you inspect its contents with your favorite text editor, you should see these lines:
 
 ```yaml
 services:
@@ -59,16 +57,16 @@ Since we do not need any vectorizer modules, we can leave the `ENABLE_MODULES` e
 ### Start up Weaviate
 Start up an instance of Weaviate by running:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-Weaviate should now be running and exposed on your host port `8080`. You can verify with `docker ps` or simply send a test query to Weaviate, such as the below:
+Weaviate should now be running and exposed on your host port `8080`. You can verify that the container is running with `docker ps` or use the following code to send a test query to Weaviate:
 
 ```bash
 curl localhost:8080/v1/schema
 ```
 
-Weaviate which should respond with: `{"classes":[]}`.
+If the instance is ready, Weaviate responds with: `{"classes":[]}`.
 
 ## Add a data schema
 
@@ -107,7 +105,7 @@ import CustomVectorsSchemaCreate from '/_includes/code/howto.customvectors.schem
 
 Now we are ready to import data into Weaviate.
 
-The process to import data is almost the same as in other examples. The main difference is that each object will have a `vector` property where the object's vector is to be provided. Run one of the below code snippets in your favorite client:
+The process to import data is almost the same as in other examples. The main difference is that each object will have a `vector` property where the object's vector is to be provided. Run one of the following code snippets in your favorite client:
 
 <!-- TODO - Rewrite this code example to use batch imports -->
 import HowToAddData from '/_includes/code/howto.customvectors.adddata.mdx';
@@ -143,7 +141,6 @@ As you see, manual vectorization involves some additional steps in comparison to
 
 But if you require a particular vectorizer or have external sources of vectorization, you can incorporate Weaviate to use your own vectors like in this example.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

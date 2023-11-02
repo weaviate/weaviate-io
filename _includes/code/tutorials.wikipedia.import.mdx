@@ -6,11 +6,6 @@ import TabItem from '@theme/TabItem';
 
 ```python
 # ===== Import data =====
-# Configure the batch import
-client.batch.configure(
-    batch_size=100,
-)
-
 # Settings for displaying the import progress
 counter = 0
 interval = 100  # print progress every this many records
@@ -27,27 +22,27 @@ csv_iterator = pd.read_csv(
 
 # Iterate through the dataframe chunks and add each CSV record to the batch
 import ast
-for chunk in csv_iterator:
-    for index, row in chunk.iterrows():
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
+  for chunk in csv_iterator:
+      for index, row in chunk.iterrows():
 
-        properties = {
-            "title": row.title,
-            "content": row.text,
-            "url": row.url
-        }
+          properties = {
+              "title": row.title,
+              "content": row.text,
+              "url": row.url
+          }
 
-        # Convert the vector from CSV string back to array of floats
-        vector = ast.literal_eval(row.content_vector)
+          # Convert the vector from CSV string back to array of floats
+          vector = ast.literal_eval(row.content_vector)
 
-        # Add the object to the batch, and set its vector embedding
-        client.batch.add_data_object(properties, "Article", vector=vector)
+          # Add the object to the batch, and set its vector embedding
+          batch.add_data_object(properties, "Article", vector=vector)
 
-        # Calculate and display progress
-        counter += 1
-        if counter % interval == 0:
-            print(f"Imported {counter} articles...")
-
-client.batch.flush()
+          # Calculate and display progress
+          counter += 1
+          if counter % interval == 0:
+              print(f"Imported {counter} articles...")
 print(f"Finished importing {counter} articles.")
 ```
 

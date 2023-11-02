@@ -4,9 +4,7 @@ sidebar_position: 17
 image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'nodes']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Usage
 
@@ -16,18 +14,19 @@ The nodes endpoint accepts a `GET` request:
 GET /v1/nodes
 ```
 
-And it returns a `nodes` field containing array of nodes with following fields:
+And it returns a `nodes` field containing array of nodes with the following fields:
 - `name`: Name of the node.
-- `status`: Status of the node (one of: HEALTHY, UNHEALTHY, UNAVAILABLE).
+- `status`: Status of the node (one of: HEALTHY, UNHEALTHY, UNAVAILABLE, INDEXING).
 - `version`: Version of Weaviate running on the node.
 - `gitHash`: Short git hash of latest commit of Weaviate running on the node.
-- `stats`: Statistics of the node with following fields:
+- `stats`: Statistics of the node with the following fields:
     - `shardCount`: Total number of shards on the node.
-    - `objectCount` Total number of objects on the node.
-- `shards`: Array of shards with following fields:
+    - `objectCount` Total number of indexed objects on the node.
+- `shards`: Array of shards with the following fields:
     - `name`: Name of the shard.
     - `class`: Name of the objects' class stored on the shard.
-    - `objectCount`: Number of objects on the shard.
+    - `objectCount`: Number of indexed objects on the shard.
+    - `vectorQueueLength`: Number of objects waiting to be indexed on the shard. (Available in Weaviate `1.22` and higher, if `ASYNC_INDEXING` is enabled.)
 
 ## Example
 
@@ -43,51 +42,95 @@ Example output (format may slightly vary depending on the client used):
 {
   "nodes": [
     {
-      "name": "weaviate-7",
-      "status": "HEALTHY",
-      "version": "1.16-alpha.0",
-      "gitHash": "8cd2efa",
-      "stats": {
-        "shardCount":2,
-        "objectCount": 23328
+      "batchStats": {
+        "ratePerSecond": 0
       },
+      "gitHash": "e6b37ce",
+      "name": "weaviate-0",
       "shards": [
         {
-          "name":"azuawSAd9312F",
-          "class": "Class_7",
-          "objectCount": 13328
-        }, {
-          "name":"cupazAaASdfPP",
-          "class": "Foo",
-          "objectCount": 10000
+          "class": "TestArticle",
+          "name": "nq1Bg9Q5lxxP",
+          "objectCount": 0,
+          "vectorIndexingStatus": "READY",
+          "vectorQueueLength": 0
+        },
+        {
+          "class": "TestAuthor",
+          "name": "MINLtCghkdG8",
+          "objectCount": 0,
+          "vectorIndexingStatus": "READY",
+          "vectorQueueLength": 0
         }
-      ]
-    }, {
-      "name": "weaviate-6",
-      "status": "HEALTHY",
-      "version": "1.16-alpha.0",
-      "gitHash": "8cd2efa",
+      ],
       "stats": {
-        "shardCount":2,
-        "objectCount": 12345
+        "objectCount": 0,
+        "shardCount": 2
       },
+      "status": "HEALTHY",
+      "version": "1.22.1"
+    },
+    {
+      "batchStats": {
+        "ratePerSecond": 0
+      },
+      "gitHash": "e6b37ce",
+      "name": "weaviate-1",
       "shards": [
         {
-          "name":"hh8gXiaNaO2K",
-          "class": "Bar",
-          "objectCount": 10000
-        }, {
-          "name":"zmb16QK4PYZ4",
-          "class": "Baz",
-          "objectCount": 2345
+          "class": "TestArticle",
+          "name": "HuPocHE5w2LP",
+          "objectCount": 1,
+          "vectorIndexingStatus": "READY",
+          "vectorQueueLength": 0
+        },
+        {
+          "class": "TestAuthor",
+          "name": "PeQjZRmK0xNB",
+          "objectCount": 0,
+          "vectorIndexingStatus": "READY",
+          "vectorQueueLength": 0
         }
-      ]
+      ],
+      "stats": {
+        "objectCount": 1,
+        "shardCount": 2
+      },
+      "status": "HEALTHY",
+      "version": "1.22.1"
+    },
+    {
+      "batchStats": {
+        "ratePerSecond": 0
+      },
+      "gitHash": "e6b37ce",
+      "name": "weaviate-2",
+      "shards": [
+        {
+          "class": "TestArticle",
+          "name": "JTg39c7ZlFUX",
+          "objectCount": 0,
+          "vectorIndexingStatus": "READY",
+          "vectorQueueLength": 0
+        },
+        {
+          "class": "TestAuthor",
+          "name": "W5ulmuJGDTxj",
+          "objectCount": 1,
+          "vectorIndexingStatus": "READY",
+          "vectorQueueLength": 0
+        }
+      ],
+      "stats": {
+        "objectCount": 1,
+        "shardCount": 2
+      },
+      "status": "HEALTHY",
+      "version": "1.22.1"
     }
-   ]
+  ]
 }
 ```
-
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

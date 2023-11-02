@@ -4,9 +4,7 @@ sidebar_position: 9
 image: og/docs/modules/custom-modules.jpg
 # tags: ['modules', 'other modules', 'custom modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Introduction
 
@@ -51,7 +49,7 @@ To use a custom ML model with Weaviate, you have two options: ([further explaine
 
 <!-- ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview") -->
 
-Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module, you set `ENABLE_MODULES=text2vec-transformers` in the docker-compose configuration, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2). In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module:
+Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module, you set `ENABLE_MODULES=text2vec-transformers` in the Docker Compose file, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2). In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module:
 
 1. **Module code for Weaviate, written in Go:**
    * Tells the Weaviate GraphQL API that the module provides a specific `nearText` method.
@@ -71,7 +69,7 @@ A module is a custom code that can extend Weaviate by hooking into specific life
 
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
 - Naming convention:
-  - Vectorizer: `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `image2vec-RESNET` or `text2vec-transformers`.
+  - Vectorizer: `<media>2vec-<name>-<optional>`, for example `text2vec-contextionary`, `img2vec-neural` or `text2vec-transformers`.
   - Other modules: `<functionality>-<name>-<optional>`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
@@ -98,7 +96,7 @@ To use a new inference model (part 2) with an existing Weaviate interface (part 
    1. `GET /.well-known/live` -> respond `204` when the app is alive
    2. `GET /.well-known/ready` -> respond `204` when the app is ready to serve traffic
    3. `GET /meta` -> respond meta information about the inference model
-   4. `POST /vectors` -> see example request and response payloads below. (Note that the app is exposed locally on port `8090` on my machine by adding `ports: ["8090:8080"]` in the docker-compose file).
+   4. `POST /vectors` -> see example request and response payloads below. (Note that the app is exposed locally on port `8090` on my machine by adding `ports: ["8090:8080"]` in the Docker Compose file).
 
 Request:
 ```bash
@@ -122,7 +120,6 @@ If you choose to build a completely new module including a Weaviate Go interface
 - Weaviate APIs internal to a module are not guaranteed to be stable. Even on a non-breaking Weaviate release, 'internal' APIS could always change.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

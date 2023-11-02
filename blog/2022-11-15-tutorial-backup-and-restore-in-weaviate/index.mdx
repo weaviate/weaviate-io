@@ -29,16 +29,16 @@ By the end of this tutorial, you will have:
 To get started, clone [github.com/weaviate-tutorials/weaviate-backup](https://github.com/weaviate-tutorials/weaviate-backup) repository and spin up Weaviate:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-The Docker configuration file (`docker-compose.yaml`) has been set up to spin up two Weaviate instances for this tutorial. You should be able to connect to them at `http://localhost:8080` and `http://localhost:8090` respectively. We'll call them **W1** and **W2** from this point on for convenience.
+The Docker Compose file (`docker-compose.yml`) has been set up to spin up two Weaviate instances for this tutorial. You should be able to connect to them at `http://localhost:8080` and `http://localhost:8090` respectively. We'll call them **W1** and **W2** from this point on for convenience.
 
 Think of **W1** as the source instance you want to back up, while **W2** is the destination instance you want to restore the backup to.
 
 ### Local backups
 
-The `docker-compose.yaml` also specifies the below parameters to enable local backups.
+The `docker-compose.yml` also specifies the below parameters to enable local backups.
 ```yaml
 environment:
   …
@@ -146,7 +146,7 @@ Great. You have successfully backed up data from **W1** and restored it onto **W
 Before we finish, let's go back to talk a little more about additional backup options, and some important notes.
 
 ### Local backup location
-If you wish to back up your data to a different location, edit the `volumes` parameter in `docker-compose.yaml` to replace `./backups` with the desired location.
+If you wish to back up your data to a different location, edit the `volumes` parameter in `docker-compose.yml` to replace `./backups` with the desired location.
 
 For example, changing it from `./backups:/tmp/backups` to `./my_archive:/tmp/backups` would change the backup destination from `./backups` to `./my_archive/`.
 

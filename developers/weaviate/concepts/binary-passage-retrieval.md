@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::note
 BPR support in Weaviate is under development.
@@ -63,7 +61,7 @@ To generate candidates (step 1), a Hamming distance is used on the binary hashes
 
 #### Do we still need a (HNSW or similar) vector index with BPR?
 
-The benefits of an efficient Approximate Nearest Neighbor (ANN) vector index still apply to BPR. Since hashes are much more compact and calculating the Hamming distance is considerably cheaper than calculating cosine distance, the point where brute-force is still possible is raised considerably. So for some cases, you may consider skipping vector-indexing entirely and relying on a flat search. However, when optimizing either for low latency or high throughput, a vector index will produce considerably better results. We therefor expect BPR to be used with our existing indices (currently HNSW) in most cases.
+The benefits of an efficient Approximate Nearest Neighbor (ANN) vector index still apply to BPR. Since hashes are much more compact and calculating the Hamming distance is considerably cheaper than calculating cosine distance, the point where brute-force is still possible is raised considerably. So for some cases, you may consider skipping vector-indexing entirely and relying on a flat search. However, when optimizing either for low latency or high throughput, a vector index will produce considerably better results. We therefore expect BPR to be used with our existing indices (currently HNSW) in most cases.
 
 #### Will my memory requirements go down by a factor of 32?
 
@@ -83,7 +81,6 @@ BPR support will be provided for all uses-cases including your own vectors from 
 
 From a purely technical perspective, there is no impediment to using any model with BPR. Since the hashing function is very simple, any existing vector can be hashed. However, it is unlikely that your hashes will hold a lot of semantic meaning if the model has not been specifically trained to produce good hashes alongside good vectors. Typically this is done by including the binary loss as part of the loss function during the training process.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

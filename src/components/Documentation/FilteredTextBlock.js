@@ -6,6 +6,23 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
   includeStartMarker = includeStartMarker == 'true';
   const lines = text.split('\n');
   let withinMarkers = false;
+  let format;
+  switch (language) {
+    case "java":
+      // remove leading indent of 4 spaces
+      format = input => input.replace(/^    /, '');
+      break
+    case "go":
+      format = input => input
+        // remove leading indent of 2 or 1 tabs
+        .replace(input.match(/^\t\t/) ? /^\t\t/ : /^\t/, '')
+        // replace remaining tabs with 2 spaces
+        .replace(/\t/, "  ")
+      break;
+    default:
+      format = input => input;
+  }
+
   const filteredLines = lines
     .filter((line) => {
       if (line.includes(startMarker)) {
@@ -20,6 +37,7 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
 
       return withinMarkers;
     })
+    .map(format)
     .join('\n');
 
   return (

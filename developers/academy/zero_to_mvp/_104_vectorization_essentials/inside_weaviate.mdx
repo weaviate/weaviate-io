@@ -24,7 +24,7 @@ This information will help you understand the mechanisms behind the powerful sea
 
 A machine learning model is what will turn data, like a piece of text, an image, an audio clip, and more into a vector. This type of models are often also referred to as "vectorizers". And measures of similarity will depend on the particular machine learning model used.
 
-As a result, it is paramount that the right model for the job is chosen. Or, at least, that a wrong model is not chosen. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions. 
+As a result, it is paramount that the right model for the job is chosen. Or, at least, that a wrong model is not chosen. So throughout our courses, you will see many different models and learn about model selection both as rules of thumb and detailed discussions.
 
 Weaviate does not itself vectorize data, but it is built to be compatible with a huge number of vectorization models and services. Our courses will also cover different ways to configure Weaviate to vectorize your data in the way that suits your goals and needs.
 
@@ -42,11 +42,11 @@ Throughout the course, you'll learn about indexing in Weaviate and the HNSW inde
 
 ![](../../tmp_images/a_machine_with_a_conveyer_belt_producing_boxes_of_documents.jpg)
 
-Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users. 
+Vector databases often need to scale horizontally and vertically. The scale of vector databases can expand into billions of data objects, thus requiring indexing and retrieval of billions of vectors to be retrievable by many concurrent users.
 
 We appreciate that this presents additional and very different challenges to the data science aspect of vector search. To help you navigate these challenges, we'll cover all the key aspects of taking Weaviate to production in dedicated units of the course.
 
-All things related to taking Weaviate to production, such as authentication and authorization, backups, monitoring, replication and more will be covered in these units. 
+All things related to taking Weaviate to production, such as authentication and authorization, backups, monitoring, replication and more will be covered in these units.
 
 <Quiz questions={vectorizationAndML} />
 
@@ -81,7 +81,7 @@ Replace object with one from actual edu database
 }
 ```
 
-In Weaviate, objects can be linked to one another using cross-references, similar to foreign keys in relational databases. The overall structure of data in Weaviate is defined by the `schema`. 
+In Weaviate, objects can be linked to one another using cross-references, similar to foreign keys in relational databases. The overall structure of data in Weaviate is defined by the `schema`.
 
 ### Schema
 
@@ -94,7 +94,7 @@ A `schema` in Weaviate is the blueprint that defines its data structure. Here is
   TODO: Add actual example schema
 </details>
 
-The schema specifies for each class the metadata such as its name and description as well as the same for properties of each class. Additionally, it defines any cross-references between classes and settings for indexes including the object index and the vector index. 
+The schema specifies for each class the metadata such as its name and description as well as the same for properties of each class. Additionally, it defines any cross-references between classes and settings for indexes including the object index and the vector index.
 
 It's important to note that the schema holds information about the vectorization process, including which vectorization model to use, which properties to include or exclude, and whether to include property headings or not.
 
@@ -104,7 +104,7 @@ Any missing information required for schema definition will be automatically inf
 
 #### Data types
 
-Each `class` definition will include one or more properties, which must have a data type. The currently supported data types include the below.
+Each `class` definition will include one or more properties, which must have a data type. Currently, Weaviate data type support includes the following types:
 
 import DataTypes from '/_includes/datatypes.mdx';
 
@@ -113,7 +113,7 @@ import DataTypes from '/_includes/datatypes.mdx';
   <DataTypes />
 </details>
 
-Note that most data types can include one such instance, or a list of instances, such as `string` or `string[]`.  
+Note that most data types can include one such instance, or a list of instances, such as `string` or `string[]`.
 
 We will look at schema definition including data types in more detail in another unit.
 
@@ -182,7 +182,7 @@ Custom modules can also be created to extend the capabilities of Weaviate as nee
 Another option for adding vectors to Weaviate is to manually upload them. This is sometimes referred to as the "Bring Your Own Vector" option in our documentation, and may be a good choice for users who prefer to generate vectors outside of Weaviate or who have already vectorized their data.
 
 :::note Upload vectors and use a vectorizer
-It is possible to both upload your own vectors and specify a vectorizer for Weaviate. For example, if you are importing a large dataset and have vectorized the data using a vectorizer that is also available through Weaviate, this may be a useful approach. This will allow you to use Weaviate to vectorize any updates to the dataset, as well as to vectorize queries as necessary. 
+It is possible to both upload your own vectors and specify a vectorizer for Weaviate. For example, if you are importing a large dataset and have vectorized the data using a vectorizer that is also available through Weaviate, this may be a useful approach. This will allow you to use Weaviate to vectorize any updates to the dataset, as well as to vectorize queries as necessary.
 :::
 
 We will explore these options in more detail in another unit.
@@ -210,16 +210,16 @@ Input box for user to put answer in and get back a similarity score & our defini
 Add summary
 :::
 
-import Quiz from '/src/components/Academy/quiz.js' 
+import Quiz from '/src/components/Academy/quiz.js'
 const vectorizationAndML = [
   {
     questionText: 'What does Weaviate use to obtain a vector corresponding to a data object?',
     answerOptions: [
       { answerText: 'Weaviate is capable of creating a vector from data objects.', isCorrect: false, feedback: 'Weaviate is not itself a vectorizer.'},
-      { answerText: 'Weaviate uses modules to obtain vectors from machine learning models.', isCorrect: true, feedback: 'You will learn about vectorizer models and corresponding Weaviate modules later on.'},   
+      { answerText: 'Weaviate uses modules to obtain vectors from machine learning models.', isCorrect: true, feedback: 'You will learn about vectorizer models and corresponding Weaviate modules later on.'},
       { answerText: 'Weaviate requires a vector to be uploaded at import time.', isCorrect: false, feedback: 'While you can upload a vector, this is not required.'},
     ],
-  },     
+  },
 ];
 const weaviateIndexing = [
   {
@@ -227,20 +227,20 @@ const weaviateIndexing = [
     answerOptions: [
       { answerText: 'Weaviate does not rely on indexing as it relies on a kNN vector search.', isCorrect: false, feedback: 'Weaviate does not use a kNN search as it is computationally very expensive.'},
       { answerText: 'Weaviate uses a vector index.', isCorrect: false, feedback: 'This is only partially true.'},
-      { answerText: 'Weaviate uses an inverted index.', isCorrect: false, feedback: 'This is only partially true.'},      
+      { answerText: 'Weaviate uses an inverted index.', isCorrect: false, feedback: 'This is only partially true.'},
       { answerText: 'Weaviate uses a vector index and an inverted index.', isCorrect: true, feedback: 'Both indexes are used for different, and complementary reasons.'},
     ],
-  },     
+  },
 ];
 const dataStorageComponents = [
   {
     questionText: 'What are the key components of data storage and retrieval system in Weaviate?',
     answerOptions: [
       { answerText: 'The object store, object index, and vector index.', isCorrect: true, feedback: 'Great job!'},
-      { answerText: 'The object index and vector index.', isCorrect: false, feedback: 'That is partially correct, but missing a component.'},   
+      { answerText: 'The object index and vector index.', isCorrect: false, feedback: 'That is partially correct, but missing a component.'},
       { answerText: 'The object store, vector store, and vector index.', isCorrect: false, feedback: 'There is no separate "vector store" with the "vector index".'},
     ],
-  },     
+  },
 ];
 const objectIndex = [
   {
@@ -282,7 +282,7 @@ const autoSchema = [
         answerText: 'Weaviate will implicitly use its default values.',
         isCorrect: false,
         feedback: 'Weaviate does have default values for it to use in this situation, but it will not be implicit. Please try again..',
-      },   
+      },
       {
         answerText: 'Weaviate will infer required information using the auto-schema function.',
         isCorrect: true,
@@ -313,6 +313,6 @@ const vectorizeObject = [{
       answerText: 'Use a local vectorizer microservice module.',
       isCorrect: false,
       feedback: 'Weaviate modules such as text2vec-transformers are examples of local vectorizer microservices that can generate vectors.',
-    },    
+    },
   ]
 }];

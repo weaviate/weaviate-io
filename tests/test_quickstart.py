@@ -6,7 +6,7 @@ import utils
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/quickstart.autoschema.endtoend.py",
+        "./_includes/code/quickstart/endtoend.py3.py",
         "./_includes/code/quickstart.byov.all.py",
     ],
 )
@@ -18,7 +18,7 @@ def test_py(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/quickstart.autoschema.endtoend.ts",
+        "./_includes/code/quickstart/endtoend.ts",
     ],
 )
 def test_ts(empty_weaviates, script_loc):

@@ -77,7 +77,7 @@ import NearobjectEquivalentNearvector from './_snippets/academy.queries.nearobje
 <NearobjectEquivalentNearvector/>
 
 <details>
-  <summary>See the full `meerkats_vector`</summary>
+  <summary>See the full `meerkat_vector`</summary>
 
 import MeerkatsVector from './_snippets/meerkats.vector.mdx';
 
@@ -88,7 +88,7 @@ import MeerkatsVector from './_snippets/meerkats.vector.mdx';
 <details>
   <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
 
-When you run the second (`nearVector`) query, you will see that not only are the returned objects the same as the first (`nearObject`) query, the distances are identical. This is because the vector of the specified object is identical to that specified in the `nearVector` query.
+If you run the second (`nearVector`) query, you will see that it returns the same results as the `nearObject` query. The distances are also identical. This is because the vector of object in the `nearObject` query is identical to the vector you specify in the `nearVector` query.
 
 </details>
 
@@ -170,7 +170,7 @@ This, combined with efficient filtering methods, allows Weaviate to easily retur
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Conceptual diagram (filtering + vector search)
 
-The below conceptual diagram shows how the vector search process works. When an input is provided containing filters and search operators, Weaviate first performs a pre-filtering step to obtain an "allow list" of objects.
+The conceptual diagram below shows how the vector search process works. When an input is provided containing filters and search operators, Weaviate first performs a pre-filtering step to obtain an "allow list" of objects.
 
 The input is used to determine an input vector, which may involve an additional step, such as retrieving the object's vector with `nearObject` or vectorizing the input text with `nearText`. The input vector is then compared to perform a vector search, returning the most relevant objects from the allow list.
 

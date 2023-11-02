@@ -333,9 +333,14 @@ This improvement was part of the `1.18.1` release.
 Previously, Weaviate would struggle when adding many “1,000s of” classes. We identified and fixed various issues to fix this. Issues related to many-class can generally be grouped into three distinct areas of concern: 1. Higher than expected memory usage, 2. Cycle spam, 3. Lagging schema deletes. The overview of each section can be found [here](https://github.com/weaviate/weaviate/issues/2785).
 
 ### Fixes for BM25
-As an ongoing effort to improve BM25, we realized there was an error when calculating the average length of a property. Two issues were found: 1. The component would encounter errors if too many properties were present, 2. It could produce incorrect mean values if properties had a zero-length. To fix this, the property length tracker has been completely replaced. This is a non-breaking change and will seamlessly migrate at startup. This will result in a more accurate BM25 search.
+As an ongoing effort to improve BM25, we realized there was an error when calculating the average length of a property. There are two issues:
 
-This was part of the [`1.18.1` patch](https://github.com/weaviate/weaviate/releases/tag/v1.18.1) release.
+- If there are too many properties, the BM25 component has errors.
+- If there are zero-length properties, the BM25 component can return incorrect mean values.
+
+To fix these problems, the property length tracker has been completely replaced. This is a non-breaking change that seamlessly migrates at startup. This change makes BM25 searches more accurate.
+
+This change is part of the `1.19.0` release.
 
 ### Release Notes for all Patches
 The above features highlighted a few changes that were included in the patch releases. For more details on each release, you can check out the release notes:

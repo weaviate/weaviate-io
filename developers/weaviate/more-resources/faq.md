@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/more-resources.jpg
 # tags: ['FAQ']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## General
 
@@ -33,7 +31,7 @@ import Badges from '/_includes/badges.mdx';
 <details>
   <summary>Answer</summary>
 
-> Yes, we do - check out [Weaviate Cloud Services](/pricing).
+> Yes, we do - check out [Weaviate Cloud Services](/products).
 
 </details>
 
@@ -63,8 +61,8 @@ import Badges from '/_includes/badges.mdx';
   <summary>Answer</summary>
 
 > There are three levels:
-> 1. You have no volume configured (the default in our `docker-compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept
-> 2. You have no volume configured (the default in our `docker-compose` files), if the container is removed (e.g. from `docker-compose down` or `docker rm`) your data is gone
+> 1. You have no volume configured (the default in our `Docker Compose` files), if the container restarts (e.g. due to a crash, or because of `docker stop/start`) your data is kept
+> 2. You have no volume configured (the default in our `Docker Compose` files), if the container is removed (e.g. from `docker compose down` or `docker rm`) your data is gone
 > 3. If a volume is configured, your data is persisted regardless of what happens to the container. They can be completely removed or replaced, next time they start up with a volume, all your data will be there
 
 </details>
@@ -226,7 +224,7 @@ Yes. Each class itself acts like namespaces. Additionally, you can use the [mult
 
 import HowToGetObjectCount from '/_includes/how.to.get.object.count.mdx';
 
-> The below `Aggregate` query will retrieve the total object count in a class.
+> This `Aggregate` query returns the total object count in a class.
 
 <HowToGetObjectCount/>
 
@@ -250,7 +248,7 @@ Weaviate makes use of ANN indices to serve vector searches. An ANN index is an a
 
 Generally if you need a higher recall than the default parameters provide you with, you can use stronger parameters. This can either be done at build time (`efConstruction`, `maxConnections`) or at query time (`ef`). Roughly speaking, a higher `ef` value at query time means a more thorough search. It will have a slightly higher latency, but also lead to a slightly better recall.
 
-By changing the specified limit, you are implicitly changing the `ef` parameter. This is because the default `ef` value is set to `-1`, indicating that Weaviate should pick the paremeter based on the limit. The dynamic `ef` value is controlled using the configuration fields `dynamicEfMin` which acts as a lower boundary, `dynamicEfMax` which acts as an upper boundary and `dynamicEfFactor` which is the factor to derive the target `ef` based on the limit within the lower and upper boundary.
+By changing the specified limit, you are implicitly changing the `ef` parameter. This is because the default `ef` value is set to `-1`, indicating that Weaviate should pick the parameter based on the limit. The dynamic `ef` value is controlled using the configuration fields `dynamicEfMin` which acts as a lower boundary, `dynamicEfMax` which acts as an upper boundary and `dynamicEfFactor` which is the factor to derive the target `ef` based on the limit within the lower and upper boundary.
 
 Example: Using the default parameters `ef=-1`, `dynamicEfMin=100`, `dynamicEfMax=500`, `dynamicEfFactor=8`, you will end up with the following `ef` values based on the limit:
 
@@ -508,12 +506,12 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 
 </details>
 
-#### Q: How can I run the latest master branch with docker-compose?
+#### Q: How can I run the latest master branch with Docker Compose?
 
 <details>
   <summary>Answer</summary>
 
-> You can run Weaviate with `docker-compose`, you can build your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
+> You can run Weaviate with `Docker Compose`, you can build your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this is not an officially released Weaviate version, so this might contain bugs.
 >
 > ```sh
 > git clone https://github.com/weaviate/weaviate.git
@@ -548,7 +546,11 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 >     image: semitechnologies/contextionary:en0.16.0-v1.0.2
 > ```
 >
-> After the build is complete, you can run this Weaviate build with docker-compose: `docker-compose up`.
+> After the build is complete, you can run this Weaviate build with docker compose:
+
+```bash
+docker compose up
+```
 
 </details>
 

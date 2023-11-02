@@ -212,7 +212,7 @@ A great example of a module would be – to create a scalable inference containe
 
 **Project Description**: Weaviate provides a selection of [language clients](/developers/weaviate/client-libraries) (in Python, Java, JavaScript and Go), which allow developers to integrate with Weaviate in the language of their choice.
 
-In this project you will work on a selected Weaviate client to help us improve the Development Experience (DX) and help us make it more intuitive to code with it. Plus there is an oportunity to help us implement the batch process to make it work like we have it in the Python client.
+In this project you will work on a selected Weaviate client to help us improve the Development Experience (DX) and help us make it more intuitive to code with it. Plus there is an opportunity to help us implement the batch process to make it work like we have it in the Python client.
 
 **Required Skills:** A good grasp of the programming language for the selected client JavaScript (Python, Java, JavaScript or Go) and GraphQL, plus basic knowledge of Python.
 

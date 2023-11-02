@@ -4,9 +4,7 @@ sidebar_position: 1
 image: og/docs/installation.jpg
 # tags: ['installation', 'Weaviate Cloud Services']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -26,7 +24,6 @@ You can learn more about WCS from the dedicated [WCS documentation](/developers/
 
 :::
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

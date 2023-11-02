@@ -12,7 +12,7 @@ const client: WeaviateClient = weaviate.client({
 const className = 'Question';
 const classObj = {
   class: className,
-  vectorizer: 'text2vec-openai',
+  vectorizer: 'none',
 };
 
 // Uncomment to delete all Question objects if you see a "Name 'Question' already used" error

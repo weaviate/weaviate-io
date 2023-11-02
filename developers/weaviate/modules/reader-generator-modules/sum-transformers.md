@@ -4,9 +4,7 @@ sidebar_position: 80
 image: og/docs/modules/sum-transformers.jpg
 # tags: ['transformers']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -34,17 +32,17 @@ CPUs can be used, however, this will significantly slow down your queries.
 
 ### Available modules
 
-Here is the current list of available `SUM` modules - sourced from [Hugging Face](https://huggingface.co/):
+Here is the current list of available `SUM` modules - sourced from [Hugging Face Model Hub](https://huggingface.co/models):
 * [`bart-large-cnn`](https://huggingface.co/facebook/bart-large-cnn)
 * [`pegasus-xsum`](https://huggingface.co/google/pegasus-xsum)
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The `sum-transformers` module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
+The `sum-transformers` module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running.
 
-An example Docker-compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
+An example Docker Compose file for using the `sum-transformers` module (with the `facebook-bart-large-cnn` model) in combination with the `text2vec-contextionary` vectorizer module is below:
 
 ```yaml
 ---
@@ -161,7 +159,7 @@ docker build -f my-model.Dockerfile -t google-pegasus-pubmed .
 
 #### Step 3: Use the image with Weaviate
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yaml` using the Docker tag `google-pegasus-pubmed`.
+You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `google-pegasus-pubmed`.
 
 
 ## How it works (under the hood)
@@ -188,7 +186,12 @@ Note that like many other language models, summarizer models can only process a 
 On the other hand, be aware that providing an input of insufficient length and detail may cause the transformer model to [hallucinate](https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)).
 :::
 
-## More resources
+## Model license(s)
+
+The `sum-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

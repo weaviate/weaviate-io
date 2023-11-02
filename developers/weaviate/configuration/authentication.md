@@ -4,9 +4,7 @@ sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -40,7 +38,7 @@ Refer to the [WCS documentation for instructions](../../wcs/guides/authenticatio
 :::info Available in Weaviate versions `1.18` and higher
 :::
 
-To set up Weaviate for API key-based authentication, add the following environment variables to the appropriate Weaviate configuration file (e.g., `docker-compose.yml`):
+To set up Weaviate for API key-based authentication, add the following environment variables to the appropriate Docker Compose file (e.g., `docker-compose.yml`):
 
 ```yaml
 services:
@@ -140,7 +138,7 @@ Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discove
 
 - For simple use-cases such as for a single user, you can use Weaviate Cloud Services (WCS) as the OIDC token issuer. To do so:
     - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.cloud/)).
-    - In the Weaviate configuration file (e.g. `docker-compose.yaml`), specify:
+    - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
       - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
       - `wcs` as the client id (in `AUTHENTICATION_OIDC_CLIENT_ID`), and
       - enable the adminlist (`AUTHORIZATION_ADMINLIST_ENABLED: 'true'`) and add your WCS account email as the user (in `AUTHORIZATION_ADMINLIST_USERS`) .
@@ -212,7 +210,7 @@ services:
 If you have authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
 
 ```bash
-$ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
+curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 ```
 
 ## OIDC - A client-side perspective
@@ -347,7 +345,7 @@ For example, you can use a CURL command as shown below:
 
 ```bash
 # List objects using a Bearer token
-$ curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
+curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
 ```
 
 If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
@@ -378,7 +376,6 @@ services:
 
 Send REST requests to Weaviate without any additional authentication headers or parameters.
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

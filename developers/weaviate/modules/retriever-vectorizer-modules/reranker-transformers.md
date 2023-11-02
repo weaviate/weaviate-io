@@ -1,6 +1,6 @@
 ---
 title: reranker-transformers
-sidebar_position: 11
+sidebar_position: 55
 image: og/docs/modules/text2vec-transformers.jpg
 # tags: ['rerank', 'transformers']
 ---
@@ -113,7 +113,6 @@ These pre-trained models are open-sourced on Hugging Face. The `cross-encoder/ms
 * For usage examples, see the [Howto: Search - Reranking](../../search/rerank.md) page.
 
 
-## More resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

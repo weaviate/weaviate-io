@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/installation.jpg
 # tags: ['installation', 'Kubernetes']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::tip <b>Important</b> Set the correct Weaviate version
 Make sure to set your desired Weaviate version.
@@ -16,7 +14,7 @@ This can be done through either explicitly setting it as part of the `values.yam
 
 ## Requirements
 
-* A Kuberentes Cluster with a recent version (e.g. >=1.23).
+* A Kubernetes Cluster with a recent version (e.g. >=1.23).
 * The cluster needs to be able to provision `PersistentVolumes` through
   `PersistentVolumeClaims`. No special file systems are required. Any default
   file system capable of `ReadWriteOnce` access mode is sufficient.
@@ -30,10 +28,10 @@ To obtain and install the Weaviate chart on your Kubernetes cluster, take the fo
 
 ```bash
 # Check if helm is installed
-$ helm version
+helm version
 # Make sure `kubectl` is configured correctly and you can access the cluster.
 # For example, try listing the pods in the currently configured namespace.
-$ kubectl get pods
+kubectl get pods
 ```
 
 ### Obtain the Helm Chart
@@ -121,10 +119,10 @@ You can deploy the helm charts as follows:
 
 ```bash
 # Create a Weaviate namespace
-$ kubectl create namespace weaviate
+kubectl create namespace weaviate
 
 # Deploy
-$ helm upgrade --install \
+helm upgrade --install \
   "weaviate" \
   weaviate/weaviate \
   --namespace "weaviate" \
@@ -162,7 +160,7 @@ To use EFS with Weaviate, you need to:
 - Create Weaviate Volumes, where each volume has a different AccessPoint for VolumeHandle(as mentioned above).
 - Deploy Weaviate.
 
-The below is an example of a PV for `weaviate-0` Pod:
+This code is an example of a PV for `weaviate-0` Pod:
 
 ```yaml
 apiVersion: v1
@@ -199,7 +197,6 @@ For more, general information on running EFS with Fargate, we recommend reading 
     198.19.0.0/16
     ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

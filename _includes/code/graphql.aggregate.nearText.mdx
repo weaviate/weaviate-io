@@ -170,12 +170,13 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+# See the notes from the GraphQL example
+echo '{
     "query": "{
       Aggregate {
         Article(nearText:{
-          concepts: ["apple iphone"]
-          distance: 0.7 // prior to v1.14 use "certainty"
+          concepts: [\"apple iphone\"]
+          distance: 0.7
         },
         objectLimit: 200) {
           meta {
@@ -201,8 +202,10 @@ $ echo '{
   }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

@@ -4,9 +4,7 @@ sidebar_position: 90
 image: og/docs/tutorials.jpg
 # tags: ['modules']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -14,9 +12,9 @@ In this guide, you will get an introduction to the role that modules play in Wea
 
 As their name suggest, Weaviate modules are options components to enhance Weaviate's functionality, such as to vectorize data or process results (e.g., question answering). The structure of the module name (`x2vec`) informs you of what the module does. E.g., `text2vec` generates text embeddings, `img2vec` image embeddings, etc.
 
-## Retrievers & Vectorizers
+## Vectorizers & Rerankers
 
-Retrievers & Vectorizers are mostly used to vectorize data, which goes both for vectorizing the data objects and the queries. For example, if you use the `text2vec` modules, the GraphQL filter [`nearText`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#neartext) becomes available. It will automatically vectorize your query and match it against the vectors stored in the index.
+Vectorizers and rerankers are used for vector search, which goes both for vectorizing the data objects and the queries. For example, if you use the `text2vec` modules, the GraphQL filter [`nearText`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md#neartext) becomes available. It will automatically vectorize your query and match it against the vectors stored in the index.
 
 You can set up the vectorization per class as follows:
 
@@ -80,7 +78,7 @@ If you don't want to vectorize a property at all, you can simply skip it.
 
 ## Example
 
-The below is a complete example of a schema.
+The following code is a complete example of a schema.
 
 Let's take a look at the definition for the `Article` class. Look for the `"moduleConfig"` entries on the class and on the property level.
 
@@ -273,7 +271,7 @@ You will see that the class and property names are not indexed, but the article 
 
 Readers & Generators are used to process data after retrieving the data from the database. Question answering is a good example of this. If you set a limit of 10, the 10 results will be run through the Q&A module.
 
-Like retrievers & vectorizers, the modules can extend the GraphQL-API. The question-answering module shows best.
+Some such modules can enables the GraphQL API, for example as shown here.
 
 ```graphql
 {
@@ -299,9 +297,8 @@ Like retrievers & vectorizers, the modules can extend the GraphQL-API. The quest
 
 ## Recap
 
-Modules are add-ons to Weaviate, they can take care of vectorization ([retrievers & vectorizers](#retrievers--vectorizers)) or extend the core with new functionality ([readers & generators](#readers--generators)). You don't have to use them, but you can.
+Modules are add-ons to Weaviate that can perform additional functions. You don't have to use them, but you can.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

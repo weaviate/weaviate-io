@@ -4,9 +4,7 @@ sidebar_position: 10
 image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - `Core knowledge/Basics`
@@ -89,7 +87,7 @@ Nobel Prize Winner
 "Paul Robin Krugman is an American economist and public intellectual, who is..."
 ] -->
 
-Following on our author example, Weaviate can store multipe authors like this:
+Following on our author example, Weaviate can store multiple authors like this:
 
 ```json
 [{
@@ -152,7 +150,7 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author` like this:
+We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author`. An object containing a cross-reference may look like this:
 
 ```json
 {
@@ -180,10 +178,6 @@ So, in addition to the `Author` class having a `writesFor` property that points 
 
 Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
 
-:::tip `Hrefs` vs `beacons`
-`Hrefs` and `beacons` are the locations within Weaviate, which allow us to retrieve cross-referenced objects. We will discuss the difference further as we go forward.
-:::
-
 ## Weaviate Schema
 
 Weaviate requires a data schema to be built before adding data.
@@ -209,14 +203,29 @@ For now, what's important to know is this:
 
 ## Multi-tenancy
 
-:::info Available from `v1.20` onwards
+:::info Related pages
+- [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
 :::
 
-For use-cases where each Weaviate cluster needs to store segregated data, you can use the multi-tenancy feature. Each class can optionally be configured to isolate data for each `tenant` by providing a tenant key.
+:::info Multi-tenancy availability
+- Multi-tenancy available from version `v1.20`
+- Tenant activity status setting available from version `v1.21`
+:::
 
-Where multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. This ensures not only data isolation but also fast and efficient querying, as well as easy and robust on/off-boarding. From `v1.20` onwards, shards have become a lot more lightweight, easily allowing 50,000+ active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
 
-Multi-tenancy is especially useful for use-cases where you want to store data for multiple customers, or where you want to store data for multiple projects.
+When multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. Sharding has several benefits:
+
+- Data isolation
+- Fast, efficient querying
+- Easy and robust setup and clean up
+
+Staring in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+
+Starting in `v1.20.1`, you can specify tenants as active (`HOT`) or inactive (`COLD`). For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
+
+Multi-tenancy is especially useful when you want to store data for multiple customers, or when you want to store data for multiple projects.
 
 ### Tenancy and IDs
 
@@ -245,20 +254,24 @@ You **cannot** create cross-references:
 - [Multi-tenancy blog](/blog/multi-tenancy-vector-search)
 :::
 
-:::tip Monitoring metrics with multi-tenancy
-When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
-:::
+### Monitoring metrics with multi-tenancy
 
-<details>
-  <summary>What is the maximum number of tenants per node?</summary>
+When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+
+### Tenancy size per node
 
 Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 properties, we could store ~70,000 tenants on a single node before running out of file descriptors.
 
 Concretely, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 170k active tenants, with 18-19k tenants per node.
 
-These numbers may increase in the future if a proposed feature to implement inactive tenants is implemented.
+Note that these numbers relate to active tenants only. The size of tenants per node can be increased by [setting unused tenants as inactive](../api/rest/schema.md#update-tenants).
 
-</details>
+### Tenant status
+
+:::info Available from version `v1.21`
+:::
+
+A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active
 
 ## Recap
 
@@ -274,7 +287,6 @@ These numbers may increase in the future if a proposed feature to implement inac
 * Vectors come from machine learning models that you inference yourself or through a Weaviate module.
 * You can use multi-tenancy to isolate data for each tenant.
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

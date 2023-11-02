@@ -1,0 +1,93 @@
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media screen and (max-width: 580px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valuesIllustration {
+  margin: auto;
+  width: 75%;
+}
+
+.value {
+  display: grid;
+
+  grid-template-columns: 6rem auto;
+  column-gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .valueImg {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.peopleContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.person {
+  text-align: center;
+
+  width: 200px;
+  padding: 20px;
+
+  img {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .personLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    i {
+      margin: 0 4px;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .eapp-events-calendar-filter-component {
+    color: white;
+  }
+  .jsx-695107531.eapp-events-calendar-controls-item.eapp-events-calendar-filter-component {
+    color: white;
+  }
+
+  .jsx-695107531.eapp-events-calendar-filter-current {
+    border-color: rgb(255 255 255);
+  }
+
+  .eapp-events-calendar-filter-current {
+    border-color: rgb(255 255 255);
+  }
+
+  .eapp-events-calendar-filter-currentText {
+    color: white;
+  }
+
+  .eapp-events-calendar-filter-currentText.jsx-695107531 {
+    color: white;
+  }
+}

@@ -5,9 +5,7 @@ image: og/docs/api.jpg
 # tags: ['graphql', 'filters']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
@@ -79,6 +77,8 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `Like`
   - `WithinGeoRange`
   - `IsNull`
+  - `ContainsAny`  (*Only for array and text properties)
+  - `ContainsAll`  (*Only for array and text properties)
 - `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
 - `Path`: Is a list of strings in [XPath](https://en.wikipedia.org/wiki/XPath#Abbreviated_syntax) style, indicating the property name of the class.
   If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings. For a schema structure like:
@@ -159,91 +159,6 @@ Starting with `v1.12.0` you can configure your own [stopword lists for the inver
 }
 ```
 
-## Filter by id
-
-You can filter object by their unique id or uuid, where you give the `id` as `valueText`.
-
-import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx';
-
-<GraphQLFiltersWhereId/>
-
-<details>
-  <summary>Expected response</summary>
-
-```json
-{
-  "data": {
-    "Get": {
-      "Article": [
-        {
-          "title": "Backs on the rack - Vast sums are wasted on treatments for back pain that make it worse"
-        }
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-## Filter by timestamps
-
-Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueText`, and an RFC3339 datetime should be a `valueDate`.
-
-:::info
-Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps) for details.
-:::
-
-import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
-
-<GraphQLFiltersWhereTimestamps />
-
-<details>
-  <summary>Expected response</summary>
-
-```json
-{
-  "data": {
-    "Get": {
-      "Article": [
-        {
-          "title": "Army builds new body armor 14-times stronger in the face of enemy fire"
-        },
-        ...
-      ]
-    }
-  }
-}
-```
-
-</details>
-
-## Filter by property length
-
-Filtering can be performed with the length of properties.
-
-The length of properties is calculated differently depending on the type:
-- array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0.
-- strings and texts: the number of characters (unicode characters such as 世 count as one character).
-- numbers, booleans, geo-coordinates, phone-numbers and data-blobs are not supported.
-
-```graphql
-{
-  Get {
-    <Class>(where: {
-        operator: <Operator>,
-        valueInt: <value>
-        path: [len(<property>)]
-  }
-}
-```
-Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
-
-:::note
-Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength).
-:::
-
-
 ## Multiple operands
 
 You can set multiple operands by providing an array, and you can also [nest conditions](../../search/filters.md#nested-multiple-conditions).
@@ -283,7 +198,9 @@ import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.o
 
 </details>
 
-## Like operator
+## Filter operators
+
+### `Like`
 
 Using the `Like` operator allows you to do string searches based on partial match. The capabilities of this operator are:
 
@@ -297,7 +214,8 @@ import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.
 
 <GraphQLFiltersWhereLike/>
 
-### Notes
+#### `Like` - notes
+
 Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues).
 
 <details>
@@ -328,9 +246,182 @@ Each query using the `Like` operator iterates over the entire inverted index for
 
 </details>
 
-## Beacon (reference) filters
+### `ContainsAny` / `ContainsAll`
 
-You can also search for the value of the property of a beacon.
+The `ContainsAny` and `ContainsAll` operators filter objects using values of an array as criteria.
+
+Both operators expect an array of values and return objects that match based on the input values.
+
+:::note Text as an array
+The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
+:::
+
+#### Use with batch delete
+
+When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the GraphQL usage such as in search, where the `valueText` argument that can be used.
+
+#### `ContainsAny`
+
+`ContainsAny` returns objects where at least one of the values from the input array is present.
+
+Consider a dataset of `Person`, where each object represents a person with a `name` and a `languages_spoken` property.
+
+Using `ContainsAny`, you can fetch all people who speak at least one of the provided languages.
+
+```graphql
+{
+  Get {
+    Person (
+      where: {
+        path: ["languages_spoken"],
+        operator: ContainsAny,
+        valueText: ["Chinese", "French", "English"]
+      }
+    )
+    {
+      languages_spoken
+      name
+    }
+  }
+}
+```
+
+This query fetches individuals who speak **one or more of the specified languages**. That is, at least one of `Chinese`, `French`, or `English`.
+
+#### `ContainsAll`
+
+`ContainsAll` returns objects where all the values from the input array are present.
+
+```graphql
+{
+  Get {
+    Person (
+      where: {
+        path: ["languages_spoken"],
+        operator: ContainsAll,
+        valueText: ["Chinese", "French", "English"]
+      }
+    )
+    {
+      languages_spoken
+      name
+    }
+  }
+}
+```
+
+This query fetches individuals who can speak **all three languages**: `Chinese`, `French`, and `English`.
+
+## Special cases
+
+### By id
+
+You can filter object by their unique id or uuid, where you give the `id` as `valueText`.
+
+import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx';
+
+<GraphQLFiltersWhereId/>
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "Backs on the rack - Vast sums are wasted on treatments for back pain that make it worse"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+### By timestamps
+
+Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueText`, and an RFC3339 datetime should be a `valueDate`.
+
+:::info
+Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps) for details.
+:::
+
+import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
+
+<GraphQLFiltersWhereTimestamps />
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Article": [
+        {
+          "title": "Army builds new body armor 14-times stronger in the face of enemy fire"
+        },
+        ...
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+### By property length
+
+Filtering can be performed with the length of properties.
+
+The length of properties is calculated differently depending on the type:
+- array types: the number of entries in the array is used, where null (property not present) and empty arrays both have the length 0.
+- strings and texts: the number of characters (unicode characters such as 世 count as one character).
+- numbers, booleans, geo-coordinates, phone-numbers and data-blobs are not supported.
+
+```graphql
+{
+  Get {
+    <Class>(
+      where: {
+        operator: <Operator>,
+        valueInt: <value>,
+        path: ["len(<property>)"]
+      }
+    )
+  }
+}
+```
+Supported operators are `(not) equal` and `greater/less than (equal)` and values need to be 0 or larger.
+
+Note that the `path` value is a string, where the property name is wrapped in `len()`. For example, to filter for objects based on the length of the `title` property, you would use `path: ["len(title)"]`.
+
+To filter for `Article` class objects with `title` length greater than 10, you would use:
+
+```graphql
+{
+  Get {
+    Article(
+      where: {
+        operator: GreaterThan,
+        valueInt: 10,
+        path: ["len(title)"]
+      }
+    )
+  }
+}
+```
+
+:::note
+Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength).
+:::
+
+### By cross-references
+
+You can also search for the value of the property of a cross-references, also called beacons.
 
 For example, these filters select based on the class Article but who have `inPublication` set to New Yorker.
 
@@ -371,7 +462,7 @@ import GraphQLFiltersWhereBeacon from '/_includes/code/graphql.filters.where.bea
 
 </details>
 
-## Filter objects by count of reference
+### By count of reference
 
 Above example shows how filter by reference can solve straightforward questions like "Find all articles that are published by New Yorker". But questions like "Find all articles that are written by authors that wrote at least two articles", cannot be answered by the above query structure. It is however possible to filter by reference count. To do so, simply provide one of the existing compare operators (`Equal`, `LessThan`, `LessThanEqual`, `GreaterThan`, `GreaterThanEqual`) and use it directly on the reference element. For example:
 
@@ -418,7 +509,7 @@ import GraphQLFiltersWhereBeaconCount from '/_includes/code/graphql.filters.wher
 
 </details>
 
-## GeoCoordinates filter
+### By geo coordinates
 
 A special case of the `Where` filter is with geoCoordinates. This filter is only supported by the `Get{}` function. If you've set the `geoCoordinates` property type, you can search in an area based on kilometers.
 
@@ -458,7 +549,7 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
 
 </details>
 
-## Filter by null state
+### By null state
 
 Using the `IsNull` operator allows you to do filter for objects where given properties are `null` or `not null`. Note that zero-length arrays and empty strings are equivalent to a null value.
 
@@ -477,7 +568,7 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 Filtering by null-state requires the target class to be configured to index this. See [here](../../config-refs/schema.md#invertedindexconfig--indexnullstate) for details.
 :::
 
-## More Resources
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

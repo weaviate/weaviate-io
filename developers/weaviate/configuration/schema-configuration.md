@@ -1,13 +1,11 @@
 ---
-title: Schema
+title: Collection schemas
 sidebar_position: 1
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'schema']
 ---
 
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -15,38 +13,34 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
 
-# How to configure a schema
+# How to configure a collection schema
 
 ## Overview
 
-This page includes information on **how to configure** your schema in Weaviate. For other schema-related information, see related pages below.
+This page describes collection schemas in Weaviate.
 
-:::info Related pages
-- [Tutorial: Schema](../tutorials/schema.md)
-- [References: Schema](../config-refs/schema.md)
-- [References: REST API: Schema](../api/rest/schema.md)
-- [Concepts: Data Structure](../concepts/data.md)
-:::
+import Terminology from '/_includes/collection-class-terminology.md';
+
+<Terminology />
 
 ### Auto-schema
 
-When a class definition is missing or inadequate for data import, the auto-schema feature infers it based on the object properties and defaults ([learn more](../config-refs/schema.md#auto-schema)).
+We recommend that you define your schema manually to ensure that it aligns with your specific requirements. However, Weaviate also provides an auto-schema feature.
 
-However, you might find it preferable to define the schema manually to ensure that the schema aligns with your specific requirements.
+When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema.md#auto-schema)).
 
-## Create a class
 
-:::info Capitalization
-Class and property names are treated equally no matter how the first letter is cased, eg "Article" == "article".
+## Create a collection
 
-Generally, however, Weaviate follows GraphQL conventions where classes start with a capital letter and properties start with a lowercase letter.
-:::
-
-A class describes a collection of data objects. They are defined as a part of the schema, such as shown in the examples below.
+A schema describes the data objects that make up a collection. To create a collection, follow the example below in your preferred language.
 
 ### Minimal example
 
-As a minimum, you must specify the `class` parameter for the class name.
+At a minimum, you must specify the `class` parameter for the collection name.
+
+import initialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<initialCaps />
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -71,7 +65,7 @@ As a minimum, you must specify the `class` parameter for the class name.
 
 ### Property definition
 
-You can use `properties` to specify properties. A class definition can include any number of properties.
+You can use the `properties` field to specify properties for the collection. A collection definition can include any number of properties.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -94,7 +88,7 @@ You can use `properties` to specify properties. A class definition can include a
 </Tabs>
 
 
-In addition to the property name, you can configure parameters such as the data type, inverted index tokenization and more.
+In addition to the property name, you can use properties to configure parameters such as the data type, inverted index tokenization and more.
 
 - [Property object configuration references](../config-refs/schema.md#property-object)
 - [Available data types](../config-refs/datatypes.md)
@@ -102,7 +96,9 @@ In addition to the property name, you can configure parameters such as the data 
 
 ### Specify a vectorizer
 
-You can set an optional `vectorizer` for each class, which will override any default values present in the configuration (e.g. in an [environment variable](../config-refs/env-vars.md)). The following sets the `text2vec-openai` module as the vectorizer for the `Article` class.
+You can set an optional `vectorizer` for each collection. If you specify a vectorizer for a collection, the specification overrides any default values that are present in the general configuration such as [environment variables](../config-refs/env-vars.md).
+
+The following code sets the `text2vec-openai` module as the vectorizer for the `Article` collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -127,9 +123,9 @@ You can set an optional `vectorizer` for each class, which will override any def
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
 - [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
 
-### Class-level module settings
+### Collection level module settings
 
-You can set the `moduleConfig` parameter at the class-level to set class-wide settings for module behavior. For example, the vectorizer could be configured to set the model used (`model`), or whether to vectorize the class name (`vectorizeClassName`).
+Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -151,12 +147,12 @@ You can set the `moduleConfig` parameter at the class-level to set class-wide se
   </TabItem>
 </Tabs>
 
-The available parameters vary according to the module ([learn more](../modules/index.md)).
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
 
 
 ### Property-level module settings
 
-You can also set the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you could set whether to vectorizer the property name (`vectorizePropertyName`), or whether to skip the property from vectorization altogether (`skip`).
+Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -178,15 +174,18 @@ You can also set the `moduleConfig` parameter at the property-level to set prope
   </TabItem>
 </Tabs>
 
-The available parameters vary according to the module ([learn more](../modules/index.md)).
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
 
 
 ### Indexing, sharding and replication settings
 
-You can also set indexing, sharding and replication settings through the schema. For example, a vector index distance metric can be set for a class, and a replication factor can be set as shown below.
+You can also set indexing, sharding and replication settings through the schema. For example, you can set a vector index distance metric or a replication factor for a collection.
+
+This code sets the replication factor.
 
 :::note
-You will need a [multi-node setup](../installation/docker-compose.md#multi-node-setup) to test locally replication factors greater than 1.
+You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup) to test replication factors greater than 1.
+
 :::
 
 <Tabs groupId="languages">
@@ -210,19 +209,19 @@ You will need a [multi-node setup](../installation/docker-compose.md#multi-node-
 </Tabs>
 
 
-You can read more about the various parameters below:
+For details on the configuration parameters, see the following configuration references:
 
-- [Vector index configuration references](../config-refs/schema.md#vectorindexconfig)
-- [Inverted index configuration references](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
-- [Sharding configuration references](../config-refs/schema.md#shardingconfig)
-- [Replication configuration references](../config-refs/schema.md#replicationconfig)
+- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
+- [Inverted indexes](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding](../config-refs/schema.md#shardingconfig)
+- [Replication](../config-refs/schema.md#replicationconfig)
 
 ### Multi-tenancy
 
 :::info Available from `v1.20` onwards
 :::
 
-To enable multi-tenancy, you must set the `multiTenancyConfig` key to `{"enabled": true}` in the class definition.
+To enable multi-tenancy, set `multiTenancyConfig` to `{"enabled": true}` in the collection definition.
 
 ```json
 {
@@ -233,23 +232,23 @@ To enable multi-tenancy, you must set the `multiTenancyConfig` key to `{"enabled
 }
 ```
 
-For more details of multi-tenancy operations, please see the [multi-tenancy operations page](../manage-data/multi-tenancy.md).
+For more details on multi-tenancy operations, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
 
-## Delete a class
+## Delete a collection
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
 
-## Update a class definition
+## Update a collection definition
 
-Some parts of a class definition may be updated, while others are immutable.
+Some parts of a collection definition are immutable, but you can modify other parts.
 
-The following sections describe how to add a property in a class, or to modify parameters.
+The following sections describe how to add a property to a collection and how to modify collection parameters.
 
 ### Add a property
 
-A new property can be added to an existing class.
+You can add a new property to an existing collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -271,8 +270,8 @@ A new property can be added to an existing class.
   </TabItem>
 </Tabs>
 
-:::info Property removal/change currently not possible
-Currently, a property cannot be removed from a class definition or renamed once it has been added. This is due to the high compute cost associated with reindexing the data in such scenarios.
+:::info Remove or change an existing property
+You cannot remove or rename a property that is part of a collection definition. This is due to the high compute cost associated with reindexing the data.
 :::
 
 ### Modify a parameter
@@ -291,7 +290,7 @@ You can modify some parameters of a schema as shown below. However, many paramet
 
   <TabItem value="js" label="JavaScript/TypeScript">
 
-  >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/72))
+  >  Coming soon. ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
   </TabItem>
 </Tabs>
@@ -321,7 +320,7 @@ If you want to review the schema, you can retrieve it as shown below.
   </TabItem>
 </Tabs>
 
-The response will be a JSON object, such as the example shown below.
+The response is a JSON object like the one in this example.
 
 <details>
   <summary>Sample schema</summary>
@@ -424,7 +423,11 @@ The response will be a JSON object, such as the example shown below.
 
 </details>
 
-## More Resources
+## Related pages
+- [Tutorial: Schema](../tutorials/schema.md)
+- [References: Schema](../config-refs/schema.md)
+- [References: REST API: Schema](../api/rest/schema.md)
+- [Concepts: Data Structure](../concepts/data.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

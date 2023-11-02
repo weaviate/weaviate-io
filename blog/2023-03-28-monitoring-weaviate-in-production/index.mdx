@@ -89,7 +89,7 @@ One benefit of this approach is that you can now reuse the existing Weaviate Gra
 
 Steps to import these dashboards:
 
-1\. Download and import the [prexisting dashboards](https://github.com/weaviate/weaviate/tree/master/tools/dev/grafana/dashboards).
+1\. Download and import the [preexisting dashboards](https://github.com/weaviate/weaviate/tree/master/tools/dev/grafana/dashboards).
 
 2\. If you're using Grafana Cloud hosted Prometheus you will need to patch the dashboards to change the datasource uid to be `grafanacloud-prom` as below.
 
@@ -145,7 +145,7 @@ annotations:
 
 Below are some key Weaviate metrics to monitor. Standard CPU, Disk, Network metrics are also useful as are [Kubernetes
 events](https://grafana.com/blog/2023/01/23/how-to-use-kubernetes-events-for-effective-alerting-and-monitoring/).
-Note that some Weaviate metrics will not appear until an operation has occured (for instance batch operations).
+Note that some Weaviate metrics will not appear until an operation has occurred (for instance batch operations).
 
 ### Heap Usage
 

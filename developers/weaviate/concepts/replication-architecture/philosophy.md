@@ -4,9 +4,7 @@ sidebar_position: 2
 image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## A design modeled after how our users use Weaviate
 
@@ -32,7 +30,6 @@ As with many other Weaviate features, Replication is being rolled out in multipl
 The motivation behind this phased roll-out is two-fold. First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.md#roadmap) section to make an informed decision. Second, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -2,36 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get{
-    Publication(
-      nearText: {
-        concepts: ["fashion"],
-        distance: 0.6 # prior to v1.14 use "certainty" instead of "distance"
-        moveAwayFrom: {
-          concepts: ["finance"],
-          force: 0.45
-        },
-        moveTo: {
-          concepts: ["haute couture"],
-          force: 0.85
-        }
-      }
-    ){
-      name
-      _additional {
-        certainty # only supported if distance==cosine.
-        distance  # always supported
-      }
-    }
-  }
-}
-```
-
-</TabItem>
 <TabItem value="py" label="Python">
 
 ```python
@@ -232,13 +202,15 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+# Note: Under nearText, use `certainty` instead of distance prior to v1.14
+# Under _additional, `certainty` is only supported if distance==cosine, but `distance` is always supported
+echo '{
   "query": "{
-    Get{
+    Get {
       Publication(
         nearText: {
           concepts: [\"fashion\"],
-          distance: 0.6, // use certainty instead of distance prior to v1.14
+          distance: 0.6,
           moveAwayFrom: {
             concepts: [\"finance\"],
             force: 0.45
@@ -248,11 +220,11 @@ $ echo '{
             force: 0.85
           }
         }
-      ){
+      ) {
         name
         _additional {
-          certainty // only supported if distance==cosine
-          distance  // always supported
+          certainty
+          distance
         }
       }
     }
@@ -260,9 +232,40 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-HuggingFace-Api-Key: YOUR-HUGGINGFACE-API-KEY" \
+    -H 'Authorization: Bearer learn-weaviate' \
+    -H "X-HuggingFace-Api-Key: $HUGGINGFACE_API_KEY" \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get{
+    Publication(
+      nearText: {
+        concepts: ["fashion"],
+        distance: 0.6 # prior to v1.14 use "certainty" instead of "distance"
+        moveAwayFrom: {
+          concepts: ["finance"],
+          force: 0.45
+        },
+        moveTo: {
+          concepts: ["haute couture"],
+          force: 0.85
+        }
+      }
+    ){
+      name
+      _additional {
+        certainty # only supported if distance==cosine.
+        distance  # always supported
+      }
+    }
+  }
+}
 ```
 
 </TabItem>

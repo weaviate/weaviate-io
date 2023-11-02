@@ -1,14 +1,12 @@
 ---
 title: TypeScript / JavaScript
-sidebar_position: 2
+sidebar_position: 20
 image: og/docs/client-libraries.jpg
 # tags: ['TypeScript', 'client library']
 ---
-import Badges from '/_includes/badges.mdx';
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-<Badges/>
 
 :::note TypeScript client version
 The current TypeScript client version is `v||site.typescript_client_version||`.
@@ -26,7 +24,6 @@ import JavaScriptMaintenanceWarning from '/_includes/javascript-maintenance-warn
 
 The TypeScript client library package can be installed using [npm](https://www.npmjs.com/).
 
-<!-- Replace $ .. examples to remove the prompt ($) as it gets copied too along with the actual command -->
 ```bash
 npm install weaviate-ts-client
 ```
@@ -339,11 +336,16 @@ The code snippet at the top of this page shows a simple query corresponding to t
 - In the case of an error, the Promise rejects with the specific error message. (If using `async`/`await`, a rejected promises acts like a thrown exception).
 - Internally the client uses `isomorphic-fetch` to make the REST calls, so it should work from both the browser and NodeJS applications without any required changes.
 
-## Changelog
+## Client releases
+
+import MatrixIntro from '/_includes/clients/matrix-intro.md';
+
+<MatrixIntro />
+
+## Change logs
 
 See the [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

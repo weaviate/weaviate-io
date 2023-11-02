@@ -1,0 +1,92 @@
+.techBox {
+  border-radius: 0.9375rem;
+  border: 1px solid #130c49;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 14.375rem;
+  height: 9.1875rem;
+  flex-shrink: 0;
+}
+
+.header {
+  text-align: left;
+  margin: auto;
+}
+
+.techList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 50px 0px;
+  justify-content: space-around;
+
+  @media screen and (max-width: 860px) {
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    padding: 5px 10px 20px;
+    scroll-padding: 20%;
+    scroll-snap-type: x mandatory;
+  }
+}
+
+.techContainer {
+  margin: auto;
+  width: 90%;
+
+  @media screen and (max-width: 860px) {
+    width: 100%;
+  }
+}
+
+.bgColor {
+  background: #f5f5f5;
+  padding: 70px;
+
+  @media screen and (max-width: 860px) {
+    padding: 0px;
+  }
+}
+
+.aws {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/awsLogo.svg');
+  transition: all 1s ease-out;
+  width: 50%;
+  height: 70px;
+  margin: auto;
+  margin-top: 37px;
+}
+
+.gcp {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/google_cloud-icon.svg');
+  transition: all 1s ease-out;
+  width: 50%;
+  height: 70px;
+  margin: auto;
+  margin-top: 37px;
+}
+
+.azure {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/azureLogo.svg');
+  transition: all 1s ease-out;
+  width: 50%;
+  height: 70px;
+  margin: auto;
+  margin-top: 37px;
+}

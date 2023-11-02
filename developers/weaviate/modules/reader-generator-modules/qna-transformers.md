@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## In short
 
@@ -20,15 +18,15 @@ import Badges from '/_includes/badges.mdx';
 
 The Question and Answer (Q&A) module is a Weaviate module for answer extraction from data. It uses BERT-related models for finding and extracting answers. This module can be used in GraphQL `Get{...}` queries, as a search operator. The `qna-transformers` module tries to find an answer in the data objects of the specified class. If an answer is found within the given `certainty` range, it will be returned in the GraphQL `_additional { answer { ... } }` field. There will be a maximum of 1 answer returned, if this is above the optionally set `certainty`. The answer with the highest `certainty` (confidence level) will be returned.
 
-There are currently five different Question Answering modules available (taken from [Hugging Face](https://huggingface.co/)): [`distilbert-base-uncased-distilled-squad (uncased)`](https://huggingface.co/distilbert-base-uncased-distilled-squad), [`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad), [`distilbert-base-cased-distilled-squad (cased)`](https://huggingface.co/distilbert-base-cased-distilled-squad), [`deepset/roberta-base-squad2`](https://huggingface.co/deepset/roberta-base-squad2), and [`deepset/bert-large-uncased-whole-word-masking-squad2 (uncased)`](https://huggingface.co/deepset/bert-large-uncased-whole-word-masking-squad2). Note that not all models perform well on every dataset and use case. We recommend to use `bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`, which performs best on most datasets (although it's quite heavyweighted).
+There are currently five different Question Answering models available (source: [Hugging Face Model Hub](https://huggingface.co/models)): [`distilbert-base-uncased-distilled-squad (uncased)`](https://huggingface.co/distilbert-base-uncased-distilled-squad), [`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`](https://huggingface.co/bert-large-uncased-whole-word-masking-finetuned-squad), [`distilbert-base-cased-distilled-squad (cased)`](https://huggingface.co/distilbert-base-cased-distilled-squad), [`deepset/roberta-base-squad2`](https://huggingface.co/deepset/roberta-base-squad2), and [`deepset/bert-large-uncased-whole-word-masking-squad2 (uncased)`](https://huggingface.co/deepset/bert-large-uncased-whole-word-masking-squad2). Note that not all models perform well on every dataset and use case. We recommend to use `bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`, which performs best on most datasets (although it's quite heavyweighted).
 
 Starting with `v1.10.0`, the answer score can be used as a reranking factor for the search results.
 
 ## How to enable (module configuration)
 
-### Docker-compose
+### Docker Compose
 
-The Q&A module can be added as a service to the Docker-compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker-compose file for using the `qna-transformers` module (`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`) in combination with the `text2vec-transformers`is as follows:
+The Q&A module can be added as a service to the Docker Compose file. You must have a text vectorizer like `text2vec-contextionary` or `text2vec-transformers` running. An example Docker Compose file for using the `qna-transformers` module (`bert-large-uncased-whole-word-masking-finetuned-squad (uncased)`) in combination with the `text2vec-transformers`is as follows:
 
 ```yaml
 ---
@@ -163,7 +161,13 @@ The module performs a semantic search under the hood, so a `text2vec-...` module
 
 If a text value in a data object is longer than 512 tokens, the Q&A Transformer module automatically splits the text into smaller texts. The module uses a sliding window, i.e. overlapping pieces of text, to avoid a scenario that an answer cannot be found if it lies on a boundary. If an answer lies on the boundary, the Q&A module returns the result (answer) with the highest score (as the sliding mechanism could lead to duplicates).
 
-## More resources
+## Model license(s)
+
+The `qna-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Hub](https://huggingface.co/models).
+
+It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
+
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

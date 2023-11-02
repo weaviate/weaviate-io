@@ -4,9 +4,7 @@ sidebar_position: 45
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Backups](./backups.md)
@@ -22,7 +20,7 @@ Note that Weaviate now offers native backup modules starting with `v1.15` for si
 
 ### Persistence
 
-When running Weaviate with docker-compose, you can set the `volumes` variable under the `weaviate` service and a unique cluster hostname as an environment variable.
+When running Weaviate with Docker Compose, you can set the `volumes` variable under the `weaviate` service and a unique cluster hostname as an environment variable.
 
 ```yaml
 services:
@@ -99,7 +97,17 @@ If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
 changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspect-the-shards-of-a-class) to do so.
 
-## More Resources
+## Virtual memory access method
+
+:::info Available from version `v1.21`
+:::
+
+You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable.
+
+The two functions reflect different under-the-hood memory management behaviors. `mmap` uses a memory-mapped file, which means that the file is mapped into the virtual memory of the process. `pread` is a function that reads data from a file descriptor at a given offset.
+
+In general, `mmap` may be a preferred option with memory management benefits. However, if you experience stalling situations under heavy memory load, we suggest trying `pread` instead.
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

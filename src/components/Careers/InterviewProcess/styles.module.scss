@@ -1,4 +1,3 @@
-
 .title {
   text-align: center;
   padding: 1rem 0 2rem 0;
@@ -10,6 +9,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -19,11 +19,13 @@
 
   width: 34rem;
   height: 27rem;
-  background-color: #141F39;
+  background-color: #141f39;
   margin: 1rem;
   padding: 2rem;
-  border-radius: 5px;
 
+  border-radius: 0.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 
   @media screen and (max-width: 600px) {
     height: auto;
@@ -51,7 +53,7 @@
   }
 
   .cardTextColor {
-    color: #02FE0C;
+    color: #02fe0c;
     height: 5rem;
 
     @media screen and (max-width: 600px) {
@@ -83,7 +85,7 @@
 
   .cardFooterDiv {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
     p {
@@ -102,7 +104,6 @@
 
     padding: 1rem 0 0 0;
   }
-
 }
 
 .img {
@@ -114,11 +115,11 @@
 }
 
 .startImg {
-    background-image: url('../../../../static/img/company/careers/star-dark.png');
-    width: 2rem;
-    height: 2rem;
+  background-image: url('../../../../static/img/company/careers/star-dark.png');
+  width: 2rem;
+  height: 2rem;
 
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .clockSmallImg {
@@ -158,16 +159,14 @@
   height: 5rem;
 }
 
-
 [data-theme='light'] {
-
   .title {
     p {
-      color: rgba(46, 49, 143);
+      color: #1c1468;
     }
 
     h2 {
-      color: rgba(46, 49, 143);
+      color: #1c1468;
     }
   }
 
@@ -176,7 +175,7 @@
   }
 
   .cardTextColor {
-    color: #00C342;
+    color: #00c342;
 
     h3 {
       color: rgba(46, 49, 143);

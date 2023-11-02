@@ -6,12 +6,10 @@ export default function Header() {
   return (
     <div className="container">
       <div className={styles.box}>
-        <h1>
-          <span className={styles.textGradient}>We are hiring</span>
-        </h1>
+        <h1>We are hiring</h1>
         <h3>Join us and be part of the future of search</h3>
         <p>
-          At Weaviate we are commited to our values - the foundation of <br />
+          At Weaviate we are committed to our values - the foundation of <br />
           our company. They guide our decisions in ways that are <br />
           better for our people, our business, and the future.
         </p>

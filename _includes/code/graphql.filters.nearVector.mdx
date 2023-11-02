@@ -147,21 +147,23 @@ public class App {
 </TabItem>
 <TabItem value="curl" label="Curl">
 
-Replace the placeholder vector with a compatible vector
+Replace the placeholder vector with a compatible vector.
 
 ```bash
-$ echo '{
+# Note: under _additional, `certainty` is only supported if distance==cosine, but `distance` is always supported
+
+echo '{
   "query": "{
-    Get{
+    Get {
       Publication(
         nearVector: {
           vector: [0.1, -0.15, 0.3]
         }
-      ){
+      ) {
         name
         _additional {
-          certainty  // only supported if distance==cosine
-          distance   // always supported
+          certainty
+          distance
         }
       }
     }
@@ -169,8 +171,9 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer learn-weaviate' \
     -d @- \
-    http://localhost:8080/v1/graphql
+    https://edu-demo.weaviate.network/v1/graphql
 ```
 
 </TabItem>

@@ -7,7 +7,7 @@ client = weaviate.Client(
     auth_client_secret=weaviate.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
 )
 
-client.is_ready()  # This should return `True`
+print(client.is_ready()) # This should return `True`
 # ===== END Basic instantiation =====
 assert client.is_ready()
 

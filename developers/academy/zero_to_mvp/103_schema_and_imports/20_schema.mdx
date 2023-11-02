@@ -40,7 +40,7 @@ For properties, these are called:
 
 In defining a class, the only required parameter is `class`, as the rest can be inferred by Weaviate. However, it is recommended to include a description for each class and property, as this will help you and others understand the data structure.
 
-To define a class, you can use the below syntax.
+To define a class, you can use this syntax.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -57,7 +57,7 @@ To define a class, you can use the below syntax.
 
 Each `class` definition will include one or more properties, which must have a data type. If you do not specify a data type, Weaviate will automatically assign one based on your data. But for more predictable results, we recommend that you manually specify them in the schema if possible.
 
-The currently supported data types include the below.
+Currently, Weaviate data type support includes the following types:
 
 import DataTypes from '/_includes/datatypes.mdx';
 
@@ -80,7 +80,7 @@ Note that most data types can include one such instance, or an array of instance
 </Tabs>
 
 :::tip Did you get an error?
-If you ran the first class creation command shown, and this command, Weaviate will throw an error as the class `Article` already exists. For the purposes of this section, delete the class by running the below command.<p><br/></p>
+If you ran the first class creation command shown, and this command, Weaviate will throw an error as the class `Article` already exists. For the purposes of this section, delete the class by running the following command.<p><br/></p>
 
 **Deleting a class should not be done lightly, as deleting a class will delete all of its objects.**
 
@@ -103,7 +103,7 @@ The `vectorizer` parameter for the class specifies the Weaviate module that will
 
 For text objects, you would typically select one of the `text2vec` modules - such as `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or `text2vec-palm`.
 
-Modules are enabled at the instance level through its configuration. You can see the list of available modules for your particular instance by running the below command.
+Modules are enabled at the instance level through its configuration. You can see the list of available modules for your particular instance by running the following command.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -124,7 +124,7 @@ By now, you've probably seen mentions of Weaviate `modules` here and there. Modu
 Weaviate Academy units will generally assume WCS usage, which is pre-configured with a set of modules. We will cover how to enable modules for local instances in another unit, or you can see our [Docker installation page](/developers/weaviate/installation/docker-compose.md).
 :::
 
-WCS instances come pre-configured with a number of modules. For example, the below response shows that the `text2vec-openai` module is available, so we can use it in our schema.
+WCS instances come pre-configured with a number of modules. For example, the response below shows that the `text2vec-openai` module is available, so we can use it in our schema.
 
 <details>
   <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
@@ -197,7 +197,7 @@ You can set the `moduleConfig` parameter at the class-level to set class-wide se
 
 You can also set the `moduleConfig` parameter at the property level to set module behavior for each property. For example, you could set whether to vectorize the property name (`vectorizePropertyName`), or whether to skip the property from vectorization altogether (`skip`).
 
-The below example includes a `skip` parameter to `True` for the `url` property, so that the URL text will be skipped when producing a vector embedding for the object.
+In the following example, the `skip` parameter is set to `True` for the `url` property, so that the URL text will be skipped when producing a vector embedding for the object.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">

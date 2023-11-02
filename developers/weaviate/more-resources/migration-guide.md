@@ -4,9 +4,7 @@ sidebar_position: 8
 image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Migration for version 1.19.0
 
@@ -104,9 +102,9 @@ into a multi-shard setup. The amount of shards is not changed. When you run
 **Important Notice:** As part of the migration Weaviate will assign the shard
 to the (only) node available in the cluster. You need to make sure that this
 node has a stable hostname. If you run on Kubernetes, hostnames are stable
-(e.g. `weaviate-0` for the first node). However with `docker-compose` hostnames
+(e.g. `weaviate-0` for the first node). However with `Docker Compose` hostnames
 default to the id of the container. If you remove your containers (e.g.
-`docker-compose down`) and start them up again, the hostname will have changed.
+`docker compose down`) and start them up again, the hostname will have changed.
 This will lead to errors where Weaviate mentions that it cannot find the node
 that the shard belongs to. The node sending the error message is the node that
 owns the shard itself, but it cannot recognize it, since its own name has
@@ -900,7 +898,6 @@ The default vectorizer module can be specified in a new environment variable so 
 Official release notes can be found on [GitHub](https://github.com/weaviate/weaviate/releases/tag/0.23.0).
 
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

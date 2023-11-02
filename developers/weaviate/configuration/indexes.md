@@ -4,9 +4,7 @@ sidebar_position: 13
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 <!-- :::caution Migrated From:
 - Adds text re: configuration options from `Vector index plugins/HNSW`
@@ -19,12 +17,15 @@ import Badges from '/_includes/badges.mdx';
 
 ## Vector index
 
-Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
+Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. This makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
 ## Weaviate's vector index
-The first vector index Weaviate supports is [HNSW](/developers/weaviate/concepts/vector-index.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when in the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
+The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly during the building process (adding data with vectors).
 
-### How to configure HNSW
+If you want to contribute to developing a new index type at Weaviate, you can always contact us or make a pull request in our GitHub project. Stay tuned for updates!
+
+### HNSW configuration parameters
+
 Currently the only index type is HNSW, so all data objects will be indexed using the HNSW algorithm unless you specify otherwise in your [data schema](/developers/weaviate/configuration/schema-configuration.md).
 
 - `vectorIndexType` is the ANN algorithm you want to use. By default, Weaviate selects `hnsw` -- the Hierarchical Navigable Small World (HNSW) algorithm.
@@ -43,8 +44,12 @@ Currently the only index type is HNSW, so all data objects will be indexed using
   - `"flatSearchCutoff"`: Absolute number of objects configured as the threshold for a [flat-search cutoff](/developers/weaviate/concepts/prefiltering.md#flat-search-cutoff). If a filter on a filtered vector search matches fewer than the specified elements, the HNSW index is bypassed entirely and a flat (brute-force) search is performed instead. This can speed up queries with very restrictive filters considerably. Optional, defaults to `40000`. Set to `0` to turn off flat-search cutoff entirely.
   - `"cleanupIntervalSeconds"`: How often the async process runs that "repairs" the HNSW graph after deletes and updates. (Prior to the repair/cleanup process, deleted objects are simply marked as deleted, but still a fully connected member of the HNSW graph. After the repair has run, the edges are reassigned and the datapoints deleted for good). Typically this value does not need to be adjusted, but if deletes or updates are very frequent it might make sense to adjust the value up or down. (Higher value means it runs less frequently, but cleans up more in a single batch. Lower value means it runs more frequently, but might not be as efficient with each run).
   - `"pq"`: Used to enable [product quantization](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) which is a technique that allows for Weaviate’s HNSW vector index to store vectors using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets on a given amount of memory. *Weaviate’s HNSW implementation assumes that product quantization will occur after some data has already been loaded. The reason for this is that the codebook needs to be trained on existing data. A good recommendation is to have 10,000 to 100,000 vectors per shard loaded before enabling product quantization.* Please refer to the parameters that can be configured for `"pq"` below:
+
+    :::info *note*: `pq` is not compatible with multi-tenancy set-ups.
+    :::
+
     - `enabled`: Whether product quantization is enabled or not (defaults to `false`). To enable set to `true`.
-    - `trainingLimit`: The maximum number of objects, per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled. 
+    - `trainingLimit`: The maximum number of objects, per shard, used to fit the centroids. Defaults to 100,000 objects. Setting this to a large value will increase the time it takes to fit centroids when PQ is enabled.
     - `segments`: The number of segments to use. By default this is equal to the number of dimensions. Reducing the number of segments will further reduce the size of the quantized vectors. The number of segments must be divisible by the number of dimensions of each vector.
     - `centroids`: The number of centroids to use. Reducing the number of centroids will further reduce the size of quantized vectors at the price of recall. When using the `kmeans` encoder, centroids is set to 256 or one byte by default in Weaviate.
     - `encoder`: An object with encoder specific information. Here you can specify the `type` of encoder as either `kmeans`(default) or `tile`. If using the `tile` encoder you can also specify the `distribution` as `log-normal` (default) or `normal`.
@@ -100,6 +105,97 @@ If you're looking for a starting point for values, we would advise an `efConstru
 
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/configuration/schema-configuration.md).
+
+### Asynchronous indexing
+
+:::info Available from version `v1.22`
+:::
+
+:::caution Experimental
+As of `v1.22`, this is an experimental, opt-in feature. Please use with caution.
+:::
+
+Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+
+Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+
+Asynchronous indexing is off by default. It can be enabled by setting the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file). This will enable asynchronous indexing for all classes.
+
+<details>
+  <summary>Example Docker Compose configuration</summary>
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
+    restart: on-failure:0
+    ports:
+     - "8080:8080"
+     - "50051:50051"
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      QUERY_MAXIMUM_RESULTS: 10000
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-palm,generative-cohere,generative-openai,generative-palm'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTOSCHEMA_ENABLED: 'false'
+      ASYNC_INDEXING: 'true'
+...
+```
+
+</details>
+
+If asynchronous indexing is enabled, and search is performed before vectir indexing is complete, a maximum of 100,000 un-indexed objects will be searched by brute force along with the indexed objects. This means that the search performance will be slower until the vector index has been fully updated, and any objects outside of the first 100,000 objects in the queue will not be searched.
+
+The index status can be found through the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint. The `nodes/shards/vectorQueueLength` field will show the number of remaining objects to be indexed.
+
+import Nodes from '/_includes/code/nodes.mdx';
+
+<Nodes/>
+
+Then, you can check the status of the vector index queue by inspecting the output. The `vectorQueueLength` field will show the number of remaining objects to be indexed. In the example below, the vector index queue has 425 objects remaining to be indexed on the `TestArticle` shard, out of a total of 1000 objects.
+
+```json
+{
+  "nodes": [
+    {
+      "batchStats": {
+        "ratePerSecond": 0
+      },
+      "gitHash": "e6b37ce",
+      "name": "weaviate-0",
+      "shards": [
+        {
+          "class": "TestArticle",
+          "name": "nq1Bg9Q5lxxP",
+          "objectCount": 1000,
+          // highlight-start
+          "vectorIndexingStatus": "INDEXING",
+          "vectorQueueLength": 425
+          // highlight-end
+        },
+      ],
+      "stats": {
+        "objectCount": 1000,
+        "shardCount": 1
+      },
+      "status": "HEALTHY",
+      "version": "1.22.1"
+    },
+  ]
+}
+```
 
 ## Inverted index
 
@@ -211,7 +307,6 @@ If we don't want to index the `Authors` we can simply skip all indices (vector _
 }
 ```
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -181,15 +181,15 @@ public class App {
 {/* <TabItem value="curl" label="Curl">
 
 ```bash
-$ echo '{
+echo '{
   "query": "{
-    Get{
+    Get {
       Question(
         nearText: {
           concepts: [\"biology\"],
         },
         limit: 1
-      ){
+      ) {
         question
         answer
       }
@@ -198,7 +198,7 @@ $ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
-    -H "X-OpenAI-Api-Key: YOUR-OPENAI-API-KEY" \
+    -H "X-OpenAI-Api-Key: $OPENAI_API_KEY" \
     -d @- \
     http://localhost:8080/v1/graphql
 ```

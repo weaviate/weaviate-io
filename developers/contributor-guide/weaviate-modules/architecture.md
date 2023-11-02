@@ -93,9 +93,9 @@ To use a custom ML model with Weaviate, you have two options:
 
 ![Weaviate module APIs overview](/img/contributor-guide/weaviate-modules/weaviate-module-apis.svg "Weaviate module APIs overview")
 
-Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module, you set `ENABLE_MODULES=text2vec-transformers` in the docker-compose configuration, which instructs Weaviate to load the respective Go code (part 1). Additionally, you include another service in `docker-compose.yml` which contains the actual model for inference (part 2).
+Let's take a more detailed example of how you configure Weaviate to use a specific module: if we look at the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module, it sets `ENABLE_MODULES=text2vec-transformers` in the `Docker Compose` file, which instructs Weaviate to load the respective Go code (part 1). It also, includes another service in `docker-compose.yml`, which contains the actual model for inference (part 2).
 
-In more detail, let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module:
+Let's look at how a specific (GraphQL) function is implemented in the [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers.md) module:
 
 1. **Module code for Weaviate, written in Go:**
    * Tells the Weaviate GraphQL API that the module provides a specific `nearText` method.

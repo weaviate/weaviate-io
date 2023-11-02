@@ -123,23 +123,23 @@ Add user-specific configuration to both the Weaviate module and the inference AP
 
 During development of the new Module, you can run Weaviate locally. Make sure to have the following set:
 1. Your module should be present in the (local) [`/modules` folder](https://github.com/weaviate/weaviate/tree/master/modules).
-2. Hook up the module to Weaviate. The module will not be 'turned on' if you don't say so in the docker-compose configuration.
-    1. In `/adapters/handlers/rest/configure_api.go`, add your module to the import list ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L37)), and register it as a module ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L330-L332)). The module will not be turned on if you don't say so in the docker-compose configuration. Use the name of the module here, the same as you have used as folder name in `/modules`.
+2. Hook up the module to Weaviate. The module will not be 'turned on' if you don't say so in `docker-compose.yml`.
+    1. In `/adapters/handlers/rest/configure_api.go`, add your module to the import list ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L37)), and register it as a module ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L330-L332)). The module will not be turned on if you don't say so in the Docker Compose file. Use the name of the module here, the same as you have used as folder name in `/modules`.
     2. Add the service to `tools/dev/restart_dev_environment.go` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/restart_dev_environment.sh#L21-L23)). Here you define the argument (to start the dev environment) that will start the correct Weaviate setup. In the example, the argument is `i2v-neural`.
-    3. Add the service to `tools/dev/run_dev_server.sh` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/run_dev_server.sh#L77-L92)). This is the docker-compose setup for running the development server. You should define the modules that you want to run with your new dev setup: where they are running and their configuration. It also includes the command to run Weaviate, you can copy this.
+    3. Add the service to `tools/dev/run_dev_server.sh` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/run_dev_server.sh#L77-L92)). This is the Docker Compose setup for running the development server. You should define the modules that you want to run with your new dev setup: where they are running and their configuration. It also includes the command to run Weaviate, you can copy this.
     4. And add the service to `docker-compose.yml`([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/docker-compose.yml#L37-L40)). The inference container (part 2) should be running on the defined port.
 
 Inside the Weaviate project folder, run
 
 ```bash
-$ tools/dev/restart_dev_environment.sh --<SERVICE-NAME>
+tools/dev/restart_dev_environment.sh --<SERVICE-NAME>
 # e.g. tools/dev/restart_dev_environment.sh --i2v-neural
 ```
 
 to restart the development server. Then, run
 
 ```bash
-$ tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>
+tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>
 # e.g. tools/dev/run_dev_server.sh --local-image
 ```
 

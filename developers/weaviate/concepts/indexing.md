@@ -4,9 +4,7 @@ sidebar_position: 20
 image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Concepts: Vector Indexing](./vector-index.md)
@@ -96,7 +94,7 @@ An example configuration:
     "class": "Author",
     "moduleConfig": { // <== module config on class level
         "text2vec-transformers": { // <== the name of the module (in this case `text2vec-transformers`)
-            // the settings based on the choosed modules
+            // the settings based on the chosen modules
         }
     },
     "properties": [ ]
@@ -138,7 +136,6 @@ Because Weaviate's vectorizer module configuration is set on class and property 
 * You can enable or disable the index based on your use case
 * You can configure Weaviate modules in the schema
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

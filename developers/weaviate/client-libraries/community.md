@@ -1,12 +1,10 @@
 ---
 title: Community clients
-sidebar_position: 90
+sidebar_position: 95
 image: og/docs/client-libraries.jpg
 # tags: ['client libraries', 'cli']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 ## Overview
 
@@ -32,7 +30,6 @@ To contribute to these libraries, please contact the maintainers directly.
 
 If you have created a Weaviate client library and would like to be featured here, please let us know on [the forum](https://forum.weaviate.io/) or [Slack](https://weaviate.io/slack).
 
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

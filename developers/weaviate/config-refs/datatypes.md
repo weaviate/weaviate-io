@@ -4,9 +4,7 @@ sidebar_position: 3
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
-import Badges from '/_includes/badges.mdx';
 
-<Badges/>
 
 :::info Related pages
 - [Configuration: Schema](../configuration/schema-configuration.md)
@@ -22,7 +20,10 @@ import DataTypes from '/_includes/datatypes.mdx';
 
 <DataTypes />
 
-(*) Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
+:::note Notes
+-  Although Weaviate supports `int64`, GraphQL currently only supports `int32`, and does not support `int64`. This means that currently _integer_ data fields in Weaviate with integer values larger than `int32`, will not be returned using GraphQL queries. We are working on solving this [issue](https://github.com/weaviate/weaviate/issues/1563). As current workaround is to use a `string` instead.
+- Data types are specified as an array (e.g. ["text"]), as it is required for some cross-reference specifications.
+:::
 
 ## DataType: `text`
 
@@ -51,6 +52,57 @@ The [`cross-reference`](../more-resources/glossary.md) type is the graph element
       ]
     }
   ]
+}
+```
+
+### Number of linked instances
+
+The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
+
+In the above example, our objects can be linked to:
+* **0** Articles and **1** Blog
+* **1** Article and **3** Blogs
+* **2** Articles and **5** Blogs
+* etc.
+
+## DataType: `object`
+
+:::info Available from version `v1.22`
+:::
+
+The `object` type allows you to store nested data structures in Weaviate. The data structure is a JSON object, and can be nested to any depth.
+
+For example, a `Person` class could have an `address` property, as an object. It could in turn include nested properties such as `street` and `city`:
+
+```json
+{
+    "class": "Person",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+An object for this class may have a structure such as follows:
+
+```json
+{
+    "last_name": "Franklin",
+    "address": {
+        "city": "London",
+        "street": "King Street"
+    }
 }
 ```
 
@@ -93,13 +145,13 @@ The dataType `blob` can be used as property dataType in the data schema as follo
 To obtain the base64-encoded value of an image, you can run the following command - or use the helper methods in the Weaviate clients - to do so:
 
 ```bash
-$ cat my_image.png | base64
+cat my_image.png | base64
 ```
 
 You can then import data with `blob` dataType to Weaviate as follows:
 
 ```bash
-$ curl \
+curl \
     -X POST \
     -H "Content-Type: application/json" \
     -d '{
@@ -166,17 +218,6 @@ There are two fields that accept input. `input` must always be set, while `defau
 
 As you can see in the code snippet above, all other fields are read-only. These fields are filled automatically, and will appear when reading back a field of type `phoneNumber`.
 
-### Number of linked instances
-
-The `cross-reference` type objects are `arrays` by default. This allows you to link to any number of instances of a given class (including zero).
-
-In the above example, our objects can be linked to:
-* **0** Articles and **1** Blog
-* **1** Article and **3** Blogs
-* **2** Articles and **5** Blogs
-* etc.
-
-## More Resources
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
