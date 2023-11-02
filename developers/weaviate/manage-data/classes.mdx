@@ -10,6 +10,7 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.classes-v3.py';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
@@ -46,9 +47,18 @@ We recommend you create classes manually, as:
 To create a class, you must specify the class name with the `class` parameter.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START CreateClass"
+      endMarker="# END CreateClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START CreateClass"
       endMarker="# END CreateClass"
       language="py"
@@ -341,7 +351,15 @@ The following code defines:
 You can retrieve a class definition from the schema using the class name.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadOneClass"
+      endMarker="# END ReadOneClass"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReadOneClass"
@@ -383,9 +401,18 @@ You can retrieve a class definition from the schema using the class name.
 You can also retrieve all class definitions by fetching the entire schema.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START ReadAllClasses"
+      endMarker="# END ReadAllClasses"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START ReadAllClasses"
       endMarker="# END ReadAllClasses"
       language="py"
@@ -434,9 +461,18 @@ A typical use case for this functionality is to update configuration, such as th
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START UpdateClass"
+      endMarker="# END UpdateClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START UpdateClass"
       endMarker="# END UpdateClass"
       language="py"

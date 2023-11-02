@@ -9,17 +9,16 @@ import json
 import weaviate
 
 # Instantiate the client with the OpenAI API key
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-    headers={
-        "X-OpenAI-Api-Key": os.environ['OPENAI_API_KEY']  # Replace with your inference API key
+client = weaviate.Client(
+    'http://localhost:8080',
+    additional_headers={
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
     }
 )
 
 
 # START CreateClass  # START ReadOneClass  # START UpdateClass
-collection_name = "Article"
+class_name = "Article"
 
 # END CreateClass  # END ReadOneClass  # END UpdateClass
 
@@ -28,28 +27,29 @@ collection_name = "Article"
 # ================================
 
 # Clean slate
-if client.collections.exists(collection_name):
-    client.collections.delete(collection_name)
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
 
 # START CreateClass
-client.collections.create(collection_name)
+class_obj = {"class": class_name}
+
+client.schema.create_class(class_obj)  # returns null on success
 # END CreateClass
 
 # Test
-assert client.collections.exists(collection_name)
+assert client.schema.get(class_name)["class"] == class_name
 
 # ================================
 # ===== READ A CLASS =====
 # ================================
 
 # START ReadOneClass
-articles = client.collections.get(collection_name)
-articles_config = articles.config.get()
+response = client.schema.get(class_name)
 
-print(articles_config)
+print(json.dumps(response, indent=2))
 # END ReadOneClass
 
-assert articles_config.name == "Article"
+assert response["class"] == "Article"
 
 
 # ================================
@@ -57,13 +57,14 @@ assert articles_config.name == "Article"
 # ================================
 
 # START ReadAllClasses
-response = client.collections._get_all()
+response = client.schema.get()
 
-print(response)
+print(json.dumps(response, indent=2))
 # END ReadAllClasses
 
-assert type(response) == dict
-assert collection_name in response
+assert type(response["classes"]) == list
+class_names = [c["class"] for c in response["classes"]]
+assert class_name in class_names
 
 
 # ================================
@@ -71,40 +72,43 @@ assert collection_name in response
 # ================================
 
 # Clean slate
-if client.collections.exists(collection_name):
-    client.collections.delete(collection_name)
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
 
 # START UpdateClass
-import weaviate.classes as wcs
 # Define and create a class
+original_class_obj = {
+    "class": class_name,
+    "vectorIndexConfig": {
+        "distance": "cosine"  # Note the distance metric
+    }
+}
 
-client.collections.create(
-    name="Article",
-    vector_index_config=wcs.Configure.vector_index(
-        distance_metric=wcs.VectorDistance.COSINE
-    )
-)
+client.schema.create_class(original_class_obj)
 # END UpdateClass
 
 
 # Create an object to make sure it remains mutable
-# TODO: update this
 for _ in range(5):
     client.data_object.create({
         "title": "A grand day out."
-    }, collection_name)
-old_class_response = client.schema.get(collection_name)
+    }, class_name)
+old_class_response = client.schema.get(class_name)
 
 # START UpdateClass
 
 # Update the class definition
-articles = client.collections.get("Article")
-articles.config.update(
-    distance_metric=wcs.VectorDistance.DOT
-)
+changed_class_obj = {
+    "class": class_name,
+    "vectorIndexConfig": {
+        "distance": "dot"  # Change the distance metric
+    }
+}
+
+client.schema.update_config("Article", changed_class_obj)
 # END UpdateClass
-# TODO: update this
-changed_class_response = client.schema.get(collection_name)
+
+changed_class_response = client.schema.get(class_name)
 
 assert old_class_response["vectorIndexConfig"]["distance"] == "cosine"
 assert changed_class_response["vectorIndexConfig"]["distance"] == "dot"
