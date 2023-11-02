@@ -20,7 +20,7 @@ image: og/docs/configuration.jpg
 Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. When vector indexes are combined with horizontal scaling and sharding, you can store and search *very* large amounts of data without decreasing performance.
 
 ## Weaviate's vector index
-The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process.
+Weaviate supports the [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw) indexing algorithm. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process. For an alternative approach to indexing that may help with some use cases, see [Asynchronous indexing](/developers/weaviate/configuration/indexes#asynchronous-indexing).
 
 If you want to contribute to developing a new index type at Weaviate, please contact us or make a pull request in our GitHub project. Stay tuned for updates!
 
@@ -30,17 +30,21 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `vectorIndexType` | string | `hnsw` | Optional. The ANN algorithm that creates your index. HNSW is the only index type currently available. |
+| `vectorIndexType` | string | `hnsw` | Optional. The algorithm that creates your index. HNSW is the only index type currently available. |
 | `vectorIndexConfig` | object | - | Optional. Set parameters that are specific to the vector index type. See [HSNW specific parameters](#hnsw-index-parameters) |
 
 
 #### HNSW index parameters
 
-| Parameter | Type | Default | Details |
+The HNSW algorithm builds a list of approximate nearest neighbors (ANN).
+
+The `ef` parameter controls the size of the nearest neighbors list and helps to balance search speed and recall. You can set an explicit `ef` value or let Weaviate set a [dynamic `ef`](#dynamic-ef). These parameters let you tune `ef`, dynamic `ef`, and other aspects of the HNSW algorithm.
+
+| Parameter | Type | Default | Details | Changeable |
 | :-- | :-- | :-- | :-- |
-| `cleanupIntervalSeconds` | integer | 300 |  Cleanup frequency. This value does not normally need to be adjusted. A higher value means cleanup runs less frequently, but it does more in a single batch. A lower value means cleanup is more frequent, but it may be less efficient on each run. |
-| `distance` | string | `cosine` | The metric that measures the distance between two arbitrary vectors. See [supported distance metrics](/developers/weaviate/config-refs/distances.md).
-| `ef` | integer | -1 |  Balance search speed and accuracy. `ef` is the size of the dynamic list that the HNSW uses during search. Search is more accurate when `ef` is higher, but it is slower. `ef` values greater than 512 show diminishing improvements in accuracy.<br/><br/>Dynamic `ef`. Weaviate automatically adjusts the `ef` value when `ef` is set to -1 |
+| `cleanupIntervalSeconds` | integer | 300 |  Cleanup frequency. This value does not normally need to be adjusted. A higher value means cleanup runs less frequently, but it does more in a single batch. A lower value means cleanup is more frequent, but it may be less efficient on each run. | Yes |
+| `distance` | string | `cosine` | The metric that measures the distance between two arbitrary vectors. See [supported distance metrics](/developers/weaviate/config-refs/distances.md). | No |
+| `ef` | integer | -1 |  Balance search speed and accuracy. `ef` is the size of the dynamic list that the HNSW uses during search. Search is more accurate when `ef` is higher, but it is slower. `ef` values greater than 512 show diminishing improvements in accuracy.<br/><br/>Dynamic `ef`. Weaviate automatically adjusts the `ef` value when `ef` is set to -1 | Yes |
 | `efConstruction` | integer | 128 |  Balance index search and build speeds. A high `efConstruction` means you can lower your `ef` settings, but importing is slower.<br/><br/>`efConstruction` should be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized. |
 | `maxConnections` | integer | 64 |  Maximum number of connections per element. The maximum is the limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections). <br/><br/> `maxConnections` should be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized. |
 | `dynamicEfMin` | integer | 100 | *New in `v1.10.0`.* <br/><br/> Lower bound for dynamic `ef`. To keep search accuracy high, the dynamic `ef` value stays above `dynamicEfMin` even if the limit is small enough to suggest a lower value.<br/><br/>This setting is only used when `ef` is -1. |
