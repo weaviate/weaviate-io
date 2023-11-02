@@ -17,10 +17,10 @@ image: og/docs/configuration.jpg
 
 ## Vector index
 
-Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. This makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
+Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. When vector indexes are combined with horizontal scaling and sharding, you can store and search *very* large amounts of data without decreasing performance.
 
 ## Weaviate's vector index
-The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly during the building process (adding data with vectors).
+The first vector index type that Weaviate supports is [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw). Consequently, HNSW is the default vector index type. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process.
 
 If you want to contribute to developing a new index type at Weaviate, please contact us or make a pull request in our GitHub project. Stay tuned for updates!
 
@@ -30,34 +30,28 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 
 |Parameter|Type|Default|Details|
 |:--|:--|:--|:--|
-|`vectorIndexType`|string|`hnsw`|Optional. The ANN algorithm to use to create your index. HNSW is the only index type currently available.|
+|`vectorIndexType`|string|`hnsw`|Optional. The ANN algorithm that creates your index. HNSW is the only index type currently available.|
 |`vectorIndexConfig`|object|-|Optional. Set parameters that are specific to the vector index type. See [HSNW specific parameters](#hnsw-index-parameters)|
-|`skip"`|boolean|`false`|There are situations where it doesn't make sense to vectorize a collection. For example if the collection is just meant as glue between two other collection (consisting only of references) or if the collection contains mostly duplicate elements (Note that importing duplicate vectors into HNSW is very expensive as the algorithm uses a check whether a candidate's distance is higher than the worst candidate's distance for an early exit condition. With (mostly) identical vectors, this early exit condition is never met leading to an exhaustive search on each import or query). In this case, you can `skip` indexing a vector all-together. To do so, set `"skip"` to `"true"`. if not set to `true`, collectiones will be indexed normally. This setting is immutable after collection initialization. _Note that the creation of a vector through a module is decoupled from storing the vector in Weaviate. So, simply skipping the indexing does not skip the generation of a vector if a vectorizer other than `none` is configured on the collection (for example through a global default). It is therefore recommended to always set: `"vectorizer": "none"` explicitly when skipping the vector indexing. If vector indexing is skipped, but a vectorizer is configured (or a vector is provided manually) a warning is logged on each import._|
-|a|s|d|f \
-  g\
-  h\
-  i|
 
-|1|2|4|5|
 
 #### HNSW index parameters
 
 |Parameter|Type|Default|Details|
 |:--|:--|:--|:--|
-
-  - `"distance"`: The distance metric to be used to calculate the distance between any two arbitrary vectors. Defaults to `cosine`. See [supported metrics here](/developers/weaviate/config-refs/distances.md).
-  - `"ef"`: The higher `ef` is chosen, the more accurate, but also slower a search becomes. This helps in the recall/performance trade-off that is possible with HNSW. If you omit setting this field it will default to `-1` which means "Let Weaviate pick the right `ef` value". `ef` can be updated over time, and is not immutable like `efConstruction` and `maxConnections`.
-  - `"efConstruction"`: controls index search speed/build speed tradeoff. The tradeoff here is on importing. So a high `efConstruction` means that you can lower your `ef` settings but that importing will be slower. Default is set to 128, the integer should be greater than 0. This setting is immutable after collection initialization.
-  - `"maxConnections"`: the maximum number of connections per element in all layers. Default is set to 64, the integer should be greater than 0. This setting is immutable after collection initialization.
-  - `"dynamicEfMin"`: If using dynamic `ef` (set to `-1`), this value acts as a lower boundary. Even if the limit is small enough to suggest a lower value, `ef` will never drop below this value. This helps in keeping search accuracy high even when setting very low limits, such as 1, 2, or 3. *Not available prior to `v1.10.0`. Defaults to `100`. This setting has no effect if `ef` has a value other than `-1`.*
-  - `"dynamicEfMax"`: If using dynamic `ef` (set to `-1`), this value acts as an upper boundary. Even if the limit is large enough to suggest a lower value, `ef` will be capped at this value. This helps to keep search speed reasonable when retrieving massive search result sets, e.g. 500+. Note that the maximum will not have any effect if the limit itself is higher than this maximum. In this case the limit will be chosen as `ef` to avoid a situation where `limit` would higher than `ef` which is impossible with HNSW. *Not available prior to `v1.10.0`. Defaults to `500`. This setting has no effect if `ef` has a value other than `-1`.*
-  - `"dynamicEfFactor"`: If using dynamic `ef` (set to `-1`), this value controls how `ef` is determined based on the given limit. E.g. with a factor of `8`, `ef` will be set to `8*limit` as long as this value is between the lower and upper boundary. It will be capped on either end, otherwise. *Not available prior to `v1.10.0`. Defaults to `8`. This setting has no effect if `ef` has a value other than `-1`.*
-  - `"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new collection, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the collection.
-  Generally we recommend that:
-    - During imports set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
-    - When only or mostly querying (as opposed to bulk importing) you can experiment with vector cache limits which are lower than your total dataset size. Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full it is dropped entirely and all future vectors need to be read from disk for the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+|`cleanupIntervalSeconds`|integer|300| Cleanup frequency. This value does not normally need to be adjusted. A higher value means cleanup runs less frequently, but it does more in a single batch. A lower value means cleanup is more frequent, but it may be less efficient on each run.|
+|`distance`|string|`cosine`|The metric that measures the distance between two arbitrary vectors. See [supported distance metrics](/developers/weaviate/config-refs/distances.md).
+|`ef`|integer|-1| Balance search speed and accuracy. `ef` is the size of the dynamic list that the HNSW uses during search. Search is more accurate when `ef` is higher, but it is slower. `ef` values greater than 512 show diminishing improvements in accuracy.<br/><br/>Dynamic `ef`. Weaviate automatically adjusts the `ef` value when `ef` is set to -1|
+|`efConstruction`|integer|128| Balance index search and build speeds. A high `efConstruction` means you can lower your `ef` settings, but importing is slower.<br/><br/>`efConstruction` should be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized.|
+|`maxConnections`|integer|64| Maximum number of connections per element. The maximum is the limit per layer for layers above the zero layer. The zero layer can have (2 * maxConnections). <br/><br/> `maxConnections` should be greater than 0. <br/><br/> This setting cannot be changed after a collection is initialized.|
+|`dynamicEfMin`|integer|100|*New in `v1.10.0`.* <br/><br/> Lower bound for dynamic `ef`. To keep search accuracy high, the dynamic `ef` value stays above `dynamicEfMin` even if the limit is small enough to suggest a lower value.<br/><br/>This setting is only used when `ef` is -1.|
+|`dynamicEfMax`|integer|500|*New in `v1.10.0`.* <br/><br/> Upper bound for dynamic `ef`. To keep search speed reasonable even when retrieving large result sets, the dynamic `ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the limit is large enough to suggest a higher value. <br/><br/>If `dynamicEfMax` is higher than the limit, `dynamicEfMax` does not have any effect. In this case, `ef` is the limit.<br/><br/>This setting is only used when `ef` is -1.|
+|`dynamicEfFactor`|integer|8|*New in `v1.10.0`.* <br/><br/> If using dynamic `ef`, this value controls how `ef` is determined based on the given limit. E.g. with a factor of `8`, `ef` will be set to `8*limit` as long as this value is between the lower and upper boundary. It will be capped on either end, otherwise. <br/><br/>This setting is only used when `ef` is -1.|
 |`flatSearchCutoff`|integer|40000|Optional. Threshold for the [flat-search cutoff](/developers/weaviate/concepts/prefiltering.md#flat-search-cutoff). To force a vector index search, set `"flatSearchCutoff": 0`.|
-|`cleanupIntervalSeconds`|||How often the async process runs that "repairs" the HNSW graph after deletes and updates. (Prior to the repair/cleanup process, deleted objects are simply marked as deleted, but still a fully connected member of the HNSW graph. After the repair has run, the edges are reassigned and the datapoints deleted for good). Typically this value does not need to be adjusted, but if deletes or updates are very frequent it might make sense to adjust the value up or down. (Higher value means it runs less frequently, but cleans up more in a single batch. Lower value means it runs more frequently, but might not be as efficient with each run).|
+|`skip`|boolean|`false`| When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> See [When to skip indexing](#when-to-skip-indexing). <br/><br/> This setting cannot be changed after a collection is initialized.|
+|`"vectorCacheMaxObjects"`: For optimal search and import performance all previously imported vectors need to be held in memory. However, Weaviate also allows for limiting the number of vectors in memory. By default, when creating a new collection, this limit is set to one trillion (i.e. `1e12`) objects. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the cache should be used sparingly. This field is mutable after initially creating the collection.
+Generally we recommend that:
+  - During imports set the limit so that all vectors can be held in memory. Each import requires multiple searches so import performance will drop drastically as not all vectors can be held in the cache.
+  - When only or mostly querying (as opposed to bulk importing) you can experiment with vector cache limits which are lower than your total dataset size. Vectors which aren't currently in cache will be added to the cache if there is still room. If the cache runs full it is dropped entirely and all future vectors need to be read from disk for the first time. Subsequent queries will be taken from the cache, until it runs full again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, but a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.|
 |`pq`||| Enables [product quantization](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) which is a technique that allows for Weaviate’s HNSW vector index to store vectors using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets on a given amount of memory. *Weaviate’s HNSW implementation assumes that product quantization will occur after some data has already been loaded. The reason for this is that the codebook needs to be trained on existing data. A good recommendation is to have 10,000 to 100,000| vectors per shard loaded before enabling product quantization.* Please refer to the parameters that can be configured for `"pq"` below:
 
 #### PQ configuration parameters
@@ -103,7 +97,7 @@ To determine this, you need to ask yourself the following questions and compare 
 1. Am I expecting a lot of imports or updates?
 1. How high should the recall be?
 
-| Answer to Q1 | Answer to Q2 | Answer to Q3 | configuration |
+| Number of queries | Imports or updates | Recall level | Configuration suggestions |
 | --- | --- | --- | --- |
 | not many | no | low | This is the ideal scenario, just keep increasing both the `ef` and `efConstruction` settings low. You don't need a big machine and you will still be happy with the results. |
 | not many | no | high | Here the tricky thing is that your recall needs to be high, the fact you're not expecting a lot of requests or imports means that you can increase both the `ef` and `efConstruction` settings. Just keep increasing them until you are happy with the recall. In this case, you can get pretty close to 100%. |
@@ -121,7 +115,23 @@ If you're looking for a starting point for values, we would advise an `efConstru
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/configuration/schema-configuration.md).
 
+<<<<<<< HEAD
 ### Asynchronous indexing
+=======
+### When to skip indexing
+
+There are situations where it doesn't make sense to vectorize a collection. For example, if the collection consists solely of references between two other collections, or if the collection contains mostly duplicate elements.
+
+Importing duplicate vectors into HNSW is very expensive. The import algorithm checks early on if a candidate vector's distance is greater than the worst candidate's distance. When there are lots of duplicate vectors, this early exit condition is never met so each import or query results in an exhaustive search.
+
+To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
+
+### Deletions
+
+Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
+
+### Asynchronous indexing (experimental)
+>>>>>>> 56e583f (HNSW params)
 
 :::info Available from version `v1.22`
 :::
