@@ -79,8 +79,10 @@ if client.schema.exists(class_name):
 # Define and create a class
 original_class_obj = {
     "class": class_name,
-    "vectorIndexConfig": {
-        "distance": "cosine"  # Note the distance metric
+    "invertedIndexConfig": {
+        "bm25": {
+            "k1": 1.2  # Note the k1 parameter
+        }
     }
 }
 
@@ -100,8 +102,10 @@ old_class_response = client.schema.get(class_name)
 # Update the class definition
 changed_class_obj = {
     "class": class_name,
-    "vectorIndexConfig": {
-        "distance": "dot"  # Change the distance metric
+    "invertedIndexConfig": {
+        "bm25": {
+            "k1": 1.5  # Change the k1 parameter from 1.2
+        }
     }
 }
 
