@@ -16,7 +16,9 @@ Intro video here
 
 <!-- Provide context for this course, in addition to the concrete learning goals and outcomes. Why would someone want to do this unit? -->
 
-Chunking is often an essential part of dealing with long texts. This goes for both vector search and generative search - for slightly different reasons.
+So far, we've dealt with relatively short texts such as trivia quizzes as our source data. However, in the real world, texts can be very long - think about lengths of articles, transcripts, or even books. Long texts are typically not suitable as direct inputs for modern, transformer-based language models, whether they be vectorizer models or generative, large language models. This is because they can only handle finite lengths of text as inputs.
+
+To deal with this limitation, a technique called chunking is often used. Like the name suggests, chunking splits longer bodies of text into smaller portions that can be handled by the model. However, there are many ways to chunk a text, and the choice of chunking strategy can have a significant impact on the performance of your model.
 
 This unit covers this seemingly simple, but nuanced topic from the perspective of a user. We'll begin by covering what chunking is, and why it has become necessary, even though the existence of long texts is certainly not new.
 
