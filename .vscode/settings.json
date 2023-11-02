@@ -14,7 +14,6 @@
     "files.associations": {
         "*.mdx": "markdown"
     },
-    "files.trimTrailingWhitespace": true,
     "cSpell.words": [
      "fector",
      "HNSW"
