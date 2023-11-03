@@ -44,7 +44,7 @@ const classDefinition = {
 // Clean slate
 try {
   await client.schema.classDeleter().withClassName('JeopardyQuestion').do();
-  await client.schema.classDeleter().withClassName('YourClassName').do();
+  await client.schema.classDeleter().withClassName('YourName').do();
 } catch {
   // ignore error if class doesn't exist
 } finally {
@@ -57,7 +57,7 @@ try {
 // ==============================
 
 // BasicBatchImportExample
-let className = 'YourClassName';  // Replace with your class name
+let className = 'YourName';  // Replace with your class name
 let dataObjs = [];
 for (let i = 1; i <= 5; i++)
   dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
@@ -90,7 +90,7 @@ await client.schema.classDeleter().withClassName(className).do();
 // highlight-start
 import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
 // highlight-end
-className = 'YourClassName';  // Replace with your class name
+className = 'YourName';  // Replace with your class name
 dataObjs = [];
 for (let i = 1; i <= 5; i++)
   dataObjs.push({ title: `Object ${i}` });  // Replace with your actual objects
@@ -124,7 +124,7 @@ await client.schema.classDeleter().withClassName(className).do();
 // ===========================================
 
 // BatchImportWithVectorExample
-className = 'YourClassName';  // Replace with your class name
+className = 'YourName';  // Replace with your class name
 dataObjs = [];
 const vectors = [];
 for (let i = 1; i <= 5; i++) {

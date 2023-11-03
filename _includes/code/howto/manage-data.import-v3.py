@@ -10,15 +10,12 @@ MAX_ROWS_TO_IMPORT = 50  # limit vectorization calls
 import weaviate
 # END JSON streaming  # END CSV streaming
 
-import weaviate.classes as wvc
-import json
-
-# Instantiate the client with the OpenAI API key
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-    headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+# Instantiate the client with the user/password and OpenAI api key
+client = weaviate.Client(
+    'http://localhost:8080',  # Replace with your Weaviate URL
+    # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),
+    additional_headers={
+        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
     }
 )
 
@@ -26,36 +23,44 @@ client = weaviate.connect_to_local(
 # ===== Define the class =====
 # ============================
 
-# Clean slate
-if client.collections.exists("JeopardyQuestion"):
-    client.collections.delete("JeopardyQuestion")
+class_definition = {
+    'class': 'JeopardyQuestion',
+    'description': 'A Jeopardy! question',
+    'vectorizer': 'text2vec-openai',
+}
 
-client.collections.create(
-    "JeopardyQuestion",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
-)
+# Clean slate
+if client.schema.exists('JeopardyQuestion'):
+    client.schema.delete_class('JeopardyQuestion')
+if not client.schema.exists('JeopardyQuestion'):
+    client.schema.create_class(class_definition)
+
 
 # ==============================
 # ===== Basic batch import =====
 # ==============================
 
 # BasicBatchImportExample
-data = [
+class_name = "YourName"  # Replace with your class name
+data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
-
-collection = client.collections.get("YourName")
-
 # highlight-start
-response = collection.data.insert_many(data)
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+            # tenant="tenantA"  # If multi-tenancy is enabled, specify the tenant to which the object will be added.
+        )
 # highlight-end
-print(response.uuids)
 # END BasicBatchImportExample
 
-result = collection.aggregate.over_all(total_count=True)
-assert result.total_count == 5
-# Clean up
-client.collections.delete(collection.name)
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+client.schema.delete_class(class_name)
+
 
 # =======================================
 # ===== Batch import with custom ID =====
@@ -66,81 +71,65 @@ client.collections.delete(collection.name)
 from weaviate.util import generate_uuid5  # Generate a deterministic ID
 # highlight-end
 
-data = [
-    # use DataObject to provide uuid value
-    wvc.DataObject(
-        properties={"title": "Object 1"},
-        # highlight-start
-        uuid=generate_uuid5({"title": "Object 1"})
-        # highlight-end
-    ),
-    wvc.DataObject(
-        properties={"title": "Object 2"},
-        uuid=generate_uuid5({"title": "Object 2"})
-    ),
-    wvc.DataObject(
-        properties={"title": "Object 3"},
-        uuid=generate_uuid5({"title": "Object 3"})
-    ),
+class_name = "YourName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
-
-collection = client.collections.get("YourName")  # Replace with your collection name
-collection.data.insert_many(data)
-
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
+    for data_obj in data_objs:
+        batch.add_data_object(
+            data_obj,
+            class_name,
+            # highlight-start
+            uuid=generate_uuid5(data_obj)  # Optional: Specify an object ID
+            # highlight-end
+        )
 # END BatchImportWithIDExample
 
-# Tests
-result = collection.aggregate.over_all(total_count=True)
-assert result.total_count == 3
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+response = client.query.get(class_name, ["title"]).with_additional(["id"]).do()
+for obj in response["data"]["Get"][class_name]:
+    src_obj = {k: v for k, v in obj.items() if k != "_additional"}
+    gen_uuid = generate_uuid5(src_obj)
+    assert obj["_additional"]["id"] == gen_uuid
+client.schema.delete_class(class_name)
 
-first_id = generate_uuid5({"title": "Object 1"})
-response = collection.data._get_by_id(first_id, include_vector=False)
-assert response != None
-
-# Clean up
-client.collections.delete(collection.name)
 
 # ===========================================
 # ===== Batch import with custom vector =====
 # ===========================================
 
 # BatchImportWithVectorExample
-data = [
-    # use DataObject to provide uuid value
-    wvc.DataObject(
-        properties={"title": "Object 1"},
-        # highlight-start
-        vector=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
-        # highlight-end
-    ),
-    wvc.DataObject(
-        properties={"title": "Object 2"},
-        vector=[0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
-    ),
-    wvc.DataObject(
-        properties={"title": "Object 3"},
-        vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
-    ),
+class_name = "YourName"  # Replace with your class name
+data_objs = [
+    {"title": f"Object {i+1}"} for i in range(5)  # Replace with your actual objects
 ]
-
-collection = client.collections.get("YourName")  # Replace with your collection name
-collection.data.insert_many(data)
+vectors = [
+    [0.25 + i/100] * 10 for i in range(5)  # Replace with your actual vectors
+]
+client.batch.configure(batch_size=100)  # Configure batch
+with client.batch as batch:
+    for i, data_obj in enumerate(data_objs):
+        batch.add_data_object(
+            data_obj,
+            class_name,
+            # highlight-start
+            vector=vectors[i]  # Optional: Specify an object vector
+            # highlight-end
+        )
 # END BatchImportWithVectorExample
 
-# Tests
-result = collection.aggregate.over_all(total_count=True)
-assert result.total_count == 3
+response = client.query.aggregate(class_name).with_meta_count().do()
+assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+response = client.query.get(class_name, ["title"]).with_additional(["vector"]).do()
+for obj in response["data"]["Get"][class_name]:
+    assert obj["_additional"]["vector"][0] >= 0.25
+    assert obj["_additional"]["vector"][0] < 0.3
+client.schema.delete_class(class_name)
 
-response = collection.query.bm25(
-    query="Object 1",
-    return_metadata=wvc.MetadataQuery(vector=True)
-)
-test_vector = response.objects[0].metadata.vector
-assert (test_vector[0] >= 0.1)
-assert (test_vector[0] < 0.11)
-
-# Clean up
-client.collections.delete(collection.name)
+# TODOv4 – maybe this should be removed
 
 # ============================
 # ===== Streaming import =====
@@ -230,7 +219,7 @@ assert actual_count == MAX_ROWS_TO_IMPORT * 2, f'Expected {MAX_ROWS_TO_IMPORT * 
 # ===== Batch import with parameters explicitly set  =====
 # ============================================================
 
-class_name = "YourClassName"  # Replace with your class name
+class_name = "YourName"  # Replace with your class name
 data_objs = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
