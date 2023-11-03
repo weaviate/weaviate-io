@@ -45,7 +45,7 @@ if not client.schema.exists('JeopardyQuestion'):
 uuid = client.data_object.create({
     'question': 'This vector DB is OSS & supports automatic property type inference on import',
     # 'answer': 'Weaviate',  # schema properties can be omitted
-    'somePropNotInTheSchema': 123,  # will be automatically added as a number property
+    'newProperty': 123,  # will be automatically added as a number property
 }, 'JeopardyQuestion')
 
 print(uuid)  # the return value is the object's UUID
@@ -53,7 +53,7 @@ print(uuid)  # the return value is the object's UUID
 
 # Test
 result = client.data_object.get_by_id(uuid, class_name=class_name)
-assert result['properties']['somePropNotInTheSchema'] == 123
+assert result['properties']['newProperty'] == 123
 
 
 # ============================================
