@@ -50,7 +50,7 @@ assert articles_config.name == "Article"
 # ================================
 
 # START ReadAllCollections
-response = client.collections._get_all()
+response = client.collections.list_all()
 
 print(response)
 # END ReadAllCollections
