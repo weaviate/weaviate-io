@@ -5,22 +5,15 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
-
 <!-- :::caution Migrated From:
 - Adds text re: configuration options from `Vector index plugins/HNSW`
 ::: -->
 
-:::info Related pages
-- [Concepts: Indexing](../concepts/indexing.md)
-- [Concepts: Vector Indexing](../concepts/vector-index.md)
-:::
+## Vector indexes
 
-## Vector index
+Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. A vector index is a data structure that stores vectors and supports fast similarity searches.
 
-Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. When vector indexes are combined with horizontal scaling and sharding, you can store and search *very* large amounts of data without decreasing performance.
-
-## Weaviate's vector index
-Weaviate supports the [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw) indexing algorithm. HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process. For an alternative approach to indexing that may help with some use cases, see [Asynchronous indexing](/developers/weaviate/configuration/indexes#asynchronous-indexing).
+Weaviate supports the [Hierarchical Navigable Small Worlds (HNSW)](/developers/weaviate/concepts/vector-index.md#hnsw) indexing algorithm.
 
 If you want to contribute to developing a new index type at Weaviate, please contact us or make a pull request in our GitHub project. Stay tuned for updates!
 
@@ -34,9 +27,14 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 | `vectorIndexConfig` | object | - | Optional. Set parameters that are specific to the vector index type. See [HSNW specific parameters](#hnsw-index-parameters) |
 
 
-#### HNSW index parameters
+## HNSW vector indexes
+HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process. 
 
-The HNSW algorithm builds a list of approximate nearest neighbors (ANN).
+For an alternative approach to building indexes that may help with some use cases, see [Asynchronous indexing](/developers/weaviate/configuration/indexes#asynchronous-indexing).
+
+### HNSW index parameters
+
+HNSW indexes use a combination of techniques to improve search speed. At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently. This two-phase approach means you can update some HNSW parameters at run time, but others cannot be modified after you create your collection. 
 
 The `ef` parameter controls the size of the nearest neighbors list and helps to balance search speed and recall. You can set an explicit `ef` value or let Weaviate set a [dynamic `ef`](#dynamic-ef). These parameters let you tune `ef`, dynamic `ef`, and other aspects of the HNSW algorithm.
 
@@ -55,7 +53,7 @@ The `ef` parameter controls the size of the nearest neighbors list and helps to 
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](#vector-cache-considerations). |
 | `pq` |document| -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
 
-#### PQ configuration parameters
+### PQ configuration parameters
 
 [Product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) is a form of data compression that reduces the memory footprint of the index. HNSW is an in-memory index, so enabling PQ lets you work with larger datasets. For a discussion of how PQ saves memory, see [this blog post](/blog/pq-rescoring).
 
@@ -72,7 +70,7 @@ These parameters let you fine tune `pq`.
 | `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`. | 
 |`distribution`|string|`log-normal`| Encoder distribution type. Only used with the `tile` encoder. If you use the `tile` encoder, you can specify the `distribution` as `log-normal` (default) or `normal`. |
 
-#### Collection configuration example 
+### Collection configuration example 
 
 This is a sample of collection that shows the [data schema](/developers/weaviate/configuration/schema-configuration.md):
   
@@ -149,7 +147,6 @@ If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/in
 
 To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
 
-
 ### Configuration tips
 
 To determine reasonable settings for your use case, consider the following questions and compare your answers in the table below:
@@ -164,13 +161,13 @@ To determine reasonable settings for your use case, consider the following quest
 | not many | no | high | Here the tricky thing is that your recall needs to be high. Since you're not expecting a lot of requests or imports, you can increase both the `ef` and `efConstruction` settings. Keep increasing them until you are happy with the recall. In this case, you can get pretty close to 100%. |
 | not many | yes | low | Here the tricky thing is the high volume of imports and updates. Be sure to keep `efConstruction` low. Since you don't need a high recall, and you're not expecting a lot of queries, you can adjust the `ef` setting until you've reached the desired recall. |
 | not many | yes | high | The trade-offs are getting harder. You need high recall _and_ you're dealing with a lot of imports or updates. This means you need to keep the `efConstruction` setting low, but you can significantly increase your `ef` setting because your queries per second rate is low. |
-| many | no | low | Many queries per second means you need a low `ef` setting. Luckily you don't need high accuracy and or recall so you can significantly increase the `efConstruction` value. |
+| many | no | low | Many queries per second means you need a low `ef` setting. Luckily you don't need high recall so you can significantly increase the `efConstruction` value. |
 | many | no | high | Many queries per second means a low `ef` setting. Since you need a high recall but you are not expecting a lot of imports or updates, you can increase your `efConstruction` until you've reached the desired recall. |
 | many | yes | low | Many queries per second means you need a low `ef` setting. A high number of imports and updates also means you need a low `efConstruction` setting. Luckily your recall does not have to be as close to 100% as possible. You can set `efConstruction` relatively low to support your input or update throughput, and you can use the `ef` setting to regulate the query per second speed. |
 | many | yes | high | Aha, this means you're a perfectionist _or_ you have a use case that needs the best of all three worlds. Increase your `efConstruction` value until you hit the time limit of imports and updates. Next, increase your `ef` setting until you reach your desired balance of queries per second versus recall. <br/><br/> While many people think they need maximize all three dimensions, in practice that's usually not the case. We leave it up to you to decide, and you can always ask for help in [our forum](https://forum.weaviate.io). |
 
 :::tip
-These values are a good starting point for many use cases.
+This set of values is a good starting point for many use cases.
 
 |Parameter|Value|
 |:--|:--|
@@ -179,7 +176,7 @@ These values are a good starting point for many use cases.
 |`maxConnections`|`32`|
 :::
 
-### Vector index types 
+## Vector index types 
 
 The `vectorIndexType` parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search. 
 
@@ -187,7 +184,20 @@ The `vectorizer` parameter determines how the data vectors are created (which nu
 
 To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
 
-### When to skip indexing
+## Vector cache considerations
+For optimal search and import performance, previously imported vectors need to be in memory. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the disk cache should be used sparingly. However, Weaviate can limit the number of vectors in memory. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created.
+
+During import set `vectorCacheMaxObjects` high enough that all vectors can be held in memory. Each import requires multiple searches. Import performance drops drastically when there isn't enough memory to hold all of the vectors in the cache.
+
+After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
+
+Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries run against the cache until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+
+## Deletions
+
+Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
+
+## When to skip indexing
 
 There are situations where it doesn't make sense to vectorize a collection. For example, if the collection consists solely of references between two other collections, or if the collection contains mostly duplicate elements.
 
@@ -195,20 +205,7 @@ Importing duplicate vectors into HNSW is very expensive. The import algorithm ch
 
 To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
 
-### Vector cache considerations
-For optimal search and import performance, previously imported vectors need to be in memory. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the disk cache should be used sparingly. However, Weaviate can limit the number of vectors in memory. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created.
-
-During import set `vectorCacheMaxObjects` high enough that all vectors can be held in memory. Each import requires multiple searches. Import performance drops drastically when there isn't enough memory to hold all of the vectors in the cache.
-
-After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
-
-Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries runs against the cache, until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
-
-### Deletions
-
-Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
-
-### Asynchronous indexing (experimental)
+## Asynchronous indexing (experimental)
 
 :::caution Experimental
 Available starting in `v1.22`. This is an experimental feature. Please use with caution.
@@ -346,7 +343,7 @@ You can also enable an inverted index to search [based on timestamps](/developer
 }
 ```
 
-### Collections without indices
+## Collections without indices
 
 If you don't want to set an index at all, neither ANN nor inverted, this is possible too.
 
@@ -406,6 +403,10 @@ To create the `Authors` collection without any indexes, skip indexing (vector _a
 }
 ```
 
+:::info Related pages
+- [Concepts: Indexing](../concepts/indexing.md)
+- [Concepts: Vector Indexing](../concepts/vector-index.md)
+:::
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

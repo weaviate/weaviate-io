@@ -15,6 +15,7 @@
         "*.mdx": "markdown"
     },
     "cSpell.words": [
+     "codebook",
      "fector",
      "HNSW"
     ]
