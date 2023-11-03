@@ -158,7 +158,7 @@ client = weaviate.Client(
     }
 )
 
-chunk_class_definition = {
+chunk_collection_definition = {
     "class": "Chunk",
     "vectorizer": "text2vec-openai",
     "moduleConfig": {

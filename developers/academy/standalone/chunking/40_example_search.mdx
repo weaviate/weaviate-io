@@ -13,17 +13,15 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
 
-We have retrieved and imported multiple chapters of a book into Weaviate using different chunking techniques [earlier](./30_example_chunking.mdx). Now, we will use Weaviate to search through the book and evaluate the impact of the chunking techniques.
-
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Recap
-
-We've generated chunks using four different methods:
+In the [preceding section](./30_example_chunking.mdx), we imported multiple chapters of a book into Weaviate using different chunking techniques. They were:
 
 - Fixed-length chunks (and 20% overlap)
     - With 25 words per chunk, and
     - With 100 words per chunk
 - Variable-length chunks, using paragraph markers, and
 - Mixed-strategy chunks, using paragraph markers and a minimum chunk length of 25 words.
+
+Now, we will use Weaviate to search through the book and evaluate the impact of the chunking techniques.
 
 Since the data comes from the first two chapters of a book about Git, let's search for various git-related concepts and see how the different chunking strategies perform.
 
@@ -148,21 +146,21 @@ In contrast to the first scenario, the 25-word chunks are more useful here. Beca
 While the other result sets also contain some of this information, it may be worth considering how the result may be used and displayed. The longer the result, the more cognitive effort it may take the user to identify the relevant information.
 
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Generative search
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Retrieval augmented generation (RAG)
 
-Now, let's tackle the topic of generative search. Generative search allows you to use Weaviate to use retrieved objects as a part of inputs to a generative model.
+Next, let's take a look at the impact of chunking on RAG.
 
-In the context of chunking, the chunk size determines the breadth of the information that is retrieved. This is due to the fact that generative models currently have a limited maximum input size, called the context window. As a result, the larger the chunk size, fewer chunks can be included in the context window.
+We [discussed the relationship between chunk size and RAG earlier](./10_introduction.mdx#for-optimal-retrieval-augmented-generation-rag). Using shorter chunks will allow you to include information from a wider range of source objects than longer chunks, but each object will not include as much contextual information. On the other hand, using longer chunks means each chunk will include more contextual information, but you will be limited to fewer source objects.
 
-For example, using shorter (e.g. 25-word) chunks will allow you to retrieve information from a wider range of book locations than longer chunks. Let's try a few generative search examples to see how this manifests itself.
+Let's try a few RAG examples to see how this manifests itself.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Search syntax
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Query syntax
 
-The generative search syntax is shown below. The syntax is largely the same as above, except for two aspects.
+The query syntax is shown below. The syntax is largely the same as above, except for two aspects.
 
 One is that to account for varying chunk sizes, we will retrieve more chunks where the chunk size is smaller.
 
-The other is that an additional generative search operator is added to the search query. The query asks the target LLM to summarize the results into point form.
+The other is that the query has been modified to perform RAG, rather than a simple retrieval. The query asks the target LLM to summarize the results into point form.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
@@ -261,9 +259,19 @@ The findings here are similar to the semantic search results. The longer chunks 
 
 The results of the generative search here for `available git remote commands` are perhaps even more illustrative than before.
 
-Here, the shortest chunks were able to retrieve the highest number of `git remote` commands from the book. This is because we were able to retrieve more chunks from various locations throughout the corpus (book). This is in contrast to the longer chunks, which were only able to retrieve fewer commands.
+Here, the shortest chunks were able to retrieve the highest number of `git remote` commands from the book. This is because we were able to retrieve more chunks from various locations throughout the corpus (book).
 
-Of course, it is likely that the longer chunks are able to retrieve more information about each command. But this is a trade-off that you will need to consider when deciding on the chunking strategy for your use case.
+Contract this result to the one where longer chunks are used. Here, using longer chunks, we were only able to retrieve one `git remote` command, because we retrieved fewer chunks than before.
+
+#### Discussions
+
+You see here the trade-off between using shorter and longer chunks.
+
+Using shorter chunks allows you to retrieve more information from more objects, but each object will contain less contextual information. On the other hand, using longer chunks allows you to retrieve less information from fewer objects, but each object will contain more contextual information.
+
+Even when using LLMs with very large context windows, this is something to keep in mind. Longer input texts means higher fees for the API use, or inference time. In other words, there are costs associated with using longer chunks.
+
+Often, this is *the* trade-off that you will need to consider when deciding on the chunking strategy for a RAG use-case.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 

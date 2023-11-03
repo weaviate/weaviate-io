@@ -42,7 +42,11 @@ A typical "context window" of these models are in the order of thousands of "tok
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;For optimal retrieval augmented generation (RAG)
 
-Large language models that are used for RAG (also called generative search) also have a finite "window" of text input lengths. As a result, the chunk size will affect the number of chunks passed to the LLM, as well as the amount of contextual information contained in each chunk.
+Chunking is also important for optimizing retrieval augmented generation, or RAG. If you need a refresher on what RAG is, you can review [this module](../../zero_to_mvp/104_queries_2/30_generative.mdx).
+
+In short, RAG allows you to ground large language models (LLMs) by providing retrieved data from a database along with a prompt. This in turn can prevent the model from generating factually incorrect information due to outdated or missing data.
+
+So why does chunking affect RAG? This is because LLMs currently have a finite maximum input size, called the context window. As a result, the chunk size defines how many chunks can be included in the context window. This in turn defines how many different places the LLM can retrieve information from, and how much information is in each object.
 
 Let's consider what happens when you use a chunk size that is too small or too large.
 
