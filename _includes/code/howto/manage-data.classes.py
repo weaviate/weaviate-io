@@ -12,99 +12,93 @@ import weaviate
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    headers={
-        "X-OpenAI-Api-Key": os.environ['OPENAI_API_KEY']  # Replace with your inference API key
-    }
 )
 
-
-# START CreateClass  # START ReadOneClass  # START UpdateClass
 collection_name = "Article"
 
-# END CreateClass  # END ReadOneClass  # END UpdateClass
-
 # ================================
-# ===== CREATE A CLASS =====
+# ===== CREATE A COLLECTION =====
 # ================================
 
 # Clean slate
 if client.collections.exists(collection_name):
     client.collections.delete(collection_name)
 
-# START CreateClass
-client.collections.create(collection_name)
-# END CreateClass
+# START CreateCollection
+client.collections.create("Article")
+# END CreateCollection
 
 # Test
 assert client.collections.exists(collection_name)
 
 # ================================
-# ===== READ A CLASS =====
+# ===== READ A COLLECTION =====
 # ================================
 
-# START ReadOneClass
-articles = client.collections.get(collection_name)
+# START ReadOneCollection
+articles = client.collections.get("Article")
 articles_config = articles.config.get()
 
 print(articles_config)
-# END ReadOneClass
+# END ReadOneCollection
 
 assert articles_config.name == "Article"
 
 
 # ================================
-# ===== READ ALL CLASSES =====
+# ===== READ ALL COLLECTIONS =====
 # ================================
 
-# START ReadAllClasses
+# START ReadAllCollections
 response = client.collections._get_all()
 
 print(response)
-# END ReadAllClasses
+# END ReadAllCollections
 
 assert type(response) == dict
 assert collection_name in response
 
 
 # ================================
-# ===== UPDATE A CLASS =====
+# ===== UPDATE A COLLECTION =====
 # ================================
 
 # Clean slate
 if client.collections.exists(collection_name):
     client.collections.delete(collection_name)
 
-# START UpdateClass
-import weaviate.classes as wcs
-# Define and create a class
-
+# Define and create a collection
 client.collections.create(
     name="Article",
-    vector_index_config=wcs.Configure.vector_index(
-        distance_metric=wcs.VectorDistance.COSINE
+    inverted_index_config=wcs.Configure.inverted_index(
+        bm25_k1=1.2
     )
 )
-# END UpdateClass
+
+# START UpdateCollection
+import weaviate.classes as wcs
+
+articles = client.collections.get("Article")
+# END UpdateCollection
 
 
 # Create an object to make sure it remains mutable
-# TODO: update this
 for _ in range(5):
-    client.data_object.create({
+    articles.data.insert({
         "title": "A grand day out."
-    }, collection_name)
-old_class_response = client.schema.get(collection_name)
+    })
+old_config = articles.config.get()
+# START UpdateCollection
 
-# START UpdateClass
-
-# Update the class definition
-articles = client.collections.get("Article")
+# Update the collection definition
 articles.config.update(
-    distance_metric=wcs.VectorDistance.DOT
+    inverted_index_config=wcs.Reconfigure.inverted_index(
+        bm25_k1=1.5
+    )
 )
-# END UpdateClass
-# TODO: update this
-changed_class_response = client.schema.get(collection_name)
+# END UpdateCollection
 
-assert old_class_response["vectorIndexConfig"]["distance"] == "cosine"
-assert changed_class_response["vectorIndexConfig"]["distance"] == "dot"
+new_config = articles.config.get()
+
+assert old_config.inverted_index_config.bm25.k1 == 1.2
+assert new_config.inverted_index_config.bm25.k1 == 1.5
