@@ -16,7 +16,13 @@
     },
     "files.trimTrailingWhitespace": true,
     "cSpell.words": [
+     "childname",
      "fector",
-     "HNSW"
+     "HNSW",
+     "OIDC",
+     "openai",
+     "proto",
+     "Pythonic",
+     "supersecuresecret"
     ]
 }
