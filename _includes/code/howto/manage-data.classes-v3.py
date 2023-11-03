@@ -10,9 +10,9 @@ import weaviate
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.Client(
-    'http://localhost:8080',
+    "http://localhost:8080",
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
     }
 )
 
