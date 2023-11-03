@@ -41,8 +41,8 @@
     "answer": "Yes."
   },
   {
-    "question": "My use case fluctuates in the number of data objects stored per month, how do you calculate the total number of objects per month?",
-    "answer": "We take the median number of vectors per month measured per hour."
+    "question": "How are the number of objects determined for billing purposes?",
+    "answer": "We take a time-weighted average of object counts taken periodically over the course of the month."
   },
   {
     "question": "What if I have an unexpected usage spike?",

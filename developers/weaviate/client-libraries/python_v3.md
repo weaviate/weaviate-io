@@ -25,7 +25,7 @@ The `v3` client is only compatible with Weaviate `1.21.x` and lower (i.e `< 1.22
 The `v3` Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.7 and higher.
 
 ```bash
-pip install weaviate-client
+pip install "weaviate-client==3.*"
 ```
 
 ### Set-up
@@ -794,6 +794,18 @@ query_result.build()
 >>> '{Get{Article(where: {path: ["wordCount"] operator: GreaterThan valueInt: 1000} limit: 50 nearText: {concepts: ["fashion"] certainty: 0.7 moveTo: {force: 0.85 concepts: ["haute couture"]} moveAwayFrom: {force: 0.45 concepts: ["finance"]}} ){title}}}'
 
 ```
+
+## Best practices and notes
+
+### Thread-safety
+
+While the Python client is fundamentally designed to be thread-safe, it's important to note that due to its dependency on the `requests` library, complete thread safety isn't guaranteed.
+
+This is an area that we are looking to improve in the future.
+
+Please be particularly aware that the batching algorithm within our client is not thread-safe. Keeping this in mind will help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+
+If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
 
 ## Client releases
 

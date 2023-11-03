@@ -4,10 +4,8 @@ sidebar_position: 10
 image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
 ---
-import Badges from '/_includes/badges.mdx';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-<Badges/>
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 

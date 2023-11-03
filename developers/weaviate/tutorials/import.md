@@ -4,10 +4,7 @@ sidebar_position: 30
 image: og/docs/tutorials.jpg
 # tags: ['import']
 ---
-import Badges from '/_includes/badges.mdx';
 import { DownloadButton } from '/src/theme/Buttons';
-
-<Badges/>
 
 ## Overview
 

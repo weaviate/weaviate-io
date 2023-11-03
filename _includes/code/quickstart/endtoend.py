@@ -3,6 +3,9 @@ import weaviate
 import weaviate.classes as wvc
 import os
 
+# As of November 2023, WCS clusters are not yet compatible with the new API introduced in the v4 Python client.
+# Accordingly, we show you how to connect to a local instance of Weaviate.
+# Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
@@ -33,6 +36,7 @@ client = weaviate.connect_to_wcs(
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }
 )
+
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 """
 
@@ -51,8 +55,6 @@ resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/quicks
 data = json.loads(resp.text)  # Load data
 
 question_objs = list()
-questions = client.collections.get("Question")
-
 for i, d in enumerate(data):
     question_objs.append({
         "answer": d["Answer"],
@@ -60,6 +62,7 @@ for i, d in enumerate(data):
         "category": d["Category"],
     })
 
+questions = client.collections.get("Question")
 questions.data.insert_many(question_objs)  # This uses batching under the hood
 
 # END EndToEndExample    # Test import
@@ -70,6 +73,8 @@ assert questions_definition.name == "Question"
 assert obj_count.total_count == 10
 
 # NearTextExample
+questions = client.collections.get("Question")
+
 response = questions.query.near_text(
     query="biology",
     limit=2
@@ -83,6 +88,8 @@ assert len(response.objects) == 2
 assert response.objects[0].properties["answer"] == "DNA"
 
 # NearTextWhereExample
+questions = client.collections.get("Question")
+
 response = questions.query.near_text(
     query="biology",
     limit=2,
@@ -98,6 +105,8 @@ assert response.objects[0].properties["category"] == "ANIMALS"
 
 
 # GenerativeSearchExample
+questions = client.collections.get("Question")
+
 response = questions.generate.near_text(
     query="biology",
     limit=2,
@@ -112,6 +121,8 @@ assert len(response.objects) == 2
 assert len(response.objects[0].generated) > 0
 
 # GenerativeSearchGroupedTaskExample
+questions = client.collections.get("Question")
+
 response = questions.generate.near_text(
     query="biology",
     limit=2,
@@ -141,8 +152,6 @@ resp = requests.get(url)
 data = json.loads(resp.text)  # Load data
 
 question_objs = list()
-questions = client.collections.get("Question")
-
 for i, d in enumerate(data):
     question_objs.append(wvc.DataObject(
         properties={
@@ -153,6 +162,7 @@ for i, d in enumerate(data):
         vector=d["vector"]
     ))
 
+questions = client.collections.get("Question")
 questions.data.insert_many(question_objs)    # This uses batching under the hood
 # ===== END import with custom vectors =====
 
