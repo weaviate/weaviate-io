@@ -1,0 +1,113 @@
+---
+title: A brief introduction to chunking
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;What is chunking?
+
+Chunking is the pre-processing step of splitting texts into smaller pieces of texts, i.e. "chunks".
+
+You know by now that a vector database stores objects by corresponding vectors to capture their meaning. But just *how much* text does each vector capture the meaning of? Chunking defines this. Each chunk is the unit of information that is vectorized and stored in the database.
+
+Consider a case where the source text comprises a set of books. A chunking method could conceivably split the text into a set of chapters, paragraphs, sentences, or even words, into chunks.
+
+While this is a simple concept, it can have a significant impact on the performance of vector databases, and outputs of language models.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Why chunk data?
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;For information retrieval
+
+Let's go back to the above example, building a vector database from a set of books.
+
+At one extreme, you could catalog each book as one vector. This would build a database akin to a library catalog. Each search would do a good job of finding the right book. But it might not work so well for finding specific information within a book.
+
+At the other extreme, cataloging each sentence as a vector would build a database akin to a (sentence-level) thesaurus. This would be good for finding specific concepts or information conveyed by the writer. But it might not work so well for finding broader information, such as the idea conveyed by a book, or even a chapter.
+
+Whether to choose one or the other approach, or a third approach in-between, depends on your use case.
+
+But the key point is that chunking defines the unit of information that is stored in the database, and therefore each unit of information to be retrieved.
+
+As we will see later on, this has implications not only search, but also retrieval augmented generation (RAG) use case downstream.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;To meet model requirements
+
+Another reason to chunk data is to help meet the requirements of the language model used.
+
+These models typically have a finite "window" of text input lengths, and source texts often exceed this length. Remember that the Lord of the Rings, for example, is over 500,000 words long!
+
+A typical "context window" of these models are in the order of thousands of "tokens" (words, parts of words, punctuation, etc.). This means that the text input to the model must be split into chunks of this size or smaller.
+
+### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;For optimal retrieval augmented generation (RAG)
+
+Large language models that are used for RAG (also called generative search) also have a finite "window" of text input lengths. As a result, the chunk size will affect the number of chunks passed to the LLM, as well as the amount of contextual information contained in each chunk.
+
+Let's consider what happens when you use a chunk size that is too small or too large.
+
+#### (Too) Small chunks
+
+Using short chunks, you can add information from more chunks to the LLM. However, it may lead to insufficient contextual information being passed on in each result to the LLM.
+
+Imagine passing the following as a chunk to the LLM: `This option adds a nice little ASCII graph showing your branch and merge history:`. This is short, but is probably not itself long enough to provide sufficient context for the LLM. What option? What branch? What merge history? The LLM would have to guess at the meaning of the sentence, and the results may not be very good.
+
+Contrast that with instead passing: `The oneline and format option values are particularly useful with another log option called --graph. This option adds a nice little ASCII graph showing your branch and merge history: $ git log --pretty=format:"%h %s" --graph` as a chunk. This includes more contextual information to the LLM so that it can parse its meaning more accurately.
+
+#### (Too) Large chunks
+
+Of course, at the other extreme, using chunks that are too large would reduce the number of chunks that can be passed to the LLM. And it may increase the portion of each chunk that includes irrelevant information.
+
+At one extreme, imagine you could only pass one contiguous passage of text to the LLM. It would be like being asked to write an essay based only on one section of a book.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Chunk size selection
+
+As you can start to see, there are multiple factors at play to help you choose the right chunk size.
+
+Unfortunately, there isn't a chunk size or chunking technique that works for everybody. The trick here is to find a size that works for *you* - one that isn't too small or too large, and also chunked with a method that suits you.
+
+In the next unit, we'll begin to review these ideas, starting with some common chunking techniques.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+
+<Quiz questions={varName} />
+
+Any quiz questions
+
+### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out ...
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+
+:::info
+Add summary
+:::
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
