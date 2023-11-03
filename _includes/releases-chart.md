@@ -6,7 +6,7 @@ of the client. Earlier client releases have less detailed version information.
 
 To see release notes for a particular version, click on the version number.
 
-|Weaviate Version|Release Date|Python|TypeScript|Go|Java|
+|Weaviate Version|Release Date|Python|TypeScript<br/>JavaScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
 |[1.22.2][c1.22.2]|2023-11-01|[3.25.2][p3.25.2]|[1.5.0][ts1.5.0]|[4.10.0][g4.10.0]|[4.3.0][j4.3.0]|
 |[1.22.1][c1.22.1]|2023-10-30|''|''|''|''|
@@ -328,6 +328,8 @@ For links to the Java Client releases, expand this section.
 <details>
   <summary>Releases</summary>
 
+  |Client Version|Release Date|
+  |:-|:-|
   |[4.3.0][j4.3.0]|2023-08-22|
   |[4.2.1][j4.2.1]|2023-07-26|
   |[4.2.0][j4.2.0]|2023-07-06|

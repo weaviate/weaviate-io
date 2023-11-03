@@ -58,12 +58,12 @@ You can instantiate the client using one of multiple methods. For example, you c
 
 Or, you can instantiate a `weaviate.WeaviateClient` object directly.
 
-For example, you can connect to a local instanct like this:
+For example, you can connect to a local instance like this:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# LocalInstantiation"
-  endMarker="# END LocalInstantiation"
+  startMarker="# LocalInstantiationBasic"
+  endMarker="# END LocalInstantiationBasic"
   language="py"
 />
 
@@ -80,8 +80,8 @@ Or instantiate a client directly like this:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# DirectInstantiation"
-  endMarker="# END DirectInstantiation"
+  startMarker="# DirectInstantiationBasic"
+  endMarker="# END DirectInstantiationBasic"
   language="py"
 />
 
