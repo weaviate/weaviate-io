@@ -7,8 +7,7 @@ image: og/docs/more-resources.jpg
 
 ### Weaviate core release summaries
 
-This section links to the release note summaries for Weaviate core.
-
+This section links to the release notes for major and minor releases of Weaviate core. For complete release notes, see the [Weaviate project on Github](https://github.com/weaviate/weaviate/releases).
 
 |Release|Release Date|
 |:--|:--|
