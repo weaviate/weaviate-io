@@ -6,7 +6,7 @@ import os
 # ================================
 
 import weaviate
-import weaviate.classes as wcs
+import weaviate.classes as wvc
 import json
 
 # Instantiate the client with the OpenAI API key
@@ -18,20 +18,17 @@ client = weaviate.connect_to_local(
     }
 )
 
-collection_name = "JeopardyQuestion"
-
-
 # ============================
 # ===== Define the class =====
 # ============================
 
 # Clean slate
-if client.collections.exists(collection_name):
-    client.collections.delete(collection_name)
+if client.collections.exists("JeopardyQuestion"):
+    client.collections.delete("JeopardyQuestion")
 
 client.collections.create(
-    collection_name,
-    vectorizer_config=wcs.Configure.Vectorizer.text2vec_openai()
+    "JeopardyQuestion",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
 )
 
 # =========================

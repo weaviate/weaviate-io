@@ -70,13 +70,13 @@ if client.collections.exists(collection_name):
 # Define and create a collection
 client.collections.create(
     name="Article",
-    inverted_index_config=wcs.Configure.inverted_index(
+    inverted_index_config=wvc.Configure.inverted_index(
         bm25_k1=1.2
     )
 )
 
 # START UpdateCollection
-import weaviate.classes as wcs
+import weaviate.classes as wvc
 
 articles = client.collections.get("Article")
 # END UpdateCollection
@@ -92,7 +92,7 @@ old_config = articles.config.get()
 
 # Update the collection definition
 articles.config.update(
-    inverted_index_config=wcs.Reconfigure.inverted_index(
+    inverted_index_config=wvc.Reconfigure.inverted_index(
         bm25_k1=1.5
     )
 )
