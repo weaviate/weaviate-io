@@ -6,16 +6,11 @@ import os
 # ================================
 
 import weaviate
-import weaviate.classes as wvc
 import json
 
-# client = weaviate.Client(
-#     'https://edu-demo.weaviate.network',  # Replace with your Weaviate URL
-#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),  # Replace w/ your Weaviate API key
-# )
-client = weaviate.connect_to_wcs(
-    cluster_id='edu-demo',  # Replace with your Weaviate URL
-    api_key='learn-weaviate'
+client = weaviate.Client(
+    'https://edu-demo.weaviate.network',  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),  # Replace w/ your Weaviate API key
 )
 
 # =======================
@@ -23,13 +18,9 @@ client = weaviate.connect_to_wcs(
 # =======================
 
 # ReadObject START
-jeopardy = client.collections("JeopardyQuestion")
-
-data_object = jeopardy.data._get_by_id(
-    # highlight-start
-    "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
-    # highlight-end
-    include_vector=False
+data_object = client.data_object.get_by_id(
+    '00ff6900-e64f-5d94-90db-c8cfa3fc851b',
+    class_name='JeopardyQuestion',
 )
 
 print(json.dumps(data_object, indent=2))
@@ -44,12 +35,11 @@ assert data_object['properties']['answer'] == 'San Francisco'
 # ===================================
 
 # ReadObjectWithVector START
-jeopardy = client.collections("JeopardyQuestion")
-
-data_object = jeopardy.data._get_by_id(
-    "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+data_object = client.data_object.get_by_id(
+    '00ff6900-e64f-5d94-90db-c8cfa3fc851b',
+    class_name='JeopardyQuestion',
     # highlight-start
-    include_vector=True
+    with_vector=True
     # highlight-end
 )
 
@@ -58,6 +48,7 @@ print(json.dumps(data_object, indent=2))
 
 # Test
 assert len(data_object['vector']) == 1536
+
 
 # ==================================
 # ===== Check object existence =====
