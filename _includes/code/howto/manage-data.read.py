@@ -25,12 +25,9 @@ client = weaviate.connect_to_wcs(
 # ReadObject START
 jeopardy = client.collections("JeopardyQuestion")
 
-data_object = jeopardy.data._get_by_id(
-    # highlight-start
-    "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
-    # highlight-end
-    include_vector=False
-)
+# highlight-start
+data_object = jeopardy.query.fetch_object_by_id("00ff6900-e64f-5d94-90db-c8cfa3fc851b")
+# highlight-end
 
 print(json.dumps(data_object, indent=2))
 # ReadObject END
@@ -46,7 +43,7 @@ assert data_object['properties']['answer'] == 'San Francisco'
 # ReadObjectWithVector START
 jeopardy = client.collections("JeopardyQuestion")
 
-data_object = jeopardy.data._get_by_id(
+data_object = jeopardy.query.fetch_object_by_id(
     "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
     # highlight-start
     include_vector=True

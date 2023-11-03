@@ -94,7 +94,7 @@ result = collection.aggregate.over_all(total_count=True)
 assert result.total_count == 3
 
 first_id = generate_uuid5({"title": "Object 1"})
-response = collection.data._get_by_id(first_id, include_vector=False)
+response = collection.query.fetch_object_by_id(first_id)
 assert response != None
 
 # Clean up

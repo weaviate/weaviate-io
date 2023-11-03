@@ -48,7 +48,7 @@ print(uuid)  # the return value is the object's UUID
 # CreateObject END
 
 # Test
-result = jeopardy.data._get_by_id(uuid, include_vector=False)
+result = jeopardy.query.fetch_object_by_id(uuid)
 assert result["properties"]["newProperty"] == 123
 
 
@@ -101,7 +101,7 @@ print(uuid)  # the return value is the object's UUID
 # CreateObjectWithIdAndVector END
 
 # Test
-result = jeopardy.data._get_by_id(uuid, include_vector=False)
+result = jeopardy.query.fetch_object_by_id(uuid)
 assert result["properties"] == {
     "question": "This vector DB is OSS and supports automatic property type inference on import",
     "answer": "Weaviate"
