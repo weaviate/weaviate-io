@@ -59,7 +59,7 @@ result = await client.data
   .withProperties({
     question: 'This vector DB is OSS and supports automatic property type inference on import',
     // answer: 'Weaviate',  // schema properties can be omitted
-    somePropNotInTheSchema: 123,  // will be automatically added as a number property
+    newProperty: 123,  // will be automatically added as a number property
   })
   .do();
 
@@ -67,7 +67,7 @@ console.log(JSON.stringify(result, null, 2));  // the returned value is the obje
 // CreateObject END
 
 result = await client.data.getterById().withClassName(className).withId(result.id).do();
-assert.equal(result.properties['somePropNotInTheSchema'], 123);
+assert.equal(result.properties['newProperty'], 123);
 
 // ============================================
 // ===== Create object with deterministic id =====
