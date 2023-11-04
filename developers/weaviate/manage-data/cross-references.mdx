@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.cross-refs.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.cross-refs_test.go';
@@ -88,7 +89,7 @@ To add a cross-reference property in the class definition, specify its `dataType
 For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyCategory`:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# CrossRefDefinition"
   endMarker="# END CrossRefDefinition"
   language="json"
@@ -97,25 +98,31 @@ For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyC
 To add a cross-reference from an object to another, specify its source class and id, the property name, and the class and id of the target object. In the example below, we'll _add_ (not set) the "U.S. CITIES" category to the "San Francisco" Q&A (which by default only has the "MUSEUMS" category):
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# OneWay Python"
-    endMarker="# END OneWay Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# OneWay Python"
+      endMarker="# END OneWay Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# OneWay Python"
+      endMarker="# END OneWay Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// OneWay TS"
-    endMarker="// END OneWay TS"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// OneWay TS"
+      endMarker="// END OneWay TS"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -144,54 +151,60 @@ This requires adding reference properties in both directions, and adding two cro
 
 To define a bidirectional reference between two classes, add a property to each class with the `dataType` set to the name of the other class:
 
-`JeopardyQuestion` class:
+`JeopardyCategory` collection:
 <FilteredTextBlock
-  text={PythonCode}
-  startMarker="# CrossRefDefinition"
-  endMarker="# END CrossRefDefinition"
-  language="json"
+  text={PyCode}
+  startMarker="# START Collections TwoWay Category1"
+  endMarker="# END Collections TwoWay Category1"
+  language="python"
 />
 
-`JeopardyCategory` class:
-```json
-    {
-        "class": "JeopardyCategory",
-        "description": "A Jeopardy! category",
-        "properties": [
-            {"name": "title", "dataType": ["text"]},
-            // highlight-start
-            {
-                 "name": "hasQuestion",
-                "dataType": ["JeopardyQuestion"],
-                "description": "Question in this category"
-            }
-            // highlight-end
-        ]
-    }
-```
+
+`JeopardyQuestion` collection:
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START Collections TwoWay Question"
+  endMarker="# END Collections TwoWay Question"
+  language="python"
+/>
+
+Update `JeopardyCategory` to add the reference to `JeopardyQuestion`:
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START Collections TwoWay Category2"
+  endMarker="# END Collections TwoWay Category2"
+  language="python"
+/>
+
 
 To set up a two-way cross-reference between two objects, set each cross-reference in turn:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# TwoWay Python"
-    endMarker="# END TwoWay Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# TwoWay Python"
+      endMarker="# END TwoWay Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# TwoWay Python"
+      endMarker="# END TwoWay Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// TwoWay TS"
-    endMarker="// END TwoWay TS"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// TwoWay TS"
+      endMarker="// END TwoWay TS"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -221,25 +234,31 @@ To add a one-to-many cross-reference relationship, add to the source object each
 For example, to mark that the "San Francisco" Q&A belongs to multiple categories, e.g. "US. CITIES" and "MUSEUMS":
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# Multiple Python"
-    endMarker="# END Multiple Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# Multiple Python"
+      endMarker="# END Multiple Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Multiple Python"
+      endMarker="# END Multiple Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// Multiple TS"
-    endMarker="// END Multiple TS"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Multiple TS"
+      endMarker="// END Multiple TS"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -269,25 +288,31 @@ Deleting a cross-reference requires specifying the parameters that define the cr
 To delete a cross-reference, specify the class, id and cross-reference property name of the source object, and the class and id of the target object:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# Delete Python"
-    endMarker="# END Delete Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# Delete Python"
+      endMarker="# END Delete Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Delete Python"
+      endMarker="# END Delete Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// Delete TS"
-    endMarker="// END Delete TS"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Delete TS"
+      endMarker="// END Delete TS"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -320,25 +345,31 @@ If an object is deleted, cross-references to it will be left intact. A [Get quer
 To update the cross-references stored in a property of an object, specify the object's UUID, class name and cross-references property name, as well as the new list of cross-referenced UUIDs and their class (if all objects are of the same class) or classes (one class per each UUID):
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# Update Python"
-    endMarker="# END Update Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# Update Python"
+      endMarker="# END Update Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Update Python"
+      endMarker="# END Update Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// Update TS"
-    endMarker="// END Update TS"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Update TS"
+      endMarker="// END Update TS"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
