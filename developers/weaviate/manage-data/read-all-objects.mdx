@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read-all-objects.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read-all-objects_test.go';
@@ -49,9 +50,18 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
 
 <Tabs groupId="languages">
 
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START ReadAllProps"
+      endMarker="# END ReadAllProps"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# Retrieve data"
       endMarker="# Use this function to retrieve data"
       language="py"
@@ -91,22 +101,33 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
 You can fetch the existing class definition like this:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# START FetchClassDefinition"
-    endMarker="# END FetchClassDefinition"
-    language="py"
-  />
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START COMING SOON"
+      endMarker="# END COMING SOON"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FetchClassDefinition"
+      endMarker="# END FetchClassDefinition"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// START FetchClassDefinition"
-    endMarker="// END FetchClassDefinition"
-    language="ts"
-  />
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FetchClassDefinition"
+      endMarker="// END FetchClassDefinition"
+      language="ts"
+    />
   </TabItem>
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -115,6 +136,7 @@ You can fetch the existing class definition like this:
       language="java"
     />
   </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -132,22 +154,33 @@ And then restore to a target instance, by:
 - Then streaming the objects from the source instance to the target instance using batch imports.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# Restore to a new (target) instance"
-    endMarker="# Finished restoring to the target instance"
-    language="py"
-  />
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START COMING SOON"
+      endMarker="# END COMING SOON"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Restore to a new (target) instance"
+      endMarker="# Finished restoring to the target instance"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// Restore to a new (target) instance"
-    endMarker="// Finished restoring to the target instance"
-    language="ts"
-  />
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Restore to a new (target) instance"
+      endMarker="// Finished restoring to the target instance"
+      language="ts"
+    />
   </TabItem>
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -156,6 +189,7 @@ And then restore to a target instance, by:
       language="java"
     />
   </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
@@ -172,22 +206,33 @@ And then restore to a target instance, by:
 Putting the pieces together, the example code retrieves the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and uses them to populate the database at `https://anon-endpoint.weaviate.network`:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# CursorExample"
-    endMarker="# END CursorExample"
-    language="py"
-  />
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START COMING SOON"
+      endMarker="# END COMING SOON"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CursorExample"
+      endMarker="# END CursorExample"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// CursorExample"
-    endMarker="// END CursorExample"
-    language="ts"
-  />
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CursorExample"
+      endMarker="// END CursorExample"
+      language="ts"
+    />
   </TabItem>
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -196,6 +241,7 @@ Putting the pieces together, the example code retrieves the `WineReview` class d
       language="java"
     />
   </TabItem>
+
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
