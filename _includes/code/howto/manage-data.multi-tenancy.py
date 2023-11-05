@@ -3,18 +3,16 @@
 import weaviate
 import os
 
-client = weaviate.Client(
-    'http://localhost:8080',
-    # auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
-    additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+client = weaviate.connect_to_local(
+    port=8080,
+    grpc_port=50051,
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
 )
 
-class_name = 'MultiTenancyClass'  # aka JeopardyQuestion
-
-if client.schema.exists(class_name):
-    client.schema.delete_class(class_name)
+if client.collections.exists("MultiTenancyCollection"):
+    client.collections.delete("MultiTenancyCollection")
 
 
 # ================================
@@ -22,22 +20,31 @@ if client.schema.exists(class_name):
 # ================================
 
 # START AddTenantsToClass
-from weaviate import Tenant
+import weaviate.classes as wvc
 
-client.schema.create_class({
-    'class': 'MultiTenancyClass',
-    'multiTenancyConfig': {'enabled': True}
-})
-
-client.schema.add_class_tenants(
-  class_name='MultiTenancyClass',  # The class to which the tenants will be added
-  tenants=[Tenant(name='tenantA'), Tenant(name='tenantB')]
+multi_collection = client.collections.create(
+    name="MultiTenancyCollection",
+    # Enable multi-tenancy on the new collection
+    # highlight-start
+    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
+    # highlight-end
 )
+
+# Add two tenants to the collection
+# highlight-start
+multi_collection.tenants.create(
+    tenants=[
+        wvc.Tenant(name="tenantA"),
+        wvc.Tenant(name="tenantB"),
+    ]
+)
+# highlight-end
 # END AddTenantsToClass
 
 # Test
-the_class = client.schema.get(class_name)
-assert the_class['multiTenancyConfig'] == {'enabled': True}
+multi_collection = client.collections.get("MultiTenancyCollection")
+multi_config=multi_collection.config.get()
+assert multi_config.multi_tenancy_config.enabled == True
 
 
 # ===================================
@@ -45,31 +52,35 @@ assert the_class['multiTenancyConfig'] == {'enabled': True}
 # ===================================
 
 # START ListTenants
-tenants = client.schema.get_class_tenants(
-    class_name='MultiTenancyClass'  # The class from which the tenants will be retrieved
-)
+multi_collection = client.collections.get("MultiTenancyCollection")
+# highlight-start
+tenants = multi_collection.tenants.get()
+# highlight-end
+
+print (tenants)
 # END ListTenants
 
 # Test
-assert Tenant(name='tenantA') in tenants
-assert Tenant(name='tenantB') in tenants
+assert "tenantA" in tenants
+assert "tenantB" in tenants
 
 # =======================================
 # ===== Remove tenants from a class =====
 # =======================================
 
 # START RemoveTenants
-client.schema.remove_class_tenants(
-    class_name='MultiTenancyClass',  # The class from which the tenants will be removed
-    # highlight-start
-    tenants=['tenantB', 'tenantX']  # The tenants to be removed. tenantX will be ignored.
-    # highlight-end
-)
+multi_collection = client.collections.get("MultiTenancyCollection")
+
+# Remove a list of tenants - tenantX will be ignored.
+# highlight-start
+multi_collection.tenants.remove(["tenantB", "tenantX"])
+# highlight-end
 # END RemoveTenants
 
 # Test
-tenants = client.schema.get_class_tenants(class_name)
-assert tenants == [Tenant(name='tenantA')]
+tenants = multi_collection.tenants.get()
+assert "tenantA" in tenants
+assert ("tenantB" in tenants) == False
 
 
 # ============================
@@ -77,20 +88,24 @@ assert tenants == [Tenant(name='tenantA')]
 # ============================
 
 # START CreateMtObject
-object_id = client.data_object.create(
-      class_name='MultiTenancyClass',  # The class to which the object will be added
-      data_object={
-          'question': 'This vector DB is OSS & supports automatic property type inference on import'
-      },
-      # highlight-start
-      tenant='tenantA'  # The tenant to which the object will be added
-      # highlight-end
+multi_collection = client.collections.get("MultiTenancyCollection")
+
+# Get collection specific to the required tenant
+# highlight-start
+multi_tenantA = multi_collection.with_tenant("tenantA")
+# highlight-end
+
+# Insert an object to tenantA
+object_id = multi_tenantA.data.insert(
+    properties={
+        "question": "This vector DB is OSS & supports automatic property type inference on import"
+    }
 )
 # END CreateMtObject
 
 # Test
-result = client.data_object.get(object_id, class_name=class_name, tenant='tenantA')
-assert result['tenant'] == 'tenantA'
+result = multi_tenantA.query.fetch_object_by_id(object_id)
+assert result != None
 
 
 # =====================
@@ -98,47 +113,68 @@ assert result['tenant'] == 'tenantA'
 # =====================
 
 # START Search
-result = (
-    client.query.get('MultiTenancyClass', ['question'])
-    # highlight-start
-    .with_tenant('tenantA')
-    # highlight-end
-    .do()
+import weaviate.classes as wvc
+
+multi_collection = client.collections.get("MultiTenancyCollection")
+
+# Get collection specific to the required tenant
+# highlight-start
+multi_tenantA = multi_collection.with_tenant("tenantA")
+# highlight-end
+
+# Query tenantA
+# highlight-start
+result = multi_tenantA.query.fetch_objects(
+    limit=2,
+    filters=wvc.Filter("question").like("This vector*")
 )
+# highlight-end
+print (result.objects[0].properties)
 # END Search
 
 # Test
-assert 'question' in result['data']['Get'][class_name][0]
+assert 'question' in result.objects[0].properties
 
 
 # ===============================
 # ===== Add cross-reference =====
 # ===============================
 
-category_id = client.data_object.create(
-      class_name='JeopardyCategory',
-      data_object={
-          'category': 'Software'
-      },
+jeopardy = client.collections.get("JeopardyCategory")
+category_id = jeopardy.data.insert(
+    properties={
+        "category": "Software"
+    }
 )
 
 # START AddCrossRef
-# Add the cross-reference property to the multi-tenancy class
-client.schema.property.create('MultiTenancyClass', {
-    'name': 'hasCategory',
-    'dataType': ['JeopardyCategory'],
-})
+import weaviate.classes as wvc
 
-client.data_object.reference.add(
-    from_uuid=object_id,  # MultiTenancyClass object id (a Jeopardy question)
-    from_class_name='MultiTenancyClass',
-    from_property_name='hasCategory',
-    tenant='tenantA',
-    to_class_name='JeopardyCategory',
-    to_uuid=category_id
+multi_collection = client.collections.get("MultiTenancyCollection")
+# Add the cross-reference property to the multi-tenancy class
+multi_collection.config.add_property(
+    wvc.ReferenceProperty(
+        name="hasCategory",
+        target_collection="JeopardyCategory"
+    )
+)
+
+# Get collection specific to the required tenant
+# highlight-start
+multi_tenantA = multi_collection.with_tenant(tenant="tenantA")
+# highlight-end
+
+# Add reference from MultiTenancyCollection object to a JeopardyCategory object
+# highlight-start
+multi_tenantA.data.reference_add(
+# highlight-end
+    from_uuid=object_id,  # MultiTenancyCollection object id (a Jeopardy question)
+    from_property="hasCategory",
+    ref=wvc.Reference.to(category_id) # JeopardyCategory id
 )
 # END AddCrossRef
 
 # Test
-result = client.data_object.get(object_id, class_name=class_name, tenant='tenantA')
-assert result['properties']['hasCategory'][0]['href'] == f'/v1/objects/JeopardyCategory/{category_id}'
+result = multi_tenantA.query.fetch_object_by_id(object_id)
+
+assert (result.properties["hasCategory"][0]["href"] == f"/v1/objects/JeopardyCategory/{category_id}")
