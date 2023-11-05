@@ -7,7 +7,6 @@ import os
 
 import weaviate
 import weaviate.classes as wvc
-import json
 
 # client = weaviate.Client(
 #     'https://edu-demo.weaviate.network',  # Replace with your Weaviate URL
@@ -23,25 +22,27 @@ client = weaviate.connect_to_wcs(
 # =======================
 
 # ReadObject START
-jeopardy = client.collections("JeopardyQuestion")
+jeopardy = client.collections.get("JeopardyQuestion")
 
 # highlight-start
 data_object = jeopardy.query.fetch_object_by_id("00ff6900-e64f-5d94-90db-c8cfa3fc851b")
 # highlight-end
 
-print(json.dumps(data_object, indent=2))
+print(data_object.properties)
 # ReadObject END
 
 # Test
-assert data_object['properties']['answer'] == 'San Francisco'
+assert data_object.properties['answer'] == 'San Francisco'
 
 
 # ===================================
 # ===== Read object with vector =====
 # ===================================
 
+# TODOv4 -  include_vector
+
 # ReadObjectWithVector START
-jeopardy = client.collections("JeopardyQuestion")
+jeopardy = client.collections.get("JeopardyQuestion")
 
 data_object = jeopardy.query.fetch_object_by_id(
     "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
@@ -50,11 +51,11 @@ data_object = jeopardy.query.fetch_object_by_id(
     # highlight-end
 )
 
-print(json.dumps(data_object, indent=2))
+print(data_object.metadata.vector)
 # ReadObjectWithVector END
 
 # Test
-assert len(data_object['vector']) == 1536
+assert len(data_object.metadata.vector) == 1536
 
 # ==================================
 # ===== Check object existence =====

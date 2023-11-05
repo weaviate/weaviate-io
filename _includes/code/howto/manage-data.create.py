@@ -113,7 +113,7 @@ assert result["properties"] == {
 # ===========================
 
 # ValidateObject START
-# Validate is not supported with the Weaviate Python client v4
+# Validate is currently not supported with the Weaviate Python client v4
 # ValidateObject END
 
 # ValidateObject-TODO START
