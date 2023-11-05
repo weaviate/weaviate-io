@@ -10,7 +10,8 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
@@ -54,9 +55,18 @@ Code examples are shown below in which the tenants `tenantA` and `tenantB` are a
 <!-- TODO: Add TS/Go/Java examples -->
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START AddTenantsToClass"
+      endMarker="# END AddTenantsToClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START AddTenantsToClass"
       endMarker="# END AddTenantsToClass"
       language="py"
@@ -98,9 +108,18 @@ To list existing tenants in a class, you must provide the Weaviate class name.
 Code examples are shown below for listing the existing tenants in the `MultiTenancyClass` class:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START ListTenants"
+      endMarker="# END ListTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START ListTenants"
       endMarker="# END ListTenants"
       language="py"
@@ -143,9 +162,18 @@ If a tenant specified for deletion doesn't belong to the class, it is ignored.
 
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START RemoveTenants"
+      endMarker="# END RemoveTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START RemoveTenants"
       endMarker="# END RemoveTenants"
       language="py"
@@ -200,9 +228,18 @@ If multi-tenancy is enabled, you must provide the tenant name to Weaviate in eac
 Code examples are shown below for creating an object in the `MultiTenancyClass` class:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START CreateMtObject"
+      endMarker="# END CreateMtObject"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START CreateMtObject"
       endMarker="# END CreateMtObject"
       language="py"
@@ -247,9 +284,18 @@ If multi-tenancy is enabled, you must provide the tenant name to Weaviate in eac
 Code examples are shown below for fetching one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START Search"
+      endMarker="# END Search"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START Search"
       endMarker="# END Search"
       language="py"
@@ -296,9 +342,18 @@ You can establish a cross-reference from a multi-tenancy class object to:
 The example below creates a cross-reference between two objects. It links an object in the `MultiTenancyClass` class that belongs to `tenantA`, to an object in the `JeopardyCategory` class:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START AddCrossRef"
+      endMarker="# END AddCrossRef"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START AddCrossRef"
       endMarker="# END AddCrossRef"
       language="py"

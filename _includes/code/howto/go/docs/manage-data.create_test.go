@@ -64,7 +64,7 @@ func Test_ManageDataCreate(t *testing.T) {
 			WithProperties(map[string]interface{}{
 				"question": "This vector DB is OSS and supports automatic property type inference on import",
 				// "answer": "Weaviate", // schema properties can be omitted
-				"somePropNotInTheSchema": 123, // will be automatically added as a number property
+				"newProperty": 123, // will be automatically added as a number property
 			}).
 			Do(ctx)
 
