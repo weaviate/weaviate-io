@@ -73,7 +73,7 @@ It allows us to decrease the number of allocations that need to be made. We now 
   <summary>Rescoring for Recall Performance</summary>
 
 <p>
-We’ve also improved recall by adding PQ rescoring efficiently to avoid any deterioration in performance. At first, when we calculate nearest neighbour distances, we only use compressed vector representations, this helps reduce memory requirements. However this distance might be inaccurate due to the distortion introduced by the lossy nature of PQ compression. This small distortion could affect the order/ranking of the vectors in the retrieved set which in turn affects the quality and relevance of the search results. To correct for this, we fetch from disk the uncompressed representation of all vectors in the final retrieved set, recalculate the distances to the query vector, and resort the list. After this rescoring phase we are then ready to respond to the query.
+We’ve also improved recall by adding PQ rescoring efficiently to avoid any deterioration in performance. At first, when we calculate nearest neighbor distances, we only use compressed vector representations, this helps reduce memory requirements. However this distance might be inaccurate due to the distortion introduced by the lossy nature of PQ compression. This small distortion could affect the order/ranking of the vectors in the retrieved set which in turn affects the quality and relevance of the search results. To correct for this, we fetch from disk the uncompressed representation of all vectors in the final retrieved set, recalculate the distances to the query vector, and resort the list. After this rescoring phase we are then ready to respond to the query.
 <br/><br/>
 Additionally, with the introduction of rescoring, detailed above, we no longer need to support having more than 256 centroids - based on our testing one byte per code should be more than enough. We use this to optimize the codebook and gain performance by allowing the compiler to inline the extract/put code. We also don’t need to cast bytes into `uint64` anymore since the size is fixed.
 </p>
@@ -368,6 +368,6 @@ That's it from us - we hope you enjoy the new features and improvements in Weavi
 
 Thanks for reading, and see you next time 👋!
 
-import WhatNext from '/_includes/what-next.mdx'
+import WhatNextBlog from '/_includes/what-next-blog.mdx'
 
-<WhatNext />
+<WhatNextBlog />

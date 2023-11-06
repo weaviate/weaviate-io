@@ -16,12 +16,20 @@
     },
     "files.trimTrailingWhitespace": true,
     "cSpell.words": [
+     "autocut",
      "childname",
+     "codebook",
+     "Etienne",
      "HNSW",
+     "memtable",
+     "multimodal",
      "OIDC",
      "openai",
      "proto",
      "Pythonic",
+     "rescoring",
+     "sharded",
+     "stopwords",
      "supersecuresecret",
      "upvote"
     ]
