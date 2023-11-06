@@ -55,13 +55,13 @@
       },
       {
         "link": "/learn/workshops",
-        "type": "Workshop",
-        "backgroundImage": "/img/site/Zain-workshop.jpg",
-        "tagline": "Workshop: Introduction to Weaviate",
-        "photo": "avatar_zain.png",
-        "name": "Zain Hasan",
-        "title": "Senior Dev Advocate",
-        "date": "Oct 04, 2023"
+        "type": "Weekly Workshops",
+        "backgroundImage": "/img/site/Duda-workshop.jpg",
+        "tagline": "Introduction to Weaviate, Demo and Q&A",
+        "photo": "avatar_duda.png",
+        "name": "Duda Nogueira",
+        "title": "Community Tech Support",
+        "date": "Nov 08, 2023"
       }
     ]
   }
