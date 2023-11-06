@@ -50,10 +50,10 @@ import weaviate
 import os
 
 client = weaviate.WeaviateClient(
-    weaviate.ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
+    weaviate.ConnectionParams.from_url("http://localhost:8080", 50051),
     auth_client_secret=weaviate.AuthClientPassword(
-        username=os.environ["WCS_USERNAME"],
-        password=os.environ["WCS_PASSWORD"]
+        username=os.environ["MY_USERNAME"],
+        password=os.environ["MY_PASSWORD"]
     )
 )
 # END DirectInstantiationWithOIDC

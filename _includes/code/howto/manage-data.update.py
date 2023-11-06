@@ -6,75 +6,74 @@ import os
 # ================================
 
 import weaviate
+import weaviate.classes as wvc
+import json
 
-# Instantiate the client with the user/password and OpenAI api key
-client = weaviate.Client(
-    'http://localhost:8080',  # Replace with your Weaviate URL
-    # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),  # Replace w/ your Weaviate API key
-    additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
+# Instantiate the client with the OpenAI API key
+client = weaviate.connect_to_local(
+    port=8080,
+    grpc_port=50051,
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
 )
-
-class_name = 'JeopardyQuestion'
-
 
 # ============================
 # ===== Define the class =====
 # ============================
 
-class_definition = {
-    'class': 'JeopardyQuestion',
-    'description': 'A Jeopardy! question',
-    'vectorizer': 'text2vec-openai',
-}
-
-
 # Clean slate
-if client.schema.exists('JeopardyQuestion'):
-    client.schema.delete_class('JeopardyQuestion')
+if client.collections.exists("JeopardyQuestion"):
+    client.collections.delete("JeopardyQuestion")
 
-client.schema.create_class(class_definition)
-
+client.collections.create(
+    name="JeopardyQuestion",
+    description="A Jeopardy! question",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
+)
 
 # =============================
 # ===== Update properties =====
 # =============================
 
 # UpdateProps START
-uuid = '...'  # replace with the id of the object you want to update
+uuid = "..."  # replace with the id of the object you want to update
+
 # UpdateProps END
 
-uuid = client.data_object.create({
-    'question': 'Test question',
-    'answer': 'Test answer',
-    'points': -1,
-}, 'JeopardyQuestion')
+jeopardy = client.collections.get("JeopardyQuestion")
+
+uuid = jeopardy.data.insert({
+    "question": "Test question",
+    "answer": "Test answer",
+    "points": -1,
+})
 
 # UpdateProps START
-client.data_object.update(
+jeopardy = client.collections.get("JeopardyQuestion")
+jeopardy.data.update(
     uuid=uuid,
-    class_name='JeopardyQuestion',
-    data_object={
-        'points': 100,
-    },
+    # highlight-start
+    properties={
+        "points": 100,
+    }
+    # highlight-end
 )
 # UpdateProps END
 
 # Test
-result = client.data_object.get_by_id(uuid, class_name=class_name)
-assert result['properties']['points'] == 100
-
+result = jeopardy.query.fetch_object_by_id(uuid)
+assert result.properties["points"] == 100
 
 # =========================
 # ===== Update vector =====
 # =========================
 # UpdateVector START
-client.data_object.update(
+jeopardy = client.collections.get("JeopardyQuestion")
+jeopardy.data.update(
     uuid=uuid,
-    class_name='JeopardyQuestion',
-    data_object={
-        'points': 100,
+    properties={
+        "points": 100,
     },
     # highlight-start
     vector=[0.12345] * 1536
@@ -83,33 +82,29 @@ client.data_object.update(
 # UpdateVector END
 
 # Test
-result = client.data_object.get_by_id(uuid, class_name=class_name, with_vector=True)
-assert set(result['vector']) == {0.12345}
+result = jeopardy.query.fetch_object_by_id(uuid, include_vector=True)
+assert set(result.metadata.vector) == {0.12345}
 
 
 # ==========================
 # ===== Replace object =====
 # ==========================
 # Replace START
-uuid = '...'  # the id of the object you want to replace
-# Replace END
-uuid = result['id']
-# Replace START
+jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
-client.data_object.replace(
+jeopardy.data.replace(
 # highlight-end
     uuid=uuid,
-    class_name='JeopardyQuestion',
-    data_object={
-        'answer': 'Replaced',
+    properties={
+        "answer": "Replaced",
         # The other properties will be deleted
     },
 )
 # Replace END
 
 # Test
-result = client.data_object.get_by_id(uuid, class_name=class_name, with_vector=True)
-assert result['properties'] == {'answer': 'Replaced'}  # ensure the other props were deleted
+result = jeopardy.query.fetch_object_by_id(uuid)
+assert result.properties == {"answer": "Replaced"}  # ensure the other props were deleted
 
 
 # =============================
@@ -118,25 +113,36 @@ assert result['properties'] == {'answer': 'Replaced'}  # ensure the other props 
 
 # DelProps START
 from typing import List
-from weaviate import Client
+from weaviate import WeaviateClient
 
-def del_props(client: Client, uuid: str, class_name: str, prop_names: List[str]) -> None:
-    object_data = client.data_object.get(uuid, class_name=class_name)
+def del_props(client: WeaviateClient, uuid_to_update: str, collection_name: str, prop_names: List[str]) -> None:
+    collection = client.collections.get(collection_name)
+
+    # fetch the object to update
+    object_data = collection.query.fetch_object_by_id(uuid_to_update)
+    properties_to_update = object_data.properties
+
+    # remove unwanted properties
     for prop_name in prop_names:
-        if prop_name in object_data["properties"]:
-            del object_data["properties"][prop_name]
-    client.data_object.replace(object_data["properties"], class_name, uuid)
+        if prop_name in properties_to_update:
+            del properties_to_update[prop_name]
+
+    # replace the properties
+    collection.data.replace(
+        uuid=uuid_to_update,
+        properties=properties_to_update
+    )
 
 
-uuid = '...'  # replace with the id of the object you want to delete properties from
+uuid = "..."  # replace with the id of the object you want to delete properties from
 # DelProps END
 
-uuid = result['id']  # Actually get the ID for testing
+uuid = result.metadata.uuid  # Get the ID for testing
 
 # DelProps START
-del_props(client, uuid, 'JeopardyQuestion', ['answer'])
+del_props(client, uuid, "JeopardyQuestion", ["answer"])
 # DelProps END
 
 # Test
-result = client.data_object.get_by_id(uuid, class_name=class_name, with_vector=True)
-assert result['properties'] == {}
+result = jeopardy.query.fetch_object_by_id(uuid)
+assert result.properties == {}

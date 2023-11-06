@@ -8,7 +8,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.import-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
@@ -67,34 +68,39 @@ The easiest way to use gRPC batch imports is to use the [`v4` Python client](../
 ### Notes
 
 - On supported clients, you can also configure the batch parameters.
-- For multi-tenancy classes, you can specify the tenant name.
+- For multi-tenancy collections, you can specify the tenant name.
 - Some clients can be configured for auto-flushing.
 
 ## Basic batch import example
 
-The following example will add objects to `YourClassName` class using a batch import.
+The following example will add objects to `YourName` collection using a batch import.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BasicBatchImportExample"
+      endMarker="# END BasicBatchImportExample"
+      language="py"
+    />
+  </TabItem>
 
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# BasicBatchImportExample"
-    endMarker="# END BasicBatchImportExample"
-    language="py"
-  />
-
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# BasicBatchImportExample"
+      endMarker="# END BasicBatchImportExample"
+      language="py"
+    />
   </TabItem>
 
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// BasicBatchImportExample"
-    endMarker="// END BasicBatchImportExample"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// BasicBatchImportExample"
+      endMarker="// END BasicBatchImportExample"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -116,8 +122,8 @@ The following example will add objects to `YourClassName` class using a batch im
   </TabItem>
 </Tabs>
 
-:::info Where is the class definition?
-In this example, if the class `YourClassName` does not already exist, it will be created by Weaviate with its [auto-schema](../configuration/schema-configuration.md#auto-schema) feature.
+:::info Where is the collection definition?
+In this example, if the collecion `YourName` does not already exist, it will be created by Weaviate with its [auto-schema](../configuration/schema-configuration.md#auto-schema) feature.
 :::
 
 
@@ -127,29 +133,34 @@ The following does not apply to cross-references.
 
 ### `id`
 
-You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, leave it blank to have Weaviate generate one. You can also use a deterministic UUID (UUIDv5) as shown here to [prevent duplicates](#managing-potential-duplication).
+You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, or leave it blank to have Weaviate generate one. You can also use a deterministic UUID (UUIDv5) as shown here to [prevent duplicates](#managing-potential-duplication).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BatchImportWithIDExample"
+      endMarker="# END BatchImportWithIDExample"
+      language="py"
+    />
+  </TabItem>
 
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# BatchImportWithIDExample"
-    endMarker="# END BatchImportWithIDExample"
-    language="py"
-  />
-
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# BatchImportWithIDExample"
+      endMarker="# END BatchImportWithIDExample"
+      language="py"
+    />
   </TabItem>
 
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// BatchImportWithIDExample"
-    endMarker="// END BatchImportWithIDExample"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// BatchImportWithIDExample"
+      endMarker="// END BatchImportWithIDExample"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -176,26 +187,31 @@ You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_un
 You can optionally specify a vector to represent each object. Otherwise, Weaviate will follow the relevant vectorizer setting.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BatchImportWithVectorExample"
+      endMarker="# END BatchImportWithVectorExample"
+      language="py"
+    />
+  </TabItem>
 
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# BatchImportWithVectorExample"
-    endMarker="# END BatchImportWithVectorExample"
-    language="py"
-  />
-
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# BatchImportWithVectorExample"
+      endMarker="# END BatchImportWithVectorExample"
+      language="py"
+    />
   </TabItem>
 
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// BatchImportWithVectorExample"
-    endMarker="// END BatchImportWithVectorExample"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// BatchImportWithVectorExample"
+      endMarker="// END BatchImportWithVectorExample"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="java" label="Java">
@@ -228,7 +244,7 @@ You can set batch parameters using the `client.batch.configure` function.
 The following example specifies a batch size of 200 and parallelizes the import process with up to 2 threads:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# ConfigureBatchImportExample"
   endMarker="# END ConfigureBatchImportExample"
   language="py"
@@ -310,19 +326,21 @@ You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthe
 
 You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
 
-:::info IDs unique to each class and tenants
-[Classes](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different classes and/or tenants.
+:::info IDs unique to each collection and tenants
+[Collections](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different collections and/or tenants.
 :::
 
 ## Tip: Stream data from large files
 
 A good practice for importing large datasets is to stream the input file rather than risking running out of memory by loading it all at once. For Python, this can be achieved with libraries like [ijson](https://pypi.org/project/ijson/) for JSON files and [pandas for CSV files](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html). For Node, a streams-based solution is presented below.
 
+<!-- TODOv4: update Python - JSON and CSV with v4 code -->
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python - JSON">
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# START JSON streaming"
     endMarker="# END JSON streaming"
     language="py"
@@ -332,7 +350,7 @@ A good practice for importing large datasets is to stream the input file rather 
   <TabItem value="pycsv" label="Python - CSV">
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# START CSV streaming"
     endMarker="# END CSV streaming"
     language="py"

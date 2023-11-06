@@ -1,11 +1,11 @@
-You can delete any unwanted class(es), along with the data that they contain.
+You can delete any unwanted collection(s), along with the data that they contain.
 
-:::caution Deleting a class == Deleting its objects
-Know that **deleting a class will also delete all associated objects**!
+:::caution Deleting a collection == Deleting its objects
+Know that **deleting a collection will also delete all associated objects**!
 
 Do not do this to a production database, or anywhere where you do not wish to delete your data.
 
-Run the code below to delete the relevant class and its objects.
+Run the code below to delete the relevant collection and its objects.
 :::
 
 import Tabs from '@theme/Tabs';
@@ -19,11 +19,19 @@ import TabItem from '@theme/TabItem';
 ```
 
 </TabItem> */}
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 
 ```python
-# delete class "YourClassName" - THIS WILL DELETE ALL DATA IN THIS CLASS
-client.schema.delete_class("YourClassName")  # Replace with your class name - e.g. "Question"
+# delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
+client.collections.delete("Article")  # Replace with your collection name
+```
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
+
+```python
+# delete class "Article" - THIS WILL DELETE ALL DATA IN THIS CLASS
+client.schema.delete_class("Article")  # Replace with your class name
 ```
 
 </TabItem>

@@ -51,10 +51,14 @@ Note that you will need the corresponding gRPC port to be open on your Weaviate 
 
 You can instantiate the client using one of multiple methods. For example, you can use one of the following helper `connect` functions:
 
-- `weaviate.connect_to_wcs()`
+<!-- - `weaviate.connect_to_wcs()` -->
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
+
+:::note WCS not yet compatible
+Currently, WCS instances cannot be used with the `v4` client as they lack gRPC support. We are working on adding WCS support, and ask for your patience in the meantime.
+:::
 
 Or, you can instantiate a `weaviate.WeaviateClient` object directly.
 
@@ -67,14 +71,14 @@ For example, you can connect to a local instance like this:
   language="py"
 />
 
-Or connect to a Weaviate Cloud Services (WCS) instance like this:
+<!-- Or connect to a Weaviate Cloud Services (WCS) instance like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# WCSInstantiation"
   endMarker="# END WCSInstantiation"
   language="py"
-/>
+/> -->
 
 Or instantiate a client directly like this:
 
@@ -111,14 +115,16 @@ You can also set timeout values for the client as a tuple  (connection timeout &
 
 ### Authentication
 
-Some helper `connect` functions allow you to pass on authentication credentials. For example, the `connect_to_wcs` method allows for a WCS api key to be passed in.
+Some helper `connect` functions allow you to pass on authentication credentials.
+
+<!-- For example, the `connect_to_wcs` method allows for a WCS api key to be passed in.
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# WCSInstantiation"
   endMarker="# END WCSInstantiation"
   language="py"
-/>
+/> -->
 
 For authentication workflows not supported by the helper functions, you can pass on authentication credentials directly when instantiating the `WeaviateClient` object.
 
@@ -131,14 +137,14 @@ For example, you can pass on OIDC username and password like this:
   language="py"
 />
 
-Or, you can pass the WCS API key like this:
+<!-- Or, you can pass the WCS API key like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# DirectInstantiationWithAPIKey"
   endMarker="# END DirectInstantiationWithAPIKey"
   language="py"
-/>
+/> -->
 
 The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
 

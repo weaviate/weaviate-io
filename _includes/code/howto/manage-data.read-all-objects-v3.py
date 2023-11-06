@@ -1,56 +1,17 @@
 # CursorExample
-import weaviate
-
-# Instantiate the client with the OpenAI API key
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-)
-
-# START ReadAllProps
-collection = client.collections.get("YourName")
-
-# highlight-start
-for item in collection.iterator():
-# highlight-end
-    print(item.properties)
-# END ReadAllProps
-
-# TODOv4 - make sure collection.iterator can take include_vector
-
-# START ReadAllVectors
-collection = client.collections.get("YourName")
-
-for item in collection.iterator(
-    # highlight-start
-    include_vector=True
-    # highlight-end
-):
-    print(item.properties)
-    print(item.vector)
-# END ReadAllVectors
-
-# START COMING SOON
-# The example is coming soon
-"Work in progress 👷🏻"
-# END COMING SOON
-
-
-
-
-
-
-
 # Retrieve data
 import weaviate
 
-source_client = weaviate.connect_to_local(
-    # url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    # auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
+source_client = weaviate.Client(
+    url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
+    auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
 )
 
+batch_size = 20
 class_name = "WineReview"
 class_properties = ["title"]
+cursor = None
+
 
 def get_batch_with_cursor(client, class_name, class_properties, batch_size, cursor=None):
 
