@@ -202,8 +202,8 @@ Hybrid searches can be ‘weighted’ to give more weight to the vector or keywo
 
 ## Fusion algorithms
 
-![Hybrid relativeScoreFusion algorithm depicted as two judges holding up two scores](../2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_dark.png#gh-dark-mode-only)
-![Hybrid relativeScoreFusion algorithm depicted as two judges holding up two scores](../2023-07-11-weaviate-1-20-release/img/Weaviate-release-1-20_hybrid_merger_light.png#gh-light-mode-only)
+![Hybrid relativeScoreFusion algorithm depicted as two judges holding up two scores](../../_includes/release-note-summaries/core-1-20-img/Weaviate-release-1-20_hybrid_merger_dark.png#gh-dark-mode-only)
+![Hybrid relativeScoreFusion algorithm depicted as two judges holding up two scores](../../_includes/release-note-summaries/core-1-20-img/Weaviate-release-1-20_hybrid_merger_light.png#gh-light-mode-only)
 
 Each of the two (vector and keyword) searches returns a set of results with its own scores. These scores are then handed over to the selected fusion algorithm. A job of the fusion algorithm is to prepare the scores from each search to be compatible with each other, so that they can be weighted and added up and presented to the user.
 

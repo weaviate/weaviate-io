@@ -17,6 +17,7 @@
     "files.trimTrailingWhitespace": true,
     "cSpell.words": [
      "fector",
-     "HNSW"
+     "HNSW",
+     "OIDC"
     ]
 }

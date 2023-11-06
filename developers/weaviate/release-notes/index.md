@@ -7,16 +7,11 @@ image: og/docs/more-resources.jpg
 
 ### Weaviate core release summaries
 
-This section links to the release notes for major and minor releases of Weaviate core. For complete release notes, see the [Weaviate project on Github](https://github.com/weaviate/weaviate/releases).
-
-|Release|Release Date|
-|:--|:--|
-|[1.22.0](/developers/weaviate/release-notes/900_1_22)|2023-10-27|
-|[1.21.0](/developers/weaviate/release-notes/901_1_21)|2023-08-17|
+For recent major and minor releases of Weaviate core, see the blog pages listed in the table of contents at left. For older release notes, see the [blog pages at Weaviate.io](https://weaviate.io/blog/tags/release).
 
 ### Weaviate releases developer notes
 
-This section provides links to the developer release notes for the Weaviate core database and the client libraries.
+These are links to the [developer release notes](https://github.com/weaviate/weaviate/releases) for the Weaviate core database and the client libraries.
 
 import ReleasesChart from '/_includes/releases-chart.md';
 
