@@ -366,6 +366,11 @@ const siteRedirects = {
             to: "/products",
             from: "/partners"
           },
+           // Partners Off
+           {
+            to: "/products",
+            from: "/partnersOff"
+          },
             // Terms and Policies Changes
             {
                 to: "/service",
