@@ -62,9 +62,9 @@ Accordingly, such a `Get` query is not suitable for a substantive object retriev
 
 You can use `groupBy` to retrieve groups of objects from Weaviate. The `groupBy{}` argument is structured as follows for the `Get{}` function:
 
-:::info Single-level grouping only
-As of `1.19`, the `groupBy` `path` is limited to one property or cross-reference. Nested paths are current not supported.
-:::
+import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
+
+<GroupbyLimitations />
 
 ```graphql
 {
