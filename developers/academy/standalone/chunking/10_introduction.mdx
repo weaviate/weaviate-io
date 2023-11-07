@@ -2,9 +2,13 @@
 title: A brief introduction to chunking
 ---
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+<!-- import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+<img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+import PreviewUnit from '../../_snippets/preview.mdx'
+
+<PreviewUnit />
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;What is chunking?
 
@@ -22,13 +26,15 @@ While this is a simple concept, it can have a significant impact on the performa
 
 Let's go back to the above example, building a vector database from a set of books.
 
-At one extreme, you could catalog each book as one vector. This would build a database akin to a library catalog. Each search would do a good job of finding the right book. But it might not work so well for finding specific information within a book.
+At one extreme, you could catalog each book as one vector. This would build a database that's similar to a library catalog.
 
-At the other extreme, cataloging each sentence as a vector would build a database akin to a (sentence-level) thesaurus. This would be good for finding specific concepts or information conveyed by the writer. But it might not work so well for finding broader information, such as the idea conveyed by a book, or even a chapter.
+It would be good for finding books that are most similar to the query string. But because each vector captures a book, it is unlikely to be so useful for more granular tasks - like finding specific information within a book.
 
-Whether to choose one or the other approach, or a third approach in-between, depends on your use case.
+At the other extreme, you could catalog each sentence as a vector. This would build a database that's similar to a thesaurus - albeit, at a sentence level. This would be good for finding specific concepts or information conveyed by the writer. But it might not work so well for finding broader information, such as the idea conveyed by a book, or even a chapter.
 
-But the key point is that chunking defines the unit of information that is stored in the database, and therefore each unit of information to be retrieved.
+Whether to choose one or the other approach, or a third approach in-between, depends on your use case. And we'll talk more about some rules of thumb and key considerations later on.
+
+But the key point for now is that chunking defines the unit of information that is stored in the database, and therefore each unit of information to be retrieved.
 
 As we will see later on, this has implications not only search, but also retrieval augmented generation (RAG) use case downstream.
 
@@ -42,7 +48,7 @@ A typical "context window" of these models are in the order of thousands of "tok
 
 ### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;For optimal retrieval augmented generation (RAG)
 
-Chunking is also important for optimizing retrieval augmented generation, or RAG. If you need a refresher on what RAG is, you can review [this module](../../zero_to_mvp/104_queries_2/30_generative.mdx).
+Chunking is also important for optimizing retrieval augmented generation, or RAG. (If you need a refresher on what RAG is, you can review [this module](../../zero_to_mvp/104_queries_2/30_generative.mdx).)
 
 In short, RAG allows you to ground large language models (LLMs) by providing retrieved data from a database along with a prompt. This in turn can prevent the model from generating factually incorrect information due to outdated or missing data.
 
@@ -54,15 +60,19 @@ Let's consider what happens when you use a chunk size that is too small or too l
 
 Using short chunks, you can add information from more chunks to the LLM. However, it may lead to insufficient contextual information being passed on in each result to the LLM.
 
-Imagine passing the following as a chunk to the LLM: `This option adds a nice little ASCII graph showing your branch and merge history:`. This is short, but is probably not itself long enough to provide sufficient context for the LLM. What option? What branch? What merge history? The LLM would have to guess at the meaning of the sentence, and the results may not be very good.
+Imagine passing the following as a chunk to the LLM: `In the dense areas, most of the concentration is via medium- and high-rise buildings.`. This tells a lot about the nature of this area, but without further context it's not useful to the LLM. Where is this sentence about? Why are we talking about the density anyway? As a human reader, it's not clear at all to us, and it would be the same for the LLM, which would have to guess at these answers.
 
-Contrast that with instead passing: `The oneline and format option values are particularly useful with another log option called --graph. This option adds a nice little ASCII graph showing your branch and merge history: $ git log --pretty=format:"%h %s" --graph` as a chunk. This includes more contextual information to the LLM so that it can parse its meaning more accurately.
+Contrast that with instead passing: `Wikipedia: London: Architecture: In the dense areas, most of the concentration is via medium- and high-rise buildings. London's skyscrapers, such as 30 St Mary Axe (dubbed "The Gherkin"), Tower 42, the Broadgate Tower and One Canada Square, are mostly in the two financial districts, the City of London and Canary Wharf.` as a chunk.
+
+This includes more contextual information to the LLM, such as the source, article title, section title, and additional sentences. It is far clearer to us, and would be to the LLM as well.
 
 #### (Too) Large chunks
 
-Of course, at the other extreme, using chunks that are too large would reduce the number of chunks that can be passed to the LLM. And it may increase the portion of each chunk that includes irrelevant information.
+Of course, on the other hand, using larger chunks would mean fewer chunks would fit into the context window of the LLM, or incur additional costs. And it may increase the amount of irrelevant information in the data.
 
-At one extreme, imagine you could only pass one contiguous passage of text to the LLM. It would be like being asked to write an essay based only on one section of a book.
+Taking this to the logical conclusion, imagine you could only pass one contiguous passage of text to the LLM. It would be like being asked to write an essay based only on one section of a book.
+
+Either extremes are not ideal, and the trick is to find a balance that works for you.
 
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Chunk size selection
 
@@ -72,7 +82,7 @@ Unfortunately, there isn't a chunk size or chunking technique that works for eve
 
 In the next unit, we'll begin to review these ideas, starting with some common chunking techniques.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+<!-- ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
 
 <Quiz questions={varName} />
 
@@ -88,13 +98,13 @@ Try out ...
 
 :::info
 Add summary
-:::
+::: -->
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment />
 
-import Quiz from '/src/components/Academy/quiz.js'
+<!-- import Quiz from '/src/components/Academy/quiz.js'
 const varName = [{
   questionText: 'questionText',
   answerOptions: [
@@ -114,4 +124,4 @@ const varName = [{
       feedback: 'feedbackThree',
     },
   ]
-}];
+}]; -->
