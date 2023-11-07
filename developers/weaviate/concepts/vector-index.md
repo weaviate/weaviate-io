@@ -68,20 +68,28 @@ Note that the vector index type only specifies how the vectors of data objects a
 ## Can Weaviate support multiple vector index (ANN) types?
 
 * The short answer: _yes_
-* The longer answer: currently, we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of HNSW to have [full CRUD-support](https://db-engines.com/en/blog_post/87) in Weaviate. In principle, if an ANN algorithm allows for full CRUD support, Weaviate can support it. If you have ideas, suggestions, or plans (e.g., for a research project) for another ANN index type besides HNSW, please let us know in our [forum](https://forum.weaviate.io).
+* The longer answer: we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World (HNSW) algorithm that offers [full CRUD-support](https://db-engines.com/en/blog_post/87). In principle, if another ANN algorithm also offers full CRUD support, Weaviate can support it too. If you have ideas, suggestions, or plans for implementing another ANN index type besides HNSW, please let us know in our [forum](https://forum.weaviate.io).
 
 
-## HNSW
+## Hierarchical Navigable Small World (HNSW)
 [HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type supported by Weaviate.
 
 ### What is HNSW?
-HNSW stands for Hierarchical Navigable Small World, a multilayered graph. Every object that is in the database, are captured in the lowest layer (layer 0 in the picture). These data objects are very well connected. On each layer on top of the lowest layer, there are fewer data points represented. These datapoints match with lower layers, but there are exponentially fewer points in each higher layer. If a search query comes in, the closest datapoints will be found in the highest layer. In the example below that is only one more datapoint. Then it goes one layer deeper, and finds the closest datapoints from the first found datapoint in the highest layer, and searches nearest neighbors from there. In the deepest layer, the actual closest data object to the search query will be found.
+HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multilayered graphs. It is also an index type and refers to vector indexes that are created using the HNSW algorithm.
+
+Consider this multi-layered diagram of objects in a database.
+
+![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
+
+Every object in the database is in the lowest layer (layer 0 in the picture). These data objects are very well connected. Each layer above the lowest layer, has fewer data points. The data points in the higher layers correspond to the points in the lower layers, but there are exponentially fewer points with each higher layer. 
+
+When search query comes in, the HNSW algorithm finds the closest data points in the highest layer. Then, HNSW goes one layer deeper, and finds the closest data points to the ones in the highest layer. The algorithm searches that layer for a new list of nearest neighbors. When it gets to the deepest layer, the HNSW algorithm finds the data objects closest to the search query.
 
 If there were no hierarchical layers in this approach, only the deepest layer (0) would be present and significantly more datapoints would have needed to be explored from the search query, since all data objects are present there. In higher layers, with less datapoints, fewer hops between datapoints need to be made, over larger distances. HNSW is a very fast and memory efficient approach of similarity search, because only the highest layer (top layer) is kept in cache instead of all the datapoints in the lowest layer. Only the datapoints that are closest to the search query are loaded once they are requested by a higher layer, which means that only a small amount of memory needs to be reserved.
 
 The picture shows how a HNSW algorithm is used to go from a search query vector (blue) on the top layer to the closes search result (green) in the lowest layer. Only three data hops are made (indicated by blue solid arrows), whereas more data objects would have need to be search through when this layering was not present (the closest datapoint of *all* datapoints in each layer needs to be found).h
 
-![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
+
 
 ### Distance metrics
 
