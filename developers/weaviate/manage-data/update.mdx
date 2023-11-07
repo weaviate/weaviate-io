@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.update-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.update.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.update_test.go';
@@ -41,9 +42,17 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 To update the values of a list of properties in an object, [make a `PATCH` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` properties are updated, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# UpdateProps START"
+      endMarker="# UpdateProps END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# UpdateProps START"
       endMarker="# UpdateProps END"
       language="py"
@@ -83,9 +92,17 @@ To update the values of a list of properties in an object, [make a `PATCH` reque
 If you want to update an object's vector embedding, you can specify the vector property:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# UpdateVector START"
+      endMarker="# UpdateVector END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# UpdateVector START"
       endMarker="# UpdateVector END"
       language="py"
@@ -117,9 +134,17 @@ If you want to update an object's vector embedding, you can specify the vector p
 To replace an object in its entirety, [make a `PUT` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` property is replaced with a different value, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# Replace START"
+      endMarker="# Replace END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# Replace START"
       endMarker="# Replace END"
       language="py"
@@ -169,9 +194,17 @@ To "delete" a text property, you could [update](#update-object-properties) it to
 To delete properties from a specific object, you can replace the object with a copy that has those properties deleted:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# DelProps START"
+      endMarker="# DelProps END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# DelProps START"
       endMarker="# DelProps END"
       language="py"

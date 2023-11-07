@@ -98,7 +98,7 @@ class ManageDataCreateTest {
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         // put("answer", "Weaviate");  // schema properties can be omitted
-        put("somePropNotInTheSchema", 123); // will be automatically added as a number property
+        put("newProperty", 123); // will be automatically added as a number property
       }})
       .run();
 
@@ -112,7 +112,7 @@ class ManageDataCreateTest {
       .extracting(Result::getResult).isNotNull()
       .returns(className, WeaviateObject::getClassName)
       .extracting(WeaviateObject::getProperties)
-      .extracting(props -> props.get("somePropNotInTheSchema"))
+      .extracting(props -> props.get("newProperty"))
       .isEqualTo(123.);
 
     print(result);

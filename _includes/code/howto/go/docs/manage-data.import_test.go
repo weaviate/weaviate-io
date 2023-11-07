@@ -52,7 +52,7 @@ func Test_ManageDataImport(t *testing.T) {
 	t.Run("Basic Batch Import", func(t *testing.T) {
 		ctx := context.Background()
 		// BasicBatchImportExample
-		className := "YourClassName" // Replace with your class name
+		className := "YourName" // Replace with your class name
 		dataObjs := []models.PropertySchema{}
 		for i := 0; i < 5; i++ {
 			dataObjs = append(dataObjs, map[string]interface{}{
@@ -91,7 +91,7 @@ func Test_ManageDataImport(t *testing.T) {
 		}
 		// highlight-end
 
-		className := "YourClassName" // Replace with your class name
+		className := "YourName" // Replace with your class name
 		dataObjs := []models.PropertySchema{}
 		for i := 0; i < 5; i++ {
 			dataObjs = append(dataObjs, map[string]interface{}{
@@ -139,7 +139,7 @@ func Test_ManageDataImport(t *testing.T) {
 
 	t.Run("Batch import with custom vector", func(t *testing.T) {
 		// BatchImportWithVectorExample
-		className := "YourClassName" // Replace with your class name
+		className := "YourName" // Replace with your class name
 		dataObjs := []models.PropertySchema{}
 		for i := 0; i < 5; i++ {
 			dataObjs = append(dataObjs, map[string]interface{}{

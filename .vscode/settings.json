@@ -15,8 +15,13 @@
         "*.mdx": "markdown"
     },
     "cSpell.words": [
-     "codebook",
-     "fector",
-     "HNSW"
+     "childname",
+     "HNSW",
+     "OIDC",
+     "openai",
+     "proto",
+     "Pythonic",
+     "supersecuresecret",
+     "upvote"
     ]
 }
