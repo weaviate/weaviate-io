@@ -12,25 +12,29 @@ Weaviate uses the `text2vec-jinaai` module to obtain vectors.
 
 Key notes:
 
-- As it uses a third-party API, you will need an API key.
-- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
+- JinaAI requires a third-party API key.
+- To use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext), enable the text2vec-jinaai model.
 - The default model is `jina-embeddings-v2-base-en`.
 
 ### Docker Compose file
 
-To use `text2vec-jinaai`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
+To use `text2vec-jinaai`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can edit the Docker Compose file manually, or use the the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator) to create a custom file.
 
 #### Parameters
 
 |Parameter|Required|Purpose|
 |:-|:-|:-|
-|`ENABLE_MODULES`|Required|The modules to enable. Include `text2vec-jinaai` to enable the module.|
-|`DEFAULT_VECTORIZER_MODULE|Optional|The default vectorizer module. You can set this to `text2vec-jinaai` to make it the default for all classes.|
-|`JINAAI_APIKEY`|Optional|Your JinaAI API key. You can also provide the key at query time.|
+|`ENABLE_MODULES`|Yes|The modules to enable. Include `text2vec-jinaai` to enable the module.|
+|`DEFAULT_VECTORIZER_MODULE|No|The default vectorizer module. To make `text2vec-jinaai` the default for all classes, set it here.
+|`JINAAI_APIKEY`|No|Your JinaAI API key. You can also provide the key at query time.|
 
 #### Example
 
-This configuration enables `text2vec-jinaai`, sets it as the default vectorizer, and sets the API keys.
+This Docker Compose file configures JinaAI.
+
+ - It enables `text2vec-jinaai`.
+ - It sets `text2vec-jinaai` as the default vectorizer.
+ - It sets the JinaAI keys.
 
 ```yaml
 ---
@@ -54,9 +58,9 @@ services:
 ...
 ```
 
-## Class configuration
+## Collection configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+To configure how the module behaves in each collection, update the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
 
 ### API settings (OpenAI)
 
@@ -64,17 +68,17 @@ You can configure how the module will behave in each class through the [Weaviate
 
 |Parameter|Required|Default|Purpose|
 |:-|:-|:-|:-|
-|`model`|Optional|`jina-embeddings-v2-base-en`|A model name, e.g. `jina-embeddings-v2-small-en`.|
+|`model`|No|`jina-embeddings-v2-base-en`|A model name, e.g. `jina-embeddings-v2-small-en`.|
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-jinaai` and the model to `jina-embeddings-v2-small-en`:
+The following example configures the `Document` collection by setting the vectorizer to `text2vec-jinaai` and the model to `jina-embeddings-v2-small-en`:
 
 ```json
 {
   "classes": [
     {
       "class": "Document",
-      "description": "A class called document",
+      "description": "A collection called document",
       // highlight-start
       "vectorizer": "text2vec-jinaai",
       "moduleConfig": {
@@ -91,13 +95,13 @@ The following example configures the `Document` class by setting the vectorizer 
 
 ### Vectorization settings
 
-You can set vectorizer behavior using the `moduleConfig` section under each class and property:
+You can set vectorizer behavior using the `moduleConfig` section under each collection and property:
 
 #### Class-level
 
 |Parameter|Default|Purpose|
 |:-|:-|:-|
-|`vectorizer`|| Use this module to vectorize the data.|
+|`vectorizer`|-| Use this module to vectorize the data.|
 |`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
 
 #### Property-level
