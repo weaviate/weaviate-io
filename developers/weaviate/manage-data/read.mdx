@@ -11,6 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read_test.go';
@@ -28,27 +29,36 @@ This page will show you how to read individual objects in Weaviate.
 
 ## Requirements
 
-To read a specific object from a collection, you'll need its [id](../api/graphql/additional-properties.md#id) and class name.
+To read a specific object from a collection, you'll need its [id](../api/graphql/additional-properties.md#id) and collecion name.
 
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
 <details>
-  <summary>Why specify the class name?</summary>
+  <summary>Why specify the collection name?</summary>
   <RestObjectsCRUDClassnameNote/>
 </details>
 
 :::tip Multi-tenancy
-For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+For collections where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
 :::
 
 ## Get object by id
 
-To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below. If the id doesn't exist in the specified class, a 404 error will be returned.
+To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below. If the id doesn't exist in the specified collection, a 404 error will be returned.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# ReadObject START"
+      endMarker="# ReadObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# ReadObject START"
       endMarker="# ReadObject END"
       language="py"
@@ -89,9 +99,18 @@ To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API
 To retrieve the object vector, set the `vector` parameter:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# ReadObjectWithVector START"
+      endMarker="# ReadObjectWithVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# ReadObjectWithVector START"
       endMarker="# ReadObjectWithVector END"
       language="py"

@@ -11,6 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.create.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.create-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.create.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.create_test.go';
@@ -32,33 +33,42 @@ This page shows you how to create individual objects in Weaviate.
 
 To create an object, specify:
 * The object data to be added, and
-* The target class.
+* The target collection.
 
 :::tip Multi-tenancy
-For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+For collections where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
 :::
 
-### Object data vs class definition
+### Object data vs collection definition
 
-Compared to the class definition, the object data:
+Compared to the collection definition, the object data:
 - Can omit defined properties.
 - Can include new properties.
 
 :::info
-Any new properties will be added to the class definition during object creation with [auto-schema](../config-refs/schema.md#autoschema).
+Any new properties will be added to the collection definition during object creation with [auto-schema](../config-refs/schema.md#autoschema).
 :::
 
 #### Example
 
-This example shows how to create an object in the `JeopardyQuestion` class, with:
+This example shows how to create an object in the `JeopardyQuestion` collection, with:
 - An existing property (`question`),
-- A new property (`somePropNotInTheSchema`), and
+- A new property (`newProperty`), and
 - Omits an existing property (`answer`).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# CreateObject START"
+      endMarker="# CreateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# CreateObject START"
       endMarker="# CreateObject END"
       language="py"
@@ -109,9 +119,18 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
 ### Example
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# CreateObjectWithIdAndVector START"
+      endMarker="# CreateObjectWithIdAndVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# CreateObjectWithIdAndVector START"
       endMarker="# CreateObjectWithIdAndVector END"
       language="py"
@@ -161,9 +180,18 @@ You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthe
 ### Example
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# CreateObjectWithDeterministicId START"
+      endMarker="# CreateObjectWithDeterministicId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# CreateObjectWithDeterministicId START"
       endMarker="# CreateObjectWithDeterministicId END"
       language="py"
@@ -200,22 +228,31 @@ You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthe
 
 You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
 
-:::info IDs unique to each class and tenants
-[Classes](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different classes and/or tenants.
+:::info IDs unique to each collection and tenants
+[Collections](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different collections and/or tenants.
 :::
 
 ## Validating before creation
 
-You can [validate](../api/rest/objects.md#validate-a-data-object) an object against the class definition before creating it.
+You can [validate](../api/rest/objects.md#validate-a-data-object) an object against the collection definition before creating it.
 
 This will confirm:
 - Whether the creation of an object will succeed, and
-- That it doesn't have any extra properties vs. the schema.
+- That it doesn't have any extra properties vs. the defined collection properties.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# ValidateObject START"
+      endMarker="# ValidateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# ValidateObject START"
       endMarker="# ValidateObject END"
       language="py"
