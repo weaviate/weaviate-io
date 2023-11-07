@@ -101,17 +101,17 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 
 #### Collection level settings
 
-|Parameter|Default|Purpose|
-|:-|:-|:-|
-|`vectorizer`|-| Use this module to vectorize the data.|
-|`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
+|Parameter|Type|Default|Purpose|
+|:-|:-|:-|:-|
+| `vectorizer` | string | - | Use this module to vectorize the data.|
+| `vectorizeClassName` | boolean | `true` | When `true`, vectorizes the class name.
 
 #### Property level settings
 
-|Parameter|Default|Purpose|
-|:-|:-|:-|
-|`skip`|`false`|When `true`, does not vectorize the property.|
-|`vectorizePropertyName`|`true`|When `true`, vectorizes the property name.
+| Parameter | Type | Default | Purpose |
+|:-|:-|:-|:-|
+| `skip` | boolean | `false` | When `true`, does not vectorize the property. |
+| `vectorizePropertyName` | boolean | `true` | When `true`, vectorizes the property name. |
 
 #### Example
 
@@ -159,3 +159,16 @@ You can supply the API key at query time by adding it to the HTTP header.
 |HTTP Header|Value|Purpose|
 |:-|:-|:-|
 |`X-Jinaai-Api-Key`|`YOUR-JINAAI-API-KEY`|JinaAI key|
+
+## Usage example
+
+This is an example of a `nearText` query that uses `text2vec-jinaai`.
+
+import CodeNearText from '/_includes/code/graphql.filters.nearText.jinaai.mdx';
+
+<CodeNearText />
+
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
