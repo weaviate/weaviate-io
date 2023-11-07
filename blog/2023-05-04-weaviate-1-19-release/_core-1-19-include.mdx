@@ -6,10 +6,10 @@ We are happy to announce the release of Weaviate `1.19`, which brings a set of g
 If you like your content brief and to the point, here is the TL;DR of this release:
 
 1. [Group by arbitrary property](#group-by-arbitrary-property) – The groupBy option has been introduced to Get object retrieval, so you can group search results by any property.
-1. [New (or improved) Data Types](#new-or-improved-data-types) – Datatypes changes with text having faster filtering & more tokenization options while deprecating string to reduce complexity, and adding uuid to allow efficient uuid storage.
+1. [New (or improved) Data Types](#new-or-improved-data-types) – Data types changes with text having faster filtering & more tokenization options while deprecating string to reduce complexity, and adding uuid to allow efficient uuid storage.
 1. [Generative Cohere Module](#generative-cohere-module) – Combines the best of Weaviate, retrieving and searching relevant documents with the generative capabilities of the models that Cohere is cooking up!
 1. [Tunable Consistency for Vector Search and GraphQL Get Requests](#tunable-consistency-for-vector-search-and-graphql-get-requests) – Consistency tuning with replication is now available for vector search with Get requests.
-1. [gRPC API support(experimental)](#grpc-api-support-experimental) – gRPC API support slowly being trialled, with some big potential for speedups.
+1. [gRPC API support(experimental)](#grpc-api-support-experimental) – gRPC API support slowly being trialed, with some big potential for speedups.
 1. [Other Improvements and Bug Fixes](#other-improvements-and-bug-fixes) – fixes and improvements delivered since `1.18`.
 
 Read below to learn more about each of these points in more detail.
@@ -187,7 +187,7 @@ After upgrading a pre-`v1.19` Weaviate to `v1.19`, `indexFilterable` + `indexSea
 
 Since filterable & searchable are separate indexes, filterable does not exist in Weaviate instances upgraded from pre-`v1.19` to `v1.19`. The missing `filterable` index can be created though on startup for all `text/text[]` properties if env variable INDEX_MISSING_TEXT_FILTERABLE_AT_STARTUP is set (to `true`).
 
-While building the `filterable` index, Weaviate will work in readonly mode (similarly to reindexing sets to roaring sets on pre-`v1.18` to `v1.18` migration).
+While building the `filterable` index, Weaviate will work in readonly mode (similarly to re-indexing sets to roaring sets on pre-`v1.18` to `v1.18` migration).
 
 </details>
 

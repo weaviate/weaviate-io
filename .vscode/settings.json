@@ -17,6 +17,7 @@
     "files.trimTrailingWhitespace": true,
     "cSpell.words": [
      "autocut",
+     "autoplay",
      "childname",
      "codebook",
      "Etienne",
@@ -27,10 +28,17 @@
      "openai",
      "proto",
      "Pythonic",
+     "rerank",
+     "reranker",
+     "Rerankers",
+     "Reranking",
      "rescoring",
      "sharded",
+     "Stopword",
      "stopwords",
      "supersecuresecret",
-     "upvote"
+     "upvote",
+     "vectorizes",
+     "xlarge"
     ]
 }
