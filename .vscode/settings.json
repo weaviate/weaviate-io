@@ -15,13 +15,35 @@
         "*.mdx": "markdown"
     },
     "cSpell.words": [
+     "APIKEY",
+     "autocut",
+     "autoplay",
      "childname",
+     "codebook",
+     "Etienne",
+     "GOMEMLIMIT",
      "HNSW",
+     "memtable",
+     "multimodal",
      "OIDC",
      "openai",
+     "pdfs",
+     "powerpoints",
      "proto",
      "Pythonic",
+     "rerank",
+     "reranker",
+     "Rerankers",
+     "Reranking",
+     "rescoring",
+     "sharded",
+     "shukri",
+     "Stopword",
+     "stopwords",
      "supersecuresecret",
-     "upvote"
+     "textwrap",
+     "upvote",
+     "vectorizes",
+     "xlarge"
     ]
 }
