@@ -1,6 +1,6 @@
 ---
 title: text2vec-jinaai
-sidebar_position: 13
+sidebar_position: 12
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
@@ -13,7 +13,7 @@ Weaviate uses the `text2vec-jinaai` module to obtain vectors.
 Key notes:
 
 - JinaAI requires a third-party API key.
-- To use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext), enable the text2vec-jinaai model.
+- When you enable the text2vec-jinaai model, you can use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `jina-embeddings-v2-base-en`.
 
 ### Docker Compose file
@@ -50,10 +50,10 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
       # highlight-start
-      ENABLE_MODULES: text2vec-jinaai
-      DEFAULT_VECTORIZER_MODULE: text2vec-jinaai
-      JINAAI_APIKEY: sk-foobar  # Setting this parameter is optional, you can
-                                #   also provide the key at query time.
+      ENABLE_MODULES: 'text2vec-jinaai'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-jinaai'
+      JINAAI_APIKEY: 'jina_7ed53b09'  # Setting this parameter is optional, you
+                                      #  can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
