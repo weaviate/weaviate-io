@@ -158,4 +158,4 @@ You can supply the API key at query time by adding it to the HTTP header.
 
 |HTTP Header|Value|Purpose|
 |:-|:-|:-|
-|`"X-Jinaai-Api-Key"|"YOUR-JINAAI-API-KEY"`|JinaAI key|
+|`X-Jinaai-Api-Key`|`YOUR-JINAAI-API-KEY`|JinaAI key|
