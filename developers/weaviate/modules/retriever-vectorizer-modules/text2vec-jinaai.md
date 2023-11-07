@@ -25,7 +25,7 @@ To use `text2vec-jinaai`, you must enable it in your Docker Compose file (`docke
 |Parameter|Required|Purpose|
 |:-|:-|:-|
 |`ENABLE_MODULES`|Yes|The modules to enable. Include `text2vec-jinaai` to enable the module.|
-|`DEFAULT_VECTORIZER_MODULE|No|The default vectorizer module. To make `text2vec-jinaai` the default for all classes, set it here.
+|`DEFAULT_VECTORIZER_MODULE`|No|The default vectorizer module. To make `text2vec-jinaai` the default for all classes, set it here.
 |`JINAAI_APIKEY`|No|Your JinaAI API key. You can also provide the key at query time.|
 
 #### Example
@@ -52,7 +52,8 @@ services:
       # highlight-start
       ENABLE_MODULES: text2vec-jinaai
       DEFAULT_VECTORIZER_MODULE: text2vec-jinaai
-      JINAAI_APIKEY: sk-foobar  # Setting this parameter is optional; you can also provide the key at query time.
+      JINAAI_APIKEY: sk-foobar  # Setting this parameter is optional, you can
+                                #   also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -69,6 +70,7 @@ To configure how the module behaves in each collection, update the [Weaviate sch
 |Parameter|Required|Default|Purpose|
 |:-|:-|:-|:-|
 |`model`|No|`jina-embeddings-v2-base-en`|A model name, e.g. `jina-embeddings-v2-small-en`.|
+
 #### Example
 
 The following example configures the `Document` collection by setting the vectorizer to `text2vec-jinaai` and the model to `jina-embeddings-v2-small-en`:
@@ -97,14 +99,14 @@ The following example configures the `Document` collection by setting the vector
 
 You can set vectorizer behavior using the `moduleConfig` section under each collection and property:
 
-#### Class-level
+#### Collection level settings
 
 |Parameter|Default|Purpose|
 |:-|:-|:-|
 |`vectorizer`|-| Use this module to vectorize the data.|
 |`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
 
-#### Property-level
+#### Property level settings
 
 |Parameter|Default|Purpose|
 |:-|:-|:-|
@@ -118,7 +120,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
   "classes": [
     {
       "class": "Document",
-      "description": "A class called document",
+      "description": "A collection called document",
       "vectorizer": "text2vec-jinaai",
       "moduleConfig": {
         "text2vec-jinaai": {

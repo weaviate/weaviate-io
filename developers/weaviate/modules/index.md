@@ -26,6 +26,10 @@ This section describes Weaviate's individual modules, including their capabiliti
 - The Reader & Generator modules process data after retrieving the data from Weaviate, such as to answer questions or summarize text.
 - The other modules include everything else, such as a spellcheck module.
 
+import ClassCollectionTerminology from '/_includes/collection-class-terminology.md';
+
+<ClassCollectionTerminology />
+
 ## General
 
 Modules can be "vectorizers" (defines how the numbers in the vectors are chosen from the data) or other modules providing additional functions like question answering, custom classification, etc. Modules have the following characteristics:
