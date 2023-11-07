@@ -1,5 +1,5 @@
 
-![Weaviate 1.17 release](./core-1-17-img/hero.png)
+![Weaviate 1.17 release](./img/hero.png)
 
 <!-- truncate -->
 
@@ -17,7 +17,7 @@ If you like your content brief and to the point, here is the TL;DR of this relea
 Read below to learn more about each of these points in more detail.
 
 ## Replication
-![replication animation](./core-1-17-img/weaviate-replications-animation.gif)
+![replication animation](./img/weaviate-replications-animation.gif)
 
 Weaviate's `v1.17` release introduces **replication**. Replication enables you to set up your Weaviate environment in a cluster with multiple server nodes. Weaviate will automatically replicate data across nodes in the background.
 
@@ -52,7 +52,7 @@ With `v1.17`, the foundations of replication are built into Weaviate. In `v1.18`
 To learn more, visit the documentation pages for [Replication Architecture](/developers/weaviate/concepts/replication-architecture) and/or [Usage](/developers/weaviate/configuration/replication), where all concepts are explained in detail, supported by illustrations!
 
 ## Hybrid Search
-![Hybrid Search](./core-1-17-img/hybrid-search.png)
+![Hybrid Search](./img/hybrid-search.png)
 
 Hybrid search is a search functionality that **combines** the best features of both keyword-based search algorithms with vector search techniques. In hybrid search, sparse and dense vectors are used to represent the meaning and context of search queries and documents. Sparse embeddings are generated from models like [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [SPLADE](https://arxiv.org/abs/2107.05720). Dense embeddings are generated from machine learning models like [GloVe](https://text2vec.org/glove.html) and [Transformers](https://huggingface.co/docs/transformers/index).
 
@@ -84,7 +84,7 @@ Work on hybrid search is not over! We will continue to make improvements and int
 The hybrid operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/search-operators#hybrid) for more information and learn how to write the query in the other client programming languages.
 
 ## BM25
-![BM25](./core-1-17-img/bm25.png)
+![BM25](./img/bm25.png)
 
 BM25 ("Best Match #25" - it took quite a few iterations to arrive at the current state of the art 😉) is a [family of ranking functions](https://link.springer.com/referenceworkentry/10.1007/978-0-387-39940-9_921) that is widely used in information retrieval to score and rank documents based on their relevance to a given search query.
 
@@ -127,7 +127,7 @@ The response contains the `score` in the `_additional` object.
 The `bm25` operator is available through GraphQL, REST and all Weaviate client languages. Check out the [documentation](/developers/weaviate/api/graphql/search-operators#bm25) for more information.
 
 ## Faster Startup and Imports
-![Faster Startup and Imports](./core-1-17-img/faster-startup.png)
+![Faster Startup and Imports](./img/faster-startup.png)
 
 With Weaviate `v1.17` come faster startup times as a result of persisting computations on disk that were previously being computed every time at startup. For example the startup time with the Wikipedia dataset has improved from ~5 mins to now ~1min. To dig a little deeper, as a part of the initialization of the LSM store segment we build a bloom filter for the segment, the runtime for which is proportional to the segment size, and we also calculate the "count net additions" (CNAs). Both of these operations which were previously computed every time in-memory during the initialization phase are now persisted on-disk after the first startup allowing for faster subsequent startup times. For more details around this fix please read more [here](https://github.com/weaviate/weaviate/pull/2385). It's important to note that this change is fully backward compatible, however after upgrading to `v1.17` during the first startup the files cannot be read from disk because they don't yet exist. After the first startup they will be persisted on-disk and you should notice speedier subsequent startups.
 
@@ -140,7 +140,7 @@ We also introduced a series of fixes as a result of which you'll see fewer laten
 In summary, the main benefits you should see as a result of all the changes above in `v1.17` are faster startup times with speedier imports and less latency spikes.
 
 ## Other Improvements and Bug Fixes
-![Other Improvements and Bug Fixes](./core-1-17-img/other-improvements.png)
+![Other Improvements and Bug Fixes](./img/other-improvements.png)
 
 There haven't been any new fixes that are exclusive to `v1.17`. However, there have been six patch releases between `v1.16` and `v1.17`, below we highlight the fixes contained in those patches:
 

@@ -1,4 +1,4 @@
-![Weaviate 1.21](./core-1-21-img/hero.png)
+![Weaviate 1.21](./img/hero.png)
 
 Weaviate `1.21` is here!
 
@@ -21,7 +21,7 @@ For more details, keep scrolling ⬇️!
 
 ## `ContainsAny` and `ContainsAll` operators
 
-![New `ContainsAll` / `ContainsAny` filter operators](./core-1-21-img/contains-all-any.png)
+![New `ContainsAll` / `ContainsAny` filter operators](./img/contains-all-any.png)
 
 You asked for it - and it’s here! `1.21` adds `ContainsAny` and `ContainsAll` operators to make your filters (syntactically) sweeter than ever.
 
@@ -88,7 +88,7 @@ A `ContainsAll` query on the other hand will return all `Person` objects whose `
 
 ### Deactivate / activate tenant shards (experimental)
 
-![Activate / Deactivate tenants](./core-1-21-img/mt-inactive.png)
+![Activate / Deactivate tenants](./img/mt-inactive.png)
 
 We introduced multi-tenancy (MT) with `1.20`, and we are thrilled by your response so far.
 
@@ -118,7 +118,7 @@ We've improved the way Weaviate manages these processes, leading to a more stabl
 
 ### `text2vec-gpt4all` module
 
-![New `text2vec-gpt4all` module](./core-1-21-img/text2vec-gpt4all.png)
+![New `text2vec-gpt4all` module](./img/text2vec-gpt4all.png)
 
 This module allows you to perform local vectorization of text using the [gpt4all](https://docs.gpt4all.io/gpt4all_python_embedding.html) library.
 
@@ -138,7 +138,7 @@ If you are looking to perform local vectorization and don't have a GPU, this mod
 
 ### `multi2vec-bind` module
 
-![New `multi2vec-bind` module](./core-1-21-img/multi2vec-bind.png)
+![New `multi2vec-bind` module](./img/multi2vec-bind.png)
 
 With `1.21` we are introducing a second multimodal module to Weaviate! The `multi2vec-bind` module will allow users to generate embeddings using the [ImageBind](https://github.com/facebookresearch/ImageBind) model from Meta AI/FAIR out of the box.
 
@@ -179,7 +179,7 @@ client.query
 
 Top retrieved image:
 
-![Image of a car representing the top retrieved image from an audio search](./core-1-21-img/car.jpg)
+![Image of a car representing the top retrieved image from an audio search](./img/car.jpg)
 
 #### Example 2: Video Search with [bird.mp4](https://drive.google.com/file/d/11X9ump85jtgTYx-vtEUb1p5dT-vxjbf2/view?usp=drive_link)
 
@@ -195,7 +195,7 @@ client.query
 
 Top retrieved image:
 
-![Image of a bird representing the top retrieved image from a video search](./core-1-21-img/bird.jpg)
+![Image of a bird representing the top retrieved image from a video search](./img/bird.jpg)
 
 We’ll explore the awesomeness of this new module more in a blog soon but for now, you can read more about the details of how you can use `multi2vec-bind` in the [documentation](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind).
 
@@ -204,7 +204,7 @@ We’ll explore the awesomeness of this new module more in a blog soon but for n
 
 ## Performance improvements
 
-![Performance improvements](./core-1-21-img/performance.png)
+![Performance improvements](./img/performance.png)
 
 ### Alternative virtual memory access (pread vs mmap)
 

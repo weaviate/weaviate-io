@@ -1,4 +1,4 @@
-![Weaviate 1.20](./core-1-20-img/highlights.png)
+![Weaviate 1.20](./img/highlights.png)
 
 Weaviate `1.20` is here!
 
@@ -23,8 +23,8 @@ Please proceed with caution, such as by making a backup of your data & schema, o
 
 > **Store data from up to millions of tenants in a single setup.**
 
-![Conceptual diagram of multi-tenancy in Weaviate](./core-1-20-img/Weaviate-multi-tenancy-light.png#gh-light-mode-only)
-![Conceptual diagram of multi-tenancy in Weaviate](./core-1-20-img/Weaviate-multi-tenancy-dark.png#gh-dark-mode-only)
+![Conceptual diagram of multi-tenancy in Weaviate](./img/Weaviate-multi-tenancy-light.png#gh-light-mode-only)
+![Conceptual diagram of multi-tenancy in Weaviate](./img/Weaviate-multi-tenancy-dark.png#gh-dark-mode-only)
 
 We’ll keep this brief as Etienne covered this in great detail in [this blog post](https://weaviate.io/blog/multi-tenancy-vector-search). The key point, though, is that Weaviate now makes it easy to store data from up to *millions of tenants in a single setup*.
 
@@ -41,8 +41,8 @@ The result is a multi-tenancy solution that we are very proud of. This is an opt
 
 > **Compress vectors with little to no recall loss.**
 
-![Conceptual diagram of query speed vs recall](./core-1-20-img/Weaviate-release-1-20_qps_recall_light.png#gh-light-mode-only)
-![Conceptual diagram of query speed vs recall](./core-1-20-img/Weaviate-release-1-20_qps_recall_dark.png#gh-dark-mode-only)
+![Conceptual diagram of query speed vs recall](./img/Weaviate-release-1-20_qps_recall_light.png#gh-light-mode-only)
+![Conceptual diagram of query speed vs recall](./img/Weaviate-release-1-20_qps_recall_dark.png#gh-dark-mode-only)
 
 With `1.20` we’ve improved Product Quantization (PQ) by leaps and bounds and are officially taking it out of experimental mode! Originally PQ was introduced and released in `1.18` and we wrote about it [here](/blog/ann-algorithms-hnsw-pq).
 
@@ -93,18 +93,18 @@ Previously, if you added a large number of objects prior to enabling quantizatio
 Below we provide a small taste of these experiments comparing PQ `1.18` vs the new and improved PQ of `1.20`. Firstly we show the performance on an experimental dataset followed by a more real-world dataset.
 <p><br/></p>
 
-![Fig 1](./core-1-20-img/fig1_before.png)
+![Fig 1](./img/fig1_before.png)
 <small>Figure 1: Before(V1.18) Using Gist+l2. The Green curve is obtained using uncompressed vectors. Blue compressing with 960 segments (a dimension per segment, 4:1 compression ratio). Orange uses 240 segments (4 dimensions per segment, 16:1 compression ratio).</small>
 <p><br/></p>
 
-![Fig 2](./core-1-20-img/fig2_after.png)
+![Fig 2](./img/fig2_after.png)
 <small>Figure 2: After(V1.20) Using Gist+l2. Both graphs are built using 32 max connections. The orange curve is obtained using uncompressed vectors. The blue when compressing with 160 segments (six dimensions per segment, 24:1 compression ratio).</small>
 <p><br/></p>
 
 A more real-world dataset example:
 <p><br/></p>
 
-![Fig 3](./core-1-20-img/fig3_real_world.png)
+![Fig 3](./img/fig3_real_world.png)
 <small>Figure 3: Using DBPedia vectorized with OpenAI `ada002` using 500,000 vectors + cosine (V1.20). Both graphs are built using 32 max connections. The orange curve is obtained using uncompressed vectors. The blue is obtained by compressing with six dimensions per segment, 24:1 compression ratio.</small>
 <p><br/></p>
 
@@ -120,8 +120,8 @@ As can be clearly seen above, previously there was a cost to be paid for compres
 
 > **Ask Weaviate to retrieve groups of results for convenience.**
 
-![A cute cartoon of Weaviate presenting results](./core-1-20-img/Weaviate-release-1-20_autocut_light.png#gh-light-mode-only)
-![A cute cartoon of Weaviate presenting results](./core-1-20-img/Weaviate-release-1-20_autocut_dark.png#gh-dark-mode-only)
+![A cute cartoon of Weaviate presenting results](./img/Weaviate-release-1-20_autocut_light.png#gh-light-mode-only)
+![A cute cartoon of Weaviate presenting results](./img/Weaviate-release-1-20_autocut_dark.png#gh-dark-mode-only)
 
 Before `1.20`, limiting the number of search results meant manually specifying a `distance` or the `limit` (max) number of objects. Both of which can be a bit cumbersome to use, especially with no prior knowledge of the dataset.
 
@@ -201,8 +201,8 @@ It can be combined with all [vector search operators](/developers/weaviate/api/g
 
 > **Multi-stage search for a better final results set.**
 
-![A conceptual figure of a multi-stage search with Weaviate](./core-1-20-img/Weaviate-release-1-20_reranker_light.png#gh-light-mode-only)
-![A conceptual figure of a multi-stage search with Weaviate](./core-1-20-img/Weaviate-release-1-20_reranker_dark.png#gh-dark-mode-only)
+![A conceptual figure of a multi-stage search with Weaviate](./img/Weaviate-release-1-20_reranker_light.png#gh-light-mode-only)
+![A conceptual figure of a multi-stage search with Weaviate](./img/Weaviate-release-1-20_reranker_dark.png#gh-dark-mode-only)
 
 We are introducing our first set of rerankers with two modules:
 - Cohere’s reranker, and
@@ -266,8 +266,8 @@ This is just a first step in integrating ranking models with Weaviate. Read [our
 
 > **A score-based hybrid results merger algorithm.**
 
-![A conceptual figure of a hybrid score merger](./core-1-20-img/Weaviate-release-1-20_hybrid_merger_light.png#gh-light-mode-only)
-![A conceptual figure of a hybrid score merger](./core-1-20-img/Weaviate-release-1-20_hybrid_merger_dark.png#gh-dark-mode-only)
+![A conceptual figure of a hybrid score merger](./img/Weaviate-release-1-20_hybrid_merger_light.png#gh-light-mode-only)
+![A conceptual figure of a hybrid score merger](./img/Weaviate-release-1-20_hybrid_merger_dark.png#gh-dark-mode-only)
 
 Hybrid search uses results from a keyword (BM25) search and a vector search to produce its final set of results. In `1.20`, we introduce a new, optional, ranking algorithm that takes the BM25 and vector search scores to produce a more nuanced ranking of objects.
 
@@ -314,8 +314,8 @@ Stay tuned, as we’ll be describing the `relative score fusion` feature in more
 
 ## And more!
 
-![A conceptual figure of Weaviate performing a search](./core-1-20-img/Weaviate-release-1-20_search_light.png#gh-light-mode-only)
-![A conceptual figure of Weaviate performing a search](./core-1-20-img/Weaviate-release-1-20_search_dark.png#gh-dark-mode-only)
+![A conceptual figure of Weaviate performing a search](./img/Weaviate-release-1-20_search_light.png#gh-light-mode-only)
+![A conceptual figure of Weaviate performing a search](./img/Weaviate-release-1-20_search_dark.png#gh-dark-mode-only)
 
 ### Request success/failure rate in Prometheus metrics
 
