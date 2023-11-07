@@ -63,7 +63,7 @@ services:
 
 To configure how the module behaves in each collection, update the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
 
-### API settings (OpenAI)
+### API settings
 
 #### Parameters
 
