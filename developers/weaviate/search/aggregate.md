@@ -245,6 +245,9 @@ For example, to list all distinct values of a property, and the counts for each:
   />
 </details>
 
+import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
+
+<GroupbyLimitations />
 
 ## With `nearXXX`
 
