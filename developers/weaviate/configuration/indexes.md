@@ -57,7 +57,7 @@ The `ef` parameter controls the size of the nearest neighbors list and helps to 
 
 [Product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) is a form of data compression that reduces the memory footprint of the index. HNSW is an in-memory index, so enabling PQ lets you work with larger datasets. For a discussion of how PQ saves memory, see [this blog post](/blog/pq-rescoring).
 
-PQ relies on a codebook to compress the original vectors. The codebook defines 'centroids' that are used to calculate the compressed vector. Weaviate’s PQ implementation uses existing data to train the codebook. You must have some vectors loaded before you enable PQ so Weaviate can use them to define the centroids. A should have 10,000 to 100,000 vectors loaded per shard before you enable PQ.
+PQ relies on a codebook to compress the original vectors. The codebook defines 'centroids' that are used to calculate the compressed vector. Weaviate’s PQ implementation uses existing data to train the codebook. You must have some vectors loaded before you enable PQ so Weaviate can use them to define the centroids. You should have 10,000 to 100,000 vectors loaded per shard before you enable PQ.
 
 These parameters let you fine tune `pq`.
  
