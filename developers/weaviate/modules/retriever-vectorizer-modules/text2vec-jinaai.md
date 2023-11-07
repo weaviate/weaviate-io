@@ -125,9 +125,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
       "moduleConfig": {
         "text2vec-jinaai": {
           "model": "jina-embeddings-v2-small-en",
-          // highlight-start
           "vectorizeClassName": 'false'
-          // highlight-end
         }
       },
       "properties": [
