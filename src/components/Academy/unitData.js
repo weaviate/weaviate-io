@@ -474,8 +474,9 @@ export const unitData = {
 
   chunking: {
     title: "Document chunking - why and how?",
-    body: "Chunking is essential for effective use of vector databases, but how to do it? And what are some rules of thumb?",
-    buttonType: "TBD",
+    body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/standalone/chunking",
     badgeType: "practical",
     learningGoals: [
       "What chunking is",
@@ -485,7 +486,7 @@ export const unitData = {
     ],
     learningOutcomes: [
       "Describe chunking at a high level",
-      "Explain the impact of chunking in vector search and generative search",
+      "Explain the impact of chunking in vector search and retrieval augmented generation",
       "Implement various chunking methods and know where to explore others",
       "Evaluate chunking strategies based on your needs",
     ],
