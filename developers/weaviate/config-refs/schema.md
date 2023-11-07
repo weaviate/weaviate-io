@@ -463,6 +463,19 @@ An example of a complete property object:
 }
 ```
 
+### Reserved words
+
+The following words are reserved and cannot be used as property names:
+
+- `_additional`
+- `id`
+- `_id`
+
+Additionally, we strongly recommend that you do not use the following words as property names, due to potential conflicts with future reserved words:
+
+- `vector`
+- `_vector`
+
 ### Property tokenization
 
 :::note
