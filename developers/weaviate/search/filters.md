@@ -340,6 +340,11 @@ You can filter by any number of metadata properties, such as object id, property
 
 See the [API references: Filters](../api/graphql/filters.md#special-cases) page for the full list of available metadata filters and any special usage patterns.
 
+## Improving filter performance
+
+import RangeFilterPerformanceNote from '/_includes/range-filter-performance-note.mdx';
+
+<RangeFilterPerformanceNote />
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
