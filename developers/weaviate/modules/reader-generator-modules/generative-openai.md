@@ -307,8 +307,10 @@ You can use any of
 
 * [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
 * [gpt-3.5-turbo-16k](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4)
+* [gpt-3.5-turbo-1106](https://platform.openai.com/docs/models/gpt-3-5)
+* [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
 
 The module also supports these legacy models (not recommended)
 
