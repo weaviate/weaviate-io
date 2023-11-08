@@ -16,6 +16,10 @@
     "answer": "This sets whether to use vector compression, using a technique called product quantization. Enabling compression will effectively reduce dimensionality and therefore prices. However, it may reduce performance & recall. <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw-with-product-quantization-pq\" target=\"_blank\">Read more</a>."
   },
   {
+    "question": "When Compression is selected, how are the total number of dimensions determined?",
+    "answer": "When a Compression storage type is used, we take the the total number of 'segments' in place of the number of dimensions. <a href=\"http://localhost:3000/developers/weaviate/concepts/vector-index#segments\" target=\"_blank\">Read more</a>."
+  },
+  {
     "question": "Is the open source Weaviate the same as that used on WCS?",
     "answer": "Yes! Weaviate Cloud Services (WCS) runs the open-source Weaviate library. The differences are in where it runs (i.e. WCS is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
   },
