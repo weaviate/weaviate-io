@@ -95,7 +95,7 @@ Have another look at the diagram; it demonstrates how the HNSW algorithm searche
 
 All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Weaviate supports are also supported with the HNSW index type.
 
-## HNSW with Product Quantization (PQ)
+## HNSW with compression
 
 HNSW uses memory efficiently. However, you can also use compression to reduce memory requirements even more. [Product quantization (PQ)](#what-is-product-quantization) is a technique Weaviate offers that lets you compress a vector so it uses fewer bytes. Since HNSW stores vectors in memory, PQ compression lets you use larger datasets without increasing your system memory.
 
