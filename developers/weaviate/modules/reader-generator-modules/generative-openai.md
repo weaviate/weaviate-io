@@ -303,14 +303,16 @@ import OpenAIGroupedResult from '/_includes/code/generative.openai.groupedresult
 
 ### Supported models (OpenAI)
 
-You can use any of
+You can use any of the following models with `generative-openai`:
 
 * [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
 * [gpt-3.5-turbo-16k](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4)
+* [gpt-3.5-turbo-1106](https://platform.openai.com/docs/models/gpt-3-5)
+* [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
 
-The module also supports these legacy models (not recommended)
+The module also supports these legacy models. However, their use is not recommended.
 
 * [davinci 002](https://platform.openai.com/docs/models/overview)
 * [davinci 003](https://platform.openai.com/docs/models/overview)
