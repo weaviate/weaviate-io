@@ -208,7 +208,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ## Query-time parameters
 
-You can supply parameters query time by adding it to the HTTP header.
+You can supply parameters at query time by adding it to the HTTP header.
 
 | HTTP Header | Value | Purpose | Note |
 | :- | :- | :- | :- |

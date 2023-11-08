@@ -169,7 +169,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ## Query-time parameters
 
-### API key
+You can supply parameters at query time by adding it to the HTTP header.
 
 | HTTP Header | Value | Purpose | Note |
 | :- | :- | :- | :- |
