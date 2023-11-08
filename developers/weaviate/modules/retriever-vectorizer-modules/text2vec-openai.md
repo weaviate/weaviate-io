@@ -28,20 +28,11 @@ import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
 ## Module parameters
 
-The module accepts parameters through the request header, collection configuration, or environment variables. Some parameters (such as the OpenAI / Azure OpenAI API key, or the OpenAI base url) can be set in multiple ways. Where the same parameter can be set in multiple ways, the order of precedence is as follows:
+The module accepts parameters through the request header, collection configuration, or environment variables. Some parameters (such as the OpenAI / Azure OpenAI API key, or the OpenAI base url) can be set in multiple ways.
 
-1. [Request header](#query-time-parameters)
-2. [Collection configuration](#class-configuration)
-
-Where 1 is the highest precedence.
+Where the same parameter can be set in multiple ways, setting it at query-time through the [Request header](#query-time-parameters) will have the highest precedence.
 
 We suggest you only set any given parameter in one place to avoid confusion.
-
-#### BaseURL (OpenAI)
-
-You can set the `baseURL` parameter to use any URL instead of the default OpenAI URL (`https://api.openai.com`). This is useful if you want to use a proxy or other URL.
-
-To specify the URL, use protocol domain format: `https://your.domain.com`.
 
 ## Weaviate instance configuration
 
@@ -103,7 +94,7 @@ You can configure how the module will behave in each class through the [Weaviate
 | `model` | Optional | ` text-embedding-ada-002`| A model family, e.g. `davinci`. |
 | `modelVersion` | Optional | | Version string, e.g. `003`. |
 | `type` | Optional | | Model type. Can be `text` or `code`. |
-| `baseURL` | Optional | ` https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL.  |
+| `baseURL` | Optional | ` https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
 
 #### Example
 
@@ -122,7 +113,7 @@ The following example configures the `Document` class by setting the vectorizer 
           "model": "ada",
           "modelVersion": "002",
           "type": "text",
-          "baseURL": "https://proxy.yourcompanydomain.com"  // Optional, can be overridden by one set in the HTTP header
+          "baseURL": "https://proxy.yourcompanydomain.com"  // Optional. Can be overridden by one set in the HTTP header.
         }
       },
       // highlight-end
