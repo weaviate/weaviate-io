@@ -153,19 +153,19 @@ The following example configures the `Document` class by setting the vectorizer 
 
 You can set vectorizer behavior using the `moduleConfig` section under each class and property:
 
-#### Class-level
+#### Collection level settings
 
-|Parameter|Default|Purpose|
-|:-|:-|:-|
-|`vectorizer`|| Use this module to vectorize the data.|
-|`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
+| Parameter | Type | Default | Purpose |
+| :- | :- | :- |
+| `vectorizer` | string | - | Sets the module for vectorization. |
+| `vectorizeClassName`| boolean | `true` | Whether to include the class name during vectorization. |
 
-#### Property-level
+#### Property level settings
 
-|Parameter|Default|Purpose|
-|:-|:-|:-|
-|`skip`|`false`|When `true`, does not vectorize the property.|
-|`vectorizePropertyName`|`true`|When `true`, vectorizes the property name.
+| Parameter | Type | Default | Purpose |
+| :- | :- | :- |
+| `skip` | boolean | `false` | When `true`, does not include the property during vectorization. |
+| `vectorizePropertyName` | boolean | `false` | Whether to include the property name during vectorization. |
 
 #### Example
 
