@@ -17,9 +17,25 @@ Key notes:
     - Please check the Cohere [pricing page](https://cohere.com/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `embed-multilingual-v2.0` (this is the same model as the previous `multilingual-22-12`).
+- The default model is `embed-multilingual-v3.0`.
 - Make sure to set the right [distance metric](#distance-metric) in your class configuration.
 
+## Module parameters
+
+The module accepts parameters through the request header, collection configuration, or environment variables. Some parameters (such as the OpenAI / Azure OpenAI API key, or the OpenAI base url) can be set in multiple ways. Where the same parameter can be set in multiple ways, the order of precedence is as follows:
+
+1. [Request header](#query-time-parameters)
+2. [Collection configuration](#class-configuration)
+
+Where 1 is the highest precedence.
+
+We suggest you only set any given parameter in one place to avoid confusion.
+
+#### BaseURL
+
+You can set the `baseURL` parameter to use any URL instead of the default Cohere URL (`https://api.cohere.ai`). This is useful if you want to use a proxy or other URL.
+
+To specify the URL, use protocol domain format: `https://your.domain.com`.
 
 ## Weaviate instance configuration
 
@@ -71,12 +87,15 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-- `model` (Optional): The model to use. Defaults to `embed-multilingual-v2.0`.
-- `truncate` (Optional): Sets Cohere API input truncation behavior. Defaults to `RIGHT`. Options: `RIGHT` or `NONE`.
+| Parameter | Required | Default | Purpose |
+| :- | :- | :- | :- |
+| `model` | No | `embed-multilingual-v3.0` | The model to use. |
+| `truncate` | No | `RIGHT` | Sets Cohere API input truncation behavior. Options: `RIGHT` or `NONE`. |
+| `baseURL` | No | `https://api.cohere.ai` | Sets a proxy or other URL instead of the default URL. |
 
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-cohere`, distance metric to `dot`, model to `embed-multilingual-v2.0` and without input truncation by the Cohere API.
+The following example configures the `Document` class by setting the vectorizer to `text2vec-cohere`, distance metric to `dot`, model to `embed-multilingual-v3.0` and without input truncation by the Cohere API.
 
 :::info
 Different Cohere models use different distance metrics. Make sure to set this accordingly. See the [distance metric](#distance-metric) section for more information.
@@ -95,8 +114,9 @@ Different Cohere models use different distance metrics. Make sure to set this ac
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "embed-multilingual-v2.0", // Defaults to embed-multilingual-v2.0 if not set
-          "truncate": "RIGHT" // Defaults to RIGHT if not set
+          "model": "embed-multilingual-v3.0", // Defaults to embed-multilingual-v3.0 if not set
+          "truncate": "RIGHT", // Defaults to RIGHT if not set
+          "baseURL": "https://proxy.yourcompanydomain.com"  // Optional, can be overridden by one set in the HTTP header
         }
       },
       // highlight-end
@@ -133,7 +153,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       },
       "moduleConfig": {
         "text2vec-cohere": {
-          "model": "embed-multilingual-v2.0", // Defaults to embed-multilingual-v2.0 if not set
+          "model": "embed-multilingual-v3.0", // Defaults to embed-multilingual-v3.0 if not set
           "truncate": "RIGHT", // Defaults to RIGHT if not set
           // highlight-start
           "vectorizeClassName": false
@@ -164,16 +184,24 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ### API key
 
-You can supply the API key at query time by adding it to the HTTP header:
-- `"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"`
+| HTTP Header | Value | Purpose | Note |
+| :- | :- | :- | :- |
+| `"X-Cohere-Api-Key"` | `"YOUR-COHERE-API-KEY"` | Cohere API key | |
+| `"X-Cohere-BaseURL"` | `"YOUR-COHERE-BASE-URL"` | Cohere base URL | Available from version `v1.22.3` <br /><br />Use the protocol domain format: `https://your.domain.com`. <br /><br /> If specified, this will have precedence over the class-level setting. |
 
 ## Additional information
 
 ### Available models
 
-`text2vec-cohere` defaults to the `embed-multilingual-v2.0` embedding model unless specified otherwise.
+You can use any of the following models with `text2vec-cohere`:
 
-For example, the following schema configuration will set Weaviate to vectorize the `Document` class with `text2vec-cohere` using the `embed-multilingual-v2.0` model.
+- `embed-english-v3.0`
+- `embed-english-light-v3.0`
+- `embed-multilingual-v3.0` (Default)
+- `embed-multilingual-light-v3.0`
+- `embed-multilingual-v2.0`
+
+`text2vec-cohere` defaults to the `embed-multilingual-v3.0` embedding model unless specified otherwise.
 
 :::info `embed-multilingual-v2.0` == `multilingual-22-12`
 `embed-multilingual-v2.0` reflects the new name.
