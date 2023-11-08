@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
 ## Overview
@@ -44,29 +45,40 @@ See [this page](../api/graphql/filters.md#filter-structure) for the list of avai
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleFilterPython"
-  endMarker="# END SingleFilterPython"
-  language="python"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleFilterPython"
+      endMarker="# END SingleFilterPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# SingleFilterPython"
+      endMarker="# END SingleFilterPython"
+      language="python"
+    />
+  </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchSingleFilter"
-  endMarker="// END searchSingleFilter"
-  language="js"
-/>
-</TabItem>
+  <FilteredTextBlock
+    text={JavaScriptCode}
+    startMarker="// searchSingleFilter"
+    endMarker="// END searchSingleFilter"
+    language="js"
+  />
+  </TabItem>
+
 <TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleFilterGraphQL"
-  endMarker="# END SingleFilterGraphQL"
-  language="graphql"
-/>
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# SingleFilterGraphQL"
+    endMarker="# END SingleFilterGraphQL"
+    language="graphql"
+  />
 </TabItem>
 </Tabs>
 
@@ -76,7 +88,7 @@ See [this page](../api/graphql/filters.md#filter-structure) for the list of avai
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected SingleFilter results"
   endMarker="# END Expected SingleFilter results"
   language="json"
@@ -93,7 +105,7 @@ The following example adds a `points` filter to a `nearText` query, where the `p
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# SingleFilterNearTextPython"
   endMarker="# END SingleFilterNearTextPython"
   language="python"
@@ -109,7 +121,7 @@ The following example adds a `points` filter to a `nearText` query, where the `p
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# SingleFilterNearTextGraphQL"
   endMarker="# END SingleFilterNearTextGraphQL"
   language="graphql"
@@ -123,7 +135,7 @@ The following example adds a `points` filter to a `nearText` query, where the `p
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected SingleFilterNearText results"
   endMarker="# END Expected SingleFilterNearText results"
   language="json"
@@ -144,7 +156,7 @@ The following example filters for objects including the text `"inter"` in any pa
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# LikeFilterPython"
   endMarker="# END LikeFilterPython"
   language="python"
@@ -160,7 +172,7 @@ The following example filters for objects including the text `"inter"` in any pa
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# LikeFilterGraphQL"
   endMarker="# END LikeFilterGraphQL"
   language="graphql"
@@ -174,7 +186,7 @@ The following example filters for objects including the text `"inter"` in any pa
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected LikeFilter results"
   endMarker="# END Expected LikeFilter results"
   language="json"
@@ -193,7 +205,7 @@ The following example specifies and `And` condition, so that both:
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# MultipleFiltersAndPython"
   endMarker="# END MultipleFiltersAndPython"
   language="python"
@@ -209,7 +221,7 @@ The following example specifies and `And` condition, so that both:
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# MultipleFiltersAndGraphQL"
   endMarker="# END MultipleFiltersAndGraphQL"
   language="graphql"
@@ -223,7 +235,7 @@ The following example specifies and `And` condition, so that both:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected MultipleFiltersAnd results"
   endMarker="# END Expected MultipleFiltersAnd results"
   language="json"
@@ -242,7 +254,7 @@ The following example specifies that:
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# MultipleFiltersNestedPython"
   endMarker="# END MultipleFiltersNestedPython"
   language="python"
@@ -258,7 +270,7 @@ The following example specifies that:
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# MultipleFiltersNestedGraphQL"
   endMarker="# END MultipleFiltersNestedGraphQL"
   language="graphql"
@@ -272,7 +284,7 @@ The following example specifies that:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected MultipleFiltersNested results"
   endMarker="# END Expected MultipleFiltersNested results"
   language="json"
@@ -296,7 +308,7 @@ The results are case-insensitive here, as the `title` property is defined with [
 <Tabs groupId="languages">
 <TabItem value="py" label="Python">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# CrossReferencePython"
   endMarker="# END CrossReferencePython"
   language="python"
@@ -312,7 +324,7 @@ The results are case-insensitive here, as the `title` property is defined with [
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# CrossReferenceGraphQL"
   endMarker="# END CrossReferenceGraphQL"
   language="graphql"
@@ -326,7 +338,7 @@ The results are case-insensitive here, as the `title` property is defined with [
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected CrossReferencePython results"
   endMarker="# END Expected CrossReferencePython results"
   language="json"

@@ -21,17 +21,21 @@ client = weaviate.Client(
 # ==========================================
 
 # SingleFilterPython
-import weaviate.classes as wvc
-jeopardy = client.collections.get("JeopardyQuestion")
-
-result = jeopardy.query.fetch_objects(
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer", "round"])
     # highlight-start
-    filters=wvc.Filter("round").equal("Double Jeopardy!"),
+    .with_where({
+        "path": ["round"],
+        "operator": "Equal",
+        "valueText": "Double Jeopardy!"
+    })
     # highlight-end
-    limit=3
+    .with_limit(3)
+    .do()
 )
 
-print(result.objects)
+print(json.dumps(response, indent=2))
 # END SingleFilterPython
 
 
