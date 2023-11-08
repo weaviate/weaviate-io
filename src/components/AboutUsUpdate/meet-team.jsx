@@ -60,24 +60,16 @@ export default function MeetTheTeam() {
               #CEO team
             </Link>
             <Link
+              className={selectedTeam === 'cto' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('cto')}
+            >
+              #CTO team
+            </Link>
+            <Link
               className={selectedTeam === 'cloud' ? styles.linkActive : ''}
               onClick={() => handleTeamFilter('cloud')}
             >
               #Cloud
-            </Link>
-            <Link
-              className={
-                selectedTeam === 'cloud-strategy' ? styles.linkActive : ''
-              }
-              onClick={() => handleTeamFilter('cloud-strategy')}
-            >
-              #Cloud Strategy
-            </Link>
-            <Link
-              className={selectedTeam === 'database' ? styles.linkActive : ''}
-              onClick={() => handleTeamFilter('database')}
-            >
-              #Core Engineering
             </Link>
             <Link
               className={
@@ -86,6 +78,12 @@ export default function MeetTheTeam() {
               onClick={() => handleTeamFilter('customer-success')}
             >
               #Customer Success
+            </Link>
+            <Link
+              className={selectedTeam === 'database' ? styles.linkActive : ''}
+              onClick={() => handleTeamFilter('database')}
+            >
+              #Database
             </Link>
           </div>
           <div className={styles.teamFilter}>
