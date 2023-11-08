@@ -68,52 +68,50 @@ Note that the vector index type only specifies how the vectors of data objects a
 ## Can Weaviate support multiple vector index (ANN) types?
 
 * The short answer: _yes_
-* The longer answer: we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World (HNSW) algorithm that offers [full CRUD-support](https://db-engines.com/en/blog_post/87). In principle, if another ANN algorithm also offers full CRUD support, Weaviate can support it too. If you have ideas, suggestions, or plans for implementing another ANN index type besides HNSW, please let us know in our [forum](https://forum.weaviate.io).
+* The longer answer: we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World (HNSW) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87). In principle, if another ANN algorithm also offers full CRUD support, Weaviate can support it too. If you have suggestions for implementing other ANN index types, please let us know in our [forum](https://forum.weaviate.io).
 
 
 ## Hierarchical Navigable Small World (HNSW)
-[HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type supported by Weaviate.
+[HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type Weaviate supports.
 
 ### What is HNSW?
-HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multilayered graphs. It is also an index type and refers to vector indexes that are created using the HNSW algorithm.
+HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm.
 
 Consider this multi-layered diagram of objects in a database.
 
 ![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
 
-Every object in the database is in the lowest layer (layer 0 in the picture). These data objects are very well connected. Each layer above the lowest layer, has fewer data points. The data points in the higher layers correspond to the points in the lower layers, but there are exponentially fewer points with each higher layer. 
+A database object can exist in more than one layer, but every object in the database is represented in the lowest layer (layer 0 in the picture). The layer 0 data objects are very well connected. Each layer above the lowest layer has fewer data points and fewer connections. The data points in the higher layers correspond to the points in the lower layers, but there are exponentially fewer points with each higher layer. The HNSW algorithm take advantage of the layers to efficiently process large amounts of data.
 
-When search query comes in, the HNSW algorithm finds the closest data points in the highest layer. Then, HNSW goes one layer deeper, and finds the closest data points to the ones in the highest layer. The algorithm searches that layer for a new list of nearest neighbors. When it gets to the deepest layer, the HNSW algorithm finds the data objects closest to the search query.
+When a search query comes in, the HNSW algorithm finds the closest data matching points in the highest layer. Then, HNSW goes one layer deeper, and finds the closest data points to the ones in the highest layer. The algorithm searches the lower layer to create a new list of nearest neighbors. Then, HNSW uses teh new list and repeats the process on the next layer down. When it gets to the deepest layer, the HNSW algorithm returns the data objects closest to the search query.
 
-If there were no hierarchical layers in this approach, only the deepest layer (0) would be present and significantly more datapoints would have needed to be explored from the search query, since all data objects are present there. In higher layers, with less datapoints, fewer hops between datapoints need to be made, over larger distances. HNSW is a very fast and memory efficient approach of similarity search, because only the highest layer (top layer) is kept in cache instead of all the datapoints in the lowest layer. Only the datapoints that are closest to the search query are loaded once they are requested by a higher layer, which means that only a small amount of memory needs to be reserved.
+Since there are relatively few data points on the higher layers, HNSW has to search fewer objects. This means HNSW 'jumps' over large amounts of data that it doesn't need to search. When a data store has only one layer, the search algorithm can't skip unrelated objects. It has to search significantly more data points even though they are unlikely to match.
 
-The picture shows how a HNSW algorithm is used to go from a search query vector (blue) on the top layer to the closes search result (green) in the lowest layer. Only three data hops are made (indicated by blue solid arrows), whereas more data objects would have need to be search through when this layering was not present (the closest datapoint of *all* datapoints in each layer needs to be found).h
+ HNSW is very fast, memory efficient, approach to similarity search. The memory cache only stores the highest layer instead of storing all of the data points in the lowest layer. When the search moves from a higher layer to a lower one, HNSW only adds the data points that are closest to the search query. This means HNSW uses a relatively small amount of memory compared to other search algorithms.
 
-
+Returning to the picture above, it demonstrates how the HNSW algorithm searches. The blue search vector in the top layer connects to a partial result in layer one. The objects layer one lead to the result set in layer zero. HNSW makes three hops through the layers (the dotted blue lines) and skips objects that are unrelated to the search query.
 
 ### Distance metrics
 
-All [distance metrics supported in Weaviate](/developers/weaviate/config-refs/distances.md) are also supported with the HNSW index type.
+All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Weaviate supports are also supported with the HNSW index type.
 
 ## HNSW with Product Quantization (PQ)
 
-When using HNSW you can also choose to also enable product quantization (PQ) to reduce memory costs. Product quantization is a technique for representing an approximation of a vector using fewer bytes. As HNSW stores vectors in memory, this allows for running larger datasets with a given amount of memory.
+HNSW uses memory efficiently. However, you can also use compression to reduce memory requirements even more. [Product quantization (PQ)](#what-is-product-quantization) is a technique Weaviate offers that lets you compress a vector so it uses fewer bytes. Since HNSW stores vectors in memory, PQ compression lets you use larger datasets without increasing your system memory.
 
-An important point to note is that product quantization is a tradeoff between recall, performance, and memory usage. This means that configuration settings reducing memory may also reduce recall. This is similar to how HNSW can be tuned to lower latency at the cost of recall by configuring its search parameters (`ef` and `maxConnections`). Please refer to [Configuration: Indexes](../configuration/indexes.md) for more information about how to configure HNSW.
+An important point to note is that PQ makes tradeoffs between recall, performance, and memory usage. This means that the same configuration that reduces memory requirements, may also reduce recall. There are similar trade offs in HNSW without PQ. You can, for example, lower latency at the cost of recall by configuring the `ef` and `maxConnections` parameters. For more information about how to configure HNSW, see [Configuration: Indexes](../configuration/indexes.md) .
 
 ### What is Product Quantization?
 
-Quantization is the approach of representing a range of vectors with a finite smaller set of vectors. A familiar example for a single numeric value is rounding the number to the nearest integer.
+Quantization means representing a range of vectors with a finite smaller set of vectors. A familiar example is rounding a number to the nearest integer.
 
-[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a technique where the vector is first represented as a product of smaller vectors (named segments or subspaces) and then each segment is quantized independently.
+[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a multi-step quantization technique. First, the vector is represented as a product of smaller vectors that are called 'segments' or 'subspaces.' Then, each segment is quantized independently to create the compressed vector.
 
 ![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
-From the segments a training step occurs where centroids are calculated per segment and stored as a codebook. By default Weaviate will cluster each segment into 256 centroids.
+After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors. 
 
-Once this codebook is calculated a vector can now instead be represented by the id of the closest centroid to each of its segments.
-With this new representation, memory is reduced considerably as instead of say `768 x 4 = 3072` bytes per vector (with 4 byte floating points), only `128 x 1 = 128` bytes
-per vector are required plus the small size of the codebook.
+Once the codebook is ready, and a vector is divided into segments, the vector is compressed using the id of the closest centroid to each of its segments. The new vector representation reduces memory significantly. Imagine a collection where vector that has 768 4 byte elements. Before PQ compression each vector requires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large a the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
 
 ### Distance calculation and rescoring
 
