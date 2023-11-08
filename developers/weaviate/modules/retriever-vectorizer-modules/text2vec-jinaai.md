@@ -1,6 +1,6 @@
 ---
 title: text2vec-jinaai
-sidebar_position: 13
+sidebar_position: 12
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
@@ -13,7 +13,7 @@ Weaviate uses the `text2vec-jinaai` module to obtain vectors.
 Key notes:
 
 - JinaAI requires a third-party API key.
-- To use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext), enable the text2vec-jinaai model.
+- When you enable the text2vec-jinaai model, you can use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `jina-embeddings-v2-base-en`.
 
 ### Docker Compose file
@@ -50,10 +50,10 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
       # highlight-start
-      ENABLE_MODULES: text2vec-jinaai
-      DEFAULT_VECTORIZER_MODULE: text2vec-jinaai
-      JINAAI_APIKEY: sk-foobar  # Setting this parameter is optional, you can
-                                #   also provide the key at query time.
+      ENABLE_MODULES: 'text2vec-jinaai'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-jinaai'
+      JINAAI_APIKEY: 'jina_7ed53b09'  # Setting this parameter is optional, you
+                                      #  can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -101,17 +101,17 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 
 #### Collection level settings
 
-|Parameter|Default|Purpose|
-|:-|:-|:-|
-|`vectorizer`|-| Use this module to vectorize the data.|
-|`vectorizeClassName`| `true`| When `true`, vectorizes the class name.
+|Parameter|Type|Default|Purpose|
+|:-|:-|:-|:-|
+| `vectorizer` | string | - | Use this module to vectorize the data.|
+| `vectorizeClassName` | boolean | `true` | When `true`, vectorizes the class name.
 
 #### Property level settings
 
-|Parameter|Default|Purpose|
-|:-|:-|:-|
-|`skip`|`false`|When `true`, does not vectorize the property.|
-|`vectorizePropertyName`|`true`|When `true`, vectorizes the property name.
+| Parameter | Type | Default | Purpose |
+|:-|:-|:-|:-|
+| `skip` | boolean | `false` | When `true`, does not vectorize the property. |
+| `vectorizePropertyName` | boolean | `true` | When `true`, vectorizes the property name. |
 
 #### Example
 
@@ -125,9 +125,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
       "moduleConfig": {
         "text2vec-jinaai": {
           "model": "jina-embeddings-v2-small-en",
-          // highlight-start
           "vectorizeClassName": 'false'
-          // highlight-end
         }
       },
       "properties": [
@@ -159,3 +157,16 @@ You can supply the API key at query time by adding it to the HTTP header.
 |HTTP Header|Value|Purpose|
 |:-|:-|:-|
 |`X-Jinaai-Api-Key`|`YOUR-JINAAI-API-KEY`|JinaAI key|
+
+## Usage example
+
+This is an example of a `nearText` query that uses `text2vec-jinaai`.
+
+import CodeNearText from '/_includes/code/graphql.filters.nearText.jinaai.mdx';
+
+<CodeNearText />
+
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
