@@ -119,6 +119,10 @@ As such, this `Aggregate` query will retrieve the total object count in a class.
 
 You can use a groupBy argument to get meta information about groups of data objects.
 
+import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
+
+<GroupbyLimitations />
+
 The `groupBy{}` argument is structured as follows for the `Aggregate{}` function:
 
 ```graphql

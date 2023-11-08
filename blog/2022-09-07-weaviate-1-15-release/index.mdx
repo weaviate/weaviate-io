@@ -38,7 +38,7 @@ To learn more check the [Weaviate 1.15.1 patch release](/blog/weaviate-1-15-1-re
 
 🚀**Aakash** implemented the two **new distance metrics**, while **Dasith** contributed by implementing the two **new Weaviate modules**.
 
-  👕I guess we will should send some Weaviate t-shirts to Aakash and Dasith soon.
+  👕We will send some Weaviate t-shirts to Aakash and Dasith soon.
 
 🤗We hope to see many more big and small contributions in the coming months and years. **#CommunityRocks**
 
@@ -172,7 +172,7 @@ As part of the continuous effort to make Weaviate faster, leaner and more powerf
 
 First, we set our sights on parallel imports, where we introduced thread pooling to reduce memory spikes while importing data.
 
-Previously if you had, e.g., 8 CPUs and would import from 4 client threads, each client request would run with a parallelization factor of 8 (one per CPU core). So, in the worst case, you could end up with 32 parallel imports (on a machine with "only" 8 CPUs). There is no performance gain if we have more parallelization than the available CPUs. However, each thread needs additional memory). So with 32 parallel imports, we had the worst of both worlds: High memory usage and no performance gains beyond 8.
+Previously if you had, e.g., 8 CPUs and would import from 4 client threads, each client request would run with a parallelization factor of 8 (one per CPU core). So, in the worst case, you could end up with 32 parallel imports (on a machine with "only" 8 CPUs). There is no performance gain if we have more parallelization than there are available CPUs. However, each thread needs additional memory. So with 32 parallel imports, we had the worst of both worlds: High memory usage and no performance gains beyond 8.
 
 With the fix, even if you import from multiple clients, Weaviate automatically handles the parallelization to ensure that it does not exceed the number of CPU cores. As a result, you get the maximum performance without "unnecessary" memory usage.
 

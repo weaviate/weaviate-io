@@ -312,6 +312,12 @@ This query fetches individuals who speak **one or more of the specified language
 
 This query fetches individuals who can speak **all three languages**: `Chinese`, `French`, and `English`.
 
+## Filter performance
+
+import RangeFilterPerformanceNote from '/_includes/range-filter-performance-note.mdx';
+
+<RangeFilterPerformanceNote />
+
 ## Special cases
 
 ### By id
@@ -548,6 +554,8 @@ import GraphQLFiltersWhereGeocoords from '/_includes/code/graphql.filters.where.
 ```
 
 </details>
+
+Note that `geoCoordinates` uses a vector index under the hood.
 
 ### By null state
 

@@ -568,6 +568,10 @@ This will result in the following response:
 
 </details>
 
+import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
+
+<GroupbyLimitations />
+
 ## Multi-tenancy
 
 For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you must specify the tenant parameter in each query.

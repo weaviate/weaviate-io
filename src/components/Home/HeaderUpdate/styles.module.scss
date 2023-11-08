@@ -357,7 +357,21 @@
   background-image: url('/img/site/weaviate-reinvent-aws-banner.png');
   background-size: cover;
   width: 100%;
-  height: calc(160px + 0.9vw);
+  height: calc(260px + 0.9vw);
+
+  @media screen and (max-width: 1600px) and (min-width: 800px) {
+    background-image: url('/img/site/weaviate-reinvent-aws-banner.png');
+    background-size: cover;
+    width: 100%;
+    height: calc(160px + 0.9vw);
+  }
+
+  @media screen and (max-width: 800px) and (min-width: 500px) {
+    background-image: url('/img/site/weaviate-reinvent-aws-banner.png');
+    background-size: cover;
+    width: 100%;
+    height: calc(94px + 3.1vw);
+  }
 
   @media screen and (max-width: 500px) {
     background-image: url('/img/site/weaviate-reinvent-aws-banner-mobile.png');
