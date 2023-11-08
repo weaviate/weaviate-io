@@ -20,13 +20,9 @@ Key notes:
 - The default model is `embed-multilingual-v3.0`.
 - Make sure to set the right [distance metric](#distance-metric) in your class configuration.
 
-## Module parameters
+import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
 
-The module accepts parameters through the request header, collection configuration, or environment variables. Some parameters (such as the OpenAI / Azure OpenAI API key, or the OpenAI base url) can be set in multiple ways.
-
-Where the same parameter can be set in multiple ways, setting it at query-time through the [Request header](#query-time-parameters) will have the highest precedence.
-
-We suggest you only set any given parameter in one place to avoid confusion.
+<ModuleParameterPrecedenceNote />
 
 ## Weaviate instance configuration
 
