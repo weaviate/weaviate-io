@@ -14,10 +14,18 @@
 }
 
 .latestModule {
+  overflow: scroll;
+  overflow-y: hidden;
+  margin: auto;
   display: flex;
-  gap: 38px;
-  justify-content: center;
+  gap: 90px;
+  justify-content: flex-start;
   align-items: center;
+  overflow-x: scroll;
+  flex-direction: row;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 20%;
+  padding: 5px 10px 20px;
 
   @media screen and (max-width: 900px) {
     display: flex;
@@ -53,13 +61,18 @@
   }
 
   .resource1 {
-    background-image: url('/img/site/resource-image-01.png');
+    background-image: url('/img/site/resource-image-05.jpeg');
+    background-size: cover;
   }
   .resource2 {
     background-image: url('/img/site/resource-image-02.png');
   }
   .resource3 {
     background-image: url('/img/site/resource-image-03.png');
+  }
+  .resource4 {
+    background-image: url('/img/site/resource-image-04.jpeg');
+    background-size: cover;
   }
 
   .textBox {

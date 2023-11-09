@@ -41,6 +41,18 @@ export default function Resources() {
               </div>
             </div>
           </Link>
+          <Link to="https://innovativesol.com/success-stories/preverity/">
+            <div className={styles.latestBox}>
+              <div className={`${styles.insideBox} ${styles.resource4}`}></div>
+              <div className={styles.textBox}>
+                <h3>Success Story</h3>
+                <p>
+                  Preverity, a pioneer in health technology, advances physician
+                  tech market with Generative AI
+                </p>
+              </div>
+            </div>
+          </Link>
           <Link to="https://aws.amazon.com/marketplace/pp/prodview-cicacyv63r43i?sr=0-1&ref_=beagle&applicationId=AWSMPContessa">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} ${styles.resource3}`}></div>
