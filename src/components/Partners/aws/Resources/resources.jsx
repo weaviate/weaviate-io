@@ -47,8 +47,8 @@ export default function Resources() {
               <div className={styles.textBox}>
                 <h3>Success Story</h3>
                 <p>
-                  Preverity, a pioneer in health technology, advances physician
-                  tech market with Generative AI
+                  Preverity looked to evolve their risk management and patient
+                  safety products with AI.
                 </p>
               </div>
             </div>
