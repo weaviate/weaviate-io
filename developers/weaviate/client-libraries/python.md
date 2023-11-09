@@ -14,6 +14,8 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 :::caution Beta version
 The Python client is currently in beta, and we want to hear from you.
 
+You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet. 
+
 If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
 :::
 
@@ -35,7 +37,7 @@ pip install --pre "weaviate-client==4.*"
 
 #### Weaviate version
 
-The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is due to its user of gRPC. If you are using an older version of Weaviate, please use the `v3` client.
+The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is because it requires gRPC and gRPC is not available in earlier versions. If you are using an older version of Weaviate, please use the `v3` client.
 
 #### gRPC port
 
@@ -46,6 +48,9 @@ Note that you will need the corresponding gRPC port to be open on your Weaviate 
      - "8080:8080"
      - "50051:50051"
 ```
+#### WCS availability
+
+You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet.
 
 ## Instantiation
 

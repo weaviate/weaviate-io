@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 ## Overview
@@ -30,10 +31,19 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 ## Simple `Get` example
 
 <Tabs groupId="languages">
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BasicGetPython"
+      endMarker="# END BasicGetPython"
+      language="py"
+    />
+  </TabItem>
+  
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# BasicGetPython"
   endMarker="# END BasicGetPython"
   language="py"
@@ -53,7 +63,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# BasicGetGraphQL"
   endMarker="# END BasicGetGraphQL"
   language="graphql"
@@ -68,7 +78,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// BasicGet Expected Results"
   endMarker="// END BasicGet Expected Results"
   language="json"
@@ -88,7 +98,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitPython"
   endMarker="# END GetWithLimitPython"
   language="py"
@@ -108,7 +118,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitGraphQL"
   endMarker="# END GetWithLimitGraphQL"
   language="graphql"
@@ -123,7 +133,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetWithLimit Expected Results"
   endMarker="// END GetWithLimit Expected Results"
   language="json"
@@ -148,7 +158,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitOffsetPython"
   endMarker="# END GetWithLimitOffsetPython"
   language="py"
@@ -168,7 +178,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitOffsetGraphQL"
   endMarker="# END GetWithLimitOffsetGraphQL"
   language="graphql"
@@ -183,7 +193,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetWithLimitOffset Expected Results"
   endMarker="// END GetWithLimitOffset Expected Results"
   language="json"
@@ -204,7 +214,7 @@ You can specify object properties as below.
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetPropertiesPython"
   endMarker="# END GetPropertiesPython"
   language="py"
@@ -224,7 +234,7 @@ You can specify object properties as below.
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetPropertiesGraphQL"
   endMarker="# END GetPropertiesGraphQL"
   language="graphql"
@@ -239,7 +249,7 @@ You can specify object properties as below.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetProperties Expected Results"
   endMarker="// END GetProperties Expected Results"
   language="json"
@@ -255,7 +265,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectVectorPython"
   endMarker="# END GetObjectVectorPython"
   language="py"
@@ -275,7 +285,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectVectorGraphQL"
   endMarker="# END GetObjectVectorGraphQL"
   language="graphql"
@@ -290,7 +300,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetObjectVector Expected Results"
   endMarker="// END GetObjectVector Expected Results"
   language="json"
@@ -306,7 +316,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectIdPython"
   endMarker="# END GetObjectIdPython"
   language="py"
@@ -326,7 +336,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectIdGraphQL"
   endMarker="# END GetObjectIdGraphQL"
   language="graphql"
@@ -341,7 +351,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetObjectId Expected Results"
   endMarker="// END GetObjectId Expected Results"
   language="json"
@@ -363,7 +373,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 <TabItem value="py" label="Python">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithCrossRefsPython"
   endMarker="# END GetWithCrossRefsPython"
   language="py"
@@ -383,7 +393,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithCrossRefsGraphQL"
   endMarker="# END GetWithCrossRefsGraphQL"
   language="graphql"
@@ -398,7 +408,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithCrossRefs Expected Results"
   endMarker="# END GetWithCrossRefs Expected Results"
   language="json"
