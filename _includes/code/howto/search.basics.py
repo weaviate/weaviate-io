@@ -139,16 +139,17 @@ assert gqlresponse == response
 # ==========================================
 
 # GetWithLimitOffsetPython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question"])
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
     # highlight-start
-    .with_limit(1)
-    .with_offset(1)
+    limit=1,
+    offset=1
     # highlight-end
-    .do()
 )
-print(response)
+
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
+    
 # END GetWithLimitOffsetPython
 
 # Test results
@@ -203,15 +204,16 @@ assert gqlresponse == response
 # ==========================================
 
 # GetPropertiesPython
-response = (
-    client.query
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
     # highlight-start
-    .get("JeopardyQuestion", ["question", "answer", "points"])
+    limit=1,
+    return_properties=["question", "answer", "points"]
     # highlight-end
-    .with_limit(1)
-    .do()
 )
-print(response)
+
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2)) 
 # END GetPropertiesPython
 
 # Test results

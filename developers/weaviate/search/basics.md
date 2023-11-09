@@ -94,6 +94,15 @@ The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRU
 Often, you will only want the top `n` results from the query. This can be achieved by setting a `limit` as shown below.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetWithLimitPython"
+  endMarker="# END GetWithLimitPython"
+  language="py"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
@@ -154,6 +163,15 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 :::
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetWithLimitOffsetPython"
+  endMarker="# END GetWithLimitOffsetPython"
+  language="py"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
@@ -203,13 +221,23 @@ It should produce a response like the one below:
 
 ## Specify the fetched properties
 
-You must specify one or more properties to be fetched, from a union of object properties and available metadata.
+You must specify the properties you want to be fetch. The set of available properties includes object properties and object metadata.
 
 ### Object `properties`
 
 You can specify object properties as below.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetPropertiesPython"
+  endMarker="# END GetPropertiesPython"
+  language="py"
+/>
+</TabItem>
+
+
 <TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
@@ -261,8 +289,16 @@ It should produce a response like the one below:
 To retrieve the object vector, request the `_additional` property and `vector` sub-property. You can do so as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetObjectVectorPython"
+  endMarker="# END GetObjectVectorPython"
+  language="py"
+/>
+</TabItem>
 
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# GetObjectVectorPython"
@@ -429,7 +465,7 @@ To use `groupBy`:
 - The maximum number of objects per group.
 
 <details>
-  <summary><code>groupby</code> example</summary>
+  <summary><code>groupBy</code> example</summary>
 
 <p>
 

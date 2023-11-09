@@ -21,9 +21,9 @@ If you notice any bugs, or have any feedback, please let us know on [this forum 
 
 ## Overview
 
-This page describes the `v4` Python client for Weaviate. This client is also called the `collections` client, because the main interactions is with a collection (also called `Class` in Weaviate).
+This page describes the `v4` Python client for Weaviate. This client is also called the `collections` client, because the main interactions is with a collection. (Some Weaviate documentation still says "Class" instead of "collection.")
 
-The full set of features will be covered in the client documentation page. This page will cover the key ideas and aspects, especially those specifc to the Python client.
+The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
 
 ## Installation
 
@@ -276,6 +276,9 @@ This is the formatted output.
 }
 ```
 
+### Tab completion in Jupyter notebooks
+
+If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion. 
 
 ## Client releases
 
