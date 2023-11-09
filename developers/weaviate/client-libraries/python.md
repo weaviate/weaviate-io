@@ -41,7 +41,7 @@ The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is be
 
 #### gRPC port
 
-Note that you will need the corresponding gRPC port to be open on your Weaviate instance. The default port is `50051`. If you are running Weaviate locally, you can open this port by adding the following to your `docker-compose.yml` file:
+You have to open a port for gRPC on your Weaviate instance. The default port is `50051`. If you are running Weaviate locally, you can open this port by adding the following to your `docker-compose.yml` file:
 
 ```yaml
     ports:
