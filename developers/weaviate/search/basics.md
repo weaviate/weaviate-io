@@ -5,8 +5,6 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -18,9 +16,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 This page shows the core concepts on how to perform searches and retrieve objects.
 
-:::info Related pages
-- [API References: GraphQL: Get](../api/graphql/get.md)
-:::
+import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
+
+<ClassToCollection /> 
 
 ## Basic requirements
 
@@ -31,6 +29,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 ## Simple `Get` example
 
 <Tabs groupId="languages">
+
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
@@ -40,7 +39,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
     />
   </TabItem>
   
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -95,7 +94,7 @@ The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRU
 Often, you will only want the top `n` results from the query. This can be achieved by setting a `limit` as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -155,7 +154,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -211,7 +210,7 @@ You must specify one or more properties to be fetched, from a union of object pr
 You can specify object properties as below.
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -262,7 +261,7 @@ It should produce a response like the one below:
 To retrieve the object vector, request the `_additional` property and `vector` sub-property. You can do so as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -313,7 +312,7 @@ It should produce a response like the one below:
 To retrieve the object ID, request the `_additional` property and `id` sub-property. You can do so as shown below.
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -370,7 +369,7 @@ You can retrieve any properties of cross-referenced objects by specifying:
 The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned. The property is accessed using the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
 
 <Tabs groupId="languages">
-<TabItem value="py3" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -589,7 +588,7 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 This example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
-  <TabItem value="py3" label="Python">
+  <TabItem value="py3" label="Python (v3)">
 
   ```python
   results = (
@@ -620,6 +619,9 @@ This example shows how to fetch one object in the `MultiTenancyClass` class from
   </TabItem>
 </Tabs>
 
+## Related pages
+
+- [API References: GraphQL: Get](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

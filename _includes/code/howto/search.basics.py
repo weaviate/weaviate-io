@@ -20,20 +20,18 @@ client = weaviate.connect_to_local(
 # ==============================
 
 # BasicGetPython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question"])
-    .do()
-)
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects()
 
 print(response)
 # END BasicGetPython
+
+<!-- TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET -->
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
 assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
 # End test
-
 
 expected_response = """
 // BasicGet Expected Results
@@ -52,7 +50,6 @@ expected_response = """
 // END BasicGet Expected Results
 """
 
-
 gql_query = """
 # BasicGetGraphQL
 {
@@ -64,26 +61,21 @@ gql_query = """
 }
 # END BasicGetGraphQL
 """
+
 gqlresponse = client.query.raw(gql_query)
+
 # Test results
 assert gqlresponse == response
+
 # END Test results
-
-
 
 # ====================================
 # ===== BASIC GET LIMIT EXAMPLES =====
 # ====================================
 
 # GetWithLimitPython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question"])
-    # highlight-start
-    .with_limit(1)
-    # highlight-end
-    .do()
-)
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects( limit=1 )
 
 print(response)
 # END GetWithLimitPython

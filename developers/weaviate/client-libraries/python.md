@@ -236,6 +236,47 @@ Please be particularly aware that the batching algorithm within our client is no
 
 If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
 
+### Print formatting
+
+The collections object returns a lot of additional information when you query the collections object. Consider this simple query. 
+
+```python
+jeopardy = client.collections.get("JeopardyQuestion")
+
+response = jeopardy.query.fetch_objects( limit=1 )
+
+print(response)
+```
+
+The response includes a lot of extra information you may not always want.
+
+```
+_QueryReturn(objects=[_Object(properties={'points': 100.0, 'answer': 'Jonah', 'air_date': '2001-01-10T00:00:00Z', 'round': 'Jeopardy!', 'question': 'This prophet passed the time he spent inside a fish offering up prayers'}, metadata=_MetadataReturn(uuid=UUID('0002bf92-80c8-5d94-af34-0d6c5fea1aaf'), vector=None, creation_time_unix=1699540272055, last_update_time_unix=1699540273460, distance=None, certainty=None, score=0.0, explain_score='', is_consistent=False))])
+```
+
+To limit the response and format it as JSON, use `json.dump()s` to print the response `properties` field.
+
+```python
+response = jeopardy.query.fetch_objects( limit=1 )
+
+# print result objects 
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
+```
+
+This is the formatted output.
+
+```
+{
+  "points": 100.0,
+  "answer": "Jonah",
+  "air_date": "2001-01-10T00:00:00Z",
+  "round": "Jeopardy!",
+  "question": "This prophet passed the time he spent inside a fish offering up prayers"
+}
+```
+
+
 ## Client releases
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
