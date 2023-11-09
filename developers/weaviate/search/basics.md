@@ -348,6 +348,15 @@ It should produce a response like the one below:
 To retrieve the object ID, request the `_additional` property and `id` sub-property. You can do so as shown below.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetObjectIdPython"
+  endMarker="# END GetObjectIdPython"
+  language="py"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock

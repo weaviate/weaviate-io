@@ -27,7 +27,7 @@ response = jeopardy.query.fetch_objects()
 print(response)
 
 # This formatting step prints the output that you probably want. The
-#   remaining examples use formatted output.
+#   remaining examples use formatted output were appropriate.
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
@@ -269,16 +269,19 @@ assert gqlresponse == response
 # ======================================
 
 # GetObjectVectorPython
-response = (
-    client.query
-    .get("JeopardyQuestion")
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
     # highlight-start
-    .with_additional("vector")
+    return_metadata=wvc.MetadataQuery(vector=True),
     # highlight-end
-    .with_limit(1)
-    .do()
+    limit=1
 )
-print(response)
+
+print( response.objects[0].metadata.vector )
 # END GetObjectVectorPython
 
 # Test results
@@ -339,16 +342,20 @@ assert gqlresponse == response
 # ==================================
 
 # GetObjectIdPython
-response = (
-    client.query
-    .get("JeopardyQuestion")
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
+ 
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
     # highlight-start
-    .with_additional("id")
+    return_metadata=wvc.MetadataQuery(uuid=True), 
     # highlight-end
-    .with_limit(1)
-    .do()
+    limit=1
 )
-print(response)
+
+for r in response.objects:
+   print( r.metadata.uuid )
 # END GetObjectIdPython
 
 # Test results
@@ -404,6 +411,15 @@ assert gqlresponse == response
 # ==============================
 
 # GetWithCrossRefsPython
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects( limit=1 )
+
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
+    
+
+
 response = (
     client.query
     # highlight-start

@@ -280,6 +280,62 @@ This is the formatted output.
 
 If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion. 
 
+### Object properties and metadata
+
+The new client uses the `return_properties` and `return_metadata` query parameters to examine objects in the database. These parameters work differently. 
+
+- `return_properties` takes a list of strings.
+- `return_metadata` is a data class. To work with the class, import the `weaviate.classes` package. You can pass boolean values to select the fields you want.
+
+Consider this example.
+
+```python
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    return_metadata=wvc.MetadataQuery(uuid=True),
+    return_properties=["question", "answer", "points"], 
+    limit=3
+)
+
+for r in response.objects:
+   print( r.metadata.uuid )
+   print( r.properties['points'] )
+   print()
+``` 
+
+This is the output.
+
+```none
+0002bf92-80c8-5d94-af34-0d6c5fea1aaf
+100.0
+
+00031ce9-ef72-5447-a02a-851f221d7359
+400.0
+
+0003b234-14d3-5ea6-b4b5-0fb0a6dcc43c
+800.0
+```
+### Vectors and metadata
+
+By default `return_metadata` does not return the object vector. To return the vector, set
+`vector=True` when you use the `return_metadata` parameter. 
+
+If you import the `weaviate.classes` helper package, the call looks like this.
+
+```python
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    return_metadata=wvc.MetadataQuery(vector=True),
+    limit=1
+)
+``` 
+
+
+
 ## Client releases
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
