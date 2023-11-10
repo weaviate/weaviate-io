@@ -154,6 +154,15 @@ You can limit the number of results returned by a `hybrid` search,
 Use the `limit` argument to specify the maximum number of results that should be returned:
 
 <Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START limit Python"
+      endMarker="# END limit Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}

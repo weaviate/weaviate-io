@@ -681,7 +681,16 @@ test_gqlresponse(response, gqlresponse)
 # ===================================
 
 # START limit Python
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+   query="food",
+   # highlight-start
+   limit=3
+   # highlight-end
+).objects,
 
+for o in response[0]:
+    print(json.dumps(o.properties, indent=2))
 # END limit Python
 
 # Tests
