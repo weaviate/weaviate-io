@@ -27,7 +27,7 @@ response = jeopardy.query.fetch_objects()
 print(response)
 
 # This formatting step prints the output that you probably want. The
-#   remaining examples use formatted output were appropriate.
+#   remaining examples use formatted output where appropriate.
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
