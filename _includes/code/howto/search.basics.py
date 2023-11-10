@@ -434,8 +434,6 @@ for o in response.objects:
     print(o.properties["question"])
     for ref in o.properties["hasCategory"].objects:
         print(ref.properties)
-
-print(json.dumps(response, indent=2))
 # END GetWithCrossRefsPython
 
 
@@ -496,3 +494,40 @@ assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "ha
 assert gqlresponse == response
 assert expected_response == response
 # END Test results
+
+
+# =========================
+# ===== MULTI-TENANCY =====
+# =========================
+
+<!-- NEEDS TESTS -->
+
+# MultiTenancy
+import weaviate.classes as wvc
+
+# Connect to the collection
+collectionConnection = client.collections.get("AMultiTenancyCollection")
+
+# Get the specific tenant's version of the collection
+connectionForTenantA = collectionConnection.with_tenant("tenantA")
+
+# Query tenantA's version
+result = connectionForTenantA.query.fetch_objects(
+    return_properties=["property1", "property2"]
+    limit=1,
+)
+print (result.objects[0].properties)
+
+# END MultiTenancy
+
+
+# Test results
+pass
+# End test
+
+
+expected_response = """
+// MultiTenancy Expected Results
+pass
+// END MultiTenancy Expected Results
+"""

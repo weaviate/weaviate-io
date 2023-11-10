@@ -472,3 +472,32 @@ assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "ha
 assert gqlresponse == response
 assert expected_response == response
 # END Test results
+
+
+
+# =========================
+# ===== MULTI-TENANCY =====
+# =========================
+
+<!-- NEEDS TESTS -->
+
+# MultiTenancy
+results = (
+      client.query.get("MultiTenancyClass", ["property1", "property2"])
+      .with_limit(1)
+      # highlight-start
+      .with_tenant("tenantA")
+      # highlight-end
+      .do()
+# END MultiTenancy
+
+# Test results
+pass
+# End test
+
+
+expected_response = """
+// MultiTenancy Expected Results
+pass
+// END MultiTenancy Expected Results
+"""

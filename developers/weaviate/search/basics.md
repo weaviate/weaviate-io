@@ -647,35 +647,32 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 This example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
-  <TabItem value="py3" label="Python (v3)">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MultiTenancy"
+  endMarker="# END MultiTenancy"
+  language="py"
+/>
+</TabItem>
 
-  ```python
-  results = (
-      client.query.get("MultiTenancyClass", ["property1", "property2"])
-      .with_limit(1)
-      # highlight-start
-      .with_tenant("tenantA")
-      # highlight-end
-      .do()
-  )
-  ```
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# MultiTenancy"
+  endMarker="# END MultiTenancy"
+  language="py"
+ />
+</TabItem>
 
-  </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
-
-  ```ts
-  result = await client
-    .graphql
-    .get()
-    .withClassName('MultiTenancyClass')
-    .withFields(['property1', 'property2'])
-    .withTenant('TenantA')
-    .do();
-
-  console.log(JSON.stringify(result, null, 2));
-  ```
-
-  </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// MultiTenancy"
+  endMarker="// END MultiTenancy"
+  language="js"
+/>
+</TabItem>
 </Tabs>
 
 ## Related pages
