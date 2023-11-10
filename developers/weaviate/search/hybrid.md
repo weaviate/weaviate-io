@@ -5,8 +5,6 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -19,10 +17,6 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 This page shows you how to perform `hybrid` searches.
 
 The `hybrid` operator produces results based on a weighted combination of results from a keyword (`bm25`) search and a vector (`nearXXX`) search.
-
-:::info Related pages
-- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
-:::
 
 ## Basic hybrid search
 
@@ -510,6 +504,9 @@ It should produce a response like the one below:
 
 </details>
 
+## Related pages
+
+- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

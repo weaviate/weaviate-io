@@ -91,7 +91,7 @@ The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRU
 
 ## `limit` returned objects
 
-Often, you will only want the top `n` results from the query. This can be achieved by setting a `limit` as shown below.
+Often, you only a few objects instead of the full result set. To restrict the results, set a `limit`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -154,12 +154,12 @@ It should produce a response like the one below:
 
 ## Paginate with `limit` and `offset`
 
-If you only want the `n` results after the first `m` results from the query, you can do this with `limit` and `offset` as shown below.
+`limit` returns the first `n` objects. Sometimes you want to see later results. To return a limited number of results from the middle of your result set, define an `offset` and then `limit` the result set to the objects following your offset. For example, if your offset is 5 and your limit is 3, the query returns objects 6, 7, and 8 in your result set.
 
-Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
+Be aware that this operation can be expensive. Although you only see a small set of results, Weaviate must fetch `offset` + `limit` results.
 
 :::tip For exhaustive retrieval, use `after` instead.
-If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` operator. Read [this guide](../manage-data/read-all-objects.mdx) for more information on how.
+To list and retrieve all of the objects from a `class`, use the cursor API with the `after` operator. For more information, read [this guide](../manage-data/read-all-objects.mdx).
 :::
 
 <Tabs groupId="languages">
@@ -273,7 +273,7 @@ You can specify object properties as below.
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+It should produce a response like this:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -286,7 +286,7 @@ It should produce a response like the one below:
 
 ### Retrieve the object `vector`
 
-To retrieve the object vector, request the `_additional` property and `vector` sub-property. You can do so as shown below.
+To retrieve the object vector with one of the legacy clients, request the `_additional` property and `vector` sub-property. The new Python client uses the `return_metadata` property.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -345,7 +345,7 @@ It should produce a response like the one below:
 
 ### Retrieve the object `id`
 
-To retrieve the object ID, request the `_additional` property and `id` sub-property. You can do so as shown below.
+To retrieve the object ID with one of the legacy clients, request the `_additional` property and `id` sub-property. The new Python client uses the `return_metadata` property.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -406,12 +406,15 @@ It should produce a response like the one below:
 
 ### Retrieve cross-referenced properties
 
-You can retrieve any properties of cross-referenced objects by specifying:
-- The cross-reference property,
-- The target cross-referenced object class, and
-- The desired properties to retrieve (of the cross-referenced objects).
+To retrieve properties from cross-referenced objects, specify the following items.
 
-The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned. The property is accessed using the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
+- The cross-reference property,
+- The target cross-referenced object class.
+- The properties you want to retrieve from the cross-referenced objects.
+
+The legacy clients use the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
+
+The following examples retrieve the `title` property from `JeopardyCategory` objects that are cross-referenced with `JeopardyQuestion` objects.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -471,7 +474,9 @@ It should produce a response like the one below:
 
 ### Retrieve any other metadata
 
-You can retrieve any other available metadata by specifying the `_additional` property similarly to how `id` or `vector` can be retrieved. Please refer to [References: GraphQL: Additional properties](../api/graphql/additional-properties.md) for a comprehensive list.
+To retrieve other kinds of metadata with one of the legacy clients, request the `_additional` property and specify the sub-property. The new Python client uses the `return_metadata` property.
+
+for a comprehensive list of metadata fields, see [References: GraphQL: Additional properties](../api/graphql/additional-properties.md).
 
 ## `groupBy`
 
