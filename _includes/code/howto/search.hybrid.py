@@ -101,11 +101,12 @@ test_gqlresponse(response, gqlresponse)
 # HybridWithScorePython
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
-    query="repast",
+    query="food",
     alpha=0.5,
-    limit=3),
+    limit=3
+)
 
-for o in response[0].objects:
+for o in response.objects:
     print(json.dumps(o.properties, indent=2))
     print(o.metadata.explain_score, o.metadata.score)
 # END HybridWithScorePython
@@ -680,20 +681,7 @@ test_gqlresponse(response, gqlresponse)
 # ===================================
 
 # START limit Python
-response = (
-    client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
-    .with_hybrid(
-      query='safety'
-    )
-    .with_additional('score')
-    # highlight-start
-    .with_limit(3)
-    # highlight-end
-    .do()
-)
 
-print(json.dumps(response, indent=2))
 # END limit Python
 
 # Tests
