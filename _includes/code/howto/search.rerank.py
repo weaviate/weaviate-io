@@ -162,21 +162,6 @@ gql_query = """
 # Reranking is not yet supported in the Python Client v4.
 print ("Work in Progress 👷🏼")
 # END nearTextRerank Python
-# response = (
-#     client.query
-#     .get('JeopardyQuestion', ['question', 'answer'])
-#     .with_near_text({
-#         'concepts': ['flying']
-#     })
-#     # highlight-start
-#     .with_additional('rerank(property: "answer" query: "floating") { score }')
-#     # highlight-end
-#     .with_limit(10)
-#     .do()
-# )
-
-# print(json.dumps(response, indent=2))
-
 
 expected_response = (
 # START Expected nearTextRerank results
@@ -359,20 +344,6 @@ gql_query = """
 # Reranking is not yet supported in the Python Client v4.
 print ("Work in Progress 👷🏼")
 # END bm25Rerank Python
-# response = (
-#     client.query
-#     .get('JeopardyQuestion', ['question', 'answer'])
-#     .with_bm25(
-#       query='paper'
-#     )
-#     # highlight-start
-#     .with_additional('rerank(property: "question" query: "publication") { score }')
-#     # highlight-end
-#     .with_limit(10)
-#     .do()
-# )
-
-# print(json.dumps(response, indent=2))
 
 
 expected_response = (
