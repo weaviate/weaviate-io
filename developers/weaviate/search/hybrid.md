@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 ## Overview
@@ -34,9 +35,9 @@ This example uses default settings to look for:
 It ranks the results using a combination of the `bm25` and vector search rankings, and returns the top 3.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridBasicPython"
   endMarker="# END HybridBasicPython"
   language="python"
@@ -52,7 +53,7 @@ It ranks the results using a combination of the `bm25` and vector search ranking
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridBasicGraphQL"
   endMarker="# END HybridBasicGraphQL"
   language="graphql"
@@ -66,7 +67,7 @@ It ranks the results using a combination of the `bm25` and vector search ranking
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridBasic results"
   endMarker="# END Expected HybridBasic results"
   language="json"
@@ -83,9 +84,9 @@ This example adds the two properties to the list of retrieved properties.
 
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithScorePython"
   endMarker="# END HybridWithScorePython"
   language="python"
@@ -101,7 +102,7 @@ This example adds the two properties to the list of retrieved properties.
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithScoreGraphQL"
   endMarker="# END HybridWithScoreGraphQL"
   language="graphql"
@@ -115,7 +116,7 @@ This example adds the two properties to the list of retrieved properties.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithScore results"
   endMarker="# END Expected HybridWithScore results"
   language="json"
@@ -137,9 +138,9 @@ You can limit the number of results returned by a `hybrid` search,
 Use the `limit` argument to specify the maximum number of results that should be returned:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START limit Python"
       endMarker="# END limit Python"
       language="py"
@@ -157,7 +158,7 @@ Use the `limit` argument to specify the maximum number of results that should be
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START limit GraphQL"
       endMarker="# END limit GraphQL"
       language="graphql"
@@ -172,9 +173,9 @@ Another way to limit the results returned by a hybrid search is to use the [`aut
 Autocut can be used as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START autocut Python"
       endMarker="# END autocut Python"
       language="py"
@@ -192,7 +193,7 @@ Autocut can be used as follows:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START autocut GraphQL"
       endMarker="# END autocut GraphQL"
       language="graphql"
@@ -206,7 +207,7 @@ Autocut can be used as follows:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# START Expected autocut results"
   endMarker="# END Expected autocut results"
   language="json"
@@ -222,9 +223,9 @@ You can use the `alpha` argument to weight the keyword (`bm25`) or vector search
 The following example uses an alpha of `0.25`, favoring keyword search results.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithAlphaPython"
   endMarker="# END HybridWithAlphaPython"
   language="python"
@@ -240,7 +241,7 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithAlphaGraphQL"
   endMarker="# END HybridWithAlphaGraphQL"
   language="graphql"
@@ -254,7 +255,7 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithAlpha results"
   endMarker="# END Expected HybridWithAlpha results"
   language="json"
@@ -274,9 +275,9 @@ The default is `rankedFusion`, which adds inverted ranks of the BM25 and vector 
 The following example specifies the fusion type of `relativeScoreFusion`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithFusionTypePython"
   endMarker="# END HybridWithFusionTypePython"
   language="python"
@@ -292,7 +293,7 @@ The following example specifies the fusion type of `relativeScoreFusion`.
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithFusionTypeGraphQL"
   endMarker="# END HybridWithFusionTypeGraphQL"
   language="graphql"
@@ -306,7 +307,7 @@ The following example specifies the fusion type of `relativeScoreFusion`.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithFusionType results"
   endMarker="# END Expected HybridWithFusionType results"
   language="json"
@@ -326,9 +327,9 @@ This is not possible as doing so will require the entire database to be re-vecto
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithPropertiesPython"
   endMarker="# END HybridWithPropertiesPython"
   language="python"
@@ -344,7 +345,7 @@ This is not possible as doing so will require the entire database to be re-vecto
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithPropertiesGraphQL"
   endMarker="# END HybridWithPropertiesGraphQL"
   language="graphql"
@@ -358,7 +359,7 @@ This is not possible as doing so will require the entire database to be re-vecto
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithProperties results"
   endMarker="# END Expected HybridWithProperties results"
   language="json"
@@ -373,9 +374,9 @@ You can specify weighting of object `properties` in how they affect the BM25F co
 This example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingPython"
   endMarker="# END HybridWithPropertyWeightingPython"
   language="python"
@@ -391,7 +392,7 @@ This example searches for objects containing the keyword `food`. The BM25 search
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingGraphQL"
   endMarker="# END HybridWithPropertyWeightingGraphQL"
   language="graphql"
@@ -405,7 +406,7 @@ This example searches for objects containing the keyword `food`. The BM25 search
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithPropertyWeighting results"
   endMarker="# END Expected HybridWithPropertyWeighting results"
   language="json"
@@ -421,9 +422,9 @@ You can provide your own `vector` input to the hybrid query. In this scenario, W
 This example supplies the vector for "italian food", while using "food" as the query text. Note how the results have now skewed towards Italian food.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithVectorPython"
   endMarker="# END HybridWithVectorPython"
   language="python"
@@ -439,7 +440,7 @@ This example supplies the vector for "italian food", while using "food" as the q
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithVectorGraphQL"
   endMarker="# END HybridWithVectorGraphQL"
   language="graphql"
@@ -453,7 +454,7 @@ This example supplies the vector for "italian food", while using "food" as the q
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithVector results"
   endMarker="# END Expected HybridWithVector results"
   language="json"
@@ -469,9 +470,9 @@ This example performs a hybrid search for `food` in any field on objects that ha
 
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithFilterPython"
   endMarker="# END HybridWithFilterPython"
   language="python"
@@ -487,7 +488,7 @@ This example performs a hybrid search for `food` in any field on objects that ha
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithFilterGraphQL"
   endMarker="# END HybridWithFilterGraphQL"
   language="graphql"
@@ -501,7 +502,7 @@ This example performs a hybrid search for `food` in any field on objects that ha
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithFilter results"
   endMarker="# END Expected HybridWithFilter results"
   language="json"
