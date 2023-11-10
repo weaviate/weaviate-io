@@ -411,17 +411,29 @@ assert gqlresponse == response
 # ==============================
 
 # GetWithCrossRefsPython
-response = (
-    client.query
-    # highlight-start
-    .get("JeopardyQuestion", [
-      "question",
-      "hasCategory { ... on JeopardyCategory { title } }"
-    ])
-    # highlight-end
-    .with_limit(2)
-    .do()
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    return_properties=[
+        # highlight-start
+        wvc.FromReference( 
+            link_on="hasCategory",
+            return_properties=["title"]
+            ),
+        "answer",
+        # highlight-end
+    ],
+    limit=2
 )
+
+# print result objects 
+for o in response.objects:
+    print(o.properties["answer"])
+    for ref in o.properties["hasCategory"].objects:
+        print(ref.properties)
 
 print(json.dumps(response, indent=2))
 # END GetWithCrossRefsPython
