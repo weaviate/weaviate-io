@@ -201,6 +201,10 @@ response = (
     .with_limit(3)
     .do()
 )
+client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    query="repast",
+    alpha=0.5,
 
 print(json.dumps(response, indent=2))
 # END HybridWithAlphaPython
