@@ -18,7 +18,6 @@ client = weaviate.connect_to_wcs(
     cluster_id="some-endpoint",
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
-        "X-Cohere-Api-Key": os.environ["COHERE_API_KEY"]
     }
 )
 
@@ -160,7 +159,8 @@ gql_query = """
 # =================================
 
 # START nearTextRerank Python
-# WIP 👷🏼
+# Reranking is not yet supported in the Python Client v4.
+print ("Work in Progress 👷🏼")
 # END nearTextRerank Python
 # response = (
 #     client.query
@@ -356,7 +356,8 @@ gql_query = """
 # ============================
 
 # START bm25Rerank Python
-# WIP 👷🏼
+# Reranking is not yet supported in the Python Client v4.
+print ("Work in Progress 👷🏼")
 # END bm25Rerank Python
 # response = (
 #     client.query
