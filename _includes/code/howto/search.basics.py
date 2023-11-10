@@ -423,15 +423,15 @@ response = jeopardy.query.fetch_objects(
             link_on="hasCategory",
             return_properties=["title"]
             ),
-        "answer",
         # highlight-end
+        "question",
     ],
     limit=2
 )
 
 # print result objects 
 for o in response.objects:
-    print(o.properties["answer"])
+    print(o.properties["question"])
     for ref in o.properties["hasCategory"].objects:
         print(ref.properties)
 
