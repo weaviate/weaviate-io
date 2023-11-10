@@ -16,19 +16,31 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 This page shows you how to perform `hybrid` searches.
 
-The `hybrid` operator produces results based on a weighted combination of results from a keyword (`bm25`) search and a vector (`nearXXX`) search.
+import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
+
+<ClassToCollection /> 
 
 ## Basic hybrid search
 
-To use hybrid search, you must provide a search string as a minimum.
+To use hybrid search, you must provide a search string.
 
-This example uses default settings to look for:
-- Objects containing the keyword `food` anywhere in the object, and
-- Objects most similar to the vector of `food`.
+This example uses default settings to search. It matches objects in multiple ways.
 
-It ranks the results using a combination of the `bm25` and vector search rankings, and returns the top 3.
+- If the object contains the keyword `food` anywhere
+- If the object's vector is similar to the vector for `food`
+
+Hybrid search ranks the results using a combination of the `bm25` search ranking and the vector search ranking. The query returns the top three results.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridBasicPython"
+  endMarker="# END HybridBasicPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -37,6 +49,7 @@ It ranks the results using a combination of the `bm25` and vector search ranking
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -70,14 +83,22 @@ It should produce a response like the one below:
 </details>
 
 
-### Score / explainScore
+### Explain the search results
 
-The `score` and `explainScore` sub-properties aim to explain the outputs. They can be retrieved under the `_additional` property.
+To understand why particular objects are returned, use the object sub-properties to explain the results. 
 
-This example adds the two properties to the list of retrieved properties.
-
+To retrieve the sub-properties with one of the legacy clients, use the `_additional` property to specify `score` and `explainScore`. The new Python client returns the information as metadata.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithScorePython"
+  endMarker="# END HybridWithScorePython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -86,6 +107,7 @@ This example adds the two properties to the list of retrieved properties.
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}

@@ -4,6 +4,7 @@
 # ===== INSTANTIATION-COMMON =====
 # ================================
 
+
 import weaviate
 import json
 import os
@@ -17,25 +18,22 @@ client = weaviate.Client(
     }
 )
 
+response = jeopardy.query.fetch_objects(
+    limit=3, 
+    
 # ==============================
 # ===== Basic Hybrid Query =====
 # ==============================
 
 # HybridBasicPython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    # highlight-start
-    .with_hybrid(
-        query="food"
-    )
-    # highlight-end
-    .with_limit(3)
-    .do()
-)
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(query="food", limit=3),
 
-print(json.dumps(response, indent=2))
+for o in response[0].objects:
+    print(json.dumps(o.properties, indent=2))
 # END HybridBasicPython
+
+<!-- TESTS FROM THIS FILE HAVE NOT BEEN VALIDATED -->
 
 # Tests
 assert "JeopardyQuestion" in response["data"]["Get"]
@@ -101,20 +99,15 @@ test_gqlresponse(response, gqlresponse)
 # =======================================
 
 # HybridWithScorePython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_hybrid(
-        query="food",
-    )
-    # highlight-start
-    .with_additional(["score", "explainScore"])
-    # highlight-end
-    .with_limit(3)
-    .do()
-)
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    query="repast",
+    alpha=0.5,
+    limit=3),
 
-print(json.dumps(response, indent=2))
+for o in response[0].objects:
+    print(json.dumps(o.properties, indent=2))
+    print(o.metadata.explain_score, o.metadata.score)
 # END HybridWithScorePython
 
 # Tests
