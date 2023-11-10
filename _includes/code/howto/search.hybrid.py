@@ -185,26 +185,178 @@ test_gqlresponse(response, gqlresponse)
 
 
 # ===================================
+# ===== Hybrid Query with limit =====
+# ===================================
+
+# START limit Python
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+   query="food",
+   # highlight-start
+   limit=3
+   # highlight-end
+).objects,
+
+for o in response[0]:
+    print(json.dumps(o.properties, indent=2))
+# END limit Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert len(response['data']['Get']['JeopardyQuestion']) == 3
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# End test
+
+
+expected_response = (
+# START Expected limit results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "score": "2.6768136"
+          },
+          "answer": "OSHA (Occupational Safety and Health Administration)",
+          "question": "The government admin. was created in 1971 to ensure occupational health & safety standards"
+        },
+        {
+          "_additional": {
+            "score": "2.0213983"
+          },
+          "answer": "France",
+          "question": "Royale, Joseph, and Devil's Islands make up the Safety Islands owned by this country"
+        },
+        {
+          "_additional": {
+            "score": "2.0213983"
+          },
+          "answer": "Devil's Island",
+          "question": "The Safety Islands off French Guiana consist of Royale, Saint-Joseph & this diabolical island"
+        }
+      ]
+    }
+  }
+}
+# END Expected limit results
+)
+
+gql_query = """
+# START limit GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      hybrid: {
+        query: "safety"
+      }
+# highlight-start
+      limit: 3
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END limit GraphQL
+
+"""
+gqlresponse = client.query.raw(gql_query)
+print('--------------------------------------------------------------------------------')
+print(json.dumps(response, indent=2))
+print(json.dumps(gqlresponse, indent=2))
+test_gqlresponse(response, gqlresponse)
+
+
+# =====================================
+# ===== Hybrid Query with autocut =====
+# =====================================
+
+# START autocut Python
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+   query="food",
+   # highlight-start
+   auto_limit=1
+   # highlight-end
+).objects,
+
+for o in response[0]:
+    print(json.dumps(o.properties, indent=2))
+# END autocut Python
+
+# Tests
+assert 'JeopardyQuestion' in response['data']['Get']
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# End test
+
+
+expected_response = (
+# START Expected autocut results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Guards",
+          "question": "Life, Security, Shin",
+          "_additional": {
+            "score": "0.75"
+          },
+        },
+        # ... trimmed for brevity
+      ]
+    }
+  }
+}
+# END Expected autocut results
+)
+
+gql_query = """
+# START autocut GraphQL
+{
+  Get {
+    JeopardyQuestion(
+      hybrid: {
+        query: "safety"
+      }
+# highlight-start
+      autocut: 1
+# highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        score
+      }
+    }
+  }
+}
+# END autocut GraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+test_gqlresponse(response, gqlresponse)
+
+
+# ===================================
 # ===== Hybrid Query with Alpha =====
 # ===================================
 
 # HybridWithAlphaPython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question", "answer"])
-    .with_hybrid(
-        query="food",
-        # highlight-start
-        alpha=0.25
-        # highlight-end
-    )
-    .with_limit(3)
-    .do()
-)
 client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
-    query="repast",
-    alpha=0.5,
+    query="food", 
+    # highlight-start
+    alpha=0.25,
+    # highlight-end
+    limit=3
+)
 
 print(json.dumps(response, indent=2))
 # END HybridWithAlphaPython
@@ -679,165 +831,3 @@ gql_query = """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
-
-# ===================================
-# ===== Hybrid Query with limit =====
-# ===================================
-
-# START limit Python
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
-   query="food",
-   # highlight-start
-   limit=3
-   # highlight-end
-).objects,
-
-for o in response[0]:
-    print(json.dumps(o.properties, indent=2))
-# END limit Python
-
-# Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert len(response['data']['Get']['JeopardyQuestion']) == 3
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-# End test
-
-
-expected_response = (
-# START Expected limit results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "score": "2.6768136"
-          },
-          "answer": "OSHA (Occupational Safety and Health Administration)",
-          "question": "The government admin. was created in 1971 to ensure occupational health & safety standards"
-        },
-        {
-          "_additional": {
-            "score": "2.0213983"
-          },
-          "answer": "France",
-          "question": "Royale, Joseph, and Devil's Islands make up the Safety Islands owned by this country"
-        },
-        {
-          "_additional": {
-            "score": "2.0213983"
-          },
-          "answer": "Devil's Island",
-          "question": "The Safety Islands off French Guiana consist of Royale, Saint-Joseph & this diabolical island"
-        }
-      ]
-    }
-  }
-}
-# END Expected limit results
-)
-
-gql_query = """
-# START limit GraphQL
-{
-  Get {
-    JeopardyQuestion(
-      hybrid: {
-        query: "safety"
-      }
-# highlight-start
-      limit: 3
-# highlight-end
-    ) {
-      question
-      answer
-      _additional {
-        score
-      }
-    }
-  }
-}
-# END limit GraphQL
-"""
-gqlresponse = client.query.raw(gql_query)
-print('--------------------------------------------------------------------------------')
-print(json.dumps(response, indent=2))
-print(json.dumps(gqlresponse, indent=2))
-test_gqlresponse(response, gqlresponse)
-
-
-# =====================================
-# ===== Hybrid Query with autocut =====
-# =====================================
-
-# START autocut Python
-response = (
-    client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
-    .with_hybrid(
-      query='safety'
-    )
-    .with_additional('score')
-    # highlight-start
-    .with_autocut(1)
-    # highlight-end
-    .do()
-)
-
-print(json.dumps(response, indent=2))
-# END autocut Python
-
-# Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-# End test
-
-
-expected_response = (
-# START Expected autocut results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "answer": "Guards",
-          "question": "Life, Security, Shin",
-          "_additional": {
-            "score": "0.75"
-          },
-        },
-        # ... trimmed for brevity
-      ]
-    }
-  }
-}
-# END Expected autocut results
-)
-
-gql_query = """
-# START autocut GraphQL
-{
-  Get {
-    JeopardyQuestion(
-      hybrid: {
-        query: "safety"
-      }
-# highlight-start
-      autocut: 1
-# highlight-end
-    ) {
-      question
-      answer
-      _additional {
-        score
-      }
-    }
-  }
-}
-# END autocut GraphQL
-"""
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)

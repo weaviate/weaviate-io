@@ -149,7 +149,7 @@ You can limit the number of results returned by a `hybrid` search,
 
 `autocut` can be combined with `limit: N`, which would limit autocut's input to the first `N` objects.
 
-### Limiting the number of results
+### Limiting results with `limit`
 
 Use the `limit` argument to specify the maximum number of results that should be returned:
 
@@ -191,13 +191,28 @@ Use the `limit` argument to specify the maximum number of results that should be
   </TabItem>
 </Tabs>
 
-### Autocut
+### Limiting results with `autocut` and `auto_limit`
 
-Another way to limit the results returned by a hybrid search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [score](#score--explainscore) of each result, and stops returning results after the `N`th "drop" in score. Because `hybrid` combines a vector search with a keyword (BM25F) search, their scores/distances cannot be directly compared, so the cut points may not be intuitive. <!-- TODO: add detailed explanation -->
+Weaviate can also limit results based on discontinuities in the result set. In the legacy client, this filter is called `autocut`. The filter is called `auto_limit` in the new client. 
+
+The [filter](../api/graphql/additional-operators.md#autocut) looks for discontinuities, or jumps, in the result [score](#score--explainscore). In your query, you specify how many jumps there should be. The query stops returning results after the specified number of jumps. 
+
+`hybrid` search combines a vector search and a keyword (BM25F) search. The scores are different for each type of search so they cannot be compared directly. This means the cut points the filter chooses may not be intuitive.
+
+<!-- TODO: add detailed explanation -->
 
 Autocut can be used as follows:
 
 <Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START autocut Python"
+      endMarker="# END autocut Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -241,13 +256,27 @@ It should produce a response like the one below:
 </details>
 
 
-## Weight keyword vs vector results
+## Weight the keyword and vector results
 
-You can use the `alpha` argument to weight the keyword (`bm25`) or vector search results. An `alpha` of `1` is for a pure vector search and `0` is for a pure keyword search. The default is `0.75`.
+You can use the `alpha` argument to add weight to the keyword or vector search results.
 
-The following example uses an alpha of `0.25`, favoring keyword search results.
+- An `alpha` of `1` is a pure vector search.
+- An `alpha` of `0` is a pure keyword search. 
+
+In the legacy clients, the default value for `alpha` is `0.75`. The new client uses a default value of `0.5`.
+
+The following example uses an alpha of `0.25` to increase the importance of the keyword search results.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithAlphaPython"
+  endMarker="# END HybridWithAlphaPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -256,6 +285,7 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
