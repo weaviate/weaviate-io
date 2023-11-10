@@ -78,17 +78,24 @@ expected_response = (
 # ==================================
 
 # TextProp Python
+import weaviate.classes as wvc
+
 jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.aggregate_group_by.over_all(
-    group_by="answer",
-# highlight-end
-    limit=5
+response = jeopardy.aggregate.over_all(
+    # highlight-start
+    return_metrics=wvc.Metrics("answer").text(
+        top_occurrences_count=True,
+        top_occurrences_value=True
+    )
+    # highlight-end
 )
 
-# print grouped name and the count for each
-for group in response:
-    print(f"Value: {group.grouped_by.value} Count: {group.total_count}")
+# get the top_occurrences object
+top_occurrences = response.properties["answer"].top_occurrences
+
+# print top occurrences
+for item in top_occurrences:
+    print(item)
 # END TextProp Python
 
 gql_query = """
@@ -167,7 +174,18 @@ expected_response = (
 # ====================================
 
 # IntProp Python
-# TODOv4 - WIP
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.aggregate.over_all(
+    # highlight-start
+    return_metrics=wvc.Metrics("points").number(sum_=True, maximum=True, minimum=True),
+    # highlight-end
+)
+
+print(response.properties["points"].sum_)
+print(response.properties["points"].minimum)
+print(response.properties["points"].maximum)
 # END IntProp Python
 
 gql_query = """
@@ -222,11 +240,11 @@ expected_response = (
 
 # groupBy Python
 jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
 response = jeopardy.aggregate_group_by.over_all(
+    # highlight-start
     group_by="round"
+    # highlight-end
 )
-# highlight-end
 
 # print rounds names and the count for each
 for group in response:
@@ -308,7 +326,18 @@ expected_response = (
 # =========================================
 
 # nearTextWithLimit Python
-# TODOv4 - WIP
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.aggregate.near_text(
+    query="animals in space",
+    return_metrics=wvc.Metrics("points").number(sum_=True),
+    # highlight-start
+    object_limit=10,
+    # highlight-end
+)
+
+print (response.properties["points"].sum_)
 # END nearTextWithLimit Python
 
 
@@ -364,7 +393,19 @@ expected_response = (
 # ============================
 
 # nearTextWithDistance Python
-# TODOv4 - WIP
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.aggregate.near_text(
+    # highlight-start
+    query="animals in space",
+    distance=0.19,
+    # highlight-end
+    object_limit=10,
+    return_metrics=wvc.Metrics("points").number(sum_=True),
+)
+
+print (response.properties["points"].sum_)
 # END nearTextWithDistance Python
 
 
