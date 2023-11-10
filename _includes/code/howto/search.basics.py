@@ -411,15 +411,6 @@ assert gqlresponse == response
 # ==============================
 
 # GetWithCrossRefsPython
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects( limit=1 )
-
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
-    
-
-
 response = (
     client.query
     # highlight-start
