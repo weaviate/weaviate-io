@@ -26,11 +26,11 @@ client = weaviate.Client(
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(query="food", limit=3),
 
-for o in response[0].objects:
+for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END HybridBasicPython
 
-<!-- TESTS FROM THIS FILE HAVE NOT BEEN VALIDATED -->
+# <!-- TESTS FROM THIS FILE HAVE NOT BEEN VALIDATED -->
 
 # Tests
 assert "JeopardyQuestion" in response["data"]["Get"]
