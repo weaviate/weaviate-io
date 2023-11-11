@@ -561,9 +561,9 @@ It should produce a response like the one below:
 
 You can add a conditional filter to any hybrid search query. The filter parses the outputs but does not impact the ranking.
 
-These examples perform a hybrid search for `food` in any field. It filters on objects that have the `round` property set to `Double Jeopardy!`. 
+These examples perform a hybrid search for `food` in any field. The search filters on objects that have the `round` property set to `Double Jeopardy!`. 
 
-The query returns the top 3 responses.
+To filter with one of the legacy clients, use `with_where`. The new Python client uses the `Filter` class from `weaviate.classes`.
 
 
 <Tabs groupId="languages">

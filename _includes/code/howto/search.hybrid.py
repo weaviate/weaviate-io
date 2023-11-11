@@ -726,19 +726,15 @@ test_gqlresponse(response, gqlresponse)
 # ===================================
 
 # HybridWithFilterPython
+from weaviate.classes import Filter
+
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
-    query="food",
-    where={
-        "operator": "Equal",
-        "path": ["round"],
-        "valueText": "Double Jeopardy!"
-    },
-    
-    alpha=0.50,
+response = jeopardy.query.fetch_objects(
+    filters=Filter("round").equal("Double Jeopardy!"),
     limit=3
 )
 
+# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END HybridWithFilterPython
