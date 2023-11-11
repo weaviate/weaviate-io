@@ -559,12 +559,23 @@ It should produce a response like the one below:
 
 ## Add a conditional (`where`) filter
 
-You can add a conditional filter to any hybrid search query, which will filter the outputs but not impact the ranking.
+You can add a conditional filter to any hybrid search query. The filter parses the outputs but does not impact the ranking.
 
-This example performs a hybrid search for `food` in any field on objects that have the `round` property of `Double Jeopardy!`. It returns the top 3.
+These examples perform a hybrid search for `food` in any field. It filters on objects that have the `round` property set to `Double Jeopardy!`. 
+
+The query returns the top 3 responses.
 
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithFilterPython"
+  endMarker="# END HybridWithFilterPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -573,6 +584,7 @@ This example performs a hybrid search for `food` in any field on objects that ha
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}

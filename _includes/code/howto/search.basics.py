@@ -436,7 +436,6 @@ for o in response.objects:
         print(ref.properties)
 # END GetWithCrossRefsPython
 
-
 expected_response = (
 # GetWithCrossRefs Expected Results
 {
@@ -516,8 +515,8 @@ result = connectionForTenantA.query.fetch_objects(
     return_properties=["property1", "property2"]
     limit=1,
 )
-print (result.objects[0].properties)
 
+print (result.objects[0].properties)
 # END MultiTenancy
 
 
