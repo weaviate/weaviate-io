@@ -15,6 +15,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs-
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.cross-refs.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.cross-refs_test.go';
+import CurlCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.sh';
 
 ## Overview
 
@@ -140,6 +141,15 @@ To add a cross-reference from an object to another, specify its source class and
       startMarker="// OneWay Go"
       endMarker="// END OneWay Go"
       language="go"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="Curl">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="// START OneWay Cross-references"
+      endMarker="// END OneWay Cross-references"
+      language="bash"
     />
   </TabItem>
 </Tabs>
