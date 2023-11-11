@@ -421,6 +421,8 @@ test_gqlresponse(response, gqlresponse)
 # ========================================
 
 # HybridWithFusionTypePython
+import weaviate.classes as wvc
+
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
   query="food",
@@ -431,7 +433,6 @@ response = jeopardy.query.hybrid(
 #print(response)
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
-
 # END HybridWithFusionTypePython
 
 # Tests
