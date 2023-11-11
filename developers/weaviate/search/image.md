@@ -11,6 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
 ## Overview
@@ -146,6 +147,7 @@ Note that for the [multi2vec-clip vectorizer module](../modules/retriever-vector
 See the relevant module page for:
 - [img2vec-neural](../modules/retriever-vectorizer-modules/img2vec-neural.md)
 - [multi2vec-clip](../modules/retriever-vectorizer-modules/multi2vec-clip.md)
+- [multi2vec-bind](../modules/retriever-vectorizer-modules/multi2vec-bind.md)
 :::
 
 ## base64 nearImage search
@@ -155,35 +157,20 @@ You can find similar images by performing a [`nearImage`](../modules/retriever-v
 You can obtain this representation (a long string) as below:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  ```python
-  base64_string = base64.b64encode(content).decode('utf-8')  # standard library module
-  ```
-  </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
-
-  ```typescript
-  base64String = content.toString('base64');
-  ```
-  </TabItem>
-  <TabItem value="curl" label="Shell">
-
-  ```shell
-  base64 -i Corgi.jpg
-  ```
-  </TabItem>
-</Tabs>
-
-
-Then, you can search for similar images as follows:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START base64"
-      endMarker="# END base64"
+      startMarker="# START helper base64 functions"
+      endMarker="# END helper base64 functions"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START helper base64 functions"
+      endMarker="# END helper base64 functions"
       language="py"
     />
   </TabItem>
@@ -191,8 +178,47 @@ Then, you can search for similar images as follows:
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START base64"
-      endMarker="// END base64"
+      startMarker="// START helper base64 functions"
+      endMarker="// END helper base64 functions"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="curl" label="Shell">
+
+  ```shell
+  base64 -i Corgi.jpg
+  ```
+
+  </TabItem>
+</Tabs>
+
+Then, you can search for similar images as follows:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START search with base64"
+      endMarker="# END search with base64"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START search with base64"
+      endMarker="# END search with base64"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
       language="ts"
     />
   </TabItem>
@@ -217,9 +243,18 @@ Then, you can search for similar images as follows:
 If your target image is stored in a file, you can [use the Python client to search for the image](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.gql.html#weaviate.gql.get.GetBuilder.with_near_image) by its filename.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START ImageFileSearch"
+      endMarker="# END ImageFileSearch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START ImageFileSearch"
       endMarker="# END ImageFileSearch"
       language="py"
@@ -257,6 +292,38 @@ If your target image is stored in a file, you can [use the Python client to sear
 You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two images are.
 The syntax is the same as for [the other `nearXXX` operators](./similarity.md#distance-threshold).
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Distance"
+      endMarker="# END Distance"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Distance"
+      endMarker="# END Distance"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+
+  <FilteredTextBlock
+    text={TSCode}
+    startMarker="// START Distance"
+    endMarker="// END Distance"
+    language="ts"
+  />
+
+  </TabItem>
+</Tabs>
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
