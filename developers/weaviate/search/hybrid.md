@@ -325,11 +325,20 @@ It should produce a response like the one below:
 
 You can select how the BM25 and vector search results are combined to determine the ranking using the `fusionType` argument.
 
-The default is `rankedFusion`, which adds inverted ranks of the BM25 and vector search methods. Alternatively, you can  use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
+The default is `rankedFusion`. `rankedFusion` adds inverted ranks of the BM25 and vector search methods. Alternatively, you can use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
 
-The following example specifies the fusion type of `relativeScoreFusion`.
+The following examples specify `relativeScoreFusion`.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithFusionTypePython"
+  endMarker="# END HybridWithFusionTypePython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -338,6 +347,7 @@ The following example specifies the fusion type of `relativeScoreFusion`.
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -382,6 +392,15 @@ This is not possible as doing so will require the entire database to be re-vecto
 :::
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithPropertiesPython"
+  endMarker="# END HybridWithPropertiesPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -390,6 +409,7 @@ This is not possible as doing so will require the entire database to be re-vecto
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -429,6 +449,15 @@ You can specify weighting of object `properties` in how they affect the BM25F co
 This example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithPropertyWeightingPython"
+  endMarker="# END HybridWithPropertyWeightingPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -437,6 +466,7 @@ This example searches for objects containing the keyword `food`. The BM25 search
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -474,9 +504,18 @@ It should produce a response like the one below:
 
 You can provide your own `vector` input to the hybrid query. In this scenario, Weaviate will use the query string for the `bm25` search and the input vector for the vector search.
 
-This example supplies the vector for "italian food", while using "food" as the query text. Note how the results have now skewed towards Italian food.
+This example supplies the vector for "italian food", while using "food" as the query text. Note how the results are skewed towards Italian food.
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithVectorPython"
+  endMarker="# END HybridWithVectorPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -485,6 +524,7 @@ This example supplies the vector for "italian food", while using "food" as the q
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -519,12 +559,23 @@ It should produce a response like the one below:
 
 ## Add a conditional (`where`) filter
 
-You can add a conditional filter to any hybrid search query, which will filter the outputs but not impact the ranking.
+You can add a conditional filter to any hybrid search query. The filter parses the outputs but does not impact the ranking.
 
-This example performs a hybrid search for `food` in any field on objects that have the `round` property of `Double Jeopardy!`. It returns the top 3.
+These examples perform a hybrid search for `food` in any field. The search filters on objects that have the `round` property set to `Double Jeopardy!`. 
+
+To filter with one of the legacy clients, use `with_where`. The new Python client uses the `Filter` class from `weaviate.classes`.
 
 
 <Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# HybridWithFilterPython"
+  endMarker="# END HybridWithFilterPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -533,6 +584,7 @@ This example performs a hybrid search for `food` in any field on objects that ha
   language="python"
 />
 </TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
