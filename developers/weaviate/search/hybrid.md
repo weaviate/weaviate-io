@@ -5,43 +5,51 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 ## Overview
 
 This page shows you how to perform `hybrid` searches.
 
-The `hybrid` operator produces results based on a weighted combination of results from a keyword (`bm25`) search and a vector (`nearXXX`) search.
+import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
 
-:::info Related pages
-- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
-:::
+<ClassToCollection /> 
 
 ## Basic hybrid search
 
-To use hybrid search, you must provide a search string as a minimum.
+To use hybrid search, you must provide a search string.
 
-This example uses default settings to look for:
-- Objects containing the keyword `food` anywhere in the object, and
-- Objects most similar to the vector of `food`.
+This example uses default settings to search. It matches objects in multiple ways.
 
-It ranks the results using a combination of the `bm25` and vector search rankings, and returns the top 3.
+- If the object contains the keyword `food` anywhere
+- If the object's vector is similar to the vector for `food`
+
+Hybrid search ranks the results using a combination of the `bm25` search ranking and the vector search ranking. The query returns the top three results.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridBasicPython"
   endMarker="# END HybridBasicPython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridBasicPython"
+  endMarker="# END HybridBasicPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -52,7 +60,7 @@ It ranks the results using a combination of the `bm25` and vector search ranking
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridBasicGraphQL"
   endMarker="# END HybridBasicGraphQL"
   language="graphql"
@@ -66,7 +74,7 @@ It ranks the results using a combination of the `bm25` and vector search ranking
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridBasic results"
   endMarker="# END Expected HybridBasic results"
   language="json"
@@ -75,22 +83,31 @@ It should produce a response like the one below:
 </details>
 
 
-### Score / explainScore
+### Explain the search results
 
-The `score` and `explainScore` sub-properties aim to explain the outputs. They can be retrieved under the `_additional` property.
+To understand why particular objects are returned, use the object sub-properties to explain the results. 
 
-This example adds the two properties to the list of retrieved properties.
-
+To retrieve the sub-properties with one of the legacy clients, use the `_additional` property to specify `score` and `explainScore`. The new Python client returns the information as metadata.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithScorePython"
   endMarker="# END HybridWithScorePython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithScorePython"
+  endMarker="# END HybridWithScorePython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -101,7 +118,7 @@ This example adds the two properties to the list of retrieved properties.
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithScoreGraphQL"
   endMarker="# END HybridWithScoreGraphQL"
   language="graphql"
@@ -115,7 +132,7 @@ This example adds the two properties to the list of retrieved properties.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithScore results"
   endMarker="# END Expected HybridWithScore results"
   language="json"
@@ -132,14 +149,23 @@ You can limit the number of results returned by a `hybrid` search,
 
 `autocut` can be combined with `limit: N`, which would limit autocut's input to the first `N` objects.
 
-### Limiting the number of results
+### Limiting results with `limit`
 
 Use the `limit` argument to specify the maximum number of results that should be returned:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START limit Python"
+      endMarker="# END limit Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START limit Python"
       endMarker="# END limit Python"
       language="py"
@@ -157,7 +183,7 @@ Use the `limit` argument to specify the maximum number of results that should be
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START limit GraphQL"
       endMarker="# END limit GraphQL"
       language="graphql"
@@ -165,16 +191,31 @@ Use the `limit` argument to specify the maximum number of results that should be
   </TabItem>
 </Tabs>
 
-### Autocut
+### Limiting results with `autocut` and `auto_limit`
 
-Another way to limit the results returned by a hybrid search is to use the [`autocut` filter](../api/graphql/additional-operators.md#autocut). Autocut takes a positive integer parameter `N`, looks at the [score](#score--explainscore) of each result, and stops returning results after the `N`th "drop" in score. Because `hybrid` combines a vector search with a keyword (BM25F) search, their scores/distances cannot be directly compared, so the cut points may not be intuitive. <!-- TODO: add detailed explanation -->
+Weaviate can also limit results based on discontinuities in the result set. In the legacy client, this filter is called `autocut`. The filter is called `auto_limit` in the new client. 
+
+The [filter](../api/graphql/additional-operators.md#autocut) looks for discontinuities, or jumps, in the result [score](#score--explainscore). In your query, you specify how many jumps there should be. The query stops returning results after the specified number of jumps. 
+
+`hybrid` search combines a vector search and a keyword (BM25F) search. The scores are different for each type of search so they cannot be compared directly. This means the cut points the filter chooses may not be intuitive.
+
+<!-- TODO: add detailed explanation -->
 
 Autocut can be used as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START autocut Python"
+      endMarker="# END autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START autocut Python"
       endMarker="# END autocut Python"
       language="py"
@@ -192,7 +233,7 @@ Autocut can be used as follows:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START autocut GraphQL"
       endMarker="# END autocut GraphQL"
       language="graphql"
@@ -206,7 +247,7 @@ Autocut can be used as follows:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# START Expected autocut results"
   endMarker="# END Expected autocut results"
   language="json"
@@ -215,21 +256,36 @@ It should produce a response like the one below:
 </details>
 
 
-## Weight keyword vs vector results
+## Weight the keyword and vector results
 
-You can use the `alpha` argument to weight the keyword (`bm25`) or vector search results. An `alpha` of `1` is for a pure vector search and `0` is for a pure keyword search. The default is `0.75`.
+You can use the `alpha` argument to add weight to the keyword or vector search results.
 
-The following example uses an alpha of `0.25`, favoring keyword search results.
+- An `alpha` of `1` is a pure vector search.
+- An `alpha` of `0` is a pure keyword search. 
+
+In the legacy clients, the default value for `alpha` is `0.75`. The new client uses a default value of `0.5`.
+
+The following example uses an alpha of `0.25` to increase the importance of the keyword search results.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithAlphaPython"
   endMarker="# END HybridWithAlphaPython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithAlphaPython"
+  endMarker="# END HybridWithAlphaPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -240,7 +296,7 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithAlphaGraphQL"
   endMarker="# END HybridWithAlphaGraphQL"
   language="graphql"
@@ -254,7 +310,7 @@ The following example uses an alpha of `0.25`, favoring keyword search results.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithAlpha results"
   endMarker="# END Expected HybridWithAlpha results"
   language="json"
@@ -269,19 +325,29 @@ It should produce a response like the one below:
 
 You can select how the BM25 and vector search results are combined to determine the ranking using the `fusionType` argument.
 
-The default is `rankedFusion`, which adds inverted ranks of the BM25 and vector search methods. Alternatively, you can  use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
+The default is `rankedFusion`. `rankedFusion` adds inverted ranks of the BM25 and vector search methods. Alternatively, you can use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
 
-The following example specifies the fusion type of `relativeScoreFusion`.
+The following examples specify `relativeScoreFusion`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithFusionTypePython"
   endMarker="# END HybridWithFusionTypePython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithFusionTypePython"
+  endMarker="# END HybridWithFusionTypePython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -292,7 +358,7 @@ The following example specifies the fusion type of `relativeScoreFusion`.
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithFusionTypeGraphQL"
   endMarker="# END HybridWithFusionTypeGraphQL"
   language="graphql"
@@ -306,7 +372,7 @@ The following example specifies the fusion type of `relativeScoreFusion`.
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithFusionType results"
   endMarker="# END Expected HybridWithFusionType results"
   language="json"
@@ -326,14 +392,24 @@ This is not possible as doing so will require the entire database to be re-vecto
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithPropertiesPython"
   endMarker="# END HybridWithPropertiesPython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithPropertiesPython"
+  endMarker="# END HybridWithPropertiesPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -344,7 +420,7 @@ This is not possible as doing so will require the entire database to be re-vecto
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithPropertiesGraphQL"
   endMarker="# END HybridWithPropertiesGraphQL"
   language="graphql"
@@ -358,7 +434,7 @@ This is not possible as doing so will require the entire database to be re-vecto
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithProperties results"
   endMarker="# END Expected HybridWithProperties results"
   language="json"
@@ -373,14 +449,24 @@ You can specify weighting of object `properties` in how they affect the BM25F co
 This example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithPropertyWeightingPython"
   endMarker="# END HybridWithPropertyWeightingPython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithPropertyWeightingPython"
+  endMarker="# END HybridWithPropertyWeightingPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -391,7 +477,7 @@ This example searches for objects containing the keyword `food`. The BM25 search
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingGraphQL"
   endMarker="# END HybridWithPropertyWeightingGraphQL"
   language="graphql"
@@ -405,7 +491,7 @@ This example searches for objects containing the keyword `food`. The BM25 search
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithPropertyWeighting results"
   endMarker="# END Expected HybridWithPropertyWeighting results"
   language="json"
@@ -418,17 +504,27 @@ It should produce a response like the one below:
 
 You can provide your own `vector` input to the hybrid query. In this scenario, Weaviate will use the query string for the `bm25` search and the input vector for the vector search.
 
-This example supplies the vector for "italian food", while using "food" as the query text. Note how the results have now skewed towards Italian food.
+This example supplies the vector for "italian food", while using "food" as the query text. Note how the results are skewed towards Italian food.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithVectorPython"
   endMarker="# END HybridWithVectorPython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithVectorPython"
+  endMarker="# END HybridWithVectorPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -439,7 +535,7 @@ This example supplies the vector for "italian food", while using "food" as the q
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithVectorGraphQL"
   endMarker="# END HybridWithVectorGraphQL"
   language="graphql"
@@ -453,7 +549,7 @@ This example supplies the vector for "italian food", while using "food" as the q
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithVector results"
   endMarker="# END Expected HybridWithVector results"
   language="json"
@@ -463,20 +559,32 @@ It should produce a response like the one below:
 
 ## Add a conditional (`where`) filter
 
-You can add a conditional filter to any hybrid search query, which will filter the outputs but not impact the ranking.
+You can add a conditional filter to any hybrid search query. The filter parses the outputs but does not impact the ranking.
 
-This example performs a hybrid search for `food` in any field on objects that have the `round` property of `Double Jeopardy!`. It returns the top 3.
+These examples perform a hybrid search for `food` in any field. The search filters on objects that have the `round` property set to `Double Jeopardy!`. 
+
+To filter with one of the legacy clients, use `with_where`. The new Python client uses the `Filter` class from `weaviate.classes`.
 
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# HybridWithFilterPython"
   endMarker="# END HybridWithFilterPython"
   language="python"
 />
 </TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# HybridWithFilterPython"
+  endMarker="# END HybridWithFilterPython"
+  language="python"
+/>
+</TabItem>
+
 <TabItem value="js" label="JavaScript/TypeScript">
 <FilteredTextBlock
   text={TSCode}
@@ -487,7 +595,7 @@ This example performs a hybrid search for `food` in any field on objects that ha
 </TabItem>
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# HybridWithFilterGraphQL"
   endMarker="# END HybridWithFilterGraphQL"
   language="graphql"
@@ -501,7 +609,7 @@ This example performs a hybrid search for `food` in any field on objects that ha
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# Expected HybridWithFilter results"
   endMarker="# END Expected HybridWithFilter results"
   language="json"
@@ -509,6 +617,9 @@ It should produce a response like the one below:
 
 </details>
 
+## Related pages
+
+- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
