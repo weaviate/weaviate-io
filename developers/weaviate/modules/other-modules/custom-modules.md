@@ -43,9 +43,12 @@ The picture shows three APIs:
 * The red box is the Module System API, which are interfaces written in Go.
 * The third API is completely owned by the module, which is used to communicate with the separate module container. In this case, this is a Python container, shown on the left.
 
+![Weaviate module APIs overview](/img/contributor-guide/weaviate-modules/weaviate-module-apis.svg "Weaviate module APIs overview")
+
 To use a custom ML model with Weaviate, you have two options: ([further explained below](#how-to-build-and-use-a-custom-module))
 * A: Replace parts of an existing module, where you only replace the inference service (part 2). You don't have to touch Weaviate Core here.
 * B: Build a completely new module and replace all existing (blue) module parts (both 1 and 2). You can configure custom behavior like extending the GraphQL API, as long as the module can hook into the 'red' Module System API. Keep in mind that you'll need to write some module code in Go to achieve this.
+ 
 
 <!-- ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview") -->
 
