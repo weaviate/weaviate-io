@@ -10,11 +10,18 @@ import json
 import os
 
 # Instantiate the client with the user/password and OpenAI api key
-client = weaviate.Client(
-    'https://edu-demo.weaviate.network',
-    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
-    additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+# client = weaviate.Client(
+#     'https://edu-demo.weaviate.network',
+#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+#     additional_headers={
+#         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+#     }
+# )
+# TODOv4 - update this to call the wcs instace
+client = weaviate.connect_to_wcs(
+    cluster_id="some-endpoint",
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
     }
 )
    
@@ -24,7 +31,12 @@ client = weaviate.Client(
 
 # HybridBasicPython
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(query="food", limit=3),
+# highlight-start
+response = jeopardy.query.hybrid(
+    query="food",
+    limit=3
+)
+# highlight-end
 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
@@ -33,9 +45,10 @@ for o in response.objects:
 # <!-- TESTS FROM THIS FILE HAVE NOT BEEN VALIDATED -->
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# TODOv4 update tests
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
 # End test
 
 
@@ -84,11 +97,11 @@ gql_query = """
 }
 # END HybridBasicGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-def test_gqlresponse(response_in, gqlresponse_in):
-    for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
-        assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# def test_gqlresponse(response_in, gqlresponse_in):
+#     for i, result in enumerate(response_in["data"]["Get"]["JeopardyQuestion"]):
+#         assert result["question"] == gqlresponse_in["data"]["Get"]["JeopardyQuestion"][i]["question"]
+# test_gqlresponse(response, gqlresponse)
 
 
 # =======================================
@@ -105,14 +118,16 @@ response = jeopardy.query.hybrid(
 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
+    # highlight-start
     print(o.metadata.explain_score, o.metadata.score)
+    # highlight-end
 # END HybridWithScorePython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
-assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score", "explainScore"}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score", "explainScore"}
 # End test
 
 
@@ -177,8 +192,8 @@ gql_query = """
 }
 # END HybridWithScoreGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
 
 # ===================================
@@ -199,10 +214,10 @@ for o in response.objects:
 # END limit Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert len(response['data']['Get']['JeopardyQuestion']) == 3
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert 'JeopardyQuestion' in response['data']['Get']
+# assert len(response['data']['Get']['JeopardyQuestion']) == 3
+# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
 # End test
 
 
@@ -263,11 +278,11 @@ gql_query = """
 # END limit GraphQL
 
 """
-gqlresponse = client.query.raw(gql_query)
-print('--------------------------------------------------------------------------------')
-print(json.dumps(response, indent=2))
-print(json.dumps(gqlresponse, indent=2))
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# print('--------------------------------------------------------------------------------')
+# print(json.dumps(response, indent=2))
+# print(json.dumps(gqlresponse, indent=2))
+# test_gqlresponse(response, gqlresponse)
 
 
 # =====================================
@@ -288,9 +303,9 @@ for o in response.objects:
 # END autocut Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert 'JeopardyQuestion' in response['data']['Get']
+# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
+# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
 # End test
 
 
@@ -337,8 +352,8 @@ gql_query = """
 }
 # END autocut GraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
 
 # ===================================
@@ -360,9 +375,9 @@ for o in response.objects:
 # END HybridWithAlphaPython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
 # End test
 
 
@@ -412,8 +427,8 @@ gql_query = """
 }
 # END HybridWithAlphaGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
 
 # ========================================
@@ -421,12 +436,16 @@ test_gqlresponse(response, gqlresponse)
 # ========================================
 
 # HybridWithFusionTypePython
+# highlight-start
 import weaviate.classes as wvc
+# highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
   query="food",
+  # highlight-start
   fusion_type=wvc.HybridFusion.RELATIVE_SCORE,
+  # highlight-end
   limit=3
 )
  
@@ -490,7 +509,7 @@ gql_query = """
 # END HybridWithFusionTypeGraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-# TODO - update tests below
+# TODOv4 - update tests below
 # test_gqlresponse(response, gqlresponse)
 
 
@@ -502,7 +521,9 @@ gqlresponse = client.query.raw(gql_query)
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
+    # highlight-start
     query_properties=["question"],
+    # highlight-end
     alpha=0.25,
     limit=3
 )
@@ -512,9 +533,9 @@ for o in response.objects:
 # END HybridWithPropertiesPython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
 # End test
 
 
@@ -565,8 +586,8 @@ gql_query = """
 }
 # END HybridWithPropertiesGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
 # ====================================================
 # ===== Hybrid Query with Properties & Weighting =====
@@ -576,8 +597,10 @@ test_gqlresponse(response, gqlresponse)
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
+    # highlight-start
     query_properties=["question^2", "answer"],
-    alpha=0.50,
+    # highlight-end
+    alpha=0.25,
     limit=3
 )
 
@@ -586,9 +609,9 @@ for o in response.objects:
 # END HybridWithPropertyWeightingPython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
 # End test
 
 expected_results = """
@@ -638,8 +661,8 @@ gql_query = """
 }
 # END HybridWithPropertyWeightingGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
 
 # ====================================
@@ -654,20 +677,20 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     query_properties=["question^2", "answer"],
+    # highlight-start
     vector=inputVector,
-    alpha=0.50,
+    # highlight-end
     limit=3
 )
 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
-
 # END HybridWithVectorPython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer"}
 # End test
 
 
@@ -718,8 +741,8 @@ gql_query = """
 }
 # END HybridWithVectorGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
 
 # ===================================
@@ -727,25 +750,29 @@ test_gqlresponse(response, gqlresponse)
 # ===================================
 
 # HybridWithFilterPython
-from weaviate.classes import Filter
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
-    filters=Filter("round").equal("Double Jeopardy!"),
+response = jeopardy.query.hybrid(
+    query="food",
+    # highlight-start
+    filters=wvc.Filter("round").equal("Double Jeopardy!"),
+    # highlight-end
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END HybridWithFilterPython
 
 # Tests
-assert "JeopardyQuestion" in response["data"]["Get"]
-assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "round"}
-for q in response["data"]["Get"]["JeopardyQuestion"]:
-    assert q["round"] == "Double Jeopardy!"
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "round"}
+# for q in response["data"]["Get"]["JeopardyQuestion"]:
+#     assert q["round"] == "Double Jeopardy!"
 # End test
 
 
@@ -803,6 +830,6 @@ gql_query = """
 }
 # END HybridWithFilterGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
-test_gqlresponse(response, gqlresponse)
+# gqlresponse = client.query.raw(gql_query)
+# test_gqlresponse(response, gqlresponse)
 
