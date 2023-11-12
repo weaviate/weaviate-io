@@ -11,6 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.schema-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
 
 # How to configure a collection schema
@@ -43,11 +44,20 @@ import initialCaps from '/_includes/schemas/initial-capitalization.md'
 <initialCaps />
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateClass"
-      endMarker="# END CreateClass"
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
       language="py"
     />
   </TabItem>
@@ -55,8 +65,8 @@ import initialCaps from '/_includes/schemas/initial-capitalization.md'
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START CreateClass"
-      endMarker="// END CreateClass"
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
       language="ts"
     />
   </TabItem>
@@ -68,9 +78,18 @@ import initialCaps from '/_includes/schemas/initial-capitalization.md'
 You can use the `properties` field to specify properties for the collection. A collection definition can include any number of properties.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START PropertyDefinition"
+      endMarker="# END PropertyDefinition"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START PropertyDefinition"
       endMarker="# END PropertyDefinition"
       language="py"
@@ -101,9 +120,18 @@ You can set an optional `vectorizer` for each collection. If you specify a vecto
 The following code sets the `text2vec-openai` module as the vectorizer for the `Article` collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START Vectorizer"
+      endMarker="# END Vectorizer"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START Vectorizer"
       endMarker="# END Vectorizer"
       language="py"
@@ -128,9 +156,18 @@ The following code sets the `text2vec-openai` module as the vectorizer for the `
 Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START ModuleSettings"
       endMarker="# END ModuleSettings"
       language="py"
@@ -155,9 +192,18 @@ The available parameters vary according to the module. ([Learn more](../modules/
 Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START PropModuleSettings"
       endMarker="# END PropModuleSettings"
       language="py"
@@ -189,9 +235,18 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
 :::
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START IndexReplicationSettings"
+      endMarker="# END IndexReplicationSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START IndexReplicationSettings"
       endMarker="# END IndexReplicationSettings"
       language="py"
@@ -223,6 +278,36 @@ For details on the configuration parameters, see the following configuration ref
 
 To enable multi-tenancy, set `multiTenancyConfig` to `{"enabled": true}` in the collection definition.
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Multi-tenancy"
+      endMarker="# END Multi-tenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Multi-tenancy"
+      endMarker="# END Multi-tenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
 ```json
 {
   "class": "MultiTenancyClass",
@@ -251,9 +336,18 @@ The following sections describe how to add a property to a collection and how to
 You can add a new property to an existing collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START AddProp"
+      endMarker="# END AddProp"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START AddProp"
       endMarker="# END AddProp"
       language="py"
@@ -279,9 +373,18 @@ You cannot remove or rename a property that is part of a collection definition. 
 You can modify some parameters of a schema as shown below. However, many parameters are immutable and cannot be changed once set.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START ModifyParam"
+      endMarker="# END ModifyParam"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START ModifyParam"
       endMarker="# END ModifyParam"
       language="py"
@@ -301,9 +404,18 @@ You can modify some parameters of a schema as shown below. However, many paramet
 If you want to review the schema, you can retrieve it as shown below.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START SchemaGet"
+      endMarker="# END SchemaGet"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START SchemaGet"
       endMarker="# END SchemaGet"
       language="py"
