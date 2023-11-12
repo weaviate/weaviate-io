@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
@@ -45,30 +46,41 @@ You can use these operators to find objects most similar to a raw (un-vectorized
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, using `nearText`:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearTextPython"
-  endMarker="# END GetNearTextPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetNearText"
-  endMarker="// END GetNearText"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearTextGraphql"
-  endMarker="# END GetNearTextGraphql"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetNearTextPython"
+      endMarker="# END GetNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetNearTextPython"
+      endMarker="# END GetNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetNearText"
+      endMarker="// END GetNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetNearTextGraphql"
+      endMarker="# END GetNearTextGraphql"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -77,7 +89,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# START Expected nearText results"
   endMarker="# END Expected nearText results"
   language="json"
@@ -96,30 +108,41 @@ See [this section](./basics.md#retrieve-the-object-id)
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with ID `56b9449e-65db-5df4-887b-0a4773f52aa7`, using `nearObject`:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearObjectPython"
-  endMarker="# END GetNearObjectPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetNearObject"
-  endMarker="// END GetNearObject"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearObjectGraphQL"
-  endMarker="# END GetNearObjectGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetNearObjectPython"
+      endMarker="# END GetNearObjectPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetNearObjectPython"
+      endMarker="# END GetNearObjectPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetNearObject"
+      endMarker="// END GetNearObject"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetNearObjectGraphQL"
+      endMarker="# END GetNearObjectGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <!-- Possibly add: you can technically pass the ID of an object outside of the collection in order to find similar objects across collections. -->
@@ -132,30 +155,41 @@ You can use the [`nearVector` operator](../api/graphql/search-operators.md#nearv
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching the object with the provided vector, using `nearVector`:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearVectorPython"
-  endMarker="# END GetNearVectorPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetNearVector"
-  endMarker="// END GetNearVector"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetNearVectorGraphQL"
-  endMarker="# END GetNearVectorGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetNearVectorPython"
+      endMarker="# END GetNearVectorPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetNearVectorPython"
+      endMarker="# END GetNearVectorPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetNearVector"
+      endMarker="// END GetNearVector"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetNearVectorGraphQL"
+      endMarker="# END GetNearVectorGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -177,30 +211,41 @@ Similarly, you can retrieve a maximum `n` objects after the first `m` results by
 To limit the number of results returned by a `near...` query, add the `limit` operator. To start at a given offset, add the `offset` operator. For example if we want to obtain the animals in movies #2 and #3 from the [`nearText` example](#an-input-medium) above, we'll need to use `offset: 1, limit: 2`. The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, skips 1 object (`offset`) and returns the next 2 objects:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetLimitOffsetPython"
-  endMarker="# END GetLimitOffsetPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetLimitOffset"
-  endMarker="// END GetLimitOffset"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetLimitOffsetGraphQL"
-  endMarker="# END GetLimitOffsetGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetLimitOffsetPython"
+      endMarker="# END GetLimitOffsetPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetLimitOffsetPython"
+      endMarker="# END GetLimitOffsetPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetLimitOffset"
+      endMarker="// END GetLimitOffset"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetLimitOffsetGraphQL"
+      endMarker="# END GetLimitOffsetGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 
@@ -213,30 +258,41 @@ Multiple [distance metrics](../config-refs/distances.md) are available in Weavia
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, returning those with a `distance` less than `0.18`:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithDistancePython"
-  endMarker="# END GetWithDistancePython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetWithDistance"
-  endMarker="// END GetWithDistance"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithDistanceGraphQL"
-  endMarker="# END GetWithDistanceGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetWithDistancePython"
+      endMarker="# END GetWithDistancePython"
+      language="python"
+    />
+  </TabItem>
+  
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetWithDistancePython"
+      endMarker="# END GetWithDistancePython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetWithDistance"
+      endMarker="// END GetWithDistance"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetWithDistanceGraphQL"
+      endMarker="# END GetWithDistanceGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 :::info Why `0.18`?
@@ -255,9 +311,18 @@ Another way to limit the results returned by a similarity search is to use the [
 Autocut can be used as follows:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
+      startMarker="# START Autocut Python"
+      endMarker="# END Autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
       language="py"
@@ -275,7 +340,7 @@ Autocut can be used as follows:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
       startMarker="# START Autocut GraphQL"
       endMarker="# END Autocut GraphQL"
       language="graphql"
@@ -289,7 +354,7 @@ Autocut can be used as follows:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# START Expected nearText results"
   endMarker="# END Expected nearText results"
   language="json"
@@ -312,30 +377,40 @@ To group results by a cross-reference, try replacing the `path` value from `roun
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithGroupbyPython"
-  endMarker="# END GetWithGroupbyPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetWithGroupBy"
-  endMarker="// END GetWithGroupBy"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithGroupbyGraphQL"
-  endMarker="# END GetWithGroupbyGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetWithGroupbyPython"
+      endMarker="# END GetWithGroupbyPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetWithGroupbyPython"
+      endMarker="# END GetWithGroupbyPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetWithGroupBy"
+      endMarker="// END GetWithGroupBy"
+      language="ts"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetWithGroupbyGraphQL"
+      endMarker="# END GetWithGroupbyGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -344,7 +419,7 @@ To group results by a cross-reference, try replacing the `path` value from `roun
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected groupBy results"
   endMarker="# END Expected groupBy results"
   language="json"
@@ -359,30 +434,41 @@ You can add a conditional filter to your search results using the [`where` argum
 The example below searches the `JeopardyQuestion` class for the top 2 objects best matching `"animals in movies"`, as long as their `round` property is exactly `"Double Jeopardy!"`:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithWherePython"
-  endMarker="# END GetWithWherePython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GetWithFilter"
-  endMarker="// END GetWithFilter"
-  language="ts"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GetWithWhereGraphQL"
-  endMarker="# END GetWithWhereGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetWithWherePython"
+      endMarker="# END GetWithWherePython"
+      language="python"
+    />
+  </TabItem>
+  
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GetWithWherePython"
+      endMarker="# END GetWithWherePython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetWithFilter"
+      endMarker="// END GetWithFilter"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GetWithWhereGraphQL"
+      endMarker="# END GetWithWhereGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -391,7 +477,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected where results"
   endMarker="# END Expected where results"
   language="json"
