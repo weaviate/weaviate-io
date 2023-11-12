@@ -27,13 +27,13 @@ func Test_ManageDataClasses(t *testing.T) {
 	err = client.Schema().AllDeleter().Do(ctx)
 	require.NoError(t, err)
 
-	// START CreateClass  // START ReadOneClass  // START UpdateClass
+	// START CreateCollection  // START ReadOneCollection  // START UpdateCollection
 	className := "Article"
 
-	// END CreateClass  // END ReadOneClass  // END UpdateClass
+	// END CreateCollection  // END ReadOneCollection  // END UpdateCollection
 
 	t.Run("create class", func(t *testing.T) {
-		// START CreateClass
+		// START CreateCollection
 		emptyClass := &models.Class{
 			Class: className,
 		}
@@ -43,53 +43,53 @@ func Test_ManageDataClasses(t *testing.T) {
 			WithClass(emptyClass).
 			Do(ctx)
 
-		// END CreateClass
+		// END CreateCollection
 
 		require.NoError(t, err)
 	})
 
 	t.Run("read one class", func(t *testing.T) {
-		// START ReadOneClass
+		// START ReadOneCollection
 		class, err := client.Schema().ClassGetter().
 			WithClassName(className).
 			Do(ctx)
 
-		// END ReadOneClass
+		// END ReadOneCollection
 
 		require.NoError(t, err)
 
-		// START ReadOneClass
+		// START ReadOneCollection
 		b, err := json.MarshalIndent(class, "", "  ")
-		// END ReadOneClass
+		// END ReadOneCollection
 		require.NoError(t, err)
-		// START ReadOneClass
+		// START ReadOneCollection
 		fmt.Println(string(b))
-		// END ReadOneClass
+		// END ReadOneCollection
 	})
 
 	t.Run("read all classes", func(t *testing.T) {
-		// START ReadAllClasses
+		// START ReadAllCollections
 		schema, err := client.Schema().Getter().
 			Do(ctx)
 
-			// END ReadAllClasses
+			// END ReadAllCollections
 
 		require.NoError(t, err)
 
-		// START ReadAllClasses
+		// START ReadAllCollections
 		b, err := json.MarshalIndent(schema, "", "  ")
-		// END ReadAllClasses
+		// END ReadAllCollections
 		require.NoError(t, err)
-		// START ReadAllClasses
+		// START ReadAllCollections
 		fmt.Println(string(b))
-		// END ReadAllClasses
+		// END ReadAllCollections
 	})
 
 	t.Run("update class", func(t *testing.T) {
 		errDel := client.Schema().ClassDeleter().WithClassName(className).Do(ctx)
 		require.NoError(t, errDel)
 
-		// START UpdateClassTODO
+		// START UpdateCollectionTODO
 		// Define class
 		originalClass := &models.Class{
 			Class: className,
@@ -103,11 +103,11 @@ func Test_ManageDataClasses(t *testing.T) {
 			WithClass(originalClass).
 			Do(ctx)
 
-		// END UpdateClassTODO
+		// END UpdateCollectionTODO
 
 		require.NoError(t, err)
 
-		// START UpdateClassTODO
+		// START UpdateCollectionTODO
 		// Define updated class
 		updatedClass := &models.Class{
 			Class: className,
@@ -120,6 +120,6 @@ func Test_ManageDataClasses(t *testing.T) {
 		_ = updatedClass
 		// TODO Not yet available in GO
 
-		// END UpdateClassTODO
+		// END UpdateCollectionTODO
 	})
 }

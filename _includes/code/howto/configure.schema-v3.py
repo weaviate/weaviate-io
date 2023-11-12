@@ -22,11 +22,11 @@ if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
 
-# START CreateClass
+# START CreateCollection
 class_obj = {'class': 'Article'}
 
 client.schema.create_class(class_obj)  # returns null on success
-# END CreateClass
+# END CreateCollection
 
 # Test
 result = client.schema.get(class_name)
@@ -173,6 +173,15 @@ client.schema.create_class(class_obj)
 # Test
 result = client.schema.get(class_name)
 assert result['replicationConfig']['factor'] == 3
+
+# START Multi-tenancy
+class_obj = {
+    'class': 'Article',
+    'multiTenancyConfig': {'enabled': True}
+}
+
+client.schema.create_class(class_obj)  # returns null on success
+# END Multi-tenancy
 
 
 # START AddProp

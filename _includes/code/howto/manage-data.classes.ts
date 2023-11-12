@@ -15,10 +15,10 @@ const client = weaviate.client({
   },
 });
 
-// START CreateClass  // START ReadOneClass  // START UpdateClass
+// START CreateCollection  // START ReadOneCollection  // START UpdateCollection
 const className = 'Article';
 
-// END CreateClass  // END ReadOneClass  // END UpdateClass
+// END CreateCollection  // END ReadOneCollection  // END UpdateCollection
 
 // ================================
 // ===== CREATE A CLASS =====
@@ -31,7 +31,7 @@ try {
   // ignore error if class doesn't exist
 }
 
-// START CreateClass
+// START CreateCollection
 const emptyClassDefinition = {
   class: className,
 };
@@ -45,7 +45,7 @@ let result = await client
 
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(result, null, 2));
-// END CreateClass
+// END CreateCollection
 
 // Test
 console.assert('invertedIndexConfig' in result);
@@ -54,7 +54,7 @@ console.assert('invertedIndexConfig' in result);
 // ===== READ A CLASS =====
 // ================================
 
-// START ReadOneClass
+// START ReadOneCollection
 let classDefinition = await client
   .schema
   .classGetter()
@@ -62,20 +62,20 @@ let classDefinition = await client
   .do();
 
 console.log(JSON.stringify(classDefinition, null, 2));
-// END ReadOneClass
+// END ReadOneCollection
 
 // ================================
 // ===== READ A CLASS =====
 // ================================
 
-// START ReadAllClasses
+// START ReadAllCollections
 let allClassDefinitions = await client
   .schema
   .getter()
   .do();
 
 console.log(JSON.stringify(allClassDefinitions, null, 2));
-// END ReadAllClasses
+// END ReadAllCollections
 
 
 // ================================
@@ -89,7 +89,7 @@ try {
     // ignore error if class doesn't exist
   }
 
-// START UpdateClass
+// START UpdateCollection
 // Define and create a class
 const originalClassObj = {
     'class': className,
@@ -105,7 +105,7 @@ let originalClassResponse = await client
   .withClass(originalClassObj)
   .do();
 
-const updateClassObj = {
+const UpdateCollectionObj = {
     'class': className,
     'vectorIndexConfig': {
         'distance': 'dot'  // Note the distance metric

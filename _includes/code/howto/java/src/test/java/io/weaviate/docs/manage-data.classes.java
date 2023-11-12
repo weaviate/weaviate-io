@@ -41,19 +41,19 @@ class ManageDataClassesTest {
 
   @Test
   public void shouldManageDataClasses() {
-    // START CreateClass  // START ReadOneClass  // START UpdateClass
+    // START CreateCollection  // START ReadOneCollection  // START UpdateCollection
     String className = "Article";
 
-    // END CreateClass  // END ReadOneClass  // END UpdateClass
+    // END CreateCollection  // END ReadOneCollection  // END UpdateCollection
 
-    createClass(className);
-    readOneClass(className);
-    readAllClasses();
-    updateClass(className);
+    createCollection(className);
+    readOneCollection(className);
+    readAllCollections();
+    updateCollection(className);
   }
 
-  private void createClass(String className) {
-    // START CreateClass
+  private void createCollection(String className) {
+    // START CreateCollection
     WeaviateClass emptyClass = WeaviateClass.builder()
       .className(className)
       .build();
@@ -63,7 +63,7 @@ class ManageDataClassesTest {
       .withClass(emptyClass)
       .run();
 
-    // END CreateClass
+    // END CreateCollection
 
     assertThat(result).isNotNull()
       .withFailMessage(() -> result.getError().toString())
@@ -72,13 +72,13 @@ class ManageDataClassesTest {
       .returns(true, Result::getResult);
   }
 
-  private void readOneClass(String className) {
-    // START ReadOneClass
+  private void readOneCollection(String className) {
+    // START ReadOneCollection
     Result<WeaviateClass> result = client.schema().classGetter()
       .withClassName(className)
       .run();
 
-    // END ReadOneClass
+    // END ReadOneCollection
 
     assertThat(result).isNotNull()
       .withFailMessage(() -> result.getError().toString())
@@ -90,12 +90,12 @@ class ManageDataClassesTest {
     print(result);
   }
 
-  private void readAllClasses() {
-    // START ReadAllClasses
+  private void readAllCollections() {
+    // START ReadAllCollections
     Result<Schema> result = client.schema().getter()
       .run();
 
-    // END ReadAllClasses
+    // END ReadAllCollections
 
     assertThat(result).isNotNull()
       .withFailMessage(() -> result.getError().toString())
@@ -108,7 +108,7 @@ class ManageDataClassesTest {
     print(result);
   }
 
-  private void updateClass(String className) {
+  private void updateCollection(String className) {
     Result<Boolean> delResult = client.schema().classDeleter()
       .withClassName(className)
       .run();
@@ -118,7 +118,7 @@ class ManageDataClassesTest {
       .returns(false, Result::hasErrors)
       .returns(true, Result::getResult);
 
-    // START UpdateClassTODO
+    // START UpdateCollectionTODO
     // Define class
     WeaviateClass originalClass = WeaviateClass.builder()
       .className(className)
@@ -132,7 +132,7 @@ class ManageDataClassesTest {
       .withClass(originalClass)
       .run();
 
-    // END UpdateClassTODO
+    // END UpdateCollectionTODO
 
     assertThat(result).isNotNull()
       .withFailMessage(() -> result.getError().toString())
@@ -140,7 +140,7 @@ class ManageDataClassesTest {
       .withFailMessage(null)
       .returns(true, Result::getResult);
 
-    // START UpdateClassTODO
+    // START UpdateCollectionTODO
     // Define updated class
     WeaviateClass updatedClass = WeaviateClass.builder()
       .className(className)
@@ -152,13 +152,13 @@ class ManageDataClassesTest {
     // Update the class definition
     // TODO Not yet available in JAVA
 
-    // END UpdateClassTODO
+    // END UpdateCollectionTODO
   }
 
   private <T> void print(Result<T> result) {
-    // START ReadOneClass // START ReadAllClasses
+    // START ReadOneCollection // START ReadAllCollections
     String json = new GsonBuilder().setPrettyPrinting().create().toJson(result.getResult());
     System.out.println(json);
-    // END ReadOneClass // END ReadAllClasses
+    // END ReadOneCollection // END ReadAllCollections
   }
 }
