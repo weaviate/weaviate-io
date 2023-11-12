@@ -75,7 +75,7 @@ Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PyCodeV3}
+      text={PyCode}
       startMarker="# START nearText Python"
       endMarker="# END nearText Python"
       language="py"
