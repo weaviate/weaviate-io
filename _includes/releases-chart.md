@@ -281,6 +281,7 @@ For links to the Go Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.11.0][g4.11.0] | 2023-11-13 |
   | [4.10.0][g4.10.0] | 2023-08-22 |
   | [4.9.0][g4.9.0] | 2023-07-06 |
   | [4.8.1][g4.8.1] | 2023-05-26 |
@@ -537,43 +538,44 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( go client links )
 
-[g4.10.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.10.0
-[g4.9.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.9.0
-[g4.8.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.8.1
-[g4.8.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.8.0
-[g4.7.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.7.1
-[g4.7.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.7.0
-[g4.6.4]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.4
-[g4.6.3]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.3
-[g4.6.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.2
-[g4.6.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.1
-[g4.6.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.6.0
-[g4.5.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.5.2
-[g4.5.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.5.1
-[g4.5.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.5.0
-[g4.4.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.4.0
-[g4.3.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.3.1
-[g4.3.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.3.0
-[g4.2.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.2.1
-[g4.2.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.2.0
-[g4.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.1.0
-[g4.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/4.0.0
-[g3.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/3.0.0
-[g2.6.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.6.2
-[g2.6.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.6.1
-[g2.6.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.6.0
-[g2.5.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.5.0
-[g2.4.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.4.1
-[g2.4.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.4.0
-[g2.3.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.3.0
-[g2.2.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.2.0
-[g2.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.1.0
-[g2.0.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.0.1
-[g2.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/2.0.0
-[g1.1.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.2
-[g1.1.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.1
-[g1.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.1.0
-[g1.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/1.0.0
+[g4.11.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.11.0
+[g4.10.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.10.0
+[g4.9.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.9.0
+[g4.8.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.1
+[g4.8.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.8.0
+[g4.7.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.1
+[g4.7.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.7.0
+[g4.6.4]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.4
+[g4.6.3]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.3
+[g4.6.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.2
+[g4.6.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.1
+[g4.6.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.6.0
+[g4.5.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.2
+[g4.5.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.1
+[g4.5.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.5.0
+[g4.4.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.4.0
+[g4.3.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.1
+[g4.3.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.3.0
+[g4.2.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.1
+[g4.2.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.2.0
+[g4.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.1.0
+[g4.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.0.0
+[g3.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v3.0.0
+[g2.6.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.2
+[g2.6.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.1
+[g2.6.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.6.0
+[g2.5.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.5.0
+[g2.4.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.1
+[g2.4.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.4.0
+[g2.3.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.3.0
+[g2.2.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.2.0
+[g2.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.1.0
+[g2.0.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.1
+[g2.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v2.0.0
+[g1.1.2]: https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.2
+[g1.1.1]: https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.1
+[g1.1.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v1.1.0
+[g1.0.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v1.0.0
 
 
 [comment]: # ( javascript typescript client links )
