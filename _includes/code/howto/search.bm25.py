@@ -32,7 +32,7 @@ client = weaviate.connect_to_wcs(
 # BM25BasicPython
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
 # highlight-end
     query="food",
     limit=3
@@ -106,11 +106,8 @@ gqlresponse = client.query.raw(gql_query)
 import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     query="food",
-    # highlight-start
-    return_metadata=wvc.MetadataQuery(score=True),
-    # highlight-end
     limit=3
 )
 
