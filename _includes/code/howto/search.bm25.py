@@ -541,7 +541,7 @@ gql_query = """
 
 # START MultipleKeywords Python
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     # highlight-start
     query="food wine", # search for food or wine
     # highlight-end
@@ -645,7 +645,7 @@ gql_query = """
 import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     query="food",
     # highlight-start
     filters=wvc.Filter("round").equal("Double Jeopardy!"),
