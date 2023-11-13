@@ -17,6 +17,14 @@ export default function PricingCalculator({ props }) {
   const [storageType, setStorageType] = useState('performance');
   const [activeBtn, setActiveBtn] = useState(null);
 
+  const thresholdForEmbeddingSize = 4096;
+  const thresholdForAmountOfDataObjs = 50000000;
+
+  const [showTooltipEmbeddingSize, setShowTooltipEmbeddingSize] =
+    useState(false);
+  const [showTooltipAmountOfDataObjs, setShowTooltipAmountOfDataObjs] =
+    useState(false);
+
   const storageHandleClick = (type) => {
     setStorageType(type);
     setActiveBtn(type);
@@ -89,12 +97,14 @@ export default function PricingCalculator({ props }) {
     let clearValue = e.target.value.replace('.', '').replace(',', '');
     clearValue = clearValue.replace('.', '').replace(',', '');
     setEmbeddingSize(clearValue);
+    setShowTooltipEmbeddingSize(clearValue >= thresholdForEmbeddingSize);
   };
 
   const handleChangeAmountOfDataObjs = (e) => {
     let clearValue = e.target.value.replace('.', '').replace(',', '');
     clearValue = clearValue.replace('.', '').replace(',', '');
     setAmountOfDataObjs(clearValue);
+    setShowTooltipAmountOfDataObjs(clearValue >= thresholdForAmountOfDataObjs);
   };
 
   const handleChangeQueriesPerMonth = (e) => {
@@ -168,7 +178,12 @@ export default function PricingCalculator({ props }) {
               min={128}
               max={4096}
               value={embeddingSize}
-              onChange={(embeddingSize) => setEmbeddingSize(embeddingSize)}
+              onChange={(embeddingSize) => {
+                setEmbeddingSize(embeddingSize);
+                setShowTooltipEmbeddingSize(
+                  embeddingSize >= thresholdForEmbeddingSize
+                );
+              }}
             />
             <div className="value">
               <input
@@ -180,6 +195,14 @@ export default function PricingCalculator({ props }) {
                 value={handleLabel(embeddingSize)}
                 onChange={handleChangeEmbeddingSize}
               />
+              {showTooltipEmbeddingSize && (
+                <div className="customTooltip">
+                  You've reached the maximum input limit.{' '}
+                  <a href="#contact-sales">
+                    Please reach out to us for further information.
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           <div className="slider">
@@ -190,9 +213,12 @@ export default function PricingCalculator({ props }) {
               min={0}
               max={50000000}
               value={amountOfDataObjs}
-              onChange={(amountOfDataObjs) =>
-                setAmountOfDataObjs(amountOfDataObjs)
-              }
+              onChange={(amountOfDataObjs) => {
+                setAmountOfDataObjs(amountOfDataObjs);
+                setShowTooltipAmountOfDataObjs(
+                  amountOfDataObjs >= thresholdForAmountOfDataObjs
+                );
+              }}
             />
             <div className="value">
               <input
@@ -204,6 +230,14 @@ export default function PricingCalculator({ props }) {
                 value={handleLabel(amountOfDataObjs)}
                 onChange={handleChangeAmountOfDataObjs}
               />
+              {showTooltipAmountOfDataObjs && (
+                <div className="customTooltip">
+                  You've reached the maximum input limit.{' '}
+                  <a href="#contact-sales">
+                    Please reach out to us for further information.
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           {/*    <div className="slider">
