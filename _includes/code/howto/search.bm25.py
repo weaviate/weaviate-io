@@ -201,7 +201,7 @@ gql_query = """
 import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     query="safety",
     # highlight-start
     limit=3
@@ -287,7 +287,7 @@ gql_query = """
 
 # START autocut Python
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     query="safety",
     # highlight-start
     auto_limit=1
