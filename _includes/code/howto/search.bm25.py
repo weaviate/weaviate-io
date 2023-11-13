@@ -359,7 +359,7 @@ gql_query = """
 
 # BM25WithPropertiesPython
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     query="safety",
     # highlight-start
     query_properties=["question"],
@@ -368,7 +368,10 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
+    # highlight-start
     print(json.dumps(o.properties, indent=2))
+    print(o.metadata.score)
+    # highlight-end
 # END BM25WithPropertiesPython
 
 # Tests
@@ -450,7 +453,7 @@ gql_query = """
 
 # BM25WithBoostedPropertiesPython
 jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.hybrid(
+response = jeopardy.query.bm25(
     query="food",
     # highlight-start
     query_properties=["question^2", "answer"],
