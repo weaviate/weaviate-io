@@ -56,8 +56,5 @@
      "vectorizers",
      "vectorizes",
      "xlarge"
-    ],
-    "githubPullRequests.ignoredPullRequestBranches": [
-     "main"
     ]
 }
