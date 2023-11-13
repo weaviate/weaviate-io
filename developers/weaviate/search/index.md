@@ -31,7 +31,6 @@ Then, move onto a how-to guide of your choice. We have separate how-to guides fo
 
 Each guide is self-contained. So you can read them in any order.
 
-
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />

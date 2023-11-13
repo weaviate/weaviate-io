@@ -207,3 +207,25 @@ assert.deepEqual(questionValues, new Set([
   'Pythons are oviparous, meaning they do this',
 ]));
 // End test
+
+// =========================
+// ===== MULTI-TENANCY =====
+// =========================
+
+// <!-- NEEDS TESTS -->
+
+// MultiTenancy
+result = await client
+   .graphql
+   .get()
+   .withClassName('MultiTenancyClass')
+   .withFields(['property1', 'property2'])
+   .withTenant('TenantA')
+   .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END MultiTenancy
+
+// Test results
+true
+// End test

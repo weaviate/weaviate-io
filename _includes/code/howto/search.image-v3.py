@@ -27,35 +27,45 @@ test_image_base64 = url_to_base64("https://path-to-some-online-image.jpg")
 test_file_base64 = file_to_base64("./your-image-here.jpg")
 # END helper base64 functions
 
+# ===========================================
+# ===== Search by base64 representation =====
+# ===========================================
+
 import weaviate
 import requests
 import base64
 import json
 
-client = weaviate.connect_to_local()
-# ===========================================
-# ===== Search by base64 representation =====
-# ===========================================
+client = weaviate.Client(
+    'http://localhost:8080',  # Replace with your Weaviate URL
+    # Uncomment if authentication is on and replace w/ your Weaviate instance API key.
+    # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
+)
+
+# Fetch URL into `content` variable
+image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
+image_response = requests.get(image_url)
+content = image_response.content
 
 # START search with base64
 # Encode content into base64 string
-# highlight-start
-base64_string=url_to_base64("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG") 
-# highlight-end
-
-# Get the collection containing images
-dogs = client.collections.get("Dog")
+base64_string = base64.b64encode(content).decode('utf-8')
 
 # Perform query
-# highlight-start
-response = dogs.query.near_image(
-    near_image=base64_string,
-# highlight-end
-    return_properties=["breed"],
-    limit=1
+response = (
+    client.query
+    .get('Dog', 'breed')
+    # highlight-start
+    .with_near_image(
+        {'image': base64_string},
+        encode=False  # False because the image is already base64-encoded
+    )
+    # highlight-end
+    .with_limit(1)
+    .do()
 )
 
-print(response.objects[0])
+print(json.dumps(response, indent=2))
 # END search with base64
 
 expected_results = """
@@ -75,8 +85,7 @@ expected_results = """
 """
 
 # Tests
-# TODOv4 update tests
-# assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
+assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 
 
 # ====================================
@@ -84,29 +93,24 @@ expected_results = """
 # ====================================
 
 # Save content to file
-# with open('image.jpg', 'wb') as file:
-#     file.write(content)
+with open('image.jpg', 'wb') as file:
+    file.write(content)
 
 # Perform query
 # START ImageFileSearch
-# highlight-start
-from pathlib import Path
-# highlight-end
-
-dogs = client.collections.get("Dog")
-response = dogs.query.near_image(
+response = (
+    client.query
+    .get('Dog', 'breed')
     # highlight-start
-    near_image=Path("./images/search-image.jpg"),
+    .with_near_image({'image': 'image.jpg'})  # default `encode=True` reads & encodes the file
     # highlight-end
-    return_properties=["breed"],
-    limit=1
+    .with_limit(1)
+    .do()
 )
-
-print(response.objects[0])
 # END ImageFileSearch
 
 # Tests
-# assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
+assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 
 
 # ============================
@@ -114,23 +118,25 @@ print(response.objects[0])
 # ============================
 
 # START Distance
-from pathlib import Path
-import weaviate.classes as wvc
-
-dogs = client.collections.get("Dog")
-response = dogs.query.near_image(
-    near_image=Path("./images/search-image.jpg"),
+response = (
+    client.query
+    .get('Dog', 'breed')
+    .with_near_image(
+        {
+            'image': base64_string,
+            # highlight-start
+            'distance': 0.2
+            # highlight-end
+        },
+        encode=False  # False because the image is already base64-encoded
+    )
     # highlight-start
-    distance=0.8, # Maximum accepted distance
-    return_metadata=wvc.MetadataQuery(distance=True), # return distance from the source image
+    .with_additional('distance')
     # highlight-end
-
-    return_properties=["breed"],
-    limit=5
+    .do()
 )
 
-for item in response.objects:
-    print(item)
+print(json.dumps(response, indent=2))
 # END Distance
 
 expected_results = """
@@ -153,7 +159,7 @@ expected_results = """
 """
 
 # Tests
-# assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
+assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
 
 
 # START HelperFunction

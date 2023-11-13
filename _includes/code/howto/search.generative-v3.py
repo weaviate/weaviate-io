@@ -3,20 +3,14 @@
 # ================================
 
 # ===== Instantiation shown on snippet
-import weaviate, os, json
+import weaviate
+import json
 
-# client = weaviate.Client(
-#     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-#     auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
-#     additional_headers={
-#         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
-#     }
-# )
-# TODOv4 - update this to call the wcs instace
-client = weaviate.connect_to_wcs(
-    cluster_id="some-endpoint",
-    headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
+client = weaviate.Client(
+    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    additional_headers={
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
 )
 
@@ -25,33 +19,24 @@ client = weaviate.connect_to_wcs(
 # =====================================
 
 # SingleGenerativePython
-# highlight-start
-prompt = "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
-# highlight-end
+generate_prompt = "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
 
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.generate.near_text(
-# highlight-end
-    query="World history",
-    limit=2,
-    # highlight-start
-    single_prompt=prompt
-    # highlight-end
-)
+response = (
+  client.query
+  .get("JeopardyQuestion", ["question"])
+  .with_generate(single_prompt=generate_prompt)
+  .with_near_text({
+    "concepts": ["World history"]
+  })
+  .with_limit(2)
+).do()
 
-# print source questions and generated responses
-for o in response.objects:
-    print(o.properties["question"])
-    # highlight-start
-    print(o.generated)
-    # highlight-end
+print(json.dumps(response, indent=2))
 # END SingleGenerativePython
 
 # Test results
-# TODOv4 update tests
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
-# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
 # End test
 
 
@@ -115,10 +100,10 @@ gql_query = '''
 }
 # END SingleGenerativeGraphQL
 '''
-# gqlresponse = client.query.raw(gql_query)
-# # Test results
-# assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
-# assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
 # End test
 
 
@@ -127,26 +112,24 @@ gql_query = '''
 # =====================================================
 
 # SingleGenerativePropertiesPython
-# highlight-start
-prompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
-# highlight-end
+generate_prompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
 
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.generate.near_text(
-    query="World history",
-    limit=2,
-    single_prompt=prompt
-)
+response = (
+  client.query
+  .get("JeopardyQuestion")
+  .with_generate(single_prompt=generate_prompt)
+  .with_near_text({
+    "concepts": ["World history"]
+  })
+  .with_limit(2)
+).do()
 
-# print source properties and generated responses
-for o in response.objects:
-    print(o.properties)
-    print(o.generated)
+print(json.dumps(response, indent=2))
 # END SingleGenerativePropertiesPython
 
 # Test results
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"_additional"}
-# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
 # End test
 
 
@@ -207,10 +190,10 @@ gql_query = '''
 }
 # END SingleGenerativePropertiesGraphQL
 '''
-# gqlresponse = client.query.raw(gql_query)
-# # Test results
-# assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"_additional"}
-# assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"_additional"}
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
 # End test
 
 
@@ -219,26 +202,26 @@ gql_query = '''
 # ======================================
 
 # GroupedGenerativePython
-# highlight-start
-task = "What do these animals have in common, if anything?"
-# highlight-end
+generate_prompt = "What do these animals have in common, if anything?"
 
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.generate.near_text(
-    query="Cute animals",
-    limit=3,
-    # highlight-start
-    grouped_task=task
-    # highlight-end
-)
+response = (
+  client.query
+  .get("JeopardyQuestion", ["points"])
+  # highlight-start
+  .with_generate(grouped_task=generate_prompt)
+  # highlight-end
+  .with_near_text({
+    "concepts": ["Cute animals"]
+  })
+  .with_limit(3)
+).do()
 
-# print the generated response
-print(response.generated)
+print(json.dumps(response, indent=2))
 # END GroupedGenerativePython
 
 # Test results
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"points", "_additional"}
-# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"] is not None
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"points", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"] is not None
 # End test
 
 
@@ -307,10 +290,10 @@ gql_query = '''
 }
 # END GroupedGenerativeGraphQL
 '''
-# gqlresponse = client.query.raw(gql_query)
-# # Test results
-# assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"points", "_additional"}
-# assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"] is not None
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"points", "_additional"}
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"] is not None
 # End test
 
 
@@ -319,33 +302,31 @@ gql_query = '''
 # ======================================================
 
 # GroupedGenerativeProperties Python
-task = "What do these animals have in common, if anything?"
+generate_prompt = 'What do these animals have in common, if anything?'
 
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.generate.near_text(
-    query="Australian animals",
-    limit=3,
-    grouped_task=task,
-    # highlight-start
-    grouped_properties=["answer", "question"]
-    # highlight-end
-)
+response = (
+  client.query
+  .get('JeopardyQuestion', ['question points'])
+  .with_generate(
+      grouped_task=generate_prompt,
+      # highlight-start
+      grouped_properties=['answer', 'question']  # available since client version 3.19.2
+      # highlight-end
+  )
+  .with_near_text({
+    'concepts': ['Australian animals']
+  })
+  .with_limit(3)
+).do()
 
-# print source properties
-for o in response.objects:
-    print(o.properties)
-
-# print the generated response
-# highlight-start
-print(response.generated)
-# highlight-end
+print(json.dumps(response, indent=2))
 # END GroupedGenerativeProperties Python
 
 # Test results
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
-# assert "Australia" in response['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
-# assert response['data']['Get']['JeopardyQuestion'][1].keys() == {'question', 'points', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][2]['_additional'] == {'generate': None}
+assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
+assert "Australia" in response['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
+assert response['data']['Get']['JeopardyQuestion'][1].keys() == {'question', 'points', '_additional'}
+assert response['data']['Get']['JeopardyQuestion'][2]['_additional'] == {'generate': None}
 # End test
 
 
@@ -419,9 +400,10 @@ gql_query = '''
 # END GroupedGenerativePropertiesGraphQL
 '''
 
+gqlresponse = client.query.raw(gql_query)
+print(json.dumps(gqlresponse, indent=2))
+
 # Test results
-# gqlresponse = client.query.raw(gql_query)
-# print(json.dumps(gqlresponse, indent=2))
-# assert gqlresponse['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
-# assert 'Australia' in gqlresponse['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
+assert gqlresponse['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
+assert 'Australia' in gqlresponse['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
 # End test

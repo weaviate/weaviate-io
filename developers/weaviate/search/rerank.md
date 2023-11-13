@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 ## Overview
@@ -72,14 +73,23 @@ You may be able to set additional module parameters here. Please refer to the "S
 Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want to find Q&As about flying, and further sort towards the top those about floating. We can start with a `nearText` search for `flying`, limited to 10 results:
 
 <Tabs groupId="languages">
-  <TabItem value="python" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
       startMarker="# START nearText Python"
       endMarker="# END nearText Python"
       language="py"
     />
   </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START nearText Python"
+      endMarker="# END nearText Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
@@ -88,9 +98,10 @@ Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want
       language="ts"
     />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCodeV3}
       startMarker="# START nearText GraphQL"
       endMarker="# END nearText GraphQL"
       language="graphql"
@@ -104,7 +115,7 @@ Using the [JeopardyQuestions dataset](../quickstart/index.md), let's say we want
 The response should look like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# START Expected nearText results"
     endMarker="# END Expected nearText results"
     language="json"
@@ -115,14 +126,24 @@ The response should look like this:
 We can see that results pertaining to floating aircraft (balloons/blimps/dirigibles) are mixed in with other results (animals, mail). To sort floating results to the top, we can apply the `rerank` operator:
 
 <Tabs groupId="languages">
-  <TabItem value="python" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
       startMarker="# START nearTextRerank Python"
       endMarker="# END nearTextRerank Python"
       language="py"
     />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START nearTextRerank Python"
+      endMarker="# END nearTextRerank Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
@@ -131,9 +152,10 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
       language="ts"
     />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
       startMarker="# START nearTextRerank GraphQL"
       endMarker="# END nearTextRerank GraphQL"
       language="graphql"
@@ -147,7 +169,7 @@ We can see that results pertaining to floating aircraft (balloons/blimps/dirigib
 The response should look like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# START Expected nearTextRerank results"
     endMarker="# END Expected nearTextRerank results"
     language="json"
@@ -163,14 +185,24 @@ We can see in the `rerank`ed result set, that answers are sorted descending by t
 The example below uses `rerank` in a `bm25` query to sort the top results for the query `"paper"` towards `"publication"` to disambiguate from those related to other meanings, such as the material "paper".
 
 <Tabs groupId="languages">
-  <TabItem value="python" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
       startMarker="# START bm25Rerank Python"
       endMarker="# END bm25Rerank Python"
       language="py"
     />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START bm25Rerank Python"
+      endMarker="# END bm25Rerank Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
@@ -179,9 +211,10 @@ The example below uses `rerank` in a `bm25` query to sort the top results for th
       language="ts"
     />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PythonCode}
+      text={PyCode}
       startMarker="# START bm25Rerank GraphQL"
       endMarker="# END bm25Rerank GraphQL"
       language="graphql"
@@ -195,7 +228,7 @@ The example below uses `rerank` in a `bm25` query to sort the top results for th
 The response should look like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# START Expected bm25Rerank results"
     endMarker="# END Expected bm25Rerank results"
     language="json"

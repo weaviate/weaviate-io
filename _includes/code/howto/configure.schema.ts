@@ -24,7 +24,7 @@ try {
   // ignore error if class doesn't exist
 }
 
-// START CreateClass
+// START CreateCollection
 const emptyClassDefinition = {
   class: 'Article',
 };
@@ -38,7 +38,7 @@ let result = await client
 
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(result, null, 2));
-// END CreateClass
+// END CreateCollection
 
 // Test
 console.assert('invertedIndexConfig' in result);
@@ -217,6 +217,16 @@ console.log(JSON.stringify(result, null, 2));
 
 // Test
 assert.equal(result.replicationConfig.factor, 3);
+
+// TODOv4 add the missing example
+// START Multi-tenancy
+await client.schema
+  .classCreator().withClass({
+    class: 'Article',
+    multiTenancyConfig: { enabled: true },
+  })
+  .do();
+// END Multi-tenancy
 
 
 // START AddProp
