@@ -18,10 +18,31 @@ client = weaviate.connect_to_local(
 )
 
 # ==============================
+# =====  DOWNLOAD DATA =====
+# ==============================
+
+# START DownloadData
+
+import requests
+import json
+
+# Download the data
+resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/intro-workshop/main/data/jeopardy_1k.json')
+
+# Load the data so you can see what it is
+data = json.loads(resp.text)
+
+# Parse the JSON and preview it
+print(type(data), len(data))
+print(json.dumps(data[1], indent=2))
+
+# END DownloadData
+
+# ==============================
 # =====  CONNECT =====
 # ==============================
 
-# ConnectCode
+# START ConnectCode
 import weaviate, os, json
 import weaviate.classes as wvc
 
@@ -36,55 +57,45 @@ client.is_ready()
 # END ConnectCode
 
 # ==============================
-# =====  STEP:  =====
+# =====  INITIAL SCHEMA =====
 # ==============================
 
-# BasicGetPython
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.query.fetch_objects()
-# highlight-end
+# START InitialSchema 
 
-# This prints the response object
-print(response)
+v4 TBD
 
-# This formatting step prints the output that you probably want.
-# The remaining examples use formatted output where appropriate.
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
-# END BasicGetPython
+# END InitialSchema 
 
-expected_response = """
-// BasicGet Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-        // shortened for brevity
-      ]
-    }
-  }
-}
-// END BasicGet Expected Results
-"""
+# ==============================
+# =====  LOAD DATA =====
+# ==============================
 
+# START LoadData
 
+v4 TBD
 
-gql_query = """
-# BasicGetGraphQL
+# END LoadData 
 
-# ... TODO: Write test
+# ==============================
+# =====  UPDATE SCHEMA =====
+# ==============================
 
-# END BasicGetGraphQL
-"""
+# START UpdateSchema
 
-# gqlresponse = client.query.raw(gql_query)
+v4 TBD
 
-# Test results
-# assert gqlresponse == response
+# END UpdateSchema
 
-# END Test results
+# ==============================
+# =====  GET THE SCHEMA =====
+# ==============================
+
+# START GetSchema
+
+collection = client.collections.get("Article")
+config = collection.config.get()
+
+# print some of the config properties
+print(config.vectorizer)
+# END GetSchema
 
