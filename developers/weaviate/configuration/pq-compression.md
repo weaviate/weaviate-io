@@ -57,8 +57,8 @@ To enable PQ compression, you need to complete the following steps.
 - [Connect to a Weaviate instance](#connect-to-a-weaviate-instance)
 - [Configure an initial schema without PQ](#configure-an-initial-schema-without-pq)
 - [Load some training data](#load-some-training-data)
-- [Enable and train PQ]
-- [Load the rest of your data]
+- [Enable and train PQ](#enable-and-train-pq)
+- [Load the rest of your data](#load-the-rest-of-your-data)
 
 The next few sections work through these steps.
 
