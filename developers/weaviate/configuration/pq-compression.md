@@ -85,8 +85,6 @@ Weaviate returns `True` if the connection is successful.
 
 ### Configure an initial schema without PQ
 
-afd
-
 
 
  
