@@ -55,20 +55,19 @@ The `ef` parameter controls the size of the nearest neighbors list and helps to 
 
 ### PQ configuration parameters
 
-[Product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) is a form of data compression that reduces the memory footprint of the index. HNSW is an in-memory index, so enabling PQ lets you work with larger datasets. For a discussion of how PQ saves memory, see [this blog post](/blog/pq-rescoring).
+import PQOverview from '/_includes/pq-compression/overview-text.mdx' ;
 
-PQ relies on a codebook to compress the original vectors. The codebook defines 'centroids' that are used to calculate the compressed vector. Weaviate’s PQ implementation uses existing data to train the codebook. You must have some vectors loaded before you enable PQ so Weaviate can use them to define the centroids. You should have 10,000 to 100,000 vectors loaded per shard before you enable PQ.
+<PQOverview />
+
+import PQMakesCookbook from '/_includes/pq-compression/makes-a-cookbook.mdx' ;
+
+<PQMakesCookbook />
 
 These parameters let you fine tune `pq`.
  
-| Parameter | Type | Default | Details |
-| :-- | :-- | :-- | :-- |
-| `enabled` | boolean | `false` |  Enable PQ. Weaviate use product quantization (PQ) compression when `true`. |
-| `trainingLimit` | integer | 100000 |  Object limit. The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids. |
-| `segments` | integer | -- |T he number of segments to use. By default `segments` is equal to the number of vector dimensions. Reducing the number of segments reduces the size of the quantized (PQ compressed) vectors. <br/><br/> The number of segments must be divisible by the number of dimensions in each vector. |
-| `centroids` | integer | 256 | The number of centroids to use. Reducing the number of centroids reduces the size of the quantized (PQ compressed) vectors at the price of recall. <br/><br/> If you use the `kmeans` encoder, `centroids` is set to 256 (one byte) by default. |
-| `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`. | 
-|`distribution`|string|`log-normal`| Encoder distribution type. Only used with the `tile` encoder. If you use the `tile` encoder, you can specify the `distribution` as `log-normal` (default) or `normal`. |
+import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
+
+<PQParameters />
 
 ### Collection configuration example 
 

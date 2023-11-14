@@ -99,7 +99,9 @@ All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Wea
 
 HNSW uses memory efficiently. However, you can also use compression to reduce memory requirements even more. [Product quantization (PQ)](#what-is-product-quantization) is a technique Weaviate offers that lets you compress a vector so it uses fewer bytes. Since HNSW stores vectors in memory, PQ compression lets you use larger datasets without increasing your system memory.
 
-An important point to note is that PQ makes tradeoffs between recall, performance, and memory usage. This means that the same configuration that reduces memory requirements may also reduce recall. There are similar trade offs in HNSW without PQ. You can, for example, lower latency at the cost of recall by configuring the `ef` and `maxConnections` parameters. For more information about how to configure HNSW, see [Configuration: Indexes](../configuration/indexes.md) .
+import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
+
+<PQTradeoffs />
 
 ### What is Product Quantization?
 
