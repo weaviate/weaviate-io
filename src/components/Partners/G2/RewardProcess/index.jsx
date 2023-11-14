@@ -27,6 +27,14 @@ export default function RewardProcess() {
               invaluable to folks looking to learn about Weaviate!
             </p>
           </div>
+          <div className={styles.buttons}>
+            <Link
+              className={styles.buttonGradient}
+              to="https://www.g2.com/products/weaviate/take_survey"
+            >
+              Leave a Review
+            </Link>
+          </div>
         </div>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
@@ -50,21 +58,11 @@ export default function RewardProcess() {
               to ensure that you get your limited edition Weaviate shirt!
             </p>
           </div>
-        </div>
-
-        <div className={styles.buttons}>
-          <Link
-            className={styles.buttonGradient}
-            to="https://www.g2.com/products/weaviate/take_survey"
-          >
-            Leave a Review
-          </Link>
-          <Link
-            className={styles.buttonGradient}
-            to="https://form.jotform.com/233166493842058"
-          >
-            T-Shirt Form
-          </Link>
+          <div className={styles.buttons}>
+            <Link className={styles.buttonGradient} to="#Form">
+              T-Shirt Form
+            </Link>
+          </div>
         </div>
       </div>
     </div>

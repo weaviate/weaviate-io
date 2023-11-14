@@ -14,7 +14,6 @@ export default function g2Page() {
         title="G2 Reviews"
         description="Help us spread the word, get a free t-shirt!"
       >
-        <Header />
         <Introduction />
         <RewardProcess />
         <ContactForm />

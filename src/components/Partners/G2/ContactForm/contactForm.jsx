@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 
 export default function ContactForm() {
   return (
-    <div className={styles.contactBackground} id="meetingForm">
+    <div className={styles.contactBackground} id="Form">
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>

@@ -8,7 +8,9 @@ export default function introduction() {
       <div className="container">
         <div className={styles.box}>
           <div className={styles.investorBox}>
-            <h2></h2>
+            <h1>
+              Help us <span>spread the word</span>,<br></br> get a free t-shirt!
+            </h1>
 
             <p>
               We’re a small company with big dreams and a large community that

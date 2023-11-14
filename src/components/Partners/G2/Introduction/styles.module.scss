@@ -1,50 +1,3 @@
-.pricingHeader {
-  color: #130c49;
-  text-align: center;
-  font-family: Plus Jakarta Sans;
-  font-size: 2.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%; /* 3rem */
-  @media screen and (max-width: 680px) {
-    text-align: left;
-  }
-}
-.pricingButton {
-  border-radius: 0.3125rem;
-  border: 1px solid #130e46;
-  background: #61bd73;
-  padding: 9px;
-  color: #130c49;
-  margin-right: 10px;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.pricingButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-.boardButton {
-  padding: 9px;
-  margin: 10px;
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-  transition: all 1s ease-out;
-}
-.boardButton:hover {
-  border-radius: 0.3125rem;
-  border: 1px solid #ffffff;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
 .test {
   font-size: 1.5rem;
   font-weight: bolder;
@@ -97,15 +50,20 @@ p {
 }
 
 .investorBox {
-  flex: 1;
+  flex: 1 17%;
 
-  h2 {
+  h1 {
     color: white;
+    font-size: 2.5rem;
+  }
+  span {
+    color: rgba(97, 189, 115, 0.94);
   }
 
   p {
     margin-bottom: 20px;
     color: white;
+    width: 90%;
   }
 }
 
@@ -114,11 +72,11 @@ p {
 }
 
 .g2Diagram {
-  background: url('/img/site/weaviate-g2.png');
+  background: url('/img/site/weaviate-g2.svg');
 
   background-size: cover;
   max-width: 418px;
   width: 100%;
   height: auto;
-  min-height: 180px;
+  min-height: 343px;
 }
