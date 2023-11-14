@@ -51,6 +51,21 @@ export default function RewardProcess() {
             </p>
           </div>
         </div>
+
+        <div className={styles.buttons}>
+          <Link
+            className={styles.buttonGradient}
+            to="https://www.g2.com/products/weaviate/take_survey"
+          >
+            Leave a Review
+          </Link>
+          <Link
+            className={styles.buttonGradient}
+            to="https://form.jotform.com/233166493842058"
+          >
+            T-Shirt Form
+          </Link>
+        </div>
       </div>
     </div>
   );

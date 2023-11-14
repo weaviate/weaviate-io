@@ -8,6 +8,11 @@ export default function CallingSection() {
     <div className={styles.bgColor}>
       <div className={styles.container}>
         <div className={styles.header}>
+          <h2>
+            You have until 11:59pm PT November 21st to submit a review and the
+            form below to ensure that you get your limited edition Weaviate
+            shirt!
+          </h2>
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}

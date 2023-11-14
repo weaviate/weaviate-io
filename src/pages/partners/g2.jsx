@@ -18,7 +18,6 @@ export default function g2Page() {
         <Header />
         <Introduction />
         <RewardProcess />
-        <CallingSection />
         <ContactForm />
       </Layout>
       <ThemeSwitch />
