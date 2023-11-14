@@ -13,7 +13,7 @@ client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"] # Replace with your inference API key
     }
 )
 
@@ -48,7 +48,7 @@ import weaviate.classes as wvc
 
 client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ['OPENAI_API_KEY']  # Replace with your inference API key
+        "X-OpenAI-Api-Key": os.environ['OPENAI_API_KEY'] # Replace with your OpenAI API key
     }
 )
 
@@ -62,7 +62,15 @@ client.is_ready()
 
 # START InitialSchema 
 
-v4 TBD
+client.collections.create(
+    name="JeopardyCategory",
+    description="A Jeopardy! category",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    generative_config=wvc.Configure.Generative.openai(),
+    properties=[
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+    ]
+)
 
 # END InitialSchema 
 

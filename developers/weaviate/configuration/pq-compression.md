@@ -127,7 +127,7 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START LoadData"
-       endMarker="# # END LoadData"
+       endMarker="# END LoadData"
        language="py"
      />
   </TabItem>
