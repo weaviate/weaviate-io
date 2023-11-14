@@ -54,15 +54,15 @@ This Howto uses the Jeopardy 1000 question data set. Download it here:
 
 To enable PQ compression, you need to complete the following steps. 
 
-- [Connect to a Weaviate instance](#connect-to-a-weaviate-instance)
-- [Configure an initial schema without PQ](#configure-an-initial-schema-without-pq)
-- [Load some training data](#load-some-training-data)
-- [Enable and train PQ](#enable-and-train-pq)
-- [Load the rest of your data](#load-the-rest-of-your-data)
+1. [Connect to a Weaviate instance](#connect-to-a-weaviate-instance)
+1. [Configure an initial schema without PQ](#configure-an-initial-schema-without-pq)
+1. [Load some training data](#load-some-training-data)
+1. [Enable and train PQ](#enable-and-train-pq)
+1. [Load the rest of your data](#load-the-rest-of-your-data)
 
 The next few sections work through these steps.
 
-### Connect to a Weaviate instance
+### Step 1. Connect to a Weaviate instance
 
 Use one of the Weaviate [client libraries](/developers/weaviate/client-libraries) to connect to your instance. 
 
@@ -90,7 +90,7 @@ After you install the client, connect to your instance.
 
 Weaviate returns `True` if the connection is successful. 
 
-### Configure an initial schema without PQ
+### Step 2. Configure an initial schema without PQ
 
 Every collection in your Weaviate instance is defined by a [schema](/developers/weaviate/tutorials/schema). This example defines a collection called `Questions`. Weaviate uses this schema during your initial data load. After the initial data set is loaded, you modify this schema to enable PQ. 
 
@@ -114,7 +114,7 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
   </TabItem>
 </Tabs> 
 
-### Load some training data
+### Step 3. Load some training data
 
 This example uses a relatively small data set to demonstrate loading data.
 
@@ -142,7 +142,7 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
   </TabItem>
 </Tabs> 
 
-### Enable and train PQ
+### Step 4. Enable and train PQ
 
 import PQMakesCookbook from '/_includes/pq-compression/makes-a-cookbook.mdx' ;
 
@@ -177,11 +177,11 @@ To enable PQ, update your schema.
   </TabItem>
 </Tabs> 
 
+### Step 5. Load the rest of your data
 
+If you are starting with a new Weaviate instance, you can load the rest of your data now. Weaviate compresses the new data when it adds it to the database.
 
-### Load the rest of your data
-
-
+If you already have data in your Weaviate instance, Weaviate automatically compresses the remaining objects (the ones after the initial training set).
 
 ## PQ Parameters
 
