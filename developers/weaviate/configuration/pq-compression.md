@@ -8,8 +8,9 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.schema-v3.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/pq-compression.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/pq-compression-v3.py';
+
 
 # Configure PQ Compression
 
@@ -25,8 +26,70 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 To learn how to configure PQ, follow the discussion on this page. 
 
+## Prerequisites
+
+This Howto uses the Jeopardy 1000 question data set. Download it here:
+
+```python
+import requests
+import json
+
+# Download the data
+resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/intro-workshop/main/data/jeopardy_1k.json')
+data = json.loads(resp.text)  # Load data
+
+# Parse the JSON and preview it
+print(type(data), len(data))
+print(json.dumps(data[1], indent=2))
+```
+
 ## Enable PQ compression
 
+To enable PQ compression, you need to complete the following steps. 
+
+- [Connect to a Weaviate instance](#connect-to-a-weaviate-instance)
+- [Configure an initial schema without PQ](#configure-an-initial-schema-without-pq)
+- Load some training data
+- Enable and train PQ
+- Load the rest of your data
+
+The next few sections work through these steps.
+
+### Connect to a Weaviate instance
+
+Use one of the Weaviate [client libraries](/developers/weaviate/client-libraries) to connect to your instance. 
+
+After you install the client, connect to your instance.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+     <FilteredTextBlock
+       text={PyCode}
+       startMarker="# ConnectCode"
+       endMarker="# END ConnectCode"
+       language="py"
+     />
+  </TabItem>
+  
+  <TabItem value="py3" label="Python (v3)">
+     <FilteredTextBlock
+       text={PyCodeV3}
+       startMarker="# ConnectCode"
+       endMarker="# END ConnectCode"
+       language="py"
+     />
+  </TabItem>
+</Tabs>  
+
+Weaviate returns `True` if the connection is successful. 
+
+### Configure an initial schema without PQ
+
+afd
+
+
+
+ 
 import PQMakesCookbook from '/_includes/pq-compression/makes-a-cookbook.mdx' ;
 
 <PQMakesCookbook />
@@ -46,109 +109,6 @@ import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 
 
-# OLD PAGE
-
-### Minimal example
-
-At a minimum, you must specify the `class` parameter for the collection name.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START CreateCollection"
-      endMarker="# END CreateCollection"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START CreateCollection"
-      endMarker="# END CreateCollection"
-      language="py"
-    />
-  </TabItem>
-
-</Tabs>
-
-
-### Property definition
-
-You can use 
-
-### Collection level module settings
-
-Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
-
- <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-</Tabs>
-
-
-The available parameters vary according to the module. ([Learn more](../modules/index.md)).
-
-
-### Property-level module settings
-
-Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
-
-<!-- <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START PropModuleSettings"
-      endMarker="# END PropModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START PropModuleSettings"
-      endMarker="# END PropModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-</Tabs>
--->
-
-The available parameters vary according to the module. ([Learn more](../modules/index.md)).
-
-
-
-## Delete a collection
-
-import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
-
-<CautionSchemaDeleteClass />
-
-## Update a collection definition
-
-Some parts of a collection definition are immutable, but you can modify other parts.
-
-The following sections describe how to add a property to a collection and how to modify collection parameters.
-
 
 ## Get the schema
 
@@ -158,15 +118,6 @@ If you want to review the schema, you can retrieve it as shown below.
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START SchemaGet"
-      endMarker="# END SchemaGet"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
       startMarker="# START SchemaGet"
       endMarker="# END SchemaGet"
       language="py"
@@ -187,6 +138,8 @@ NEEDS EXAMPLE
 </details>
 
 ## Related pages
+
+- [Configuration: Indexes](../configuration/indexes.md)
 - [Tutorial: Schema](../tutorials/schema.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
