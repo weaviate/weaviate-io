@@ -230,7 +230,7 @@ To review the schema, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GetSchema"
