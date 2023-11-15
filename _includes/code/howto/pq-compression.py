@@ -110,7 +110,17 @@ print(response.total_count)
 
 # START UpdateSchema
 
-v4 TBD
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyCategory")
+jeopardy.config.update(
+   vector_index_config=wvc.Reconfigure.vector_index(
+      pq_enabled=True,
+      pq_segments=96,
+      pq_training_limit=100000
+   )
+)
+
 
 # END UpdateSchema
 
@@ -125,7 +135,7 @@ config = jeopardy.config.get()
 pq_config = config.vector_index_config.pq
 
 # print some of the config properties
-print( f"Enabled: { pq_config.bit_compression }" )
+print( f"Enabled: { pq_config.enabled }" )
 print( f"Training: { pq_config.training_limit }" )
 print( f"Segments: { pq_config.segments }" )
 print( f"Centroids: { pq_config.centroids }" )
