@@ -318,16 +318,28 @@ It should produce a response like the one below:
 
 </details>
 
-## Fusion (ranking) method
+## Combining and ranking results
 
 :::info Available from `v1.20` onwards
 :::
 
-You can select how the BM25 and vector search results are combined to determine the ranking using the `fusionType` argument.
+BM25 and vector search results can be combined and ranked in different ways. 
 
-The default is `rankedFusion`. `rankedFusion` adds inverted ranks of the BM25 and vector search methods. Alternatively, you can use `relativeScoreFusion` which adds normalized (between 0-1) scores of the BM25 and vector search methods.
+### Ranked fusion
 
-The following examples specify `relativeScoreFusion`.
+The `rankedFusion` algorithm is Weaviate's original hybrid fusion algorithm.
+
+In this algorithm, each object is scored according to its position in the results for that search (vector or keyword). The top-ranked objects in each search get the highest scores. Scores decrease going from top to least ranked. The total score is calculated by adding the rank-based scores from the vector and keyword searches.
+
+### Relative score fusion
+
+New in Weaviate version 1.20.
+
+In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
+
+For more information on fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms) 
+
+The default fusion method is `rankedFusion`. The following examples specify `relativeScoreFusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
