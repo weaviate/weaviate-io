@@ -80,3 +80,19 @@ p {
   height: auto;
   min-height: 343px;
 }
+
+.alertBox {
+  background: #61bd73;
+  text-align: center;
+  height: 4.6875rem;
+  width: 100%;
+  display: flex;
+
+  @media screen and (max-width: 600px) {
+    height: 7rem;
+  }
+
+  p {
+    margin: auto;
+  }
+}
