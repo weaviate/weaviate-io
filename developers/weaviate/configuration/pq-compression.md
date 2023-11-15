@@ -27,7 +27,7 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 To learn how to configure PQ, follow the discussion on this page. 
 
 :::note
-Before you enable PQ, be sure to provide a set of vectors to train the algorithm. For details, see [Enable and train PQ](#step-4-enable-and-train-pq)
+Before you enable PQ, be sure to provide a set of vectors to train the algorithm. For details, see [Enable and train PQ](#step-3-load-some-training-data)
 :::
 
 ## Prerequisites
@@ -58,11 +58,11 @@ This Howto page uses the Jeopardy 1000 question data set. Download it here:
 
 To enable PQ compression, complete the following steps. 
 
-1. [Connect to a Weaviate instance](#connect-to-a-weaviate-instance)
-1. [Configure an initial schema without PQ](#configure-an-initial-schema-without-pq)
-1. [Load some training data](#load-some-training-data)
-1. [Enable and train PQ](#enable-and-train-pq)
-1. [Load the rest of your data](#load-the-rest-of-your-data)
+1. [Connect to a Weaviate instance](#step-1-connect-to-a-weaviate-instance)
+1. [Configure an initial schema without PQ](#step-2-configure-an-initial-schema-without-pq)
+1. [Load some training data](#step-3-load-some-training-data)
+1. [Enable and train PQ](#step-4-enable-and-train-pq)
+1. [Load the rest of your data](#step-5-load-the-rest-of-your-data)
 
 The next few sections work through these steps.
 
