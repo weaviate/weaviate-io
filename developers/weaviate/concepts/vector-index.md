@@ -103,6 +103,8 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
+For information about how to configure PQ, see [Compression](developers/weaviate/configuration/pq-compression).
+
 ### What is Product Quantization?
 
 Quantization techniques represent larger vectors with a finite set of smaller vectors. A familiar example is rounding a number to the nearest integer.
