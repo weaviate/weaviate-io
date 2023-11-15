@@ -13,7 +13,7 @@ client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"] # Replace with your inference API key
+        "X-OpenAI-Api-Key": os.environ[ "OPENAI_API_KEY" ] # Replace with your inference API key
     }
 )
 
@@ -27,7 +27,7 @@ import requests
 import json
 
 # Download the data
-resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/intro-workshop/main/data/jeopardy_1k.json')
+resp = requests.get( 'https://raw.githubusercontent.com/weaviate-tutorials/intro-workshop/main/data/jeopardy_1k.json' )
 
 # Load the data so you can see what it is
 data = json.loads(resp.text)

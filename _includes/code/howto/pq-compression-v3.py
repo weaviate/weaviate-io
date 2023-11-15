@@ -13,7 +13,7 @@ client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"] # Replace with your OpenAI API key
+        "X-OpenAI-Api-Key": os.environ[ "OPENAI_API_KEY" ] # Replace with your OpenAI API key
     }
 )
 
