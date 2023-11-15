@@ -162,7 +162,7 @@ To enable PQ, update your schema.
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START UpdateSchema"
-       endMarker="# # END UpdateSchema"
+       endMarker="# END UpdateSchema"
        language="py"
      />
   </TabItem>

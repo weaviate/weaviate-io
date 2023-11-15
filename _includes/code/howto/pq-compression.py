@@ -68,7 +68,7 @@ client.collections.create(
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
     generative_config=wvc.Configure.Generative.openai(),
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property( name="title", data_type=wvc.DataType.TEXT ),
     ]
 )
 
@@ -79,8 +79,28 @@ client.collections.create(
 # ==============================
 
 # START LoadData
+def parse_data():
+  object_list = []
+  for obj in data:
+     object_list.append( 
+        {
+            "question": obj[ "Question" ], 
+            "answer": obj[ "Answer" ], 
+            "round": obj[ "Round" ] 
+         }
+     )
+     
+  return( object_list )
+  
+jeopardy = client.collections.get( "JeopardyCategory" )
+jeopardy.data.insert_many( parse_data() )
 
-v4 TBD
+# Check upload
+response = jeopardy.aggregate.over_all( total_count=True )
+
+# Should equal number of objects uploaded
+print(response.total_count)
+
 
 # END LoadData 
 
@@ -100,10 +120,15 @@ v4 TBD
 
 # START GetSchema
 
-collection = client.collections.get("Article")
-config = collection.config.get()
+jeopardy = client.collections.get( "JeopardyCategory" )
+config = jeopardy.config.get()
+pq_config = config.vector_index_config.pq
 
 # print some of the config properties
-print(config.vectorizer)
+print( f"Enabled: { pq_config.bit_compression }" )
+print( f"Training: { pq_config.training_limit }" )
+print( f"Segments: { pq_config.segments }" )
+print( f"Centroids: { pq_config.centroids }" )
+
 # END GetSchema
 
