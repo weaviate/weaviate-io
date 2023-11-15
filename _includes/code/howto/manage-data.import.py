@@ -27,11 +27,10 @@ client = weaviate.connect_to_local(
 # ============================
 
 # Clean slate
-if client.collections.exists("JeopardyQuestion"):
-    client.collections.delete("JeopardyQuestion")
+client.collections.delete("YourName")
 
 client.collections.create(
-    "JeopardyQuestion",
+    "YourName",
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
 )
 
@@ -133,9 +132,9 @@ assert result.total_count == 3
 
 response = collection.query.bm25(
     query="Object 1",
-    return_metadata=wvc.MetadataQuery(vector=True)
+    include_vector=True
 )
-test_vector = response.objects[0].metadata.vector
+test_vector = response.objects[0].vector
 assert (test_vector[0] >= 0.1)
 assert (test_vector[0] < 0.11)
 
@@ -226,51 +225,53 @@ assert actual_count == MAX_ROWS_TO_IMPORT * 2, f'Expected {MAX_ROWS_TO_IMPORT * 
 '''
 
 
-# ============================================================
-# ===== Batch import with parameters explicitly set  =====
-# ============================================================
+# Commenting out the below as it is not used in V4 docs (but will throw)
 
-class_name = "YourClassName"  # Replace with your class name
-data_objs = [
-    {"title": f"Object {i+1}"} for i in range(5)
-]
-
-# ConfigureBatchImportExample
-# highlight-start
-client.batch.configure(
-    batch_size=100,  # Specify the batch size for auto batching
-    num_workers=2,   # Maximum number of parallel threads used during import
-)
-with client.batch as batch:
-# highlight-end
-    for data_obj in data_objs:
-        batch.add_data_object(
-            data_obj,
-            class_name,
-        )
-# END ConfigureBatchImportExample
-
-response = client.query.aggregate(class_name).with_meta_count().do()
-assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
-client.schema.delete_class(class_name)
-
-
-# ConfigureDynamicBatchImportExample
-# highlight-start
-client.batch.configure(
-    batch_size=100,  # Specify the batch size for auto batching
-    num_workers=2,   # Maximum number of parallel threads used during import
-    dynamic=True,
-)
-with client.batch as batch:
-# highlight-end
-    for data_obj in data_objs:
-        batch.add_data_object(
-            data_obj,
-            class_name,
-        )
-# END ConfigureDynamicBatchImportExample
-
-response = client.query.aggregate(class_name).with_meta_count().do()
-assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
-client.schema.delete_class(class_name)
+# # ============================================================
+# # ===== Batch import with parameters explicitly set  =====
+# # ============================================================
+#
+# class_name = "YourClassName"  # Replace with your class name
+# data_objs = [
+#     {"title": f"Object {i+1}"} for i in range(5)
+# ]
+#
+# # ConfigureBatchImportExample
+# # highlight-start
+# client.batch.configure(
+#     batch_size=100,  # Specify the batch size for auto batching
+#     num_workers=2,   # Maximum number of parallel threads used during import
+# )
+# with client.batch as batch:
+# # highlight-end
+#     for data_obj in data_objs:
+#         batch.add_object(
+#             collection=class_name,
+#             properties=data_obj,
+#         )
+# # END ConfigureBatchImportExample
+#
+# response = client.query.aggregate(class_name).with_meta_count().do()
+# assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+# client.schema.delete_class(class_name)
+#
+#
+# # ConfigureDynamicBatchImportExample
+# # highlight-start
+# client.batch.configure(
+#     batch_size=100,  # Specify the batch size for auto batching
+#     num_workers=2,   # Maximum number of parallel threads used during import
+#     dynamic=True,
+# )
+# with client.batch as batch:
+# # highlight-end
+#     for data_obj in data_objs:
+#         batch.add_data_object(
+#             collection=class_name,
+#             properties=data_obj,
+#         )
+# # END ConfigureDynamicBatchImportExample
+#
+# response = client.query.aggregate(class_name).with_meta_count().do()
+# assert response["data"]["Aggregate"][class_name][0]["meta"]["count"] == 5
+# client.schema.delete_class(class_name)
