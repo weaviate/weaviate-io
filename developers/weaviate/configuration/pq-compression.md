@@ -28,6 +28,7 @@ To learn how to configure PQ, follow the discussion on this page.
 
 :::note
 Before you enable PQ, be sure to provide a set of vectors to train the algorithm. For details, see [Enable and train PQ](#step-4-enable-and-train-pq)
+:::
 
 ## Prerequisites
 
