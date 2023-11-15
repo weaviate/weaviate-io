@@ -24,6 +24,8 @@ p {
   color: white;
   display: flex;
   flex-direction: row;
+  height: 724px;
+
   h3 {
     color: #130c49;
   }
@@ -35,6 +37,7 @@ p {
     color: #130c49;
     display: flex;
     flex-direction: column;
+    height: auto;
   }
 }
 
@@ -57,6 +60,17 @@ p {
 
 .investorsContainer {
   background: #131144;
+
+  background-image: url('/img/site/contact-us-background.png');
+  background-size: 50%;
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+
+  @media screen and (max-width: 780px) {
+    background-size: contain;
+    background-position-y: 40%;
+    background-repeat: no-repeat;
+  }
 }
 
 .investorBox {
@@ -80,6 +94,10 @@ p {
 
   .smallText {
     font-size: 1rem;
+  }
+
+  ul {
+    color: white;
   }
 }
 

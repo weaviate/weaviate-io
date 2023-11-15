@@ -22,9 +22,10 @@ export default function RewardProcess() {
           </div>
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
-              Visit G2 and leave a review on our profile. You can choose more
-              than one category. Please be thorough – your experience is
-              invaluable to folks looking to learn about Weaviate!
+              Visit G2 by clicking the button below and leave a review on our
+              profile. Please be thorough – your experience is invaluable to
+              folks looking to learn about Weaviate!{' '}
+              <strong>Make sure to take a screenshot of your review.</strong>
             </p>
           </div>
           <div className={styles.buttons}>
@@ -46,16 +47,10 @@ export default function RewardProcess() {
           </div>
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
-              <strong>[Important]</strong> Make sure to take a screenshot of
-              your review and submit it with the form below.
-            </p>
-            <p className={styles.textCardContent}>
-              <strong>
-                {' '}
-                You have until 11:59pm PT November 21st to submit a review and
-                the form below
-              </strong>{' '}
-              to ensure that you get your limited edition Weaviate shirt!
+              Fill out the form below and upload your review screenshot. You
+              have until 11:59pm PT November 21st to submit a review and
+              complete the form below to ensure that you get your limited
+              edition Weaviate shirt!
             </p>
           </div>
           <div className={styles.buttons}>
