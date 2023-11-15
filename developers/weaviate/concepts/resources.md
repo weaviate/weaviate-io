@@ -77,7 +77,7 @@ In rare situations - typically on large machines with very high import speeds - 
 
 The following tactics can help to reduce Weaviate's memory usage:
 
-- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend testing PQ on your dataset before using it in production. <br/><br/> For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq). <br/> To configure PQ, see [Compression](developers/weaviate/configuration/pq-compression). 
+- **Use vector compression**. Product quantization (PQ) is a technique that reduces the size of vectors. Vector compression impacts recall performance, so we recommend testing PQ on your dataset before using it in production. <br/><br/> For more information, see [Product Quantization](../concepts/vector-index.md#hnsw-with-product-quantization-pq). <br/> To configure PQ, see [Compression](/developers/weaviate/configuration/pq-compression). 
 
 - **Reduce the dimensionality of your vectors.** The most effective approach to reducing memory size, is to reduce the number of dimensions per vector. If you have high dimension vectors, consider using a model that uses fewer dimensions. For example, a model that has 384 dimensions uses far less memory than a model with 1536 dimensions.
 
