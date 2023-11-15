@@ -41,7 +41,7 @@ export default function RewardProcess() {
           <div className={styles.cardHeader}>
             <div className={styles.cardHeaderRight}>
               <h3 className={styles.cardTextColor}>
-                Step 2 <h3>Submit Review</h3>
+                Step 2 <h3>Submit your t-shirt size</h3>
               </h3>
             </div>
           </div>
