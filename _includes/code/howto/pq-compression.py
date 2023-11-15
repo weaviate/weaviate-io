@@ -33,8 +33,8 @@ resp = requests.get( 'https://raw.githubusercontent.com/weaviate-tutorials/intro
 data = json.loads(resp.text)
 
 # Parse the JSON and preview it
-print(type(data), len(data))
-print(json.dumps(data[1], indent=2))
+print( type( data ), len( data ) )
+print( json.dumps( data[1], indent=2 ) )
 
 # END DownloadData
 
@@ -98,8 +98,8 @@ jeopardy.data.insert_many( parse_data() )
 # Check upload
 response = jeopardy.aggregate.over_all( total_count=True )
 
-# Should equal number of objects uploaded
-print(response.total_count)
+# Should equal the number of objects uploaded
+print( response.total_count )
 
 
 # END LoadData 
@@ -112,7 +112,7 @@ print(response.total_count)
 
 import weaviate.classes as wvc
 
-jeopardy = client.collections.get("JeopardyCategory")
+jeopardy = client.collections.get( "JeopardyCategory" )
 jeopardy.config.update(
    vector_index_config=wvc.Reconfigure.vector_index(
       pq_enabled=True,

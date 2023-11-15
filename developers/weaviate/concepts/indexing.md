@@ -74,7 +74,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 
 As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time.
 
-Read more below on:
+For more information see:
 - [Configuring the vector index](../configuration/indexes.md)
 - [Explanation of vector indexes](../concepts/vector-index.md)
 - [Compressing indexes in memory](developers/weaviate/configuration/pq-compression)

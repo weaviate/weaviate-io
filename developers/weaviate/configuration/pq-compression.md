@@ -28,7 +28,7 @@ To learn how to configure PQ, follow the discussion on this page.
 
 ## Prerequisites
 
-This Howto uses the Jeopardy 1000 question data set. Download it here:
+This Howto page uses the Jeopardy 1000 question data set. Download it here:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -52,7 +52,7 @@ This Howto uses the Jeopardy 1000 question data set. Download it here:
 
 ## Enable PQ compression
 
-To enable PQ compression, you need to complete the following steps. 
+To enable PQ compression, complete the following steps. 
 
 1. [Connect to a Weaviate instance](#connect-to-a-weaviate-instance)
 1. [Configure an initial schema without PQ](#configure-an-initial-schema-without-pq)
@@ -118,7 +118,7 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
 
 This example uses a relatively small data set to demonstrate loading data.
 
-If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. You can use any of the objects in your data set, but if possible chose objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. You can use any of the objects in your data set. If possible, chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
 
 If you already have data in your Weaviate instance, you can move ahead to the next step. By default Weaviate uses the first 100,000 objects in your database for the training step.  
 

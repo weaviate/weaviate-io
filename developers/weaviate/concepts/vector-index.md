@@ -103,7 +103,7 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
-For information about how to configure PQ, see [Compression](developers/weaviate/configuration/pq-compression).
+To configure PQ, see [Compression](developers/weaviate/configuration/pq-compression).
 
 ### What is Product Quantization?
 

@@ -105,8 +105,8 @@ with client.batch() as batch:
         }
         
         batch.add_data_object(
-        data_object=obj_body,
-        class_name="Question"
+           data_object=obj_body,
+           class_name="Question"
         )
 
 # END LoadData 
