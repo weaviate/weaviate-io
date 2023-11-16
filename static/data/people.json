@@ -1,5 +1,12 @@
 [
   {
+    "name": "Aarthi Iyer",
+    "title": "QA Engineer",
+    "photo": "aarthi.jpeg",
+    "linkedin": "aarthiiyer",
+    "team": "cloud"
+  },
+  {
     "name": "Abdel Rodriquez",
     "title": "Vector Index Researcher",
     "photo": "abdel.jpg",
@@ -16,6 +23,13 @@
     "team": "developer-growth"
   },
   {
+    "name": "Albert Adeseye",
+    "title": "Technical Success Manager",
+    "photo": "albert.jpeg",
+    "linkedin": "albertadeseye",
+    "team": "customer-success"
+  },
+  {
     "name": "Alea Abed",
     "title": "Head of Marketing",
     "photo": "alea.png",
@@ -28,6 +42,13 @@
     "photo": "andre.png",
     "linkedin": "andre-duis",
     "team": "cto"
+  },
+  {
+    "name": "André Mourão",
+    "title": "Software Engineer",
+    "photo": "andre-m.jpeg",
+    "linkedin": "andre-mourao",
+    "team": "database"
   },
   {
     "name": "Andrzej Liszka",
@@ -286,6 +307,14 @@
     "linkedin": "mikewyer",
     "twitter": "BigBeardyGeek",
     "team": "wcs"
+  },
+  {
+    "name": "Mohamed Shahin",
+    "title": "Technical Success Manager",
+    "photo": "mohamed.jpeg",
+    "linkedin": "shahinmohamed",
+    "twitter": "shah91n",
+    "team": "customer-success"
   },
   {
     "name": "Nick Olivetti",
