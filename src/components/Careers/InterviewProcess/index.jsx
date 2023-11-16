@@ -81,7 +81,7 @@ export default function InterviewProcess() {
             </div>
             <div className={styles.cardHeaderRight}>
               <h3 className={styles.cardTextColor}>
-                Step 3 <h3>Your challenge and in-depth interview</h3>
+                Step 3 <h3>Your challenge and follow-up interview</h3>
               </h3>
             </div>
           </div>
@@ -91,8 +91,8 @@ export default function InterviewProcess() {
               gives you insights into the type of work related to this role and
               it helps us determine your problem-solving skills. It’s not about
               giving the right answers, it's about how you approach a problem
-              and come up with a solution. This will be followed by an in-depth
-              interview where we discuss your solution.
+              and come up with a solution. This will be followed by an interview
+              where we discuss your solution.
             </p>
           </div>
           <div className={styles.cardFooter}>
@@ -134,6 +134,22 @@ export default function InterviewProcess() {
               <div className={`${styles.img} ${styles.clockSmallImg}`} />
               <p>45 min</p>
             </div>
+          </div>
+        </div>
+        <div className={`${styles.card} ${styles.longCard}`}>
+          <div className={`${styles.cardHeader} ${styles.longHead}`}>
+            <div className={styles.cardHeaderLeft}>
+              <div className={`${styles.img} ${styles.bigHeartImg}`} />
+            </div>
+          </div>
+          <div className={styles.contentDiv}>
+            <p className={styles.textCardContent}>
+              <h3 className={styles.cTextColor}>Will you join Weaviate?</h3>
+              When you successfully complete these steps, we will make you an
+              offer to join Weaviate. As part of our onboarding process, we will
+              conduct a background check, and our offer is contingent upon the
+              results of this check.
+            </p>
           </div>
         </div>
       </div>

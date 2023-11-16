@@ -40,7 +40,7 @@ client = weaviate.connect_to_local()
 # START search with base64
 # Encode content into base64 string
 # highlight-start
-base64_string=url_to_base64("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG") 
+base64_string=url_to_base64("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG")
 # highlight-end
 
 # Get the collection containing images

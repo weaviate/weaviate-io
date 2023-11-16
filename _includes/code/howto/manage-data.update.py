@@ -83,7 +83,7 @@ jeopardy.data.update(
 
 # Test
 result = jeopardy.query.fetch_object_by_id(uuid, include_vector=True)
-assert set(result.metadata.vector) == {0.12345}
+assert set(result.vector) == {0.12345}
 
 
 # ==========================
@@ -137,7 +137,7 @@ def del_props(client: WeaviateClient, uuid_to_update: str, collection_name: str,
 uuid = "..."  # replace with the id of the object you want to delete properties from
 # DelProps END
 
-uuid = result.metadata.uuid  # Get the ID for testing
+uuid = result.uuid  # Get the ID for testing
 
 # DelProps START
 del_props(client, uuid, "JeopardyQuestion", ["answer"])

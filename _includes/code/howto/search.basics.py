@@ -219,7 +219,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2)) 
+    print(json.dumps(o.properties, indent=2))
 # END GetPropertiesPython
 
 # Test results
@@ -282,12 +282,12 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
-    return_metadata=wvc.MetadataQuery(vector=True),
+    include_vector=True,
     # highlight-end
     limit=1
 )
 
-print( response.objects[0].metadata.vector )
+print(response.objects[0].vector)
 # END GetObjectVectorPython
 
 # Test results
@@ -351,17 +351,15 @@ gql_query = """
 # highlight-start
 import weaviate.classes as wvc
 # highlight-end
- 
+
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
-    # highlight-start
-    return_metadata=wvc.MetadataQuery(uuid=True), 
-    # highlight-end
+    # Object IDs are included by default with the `v4` client! :)
     limit=1
 )
 
 for r in response.objects:
-   print(r.metadata.uuid)
+    print(r.uuid)
 # END GetObjectIdPython
 
 # Test results
@@ -425,7 +423,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     return_properties=[
         # highlight-start
-        wvc.FromReference( 
+        wvc.FromReference(
             link_on="hasCategory",
             return_properties=["title"]
         ),
@@ -435,7 +433,7 @@ response = jeopardy.query.fetch_objects(
     limit=2
 )
 
-# print result objects 
+# print result objects
 for o in response.objects:
     print(o.properties["question"])
     # print referenced objects
