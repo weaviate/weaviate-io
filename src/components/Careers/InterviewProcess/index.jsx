@@ -91,8 +91,8 @@ export default function InterviewProcess() {
               gives you insights into the type of work related to this role and
               it helps us determine your problem-solving skills. It’s not about
               giving the right answers, it's about how you approach a problem
-              and come up with a solution. This will be followed by an in-depth
-              interview where we discuss your solution.
+              and come up with a solution. This will be followed by an interview
+              where we discuss your solution.
             </p>
           </div>
           <div className={styles.cardFooter}>
