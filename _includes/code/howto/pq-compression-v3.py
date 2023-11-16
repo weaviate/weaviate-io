@@ -118,6 +118,10 @@ client.schema.update_config(
 
 # START GetSchema
 
-print(json.dumps(client.schema.get("Question"), indent=2))
+# For the whole collection schema, uncomment the next line.
+# print(json.dumps(client.schema.get("Question"), indent=2))
+
+# This is limited to the relevant section.
+print(json.dumps(client.schema.get("Question")["vectorIndexConfig"]["pq"], indent=2))
 
 # END GetSchema
