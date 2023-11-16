@@ -6,11 +6,15 @@ import os
 # ================================
 
 import weaviate
-import json
+import weaviate.classes as wvc
 
-client = weaviate.Client(
-    'https://edu-demo.weaviate.network',  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),  # Replace w/ your Weaviate API key
+# client = weaviate.Client(
+#     'https://edu-demo.weaviate.network',  # Replace with your Weaviate URL
+#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),  # Replace w/ your Weaviate API key
+# )
+client = weaviate.connect_to_wcs(
+    cluster_id='edu-demo',  # Replace with your Weaviate URL
+    api_key='learn-weaviate'
 )
 
 # =======================
@@ -18,37 +22,40 @@ client = weaviate.Client(
 # =======================
 
 # ReadObject START
-data_object = client.data_object.get_by_id(
-    '00ff6900-e64f-5d94-90db-c8cfa3fc851b',
-    class_name='JeopardyQuestion',
-)
+jeopardy = client.collections.get("JeopardyQuestion")
 
-print(json.dumps(data_object, indent=2))
+# highlight-start
+data_object = jeopardy.query.fetch_object_by_id("00ff6900-e64f-5d94-90db-c8cfa3fc851b")
+# highlight-end
+
+print(data_object.properties)
 # ReadObject END
 
 # Test
-assert data_object['properties']['answer'] == 'San Francisco'
+assert data_object.properties['answer'] == 'San Francisco'
 
 
 # ===================================
 # ===== Read object with vector =====
 # ===================================
 
+# TODOv4 -  include_vector
+
 # ReadObjectWithVector START
-data_object = client.data_object.get_by_id(
-    '00ff6900-e64f-5d94-90db-c8cfa3fc851b',
-    class_name='JeopardyQuestion',
+jeopardy = client.collections.get("JeopardyQuestion")
+
+data_object = jeopardy.query.fetch_object_by_id(
+    "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
     # highlight-start
-    with_vector=True
+    include_vector=True
     # highlight-end
 )
 
-print(json.dumps(data_object, indent=2))
+print(data_object.vector)
 # ReadObjectWithVector END
 
 # Test
-assert len(data_object['vector']) == 1536
-
+assert len(data_object.vector) == 1536
 
 # ==================================
 # ===== Check object existence =====

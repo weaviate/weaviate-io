@@ -10,6 +10,7 @@ git_slack_map=(
     ["Connor Shorten"]="<@U03FRH53SUT>"
     ["daveatweaviate"]="<@U05RK4X5AJU>"
     ["Dirk Kulawiak"]="<@U03MWHK4KV3>"
+    ["Duda Nogueira"]="<@U05K3K9M82F>"
     ["Erika Cardenas"]="<@U03RSSRAMLN>"
     ["Etienne Dilocker"]="<@UCZDBEZ5F>"
     ["hsm207"]="<@U04C2EATF6K>" #Shukri

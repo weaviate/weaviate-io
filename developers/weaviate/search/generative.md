@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 ## Overview
@@ -114,36 +115,41 @@ In this example, the query:
 1. Returns the generated text as a part of each object, along with the `question` property.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleGenerativePython"
+      endMarker="# END SingleGenerativePython"
+      language="py"
+    />
+  </TabItem>
 
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleGenerativePython"
-  endMarker="# END SingleGenerativePython"
-  language="py"
-/>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# SingleGenerativePython"
+      endMarker="# END SingleGenerativePython"
+      language="py"
+    />
+  </TabItem>
 
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// SingleGenerative TS"
+      endMarker="// END SingleGenerative TS"
+      language="js"
+    />
+  </TabItem>
 
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// SingleGenerative TS"
-  endMarker="// END SingleGenerative TS"
-  language="js"
-/>
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleGenerativeGraphQL"
-  endMarker="# END SingleGenerativeGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleGenerativeGraphQL"
+      endMarker="# END SingleGenerativeGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -152,7 +158,7 @@ In this example, the query:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# SingleGenerative Expected Results"
   endMarker="# END SingleGenerative Expected Results"
   language="json"
@@ -175,36 +181,41 @@ In this example, the query:
 Note that the `question` and `answer` properties are not retrieved in the query, but are used in the prompt.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleGenerativePropertiesPython"
+      endMarker="# END SingleGenerativePropertiesPython"
+      language="py"
+    />
+  </TabItem>
 
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleGenerativePropertiesPython"
-  endMarker="# END SingleGenerativePropertiesPython"
-  language="py"
-/>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# SingleGenerativePropertiesPython"
+      endMarker="# END SingleGenerativePropertiesPython"
+      language="py"
+    />
+  </TabItem>
 
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// SingleGenerativeProperties TS"
+      endMarker="// END SingleGenerativeProperties TS"
+      language="js"
+    />
+  </TabItem>
 
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// SingleGenerativeProperties TS"
-  endMarker="// END SingleGenerativeProperties TS"
-  language="js"
-/>
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleGenerativePropertiesGraphQL"
-  endMarker="# END SingleGenerativePropertiesGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleGenerativePropertiesGraphQL"
+      endMarker="# END SingleGenerativePropertiesGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -213,7 +224,7 @@ Note that the `question` and `answer` properties are not retrieved in the query,
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# SingleGenerativeProperties Expected Results"
   endMarker="# END SingleGenerativeProperties Expected Results"
   language="json"
@@ -238,36 +249,41 @@ In this example, the query:
 Note that the prompt includes information about the type of the animal (from the `answer` property), even though the `answer` property is not explicitly retrieved.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GroupedGenerativePython"
+      endMarker="# END GroupedGenerativePython"
+      language="py"
+    />
+  </TabItem>
 
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GroupedGenerativePython"
-  endMarker="# END GroupedGenerativePython"
-  language="py"
-/>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GroupedGenerativePython"
+      endMarker="# END GroupedGenerativePython"
+      language="py"
+    />
+  </TabItem>
 
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GroupedGenerative TS"
+      endMarker="// END GroupedGenerative TS"
+      language="js"
+    />
+  </TabItem>
 
-<FilteredTextBlock
-  text={TSCode}
-  startMarker="// GroupedGenerative TS"
-  endMarker="// END GroupedGenerative TS"
-  language="js"
-/>
-
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# GroupedGenerativeGraphQL"
-  endMarker="# END GroupedGenerativeGraphQL"
-  language="graphql"
-/>
-
-</TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GroupedGenerativeGraphQL"
+      endMarker="# END GroupedGenerativeGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -276,7 +292,7 @@ Note that the prompt includes information about the type of the animal (from the
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# GroupedGenerative Expected Results"
   endMarker="# END GroupedGenerative Expected Results"
   language="json"
@@ -296,36 +312,40 @@ In this example, the prompt only includes the `question` and `answer` properties
 <!-- TODO - add client code when made available -->
 
 <Tabs groupId="languages">
-  <TabItem value="python" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# GroupedGenerativeProperties Python"
-    endMarker="# END GroupedGenerativeProperties Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GroupedGenerativeProperties Python"
+      endMarker="# END GroupedGenerativeProperties Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GroupedGenerativeProperties Python"
+      endMarker="# END GroupedGenerativeProperties Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// GroupedGenerativeProperties"
-    endMarker="// END GroupedGenerativeProperties"
-    language="ts"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GroupedGenerativeProperties"
+      endMarker="// END GroupedGenerativeProperties"
+      language="ts"
+    />
   </TabItem>
 
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# GroupedGenerativePropertiesGraphQL"
-    endMarker="# END GroupedGenerativePropertiesGraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# GroupedGenerativePropertiesGraphQL"
+      endMarker="# END GroupedGenerativePropertiesGraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -335,7 +355,7 @@ In this example, the prompt only includes the `question` and `answer` properties
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# GroupedGenerativeProperties Expected Results"
   endMarker="# END GroupedGenerativeProperties Expected Results"
   language="json"

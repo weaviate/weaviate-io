@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
 ## Overview
@@ -44,30 +45,41 @@ See [this page](../api/graphql/filters.md#filter-structure) for the list of avai
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleFilterPython"
-  endMarker="# END SingleFilterPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchSingleFilter"
-  endMarker="// END searchSingleFilter"
-  language="js"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleFilterGraphQL"
-  endMarker="# END SingleFilterGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleFilterPython"
+      endMarker="# END SingleFilterPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# SingleFilterPython"
+      endMarker="# END SingleFilterPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchSingleFilter"
+      endMarker="// END searchSingleFilter"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleFilterGraphQL"
+      endMarker="# END SingleFilterGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -76,7 +88,7 @@ See [this page](../api/graphql/filters.md#filter-structure) for the list of avai
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected SingleFilter results"
   endMarker="# END Expected SingleFilter results"
   language="json"
@@ -91,30 +103,41 @@ Conditional filters can be combined with a search operator such as `nearXXX`, `h
 The following example adds a `points` filter to a `nearText` query, where the `points` property must be greater than 200. Note that the `valueInt` is used as the property datatype is `int`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleFilterNearTextPython"
-  endMarker="# END SingleFilterNearTextPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchFilterNearText"
-  endMarker="// END searchFilterNearText"
-  language="js"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# SingleFilterNearTextGraphQL"
-  endMarker="# END SingleFilterNearTextGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleFilterNearTextPython"
+      endMarker="# END SingleFilterNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# SingleFilterNearTextPython"
+      endMarker="# END SingleFilterNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchFilterNearText"
+      endMarker="// END searchFilterNearText"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# SingleFilterNearTextGraphQL"
+      endMarker="# END SingleFilterNearTextGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -123,7 +146,7 @@ The following example adds a `points` filter to a `nearText` query, where the `p
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected SingleFilterNearText results"
   endMarker="# END Expected SingleFilterNearText results"
   language="json"
@@ -142,30 +165,41 @@ The following example filters for objects including the text `"inter"` in any pa
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# LikeFilterPython"
-  endMarker="# END LikeFilterPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchLikeFilter"
-  endMarker="// END searchLikeFilter"
-  language="js"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# LikeFilterGraphQL"
-  endMarker="# END LikeFilterGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# LikeFilterPython"
+      endMarker="# END LikeFilterPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# LikeFilterPython"
+      endMarker="# END LikeFilterPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchLikeFilter"
+      endMarker="// END searchLikeFilter"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# LikeFilterGraphQL"
+      endMarker="# END LikeFilterGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -174,7 +208,7 @@ The following example filters for objects including the text `"inter"` in any pa
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected LikeFilter results"
   endMarker="# END Expected LikeFilter results"
   language="json"
@@ -191,30 +225,41 @@ The following example specifies and `And` condition, so that both:
 - the `points` property must be less than 600.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# MultipleFiltersAndPython"
-  endMarker="# END MultipleFiltersAndPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchMultipleFiltersAnd"
-  endMarker="// END searchMultipleFiltersAnd"
-  language="js"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# MultipleFiltersAndGraphQL"
-  endMarker="# END MultipleFiltersAndGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersAndPython"
+      endMarker="# END MultipleFiltersAndPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# MultipleFiltersAndPython"
+      endMarker="# END MultipleFiltersAndPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchMultipleFiltersAnd"
+      endMarker="// END searchMultipleFiltersAnd"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersAndGraphQL"
+      endMarker="# END MultipleFiltersAndGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -223,7 +268,7 @@ The following example specifies and `And` condition, so that both:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected MultipleFiltersAnd results"
   endMarker="# END Expected MultipleFiltersAnd results"
   language="json"
@@ -240,30 +285,41 @@ The following example specifies that:
 - the `points` property must be greater than 700, `Or`, the `points` property must be less than 300.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# MultipleFiltersNestedPython"
-  endMarker="# END MultipleFiltersNestedPython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchMultipleFiltersNested"
-  endMarker="// END searchMultipleFiltersNested"
-  language="js"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# MultipleFiltersNestedGraphQL"
-  endMarker="# END MultipleFiltersNestedGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersNestedPython"
+      endMarker="# END MultipleFiltersNestedPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# MultipleFiltersNestedPython"
+      endMarker="# END MultipleFiltersNestedPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchMultipleFiltersNested"
+      endMarker="// END searchMultipleFiltersNested"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersNestedGraphQL"
+      endMarker="# END MultipleFiltersNestedGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -272,7 +328,7 @@ The following example specifies that:
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected MultipleFiltersNested results"
   endMarker="# END Expected MultipleFiltersNested results"
   language="json"
@@ -294,30 +350,41 @@ The results are case-insensitive here, as the `title` property is defined with [
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# CrossReferencePython"
-  endMarker="# END CrossReferencePython"
-  language="python"
-/>
-</TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
-<FilteredTextBlock
-  text={JavaScriptCode}
-  startMarker="// searchSingleFilter"
-  endMarker="// END searchSingleFilter"
-  language="js"
-/>
-</TabItem>
-<TabItem value="graphql" label="GraphQL">
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# CrossReferenceGraphQL"
-  endMarker="# END CrossReferenceGraphQL"
-  language="graphql"
-/>
-</TabItem>
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CrossReferencePython"
+      endMarker="# END CrossReferencePython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CrossReferencePython"
+      endMarker="# END CrossReferencePython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchSingleFilter"
+      endMarker="// END searchSingleFilter"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CrossReferenceGraphQL"
+      endMarker="# END CrossReferenceGraphQL"
+      language="graphql"
+    />
+  </TabItem>
 </Tabs>
 
 <details>
@@ -326,7 +393,7 @@ The results are case-insensitive here, as the `title` property is defined with [
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
   startMarker="# Expected CrossReferencePython results"
   endMarker="# END Expected CrossReferencePython results"
   language="json"
@@ -340,6 +407,11 @@ You can filter by any number of metadata properties, such as object id, property
 
 See the [API references: Filters](../api/graphql/filters.md#special-cases) page for the full list of available metadata filters and any special usage patterns.
 
+## Improving filter performance
+
+import RangeFilterPerformanceNote from '/_includes/range-filter-performance-note.mdx';
+
+<RangeFilterPerformanceNote />
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

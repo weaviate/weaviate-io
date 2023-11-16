@@ -22,9 +22,9 @@ Please feel free to engage with us about the roadmap on [Weaviate's GitHub](http
 
 <Roadmap label="planned-1.23"/>
 
-## Planned for Weaviate 1.22
+## Planned for Weaviate 1.24
 
-<Roadmap label="planned-1.22"/>
+<Roadmap label="planned-1.24"/>
 
 ## Backlog
 

@@ -1,0 +1,5 @@
+In some edge cases, filter performance may be slow due to a mismatch between the filter architecture and the data structure. For example, if a property has very large cardinality (i.e. a large number of unique values), its range-based filter performance may be slow.
+
+If you are experiencing slow filter performance, we suggest further restricting your query by adding more conditions to the `where` operator, or adding a `limit` parameter to your query.
+
+We are working on improving the performance of these filters in a future release. Please upvote [this feature](https://github.com/weaviate/weaviate/issues/3739) if this is important to you, so we can prioritize it accordingly.

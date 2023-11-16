@@ -1,0 +1,98 @@
+.test {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.header {
+  color: var(--ifm-link-color);
+}
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin: 0;
+}
+.box {
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  h3 {
+    color: #130c49;
+  }
+
+  @media screen and (max-width: 680px) {
+    text-align: left;
+    margin: auto;
+    width: auto;
+    color: #130c49;
+  }
+}
+
+.opacity {
+  opacity: 35%;
+}
+
+.investorLogos {
+  flex: 1;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    gap: 20px;
+    display: none;
+  }
+}
+
+.investorsContainer {
+  background: #130e46;
+}
+
+.investorBox {
+  flex: 1 17%;
+
+  h1 {
+    color: white;
+    font-size: 2.5rem;
+  }
+  span {
+    color: rgba(97, 189, 115, 0.94);
+  }
+
+  p {
+    margin-bottom: 20px;
+    color: white;
+    width: 90%;
+  }
+}
+
+.investorButton {
+  margin-top: 25px;
+}
+
+.g2Diagram {
+  background: url('/img/site/weaviate-g2.svg');
+
+  background-size: cover;
+  max-width: 418px;
+  width: 100%;
+  height: auto;
+  min-height: 343px;
+}
+
+.alertBox {
+  background: #61bd73;
+  text-align: center;
+  height: 4.6875rem;
+  width: 100%;
+  display: flex;
+
+  @media screen and (max-width: 600px) {
+    height: 10rem;
+  }
+
+  p {
+    margin: auto;
+  }
+}

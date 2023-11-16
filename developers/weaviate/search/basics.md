@@ -5,21 +5,20 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
 ## Overview
 
 This page shows the core concepts on how to perform searches and retrieve objects.
 
-:::info Related pages
-- [API References: GraphQL: Get](../api/graphql/get.md)
-:::
+import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
+
+<ClassToCollection /> 
 
 ## Basic requirements
 
@@ -30,10 +29,20 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 ## Simple `Get` example
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BasicGetPython"
+      endMarker="# END BasicGetPython"
+      language="py"
+    />
+  </TabItem>
+  
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# BasicGetPython"
   endMarker="# END BasicGetPython"
   language="py"
@@ -53,7 +62,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# BasicGetGraphQL"
   endMarker="# END BasicGetGraphQL"
   language="graphql"
@@ -68,7 +77,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// BasicGet Expected Results"
   endMarker="// END BasicGet Expected Results"
   language="json"
@@ -82,13 +91,22 @@ The [`objects` endpoint](../api/rest/objects.md) in Weaviate is designed for CRU
 
 ## `limit` returned objects
 
-Often, you will only want the top `n` results from the query. This can be achieved by setting a `limit` as shown below.
+Often, you only a few objects instead of the full result set. To restrict the results, set a `limit`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetWithLimitPython"
+  endMarker="# END GetWithLimitPython"
+  language="py"
+/>
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitPython"
   endMarker="# END GetWithLimitPython"
   language="py"
@@ -108,7 +126,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitGraphQL"
   endMarker="# END GetWithLimitGraphQL"
   language="graphql"
@@ -123,7 +141,7 @@ Often, you will only want the top `n` results from the query. This can be achiev
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetWithLimit Expected Results"
   endMarker="// END GetWithLimit Expected Results"
   language="json"
@@ -136,19 +154,28 @@ It should produce a response like the one below:
 
 ## Paginate with `limit` and `offset`
 
-If you only want the `n` results after the first `m` results from the query, you can do this with `limit` and `offset` as shown below.
+`limit` returns the first `n` objects. Sometimes you want to see later results. To return a limited number of results from the middle of your result set, define an `offset` and then `limit` the result set to the objects following your offset. For example, if your offset is 5 and your limit is 3, the query returns objects 6, 7, and 8 in your result set.
 
-Be aware that although you will only see `n` results, this could become an expensive operation as `m` grows larger, as Weaviate must fetch `n+m` results.
+Be aware that this operation can be expensive. Although you only see a small set of results, Weaviate must fetch `offset` + `limit` results.
 
 :::tip For exhaustive retrieval, use `after` instead.
-If you want to list and retrieve all objects from a `class`, use the cursor API instead with the `after` operator. Read [this guide](../manage-data/read-all-objects.mdx) for more information on how.
+To list and retrieve all of the objects from a `class`, use the cursor API with the `after` operator. For more information, read [this guide](../manage-data/read-all-objects.mdx).
 :::
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetWithLimitOffsetPython"
+  endMarker="# END GetWithLimitOffsetPython"
+  language="py"
+/>
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitOffsetPython"
   endMarker="# END GetWithLimitOffsetPython"
   language="py"
@@ -168,7 +195,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithLimitOffsetGraphQL"
   endMarker="# END GetWithLimitOffsetGraphQL"
   language="graphql"
@@ -183,7 +210,7 @@ If you want to list and retrieve all objects from a `class`, use the cursor API 
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetWithLimitOffset Expected Results"
   endMarker="// END GetWithLimitOffset Expected Results"
   language="json"
@@ -194,17 +221,27 @@ It should produce a response like the one below:
 
 ## Specify the fetched properties
 
-You must specify one or more properties to be fetched, from a union of object properties and available metadata.
+You must specify the properties you want to be fetch. The set of available properties includes object properties and object metadata.
 
 ### Object `properties`
 
 You can specify object properties as below.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetPropertiesPython"
+  endMarker="# END GetPropertiesPython"
+  language="py"
+/>
+</TabItem>
+
+
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetPropertiesPython"
   endMarker="# END GetPropertiesPython"
   language="py"
@@ -224,7 +261,7 @@ You can specify object properties as below.
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetPropertiesGraphQL"
   endMarker="# END GetPropertiesGraphQL"
   language="graphql"
@@ -236,10 +273,10 @@ You can specify object properties as below.
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+It should produce a response like this:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetProperties Expected Results"
   endMarker="// END GetProperties Expected Results"
   language="json"
@@ -249,13 +286,21 @@ It should produce a response like the one below:
 
 ### Retrieve the object `vector`
 
-To retrieve the object vector, request the `_additional` property and `vector` sub-property. You can do so as shown below.
+To retrieve the object vector with one of the legacy clients, request the `_additional` property and `vector` sub-property. The new Python client uses the `return_metadata` property.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
-
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCode}
+  startMarker="# GetObjectVectorPython"
+  endMarker="# END GetObjectVectorPython"
+  language="py"
+/>
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
   startMarker="# GetObjectVectorPython"
   endMarker="# END GetObjectVectorPython"
   language="py"
@@ -275,7 +320,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectVectorGraphQL"
   endMarker="# END GetObjectVectorGraphQL"
   language="graphql"
@@ -290,7 +335,7 @@ To retrieve the object vector, request the `_additional` property and `vector` s
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetObjectVector Expected Results"
   endMarker="// END GetObjectVector Expected Results"
   language="json"
@@ -300,13 +345,22 @@ It should produce a response like the one below:
 
 ### Retrieve the object `id`
 
-To retrieve the object ID, request the `_additional` property and `id` sub-property. You can do so as shown below.
+To retrieve the object ID with one of the legacy clients, request the `_additional` property and `id` sub-property. The new Python client uses the `return_metadata` property.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetObjectIdPython"
+  endMarker="# END GetObjectIdPython"
+  language="py"
+/>
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectIdPython"
   endMarker="# END GetObjectIdPython"
   language="py"
@@ -326,7 +380,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetObjectIdGraphQL"
   endMarker="# END GetObjectIdGraphQL"
   language="graphql"
@@ -341,7 +395,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="// GetObjectId Expected Results"
   endMarker="// END GetObjectId Expected Results"
   language="json"
@@ -352,18 +406,30 @@ It should produce a response like the one below:
 
 ### Retrieve cross-referenced properties
 
-You can retrieve any properties of cross-referenced objects by specifying:
-- The cross-reference property,
-- The target cross-referenced object class, and
-- The desired properties to retrieve (of the cross-referenced objects).
+To retrieve properties from cross-referenced objects, specify the following items.
 
-The following example, retrieves for each `JeopardyQuestion` object the cross-referenced `JeopardyCategory` object, and the `JeopardyCategory` object's `title` property is returned. The property is accessed using the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
+- The cross-reference property,
+- The target cross-referenced object class.
+- The properties you want to retrieve from the cross-referenced objects.
+
+The legacy clients use the [inline fragment](http://spec.graphql.org/June2018/#sec-Inline-Fragments) GraphQL syntax.
+
+The following examples retrieve the `title` property from `JeopardyCategory` objects that are cross-referenced with `JeopardyQuestion` objects.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetWithCrossRefsPython"
+  endMarker="# END GetWithCrossRefsPython"
+  language="py"
+/>
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithCrossRefsPython"
   endMarker="# END GetWithCrossRefsPython"
   language="py"
@@ -383,7 +449,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithCrossRefsGraphQL"
   endMarker="# END GetWithCrossRefsGraphQL"
   language="graphql"
@@ -398,7 +464,7 @@ The following example, retrieves for each `JeopardyQuestion` object the cross-re
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PythonCode}
+  text={PyCodeV3}
   startMarker="# GetWithCrossRefs Expected Results"
   endMarker="# END GetWithCrossRefs Expected Results"
   language="json"
@@ -408,7 +474,9 @@ It should produce a response like the one below:
 
 ### Retrieve any other metadata
 
-You can retrieve any other available metadata by specifying the `_additional` property similarly to how `id` or `vector` can be retrieved. Please refer to [References: GraphQL: Additional properties](../api/graphql/additional-properties.md) for a comprehensive list.
+To retrieve other kinds of metadata with one of the legacy clients, request the `_additional` property and specify the sub-property. The new Python client uses the `return_metadata` property.
+
+for a comprehensive list of metadata fields, see [References: GraphQL: Additional properties](../api/graphql/additional-properties.md).
 
 ## `groupBy`
 
@@ -420,7 +488,7 @@ To use `groupBy`:
 - The maximum number of objects per group.
 
 <details>
-  <summary><code>groupby</code> example</summary>
+  <summary><code>groupBy</code> example</summary>
 
 <p>
 
@@ -568,6 +636,10 @@ This will result in the following response:
 
 </details>
 
+import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
+
+<GroupbyLimitations />
+
 ## Multi-tenancy
 
 For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you must specify the tenant parameter in each query.
@@ -575,37 +647,37 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 This example shows how to fetch one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MultiTenancy"
+  endMarker="# END MultiTenancy"
+  language="py"
+/>
+</TabItem>
 
-  ```python
-  results = (
-      client.query.get("MultiTenancyClass", ["property1", "property2"])
-      .with_limit(1)
-      # highlight-start
-      .with_tenant("tenantA")
-      # highlight-end
-      .do()
-  )
-  ```
+<TabItem value="py3" label="Python (v3)">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# MultiTenancy"
+  endMarker="# END MultiTenancy"
+  language="py"
+ />
+</TabItem>
 
-  </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
-
-  ```ts
-  result = await client
-    .graphql
-    .get()
-    .withClassName('MultiTenancyClass')
-    .withFields(['property1', 'property2'])
-    .withTenant('TenantA')
-    .do();
-
-  console.log(JSON.stringify(result, null, 2));
-  ```
-
-  </TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+<FilteredTextBlock
+  text={TSCode}
+  startMarker="// MultiTenancy"
+  endMarker="// END MultiTenancy"
+  language="js"
+/>
+</TabItem>
 </Tabs>
 
+## Related pages
+
+- [API References: GraphQL: Get](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

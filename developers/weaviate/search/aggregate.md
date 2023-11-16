@@ -10,7 +10,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
 ## Overview
@@ -41,35 +42,40 @@ See the [`Aggregate` function syntax page](../api/graphql/aggregate.md#aggregate
 The `meta` property has only one sub-property (`count`) available. This returns the count of objects matched by the query.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# MetaCount Python"
-    endMarker="# END MetaCount Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MetaCount Python"
+      endMarker="# END MetaCount Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# MetaCount Python"
+      endMarker="# END MetaCount Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// MetaCount TS"
-    endMarker="// END MetaCount TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// MetaCount TS"
+      endMarker="// END MetaCount TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# MetaCount GraphQL"
-    endMarker="# END MetaCount GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MetaCount GraphQL"
+      endMarker="# END MetaCount GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -79,7 +85,7 @@ The `meta` property has only one sub-property (`count`) available. This returns 
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# MetaCount Expected Results"
     endMarker="# END MetaCount Expected Results"
     language="json"
@@ -97,35 +103,40 @@ The [available sub-types](../api/graphql/aggregate.md#aggregate-syntax-and-query
 The following example retrieves information about the most commonly occurring examples in the `question` property:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# TextProp Python"
-    endMarker="# END TextProp Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# TextProp Python"
+      endMarker="# END TextProp Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# TextProp Python"
+      endMarker="# END TextProp Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// TextProp TS"
-    endMarker="// END TextProp TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// TextProp TS"
+      endMarker="// END TextProp TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# TextProp GraphQL"
-    endMarker="# END TextProp GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# TextProp GraphQL"
+      endMarker="# END TextProp GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -135,7 +146,7 @@ The following example retrieves information about the most commonly occurring ex
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# TextProp Expected Results"
     endMarker="# END TextProp Expected Results"
     language="json"
@@ -147,35 +158,40 @@ The following example retrieves information about the most commonly occurring ex
 The following example retrieves the sum of the `points` property values:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# IntProp Python"
-    endMarker="# END IntProp Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# IntProp Python"
+      endMarker="# END IntProp Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# IntProp Python"
+      endMarker="# END IntProp Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// IntProp TS"
-    endMarker="// END IntProp TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// IntProp TS"
+      endMarker="// END IntProp TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# IntProp GraphQL"
-    endMarker="# END IntProp GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# IntProp GraphQL"
+      endMarker="# END IntProp GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -185,7 +201,7 @@ The following example retrieves the sum of the `points` property values:
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# IntProp Expected Results"
     endMarker="# END IntProp Expected Results"
     language="json"
@@ -199,35 +215,40 @@ You can use the `groupBy` variable to group the results set into subsets. Then, 
 For example, to list all distinct values of a property, and the counts for each:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# groupBy Python"
-    endMarker="# END groupBy Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# groupBy Python"
+      endMarker="# END groupBy Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# groupBy Python"
+      endMarker="# END groupBy Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// groupBy TS"
-    endMarker="// END groupBy TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// groupBy TS"
+      endMarker="// END groupBy TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# groupBy GraphQL"
-    endMarker="# END groupBy GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# groupBy GraphQL"
+      endMarker="# END groupBy GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -238,13 +259,16 @@ For example, to list all distinct values of a property, and the counts for each:
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# groupBy Expected Results"
     endMarker="# END groupBy Expected Results"
     language="json"
   />
 </details>
 
+import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
+
+<GroupbyLimitations />
 
 ## With `nearXXX`
 
@@ -261,35 +285,40 @@ You can set the `objectLimit` argument to specify the maximum number of results 
 The query below retrieves the 10 `question` objects that have the vectors that are closest to the vector for `"animals in space"`. The query also returns the sum total of the `point` property.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithLimit Python"
-    endMarker="# END nearTextWithLimit Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithLimit Python"
+      endMarker="# END nearTextWithLimit Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# nearTextWithLimit Python"
+      endMarker="# END nearTextWithLimit Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// nearTextWithLimit TS"
-    endMarker="// END nearTextWithLimit TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// nearTextWithLimit TS"
+      endMarker="// END nearTextWithLimit TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithLimit GraphQL"
-    endMarker="# END nearTextWithLimit GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithLimit GraphQL"
+      endMarker="# END nearTextWithLimit GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -299,7 +328,7 @@ The query below retrieves the 10 `question` objects that have the vectors that a
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# nearTextWithLimit Expected Results"
     endMarker="# END nearTextWithLimit Expected Results"
     language="json"
@@ -314,35 +343,40 @@ You can set the `distance` operator to specify the maximum dissimilarity (i.e. m
 The query below retrieves the 10 `question` objects that have vectors that are within a distance of `0.19` to the vector for `"animals in space"`. It also returns the sum total of the `point` property.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithDistance Python"
-    endMarker="# END nearTextWithDistance Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithDistance Python"
+      endMarker="# END nearTextWithDistance Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# nearTextWithDistance Python"
+      endMarker="# END nearTextWithDistance Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// nearTextWithDistance TS"
-    endMarker="// END nearTextWithDistance TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// nearTextWithDistance TS"
+      endMarker="// END nearTextWithDistance TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithDistance GraphQL"
-    endMarker="# END nearTextWithDistance GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithDistance GraphQL"
+      endMarker="# END nearTextWithDistance GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -352,7 +386,7 @@ The query below retrieves the 10 `question` objects that have vectors that are w
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# nearTextWithDistance Expected Results"
     endMarker="# END nearTextWithDistance Expected Results"
     language="json"
@@ -367,35 +401,40 @@ You can add a conditional filter to any aggregate search query to filter the res
 This example searches for objects where the `round` property equals `Double Jeopardy!` and returns the object count.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# whereFilter Python"
-    endMarker="# END whereFilter Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# whereFilter Python"
+      endMarker="# END whereFilter Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# whereFilter Python"
+      endMarker="# END whereFilter Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// whereFilter TS"
-    endMarker="// END whereFilter TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// whereFilter TS"
+      endMarker="// END whereFilter TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# whereFilter GraphQL"
-    endMarker="# END whereFilter GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# whereFilter GraphQL"
+      endMarker="# END whereFilter GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -405,7 +444,7 @@ This example searches for objects where the `round` property equals `Double Jeop
   The query should produce a response like the one below:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# whereFilter Expected Results"
     endMarker="# END whereFilter Expected Results"
     language="json"

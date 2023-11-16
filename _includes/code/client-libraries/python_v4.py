@@ -1,8 +1,8 @@
-# LocalInstantiation
+# LocalInstantiationBasic
 import weaviate
 
 client = weaviate.connect_to_local(port=8080, grpc_port=50051)
-# END LocalInstantiation
+# END LocalInstantiationBasic
 
 assert client.is_ready()
 
@@ -16,13 +16,13 @@ client = weaviate.connect_to_wcs(cluster_id="edu-demo", api_key="learn-weaviate"
 assert client.is_ready()
 """
 
-# DirectInstantiation
+# DirectInstantiationBasic
 import weaviate
 
 client = weaviate.WeaviateClient(
     weaviate.ConnectionParams.from_url("http://localhost:8080", 50051)
 )
-# END DirectInstantiation
+# END DirectInstantiationBasic
 
 assert client.is_ready()
 
@@ -50,10 +50,10 @@ import weaviate
 import os
 
 client = weaviate.WeaviateClient(
-    weaviate.ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
+    weaviate.ConnectionParams.from_url("http://localhost:8080", 50051),
     auth_client_secret=weaviate.AuthClientPassword(
-        username=os.environ["WCS_USERNAME"],
-        password=os.environ["WCS_PASSWORD"]
+        username=os.environ["MY_USERNAME"],
+        password=os.environ["MY_PASSWORD"]
     )
 )
 # END DirectInstantiationWithOIDC

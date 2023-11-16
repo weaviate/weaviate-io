@@ -14,14 +14,16 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 :::caution Beta version
 The Python client is currently in beta, and we want to hear from you.
 
+You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet.
+
 If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
 :::
 
 ## Overview
 
-This page describes the `v4` Python client for Weaviate. This client is also called the `collections` client, because the main interactions is with a collection (also called `Class` in Weaviate).
+This page describes the `v4` Python client for Weaviate. This client is also called the `collections` client, because the main interactions is with a collection. (Some Weaviate documentation still says "Class" instead of "collection.")
 
-The full set of features will be covered in the client documentation page. This page will cover the key ideas and aspects, especially those specifc to the Python client.
+The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
 
 ## Installation
 
@@ -35,53 +37,60 @@ pip install --pre "weaviate-client==4.*"
 
 #### Weaviate version
 
-The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is due to its user of gRPC. If you are using an older version of Weaviate, please use the `v3` client.
+The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is because it requires gRPC and gRPC is not available in earlier versions. If you are using an older version of Weaviate, please use the `v3` client.
 
 #### gRPC port
 
-Note that you will need the corresponding gRPC port to be open on your Weaviate instance. The default port is `50051`. If you are running Weaviate locally, you can open this port by adding the following to your `docker-compose.yml` file:
+You have to open a port for gRPC on your Weaviate instance. The default port is `50051`. If you are running Weaviate locally, you can open this port by adding the following to your `docker-compose.yml` file:
 
 ```yaml
     ports:
      - "8080:8080"
      - "50051:50051"
 ```
+#### WCS availability
+
+You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet.
 
 ## Instantiation
 
 You can instantiate the client using one of multiple methods. For example, you can use one of the following helper `connect` functions:
 
-- `weaviate.connect_to_wcs()`
+<!-- - `weaviate.connect_to_wcs()` -->
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
 
+:::note WCS not yet compatible
+Currently, WCS instances cannot be used with the `v4` client as they lack gRPC support. We are working on adding WCS support, and ask for your patience in the meantime.
+:::
+
 Or, you can instantiate a `weaviate.WeaviateClient` object directly.
 
-For example, you can connect to a local instanct like this:
+For example, you can connect to a local instance like this:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# LocalInstantiation"
-  endMarker="# END LocalInstantiation"
+  startMarker="# LocalInstantiationBasic"
+  endMarker="# END LocalInstantiationBasic"
   language="py"
 />
 
-Or connect to a Weaviate Cloud Services (WCS) instance like this:
+<!-- Or connect to a Weaviate Cloud Services (WCS) instance like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# WCSInstantiation"
   endMarker="# END WCSInstantiation"
   language="py"
-/>
+/> -->
 
 Or instantiate a client directly like this:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# DirectInstantiation"
-  endMarker="# END DirectInstantiation"
+  startMarker="# DirectInstantiationBasic"
+  endMarker="# END DirectInstantiationBasic"
   language="py"
 />
 
@@ -111,14 +120,16 @@ You can also set timeout values for the client as a tuple  (connection timeout &
 
 ### Authentication
 
-Some helper `connect` functions allow you to pass on authentication credentials. For example, the `connect_to_wcs` method allows for a WCS api key to be passed in.
+Some helper `connect` functions allow you to pass on authentication credentials.
+
+<!-- For example, the `connect_to_wcs` method allows for a WCS api key to be passed in.
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# WCSInstantiation"
   endMarker="# END WCSInstantiation"
   language="py"
-/>
+/> -->
 
 For authentication workflows not supported by the helper functions, you can pass on authentication credentials directly when instantiating the `WeaviateClient` object.
 
@@ -131,14 +142,14 @@ For example, you can pass on OIDC username and password like this:
   language="py"
 />
 
-Or, you can pass the WCS API key like this:
+<!-- Or, you can pass the WCS API key like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# DirectInstantiationWithAPIKey"
   endMarker="# END DirectInstantiationWithAPIKey"
   language="py"
-/>
+/> -->
 
 The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
 
@@ -212,6 +223,123 @@ You can choose to provide a generic type to a query or data operation. This can 
   endMarker="# END GenericsExample"
   language="py"
 />
+
+## Best practices and notes
+
+### Thread-safety
+
+While the Python client is fundamentally designed to be thread-safe, it's important to note that due to its dependency on the `requests` library, complete thread safety isn't guaranteed.
+
+This is an area that we are looking to improve in the future.
+
+Please be particularly aware that the batching algorithm within our client is not thread-safe. Keeping this in mind will help ensure smoother, more predictable operations when using our Python client in multi-threaded environments.
+
+If you are performing batching in a multi-threaded scenario, ensure that only one of the threads is performing the batching workflow at any given time. No two threads can use the same `client.batch` object at one time.
+
+### Print formatting
+
+The collections object returns a lot of additional information when you query the collections object. Consider this simple query.
+
+```python
+jeopardy = client.collections.get("JeopardyQuestion")
+
+response = jeopardy.query.fetch_objects(limit=1)
+print(response)
+```
+
+The response includes a lot of extra information you may not always want.
+
+```
+_QueryReturn(objects=[_Object(uuid=UUID('009f2949-db98-5df1-9954-cece3cc61535'), metadata=None, properties={'points': 500.0, 'air_date': '1997-07-08T00:00:00Z', 'answer': 'George Rogers Clark', 'question': 'This soldier & frontiersman won important victories over the British in the Northwest Territory', 'round': 'Jeopardy!'}, vector=None)])
+```
+
+To limit the response and format it as JSON, use `json.dumps()` to print the response object's `properties` attribute.
+
+```python
+response = jeopardy.query.fetch_objects(limit=1)
+
+# print result objects
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
+```
+
+This is the formatted output.
+
+```
+{
+  "points": 100.0,
+  "answer": "Jonah",
+  "air_date": "2001-01-10T00:00:00Z",
+  "round": "Jeopardy!",
+  "question": "This prophet passed the time he spent inside a fish offering up prayers"
+}
+```
+
+### Tab completion in Jupyter notebooks
+
+If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion.
+
+### Object properties and metadata
+
+The `v4` client uses the following parameters to select data and metadata to be retrieved from each query.
+
+- `return_properties` takes a list of strings, and sets the properties to be retrieved.
+- `return_metadata` takes an instance of `weaviate.classes.MetadataQuery`. You can pass boolean values to select the metadata to be retrieved.
+- `include_vector` takes a boolean value, and sets whether the object vector should be retrieved.
+
+The object ID is always returned.
+
+Consider this example.
+
+```python
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer", "points"],
+    return_metadata=wvc.MetadataQuery(creation_time_unix=True),
+    limit=3
+)
+
+for r in response.objects:
+    print(r.uuid)
+    print(r.metadata.creation_time_unix)
+    print(r.properties['points'], '\n')
+```
+
+This is the output.
+
+```none
+009f2949-db98-5df1-9954-cece3cc61535
+1700090615565
+500.0
+
+00bd96c1-e86c-5233-b034-892974af7104
+1700090612469
+400.0
+
+00ff6900-e64f-5d94-90db-c8cfa3fc851b
+1700090614665
+400.0
+```
+### Vectors and metadata
+
+By default `return_metadata` does not return the object vector. To return the vector, set
+`include_vector=True` in the query.
+
+If you import the `weaviate.classes` submodule, the call looks like this.
+
+```python
+import weaviate.classes as wvc
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    include_vector=True,
+    limit=1
+)
+```
+
+
 
 ## Client releases
 

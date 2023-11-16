@@ -11,6 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.delete-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.delete.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.delete_test.go';
@@ -47,9 +48,17 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 To delete an object, specify its class name and id as shown below.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START DeleteObject"
+      endMarker="# END DeleteObject"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START DeleteObject"
       endMarker="# END DeleteObject"
       language="py"
@@ -123,9 +132,18 @@ To delete multiple objects that match a set of criteria, specify the class and a
 Optionally, set `output` to `'verbose'` to see more details (ID and deletion status).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START DeleteBatch"
+      endMarker="# END DeleteBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START DeleteBatch"
       endMarker="# END DeleteBatch"
       language="py"
@@ -175,23 +193,25 @@ You can use `ContainsAny` / `ContainsAll` filters with the `where` argument to d
 Note that when using `ContainsAny` or `ContainsAll`, the query must be entered as an array of values. The client-specific syntax varies as follows:
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteContains"
+      endMarker="# END DeleteContains"
+      language="py"
+    />
+  </TabItem>
 
-```python
-client.batch.delete_objects(
-    class_name='EphemeralObject',
-    where={
-        'path': ['name'],
-        # highlight-start
-        'operator': 'ContainsAny',
-        'valueTextArray': ['asia', 'europe']  # Note the array syntax
-        # highlight-end
-    },
-)
-```
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DeleteContains"
+      endMarker="# END DeleteContains"
+      language="py"
+    />
+  </TabItem>
 
-</TabItem>
-<TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="ts" label="JavaScript/TypeScript">
 
 ```js
 await client.batch
@@ -208,8 +228,8 @@ await client.batch
   .do();
 ```
 
-</TabItem>
-<TabItem value="java" label="Java">
+  </TabItem>
+  <TabItem value="java" label="Java">
 
 ```java
 client.batch().objectsBatchDeleter()
@@ -224,8 +244,8 @@ client.batch().objectsBatchDeleter()
   .run();
 ```
 
-</TabItem>
-<TabItem value="go" label="Go">
+  </TabItem>
+  <TabItem value="go" label="Go">
 
 ```go
   response, err := client.Batch().ObjectsBatchDeleter().
@@ -240,7 +260,7 @@ client.batch().objectsBatchDeleter()
     Do(ctx)
 ```
 
-</TabItem>
+  </TabItem>
 </Tabs>
 
 
@@ -249,9 +269,18 @@ client.batch().objectsBatchDeleter()
 You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START DryRun"
       endMarker="# END DryRun"
       language="py"
