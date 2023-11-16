@@ -184,9 +184,9 @@ chunk_collection_definition = {
         }
     ]
 }
-client.schema.create_class(chunk_class_definition)
+client.schema.create_class(chunk_collection_definition)
 
-with client.batch() as batch:
+with client.batch as batch:
     for chunking_strategy, chunk_objects in chunk_obj_sets.items():
         for chunk_obj in chunk_objects:
             chunk_obj["chunking_strategy"] = chunking_strategy
