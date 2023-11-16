@@ -148,9 +148,9 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
 
 ### Step 4. Enable and train PQ
 
-import PQMakesCookbook from '/_includes/pq-compression/makes-a-cookbook.mdx' ;
+import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
-<PQMakesCookbook />
+<PQMakesCodebook />
 
 After you update the schema, Weaviate trains PQ on the first 100,000 objects in your database. To use a different value, set a new `trainingLimit`. If you increase `trainingLimit`, the training period will take longer. You could also have memory problems if you set a high `trainingLimit`.
     

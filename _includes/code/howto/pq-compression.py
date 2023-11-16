@@ -66,8 +66,10 @@ client.is_ready()
 # =====  INITIAL SCHEMA =====
 # ==============================
 
-# START InitialSchema
+if (client.collections.exists("JeopardyCategory")):
+    client.collections.delete("JeopardyCategory")
 
+# START InitialSchema
 client.collections.create(
     name="JeopardyCategory",
     description="A Jeopardy! category",
