@@ -17,8 +17,8 @@
   flex-direction: column;
   justify-content: space-around;
 
-  width: 34rem;
-  height: 27rem;
+  width: 30rem;
+  height: 25rem;
   background-color: #141f39;
   margin: 1rem;
   padding: 2rem;
@@ -35,7 +35,7 @@
 
 .cardHeader {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
 
   .cardHeaderLeft {
     margin: auto;
@@ -43,8 +43,9 @@
 
   .cardHeaderRight {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
   }
 
   .iconHeader {
@@ -115,7 +116,7 @@
 }
 
 .startImg {
-  background-image: url('../../../../static/img/company/careers/star-dark.png');
+  background-image: url('../../../../../static/img/company/careers/star-dark.png');
   width: 2rem;
   height: 2rem;
 
@@ -123,7 +124,7 @@
 }
 
 .clockSmallImg {
-  background-image: url('../../../../static/img/company/careers/clock-small-dark.png');
+  background-image: url('../../../../../static/img/company/careers/clock-small-dark.png');
   width: 2rem;
   height: 2rem;
 
@@ -131,7 +132,7 @@
 }
 
 .chatImg {
-  background-image: url('../../../../static/img/company/careers/chat-dark.png');
+  background-image: url('../../../../../static/img/company/careers/chat-dark.png');
   width: 5rem;
   height: 5rem;
 
@@ -142,27 +143,23 @@
 }
 
 .facesImg {
-  background-image: url('../../../../static/img/company/careers/faces-dark.png');
+  background-image: url('../../../../../static/img/company/careers/faces-dark.png');
   width: 5rem;
   height: 5rem;
 }
 
 .checkImg {
-  background-image: url('../../../../static/img/company/careers/check-dark.png');
+  background-image: url('../../../../../static/img/company/careers/check-dark.png');
   width: 5rem;
   height: 5rem;
 }
 
 .heartImg {
-  background-image: url('../../../../static/img/company/careers/heart-dark.png');
+  background-image: url('../../../../../static/img/company/careers/heart-dark.png');
   width: 5rem;
   height: 5rem;
 }
-.bigHeartImg {
-  background-image: url('../../../../static/img/company/careers/magnifying-glass.png');
-  width: 10rem;
-  height: 7rem;
-}
+
 [data-theme='light'] {
   .title {
     p {
@@ -187,53 +184,75 @@
   }
 
   .startImg {
-    background-image: url('../../../../static/img/company/careers/star-light.png');
+    background-image: url('../../../../../static/img/company/careers/star-light.png');
   }
 
   .clockSmallImg {
-    background-image: url('../../../../static/img/company/careers/clock-small-light.png');
+    background-image: url('../../../../../static/img/company/careers/clock-small-light.png');
   }
 
   .chatImg {
-    background-image: url('../../../../static/img/company/careers/chat-light.png');
+    background-image: url('../../../../../static/img/company/careers/chat-light.png');
   }
 
   .facesImg {
-    background-image: url('../../../../static/img/company/careers/faces-light.png');
+    background-image: url('../../../../../static/img/company/careers/faces-light.png');
   }
 
   .checkImg {
-    background-image: url('../../../../static/img/company/careers/check-light.png');
+    background-image: url('../../../../../static/img/company/careers/check-light.png');
   }
 
   .heartImg {
-    background-image: url('../../../../static/img/company/careers/heart-light.png');
+    background-image: url('../../../../../static/img/company/careers/heart-light.png');
   }
 }
 
-.longCard {
-  width: 92%;
+.buttons {
+  margin: 4rem 0rem 0rem;
+  gap: 20px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  height: 175px;
-  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 
-  .cTextColor {
-    color: rgba(46, 49, 143);
-  }
-  @media screen and (max-width: 1000px) {
-    height: auto;
-    min-height: 205px;
-    width: 100%;
-  }
-
-  @media screen and (max-width: 500px) {
+  a {
+    height: 45px;
+    width: 240px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
   }
-}
 
-.longHead {
-  grid-template-columns: 1fr;
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    border: 1px solid #130c49;
+    color: #130c49;
+    transition: all 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+  }
 }

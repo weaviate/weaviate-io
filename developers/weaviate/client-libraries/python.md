@@ -14,7 +14,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 :::caution Beta version
 The Python client is currently in beta, and we want to hear from you.
 
-You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet. 
+You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet.
 
 If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
 :::
@@ -238,28 +238,27 @@ If you are performing batching in a multi-threaded scenario, ensure that only on
 
 ### Print formatting
 
-The collections object returns a lot of additional information when you query the collections object. Consider this simple query. 
+The collections object returns a lot of additional information when you query the collections object. Consider this simple query.
 
 ```python
 jeopardy = client.collections.get("JeopardyQuestion")
 
-response = jeopardy.query.fetch_objects( limit=1 )
-
+response = jeopardy.query.fetch_objects(limit=1)
 print(response)
 ```
 
 The response includes a lot of extra information you may not always want.
 
 ```
-_QueryReturn(objects=[_Object(properties={'points': 100.0, 'answer': 'Jonah', 'air_date': '2001-01-10T00:00:00Z', 'round': 'Jeopardy!', 'question': 'This prophet passed the time he spent inside a fish offering up prayers'}, metadata=_MetadataReturn(uuid=UUID('0002bf92-80c8-5d94-af34-0d6c5fea1aaf'), vector=None, creation_time_unix=1699540272055, last_update_time_unix=1699540273460, distance=None, certainty=None, score=0.0, explain_score='', is_consistent=False))])
+_QueryReturn(objects=[_Object(uuid=UUID('009f2949-db98-5df1-9954-cece3cc61535'), metadata=None, properties={'points': 500.0, 'air_date': '1997-07-08T00:00:00Z', 'answer': 'George Rogers Clark', 'question': 'This soldier & frontiersman won important victories over the British in the Northwest Territory', 'round': 'Jeopardy!'}, vector=None)])
 ```
 
-To limit the response and format it as JSON, use `json.dump()s` to print the response `properties` field.
+To limit the response and format it as JSON, use `json.dumps()` to print the response object's `properties` attribute.
 
 ```python
-response = jeopardy.query.fetch_objects( limit=1 )
+response = jeopardy.query.fetch_objects(limit=1)
 
-# print result objects 
+# print result objects
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 ```
@@ -278,14 +277,17 @@ This is the formatted output.
 
 ### Tab completion in Jupyter notebooks
 
-If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion. 
+If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion.
 
 ### Object properties and metadata
 
-The new client uses the `return_properties` and `return_metadata` query parameters to examine objects in the database. These parameters work differently. 
+The `v4` client uses the following parameters to select data and metadata to be retrieved from each query.
 
-- `return_properties` takes a list of strings.
-- `return_metadata` is a data class. To work with the class, import the `weaviate.classes` package. You can pass boolean values to select the fields you want.
+- `return_properties` takes a list of strings, and sets the properties to be retrieved.
+- `return_metadata` takes an instance of `weaviate.classes.MetadataQuery`. You can pass boolean values to select the metadata to be retrieved.
+- `include_vector` takes a boolean value, and sets whether the object vector should be retrieved.
+
+The object ID is always returned.
 
 Consider this example.
 
@@ -294,45 +296,48 @@ import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
-    return_metadata=wvc.MetadataQuery(uuid=True),
-    return_properties=["question", "answer", "points"], 
+    return_properties=["question", "answer", "points"],
+    return_metadata=wvc.MetadataQuery(creation_time_unix=True),
     limit=3
 )
 
 for r in response.objects:
-   print( r.metadata.uuid )
-   print( r.properties['points'] )
-   print()
-``` 
+    print(r.uuid)
+    print(r.metadata.creation_time_unix)
+    print(r.properties['points'], '\n')
+```
 
 This is the output.
 
 ```none
-0002bf92-80c8-5d94-af34-0d6c5fea1aaf
-100.0
+009f2949-db98-5df1-9954-cece3cc61535
+1700090615565
+500.0
 
-00031ce9-ef72-5447-a02a-851f221d7359
+00bd96c1-e86c-5233-b034-892974af7104
+1700090612469
 400.0
 
-0003b234-14d3-5ea6-b4b5-0fb0a6dcc43c
-800.0
+00ff6900-e64f-5d94-90db-c8cfa3fc851b
+1700090614665
+400.0
 ```
 ### Vectors and metadata
 
 By default `return_metadata` does not return the object vector. To return the vector, set
-`vector=True` when you use the `return_metadata` parameter. 
+`include_vector=True` in the query.
 
-If you import the `weaviate.classes` helper package, the call looks like this.
+If you import the `weaviate.classes` submodule, the call looks like this.
 
 ```python
 import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
-    return_metadata=wvc.MetadataQuery(vector=True),
+    include_vector=True,
     limit=1
 )
-``` 
+```
 
 
 
