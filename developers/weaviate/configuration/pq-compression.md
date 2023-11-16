@@ -236,7 +236,7 @@ To review the schema, you can retrieve it as shown below.
 
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
       language="py"
