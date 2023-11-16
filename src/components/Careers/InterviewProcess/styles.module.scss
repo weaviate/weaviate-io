@@ -158,7 +158,11 @@
   width: 5rem;
   height: 5rem;
 }
-
+.bigHeartImg {
+  background-image: url('../../../../static/img/company/careers/magnifying-glass.png');
+  width: 10rem;
+  height: 7rem;
+}
 [data-theme='light'] {
   .title {
     p {
@@ -205,4 +209,31 @@
   .heartImg {
     background-image: url('../../../../static/img/company/careers/heart-light.png');
   }
+}
+
+.longCard {
+  width: 92%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 175px;
+  gap: 20px;
+
+  .cTextColor {
+    color: rgba(46, 49, 143);
+  }
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    min-height: 205px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.longHead {
+  grid-template-columns: 1fr;
 }
