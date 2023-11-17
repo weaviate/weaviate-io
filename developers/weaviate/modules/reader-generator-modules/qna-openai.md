@@ -212,6 +212,10 @@ Note: `startPosition`, `endPosition` and `property` in the response are not guar
 }
 ```
 
+### Token limits
+
+If the number of input tokens exceed the limit of the model, the module will return the OpenAI API's error.
+
 ## How it works (under the hood)
 
 Under the hood, the model uses a two-step approach. First it performs a semantic search to find the documents (e.g. a Sentence, Paragraph, Article, etc.) most likely to contain the answer. In a second step, Weaviate creates the required prompt as an input to an external call made to the OpenAI Completions endpoint. Weaviate uses the most relevant documents to establish a prompt for which OpenAI extracts the answer. There are three possible outcomes:
