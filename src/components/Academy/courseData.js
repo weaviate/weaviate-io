@@ -21,6 +21,28 @@ export const courseData = {
       "Differentiate BM25 and hybrid search techniques from vector search techniques",
     ]
   },
+  "intro_weaviate_typescript": {
+    title: "Weaviate in practice with Typescript",
+    courseId: "TS/JS-1",
+    body: "A practical course where you can learn how to add Weaviate to a TypeScript app.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/intro_weaviate_typescript",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "intro_weaviate_typescript"
+    ],
+    learningGoals: [
+      "The basics of Weaviate, and how to integrate it to a TypeScript app."
+    ],
+    learningOutcomes: [
+      "Create a cloud (WCS) instance fo Weaviate.",
+      "Gain an understanding of what a vector database is.",
+      "Define a schema (collection definition) and import data.",
+      "Perform queries on your data.",
+      "Integrate Weaviate into your TypeScript app.",
+    ]
+  },
   // "zero_to_mvp_advanced": {
   //   title: "Zero to MVP: Advanced",
   //   courseId: "1A",
