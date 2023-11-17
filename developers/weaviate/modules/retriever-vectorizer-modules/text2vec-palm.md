@@ -8,7 +8,7 @@ image: og/docs/modules/text2vec-palm.jpg
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with Google Cloud Vertex AI, or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
 :::info Requirements
 
@@ -25,11 +25,13 @@ Key notes:
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `textembedding-gecko@001`.
+- Model names differ between Vertex AI and MakerSuite.
+    - The default model for Vertex AI is `textembedding-gecko@001`.
+    - The default model for MakerSuite `embedding-gecko-001`.
 
 ## Configuring `text2vec-palm` for VertexAI vs MakerSuite
 
-The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configuration is slightly different for each.
+The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
 ### Google Cloud Vertex AI
 
@@ -109,9 +111,9 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-- `projectId` (Required): e.g. `cloud-large-language-models`
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` or `textembedding-gecko-multilingual@latest`
+- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (MakerSuite)
 
 #### Example
 
@@ -125,9 +127,9 @@ You can configure how the module will behave in each class through the [Weaviate
       "moduleConfig": {
         // highlight-start
         "text2vec-palm": {
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
+          "modelId": "YOUR-MODEL-ID",                     // Optional.
         },
         // highlight-end
       },
@@ -161,9 +163,9 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
+          "modelId": "YOUR-MODEL-ID",                     // Optional.
           // highlight-start
           "vectorizeClassName": false
           // highlight-end
@@ -200,12 +202,17 @@ You can supply the API key at query time by adding it to the HTTP header:
 
 ### Available models
 
-You can specify the model as a part of the schema as shown earlier.
+You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and MakerSuite.
 
-The available models are:
+The available models for Vertex AI are:
 - `textembedding-gecko@001` (stable)
 - `textembedding-gecko@latest` (public preview: an embeddings model with enhanced AI quality)
 - `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
+
+The only available model for MakerSuite is:
+- `embedding-gecko-001` (stable)
+
+#### Note
 
 At the time of writing, the `textembedding-gecko` models accept a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings. For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 

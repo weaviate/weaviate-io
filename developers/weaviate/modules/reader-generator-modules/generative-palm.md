@@ -8,7 +8,7 @@ image: og/docs/modules/generative-palm.jpg
 
 ## Overview
 
-The `generative-palm` module enables Weaviate to perform retrieval augmented generation (RAG) using PaLM models. You can use this with Google Cloud Vertex AI, or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+The `generative-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
 :::info Requirements
 
@@ -30,7 +30,7 @@ Key notes:
 
 ## Configuring `generative-palm` for VertexAI vs MakerSuite
 
-The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configuration is slightly different for each.
+The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
 ### Google Cloud Vertex AI
 
@@ -62,7 +62,7 @@ You can obtain an API key by logging in to your MakerSuite account and creating 
 
 #### `apiEndpoint` for MakerSuite users
 
-In the Weaviate [class configuration](#class-configuration), set the `apiEndpoint` to `generativelanguage.googleapis.com`.
+In the Weaviate [schema configuration](#schema-configuration), set the `apiEndpoint` to `generativelanguage.googleapis.com`.
 
 ## Introduction
 
@@ -162,7 +162,7 @@ services:
 
 ## Schema configuration
 
-You can define settings for this module in the schema, including the API endpoint and project information, as well as optional model parameters.
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
 
 Note that the `projectId` parameter is required.
 
@@ -170,9 +170,9 @@ Note that the `projectId` parameter is required.
 
 For example, the following schema configuration will set the PaLM API information, as well as the optional parameters.
 
-- The `"projectId"` is REQUIRED, and may be something like `"cloud-large-language-models"`
+- The `"projectId"` is only required if using Vertex AI, and may be something like `"cloud-large-language-models"`
 - The `"apiEndpoint"` is optional, and may be something like: `"us-central1-aiplatform.googleapis.com"`, and
-- The `"modelId"` is optional, and may be something like `"chat-bison-001"`.
+- The `"modelId"` is optional, and may be something like `"chat-bison"` for Vertex AI and `"chat-bison-001"` for MakerSuite.
 
 ```json
 {
@@ -184,9 +184,9 @@ For example, the following schema configuration will set the PaLM API informatio
       "moduleConfig": {
         // highlight-start
         "generative-palm": {
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.
-          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to "chat-bison-001"
+          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to `"chat-bison"` for Vertex AI and `"chat-bison-001"` for MakerSuite.
           "temperature": 0.2,      // Optional
           "maxOutputTokens": 512,  // Optional
           "topK": 3,               // Optional
@@ -343,7 +343,12 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 
 ### Supported models
 
-The `chat-bison-001` model is used by default. The model has the following properties:
+You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and MakerSuite.
+
+The only available model for Vertex AI is `chat-bison`.
+The only available model for MakerSuite is `chat-bison-001`.
+
+The model has the following properties:
 
 - Max input token: 8,192
 - Max output tokens: 1,024
