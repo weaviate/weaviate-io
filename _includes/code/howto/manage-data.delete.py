@@ -137,3 +137,39 @@ print (result)
 
 assert result.matches == N
 assert collection.aggregate.over_all(total_count=True) == N
+
+# =================================
+# ===== Batch delete with IDs =====
+# =================================
+N = 5
+for i in range(N):
+    collection.data.insert({
+        "name": f"EphemeralObject_{i}",
+    })
+
+# Test insertion
+response = collection.aggregate.over_all(total_count=True)
+assert response.total_count == 5
+
+collection = client.collections.get("EphemeralObject")
+response = collection.query.fetch_objects(limit=3)
+ids = [o.uuid for o in response.objects]
+
+# START DeleteByIDBatch
+import weaviate.classes as wvc
+
+collection = client.collections.get("EphemeralObject")
+
+response = collection.query.fetch_objects(limit=3)  # Fetch 3 object IDs
+ids = [o.uuid for o in response.objects]  # These can be lists of strings, or `UUID` objects
+
+collection.data.delete_many(
+    # highlight-start
+    where=wvc.Filter("id").contains_any(ids)  # Delete the 3 objects
+    # highlight-end
+)
+# END DeleteByIDBatch
+
+# Test deletion
+response = collection.aggregate.over_all(total_count=True)
+assert response.total_count == 2
