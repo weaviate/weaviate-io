@@ -6,20 +6,63 @@ image: og/docs/modules/generative-palm.jpg
 ---
 
 
-## In short
+## Overview
+
+The `generative-palm` module enables Weaviate to perform retrieval augmented generation (RAG) using PaLM models. You can use this with Google Cloud Vertex AI, or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+
+:::info Requirements
+
+`generative-palm` was added in version `v1.19.1`.
+
+Google MakerSuite support was added in version `1.22.4`.
+
+:::
+
+Key notes:
 
 * The Generative PaLM (`generative-palm`) module generates responses based on the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
-* Added in Weaviate `v1.19.1`.
-* You need an API key for a PaLM API to use this module. The module uses the Google Cloud `access token`.
+* You need an API key for a PaLM API to use this module.
 * **Its usage may incur costs**.
     * Please check the vendor pricing (e.g. check Google Vertex AI pricing).
-* The default model is `chat-bison`.
+* The default model is `chat-bison-001`.
 
-:::caution Ensure PaLM API is enabled on your Google Cloud project
+## Configuring `generative-palm` for VertexAI vs MakerSuite
+
+The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configuration is slightly different for each.
+
+### Google Cloud Vertex AI
+
 As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
-:::
+
+#### API key for Vertex AI users
+
+This is called an `access token` in Google Cloud.
+
+If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+
+```shell
+gcloud auth print-access-token
+```
+
+#### Token expiry for Vertex AI users
+
+import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
+
+<GCPTokenExpiryNotes/>
+
+### Google MakerSuite
+
+At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
+
+#### API key for MakerSuite users
+
+You can obtain an API key by logging in to your MakerSuite account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiry date.
+
+#### `apiEndpoint` for MakerSuite users
+
+In the Weaviate [class configuration](#class-configuration), set the `apiEndpoint` to `generativelanguage.googleapis.com`.
 
 ## Introduction
 
@@ -45,16 +88,6 @@ You need to input both a query and a prompt (for individual responses) or a task
 As the `generative-palm` uses a PaLM API endpoint, you must provide a valid PaLM API key to weaviate.
 :::
 
-### For Google Cloud users
-
-This is called an `access token` in Google Cloud.
-
-If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
-
-```shell
-gcloud auth print-access-token
-```
-
 ### Providing the key to Weaviate
 
 You can provide your PaLM API key by providing `"X-Palm-Api-Key"` through the request header. If you use the Weaviate client, you can do so like this:
@@ -77,12 +110,6 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
   ```
 
 </details>
-
-### Token expiration for Google Cloud users
-
-import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
-
-<GCPTokenExpiryNotes/>
 
 ## Module configuration
 
@@ -145,7 +172,7 @@ For example, the following schema configuration will set the PaLM API informatio
 
 - The `"projectId"` is REQUIRED, and may be something like `"cloud-large-language-models"`
 - The `"apiEndpoint"` is optional, and may be something like: `"us-central1-aiplatform.googleapis.com"`, and
-- The `"modelId"` is optional, and may be something like `"chat-bison"`.
+- The `"modelId"` is optional, and may be something like `"chat-bison-001"`.
 
 ```json
 {
@@ -159,7 +186,7 @@ For example, the following schema configuration will set the PaLM API informatio
         "generative-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.
-          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to "chat-bison"
+          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to "chat-bison-001"
           "temperature": 0.2,      // Optional
           "maxOutputTokens": 512,  // Optional
           "topK": 3,               // Optional
@@ -316,7 +343,7 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 
 ### Supported models
 
-The `chat-bison` model is used by default. The model has the following properties:
+The `chat-bison-001` model is used by default. The model has the following properties:
 
 - Max input token: 8,192
 - Max output tokens: 1,024

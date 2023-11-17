@@ -20,7 +20,7 @@ Google MakerSuite support was added in version `1.22.4`.
 
 Key notes:
 
-- As it uses a third-party API, you will need an API key. The module uses the Google Cloud `access token`.
+- As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
