@@ -67,7 +67,6 @@ client.collections.create(
 # =====  LOAD DATA =====
 # ==============================
 
-
 # START LoadData
 def parse_data():
     object_list = []
@@ -82,7 +81,6 @@ def parse_data():
 
     return object_list
 
-
 jeopardy = client.collections.get("Question")
 jeopardy.data.insert_many(parse_data())
 
@@ -91,7 +89,6 @@ response = jeopardy.aggregate.over_all(total_count=True)
 
 # Should equal the number of objects uploaded
 print(response.total_count)
-
 
 # END LoadData
 
@@ -109,7 +106,6 @@ jeopardy.config.update(
         pq_enabled=True, pq_segments=96, pq_training_limit=100000
     )
 )
-
 
 # END UpdateSchema
 

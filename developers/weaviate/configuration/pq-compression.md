@@ -122,9 +122,13 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
 
 This example uses a relatively small data set to demonstrate loading data.
 
-If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. You can use any of the objects in your data set. If possible, chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard. 
 
-If you already have data in your Weaviate instance, you can move ahead to the next step. By default Weaviate uses the first 100,000 objects in your database for the training step.  
+You can use any of the objects in your data set. If possible, chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+
+By default Weaviate uses the first 100,000 objects in your database for the training step. If you have more than 100,000 objects Weaviate ignores the excess objects during the training period. However, the excess objects still take up memory. If you have a large dataset, consider training PQ on an initial set of 10,000 to 100,000 objects first and then uploading the rest of your data after PQ is enabled. 
+
+If you already have data in your Weaviate instance, you can move ahead to the next step. 
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
