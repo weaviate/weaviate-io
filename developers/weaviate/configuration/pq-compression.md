@@ -32,7 +32,7 @@ Before you enable PQ, be sure to provide a set of vectors to train the algorithm
 
 ## Prerequisites
 
-This Howto page uses the Jeopardy 1000 question data set. Download it here:
+This Howto page uses the Jeopardy 1000 question data set. Download the data.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -208,7 +208,7 @@ pq-conf-demo-1  | {"action":"compress","level":"info","msg":"switching to compre
 pq-conf-demo-1  | {"action":"compress","level":"info","msg":"vector compression complete","time":"2023-11-13T21:10:53Z"}
 ```
 
-If you use `docker-config` to run Weaviate, you can get the logs on the system console.
+If you use `docker-compose` to run Weaviate, you can get the logs on the system console.
 
 ```bash
 docker compose logs -f --tail 10 weaviate

@@ -1,24 +1,5 @@
 # THIS FILE NEEDS TESTS
 
-# ================================
-# ===== INSTANTIATION-COMMON =====
-# ================================
-
-# ===== Instantiation shown on snippet
-import weaviate
-import json, os
-
-# Instantiate the client with the OpenAI API key
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-    headers={
-        "X-OpenAI-Api-Key": os.environ[
-            "OPENAI_API_KEY"
-        ]  # Replace with your inference API key
-    },
-)
-
 # ==============================
 # =====  DOWNLOAD DATA =====
 # ==============================
@@ -66,13 +47,13 @@ client.is_ready()
 # =====  INITIAL SCHEMA =====
 # ==============================
 
-if (client.collections.exists("JeopardyCategory")):
-    client.collections.delete("JeopardyCategory")
+if (client.collections.exists("Question")):
+    client.collections.delete("Question")
 
 # START InitialSchema
 client.collections.create(
-    name="JeopardyCategory",
-    description="A Jeopardy! category",
+    name="Question",
+    description="A Jeopardy! question",
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
     generative_config=wvc.Configure.Generative.openai(),
     properties=[
@@ -102,7 +83,7 @@ def parse_data():
     return object_list
 
 
-jeopardy = client.collections.get("JeopardyCategory")
+jeopardy = client.collections.get("Question")
 jeopardy.data.insert_many(parse_data())
 
 # Check upload
@@ -122,7 +103,7 @@ print(response.total_count)
 
 import weaviate.classes as wvc
 
-jeopardy = client.collections.get("JeopardyCategory")
+jeopardy = client.collections.get("Question")
 jeopardy.config.update(
     vector_index_config=wvc.Reconfigure.vector_index(
         pq_enabled=True, pq_segments=96, pq_training_limit=100000
@@ -138,7 +119,7 @@ jeopardy.config.update(
 
 # START GetSchema
 
-jeopardy = client.collections.get("JeopardyCategory")
+jeopardy = client.collections.get("Question")
 config = jeopardy.config.get()
 pq_config = config.vector_index_config.pq
 
