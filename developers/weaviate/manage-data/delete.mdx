@@ -124,7 +124,6 @@ You can handle errors as follows:
   </TabItem>
 </Tabs> -->
 
-
 ## Delete multiple objects
 
 To delete multiple objects that match a set of criteria, specify the class and a [`where` filter](../search/similarity.md).
@@ -330,6 +329,82 @@ It should produce a response like the one below:
 
 </details>
 
+### Delete multiple objects by id
+
+You can also delete multiple objects by their id values. You can do so by using the `id` filter as the `path` and values as `text` in the `where` argument.
+
+To do so, we recommend using an array of id values with the `ContainsAny` operator.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DeleteByIDBatch"
+      endMarker="# END DeleteByIDBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DeleteByIDBatch"
+      endMarker="# END DeleteByIDBatch"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+
+```js
+await client.batch
+  .objectsBatchDeleter()
+  .withClassName('EphemeralObject')
+  .withWhere({
+    path: ['id'],
+    // highlight-start
+    operator: 'ContainsAny',
+    valueTextArray: ['12c88739-7a4e-49fd-bf53-d6a829ba0261', '3022b8be-a6dd-4ef4-b213-821f65cee53b', '30de68c1-dd53-4bed-86ea-915f34faea63'],  // Note the array syntax
+    // highlight-end
+  })
+  // highlight-end
+  .do();
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+client.batch().objectsBatchDeleter()
+  .withClassName("EphemeralObject")
+  .withWhere(WhereFilter.builder()
+    .path("id")
+    // highlight-start
+    .operator(Operator.ContainsAny)
+    .valueText("12c88739-7a4e-49fd-bf53-d6a829ba0261", "3022b8be-a6dd-4ef4-b213-821f65cee53b", "30de68c1-dd53-4bed-86ea-915f34faea63")    // Note the array syntax
+    // highlight-end
+    .build())
+  .run();
+```
+
+  </TabItem>
+  <TabItem value="go" label="Go">
+
+```go
+  response, err := client.Batch().ObjectsBatchDeleter().
+    WithClassName("EphemeralObject").
+    WithOutput("minimal").
+    WithWhere(filters.Where().
+      WithPath([]string{"id"}).
+      // highlight-start
+      WithOperator(filters.ContainsAny).
+      WithValueText("12c88739-7a4e-49fd-bf53-d6a829ba0261", "3022b8be-a6dd-4ef4-b213-821f65cee53b", "30de68c1-dd53-4bed-86ea-915f34faea63")).  // Note the array syntax
+      // highlight-end
+    Do(ctx)
+```
+
+  </TabItem>
+</Tabs>
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

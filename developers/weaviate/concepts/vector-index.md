@@ -95,6 +95,16 @@ Have another look at the diagram; it demonstrates how the HNSW algorithm searche
 
 All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Weaviate supports are also supported with the HNSW index type.
 
+## Managing search quality vs speed tradeoffs
+
+HNSW parameters can be adjusted to adjust search quality against speed.
+
+The `ef` parameter is a critical setting for balancing the trade-off between search speed and quality. The `ef` parameter dictates the size of the dynamic list used by the HNSW algorithm during the search process. A higher `ef` value results in a more extensive search, enhancing accuracy but potentially slowing down the query.
+
+In contrast, a lower `ef` makes the search faster but might compromise on accuracy. This balance is crucial in scenarios where either speed or accuracy is a priority. For instance, in applications where rapid responses are critical, a lower `ef` might be preferable, even at the expense of some accuracy. Conversely, in analytical or research contexts where precision is paramount, a higher `ef` would be more suitable, despite the increased query time.
+
+Weaviate allows for `ef` to be configured ef either explicitly or dynamically. If `ef` is set to -1, Weaviate adjusts it dynamically based on the query response limit, enabling a more flexible approach to managing this trade-off. The dynamic `ef` adjustment takes into account the query limit and modifies the size of the ANN (Approximate Nearest Neighbors) list accordingly, bounded by the parameters `dynamicEfMin`, `dynamicEfMax`, and influenced by `dynamicEfFactor`. This feature is particularly beneficial in environments with varying query patterns, as it automatically optimizes the balance between speed and recall based on real-time query requirements.
+
 ## HNSW with compression
 
 HNSW uses memory efficiently. However, you can also use compression to reduce memory requirements even more. [Product quantization (PQ)](#what-is-product-quantization) is a technique Weaviate offers that lets you compress a vector so it uses fewer bytes. Since HNSW stores vectors in memory, PQ compression lets you use larger datasets without increasing your system memory.
@@ -113,7 +123,7 @@ Quantization techniques represent larger vectors with a finite set of smaller ve
 
 ![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
-When you enable PQ, you should already have about 10,000 to 100,000 vectors loaded per shard. Weaviate divides these initial vectors into segments. After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors. 
+When you enable PQ, you should already have about 10,000 to 100,000 vectors loaded per shard. Weaviate divides these initial vectors into segments. After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors.
 
 Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory significantly. Imagine a collection where each vector has 768 four byte elements. Before PQ compression, each vector requires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
 

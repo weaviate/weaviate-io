@@ -189,3 +189,20 @@ expected_results = """
 }
 # END ResultsDryRun
 """
+
+# =================================
+# ===== Batch delete with IDs =====
+# =================================
+
+# START DeleteByIDBatch
+client.batch.delete_objects(
+    class_name='EphemeralObject',
+    where={
+        'path': ['id'],
+        # highlight-start
+        'operator': 'ContainsAny',
+        'valueTextArray': ['12c88739-7a4e-49fd-bf53-d6a829ba0261', '3022b8be-a6dd-4ef4-b213-821f65cee53b', '30de68c1-dd53-4bed-86ea-915f34faea63']  # Note the array syntax
+        # highlight-end
+    },
+)
+# END DeleteByIDBatch
