@@ -1,0 +1,97 @@
+.introBg {
+  background: #130c49;
+  color: white;
+
+  h2 {
+    color: white;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 4fr 2fr 2fr 1fr;
+
+  margin-top: 2rem;
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+}
+
+.textGrid {
+  padding: 0 4rem;
+  margin-top: 8rem;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 850px) {
+    padding: 0 1.5rem;
+  }
+}
+
+.imgGridMiddle {
+  margin-top: 3rem;
+}
+
+.img1 {
+  background-image: url('../../../../static/img/company/careers/team.png');
+  width: 100%;
+  height: 22rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 1rem;
+
+  // @media screen and (max-width: 860px) {
+  //   display: none;
+  // }
+}
+
+.img2 {
+  background-image: url('../../../../static/img/company/careers/erika.png');
+  width: 100%;
+  height: 16rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 1rem;
+
+  // @media screen and (max-width: 860px) {
+  //     display: none;
+  // }
+}
+
+.img3 {
+  background-image: url('../../../../static/img/company/careers/team-lunch.png');
+  width: 100%;
+  height: 16rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 1rem;
+
+  // @media screen and (max-width: 860px) {
+  //     display: none;
+  // }
+}
+
+.img4 {
+  background-image: url('../../../../static/img/company/careers/byron.png');
+  width: 100%;
+  height: 22rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 1rem;
+
+  // @media screen and (max-width: 860px) {
+  //     display: none;
+  // }
+}

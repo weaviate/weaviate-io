@@ -1,0 +1,102 @@
+.header {
+  color: var(--ifm-link-color);
+}
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin: 0;
+}
+.box {
+  text-align: center;
+  margin: auto;
+  width: 85%;
+  margin-top: 2rem;
+  margin-bottom: 9rem;
+
+  img {
+    width: 30%;
+    margin: 1rem 0rem;
+  }
+
+  h1 {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 3.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+  }
+
+  h3 {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 157.33%; /* 1.96663rem */
+  }
+}
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  a {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: #61bd73;
+  color: #130c49;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+
+.buttonOutline {
+  font-weight: 400;
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  color: #130c49;
+  transition: all 1s ease-out;
+}
+
+.buttonGradient:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.buttonOutline:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.headerBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
