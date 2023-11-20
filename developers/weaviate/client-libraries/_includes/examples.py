@@ -223,7 +223,7 @@ all_object_titles_ids = [article for article in articles.iterator(return_propert
 # END IteratorTitleOnly
 
 # IteratorMetadataOnly
-all_object_ids = [article for article in articles.iterator(return_metadata=wvc.MetadataQuery(uuid=True))]  # Only return IDs
+all_object_ids = [article for article in articles.iterator(return_metadata=wvc.MetadataQuery(creation_time_unix=True))]  # Only return IDs
 # END IteratorMetadataOnly
 
 # BasicFetch
@@ -333,6 +333,6 @@ class Article(TypedDict):
 response = articles.query.fetch_objects(
     limit=2,
     return_properties=Article,  # Your generic class is used to extract the return properties and statically type the response
-    return_metadata=wvc.MetadataQuery(uuid=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
+    return_metadata=wvc.MetadataQuery(creation_time_unix=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
 )
 # END GenericsExample

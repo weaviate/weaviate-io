@@ -77,7 +77,7 @@ As shown above, there are quite a few configurable parameters available for an A
 For more information see:
 - [Configuring the vector index](../configuration/indexes.md)
 - [Explanation of vector indexes](../concepts/vector-index.md)
-- [Compressing indexes in memory](/developers/weaviate/configuration/pq-compression)
+- [Compressing indexes in memory](/developers/weaviate/configuration/compression.md)
 
 :::note
 The [ANN benchmark page](/developers/weaviate/benchmarks/ann.md) contains a wide variety of vector search use cases and relative benchmarks. This page is ideal for finding a dataset similar to yours and learning what the most optimal settings are.
