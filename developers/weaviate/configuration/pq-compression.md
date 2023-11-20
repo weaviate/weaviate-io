@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/pq-compression.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/pq-compression-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
 
 
 # Configure PQ Compression
@@ -52,6 +53,15 @@ This How-to page uses a dataset of 1000 Jeopardy questions. Download the data.
        language="py"
      />
   </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START FetchData"
+       endMarker="// END FetchData"
+       language="ts"
+     />
+  </TabItem>
 </Tabs>
 
 ## Enable PQ compression
@@ -90,6 +100,15 @@ After you install the client, connect to your instance.
        language="py"
      />
   </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START DockerInstantiationExample"
+       endMarker="// END DockerInstantiationExample"
+       language="ts"
+     />
+  </TabItem>
 </Tabs>
 
 Weaviate returns `True` if the connection is successful.
@@ -114,6 +133,15 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
        startMarker="# START InitialSchema"
        endMarker="# END InitialSchema"
        language="py"
+     />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START InitClassDef"
+       endMarker="// END InitClassDef"
+       language="ts"
      />
   </TabItem>
 </Tabs>
@@ -146,6 +174,15 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
        startMarker="# START LoadData"
        endMarker="# END LoadData"
        language="py"
+     />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START LoadData"
+       endMarker="// END LoadData"
+       language="ts"
      />
   </TabItem>
 </Tabs>
@@ -183,6 +220,15 @@ To enable PQ, update your schema as shown below.
        startMarker="# START UpdateSchema"
        endMarker="# END UpdateSchema"
        language="py"
+     />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START UpdateSchema"
+       endMarker="// END UpdateSchema"
+       language="ts"
      />
   </TabItem>
 </Tabs>
@@ -226,9 +272,9 @@ You can also view the log file directly. Check `docker` to get the file location
 docker inspect --format='{{.LogPath}}' <your-weaviate-container-id>
 ```
 
-### Get the schema
+### Review the current `pq` configuration
 
-To review the schema, you can retrieve it as shown below.
+To review the current `pq` configuration, you can retrieve it as shown below.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -246,6 +292,15 @@ To review the schema, you can retrieve it as shown below.
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
       language="py"
+    />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GetSchema"
+      endMarker="// END GetSchema"
+      language="ts"
     />
   </TabItem>
 
