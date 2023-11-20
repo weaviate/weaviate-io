@@ -5,6 +5,7 @@ image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
+## Overview
 
 As a vector database, Weaviate make use of vector representations, also known as "embeddings", of data objects.
 
@@ -12,9 +13,7 @@ One way to generate these vectors is to use a ["vectorizer" module](../modules/r
 
 Alternatively, you can supply your own, "custom", vector embeddings at import time as well as for any vector-based queries. This is useful if you have a custom model, or if you want to use a model that is not available through a Weaviate module.
 
-This tutorial will guide you through the process of using Weaviate with your own vectors.
-
-If you choose to specify your own vector embeddings, you can perform a vector search with Weaviate like this:
+This tutorial will guide you through the process of using Weaviate with your own vectors. We will:
 
 1. Create a Weaviate instance
 2. Connect to the Weaviate instance
@@ -64,27 +63,25 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
 
+## Connect to Weaviate
 
-## Authentication
+To connect to your Weaviate instance, you need the following information:
 
-The recommended way to [authenticate](../configuration/authentication.md) to WCS is with an API key. Once the instance is ready, click on its <kbd>Details</kbd> button, then the key <kbd>🔑</kbd> icon to access the API key:
+- The Weaviate **URL** (get it from WCS `Details` tab),
+- The Weaviate **API key** (if enabled - get it from WCS `Details` tab), and
+- An OpenAI **inference API key** ([sign up here](https://platform.openai.com/signup)).
 
-import WCSGetKey from '../../wcs/guides/img/wcs-get-key.png';
+Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
 
-<img src={WCSGetKey} width="100%" alt="Instance configuration"/>
+import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey.mdx'
 
-Grab the "Admin" key. You'll need it later for the client instantiation, which looks like this:
+<ConnectToWeaviateWithKey />
 
-import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
-
-<WCSAuthenticationApiKey/>
-
-
-## Schema
+## Collection definition
 
 Weaviate [stores data](../concepts/data.md) objects in collections, each of which is called a `class`. Each object has a set of properties, and a vector representation generated automatically by a vectorizer, or specified at import time.
 
-Weaviate lets you define vectorizers at the class level, with further control (e.g. specific model, or vectorization behavior) at the property level. Since you're bringing your own vectors, a vectorizer is not needed, so we will set `vectorizer: "none"` in the class here.
+Weaviate lets you define vectorizers at the class level, with further control (e.g. specific model, or vectorization behavior) at the property level. Since you're bringing your own vectors, a vectorizer is not needed, so we will set the vectorizer to `none` here.
 
 :::note Optional: Set a **compatible** vectorizer
 If you're using "custom" vectors that utilize the same model available through a Weaviate module, you have the option to **designate that specific model and module** as the class vectorizer.<p><br/></p>
@@ -111,6 +108,9 @@ import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questi
 
 <ImportQuestionsWithVectors />
 
+:::tip vector != object property
+Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
+:::
 
 ## Query
 
@@ -127,16 +127,6 @@ import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.qu
 
 <BiologyQuestionsJson />
 
-
-## Putting it together
-
-The following code puts it all together, taking care of everything from schema definition to data import to query. Remember to replace the endpoint and Weaviate key.
-
-import ByovAll from '/_includes/code/quickstart.byov.all.mdx'
-
-<ByovAll />
-
-
 ## Recap
 
 If you made it here - well done. We have covered a lot, and you've successfully built a fully functioning vector database! 🥳
@@ -149,8 +139,4 @@ Of course, there is a lot more to Weaviate that we have not yet covered, and pro
 
 Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
 
-## What next
 
-import WhatNext from '/_includes/quickstart.what-next.mdx';
-
-<WhatNext />
