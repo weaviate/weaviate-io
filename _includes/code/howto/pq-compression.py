@@ -97,7 +97,6 @@ print(response.total_count)
 # ==============================
 
 # START UpdateSchema
-
 import weaviate.classes as wvc
 
 jeopardy = client.collections.get("Question")
@@ -114,7 +113,6 @@ jeopardy.config.update(
 # ==============================
 
 # START GetSchema
-
 jeopardy = client.collections.get("Question")
 config = jeopardy.config.get()
 pq_config = config.vector_index_config.pq

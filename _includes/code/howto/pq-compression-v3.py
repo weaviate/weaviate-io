@@ -5,7 +5,6 @@
 # ==============================
 
 # START DownloadData
-
 import requests
 import json
 
@@ -62,7 +61,6 @@ class_definition = {
 }
 
 client.schema.create_class(class_definition)
-
 # END InitialSchema
 
 # ==============================
@@ -70,7 +68,6 @@ client.schema.create_class(class_definition)
 # ==============================
 
 # START LoadData
-
 with client.batch as batch:
     for o in data:
         obj_body = {
@@ -80,7 +77,6 @@ with client.batch as batch:
         }
 
         batch.add_data_object(data_object=obj_body, class_name="Question")
-
 # END LoadData
 
 # ==============================
@@ -88,7 +84,6 @@ with client.batch as batch:
 # ==============================
 
 # START UpdateSchema
-
 client.schema.update_config(
     "Question",
     {
@@ -103,7 +98,6 @@ client.schema.update_config(
         }
     },
 )
-
 # END UpdateSchema
 
 # ==============================
