@@ -1,17 +1,20 @@
 ---
-title: Custom vectors tutorial
-sidebar_position: 10
+title: Bring your own vectors
+sidebar_position: 20
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
-As a [vector database](https://weaviate.io/blog/what-is-a-vector-database), Weaviate operates using vector representations, also known as "embeddings", of data objects.
 
-To generate these vector embeddings, you can employ a Weaviate ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which can generate vectors at the time of import. Alternatively, you're welcome to supply your own "custom" vector embeddings.
+As a vector database, Weaviate make use of vector representations, also known as "embeddings", of data objects.
 
-In this tutorial, we'll guide you through the process of using Weaviate with your own vectors.
+One way to generate these vectors is to use a ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which will generate a vector at import and query time. This can be a convenient method if you are using a publicly available model and want to simplify your pipeline.
 
-If you choose to specify your own vector embeddings, performing a vector search with Weaviate looks like this:
+Alternatively, you can supply your own, "custom", vector embeddings at import time as well as for any vector-based queries. This is useful if you have a custom model, or if you want to use a model that is not available through a Weaviate module.
+
+This tutorial will guide you through the process of using Weaviate with your own vectors.
+
+If you choose to specify your own vector embeddings, you can perform a vector search with Weaviate like this:
 
 1. Create a Weaviate instance
 2. Connect to the Weaviate instance
