@@ -1,5 +1,5 @@
 ---
-title: PQ Compression
+title: Vector Index Compression
 sidebar_position: 5
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
