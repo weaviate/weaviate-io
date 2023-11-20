@@ -32,7 +32,7 @@ Before you enable PQ, be sure to provide a set of vectors to train the algorithm
 
 ## Prerequisites
 
-This Howto page uses the Jeopardy 1000 question data set. Download it here:
+This Howto page uses the Jeopardy 1000 question data set. Download the data.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -122,9 +122,13 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
 
 This example uses a relatively small data set to demonstrate loading data.
 
-If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. You can use any of the objects in your data set. If possible, chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard. 
 
-If you already have data in your Weaviate instance, you can move ahead to the next step. By default Weaviate uses the first 100,000 objects in your database for the training step.  
+You can use any of the objects in your data set. If possible, chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+
+By default Weaviate uses the first 100,000 objects in your database for the training step. If you have more than 100,000 objects Weaviate ignores the excess objects during the training period. However, the excess objects still take up memory. If you have a large dataset, consider training PQ on an initial set of 10,000 to 100,000 objects first and then uploading the rest of your data after PQ is enabled. 
+
+If you already have data in your Weaviate instance, you can move ahead to the next step. 
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -148,9 +152,9 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
 
 ### Step 4. Enable and train PQ
 
-import PQMakesCookbook from '/_includes/pq-compression/makes-a-cookbook.mdx' ;
+import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
-<PQMakesCookbook />
+<PQMakesCodebook />
 
 After you update the schema, Weaviate trains PQ on the first 100,000 objects in your database. To use a different value, set a new `trainingLimit`. If you increase `trainingLimit`, the training period will take longer. You could also have memory problems if you set a high `trainingLimit`.
     
@@ -208,7 +212,7 @@ pq-conf-demo-1  | {"action":"compress","level":"info","msg":"switching to compre
 pq-conf-demo-1  | {"action":"compress","level":"info","msg":"vector compression complete","time":"2023-11-13T21:10:53Z"}
 ```
 
-If you use `docker-config` to run Weaviate, you can get the logs on the system console.
+If you use `docker-compose` to run Weaviate, you can get the logs on the system console.
 
 ```bash
 docker compose logs -f --tail 10 weaviate
@@ -236,7 +240,7 @@ To review the schema, you can retrieve it as shown below.
 
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START GetSchema"
       endMarker="# END GetSchema"
       language="py"

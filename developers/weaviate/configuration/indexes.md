@@ -59,9 +59,9 @@ import PQOverview from '/_includes/pq-compression/overview-text.mdx' ;
 
 <PQOverview />
 
-import PQMakesCookbook from '/_includes/pq-compression/makes-a-cookbook.mdx' ;
+import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
-<PQMakesCookbook />
+<PQMakesCodebook />
 
 These parameters let you fine tune `pq`.
  
