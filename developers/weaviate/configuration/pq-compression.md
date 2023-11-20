@@ -1,5 +1,5 @@
 ---
-title: Compression
+title: PQ Compression
 sidebar_position: 5
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
