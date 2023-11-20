@@ -8,7 +8,7 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import UserTestCode from '!!raw-loader!./_includes/user_test.py';
+import UserTestCode from '!!raw-loader!./_includes/examples.py';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 :::caution Beta version
@@ -202,7 +202,7 @@ You can specify what properties to retrieve. This will only fetch the `title` pr
   language="py"
 />
 
-You can also specify what metadata to retrieve. This will only fetch the `uuid` metadata. Doing so will switch off default property retrieval.
+You can also specify what metadata to retrieve. This will only fetch the `creation_time_unix` metadata. Doing so will switch off default property retrieval.
 
 <FilteredTextBlock
   text={UserTestCode}
