@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
-
+import Hero from '../../components/Community/Heroes';
 import Header from '../../components/Community/Header';
 import Intro from '../../components/Community/Intro';
 import CommunityPanel from '../../components/Community/CommunityPanel';
 import WorkshopSection from '../../components/Community/Workshops';
 import EventSection from '../../components/Community/EventMap';
-import Jobs from '../../components/Community/Jobs';
-import Benefits from '../../components/Community/Benefits';
+import SocialPanel from '../../components/Community/SocialPanel';
+
 import ThemeSwitch from '../../components/ThemeSwitch';
 
 export default function CommunityPage() {
@@ -21,8 +21,8 @@ export default function CommunityPage() {
         <WorkshopSection />
         <EventSection />
         <Intro />
-        <Jobs />
-        <Benefits />
+        <SocialPanel />
+        <Hero />
       </Layout>
       <ThemeSwitch />
     </div>

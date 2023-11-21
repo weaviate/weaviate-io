@@ -6,30 +6,42 @@ export default function Intro() {
   return (
     <div className={styles.introBg}>
       <div className="container">
+        <div className={styles.title}>
+          <h2>Check out our video tutorials, workshops and news on Youtube</h2>
+        </div>
         <div className={styles.grid}>
-          <div className={styles.textGrid}>
-            <h2>
-              You can make an <br /> Impact at Weaviate
-            </h2>
-            <p>
-              Weaviate is a remote-first company that has big ambitions. Our
-              product Weaviate is a vector database, which uses AI and machine
-              learning to organize and search data in a completely new way.
-            </p>
-            <p>
-              With over 1.6 million downloads, Weaviate continues to grow. We
-              are looking for ambitious people globally. Join us, so we can
-              expand and grow our community of users!
-            </p>
-          </div>
-          <div className={styles.imgGridMiddle}>
-            <div className={styles.img1} />
-            <div className={styles.img2} />
-          </div>
-          <div>
-            <div className={styles.img3} />
-            <div className={styles.img4} />
-          </div>
+          <iframe
+            width="460"
+            height="300"
+            src="https://www.youtube.com/embed/C-UQwvO8Koc?si=cse2jwc0tiQtq0hA"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="460"
+            height="300"
+            src="https://www.youtube.com/embed/MQgm126pKkU"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            width="460"
+            height="300"
+            src="https://www.youtube.com/embed/IiNDCPwmqF8"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div className={styles.buttons}>
+          <Link className={styles.buttonGradient} href="#">
+            Explore Youtube Archive
+          </Link>
         </div>
       </div>
     </div>
