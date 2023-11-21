@@ -4,7 +4,9 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 import Header from '../../components/Community/Header';
 import Intro from '../../components/Community/Intro';
-import InterviewProcess from '../../components/Community/InterviewProcess';
+import CommunityPanel from '../../components/Community/CommunityPanel';
+import WorkshopSection from '../../components/Community/Workshops';
+import EventSection from '../../components/Community/EventMap';
 import Jobs from '../../components/Community/Jobs';
 import Benefits from '../../components/Community/Benefits';
 import ThemeSwitch from '../../components/ThemeSwitch';
@@ -15,7 +17,9 @@ export default function CommunityPage() {
       <Layout>
         <MetaSEO img="og/company/Community.jpg" />
         <Header />
-        <InterviewProcess />
+        <CommunityPanel />
+        <WorkshopSection />
+        <EventSection />
         <Intro />
         <Jobs />
         <Benefits />
