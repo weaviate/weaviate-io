@@ -142,14 +142,14 @@ For example, you can pass on OIDC username and password like this:
   language="py"
 />
 
-<!-- Or, you can pass the WCS API key like this:
+Or, you can pass an API key like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# DirectInstantiationWithAPIKey"
   endMarker="# END DirectInstantiationWithAPIKey"
   language="py"
-/> -->
+/>
 
 The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
 
