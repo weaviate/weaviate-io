@@ -409,3 +409,27 @@ select option {
   background: rgb(15, 0, 50);
   color: #fff;
 }
+
+.customTooltip {
+  background-color: #0c072fd4;
+  color: #fff;
+  left: 39%;
+  position: absolute;
+  padding: 5px;
+  border-radius: 5px;
+
+  z-index: 10;
+  width: calc(49% - 70px);
+  max-width: 676px;
+  box-shadow: 0px 2px 3px 2px rgb(22 27 45 / 19%);
+
+  @media screen and (max-width: 668px) {
+    position: inherit;
+    width: calc(100% - 0px);
+    margin-top: 10px;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+    width: calc(53% - 84px);
+  }
+}

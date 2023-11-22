@@ -8,208 +8,246 @@ import os
 import weaviate
 
 # Instantiate the client with the OpenAI API key
-client = weaviate.Client(
-    'http://localhost:8080',
+client = weaviate.connect_to_local(
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
     }
 )
 
-class_name = 'Article'
-
 # Clean slate
-if client.schema.exists(class_name):
-    client.schema.delete_class(class_name)
+if client.collections.exists("Article"):
+    client.collections.delete("Article")
 
 
-# START CreateClass
-class_obj = {'class': 'Article'}
-
-client.schema.create_class(class_obj)  # returns null on success
-# END CreateClass
+# START CreateCollection
+client.collections.create("Article")
+# END CreateCollection
 
 # Test
-result = client.schema.get(class_name)
-assert 'invertedIndexConfig' in result
+assert (client.collections.exists("Article"))
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
+# Delete the collection to recreate it
+client.collections.delete("Article")
 
 
 # START PropertyDefinition
-class_obj = {
-    'class': 'Article',
-    # highlight-start
-    'properties': [
-        {
-            'name': 'title',
-            'dataType': ['text'],
-        },
-        {
-            'name': 'body',
-            'dataType': ['text'],
-        },
-    ],
-    # highlight-end
-}
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
 
-client.schema.create_class(class_obj)  # returns null on success
+client.collections.create(
+    "Article",
+    # highlight-start
+    properties=[
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+    # highlight-end
+)
 # END PropertyDefinition
 
 # Test
-result = client.schema.get(class_name)
-assert 'invertedIndexConfig' in result
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert (client.collections.exists("Article"))
+assert len(config.properties) == 2
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
 
 
 # START Vectorizer
-class_obj = {
-    'class': 'Article',
-    'properties': [
-        {
-            'name': 'title',
-            'dataType': ['text'],
-        },
-    ],
-    # highlight-start
-    'vectorizer': 'text2vec-openai'  # this could be any vectorizer
-    # highlight-end
-}
+import weaviate.classes as wvc
 
-client.schema.create_class(class_obj)
+client.collections.create(
+    "Article",
+    # highlight-start
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    # highlight-end
+    properties=[ # properties configuration is optional
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+)
 # END Vectorizer
 
 # Test
-result = client.schema.get(class_name)
-assert result['vectorizer'] == 'text2vec-openai'
-assert len(result['properties']) == 1  # no 'body' from the previous example
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vectorizer.value == "text2vec-openai"
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
+# Delete the collection to recreate it
+client.collections.delete("Article")
 
 
 # START ModuleSettings
-class_obj = {
-    'class': 'Article',
-    'properties': [
-        {
-            'name': 'title',
-            'dataType': ['text'],
-        },
-    ],
-    'vectorizer': 'text2vec-cohere',  # this could be any vectorizer
-    # highlight-start
-    'moduleConfig': {
-        'text2vec-cohere': {  # this must match the vectorizer used
-            'vectorizeClassName': True,
-            'model': 'embed-multilingual-v2.0',
-        }
-    }
-    # highlight-end
-}
+import weaviate.classes as wvc
 
-client.schema.create_class(class_obj)
+client.collections.create(
+    "Article",
+    # highlight-start
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(
+        model="embed-multilingual-v2.0",
+        vectorize_class_name=True
+    ),
+    # highlight-end
+)
 # END ModuleSettings
 
 # Test
-result = client.schema.get(class_name)
-assert result['vectorizer'] == 'text2vec-cohere'
-assert result['moduleConfig']['text2vec-cohere']['model'] == 'embed-multilingual-v2.0'
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vectorizer.value == "text2vec-cohere"
+# TODOv4 make sure we can verify the model name
+# assert config.vectorizer.model == "embed-multilingual-v2.0"
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
+# Delete the collection to recreate it
+client.collections.delete("Article")
 
 
 # START PropModuleSettings
-class_obj = {
-    'class': 'Article',
-    'vectorizer': 'text2vec-huggingface',  # this could be any vectorizer
-    'properties': [
-        {
-            'name': 'title',
-            'dataType': ['text'],
-            # highlight-start
-            'moduleConfig': {
-                'text2vec-huggingface': {  # this must match the vectorizer used
-                    'skip': False,
-                    'vectorizePropertyName': False
-                }
-            }
-            # highlight-end
-        },
-    ],
-}
+import weaviate.classes as wvc
 
-client.schema.create_class(class_obj)
+client.collections.create(
+    "Article",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_huggingface(),
+
+    properties=[
+        wvc.Property(
+            name="title",
+            data_type=wvc.DataType.TEXT,
+            # highlight-start
+            vectorize_property_name=True # use "title" as part of the value to vectorize
+            # highlight-end
+        ),
+        wvc.Property(
+            name="body",
+            data_type=wvc.DataType.TEXT,
+            # highlight-start
+            skip_vectorization=True # don't vectorize body
+            # highlight-end
+        ),
+    ]
+)
 # END PropModuleSettings
 
 # Test
-result = client.schema.get(class_name)
-assert result['vectorizer'] == 'text2vec-huggingface'
-assert result['properties'][0]['moduleConfig']['text2vec-huggingface']['vectorizePropertyName'] is False
+collection = client.collections.get("Article")
+config = collection.config.get()
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
+assert config.vectorizer.value == "text2vec-huggingface"
+
+# assert result["properties"][0]["moduleConfig"]["text2vec-huggingface"]["vectorizePropertyName"] is False
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
 
 
 # START IndexReplicationSettings
-class_obj = {
-    'class': 'Article',
-    # highlight-start
-    'vectorIndexConfig': {
-        'distance': 'cosine',
-    },
-    'replicationConfig': {
-        'factor': 3,
-    },
-    # highlight-end
-}
+import weaviate.classes as wvc
 
-client.schema.create_class(class_obj)
+client.collections.create(
+    "Article",
+    # highlight-start
+    vector_index_config=wvc.Configure.vector_index(
+        distance_metric=wvc.VectorDistance.COSINE
+    ),
+    # highlight-end
+
+    # highlight-start
+    replication_config=wvc.Configure.replication(
+        factor=3
+    )
+    # highlight-end
+)
 # END IndexReplicationSettings
 
 # Test
-result = client.schema.get(class_name)
-assert result['replicationConfig']['factor'] == 3
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vector_index_config.distance_metric.value == "cosine"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
+# START Multi-tenancy
+client.collections.create(
+    "Article",
+    # highlight-start
+    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
+    # highlight-end
+)
+# END Multi-tenancy
 
 
 # START AddProp
-add_prop = {
-    'name': 'body',
-    'dataType': ['text'],
-}
+import weaviate.classes as wvc
 
-client.schema.property.create('Article', add_prop)
+# Get the Article collection object
+articles = client.collections.get("Article")
+
+# Add a new property
+articles.config.add_property(
+    # highlight-start
+    additional_property=wvc.Property(
+        name="body",
+        data_type=wvc.DataType.TEXT
+    )
+    # highlight-end
+)
 # END AddProp
 
 # Test
-result = client.schema.get(class_name)
-assert result['properties'][-1]['name'] == 'body'
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert len(config.properties) == 1
+assert config.properties[0].name == "body"
 
+
+# TODOv4 we need to update this part of the example
+# It seemed to be broken when I worked on this example
+# stopwords_preset="en", 
 
 # START ModifyParam
-class_obj = {
-    'invertedIndexConfig': {
-      'stopwords': {
-        'preset': 'en',
-        'removals': ['a', 'the']
-      },
-    },
-}
+import weaviate.classes as wvc
 
-client.schema.update_config('Article', class_obj)
+# Get the Article collection object
+articles = client.collections.get("Article")
+
+# Update the collection configuration
+# highlight-start
+articles.config.update(
+    # Note, use Reconfigure here (not Configure)
+    inverted_index_config=wvc.Reconfigure.inverted_index(
+        stopwords_removals=["a", "the"]
+    )
+)
+# highlight-end
 # END ModifyParam
 
 # Test
-result = client.schema.get(class_name)
-assert result['invertedIndexConfig']['stopwords']['removals'] == ['a', 'the']
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.inverted_index_config.stopwords.removals == ["a", "the"]
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
-
+# DON'T delete the collection yet
 
 # START SchemaGet
-client.schema.get()
+collection = client.collections.get("Article")
+# highlight-start
+config = collection.config.get()
+# highlight-end
+
+# print some of the config properties
+print(config.vectorizer)
+print(config.inverted_index_config)
+print(config.inverted_index_config.stopwords.removals)
+print(config.multi_tenancy_config)
+print(config.vector_index_config)
+print(config.vector_index_config.distance_metric)
 # END SchemaGet
+
+# Delete the collection to recreate it
+client.collections.delete("Article")

@@ -51,11 +51,11 @@ data_object = jeopardy.query.fetch_object_by_id(
     # highlight-end
 )
 
-print(data_object.metadata.vector)
+print(data_object.vector)
 # ReadObjectWithVector END
 
 # Test
-assert len(data_object.metadata.vector) == 1536
+assert len(data_object.vector) == 1536
 
 # ==================================
 # ===== Check object existence =====
