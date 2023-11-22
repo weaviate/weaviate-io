@@ -1,5 +1,5 @@
 ---
-title: Aggregate data
+title: How to aggregate data
 sidebar_position: 85
 image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
 
 This section shows how to retrieve aggregate data from a results set using the `Aggregate` function.
 

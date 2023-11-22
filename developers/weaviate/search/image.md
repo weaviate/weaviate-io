@@ -1,5 +1,5 @@
 ---
-title: Image search
+title: How to search with images
 sidebar_position: 25
 image: og/docs/howto.jpg
 # tags: ['how to', 'image']
@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
 
 This page covers additional, unique aspects related to similarity searches using an image as an input.
 

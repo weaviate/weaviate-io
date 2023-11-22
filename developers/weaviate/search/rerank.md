@@ -1,5 +1,5 @@
 ---
-title: Reranking
+title: How to rank results
 sidebar_position: 75
 image: og/docs/howto.jpg
 # tags: ['how to', 'rank']
@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
 
 This page shows you how to rerank a result set returned by a search.
 

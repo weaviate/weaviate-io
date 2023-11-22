@@ -1,6 +1,6 @@
 ---
-title: Filters
-sidebar_position: 90
+title: Guide to hybrid search
+sidebar_position: 95
 image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---
@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
 
 This page shows you how to add conditional filters to your searches with the `where` operator.
 

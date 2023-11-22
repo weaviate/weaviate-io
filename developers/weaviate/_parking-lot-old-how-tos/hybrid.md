@@ -1,5 +1,5 @@
 ---
-title: How to do hybrid search
+title: Hybrid search
 sidebar_position: 40
 image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
@@ -12,25 +12,24 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
-import ClassToCollection from '/_includes/class-to-collection-transition-note.mdx' ;
+## Overview
+
+This page shows you how to perform `hybrid` searches.
+
+import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
 
 <ClassToCollection /> 
 
-
-This page contains short, task oriented code snip-its. 
-
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
-
-</details>
-
 ## Basic hybrid search
 
-Hybrid search combines `bm25` search and the vector search rankings. This query returns the top three results.
+To use hybrid search, you must provide a search string.
+
+This example uses default settings to search. It matches objects in multiple ways.
+
+- If the object contains the keyword `food` anywhere
+- If the object's vector is similar to the vector for `food`
+
+Hybrid search ranks the results using a combination of the `bm25` search ranking and the vector search ranking. The query returns the top three results.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -72,7 +71,7 @@ Hybrid search combines `bm25` search and the vector search rankings. This query 
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -83,20 +82,12 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
 
-</details>
+### Explain the search results
 
-## Explain search results
+To understand why particular objects are returned, use the object sub-properties to explain the results. 
 
-Use the object sub-properties and metadata to explain search results. 
-
-The Python client v3 uses the `_additional` property to specify `score` and `explainScore`. The Python client v4 returns the information as metadata.
+To retrieve the sub-properties with one of the legacy clients, use the `_additional` property to specify `score` and `explainScore`. The new Python client returns the information as metadata.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -138,7 +129,7 @@ The Python client v3 uses the `_additional` property to specify `score` and `exp
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -149,18 +140,18 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
 
-</details>
+## Limit the results
 
-## Filter results with `limit`
+You can limit the number of results returned by a `hybrid` search,
+- to a fixed number, using the `limit: <N>` operator
+- to the first N "drops" in `score`, using the `autocut` operator
 
-Use the `limit` argument to specify the maximum number of search results.
+`autocut` can be combined with `limit: N`, which would limit autocut's input to the first `N` objects.
+
+### Limiting results with `limit`
+
+Use the `limit` argument to specify the maximum number of results that should be returned:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -200,20 +191,17 @@ Use the `limit` argument to specify the maximum number of search results.
   </TabItem>
 </Tabs>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
+### Limiting results with `autocut` and `auto_limit`
 
-</details>
+Weaviate can also limit results based on discontinuities in the result set. In the legacy client, this filter is called `autocut`. The filter is called `auto_limit` in the new client. 
 
-## Filter results with `autocut`
+The [filter](../api/graphql/additional-operators.md#autocut) looks for discontinuities, or jumps, in the result [score](#score--explainscore). In your query, you specify how many jumps there should be. The query stops returning results after the specified number of jumps. 
 
-The result scores for vector and keyword search cannot be compared directly. This cut points the filter chooses may not be intuitive.
+`hybrid` search combines a vector search and a keyword (BM25F) search. The scores are different for each type of search so they cannot be compared directly. This means the cut points the filter chooses may not be intuitive.
 
-The Python client v3 uses `autocut`. The Python client v4 uses `auto_limit`.
+<!-- TODO: add detailed explanation -->
+
+Autocut can be used as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -256,7 +244,7 @@ The Python client v3 uses `autocut`. The Python client v4 uses `auto_limit`.
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -267,21 +255,17 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
 
-</details>
+## Weight the keyword and vector results
 
-## Change result proportions
-
-Use the `alpha` argument to add weight to the keyword or vector search results.
+You can use the `alpha` argument to add weight to the keyword or vector search results.
 
 - An `alpha` of `1` is a pure vector search.
 - An `alpha` of `0` is a pure keyword search. 
+
+In the legacy clients, the default value for `alpha` is `0.75`. The new client uses a default value of `0.5`.
+
+The following example uses an alpha of `0.25` to increase the importance of the keyword search results.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -323,7 +307,7 @@ Use the `alpha` argument to add weight to the keyword or vector search results.
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -334,24 +318,28 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
-
-</details>
-
-## Combine and rank results
+## Combining and ranking results
 
 :::info Available from `v1.20` onwards
 :::
 
-Set the fusion type to change how results are ranked.
+BM25 and vector search results can be combined and ranked in different ways. 
 
-- `rankedFusion` is default
-- `relativeScoreFusion` normalizes rankings
+### Ranked fusion
+
+The `rankedFusion` algorithm is Weaviate's original hybrid fusion algorithm.
+
+In this algorithm, each object is scored according to its position in the results for that search (vector or keyword). The top-ranked objects in each search get the highest scores. Scores decrease going from top to least ranked. The total score is calculated by adding the rank-based scores from the vector and keyword searches.
+
+### Relative score fusion
+
+New in Weaviate version 1.20.
+
+In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
+
+For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms) 
+
+The default fusion method is `rankedFusion`. The following examples specify `relativeScoreFusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -393,7 +381,7 @@ Set the fusion type to change how results are ranked.
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -404,21 +392,15 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
 
-</details>
-
-## Return selected properties
+## Selected properties only
 
 Starting in v1.19.0, you can specify the object `properties` for the `bm25` portion of the search.
 
-:::info Limitations
-This only affects the keyword search, not the vector search.
+The next example performs a `bm25` search for the keyword `food` in the `question` property only. It combines the results of the keyword search with the vector search results for `food`.
+
+:::info Why does this not affect the vector search?
+This is not possible as doing so will require the entire database to be re-vectorized and re-indexed with the new vectorization options.
 :::
 
 <Tabs groupId="languages">
@@ -461,7 +443,7 @@ This only affects the keyword search, not the vector search.
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -472,18 +454,11 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
+### Weight (boost) searched properties
 
-</details>
+You can specify weighting of object `properties` in how they affect the BM25F component of hybrid searches.
 
-## Emphasize selected properties
-
-You can emphasize `properties` so they contribute proportionally more to the keyword result score.
+This example searches for objects containing the keyword `food`. The BM25 search is done in the `question` property and the `answer` property, with the `question` property's weighting boosted by 2, and returns the top 3.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -525,7 +500,7 @@ You can emphasize `properties` so they contribute proportionally more to the key
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -536,18 +511,12 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
 
-</details>
+## With a custom vector
 
-## Use a custom vector
+You can provide your own `vector` input to the hybrid query. In this scenario, Weaviate will use the query string for the `bm25` search and the input vector for the vector search.
 
-Use your own `vector` instead of the vectorized keyword search string for the vector search. Keyword search uses the query string.
+This example supplies the vector for "italian food", while using "food" as the query text. Note how the results are skewed towards Italian food.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -589,7 +558,7 @@ Use your own `vector` instead of the vectorized keyword search string for the ve
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -600,20 +569,14 @@ The output looks like this.
 
 </details>
 
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
+## Add a conditional (`where`) filter
 
-</details>
+You can add a conditional filter to any hybrid search query. The filter parses the outputs but does not impact the ranking.
 
-## Use a `where` filter
+These examples perform a hybrid search for `food` in any field. The search filters on objects that have the `round` property set to `Double Jeopardy!`. 
 
-The filter parses the results but does not change ranks.
+To filter with one of the legacy clients, use `with_where`. The new Python client uses the `Filter` class from `weaviate.classes`.
 
-The Python client v3 uses `with_where`. The Python client v4 uses the `Filter` class from `weaviate.classes`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -655,7 +618,7 @@ The Python client v3 uses `with_where`. The Python client v4 uses the `Filter` c
 <details>
   <summary>Example response</summary>
 
-The output looks like this.
+It should produce a response like the one below:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -663,15 +626,6 @@ The output looks like this.
   endMarker="# END Expected HybridWithFilter results"
   language="json"
 />
-
-</details>
-
-<details>
-  <summary>Additional information</summary>
-- For indexing concepts, see [link]. 
-- For in depth guides see, link. 
-- For tutorials see link. 
-- For reference pages see link
 
 </details>
 

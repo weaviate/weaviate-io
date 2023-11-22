@@ -1,5 +1,5 @@
 ---
-title: Generative search
+title: How to do generative search
 sidebar_position: 70
 image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
@@ -14,7 +14,9 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
+
+
 
 This page shows you how to perform `generative` searches.
 

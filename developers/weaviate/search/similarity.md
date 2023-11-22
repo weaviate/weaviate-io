@@ -1,5 +1,5 @@
 ---
-title: Similarity / Vector search
+title: How to do a vector search
 sidebar_position: 20
 image: og/docs/howto.jpg
 # tags: ['how to', 'similarity search']
@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
 
 This page shows you how to perform similarity-based searches with the `nearXXX` operators.
 

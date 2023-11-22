@@ -1,5 +1,5 @@
 ---
-title: Search basics
+title: How to do basic search
 sidebar_position: 10
 image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
-## Overview
+## IGNORE PAGE CONTENTS
 
 This page shows the core concepts on how to perform searches and retrieve objects.
 
