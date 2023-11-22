@@ -211,7 +211,7 @@ Use the `limit` argument to specify the maximum number of search results.
 
 ## Filter results with `autocut`
 
-The result scores for vector and keyword search cannot be compared directly. This cut points the filter chooses may not be intuitive.
+The result scores for vector and keyword search cannot be compared directly. Cut points may not be intuitive.
 
 The Python client v3 uses `autocut`. The Python client v4 uses `auto_limit`.
 
