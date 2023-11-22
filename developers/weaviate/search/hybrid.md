@@ -675,10 +675,6 @@ The output looks like this.
 
 </details>
 
-## Related pages
-
-- [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
-
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
