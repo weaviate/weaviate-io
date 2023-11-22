@@ -18,7 +18,7 @@ The Python client is available in two versions: `v3` and `v4`. The `v4` client (
 
 ### Requirements
 
-The `v3` client is only compatible with Weaviate `1.21.x` and lower (i.e `< 1.22`). This is due to its user of gRPC. If you are using an older version of Weaviate, please use the `v3` client.
+The `v3` client is not to be used with with the gRPC API that was introduced in Weaviate `1.22`. You can still use Weaviate `1.22` with the `v3` client, however it will not take advantage of improvements made with the gRPC API. For the gRPC API, use the `v4` client.
 
 ### Installation
 

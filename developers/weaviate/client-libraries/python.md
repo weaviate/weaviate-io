@@ -37,7 +37,9 @@ pip install --pre "weaviate-client==4.*"
 
 #### Weaviate version
 
-The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is because it requires gRPC and gRPC is not available in earlier versions. If you are using an older version of Weaviate, please use the `v3` client.
+The `v4` client is designed for use with Weaviate `1.22.0` and higher to take advantage of its gRPC API. If you are using an older version of Weaviate, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
+
+Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
 
 #### gRPC port
 
