@@ -13,7 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/pq-compression-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
 
 
-# Configure PQ Compression
+# Configure PQ index compression
 
 ## Overview
 
