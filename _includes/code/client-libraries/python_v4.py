@@ -64,8 +64,8 @@ client = weaviate.WeaviateClient(
 import weaviate
 
 client = weaviate.WeaviateClient(
-    weaviate.ConnectionParams.from_url("https://edu-demo.weaviate.network", 50051),
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate")
+    weaviate.ConnectionParams.from_url("http://localhost:8080", 50051),
+    auth_client_secret=weaviate.AuthApiKey("YOUR_API_KEY")
 )
 # END DirectInstantiationWithAPIKey
 """
