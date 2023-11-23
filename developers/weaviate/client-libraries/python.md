@@ -303,10 +303,10 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-for r in response.objects:
-    print(r.uuid)
-    print(r.metadata.creation_time_unix)
-    print(r.properties['points'], '\n')
+for o in response.objects:
+    print(o.uuid)
+    print(o.metadata.creation_time_unix)
+    print(o.properties['points'], '\n')
 ```
 
 This is the output.
