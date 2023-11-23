@@ -77,7 +77,7 @@ You can configure how the module will behave in each class through the [Weaviate
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
 | `model` | No | `embed-multilingual-v3.0` | The model to use. |
-| `truncate` | No | `RIGHT` | Sets Cohere API input truncation behavior. Options: `RIGHT` or `NONE`. |
+| `truncate` | No | `RIGHT` | Sets Cohere API input truncation behavior ([available options](#truncation)). |
 | `baseURL` | No | `https://api.cohere.ai` | Sets a proxy or other URL instead of the default URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
 
 #### Example
@@ -210,7 +210,7 @@ You can see a list of supported distance metrics [here](../../config-refs/distan
 
 If the input text contains too many tokens and is not truncated, the Cohere API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
-You can set the truncation option with the `truncate` parameter to `RIGHT` or `NONE`. Passing RIGHT will discard the right side of the input, the remaining input is exactly the maximum input token length for the model. [source](https://docs.cohere.com/reference/embed)
+You can set the truncation option with the `truncate` parameter to any of `"NONE"`, `"START"`, `"END"`, `"LEFT"`, `"RIGHT"`. Passing `RIGHT` or `END` will discard the right side of the input, and passing `LEFT` or `START` will discard the left side of the input. The remaining input is exactly the maximum input token length for the model. [source](https://docs.cohere.com/reference/embed)
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating (i.e., `NONE`) is that a large text will be partially vectorized without the user being made aware of the truncation.
