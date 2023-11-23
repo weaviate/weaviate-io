@@ -1,6 +1,6 @@
 ---
 title: text2vec-cohere
-sidebar_position: 10
+sidebar_position: 12
 image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
@@ -18,7 +18,7 @@ Key notes:
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `embed-multilingual-v3.0`.
-- Make sure to set the right [distance metric](#distance-metric) in your class configuration.
+- Set the appropriate [distance metric](#distance-metric) in your class configuration, depending on the model used.
 
 import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
 
@@ -82,7 +82,7 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-cohere`, distance metric to `dot`, model to `embed-multilingual-v3.0` and without input truncation by the Cohere API.
+The following example configures the `Document` class by setting the vectorizer to `text2vec-cohere`, distance metric to `cosine`, model to `embed-multilingual-v3.0` and without input truncation by the Cohere API.
 
 :::info
 Different Cohere models use different distance metrics. Make sure to set this accordingly. See the [distance metric](#distance-metric) section for more information.
@@ -97,7 +97,7 @@ Different Cohere models use different distance metrics. Make sure to set this ac
       // highlight-start
       "vectorizer": "text2vec-cohere",
       "vectorIndexConfig": {
-        "distance": "dot" // Set to "cosine" for English models; "dot" for multilingual models
+        "distance": "cosine"
       },
       "moduleConfig": {
         "text2vec-cohere": {
@@ -136,7 +136,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "description": "A class called document",
       "vectorizer": "text2vec-cohere",
       "vectorIndexConfig": {
-        "distance": "dot"  // Set to "cosine" for English models; "dot" for multilingual models
+        "distance": "cosine"
       },
       "moduleConfig": {
         "text2vec-cohere": {
@@ -182,11 +182,17 @@ You can supply parameters at query time by adding it to the HTTP header.
 
 You can use any of the following models with `text2vec-cohere`:
 
-- `embed-english-v3.0`
-- `embed-english-light-v3.0`
 - `embed-multilingual-v3.0` (Default)
 - `embed-multilingual-light-v3.0`
 - `embed-multilingual-v2.0`
+- `multilingual-22-12`
+- `embed-english-v3.0`
+- `embed-english-light-v3.0`
+- `embed-english-v2.0`
+- `embed-english-light-v2.0`
+- `large`
+- `medium`
+- `small`
 
 `text2vec-cohere` defaults to the `embed-multilingual-v3.0` embedding model unless specified otherwise.
 
@@ -196,9 +202,9 @@ You can use any of the following models with `text2vec-cohere`:
 
 ### Distance metric
 
-Cohere's multilingual models use dot product distances, while the English model uses cosine distances.
+Cohere's `embed-multilingual-v2.0` model uses dot product distances. With the `v3` models, you can use any distance metric (dot, cosine or Euclidean) ([source](https://txt.cohere.com/introducing-embed-v3/)).
 
-Make sure to set this accordingly in your Weaviate class configuration. You can see supported distance metrics [here](../../config-refs/distances.md).
+You can see a list of supported distance metrics [here](../../config-refs/distances.md).
 
 ### Truncation
 
