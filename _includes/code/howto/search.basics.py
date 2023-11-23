@@ -358,8 +358,8 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-for r in response.objects:
-    print(r.uuid)
+for o in response.objects:
+    print(o.uuid)
 # END GetObjectIdPython
 
 # Test results
