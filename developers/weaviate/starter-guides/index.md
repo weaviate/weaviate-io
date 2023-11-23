@@ -16,6 +16,6 @@ Before reading these guides, we recommend you read the [Quickstart Tutorial](../
 
 ## Guides
 
-- [Which Weaviate setup to use?](./which-weaviate.mdx): Find the right Weaviate setup for your needs.
+- [Which Weaviate setup to use?](./which-weaviate.md): Find the right Weaviate setup for your needs.
 - [Bring your own vectors](./custom-vectors.mdx): How to use your own vectors with Weaviate.
 - [Generative search (RAG)](./generative.md): Guide to performing generative search (also called retrieval augmented generation, or RAG) with Weaviate.
