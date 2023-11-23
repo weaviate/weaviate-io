@@ -72,6 +72,7 @@ services:
 ...
 ```
 
+
 ## Class configuration
 
 You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
@@ -167,6 +168,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 }
 ```
 
+
 ## Query-time parameters
 
 There are no query-time parameters to be provided. Note that the API credentials must be set as environment variables.
@@ -203,6 +205,7 @@ import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.examp
 <CodeThrottlingExample />
 
 </details>
+
 
 ## Usage example
 

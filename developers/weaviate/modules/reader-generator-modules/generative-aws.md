@@ -31,6 +31,7 @@ The generative module can perform RAG for:
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
+
 ## Weaviate instance configuration
 
 :::tip Not applicable to WCS
@@ -89,13 +90,6 @@ volumes:
   weaviate_data:
 ...
 ```
-
-
-
-
-
-
-
 
 
 ## Class configuration
@@ -273,6 +267,7 @@ import AWSGroupedResult from '/_includes/code/generative.aws.groupedresult.mdx';
   }
 }
 ```
+
 
 ## Additional information
 
