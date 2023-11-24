@@ -77,7 +77,7 @@ You can configure how the module will behave in each class through the [Weaviate
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
 | `model` | No | `embed-multilingual-v3.0` | The model to use. |
-| `truncate` | No | `RIGHT` | Sets Cohere API input truncation behavior ([available options](#truncation)). |
+| `truncate` | No | `END` | Sets Cohere API input truncation behavior (`NONE`, `START` or `END` - [read more](#truncation)). |
 | `baseURL` | No | `https://api.cohere.ai` | Sets a proxy or other URL instead of the default URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
 
 #### Example
@@ -102,7 +102,7 @@ Different Cohere models use different distance metrics. Make sure to set this ac
       "moduleConfig": {
         "text2vec-cohere": {
           "model": "embed-multilingual-v3.0", // Defaults to embed-multilingual-v3.0 if not set
-          "truncate": "RIGHT", // Defaults to RIGHT if not set
+          "truncate": "END", // Defaults to END if not set
           "baseURL": "https://proxy.yourcompanydomain.com"  // Optional. Can be overridden by one set in the HTTP header.
         }
       },
@@ -141,7 +141,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "moduleConfig": {
         "text2vec-cohere": {
           "model": "embed-multilingual-v3.0", // Defaults to embed-multilingual-v3.0 if not set
-          "truncate": "RIGHT", // Defaults to RIGHT if not set
+          "truncate": "END", // Defaults to END if not set
           // highlight-start
           "vectorizeClassName": false
           // highlight-end
@@ -180,19 +180,23 @@ You can supply parameters at query time by adding it to the HTTP header.
 
 ### Available models
 
-You can use any of the following models with `text2vec-cohere`:
+You can use any of the following models with `text2vec-cohere` ([source](https://docs.cohere.com/reference/embed)):
 
 - `embed-multilingual-v3.0` (Default)
 - `embed-multilingual-light-v3.0`
 - `embed-multilingual-v2.0`
-- `multilingual-22-12`
 - `embed-english-v3.0`
 - `embed-english-light-v3.0`
 - `embed-english-v2.0`
 - `embed-english-light-v2.0`
+
+:::info Deprecated models
+The following models are available, but deprecated:
+- `multilingual-22-12`
 - `large`
 - `medium`
 - `small`
+:::
 
 `text2vec-cohere` defaults to the `embed-multilingual-v3.0` embedding model unless specified otherwise.
 
@@ -210,7 +214,7 @@ You can see a list of supported distance metrics [here](../../config-refs/distan
 
 If the input text contains too many tokens and is not truncated, the Cohere API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
-You can set the truncation option with the `truncate` parameter to any of `"NONE"`, `"START"`, `"END"`, `"LEFT"`, `"RIGHT"`. Passing `RIGHT` or `END` will discard the right side of the input, and passing `LEFT` or `START` will discard the left side of the input. The remaining input is exactly the maximum input token length for the model. [source](https://docs.cohere.com/reference/embed)
+You can set the truncation option with the `truncate` parameter to any of `"NONE"`, `"START"`, `"END"`. Passing `END` will discard the right side of the input, and passing `START` will discard the left side of the input. The remaining input is exactly the maximum input token length for the model. ([source](https://docs.cohere.com/reference/embed))
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating (i.e., `NONE`) is that a large text will be partially vectorized without the user being made aware of the truncation.
