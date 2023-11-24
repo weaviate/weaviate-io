@@ -21,33 +21,31 @@ export const courseData = {
       "Differentiate BM25 and hybrid search techniques from vector search techniques",
     ]
   },
-  // "zero_to_mvp_advanced": {
-  //   title: "Zero to MVP: Advanced",
-  //   courseId: "1A",
-  //   body: "Expand on the `Getting to MVP` course for deeper dives into key topics like search theory, indexing and queries.",
-  //   buttonType: "TBD",
-  //   badgeType: "course",
-  //   isCourse: true,
-  //   units: [
-  //     "vectorizer_selection_1", "search_theory", "queries_2", "indexing", "schema_2"
-  //   ],
-  //   learningGoals: [
-  //     "TBC"
-  //     // "In-depth material on the inner workings of vector searches, as well as additional querying techniques and vectorization strategies."
-  //   ],
-  //   learningOutcomes: [
-  //     "TBC"
-  //     // "Outline how and why a vector search works, and contrast it to scalar searches",
-  //     // "Differentiate BM25 and hybrid search techniques from vector search techniques and apply suitable techniques for given goals",
-  //     // "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall",
-  //     // "Describe when cross-references between classes may be appropriate and demonstrate how to apply them",
-  //     // "Modify vectorization regimes to specify which properties are vectorized and in what order"
-  //   ]
-  // },
-  // "customization_with_modules": {
+  "building_with_weaviate": {
+    title: "Building with Weaviate",
+    courseId: "2",
+    body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
+    buttonType: "Click here",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "vectorizer_selection",
+      "which_search",
+      "indexing",
+    ],
+    learningGoals: [
+      "In-depth material and best practices to help you build with Weaviate, such as vectorization options, which searches to perform and how to work with your indexes."
+    ],
+    learningOutcomes: [
+      "Select a suitable vectorizer for your given goals and situation.",
+      "Understand practical differences between search methods and suggest a suitable technique for a given situation.",
+      "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall.",
+    ]
+  },
+  // "configuring_weaviate_instance": {
   //   title: "Customization using modules",
   //   courseId: "2",
-  //   body: "How to adapt Weaviate with custom vectorizer models and modules as well as tweaked vectorization behavior.",
+  //   body: "",
   //   buttonType: "Notify",
   //   badgeType: "course",
   //   isCourse: true,
@@ -62,7 +60,7 @@ export const courseData = {
   //   ]
   // },
   // "to_production": {
-  //   title: "MVP to Production",
+  //   title: "Getting to Production",
   //   courseId: "3",
   //   body: "Speed to production with authentication & authorization, backups, monitoring and replication.",
   //   buttonType: "Notify",
@@ -86,7 +84,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: false,
     units: [
-      "chunking", "vectorizer_selection_1", "beyond_text"
+      "chunking", "beyond_text"
     ]
   }
 };
