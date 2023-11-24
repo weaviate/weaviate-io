@@ -483,7 +483,7 @@ The output looks like this.
 
 ## Emphasize selected properties
 
-You can emphasize `properties` so they contribute proportionally more to the keyword result score.
+Emphasize `properties` so they contribute proportionally more to the keyword result score.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
