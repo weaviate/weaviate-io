@@ -24,7 +24,7 @@ func main() {
 		Question string `json:"Question"`
 		Answer   string `json:"Answer"`
 	}
-	err = json.NewDecoder(resp.Body).Decode(&data)
+err = json.NewDecoder(resp.Body).Decode(&data)
 	if err != nil {
 		log.Fatalf("read dataset: %v", err)
 	}
@@ -54,6 +54,7 @@ func main() {
 			{Name: "Answer", DataType: []string{"text"}},
 		},
 	}
+	
 	err = client.Schema().ClassCreator().
 		WithClass(class).Do(context.Background())
 	if err != nil {
@@ -72,10 +73,12 @@ func main() {
 			},
 		})
 	}
+	
 	batch, err := batcher.Do(context.Background())
 	if err != nil {
 		log.Fatalf("batcher: %v", err)
 	}
+	
 	for i, b := range batch {
 		if b.Result.Errors != nil {
 			for _, err := range b.Result.Errors.Error {
@@ -100,6 +103,7 @@ func main() {
 		"segments":      96,
 	}
 	class.VectorIndexConfig = cfg
+	
 	err = client.Schema().ClassUpdater().
 		WithClass(class).Do(context.Background())
 	if err != nil {
@@ -113,6 +117,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("get class to verify vec idx cfg changes: %v", err)
 	}
+	
 	cfg = class.VectorIndexConfig.(map[string]interface{})
 	log.Printf("pq config: %v", cfg["pq"])
 	// END GetSchema
