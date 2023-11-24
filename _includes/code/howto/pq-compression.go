@@ -14,7 +14,7 @@ import (
 const url = "https://raw.githubusercontent.com/weaviate-tutorials/intro-workshop/main/data/jeopardy_1k.json"
 
 func main() {
-	// START Example 1
+	// START DownloadData
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatalf("get dataset: %v", err)
@@ -30,9 +30,9 @@ func main() {
 	}
 
 	log.Printf("data: %+v", data)
-	// END Example 1
+	// END DownloadData
 
-	// START Example 2
+	// START ConnectCode
 	client, err := weaviate.NewClient(weaviate.Config{
 		Scheme: "http",
 		Host:   "localhost:8080",
@@ -43,9 +43,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("init client: %v", err)
 	}
-	// END Example 2
+	// END ConnectCode
 
-	// START Example 3
+	// START InitialSchema
 	class := &models.Class{
 		Class:      "Question",
 		Vectorizer: "text2vec-openai",
@@ -59,9 +59,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("create class: %v", err)
 	}
-	// END Example 3
+	// END InitialSchema
 
-	// START Example 4
+	// START LoadData
 	batcher := client.Batch().ObjectsBatcher()
 	for _, d := range data {
 		batcher.WithObjects(&models.Object{
@@ -84,9 +84,9 @@ func main() {
 			log.Fatalf("object@idx %d had batch errors above", i)
 		}
 	}
-	// END Example 4
+	// END LoadData
 
-	// START Example 5
+	// START UpdateSchema
 	class, err = client.Schema().ClassGetter().
 		WithClassName("Question").Do(context.Background())
 	if err != nil {
@@ -105,9 +105,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("update class to use pq: %v", err)
 	}
-	// END Example 5
+	// END UpdateSchema
 
-	// START Example 6
+	// START GetSchema
 	class, err = client.Schema().ClassGetter().
 		WithClassName("Question").Do(context.Background())
 	if err != nil {
@@ -115,5 +115,5 @@ func main() {
 	}
 	cfg = class.VectorIndexConfig.(map[string]interface{})
 	log.Printf("pq config: %v", cfg["pq"])
-	// END Example 6
+	// END GetSchema
 }

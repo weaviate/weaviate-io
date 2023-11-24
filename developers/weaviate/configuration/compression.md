@@ -12,6 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/pq-compression.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/pq-compression-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/pq-compression.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/pq-compression.go';
 
 # Configure PQ index compression
 
@@ -61,6 +62,15 @@ This How-to page uses a dataset of 1000 Jeopardy questions. Download the data.
        endMarker="// END FetchData"
        language="ts"
      />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DownloadData"
+      endMarker="// END DownloadData"
+      language="go"
+    />
   </TabItem>
   
   <TabItem value="java" label="Java">
@@ -118,7 +128,16 @@ After you install the client, connect to your instance.
        language="ts"
      />
   </TabItem>
-  
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ConnectCode"
+      endMarker="// END ConnectCode"
+      language="go"
+    />
+  </TabItem>
+    
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -161,6 +180,15 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
        endMarker="// END InitClassDef"
        language="ts"
      />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START InitialSchema"
+      endMarker="// END InitialSchema"
+      language="go"
+    />
   </TabItem>
   
   <TabItem value="java" label="Java">
@@ -211,6 +239,15 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
        endMarker="// END LoadData"
        language="ts"
      />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START LoadData"
+      endMarker="// END LoadData"
+      language="go"
+    />
   </TabItem>
   
   <TabItem value="java" label="Java">
@@ -266,6 +303,15 @@ To enable PQ, update your schema as shown below.
        endMarker="// END UpdateSchema"
        language="ts"
      />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateSchema"
+      endMarker="// END UpdateSchema"
+      language="go"
+    />
   </TabItem>
   
   <TabItem value="java" label="Java">
@@ -346,6 +392,15 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       startMarker="// START GetSchema"
       endMarker="// END GetSchema"
       language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START GetSchema"
+      endMarker="// END GetSchema"
+      language="go"
     />
   </TabItem>
   
