@@ -1,6 +1,7 @@
 package io.weaviate.docs;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import io.weaviate.client.Config;
@@ -139,20 +140,16 @@ class PqCompressionTest {
       .vectorizer("text2vec-openai")
       .build();
 
-    Result<Boolean> result = client.schema().classCreator()
+    Result<Boolean> createResult = client.schema().classCreator()
       .withClass(jeopardyClass)
       .run();
+    // END InitialSchema
 
-    assertThat(result).isNotNull()
-      // END InitialSchema
-      .withFailMessage(() -> result.getError().toString())
-      // START InitialSchema
+    assertThat(createResult).isNotNull()
+      .withFailMessage(() -> createResult.getError().toString())
       .returns(false, Result::hasErrors)
-      // END InitialSchema
       .withFailMessage(null)
-      // START InitialSchema
       .returns(true, Result::getResult);
-      // END InitialSchema
   }
 
   private void populate(List<Jeopardy> jeopardyList) {
@@ -198,43 +195,42 @@ class PqCompressionTest {
         .build())
       .build();
 
-    Result<Boolean> result = client.schema().classUpdater()
+    Result<Boolean> updateResult = client.schema().classUpdater()
       .withClass(updatedJeopardyClass)
       .run();
+    // END UpdateSchema
 
-    assertThat(result).isNotNull()
-      // END UpdateSchema
-      .withFailMessage(() -> result.getError().toString())
-      // START UpdateSchema
+    assertThat(updateResult).isNotNull()
+      .withFailMessage(() -> updateResult.getError().toString())
       .returns(false, Result::hasErrors)
-      // END UpdateSchema
       .withFailMessage(null)
-      // START UpdateSchema
       .returns(true, Result::getResult);
-      // END UpdateSchema
   }
 
   private void verifyClassUpdated() {
     // START GetSchema
-    Result<WeaviateClass> classResult = client.schema().classGetter()
+    Result<WeaviateClass> getResult = client.schema().classGetter()
       .withClassName("Question")
       .run();
 
-    assertThat(classResult).isNotNull()
-      // END GetSchema
-      .withFailMessage(() -> classResult.getError().toString())
-      // START GetSchema
+    // END GetSchema
+
+    assertThat(getResult).isNotNull()
+      .withFailMessage(() -> getResult.getError().toString())
       .returns(false, Result::hasErrors)
-      // END GetSchema
       .withFailMessage(null)
-      // START GetSchema
       .extracting(Result::getResult).isNotNull()
       .extracting(WeaviateClass::getVectorIndexConfig).isNotNull()
       .extracting(VectorIndexConfig::getPq).isNotNull()
       .returns(true, PQConfig::getEnabled)
       .returns(96, PQConfig::getSegments)
       .returns(100_000, PQConfig::getTrainingLimit);
-      // END GetSchema
+
+    // START GetSchema
+    PQConfig pqConfig = getResult.getResult().getVectorIndexConfig().getPq();
+    String json = new GsonBuilder().setPrettyPrinting().create().toJson(pqConfig);
+    System.out.println(json);
+    // END GetSchema
   }
 
   @Test
