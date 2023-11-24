@@ -190,19 +190,23 @@ const config = {
                 items: [
                     {
                         // type: 'dropdown',
-                        label: 'Products',
+                        label: 'Weaviate Cloud Services',
                         position: 'right',
                         to: '/products',
-                        // items: [
-                        //     {
-                        //         label: 'Pricing',
-                        //         to: '/pricing',
-                        //     },
-                        //     {
-                        //         label: 'Weaviate Cloud console',
-                        //         href: 'https://console.weaviate.cloud',
-                        //     },
-                        // ],
+                        items: [
+                           {
+                           label: 'Products',
+                               to: '/products',
+                            },
+                            {
+                                label: 'Pricing',
+                                    to: '/pricing',
+                                 },
+                           {
+                                label: 'Security',
+                                href: '/security',
+                           },
+                         ],
                     },
                     {
                         type: 'dropdown',

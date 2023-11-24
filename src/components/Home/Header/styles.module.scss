@@ -1,5 +1,7 @@
-header {
-  background: #d9d9d9;
+.headerHome {
+  background: #f1f2eb;
+  background-image: url('/img/site/home-page-bg-pattern.svg');
+  background-size: cover;
 }
 .logoSection {
   display: contents;
@@ -72,7 +74,7 @@ header {
 
 .bottomBar {
   height: 12rem;
-  margin: 130px 0px 0px;
+
   display: flex;
   place-content: center;
   text-align: center;
@@ -202,7 +204,7 @@ header {
   margin: auto;
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/weaviate-shadowed.png');
+  background-image: url('../../../../static/img/site/W-logo-3d-shadow.png');
 }
 
 .buttons {
@@ -344,24 +346,23 @@ header {
 }
 
 .codeBlock {
-  border-radius: 1.25rem;
   background: #131144;
   width: 64.875rem;
   height: 32.0625rem;
-  flex-shrink: 0;
   margin: 4rem;
   border-radius: 1.25rem;
   border: 1px solid #0073b4;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
 }
 
 .lineBar {
-  width: 64.2rem;
+  width: 28rem;
   height: 0.0625rem;
-  background: #0073b4;
+  background: rgb(0, 115, 180);
   position: relative;
-  top: 40px;
-  margin: auto;
+  top: 32px;
 }
 
 .typeButton {
@@ -465,9 +466,85 @@ header {
 
   background-size: contain;
   background-repeat: no-repeat;
-
   width: 3rem;
   height: 3rem;
-  margin: 14px 10px;
   position: absolute;
+  transform: translate(-185px, 15px);
+}
+
+.codeBlockContent {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  padding: 50px 63px;
+  align-content: flex-end;
+  gap: 50px;
+}
+.codeBlockContentLeft {
+  flex: 1 1 0%;
+  text-align: left;
+  color: white;
+
+  h2 {
+    color: #3ccbf4;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 2.35994rem */
+    margin: 40px 0px;
+  }
+  p {
+    margin: 40px 0px;
+  }
+
+  .subTitle {
+    color: #fff;
+    margin: 10px 0px;
+    font-family: Plus Jakarta Sans;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 2.4rem */
+  }
+}
+
+.codeBlockContentRight {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .codeSnip {
+    display: flex;
+    border-radius: 0.9375rem;
+    border: 1px solid #0073b4;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    @media screen and (max-width: 500px) {
+      height: 100%;
+    }
+  }
+
+  pre {
+    width: 100% !important;
+    height: 426px;
+    font-size: 14px !important;
+    border-radius: 0.93325rem !important;
+    border: 0.747px solid #0073b4 !important;
+    background: #262262 !important;
+    overflow-y: hidden !important;
+    box-shadow: none !important;
+
+    code {
+      top: 20px;
+      position: relative;
+    }
+  }
 }

@@ -76,7 +76,6 @@ export default function ContactUsForm() {
           onSubmit={handleSubmit}
         >
           <div className={styles.intro}>
-            <div className={styles.hybridPng} />
             <h2 id="contact-sales">
               Get Started with Weaviate Bring Your Own Cloud
             </h2>

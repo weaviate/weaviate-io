@@ -1,0 +1,349 @@
+.valuesSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 90px;
+  justify-content: center;
+  align-items: center;
+
+  .valuesBox {
+    width: 20.1875rem;
+    height: 24rem;
+    border-radius: 0.9375rem;
+    border: 1px solid #130c49;
+    background: #fff;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    padding: 45px 30px 20px 30px;
+
+    .valuesHeader {
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+      max-height: 40px;
+      margin-bottom: 40px;
+
+      .valuesIcon1 {
+        background-image: url('/img/site/be-kind-icon.svg');
+        width: 3.6rem;
+        height: 3.2rem;
+        background-size: cover;
+      }
+
+      .valuesIcon2 {
+        background-image: url('/img/site/work-together-icon.svg');
+        width: 5rem;
+        height: 3rem;
+        background-size: cover;
+      }
+      .valuesIcon3 {
+        background-image: url('/img/site/excellence-icon.svg');
+        width: 5rem;
+        height: 4rem;
+        background-size: cover;
+      }
+      .valuesIcon4 {
+        background-image: url('/img/site/transparency-icon.svg');
+        width: 5.5rem;
+        height: 4rem;
+        background-size: cover;
+      }
+      .valuesIcon5 {
+        background-image: url('/img/site/trust-icon.svg');
+        width: 5rem;
+        height: 3.6rem;
+        background-size: cover;
+      }
+    }
+
+    p {
+      color: #130c49;
+      font-size: 1rem;
+    }
+
+    h3 {
+      color: #130c49;
+      font-size: 2.25rem;
+      font-weight: 700;
+    }
+
+    h4 {
+      color: #130c49;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0px;
+    }
+  }
+
+  .clearBox {
+    padding: 60px 20px;
+    border: none;
+    background-color: #ededed;
+    box-shadow: none;
+  }
+}
+
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #ffffff;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+    outline: 1px solid #130c49;
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    color: #ffffff;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 43px;
+    font-style: normal;
+
+    line-height: 120%; /* 4.05rem */
+
+    font-weight: bold;
+    line-height: 69.6px;
+    margin-bottom: 1rem;
+  }
+
+  .headerBox {
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+
+    p {
+      color: #ffffff;
+    }
+  }
+
+  .teamFilter {
+    display: flex;
+    gap: 40px;
+    margin: 10px 0px 10px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    width: 100%;
+
+    a {
+      color: #130c49;
+      font-style: normal;
+      font-weight: 200;
+      border: none;
+      background: whitesmoke;
+      transition: all 0.2s ease-out;
+    }
+
+    a:hover {
+      font-weight: 500;
+    }
+  }
+
+  hr {
+    background: #130c49;
+    width: 65rem;
+    height: 0.0625rem;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+.peopleContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.person {
+  text-align: center;
+  width: 223px;
+  height: 325px;
+  padding: 20px;
+  border-radius: 0.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  margin: 10px 10px;
+
+  h3 {
+    color: #130c49;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  span {
+    color: #130c49;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+  img {
+    width: 80%;
+    border-radius: 50%;
+  }
+
+  .personLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+
+    svg {
+      margin: 7px 0px 0px 0px;
+      height: 1.3rem;
+
+      path {
+        fill: #fff;
+      }
+    }
+
+    i {
+      margin: 17px 0px 0px 0px;
+    }
+    a {
+      background-color: #130c49;
+      width: 35px;
+      border-radius: 25px;
+      height: 35px;
+      color: white;
+      margin: 0px 5px;
+    }
+  }
+}
+
+.teamBG {
+  background-color: #f5f5f5;
+}
+
+.valuesBG {
+  background-color: #ededed;
+}
+
+.buttonOutline {
+  border-radius: 0.3125rem;
+  border: 1px solid #130c49;
+  background: #f4f4f4;
+  padding: 9px;
+  color: #130c49;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%;
+  transition: all 1s ease-out;
+}
+.buttonOutline:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 0px 10px;
+}
+
+.applied-research {
+  display: block;
+}
+
+.teamFilter::-webkit-scrollbar-thumb:horizontal {
+  background: #ebe8e8;
+  border-radius: 10px;
+}
+
+.teamFilter::-webkit-scrollbar {
+  height: 14px;
+}
+
+.teamFilter::-webkit-scrollbar-thumb {
+  margin-bottom: 10px;
+  width: 85px;
+}
+
+.teamFilter::-webkit-scrollbar-thumb:hover {
+  background: #bab7b7;
+}
+
+.teamFilter::-webkit-scrollbar-track {
+  border-radius: 8px;
+}
+
+.linkActive {
+  font-weight: 500 !important;
+}
+
+.headerSecurity {
+  background: #130c49;
+  background-image: url('/img/site/home-page-bg-pattern.svg');
+  background-size: cover;
+}

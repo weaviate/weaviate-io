@@ -7,43 +7,20 @@ import Typewriter from './typingTitle';
 import CodeSnippet from './CodeSnippet';
 
 export default function HomepageHeader() {
-  // State variable to toggle the visibility of the dropdown
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // State variable to keep track of the selected tab
-  const [selectedTab, setSelectedTab] = useState(0);
-
-  // State variable to keep track of the text in the typeButton
-  const [typeButtonText, setTypeButtonText] = useState('Hybrid Search');
-
-  // Toggle dropdown visibility when the button is clicked
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  // Function to handle tab selection
-  const handleTabSelect = (index, buttonText) => {
-    setSelectedTab(index);
-    setTypeButtonText(buttonText);
-    setIsDropdownOpen(false); // Close the dropdown
-  };
-
-  const codeExample = `{
-    Get {
-      Publication(
-        nearText: {
-          concepts: ["fashion"]
-           limit: 1
-     ) {
-        name
-        _additional {
-           certainty
-           distance
-            vector
-        }
-     }
-   }
-  }
+  const codeExample = `collection = (    
+    client.collections    
+    .get("Article")
+ )
+ 
+ # Find relevant articles
+ # with hybrid search
+ response = (    
+      collection.query    
+      .hybrid(        
+          query="Generative AI",        
+          limit=2  
+        )
+ )
 `;
 
   const codeExample2 = `{
@@ -87,7 +64,7 @@ export default function HomepageHeader() {
 }`;
 
   return (
-    <header>
+    <header className={styles.headerHome}>
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.img} />
@@ -118,60 +95,24 @@ export default function HomepageHeader() {
 
         <div className={styles.grid}>
           <div className={styles.codeBlock}>
-            <div className={styles.codeBlockTitle} />
-            <div className={styles.lineBar} />
-
-            <button className={styles.typeButton} onClick={toggleDropdown}>
-              <span>{typeButtonText}</span>
-            </button>
-
-            {/* Dropdown content */}
-            {isDropdownOpen && (
-              <div
-                className={`${styles.dropdownContent} ${
-                  isDropdownOpen ? styles.dropdownContentOpen : ''
-                }`}
-              >
-                <ul>
-                  {/* Create links for each tab */}
-                  <li>
-                    <a onClick={() => handleTabSelect(0, 'Hybrid Search')}>
-                      <span>Hybrid Search</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleTabSelect(1, 'Generative Search')}>
-                      <span>Generative Search</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a onClick={() => handleTabSelect(2, 'Vector Search')}>
-                      <span>Vector Search</span>
-                    </a>
-                  </li>
-                </ul>
+            <div className={styles.codeBlockContent}>
+              <div className={styles.codeBlockContentLeft}>
+                <h2>HYBRID SEARCH</h2>
+                <p className={styles.subTitle}>
+                  Unlock better insights for your customers
+                </p>
+                <p>
+                  Push the limits of search across unstructured data. Combine
+                  the best of keyword and vector search with ML models to
+                  deliver fast, relevant, contextual results to your users.
+                </p>
               </div>
-            )}
 
-            <div className={styles.tabContent}>
-              {selectedTab === 0 && (
-                <div>
-                  {' '}
-                  <CodeSnippet code={codeExample} />
-                </div>
-              )}
-              {selectedTab === 1 && (
-                <div>
-                  {' '}
-                  <CodeSnippet code={codeExample2} />
-                </div>
-              )}
-              {selectedTab === 2 && (
-                <div>
-                  {' '}
-                  <CodeSnippet code={codeExample2} />
-                </div>
-              )}
+              <div className={styles.codeBlockContentRight}>
+                <div className={styles.codeBlockTitle} />
+                <div className={styles.lineBar} />
+                <CodeSnippet code={codeExample} />
+              </div>
             </div>
           </div>
         </div>
