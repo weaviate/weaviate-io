@@ -1,29 +1,30 @@
 # Bring your own vectors - Python complete sample
 import weaviate
-import weaviate.classes as wvc
-import os
 import json
 
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
-    }
 )
 
 # ===== Create schema =====
+import weaviate.classes as wvc
+
 # Create the collection. Weaviate's autoschema feature will infer properties when importing.
 questions = client.collections.create(
     "Question",
-    vectorizer_config=wvc.Configure.Vectorizer.none()
+    vectorizer_config=wvc.Configure.Vectorizer.none(),
+    
+    vector_index_config=wvc.Configure.vector_index(
+        distance_metric=wvc.VectorDistance.COSINE # select prefered distance metric
+    ),
 )
 
 # ===== Import data =====
 import requests
 
 fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
-url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}'
+url = f"https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}"
 resp = requests.get(url)
 data = json.loads(resp.text)  # Load data
 
