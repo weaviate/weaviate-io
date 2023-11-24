@@ -8,21 +8,33 @@ image: og/docs/modules/text2vec-aws.jpg
 
 ## Overview
 
+:::info Available from version `v1.22.5`
+:::
+
 The `text2vec-aws` module enables Weaviate to obtain vectors using [AWS Bedrock](https://aws.amazon.com/bedrock/).
 
 Key notes:
 
-- **Your AWS access key credentials must be set as environment variables**.
-- **You must set an available & supported model**.
+- As it uses a third-party API, you will need to provide AWS API credentials.
+- You must set an available & supported model.
     - There is no default model set for this module.
     - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) to the desired modules from AWS Bedrock so it becomes available in your account.
     - Then, set an available model in your class configuration.
     - Not all AWS Bedrock models are supported. See the [Supported models](#supported-models) section for more information.
-- **Its usage may incur costs**.
+- Its usage may incur costs.
     - Please check the AWS Bedrock [pricing page](https://aws.amazon.com/bedrock/pricing/), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - Set the appropriate [distance metric](#distance-metric) in your class configuration, depending on the model used.
+
+import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
+
+<ModuleParameterPrecedenceNote />
+
+### API Authentication
+
+You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to use the API, including an AWS access key and a corresponding AWS secret access key. You can [set them as environment variables](#parameters), or [provide them at query time](#query-time-parameters).
+
 
 ## Weaviate instance configuration
 
@@ -38,12 +50,8 @@ To use `text2vec-aws`, you must enable it in your Docker Compose file (`docker-c
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-aws` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-aws` to make it the default for all classes.
-- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (One required): Your AWS access key.
-- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (One required): Your AWS secret access key.
-
-:::info Supported authentication methods
-Currently, only [access key based credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) are supported.
-:::
+- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (Optional): Your AWS access key. You can also provide the key at query time.
+- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (Optional): Your AWS secret access key. You can also provide the key at query time.
 
 #### Example
 
@@ -65,8 +73,8 @@ services:
       # highlight-start
       ENABLE_MODULES: text2vec-aws
       DEFAULT_VECTORIZER_MODULE: text2vec-aws
-      AWS_ACCESS_KEY: sk-foobar  # MUST set this parameter or AWS_ACCESS_KEY_ID.
-      AWS_SECRET_KEY: sk-foobar  # MUST set this parameter or AWS_SECRET_ACCESS_KEY.
+      AWS_ACCESS_KEY: sk-foobar  # Optional. Can be set at query time.
+      AWS_SECRET_KEY: sk-foobar  # Optional. Can be set at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -171,7 +179,13 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 ## Query-time parameters
 
-There are no query-time parameters to be provided. Note that the API credentials must be set as environment variables.
+You can supply parameters at query time by adding it to the HTTP header.
+
+| HTTP Header | Value | Purpose | Note |
+| :- | :- | :- | :- |
+| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. | |
+| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key | |
+
 
 ## Additional information
 

@@ -8,10 +8,16 @@ image: og/docs/modules/generative-aws.jpg
 
 ## In short
 
+:::info Available from version `v1.22.5`
+:::
+
 * The Generative AWS (`generative-aws`) module performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-* Added in Weaviate `v1.22.5`
+
+### API Authentication
+
+You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to use the API, including an AWS access key and a corresponding AWS secret access key. You can [set them as environment variables](#parameters), or [provide them at query time](#query-time-parameters).
 
 ## Introduction
 
@@ -45,12 +51,8 @@ To use `generative-aws`, you must enable it in your Docker Compose file (`docker
 #### Parameters
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `generative-aws` to enable the module.
-- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (One required): Your AWS access key.
-- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (One required): Your AWS secret access key.
-
-:::info Supported authentication methods
-Currently, only [access key based credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) are supported.
-:::
+- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (Optional): Your AWS access key. You can also provide the key at query time.
+- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (Optional): Your AWS secret access key. You can also provide the key at query time.
 
 #### Example
 
@@ -81,8 +83,8 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: text2vec-aws
       # highlight-start
-      AWS_ACCESS_KEY: sk-foobar  # MUST set this parameter or AWS_ACCESS_KEY_ID.
-      AWS_SECRET_KEY: sk-foobar  # MUST set this parameter or AWS_SECRET_ACCESS_KEY.
+      AWS_ACCESS_KEY: sk-foobar  # Optional. Can be set at query time.
+      AWS_SECRET_KEY: sk-foobar  # Optional. Can be set at query time.
       ENABLE_MODULES: 'text2vec-aws,generative-aws'
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
@@ -139,6 +141,17 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ## How to use
 
+### Query-time parameters
+
+You can supply parameters at query time by adding it to the HTTP header.
+
+| HTTP Header | Value | Purpose | Note |
+| :- | :- | :- | :- |
+| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. | |
+| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key | |
+
+### Queries
+
 This module extends the  `_additional {...}` property with a `generate` operator.
 
 `generate` takes the following arguments:
@@ -148,7 +161,7 @@ This module extends the  `_additional {...}` property with a `generate` operator
 | `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
 | `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
 
-### Example of properties in the prompt
+#### Example of properties in the prompt
 
 When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
 
@@ -190,7 +203,7 @@ You can add both `title` and `summary` to the prompt by enclosing them in curly 
 }
 ```
 
-### Example - single result
+#### Example - single result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) to find articles about "Italian food"
@@ -201,7 +214,7 @@ import AWSSingleResult from '/_includes/code/generative.aws.singleresult.mdx';
 
 <AWSSingleResult/>
 
-### Example response - single result
+#### Example response - single result
 
 ```json
 {
@@ -224,7 +237,7 @@ import AWSSingleResult from '/_includes/code/generative.aws.singleresult.mdx';
 }
 ```
 
-### Example - grouped result
+#### Example - grouped result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) to find publications about finance,
@@ -234,7 +247,7 @@ import AWSGroupedResult from '/_includes/code/generative.aws.groupedresult.mdx';
 
 <AWSGroupedResult />
 
-### Example response - grouped result
+#### Example response - grouped result
 
 ```json
 {
