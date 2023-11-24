@@ -1,5 +1,5 @@
 ---
-title: How to do hybrid search
+title: Do a hybrid search
 sidebar_position: 40
 image: og/docs/howto.jpg
 # tags: ['how to', 'hybrid search']
@@ -95,8 +95,6 @@ The output looks like this.
 ## Explain search results
 
 Use the object sub-properties and metadata to explain search results. 
-
-The Python client v3 uses the `_additional` property to specify `score` and `explainScore`. The Python client v4 returns the information as metadata.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -212,8 +210,6 @@ Use the `limit` argument to specify the maximum number of search results.
 ## Filter results with `autocut`
 
 The result scores for vector and keyword search cannot be compared directly. Cut points may not be intuitive.
-
-The Python client v3 uses `autocut`. The Python client v4 uses `auto_limit`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -483,7 +479,7 @@ The output looks like this.
 
 ## Emphasize selected properties
 
-You can emphasize `properties` so they contribute proportionally more to the keyword result score.
+Emphasize `properties` so they contribute proportionally more to the keyword result score.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -612,8 +608,6 @@ The output looks like this.
 ## Use a `where` filter
 
 The filter parses the results but does not change ranks.
-
-The Python client v3 uses `with_where`. The Python client v4 uses the `Filter` class from `weaviate.classes`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">

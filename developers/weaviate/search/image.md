@@ -1,5 +1,5 @@
 ---
-title: How to search with images
+title: Do an image search
 sidebar_position: 25
 image: og/docs/howto.jpg
 # tags: ['how to', 'image']

@@ -1,5 +1,5 @@
 ---
-title: How to aggregate data
+title: Aggregate data
 sidebar_position: 85
 image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']

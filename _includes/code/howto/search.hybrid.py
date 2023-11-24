@@ -112,6 +112,10 @@ gql_query = """
 # =======================================
 
 # HybridWithScorePython
+# The Python client v3 uses the `_additional` property to specify
+# `score` and `explainScore`. The Python client v4 returns the
+# information as metadata.
+
 # Search requires a client object
 # jeopardy = client.collections.get("JeopardyQuestion")
 
@@ -297,6 +301,9 @@ gql_query = """
 # =====================================
 
 # START autocut Python
+# The Python client v3 uses `autocut`. The Python client v4 uses
+# `auto_limit`.
+
 # Search requires a client object
 # jeopardy = client.collections.get("JeopardyQuestion")
 
@@ -771,6 +778,9 @@ gql_query = """
 # ===================================
 
 # HybridWithFilterPython
+# The Python client v3 uses `with_where`. The Python client v4 uses
+# the `Filter` class from `weaviate.classes`.
+
 # Search requires a client object
 # jeopardy = client.collections.get("JeopardyQuestion")
 
@@ -787,8 +797,8 @@ response = jeopardy.query.hybrid(
 )
 
 # Print the results
-#for o in response.objects:
-#    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithFilterPython
 
 # Tests

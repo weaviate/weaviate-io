@@ -1,5 +1,5 @@
 ---
-title: How to do basic search
+title: Do a basic search
 sidebar_position: 10
 image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']

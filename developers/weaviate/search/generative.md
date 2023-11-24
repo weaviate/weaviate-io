@@ -1,5 +1,5 @@
 ---
-title: How to do generative search
+title: Do a generative search
 sidebar_position: 70
 image: og/docs/howto.jpg
 # tags: ['how to', 'generative']

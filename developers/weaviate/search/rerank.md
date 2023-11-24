@@ -1,5 +1,5 @@
 ---
-title: How to rank results
+title: Rank search results
 sidebar_position: 75
 image: og/docs/howto.jpg
 # tags: ['how to', 'rank']
