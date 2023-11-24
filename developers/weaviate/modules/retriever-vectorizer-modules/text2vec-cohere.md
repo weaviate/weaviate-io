@@ -214,7 +214,7 @@ You can see a list of supported distance metrics [here](../../config-refs/distan
 
 If the input text contains too many tokens and is not truncated, the Cohere API will throw an error. The Cohere API can be set to automatically truncate your input text.
 
-You can set the truncation option with the `truncate` parameter to any of `"NONE"`, `"START"`, `"END"`. Passing `END` will discard the right side of the input, and passing `START` will discard the left side of the input. The remaining input is exactly the maximum input token length for the model. ([source](https://docs.cohere.com/reference/embed))
+You can set the truncation option with the `truncate` parameter to any of `"NONE"`, `"START"`, `"END"`. Passing `END` will discard the right side of the input, and passing `START` will discard the left side of the input. The remaining input is exactly the maximum input token length for the model. Cohere's default behavior is to truncate at the `END` if it is not set. ([source](https://docs.cohere.com/reference/embed))
 
 * The _upside_ of truncating is that a batch import always succeeds.
 * The _downside_ of truncating (i.e., `NONE`) is that a large text will be partially vectorized without the user being made aware of the truncation.
