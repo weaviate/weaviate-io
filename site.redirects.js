@@ -343,7 +343,13 @@ const siteRedirects = {
             to: '/developers/weaviate/installation',
             from: '/developers/weaviate/current/getting-started/installation',
         },
-        // Pricing to Products redirects
+        
+        {
+         to: '/developers/weaviate/configuration/compression',
+         from: '/developers/weaviate/configuration/pq-compression',
+        },
+
+     // Pricing to Products redirects
         {
             to: "/products",
             from: "/pricing",
