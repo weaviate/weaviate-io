@@ -29,8 +29,8 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "vectorizer_selection",
       "which_search",
+      "vectorizer_selection",
       "indexing",
     ],
     learningGoals: [

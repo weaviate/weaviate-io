@@ -1,0 +1,44 @@
+---
+title: Review of search types
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+
+Here we have a brief overview of the three search types.
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search
+
+A vector search finds objects with the most similar vectors to the query vector.
+
+Because each vector is a numerical representation of the underlying object, a vector similarity can be thought of as a similarity in meaning. Therefore a vector search is also called "semantic search".
+
+:::danger TODO
+Example syntax
+:::
+
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Keyword search
+
+A keyword search finds objects whose keywords (i.e. tokens) are the most relevant to the keywords (i.e. tokens) of the query. The relevance is determined by the [BM25F algorithm](https://en.wikipedia.org/wiki/Okapi_BM25).
+
+Intuitively, the BM25F algorithm determines "relevance" by considering how often a keyword appears in each field of the object, relative to how commonly the keyword appears in the entire dataset.
+
+:::danger TODO
+Example syntax
+:::
+
+
+## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Hybrid search
+
+A hybrid search combines the results of a vector search and a keyword search. This is done by performing both searches, and them combining the two search results with a "fusion" algorithm.
+
+This can be done by a combination of rankings, or by a combination of individual scores.
+
+:::danger TODO
+Example syntax
+:::
+
