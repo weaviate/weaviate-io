@@ -11,14 +11,17 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
-
 import ClassToCollection from '/_includes/class-to-collection-transition-note.mdx' ;
+
+:::note
 
 <ClassToCollection /> 
 
+:::
+
 By default, Weaviate returns up to 10,000 objects when you search. To limit the search results, use the `limit` filter. 
 
-## `limit` 
+## `limit` results
 
 To restrict the number of object in the result set, use `limit`.
 
@@ -85,10 +88,10 @@ The results are like this.
 
 `limit` returns the first `n` objects. Sometimes you want to see later results. To return a limited number of results from the middle of your result set, define an `offset` and then `limit` the result set to the objects following your offset. For example, if your offset is 5 and your limit is 3, the query returns objects 6, 7, and 8 in your result set.
 
-Be aware that this operation can be expensive. Although you only see a small set of results, Weaviate must fetch `offset` + `limit` results.
+This operation can be expensive. Although you only see a small set of results, Weaviate must fetch `offset` + `limit` results.
 
 :::tip For exhaustive retrieval, use `after` instead.
-To list and retrieve all of the objects from a `class`, use the cursor API with the `after` operator. For more information, read [this guide](../manage-data/read-all-objects.mdx).
+To list and retrieve all of the objects from a `collection`, use the cursor API with the `after` operator. For more information, read [this guide](../manage-data/read-all-objects.mdx).
 :::
 
 ### Paginate example

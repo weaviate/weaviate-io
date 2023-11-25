@@ -1,5 +1,5 @@
 ---
-title: Basic search examples
+title: Search basics
 sidebar_position: 10
 image: og/docs/howto.jpg
 # tags: ['how to', 'semantic search']
@@ -11,6 +11,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+
+## Overview
 
 This page shows the core concepts on how to perform searches and retrieve objects.
 
@@ -80,16 +82,6 @@ It should produce a response like the one below:
   endMarker="// END BasicGet Expected Results"
   language="json"
 />
-
-</details>
-
-<details>
-  <summary>Additional information</summary>
-
-    - For indexing concepts, see [link]. 
-    - For in depth guides see, link. 
-    - For tutorials see link. 
-    - For reference pages see link
 
 </details>
 

@@ -7,13 +7,19 @@ image: og/docs/concepts.jpg
 
 import ClassToCollection from '/_includes/class-to-collection-transition-note.mdx' ;
 
+:::note
+
 <ClassToCollection /> 
+
+:::
 
 Weaviate offers vector search, keyword search, and hybrid search. Hybrid search combines a vector search and a keyword search.
 
 ## Search basics
 
 To retrieve objects, use the `get` function and specify the collection to search. Each client library has it's own syntax, but the concepts are similar between languages.
+
+Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata.
 
 ## Vector search
 
