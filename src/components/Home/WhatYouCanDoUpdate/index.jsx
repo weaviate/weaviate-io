@@ -141,14 +141,15 @@ export default function HomepageWhatYouCanDo() {
                   Perform lightning-fast pure vector similarity<br></br>search
                   over raw vectors or data objects,<br></br> even with filters.
                 </p>
-                <div className={styles.codeBlockTitleSmall} />
+                {/*  <div className={styles.codeBlockTitleSmall} />
                 <div className={styles.lineBarSmall} />
                 <CodeSnippet
                   code={codeExample}
                   buttonText="Vector Search"
                   buttonClass={styles.copyButton}
                   outLink="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
-                />
+                /> */}
+                <div className={`${styles.codeImage} ${styles.code1}`} />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab2">
@@ -157,14 +158,7 @@ export default function HomepageWhatYouCanDo() {
                   Combine keyword-based search with vector search techniques for
                   state-of-the-art results.
                 </p>
-                <div className={styles.codeBlockTitleSmall} />
-                <div className={styles.lineBarSmall} />
-                <CodeSnippet
-                  code={codeExample2}
-                  buttonText="Hybrid Search"
-                  buttonClass={styles.copyButton}
-                  outLink="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
-                />
+                <div className={`${styles.codeImage} ${styles.code2}`} />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab3">
@@ -173,14 +167,8 @@ export default function HomepageWhatYouCanDo() {
                   Use any generative model in combination with your data, for
                   example to do Q&A over your dataset.
                 </p>
-                <div className={styles.codeBlockTitleSmall} />
-                <div className={styles.lineBarSmall} />
-                <CodeSnippet
-                  code={codeExample3}
-                  buttonText="Generative Search"
-                  buttonClass={styles.generativeButton}
-                  outLink="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
-                />
+
+                <div className={`${styles.codeImage} ${styles.code3}`} />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab4">
@@ -189,14 +177,7 @@ export default function HomepageWhatYouCanDo() {
                   Use any generative model in combination with your data, for
                   example to do Q&A over your dataset.
                 </p>
-                <div className={styles.codeBlockTitleSmall} />
-                <div className={styles.lineBarSmall} />
-                <CodeSnippet
-                  code={codeExample3}
-                  buttonText="Generative Search"
-                  buttonClass={styles.generativeButton}
-                  outLink="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
-                />
+                <div className={`${styles.codeImage} ${styles.code4}`} />
               </div>
             </Tabs.Content>
             <Tabs.Content className={styles.tabsContent} value="tab5">
@@ -205,14 +186,7 @@ export default function HomepageWhatYouCanDo() {
                   Use any generative model in combination with your data, for
                   example to do Q&A over your dataset.
                 </p>
-                <div className={styles.codeBlockTitleSmall} />
-                <div className={styles.lineBarSmall} />
-                <CodeSnippet
-                  code={codeExample3}
-                  buttonText="Generative Search"
-                  buttonClass={styles.generativeButton}
-                  outLink="https://console.weaviate.io/console/query#weaviate_uri=https://demo.dataset.playground.semi.technology&graphql_query=%7B%0A%20%20Get%20%7B%0A%20%20%20%20Publication(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22fashion%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%20%20vector%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"
-                />
+                <div className={`${styles.codeImage} ${styles.code5}`} />
               </div>
             </Tabs.Content>
           </div>

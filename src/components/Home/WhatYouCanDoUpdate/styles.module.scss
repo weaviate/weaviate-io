@@ -114,6 +114,7 @@
         grid-row-gap: 4px;
         height: 654px;
         width: 100%;
+        transition: all 1s ease-out;
 
         @media screen and (max-width: 485px) {
           height: auto;
@@ -137,19 +138,35 @@
           height: 100%;
           width: 100%;
           background-repeat: no-repeat;
+
+          animation: fadeIn 0.75s ease forwards;
+
           @media screen and (max-width: 485px) {
             height: 270px;
           }
         }
-
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
         .code1 {
-          background-image: url('/img/site/code-box-1.png');
+          background-image: url('/img/site/secure-slide-01.png');
         }
         .code2 {
-          background-image: url('/img/site/code-box-2.png');
+          background-image: url('/img/site/secure-slide-02.png');
         }
         .code3 {
-          background-image: url('/img/site/code-box-3.png');
+          background-image: url('/img/site/secure-slide-03.png');
+        }
+        .code4 {
+          background-image: url('/img/site/secure-slide-04.png');
+        }
+        .code5 {
+          background-image: url('/img/site/secure-slide-05.png');
         }
       }
     }

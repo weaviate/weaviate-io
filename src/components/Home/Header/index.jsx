@@ -84,7 +84,9 @@ export default function HomepageHeader() {
           <div className={styles.img} />
 
           <p className={styles.title}>
-            <Typewriter />
+            <h1>
+              The easiest way to build and<br></br> scale AI applications
+            </h1>
           </p>
           <p className={styles.text}>
             Weaviate is an open source, AI-native vector database that helps
