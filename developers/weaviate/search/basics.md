@@ -18,7 +18,7 @@ This page shows the core concepts on how to perform searches and retrieve object
 
 import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
 
-<ClassToCollection /> 
+<ClassToCollection />
 
 ## Basic requirements
 
@@ -38,7 +38,7 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
       language="py"
     />
   </TabItem>
-  
+
 <TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
@@ -56,6 +56,18 @@ To retrieve objects from Weaviate, you must use the [`Get` function](../api/grap
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGet.java';
+
+<FilteredTextBlock
+  text={BasicGetJava}
+  startMarker="// BasicGetJava"
+  endMarker="// END BasicGetJava"
+  language="java"
 />
 
 </TabItem>
@@ -120,6 +132,18 @@ Often, you only a few objects instead of the full result set. To restrict the re
   startMarker="// GetWithLimitJS"
   endMarker="// END GetWithLimitJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetLimitJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetLimit.java';
+
+<FilteredTextBlock
+  text={BasicGetLimitJava}
+  startMarker="// BasicGetLimitJava"
+  endMarker="// END BasicGetLimitJava"
+  language="java"
 />
 
 </TabItem>
@@ -192,6 +216,18 @@ To list and retrieve all of the objects from a `class`, use the cursor API with 
 />
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetLimitOffsetJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetLimitOffset.java';
+
+<FilteredTextBlock
+  text={BasicGetLimitOffsetJava}
+  startMarker="// BasicGetLimitOffsetJava"
+  endMarker="// END BasicGetLimitOffsetJava"
+  language="java"
+/>
+
+</TabItem>
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -258,6 +294,18 @@ You can specify object properties as below.
 />
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetMorePropertiesJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetMoreProperties.java';
+
+<FilteredTextBlock
+  text={BasicGetMorePropertiesJava}
+  startMarker="// BasicGetMorePropertiesJava"
+  endMarker="// END BasicGetMorePropertiesJava"
+  language="java"
+/>
+
+</TabItem>
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -314,6 +362,18 @@ To retrieve the object vector with one of the legacy clients, request the `_addi
   startMarker="// GetObjectVectorJS"
   endMarker="// END GetObjectVectorJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetWithVectorJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithVector.java';
+
+<FilteredTextBlock
+  text={BasicGetWithVectorJava}
+  startMarker="// BasicGetWithVector"
+  endMarker="// END BasicGetWithVector"
+  language="java"
 />
 
 </TabItem>
@@ -374,6 +434,18 @@ To retrieve the object ID with one of the legacy clients, request the `_addition
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetWithIdJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithId.java';
+
+<FilteredTextBlock
+  text={BasicGetWithIdJava}
+  startMarker="// BasicGetWithId"
+  endMarker="// END BasicGetWithId"
+  language="java"
 />
 
 </TabItem>
@@ -443,6 +515,18 @@ The following examples retrieve the `title` property from `JeopardyCategory` obj
   startMarker="// GetWithCrossRefs"
   endMarker="// END GetWithCrossRefs"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetWithCrossRefJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithCrossRef.java';
+
+<FilteredTextBlock
+  text={BasicGetWithCrossRefJava}
+  startMarker="// BasicGetWithCrossRef"
+  endMarker="// END BasicGetWithCrossRef"
+  language="java"
 />
 
 </TabItem>
@@ -672,6 +756,18 @@ This example shows how to fetch one object in the `MultiTenancyClass` class from
   endMarker="// END MultiTenancy"
   language="js"
 />
+</TabItem>
+<TabItem value="java" label="Java">
+
+import BasicGetWithMultiTenancyJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithMultiTenancy.java';
+
+<FilteredTextBlock
+  text={BasicGetWithMultiTenancyJava}
+  startMarker="// BasicGetWithMultiTenancy"
+  endMarker="// END BasicGetWithMultiTenancy"
+  language="java"
+/>
+
 </TabItem>
 </Tabs>
 

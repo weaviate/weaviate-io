@@ -1,5 +1,6 @@
 package io.weaviate.docs.howto_search;
 
+// BasicGetJava
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateAuthClient;
 import io.weaviate.client.WeaviateClient;
@@ -26,3 +27,4 @@ public class BasicGet {
         }
     }
 }
+// END BasicGetJava

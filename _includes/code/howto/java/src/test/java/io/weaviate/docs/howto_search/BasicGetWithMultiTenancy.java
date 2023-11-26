@@ -1,5 +1,6 @@
 package io.weaviate.docs.howto_search;
 
+// BasicGetWithMultiTenancy
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateAuthClient;
 import io.weaviate.client.WeaviateClient;
@@ -28,3 +29,4 @@ public class BasicGetWithMultiTenancy {
         }
     }
 }
+// END BasicGetWithMultiTenancy

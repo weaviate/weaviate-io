@@ -1,5 +1,6 @@
 package io.weaviate.docs.howto_search;
 
+// BasicGetWithCrossRef
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateAuthClient;
 import io.weaviate.client.WeaviateClient;
@@ -37,3 +38,4 @@ public class BasicGetWithCrossRef {
         }
     }
 }
+// END BasicGetWithCrossRef
