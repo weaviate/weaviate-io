@@ -109,10 +109,15 @@ gql_query = """
 # =======================================
 
 # HybridWithScorePython
+import weaviate.classes as wvc
+
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     alpha=0.5,
+    # highlight-start
+    return_metadata=wvc.MetadataQuery(score=True),
+    # highlight-end
     limit=3
 )
 

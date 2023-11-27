@@ -1,6 +1,6 @@
 ---
 title: Generative Search - PaLM
-sidebar_position: 12
+sidebar_position: 16
 image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'transformers', 'palm', 'gcp']
 ---
@@ -8,7 +8,13 @@ image: og/docs/modules/generative-palm.jpg
 
 ## Overview
 
-The `generative-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+* The `generative-palm` module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
+* The module can generate a response for each returned object, or a single response for a group of objects.
+* The module enables generative search operations on the Weaviate instance.
+* You need an API key for a PaLM API to use this module.
+* **Its usage may incur costs**.
+    * Please check the vendor pricing (e.g. check Google Vertex AI pricing).
+* You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
 :::info Requirements
 
@@ -17,16 +23,6 @@ The `generative-palm` module enables Weaviate to obtain vectors using PaLM embed
 Google MakerSuite support was added in version `1.22.4`.
 
 :::
-
-Key notes:
-
-* The Generative PaLM (`generative-palm`) module generates responses based on the data stored in your Weaviate instance.
-* The module can generate a response for each returned object, or a single response for a group of objects.
-* The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
-* You need an API key for a PaLM API to use this module.
-* **Its usage may incur costs**.
-    * Please check the vendor pricing (e.g. check Google Vertex AI pricing).
-* The default model is `chat-bison-001`.
 
 ## Configuring `generative-palm` for VertexAI vs MakerSuite
 
@@ -66,7 +62,7 @@ In the Weaviate [schema configuration](#schema-configuration), set the `apiEndpo
 
 ## Introduction
 
-`generative-palm` generates responses based on the data stored in your Weaviate instance.
+`generative-palm` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
@@ -77,8 +73,8 @@ You can use the Generative PaLM module with non-PaLM upstream modules. For examp
 :::
 
 The generative module can provide results for:
-* each returned object, using `singleResult{ prompt }`
-* the group of all results together, using `groupedResult{ task }`
+* each returned object - `singlePrompt`
+* the group of all results together – `groupedTask`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 

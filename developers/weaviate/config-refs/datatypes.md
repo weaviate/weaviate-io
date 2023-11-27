@@ -106,6 +106,10 @@ An object for this class may have a structure such as follows:
 }
 ```
 
+As of `1.22`, `object` and `object[]` datatype properties are not indexed and not vectorized.
+
+Future plans include the ability to index nested properties, for example to allow for filtering on nested properties and vectorization options.
+
 ## DataType: `date`
 
 Weaviate requires an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) formatted date that includes the time and the offset.

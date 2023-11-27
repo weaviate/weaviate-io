@@ -150,7 +150,7 @@ import requests
 # highlight-start
 fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
 # highlight-end
-url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}'
+url = f"https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}"
 resp = requests.get(url)
 data = json.loads(resp.text)  # Load data
 

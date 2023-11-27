@@ -1,80 +1,62 @@
 ---
-title: Generative Search - Cohere
-sidebar_position: 12
-image: og/docs/modules/generative-cohere.jpg
-# tags: ['generative', 'transformers', 'cohere']
+title: Generative Search - AWS
+sidebar_position: 10
+image: og/docs/modules/generative-aws.jpg
+# tags: ['generative', 'transformers', 'aws']
 ---
 
 
 ## In short
 
-* The Generative Cohere (`generative-cohere`) module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
+:::info Available from version `v1.22.5`
+:::
+
+* The Generative AWS (`generative-aws`) module performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-* Added in Weaviate `v1.19.0`
-* The default model is `command-xlarge-nightly`, which the Cohere team trains nightly and pushes updates.
+
+### API Authentication
+
+You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to use the API, including an AWS access key and a corresponding AWS secret access key. You can [set them as environment variables](#parameters), or [provide them at query time](#query-time-parameters).
 
 ## Introduction
 
-`generative-cohere` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
+`generative-aws` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
-2. (Cohere) Use a Cohere Large Language Model to generate a response based on the results (from the previous step) and the provided prompt or task.
+2. (AWS Bedrock) Use a Large Language Model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative Cohere module with non-Cohere upstream modules. For example, you could use `text2vec-openai` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-cohere` module to generate a response.
+You can use the Generative AWS module with any other upstream modules. For example, you could use `text2vec-cohere`, `text2vec-huggingface` or `text2vec-openai` to vectorize and query your data, but then rely on the `generative-aws` module to generate a response.
 :::
 
-The generative module can provide results for:
+The generative module can perform RAG for:
 * each returned object - `singlePrompt`
 * the group of all results together – `groupedTask`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
-## Cohere API key
 
-`generative-cohere` requires an [Cohere API key](https://dashboard.cohere.com/welcome/login) to perform the generation task.
-
-### Providing the key to Weaviate
-
-You can provide your Cohere API key in two ways:
-
-1. During the **configuration** of your Docker instance, by adding `COHERE_APIKEY` under `environment` to your `Docker Compose` file, like this:
-
-  ```
-  environment:
-    COHERE_APIKEY: 'your-key-goes-here'
-    ...
-  ```
-
-2. At **run-time** (recommended), by providing `"X-Cohere-Api-Key"` to the Weaviate client, like this:
-
-import ClientKey from '/_includes/code/core.client.cohere.apikey.mdx';
-
-<ClientKey />
-
-## Module configuration
+## Weaviate instance configuration
 
 :::tip Not applicable to WCS
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
-:::caution
-Your Weaviate instance must be on `1.19.0` or newer.
+### Docker Compose file
 
-If your instance is older than `1.19.0` then you need to migrate or upgrade it to a newer version.
-:::
+To use `generative-aws`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
 
-### Docker Compose file (Weaviate open source only)
+#### Parameters
 
-You can enable the Generative Cohere module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-cohere` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+- `ENABLE_MODULES` (Required): The modules to enable. Include `generative-aws` to enable the module.
+- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (Optional): Your AWS access key. You can also provide the key at query time.
+- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (Optional): Your AWS secret access key. You can also provide the key at query time.
 
-```
-ENABLE_MODULES: 'text2vec-cohere,generative-cohere'
-```
+#### Example
 
-Here is a full example of a Docker configuration, which uses the `generative-cohere` module in combination with `text2vec-cohere`:
+This configuration enables `generative-aws` and sets the AWS authentication credentials.
 
 ```yaml
 ---
@@ -82,33 +64,52 @@ version: '3.4'
 services:
   weaviate:
     command:
-      - --host
-      - 0.0.0.0
-      - --port
-      - '8080'
-      - --scheme
-      - http
-    image:
-      semitechnologies/weaviate:||site.weaviate_version||
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
-      - 8080:8080
+    - 8080:8080
+    - 50051:50051
+    volumes:
+    - weaviate_data:/var/lib/weaviate
     restart: on-failure:0
     environment:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-cohere'
-      // highlight-next-line
-      ENABLE_MODULES: 'text2vec-cohere,generative-cohere'
-      COHERE_APIKEY: sk-foobar # this parameter is optional, as you can also provide it through the client
+      DEFAULT_VECTORIZER_MODULE: text2vec-aws
+      # highlight-start
+      AWS_ACCESS_KEY: sk-foobar  # Optional. Can be set at query time.
+      AWS_SECRET_KEY: sk-foobar  # Optional. Can be set at query time.
+      ENABLE_MODULES: 'text2vec-aws,generative-aws'
+      # highlight-end
       CLUSTER_HOSTNAME: 'node1'
+volumes:
+  weaviate_data:
+...
 ```
 
-## Schema configuration
 
-In your Weaviate schema, you can define settings for this module.
+## Class configuration
 
-For example, the following schema configuration will set Weaviate to use the `generative-cohere` module with the `Document` class, with the `command-xlarge-nightly` model. You can also configure additional parameters for the Cohere endpoint through the parameters shown below. Other models you can use from Cohere are `command-xlarge-beta` and `command-xlarge`.
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+
+### API settings
+
+#### Parameters
+
+| Parameter | Required | Default | Purpose |
+| :- | :- | :- | :- |
+| `model` | No | NONE | The model to use. You must provide an available & supported model name. |
+| `region` | Yes | NONE | AWS region name, e.g. `us-east-1`. |
+
+#### Example
+
+The following example configures the `Document` class to use the `generative-aws` module with the `Document` class, with the `command-xlarge-nightly` model and the AWS region to `us-east-1`.
 
 ```json
 {
@@ -119,13 +120,9 @@ For example, the following schema configuration will set Weaviate to use the `ge
       ...,
       "moduleConfig": {
         // highlight-start
-        "generative-cohere": {
-          "model": "command-xlarge-nightly",  // Optional - Defaults to `command-xlarge-nightly`. Can also use`command-xlarge-beta` and `command-xlarge`
-          "temperatureProperty": <temperature>,  // Optional
-          "maxTokensProperty": <maxTokens>,  // Optional
-          "kProperty": <k>, // Optional
-          "stopSequencesProperty": <stopSequences>, // Optional
-          "returnLikelihoodsProperty": <returnLikelihoods>, // Optional
+        "generative-aws": {
+          "model": "cohere.command-text-v14",  // REQUIRED
+          "region": "us-east-1"                // REQUIRED
         },
         // highlight-end
       }
@@ -144,6 +141,17 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ## How to use
 
+### Query-time parameters
+
+You can supply parameters at query time by adding it to the HTTP header.
+
+| HTTP Header | Value | Purpose | Note |
+| :- | :- | :- | :- |
+| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. | |
+| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key | |
+
+### Queries
+
 This module extends the  `_additional {...}` property with a `generate` operator.
 
 `generate` takes the following arguments:
@@ -153,7 +161,7 @@ This module extends the  `_additional {...}` property with a `generate` operator
 | `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
 | `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
 
-### Example of properties in the prompt
+#### Example of properties in the prompt
 
 When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
 
@@ -195,18 +203,18 @@ You can add both `title` and `summary` to the prompt by enclosing them in curly 
 }
 ```
 
-### Example - single result
+#### Example - single result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) to find articles about "Italian food"
 * then we ask the generator module to describe each result as a Facebook ad.
   * the query asks for the `summary` field, which it then includes in the `prompt` argument of the `generate` operator.
 
-import CohereSingleResult from '/_includes/code/generative.cohere.singleresult.mdx';
+import AWSSingleResult from '/_includes/code/generative.aws.singleresult.mdx';
 
-<CohereSingleResult/>
+<AWSSingleResult/>
 
-### Example response - single result
+#### Example response - single result
 
 ```json
 {
@@ -229,17 +237,17 @@ import CohereSingleResult from '/_includes/code/generative.cohere.singleresult.m
 }
 ```
 
-### Example - grouped result
+#### Example - grouped result
 
 Here is an example of a query where:
 * we run a vector search (with `nearText`) to find publications about finance,
 * then we ask the generator module to explain why these articles are about finance.
 
-import CohereGroupedResult from '/_includes/code/generative.cohere.groupedresult.mdx';
+import AWSGroupedResult from '/_includes/code/generative.aws.groupedresult.mdx';
 
-<CohereGroupedResult />
+<AWSGroupedResult />
 
-### Example response - grouped result
+#### Example response - grouped result
 
 ```json
 {
@@ -273,15 +281,15 @@ import CohereGroupedResult from '/_includes/code/generative.cohere.groupedresult
 }
 ```
 
+
 ## Additional information
 
 ### Supported models
 
-You can use any of
+You can use any of the following models with `generative-aws`:
 
-* [`command-xlarge-nightly`](https://docs.cohere.com/docs/command-beta)(default)
-* `command-xlarge-beta`
-* `command-xlarge`
+* cohere.command-text-v14
+* cohere.command-light-text-v14
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

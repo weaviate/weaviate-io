@@ -37,7 +37,9 @@ pip install --pre "weaviate-client==4.*"
 
 #### Weaviate version
 
-The `v4` client is only compatible with Weaviate `1.22.0` and higher. This is because it requires gRPC and gRPC is not available in earlier versions. If you are using an older version of Weaviate, please use the `v3` client.
+The `v4` client is designed for use with Weaviate `1.22.0` and higher to take advantage of its gRPC API. If you are using an older version of Weaviate, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
+
+Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
 
 #### gRPC port
 
@@ -142,14 +144,14 @@ For example, you can pass on OIDC username and password like this:
   language="py"
 />
 
-<!-- Or, you can pass the WCS API key like this:
+Or, you can pass an API key like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# DirectInstantiationWithAPIKey"
   endMarker="# END DirectInstantiationWithAPIKey"
   language="py"
-/> -->
+/>
 
 The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
 
@@ -301,10 +303,10 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-for r in response.objects:
-    print(r.uuid)
-    print(r.metadata.creation_time_unix)
-    print(r.properties['points'], '\n')
+for o in response.objects:
+    print(o.uuid)
+    print(o.metadata.creation_time_unix)
+    print(o.properties['points'], '\n')
 ```
 
 This is the output.
