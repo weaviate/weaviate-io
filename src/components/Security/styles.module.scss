@@ -346,4 +346,11 @@ p {
   background: #130c49;
   background-image: url('/img/site/home-page-bg-pattern.svg');
   background-size: cover;
+
+  @media screen and (max-width: 500px) {
+    background-image: url('/img/site/bg-dark-mobile.svg');
+    background-size: 100%;
+    background-position-y: 12%;
+    background-repeat: no-repeat;
+  }
 }

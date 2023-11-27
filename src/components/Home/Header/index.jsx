@@ -88,6 +88,9 @@ export default function HomepageHeader() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 13000,
     responsive: [
       {
         breakpoint: 1024,
@@ -143,8 +146,8 @@ export default function HomepageHeader() {
             >
               Start Free
             </Link>
-            <Link className={styles.buttonOutline} to="developers/weaviate">
-              Documentation
+            <Link className={styles.buttonOutline} to="/platform">
+              Learn More
             </Link>
           </div>
         </div>
@@ -188,12 +191,12 @@ export default function HomepageHeader() {
                       Retrieval Augmented Generation
                     </h2>
                     <p className={styles.subTitle}>
-                      Build secure, explainable AI applications with less hassle
+                      Build secure, explainable AI applications
                     </p>
                     <p>
                       Reduce hallucination and make generative AI applications
-                      more reliable. Use proprietary or domain specific data to
-                      improve accuracy, without compromising data privacy.
+                      more reliable. Use proprietary data to improve accuracy in
+                      a secure way.
                     </p>
                   </div>
                   <div
@@ -220,13 +223,12 @@ export default function HomepageHeader() {
                       Generative Feedback Loops
                     </h2>
                     <p className={styles.subTitle}>
-                      Automatically improve the quality of data with generative
-                      AI
+                      Automatically improve the quality of your data
                     </p>
                     <p>
                       Better data means better outcomes. Use content generated
                       by Large Language Models (LLMs) to enrich your dataset.
-                      Spend less time on tedious, manual data cleaning.
+                      Spend less time on manual data cleaning.
                     </p>
                   </div>
                   <div

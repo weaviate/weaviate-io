@@ -192,20 +192,14 @@ const config = {
                         // type: 'dropdown',
                         label: 'Product',
                         position: 'right',
-                        to: '/products',
+                        to: '/platform',
                         items: [
-                           {
-                           label: 'Products',
-                               to: '/products',
-                            },
+                          
                             {
-                                label: 'Platform',
+                                label: 'Vector Database',
                                     to: '/platform',
                                  },
-                            {
-                                label: 'Pricing',
-                                    to: '/pricing',
-                                 },
+                           
                            {
                                 label: 'Security',
                                 href: '/security',
@@ -289,6 +283,11 @@ const config = {
                     {
                         label: 'Blog',
                         to: '/blog',
+                        position: 'right',
+                    },
+                    {
+                        label: 'Pricing',
+                        to: '/pricing',
                         position: 'right',
                     },
                     {

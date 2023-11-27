@@ -99,16 +99,16 @@ export default function HomepageWhatYouCanDo() {
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                 <h3 className={styles.tabHeader02}>Built for hybrid search</h3>
                 <p>
-                  Combine keyword-based search with vector search techniques for
-                  state-of-the-art results.
+                  Purpose-built for vectors and objects. Get the best of vector
+                  and keyword search to maximize accuracy and performance.
                 </p>
                 <div className={styles.accordianBar}></div>
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
                 <h3 className={styles.tabHeader03}>Pluggable ML models</h3>
                 <p>
-                  Use any generative model in combination with your data, for
-                  example to do Q&A over your dataset.
+                  Built-in modules for popular machine learning models and
+                  frameworks. Just load your data and go.
                 </p>
                 <div className={styles.accordianBar}></div>
               </Tabs.Trigger>
@@ -117,8 +117,8 @@ export default function HomepageWhatYouCanDo() {
                   Scalable multi-tenant architecture
                 </h3>
                 <p>
-                  Use any generative model in combination with your data, for
-                  example to do Q&A over your dataset.
+                  Native multi-tenancy, data compression, filtering, and more.
+                  Scale confidently and efficiently.
                 </p>
                 <div className={styles.accordianBar}></div>
               </Tabs.Trigger>
@@ -127,8 +127,8 @@ export default function HomepageWhatYouCanDo() {
                   Secure, flexible deployment
                 </h3>
                 <p>
-                  Use any generative model in combination with your data, for
-                  example to do Q&A over your dataset.
+                  Adapts to the needs of your business. Run as an open source
+                  platform, a managed service, or within your VPC.
                 </p>
                 <div className={styles.accordianBar}></div>
               </Tabs.Trigger>
@@ -193,11 +193,11 @@ export default function HomepageWhatYouCanDo() {
         </Tabs.Root>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="/products">
-          Learn more about our platform
+        <Link className={styles.buttonGradient} to="/platform">
+          Learn More
         </Link>
         <Link className={styles.buttonOutline} to="/pricing">
-          Learn more about pricing
+          Pricing
         </Link>
       </div>
     </div>
