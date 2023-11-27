@@ -45,11 +45,8 @@ export default function PricingBusinessCritical() {
       <br />
       <br />
       <div className={styles.buttonBox}>
-        <Link
-          className={styles.buttonTryOutline}
-          to="https://console.weaviate.cloud/"
-        >
-          Try Now
+        <Link className={styles.buttonTryOutline} to="#contact-sales">
+          Contact Sales
         </Link>
       </div>
     </div>

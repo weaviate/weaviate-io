@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import Calculator from '../Calculator';
 import SlaPlan from '../SLAS';
+import { keysIn } from 'lodash';
 export default function PricingStandard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
+  const openModal = (e) => {
     setIsModalOpen(true);
+    console.log('Opening modal');
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    console.log('Closing modal');
   };
+
+  useEffect(() => {
+    const handleEscapeKey = (e) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [isModalOpen]);
 
   return (
     <>
       <div className={styles.box}>
         <div className={styles.title}>
-          <h3>Standard</h3>
+          <h3>Serverless</h3>
         </div>
         <div className={styles.price}>
           <p>We manage everything for you in the Weaviate Cloud.</p>
@@ -67,17 +84,18 @@ export default function PricingStandard() {
           </Link>
         </div>
       </div>
-      {isModalOpen && (
-        <div className={styles.modals}>
-          <div className={styles.modalContents}>
-            <span className={styles.close} onClick={closeModal}>
-              &times;
-            </span>
-            <SlaPlan />
-            <Calculator />
-          </div>
+      <div
+        className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
+        style={{ display: isModalOpen ? 'flex' : 'none' }}
+      >
+        <div className={styles.modalContents}>
+          <span className={styles.close} onClick={closeModal}>
+            &times;
+          </span>
+          <SlaPlan />
+          <Calculator />
         </div>
-      )}
+      </div>
     </>
   );
 }

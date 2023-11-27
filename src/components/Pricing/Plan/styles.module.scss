@@ -484,8 +484,27 @@
     text-decoration: none;
   }
 }
-/* Modal container styles */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .modals {
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -493,8 +512,13 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modals.open {
+  display: flex;
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .modalContents {

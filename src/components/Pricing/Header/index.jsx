@@ -15,7 +15,7 @@ export default function PricingHeader() {
           </h1>
           <div className={styles.headerBox}>
             <p className="text-center">
-              Sign up now and start building with your 21-day free trial.
+              Sign up now and start building with your 14-day free trial.
             </p>
           </div>
           <div className={styles.buttons}>

@@ -9,12 +9,10 @@ export default function PricingSandBox() {
         <h3 className={styles.color}>Free Sandbox</h3>
       </div>
       <div className={styles.featuresLong}>
-        <li>Round robin region: AWS, Azure, GCP</li>
         <li>14 days lifetime</li>
         <li>Monitoring</li>
       </div>
       <div className={styles.features}>
-        <li>Public Slack</li>
         <li>Community support</li>
         <li>Single AZ</li>
       </div>

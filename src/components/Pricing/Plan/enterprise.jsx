@@ -39,9 +39,6 @@ export default function PricingEnterprise() {
             SLA tiers:
             <ul>
               <li>
-                <div className={styles.checkIconWhite}></div>Standard
-              </li>
-              <li>
                 <div className={styles.checkIconWhite}></div>Enterprise
               </li>
               <li>
@@ -53,12 +50,10 @@ export default function PricingEnterprise() {
       </div>
       <br />
       <br />
+      <br />
       <div className={styles.buttonBox}>
-        <Link
-          className={styles.buttonTryOutline}
-          to="https://console.weaviate.cloud/"
-        >
-          Try Now
+        <Link className={styles.buttonTryOutline} to="#contact-sales">
+          Contact Sales
         </Link>
       </div>
     </div>

@@ -1,9 +1,5 @@
 [
   {
-    "question": "What do you mean by 1 million vector dimensions?",
-    "answer": "In Weaviate, you can attach a vector embedding to a data object. A vector embedding can have an x-amount of dimensions. To calculate vector dimensions, multiply the number of data objects by the number of embedding dimensions."
-  },
-  {
     "question": "Why do you price per vector dimension?",
     "answer": "Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience."
   },

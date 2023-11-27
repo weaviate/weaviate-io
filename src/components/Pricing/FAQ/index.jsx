@@ -3,8 +3,6 @@ import styles from './styles.module.scss';
 import faq from './faq.json';
 import faqByoc from './faqByoc.json';
 
-const faqType = 'byoc';
-
 export default function PricingFAQ(props) {
   const [more, setMore] = useState(false);
   const { faqType } = props;
@@ -15,6 +13,10 @@ export default function PricingFAQ(props) {
   } else if (faqType === 'BYOC') {
     faqData = faqByoc;
   }
+
+  const toggleMore = () => {
+    setMore(!more);
+  };
 
   return (
     <div className={styles.faqBG}>
@@ -27,7 +29,7 @@ export default function PricingFAQ(props) {
         <div className={styles.boxGrid}>
           {faqData.map((item, index) => {
             if (!more && index > 1) {
-              return;
+              return null; // Hide the FAQ item
             }
             return (
               <div key={item.question} className={styles.box}>
@@ -50,13 +52,11 @@ export default function PricingFAQ(props) {
             );
           })}
         </div>
-        {!more && (
-          <div className={styles.buttons}>
-            <div className={styles.buttonOutline} onClick={() => setMore(true)}>
-              Load more
-            </div>
+        <div className={styles.buttons}>
+          <div className={styles.buttonOutline} onClick={toggleMore}>
+            {more ? 'Load less' : 'Load more'}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
