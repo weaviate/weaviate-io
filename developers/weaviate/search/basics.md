@@ -16,20 +16,19 @@ import ClassToCollectionNote from '/_includes/class-to-collection-transition-not
 
 <ClassToCollectionNote /> 
 
-This page gives basic search examples. 
+This page has basic search examples. 
 
 <details>
   <summary>Additional information</summary>
 
-  - For search concepts, see [Search](/developers/weaviate/concepts/search).
   - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
-  - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
+  - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
 
 </details>
 
 ## Basic search
 
-Use the [`Get` function](../api/graphql/get.md) to search. Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata.
+Use the [`Get` function](../api/graphql/get.md) to search.
 
 <Tabs groupId="languages">
 
@@ -85,6 +84,13 @@ The output is like this:
   endMarker="// END BasicGet Expected Results"
   language="json"
 />
+
+</details>
+
+<details>
+  <summary>Additional information</summary>
+
+  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata. Weaviate search is based on the [GraphQL API](../api/graphql).
 
 </details>
 
@@ -318,7 +324,7 @@ To retrieve the object vector, specify the vector in your query.
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -336,7 +342,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
 
- The new Python client always the object ID.
+ The new Python client always returns the object ID.
  
 <FilteredTextBlock
   text={PyCode}
