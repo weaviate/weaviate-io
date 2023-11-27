@@ -462,7 +462,7 @@ For a comprehensive list of metadata fields, see [GraphQL: Additional properties
 
 ## Group results 
 
-To group results, see the [`groupBy` GraphQL](/developers/weaviate/api/graphql/aggregate#groupby-argument) operator.
+To group results, see the [`groupBy`](/developers/weaviate/api/graphql/aggregate#groupby-argument) GraphQL operator.
 
 ## Multi-tenancy
 
