@@ -228,17 +228,11 @@
     line-height: 120%; /* 3.15rem */
   }
 }
-
 .text {
   @media screen and (max-width: 800px) {
     text-align: left;
     width: 347px;
-    padding: 40px 0px;
-    -webkit-text-align: left;
-
-    -webkit-margin: 2rem 0rem;
-    -webkit-padding-before: 20px;
-    -webkit-padding-after: 20px;
+    padding: 20px 0;
 
     br {
       display: none;

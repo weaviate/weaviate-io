@@ -78,8 +78,20 @@
           border-left: none;
           /* border-bottom: 7px solid #130c49; */
 
-          max-height: 130px;
+          max-height: 770px;
           width: 250px;
+
+          p {
+            text-align: left;
+            display: inherit;
+            color: #130c49;
+            font-family: Inter;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 157.33%; /* 1.57331rem */
+            width: 310px;
+          }
         }
       }
       .tabsTrigger[data-state='active'] {
