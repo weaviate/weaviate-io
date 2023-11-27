@@ -464,11 +464,11 @@ The output is like this:
 
 ## Retrieve other metadata values
 
-For a comprehensive list of metadata fields, see [GraphQL: Additional properties](../ql/additional-properties.md).
+For a comprehensive list of metadata fields, see [GraphQL: Additional properties](../api/graphql/additional-properties.md).
 
 ## Group results 
 
-To group results, see the [`groupBy` GraphQL](/developers/weaviate/api/graphql/aggregate#groupby-argument) operator.
+To group results, see the [`groupBy`](/developers/weaviate/api/graphql/aggregate#groupby-argument) GraphQL operator.
 
 ## Multi-tenancy
 
