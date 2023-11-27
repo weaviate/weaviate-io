@@ -25,7 +25,7 @@ By default, Weaviate returns up to 10,000 objects when you search. Use the `auto
 
 Weaviate can limit results based on discontinuities in the result set. In the legacy client, this filter is called `autocut`. The filter is called `auto_limit` in the new client. 
 
-The [filter](../api/graphql/additional-operators.md#autocut) looks for discontinuities, or jumps, in the result [score](#score--explainscore). In your query, you specify how many jumps there should be. The query stops returning results after the specified number of jumps. 
+The [filter](../../api/graphql/additional-operators.md#autocut) looks for discontinuities, or jumps, in the result [score](#score--explainscore). In your query, you specify how many jumps there should be. The query stops returning results after the specified number of jumps. 
 
 ### Autocut example
 
