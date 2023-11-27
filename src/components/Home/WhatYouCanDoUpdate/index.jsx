@@ -89,6 +89,7 @@ export default function HomepageWhatYouCanDo() {
                 disabled={false}
               >
                 <h3 className={styles.tabHeader01}>Empowers all developers</h3>
+                <div className={`${styles.cImage} ${styles.codeImg1}`} />
                 <p>
                   Open source with a strong community. Enable developers of all
                   levels to build production-ready AI applications.
@@ -98,6 +99,7 @@ export default function HomepageWhatYouCanDo() {
 
               <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                 <h3 className={styles.tabHeader02}>Built for hybrid search</h3>
+                <div className={`${styles.cImage} ${styles.codeImg2}`} />
                 <p>
                   Purpose-built for vectors and objects. Get the best of vector
                   and keyword search to maximize accuracy and performance.
@@ -106,6 +108,7 @@ export default function HomepageWhatYouCanDo() {
               </Tabs.Trigger>
               <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
                 <h3 className={styles.tabHeader03}>Pluggable ML models</h3>
+                <div className={`${styles.cImage} ${styles.codeImg3}`} />
                 <p>
                   Built-in modules for popular machine learning models and
                   frameworks. Just load your data and go.
@@ -116,6 +119,7 @@ export default function HomepageWhatYouCanDo() {
                 <h3 className={styles.tabHeader04}>
                   Scalable multi-tenant architecture
                 </h3>
+                <div className={`${styles.cImage} ${styles.codeImg4}`} />
                 <p>
                   Native multi-tenancy, data compression, filtering, and more.
                   Scale confidently and efficiently.
@@ -126,6 +130,7 @@ export default function HomepageWhatYouCanDo() {
                 <h3 className={styles.tabHeader05}>
                   Secure, flexible deployment
                 </h3>
+                <div className={`${styles.cImage} ${styles.codeImg5}`} />
                 <p>
                   Adapts to the needs of your business. Run as an open source
                   platform, a managed service, or within your VPC.

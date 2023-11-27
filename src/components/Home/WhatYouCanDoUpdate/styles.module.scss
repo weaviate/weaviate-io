@@ -25,13 +25,14 @@
     flex: 1;
 
     @media screen and (max-width: 768px) {
-      flex: 1;
       display: flex;
+      flex-direction: column;
+      flex: 0 0 auto;
       flex-wrap: nowrap;
       overflow-x: scroll;
-      border-left: none;
       scroll-snap-type: x mandatory;
-      scroll-padding: 25%;
+      scroll-padding: 0 10px;
+      width: 100%;
     }
 
     .tabsList {
@@ -44,6 +45,7 @@
         display: flex;
         flex-direction: row;
         flex: 0 0 auto;
+        flex-direction: column;
         flex-wrap: nowrap;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
@@ -71,6 +73,14 @@
           text-align: left;
           display: none;
         }
+
+        @media screen and (max-width: 485px) {
+          border-left: none;
+          /* border-bottom: 7px solid #130c49; */
+
+          max-height: 130px;
+          width: 250px;
+        }
       }
       .tabsTrigger[data-state='active'] {
         max-height: 170px;
@@ -79,7 +89,7 @@
           border-left: none;
           /* border-bottom: 7px solid #130c49; */
 
-          max-height: 270px;
+          max-height: 770px;
           width: 250px;
         }
 
@@ -99,7 +109,8 @@
             text-align: left;
             -webkit-text-align: left;
             -webkit-margin: 10px 0px;
-            width: 100%;
+            width: 330px;
+
             margin: 10px 0px;
           }
         }
@@ -124,6 +135,7 @@
 
         @media screen and (max-width: 485px) {
           height: auto;
+          display: none;
         }
 
         .tabsText {
@@ -338,4 +350,44 @@
     color: #fff;
     font-weight: 400;
   }
+}
+
+.cImage {
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  display: none;
+
+  animation: fadeIn 0.75s ease forwards;
+
+  @media screen and (max-width: 485px) {
+    height: 310px;
+    display: block;
+    width: 310px;
+    background-size: contain;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.codeImg1 {
+  background-image: url('/img/site/secure-slide-01.png');
+}
+.codeImg2 {
+  background-image: url('/img/site/secure-slide-02.png');
+}
+.codeImg3 {
+  background-image: url('/img/site/secure-slide-03.png');
+}
+.codeImg4 {
+  background-image: url('/img/site/secure-slide-04.png');
+}
+.codeImg5 {
+  background-image: url('/img/site/secure-slide-05.png');
 }
