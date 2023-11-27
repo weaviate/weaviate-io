@@ -78,7 +78,9 @@
         @media screen and (max-width: 485px) {
           border-left: none;
           /* border-bottom: 7px solid #130c49; */
+
           max-height: 270px;
+          width: 250px;
         }
 
         p {
@@ -95,7 +97,8 @@
         @media screen and (max-width: 485px) {
           p {
             text-align: left;
-            width: 67%;
+            text-align: -webkit-left;
+            width: 100%;
             margin: 10px 0px;
           }
         }
