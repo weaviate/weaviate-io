@@ -12,11 +12,11 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
-import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
+import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
 
-<ClassToCollection /> 
+<ClassToCollectionNote /> 
 
-This page gives basic search examples. 
+This page has basic search examples. 
 
 <details>
   <summary>Additional information</summary>
