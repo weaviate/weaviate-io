@@ -1,5 +1,5 @@
 ---
-title: Vector similarity search
+title: Similarity / Vector search
 sidebar_position: 20
 image: og/docs/howto.jpg
 # tags: ['how to', 'similarity search']
