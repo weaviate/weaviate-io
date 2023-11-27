@@ -14,20 +14,22 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 :::caution Beta version
 The Python client is currently in beta, and we want to hear from you.
 
-You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet.
+You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS.
 
 If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
 :::
 
 ## Overview
 
-This page describes the `v4` Python client for Weaviate. This client is also called the `collections` client, because the main interactions is with a collection. (Some Weaviate documentation still says "Class" instead of "collection.")
+This page describes the `v4` Python client for Weaviate. This client is also called the `collections` client, because the main interactions is with a collection (also called "class").
 
 The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
 
 ## Installation
 
 The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.8 to 3.12.
+
+Install the client with the following command:
 
 ```bash
 pip install --pre "weaviate-client==4.*"
@@ -37,13 +39,13 @@ pip install --pre "weaviate-client==4.*"
 
 #### Weaviate version
 
-The `v4` client is designed for use with Weaviate `1.22.0` and higher to take advantage of its gRPC API. If you are using an older version of Weaviate, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
+The `v4` client is designed for use with Weaviate `1.22.0` and higher to take advantage of its gRPC API. If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
 
 Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
 
 #### gRPC port
 
-You have to open a port for gRPC on your Weaviate instance. The default port is `50051`. If you are running Weaviate locally, you can open this port by adding the following to your `docker-compose.yml` file:
+You must make sure a port for gRPC is open on your Weaviate server. If you are running Weaviate locally, you can open the default port (`50051`) by adding the following to your `docker-compose.yml` file:
 
 ```yaml
     ports:
@@ -52,24 +54,22 @@ You have to open a port for gRPC on your Weaviate instance. The default port is 
 ```
 #### WCS availability
 
-You can test the new client locally, but it is not available on Weaviate Cloud Services (WCS) yet.
+You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS.
 
 ## Instantiation
 
 You can instantiate the client using one of multiple methods. For example, you can use one of the following helper `connect` functions:
 
-<!-- - `weaviate.connect_to_wcs()` -->
+- `weaviate.connect_to_wcs()`
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
 
-:::note WCS not yet compatible
-Currently, WCS instances cannot be used with the `v4` client as they lack gRPC support. We are working on adding WCS support, and ask for your patience in the meantime.
-:::
-
 Or, you can instantiate a `weaviate.WeaviateClient` object directly.
 
-For example, you can connect to a local instance like this:
+For example, you can:
+
+Connect to a local instance like this:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -78,21 +78,21 @@ For example, you can connect to a local instance like this:
   language="py"
 />
 
-<!-- Or connect to a Weaviate Cloud Services (WCS) instance like this:
+Connect to a Weaviate Cloud Services (WCS) instance like this:
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# WCSInstantiation"
   endMarker="# END WCSInstantiation"
   language="py"
-/> -->
+/>
 
-Or instantiate a client directly like this:
+Or connect a client directly like this:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# DirectInstantiationBasic"
-  endMarker="# END DirectInstantiationBasic"
+  startMarker="# CustomInstantiationBasic"
+  endMarker="# END CustomInstantiationBasic"
   language="py"
 />
 
@@ -111,7 +111,7 @@ For example, to use the OpenAI API, you can pass on the API key like this:
 
 #### Timeout values
 
-You can also set timeout values for the client as a tuple  (connection timeout & read timeout time) in seconds.
+You can set timeout values for the client as a tuple  (connection timeout & read timeout time) in seconds.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -124,36 +124,38 @@ You can also set timeout values for the client as a tuple  (connection timeout &
 
 Some helper `connect` functions allow you to pass on authentication credentials.
 
-<!-- For example, the `connect_to_wcs` method allows for a WCS api key to be passed in.
+For example, the `connect_to_wcs` method allows for a WCS api key to be passed in.
 
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# WCSInstantiation"
   endMarker="# END WCSInstantiation"
   language="py"
-/> -->
-
-For authentication workflows not supported by the helper functions, you can pass on authentication credentials directly when instantiating the `WeaviateClient` object.
-
-For example, you can pass on OIDC username and password like this:
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# DirectInstantiationWithOIDC"
-  endMarker="# END DirectInstantiationWithOIDC"
-  language="py"
 />
 
-Or, you can pass an API key like this:
+Or OIDC authentication credentials as shown below:
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# DirectInstantiationWithAPIKey"
-  endMarker="# END DirectInstantiationWithAPIKey"
+  startMarker="# WCSwOIDCInstantiation"
+  endMarker="# END WCSwOIDCInstantiation"
   language="py"
 />
 
 The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
+
+For authentication workflows not supported by the helper functions, you can pass on authentication credentials directly when instantiating the `WeaviateClient` object.
+
+### Advanced: Direct instantiation with custom parameters
+
+You can also instantiate a client (`WeaviateClient`) object directly, through which you can pass on custom parameters.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# DirectInstantiationFull"
+  endMarker="# END DirectInstantiationFull"
+  language="py"
+/>
 
 ## Key ideas
 
