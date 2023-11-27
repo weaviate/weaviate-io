@@ -12,9 +12,12 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
-import ClassToCollection from '/_includes/class-to-collection-transition.mdx' ;
+:::note
+import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
 
-<ClassToCollection /> 
+<ClassToCollectionNote /> 
+
+:::
 
 This page has examples of vector search. 
 
