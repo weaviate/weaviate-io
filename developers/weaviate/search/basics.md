@@ -23,7 +23,7 @@ This page has basic search examples.
 
   - For search concepts, see [Search](/developers/weaviate/concepts/search).
   - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
-  - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
+  - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql#graphql).
 
 </details>
 
