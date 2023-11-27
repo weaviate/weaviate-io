@@ -190,19 +190,21 @@ const config = {
                 items: [
                     {
                         // type: 'dropdown',
-                        label: 'Products',
+                        label: 'Product',
                         position: 'right',
-                        to: '/products',
-                        // items: [
-                        //     {
-                        //         label: 'Pricing',
-                        //         to: '/pricing',
-                        //     },
-                        //     {
-                        //         label: 'Weaviate Cloud console',
-                        //         href: 'https://console.weaviate.cloud',
-                        //     },
-                        // ],
+                        to: '/platform',
+                        items: [
+                          
+                            {
+                                label: 'Vector Database',
+                                    to: '/platform',
+                                 },
+                           
+                           {
+                                label: 'Security',
+                                href: '/security',
+                           },
+                         ],
                     },
                     {
                         type: 'dropdown',
@@ -230,10 +232,6 @@ const config = {
                             {
                                 label: 'Workshops',
                                 to: '/learn/workshops',
-                            },
-                            {
-                                label: 'Partners',
-                                to: '/partners/aws',
                             },
                             {
                                 label: 'Contributor Guide',
@@ -285,6 +283,11 @@ const config = {
                     {
                         label: 'Blog',
                         to: '/blog',
+                        position: 'right',
+                    },
+                    {
+                        label: 'Pricing',
+                        to: '/pricing',
                         position: 'right',
                     },
                     {

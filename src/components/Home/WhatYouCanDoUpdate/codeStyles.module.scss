@@ -1,16 +1,20 @@
 .linkRight {
-  margin-left: auto;
+  margin: auto;
 }
 .codeSnip {
   display: flex;
-  border-radius: 0.9375rem;
-  border: 1px solid #0073b4;
-  background: #130c49;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   height: 654px;
+  border-radius: 0.9375rem;
+  border: 1px solid #0073b4;
+  background: #130c49;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+  width: 37.125rem;
+  height: 33rem;
+  flex-shrink: 0;
+  margin-top: 60px;
 
   @media screen and (max-width: 500px) {
     height: 100%;
@@ -23,6 +27,10 @@
     width: 100%;
     box-shadow: none !important;
     border: none !important;
+
+    code {
+      margin-top: 20px;
+    }
   }
 }
 .copyButton {
