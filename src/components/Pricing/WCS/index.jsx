@@ -21,11 +21,6 @@ export default function Soc2(props) {
                 Weaviate in a dedicated tenant, an isolated tenant, or even in
                 your own cloud environment.
               </p>
-              <div className={styles.buttons}>
-                <Link className={styles.buttonOutline} to="#contact-sales">
-                  Contact Sales
-                </Link>
-              </div>
             </div>
 
             <div className={styles.wcsDiagram}></div>

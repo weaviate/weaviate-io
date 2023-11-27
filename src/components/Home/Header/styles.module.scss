@@ -248,6 +248,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url('../../../../static/img/site/W-logo-3d-shadow.png');
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .buttons {
