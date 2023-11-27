@@ -121,6 +121,7 @@
     outline: 1px solid #ffffff;
     color: #130c49;
     transition: all 1s ease-out;
+    background-color: none;
   }
 
   .buttonOutline:hover {
@@ -280,7 +281,7 @@ p {
 .buttonOutline {
   border-radius: 0.3125rem;
   border: 1px solid #130c49;
-  background: #f4f4f4;
+  background: none;
   padding: 9px;
   color: #130c49;
   text-align: center;

@@ -36,7 +36,10 @@ export default function Soc2(props) {
             </h3>
             <p>Ben Selleslagh, Vectrix</p>
             <div className={styles.buttons}>
-              <Link className={styles.buttonGradient} to="#meet_the_team">
+              <Link
+                className={styles.buttonGradient}
+                to="https://console.weaviate.cloud/"
+              >
                 Start Building with Weaviate
               </Link>
             </div>

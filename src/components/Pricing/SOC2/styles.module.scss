@@ -199,6 +199,8 @@
   @media screen and (max-width: 500px) {
     display: flex;
     flex-direction: column;
+    padding: 2rem;
+    width: 92%;
   }
 
   .contentDiv {
@@ -206,6 +208,9 @@
     width: 50%;
     margin: 50px;
     text-align: center;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
   }
 }
 

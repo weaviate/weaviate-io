@@ -10,6 +10,10 @@
 .box {
   width: 60%;
 
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+
   h2 {
     color: #130c49;
     font-family: Inter;

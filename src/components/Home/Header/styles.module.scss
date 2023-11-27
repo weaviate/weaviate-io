@@ -1,3 +1,12 @@
+.sliderContainer {
+  padding: 3rem;
+
+  @media screen and (max-width: 500px) {
+    padding: 2rem 0rem;
+    background: #130c49;
+  }
+}
+
 .headerHome {
   background: #f1f2eb;
   background-image: url('/img/site/home-page-bg-pattern.svg');
@@ -8,9 +17,14 @@
 
   @media screen and (max-width: 900px) {
     display: flex;
+    flex-grow: 1;
     overflow-x: hidden;
     column-gap: 20px;
-    animation: scrollSideCustomers 40s linear infinite;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-width: 330px;
   }
 
   @keyframes scrollSideCustomers {
@@ -86,7 +100,7 @@
   }
 
   @media screen and (max-width: 950px) {
-    height: 11rem;
+    height: 20rem;
   }
 }
 
@@ -200,6 +214,7 @@
 .text {
   @media screen and (max-width: 800px) {
     text-align: left;
+    width: 380px;
 
     br {
       display: none;
@@ -368,8 +383,10 @@
 
   @media screen and (max-width: 700px) {
     width: 100%;
-    height: 100%;
+
+    height: 37.0625rem;
     margin: 0;
+    border: none;
   }
 }
 
@@ -379,6 +396,10 @@
   background: rgb(0, 115, 180);
   position: relative;
   top: 32px;
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .typeButton {
@@ -486,6 +507,9 @@
   height: 3rem;
   position: absolute;
   transform: translate(-185px, 15px);
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 .bigLine {
   margin-right: 0.6%;
@@ -515,6 +539,15 @@
   flex: 1 1 0%;
   text-align: left;
   color: white;
+
+  @media screen and (max-width: 500px) {
+    padding: 20px;
+
+    h2,
+    p {
+      margin: 20px 0px;
+    }
+  }
 
   h2 {
     color: #3ccbf4;
@@ -594,5 +627,36 @@
       top: 20px;
       position: relative;
     }
+    @media screen and (max-width: 500px) {
+      display: none !important;
+    }
   }
+}
+
+.codeImage {
+  height: 43.9375rem;
+  width: 24rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url('/img/site/gen-feedback-code-block.png');
+
+  @media screen and (min-width: 500px) {
+    display: none !important;
+  }
+}
+
+.codeImage01 {
+  background-image: url('/img/site/hybrid-search-code-block.png');
+}
+
+.codeImage02 {
+  background-image: url('/img/site/rag-code-block.png');
+}
+
+.codeImage03 {
+  background-image: url('/img/site/gen-feedback-code-block.png');
+}
+
+.codeImage04 {
+  background-image: url('/img/site/secure-slide-code-block.png');
 }

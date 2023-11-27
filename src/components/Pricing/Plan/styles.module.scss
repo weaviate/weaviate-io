@@ -277,6 +277,10 @@
     font-weight: 400;
     transition: all 1s ease-out;
     width: 160px;
+
+    @media screen and (max-width: 640px) {
+      width: 16rem;
+    }
   }
   .buttonOutlineSales:hover {
     border-radius: 0.3125rem;
@@ -503,6 +507,11 @@
   border-radius: 1.5rem;
   background: #ededed;
   overflow-y: scroll;
+
+  @media screen and (max-width: 1060px) {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .close {
@@ -512,4 +521,9 @@
   font-size: 3rem;
   color: #130c49;
   cursor: pointer;
+
+  @media screen and (max-width: 860px) {
+    top: 55px;
+    right: 11px;
+  }
 }

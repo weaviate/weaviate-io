@@ -196,7 +196,7 @@ export default function HomepageWhatYouCanDo() {
         <Link className={styles.buttonGradient} to="/products">
           Learn more about our platform
         </Link>
-        <Link className={styles.buttonOutline} to="/products">
+        <Link className={styles.buttonOutline} to="/pricing">
           Learn more about pricing
         </Link>
       </div>

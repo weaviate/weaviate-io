@@ -17,6 +17,11 @@
     h2 {
       color: #130c49;
     }
+
+    @media screen and (max-width: 680px) {
+      top: 55px;
+      right: 11px;
+    }
   }
 }
 .sliderArea {

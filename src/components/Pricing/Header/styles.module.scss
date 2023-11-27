@@ -119,17 +119,16 @@
 
   .buttonOutline {
     outline: 1px solid #ffffff;
-    color: #fff;
+    color: #130c49;
     transition: all 1s ease-out;
-    background-color: #130c49;
+    background-color: none;
   }
 
   .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
-    background: rgb(97 189 115);
-    color: #130c49;
-    outline: 1px solid #130c49;
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
   }
 }
 

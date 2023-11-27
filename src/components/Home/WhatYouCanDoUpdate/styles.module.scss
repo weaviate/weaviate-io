@@ -77,7 +77,8 @@
 
         @media screen and (max-width: 485px) {
           border-left: none;
-          border-bottom: 7px solid #130c49;
+          /* border-bottom: 7px solid #130c49; */
+          max-height: 270px;
         }
 
         p {
@@ -94,7 +95,8 @@
         @media screen and (max-width: 485px) {
           p {
             text-align: left;
-            display: none;
+            width: 67%;
+            margin: 10px 0px;
           }
         }
       }
@@ -126,7 +128,7 @@
 
         @media screen and (max-width: 485px) {
           .tabsText {
-            display: block;
+            display: none;
             color: #130c49;
             font-size: 1rem;
             margin-bottom: 10px;

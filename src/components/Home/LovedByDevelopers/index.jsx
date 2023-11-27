@@ -116,6 +116,13 @@ export default function HomepageLovedByDevelopers() {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 

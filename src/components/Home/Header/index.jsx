@@ -8,8 +8,21 @@ import CodeSnippet from './CodeSnippet';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import styled from 'styled-components';
 
 export default function HomepageHeader() {
+  const StyledSlider = styled(Slider)`
+    .slick-dots li.slick-active button:before {
+      opacity: 1;
+      color: #61bd73;
+    }
+
+    .slick-dots li button:before {
+      opacity: 0.75;
+      color: #61bd73;
+    }
+  `;
+
   const codeExample = `collection = (    
     client.collections    
     .get("Article")
@@ -70,7 +83,7 @@ export default function HomepageHeader() {
   )`;
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -82,8 +95,7 @@ export default function HomepageHeader() {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
-          variableWidth: true,
+          dots: false,
         },
       },
       {
@@ -92,7 +104,8 @@ export default function HomepageHeader() {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          variableWidth: true,
+          dots: true,
+          arrows: false,
         },
       },
       {
@@ -100,6 +113,8 @@ export default function HomepageHeader() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: true,
+          arrows: false,
         },
       },
     ],
@@ -128,15 +143,14 @@ export default function HomepageHeader() {
             >
               Start Free
             </Link>
-            <Link
-              className={styles.buttonOutline}
-              to="https://weaviate.io/developers/weaviate"
-            >
+            <Link className={styles.buttonOutline} to="developers/weaviate">
               Documentation
             </Link>
           </div>
         </div>
-        <Slider {...settings}>
+      </div>
+      <div className={styles.sliderContainer}>
+        <StyledSlider {...settings}>
           <div>
             <div className={styles.grid}>
               <div className={styles.codeBlock}>
@@ -153,7 +167,9 @@ export default function HomepageHeader() {
                       your users.
                     </p>
                   </div>
-
+                  <div
+                    className={`${styles.codeImage} ${styles.codeImage01}`}
+                  />
                   <div className={styles.codeBlockContentRight}>
                     <div className={styles.codeBlockTitle} />
                     <div className={styles.lineBar} />
@@ -180,7 +196,9 @@ export default function HomepageHeader() {
                       improve accuracy, without compromising data privacy.
                     </p>
                   </div>
-
+                  <div
+                    className={`${styles.codeImage} ${styles.codeImage02}`}
+                  />
                   <div className={styles.codeBlockContentRight}>
                     <div
                       className={`${styles.codeBlockTitle} ${styles.bigLine}`}
@@ -211,7 +229,9 @@ export default function HomepageHeader() {
                       Spend less time on tedious, manual data cleaning.
                     </p>
                   </div>
-
+                  <div
+                    className={`${styles.codeImage} ${styles.codeImage03}`}
+                  />
                   <div className={styles.codeBlockContentRight}>
                     <div
                       className={`${styles.codeBlockTitle} ${styles.bigLine}`}
@@ -224,7 +244,9 @@ export default function HomepageHeader() {
               </div>
             </div>
           </div>
-        </Slider>
+        </StyledSlider>
+      </div>
+      <div className="container">
         <div className={styles.bottomBar}>
           <h2 className={styles.text}>
             Loved by developers and trusted by companies of all sizes<br></br>to
