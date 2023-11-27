@@ -65,8 +65,6 @@ You can instantiate the client using one of multiple methods. For example, you c
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
 
-Or, you can instantiate a `weaviate.WeaviateClient` object directly.
-
 For example, you can:
 
 Connect to a local instance like this:
@@ -87,7 +85,7 @@ Connect to a Weaviate Cloud Services (WCS) instance like this:
   language="py"
 />
 
-Or connect a client directly like this:
+Or connect with a custom set of parameters like this:
 
 <FilteredTextBlock
   text={PythonCode}
@@ -95,6 +93,8 @@ Or connect a client directly like this:
   endMarker="# END CustomInstantiationBasic"
   language="py"
 />
+
+Or, you can [instantiate a `weaviate.WeaviateClient` object directly](#advanced-direct-instantiation-with-custom-parameters).
 
 #### API keys for external API use
 
@@ -149,6 +149,8 @@ For authentication workflows not supported by the helper functions, you can pass
 ### Advanced: Direct instantiation with custom parameters
 
 You can also instantiate a client (`WeaviateClient`) object directly, through which you can pass on custom parameters.
+
+For example, you can instantiate a client like this:
 
 <FilteredTextBlock
   text={PythonCode}
