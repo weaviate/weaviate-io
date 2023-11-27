@@ -29,7 +29,7 @@ This page gives basic search examples.
 
 ## Basic search
 
-Use the [`Get` function](../api/graphql/get.md) to search. Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata.
+Use the [`Get` function](../api/graphql/get.md) to search.
 
 <Tabs groupId="languages">
 
@@ -85,6 +85,13 @@ The output is like this:
   endMarker="// END BasicGet Expected Results"
   language="json"
 />
+
+</details>
+
+<details>
+  <summary>Additional information</summary>
+
+  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata. Weaviate search is based on the [GraphQL API](../api/graphql).
 
 </details>
 
