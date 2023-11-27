@@ -318,7 +318,7 @@ To retrieve the object vector, specify the vector in your query.
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -336,7 +336,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
 
- The new Python client always the object ID.
+ The new Python client always returns the object ID.
  
 <FilteredTextBlock
   text={PyCode}
