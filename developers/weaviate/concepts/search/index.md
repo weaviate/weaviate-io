@@ -23,7 +23,11 @@ Specify the information that you want your query to return. You can return objec
 
 ## Vector similarity search
 
-Vector search is a similarity based search. The vector search operators searching for objects with vector representations that are similar to the query's vector representation.
+Vector search is a similarity based search. The vector search operators searching for objects with vector representations that are similar to the query's vector representation. 
+
+If you use unvectorized inputs to search with, the collection must have a [vectorizer](../modules/retriever-vectorizer-modules/index.md) configured.
+
+The distance between vectors indicates how dissimilar two objects are. Weaviate offers several [distance metrics](../../config-refs/distances.md). Set the metric in the [collection schema](../../config-refs/schema.md#default-distance-metric).
   
 ## Keyword search
 
