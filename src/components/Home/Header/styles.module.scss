@@ -208,7 +208,7 @@
 .title {
   font-size: 50px;
   font-weight: bold;
-  line-height: 69.6px;
+
   margin: 2rem 0rem;
 
   @media screen and (max-width: 500px) {
@@ -237,6 +237,8 @@
     -webkit-text-align: left;
 
     -webkit-margin: 2rem 0rem;
+    -webkit-padding-before: 20px;
+    -webkit-padding-after: 20px;
 
     br {
       display: none;
