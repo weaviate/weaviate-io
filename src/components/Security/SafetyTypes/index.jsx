@@ -14,7 +14,7 @@ export default function SafetyTypes() {
             you’re running Weaviate as a Serverless, Enterprise Dedicated, or
             Bring Your Own Cloud solution– our top priority is keeping your data
             safe and available. Read more about our SLAs{' '}
-            <Link href="https://weaviate.io/service">here</Link>. 
+            <Link to="/service">here</Link>. 
           </p>
         </div>
         <div className={styles.box}>
