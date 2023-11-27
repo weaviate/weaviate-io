@@ -21,8 +21,10 @@ To retrieve objects, use the `get` function and specify the collection to search
 
 Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata.
 
-## Vector search
+## Vector similarity search
 
+Vector search is a similarity based search. The vector search operators searching for objects with vector representations that are similar to the query's vector representation.
+  
 ## Keyword search
 
 ## Hybrid search
