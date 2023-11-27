@@ -214,7 +214,10 @@
   @media screen and (max-width: 500px) {
     font-size: 53px;
     text-align: left;
-    text-align: -webkit-left;
+    -webkit-text-align: left;
+
+    -webkit-margin: 2rem 0rem;
+
     height: 200px;
   }
 

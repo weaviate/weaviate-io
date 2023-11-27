@@ -134,7 +134,7 @@ export default function HomepageHeader() {
             </h1>
           </p>
           <p className={styles.text}>
-            Weaviate is an open source, AI-native vector database that helps
+            Weaviate is an open source, AI-native vector database that helps{}
             <br></br>
             developers create intuitive and reliable AI-powered applications.
           </p>
