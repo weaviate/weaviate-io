@@ -90,7 +90,7 @@ The output is like this:
 <details>
   <summary>Additional information</summary>
 
-  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata. Weaviate search is based on the [GraphQL API](../api/graphql).
+  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata. Weaviate search is based on the [GraphQL API](../api/graphql/index.md).
 
 </details>
 

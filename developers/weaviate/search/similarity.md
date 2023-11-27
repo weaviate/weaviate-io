@@ -36,7 +36,7 @@ If you use unvectorized inputs to search with, the collection must have a [vecto
 
 - For text object, use [`nearText`](../api/graphql/search-operators.md#neartext).
 - For image objects, use [`nearImage`](./image.md). 
-- For mixed text and images, use [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).)
+- For mixed text and images, use [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -94,7 +94,7 @@ The output is like this:
 
 If you have an object ID, use the [`nearObject` operator](../api/graphql/search-operators.md#nearobject) to find objects similar to that object.
 
-- To retrieve the object ID, see [Retrieve the object ID](./basics.md#retrieve-the-object-id).
+- To get the object ID, see [Retrieve the object ID](./basics.md#retrieve-the-object-id).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -178,7 +178,7 @@ If you have an input vector, use the [`nearVector`](../api/graphql/search-operat
 
 ## Set a similarity threshold
 
-To set a similarity threshold between the search and target vectors, define a maximum `distance`. The distance indicates how dissimilar two objects are.
+To set a similarity threshold between the search and target vectors, define a maximum `distance`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -221,15 +221,11 @@ To set a similarity threshold between the search and target vectors, define a ma
 <details>
   <summary>Additional information</summary>
 
-The distance value depends on many factors, including the vectorization model you use. Experiment with your data to find a value that works for you.
-
-[`certainty`](../config-refs/distances.md#distance-vs-certainty) is only available with `cosine` distance.
+- The distance value depends on many factors, including the vectorization model you use. Experiment with your data to find a value that works for you.
+- [`certainty`](../config-refs/distances.md#distance-vs-certainty) is only available with `cosine` distance.
+- To find the least similar objects, use the negative cosine distance with `nearVector` search.
 
 </details>
-
-## Find least similar results
-
-If you use the cosine distance metric, use `nearVector` to search for the negative value of a vector to find the least similar objects. 
 
 ## Limit the size of the result set
 
