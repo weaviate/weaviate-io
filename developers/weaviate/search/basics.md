@@ -23,7 +23,7 @@ This page has basic search examples.
 
   - For search concepts, see [Search](/developers/weaviate/concepts/search).
   - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
-  - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql#graphql).
+  - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
 
 </details>
 
@@ -465,7 +465,7 @@ The output is like this:
 
 ## Retrieve other metadata values
 
-For a comprehensive list of metadata fields, see [GraphQL: Additional properties](../api/graphql/additional-properties.md).
+For a comprehensive list of metadata fields, see [GraphQL: Additional properties](../ql/additional-properties.md).
 
 ## Group results 
 
