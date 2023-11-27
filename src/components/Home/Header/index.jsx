@@ -125,10 +125,8 @@ export default function HomepageHeader() {
 
   return (
     <header className={styles.headerHome}>
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.grid}>
-          <div className={styles.img} />
-
           <p className={styles.title}>
             <h1>
               The easiest way to build and<br></br> scale AI applications

@@ -12,9 +12,9 @@ export default function SafetyTypes() {
         <div className={styles.card}>
           <div className={styles.contentDiv}>
             <div className={`${styles.cardIcon} ${styles.icon01}`}></div>
-            <h3 className={styles.cardTextColor}>Secure Deployment</h3>
+            <h3 className={styles.cardTextColor}>Built-in hybrid search</h3>
             <p className={styles.textCardContent}>
-              Run in a dedicated tenant or in your own VPC. 
+              Merge different search algorithms and re-rank results accordingly.
             </p>
             <p>
               <Link
@@ -116,12 +116,12 @@ export default function SafetyTypes() {
             <div className={`${styles.cardIcon} ${styles.icon07}`}></div>
             <h3 className={styles.cardTextColor}>Vector index compression</h3>
             <p className={styles.textCardContent}>
-              Improve the memory footprint of large data sets.
+              Improve the memory footprint of large datasets.
             </p>
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/concepts/cluster"
+                to="/developers/weaviate/configuration/compression"
               >
                 Learn more
               </Link>
@@ -131,9 +131,11 @@ export default function SafetyTypes() {
         <div className={styles.card}>
           <div className={styles.contentDiv}>
             <div className={`${styles.cardIcon} ${styles.icon8}`}></div>
-            <h3 className={styles.cardTextColor}>Tenant isolation</h3>
+            <h3 className={styles.cardTextColor}>
+              Tenant<br></br>isolation
+            </h3>
             <p className={styles.textCardContent}>
-              Maintain security and compliance with strict resource isolation.
+              Ensure security with strict resource isolation.
             </p>
             <p>
               <Link

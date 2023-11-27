@@ -118,18 +118,20 @@
   }
 
   .buttonOutline {
+    font-weight: 400;
+    border-radius: 0.3125rem;
     outline: 1px solid #ffffff;
-    color: #fff;
+    color: #ffffff;
+
     transition: all 1s ease-out;
-    background-color: #130c49;
   }
 
   .buttonOutline:hover {
     border-radius: 0.3125rem;
     outline: 1px solid #130c49;
-    background: rgb(97 189 115);
-    color: #130c49;
-    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
   }
 }
 
@@ -280,28 +282,6 @@ p {
   background-color: #ededed;
 }
 
-.buttonOutline {
-  border-radius: 0.3125rem;
-  border: 1px solid #130c49;
-  background: #f4f4f4;
-  padding: 9px;
-  color: #130c49;
-  text-align: center;
-  font-family: Inter;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 157.33%;
-  transition: all 1s ease-out;
-}
-.buttonOutline:hover {
-  border-radius: 0.3125rem;
-  outline: 1px solid #130c49;
-  background: rgb(15, 0, 50);
-  color: #fff;
-  font-weight: 400;
-}
-
 .buttonsContainer {
   display: flex;
   flex-direction: row;
@@ -349,8 +329,8 @@ p {
 
   @media screen and (max-width: 500px) {
     background-image: url('/img/site/bg-dark-mobile.svg');
-    background-size: 100%;
-    background-position-y: 12%;
+    background-size: cover;
+
     background-repeat: no-repeat;
   }
 }

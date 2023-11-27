@@ -229,7 +229,9 @@ export default function Integrations() {
                 implementation which have helped us quickly prototype and build
                 our vector search at Stack.”
               </h3>
-              <p>Constantine Kokkinos, Stack Overflow</p>
+              <p>
+                Constantine Kokkinos,<br></br> Stack Overflow
+              </p>
               <div className={styles.buttons}>
                 <Link
                   className={styles.buttonGradient}

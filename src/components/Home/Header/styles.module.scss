@@ -1,3 +1,17 @@
+.container {
+  padding: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 2rem;
+    background-image: url('/img/site/bg-light-mobile.svg');
+    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
 .sliderContainer {
   padding: 3rem;
 
@@ -13,10 +27,7 @@
   background-size: cover;
 
   @media screen and (max-width: 500px) {
-    background-image: url('/img/site/bg-dark-mobile.svg');
-    background-size: 100%;
-    background-position-y: 12%;
-    background-repeat: no-repeat;
+    background-image: none;
   }
 }
 .logoSection {
@@ -198,8 +209,7 @@
   font-size: 50px;
   font-weight: bold;
   line-height: 69.6px;
-
-  margin-bottom: 1rem;
+  margin: 2rem 0rem;
 
   @media screen and (max-width: 500px) {
     font-size: 53px;
@@ -221,8 +231,8 @@
 .text {
   @media screen and (max-width: 800px) {
     text-align: left;
-    width: 380px;
-    padding: 10px 31px;
+    width: 347px;
+    padding: 40px 0px;
 
     br {
       display: none;
@@ -279,9 +289,11 @@
   }
 
   .buttonOutline {
-    outline: 1px solid #20e220;
-    font-weight: bold;
-    color: #fff;
+    font-weight: 400;
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    color: #130c49;
+
     transition: all 1s ease-out;
   }
 

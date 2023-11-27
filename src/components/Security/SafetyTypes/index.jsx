@@ -38,8 +38,7 @@ export default function SafetyTypes() {
             <div className={styles.contentDiv}>
               <h3 className={styles.cardTextColor}>User Authentication</h3>
               <p className={styles.textCardContent}>
-                Connect to your identity provider to rely on built-in
-                mechanisms.
+                Rely on built-in mechanisms from your identity provider.
               </p>
             </div>
           </div>
