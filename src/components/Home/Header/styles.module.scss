@@ -210,6 +210,7 @@
   font-weight: bold;
 
   margin: 2rem 0rem;
+  height: 250px;
 
   @media screen and (max-width: 500px) {
     font-size: 53px;
@@ -233,10 +234,6 @@
     text-align: left;
     width: 347px;
     padding: 20px 0;
-
-    br {
-      display: none;
-    }
   }
 }
 
