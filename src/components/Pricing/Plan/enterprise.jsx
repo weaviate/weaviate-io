@@ -30,16 +30,13 @@ export default function PricingEnterprise() {
 
         <li>
           <div className={styles.checkIcon}></div>
-          <span>
-            Annual contract <br></br>
-            (12, 24, or 36 month)
-          </span>
+          <span>Annual contract</span>
         </li>
 
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Three SLA tier options:
+            SLA tiers:
             <ul>
               <li>
                 <div className={styles.checkIconWhite}></div>Standard

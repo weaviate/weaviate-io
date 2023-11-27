@@ -44,7 +44,7 @@ export default function PricingStandard() {
           <li>
             <div className={styles.checkIcon}></div>
             <span>
-              Three SLA tier options:
+              SLA tiers:
               <ul>
                 <li>
                   <div className={styles.checkIconWhite}></div>Standard

@@ -18,12 +18,13 @@
   justify-content: space-around;
 
   width: 14.3125rem;
-  height: 13.4375rem;
+  height: 19.75rem;
 
   background-color: #141f39;
   margin: 1rem;
   padding: 2rem;
 
+  border-radius: 0.4375rem;
   border-radius: 0.4375rem;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
@@ -74,7 +75,7 @@
 .textCardContent {
   line-height: 1.6rem;
   font-size: 17px;
-  color: #fff;
+  color: #130c49;
 }
 
 .cardFooter {
@@ -172,21 +173,32 @@
     }
 
     h2 {
-      color: #1c1468;
+      color: #130c49;
+      font-family: Plus Jakarta Sans;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 157.33%; /* 3.53994rem */
     }
   }
 
   .card {
     border-radius: 0.4375rem;
-    background: #130c49;
+    border-radius: 0.4375rem;
+    background: #fff;
     box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   }
 
   .cardTextColor {
-    color: #00c342;
+    color: #130c49;
 
     h3 {
-      color: rgba(46, 49, 143);
+      color: #130c49;
+      font-family: Inter;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 120%; /* 1.35rem */
     }
   }
 
@@ -321,4 +333,49 @@
   height: 186px;
   background: #130c49;
   margin-top: -200px;
+}
+
+.cardIcon {
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  background-image: url('/img/site/platform-feature-01.svg');
+  background-size: 100% 100%;
+}
+
+.icon01 {
+  background-image: url('/img/site/platform-feature-01.svg');
+}
+.icon02 {
+  background-image: url('/img/site/platform-feature-02.svg');
+}
+.icon03 {
+  background-image: url('/img/site/platform-feature-03.svg');
+}
+.icon04 {
+  background-image: url('/img/site/platform-feature-04.svg');
+}
+.icon05 {
+  background-image: url('/img/site/platform-feature-05.svg');
+}
+.icon06 {
+  background-image: url('/img/site/platform-feature-06.svg');
+}
+.icon07 {
+  background-image: url('/img/site/platform-feature-07.svg');
+}
+.icon08 {
+  background-image: url('/img/site/platform-feature-08.svg');
+}
+
+.cardLink {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%; /* 1.37663rem */
+  text-decoration-line: underline;
+  margin: 20px 0px;
 }

@@ -190,7 +190,7 @@ const config = {
                 items: [
                     {
                         // type: 'dropdown',
-                        label: 'Weaviate Cloud Services',
+                        label: 'Product',
                         position: 'right',
                         to: '/products',
                         items: [
@@ -198,6 +198,10 @@ const config = {
                            label: 'Products',
                                to: '/products',
                             },
+                            {
+                                label: 'Platform',
+                                    to: '/platform',
+                                 },
                             {
                                 label: 'Pricing',
                                     to: '/pricing',
@@ -234,10 +238,6 @@ const config = {
                             {
                                 label: 'Workshops',
                                 to: '/learn/workshops',
-                            },
-                            {
-                                label: 'Partners',
-                                to: '/partners/aws',
                             },
                             {
                                 label: 'Contributor Guide',

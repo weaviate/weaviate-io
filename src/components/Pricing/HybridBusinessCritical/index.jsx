@@ -8,7 +8,7 @@ export default function HybridBusinessCritical() {
       <div className="container">
         <div className={styles.marketTitle}>
           <h2 className={styles.marketText}>
-            Find Weaviate on leading Marketplaces:
+            Find Weaviate in leading Marketplaces:
           </h2>
         </div>
         <div className={styles.buttons}>

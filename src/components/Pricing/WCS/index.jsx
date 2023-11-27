@@ -16,13 +16,13 @@ export default function Soc2(props) {
 
               <p>
                 Whether you work at a fast-paced startup or at an enterprise
-                with specific deployment needs, we’re here to help. Weaviate
-                Cloud Services (WCS) is fully-managed and can be deployed as a
-                serverless Software-as-a-Service, in a dedicated tenant, or in
-                your virtual private cloud (VPC).
+                with specific deployment needs, we're here to help. Weaviate
+                Cloud Services (WCS) is a fully-managed service that can deploy
+                Weaviate in a dedicated tenant, an isolated tenant, or even in
+                your own cloud environment.
               </p>
               <div className={styles.buttons}>
-                <Link className={styles.buttonOutline} to="/developers/wcs">
+                <Link className={styles.buttonOutline} to="#contact-sales">
                   Contact Sales
                 </Link>
               </div>

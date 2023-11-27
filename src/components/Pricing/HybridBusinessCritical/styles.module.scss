@@ -154,10 +154,6 @@
 }
 
 .marketBox {
-  border-radius: 0.9375rem;
-  border: 1px solid #130c49;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 14.375rem;
   height: 12rem;
   display: flex;
@@ -166,20 +162,39 @@
   align-items: center;
   margin: 10px 10px;
   transition: all 1s ease-out;
+  border-radius: 0.9375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   &:hover {
     background: #130c49;
     color: #fff;
     font-weight: 400;
+    p,
+    a {
+      color: #fff;
+    }
 
     .test {
       color: white;
     }
   }
+
+  p {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+
+    font-weight: 700;
+  }
+
+  a {
+    color: #1c1468;
+  }
 }
 
 .awsBox {
   border-radius: 0.9375rem;
-  border: 1px solid #130c49;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 14.375rem;
@@ -196,13 +211,27 @@
     color: #fff;
     font-weight: 400;
 
-    .p {
-      color: #130c49;
+    p,
+    a {
+      color: #fff;
     }
 
     .aws {
       background-image: url('../../../../static/img/site/awsDarkLogo.svg');
     }
+  }
+
+  p {
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+
+    font-weight: 700;
+  }
+
+  a {
+    color: #1c1468;
   }
 }
 
@@ -218,16 +247,16 @@
 
   .google {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('../../../../static/img/site/googleCloud.svg');
   }
   .aws {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -236,8 +265,8 @@
   }
   .awsLight {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -245,8 +274,8 @@
   }
   .azure {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

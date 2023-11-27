@@ -13,7 +13,8 @@ export default function SafetyTypes() {
             a vector database and give development teams peace of mind. Whether
             you’re running Weaviate as a Serverless, Enterprise Dedicated, or
             Bring Your Own Cloud solution– our top priority is keeping your data
-            safe and available. Read more about our SLAs here. 
+            safe and available. Read more about our SLAs{' '}
+            <Link href="https://weaviate.io/service">here</Link>. 
           </p>
         </div>
         <div className={styles.box}>
@@ -47,17 +48,15 @@ export default function SafetyTypes() {
             <div className={styles.contentDiv}>
               <h3 className={styles.cardTextColor}>Native Multi Tenancy</h3>
               <p className={styles.textCardContent}>
-                Isolate data with industry-leading tenant management.
+                Fully isolate data with advanced tenant management.
               </p>
             </div>
           </div>
           <div className={styles.card}>
             <div className={styles.contentDiv}>
-              <h3 className={styles.cardTextColor}>
-                Advanced Firewall Protection
-              </h3>
+              <h3 className={styles.cardTextColor}>Automated Backups</h3>
               <p className={styles.textCardContent}>
-                Take extra precaution against malicious threats.
+                Configurable backups, automated daily.
               </p>
             </div>
           </div>
@@ -65,8 +64,7 @@ export default function SafetyTypes() {
             <div className={styles.contentDiv}>
               <h3 className={styles.cardTextColor}>Active Monitoring</h3>
               <p className={styles.textCardContent}>
-                We proactively monitor our systems and are on standby 24/7 for
-                incidents. 
+                Proactive monitoring. On standby 24/7 for incident support.
               </p>
             </div>
           </div>
@@ -78,11 +76,12 @@ export default function SafetyTypes() {
               </p>
             </div>
           </div>
+
           <div className={styles.card}>
             <div className={styles.contentDiv}>
-              <h3 className={styles.cardTextColor}>Automated Backups</h3>
+              <h3 className={styles.cardTextColor}>Compliant with Standards</h3>
               <p className={styles.textCardContent}>
-                Rest easy with daily backups and snapshots.
+                Stay compliant with SOC2, data privacy, and explainability.
               </p>
             </div>
           </div>

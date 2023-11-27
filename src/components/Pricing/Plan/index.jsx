@@ -11,7 +11,7 @@ export default function PricingPlan() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Weaviate Cloud Services Pricing</h2>
+          <h2>WCS Pricing</h2>
           <p>
             Our ecosystem is designed to give you the capabilities to build and
             test your applications for free. When you are ready to move to

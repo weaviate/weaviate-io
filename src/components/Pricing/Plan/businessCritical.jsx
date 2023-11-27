@@ -9,7 +9,7 @@ export default function PricingBusinessCritical() {
         <h3>Bring Your Own Cloud</h3>
       </div>
       <div className={styles.price}>
-        <p>We manage the data plane inside your virtual private cloud.</p>
+        <p>Choose a fully managed solution or 24/7 support within your VPC.</p>
       </div>
       <hr></hr>
       <div className={styles.features}>
