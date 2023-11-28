@@ -216,11 +216,11 @@
 }
 
 .longCard {
-  width: 92%;
+  width: 92% !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 400px;
+  height: 400px !important;
   gap: 20px;
   z-index: 1;
   flex-wrap: nowrap;

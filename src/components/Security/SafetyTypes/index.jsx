@@ -85,7 +85,7 @@ export default function SafetyTypes() {
             </div>
           </div>
 
-          <div className={`${styles.card} ${styles.longCard}`}>
+          <div className={` ${styles.longCard} ${styles.card} `}>
             <div className={styles.contentDiv}>
               <h3 className={styles.cTextColor}>
                 “We're building AI-powered research and intelligence tools for
