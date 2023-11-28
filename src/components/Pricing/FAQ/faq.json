@@ -1,0 +1,47 @@
+[
+  {
+    "question": "Why do you price per vector dimension?",
+    "answer": "Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience."
+  },
+  {
+    "question": "​How does performance and storage optimization work?",
+    "answer": "Within Weaviate you can store vector embeddings for both storage optimization as well as performance optimization. If you <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#conversion-of-an-existing-class-to-use-pq\" target=\"_blank\">enable compression</a>, Weaviate will automatically count these as compressed vectors."
+  },
+  {
+    "question": "What's the Weaviate pricing formula?",
+    "answer": "You pay for the total amount of embedding dimensions stored per data object. For example, if you have a 100-dimensional embedding and you store 1k documents. You pay for 100k dimensions.",
+    "code": "<code>stored objects * embedding dimension size * SLA tier price per dimension</code>"
+  },
+  {
+    "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCS?",
+    "answer": "No, Weaviate Cloud Services (WCS) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
+  },
+  {
+    "question": "Is there a discount for non-profits, startups, or students?",
+    "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
+  },
+  {
+    "question": "Is Weaviate Cloud Services SOC2 compliant?",
+    "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
+  },
+  {
+    "question": "Do I pay for data objects without embeddings?",
+    "answer": "No, storage of data objects without vector embeddings is on us."
+  },
+  {
+    "question": "Which Weaviate modules are available?",
+    "answer": "Weaviate modules based on inference APIs are automatically integrated in the cloud service."
+  },
+  {
+    "question": "Can I store data from different models with different embedding sizes?",
+    "answer": "Yes."
+  },
+  {
+    "question": "How are the number of objects determined for billing purposes?",
+    "answer": "We take a time-weighted average of object counts taken periodically over the course of the month."
+  },
+  {
+    "question": "What if I have an unexpected usage spike?",
+    "answer": "Usage spikes are -almost- always a good sign! Your Weaviate-powered app or platform is being actively used, and we don't want your bill to be in the way of your success. Spikes are analyzed at the end of the month, and occasional ones are on us."
+  }
+]

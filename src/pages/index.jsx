@@ -3,7 +3,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-import HomepageHeader from '/src/components/Home/HeaderUpdate';
+import HomepageHeader from '/src/components/Home/Header';
 import HomepageFeatures from '/src/components/Home/FeaturesUpdate';
 import HomepageWhatYouCanDo from '/src/components/Home/WhatYouCanDoUpdate';
 import HomepageLovedByDevelopers from '/src/components/Home/LovedByDevelopers';
@@ -29,7 +29,7 @@ export default function Home() {
         <HomepageHeader />
         <main>
           <HomepageLovedByDevelopers />
-          <HomepageFeatures />
+
           <HomepageTestimonials />
           <HomepageWhatYouCanDo />
           <HomepageIntegrations />

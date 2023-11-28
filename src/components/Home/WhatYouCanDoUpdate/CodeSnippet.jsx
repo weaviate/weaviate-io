@@ -3,7 +3,7 @@ import Link from '@docusaurus/Link';
 import ClipboardJS from 'clipboard';
 import styles from './codeStyles.module.scss';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { twilight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const CodeSnippet = ({ code, buttonText, outLink, buttonClass }) => {
   const codeRef = React.useRef(null);
@@ -22,7 +22,7 @@ const CodeSnippet = ({ code, buttonText, outLink, buttonClass }) => {
 
   return (
     <div className={styles.codeSnip}>
-      <SyntaxHighlighter language="graphql" style={twilight}>
+      <SyntaxHighlighter language="graphql" showLineNumbers style={atomDark}>
         {code}
       </SyntaxHighlighter>
       <Link className={styles.linkRight} to={outLink}>
