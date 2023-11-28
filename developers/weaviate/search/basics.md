@@ -16,8 +16,6 @@ import ClassToCollectionNote from '/_includes/class-to-collection-transition-not
 
 <ClassToCollectionNote /> 
 
-This page has basic search examples. 
-
 <details>
   <summary>Additional information</summary>
 
