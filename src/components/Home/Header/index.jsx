@@ -202,6 +202,7 @@ export default function HomepageHeader() {
                       more reliable. Use proprietary data to improve accuracy in
                       a secure way.
                     </p>
+                    <br></br>
                   </div>
                   <div
                     className={`${styles.codeImage} ${styles.codeImage02}`}
