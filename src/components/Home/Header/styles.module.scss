@@ -12,10 +12,18 @@
   }
 }
 
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+  .container {
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+}
+
 .sliderContainer {
   padding: 3rem;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 600px) {
     padding: 2rem 0rem;
     background: #130c49;
   }
@@ -96,11 +104,12 @@
   align-items: center;
 
   @media screen and (max-width: 950px) {
-    margin-bottom: 0;
+    margin: none;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1050px) {
     grid-template-columns: 1fr;
+    margin: 0px 10px;
   }
 }
 
@@ -135,7 +144,7 @@
   max-width: var(--ifm-container-width-xl);
 
   @media screen and (max-width: 950px) {
-    height: 11em;
+    height: 180px;
     display: flex;
     margin: 0 auto;
     padding: 0 var(--ifm-spacing-horizontal);
@@ -146,7 +155,6 @@
     justify-content: space-evenly;
     align-items: center;
     white-space: nowrap;
-    overflow: hidden;
   }
 }
 
@@ -402,10 +410,18 @@
   flex-wrap: wrap;
   align-content: space-around;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1090px) {
     width: 100%;
 
     height: 37.0625rem;
+    margin: 0;
+    border: none;
+  }
+
+  @media screen and (max-width: 890px) {
+    width: 100%;
+
+    height: auto;
     margin: 0;
     border: none;
   }
@@ -532,6 +548,10 @@
     display: none;
   }
 
+  @media screen and (max-width: 1050px) {
+    transform: translate(-164px, 15px);
+  }
+
   @media screen and (min-width: 2500px) {
     transform: translate(-164px, 15px);
   }
@@ -549,7 +569,7 @@
   align-content: flex-end;
   gap: 50px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 600px) {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -565,7 +585,7 @@
   text-align: left;
   color: white;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 600px) {
     padding: 20px;
 
     h2,
@@ -659,7 +679,7 @@
 }
 
 .codeImage {
-  height: 43.9375rem;
+  height: 27.9375rem;
   width: 24rem;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -667,6 +687,10 @@
 
   @media screen and (min-width: 500px) {
     display: none !important;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 22rem;
   }
 }
 
