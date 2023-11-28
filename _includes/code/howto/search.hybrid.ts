@@ -44,7 +44,7 @@ result = await client.graphql
   .withFields('question answer')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridBasic
 
 // Tests
@@ -70,7 +70,7 @@ result = await client.graphql
   .withLimit(3)
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithScore
 
 // Tests
@@ -99,7 +99,7 @@ result = await client.graphql
   .withFields('question answer')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithAlpha
 
 // Tests
@@ -128,7 +128,7 @@ result = await client.graphql
   .withFields('question answer')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithFusionType
 
 // Tests
@@ -156,7 +156,7 @@ result = await client.graphql
   .withFields('question answer')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithProperties
 
 // Tests
@@ -184,7 +184,7 @@ result = await client.graphql
   .withFields('question answer')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithPropertyWeighting
 
 // Tests
@@ -211,7 +211,7 @@ result = await client.graphql
   .withFields('question answer')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithVector
 
 // Tests
@@ -242,7 +242,7 @@ result = await client.graphql
   .withFields('question answer round')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchHybridWithFilter
 
 // Tests
@@ -271,7 +271,7 @@ result = await client.graphql
 // highlight-end
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END limit
 
 // Tests
@@ -299,7 +299,7 @@ result = await client.graphql
 // highlight-end
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END autocut
 
 // Tests

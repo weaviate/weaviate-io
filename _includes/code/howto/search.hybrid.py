@@ -38,8 +38,8 @@ response = jeopardy.query.hybrid(
 )
 # highlight-end
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridBasicPython
 
 # <!-- TESTS FROM THIS FILE HAVE NOT BEEN VALIDATED -->
@@ -121,11 +121,11 @@ response = jeopardy.query.hybrid(
     limit=3
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
-    # highlight-start
-    print(o.metadata.explain_score, o.metadata.score)
-    # highlight-end
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
+#     # highlight-start
+#     print(o.metadata.explain_score, o.metadata.score)
+#     # highlight-end
 # END HybridWithScorePython
 
 # Tests
@@ -214,8 +214,8 @@ response = jeopardy.query.hybrid(
    # highlight-end
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END limit Python
 
 # Tests
@@ -303,8 +303,8 @@ response = jeopardy.query.hybrid(
    # highlight-end
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END autocut Python
 
 # Tests
@@ -375,8 +375,8 @@ response = jeopardy.query.hybrid(
     limit=3
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithAlphaPython
 
 # Tests
@@ -454,9 +454,8 @@ response = jeopardy.query.hybrid(
   limit=3
 )
  
-#print(response)
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithFusionTypePython
 
 # Tests
@@ -533,8 +532,8 @@ response = jeopardy.query.hybrid(
     limit=3
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithPropertiesPython
 
 # Tests
@@ -609,8 +608,8 @@ response = jeopardy.query.hybrid(
     limit=3
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithPropertyWeightingPython
 
 # Tests
@@ -687,8 +686,8 @@ response = jeopardy.query.hybrid(
     limit=3
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithVectorPython
 
 # Tests
@@ -767,8 +766,8 @@ response = jeopardy.query.hybrid(
     limit=3
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END HybridWithFilterPython
 
 # Tests
