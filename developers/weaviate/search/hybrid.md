@@ -424,7 +424,7 @@ The output is like this:
 
 ## Limit the size of the result set
 
-To specify a maximum number of result object, use `limit`.
+To specify a maximum number of result objects, use `limit`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -522,7 +522,7 @@ The output is like this:
 
 ## Use a `where` filter
 
-For more specific results, use where to narrow your search.
+For more specific results, use `where` to narrow your search.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
