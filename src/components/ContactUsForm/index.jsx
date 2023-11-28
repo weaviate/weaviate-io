@@ -76,10 +76,7 @@ export default function ContactUsForm() {
           onSubmit={handleSubmit}
         >
           <div className={styles.intro}>
-            <div className={styles.hybridPng} />
-            <h2 id="contact-sales">
-              Get Started with Weaviate Bring Your Own Cloud
-            </h2>
+            <h2 id="contact-sales">Get Started with Weaviate</h2>
             <p>
               Please leave your contact details below and one of our sales
               representatives will reach out to you within 24 hours.
