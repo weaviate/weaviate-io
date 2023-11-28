@@ -25,8 +25,13 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects()
 # highlight-end
 
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+# This prints the response object
+print(response)
+
+# This formatting step prints the output that you probably want.
+# The remaining examples use formatted output where appropriate.
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
 
 # TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET
@@ -85,8 +90,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END GetWithLimitPython
 
 # Test results
@@ -149,9 +154,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END GetWithLimitOffsetPython
 
 # Test results
@@ -214,8 +218,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END GetPropertiesPython
 
 # Test results
@@ -283,7 +287,7 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-# print(response.objects[0].vector)
+print(response.objects[0].vector)
 # END GetObjectVectorPython
 
 # Test results
@@ -354,8 +358,8 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-# for o in response.objects:
-#     print(o.uuid)
+for o in response.objects:
+    print(o.uuid)
 # END GetObjectIdPython
 
 # Test results
@@ -429,11 +433,12 @@ response = jeopardy.query.fetch_objects(
     limit=2
 )
 
-# for o in response.objects:
-#     print(o.properties["question"])
-#     # print referenced objects
-#     for ref in o.properties["hasCategory"].objects:
-#         print(ref.properties)
+# print result objects
+for o in response.objects:
+    print(o.properties["question"])
+    # print referenced objects
+    for ref in o.properties["hasCategory"].objects:
+        print(ref.properties)
 # END GetWithCrossRefsPython
 
 expected_response = (
@@ -518,7 +523,7 @@ result = connectionForTenantA.query.fetch_objects(
     limit=1,
 )
 
-# print (result.objects[0].properties)
+print (result.objects[0].properties)
 # END MultiTenancy
 
 
