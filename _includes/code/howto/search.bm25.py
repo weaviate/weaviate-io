@@ -34,6 +34,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
 response = jeopardy.query.bm25(
 # highlight-end
+    return_properties=["question", "answer"],
     query="food",
     limit=3
 )
@@ -109,6 +110,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="food",
     return_metadata=wvc.MetadataQuery(score=True),
+    return_properties=["question", "answer"],
     limit=3
 )
 
@@ -204,6 +206,7 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="safety",
+    return_properties=["question", "answer"],
     # highlight-start
     limit=3
     # highlight-end
@@ -289,6 +292,7 @@ gql_query = """
 # START autocut Python
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.bm25(
+    return_properties=["question", "answer"],
     query="safety",
     # highlight-start
     auto_limit=1
@@ -365,6 +369,7 @@ response = jeopardy.query.bm25(
     # highlight-start
     query_properties=["question"],
     # highlight-end
+    return_properties=["question", "answer"],
     return_metadata=wvc.MetadataQuery(score=True),
     limit=3
 )
@@ -460,6 +465,7 @@ response = jeopardy.query.bm25(
     # highlight-start
     query_properties=["question^2", "answer"],
     # highlight-end
+    return_properties=["question", "answer"],
     limit=3
 )
 
