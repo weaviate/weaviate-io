@@ -333,7 +333,9 @@ The following sections describe how to add a property to a collection and how to
 
 ### Add a property
 
-You can add a new property to an existing collection.
+You can add a new property to an existing collection. 
+
+You have to add new properties to an existing schema one at a time. To add multiple properties, create a list of the new properties and loop through it to add one new property on each iteration.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
