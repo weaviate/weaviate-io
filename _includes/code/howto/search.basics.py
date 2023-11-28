@@ -25,7 +25,6 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects()
 # highlight-end
 
-# To print the results, uncomment this code.
 # for o in response.objects:
 #     print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
@@ -86,7 +85,6 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# To print the results, uncomment this code.
 # for o in response.objects:
 #     print(json.dumps(o.properties, indent=2))
 # END GetWithLimitPython
@@ -151,7 +149,7 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# To print the results, uncomment this code.
+
 # for o in response.objects:
 #     print(json.dumps(o.properties, indent=2))
 # END GetWithLimitOffsetPython
@@ -216,7 +214,6 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# To print the results, uncomment this code.
 # for o in response.objects:
 #     print(json.dumps(o.properties, indent=2))
 # END GetPropertiesPython
@@ -286,7 +283,6 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-# To print the results, uncomment this code.
 # print(response.objects[0].vector)
 # END GetObjectVectorPython
 
@@ -358,7 +354,6 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-# To print the results, uncomment this code.
 # for o in response.objects:
 #     print(o.uuid)
 # END GetObjectIdPython
@@ -434,7 +429,6 @@ response = jeopardy.query.fetch_objects(
     limit=2
 )
 
-# To print the results, uncomment this code.
 # for o in response.objects:
 #     print(o.properties["question"])
 #     # print referenced objects
@@ -524,7 +518,6 @@ result = connectionForTenantA.query.fetch_objects(
     limit=1,
 )
 
-# To print the results, uncomment this code.
 # print (result.objects[0].properties)
 # END MultiTenancy
 
