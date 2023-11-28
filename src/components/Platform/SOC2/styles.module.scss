@@ -1,0 +1,231 @@
+.light {
+  .box {
+    text-align: left;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+
+    h2 {
+      color: #fff;
+      font-family: Plus Jakarta Sans;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 157.33%; /* 2.35994rem */
+      width: 80%;
+      @media screen and (max-width: 680px) {
+        width: 100%;
+        margin-bottom: 70px;
+      }
+    }
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #130e46;
+  }
+
+  .soc2Box {
+    width: 80%;
+    margin: 30px 0px;
+
+    p {
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.dark {
+  .box {
+    text-align: left;
+    color: #130c49;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: flex-start;
+    margin: 20px 0px;
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #ededed;
+  }
+
+  .soc2Box {
+    flex: 1;
+
+    h2 {
+      color: #130c49;
+    }
+
+    p {
+      margin: 40px 0px;
+      color: #130c49;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .soc2Logos {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+
+  .drataLogo {
+    background: url('/img/site/CIS-logo.png');
+    background-size: 100% 100%;
+
+    width: 50%;
+    height: 120px;
+
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc-2-circle.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.twoRow {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 140px;
+
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+
+.platformImage {
+  background-image: url('/img/site/platform-01.png');
+
+  width: 100%;
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 446px;
+  flex: 1;
+
+  @media screen and (max-width: 680px) {
+    flex: none;
+    background-size: 100%;
+  }
+}
+
+.pImage01 {
+  background-image: url('/img/site/platform-01.png');
+}
+
+.pImage02 {
+  background-image: url('/img/site/platform-02.png');
+}
+
+.pImage03 {
+  background-image: url('/img/site/platform-03.png');
+}
+
+.pImage04 {
+  background-image: url('/img/site/platform-04.png');
+}
+
+.platformText {
+  flex: 1;
+
+  h2 {
+    color: #61bd73;
+    font-family: Plus Jakarta Sans;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; /* 3rem */
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: #fff;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+}
+
+.reverseBox {
+  @media screen and (max-width: 680px) {
+    flex-direction: column-reverse;
+  }
+}

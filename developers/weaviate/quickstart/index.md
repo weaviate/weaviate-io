@@ -102,7 +102,7 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey
 
 <ConnectToWeaviateWithKey />
 
-## Step 4: Define a class
+## Step 4: Define a data collection
 
 Next, we define a data collection (a "class" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
 

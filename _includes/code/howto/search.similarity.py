@@ -39,8 +39,8 @@ response = jeopardy.query.near_text(
     limit=2
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END GetNearTextPython
 
 # Test results
@@ -121,8 +121,8 @@ response = jeopardy.query.near_object(
     limit=2
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#   print(json.dumps(o.properties, indent=2))
 # END GetNearObjectPython
 
 # Test results
@@ -176,8 +176,8 @@ response = jeopardy.query.near_vector(
     limit=2
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END GetNearVectorPython
 
 # Test results
@@ -231,8 +231,8 @@ response = jeopardy.query.near_text(
     # highlight-end
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END GetLimitOffsetPython
 
 # Test results
@@ -297,8 +297,8 @@ response = jeopardy.query.near_text(
     # highlight-end
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END GetWithDistancePython
 
 # Test results
@@ -352,8 +352,8 @@ response = jeopardy.query.near_text(
     # highlight-end
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END Autocut Python
 
 # Test results
@@ -411,8 +411,8 @@ response = jeopardy.aggregate_group_by.near_text(
 
 # print the group names (as per group_by) and
 #       the total count (out of 100 as per object_limit)
-for group in response:
-    print (group.grouped_by.value, group.total_count)
+# for group in response:
+#     print (group.grouped_by.value, group.total_count)
 # END GetWithGroupbyPython
 
 # Test results
@@ -552,8 +552,8 @@ response = jeopardy.query.near_text(
     limit=2, # number of close groups
 )
 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END GetWithWherePython
 
 # Test results
