@@ -12,11 +12,8 @@ import UserTestCode from '!!raw-loader!./_includes/examples.py';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 :::caution Beta version
-The Python client is currently in beta, and we want to hear from you.
 
-You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS.
-
-If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
+ The Python client is currently in beta, and we want to hear from you. You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS. If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
 :::
 
 ## Overview
@@ -39,7 +36,12 @@ pip install --pre "weaviate-client==4.*"
 
 #### Weaviate version
 
-The `v4` client is designed for use with Weaviate `1.22.0` and higher to take advantage of its gRPC API. If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
+:::caution Beta version
+While the new client is in beta release, be sure to use the latest version of the Python client *and* the Weaviate server.
+
+:::
+
+The `v4` client is designed for use with Weaviate `1.22.5` and higher to take advantage of its gRPC API. If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
 
 Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
 
