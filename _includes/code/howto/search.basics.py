@@ -22,14 +22,13 @@ client = weaviate.connect_to_local(
 # BasicGetPython
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
-response = jeopardy.query.fetch_objects()
+response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
+)
+    
 # highlight-end
 
 # This prints the response object
-print(response)
-
-# This formatting step prints the output that you probably want.
-# The remaining examples use formatted output where appropriate.
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
@@ -85,6 +84,7 @@ gql_query = """
 # GetWithLimitPython
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     limit=1
     # highlight-end
@@ -148,6 +148,7 @@ gql_query = """
 # GetWithLimitOffsetPython
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     limit=1,
     offset=1

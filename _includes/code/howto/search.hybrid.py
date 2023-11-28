@@ -33,6 +33,7 @@ client = weaviate.connect_to_wcs(
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
 response = jeopardy.query.hybrid(
+    return_properties=["question", "answer"],
     query="food",
     limit=3
 )
@@ -116,6 +117,7 @@ response = jeopardy.query.hybrid(
     query="food",
     alpha=0.5,
     # highlight-start
+    return_properties=["question", "answer"],
     return_metadata=wvc.MetadataQuery(score=True),
     # highlight-end
     limit=3
@@ -209,6 +211,7 @@ gql_query = """
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
    query="food",
+   return_properties=["question", "answer"],
    # highlight-start
    limit=3
    # highlight-end
@@ -298,6 +301,7 @@ gql_query = """
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
    query="food",
+   return_properties=["question", "answer"],
    # highlight-start
    auto_limit=1
    # highlight-end
@@ -368,6 +372,7 @@ gql_query = """
 # HybridWithAlphaPython
 client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
+    return_properties=["question", "answer"],
     query="food", 
     # highlight-start
     alpha=0.25,
@@ -448,6 +453,7 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
   query="food",
+  return_properties=["question", "answer"],
   # highlight-start
   fusion_type=wvc.HybridFusion.RELATIVE_SCORE,
   # highlight-end
@@ -529,6 +535,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     query_properties=["question"],
     # highlight-end
+    return_properties=["question", "answer"],
     alpha=0.25,
     limit=3
 )
@@ -605,6 +612,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     query_properties=["question^2", "answer"],
     # highlight-end
+    return_properties=["question", "answer"],
     alpha=0.25,
     limit=3
 )
@@ -681,6 +689,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     query_properties=["question^2", "answer"],
+    return_properties=["question", "answer"],
     # highlight-start
     vector=query_vector,
     # highlight-end
@@ -764,6 +773,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     filters=wvc.Filter("round").equal("Double Jeopardy!"),
     # highlight-end
+    return_properties=["question", "answer"],
     limit=3
 )
 

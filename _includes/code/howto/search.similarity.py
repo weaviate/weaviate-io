@@ -36,6 +36,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="animals in movies",
 # highlight-end
+    return_properties=["question", "answer"],
     limit=2
 )
 
@@ -118,6 +119,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_object(
     near_object="56b9449e-65db-5df4-887b-0a4773f52aa7",
 # highlight-end
+    return_properties=["question", "answer"],
     limit=2
 )
 
@@ -173,6 +175,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_vector(
     near_vector=query_vector, # your query vector goes here
 # highlight-end
+    return_properties=["question", "answer"],
     limit=2
 )
 
@@ -227,6 +230,7 @@ response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
     # offset=1, # offset is currently not supported with the Weaviate Client v4
+    return_properties=["question", "answer"],
     limit=2
     # highlight-end
 )
@@ -295,6 +299,7 @@ response = jeopardy.query.near_text(
     # highlight-start
     distance=0.18, # max accepted distance
     # highlight-end
+    return_properties=["question", "answer"],
 )
 
 for o in response.objects:
@@ -350,6 +355,7 @@ response = jeopardy.query.near_text(
     # highlight-start
     auto_limit=1, # number of close groups
     # highlight-end
+    return_properties=["question", "answer"],
 )
 
 for o in response.objects:
@@ -549,6 +555,7 @@ response = jeopardy.query.near_text(
     # highlight-start
     filters=wvc.Filter("round").equal("Double Jeopardy!"),
     # highlight-end
+    return_properties=["question", "answer"],
     limit=2, # number of close groups
 )
 
