@@ -23,8 +23,7 @@ result = await client
   .withFields('question')
   .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END BasicGetJS
 
 // Test
@@ -49,8 +48,7 @@ result = await client
   // highlight-end
   .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitJS
 
 // Test
@@ -77,8 +75,7 @@ result = await client
   // highlight-end
   .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitOffsetJS
 
 // Test
@@ -141,8 +138,7 @@ result = await client
   .withLimit(1)
   .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectVectorJS
 
 // Test
@@ -168,8 +164,7 @@ result = await client
   .withLimit(1)
   .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectIdJS
 
 // Test
@@ -200,8 +195,7 @@ result = await client.graphql
   .withLimit(2)
   .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithCrossRefsJS
 
 // Test
@@ -229,8 +223,7 @@ result = await client
    .withTenant('TenantA')
    .do();
 
-// To see the results, uncomment this code.
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END MultiTenancy
 
 // Test results

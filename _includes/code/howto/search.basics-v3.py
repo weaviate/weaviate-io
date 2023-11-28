@@ -22,8 +22,7 @@ response = (
     .do()
 )
 
-# To print the results, uncomment this code.
-# print(response)
+print(response)
 # END BasicGetPython
 
 # Test results
@@ -82,8 +81,7 @@ response = (
     .do()
 )
 
-# To print the results, uncomment this code.
-# print(response)
+print(response)
 # END GetWithLimitPython
 
 # Test results
@@ -147,9 +145,7 @@ response = (
     # highlight-end
     .do()
 )
-
-# To print the results, uncomment this code.
-# print(response)
+print(response)
 # END GetWithLimitOffsetPython
 
 # Test results
@@ -212,9 +208,7 @@ response = (
     .with_limit(1)
     .do()
 )
-
-# To print the results, uncomment this code.
-# print(response)
+print(response)
 # END GetPropertiesPython
 
 # Test results
@@ -279,9 +273,7 @@ response = (
     .with_limit(1)
     .do()
 )
-
-# To print the results, uncomment this code.
-# print(response)
+print(response)
 # END GetObjectVectorPython
 
 # Test results
@@ -351,9 +343,7 @@ response = (
     .with_limit(1)
     .do()
 )
-
-# To print the results, uncomment this code.
-# print(response)
+print(response)
 # END GetObjectIdPython
 
 # Test results
@@ -421,8 +411,7 @@ response = (
     .do()
 )
 
-# To print the results, uncomment this code.
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetWithCrossRefsPython
 
 
