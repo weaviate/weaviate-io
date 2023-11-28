@@ -8,7 +8,7 @@ image: og/docs/modules/multi2vec-bind.jpg
 
 ## Overview
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 The `multi2vec-bind` module enables Weaviate to use the [ImageBind](https://github.com/facebookresearch/ImageBind) model to vectorize data at import time.

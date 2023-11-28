@@ -365,7 +365,7 @@ It should produce a response like the one below:
 
 ## Group results by a property or cross-reference
 
-:::info Available from version `v1.19`
+:::info Added in `v1.19`
 :::
 
 You can group search results by any arbitrary property or cross-reference.

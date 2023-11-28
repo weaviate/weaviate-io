@@ -211,7 +211,7 @@ Aggregating data makes the `topOccurrences` sub-property available. Note that th
 
 ### Multi-tenancy
 
-:::info Available from version `v1.20`
+:::info Added in `v1.20`
 :::
 
 Where multi-tenancy is configured, the `Aggregate{}` function can be configured to aggregate results from a specific tenant.

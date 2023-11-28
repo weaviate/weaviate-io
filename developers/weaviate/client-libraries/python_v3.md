@@ -73,7 +73,7 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 ### API key authentication
 
-:::info Available in Weaviate Python client versions `3.14.0` and higher.
+:::info Added in Weaviate Python client version `3.14.0`.
 :::
 
 import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
@@ -276,7 +276,7 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 
 ### Multi-threading batch import
 
-:::info Available in Weaviate Python client versions `3.9.0` and higher.
+:::info Added in Weaviate Python client version `3.9.0`.
 :::
 
 Multi-threading Batch import works with both `Auto-batching` and `Dynamic-batching`.
@@ -663,8 +663,8 @@ The `Batch` object can be configured using the `batch.configure()` method or the
 - `creation_time` - (`int` or `float`, default: `10`): It is the interval of time in which the batch import/create should be done. It used to compute `recommended_num_objects` and `recommended_num_references`, consequently has an impact for Dynamic-batching.
 - `callback` (Optional[Callable[[dict], None]], default `weaviate.util.check_batch_result`): It is a callback function on the results of the `batch.create_objects()` and `batch.create_references()`. It is used for error handling for Auto-/Dynamic-batching. Has no effect if `batch_size` is `None`.
 - `timeout_retries` - (`int`, default `3`): Number of attempts to import/create a batch before resulting in `TimeoutError`.
-- `connection_error_retries` - (`int`, default `3`): Number of attempts to import/create a batch before resulting in `ConnectionError`. **NOTE:** Available in `weaviate-client>=3.9.0`.
-- `num_workers` - (`int`, default `1`): The maximal number of concurrent threads to run batch import. Only used for non-MANUAL batching. i.e. is used only with AUTO or DYNAMIC batching. ***Use with care to not overload your Weaviate instance.*** **NOTE:** Available in `weaviate-client>=3.9.0`.
+- `connection_error_retries` - (`int`, default `3`): Number of attempts to import/create a batch before resulting in `ConnectionError`. **NOTE:** Added in `weaviate-client 3.9.0`.
+- `num_workers` - (`int`, default `1`): The maximal number of concurrent threads to run batch import. Only used for non-MANUAL batching. i.e. is used only with AUTO or DYNAMIC batching. ***Use with care to not overload your Weaviate instance.*** **NOTE:** Added in `weaviate-client 3.9.0`.
 
 NOTE: You have to specify all the configurations that you want at each call of this method, otherwise some setting are going to be replaced by default values.
 ```python

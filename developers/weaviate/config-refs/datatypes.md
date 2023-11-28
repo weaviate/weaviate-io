@@ -67,7 +67,7 @@ In the above example, our objects can be linked to:
 
 ## DataType: `object`
 
-:::info Available from version `v1.22`
+:::info Added in `v1.22`
 :::
 
 The `object` type allows you to store nested data structures in Weaviate. The data structure is a JSON object, and can be nested to any depth.
@@ -169,7 +169,7 @@ curl \
 ```
 ## DataType: `uuid`
 
-:::info Available from `v1.19` onwards
+:::info Added in `v1.19`
 :::
 
 The dedicated `uuid` and `uuid[]` data types are more space-efficient than storing the same data as text.
