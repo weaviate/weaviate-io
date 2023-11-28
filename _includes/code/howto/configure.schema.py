@@ -118,14 +118,16 @@ client.collections.create(
             name="title",
             data_type=wvc.DataType.TEXT,
             # highlight-start
-            vectorize_property_name=True # use "title" as part of the value to vectorize
+            vectorize_property_name=True,  # Use "title" as part of the value to vectorize
+            tokenization=wvc.Tokenization.LOWERCASE  # Use "lowecase" tokenization
             # highlight-end
         ),
         wvc.Property(
             name="body",
             data_type=wvc.DataType.TEXT,
             # highlight-start
-            skip_vectorization=True # don't vectorize body
+            skip_vectorization=True,  # Don't vectorize this property
+            tokenization=wvc.Tokenization.WHITESPACE  # Use "whitespace" tokenization
             # highlight-end
         ),
     ]
@@ -208,7 +210,7 @@ assert config.properties[0].name == "body"
 
 # TODOv4 we need to update this part of the example
 # It seemed to be broken when I worked on this example
-# stopwords_preset="en", 
+# stopwords_preset="en",
 
 # START ModifyParam
 import weaviate.classes as wvc

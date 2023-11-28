@@ -11,20 +11,12 @@
 # START helper base64 functions
 import base64, requests
 
-# Helper function – get base64 representation from an online image
 def url_to_base64(url):
     image_response = requests.get(url)
     content = image_response.content
     return base64.b64encode(content).decode('utf-8')
 
-# Helper function - get base64 representation from a local file
-def file_to_base64(path):
-    with open(path, 'rb') as file:
-        return base64.b64encode(file.read()).decode('utf-8')
-
-# Update the url and path to test
-test_image_base64 = url_to_base64("https://path-to-some-online-image.jpg")
-test_file_base64 = file_to_base64("./your-image-here.jpg")
+base64_img = url_to_base64("https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deutsches_Museum_Portrait_4.jpg/500px-Deutsches_Museum_Portrait_4.jpg")
 # END helper base64 functions
 
 import weaviate
@@ -37,11 +29,15 @@ client = weaviate.connect_to_local()
 # ===== Search by base64 representation =====
 # ===========================================
 
+"""
 # START search with base64
-# Encode content into base64 string
 # highlight-start
-base64_string=url_to_base64("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG")
+base64_string="SOME_BASE_64_REPRESENTATION"
 # highlight-end
+# END search with base64
+"""
+
+# START search with base64
 
 # Get the collection containing images
 dogs = client.collections.get("Dog")
@@ -96,7 +92,7 @@ from pathlib import Path
 dogs = client.collections.get("Dog")
 response = dogs.query.near_image(
     # highlight-start
-    near_image=Path("./images/search-image.jpg"),
+    near_image=Path("./images/search-image.jpg")  # Provide a `Path` object
     # highlight-end
     return_properties=["breed"],
     limit=1
