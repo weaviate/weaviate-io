@@ -29,6 +29,7 @@ from weaviate.classes import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     filters=Filter("round").equal("Double Jeopardy!"),
     # highlight-end
@@ -114,6 +115,7 @@ from weaviate.classes import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
+    return_properties=["question", "answer"],
     query="fashion icons",
     # highlight-start
     filters=Filter("points").greater_than(200),
@@ -208,6 +210,7 @@ from weaviate.classes import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     filters=Filter("answer").like("*inter*"),
     # highlight-end
@@ -293,6 +296,7 @@ from weaviate.classes import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     filters=Filter("round").equal("Double Jeopardy!") &
             Filter("points").less_than(600),
@@ -395,6 +399,7 @@ from weaviate.classes import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     filters=Filter("question").like("*nest*") &
             (Filter("points").greater_than(700) | Filter("points").less_than(300)),
@@ -506,6 +511,7 @@ from weaviate.classes import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    return_properties=["question", "answer"],
     # highlight-start
     filters=Filter(["hasCategory", "JeopardyCategory", "title"]).like("*Sport*"),
     # highlight-end
