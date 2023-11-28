@@ -33,6 +33,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
 response = jeopardy.generate.near_text(
 # highlight-end
+    return_properties=["question", "answer"],
     query="World history",
     limit=2,
     # highlight-start
@@ -133,6 +134,7 @@ prompt = "Convert this quiz question: {question} and answer: {answer} into a tri
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.generate.near_text(
+    return_properties=["question", "answer"],
     query="World history",
     limit=2,
     single_prompt=prompt
@@ -225,6 +227,7 @@ task = "What do these animals have in common, if anything?"
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.generate.near_text(
+    return_properties=["question", "answer"],
     query="Cute animals",
     limit=3,
     # highlight-start
@@ -323,6 +326,7 @@ task = "What do these animals have in common, if anything?"
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.generate.near_text(
+    return_properties=["question", "answer"],
     query="Australian animals",
     limit=3,
     grouped_task=task,
