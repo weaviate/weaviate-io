@@ -28,6 +28,7 @@ client = weaviate.connect_to_wcs(
 # START nearText Python
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
+    return_properties=["question", "answer"],
     query="flying",
     limit=10,
 )

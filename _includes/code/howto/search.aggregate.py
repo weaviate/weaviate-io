@@ -184,7 +184,6 @@ response = jeopardy.aggregate.over_all(
 )
 
 print(response.properties["points"].sum_)
-print(response.properties["points"].minimum)
 print(response.properties["points"].maximum)
 # END IntProp Python
 
