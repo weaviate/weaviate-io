@@ -39,7 +39,6 @@ result = await client.graphql
   .do();
 
   
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END GetNearText
 
@@ -67,7 +66,6 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END GetNearVector
 
@@ -93,7 +91,6 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END GetNearObject
 
@@ -115,7 +112,6 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END GetLimitOffset
 
@@ -146,7 +142,6 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END GetWithDistance
 
@@ -174,7 +169,6 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END Autocut
 
@@ -256,7 +250,6 @@ result = await client.graphql
   .withFields('question answer round _additional { distance }')
   .do();
 
-// To see the results, uncomment this code.
 // console.log(JSON.stringify(result, null, 2));
 // END GetWithFilter
 
