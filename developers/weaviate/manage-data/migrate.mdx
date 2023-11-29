@@ -1,0 +1,219 @@
+---
+title: Migrate data
+sidebar_position: 80
+image: og/docs/howto.jpg
+# tags: ['how-to', 'cursor']
+---
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.migrate.function.v3.py';
+
+
+## Overview
+
+This guide is for migrating data when using a backup is not possible. They cover all permutations of transferring data between:
+
+- a single-tenancy collection, and
+- a multi-tenancy collection.
+
+The examples use two different Weaviate instances, but they can be migrated within the same instance as well, to different collections or tenants.
+
+:::caution Limitations
+Currently, cross-references cannot be exported. To produce a complete replications, you will need to recreate the cross-references manually or use a backup.
+:::
+
+## Single-tenancy collection → Single-tenancy collection
+
+#### Step 1: Create the target collection(s)
+
+Create a collection at the target instance, matching the collection at the source instance.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollectionCollectionToCollection"
+      endMarker="# END CreateCollectionCollectionToCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### Step 2: Migrate the data
+
+This migrates
+- The `source class` data in the `source_wv` instance
+- to `target class` in the `target_wv` instance
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <p><small>
+        The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
+        <br/><br/>
+    </small></p>
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CollectionToCollection"
+      endMarker="# END CollectionToCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+## Single-tenancy collection → Multi-tenancy collection
+
+#### Step 1: Create the target collection(s)
+
+Create a collection at the target instance, matching the collection at the source instance as well as enabling multi-tenancy for the collection.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance, with multi-tenancy enabled.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollectionCollectionToTenant"
+      endMarker="# END CreateCollectionCollectionToTenant"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### Step 2: Create the tenant(s)
+
+Any tenants must be added before adding data objects.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateTenants"
+      endMarker="# END CreateTenants"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### Step 3: Migrate the data
+
+This migrates:
+
+- The `source class` data in the `source_wv` instance
+- to `target tenant` data from `target class` in the `target_wv` instance
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <p><small>
+        The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
+        <br/><br/>
+    </small></p>
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CollectionToTenant"
+      endMarker="# END CollectionToTenant"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+## Multi-tenancy collection → Single-tenancy collection
+
+#### Step 1: Create the target collection(s)
+
+Create a collection at the target instance, matching the collection at the source instance, but with multi-tenancy disabled.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollectionTenantToCollection"
+      endMarker="# END CreateCollectionTenantToCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### Step 2: Migrate the data
+
+This migrates:
+
+- The `source tenant` data from `source class` in the `source_wv` instance
+- to `target class` in the `target_wv` instance
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <p><small>
+        The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
+        <br/><br/>
+    </small></p>
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START TenantToCollection"
+      endMarker="# END TenantToCollection"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+## Multi-tenancy collection → Multi-tenancy collection
+
+#### Step 1: Create the target collection(s)
+
+Create a collection at the target instance, matching the collection at the source instance including enabling multi-tenancy.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance, with multi-tenancy enabled.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollectionTenantToTenant"
+      endMarker="# END CreateCollectionTenantToTenant"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### Step 2: Create the tenant(s)
+
+Any tenants must be added before adding data objects.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateTenants"
+      endMarker="# END CreateTenants"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+#### Step 3: Migrate the data
+
+This migrates:
+
+- The `source tenant` data from `source class` in the `source_wv` instance
+- to `target tenant` data from `target class` in the `target_wv` instance
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v3)">
+    <p><small>
+        The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
+        <br/><br/>
+    </small></p>
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START TenantToTenant"
+      endMarker="# END TenantToTenant"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
