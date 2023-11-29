@@ -16,21 +16,21 @@ Generative search, also know as "retrieval augmented generation" (RAG), is a mul
 
 ## Generative search steps
 
-1. Configure Weaviate to use a generator module.
+1. Configure Weaviate to use a generator module. For details, see the module reference page:
 
    - [`generative-openai`](../modules/reader-generator-modules/generative-openai.md)
    - [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md)
    - [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)
    
- 2. Configure the target collection to use the generator module. For details, see schema configuration on the module's reference page. 
+ 2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page. 
  3. Query your database to retrieve one or more objects.
- 4. Run a text generation task.
+ 4. Use the query results to generate a new result.
  
     - [`single prompt`](#single-prompt)
     - [`grouped task`](#grouped-task)
 
 
-## Single prompt search
+## Run a single prompt search
 
 Single prompt search returns a generated response for each object in the query results. Specify the object `properties` to use in the prompt.
 
@@ -86,7 +86,7 @@ The output is like this:
 
 </details>
 
-## Set properties for single prompt search
+## Set single prompt search properties
 
 Define object `properties` to use in the prompt. The properties you use in the prompt do not have to be among the properties you retrieve in the query.
 
@@ -142,7 +142,7 @@ The output is like this:
 
 </details>
 
-## Grouped task search
+## Run a grouped task search
 
 Grouped task search returns a single response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
 
@@ -198,7 +198,7 @@ The output is like this:
 
 </details>
 
-## Set properties for grouped task search
+## Set grouped task search properties
 
 :::info Added in `v1.18.3`
 :::
@@ -259,10 +259,10 @@ The output is like this:
 
 ## Related pages
 
-- [API References: GraphQL: Get](../api/graphql/get.md)
 - [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
 - [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
 - [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
+- [API References: GraphQL: Get](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
