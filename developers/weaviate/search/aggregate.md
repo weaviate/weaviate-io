@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
-`Aggregate` queries return values that are calculated over result objects rather than the result objects themselves.
+`Aggregate` queries return values that are calculated over result objects. Aggregate queries don't return the underlying result objects.
 
 <details>
   <summary>
@@ -261,17 +261,9 @@ import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 
 <GroupbyLimitations />
 
-## Use vector search operators
-
-If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).
-
-Set at least one of these limits:
-- To restrict the number of objects the search returns, use [`limit`](/developers/weaviate/search/similarity#limit-the-size-of-the-result-set). 
-- To constrain search similarity, use [`distance`](/developers/weaviate/search/similarity#set-a-similarity-threshold).
-
 ## Limit the input size
 
-To limit the number of objects to aggregate, use `objectLimit` to specify the maximum number of objects.
+If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). Use `objectLimit` to specify the maximum number of objects to aggregate.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -324,10 +316,9 @@ To limit the number of objects to aggregate, use `objectLimit` to specify the ma
   />
 </details>
 
+## Set a similarity `distance`
 
-## Set a maximum similarity `distance`
-
-To specify how similar the objects should be, use the `distance` operator.
+If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). To specify how similar the objects should be, use the `distance` operator.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -379,7 +370,6 @@ To specify how similar the objects should be, use the `distance` operator.
     language="json"
   />
 </details>
-
 
 ## Use a `where` filter
 
