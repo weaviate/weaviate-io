@@ -36,7 +36,7 @@ In the section about Storage, [we have described in detail which parts make up a
 
 ### Pre-filtering with Roaring Bitmaps
 
-:::info Available for Weaviate versions `1.18` and up
+:::info Added in `1.18`
 :::
 
 Weaviate versions `1.18.0` and up use Roaring Bitmaps through the `RoaringSet` data type. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
@@ -47,7 +47,7 @@ In addition, our team maintains our underlying Roaring Bitmap library to address
 
 #### Roaring Bitmaps for `text` properties
 
-:::info Available for Weaviate versions `1.19` and up
+:::info Added in `1.19`
 :::
 
 A roaring bitmap index for `text` properties is available from `1.19` and up, and it is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing single index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)

@@ -69,7 +69,7 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 ### API key authentication
 
-:::info Available in Weaviate Java client versions `4.0.2` and higher.
+:::info Added in Weaviate Java client version `4.0.2`.
 :::
 
 import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
