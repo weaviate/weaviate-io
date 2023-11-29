@@ -30,7 +30,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END nearText Python
 
 
@@ -167,7 +167,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END nearTextRerank Python
 
 
@@ -362,7 +362,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END bm25Rerank Python
 
 

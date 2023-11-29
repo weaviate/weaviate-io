@@ -32,9 +32,8 @@ response = jeopardy.query.near_text(
     limit=10,
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END nearText Python
 
 
