@@ -2,7 +2,7 @@
 title: Achieve Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup
 slug: zero-downtime-upgrades
 authors: [etienne,jp]
-date: 2023-12-05
+date: 2023-11-30
 image: ./img/hero.png
 tags: ['concepts', 'engineering', 'how-to']
 # tags: ['replication']  # Added for further SEO without changing the original tags
@@ -45,15 +45,16 @@ This will enable a multi-node configuration in Weaviate and ensures that each cl
 
 ### How to enable replication on self-deployed Weaviate
 
-Enabling replication in a self-deployment setup such as a Docker or Kubernetes setup involves the following two steps. First, modify the configuration file to enable a multi-node setup (e.g. 3), and add the `replicationConfig` setting to the class definition like so:
+Enabling replication in a self-deployment setup such as a Docker or Kubernetes setup involves the following two steps. First, modify the configuration file to enable a multi-node setup (e.g. 3), and add the `replicationConfig` setting to the collection definition like so:
 
-```
+```json
 {
   class: YOUR_CLASS_NAME,
   ...
   replicationConfig: {
     factor: 3
   }
+}
 ```
 
 :::tip Replication factor & nodes
@@ -67,7 +68,11 @@ Once you’ve modified the configuration file and set the replication factor, yo
 
 You can try running a local, multi-node Weaviate cluster with `minikube`, which can conveniently run a local Kubernetes cluster. We note that deploying Weaviate on a cloud provider’s kubernetes service follows a similar process.
 
+<br/>
+
 First, install `minikube` and `helm` for your system by following these guides ([minikube](https://minikube.sigs.k8s.io/docs/start), [helm](https://helm.sh/docs/intro/install)). We also recommend installing `kubectl` ([by following this guide](https://kubernetes.io/docs/tasks/tools/#kubectl)).
+
+<br/>
 
 Once minikube is installed, start a three-node minikube cluster by running the following from the shell:
 
@@ -102,7 +107,7 @@ And save the default configuration with:
 helm show values weaviate/weaviate > values.yaml
 ```
 
-Edit `values.yaml` by changing the root-level configuration `replicas: 1` to `replicas: 3`, and save it.
+Edit `values.yaml` by changing the root-level configuration `replicas: 1` for the root image to `replicas: 3`, and save it.
 
 ```yaml
 ...
@@ -160,7 +165,9 @@ This should show an output similar to the following that shows the URL to access
 
 And it should also open a browser window showing the list of Weaviate endpoints.
 
-Just like that, you’ve got a multi-node Weaviate cluster. Remember that when you create a class, you must have replication enabled. You can do this by adding the `replicationConfig` parameter to the class definition, like so:
+<br/>
+
+Just like that, you’ve got a multi-node Weaviate cluster. Remember that when you create a class, you must have replication enabled. You can do this by adding the `replicationConfig` parameter to the collection definition, like so:
 
 ```json
 {
@@ -253,15 +260,16 @@ Take the longer start-up time for example. Adding replication caused node-level 
 
 ## Recommendations & Wrap-up
 
-As we mentioned before, all you need to configure to enable replication is this in the class definition:
+As we mentioned before, all you need to configure to enable replication is this in the collection definition:
 
-```
+```json
 {
   class: 'YOUR_CLASS_NAME',
   ...
   replicationConfig: {
     factor: 3,
   }
+}
 ```
 
 But what replication factor would we recommend? That’s something of a subjective question, but our starting recommendation is 3.
