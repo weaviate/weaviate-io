@@ -39,7 +39,7 @@ A collection can have multiple rerankers. If multiple `reranker` modules are ena
 
 ## Rerank vector search results
 
-Rerank the results of a [nearText](/developers/weaviate/api/graphql/search-operators#neartext) vector search.
+To rerank the results of a vector search, configure the object properties to sort on.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -95,7 +95,7 @@ The response should look like this:
 
 ## Rerank keyword search results
 
-This example uses `rerank` to sort objects based on different ways the word "paper" can appear in the results.
+To rerank the results of a keyword search, configure the object properties to sort on.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
