@@ -94,8 +94,6 @@ The output is like this:
 
 If you have an object ID, use the [`nearObject` operator](../api/graphql/search-operators.md#nearobject) to find objects similar to that object.
 
-- To get the object ID, see [Retrieve the object ID](./basics.md#retrieve-the-object-id).
-
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
@@ -133,6 +131,16 @@ If you have an object ID, use the [`nearObject` operator](../api/graphql/search-
     />
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>
+    Additional information
+  </summary>
+  <div>
+    To get the object ID, see [Retrieve the object ID](./basics.md#retrieve-the-object-id).
+  </div>
+</details>
+
 
 ## Search for a similar vector
 
@@ -271,7 +279,7 @@ To limit the size of the result set and return results in groups, use `limit` an
 
 ## Limit result groups
 
-To limit results to similar groups, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter.
+To limit results to similar groups of objects, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter to set the number of groups to return.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
