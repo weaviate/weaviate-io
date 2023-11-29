@@ -30,7 +30,7 @@ With Weaviate, you have options to:
 - Have **Weaviate create vectors** for you, or
 - Specify **custom vectors**.
 
-This tutorial demonstrates both methods.
+This tutorial demonstrates having Weaviate create vectors with a vectorizer. For a tutorial on using custom vectors, see [this tutorial](../starter-guides/custom-vectors.mdx).
 
 #### Source data
 
@@ -67,7 +67,7 @@ You need a Weaviate instance to work with. We recommend creating a free cloud sa
 Go to the [WCS quickstart](developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
 
 :::note For v4 Python client users
-As of November 2023, WCS clusters are not yet compatible with the new API introduced in the v4 Python client. We suggest creating a Weaviate instance using another method, such as Docker Compose.
+As of November 2023, WCS sandbox instances are not yet compatible with the new API introduced in the v4 Python client. We suggest creating a Weaviate instance using another method, such as Docker Compose.
 :::
 
 :::info To use another deployment method (e.g. Docker Compose)
@@ -102,7 +102,7 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey
 
 <ConnectToWeaviateWithKey />
 
-## Step 4: Define a class
+## Step 4: Define a data collection
 
 Next, we define a data collection (a "class" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
 
@@ -129,13 +129,7 @@ Now you are ready to add objects to Weaviate.
 
 You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
 
-The guide covers both ways of obtaining a vector, starting with using a `vectorizer`.
-
-If you are not sure which option to follow, use Option 1, as it is the simplest to get started with.
-
-### *Option 1*: `vectorizer`
-
-Run the code below to import data without specifying a vector. This causes Weaviate to use the `vectorizer` defined for the class to create a vector embedding for each object.
+The guide covers using the `vectorizer` defined for the class to create a vector embedding for each object.
 
 import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
@@ -144,20 +138,6 @@ import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 The above code:
 - Loads objects, and
 - Adds objects to the target class (`Question`) one by one.
-
-### *Option 2*: Custom vectors
-
-Alternatively, you can also provide your own vectors to Weaviate. Regardless of whether a `vectorizer` is set, if a vector is specified, Weaviate will use it to represent the object.
-
-To import data with corresponding pre-computed vectors, run the code below. This causes Weaviate to use the vector provided for each object.
-
-import CodeAutoschemaImportCustomVectors from '/_includes/code/quickstart/import.custom.vectors.mdx'
-
-<CodeAutoschemaImportCustomVectors />
-
-:::tip vector != object property
-Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
-:::
 
 ## Partial recap
 
@@ -274,9 +254,7 @@ Generative search sends retrieved data from Weaviate to a large language model, 
 
 Well done! You have:
 - Created your own cloud-based vector database with Weaviate,
-- Populated it with data objects,
-    - Using an inference API, or
-    - Using custom vectors,
+- Populated it with data objects using an inference API,
 - Performed searches, including:
     - Semantic search,
     - Semantic search with a filter and

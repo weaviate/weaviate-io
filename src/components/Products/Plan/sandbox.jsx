@@ -9,7 +9,7 @@ export default function PricingSandBox() {
       </div>
       <div className={styles.featuresLong}>
         <li>
-          <div className={styles.checkIcon}></div> 21 days lifetime
+          <div className={styles.checkIcon}></div> 14 days lifetime
         </li>
         <li>
           <div className={styles.checkIcon}></div> Monitoring

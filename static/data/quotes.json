@@ -2,7 +2,8 @@
   {
     "statement": "When I found Weaviate, the QuickStart guides actually worked on the first try! I felt right at home and my costs were cut by ~1/4 from closed-source alternative.",
     "name": "Evan McFarland",
-    "company": "Uncensored Greats"
+    "company": "Uncensored Greats",
+    "foo": "ee"
   },
   {
     "statement": "Weaviate has been instrumental in allowing our customers to accurately categorize and search customer feedback. We especially appreciate its ability to filter on top of its vector search.",

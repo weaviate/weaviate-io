@@ -50,7 +50,7 @@ Weaviate is a very performant and robust vector database but it does require RAM
 
 With Weaviate `1.18` we are alleviating these high RAM requirements by now allowing users to keep a compressed representation of the vectors in memory. This allows users to maintain a similar performance but at a fraction of the RAM requirements of previous versions.
 
-More specifically, in `1.18` we implemented the solution proposed in [DiskANN](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) whereby we combined our HNSW indexing with vectors that have been compressed using product quantization (PQ). PQ is a lossy compression algorithm that allows us to significantly reduce vector representation size at the cost of a bit of recall. But how does it actually work, you ask !?
+More specifically, in `1.18` we implemented the solution proposed in [DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf) whereby we combined our HNSW indexing with vectors that have been compressed using product quantization (PQ). PQ is a lossy compression algorithm that allows us to significantly reduce vector representation size at the cost of a bit of recall. But how does it actually work, you ask !?
 
 ### How does PQ work?
 

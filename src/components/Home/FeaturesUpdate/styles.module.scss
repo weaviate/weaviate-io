@@ -42,12 +42,15 @@
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 1050px) {
     padding-top: 3rem;
     flex-direction: column;
-    gap: unset;
+    gap: 40px;
   }
 
+  @media screen and (max-width: 550px) {
+    gap: unset;
+  }
   .linkBox {
     color: #1c1468;
   }

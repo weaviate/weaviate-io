@@ -24,6 +24,7 @@ target_where = {
 client.classification.schedule()\
             .with_type("zeroshot")\
             .with_class_name("Article")\
+            .with_based_on_properties(["summary"])\
             .with_classify_properties(["ofCategory"])\
             .with_source_where_filter(source_where)\   # optional
             .with_target_where_filter(target_where)\   # optional
@@ -46,6 +47,7 @@ let response = await client.classifications
   .scheduler()
   .withType('zeroshot')
   .withClassName('Article')
+  .withBasedOnProperties(["summary"])
   .withClassifyProperties(['ofCategory'])
   .do();
 console.log(JSON.stringify(response, null, 2));
@@ -56,6 +58,7 @@ response = await client.classifications
   .withType('zeroshot')
   .withClassName('Article')
   .withClassifyProperties(['ofCategory'])
+  .withBasedOnProperties(["summary"])
   .withWaitForCompletion()
   .withWaitTimeout(60 * 1000)
   .do();
@@ -101,6 +104,7 @@ func main() {
     WithType(classifications.ZeroShot).
     WithClassName("Article").
     WithClassifyProperties([]string{"ofCategory"}).
+    WithBasedOnProperties([]string{"summary"}).
     WithSourceWhereFilter(sourceWhere).
     WithTargetWhereFilter(targetWhere).
     Do(context.Background())
@@ -147,6 +151,7 @@ public class App {
                 .withType(ClassificationType.ZeroShot)
                 .withClassName("Article")
                 .withClassifyProperties(new String[]{ "ofCategory" })
+                .withBasedOnProperties(new String[]{"summary"})
                 .withTrainingSetWhereFilter(trainingSetWhere)
                 .withTargetWhereFilter(targetSetWhere)
                 .run();
@@ -173,6 +178,9 @@ curl \
         "classifyProperties": [
             "ofCategory"
         ],
+        "basedOnProperties": [
+            "summary"
+        ],        
         "filters": {
           "sourceWhere": {"path": ["wordCount"], "operator": "GreaterThan", "valueInt": 100},
           "targetWhere": {"path": ["name"], "operator": "NotEqual", "valueText": "Government"}
