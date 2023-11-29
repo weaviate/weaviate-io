@@ -113,6 +113,8 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
+To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configuration/indexes).
+
 To configure PQ, see [Compression](/developers/weaviate/configuration/compression.md).
 
 ### What is Product Quantization?

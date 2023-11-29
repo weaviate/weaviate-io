@@ -1,5 +1,5 @@
 ---
-title: Vector Index Compression
+title: PQ vector compression
 sidebar_position: 5
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'compression', 'pq']
@@ -14,7 +14,11 @@ import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/pq-compression.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/pq-compression.go';
 
-# Configure PQ index compression
+# PQ vector compression
+
+:::note
+Starting in v1.23, AutoPQ simplifies configuring PQ on new collections.
+:::
 
 ## Overview
 
@@ -26,62 +30,17 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
-To learn how to configure PQ, follow the discussion on this page.
+To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configuration/indexes) .
 
-:::note
+
+
 Before you enable PQ, be sure to provide a set of vectors to train the algorithm. For details, see [Enable and train PQ](#step-3-load-some-training-data)
-:::
 
-## Prerequisites
 
-This How-to page uses a dataset of 1000 Jeopardy questions. Download the data.
+## AutoPQ
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-     <FilteredTextBlock
-       text={PyCode}
-       startMarker="# START DownloadData"
-       endMarker="# END DownloadData"
-       language="py"
-     />
-  </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
-     <FilteredTextBlock
-       text={PyCodeV3}
-       startMarker="# START DownloadData"
-       endMarker="# END DownloadData"
-       language="py"
-     />
-  </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
-     <FilteredTextBlock
-       text={TSCode}
-       startMarker="// START FetchData"
-       endMarker="// END FetchData"
-       language="ts"
-     />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
-      language="go"
-    />
-  </TabItem>
-  
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
-      language="java"
-    />
-  </TabItem>
-</Tabs>
 
 ## Enable PQ compression
 
@@ -204,6 +163,13 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
 ### Step 3. Load some training data
 
 This example uses a relatively small data set to demonstrate loading data.
+
+
+## TODO INCLUDE DOESN'T WORK 
+
+import GetSampleData from '/_includes/code/get-jeopardy-1000-sample-data.mdx' ;
+
+<GetSampleData />
 
 If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard.
 
