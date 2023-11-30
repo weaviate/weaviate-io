@@ -5,12 +5,18 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'apply conditional filters']
 ---
 
+
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
+
+## Overview
+
+This page shows you how to add conditional filters to your searches with the `where` operator.
 
 A filter is a set of Boolean (i.e. `True` or `False`) conditions. Accordingly, a filter will only include or exclude objects and will not affect their rankings.
 
