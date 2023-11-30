@@ -20,8 +20,6 @@ import GoCode from '!!raw-loader!/_includes/code/howto/pq-compression.go';
 Starting in v1.23, AutoPQ simplifies configuring PQ on new collections.
 :::
 
-## Overview
-
 import PQOverview from '/_includes/pq-compression/overview-text.mdx' ;
 
 <PQOverview />
@@ -32,29 +30,41 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configuration/indexes) .
 
-
-
-Before you enable PQ, be sure to provide a set of vectors to train the algorithm. For details, see [Enable and train PQ](#step-3-load-some-training-data)
-
-
-## AutoPQ
-
-
-
-
 ## Enable PQ compression
 
-To enable PQ compression, complete the following steps.
+AutoPQ streamlines PQ configuration for new collections. You do not have to load data in two stages. Weaviate creates the codebook for you and then uses it to compress the rest of you vectors. To enable AutoPQ, you must have access the the `ASYNC_INDEXING` system variable. AutoPQ is not currently available in Weaviate Cloud Services (WCS).
 
-1. [Connect to a Weaviate instance](#step-1-connect-to-a-weaviate-instance)
-1. [Configure an initial schema without PQ](#step-2-configure-an-initial-schema-without-pq)
-1. [Load some training data](#step-3-load-some-training-data)
-1. [Enable and train PQ](#step-4-enable-and-train-pq)
-1. [Load the rest of your data](#step-5-load-the-rest-of-your-data)
+If you cannot enable AutoPQ, use the two phase method to enable PQ.
+
+## Configure AutoPQ
+
+:::info Added in v1.23.0
+:::
+
+By default Weaviate uses the first 100,000 objects in your database for the training step.
+
+## Two phase configuration method
+
+If you cannot enable AutoPQ, use the two phase configuration method to enable PQ. If you are configuring PQ on a new collection, be sure to import 100,000 objects per shard before enabling PQ. Do not import the rest of your data until the training step is complete.
+
+To enable PQ compression using the two step method, complete the following steps.
+
+- Phase One: Create a codebook
+
+    - [Connect to a Weaviate instance](#step-1-connect-to-a-weaviate-instance)
+    - [Configure an initial schema without PQ](#step-2-configure-an-initial-schema-without-pq)
+    - [Load some training data](#step-3-load-some-training-data)
+    - [Enable and train PQ](#step-4-enable-and-train-pq)
+
+- Phase Two: Load the rest of your data
+
+    - [Load the rest of your data](#step-5-load-the-rest-of-your-data)
 
 The next few sections work through these steps.
 
-### Step 1. Connect to a Weaviate instance
+### Phase One: Create a codebook
+
+####  Connect to a Weaviate instance
 
 Use one of the Weaviate [client libraries](/developers/weaviate/client-libraries) to connect to your instance.
 
@@ -109,9 +119,9 @@ After you install the client, connect to your instance.
 
 Weaviate returns `True` if the connection is successful.
 
-### Step 2. Configure an initial schema without PQ
+#### Configure an initial schema without PQ
 
-Every collection in your Weaviate instance is defined by a [schema](/developers/weaviate/tutorials/schema). This example defines a collection called `Questions`. Weaviate uses this schema during your initial data load. After the initial data set is loaded, you modify this schema to enable PQ.
+Every collection in your Weaviate instance is defined by a [schema](/developers/weaviate/tutorials/schema). Weaviate uses the schema during your initial data load.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -160,24 +170,67 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
   </TabItem>
 </Tabs>
 
-### Step 3. Load some training data
+#### Load some training data
 
-This example uses a relatively small data set to demonstrate loading data.
+If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard. If you already have data in your Weaviate instance, you can [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
 
+When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, try to chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
 
-## TODO INCLUDE DOESN'T WORK 
+<details>
+  <summary>
+    Download sample data
+  </summary>
+  <div>
+    Use these scripts to get the data for these examples. If you are configuring your own system, you do not need to import this sample data.
 
-import GetSampleData from '/_includes/code/get-jeopardy-1000-sample-data.mdx' ;
+    <Tabs groupId="languages">
+      <TabItem value="py" label="Python (v4)">
+         <FilteredTextBlock
+           text={PyCode}
+           startMarker="# START DownloadData"
+           endMarker="# END DownloadData"
+           language="py"
+         />
+      </TabItem>
 
-<GetSampleData />
+      <TabItem value="py3" label="Python (v3)">
+         <FilteredTextBlock
+           text={PyCodeV3}
+           startMarker="# START DownloadData"
+           endMarker="# END DownloadData"
+           language="py"
+         />
+      </TabItem>
 
-If you are starting with a new Weaviate instance, you should load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard.
+      <TabItem value="ts" label="JavaScript/TypeScript">
+         <FilteredTextBlock
+           text={TSCode}
+           startMarker="// START FetchData"
+           endMarker="// END FetchData"
+           language="ts"
+         />
+      </TabItem>
 
-You can use any of the objects in your data set. If possible, chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
-
-By default Weaviate uses the first 100,000 objects in your database for the training step. If you have more than 100,000 objects Weaviate ignores the excess objects during the training period. However, the excess objects still take up memory. If you have a large dataset, consider training PQ on an initial set of 10,000 to 100,000 objects first and then uploading the rest of your data after PQ is enabled.
-
-If you already have data in your Weaviate instance, you can move ahead to the next step.
+      <TabItem value="go" label="Go">
+        <FilteredTextBlock
+          text={GoCode}
+          startMarker="// START DownloadData"
+          endMarker="// END DownloadData"
+          language="go"
+        />
+      </TabItem>
+      
+      <TabItem value="java" label="Java">
+        <FilteredTextBlock
+          text={JavaCode}
+          startMarker="// START DownloadData"
+          endMarker="// END DownloadData"
+          language="java"
+        />
+      </TabItem>
+    </Tabs>
+  </div>
+</details>
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -226,21 +279,15 @@ If you already have data in your Weaviate instance, you can move ahead to the ne
   </TabItem>
 </Tabs>
 
-### Step 4. Enable and train PQ
+#### Enable PQ and create the codebook
 
-You can enable PQ compression by changing the relevant configuration at the collection (i.e. class) level.
+To enable PQ compression, update your collection (class) schema. After you update the schema, Weaviate trains PQ on the first 100,000 objects in your database.
 
 import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
 <PQMakesCodebook />
 
-After you update the schema, Weaviate trains PQ on the first 100,000 objects in your database. To use a different value, set a new `trainingLimit`. If you increase `trainingLimit`, the training period will take longer. You could also have memory problems if you set a high `trainingLimit`.
-
-To change the compression rate, specify the number of `segments`. The number of vector dimensions must be evenly divisible by the number of segments. Fewer segments means smaller quantized vectors.
-
-For additional configuration options, see the [parameter table](#pq-parameters).
-
-To enable PQ, update your schema as shown below.
+To enable PQ, update your schema as shown below. For additional configuration options, see the [parameter table](#pq-parameters).
 
 
 <Tabs groupId="languages">
@@ -290,11 +337,11 @@ To enable PQ, update your schema as shown below.
   </TabItem>
 </Tabs>
 
-### Step 5. Load the rest of your data
+### Phase Two: Load the rest of your data
 
-If you are starting with a new Weaviate instance, you can load the rest of your data now. Weaviate compresses the new data when it adds it to the database.
+If you are starting with a new Weaviate instance, you can load the rest of your data after PQ [creates the codebook](#enable-pq-and-create-the-codebook). Weaviate compresses the new data when it adds it to the database.
 
-If you already have data in your Weaviate instance, Weaviate automatically compresses the remaining objects (the ones after the initial training set).
+If you already have data in your Weaviate instance when you create teh codebook, Weaviate automatically compresses the remaining objects (the ones after the initial training set).
 
 ## PQ Parameters
 
@@ -306,6 +353,12 @@ import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 
 ## Additional tools and considerations
+
+### Change the codebook training limit
+
+For most use cases, 100,000 objects is an optimal training size. There is little benefit to increasing `trainingLimit`. If you do increase `trainingLimit`, the training period will take longer. You could also have memory problems if you set a high `trainingLimit`.
+
+If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets. 
 
 ### Check the system logs
 
