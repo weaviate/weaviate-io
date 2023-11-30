@@ -18,7 +18,7 @@ export default function PricingStandard() {
         <li>
           <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
           <span>
-            $0.095 per 1M embeddings
+            $0.095 per 1M vector dimensions
             <br /> stored per month
           </span>
         </li>
