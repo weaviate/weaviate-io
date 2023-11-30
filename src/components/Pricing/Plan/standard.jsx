@@ -9,12 +9,10 @@ export default function PricingStandard() {
 
   const openModal = (e) => {
     setIsModalOpen(true);
-    console.log('Opening modal');
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    console.log('Closing modal');
   };
 
   useEffect(() => {
@@ -87,6 +85,7 @@ export default function PricingStandard() {
       <div
         className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
         style={{ display: isModalOpen ? 'flex' : 'none' }}
+        onClick={closeModal}
       >
         <div className={styles.modalContents}>
           <span className={styles.close} onClick={closeModal}>

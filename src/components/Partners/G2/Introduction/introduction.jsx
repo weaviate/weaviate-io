@@ -34,8 +34,8 @@ export default function introduction() {
       </div>
       <div className={styles.alertBox}>
         <p>
-          You have until 11:59pm PT November 21st to submit a review and the
-          form below to ensure that you get your limited edition Weaviate shirt!
+          You have to submit a review and complete the form below to ensure that
+          you get your limited edition Weaviate shirt!
         </p>
       </div>
     </div>
