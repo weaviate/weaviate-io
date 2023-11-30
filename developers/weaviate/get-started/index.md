@@ -1,21 +1,14 @@
 ---
-title: Getting Started Guides
+title: Get started
 sidebar_position: 0
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
+If you are new to Weaviate and vector databases, give the [Quickstart](../quickstart/index.md) a try. The Quickstart is a great way to learn about Weaviate and vector databases.
 
-## Overview
+If you are ready to get started with your own deployment, try one of these guides: 
 
-In this section, you'll find basic guides to help you get started with Weaviate.
-
-## Prerequisites
-
-Before reading these guides, we recommend you read the [Quickstart Tutorial](../quickstart/index.md), which will help you familiarize yourself with the basics of Weaviate.
-
-## Guides
-
-- [Which Weaviate setup to use?](./which-weaviate.md): Find the right Weaviate setup for your needs.
-- [Bring your own vectors](./custom-vectors.mdx): How to use your own vectors with Weaviate.
-- [Generative search (RAG)](./generative.md): Guide to performing generative search (also called retrieval augmented generation, or RAG) with Weaviate.
+- Find the right Weaviate setup for your needs. [Which Weaviate setup to use?](./which-weaviate.md)
+- Use your own vectors with Weaviate. [Bring your own vectors](./custom-vectors.mdx)
+- Get started with generative search (RAG). [Generative search (RAG)](./generative.md)
