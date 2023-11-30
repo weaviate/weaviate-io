@@ -85,7 +85,6 @@ export default function PricingStandard() {
       <div
         className={`${styles.modals} ${isModalOpen ? styles.open : ''}`}
         style={{ display: isModalOpen ? 'flex' : 'none' }}
-        onClick={closeModal}
       >
         <div className={styles.modalContents}>
           <span className={styles.close} onClick={closeModal}>
