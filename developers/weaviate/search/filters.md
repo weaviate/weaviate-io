@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
-Use filters to include, or exclude, particular objects from your result set, based on a set of conditions. For a list of filter operators, see the [Filters](../api/graphql/filters.md#filter-structure).
+Use filters to define a set of conditions. Filters let you include, or exclude, particular objects from your result set based on those conditions. For a list of filter operators, see [Filters](../api/graphql/filters.md#filter-structure).
 
 ## Filter with one condition
 
@@ -72,7 +72,7 @@ The output is like this:
 
 ## Filter with multiple conditions
 
-To filter with two or more conditions, use `And` or `Or`.
+To filter with two or more conditions, use `And` or `Or` to define the relationship between the conditions.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -255,7 +255,7 @@ The output is like this:
 
 ## Filter text on partial matches
 
-If the object property is a `text` data type, use `Like` to filter on partial matches.
+If the object property is a `text` data type, use `Like` to filter on partial text matches.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
