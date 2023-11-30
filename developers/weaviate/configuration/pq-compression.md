@@ -41,7 +41,70 @@ If you cannot enable AutoPQ, use the two phase method to enable PQ.
 :::info Added in v1.23.0
 :::
 
-By default Weaviate uses the first 100,000 objects in your database for the training step.
+If you have a new collection, enable AutoPQ so that you don't have to load your data in two phases. 
+
+### Set the environment variable
+
+To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your instance. AutoPQ is a part of the asynchronous indexing feature. There is no setting to enable AutoPQ without asynchronous indexing. 
+
+AutoPQ is not currently available in WCS. 
+
+### Configure PQ
+
+To enable PQ, update your schema to set `pq_enabled=True`. For additional configuration options, see the [parameter table](#pq-parameters).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+     <FilteredTextBlock
+       text={PyCode}
+       startMarker="# START UpdateSchema"
+       endMarker="# END UpdateSchema"
+       language="py"
+     />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+     <FilteredTextBlock
+       text={PyCodeV3}
+       startMarker="# START UpdateSchema"
+       endMarker="# END UpdateSchema"
+       language="py"
+     />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+     <FilteredTextBlock
+       text={TSCode}
+       startMarker="// START UpdateSchema"
+       endMarker="// END UpdateSchema"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START UpdateSchema"
+      endMarker="// END UpdateSchema"
+      language="go"
+    />
+  </TabItem>
+  
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START UpdateSchema"
+      endMarker="// END UpdateSchema"
+      language="java"
+    />
+  </TabItem>
+</Tabs>
+
+### Load your data
+
+Load your data. AutoPQ creates the PQ codebook when there are 100,000 objects per shard. Weaviate uses the codebook to compress the vectors in your collection. When you use AutoPQ you can load all of your data at once. You do not have to load an initial set of training data.
+
+If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets. 
 
 ## Two phase configuration method
 
@@ -281,7 +344,7 @@ When you load data for this training phase, you can use any of the objects in yo
 
 #### Enable PQ and create the codebook
 
-To enable PQ compression, update your collection (class) schema. After you update the schema, Weaviate trains PQ on the first 100,000 objects in your database.
+To enable PQ compression, update your collection (class) schema to set `pq_enabled=True`. After you update the schema, Weaviate trains PQ on the first 100,000 objects in your database.
 
 import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
