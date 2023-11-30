@@ -38,7 +38,7 @@ result = await client.graphql
   .withFields('question answer round')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchSingleFilter
 
 // Tests
@@ -74,7 +74,7 @@ result = await client.graphql
   .withFields('question answer round points')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchFilterNearText
 
 // Tests
@@ -107,7 +107,7 @@ result = await client.graphql
   .withFields('question answer round')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchLikeFilter
 
 // Tests
@@ -151,7 +151,7 @@ result = await client.graphql
   .withFields('question answer round points')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersAnd
 
 // Tests
@@ -206,7 +206,7 @@ result = await client.graphql
   .withFields('question answer round points')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersNested
 
 // Tests
@@ -240,7 +240,7 @@ result = await client.graphql
   .withFields('question answer round hasCategory {... on JeopardyCategory { title } }')
   .do();
 
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 // END searchCrossReference
 
 // Tests

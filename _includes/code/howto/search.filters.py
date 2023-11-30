@@ -35,9 +35,8 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END SingleFilterPython
 
 
@@ -121,9 +120,8 @@ response = jeopardy.query.near_text(
     limit=3
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END SingleFilterNearTextPython
 
 
@@ -214,9 +212,8 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END LikeFilterPython
 
 
@@ -300,9 +297,8 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END MultipleFiltersAndPython
 
 
@@ -402,9 +398,8 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END MultipleFiltersNestedPython
 
 
@@ -512,9 +507,8 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+# for o in response.objects:
+#     print(json.dumps(o.properties, indent=2))
 # END CrossReferencePython
 
 
