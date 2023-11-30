@@ -15,7 +15,7 @@ Weaviate's classification features allows you to classify data objects based on 
   - The target property should be a reference property to another class.
 
 :::caution Adding property to the schema
-Note that `knn` classification requires the target property to be included in the schema before importing the data. If you want to add a property to the schema after importing data, you will need to [re-import the data](../data-ingestion/import.md#re-importing-data).
+Note that `knn` classification requires the target property to be included in the schema before importing the data. If you want to add a property to the schema after importing data, you will need to re-import the data).
 :::
 
 If `text2vec-contextionary` is enabled, contextual classification can also be used.

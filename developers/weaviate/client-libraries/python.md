@@ -8,7 +8,6 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import UserTestCode from '!!raw-loader!./_includes/examples.py';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 :::caution Beta version
