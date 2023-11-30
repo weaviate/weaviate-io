@@ -35,7 +35,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END SingleFilterPython
 
 
@@ -124,7 +124,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END SingleFilterNearTextPython
 
 
@@ -219,7 +219,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END LikeFilterPython
 
 
@@ -316,7 +316,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END MultipleFiltersAndPython
 
 
@@ -439,7 +439,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END MultipleFiltersNestedPython
 
 
@@ -551,7 +551,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END CrossReferencePython
 
 
