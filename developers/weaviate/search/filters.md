@@ -14,7 +14,7 @@ import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts
 
 Use filters to include, or exclude, particular objects from your result set, based on a set of conditions. For a list of filter operators, see the [Filters](../api/graphql/filters.md#filter-structure).
 
-## Filter on one condition
+## Filter with one condition
 
 To filter your results, add a `where` condition to your query. For a list of filter parameters, see [Filter structure](../api/graphql/filters.md#filter-structure).
 
@@ -68,6 +68,133 @@ The output is like this:
   language="json"
 />
 
+</details>
+
+## Filter with multiple conditions
+
+To filter with two or more conditions, use `And` or `Or`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersAndPython"
+      endMarker="# END MultipleFiltersAndPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# MultipleFiltersAndPython"
+      endMarker="# END MultipleFiltersAndPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchMultipleFiltersAnd"
+      endMarker="// END searchMultipleFiltersAnd"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersAndGraphQL"
+      endMarker="# END MultipleFiltersAndGraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Expected MultipleFiltersAnd results"
+  endMarker="# END Expected MultipleFiltersAnd results"
+  language="json"
+/>
+
+</details>
+
+## Nest filters
+
+You can group and nest filters.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersNestedPython"
+      endMarker="# END MultipleFiltersNestedPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# MultipleFiltersNestedPython"
+      endMarker="# END MultipleFiltersNestedPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// searchMultipleFiltersNested"
+      endMarker="// END searchMultipleFiltersNested"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MultipleFiltersNestedGraphQL"
+      endMarker="# END MultipleFiltersNestedGraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Expected MultipleFiltersNested results"
+  endMarker="# END Expected MultipleFiltersNested results"
+  language="json"
+/>
+
+</details>
+
+<details>
+  <summary>
+    Additional information
+  </summary>
+  <div>
+    To create a nested filter, follow these steps.
+    <div style={{marginLeft: 25}}>
+      &#x2022; Set the outer <mark style={{background: "lightgrey"}}>operator</mark> equal to <mark style={{background: "lightgrey"}}>And</mark> or <mark style={{background: "lightgrey"}}>Or</mark>.
+      <br/>&#x2022; Add <mark style={{background: "lightgrey"}}>operands</mark>.
+      <br/>&#x2022; Within an <mark style={{background: "lightgrey"}}>operand</mark>, set <mark style={{background: "lightgrey"}}>operator</mark> equal to <mark style={{background: "lightgrey"}}>And</mark> or <mark style={{background: "lightgrey"}}>Or</mark> to nest a group.
+      <br/>&#x2022; Add <mark style={{background: "lightgrey"}}>operands</mark> to the nested group.
+    </div>
+  </div>
 </details>
 
 ## Combine filters and search operators
@@ -130,12 +257,6 @@ The output is like this:
 
 If the object property is a `text` data type, use `Like` to filter on partial matches.
 
-The following example filters for objects including the text `"inter"` in any part of a token in the `answer` property.
-
-:::tip `*` vs `?`
-`*` matches zero or more characters, whereas `?` matches exactly one unknown character.
-:::
-
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
@@ -188,137 +309,18 @@ The output is like this:
 
 </details>
 
-## Multiple-condition filters
-
-To add a multiple-condition filter, you must set the operator to `And` or `Or`, and set two or more conditions under the corresponding `operands` parameter.
-
-The following example specifies and `And` condition, so that both:
-- the `round` property must equal `"Double Jeopardy!"`, and
-- the `points` property must be less than 600.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersAndPython"
-      endMarker="# END MultipleFiltersAndPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# MultipleFiltersAndPython"
-      endMarker="# END MultipleFiltersAndPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={JavaScriptCode}
-      startMarker="// searchMultipleFiltersAnd"
-      endMarker="// END searchMultipleFiltersAnd"
-      language="js"
-    />
-  </TabItem>
-
-  <TabItem value="graphql" label="GraphQL">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersAndGraphQL"
-      endMarker="# END MultipleFiltersAndGraphQL"
-      language="graphql"
-    />
-  </TabItem>
-</Tabs>
-
 <details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# Expected MultipleFiltersAnd results"
-  endMarker="# END Expected MultipleFiltersAnd results"
-  language="json"
-/>
-
-</details>
-
-### Nested multiple conditions
-
-Conditional filters can be nested in Weaviate. To do so, set the `operator` of an outer `operands` value to `And` or `Or`. Then, you can provide two or more conditions to the inner `operands`.
-
-The following example specifies that:
-- the `answer` property must contain a substring `"nest"`, `And`
-- the `points` property must be greater than 700, `Or`, the `points` property must be less than 300.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersNestedPython"
-      endMarker="# END MultipleFiltersNestedPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# MultipleFiltersNestedPython"
-      endMarker="# END MultipleFiltersNestedPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={JavaScriptCode}
-      startMarker="// searchMultipleFiltersNested"
-      endMarker="// END searchMultipleFiltersNested"
-      language="js"
-    />
-  </TabItem>
-
-  <TabItem value="graphql" label="GraphQL">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# MultipleFiltersNestedGraphQL"
-      endMarker="# END MultipleFiltersNestedGraphQL"
-      language="graphql"
-    />
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# Expected MultipleFiltersNested results"
-  endMarker="# END Expected MultipleFiltersNested results"
-  language="json"
-/>
-
+  <summary>
+    Additional information
+  </summary>
+  <div>
+    The `*` wildcard operator matches zero or more characters. The `?` operator matches exactly one character.
+  </div>
 </details>
 
 ## Filter using cross-references
 
-You can filter objects using properties from a cross-referenced object.
-
-The following example filters `JeopardyQuestion` objects using properties of `JeopardyCategory` that they are cross-referencing.
-
-More specifically, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
-
-:::note Case-sensitivity
-The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).
-:::
+To filter on properties from a cross-referenced object, add the collection name to the filter.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -374,15 +376,11 @@ The output is like this:
 
 ## Filter by metadata
 
-You can filter by any number of metadata properties, such as object id, property length, timestamp, null state and more.
+Filters also work with metadata properties such as object id, property length, and timestamp. For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
-See the [API references: Filters](../api/graphql/filters.md#special-cases) page for the full list of available metadata filters and any special usage patterns.
+## Improve filter performance
 
-## Improving filter performance
-
-import RangeFilterPerformanceNote from '/_includes/range-filter-performance-note.mdx';
-
-<RangeFilterPerformanceNote />
+If you encounter slow filter performance, consider adding a `limit` parameter or additional `where` operators to restrict the size of your data set.
 
 ## Considerations for `ContainsAny` and `ContainsAll`
 
