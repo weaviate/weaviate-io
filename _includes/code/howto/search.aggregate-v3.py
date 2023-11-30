@@ -26,7 +26,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END MetaCount Python
 
 
@@ -84,7 +84,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END TextProp Python
 
 gql_query = """
@@ -171,7 +171,7 @@ response = (
     # highlight-end
     .do()
 )
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END IntProp Python
 
 gql_query = """
@@ -235,7 +235,7 @@ response = (
     .with_meta_count()
     .do()
 )
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END groupBy Python
 
 
@@ -325,7 +325,7 @@ response = (
     .with_fields("points { sum }")
     .do()
 )
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END nearTextWithLimit Python
 
 
@@ -394,7 +394,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END nearTextWithDistance Python
 
 
@@ -464,7 +464,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# print(json.dumps(response, indent=2))
 # END whereFilter Python
 
 
