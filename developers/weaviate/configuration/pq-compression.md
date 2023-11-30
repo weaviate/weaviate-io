@@ -32,9 +32,12 @@ To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configurati
 
 ## Enable PQ compression
 
-AutoPQ streamlines PQ configuration for new collections. You do not have to load data in two stages. Weaviate creates the codebook for you and then uses it to compress the rest of you vectors. To enable AutoPQ, you must have access the the `ASYNC_INDEXING` system variable. AutoPQ is not currently available in Weaviate Cloud Services (WCS).
+AutoPQ streamlines PQ configuration for new collections. AutoPQ is not currently available in Weaviate Cloud Services (WCS).
 
-If you cannot enable AutoPQ, use the two phase method to enable PQ.
+If you are using WCS or cannot enable asynchronous indexing, you can still use the two phase method to enable PQ.
+
+- [Use AutoPQ to enable PQ compression](#configure-autopq).
+- [Use the two phase method to enable PQ compression](#two-phase-configuration-method).
 
 ## Configure AutoPQ
 
