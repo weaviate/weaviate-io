@@ -12,31 +12,11 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
-A filter is a set of Boolean (i.e. `True` or `False`) conditions. Accordingly, a filter will only include or exclude objects and will not affect their rankings.
+Use filters to include, or exclude, particular objects from your result set, based on a set of conditions. For a list of filter operators, see the [Filters](../api/graphql/filters.md#filter-structure).
 
-:::info Related pages
-- [API References: Filters](../api/graphql/filters.md)
-:::
+## Filter on one condition
 
-## List of filter operators
-
-For a list of filter operators, see the [API references: Filters](../api/graphql/filters.md#filter-structure) page.
-
-### `ContainsAny` and `ContainsAll`
-
-The `ContainsAny` and `ContainsAll` operators filter objects using values of an array as criteria.
-
-To use either of these operators, provide the filter criterion array as `valueText`. Note that the usage of `ContainsAny` and `ContainsAll` is different for batch deletion operations ([read more](../manage-data/delete.mdx#containsany--containsall)).
-
-## A single-condition filter
-
-To add a filter, you must provide at least one `where` condition to your query.
-
-The following example specifies that the `round` property must equal `"Double Jeopardy!"`. Note that the `valueText` parameter is used since the property datatype is `text`.
-
-:::tip Filter arguments list
-See [this page](../api/graphql/filters.md#filter-structure) for the list of available filter arguments.
-:::
+To filter your results, add a `where` condition to your query. For a list of filter parameters, see [Filter structure](../api/graphql/filters.md#filter-structure).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -79,7 +59,7 @@ See [this page](../api/graphql/filters.md#filter-structure) for the list of avai
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -90,11 +70,9 @@ It should produce a response like the one below:
 
 </details>
 
-### With a search operator
+## Combine filters and search operators
 
-Conditional filters can be combined with a search operator such as `nearXXX`, `hybrid` or `bm25`.
-
-The following example adds a `points` filter to a `nearText` query, where the `points` property must be greater than 200. Note that the `valueInt` is used as the property datatype is `int`.
+Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -137,7 +115,7 @@ The following example adds a `points` filter to a `nearText` query, where the `p
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -148,9 +126,9 @@ It should produce a response like the one below:
 
 </details>
 
-### By partial matches (text)
+## Filter text on partial matches
 
-With `text` data type properties, you can use the `Like` operator to filter by partial matches.
+If the object property is a `text` data type, use `Like` to filter on partial matches.
 
 The following example filters for objects including the text `"inter"` in any part of a token in the `answer` property.
 
@@ -199,7 +177,7 @@ The following example filters for objects including the text `"inter"` in any pa
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -259,7 +237,7 @@ The following example specifies and `And` condition, so that both:
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -319,7 +297,7 @@ The following example specifies that:
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -329,7 +307,6 @@ It should produce a response like the one below:
 />
 
 </details>
-
 
 ## Filter using cross-references
 
@@ -384,7 +361,7 @@ The results are case-insensitive here, as the `title` property is defined with [
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -407,6 +384,33 @@ import RangeFilterPerformanceNote from '/_includes/range-filter-performance-note
 
 <RangeFilterPerformanceNote />
 
+## Considerations for `ContainsAny` and `ContainsAll`
+
+The `ContainsAny` and `ContainsAll` operators take an array of values as input. The operators filter objects that contain any, or all, of the values.  To use `ContainsAny` or `ContainsAll`, pass the array of values as `valueText`.
+
+If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations.
+
+## Related pages
+
+- [API References: Filters](../api/graphql/filters.md)
+
+
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
+
+
+
+
+Hey folks, one more feature which will be included in the 1.23 release on the DB side: auto resource limiting
+Context:
+One pain-point that OpenAI mentioned specifically is that they don’t want to set GOMEMLIMIT and GOMAXPROCS for the ideal values.
+Instead, they expect Weaviate to determine those values automatically from the environment. In practice, these would be cgroup limits in the form of Kubernetes resource limits.
+So with this PR, and LIMIT_RESOURCES=true set, weaviate will configure  GOMEMLIMIT/GOMAXPROCS based on the available cores and memory.
+
+
+
+
+
+10:07
+Another main motivation for doing this is to introduce more guardrails into the application. Users should not be able to crash Weaviate by running out of resources.
