@@ -5,8 +5,6 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'generative']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -14,105 +12,27 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
-## Overview
+Generative search, also know as "retrieval augmented generation" (RAG), is a multi-stage process. Weaviate passes search results and a prompt to a large language model (LLM). The LLM generates a new output based on that input.
 
-This page shows you how to perform `generative` searches.
+## Generative search steps
 
-A generative search uses a large language model (LLM) to generate text based on the search results and a user-provided prompt. This technique is also called *retrieval augmented generation*, or RAG.
+1. Configure Weaviate to use a generator module. For details, see the module reference page:
 
-:::info Related pages
-- [API References: GraphQL: Get](../api/graphql/get.md)
-- [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
-- [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
-- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
-:::
-
-## Requirements
-
-To use the generative search feature, you must:
-1. Configure Weaviate to use a generator module ([`generative-openai`](../modules/reader-generator-modules/generative-openai.md), [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md), [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)),
-2. Configure the parameters for the `generative-*` module in the target class,
-3. Specify a query to retrieve one or more objects, and
-4. Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to generate text from.
+   - [`generative-openai`](../modules/reader-generator-modules/generative-openai.md)
+   - [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md)
+   - [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)
+   
+ 2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page. 
+ 3. Query your database to retrieve one or more objects.
+ 4. Use the query results to generate a new result.
+ 
+    - [`single prompt`](#single-prompt)
+    - [`grouped task`](#grouped-task)
 
 
-<details>
-  <summary>How do I <strong>configure Weaviate</strong> with a generator module?</summary>
+## Run a single prompt search
 
-  You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant Docker Compose file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
-
-  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
-
-  <Tabs groupId="modules">
-<TabItem value="OpenAI" label="OpenAI">
-
-```yaml
-services:
-  weaviate:
-    environment:
-      OPENAI_APIKEY: $OPENAI_APIKEY
-      ENABLE_MODULES: '...,generative-openai,...'
-```
-
-</TabItem>
-<TabItem value="Cohere" label="Cohere">
-
-```yaml
-services:
-  weaviate:
-    environment:
-      COHERE_APIKEY: $COHERE_APIKEY
-      ENABLE_MODULES: '...,generative-cohere,...'
-```
-
-</TabItem>
-<TabItem value="PaLM" label="PaLM">
-
-```yaml
-services:
-  weaviate:
-    environment:
-      PALM_APIKEY: $PALM_APIKEY
-      ENABLE_MODULES: '...,generative-palm,...'
-```
-
-</TabItem>
-</Tabs>
-</details>
-
-<details>
-  <summary>How do I <strong>set the generative module</strong> in the target class?</summary>
-
-Where multiple `generative` modules are enabled, you must specify the generative module to be used in the `moduleConfig` section of the schema. For example, this configures the `Article` class to use the `generative-openai` module:
-
-```json
-{
-  "classes": [
-    {
-      "class": "Article",
-      ...,
-      "moduleConfig": {
-        "generative-openai": {},  // This will configure the 'Article' class to use the 'generative-openai' module
-      }
-    }
-  ]
-}
-```
-
-You can configure additional module parameters here also. Please refer to the "Schema configuration" section in the relevant module page.
-
-</details>
-
-
-## Single prompt
-
-A **single prompt** generative search returns a generated response for each object in the query results. For **single prompt** generative searches, you must specify which object *properties* to use in the prompt.
-
-In this example, the query:
-1. Retrieves two `JeopardyQuestion` objects related to `World history`,
-1. Prepares a prompt for each object, based on the prompt `"Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."`, where `{question}` is an object property, and
-1. Retrieves a generated text for each object (2 total), and
-1. Returns the generated text as a part of each object, along with the `question` property.
+Single prompt search returns a generated response for each object in the query results. Specify the object `properties` to use in the prompt.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -155,7 +75,7 @@ In this example, the query:
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -166,19 +86,9 @@ It should produce a response like the one below:
 
 </details>
 
-### Single prompt property selection
+## Set single prompt search properties
 
-When using generative search with single prompts, you must specify which object _properties_ to use in the prompt.
-
-The properties to use as a part of the prompt do *not* need to be among the properties retrieved in the query.
-
-In this example, the query:
-1. Retrieves two `JeopardyQuestion` objects related to `World history`,
-1. Prepares a prompt for each object, based on the prompt `"Convert this quiz question: {question} and answer: {answer} into a trivia tweet.` where `{question}` and `{answer}` are object properties, and
-1. Retrieves a generated text for each object (2 total), and
-1. Returns the generated text as a part of each object.
-
-Note that the `question` and `answer` properties are not retrieved in the query, but are used in the prompt.
+Define object `properties` to use in the prompt. The properties you use in the prompt do not have to be among the properties you retrieve in the query.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -221,7 +131,7 @@ Note that the `question` and `answer` properties are not retrieved in the query,
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -232,21 +142,9 @@ It should produce a response like the one below:
 
 </details>
 
-## Grouped task
+## Run a grouped task search
 
-A **grouped task** works by generating a response for the entire query results set.
-
-When using generative search with a **grouped task**, the required parameter is the user prompt. By default, the entire set of properties are included in the combined prompt unless [specified otherwise](#grouped-task-property-selection).
-
-### Example
-
-In this example, the query:
-1. Retrieves three `JeopardyQuestion` objects related to `cute animals`,
-1. Combines the user prompt with the set of retrieved objects to build the grouped task,
-1. Retrieves one generated text using the grouped task, and
-1. Returns the generated text as a part of the first object returned, as well as the requested `points` property.
-
-Note that the prompt includes information about the type of the animal (from the `answer` property), even though the `answer` property is not explicitly retrieved.
+Grouped task search returns a single response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -289,7 +187,7 @@ Note that the prompt includes information about the type of the animal (from the
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -300,16 +198,12 @@ It should produce a response like the one below:
 
 </details>
 
-### Grouped task property selection
+## Set grouped task search properties
 
-:::info Available from version `v1.18.3`
+:::info Added in `v1.18.3`
 :::
 
-You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.
-
-In this example, the prompt only includes the `question` and `answer` properties. Note that the `answer` property is not explicitly retrieved in the query, but it is used by the prompt.
-
-<!-- TODO - add client code when made available -->
+Define object `properties` to use in the prompt. This limits the information in the prompt and reduces prompt length.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -352,7 +246,7 @@ In this example, the prompt only includes the `question` and `answer` properties
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={PyCode}
@@ -363,6 +257,12 @@ It should produce a response like the one below:
 
 </details>
 
+## Related pages
+
+- [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
+- [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
+- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
+- [API References: GraphQL: Get](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

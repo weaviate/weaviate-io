@@ -40,12 +40,11 @@ response = jeopardy.generate.near_text(
     # highlight-end
 )
 
-# print source questions and generated responses
-for o in response.objects:
-    print(o.properties["question"])
-    # highlight-start
-    print(o.generated)
-    # highlight-end
+# for o in response.objects:
+#     print(o.properties["question"])
+#     # highlight-start
+#     print(o.generated)
+#     # highlight-end
 # END SingleGenerativePython
 
 # Test results
@@ -139,9 +138,9 @@ response = jeopardy.generate.near_text(
 )
 
 # print source properties and generated responses
-for o in response.objects:
-    print(o.properties)
-    print(o.generated)
+# for o in response.objects:
+#     print(o.properties)
+#     print(o.generated)
 # END SingleGenerativePropertiesPython
 
 # Test results
@@ -232,8 +231,7 @@ response = jeopardy.generate.near_text(
     # highlight-end
 )
 
-# print the generated response
-print(response.generated)
+# print(response.generated)
 # END GroupedGenerativePython
 
 # Test results
@@ -331,13 +329,12 @@ response = jeopardy.generate.near_text(
     # highlight-end
 )
 
-# print source properties
-for o in response.objects:
-    print(o.properties)
+# for o in response.objects:
+#     print(o.properties)
 
 # print the generated response
 # highlight-start
-print(response.generated)
+# print(response.generated)
 # highlight-end
 # END GroupedGenerativeProperties Python
 
