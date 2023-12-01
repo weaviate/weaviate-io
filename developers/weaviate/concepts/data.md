@@ -209,8 +209,8 @@ For now, what's important to know is this:
 :::
 
 :::info Multi-tenancy availability
-- Multi-tenancy available from version `v1.20`
-- Tenant activity status setting available from version `v1.21`
+- Multi-tenancy added in `v1.20`
+- Tenant activity status setting added in `v1.21`
 :::
 
 If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
@@ -268,7 +268,7 @@ Note that these numbers relate to active tenants only. The size of tenants per n
 
 ### Tenant status
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active

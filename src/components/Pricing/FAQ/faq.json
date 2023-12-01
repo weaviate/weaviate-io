@@ -1,23 +1,30 @@
 [
   {
-    "question": "Why do you price per vector dimension?",
-    "answer": "Some vectors have a lot of embeddings (sometimes more than 10k), some just a few (e.g., 90). The more vector dimensions you store, the more infrastructure is needed to optimize and maintain performance, this is the reason why we calculate with individual dimensions. We believe it's the fairest and most accurate price to give you the best experience."
+    "question": "What is a 'dimension' in this context?",
+    "answer": "A vector 'dimension' refers to one element in a vector representing an object in a vector database. The total number of these elements is the vector's dimensionality."
   },
   {
-    "question": "​How does performance and storage optimization work?",
-    "answer": "Within Weaviate you can store vector embeddings for both storage optimization as well as performance optimization. If you <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#conversion-of-an-existing-class-to-use-pq\" target=\"_blank\">enable compression</a>, Weaviate will automatically count these as compressed vectors."
+    "question": "Why is the pricing based on the total number of dimensions?",
+    "answer": "The total count of vector dimensions is a good indicator of the resources required. Therefore we adopt is as a fair way to balance actual resource usage with costs incurred."
   },
   {
-    "question": "What's the Weaviate pricing formula?",
-    "answer": "You pay for the total amount of embedding dimensions stored per data object. For example, if you have a 100-dimensional embedding and you store 1k documents. You pay for 100k dimensions.",
-    "code": "<code>stored objects * embedding dimension size * SLA tier price per dimension</code>"
+    "question": "How can I determine the total number of dimensions?",
+    "answer": "The total number of dimensions can be determined by multiplying the object count (of those with vectors) with the vector dimensionality."
   },
   {
-    "question": "Is there a difference between Weaviate open source and the Weaviate version used by the WCS?",
-    "answer": "No, Weaviate Cloud Services (WCS) is a different solution using the same code as Weaviate open-source. The difference is the WCS itself (i.e., SaaS) and different SLA types (opposed to the open-source BSD3 license)."
+    "question": "What are the differences between 'Performance' and 'Compression' storage types?",
+    "answer": "This sets whether to use vector compression, using a technique called product quantization. Enabling compression will effectively reduce dimensionality and therefore prices. However, it may reduce performance & recall. <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw-with-product-quantization-pq\" target=\"_blank\">Read more</a>."
   },
   {
-    "question": "Is there a discount for non-profits, startups, or students?",
+    "question": "When Compression is selected, how are the total number of dimensions determined?",
+    "answer": "When a Compression storage type is used, we take the the total number of 'segments' in place of the number of dimensions. <a href=\"http://localhost:3000/developers/weaviate/concepts/vector-index#segments\" target=\"_blank\">Read more</a>."
+  },
+  {
+    "question": "Is the open source Weaviate the same as that used on WCS?",
+    "answer": "Yes! Weaviate Cloud Services (WCS) runs the open-source Weaviate library. The differences are in where it runs (i.e. WCS is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
+  },
+  {
+    "question": "Are discounts available for non-profits, startups, or students?",
     "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
   },
   {
@@ -30,18 +37,10 @@
   },
   {
     "question": "Which Weaviate modules are available?",
-    "answer": "Weaviate modules based on inference APIs are automatically integrated in the cloud service."
+    "answer": "Weaviate modules based on inference APIs are automatically enabled in the cloud service."
   },
   {
-    "question": "Can I store data from different models with different embedding sizes?",
+    "question": "Is WCS compatible with models of various embedding sizes?",
     "answer": "Yes."
-  },
-  {
-    "question": "How are the number of objects determined for billing purposes?",
-    "answer": "We take a time-weighted average of object counts taken periodically over the course of the month."
-  },
-  {
-    "question": "What if I have an unexpected usage spike?",
-    "answer": "Usage spikes are -almost- always a good sign! Your Weaviate-powered app or platform is being actively used, and we don't want your bill to be in the way of your success. Spikes are analyzed at the end of the month, and occasional ones are on us."
   }
 ]

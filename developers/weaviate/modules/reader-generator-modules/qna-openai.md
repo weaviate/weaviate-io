@@ -35,7 +35,7 @@ You only need to provide one of the two keys, depending on which service (OpenAI
 
 ## Organization name
 
-:::info Available from version `v1.21.1`
+:::info Added in `v1.21.1`
 :::
 
 For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:
