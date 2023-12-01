@@ -20,7 +20,7 @@ This guide is for migrating data when using a backup is not possible. They cover
 - a single-tenancy collection, and
 - a multi-tenancy collection.
 
-The examples use two different Weaviate instances, but they can be migrated within the same instance as well, to different collections or tenants.
+The examples use two different Weaviate instances, exposed through different ports. The same process can be used for two different instances as well.
 
 :::caution Limitations
 Currently, cross-references cannot be exported. To produce a complete replications, you will need to recreate the cross-references manually or use a backup.

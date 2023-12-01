@@ -1,8 +1,8 @@
-# START CollectionToCollection  # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateTenants
+# START CollectionToCollection  # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant  # START CreateTenants
 import weaviate
 import weaviate.classes as wvc
 
-# END CollectionToCollection  # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateTenants
+# END CollectionToCollection  # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant  # END CreateTenants
 from tqdm import tqdm
 # ===== Load demo dataset for testing =====
 import weaviate_datasets as wd
@@ -18,10 +18,10 @@ for dataset in [wd.WineReviews, wd.WineReviewsMT]:
 DATASET_SIZE = 50  # For assertions
 
 
-# START CollectionToCollection
+# START CollectionToCollection  # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant  # START CreateTenants
 client_src = weaviate.connect_to_local()
 
-# END CollectionToCollection
+# END CollectionToCollection  # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant  # END CreateTenants
 
 
 # ============================================================
@@ -30,13 +30,11 @@ client_src = weaviate.connect_to_local()
 assert client_src.is_ready()
 
 
-# START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateTenants
 client_tgt = weaviate.connect_to_local(
     port=8099,
     grpc_port=50099,
 )
 
-# END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateTenants
 
 # ================================================================================
 # ================================================================================
@@ -204,9 +202,9 @@ client_tgt.collections.delete("WineReviewMT")
 assert not client_tgt.collections.exists("WineReviewMT")
 
 
-# START CreateCollectionTenantToTenant
+# START CreateCollectionCollectionToTenant
 reviews_mt_tgt = create_collection("WineReviewMT", enable_mt=True)
-# END CreateCollectionTenantToTenant
+# END CreateCollectionCollectionToTenant
 
 
 # START CreateTenants

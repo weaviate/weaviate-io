@@ -1,3 +1,22 @@
+import weaviate
+import weaviate_datasets as wd
+import os
+
+client_src = weaviate.Client(
+    "http://localhost:8080",
+    additional_headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+)
+
+for d in ["WineReview", "WineReviewMT"]:
+    if client_src.schema.exists(d):
+        client_src.schema.delete_class(d)
+
+for dataset in [wd.WineReviews_V3, wd.WineReviewsMT_V3]:
+    d = dataset()
+    d.upload_dataset(client_src)
+DATASET_SIZE = 50  # For assertions
+
+
 # START CollectionToCollection
 from typing import List, Optional
 from tqdm import tqdm
@@ -11,6 +30,14 @@ from weaviate import Client
 from weaviate import Client, Tenant
 
 # END CollectionToTenant # END TenantToCollection # END TenantToTenant
+
+
+# START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection
+from weaviate import Client
+
+target_client = Client(url="http://localhost:8099")  # Your target endpoint
+
+# END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection
 
 
 # START CollectionToCollection # START CollectionToTenant # START TenantToCollection # START TenantToTenant
@@ -88,7 +115,8 @@ def migrate_data_from_weaviate_to_weaviate(
     ).with_meta_count()
     if from_tenant is not None:
         obj_count_query = obj_count_query.with_tenant(from_tenant)
-    num_objects = obj_count_query.do()["data"]["Aggregate"][from_class_name][0]["meta"][
+    resp = obj_count_query.do()
+    num_objects = resp["data"]["Aggregate"][from_class_name][0]["meta"][
         "count"
     ]
 
@@ -196,11 +224,11 @@ def migrate_data_from_weaviate_to_weaviate(
 # ================================================================================
 
 
+if target_client.schema.exists("WineReview"):
+    target_client.schema.delete_class("WineReview")
+assert not target_client.schema.exists("WineReview")
+
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection
-from weaviate import Client
-
-target_client = Client(url="http://localhost:8099")  # Your target endpoint
-
 target_client.schema.create(
     {
         "classes": [
@@ -249,7 +277,7 @@ target_client.schema.create(
 )
 
 # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection
-
+assert target_client.schema.exists("WineReview")
 
 # ================================================================================
 # ================================================================================
@@ -278,12 +306,17 @@ migrate_data_from_weaviate_to_weaviate(
 print(f"Class '{source_class}' migrated to '{target_class}' in '{TARGET_WEAVIATE_URL}'")
 
 # END CollectionToCollection
-
+agg_response = target_client.query.aggregate("WineReview").with_meta_count().do()
+assert str(DATASET_SIZE) in str(agg_response)
 
 # ================================================================================
 # ================================================================================
 # ================================================================================
 
+
+if target_client.schema.exists("WineReviewMT"):
+    target_client.schema.delete_class("WineReviewMT")
+assert not target_client.schema.exists("WineReviewMT")
 
 # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 from weaviate import Client
@@ -294,10 +327,8 @@ target_client.schema.create(
     {
         "classes": [
             {
-                "class": "WineReview",
-                "multiTenancyConfig": {  # Multi-tenancy must be enabled at the collection level
-                    "enabled": True
-                },
+                "class": "WineReviewMT",
+                "multiTenancyConfig": {"enabled": True},  # Set this to enable multi-tenancy
                 # Additional settings not shown
                 # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
                 "vectorizer": "text2vec-openai",
@@ -340,6 +371,7 @@ target_client.schema.create(
 )
 
 # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
+assert target_client.schema.exists("WineReview")
 
 
 # ================================================================================
@@ -352,10 +384,13 @@ from weaviate import Client, Tenant
 
 target_client = Client(url="http://localhost:8099")  # Your target endpoint
 
-target_tenants = [Tenant("newTenantA"), Tenant("newTenantB")]  # Tenants to add to the target
-target_client.schema.add_class_tenants(target_tenants)
+target_tenants = [Tenant("TenantA"), Tenant("TenantB")]  # Tenants to add to the target
+target_client.schema.add_class_tenants("WineReviewMT", target_tenants)
 
 # END CreateTenants
+
+fetched_tenants = target_client.schema.get_class_tenants("WineReviewMT")
+assert set([t.name for t in target_tenants]) == set([t.name for t in fetched_tenants])
 
 
 # ================================================================================
@@ -375,7 +410,7 @@ target_client = Client(url=TARGET_WEAVIATE_URL)
 # Migrate the data with the `migrate_data_from_weaviate_to_weaviate` function defined above
 
 source_class = "WineReview"
-target_class = "WineReview"
+target_class = "WineReviewMT"
 target_tenant = target_tenants[0]  # Pick a target tenant
 
 print(f"Start migration for class '{source_class}'")
@@ -387,13 +422,69 @@ migrate_data_from_weaviate_to_weaviate(
     to_tenant=target_tenant.name,
 )
 
-print(f"Class '{source_class}' migrated to '{target_class}' and tenant '{target_tenant}' in '{TARGET_WEAVIATE_URL}'")
+print(f"Class '{source_class}' migrated to '{target_class}' and tenant '{target_tenant.name}' in '{TARGET_WEAVIATE_URL}'")
 # END CollectionToTenant
 
+agg_response = target_client.query.aggregate("WineReviewMT").with_tenant(target_tenants[0].name).with_meta_count().do()
+print(agg_response)
+assert str(DATASET_SIZE) in str(agg_response)
+
 
 # ================================================================================
 # ================================================================================
 # ================================================================================
+
+
+if target_client.schema.exists("WineReview"):
+    target_client.schema.delete_class("WineReview")
+assert not target_client.schema.exists("WineReview")
+
+
+target_client.schema.create(
+    {
+        "classes": [
+            {
+                "class": "WineReview",
+                "multiTenancyConfig": {"enabled": False},  # This is also the default
+                # Additional settings not shown
+                "vectorizer": "text2vec-openai",
+                "moduleConfig": {
+                    "generative-openai": {
+                        "model": "gpt-3.5-turbo",
+                    }
+                },
+                "properties": [
+                    {
+                        "name": "review_body",
+                        "dataType": ["text"],
+                        "description": "Review body",
+                    },
+                    {
+                        "name": "title",
+                        "dataType": ["text"],
+                        "description": "Name of the wine",
+                    },
+                    {
+                        "name": "country",
+                        "dataType": ["text"],
+                        "description": "Originating country",
+                    },
+                    {
+                        "name": "points",
+                        "dataType": ["int"],
+                        "description": "Review score in points",
+                    },
+                    {
+                        "name": "price",
+                        "dataType": ["number"],
+                        "description": "Listed price",
+                    },
+                ],
+            }
+        ]
+    }
+)
+
 
 source_tenants = [Tenant("tenantA"), Tenant("tenantB")]  # Tenants to add to the target
 
@@ -408,7 +499,7 @@ target_client = Client(url=TARGET_WEAVIATE_URL)
 
 # Migrate the data with the `migrate_data_from_weaviate_to_weaviate` function defined above
 
-source_class = "WineReview"
+source_class = "WineReviewMT"
 source_tenant = source_tenants[0]  # Pick a source tenant
 target_class = "WineReview"
 
@@ -421,13 +512,71 @@ migrate_data_from_weaviate_to_weaviate(
     to_class_name=target_class,
 )
 
-print(f"Tenant '{source_tenant}' in class '{source_class}' migrated to '{target_class}' in '{TARGET_WEAVIATE_URL}'")
+print(f"Tenant '{source_tenant.name}' in class '{source_class}' migrated to '{target_class}' in '{TARGET_WEAVIATE_URL}'")
 # END TenantToCollection
 
+agg_response = target_client.query.aggregate("WineReview").with_meta_count().do()
+assert str(DATASET_SIZE) in str(agg_response)
+
 
 # ================================================================================
 # ================================================================================
 # ================================================================================
+
+
+if target_client.schema.exists("WineReviewMT"):
+    target_client.schema.delete_class("WineReviewMT")
+assert not target_client.schema.exists("WineReviewMT")
+
+
+target_client.schema.create(
+    {
+        "classes": [
+            {
+                "class": "WineReviewMT",
+                "multiTenancyConfig": {"enabled": True},  # Set this to enable multi-tenancy
+                # Additional settings not shown
+                "vectorizer": "text2vec-openai",
+                "moduleConfig": {
+                    "generative-openai": {
+                        "model": "gpt-3.5-turbo",
+                    }
+                },
+                "properties": [
+                    {
+                        "name": "review_body",
+                        "dataType": ["text"],
+                        "description": "Review body",
+                    },
+                    {
+                        "name": "title",
+                        "dataType": ["text"],
+                        "description": "Name of the wine",
+                    },
+                    {
+                        "name": "country",
+                        "dataType": ["text"],
+                        "description": "Originating country",
+                    },
+                    {
+                        "name": "points",
+                        "dataType": ["int"],
+                        "description": "Review score in points",
+                    },
+                    {
+                        "name": "price",
+                        "dataType": ["number"],
+                        "description": "Listed price",
+                    },
+                ],
+            }
+        ]
+    }
+)
+
+
+target_tenants = [Tenant("TenantA"), Tenant("TenantB")]  # Tenants to add to the target
+target_client.schema.add_class_tenants("WineReviewMT", target_tenants)
 
 
 # START TenantToTenant
@@ -441,9 +590,9 @@ target_client = Client(url=TARGET_WEAVIATE_URL)
 
 # Migrate the data with the `migrate_data_from_weaviate_to_weaviate` function defined above
 
-source_class = "WineReview"
+source_class = "WineReviewMT"
 source_tenant = source_tenants[0]  # Pick a source tenant
-target_class = "WineReview"
+target_class = "WineReviewMT"
 target_tenant = target_tenants[0]  # Pick a target tenant
 
 print(f"Start migration for class '{source_class}'")
@@ -456,5 +605,8 @@ migrate_data_from_weaviate_to_weaviate(
     to_tenant=target_tenant.name
 )
 
-print(f"Tenant '{source_tenant}' in class '{source_class}' migrated to tenant '{target_tenant}' in '{target_class}' in '{TARGET_WEAVIATE_URL}'")
+print(f"Tenant '{source_tenant.name}' in class '{source_class}' migrated to tenant '{target_tenant.name}' in '{target_class}' in '{TARGET_WEAVIATE_URL}'")
 # END TenantToCollection
+
+agg_response = target_client.query.aggregate("WineReviewMT").with_meta_count().with_tenant(target_tenants[0].name).do()
+assert str(DATASET_SIZE) in str(agg_response)
