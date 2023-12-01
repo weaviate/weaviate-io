@@ -186,15 +186,14 @@ The output is like this:
   <summary>
     Additional information
   </summary>
-  <div>
+
     To create a nested filter, follow these steps.
-    <div style={{marginLeft: 25}}>
-      &#x2022; Set the outer <mark style={{background: "lightgrey"}}>operator</mark> equal to <mark style={{background: "lightgrey"}}>And</mark> or <mark style={{background: "lightgrey"}}>Or</mark>.
-      <br/>&#x2022; Add <mark style={{background: "lightgrey"}}>operands</mark>.
-      <br/>&#x2022; Within an <mark style={{background: "lightgrey"}}>operand</mark>, set <mark style={{background: "lightgrey"}}>operator</mark> equal to <mark style={{background: "lightgrey"}}>And</mark> or <mark style={{background: "lightgrey"}}>Or</mark> to nest a group.
-      <br/>&#x2022; Add <mark style={{background: "lightgrey"}}>operands</mark> to the nested group.
-    </div>
-  </div>
+
+      - Set the outer `operator` equal to `And` or `Or`.
+      - Add `operands`.
+      - Within an `operand`, set `operator` equal to `And` or `Or` to nest a group.
+      - Add `operands` to the nested group.
+
 </details>
 
 ## Combine filters and search operators
