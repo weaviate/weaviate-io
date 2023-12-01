@@ -9,12 +9,10 @@ export default function PricingStandard() {
 
   const openModal = (e) => {
     setIsModalOpen(true);
-    console.log('Opening modal');
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    console.log('Closing modal');
   };
 
   useEffect(() => {

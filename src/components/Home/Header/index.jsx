@@ -31,31 +31,33 @@ export default function HomepageHeader() {
  # Find relevant articles
  # with hybrid search
  response = (    
-      collection.query    
-      .hybrid(        
+    collection.query    
+    .hybrid(        
           query="Generative AI",        
           limit=2  
-        )
+    )
  )
 `;
 
   const codeExample2 = `collection = (    
     client.collections    
-    .get("Article"))
+    .get("Article")
+    )
   
   # Perform RAG with a command 
   response = (   
     collection   
       .generate.hybrid( 
-    query="Generative AI",        
-    limit=5,        
-    grouped_task="""        
-    Summarize highlights         
-    from these as bullet points.        
-    """    
+        query="Generative AI",        
+        limit=5,        
+        grouped_task="""        
+        Summarize highlights         
+        from these as bullet points.        
+        """    
     )
   )
-  # View the generated pointsprint(response.generated)`;
+  # View the generated points
+  print(response.generated)`;
 
   const codeExample3 = `listings = client.collections.get("Listing")
   ads = client.collections.get("Ad") 
@@ -66,8 +68,8 @@ export default function HomepageHeader() {
       single_prompt="""        
       Write an engaging advertisement        
       for this AirBnb listing {description}        
-  """,        
-  limit=5,    
+      """,        
+      limit=5,    
     )
   ) 
   
@@ -208,9 +210,7 @@ export default function HomepageHeader() {
                     className={`${styles.codeImage} ${styles.codeImage02}`}
                   />
                   <div className={styles.codeBlockContentRight}>
-                    <div
-                      className={`${styles.codeBlockTitle} ${styles.bigLine}`}
-                    />
+                    <div className={styles.codeBlockTitle} />
 
                     <div className={styles.lineBar} />
                     <CodeSnippet code={codeExample2} />

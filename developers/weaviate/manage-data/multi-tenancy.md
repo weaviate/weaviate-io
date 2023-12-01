@@ -25,8 +25,8 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi
 ## Enable multi-tenancy
 
 :::info Multi-tenancy availability
-- Multi-tenancy available from version `v1.20`
-- (Experimental) Tenant activity status setting available from version `v1.21`
+- Multi-tenancy added in `v1.20`
+- (Experimental) Tenant activity status setting added in `v1.21`
 :::
 
 Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the class definition as shown below:
@@ -210,7 +210,7 @@ If a tenant specified for deletion doesn't belong to the class, it is ignored.
 
 ### Update tenant(s)
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 You can update one or more existing tenants' activity status to active ("HOT") or inactive ("COLD").

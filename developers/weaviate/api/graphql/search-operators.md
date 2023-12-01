@@ -184,7 +184,7 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 
 ### Hybrid with a conditional filter
 
-:::info Available from version `v1.18.0`
+:::info Added in `v1.18.0`
 :::
 
 A [conditional (`where`) filter](../graphql/filters.md#where-filter) can be used with `hybrid`.
@@ -196,7 +196,7 @@ import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.h
 
 ### Limiting BM25 properties
 
-:::info Available from version `v1.19`
+:::info Added in `v1.19`
 :::
 
 A `hybrid` operator can accept a `properties` array of strings that limits the set of properties that will be searched by the BM25 component of the search. If not specified, all text properties will be searched.
@@ -209,7 +209,7 @@ import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybr
 
 ### Oversearch with `relativeScoreFusion`
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 When `relativeScoreFusion` is used as the `fusionType` with a small search `limit`, a result set can be very sensitive to the limit parameter due to the normalization of the scores.
@@ -286,7 +286,7 @@ The `_additional` property in the GraphQL result exposes the score:
 
 ### BM25 with a conditional filter
 
-:::info Available from version `v1.18`
+:::info Added in `v1.18`
 :::
 
 A [conditional (`where`) filter](../graphql/filters.md#where-filter) can be used with `bm25`.

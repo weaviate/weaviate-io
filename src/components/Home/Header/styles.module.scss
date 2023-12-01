@@ -556,6 +556,37 @@
     transform: translate(-164px, 15px);
   }
 }
+
+.cbt2 {
+  transform: translate(-185px, 15px);
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 1050px) {
+    transform: translate(-164px, 15px);
+  }
+
+  @media screen and (min-width: 2500px) {
+    transform: translate(-164px, 15px);
+  }
+}
+
+.cbt3 {
+  transform: translate(-185px, 15px);
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 1050px) {
+    transform: translate(-164px, 15px);
+  }
+
+  @media screen and (min-width: 2500px) {
+    transform: translate(-164px, 15px);
+  }
+}
+
 .bigLine {
   margin-right: 0.6%;
 }

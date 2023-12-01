@@ -273,7 +273,7 @@ For details on the configuration parameters, see the following configuration ref
 
 ### Multi-tenancy
 
-:::info Available from `v1.20` onwards
+:::info Added in `v1.20`
 :::
 
 To enable multi-tenancy, set `multiTenancyConfig` to `{"enabled": true}` in the collection definition.
