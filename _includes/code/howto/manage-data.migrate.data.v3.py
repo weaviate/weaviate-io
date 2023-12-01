@@ -15,8 +15,8 @@ from weaviate import Client, Tenant
 
 # START CollectionToCollection # START CollectionToTenant # START TenantToCollection # START TenantToTenant
 def migrate_data_from_weaviate_to_weaviate(
-    source_wv: Client,
-    target_wv: Client,
+    client_src: Client,
+    client_tgt: Client,
     from_class_name: str,
     to_class_name: str,
     from_tenant: Optional[str] = None,
@@ -39,10 +39,10 @@ def migrate_data_from_weaviate_to_weaviate(
 
     Parameters
     ----------
-    source_wv: Client
+    client_src: Client
             The Source Weaviate Client object instance from which to query the data
             (including the UUID and the underlying vector, if one is present.)
-    target_wv: Client
+    client_tgt: Client
             The Target Weaviate Client object instance to which to ingest the data.
             NOTE: The batch config is going to be overridden in this function. If you want
             to keep your previous config of the batch, you can remove the `batch.configure`
@@ -79,11 +79,11 @@ def migrate_data_from_weaviate_to_weaviate(
 
     # get source class properties
     properties = [
-        prop["name"] for prop in source_wv.schema.get(from_class_name)["properties"]
+        prop["name"] for prop in client_src.schema.get(from_class_name)["properties"]
     ]
 
     # get number of items in the class/tenant
-    obj_count_query = source_wv.query.aggregate(
+    obj_count_query = client_src.query.aggregate(
         class_name=from_class_name
     ).with_meta_count()
     if from_tenant is not None:
@@ -94,11 +94,11 @@ def migrate_data_from_weaviate_to_weaviate(
 
     try:
         # configure Target Weaviate Batch
-        target_wv.batch.configure(
+        client_tgt.batch.configure(
             batch_size=batch_size,
         )
         additional_item_config = {"tenant": to_tenant}
-        with target_wv.batch as target_batch, tqdm(total=(num_objects - count)) as pbar:
+        with client_tgt.batch as target_batch, tqdm(total=(num_objects - count)) as pbar:
             # helper function to ingest data into Target Weaviate
             def ingest_data_in_batches(objects: List[dict]) -> str:
                 """
@@ -143,7 +143,7 @@ def migrate_data_from_weaviate_to_weaviate(
             # migrate data
             while True:
                 query = (
-                    source_wv.query.get(
+                    client_src.query.get(
                         class_name=from_class_name, properties=properties
                     )
                     .with_additional(["vector", "id"])
@@ -185,7 +185,7 @@ def migrate_data_from_weaviate_to_weaviate(
         # the context manager it also shuts down the BatchExecutor, so we can re-start it here.
         # It gets automatically started when entering a new context manager but prints a warning.
         # It is started in 'finally' in case there is a re-try mechanism on errors
-        target_wv.batch.start()
+        client_tgt.batch.start()
 
 
 # END CollectionToCollection # END CollectionToTenant # END TenantToCollection # END TenantToTenant
@@ -270,8 +270,8 @@ target_class = "WineReview"
 
 print(f"Start migration for class '{source_class}'")
 migrate_data_from_weaviate_to_weaviate(
-    source_wv=source_client,
-    target_wv=target_client,
+    client_src=source_client,
+    client_tgt=target_client,
     from_class_name=source_class,
     to_class_name=target_class,
 )
@@ -380,8 +380,8 @@ target_tenant = target_tenants[0]  # Pick a target tenant
 
 print(f"Start migration for class '{source_class}'")
 migrate_data_from_weaviate_to_weaviate(
-    source_wv=source_client,
-    target_wv=target_client,
+    client_src=source_client,
+    client_tgt=target_client,
     from_class_name=source_class,
     to_class_name=target_class,
     to_tenant=target_tenant.name,
@@ -414,8 +414,8 @@ target_class = "WineReview"
 
 print(f"Start migration for class '{source_class}'")
 migrate_data_from_weaviate_to_weaviate(
-    source_wv=source_client,
-    target_wv=target_client,
+    client_src=source_client,
+    client_tgt=target_client,
     from_class_name=source_class,
     from_tenant=source_tenant.name,
     to_class_name=target_class,
@@ -448,8 +448,8 @@ target_tenant = target_tenants[0]  # Pick a target tenant
 
 print(f"Start migration for class '{source_class}'")
 migrate_data_from_weaviate_to_weaviate(
-    source_wv=source_client,
-    target_wv=target_client,
+    client_src=source_client,
+    client_tgt=target_client,
     from_class_name=source_class,
     from_tenant=source_tenant.name,
     to_class_name=target_class,
