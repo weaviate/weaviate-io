@@ -9,7 +9,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.migrate.function.v3.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.migrate.data.v4.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.migrate.data.v3.py';
 
 
 ## Overview
@@ -34,7 +35,15 @@ Create a collection at the target instance, matching the collection at the sourc
 For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollectionCollectionToCollection"
+      endMarker="# END CreateCollectionCollectionToCollection"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionCollectionToCollection"
@@ -51,7 +60,15 @@ This migrates
 - to `target class` in the `target_wv` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CollectionToCollection"
+      endMarker="# END CollectionToCollection"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -74,7 +91,7 @@ Create a collection at the target instance, matching the collection at the sourc
 For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance, with multi-tenancy enabled.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionCollectionToTenant"
@@ -89,7 +106,7 @@ For example, if the source collection is called `WineReview`, create a collectio
 Any tenants must be added before adding data objects.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateTenants"
@@ -107,7 +124,7 @@ This migrates:
 - to `target tenant` data from `target class` in the `target_wv` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -130,7 +147,7 @@ Create a collection at the target instance, matching the collection at the sourc
 For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionTenantToCollection"
@@ -148,7 +165,7 @@ This migrates:
 - to `target class` in the `target_wv` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
@@ -171,7 +188,7 @@ Create a collection at the target instance, matching the collection at the sourc
 For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance, with multi-tenancy enabled.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionTenantToTenant"
@@ -186,7 +203,7 @@ For example, if the source collection is called `WineReview`, create a collectio
 Any tenants must be added before adding data objects.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateTenants"
@@ -204,7 +221,7 @@ This migrates:
 - to `target tenant` data from `target class` in the `target_wv` instance
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v3)">
+  <TabItem value="py3" label="Python (v3)">
     <p><small>
         The <code>migrate_data_from_weaviate_to_weaviate</code> function is called to migrate the data.
         <br/><br/>
