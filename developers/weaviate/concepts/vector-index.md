@@ -125,9 +125,11 @@ Quantization techniques represent larger vectors with a finite set of smaller ve
 
 ![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
-When you enable PQ, you should already have about 10,000 to 100,000 vectors loaded per shard. Weaviate divides these initial vectors into segments. After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors.
+After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors.
 
 Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory significantly. Imagine a collection where each vector has 768 four byte elements. Before PQ compression, each vector requires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
+
+To enable PQ compression, see [Enable PQ compression](/developers/weaviate/configuration/pq-compression#enable-pq-compression)
 
 ### Distance calculation and rescoring
 
@@ -147,15 +149,17 @@ Below is a list segment values for common vectorizer modules:
 | cohere      | multilingual-22-12                      | 768        | 384, 256, 192, 96      |
 | huggingface | sentence-transformers/all-MiniLM-L12-v2 | 384        | 192, 128, 96           |
 
-### Conversion of an existing Class to use PQ
+### Configure an existing collection to use PQ
 
 :::caution Important
-To use PQ, we recommend using Weaviate 1.20.5 or higher.
+PQ is available starting in v1.18, however we recommend using Weaviate 1.23.0 or later.
 :::
 
-You can convert an existing class to use product quantization by updating the vector index configuration. It is recommended to run a [backup](../configuration/backups.md) first before enabling if you are in production and may want to roll back.
+To configure an existing collection (class) to use PQ, update the vector index configuration. If your collection is used in production, [backup](../configuration/backups.md) your configuration before making changes.
 
-As PQ has a training stage, data must already exist in the class prior to enabling. To reduce training times you can also use the `trainingLimit` parameter.
+PQ has a training stage where it creates a codebook. When you convert an existing collection, there is some data already present. PQ needs 10,000 to 100,100,000 records per shard to create the codebook. If you have a smaller collection, consider using binary quantization (BQ) instead. If your collection is very large, PQ will reduce the memory requirements to store the collection but there is some additional overhead while PQ processes the uncompressed vectors. 
+
+To enable PQ, set `"enabled": True`. For additional configuration settings, see [Configuration: Indexes](../configuration/indexes.md).
 
 ```python
 client.schema.update_config("DeepImage", {
@@ -169,11 +173,7 @@ client.schema.update_config("DeepImage", {
 })
 ```
 
-:::tip
-To learn more about other configuration settings for PQ refer to the documentation in [Configuration: Indexes](../configuration/indexes.md)
-:::
-
-The command will return immediately and a job will run in the background to convert an index. During this time the index will be read-only. Shard status will return to `READY` after conversion.
+The command returns immediately. A background job converts the index. While the conversion is running, the index is read-only. Shard status returns to `READY` when the conversion finishes.
 
 ```python
 client.schema.get_class_shards("DeepImage")
@@ -181,7 +181,7 @@ client.schema.get_class_shards("DeepImage")
 [{'name': '1Gho094Wev7i', 'status': 'READONLY'}]
 ```
 
-You can now query and write to the index as normal. Distances may be slightly different due to the effects of quantization.
+After the PQ conversion completes, query and write to the index as normal. Distances may be slightly different due to the effects of quantization.
 
 ```python
 client.query.get("DeepImage", ["i"]) \
