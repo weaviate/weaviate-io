@@ -18,22 +18,20 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
   <summary>
     Additional information
   </summary>
-  <div>
-    To run an <mark style={{background: "lightgrey"}}>Aggregate</mark> query, specify the following:
-    <div style={{marginLeft: 25}}>
-      &#x2022; A target collection to search
-      <br/>&#x2022; One or more aggregated properties
-    
-      <div style={{marginLeft: 50}}>
-        &#x2022; A meta property
-        <br/>&#x2022; An object property
-        <br/>&#x2022; The <mark style={{background: "lightgrey"}}>groupedBy</mark> property
-      </div>
-      &#x2022; Select at least one sub-property for each selected property
-  </div>
-  <br/>  
-    For details, see <a href="https://weaviate.io/developers/weaviate/api/graphql/aggregate">Aggregate</a>.  
-  </div>
+
+To run an `Aggregate` query, specify the following:
+
+- A target collection to search
+- One or more aggregated properties
+
+   - A meta property
+   - An object property
+   - The `groupedBy` property
+
+- Select at least one sub-property for each selected property
+
+For details, see <a href="https://weaviate.io/developers/weaviate/api/graphql/aggregate">Aggregate</a>.  
+
 </details>
 
 ## Retrieve the `count` meta property

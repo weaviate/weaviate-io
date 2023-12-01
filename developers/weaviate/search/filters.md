@@ -187,12 +187,12 @@ The output is like this:
     Additional information
   </summary>
 
-    To create a nested filter, follow these steps.
+To create a nested filter, follow these steps.
 
-      - Set the outer `operator` equal to `And` or `Or`.
-      - Add `operands`.
-      - Within an `operand`, set `operator` equal to `And` or `Or` to nest a group.
-      - Add `operands` to the nested group.
+- Set the outer `operator` equal to `And` or `Or`.
+- Add `operands`.
+- Within an `operand`, set `operator` equal to `And` or `Or` to nest a group.
+- Add `operands` to the nested group.
 
 </details>
 
