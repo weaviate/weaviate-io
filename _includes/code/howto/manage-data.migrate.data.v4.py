@@ -1,8 +1,8 @@
-# START CollectionToCollection  # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant  # START CreateTenants
+# START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 import weaviate
 import weaviate.classes as wvc
 
-# END CollectionToCollection  # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant  # END CreateTenants
+# END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
 from tqdm import tqdm
 # ===== Load demo dataset for testing =====
 import weaviate_datasets as wd
@@ -18,10 +18,10 @@ for dataset in [wd.WineReviews, wd.WineReviewsMT]:
 DATASET_SIZE = 50  # For assertions
 
 
-# START CollectionToCollection  # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant  # START CreateTenants
+# START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 client_src = weaviate.connect_to_local()
 
-# END CollectionToCollection  # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant  # END CreateTenants
+# END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
 
 
 # ============================================================
@@ -30,11 +30,13 @@ client_src = weaviate.connect_to_local()
 assert client_src.is_ready()
 
 
+# START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 client_tgt = weaviate.connect_to_local(
     port=8099,
     grpc_port=50099,
 )
 
+# END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
 
 # ================================================================================
 # ================================================================================
