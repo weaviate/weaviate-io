@@ -8,7 +8,7 @@ image: og/docs/modules/generative-aws.jpg
 
 ## In short
 
-:::info Available from version `v1.22.5`
+:::info Added in `v1.22.5`
 :::
 
 * The Generative AWS (`generative-aws`) module performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.

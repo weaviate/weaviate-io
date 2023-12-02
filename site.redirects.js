@@ -350,10 +350,7 @@ const siteRedirects = {
         },
 
      // Pricing to Products redirects
-        {
-            to: "/products",
-            from: "/pricing",
-          },
+       
           {
             to: "/products/serverless",
             from: "/pricing/saas",

@@ -8,7 +8,7 @@ image: og/docs/modules/text2vec-aws.jpg
 
 ## Overview
 
-:::info Available from version `v1.22.5`
+:::info Added in `v1.22.5`
 :::
 
 The `text2vec-aws` module enables Weaviate to obtain vectors using [AWS Bedrock](https://aws.amazon.com/bedrock/).

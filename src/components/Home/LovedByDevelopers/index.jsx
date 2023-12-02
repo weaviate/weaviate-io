@@ -14,34 +14,33 @@ import Quotecontainer from './quoteContainer';
 
 export default function HomepageLovedByDevelopers() {
   const StyledSlider = styled(Slider)`
+    .slick-track:hover {
+      transition: -webkit-transform ease 0s !important;
+    }
     .slick-prev:before,
     .slick-next:before {
       font-size: 48px !important;
 
       color: #2021246e !important;
-
-      @media screen and (max-width: 485px) {
-        display: none;
-      }
+    }
+    .slick-slide {
+      width: 20rem !important;
     }
   `;
 
-  var rand = Math.floor(Math.random() * quotes.length); // random number
+  var rand = Math.floor(Math.random() * quotes.length);
 
   var settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToShow: 3,
+
     autoplay: true,
     speed: 5000,
     initialSlide: rand,
     autoplaySpeed: 10000,
     arrows: false,
-    swipeToSlide: true,
-    /* rows: 2,
-    slidesPerRow: 1, */
-    pauseOnFocus: true,
+    swipeToSlide: false,
     responsive: [
       {
         breakpoint: 1380,
@@ -117,34 +116,28 @@ export default function HomepageLovedByDevelopers() {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 
   return (
     <div className={styles.lovedBg}>
-      <div className="container">
-        <div className={styles.header}>
-          <h2 className={styles.title}>Loved by Developers</h2>
-          <p className={styles.subtitle}>
-            Developer Experience is at the core of everything we do. Weaviate is
-            not just a tool;<br></br> it's a community-driven ecosystem
-            carefully crafted to empower developers to build<br></br> end-to-end
-            AI applications fast and easy. From our documentation to the
-            open-source
-            <br></br>
-            community, Weaviate is designed to be the go-to solution that
-            developers love.
-          </p>
+      <div className={styles.container}>
+        <div className={styles.sliderContainer}>
+          <div className={styles.shadowL}></div>
+          <StyledSlider {...settings}>
+            {quotes.map((quote) => {
+              return <Quotecontainer key={quote.name} details={quote} />;
+            })}
+          </StyledSlider>
+          <div className={styles.shadowR}></div>
         </div>
-      </div>
-      <div className={styles.sliderContainer}>
-        <div className={styles.shadowL}></div>
-        <StyledSlider {...settings}>
-          {quotes.map((quote) => {
-            return <Quotecontainer key={quote.name} details={quote} />;
-          })}
-        </StyledSlider>
-        <div className={styles.shadowR}></div>
       </div>
     </div>
   );

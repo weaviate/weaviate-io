@@ -67,7 +67,7 @@ You need a Weaviate instance to work with. We recommend creating a free cloud sa
 Go to the [WCS quickstart](developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
 
 :::note For v4 Python client users
-As of November 2023, WCS clusters are not yet compatible with the new API introduced in the v4 Python client. We suggest creating a Weaviate instance using another method, such as Docker Compose.
+As of November 2023, WCS sandbox instances are not yet compatible with the new API introduced in the v4 Python client. We suggest creating a Weaviate instance using another method, such as Docker Compose.
 :::
 
 :::info To use another deployment method (e.g. Docker Compose)
@@ -102,7 +102,7 @@ import ConnectToWeaviateWithKey from '/_includes/code/quickstart/connect.withkey
 
 <ConnectToWeaviateWithKey />
 
-## Step 4: Define a class
+## Step 4: Define a data collection
 
 Next, we define a data collection (a "class" in Weaviate) to store objects in. This is analogous to creating a table in relational (SQL) databases.
 

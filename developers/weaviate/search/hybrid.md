@@ -320,7 +320,7 @@ It should produce a response like the one below:
 
 ## Combining and ranking results
 
-:::info Available from `v1.20` onwards
+:::info Added in `v1.20`
 :::
 
 BM25 and vector search results can be combined and ranked in different ways. 
