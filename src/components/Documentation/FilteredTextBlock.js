@@ -5,6 +5,8 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
   // Filter out lines that are before the start marker, and lines with or after the end marker
   includeStartMarker = includeStartMarker == 'true';
   const lines = text.split('\n');
+  const universalStartMarker = 'START-ANY';
+  const universalEndMarker = 'END-ANY';
   let withinMarkers = false;
   let format;
   switch (language) {
@@ -25,12 +27,12 @@ const FilteredTextBlock = ({ text, startMarker, endMarker, language, includeStar
 
   const filteredLines = lines
     .filter((line) => {
-      if (line.includes(startMarker)) {
+      if (line.includes(startMarker) || (line.includes(universalStartMarker))) {
         withinMarkers = true;
         return includeStartMarker;
       }
 
-      if (line.includes(endMarker)) {
+      if (line.includes(endMarker) || (line.includes(universalEndMarker))) {
         withinMarkers = false;
         return false;
       }

@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/SearchBasic.java';
 
 import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
 
@@ -63,11 +64,9 @@ Use the [`Get` function](../api/graphql/get.md) to search.
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGet.java';
-
 <FilteredTextBlock
-  text={BasicGetJava}
-  startMarker="// BasicGetJava"
+  text={JavaCode}
+  startMarker="// START BasicGetJava"
   endMarker="// END BasicGetJava"
   language="java"
 />
@@ -142,11 +141,9 @@ To return a limited number of objects, set a `limit`.
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetLimitJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetLimit.java';
-
 <FilteredTextBlock
-  text={BasicGetLimitJava}
-  startMarker="// BasicGetLimitJava"
+  text={JavaCode}
+  startMarker="// START BasicGetLimitJava"
   endMarker="// END BasicGetLimitJava"
   language="java"
 />
@@ -214,12 +211,10 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetLimitOffsetJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetLimitOffset.java';
-
 <FilteredTextBlock
-  text={BasicGetLimitOffsetJava}
-  startMarker="// BasicGetLimitOffsetJava"
-  endMarker="// END BasicGetLimitOffsetJava"
+  text={JavaCode}
+  startMarker="// START BasicGetLimitOffset"
+  endMarker="// END BasicGetLimitOffset"
   language="java"
 />
 
@@ -288,12 +283,10 @@ You can specify object properties as below.
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetMorePropertiesJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetMoreProperties.java';
-
 <FilteredTextBlock
-  text={BasicGetMorePropertiesJava}
-  startMarker="// BasicGetMorePropertiesJava"
-  endMarker="// END BasicGetMorePropertiesJava"
+  text={JavaCode}
+  startMarker="// START BasicGetMoreProperties"
+  endMarker="// END BasicGetMoreProperties"
   language="java"
 />
 
@@ -359,11 +352,9 @@ To retrieve the object vector, specify the vector in your query.
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetWithVectorJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithVector.java';
-
 <FilteredTextBlock
-  text={BasicGetWithVectorJava}
-  startMarker="// BasicGetWithVector"
+  text={JavaCode}
+  startMarker="// START BasicGetWithVector"
   endMarker="// END BasicGetWithVector"
   language="java"
 />
@@ -434,11 +425,9 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetWithIdJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithId.java';
-
 <FilteredTextBlock
-  text={BasicGetWithIdJava}
-  startMarker="// BasicGetWithId"
+  text={JavaCode}
+  startMarker="// START BasicGetWithId"
   endMarker="// END BasicGetWithId"
   language="java"
 />
@@ -510,11 +499,9 @@ To retrieve properties from cross-referenced objects, specify the following item
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetWithCrossRefJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithCrossRef.java';
-
 <FilteredTextBlock
-  text={BasicGetWithCrossRefJava}
-  startMarker="// BasicGetWithCrossRef"
+  text={JavaCode}
+  startMarker="// START BasicGetWithCrossRef"
   endMarker="// END BasicGetWithCrossRef"
   language="java"
 />
@@ -587,11 +574,9 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 </TabItem>
 <TabItem value="java" label="Java">
 
-import BasicGetWithMultiTenancyJava from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/howto_search/BasicGetWithMultiTenancy.java';
-
 <FilteredTextBlock
-  text={BasicGetWithMultiTenancyJava}
-  startMarker="// BasicGetWithMultiTenancy"
+  text={JavaCode}
+  startMarker="// START BasicGetWithMultiTenancy"
   endMarker="// END BasicGetWithMultiTenancy"
   language="java"
 />
