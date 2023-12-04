@@ -22,9 +22,9 @@ export const courseData = {
     ]
   },
   "intro_weaviate_typescript": {
-    title: "Weaviate in practice with Typescript",
+    title: "Intro to Weaviate with Typescript (or JavaScript)",
     courseId: "TS/JS-1",
-    body: "A practical course where you can learn how to add Weaviate to a TypeScript app.",
+    body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/intro_weaviate_typescript",
     badgeType: "course",
@@ -40,7 +40,7 @@ export const courseData = {
       "Gain an understanding of what a vector database is.",
       "Define a schema (collection definition) and import data.",
       "Perform queries on your data.",
-      "Integrate Weaviate into your TypeScript app.",
+      "Integrate Weaviate into your TypeScript/JavaScript app.",
     ]
   },
   // "zero_to_mvp_advanced": {
