@@ -194,6 +194,10 @@ We have built images from publicly available models that in our opinion are well
 |`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
 |`google/flan-t5-base` ([Info](https://huggingface.co/google/flan-t5-base))|`semitechnologies/transformers-inference:google-flan-t5-base`|
 |`google/flan-t5-large` ([Info](https://huggingface.co/google/flan-t5-large))|`semitechnologies/transformers-inference:google-flan-t5-large`|
+|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
+|`BAAI/bge-small-en-v1.5` (GPU Enabled)|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5`|
+|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|[`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
+|`BAAI/bge-base-en-v1.5` (GPU Enabled)|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5`|
 |DPR Models|
 |`facebook/dpr-ctx_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-ctx_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-ctx_encoder-single-nq-base`|
 |`facebook/dpr-question_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-question_encoder-single-nq-base`|
@@ -285,12 +289,15 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
 
-## Model license(s)
+## Model licenses
 
-The `text2vec-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+The `text2vec-transformers` module is compatible with various models. Each of the models has its own license. For detailed information, please review the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
+## Release notes
+
+The release notes are [here](https://github.com/weaviate/t2v-transformers-models/releases/).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
