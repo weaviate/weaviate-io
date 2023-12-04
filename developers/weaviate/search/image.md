@@ -23,9 +23,10 @@ Image search uses an image as input. The module that vectorizes the input image 
 
 To use images as search inputs, configure a vectorizer [module](../configuration/modules.md) for your collection. For details, see the module's reference page:
 
-- [img2vec-neural](../modules/retriever-vectorizer-modules/img2vec-neural)
-- [multi2vec-clip](../modules/retriever-vectorizer-modules/multi2vec-clip)
-- [multi2vec-bind](../modules/retriever-vectorizer-modules/multi2vec-bind)
+
+- [img2vec-neural](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
+- [multi2vec-clip](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
+- [multi2vec-bind](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind.md)
 
 Use the same module to vectorize the search input image and the images in your database. 
  

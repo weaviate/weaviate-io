@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
-With Weaviate you can query your data for exact matches ([keyword search](./bm25)), similar items ([vector search](./similarity))), or a mix of both ([hybrid search](./hybrid)). You can query database objects ([properties](#specify-object-properties)) or information about the objects ([meta-properties](#retrieve-other-metadata-values)). This page provides fundamental search syntax to get you started. 
+With Weaviate you can query your data for exact matches ([keyword search](/developers/weaviate/search/bm25)), similar items ([vector search](/developers/weaviate/search/similarity))), or a mix of both ([hybrid search](/developers/weaviate/search/hybrid)). You can query database objects ([properties](#specify-object-properties)) or information about the objects ([meta-properties](#retrieve-other-metadata-values)). This page provides fundamental search syntax to get you started. 
 
 ## Basic search
 
