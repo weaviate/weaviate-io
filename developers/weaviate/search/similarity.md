@@ -14,15 +14,15 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
 
-<ClassToCollectionNote /> 
+<ClassToCollectionNote />
 
-This page has examples of vector search. 
+This page has examples of vector search.
 
 <details>
   <summary>Additional information</summary>
 
   Vector search is a similarity based search. The vector search operators look for objects with vector representations that are similar to the query's vector representation.
-     
+
     - For search concepts, see [Search](/developers/weaviate/concepts/search).
     - For image search, see [Image search](/developers/weaviate/search/image).
     - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
@@ -35,7 +35,7 @@ This page has examples of vector search.
 If you use unvectorized inputs to search with, the collection must have a [vectorizer](../modules/retriever-vectorizer-modules/index.md) configured.
 
 - For text object, use [`nearText`](../api/graphql/search-operators.md#neartext).
-- For image objects, use [`nearImage`](./image.md). 
+- For image objects, use [`nearImage`](./image.md).
 - For mixed text and images, use [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).
 
 <Tabs groupId="languages">
@@ -197,7 +197,7 @@ To set a similarity threshold between the search and target vectors, define a ma
       language="python"
     />
   </TabItem>
-  
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -401,7 +401,7 @@ For more specific results, use [`where`](../api/graphql/filters.md) to narrow yo
       language="python"
     />
   </TabItem>
-  
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
