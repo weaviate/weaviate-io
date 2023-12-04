@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
-`Aggregate` queries return values that are calculated over result objects. Aggregate queries don't return the underlying result objects.
+`Aggregate` queries process multiple objects and return a calculated result. Use `aggregate` to group values across objects or to perform an operation that returns a single result.
 
 <details>
   <summary>
