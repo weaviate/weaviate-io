@@ -30,7 +30,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END nearText
 
 // Tests
@@ -58,7 +58,7 @@ result = await client.graphql
   .withLimit(10)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END RerankNearText
 
 // Tests
@@ -88,7 +88,7 @@ result = await client.graphql
   .withLimit(10)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END bm25Rerank
 
 // Tests

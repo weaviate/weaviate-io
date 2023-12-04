@@ -40,7 +40,7 @@ result = await client.graphql
   .withFields('question')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END SingleGenerative TS
 
 // Tests
@@ -74,7 +74,7 @@ result = await client.graphql
   .withLimit(2)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END SingleGenerativeProperties TS
 
 // Tests
@@ -107,7 +107,7 @@ result = await client.graphql
   .withLimit(3)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GroupedGenerative TS
 
 // Tests
@@ -144,7 +144,7 @@ result = await client.graphql
   .withLimit(3)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GroupedGenerativeProperties
 
 // Tests

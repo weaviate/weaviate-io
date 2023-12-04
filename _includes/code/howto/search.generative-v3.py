@@ -31,7 +31,7 @@ response = (
   .with_limit(2)
 ).do()
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END SingleGenerativePython
 
 # Test results
@@ -124,7 +124,7 @@ response = (
   .with_limit(2)
 ).do()
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END SingleGenerativePropertiesPython
 
 # Test results
@@ -216,7 +216,7 @@ response = (
   .with_limit(3)
 ).do()
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GroupedGenerativePython
 
 # Test results
@@ -319,7 +319,7 @@ response = (
   .with_limit(3)
 ).do()
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GroupedGenerativeProperties Python
 
 # Test results
