@@ -18,7 +18,10 @@
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "node",
-            "runtimeArgs": ["--loader=ts-node/esm", "--experimental-specifier-resolution=node"],
+            "runtimeArgs": [
+                "--loader=ts-node/esm",
+                "--experimental-specifier-resolution=node"
+            ],
             "program": "${file}",
             "cwd": "${workspaceFolder}/_includes/code"
         }

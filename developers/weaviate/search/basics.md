@@ -11,12 +11,13 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/SearchBasic.java';
 
 import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
 
-<ClassToCollectionNote /> 
+<ClassToCollectionNote />
 
-This page has basic search examples. 
+This page has basic search examples.
 
 <details>
   <summary>Additional information</summary>
@@ -40,7 +41,7 @@ Use the [`Get` function](../api/graphql/get.md) to search.
       language="py"
     />
   </TabItem>
-  
+
 <TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
@@ -58,6 +59,16 @@ Use the [`Get` function](../api/graphql/get.md) to search.
   startMarker="// BasicGetJS"
   endMarker="// END BasicGetJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetJava"
+  endMarker="// END BasicGetJava"
+  language="java"
 />
 
 </TabItem>
@@ -128,6 +139,16 @@ To return a limited number of objects, set a `limit`.
 />
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetLimitJava"
+  endMarker="// END BasicGetLimitJava"
+  language="java"
+/>
+
+</TabItem>
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -185,6 +206,16 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
   startMarker="// GetWithLimitOffsetJS"
   endMarker="// END GetWithLimitOffsetJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetLimitOffset"
+  endMarker="// END BasicGetLimitOffset"
+  language="java"
 />
 
 </TabItem>
@@ -250,6 +281,16 @@ You can specify object properties as below.
 />
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetMoreProperties"
+  endMarker="// END BasicGetMoreProperties"
+  language="java"
+/>
+
+</TabItem>
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -309,6 +350,16 @@ To retrieve the object vector, specify the vector in your query.
 />
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetWithVector"
+  endMarker="// END BasicGetWithVector"
+  language="java"
+/>
+
+</TabItem>
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -343,7 +394,7 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
 <TabItem value="py" label="Python (v4)">
 
  The new Python client always returns the object ID.
- 
+
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetObjectIdPython"
@@ -369,6 +420,16 @@ To retrieve the object ID, request the `_additional` property and `id` sub-prope
   startMarker="// GetObjectIdJS"
   endMarker="// END GetObjectIdJS"
   language="js"
+/>
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetWithId"
+  endMarker="// END BasicGetWithId"
+  language="java"
 />
 
 </TabItem>
@@ -436,6 +497,16 @@ To retrieve properties from cross-referenced objects, specify the following item
 />
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetWithCrossRef"
+  endMarker="// END BasicGetWithCrossRef"
+  language="java"
+/>
+
+</TabItem>
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
@@ -466,7 +537,7 @@ The output is like this:
 
 For a comprehensive list of metadata fields, see [GraphQL: Additional properties](../api/graphql/additional-properties.md).
 
-## Group results 
+## Group results
 
 To group results, see the [`groupBy`](/developers/weaviate/api/graphql/aggregate#groupby-argument) GraphQL operator.
 
@@ -500,6 +571,16 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
   endMarker="// END MultiTenancy"
   language="js"
 />
+</TabItem>
+<TabItem value="java" label="Java">
+
+<FilteredTextBlock
+  text={JavaCode}
+  startMarker="// START BasicGetWithMultiTenancy"
+  endMarker="// END BasicGetWithMultiTenancy"
+  language="java"
+/>
+
 </TabItem>
 </Tabs>
 
