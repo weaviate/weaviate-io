@@ -146,7 +146,7 @@ The response should look like this:
 ## Related pages
 
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
-- [API References: GraphQL - Sorting](../api/graphql/additional-operators#sorting-api)
+- [API References: GraphQL - Sorting](/developers/weaviate/api/graphql/additional-operators#sorting-api)
 - [Concepts: Reranking](../concepts/reranking.md)
 - [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
