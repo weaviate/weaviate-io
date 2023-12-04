@@ -30,13 +30,9 @@ This page has examples of vector search.
 
 </details>
 
-## Search with unvectorized input
+## Search with text
 
-If you use unvectorized inputs to search with, the collection must have a [vectorizer](../modules/retriever-vectorizer-modules/index.md) configured.
-
-- For text object, use [`nearText`](../api/graphql/search-operators.md#neartext).
-- For image objects, use [`nearImage`](./image.md).
-- For mixed text and images, use [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).
+You can use use [`nearText`](../api/graphql/search-operators.md#neartext) to find objects with the nearest vector to an input.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -89,6 +85,47 @@ The output is like this:
 />
 
 </details>
+
+
+## Search with image
+
+import ImgSrchPyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
+import ImgSrchPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
+import ImgSrchTSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
+
+You can use [`nearImage`](../api/graphql/search-operators.md#nearimage) to find objects with the nearest vector to an input image. This example uses a base64 representation of an image.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={ImgSrchPyCode}
+      startMarker="# START search with base64"
+      endMarker="# END search with base64"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={ImgSrchPyCodeV3}
+      startMarker="# START search with base64"
+      endMarker="# END search with base64"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={ImgSrchTSCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+See [Image search](./image.md) for more information.
+
 
 ## Search for a similar object
 
