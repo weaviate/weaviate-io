@@ -14,17 +14,13 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
 
-<ClassToCollectionNote /> 
+<ClassToCollectionNote />
 
 Vector search is a similarity based search. The vector search operators look for objects with vector representations that are similar to the query's vector representation.
 
-## Search with unvectorized input
+## Search with text
 
-If you use unvectorized inputs to search with, the collection must have a [vectorizer](../modules/retriever-vectorizer-modules/index.md) configured.
-
-- For text object, use [`nearText`](../api/graphql/search-operators.md#neartext).
-- For image objects, use [`nearImage`](./image.md). 
-- For mixed text and images, use [CLIP](../modules/retriever-vectorizer-modules/multi2vec-clip.md).
+You can use use [`nearText`](../api/graphql/search-operators.md#neartext) to find objects with the nearest vector to an input.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -78,7 +74,48 @@ The output is like this:
 
 </details>
 
-## Search for a similar object
+
+## Search with image
+
+import ImgSrchPyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
+import ImgSrchPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
+import ImgSrchTSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
+
+You can use [`nearImage`](../api/graphql/search-operators.md#nearimage) to find objects with the nearest vector to an input image. This example uses a base64 representation of an image.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={ImgSrchPyCode}
+      startMarker="# START search with base64"
+      endMarker="# END search with base64"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={ImgSrchPyCodeV3}
+      startMarker="# START search with base64"
+      endMarker="# END search with base64"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={ImgSrchTSCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+See [Image search](./image.md) for more information.
+
+
+## Search with an existing object
 
 If you have an object ID, use the [`nearObject` operator](../api/graphql/search-operators.md#nearobject) to find objects similar to that object.
 
@@ -130,7 +167,7 @@ If you have an object ID, use the [`nearObject` operator](../api/graphql/search-
 </details>
 
 
-## Search for a similar vector
+## Search with a vector
 
 If you have an input vector, use the [`nearVector`](../api/graphql/search-operators.md#nearvector) operator to find objects with similar vectors
 
@@ -185,7 +222,7 @@ To set a similarity threshold between the search and target vectors, define a ma
       language="python"
     />
   </TabItem>
-  
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -323,7 +360,7 @@ The output is like this:
 
 ## Group results
 
-Use properties or cross-references to group results.
+Use properties or cross-references to group results. To group returned objects, the query must include a `near...` search operator such as `nearText` or `nearVector`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -389,7 +426,7 @@ For more specific results, use [`where`](../api/graphql/filters.md) to narrow yo
       language="python"
     />
   </TabItem>
-  
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
