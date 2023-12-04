@@ -25,7 +25,7 @@ In practice this means:
 * Keep every single commit production ready. Do not use the comfort of a branch
   to temporarily ignore quality standards, knowing that you can still fix them
   before creating a Pull Request. As a rule of thumb, every commit should have a
-  passing test suite and should contain anything that you wouldn't want to be
+  passing test suite and should not contain anything that you wouldn't want to be
   used at scale.
 
   There might be situations, especially when developing complex features, where

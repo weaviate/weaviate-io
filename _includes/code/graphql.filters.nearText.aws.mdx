@@ -1,0 +1,266 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client = weaviate.Client(
+    url="http://localhost:8080"
+    # The AWS credentials must be set in the environment
+)
+
+nearText = {
+  "concepts": ["fashion"],
+  "distance": 0.6, # prior to v1.14 use "certainty" instead of "distance"
+  "moveAwayFrom": {
+    "concepts": ["finance"],
+    "force": 0.45
+  },
+  "moveTo": {
+    "concepts": ["haute couture"],
+    "force": 0.85
+  }
+}
+
+result = (
+  client.query
+  .get("Publication", "name")
+  .with_additional(["certainty OR distance"]) # note that certainty is only supported if distance==cosine
+  .with_near_text(nearText)
+  .do()
+)
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+```js
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'localhost:8080',
+  // The AWS credentials must be set in the environment
+});
+
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name _additional{certainty distance}') // note that certainty is only supported if distance==cosine
+  .withNearText({
+    concepts: ['fashion'],
+    distance: 0.6,  // prior to v1.14 use certainty instead of distance
+    moveAwayFrom: {
+      concepts: ['finance'],
+      force: 0.45,
+    },
+    moveTo: {
+      concepts: ['haute couture'],
+      force: 0.85,
+    },
+  })
+  .do();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:    "localhost:8080",
+    Scheme:  "http",
+    // The AWS credentials must be set in the environment
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+
+  className := "Publication"
+
+  name := graphql.Field{Name: "name"}
+  _additional := graphql.Field{
+    Name: "_additional", Fields: []graphql.Field{
+      {Name: "certainty"}, // only supported if distance==cosine
+      {Name: "distance"},  // always supported
+    },
+  }
+
+  concepts := []string{"fashion"}
+  distance := float32(0.6)
+  moveAwayFrom := &graphql.MoveParameters{
+    Concepts: []string{"finance"},
+    Force:    0.45,
+  }
+  moveTo := &graphql.MoveParameters{
+    Concepts: []string{"haute couture"},
+    Force:    0.85,
+  }
+  nearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts).
+    WithDistance(distance). // use WithCertainty(certainty) prior to v1.14
+    WithMoveTo(moveTo).
+    WithMoveAwayFrom(moveAwayFrom)
+
+  ctx := context.Background()
+
+  result, err := client.GraphQL().Get().
+    WithClassName(className).
+    WithFields(name, _additional).
+    WithNearText(nearText).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.argument.NearTextMoveParameters;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class App {
+  public static void main(String[] args) {
+    // The AWS credentials must be set in the environment
+    Config config = new Config("http", "localhost:8080", headers);
+    WeaviateClient client = new WeaviateClient(config);
+
+    NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "haute couture" }).force(0.85f).build();
+
+    NearTextMoveParameters moveAway = NearTextMoveParameters.builder()
+      .concepts(new String[]{ "finance" }).force(0.45f)
+      .build();
+
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "fashion" })
+      .distance(0.6f) // use .certainty(0.7f) prior to v1.14
+      .moveTo(moveTo)
+      .moveAwayFrom(moveAway)
+      .build();
+
+    Field name = Field.builder().name("name").build();
+    Field _additional = Field.builder()
+      .name("_additional")
+      .fields(new Field[]{
+        Field.builder().name("certainty").build(), // only supported if distance==cosine
+        Field.builder().name("distance").build(),  // always supported
+      }).build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("Publication")
+      .withFields(name, _additional)
+      .withNearText(nearText)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+# Note: Under nearText, use `certainty` instead of distance prior to v1.14
+# Under _additional, `certainty` is only supported if distance==cosine, but `distance` is always supported
+echo '{
+  "query": "{
+    Get {
+      Publication(
+        nearText: {
+          concepts: [\"fashion\"],
+          distance: 0.6,
+          moveAwayFrom: {
+            concepts: [\"finance\"],
+            force: 0.45
+          },
+          moveTo: {
+            concepts: [\"haute couture\"],
+            force: 0.85
+          }
+        }
+      ) {
+        name
+        _additional {
+          certainty
+          distance
+        }
+      }
+    }
+  }"
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d @- \
+    https://edu-demo.weaviate.network/v1/graphql
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get{
+    Publication(
+      nearText: {
+        concepts: ["fashion"],
+        distance: 0.6 # prior to v1.14 use "certainty" instead of "distance"
+        moveAwayFrom: {
+          concepts: ["finance"],
+          force: 0.45
+        },
+        moveTo: {
+          concepts: ["haute couture"],
+          force: 0.85
+        }
+      }
+    ){
+      name
+      _additional {
+        certainty # only supported if distance==cosine.
+        distance  # always supported
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>

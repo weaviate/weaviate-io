@@ -1,6 +1,6 @@
 ---
 title: Generative Search - Cohere
-sidebar_position: 11
+sidebar_position: 12
 image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'transformers', 'cohere']
 ---
@@ -8,15 +8,15 @@ image: og/docs/modules/generative-cohere.jpg
 
 ## In short
 
-* The Generative Cohere (`generative-cohere`) module generates responses based on the data stored in your Weaviate instance.
+* The Generative Cohere (`generative-cohere`) module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
-* The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries
+* The module enables generative search operations on the Weaviate instance.
 * Added in Weaviate `v1.19.0`
 * The default model is `command-xlarge-nightly`, which the Cohere team trains nightly and pushes updates.
 
 ## Introduction
 
-`generative-cohere` generates responses based on the data stored in your Weaviate instance.
+`generative-cohere` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
@@ -27,8 +27,8 @@ You can use the Generative Cohere module with non-Cohere upstream modules. For e
 :::
 
 The generative module can provide results for:
-* each returned object - `singleResult{ prompt }`
-* the group of all results together – `groupedResult{ task }`
+* each returned object - `singlePrompt`
+* the group of all results together – `groupedTask`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 

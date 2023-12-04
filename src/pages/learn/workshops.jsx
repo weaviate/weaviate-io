@@ -23,7 +23,7 @@ export default function WorkshopPage() {
   return (
     <div className="custom-page noBG">
       <Layout>
-        <MetaSEO img="og/company/investors.jpg" />
+        <MetaSEO img="og/content/workshops.jpg" />
         <Header />
         <div className="container"></div>
       </Layout>

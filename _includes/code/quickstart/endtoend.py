@@ -3,7 +3,7 @@ import weaviate
 import weaviate.classes as wvc
 import os
 
-# As of November 2023, WCS clusters are not yet compatible with the new API introduced in the v4 Python client.
+# As of November 2023, we are working towards making all WCS instances compatible with the new API introduced in the v4 Python client.
 # Accordingly, we show you how to connect to a local instance of Weaviate.
 # Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
 client = weaviate.connect_to_local(
@@ -29,9 +29,12 @@ import os
 """
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
-client = weaviate.connect_to_wcs(
-    "https://some-endpoint.weaviate.network",
-    auth_credentials=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key,
+# As of November 2023, we are working towards making all WCS instances compatible with the new API introduced in the v4 Python client.
+# Accordingly, we show you how to connect to a local instance of Weaviate.
+# Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
+client = weaviate.connect_to_local(
+    port=8080,
+    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }
@@ -147,7 +150,7 @@ import requests
 # highlight-start
 fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
 # highlight-end
-url = f'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}'
+url = f"https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}"
 resp = requests.get(url)
 data = json.loads(resp.text)  # Load data
 

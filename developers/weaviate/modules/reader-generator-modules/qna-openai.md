@@ -35,7 +35,7 @@ You only need to provide one of the two keys, depending on which service (OpenAI
 
 ## Organization name
 
-:::info Available from version `v1.21.1`
+:::info Added in `v1.21.1`
 :::
 
 For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:
@@ -211,6 +211,10 @@ Note: `startPosition`, `endPosition` and `property` in the response are not guar
   }
 }
 ```
+
+### Token limits
+
+If the number of input tokens exceed the limit of the model, the module will return the OpenAI API's error.
 
 ## How it works (under the hood)
 
