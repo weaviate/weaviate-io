@@ -34,7 +34,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridBasicPython
 
 # Tests
@@ -114,7 +114,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithScorePython
 
 # Tests
@@ -208,7 +208,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithAlphaPython
 
 # Tests
@@ -288,7 +288,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithFusionTypePython
 
 # Tests
@@ -369,7 +369,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithPropertiesPython
 
 # Tests
@@ -449,7 +449,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithPropertyWeightingPython
 
 # Tests
@@ -529,7 +529,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithVectorPython
 
 # Tests
@@ -612,7 +612,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END HybridWithFilterPython
 
 # Tests
@@ -700,7 +700,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END limit Python
 
 # Tests
@@ -792,7 +792,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END autocut Python
 
 # Tests

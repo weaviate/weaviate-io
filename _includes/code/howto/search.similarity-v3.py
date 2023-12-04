@@ -37,7 +37,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetNearTextPython
 
 # Test results
@@ -122,7 +122,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetNearObjectPython
 
 # Test results
@@ -180,7 +180,7 @@ response = (
 )
 
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetNearVectorPython
 
 # Test results
@@ -238,7 +238,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetLimitOffsetPython
 
 # Test results
@@ -311,7 +311,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetWithDistancePython
 
 # Test results
@@ -371,7 +371,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END Autocut Python
 
 # Test results
@@ -453,7 +453,7 @@ response = (
     .do()
 )
 
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # END GetWithGroupbyPython
 
 # Test results

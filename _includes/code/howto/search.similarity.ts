@@ -39,7 +39,7 @@ result = await client.graphql
   .do();
 
   
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetNearText
 
 // Tests
@@ -66,7 +66,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetNearVector
 
 // Tests
@@ -91,7 +91,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetNearObject
 
 // Tests
@@ -112,7 +112,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetLimitOffset
 
 // Tests
@@ -142,7 +142,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithDistance
 
 // Tests
@@ -169,7 +169,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END Autocut
 
 // Tests
@@ -217,9 +217,8 @@ result = await client.graphql
   // highlight-end
   .do();
 
-// To see the results, uncomment this code.  
-// for (const group of result.data.Get.JeopardyQuestion)
-//   console.log(group['_additional']['group']);
+for (const group of result.data.Get.JeopardyQuestion)
+  console.log(group['_additional']['group']);
 // END GetWithGroupBy
 
 // Tests
@@ -250,7 +249,7 @@ result = await client.graphql
   .withFields('question answer round _additional { distance }')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithFilter
 
 // Tests

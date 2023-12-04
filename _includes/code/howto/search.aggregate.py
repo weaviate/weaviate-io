@@ -28,7 +28,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.over_all(total_count=True)
 # highlight-end
 
-# print(response.total_count)
+print(response.total_count)
 # END MetaCount Python
 
 
@@ -183,9 +183,9 @@ response = jeopardy.aggregate.over_all(
     # highlight-end
 )
 
-# print(response.properties["points"].sum_)
-# print(response.properties["points"].minimum)
-# print(response.properties["points"].maximum)
+print(response.properties["points"].sum_)
+print(response.properties["points"].minimum)
+print(response.properties["points"].maximum)
 # END IntProp Python
 
 gql_query = """
@@ -337,7 +337,7 @@ response = jeopardy.aggregate.near_text(
     # highlight-end
 )
 
-# print (response.properties["points"].sum_)
+print(response.properties["points"].sum_)
 # END nearTextWithLimit Python
 
 
@@ -405,7 +405,7 @@ response = jeopardy.aggregate.near_text(
     return_metrics=wvc.Metrics("points").number(sum_=True),
 )
 
-# print (response.properties["points"].sum_)
+print(response.properties["points"].sum_)
 # END nearTextWithDistance Python
 
 
@@ -472,7 +472,7 @@ response = jeopardy.aggregate.over_all(
     # highlight-end
 )
 
-# print (response.total_count)
+print(response.total_count)
 # END whereFilter Python
 
 
