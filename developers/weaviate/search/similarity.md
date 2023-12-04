@@ -12,15 +12,11 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
-import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
-
-<ClassToCollectionNote />
-
-Vector search is a similarity based search. The vector search operators look for objects with vector representations that are similar to the query's vector representation.
+Vector search is a similarity based search based on vector representations. Objects in the database have vector representations called "vector embeddings". Vector search returns the objects with embeddings that are the most similar to the embedded version of the search query.  
 
 ## Search with text
 
-You can use use [`nearText`](../api/graphql/search-operators.md#neartext) to find objects with the nearest vector to an input.
+ To find objects with the nearest vector to an input, use [`nearText`](../api/graphql/search-operators.md#neartext).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -74,14 +70,13 @@ The output is like this:
 
 </details>
 
-
 ## Search with image
 
 import ImgSrchPyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import ImgSrchPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import ImgSrchTSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
-You can use [`nearImage`](../api/graphql/search-operators.md#nearimage) to find objects with the nearest vector to an input image. This example uses a base64 representation of an image.
+To find objects with the nearest vector to an input image, use [`nearImage`](../api/graphql/search-operators.md#nearimage). This example uses a base64 representation of an image.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
