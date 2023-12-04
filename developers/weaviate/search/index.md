@@ -7,11 +7,11 @@ image: og/docs/howto.jpg
 
 Use these **search** how-to guides to find the data you want.
 
-The [query basics](./basics.md) page covers basic search syntax, and how to specify the properties you want to retrieve.
+The [query basics](./basics.md) page covers basic search syntax and how to specify the properties you want to retrieve.
 
-We have separate how-to guides for additional search topics:
+These guides cover additional search topics:
 
-- [Vector similarity search](./similarity.md): Covers `nearXXX` searches, which work by searching for objects with the most similar vector representation to the query.
+- [Vector similarity search](./similarity.md): Covers `nearXXX` searches that search for objects with the most similar vector representations to the query.
 - [Image search](./image.md): Use images as input for a similarity search.
 - [Keyword search](./bm25.md): A keyword search that uses the BM25F algorithm to rank results.
 - [Hybrid search](./hybrid.md): Combines BM25 and similarity search to rank results.

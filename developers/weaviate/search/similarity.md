@@ -466,7 +466,6 @@ The output is like this:
 
 ## Related pages
 
-- For search concepts, see [Search](/developers/weaviate/concepts/search).
 - For image search, see [Image search](/developers/weaviate/search/image).
 - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
 - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
