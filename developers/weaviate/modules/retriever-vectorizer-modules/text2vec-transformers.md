@@ -27,7 +27,7 @@ Without GPU acceleration, we recommend using [ONNX-enabled images](#onnx-enabled
 
 If that is still not fast enough, we suggest the following:
 - An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or
-- The [`text2vec-contextionary`](./text2vec-contextionary.md) module if you prefer a local inference container.
+- The [`text2vec-contextionary`](./text2vec-contextionary.md) or ['text2vec-gpt4all`](./text2vec-gpt4all.md) module if you prefer a local inference container.
 :::
 
 ## Weaviate instance configuration
