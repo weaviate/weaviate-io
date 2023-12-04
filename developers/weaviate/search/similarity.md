@@ -127,7 +127,7 @@ You can use [`nearImage`](../api/graphql/search-operators.md#nearimage) to find 
 See [Image search](./image.md) for more information.
 
 
-## Search for a similar object
+## Search with an existing object
 
 If you have an object ID, use the [`nearObject` operator](../api/graphql/search-operators.md#nearobject) to find objects similar to that object.
 
@@ -179,7 +179,7 @@ If you have an object ID, use the [`nearObject` operator](../api/graphql/search-
 </details>
 
 
-## Search for a similar vector
+## Search with a vector
 
 If you have an input vector, use the [`nearVector`](../api/graphql/search-operators.md#nearvector) operator to find objects with similar vectors
 
@@ -372,7 +372,7 @@ The output is like this:
 
 ## Group results
 
-Use properties or cross-references to group results.
+Use properties or cross-references to group results. To group returned objects, the query must include a `near...` search operator such as `nearText` or `nearVector`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
