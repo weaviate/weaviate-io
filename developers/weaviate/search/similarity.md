@@ -16,19 +16,7 @@ import ClassToCollectionNote from '/_includes/class-to-collection-transition-not
 
 <ClassToCollectionNote /> 
 
-This page has examples of vector search. 
-
-<details>
-  <summary>Additional information</summary>
-
-  Vector search is a similarity based search. The vector search operators look for objects with vector representations that are similar to the query's vector representation.
-     
-    - For search concepts, see [Search](/developers/weaviate/concepts/search).
-    - For image search, see [Image search](/developers/weaviate/search/image).
-    - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
-    - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
-
-</details>
+Vector search is a similarity based search. The vector search operators look for objects with vector representations that are similar to the query's vector representation.
 
 ## Search with unvectorized input
 
@@ -445,6 +433,11 @@ The output is like this:
 </details>
 
 ## Related pages
+
+- For search concepts, see [Search](/developers/weaviate/concepts/search).
+- For image search, see [Image search](/developers/weaviate/search/image).
+- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
+- For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

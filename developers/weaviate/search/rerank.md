@@ -14,28 +14,21 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
 Use a reranking method to reorder results after a search returns the initial result set. 
 
-## Enable reranking
+<details>
+  <summary>
+    Additional information
+  </summary>
 
-To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. These modules are available:
+### Configure reranking
+
+To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. For details, see the reranker's reference page:
 
 - [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 
 A collection can have multiple rerankers. If multiple `reranker` modules are enabled, specify the module you want to use in the `moduleConfig` section of your schema.
 
-```json
-{
-  "classes": [
-    {
-      "class": "Article",
-      ...,
-      "moduleConfig": {
-        "reranker-cohere": {},  // This will configure the 'Article' class to use the 'reranker-cohere' module
-      }
-    }
-  ]
-}
-```
+</details>
 
 ## Rerank vector search results
 

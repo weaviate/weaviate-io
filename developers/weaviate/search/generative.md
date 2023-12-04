@@ -14,7 +14,12 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
 Generative search, also know as "retrieval augmented generation" (RAG), is a multi-stage process. Weaviate passes search results and a prompt to a large language model (LLM). The LLM generates a new output based on that input.
 
-## Generative search steps
+<details>
+  <summary>
+    Additional information
+  </summary>
+
+### Configure generative search
 
 1. Configure Weaviate to use a generator module. For details, see the module reference page:
 
@@ -29,6 +34,7 @@ Generative search, also know as "retrieval augmented generation" (RAG), is a mul
     - [`single prompt`](#single-prompt)
     - [`grouped task`](#grouped-task)
 
+</details>
 
 ## Run a single prompt search
 
