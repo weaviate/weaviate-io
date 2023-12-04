@@ -12,7 +12,8 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
-Use a reranking method to reorder results after a search returns the initial result set. 
+Search finds results and returns them in a particular order. Reranking modules let you reorder the result set according to a different set of criteria. 
+To reorder your initial search results, configure a reranking method. 
 
 <details>
   <summary>
@@ -145,6 +146,7 @@ The response should look like this:
 ## Related pages
 
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
+- [API References: GraphQL - Sorting](../api/graphql/additional-operators#sorting-api)
 - [Concepts: Reranking](../concepts/reranking.md)
 - [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)

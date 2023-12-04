@@ -12,17 +12,6 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
-import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
-
-<ClassToCollectionNote /> 
-
-<details>
-  <summary>Additional information</summary>
-
-  - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
-  - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
-
-</details>
 
 ## Basic search
 
@@ -504,6 +493,8 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 ## Related pages
 
 - [API References: GraphQL: Get](../api/graphql/get.md)
+- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1)
+- For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

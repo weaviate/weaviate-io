@@ -12,9 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
-import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
-
-<ClassToCollectionNote /> 
+`hybrid` search combines a vector search and a keyword (BM25F) search. By default, the results are equally weighted. To improve search precision, change the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 
 ## Basic hybrid search
 

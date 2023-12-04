@@ -5,7 +5,6 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'image']
 ---
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -13,6 +12,24 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
+Image search uses an image as input. The module that vectorizes the input image has to be the same module that vectorizes the images in the database.
+
+<details>
+  <summary>
+    Additional information
+  </summary>
+
+### Configure image search
+
+To use images as search inputs, configure a vectorizer [module](../configuration/modules.md) for your collection. For details, see the module's reference page:
+
+- [img2vec-neural](../modules/retriever-vectorizer-modules/img2vec-neural)
+- [multi2vec-clip](../modules/retriever-vectorizer-modules/multi2vec-clip)
+- [multi2vec-bind](../modules/retriever-vectorizer-modules/multi2vec-bind)
+
+Use the same module to vectorize the search input image and the images in your database. 
+ 
+</details>
 
 ## By local image path
 
