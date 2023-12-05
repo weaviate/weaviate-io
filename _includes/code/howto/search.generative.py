@@ -40,7 +40,6 @@ response = jeopardy.generate.near_text(
     # highlight-end
 )
 
-# print source questions and generated responses
 for o in response.objects:
     print(o.properties["question"])
     # highlight-start
@@ -330,10 +329,6 @@ response = jeopardy.generate.near_text(
     grouped_properties=["answer", "question"]
     # highlight-end
 )
-
-# print source properties
-for o in response.objects:
-    print(o.properties)
 
 # print the generated response
 # highlight-start

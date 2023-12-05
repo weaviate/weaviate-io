@@ -5,6 +5,8 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
 ---
 
+
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -12,31 +14,32 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
-`Aggregate` queries process the result set to return calculated results. Use `aggregate` queries for groups of objects or the entire result set.
+## Overview
 
-<details>
-  <summary>
-    Additional information
-  </summary>
+This section shows how to retrieve aggregate data from a results set using the `Aggregate` function.
 
-To run an `Aggregate` query, specify the following:
+Generally, the usage of `Aggregate` is similar to that of searches using the `Get` function. The main difference is that `Aggregate` returns aggregated data, rather than objects. As `Aggregate` deals with aggregated data, it enables additional (meta) properties such as object counts, as well as aggregated properties such as sums and averages.
 
-- A target collection to search
-- One or more aggregated properties, such as:
+:::info Related pages
+- [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
+:::
 
-   - A meta property
-   - An object property
-   - The `groupedBy` property
+## `Aggregate` function requirements
 
-- Select at least one sub-property for each selected property
+To use `Aggregate`, you must specify at least:
+- The target `class` to search, and
+- One or more aggregated properties. The aggregated properties can include:
+    - The `meta` property,
+    - An object property, OR
+    - The `groupedBy` property (if using `groupBy`).
 
-For details, see <a href="https://weaviate.io/developers/weaviate/api/graphql/aggregate">Aggregate</a>.
+You must then select at least one sub-property for each selected property.
 
-</details>
+See the [`Aggregate` function syntax page](../api/graphql/aggregate.md#aggregate-syntax-and-query-structure) for details.
 
-## Retrieve the `count` meta property
+## Retrieve a `meta` property
 
-Return the number  of objects matched by the query.
+The `meta` property has only one sub-property (`count`) available. This returns the count of objects matched by the query.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -79,7 +82,7 @@ Return the number  of objects matched by the query.
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -89,9 +92,15 @@ Return the number  of objects matched by the query.
   />
 </details>
 
-## Aggregate `text` properties
+## Retrieve aggregated object `properties`
 
-This example counts occurrence frequencies in the `question` property:
+You can retrieve aggregations of `text`, `number`, `int`, or `boolean` data types.
+
+The [available sub-types](../api/graphql/aggregate.md#aggregate-syntax-and-query-structure) vary for each data type, except for `type` which is available to all, and `count` which is available to all but cross-references.
+
+### Example with `text`
+
+The following example retrieves information about the most commonly occurring examples in the `question` property:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -134,7 +143,7 @@ This example counts occurrence frequencies in the `question` property:
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -144,9 +153,9 @@ This example counts occurrence frequencies in the `question` property:
   />
 </details>
 
-## Aggregate `int` properties
+### Example with `int`
 
-This  example sums the `points` property.
+The following example retrieves the sum of the `points` property values:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -189,7 +198,7 @@ This  example sums the `points` property.
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -199,11 +208,11 @@ This  example sums the `points` property.
   />
 </details>
 
-## Aggregate `groupedBy` properties
+## Retrieve `groupedBy` properties
 
-To group your results, use `groupBy` in the query.
+You can use the `groupBy` variable to group the results set into subsets. Then, you can retrieve the grouped aggregate data for each group through the `groupedBy` properties.
 
-To retrieve aggregate data for each group, use the `groupedBy` properties.
+For example, to list all distinct values of a property, and the counts for each:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -247,7 +256,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -261,12 +270,19 @@ import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 
 <GroupbyLimitations />
 
-## Aggregate with a `similarity search`
+## With `nearXXX`
 
-You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
+When using a [similarity search](./similarity.md) operator (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
 
-<!-- Make sure to [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).<br/> -->
-Use `objectLimit` to specify the maximum number of objects to aggregate.
+Thus, for the vector search to affect the `Aggregate` output, you **must** set a limit on:
+- The number of results returned (with `limit`), or
+- How similar the results are to the query (with `distance`).
+
+### Set an object limit
+
+You can set the `objectLimit` argument to specify the maximum number of results to be aggregated.
+
+The query below retrieves the 10 `question` objects that have the vectors that are closest to the vector for `"animals in space"`. The query also returns the sum total of the `point` property.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -309,7 +325,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -319,14 +335,12 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
   />
 </details>
 
-## Set a similarity `distance`
 
-You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
+### Set a maximum `distance`
 
-<!-- Make sure to [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).<br/> -->
-Use `distance` to specify how similar the objects should be.
+You can set the `distance` operator to specify the maximum dissimilarity (i.e. minimum similarity) of results to be aggregated.
 
-<!-- If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). To specify how similar the objects should be, use the `distance` operator. -->
+The query below retrieves the 10 `question` objects that have vectors that are within a distance of `0.19` to the vector for `"animals in space"`. It also returns the sum total of the `point` property.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -369,7 +383,7 @@ Use `distance` to specify how similar the objects should be.
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -379,9 +393,12 @@ Use `distance` to specify how similar the objects should be.
   />
 </details>
 
-## Filter results
 
-For more specific results, use a `filter` to narrow your search.
+## Add a conditional (`where`) filter
+
+You can add a conditional filter to any aggregate search query to filter the results set.
+
+This example searches for objects where the `round` property equals `Double Jeopardy!` and returns the object count.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -424,7 +441,7 @@ For more specific results, use a `filter` to narrow your search.
 <details>
   <summary>Example response</summary>
 
-  The output is like this:
+  The query should produce a response like the one below:
 
   <FilteredTextBlock
     text={PyCode}
@@ -435,9 +452,7 @@ For more specific results, use a `filter` to narrow your search.
 
 </details>
 
-## Related pages
 
-- [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
