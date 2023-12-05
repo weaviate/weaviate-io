@@ -376,7 +376,7 @@ const siteRedirects = {
           },
            // Partners Off
            {
-            to: "/products",
+            to: "/pricing",
             from: "/partnersOff"
           },
             // Terms and Policies Changes
