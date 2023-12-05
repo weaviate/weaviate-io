@@ -227,7 +227,7 @@ response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
     # offset=1, # offset is currently not supported with the Weaviate Client v4
-    limit=2
+    limit=2,  # return 2 objects
     # highlight-end
 )
 
@@ -549,7 +549,7 @@ response = jeopardy.query.near_text(
     # highlight-start
     filters=wvc.Filter("round").equal("Double Jeopardy!"),
     # highlight-end
-    limit=2, # number of close groups
+    limit=2,
 )
 
 for o in response.objects:

@@ -12,11 +12,12 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
-Use filters to define a set of conditions. Filters let you include, or exclude, particular objects from your result set based on those conditions. For a list of filter operators, see [Filters](../api/graphql/filters.md#filter-structure).
+Filters let you include, or exclude, particular objects from your result set based on provided conditions.<br/>
+For a list of filter operators, see [Filters](../api/graphql/filters.md#filter-structure).
 
 ## Filter with one condition
 
-To filter your results, add a `where` condition to your query. For a list of filter parameters, see [Filter structure](../api/graphql/filters.md#filter-structure).
+Add a `filter` to your query, to limit the result set.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

@@ -12,15 +12,15 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
-Search finds results and returns them in a particular order. Reranking modules let you reorder the result set according to a different set of criteria. 
-To reorder your initial search results, configure a reranking method. 
+Search finds results and returns them in a particular order.<br/>
+Reranking modules let you reorder the result set according to a different set of criteria.
 
 <details>
   <summary>
     Additional information
   </summary>
 
-### Configure reranking
+**Configure reranking**
 
 To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. For details, see the reranker's reference page:
 

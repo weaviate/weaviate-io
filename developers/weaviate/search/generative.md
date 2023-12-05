@@ -12,7 +12,8 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
-Generative search, also know as "retrieval augmented generation" (RAG), is a multi-stage process. Weaviate passes search results and a prompt to a large language model (LLM). The LLM generates a new output based on that input.
+`Generative` search, also know as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
+First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
 
 <details>
   <summary>
@@ -38,7 +39,8 @@ Generative search, also know as "retrieval augmented generation" (RAG), is a mul
 
 ## Run a single prompt search
 
-Single prompt search returns a generated response for each object in the query results. Specify the object `properties` to use in the prompt.
+Single prompt search returns a generated response for each object in the query results.<br/>
+Specify the object `properties` to use in the prompt.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -94,7 +96,8 @@ The output is like this:
 
 ## Set single prompt search properties
 
-Define object `properties` to use in the prompt. The properties you use in the prompt do not have to be among the properties you retrieve in the query.
+Define object `properties` – using `{prop-name}` syntax – to interpolate retrieved content in the prompt.<br/>
+The properties you use in the prompt do not have to be among the properties you retrieve in the query.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

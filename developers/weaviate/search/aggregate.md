@@ -259,9 +259,12 @@ import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 
 <GroupbyLimitations />
 
-## Limit the input size
+## Aggregate with a `similarity search`
 
-If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). Use `objectLimit` to specify the maximum number of objects to aggregate.
+You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
+
+<!-- Make sure to [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).<br/> -->
+Use `objectLimit` to specify the maximum number of objects to aggregate.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -316,7 +319,12 @@ If you use `Aggregate` with a [similarity search](./similarity.md) operator (one
 
 ## Set a similarity `distance`
 
-If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). To specify how similar the objects should be, use the `distance` operator.
+You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
+
+<!-- Make sure to [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).<br/> -->
+Use `distance` to specify how similar the objects should be.
+
+<!-- If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). To specify how similar the objects should be, use the `distance` operator. -->
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -369,9 +377,9 @@ If you use `Aggregate` with a [similarity search](./similarity.md) operator (one
   />
 </details>
 
-## Use a `where` filter
+## Filter results
 
-For more specific results, use `where` to narrow your search.
+For more specific results, use a `filter` to narrow your search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

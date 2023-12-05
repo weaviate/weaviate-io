@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
-`hybrid` search combines a vector search and a keyword (BM25F) search. By default, the results are equally weighted. To improve search precision, change the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
+`Hybrid` search combines a vector search and a keyword (BM25F) search. By default, the results are equally weighted. To improve search precision, change the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 
 ## Basic hybrid search
 
@@ -188,7 +188,7 @@ The output is like this:
 :::info Added in `v1.20`
 :::
 
-`rankedFusion` is the default fusion algorithm. To scale keyword and vector search scores before combining them, use `relativeScoreFusion`.
+`Ranked Fusion` is the default fusion algorithm. To scale keyword and vector search scores before combining them, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -246,7 +246,7 @@ The output is like this:
     Additional information
   </summary>
   <div>
-    In relativeScoreFusion the vector search and keyword search scores are scaled between 0 and 1. The highest raw score becomes 1 in the scaled scores. The lowest value is assigned 0. The remaining values are ranked between 0 and 1. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
+    In Relative Score Fusion the vector search and keyword search scores are scaled between 0 and 1. The highest raw score becomes 1 in the scaled scores. The lowest value is assigned 0. The remaining values are ranked between 0 and 1. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
 
     For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms)
   </div>
@@ -518,9 +518,9 @@ The output is like this:
 
 </details>
 
-## Use a `where` filter
+## Filter results
 
-For more specific results, use `where` to narrow your search.
+For more specific results, use a `filter` to narrow your search.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
