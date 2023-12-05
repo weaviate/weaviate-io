@@ -157,6 +157,32 @@
       background-size: contain;
       background-position: center;
     }
+    .logoGoogle {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/google-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .logoHaystack {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/haystack-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .logoStreamlit {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/streamlit-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
   }
 }
 
