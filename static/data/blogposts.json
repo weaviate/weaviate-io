@@ -33,24 +33,24 @@
   ],
   "blog": [
     {
-      "link": "/blog/hacktoberfest-2023",
+      "link": "/blog/zero-downtime-upgrades",
       "type": "Blog",
-      "backgroundImage": "/img/site/weaviate-hacktoberfest.png",
-      "tagline": "Hacktoberfest 2023 - Celebrating with Weaviate",
-      "photo": "avatar_leonie.png",
-      "name": "Leonie Monigatti",
-      "title": "Developer Advocate",
-      "date": "Oct 02, 2023"
+      "backgroundImage": "/img/site/multi-node-set-up.png",
+      "tagline": "Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup",
+      "photo": "avatar_etienne.png",
+      "name": "Etienne Dilocker",
+      "title": "CTO",
+      "date": "Nov 30, 2023"
     },
     {
-      "link": "/blog/collections-python-client-preview",
+      "link": "/blog/rag-evaluation",
       "type": "Blog",
-      "backgroundImage": "/img/site/shape-future-hero.png",
-      "tagline": "Shape the Future - Try Our New Python Client API",
-      "photo": "avatar_sebastian.png",
-      "name": "Sebastian Witalec",
-      "title": "Head of DevRel",
-      "date": "Sept 26, 2023"
+      "backgroundImage": "/img/site/rag-evaluation.png",
+      "tagline": "An Overview on RAG Evaluation",
+      "photo": "avatar_erika.png",
+      "name": "Erika Cardenas",
+      "title": "Developer Advocate",
+      "date": "November 21, 2023"
     },
     {
       "link": "/learn/workshops",
@@ -60,7 +60,7 @@
       "photo": "avatar_zain.png",
       "name": "Zain Hasan",
       "title": "Senior Dev Advocate",
-      "date": "Oct 04, 2023"
+      "date": "Dec 13, 2023"
     }
   ]
 }

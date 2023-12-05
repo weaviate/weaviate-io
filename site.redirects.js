@@ -349,29 +349,34 @@ const siteRedirects = {
          from: '/developers/weaviate/configuration/pq-compression',
         },
 
-     // Pricing to Products redirects
+     // Products to Pricing redirects
+
+     {
+        to: "/pricing",
+        from: "/products",
+      },
        
           {
-            to: "/products/serverless",
-            from: "/pricing/saas",
+            to: "/pricing",
+            from: "/products/byoc",
           },
           {
-            to: "/products/byoc",
-            from: "/pricing/hybrid",
+            to: "/pricing",
+            from: "/products/serverless",
           },
           // workshops
           {
             to: "/learn/workshops",
             from: "/learn/workshop"
           },
-           // Partners to products whilst in development
+           // Partners to Platform whilst in development
            {
-            to: "/products",
+            to: "/platform",
             from: "/partners"
           },
            // Partners Off
            {
-            to: "/products",
+            to: "/pricing",
             from: "/partnersOff"
           },
             // Terms and Policies Changes

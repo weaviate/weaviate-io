@@ -14,7 +14,7 @@ const katex = require('rehype-katex');
 const config = {
 
 
-    title: 'Weaviate - vector database',
+    title: 'Weaviate - Vector Database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
     url: 'https://weaviate.io',

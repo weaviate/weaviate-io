@@ -9,7 +9,11 @@ import ThemeSwitch from '/src/components/ThemeSwitch';
 export default function SecurityPage() {
   return (
     <div className="custom-page noBG">
-      <Layout>
+      <Layout
+        title="Security"
+        description="Trust, security, and privacy
+        come first "
+      >
         <MetaSEO />
         <AboutUsHeader />
         <SOC2 socLight="dark" />

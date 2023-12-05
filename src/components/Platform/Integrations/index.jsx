@@ -20,6 +20,16 @@ export default function Integrations() {
         <div className={styles.inside}>
           <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
             <div className={styles.logoBg}>
+              <span className={styles.logoGoogle} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
+            <div className={styles.logoBg}>
+              <span className={styles.logoCo} />
+            </div>
+          </Link>
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+            <div className={styles.logoBg}>
               <span className={styles.logoAI} />
             </div>
           </Link>
@@ -28,39 +38,14 @@ export default function Integrations() {
               <span className={styles.logoH} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
-              <span className={styles.logoJ} />
+              <span className={styles.logoHaystack} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
+          <Link to="https://github.com/weaviate/st-weaviate-connection">
             <div className={styles.logoBg}>
-              <span className={styles.logoD} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
-            <div className={styles.logoBg}>
-              <span className={styles.logoCo} />
-            </div>
-          </Link>
-          <Link to="https://wpsolr.com/wpsolr-demos/">
-            <div className={styles.logoBg}>
-              <span className={styles.logoW} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
-            <div className={styles.logoBg}>
-              <span className={styles.logoG} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
-            <div className={styles.logoBg}>
-              <span className={styles.logoL} />
-            </div>
-          </Link>
-          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
-            <div className={styles.logoBg}>
-              <span className={styles.logoLa} />
+              <span className={styles.logoStreamlit} />
             </div>
           </Link>
         </div>
@@ -68,79 +53,7 @@ export default function Integrations() {
         <div className={styles.inside}>
           <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
             <div className={styles.logoBg}>
-              <span className={styles.logoAI} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
-            <div className={styles.logoBg}>
-              <span className={styles.logoH} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
-            <div className={styles.logoBg}>
-              <span className={styles.logoJ} />
-            </div>
-          </Link>
-          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
-            <div className={styles.logoBg}>
-              <span className={styles.logoLa} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
-            <div className={styles.logoBg}>
-              <span className={styles.logoG} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
-            <div className={styles.logoBg}>
-              <span className={styles.logoL} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
-            <div className={styles.logoBg}>
-              <span className={styles.logoD} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
-            <div className={styles.logoBg}>
-              <span className={styles.logoCo} />
-            </div>
-          </Link>
-          <Link to="https://wpsolr.com/wpsolr-demos/">
-            <div className={styles.logoBg}>
-              <span className={styles.logoW} />
-            </div>
-          </Link>
-        </div>
-      </div>
-
-      <div
-        className={`${styles.integrationsLogos} ${styles.mobileIntegrations}`}
-      >
-        <div className={styles.inside}>
-          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
-            <div className={styles.logoBg}>
-              <span className={styles.logoL} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
-            <div className={styles.logoBg}>
-              <span className={styles.logoH} />
-            </div>
-          </Link>
-          <Link to="https://wpsolr.com/wpsolr-demos/">
-            <div className={styles.logoBg}>
-              <span className={styles.logoW} />
-            </div>
-          </Link>
-          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
-            <div className={styles.logoBg}>
-              <span className={styles.logoLa} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
-            <div className={styles.logoBg}>
-              <span className={styles.logoG} />
+              <span className={styles.logoGoogle} />
             </div>
           </Link>
           <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
@@ -153,68 +66,19 @@ export default function Integrations() {
               <span className={styles.logoAI} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
-            <div className={styles.logoBg}>
-              <span className={styles.logoD} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
-            <div className={styles.logoBg}>
-              <span className={styles.logoJ} />
-            </div>
-          </Link>
-        </div>
-
-        <div className={styles.inside}>
-          <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
-            <div className={styles.logoBg}>
-              <span className={styles.logoLa} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
-            <div className={styles.logoBg}>
-              <span className={styles.logoJ} />
-            </div>
-          </Link>
-          <Link to="https://wpsolr.com/wpsolr-demos/">
-            <div className={styles.logoBg}>
-              <span className={styles.logoW} />
-            </div>
-          </Link>
-
           <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-huggingface">
             <div className={styles.logoBg}>
               <span className={styles.logoH} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
-              <span className={styles.logoG} />
+              <span className={styles.logoHaystack} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
+          <Link to="https://github.com/weaviate/st-weaviate-connection">
             <div className={styles.logoBg}>
-              <span className={styles.logoAI} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
-            <div className={styles.logoBg}>
-              <span className={styles.logoCo} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai">
-            <div className={styles.logoBg}>
-              <span className={styles.logoAI} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/blog/combining-langchain-and-weaviate">
-            <div className={styles.logoBg}>
-              <span className={styles.logoL} />
-            </div>
-          </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
-            <div className={styles.logoBg}>
-              <span className={styles.logoD} />
+              <span className={styles.logoStreamlit} />
             </div>
           </Link>
         </div>
