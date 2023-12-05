@@ -1,0 +1,294 @@
+---
+title: Create objects
+sidebar_position: 10
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'create']
+---
+
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.create.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.create-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.create.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.create_test.go';
+
+## Overview
+
+This page shows you how to create individual objects in Weaviate.
+
+:::tip To create multiple objects, it's best to use [batch operations](./import.mdx).
+:::
+
+:::info See also
+- [How-to: (Batch) Import items](./import.mdx)
+- [References: REST - /v1/objects](../api/rest/objects.md)
+:::
+
+
+## Requirements
+
+To create an object, specify:
+* The object data to be added, and
+* The target collection.
+
+:::tip Multi-tenancy
+For collections where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
+
+### Object data vs collection definition
+
+Compared to the collection definition, the object data:
+- Can omit defined properties.
+- Can include new properties.
+
+:::info
+Any new properties will be added to the collection definition during object creation with [auto-schema](../config-refs/schema.md#autoschema).
+:::
+
+#### Example
+
+This example shows how to create an object in the `JeopardyQuestion` collection, with:
+- An existing property (`question`),
+- A new property (`newProperty`), and
+- Omits an existing property (`answer`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObject START"
+      endMarker="# CreateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CreateObject START"
+      endMarker="# CreateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Optional parameters
+
+Optionally, you can specify an [id](../api/graphql/additional-properties.md#id) or a vector.
+
+### `id`
+
+You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. Otherwise, Weaviate will generate a random UUID.
+
+### `vector`
+
+You can optionally specify a vector to represent each object. Otherwise, Weaviate will follow the relevant vectorizer setting.
+
+### Example
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectWithIdAndVector START"
+      endMarker="# CreateObjectWithIdAndVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CreateObjectWithIdAndVector START"
+      endMarker="# CreateObjectWithIdAndVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectWithIdAndVector START"
+      endMarker="// CreateObjectWithIdAndVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CreateObjectWithIdAndVector START"
+      endMarker="// CreateObjectWithIdAndVector END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CreateObjectWithIdAndVector START"
+      endMarker="// CreateObjectWithIdAndVector END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Preventing duplicates
+
+In Weaviate, the only unique field is the `id`. If you try to create an object with an existing id, Weaviate will throw an error. (In [batch imports](./import.mdx#managing-potential-duplication), Weaviate will overwrite the object if one exists.)
+
+To prevent duplicates, we suggest:
+- Using a deterministic ID generation method, and
+- Checking if an object exists before creating it.
+
+### Generate deterministic ID
+
+You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
+
+### Example
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectWithDeterministicId START"
+      endMarker="# CreateObjectWithDeterministicId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CreateObjectWithDeterministicId START"
+      endMarker="# CreateObjectWithDeterministicId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectWithDeterministicId START"
+      endMarker="// CreateObjectWithDeterministicId END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// This feature is under development
+```
+
+  </TabItem>
+</Tabs>
+
+### Check if an object exists
+
+You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
+
+:::info IDs unique to each collection and tenants
+[Collections](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different collections and/or tenants.
+:::
+
+## Validating before creation
+
+You can [validate](../api/rest/objects.md#validate-a-data-object) an object against the collection definition before creating it.
+
+This will confirm:
+- Whether the creation of an object will succeed, and
+- That it doesn't have any extra properties vs. the defined collection properties.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ValidateObject START"
+      endMarker="# ValidateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ValidateObject START"
+      endMarker="# ValidateObject END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
