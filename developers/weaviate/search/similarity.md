@@ -12,11 +12,11 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
-Vector search is a similarity based search based on vector representations. Objects in the database have vector representations called "vector embeddings". Vector search returns the objects with embeddings that are the most similar to the embedded version of the search query.  
+Vector search returns the objects with most similar vectors to that of the query.
 
 ## Search with text
 
- To find objects with the nearest vector to an input, use [`nearText`](../api/graphql/search-operators.md#neartext).
+Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to find objects with the nearest vector to an input text.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -76,7 +76,8 @@ import ImgSrchPyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import ImgSrchPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import ImgSrchTSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
-To find objects with the nearest vector to an input image, use [`nearImage`](../api/graphql/search-operators.md#nearimage). This example uses a base64 representation of an image.
+Use the [`Near Image`](../api/graphql/search-operators.md#nearimage) operator to find objects with the nearest vector to an image.<br/>
+This example uses a base64 representation of an image.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -112,7 +113,7 @@ See [Image search](./image.md) for more information.
 
 ## Search with an existing object
 
-If you have an object ID, use the [`nearObject` operator](../api/graphql/search-operators.md#nearobject) to find objects similar to that object.
+If you have an object ID, use the [`Near Object`](../api/graphql/search-operators.md#nearobject) operator to find similar objects to that object.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -164,7 +165,7 @@ If you have an object ID, use the [`nearObject` operator](../api/graphql/search-
 
 ## Search with a vector
 
-If you have an input vector, use the [`nearVector`](../api/graphql/search-operators.md#nearvector) operator to find objects with similar vectors
+If you have an input vector, use the [`Near Vector`](../api/graphql/search-operators.md#nearvector) operator to find objects with similar vectors
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -206,7 +207,7 @@ If you have an input vector, use the [`nearVector`](../api/graphql/search-operat
 
 ## Set a similarity threshold
 
-To set a similarity threshold between the search and target vectors, define a maximum `distance`.
+To set a similarity threshold between the search and target vectors, define a maximum `distance` (or `certainty`).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -255,9 +256,11 @@ To set a similarity threshold between the search and target vectors, define a ma
 
 </details>
 
-## Limit the size of the result set
+## `limit` & `offset`
 
-To limit the size of the result set and return results in groups, use `limit` and `offset` to paginate the results.
+Use `limit` to set a fixed maximum number of objects to return.
+
+Optionally, use `offset` to paginate the results.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -299,7 +302,7 @@ To limit the size of the result set and return results in groups, use `limit` an
 
 ## Limit result groups
 
-To limit results to similar groups of objects, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter to set the number of groups to return.
+To limit results to groups of similar distances to the query, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter to set the number of groups to return.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -355,7 +358,7 @@ The output is like this:
 
 ## Group results
 
-Use properties or cross-references to group results. To group returned objects, the query must include a `near...` search operator such as `nearText` or `nearVector`.
+Use a property or a cross-reference to group results. To group returned objects, the query must include a `Near` search operator, such as `Near Text` or `Near Object`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -408,9 +411,9 @@ The output is like this:
 
 </details>
 
-## Use a `where` filter
+## Filter results
 
-For more specific results, use [`where`](../api/graphql/filters.md) to narrow your search.
+For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow your search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

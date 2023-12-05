@@ -12,28 +12,28 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
 
-Image search uses an image as input. The module that vectorizes the input image has to be the same module that vectorizes the images in the database.
+`Image` search uses an **image as a search input** to perform vector similarity search.
 
 <details>
   <summary>
     Additional information
   </summary>
 
-### Configure image search
+**Configure image search**
 
-To use images as search inputs, configure a vectorizer [module](../configuration/modules.md) for your collection. For details, see the module's reference page:
+To use images as search inputs, configure an image vectorizer [module](../configuration/modules.md) for your collection.
 
+For details, see the modules reference page:
 
 - [img2vec-neural](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
 - [multi2vec-clip](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 - [multi2vec-bind](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind.md)
-
-Use the same module to vectorize the search input image and the images in your database. 
  
 </details>
 
 ## By local image path
 
+Use the `Near Image` operator to execute image search.<br/>
 If your query image is stored in a file, you can use the client library to search by its filename.
 
 <Tabs groupId="languages">
@@ -154,7 +154,7 @@ You can create a base64 representation of an online image, and use it as input f
 
 ## Combination with other operators
 
-A `nearImage` search can be combined with any other operators, just as other similarity search operators such as `nearText` or `nearVector` can.
+A `Near Image` search can be combined with any other operators (like filter, limit, etc.), just as other similarity search operators.
 
 See the [`similarity search`](./similarity.md) page for more details.
 

@@ -12,7 +12,8 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 
-Generative search, also know as "retrieval augmented generation" (RAG), is a multi-stage process. Weaviate passes search results and a prompt to a large language model (LLM). The LLM generates a new output based on that input.
+`Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
+First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
 
 <details>
   <summary>
@@ -26,75 +27,22 @@ Generative search, also know as "retrieval augmented generation" (RAG), is a mul
    - [`generative-openai`](../modules/reader-generator-modules/generative-openai.md)
    - [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md)
    - [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)
-   
- 2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page. 
+
+ 2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page.
  3. Query your database to retrieve one or more objects.
  4. Use the query results to generate a new result.
- 
+
     - [`single prompt`](#single-prompt)
     - [`grouped task`](#grouped-task)
 
 </details>
 
-## Run a single prompt search
 
-Single prompt search returns a generated response for each object in the query results. Specify the object `properties` to use in the prompt.
+## Single prompt search
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# SingleGenerativePython"
-      endMarker="# END SingleGenerativePython"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# SingleGenerativePython"
-      endMarker="# END SingleGenerativePython"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// SingleGenerative TS"
-      endMarker="// END SingleGenerative TS"
-      language="js"
-    />
-  </TabItem>
-
-  <TabItem value="graphql" label="GraphQL">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# SingleGenerativeGraphQL"
-      endMarker="# END SingleGenerativeGraphQL"
-      language="graphql"
-    />
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# SingleGenerative Expected Results"
-  endMarker="# END SingleGenerative Expected Results"
-  language="json"
-/>
-
-</details>
-
-## Set single prompt search properties
-
-Define object `properties` to use in the prompt. The properties you use in the prompt do not have to be among the properties you retrieve in the query.
+Single prompt search returns a generated response for each object in the query results.<br/>
+Define object `properties` – using `{prop-name}` syntax – to interpolate retrieved content in the prompt.<br/>
+The properties you use in the prompt do not have to be among the properties you retrieve in the query.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -148,9 +96,9 @@ The output is like this:
 
 </details>
 
-## Run a grouped task search
+## Grouped task search
 
-Grouped task search returns a single response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
+Grouped task search returns one response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -204,7 +152,7 @@ The output is like this:
 
 </details>
 
-## Set grouped task search properties
+## Set grouped task prompt properties
 
 :::info Added in `v1.18.3`
 :::
