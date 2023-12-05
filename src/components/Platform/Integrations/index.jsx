@@ -38,12 +38,12 @@ export default function Integrations() {
               <span className={styles.logoH} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
               <span className={styles.logoHaystack} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/client-libraries/python#neural-search-frameworks">
+          <Link to="https://github.com/weaviate/st-weaviate-connection">
             <div className={styles.logoBg}>
               <span className={styles.logoStreamlit} />
             </div>
