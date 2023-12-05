@@ -255,7 +255,7 @@ The output is like this:
 
 ## Filter text on partial matches
 
-If the object property is a `text` data type, use `Like` to filter on partial text matches.
+If the object property is a `text`, or `text`-like data type such as object ID, use `Like` to filter on partial text matches.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

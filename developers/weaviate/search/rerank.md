@@ -12,8 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
-Search finds results and returns them in a particular order.<br/>
-Reranking modules let you reorder the result set according to a different set of criteria.
+Reranking modules reorder the search result set according to a different set of criteria or a different (e.g. more expensive) algorithm.
 
 <details>
   <summary>

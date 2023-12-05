@@ -226,7 +226,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
-    # offset=1, # offset is currently not supported with the Weaviate Client v4
+    # offset=1, # `offset` support is being added to the client
     limit=2,  # return 2 objects
     # highlight-end
 )

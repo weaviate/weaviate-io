@@ -12,12 +12,11 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
-`Hybrid` search combines a vector search and a keyword (BM25F) search. By default, the results are equally weighted. To improve search precision, change the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
+`Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 
 ## Basic hybrid search
 
-- Match if an object contains the search keyword.
-- Match if an object's vector is similar to the vector for the search string
+Combines results of a vector search and a keyword search based on the query string.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -130,7 +129,7 @@ The output is like this:
 Use the `alpha` argument to change how much each search affects the results.
 
 - An `alpha` of `1` is a pure vector search.
-- An `alpha` of `0` is a pure keyword search. 
+- An `alpha` of `0` is a pure keyword search.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -188,7 +187,7 @@ The output is like this:
 :::info Added in `v1.20`
 :::
 
-`Ranked Fusion` is the default fusion algorithm. To scale keyword and vector search scores before combining them, use `Relative Score Fusion`.
+`Ranked Fusion` is the default fusion algorithm. To use objects' keyword and vector search scores instead of ranks, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -245,19 +244,17 @@ The output is like this:
   <summary>
     Additional information
   </summary>
-  <div>
-    In Relative Score Fusion the vector search and keyword search scores are scaled between 0 and 1. The highest raw score becomes 1 in the scaled scores. The lowest value is assigned 0. The remaining values are ranked between 0 and 1. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
 
-    For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms)
-  </div>
+For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms) and [this reference page](../api/graphql/search-operators.md#variables-2)
+
 </details>
 
-## Specify keyword search properties
+## Specify properties to keyword search
 
 :::info Added in `v1.19.0`
 :::
 
-Specify `properties` to fine tune your keyword search. The vector search does not change.
+The keyword search portion of hybrid search can be directed to only search a subset of object properties. This does not affect the vector search portion.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -365,9 +362,9 @@ The output is like this:
 
 </details>
 
-## Use a custom vector
+## Specify a vector
 
-To use your own vector, pass it to the vector search and use a query string for the keyword search.
+To specify a vector instead of using a vector of the query string, pass it in addition to the query string for the keyword search.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -420,9 +417,11 @@ The output is like this:
 
 </details>
 
-## Limit the size of the result set
+## `limit` & `offset`
 
-To specify a maximum number of result objects, use `limit`.
+Use `limit` to set a fixed maximum number of objects to return.
+
+Optionally, use `offset` to paginate the results.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -464,7 +463,7 @@ To specify a maximum number of result objects, use `limit`.
 
 ## Limit result groups
 
-To limit results to similar groups of objects, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter to set the number of groups to return.
+To limit results to groups of similar distances to the query, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter to set the number of groups to return.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -520,7 +519,7 @@ The output is like this:
 
 ## Filter results
 
-For more specific results, use a `filter` to narrow your search.
+For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow your search.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">

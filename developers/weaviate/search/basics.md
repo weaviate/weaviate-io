@@ -80,13 +80,13 @@ The output is like this:
 <details>
   <summary>Additional information</summary>
 
-  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata. Weaviate search is based on the [GraphQL API](../api/graphql/index.md).
+  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata.
 
 </details>
 
 ## `limit` returned objects
 
-To return a limited number of objects, set a `limit`.
+Use `limit` to set a fixed maximum number of objects to return.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -203,6 +203,8 @@ The output is like this:
 />
 
 </details>
+
+To paginate through the entire database, use a [cursor](../manage-data/read-all-objects.mdx#list-every-object) instead of offset and limit.
 
 
 ## Specify object `properties`
@@ -331,8 +333,6 @@ You can retrieve the object `id` (uuid).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
-
- The new Python client always returns the object ID.
 
 <FilteredTextBlock
   text={PyCode}

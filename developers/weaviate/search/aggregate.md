@@ -12,7 +12,7 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
-`Aggregate` queries process multiple objects and return a calculated result. Use `aggregate` to group values across objects or to perform an operation that returns a single result.
+`Aggregate` queries process the result set to return calculated results. Use `aggregate` queries for groups of objects or the entire result set.
 
 <details>
   <summary>
@@ -22,7 +22,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 To run an `Aggregate` query, specify the following:
 
 - A target collection to search
-- One or more aggregated properties
+- One or more aggregated properties, such as:
 
    - A meta property
    - An object property
@@ -30,7 +30,7 @@ To run an `Aggregate` query, specify the following:
 
 - Select at least one sub-property for each selected property
 
-For details, see <a href="https://weaviate.io/developers/weaviate/api/graphql/aggregate">Aggregate</a>.  
+For details, see <a href="https://weaviate.io/developers/weaviate/api/graphql/aggregate">Aggregate</a>.
 
 </details>
 
@@ -91,7 +91,7 @@ Return the number  of objects matched by the query.
 
 ## Aggregate `text` properties
 
-This example counts frequencies in the `question` property:
+This example counts occurrence frequencies in the `question` property:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -201,7 +201,9 @@ This  example sums the `points` property.
 
 ## Aggregate `groupedBy` properties
 
-To group your results, use `groupBy`. To retrieve aggregate data for each group, use the `groupedBy` properties.
+To group your results, use `groupBy` in the query.
+
+To retrieve aggregate data for each group, use the `groupedBy` properties.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
