@@ -220,9 +220,9 @@ Here is an example of a query where:
 * then we ask the generator module to describe each result as a Facebook ad.
   * the query asks for the `summary` field, which it then includes in the `prompt` argument of the `generate` operator.
 
-import AWSSingleResult from '/_includes/code/generative.aws.singleresult.mdx';
+import AnyscaleSingleResult from '/_includes/code/generative.anyscale.singleresult.mdx';
 
-<AWSSingleResult/>
+<AnyscaleSingleResult/>
 
 #### Example response - single result
 
@@ -230,16 +230,16 @@ import AWSSingleResult from '/_includes/code/generative.aws.singleresult.mdx';
 {
   "data": {
     "Get": {
-      "Article": [
+      "PodClip": [
         {
           "_additional": {
             "generate": {
               "error": null,
-              "singleResult": "Italian food, as we know it today, might be a relatively modern concept. But it's hard to deny that there's something special about it. It could be the way the pasta tastes or the way the sauce smells. It could be the way the cheese stretches or the way the bread soaks up the sauce. Whatever it is, Italian food has a way of capturing our hearts and our stomachs. So if you're looking for a way to spice up your meal routine, why not try Italian? You might just find that it's your new favorite cuisine."
+              "singleResult": "  Nils Reimers discussed the challenge of training machine learning models to retrieve counter-arguments or opposing evidence, citing the example of searching for \"nuclear energy is safe\" and wanting the model to return arguments that oppose this view, rather than similar arguments or evidence that supports it."
             }
           },
-          "summary": "Even the emoji for pasta isn't just pasta -- it's a steaming plate of spaghetti heaped with tomato sauce on top. But while today we think of tomatoes as inextricably linked to Italian food, that hasn't always been the case. \"People tend to think Italian food was always as it is now -- that Dante was eating pizza,\" says Dr Eva Del Soldato , associate professor of romance languages at the University of Pennsylvania, who leads courses on Italian food history. In fact, she says, Italy's complex history -- it wasn't unified until 1861 -- means that what we think of Italian food is, for the most part, a relatively modern concept. Diego Zancani, emeritus professor of medieval and modern languages at Oxford University and author of \"How We Fell in Love with Italian Food,\" agrees.",
-          "title": "How this fruit became the star of Italian cooking"
+          "content": "Yeah, so in the BEIR benchmark we have one data set, which is really interesting. It's called ArguAna. When you want to find counter-arguments, so you have an argument, say, nuclear energy is super safe, and then you want to have retrieval to find counter-arguments to say, okay no, nuclear energy is not safe. Obviously, out of the box models, if I search for, nuclear energy is safe, it finds like different arguments that also mentioned nuclear energy is one of the safest energy sources, so there are the questions like, how can I tell the model of my intent that I don't want to have arguments that are similar, but arguments that are opposing? And the paper you mentioned, use this in terms of kind of like instruct style. Say, okay, find a counter argument, nuclear energy is safe, or find a similar argument, or find evidence. I think it's a nice idea, especially if people want to build this into their product. So if you have like a search engine and you wanna find some arguments with supporting and opposing evidences and different perspective, so I think it's an easy way for machine learning engineers and search engine engineers just to prepare the prefix and say, okay, now I wanna search for opposing documents or, supporting evidence or opposing evidence for this.",
+          "speaker": "Nils Reimers"
         }
       ]
     }
@@ -253,9 +253,9 @@ Here is an example of a query where:
 * we run a vector search (with `nearText`) to find publications about finance,
 * then we ask the generator module to explain why these articles are about finance.
 
-import AWSGroupedResult from '/_includes/code/generative.aws.groupedresult.mdx';
+import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedresult.mdx';
 
-<AWSGroupedResult />
+<AnyscaleGroupedResult />
 
 #### Example response - grouped result
 
@@ -263,27 +263,44 @@ import AWSGroupedResult from '/_includes/code/generative.aws.groupedresult.mdx';
 {
   "data": {
     "Get": {
-      "Publication": [
+      "PodClip": [
         {
           "_additional": {
             "generate": {
               "error": null,
-              "groupedResult": "These magazines or newspapers are about finance because they cover topics related to finance, such as business news, financial markets, and economic trends. They also often feature articles about personal finance, such as investing, budgeting, and retirement planning."
+              "groupedResult": "  Ref2Vec is a new module in the Weaviate module system that allows for vectorization of objects based on the aggregate of their referenced vectors. It is designed to be useful when representing something as an aggregation of other things, such as users based on their likes. The Ref2Vec module takes an object and grabs the vectors from all of its referenced objects, then computing a centroid with that set of vectors to find something that's similar to all of these things at once. This can be useful for representing diverse interests, and can be used for recommendation systems, such as quickly having recommendations while scrolling through a platform like TikTok, without the need for a long archive of user data. Additionally, clustering the embeddings could be powerful for diverse interests, and the cross-reference thing could be used to represent centroids. Overall, Ref2Vec is a powerful tool for representing and aggregating data in a flexible and efficient way."
             }
           },
-          "name": "Financial Times"
+          "content": "Yeah, exactly. And I think it's worth kind of knowing that these systems are a little different than maybe traditional software cases where these edge cases, like machine learning performance is very like long tailed, like hit or miss. And I think the BEIR benchmarks, a particular reason why I'm so excited about this particular work is the diversity captured in it. It has papers about COVID-19, it has financial questions like, are my personal taxes separate from my hobby income? And then you have like nutrition questions about like, are multivitamins a waste of money? So you have this incredible diversity, the diversity in query length. And I think we're also seeing the kind of intents, this kind of exploration is, this research is emerging as well, where you'd say, what is the intent of the search task and that kind of exploration? So yeah, overall, I just couldn't be more excited about the benchmarking. I think it's such an exciting step for us. So I want to pivot topics. I'm so excited to have Parker, especially because he was so pivotal to the development of Ref2Vec. Parker, could you start by kind of explaining what Ref2Vec is? And then I really want to dive into sort of some of the questions that we've been seeing in our community chat, like particularly clarifying, updating the references and how this kind of cascades backwards, thinking around like, can we have custom aggregation functions, but maybe we could set the stage. Could you tell us about what Ref2Vec is? ",
+          "speaker": "Connor Shorten"
         },
         {
           "_additional": {
             "generate": null
           },
-          "name": "Wall Street Journal"
+          "content": "Yeah, certainly. So Ref2Vec Centroid is a new module that we released recently. And the idea of it is that an object which is set to be vectorized, so to speak, by Ref2Vec Centroid, a vector isn't produced by this object itself, but it's produced by like the aggregate of its referenced vectors. So the Ref2Vec module will take an object and then grab the vectors from all of its references, all of its referenced objects. And then we'll compute a centroid with that set of vectors to find something that's similar to all of these things at once. And so the idea is that this is really useful when you want to represent something as an aggregation of other things, right? For example, users based on their likes, right? What can we show to a user that is something that aligns with what their express interests are in Ref2Vec Centroid is something that's perfect for doing something like that. ",
+          "speaker": "Parker Duckworth"
         },
         {
           "_additional": {
             "generate": null
           },
-          "name": "The New York Times Company"
+          "content": "Yeah, currently our only module in the class of ref2vec is ref2vec-centroid. This was built purposely to be able to be easily expanded into more centroid type algorithms, or more algorithms to calculate this reference vector however you want to calculate it. So Weaving's module system is by design very modular. So if we were to want to introduce something like this, most of the boilerplate, I guess you could say the groundwork has already been set. So it's just a matter of coming up with the way you want to calculate these reference vectors, and then introducing a new module which piggybacks this existing ref2vec framework that we've built within the Weaving module system to use this new algorithm to calculate the reference vector. So I would say for any reference or ref2vec centroid modules in the future, it's not a whole lot of work to introduce a new one. It's just a matter of figuring out how you want to calculate these reference vectors. ",
+          "speaker": "Parker Duckworth"
+        },
+        {
+          "_additional": {
+            "generate": null
+          },
+          "content": "Yeah, super interesting. I think one other thing that excites me, and yeah, I think that the building blocks of that are in place, and that will be super impactful just based on that a little longer. If you imagine you want to have recommendation without logging in and having that long archive of user data, you want to just be able to scroll through TikTok and quickly have recommendations. I think that kind of thing lets you control it by giving the signal of recency. One other thing that excites me is this idea of clustering the embeddings. I think that could be super powerful, especially for diverse interests. So if you've liked these products and it's Nike shoes, Adidas shoes, Jordan shoes, I think instead of averaging it, we could have this clustering, and then the centroids could be used, which brings this topic of how might we represent centroids. I think the cross-reference thing, again, is we would use it again to do multi-vector representation and that kind of idea. So super cool. I think, yeah, this overall, this 1.17, and thanks so much for the discussion on ref2vec. I'm so excited about ref2vec. I think this kind of graph structure, how we can send embeddings through the graphs and aggregate them, I think a lot of people are excited about it because I think it's exciting. But anyways, thanks so much. I think, yeah, replication, hybrid search, and sort of the Italy 1.17 release, all of it. ",
+          "speaker": "Connor Shorten"
+        },
+        {
+          "_additional": {
+            "generate": null
+          },
+          "content": "Hey, everyone, I'm super excited to host Etienne Dilocker and Parker Duckworth for the Weaviate 1.17 release podcast. These releases are always so great. It feels like such a celebration of Weaviate and the hard work of the team to bring these new features into Weaviate. So today we're mainly talking about replication and hybrid search. And we're also welcoming Parker Duckworth for the first time on the Weaviate podcast. So we'll talk about Ref2Vec as well a little bit. So firstly, Parker, thank you so much for joining the Weaviate podcast. ",
+          "speaker": "Connor Shorten"
         }
       ]
     }
