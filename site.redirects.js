@@ -358,11 +358,11 @@ const siteRedirects = {
        
           {
             to: "/pricing",
-            from: "/products/saas",
+            from: "/products/byoc",
           },
           {
             to: "/pricing",
-            from: "/products/hybrid",
+            from: "/products/serverless",
           },
           // workshops
           {
