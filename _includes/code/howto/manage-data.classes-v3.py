@@ -39,6 +39,21 @@ client.schema.create_class(class_obj)  # returns null on success
 # Test
 assert client.schema.get(class_name)["class"] == class_name
 
+# ===============================================
+# ===== CREATE A COLLECTION WITH PROPERTIES =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START CreateCollectionWithProperties
+class_obj = {"class": class_name}
+
+client.schema.create_class(class_obj)  # returns null on success
+# END CreateCollectionWithProperties
+
+
 # ================================
 # ===== READ A COLLECTION =====
 # ================================
