@@ -21,14 +21,11 @@ Key notes:
 - Can also use any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
 
 :::tip Do you have GPU acceleration?
-Transformer model inference speeds are typically much faster with GPUs (10x+ speeds typically). If you have a GPU, use one of the GPU enabled modules.
 
-If you use `text2vec-transformers` without GPU acceleration, imports or `nearText` queries may become bottlenecks. The [ONNX-enabled images](#onnx-enabled-images-cpu-only) can use ONNX Runtime for faster inference processing on standard CPUs. Look for the `-onnx` suffix in the image name.
-
-Alternatively, consider one of the following options:
+Transformer model inference speeds are usually much faster with GPUs, typical results are 10x faster. If you have a GPU, use one of the GPU enabled modules.<br/><br/>If you use `text2vec-transformers` without GPU acceleration, imports or `nearText` queries may become bottlenecks. The ONNX-enabled images can use [ONNX Runtime](https://onnxruntime.ai/) for faster inference processing on standard CPUs. Look for the `-onnx` suffix in the image name.<br/><br/>Alternatively, consider one of the following options:
 
 - an API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md)
-- a local inference container such as [`text2vec-contextionary`](./text2vec-contextionary.md) or ['text2vec-gpt4all`](./text2vec-gpt4all.md)
+- a local inference container such as [`text2vec-contextionary`](./text2vec-contextionary.md) or [`text2vec-gpt4all`](./text2vec-gpt4all.md)
 
 :::
 
