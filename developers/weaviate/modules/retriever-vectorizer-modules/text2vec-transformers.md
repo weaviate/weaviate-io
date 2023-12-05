@@ -23,10 +23,10 @@ Key notes:
 :::tip Significant GPU/CPU speed differences
 Transformer models run *much* faster with GPUs, even for inference (10x+ speeds typically).
 
-Without a GPU, import or `nearText` queries may become bottlenecks in production if using `text2vec-transformers`.
+Imports or `nearText` queries may become bottlenecks in production if you use `text2vec-transformers` without GPU acceleration.
 
-If this is the case, we recommend:
-- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or
+If this is the case, we recommend one of the following options:
+- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md).
 - The [`text2vec-contextionary`](./text2vec-contextionary.md) module if you prefer a local inference container.
 :::
 
