@@ -8,6 +8,7 @@ import weaviate
 from weaviate import WeaviateClient
 import weaviate_datasets
 import weaviate.classes as wvc
+from typing import List
 
 sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
 us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"

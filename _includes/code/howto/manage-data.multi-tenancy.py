@@ -15,6 +15,24 @@ if client.collections.exists("MultiTenancyCollection"):
     client.collections.delete("MultiTenancyCollection")
 
 
+
+# ================================
+# ===== Enable MT =====
+# ================================
+
+# START EnableMultiTenancy
+import weaviate.classes as wvc
+
+multi_collection = client.collections.create(
+    name="MultiTenancyCollection",
+    # Enable multi-tenancy on the new collection
+    # highlight-start
+    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
+    # highlight-end
+)
+# END EnableMultiTenancy
+
+
 # ================================
 # ===== Add tenants to class =====
 # ================================
@@ -81,6 +99,29 @@ multi_collection.tenants.remove(["tenantB", "tenantX"])
 tenants = multi_collection.tenants.get()
 assert "tenantA" in tenants
 assert ("tenantB" in tenants) == False
+
+
+# =======================================
+# ===== Update tenant status =====
+# =======================================
+
+# START UpdateTenants
+multi_collection = client.collections.get("MultiTenancyCollection")
+# highlight-start
+multi_collection.tenants.update(tenants=[
+    wvc.Tenant(
+        name="tenantA",
+        activity_status=weaviate.TenantActivityStatus.COLD
+    )
+])
+# highlight-end
+
+# END UpdateTenants
+tenants = multi_collection.tenants.get()
+
+# Test
+tenants = multi_collection.tenants.get()
+tenants["tenantA"].activity_status.name == "COLD"
 
 
 # ============================

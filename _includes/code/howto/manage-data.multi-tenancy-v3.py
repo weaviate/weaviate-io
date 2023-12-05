@@ -11,7 +11,7 @@ client = weaviate.Client(
     }
 )
 
-class_name = 'MultiTenancyClass'  # aka JeopardyQuestion
+class_name = 'MultiTenancyCollection'  # aka JeopardyQuestion
 
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
@@ -25,12 +25,12 @@ if client.schema.exists(class_name):
 from weaviate import Tenant
 
 client.schema.create_class({
-    'class': 'MultiTenancyClass',
+    'class': 'MultiTenancyCollection',
     'multiTenancyConfig': {'enabled': True}
 })
 
 client.schema.add_class_tenants(
-  class_name='MultiTenancyClass',  # The class to which the tenants will be added
+  class_name='MultiTenancyCollection',  # The class to which the tenants will be added
   tenants=[Tenant(name='tenantA'), Tenant(name='tenantB')]
 )
 # END AddTenantsToClass
@@ -46,7 +46,7 @@ assert the_class['multiTenancyConfig'] == {'enabled': True}
 
 # START ListTenants
 tenants = client.schema.get_class_tenants(
-    class_name='MultiTenancyClass'  # The class from which the tenants will be retrieved
+    class_name='MultiTenancyCollection'  # The class from which the tenants will be retrieved
 )
 # END ListTenants
 
@@ -60,7 +60,7 @@ assert Tenant(name='tenantB') in tenants
 
 # START RemoveTenants
 client.schema.remove_class_tenants(
-    class_name='MultiTenancyClass',  # The class from which the tenants will be removed
+    class_name='MultiTenancyCollection',  # The class from which the tenants will be removed
     # highlight-start
     tenants=['tenantB', 'tenantX']  # The tenants to be removed. tenantX will be ignored.
     # highlight-end
@@ -78,7 +78,7 @@ assert tenants == [Tenant(name='tenantA')]
 
 # START CreateMtObject
 object_id = client.data_object.create(
-      class_name='MultiTenancyClass',  # The class to which the object will be added
+      class_name='MultiTenancyCollection',  # The class to which the object will be added
       data_object={
           'question': 'This vector DB is OSS & supports automatic property type inference on import'
       },
@@ -99,7 +99,7 @@ assert result['tenant'] == 'tenantA'
 
 # START Search
 result = (
-    client.query.get('MultiTenancyClass', ['question'])
+    client.query.get('MultiTenancyCollection', ['question'])
     # highlight-start
     .with_tenant('tenantA')
     # highlight-end
@@ -124,14 +124,14 @@ category_id = client.data_object.create(
 
 # START AddCrossRef
 # Add the cross-reference property to the multi-tenancy class
-client.schema.property.create('MultiTenancyClass', {
+client.schema.property.create('MultiTenancyCollection', {
     'name': 'hasCategory',
     'dataType': ['JeopardyCategory'],
 })
 
 client.data_object.reference.add(
-    from_uuid=object_id,  # MultiTenancyClass object id (a Jeopardy question)
-    from_class_name='MultiTenancyClass',
+    from_uuid=object_id,  # MultiTenancyCollection object id (a Jeopardy question)
+    from_class_name='MultiTenancyCollection',
     from_property_name='hasCategory',
     tenant='tenantA',
     to_class_name='JeopardyCategory',

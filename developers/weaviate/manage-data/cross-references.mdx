@@ -16,86 +16,79 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.cross-refs.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.cross-refs_test.go';
 
-## Overview
 
-You can use cross-references to establish directional relationships between classes, for example from a `Book` to its `Author`, or from an `Author` to their `Book`s.
+Use cross-references to establish directional relationships between collections.
 
-To define a cross-reference, you must:
-1. At the class level, set up a [`cross-reference` property](../config-refs/datatypes.md#datatype-cross-reference) in one class (`from`) referring to another (`to`) class, then
-2. For individual objects, establish the cross-reference between a particular object of the `from` class, to an object of the `to` class, using their [id](../api/graphql/additional-properties.md#id)s.
+<details>
+  <summary>
+    Additional information
+  </summary>
 
-:::tip Multi-tenancy
-For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you can establish a cross-reference from a multi-tenancy class object to:
-- A non-multi-tenancy class object, or
-- A multi-tenancy class object belonging to the same tenant.
+Notes:
+- Cross-references does not affect object vectors of the source or the target objects.
+- For multi-tenancy collection, you can establish a cross-reference from a multi-tenancy collection object to:
+    - A non-multi-tenancy collection object, or
+    - A multi-tenancy collection object belonging to the same tenant.
 
-See [Manage data: multi-tenancy operations](./multi-tenancy.md#cross-references) for details on how.
-:::
+</details>
 
-:::note Cross-references do not affect vectors
-Creating cross-references does not affect object vectors in either direction.
-:::
+## Define a cross-reference property
 
-:::info See also
-- [References: REST - /v1/objects](../api/rest/objects.md#cross-references)
-:::
+Include the reference property in the collection definition before adding cross-references to it.
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CrossRefDefinition"
+      endMarker="# END CrossRefDefinition"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CrossRefDefinition"
+      endMarker="# END CrossRefDefinition"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
-### Data set
+## Add a cross-reference property
 
-<!-- Commented this out for now as the package is unofficial -->
-<!-- (available in the [weaviate-demo-datasets](https://pypi.org/project/weaviate-demo-datasets/) Python package) -->
+It is also possible to add a cross-reference property to an existing collection definition.
 
-The example for this howto is a dataset consisting of 1000 questions & answers from the popular quiz show "Jeopardy!". The two classes of interest are: `JeopardyQuestion` and `JeopardyCategory`. Let's pick some objects of interest:
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Collections TwoWay Category2"
+      endMarker="# END Collections TwoWay Category2"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Collections TwoWay Category2"
+      endMarker="# END Collections TwoWay Category2"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Collections TwoWay Category2"
+      endMarker="// END Collections TwoWay Category2"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
-Questions:
+## Add a one-way cross-reference
 
-```json
-{
-  "answer": "San Francisco",
-  "question": "This city's Cable Car Museum...",
-  "_additional": {
-    "id": "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-  }
-}
-```
-
-Categories:
-
-```json
-[
-  {
-    "title": "U.S. CITIES",
-    "_additional": {
-      "id": "20ffc68d-986b-5e71-a680-228dba18d7ef"
-    }
-  },
-  {
-    "title": "MUSEUMS",
-    "_additional": {
-      "id": "fec50326-dfa1-53c9-90e8-63d0240bd933"
-    }
-  }
-]
-```
-
-
-## Add a one-way cross-reference property
-
-This requires adding one reference property `from` a class referring `to` another, and adding one cross-reference per object pair.
-
-To add a cross-reference property in the class definition, specify its `dataType` as the name of another class in the [schema](../tutorials/schema.md).
-
-For example to specify the cross-reference from `JeopardyQuestion` to `JeopardyCategory`:
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# CrossRefDefinition"
-  endMarker="# END CrossRefDefinition"
-  language="py"
-/>
-
-To add a cross-reference from an object to another, specify its source class and id, the property name, and the class and id of the target object. In the example below, we'll _add_ (not set) the "U.S. CITIES" category to the "San Francisco" Q&A (which by default only has the "MUSEUMS" category):
+Specify the required id and properties for the source and the target.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -149,35 +142,94 @@ To add a cross-reference from an object to another, specify its source class and
 
 This requires adding reference properties in both directions, and adding two cross-references per object pair (`from` A -> `to` B and `from` B -> `to` A).
 
-To define a bidirectional reference between two classes, add a property to each class with the `dataType` set to the name of the other class:
+Create the `JeopardyCategory` collection:
 
-`JeopardyCategory` collection:
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START Collections TwoWay Category1"
-  endMarker="# END Collections TwoWay Category1"
-  language="python"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Collections TwoWay Category1"
+      endMarker="# END Collections TwoWay Category1"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Collections TwoWay Category1"
+      endMarker="# END Collections TwoWay Category1"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Collections TwoWay Category1"
+      endMarker="// END Collections TwoWay Category1"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
+Create the `JeopardyQuestion` collection including the reference property to `JeopardyCategory`:
 
-`JeopardyQuestion` collection:
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START Collections TwoWay Question"
-  endMarker="# END Collections TwoWay Question"
-  language="python"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Collections TwoWay Question"
+      endMarker="# END Collections TwoWay Question"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Collections TwoWay Question"
+      endMarker="# END Collections TwoWay Question"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Collections TwoWay Question"
+      endMarker="// END Collections TwoWay Question"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
-Update `JeopardyCategory` to add the reference to `JeopardyQuestion`:
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START Collections TwoWay Category2"
-  endMarker="# END Collections TwoWay Category2"
-  language="python"
-/>
+Modify `JeopardyCategory` to add the reference to `JeopardyQuestion`:
 
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Collections TwoWay Category2"
+      endMarker="# END Collections TwoWay Category2"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Collections TwoWay Category2"
+      endMarker="# END Collections TwoWay Category2"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Collections TwoWay Category2"
+      endMarker="// END Collections TwoWay Category2"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
-To set up a two-way cross-reference between two objects, set each cross-reference in turn:
+And add the cross-references:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -229,9 +281,7 @@ To set up a two-way cross-reference between two objects, set each cross-referenc
 
 ## Add multiple (one-to-many) cross-references
 
-To add a one-to-many cross-reference relationship, add to the source object each of the cross-references to the target objects that you need.
-
-For example, to mark that the "San Francisco" Q&A belongs to multiple categories, e.g. "US. CITIES" and "MUSEUMS":
+Weaviate allows creation of multiple cross-references from one source object.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -283,9 +333,7 @@ For example, to mark that the "San Francisco" Q&A belongs to multiple categories
 
 ## Delete a cross-reference
 
-Deleting a cross-reference requires specifying the parameters that define the cross-reference.
-
-To delete a cross-reference, specify the class, id and cross-reference property name of the source object, and the class and id of the target object:
+Deleting a cross-reference with the same parameters used to define the cross-reference.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -334,15 +382,20 @@ To delete a cross-reference, specify the class, id and cross-reference property 
   </TabItem>
 </Tabs>
 
-:::tip
+<details>
+  <summary>
+    What happens if the target object is deleted?
+  </summary>
+
 What happens if the `to` object is deleted?
 If an object is deleted, cross-references to it will be left intact. A [Get query using the inline fragment syntax](../search/basics.md#retrieve-cross-referenced-properties) will correctly retrieve only fields in the existing cross-references objects, but [getting the object by ID](../api/rest/objects.md#get-a-data-object) will show all cross-references, whether the objects they point to exist or not.
-:::
+
+</details>
 
 
 ## Update a cross-reference
 
-To update the cross-references stored in a property of an object, specify the object's UUID, class name and cross-references property name, as well as the new list of cross-referenced UUIDs and their class (if all objects are of the same class) or classes (one class per each UUID):
+The targets of a cross-reference can be updated.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -391,19 +444,12 @@ To update the cross-references stored in a property of an object, specify the ob
   </TabItem>
 </Tabs>
 
-## Batch creation
 
-Cross-references can be created using batches just like data objects. This can be done by using the same batch process, but by adding cross-references to the batch instead of data objects.
+## Related pages
 
-Please see the [batch import how-to](./import.mdx) for more on batch imports.
-
-
-## Retrieve cross-references
-
-Cross-references in Weaviate are not themselves objects, but properties of objects. As such, you can retrieve cross-reference in one of two ways:
-1. [Retrieve the object](../api/rest/objects.md#get-a-data-object) that it belongs to. This will return the cross-reference as a property of the object.
-1. [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query. Just as you can retrieve any other property of search results, you can retrieve cross-reference properties.
-
+- [References: REST - /v1/objects](../api/rest/objects.md#cross-references)
+- [Retrieve the object](../api/rest/objects.md#get-a-data-object) to retrieve its cross references.
+- [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
