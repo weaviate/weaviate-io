@@ -47,9 +47,16 @@ image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorg
 image_response = requests.get(image_url)
 content = image_response.content
 
+# # Encode content into base64 string
+# base64_string = base64.b64encode(content).decode('utf-8')
+"""
 # START search with base64
-# Encode content into base64 string
-base64_string = base64.b64encode(content).decode('utf-8')
+# highlight-start
+base64_string="SOME_BASE_64_REPRESENTATION"
+# highlight-end
+# END search with base64
+"""
+# START search with base64
 
 # Perform query
 response = (

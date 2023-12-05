@@ -25,8 +25,8 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects()
 # highlight-end
 
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
 
 # TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET
@@ -85,8 +85,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END GetWithLimitPython
 
 # Test results
@@ -149,9 +149,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END GetWithLimitOffsetPython
 
 # Test results
@@ -214,8 +213,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-end
 )
 
-# for o in response.objects:
-#     print(json.dumps(o.properties, indent=2))
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))
 # END GetPropertiesPython
 
 # Test results
@@ -283,7 +282,7 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-# print(response.objects[0].vector)
+print(response.objects[0].vector)
 # END GetObjectVectorPython
 
 # Test results
@@ -354,8 +353,8 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-# for o in response.objects:
-#     print(o.uuid)
+for o in response.objects:
+    print(o.uuid)
 # END GetObjectIdPython
 
 # Test results
@@ -429,11 +428,11 @@ response = jeopardy.query.fetch_objects(
     limit=2
 )
 
-# for o in response.objects:
-#     print(o.properties["question"])
-#     # print referenced objects
-#     for ref in o.properties["hasCategory"].objects:
-#         print(ref.properties)
+for o in response.objects:
+    print(o.properties["question"])
+    # print referenced objects
+    for ref in o.properties["hasCategory"].objects:
+        print(ref.properties)
 # END GetWithCrossRefsPython
 
 expected_response = (
@@ -495,6 +494,34 @@ gql_query = """
 # END Test results
 
 
+
+# ====================================
+# ===== GET WITH METADATA EXAMPLE =====
+# ====================================
+
+# GetWithMetadataPython
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    limit=1,
+    # highlight-start
+    return_metadata=wvc.MetadataQuery(creation_time_unix=True)
+    # highlight-end
+)
+
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))  # View the returned properties
+    print(o.metadata.creation_time_unix)  # View the returned creation time
+# END GetWithMetadataPython
+
+# Test results
+# # NEEDS TESTS
+# END Test results
+
+
 # =========================
 # ===== MULTI-TENANCY =====
 # =========================
@@ -505,20 +532,20 @@ gql_query = """
 import weaviate.classes as wvc
 
 # Connect to the collection
-collectionConnection = client.collections.get("AMultiTenancyCollection")
+mt_collection = client.collections.get("AMultiTenancyCollection")
 
 # Get the specific tenant's version of the collection
 # highlight-start
-connectionForTenantA = collectionConnection.with_tenant("tenantA")
+collection_tenant_a = mt_collection.with_tenant("tenantA")
 # highlight-end
 
 # Query tenantA's version
-result = connectionForTenantA.query.fetch_objects(
+result = collection_tenant_a.query.fetch_objects(
     return_properties=["property1", "property2"],
     limit=1,
 )
 
-# print (result.objects[0].properties)
+print (result.objects[0].properties)
 # END MultiTenancy
 
 
