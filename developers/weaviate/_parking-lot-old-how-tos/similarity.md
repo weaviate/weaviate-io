@@ -16,6 +16,8 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 ## Overview
 
+Vector search is a similarity based search based on vector representations. Objects in the database have vector representations called "vector embeddings".
+
 This page shows you how to perform similarity-based searches with the `nearXXX` operators.
 
 These operators work by searching for objects with the most similar vector representation to the query. Note that due to differences in configuration and data, we have a [separate page for image searches](./image.md).
@@ -266,7 +268,7 @@ The example below searches the `JeopardyQuestion` class for objects best matchin
       language="python"
     />
   </TabItem>
-  
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -365,7 +367,7 @@ It should produce a response like the one below:
 
 ## Group results by a property or cross-reference
 
-:::info Available from version `v1.19`
+:::info Added in `v1.19`
 :::
 
 You can group search results by any arbitrary property or cross-reference.
@@ -442,7 +444,7 @@ The example below searches the `JeopardyQuestion` class for the top 2 objects be
       language="python"
     />
   </TabItem>
-  
+
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}

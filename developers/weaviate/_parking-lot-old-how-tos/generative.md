@@ -302,7 +302,7 @@ It should produce a response like the one below:
 
 ### Grouped task property selection
 
-:::info Available from version `v1.18.3`
+:::info Added in `v1.18.3`
 :::
 
 You can specify which properties will be included in the `grouped task` prompt. Use this to limit the information provided in the prompt, and to reduce the prompt length.

@@ -291,6 +291,8 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
+    # Use & as AND
+    #     | as OR 
     filters=Filter("round").equal("Double Jeopardy!") &
             Filter("points").less_than(600),
     # highlight-end

@@ -12,30 +12,23 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
 
-Use a reranking method to reorder results after a search returns the initial result set. 
+Reranking modules reorder the search result set according to a different set of criteria or a different (e.g. more expensive) algorithm.
 
-## Enable reranking
+<details>
+  <summary>
+    Additional information
+  </summary>
 
-To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. These modules are available:
+**Configure reranking**
+
+To rerank search results, enable a reranker [module](../configuration/modules.md) for your collection. For details, see the reranker's reference page:
 
 - [reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 
 A collection can have multiple rerankers. If multiple `reranker` modules are enabled, specify the module you want to use in the `moduleConfig` section of your schema.
 
-```json
-{
-  "classes": [
-    {
-      "class": "Article",
-      ...,
-      "moduleConfig": {
-        "reranker-cohere": {},  // This will configure the 'Article' class to use the 'reranker-cohere' module
-      }
-    }
-  ]
-}
-```
+</details>
 
 ## Rerank vector search results
 
@@ -152,6 +145,7 @@ The response should look like this:
 ## Related pages
 
 - [API References: GraphQL - Additional properties](../api/graphql/additional-properties.md#rerank)
+- [API References: GraphQL - Sorting](/developers/weaviate/api/graphql/additional-operators#sorting-api)
 - [Concepts: Reranking](../concepts/reranking.md)
 - [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)

@@ -12,17 +12,9 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.basics.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.basics-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.basics.ts';
 
-import ClassToCollectionNote from '/_includes/class-to-collection-transition-note.mdx' ;
+With Weaviate you can query your data using [vector similarity search](./similarity.md), [keyword search](./bm25.md), or a mix of both with [hybrid search](./hybrid.md). You can control what object [properties](#specify-object-properties) and [metadata](#retrieve-metadata-values) to return.
 
-<ClassToCollectionNote />
-
-<details>
-  <summary>Additional information</summary>
-
-  - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
-  - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
-
-</details>
+This page provides fundamental search syntax to get you started.
 
 ## Basic search
 
@@ -88,13 +80,13 @@ The output is like this:
 <details>
   <summary>Additional information</summary>
 
-  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata. Weaviate search is based on the [GraphQL API](../api/graphql/index.md).
+  Specify the information that you want your query to return. You can return object properties, object IDs, and object metadata.
 
 </details>
 
 ## `limit` returned objects
 
-To return a limited number of objects, set a `limit`.
+Use `limit` to set a fixed maximum number of objects to return.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -212,10 +204,12 @@ The output is like this:
 
 </details>
 
+To paginate through the entire database, use a [cursor](../manage-data/read-all-objects.mdx#list-every-object) instead of offset and limit.
+
 
 ## Specify object `properties`
 
-You can specify object properties to be returned as below.
+You can specify which object properties to return.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -276,7 +270,7 @@ The output is like this:
 
 ## Retrieve the object `vector`
 
-You can retrieve the object vector as shown below.
+You can retrieve the object vector.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -335,12 +329,10 @@ The output is like this:
 
 ## Retrieve the object `id`
 
-You can retrieve the object `id` (uuid) as shown below.
+You can retrieve the object `id` (uuid).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
-
- The new Python client always returns the object ID.
 
 <FilteredTextBlock
   text={PyCode}
@@ -460,9 +452,9 @@ The output is like this:
 
 </details>
 
-## Retrieve other metadata values
+## Retrieve metadata values
 
-You can specify metadata fields to be returned as shown below.
+You can specify metadata fields to be returned.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -545,6 +537,8 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 ## Related pages
 
 - [API References: GraphQL: Get](../api/graphql/get.md)
+- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1)
+- For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
