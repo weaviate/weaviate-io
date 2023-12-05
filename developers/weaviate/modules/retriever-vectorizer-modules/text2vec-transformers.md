@@ -22,7 +22,11 @@ Key notes:
 
 :::tip Do you have GPU acceleration?
 
-Transformer model inference speeds are usually much faster with GPUs, typical results are 10x faster. If you have a GPU, use one of the GPU enabled modules.<br/><br/>If you use `text2vec-transformers` without GPU acceleration, imports or `nearText` queries may become bottlenecks. The ONNX-enabled images can use [ONNX Runtime](https://onnxruntime.ai/) for faster inference processing on standard CPUs. Look for the `-onnx` suffix in the image name.<br/><br/>Alternatively, consider one of the following options:
+Transformer model inference speeds are usually about ten times faster with GPUs. If you have a GPU, use one of the GPU enabled modules.<br/>
+
+If you use `text2vec-transformers` without GPU acceleration, imports or `nearText` queries may become bottlenecks. The ONNX-enabled images can use [ONNX Runtime](https://onnxruntime.ai/) for faster inference processing on CPUs. Look for the `-onnx` suffix in the image name.<br/>
+
+Alternatively, consider one of the following options:
 
 - an API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md)
 - a local inference container such as [`text2vec-contextionary`](./text2vec-contextionary.md) or [`text2vec-gpt4all`](./text2vec-gpt4all.md)
