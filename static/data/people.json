@@ -510,5 +510,20 @@
     "linkedin": "zackkass",
     "twitter": "iamthezack",
     "team": "board-advisors"
+  },
+  {
+    "name": "Jerónimo Irazábal",
+    "title": "Software Engineer",
+    "photo": "Jeronimo.jpeg",
+    "linkedin": "jeronimoirazabal",
+    "twitter": "jeroiraz",
+    "github": "jeroiraz",
+    "team": "database"
+  },
+  {
+    "name": "Tony Le",
+    "title": "Business Development Director",
+    "photo": "tony.jpeg",
+    "team": "partnerships"
   }
 ]
