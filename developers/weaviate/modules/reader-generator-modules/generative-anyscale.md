@@ -154,7 +154,7 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 ### Query-time parameters
 
-You can supply parameters at query time by adding it to the HTTP header.
+You can supply parameters at query time by adding them to the HTTP header.
 
 | HTTP Header | Value | Purpose | Note |
 | :- | :- | :- | :- |
@@ -216,9 +216,9 @@ You can add both `title` and `summary` to the prompt by enclosing them in curly 
 #### Example - single result
 
 Here is an example of a query where:
-* we run a vector search (with `nearText`) to find articles about "Italian food"
-* then we ask the generator module to describe each result as a Facebook ad.
-  * the query asks for the `summary` field, which it then includes in the `prompt` argument of the `generate` operator.
+* we get a podcast clip (with limit 1)
+* then we ask the generator module to summarize the content into one sentence.
+  * the query asks for the `speaker` and `content` fields, which are then included in the `prompt` argument of the `generate` operator.
 
 import AnyscaleSingleResult from '/_includes/code/generative.anyscale.singleresult.mdx';
 
@@ -250,8 +250,8 @@ import AnyscaleSingleResult from '/_includes/code/generative.anyscale.singleresu
 #### Example - grouped result
 
 Here is an example of a query where:
-* we run a vector search (with `nearText`) to find publications about finance,
-* then we ask the generator module to explain why these articles are about finance.
+* we run a vector search (with `nearText`) to find podcast clips semantically similar to `"What is ref2vec?"`
+* then we ask the generator module to answer the question: `"What is ref2vec?"` based on the search results.
 
 import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedresult.mdx';
 
