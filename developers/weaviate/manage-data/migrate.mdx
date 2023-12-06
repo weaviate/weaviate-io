@@ -31,6 +31,18 @@ Follow these examples to migrate data manually when using a backup is not possib
 
 </details>
 
+<details>
+  <summary>What about cross-references?</summary>
+
+These scripts should migrate cross-references as well.
+<br/>
+
+Cross-references are properties. As such, these cursor-based exports will include them. Even in cases where the target object does not exist yet, the cross-reference should be included in the export, as validation for cross-references are disabled.
+<br/>
+
+As long as the migration is complete, the target object should be created, and the cross-reference should be valid.
+
+</details>
 
 ## Collection → Collection
 
