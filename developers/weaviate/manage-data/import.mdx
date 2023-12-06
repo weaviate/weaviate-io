@@ -14,29 +14,25 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
-This page shows how to efficiently add data objects and cross-references to Weaviate. We will collectively refer to these as "items".
+[Batch imports](../tutorials/import.md#to-batch-or-not-to-batch) are an [efficient](../api/rest/objects.md#objects-vs-batch) way to add multiple data objects and cross-references.
 
-We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-batch) unless you have a specific reason not to. A batch import [drastically improves](../api/rest/objects.md#objects-vs-batch) import speed by processing multiple items per request, and clients can parallelize requests.
 
-## Requirements
+<details>
+  <summary>Additional information</summary>
 
-To import items in batches using a Weaviate client,
+To create a bulk import job, follow these steps:
 
-1. Initialize a batcher,
-1. Add items to the batcher, and
-1. Ensure that the last batch is sent (i.e. flushed).
+1. Initialize a batch object.
+1. Add items to the batch object.
+1. Ensure that the last batch is sent (flushed).
 
-### Optimizing for import speed
+</details>
 
-To maximise import speed, enable asynchronous indexing in Weaviate and use gRPC batch imports. Asynchronous indexing decouples vector indexing from object creation ([read more](../configuration/indexes.md#asynchronous-indexing)), and gRPC batch imports are faster than REST batch imports.
+## Enable asynchronous indexing
 
-Both features are available in Weaviate `1.22` and higher. (Note that asynchronous indexing is still experimental as of `1.22`, and we do not yet recommend using it in production.)
+To maximize import speed, consider enabling [asynchronous indexing](../configuration/indexes.md#asynchronous-indexing) and using gRPC batch imports. Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use.
 
-#### How to use asynchronous indexing
-
-To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file).
-
-For example, the `docker-compose.yml` file might look like this (note the `environment` section):
+To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration file.
 
 ```yaml
 weaviate:
@@ -46,22 +42,9 @@ weaviate:
     ASYNC_INDEXING: 'true'
   ...
 ```
+## Enable gRPC batch imports
 
-As the asynchronous indexing is being carried out, you can choose to wait for the indexing to complete. For example, the Python client includes a `client.batch.wait_for_vector_indexing()` function to wait for the indexing to complete.
-
-:::info See also
-- [Configuration: Indexes](../configuration/indexes.md#asynchronous-indexing)
-:::
-
-#### How to use gRPC batch imports
-
-The easiest way to use gRPC batch imports is to use the [`v4` Python client](../client-libraries/python.md). Alternatively, you can use the gRPC API ([read more](../api/grpc.md)) if you so wish.
-
-### Notes
-
-- On supported clients, you can also configure the batch parameters.
-- For multi-tenancy collections, you can specify the tenant name.
-- Some clients can be configured for auto-flushing.
+The easiest way to use gRPC batch imports is to use the [Python client `v4`](../client-libraries/python.md). If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
 
 ## Basic batch import example
 
@@ -375,6 +358,7 @@ A good practice for importing large datasets is to stream the input file rather 
 
 - [How-to: Create objects](./create.mdx)
 - [References: REST - /v1/batch](../api/rest/batch.md)
+- [Configuration: Indexes](../configuration/indexes.md#asynchronous-indexing)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
