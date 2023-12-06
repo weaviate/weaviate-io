@@ -5,8 +5,6 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'create']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -16,45 +14,11 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.create.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.create.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.create_test.go';
 
-## Overview
+The examples on this page demonstrate how to create individual objects in Weaviate.
 
-This page shows you how to create individual objects in Weaviate.
+## Create an object
 
-:::tip To create multiple objects, it's best to use [batch operations](./import.mdx).
-:::
-
-:::info See also
-- [How-to: (Batch) Import items](./import.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md)
-:::
-
-
-## Requirements
-
-To create an object, specify:
-* The object data to be added, and
-* The target collection.
-
-:::tip Multi-tenancy
-For collections where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
-:::
-
-### Object data vs collection definition
-
-Compared to the collection definition, the object data:
-- Can omit defined properties.
-- Can include new properties.
-
-:::info
-Any new properties will be added to the collection definition during object creation with [auto-schema](../config-refs/schema.md#autoschema).
-:::
-
-#### Example
-
-This example shows how to create an object in the `JeopardyQuestion` collection, with:
-- An existing property (`question`),
-- A new property (`newProperty`), and
-- Omits an existing property (`answer`).
+This example creates an object in the `JeopardyQuestion` collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -103,20 +67,25 @@ This example shows how to create an object in the `JeopardyQuestion` collection,
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>
+    Additional information
+  </summary>
 
-## Optional parameters
+To create an object, specify the following:
 
-Optionally, you can specify an [id](../api/graphql/additional-properties.md#id) or a vector.
+- The object data you want to add
+- The target collection
+- If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, [specify the tenant](./multi-tenancy.md)
 
-### `id`
+By default, [auto-schema](../config-refs/schema.md#autoschema) creates new collections and adds new properties.
 
-You can optionally specify an ID in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format. Otherwise, Weaviate will generate a random UUID.
+</details>
 
-### `vector`
+## Specify optional parameters
 
-You can optionally specify a vector to represent each object. Otherwise, Weaviate will follow the relevant vectorizer setting.
-
-### Example
+When you create an object, you can specify an [ID](../api/graphql/additional-properties.md#id) or a vector. If the ID is not a
+[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), Weaviate generates a random UUID.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -165,19 +134,9 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
   </TabItem>
 </Tabs>
 
-## Preventing duplicates
+## Generate deterministic IDs
 
-In Weaviate, the only unique field is the `id`. If you try to create an object with an existing id, Weaviate will throw an error. (In [batch imports](./import.mdx#managing-potential-duplication), Weaviate will overwrite the object if one exists.)
-
-To prevent duplicates, we suggest:
-- Using a deterministic ID generation method, and
-- Checking if an object exists before creating it.
-
-### Generate deterministic ID
-
-You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client.
-
-### Example
+The `id` must be unique. Weaviate throws an error if you duplicate an existing ID. 
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -224,21 +183,21 @@ You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthe
   </TabItem>
 </Tabs>
 
-### Check if an object exists
 
-You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
+<details>
+  <summary>
+    Additional information
+  </summary>
+To generate deterministic IDs, use one of these methods:
 
-:::info IDs unique to each collection and tenants
-[Collections](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different collections and/or tenants.
-:::
+- [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) (Python)
+- `generateUuid5` (TypeScript)
 
-## Validating before creation
+</details>
 
-You can [validate](../api/rest/objects.md#validate-a-data-object) an object against the collection definition before creating it.
+## Validate objects before creation
 
-This will confirm:
-- Whether the creation of an object will succeed, and
-- That it doesn't have any extra properties vs. the defined collection properties.
+Before you create an object, you can [validate](../api/rest/objects.md#validate-a-data-object) it against the collection definition.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -287,7 +246,10 @@ This will confirm:
   </TabItem>
 </Tabs>
 
+## Related pages
 
+- [How-to: (Batch) Import items](./import.mdx)
+- [References: REST - /v1/objects](../api/rest/objects.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
