@@ -1,5 +1,5 @@
 ---
-title: (Batch) Import items
+title: Batch import items
 sidebar_position: 15
 image: og/docs/howto.jpg
 # tags: ['how-to', 'import']
@@ -14,17 +14,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
-## Overview
-
 This page shows how to efficiently add data objects and cross-references to Weaviate. We will collectively refer to these as "items".
 
 We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-batch) unless you have a specific reason not to. A batch import [drastically improves](../api/rest/objects.md#objects-vs-batch) import speed by processing multiple items per request, and clients can parallelize requests.
-
-:::info See also
-- [How-to: Create objects](./create.mdx)
-- [References: REST - /v1/batch](../api/rest/batch.md)
-:::
-
 
 ## Requirements
 
@@ -379,7 +371,10 @@ A good practice for importing large datasets is to stream the input file rather 
   </TabItem>
 </Tabs>
 
+## Related pages
 
+- [How-to: Create objects](./create.mdx)
+- [References: REST - /v1/batch](../api/rest/batch.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
