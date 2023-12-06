@@ -85,14 +85,12 @@ For the available options, see:
 
 </details>
 
-## ADD EXAMPLE LANGUAGE CODE
-
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateCollection"
-      endMarker="# END CreateCollection"
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
       language="py"
     />
   </TabItem>
@@ -105,50 +103,17 @@ For the available options, see:
       language="py"
     />
   </TabItem>
+  
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="ts"
+    />
+  </TabItem>
+    
 </Tabs>
-
-```json
-{
-    "class": "Article",
-    "vectorizer": "text2vec-cohere",
-    "moduleConfig": {
-        "generative-openai": {}
-    },
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        {
-            "name": "chunk",
-            "dataType": ["text"]
-        },
-        {
-            "name": "chunk_no",
-            "dataType": ["int"]
-        },
-        {
-            "name": "body",
-            "dataType": ["object[]"],  // Array of objects. `object` and `object[]` are available from `1.22`.
-            "nestedProperties": [
-                {
-                    "name": "chunk",
-                    "dataType": ["text"],
-                },
-                {
-                    "name": "chunk_no",
-                    "dataType": ["int"],
-                },
-            ]
-        },
-        {
-            "name": "url",
-            "dataType": ["text"],
-            "tokenization": "field"
-        },
-    ],
-}
-```
 
 ## Disable auto-schema
 
@@ -354,7 +319,7 @@ The following code defines:
 
 :::
 
-Configuration with nested objects.
+Collection configuration with nested objects.
 
 ```json
 {
@@ -395,7 +360,7 @@ The following code defines:
 
 ## Sample configuration: Generative search
 
-Configuration for [generative search](../search/generative.md) on text objects.
+Collection configuration for [generative search](../search/generative.md) on text objects.
 
 ```json
 {
