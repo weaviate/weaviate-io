@@ -350,7 +350,7 @@ const siteRedirects = {
         },
 
         {
-         to: '/developers/weaviate/manage-data/collections,
+         to: '/developers/weaviate/manage-data/collections',
          from: '/developers/weaviate/manage-data/classes',
         },
 
