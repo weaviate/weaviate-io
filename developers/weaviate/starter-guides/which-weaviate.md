@@ -28,7 +28,7 @@ Weaviate can be deployed in the following ways:
 - [Docker-Compose](../installation/docker-compose.md)
 - [Weaviate Cloud Services (WCS)](../installation/weaviate-cloud-services.md)
 - [Self-managed Kubernetes](../installation/kubernetes.md)
-- [Hybrid SaaS](https://weaviate.io/products)
+- [Hybrid SaaS](https://weaviate.io/pricing)
 
 ### Vectorization
 

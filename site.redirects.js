@@ -349,6 +349,11 @@ const siteRedirects = {
          from: '/developers/weaviate/configuration/pq-compression',
         },
 
+        {
+         to: '/developers/weaviate/manage-data/collections',
+         from: '/developers/weaviate/manage-data/classes',
+        },
+
      // Products to Pricing redirects
 
      {
