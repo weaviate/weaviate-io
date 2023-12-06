@@ -5,31 +5,20 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'perform a search']
 ---
 
+Use these **search** how-to guides to find the data you want.
 
+The [query basics](./basics.md) page covers basic search syntax and how to specify the properties you want to retrieve.
 
-## Overview
+These guides cover additional search topics:
 
-These **search** how-to guides aim to help you find the data you want using Weaviate.
-
-import BasicPrereqs from '/_includes/prerequisites-quickstart.md';
-
-<BasicPrereqs />
-
-We recommend starting with the [query basics](./basics.md) page.
-- It covers the basic syntax of a search (i.e. `Get`) query, and how to specify the properties you want to retrieve.
-
-Then, move onto a how-to guide of your choice. We have separate how-to guides for:
-
-- [Similarity](./similarity.md): Covers `nearXXX` searches, which work by searching for objects with the most similar vector representation to the query.
-- [Image](./image.md): Similarity search involving images.
-- [BM25](./bm25.md): A keyword search that ranks results with the BM25F search function.
-- [Hybrid](./hybrid.md): Combines BM25 and similarity search to rank results.
-- [Generative](./generative.md): Feed search results to an LLM with a prompt using a `generative` module.
+- [Vector similarity search](./similarity.md): Covers `nearXXX` searches that search for objects with the most similar vector representations to the query.
+- [Image search](./image.md): Use images as input for a similarity search.
+- [Keyword search](./bm25.md): A keyword search that uses the BM25F algorithm to rank results.
+- [Hybrid search](./hybrid.md): Combines BM25 and similarity search to rank results.
+- [Generative search](./generative.md): Use search results as a prompt for an LLM.
 - [Reranking](./rerank.md): Rerank retrieved search results using a `reranker` module.
-- [Aggregate](./aggregate.md): Aggregate data from a results set.
+- [Aggregation](./aggregate.md): Aggregate data from a results set.
 - [Filters](./filters.md): Apply conditional filters to the search.
-
-Each guide is self-contained. So you can read them in any order.
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

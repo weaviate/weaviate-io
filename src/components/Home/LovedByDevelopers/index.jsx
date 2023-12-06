@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Component } from 'react';
 import styles from './styles.module.scss';
 import * as Tabs from '@radix-ui/react-tabs';
@@ -13,6 +13,13 @@ import quotes from '/data/quotes.json';
 import Quotecontainer from './quoteContainer';
 
 export default function HomepageLovedByDevelopers() {
+  const [initialSlide, setInitialSlide] = useState(0);
+
+  useEffect(() => {
+    const rand = Math.floor(Math.random() * quotes.length);
+    setInitialSlide(rand);
+  }, []);
+
   const StyledSlider = styled(Slider)`
     .slick-track:hover {
       transition: -webkit-transform ease 0s !important;
@@ -28,19 +35,19 @@ export default function HomepageLovedByDevelopers() {
     }
   `;
 
-  var rand = Math.floor(Math.random() * quotes.length);
-
   var settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
-
     autoplay: true,
     speed: 5000,
-    initialSlide: rand,
+    initialSlide: initialSlide,
     autoplaySpeed: 10000,
     arrows: false,
-    swipeToSlide: false,
+    slidesToScroll: 1,
+    swipe: false,
+    slidesToShow: 3,
+    pauseOnHover: true,
+
     responsive: [
       {
         breakpoint: 1380,
@@ -86,7 +93,6 @@ export default function HomepageLovedByDevelopers() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
           speed: 5000,
           autoplaySpeed: 10000,
         },
@@ -96,7 +102,6 @@ export default function HomepageLovedByDevelopers() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
           speed: 5000,
           autoplaySpeed: 10000,
         },
@@ -106,7 +111,6 @@ export default function HomepageLovedByDevelopers() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
         },
       },
       {

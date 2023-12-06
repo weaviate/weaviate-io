@@ -163,8 +163,20 @@ const classWithPropModuleSettings = {
       // highlight-start
       moduleConfig: {
         'text2vec-huggingface': {  // this must match the vectorizer used
-          skip: false,
-          vectorizePropertyName: false,
+          vectorizePropertyName: true,
+          tokenization: 'lowercase'  // Use "lowercase" tokenization
+        },
+      },
+      // highlight-end
+    },
+    {
+      name: 'body',
+      dataType: ['text'],
+      // highlight-start
+      moduleConfig: {
+        'text2vec-huggingface': {  // this must match the vectorizer used
+          skip: true,  // Don't vectorize this property
+          tokenization: 'whitespace'  // Use "whitespace" tokenization
         },
       },
       // highlight-end

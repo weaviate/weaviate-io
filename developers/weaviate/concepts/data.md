@@ -221,7 +221,7 @@ When multi-tenancy is enabled, Weaviate uses partition shards to store each tena
 - Fast, efficient querying
 - Easy and robust setup and clean up
 
-Staring in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+Starting in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
 
 Starting in `v1.20.1`, you can specify tenants as active (`HOT`) or inactive (`COLD`). For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
 

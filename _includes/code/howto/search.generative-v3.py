@@ -401,7 +401,7 @@ gql_query = '''
 '''
 
 gqlresponse = client.query.raw(gql_query)
-print(json.dumps(gqlresponse, indent=2))
+# print(json.dumps(gqlresponse, indent=2))
 
 # Test results
 assert gqlresponse['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}

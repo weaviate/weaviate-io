@@ -133,8 +133,20 @@ class_obj = {
             # highlight-start
             'moduleConfig': {
                 'text2vec-huggingface': {  # this must match the vectorizer used
-                    'skip': False,
-                    'vectorizePropertyName': False
+                    'vectorizePropertyName': True,
+                    'tokenization': 'lowercase'
+                }
+            }
+            # highlight-end
+        },
+        {
+            'name': 'body',
+            'dataType': ['text'],
+            # highlight-start
+            'moduleConfig': {
+                'text2vec-huggingface': {  # this must match the vectorizer used
+                    'skip': True,  # Don't vectorize body
+                    'tokenization': 'whitespace'
                 }
             }
             # highlight-end

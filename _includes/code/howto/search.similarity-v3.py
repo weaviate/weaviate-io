@@ -179,6 +179,7 @@ response = (
     .do()
 )
 
+
 print(json.dumps(response, indent=2))
 # END GetNearVectorPython
 
@@ -600,7 +601,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# (json.dumps(response, indent=2))
 # END GetWithWherePython
 
 # Test results

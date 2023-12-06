@@ -2,7 +2,7 @@
 | :-- | :-- | :-- | :-- |
 | `enabled` | boolean | `false` |  Enable PQ. Weaviate use product quantization (PQ) compression when `true`. |
 | `trainingLimit` | integer | 100000 |  Object limit. The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids. Larger values also require more memory. |
-| `segments` | integer | -- |The number of segments to use. By default `segments` is equal to the number of vector dimensions. Reducing the number of segments reduces the size of the quantized (PQ compressed) vectors. <br/><br/> The number of vector dimensions must be evenly divisible by the number of segments. |
+| `segments` | integer | -- |The number of segments to use.<br/><br/> Prior to `v1.23`, `segments` is equal to the number of vector dimensions.<br/><br/>Starting in `v1.23`, the number of segments is equal to (the number of vector dimensions) divided by (the largest integer divisor between 1 and 6).  <br/><br/> The number of vector dimensions must be evenly divisible by the number of segments. |
 | `centroids` | integer | 256 | The number of centroids to use. Reducing the number of centroids reduces the size of the quantized (PQ compressed) vectors at the price of recall. <br/><br/> If you use the `kmeans` encoder, `centroids` is set to 256 (one byte) by default. |
 | `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`. | 
 |`distribution`|string|`log-normal`| Encoder distribution type. Only used with the `tile` encoder. If you use the `tile` encoder, you can specify the `distribution` as `log-normal` (default) or `normal`. |
