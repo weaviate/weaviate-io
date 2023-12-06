@@ -16,91 +16,43 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
 
-
-Multi-tenancy isolates data between tenants (typically end users) in a Weaviate instance, for example in a SaaS application. Each tenant is a separate shard in Weaviate.
-
-<details>
-  <summary>
-    Multi-tenancy availability
-  </summary>
-
-- Multi-tenancy added in `v1.20`
-- (Experimental) Tenant activity status setting added in `v1.21`
-
-</details>
+:::info Related pages
+- [How to: Configure a schema](../configuration/schema-configuration.md)
+- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
+:::
 
 ## Enable multi-tenancy
 
+:::info Multi-tenancy availability
+- Multi-tenancy added in `v1.20`
+- (Experimental) Tenant activity status setting added in `v1.21`
+:::
 
-Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the collection definition as shown below:
+Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the class definition as shown below:
 
+```json
+{
+  "class": "MultiTenancyClass",
+  // highlight-start
+  "multiTenancyConfig": {"enabled": true}
+  // highlight-end
+}
+```
 
-<Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START EnableMultiTenancy"
-      endMarker="# END EnableMultiTenancy"
-      language="py"
-    />
-  </TabItem>
+## Class operations
 
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START EnableMultiTenancy"
-      endMarker="# END EnableMultiTenancy"
-      language="py"
-    />
-  </TabItem>
+### Add tenant(s)
 
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START EnableMultiTenancy"
-      endMarker="// END EnableMultiTenancy"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START EnableMultiTenancy"
-      endMarker="// END EnableMultiTenancy"
-      language="java"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START EnableMultiTenancy"
-      endMarker="// END EnableMultiTenancy"
-      language="go"
-    />
-  </TabItem>
-</Tabs>
-
-
-## Add tenant(s)
-
-Add tenants to a collection (`MultiTenancyCollection`) with a name (e.g. `tenantA`) and an optional tenant activity status as `HOT`(active, default) or `COLD` (inactive).
-
-<details>
-  <summary>
-    Additional information
-  </summary>
+To add tenants to a class, you must provide the tenant names to the Weaviate class. From `1.21` onwards, you can also optionally specify whether the tenant is to be active (`HOT`, default), or inactive (`COLD`).
 
 import TenantNameFormat from '/_includes/tenant-names.mdx';
 
-Tenant status is available from Weaviate `1.21` onwards.
-<br/>
-
 <TenantNameFormat/>
 
-</details>
+Code examples are shown below in which the tenants `tenantA` and `tenantB` are added to the class `MultiTenancyClass`:
 
+<!-- TODO: Add TS/Go/Java examples -->
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -149,9 +101,11 @@ Tenant status is available from Weaviate `1.21` onwards.
   </TabItem>
 </Tabs>
 
-## List tenant(s)
+### List tenant(s)
 
-List existing tenants in a collection (e.g.`MultiTenancyCollection`):
+To list existing tenants in a class, you must provide the Weaviate class name.
+
+Code examples are shown below for listing the existing tenants in the `MultiTenancyClass` class:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -200,11 +154,11 @@ List existing tenants in a collection (e.g.`MultiTenancyCollection`):
   </TabItem>
 </Tabs>
 
-## Delete tenant(s)
+### Delete tenant(s)
 
-Delete one or more existing tenants in a collection (e.g. `MultiTenancyCollection`) and tenant names (e.g. `["tenantB", "tenantX"]`).
+You can delete one or more existing tenants in a class by providing the Weaviate class name.
 
-Non-existing tenants are ignored.
+If a tenant specified for deletion doesn't belong to the class, it is ignored.
 
 
 <Tabs groupId="languages">
@@ -254,37 +208,24 @@ Non-existing tenants are ignored.
   </TabItem>
 </Tabs>
 
-## Update tenant activity status
+### Update tenant's activity status
 
-Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
+:::info Added in `v1.21`
+:::
 
+You can update one or more existing tenants' activity status to active ("HOT") or inactive ("COLD").
 
-<Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START UpdateTenants"
-      endMarker="# END UpdateTenants"
-      language="py"
-    />
-  </TabItem>
-</Tabs>
+:::info Client code examples coming soon
+For now, please send a [PUT request through the REST API endpoint](../api/rest/schema.md#update-tenants) to update the tenant activity status.
+:::
 
-<details>
-  <summary>
-    Additional information
-  </summary>
+## Object operations
 
-- This feature was added in `v1.21`
-- Other client code examples coming soon
-- For now, please send a [PUT request through the REST API endpoint](../api/rest/schema.md#update-tenants) to update the tenant activity status.
+### CRUD operations
 
-</details>
+If multi-tenancy is enabled, you must provide the tenant name to Weaviate in each CRUD operation.
 
-
-## CRUD operations
-
-Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD operation, as shown in the object creation example below.
+Code examples are shown below for creating an object in the `MultiTenancyClass` class:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -334,9 +275,13 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
 </Tabs>
 
 
-## Search queries
+### Search queries
 
-Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Get` and `Aggregate` query operation.
+`Get` and `Aggregate` queries support multi-tenancy operations. (`Explore` queries do not support multi-tenancy operations at this point.)
+
+If multi-tenancy is enabled, you must provide the tenant name to Weaviate in each search query.
+
+Code examples are shown below for fetching one object in the `MultiTenancyClass` class from the tenant `tenantA`:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -388,11 +333,13 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
 
 ## Cross-references
 
-A cross-reference can be added from a multi-tenancy collection object to:
-- A non-multi-tenancy collection object, or
-- An object belonging to the same tenant.
+If multi-tenancy is enabled, you must provide the tenant name to Weaviate while creating, updating or deleting cross-references.
 
-Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating, updating or deleting cross-references.
+You can establish a cross-reference from a multi-tenancy class object to:
+- A non-multi-tenancy class object, or
+- A multi-tenancy class object belonging to the same tenant.
+
+The example below creates a cross-reference between two objects. It links an object in the `MultiTenancyClass` class that belongs to `tenantA`, to an object in the `JeopardyCategory` class:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -442,11 +389,10 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
 </Tabs>
 
 
-## Related pages
+As described above, the `JeopardyCategory` class object can be either:
+- A non-multi-tenancy object or
+- A multi-tenancy object belonging to `tenantA`.
 
-- [How to: Configure a schema](../configuration/schema-configuration.md)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
-- [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

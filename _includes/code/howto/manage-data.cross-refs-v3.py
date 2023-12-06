@@ -37,15 +37,14 @@ client = weaviate.Client(
 # ===== Define classes in the schema and upload dataset =====
 # ===========================================================
 
+# CrossRefDefinition START
 class_definitions = [
     {
         "class": "JeopardyCategory",
-        "description": "A Jeopardy! category",
         "properties": [
             {"name": "title", "dataType": ["text"]},
         ],
     },
-    # CrossRefDefinition
     {
         "class": "JeopardyQuestion",
         "description": "A Jeopardy! question",
@@ -61,14 +60,16 @@ class_definitions = [
             # highlight-end
         ],
     },
-    # END CrossRefDefinition
 ]
+# CrossRefDefinition END
 
 client.schema.delete_all()
-if not client.schema.contains({"classes": class_definitions}):
-    client.schema.create({"classes": class_definitions})
-    dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-    dataset.upload_objects(client, 100)  # batch-upload objects
+# if not client.schema.contains({"classes": class_definitions}):
+# CrossRefDefinition START
+client.schema.create({"classes": class_definitions})
+# CrossRefDefinition END
+dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
+dataset.upload_objects(client, 100)  # batch-upload objects
 
 # =================================
 # ===== Add one-way cross-ref =====
@@ -101,13 +102,48 @@ assert f"/v1/objects/JeopardyCategory/{us_cities_id}" in xrefs
 del_prop(sf_id, "hasCategory", "JeopardyQuestion")
 del_prop(us_cities_id, "hasQuestion", "JeopardyCategory")
 
-# TwoWay Python
+# START Collections TwoWay Category1
+category_definition = {
+    "class": "JeopardyCategory",
+    "properties": [
+        {"name": "title", "dataType": ["text"]},
+    ],
+}
 
-# First, add the "hasQuestion" cross-reference property to the JeopardyCategory class
+client.schema.create_class(category_definition)
+# END Collections TwoWay Category1
+
+# START Collections TwoWay Question
+question_definition = {
+    "class": "JeopardyQuestion",
+    "description": "A Jeopardy! question",
+    "properties": [
+        {"name": "question", "dataType": ["text"]},
+        {"name": "answer", "dataType": ["text"]},
+        # highlight-start
+        {
+            "name": "hasCategory",
+            "dataType": ["JeopardyCategory"],
+            "description": "The category of the question",
+        },
+        # highlight-end
+    ],
+}
+
+client.schema.create_class(question_definition)
+# END Collections TwoWay Question
+
+
+# START Collections TwoWay Category2
+# Add the "hasQuestion" cross-reference property to the JeopardyCategory class
 client.schema.property.create("JeopardyCategory", {
     "name": "hasQuestion",
     "dataType": ["JeopardyQuestion"]
 })
+# END Collections TwoWay Category2
+
+
+# TwoWay Python
 
 # For the "San Francisco" JeopardyQuestion object, add a cross-reference to the "U.S. CITIES" JeopardyCategory object
 client.data_object.reference.add(

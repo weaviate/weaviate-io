@@ -38,7 +38,9 @@ client.collections.create(
 # CreateObject START
 jeopardy = client.collections.get("JeopardyQuestion")
 
+# highlight-start
 uuid = jeopardy.data.insert({
+# highlight-end
     "question": "This vector DB is OSS & supports automatic property type inference on import",
     # "answer": "Weaviate",  # properties can be omitted
     "newProperty": 123,  # will be automatically added as a number property
@@ -52,9 +54,28 @@ result = jeopardy.query.fetch_object_by_id(uuid)
 assert result["properties"]["newProperty"] == 123
 
 
-# ============================================
+# =======================================
+# ===== Create object with a vector =====
+# =======================================
+
+# CreateObjectWithVector START
+jeopardy = client.collections.get("JeopardyQuestion")
+uuid = jeopardy.data.insert(
+    properties={
+        "question": "This vector DB is OSS and supports automatic property type inference on import",
+        "answer": "Weaviate",
+    },
+    # highlight-start
+    vector=[0.12345] * 1536
+    # highlight-end
+)
+
+print(uuid)  # the return value is the object's UUID
+# CreateObjectWithVector END
+
+# ===============================================
 # ===== Create object with deterministic id =====
-# ============================================
+# ===============================================
 
 # CreateObjectWithDeterministicId START
 # highlight-start
@@ -84,7 +105,7 @@ jeopardy.data.delete_by_id(uuid)  # Clean up
 # ===== Create object with id and vector =====
 # ============================================
 
-# CreateObjectWithIdAndVector START
+# CreateObjectWithId START
 jeopardy = client.collections.get("JeopardyQuestion")
 uuid = jeopardy.data.insert(
     properties={
@@ -92,13 +113,12 @@ uuid = jeopardy.data.insert(
         "answer": "Weaviate",
     },
     # highlight-start
-    uuid="12345678-e64f-5d94-90db-c8cfa3fc1234",
-    vector=[0.12345] * 1536
+    uuid="12345678-e64f-5d94-90db-c8cfa3fc1234"
     # highlight-end
 )
 
 print(uuid)  # the return value is the object's UUID
-# CreateObjectWithIdAndVector END
+# CreateObjectWithId END
 
 # Test
 result = jeopardy.query.fetch_object_by_id(uuid)

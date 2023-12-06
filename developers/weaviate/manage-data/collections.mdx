@@ -1,0 +1,470 @@
+---
+title: Manage collections
+sidebar_position: 5
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'create', 'collections']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.classes-v3.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
+
+Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections. 
+
+A note regarding terminology, newer Weaviate documentation discuses "collections." Older Weaviate documentation refers to "classes" instead. Expect to see both terms throughout the documentation.
+
+## Create a collection
+
+To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema.md#auto-schema) creates them.  
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Create a collection and define properties
+
+Properties are the data fields in your collection. Each property has a name and a data type.
+
+<details>
+  <summary>
+    Additional information  
+  </summary>
+
+Use properties to configure additional parameters such as the data type, index characteristics, or tokenization. For the details, see:
+
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [API References: REST: Schema](../api/rest/schema.md#create-a-class)
+- [Available data types](../config-refs/datatypes.md)
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="py"
+    />
+  </TabItem>
+  
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="ts"
+    />
+  </TabItem>
+    
+</Tabs>
+
+## Disable auto-schema
+
+By default, Weaviate automatically creates missing collections and missing properties. However, when you manage collections manually you have more precise control of the collection settings.
+
+To disable [`auto-schema`](../config-refs/schema.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
+
+## Read a collection definition
+
+Retrieve a collection definition from the schema.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadOneCollection"
+      endMarker="# END ReadOneCollection"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadOneCollection"
+      endMarker="# END ReadOneCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Read all collection definitions
+
+Fetch the database schema to retrieve all of the collection definitions.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllCollections"
+      endMarker="# END ReadAllCollections"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadAllCollections"
+      endMarker="# END ReadAllCollections"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Update a collection definition
+
+Use a Weaviate client to update [collection](/developers/weaviate/config-refs/schema) definitions. Some definitions cannot be modified after you create your collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateCollection"
+      endMarker="# END UpdateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START UpdateCollection"
+      endMarker="# END UpdateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+```ts
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// This feature is under development
+```
+
+  </TabItem>
+</Tabs>
+
+## Delete a collection
+
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
+
+## Sample configuration: Text objects
+
+Text collection configuration details.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "moduleConfig": {
+        "text2vec-cohere": {
+            "model": "embed-multilingual-v2.0",
+        },
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "body",
+            "dataType": ["text"]
+        },
+    ],
+}
+```
+
+<details>
+  <summary>Additional information</summary>
+
+The following code defines:
+
+- The collection name (`Article`)
+- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
+- A set of properties (`title`, `body`) with `text` data types.
+
+</details>
+
+## Sample configuration: Nested objects
+
+:::info Added in `v1.22`
+
+:::
+
+Collection configuration with nested objects.
+
+```json
+{
+    "class": "Person",
+    "vectorizer": "text2vec-huggingface",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+<details>
+  <summary>Additional information</summary>
+
+The following code defines:
+
+- The collection name (`Person`)
+- The vectorizer module (`text2vec-huggingface`)
+- A set of properties (`last_name`, `address`)
+
+    - `last_name` has `text` data type
+    - `address` has `object` data type
+    
+- The `address` property has two nested properties (`street` and `city`)
+
+</details>
+
+## Sample configuration: Generative search
+
+Collection configuration for [generative search](../search/generative.md) on text objects.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-openai",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field",
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "skip": true
+                },
+            }
+        },
+    ],
+}
+
+```
+
+<details>
+  <summary>Additional information</summary>
+
+The collection defines the following:
+
+- The collection name (`Article`)
+- The default vectorizer module (`text2vec-openai`)
+- The generative module (`generative-openai`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`)
+- The tokenization option for the `url` property
+- The vectorization option (`skip` vectorization) for the `url` property
+
+</details>
+
+## Sample configuration: Images
+
+Image collection configuration details.
+
+```json
+{
+    "class": "Image",
+    "vectorizer": "img2vec-neural",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "img2vec-neural": {
+            "imageFields": [
+                "image"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "name": "image",
+            "dataType": ["blob"]
+        },
+    ],
+}
+```
+
+<details>
+  <summary>Additional information</summary>
+
+The collection defines the following:
+
+- The collection name (`Image`)
+- The vectorizer module (`img2vec-neural`)
+
+  - The `image` property configures collection to store image data.
+  
+- The vector index distance metric (`cosine`)
+- A set of properties (`image`), with the `image` property set as `blob`.
+
+For image searches, see [Image search](../search/image.md).
+
+</details>
+
+## Related pages
+
+- [API References: REST: Schema](../api/rest/schema.md)
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [Concepts: Data structure](../concepts/data.md)
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
