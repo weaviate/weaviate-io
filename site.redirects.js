@@ -64,7 +64,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/configuration/vector-index-type',
         },
         {
-            to: '/developers/weaviate/configuration/schema-configuration',
+            to: '/developers/weaviate/manage-data/collections',
             from: [
                 '/developers/weaviate/current/schema',
                 '/developers/weaviate/current/schema/schema-configuration',
@@ -145,7 +145,7 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/tutorials/query',
             from: '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia',
-        },
+        },developers/weaviate/manage-data/collections.mdx
 
         {
             to: '/developers/weaviate/tutorials',
