@@ -5,10 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
-<!-- :::caution Migrated From:
-- Adds text re: configuration options from `Vector index plugins/HNSW`
-::: -->
-
 ## Vector indexes
 
 Weaviate uses a vector index to facilitate efficient, vector-first data storage and retrieval. A vector index is a data structure that stores vectors and supports fast similarity searches.
