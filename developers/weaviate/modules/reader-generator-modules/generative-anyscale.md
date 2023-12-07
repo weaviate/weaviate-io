@@ -1,8 +1,8 @@
 ---
 title: Generative Search - Anyscale
 sidebar_position: 10
-image: og/docs/modules/generative-aws.jpg
-# tags: ['generative', 'transformers', 'aws']
+image: og/docs/modules/generative-anyscale.jpg
+# tags: ['generative', 'rag', 'anyscale']
 ---
 
 
@@ -14,10 +14,8 @@ image: og/docs/modules/generative-aws.jpg
 * The Generative Anyscale (`generative-anyscale`) module performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-
-### API Authentication
-
-[Learn more here about how to get an API key for Anyscale inference endpoints.](https://docs.anyscale.com/endpoints/overview)
+* The default model is `meta-llama/Llama-2-70b-chat-hf`.
+* The module requires an [API key for Anyscale inference endpoints](https://docs.anyscale.com/endpoints/overview) to perform the generation task.
 
 ## Introduction
 
@@ -80,13 +78,9 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      # Optional. assumes use with a vectorizer, in this case a text embedding model hosted with aws bedrock APIs.
-      DEFAULT_VECTORIZER_MODULE: text2vec-aws
-      AWS_ACCESS_KEY: sk-foobar  # Optional. Can be set at query time.
-      AWS_SECRET_KEY: sk-foobar  # Optional. Can be set at query time.
       # highlight-start
-      ANYSCALE_APIKEY: escecret-foobar # Optional. Can be set at query time.
-      ENABLE_MODULES: 'text2vec-aws,generative-anyscale'
+      ANYSCALE_APIKEY: escecret-foobar  # Optional. Can be set at query time.
+      ENABLE_MODULES: 'text2vec-cohere,generative-anyscale'  # Can be any `text2vec` module.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 volumes:
@@ -105,7 +99,7 @@ You can configure how the module will behave in each class through the [Weaviate
 
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
-| `model` | No | `"meta-llama/Llama-2-70b-chat-hf"` | The model to use. Defaults to Llama 70B.
+| `model` | No | `"meta-llama/Llama-2-70b-chat-hf"` | The model to use. Defaults to Llama-2 70B.
 | `temperature` | No | 0 | Control of LLM stochasticity. |
 
 ### Supported models
@@ -309,9 +303,8 @@ import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedre
 ```
 
 
-## Additional information
-
-Weaviate 1.23 introduces the `generative-anyscale` module, bringing open-source LLM heavyweights such as the Llama 70B, 13B, and 7B series, as well as CodeLlama 34B and Mistral 7B. Stay tuned for further integrations with Anyscale's Fine-tuning APIs and adding custom model paths to Weaviate's Generative Search modules.
+<!-- TODO - ADD THE BELOW TO THE RELEASE BLOG -->
+<!-- Weaviate 1.23 introduces the `generative-anyscale` module, bringing open-source LLM heavyweights such as the Llama 70B, 13B, and 7B series, as well as CodeLlama 34B and Mistral 7B. Stay tuned for further integrations with Anyscale's Fine-tuning APIs and adding custom model paths to Weaviate's Generative Search modules. -->
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
