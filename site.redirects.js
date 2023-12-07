@@ -345,8 +345,8 @@ const siteRedirects = {
         },
         
         {
-            to: '/developers/weaviate/configuration/compression',
-            from: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/pq-compression',
+            from: '/developers/weaviate/configuration/compression',
         },
 
         {
