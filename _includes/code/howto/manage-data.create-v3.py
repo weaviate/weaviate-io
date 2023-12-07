@@ -42,7 +42,9 @@ if not client.schema.exists("JeopardyQuestion"):
 # =========================
 
 # CreateObject START
+# highlight-start
 uuid = client.data_object.create(
+# highlight-end
     class_name="JeopardyQuestion",
     data_object={
         "question": "This vector DB is OSS & supports automatic property type inference on import",

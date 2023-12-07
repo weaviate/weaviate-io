@@ -38,7 +38,9 @@ client.collections.create(
 # CreateObject START
 jeopardy = client.collections.get("JeopardyQuestion")
 
+# highlight-start
 uuid = jeopardy.data.insert({
+# highlight-end
     "question": "This vector DB is OSS & supports automatic property type inference on import",
     # "answer": "Weaviate",  # properties can be omitted
     "newProperty": 123,  # will be automatically added as a number property
