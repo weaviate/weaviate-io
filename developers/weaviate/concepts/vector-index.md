@@ -43,9 +43,9 @@ The first vector-storage type Weaviate supports is [HNSW](./vector-index.md#hnsw
 
 ## Configuration of vector index type
 
-The index type can be specified per data class via the [class definition](/developers/weaviate/configuration/schema-configuration.md). Currently the only index type is HNSW.
+The index type can be specified per data class via the [class definition](/developers/weaviate/manage-data/collections.mdx). Currently the only index type is HNSW.
 
-Example of a class [vector index configuration in your data schema](/developers/weaviate/configuration/schema-configuration.md):
+Example of a class [vector index configuration in your data schema](/developers/weaviate/manage-data/collections.mdx):
 
 ```json
 {
@@ -63,7 +63,7 @@ Example of a class [vector index configuration in your data schema](/developers/
 }
 ```
 
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/configuration/schema-configuration.md).
+Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/manage-data/collections.mdx).
 
 ## Can Weaviate support multiple vector index (ANN) types?
 

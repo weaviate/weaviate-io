@@ -259,7 +259,7 @@ You can provide a custom vector during object creation either when:
 - you are using a vectorizer, but you wish to bypass it during the object creation stage.
 
 You can create a data object with a custom vector as follows:
-1. Set the `"vectorizer"` in the relevant class in the [data schema](../../configuration/schema-configuration.md#specify-a-vectorizer).
+1. Set the `"vectorizer"` in the relevant class in the [data schema](../../manage-data/collections.mdx#specify-a-vectorizer).
     - If you are not using a vectorizer at all, configure the class accordingly. To do this, you can:
         - set the default vectorizer module to `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), or
         - set the `"vectorizer"` for the class to `"none"` (`"vectorizer": "none"`) (*note: the class `vectorizer` setting will override the `DEFAULT_VECTORIZER_MODULE` parameter*).

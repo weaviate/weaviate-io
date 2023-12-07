@@ -67,7 +67,7 @@ import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 ### Collection configuration example 
 
-This is a sample of collection that shows the [data schema](/developers/weaviate/configuration/schema-configuration.md):
+This is a sample of collection that shows the [data schema](/developers/weaviate/manage-data/collections.mdx):
   
 
 ```json
@@ -177,7 +177,7 @@ The `vectorIndexType` parameter only specifies how the vectors of data objects a
 
 The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
 
-To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
+To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/manage-data/collections.mdx).
 
 ## Vector cache considerations
 For optimal search and import performance, previously imported vectors need to be in memory. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the disk cache should be used sparingly. However, Weaviate can limit the number of vectors in memory. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created.

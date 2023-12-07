@@ -17,7 +17,7 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
 
 :::info Related pages
-- [How to: Configure a schema](../configuration/schema-configuration.md)
+- [How to: Configure a schema](../manage-data/collections.mdx)
 - [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
 - [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
 :::

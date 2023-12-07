@@ -369,6 +369,192 @@ Retrieve a collection definition from the schema.
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Sample configuration: Text objects</summary>
+
+This configuration for text objects defines the following:
+
+- The collection name (`Article`)
+- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
+- A set of properties (`title`, `body`) with `text` data types.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "moduleConfig": {
+        "text2vec-cohere": {
+            "model": "embed-multilingual-v2.0",
+        },
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "body",
+            "dataType": ["text"]
+        },
+    ],
+}
+```
+
+</details>
+
+<details>
+  <summary>Sample configuration: Nested objects</summary>
+
+:::info Added in `v1.22`
+:::
+
+This configuration for nested objects defines the following:
+
+- The collection name (`Person`)
+- The vectorizer module (`text2vec-huggingface`)
+- A set of properties (`last_name`, `address`)
+
+    - `last_name` has `text` data type
+    - `address` has `object` data type
+    
+- The `address` property has two nested properties (`street` and `city`)
+
+```json
+{
+    "class": "Person",
+    "vectorizer": "text2vec-huggingface",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+</details>
+
+<details>
+  <summary>Sample configuration: Generative search</summary>
+
+This configuration for [generative search](../search/generative.md) defines the following:
+
+- The collection name (`Article`)
+- The default vectorizer module (`text2vec-openai`)
+- The generative module (`generative-openai`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`)
+- The tokenization option for the `url` property
+- The vectorization option (`skip` vectorization) for the `url` property
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-openai",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field",
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "skip": true
+                },
+            }
+        },
+    ],
+}
+
+```
+
+</details>
+
+
+
+<details>
+  <summary>Sample configuration: Images</summary>
+
+This configuration for image search defines the following:
+
+- The collection name (`Image`)
+- The vectorizer module (`img2vec-neural`)
+
+  - The `image` property configures collection to store image data.
+  
+- The vector index distance metric (`cosine`)
+- A set of properties (`image`), with the `image` property set as `blob`.
+
+For image searches, see [Image search](../search/image.md).
+
+```json
+{
+    "class": "Image",
+    "vectorizer": "img2vec-neural",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "img2vec-neural": {
+            "imageFields": [
+                "image"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "name": "image",
+            "dataType": ["blob"]
+        },
+    ],
+}
+```
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Read all collection definitions
 
 Fetch the database schema to retrieve all of the collection definitions.
@@ -503,188 +689,6 @@ Some parameters cannot be modified after you create your collection.
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
-
-## Sample configuration: Text objects
-
-Text collection configuration details.
-
-```json
-{
-    "class": "Article",
-    "vectorizer": "text2vec-cohere",
-    "moduleConfig": {
-        "text2vec-cohere": {
-            "model": "embed-multilingual-v2.0",
-        },
-    },
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        {
-            "name": "body",
-            "dataType": ["text"]
-        },
-    ],
-}
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The collection defines the following:
-
-- The collection name (`Article`)
-- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
-- A set of properties (`title`, `body`) with `text` data types.
-
-</details>
-
-## Sample configuration: Nested objects
-
-:::info Added in `v1.22`
-
-:::
-
-Collection configuration with nested objects.
-
-```json
-{
-    "class": "Person",
-    "vectorizer": "text2vec-huggingface",
-    "properties": [
-        {
-            "dataType": ["text"],
-            "name": "last_name",
-        },
-        {
-            "dataType": ["object"],
-            "name": "address",
-            "nestedProperties": [
-                {"dataType": ["text"], "name": "street"},
-                {"dataType": ["text"], "name": "city"}
-            ],
-        }
-    ],
-}
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The collection defines the following:
-
-- The collection name (`Person`)
-- The vectorizer module (`text2vec-huggingface`)
-- A set of properties (`last_name`, `address`)
-
-    - `last_name` has `text` data type
-    - `address` has `object` data type
-    
-- The `address` property has two nested properties (`street` and `city`)
-
-</details>
-
-## Sample configuration: Generative search
-
-Collection configuration for [generative search](../search/generative.md) on text objects.
-
-```json
-{
-    "class": "Article",
-    "vectorizer": "text2vec-openai",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-    },
-    "moduleConfig": {
-        "generative-openai": {}
-    },
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        {
-            "name": "chunk",
-            "dataType": ["text"]
-        },
-        {
-            "name": "chunk_no",
-            "dataType": ["int"]
-        },
-        {
-            "name": "url",
-            "dataType": ["text"],
-            "tokenization": "field",
-            "moduleConfig": {
-                "text2vec-openai": {
-                    "skip": true
-                },
-            }
-        },
-    ],
-}
-
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The collection defines the following:
-
-- The collection name (`Article`)
-- The default vectorizer module (`text2vec-openai`)
-- The generative module (`generative-openai`)
-- A set of properties (`title`, `chunk`, `chunk_no` and `url`)
-- The tokenization option for the `url` property
-- The vectorization option (`skip` vectorization) for the `url` property
-
-</details>
-
-## Sample configuration: Images
-
-Image collection configuration details.
-
-```json
-{
-    "class": "Image",
-    "vectorizer": "img2vec-neural",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-    },
-    "moduleConfig": {
-        "img2vec-neural": {
-            "imageFields": [
-                "image"
-            ]
-        }
-    },
-    "properties": [
-        {
-            "name": "image",
-            "dataType": ["blob"]
-        },
-    ],
-}
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The collection defines the following:
-
-- The collection name (`Image`)
-- The vectorizer module (`img2vec-neural`)
-
-  - The `image` property configures collection to store image data.
-  
-- The vector index distance metric (`cosine`)
-- A set of properties (`image`), with the `image` property set as `blob`.
-
-For image searches, see [Image search](../search/image.md).
-
-</details>
 
 ## Related pages
 
