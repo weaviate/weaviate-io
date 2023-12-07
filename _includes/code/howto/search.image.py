@@ -14,7 +14,7 @@ import base64, requests
 def url_to_base64(url):
     image_response = requests.get(url)
     content = image_response.content
-    return base64.b64encode(content).decode('utf-8')
+    return base64.b64encode(content).decode("utf-8")
 
 base64_img = url_to_base64("https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deutsches_Museum_Portrait_4.jpg/500px-Deutsches_Museum_Portrait_4.jpg")
 # END helper base64 functions
@@ -72,7 +72,7 @@ expected_results = """
 
 # Tests
 # TODOv4 update tests
-# assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
+# assert response["data"]["Get"]["Dog"] == [{"breed": "Corgi"}]
 
 
 # ====================================
@@ -80,7 +80,7 @@ expected_results = """
 # ====================================
 
 # Save content to file
-# with open('image.jpg', 'wb') as file:
+# with open("image.jpg", "wb") as file:
 #     file.write(content)
 
 # Perform query
@@ -102,7 +102,7 @@ print(response.objects[0])
 # END ImageFileSearch
 
 # Tests
-# assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
+# assert response["data"]["Get"]["Dog"] == [{"breed": "Corgi"}]
 
 
 # ============================
@@ -149,7 +149,7 @@ expected_results = """
 """
 
 # Tests
-# assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
+# assert response["data"]["Get"]["Dog"][0]["breed"] == "Corgi"
 
 
 # START HelperFunction
@@ -157,8 +157,8 @@ expected_results = """
 # encoded_image = weaviate.util.image_encoder_b64(filename)
 # response = (
 #     client.query
-#     .get('Dog', 'breed')
-#     .with_near_image({'image': encoded_image}, encode=False)
+#     .get("Dog", "breed")
+#     .with_near_image({"image": encoded_image}, encode=False)
 #     .with_limit(1)
 #     .do()
 # )

@@ -354,8 +354,8 @@ const siteRedirects = {
         },
 
         {
-         to: '/developers/weaviate/manage-data/collections',
-         from: '/developers/weaviate/configuration/schema-configuration',
+            to: '/developers/weaviate/manage-data/collections',
+            from: '/developers/weaviate/configuration/schema-configuration',
         },
         
      // Products to Pricing redirects

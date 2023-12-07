@@ -302,19 +302,19 @@ assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generat
 # ======================================================
 
 # GroupedGenerativeProperties Python
-generate_prompt = 'What do these animals have in common, if anything?'
+generate_prompt = "What do these animals have in common, if anything?"
 
 response = (
   client.query
-  .get('JeopardyQuestion', ['question points'])
+  .get("JeopardyQuestion", ["question points"])
   .with_generate(
       grouped_task=generate_prompt,
       # highlight-start
-      grouped_properties=['answer', 'question']  # available since client version 3.19.2
+      grouped_properties=["answer", "question"]  # available since client version 3.19.2
       # highlight-end
   )
   .with_near_text({
-    'concepts': ['Australian animals']
+    "concepts": ["Australian animals"]
   })
   .with_limit(3)
 ).do()
@@ -323,10 +323,10 @@ print(json.dumps(response, indent=2))
 # END GroupedGenerativeProperties Python
 
 # Test results
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
-assert "Australia" in response['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
-assert response['data']['Get']['JeopardyQuestion'][1].keys() == {'question', 'points', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][2]['_additional'] == {'generate': None}
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "points", "_additional"}
+assert "Australia" in response["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"]
+assert response["data"]["Get"]["JeopardyQuestion"][1].keys() == {"question", "points", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][2]["_additional"] == {"generate": None}
 # End test
 
 
@@ -404,6 +404,6 @@ gqlresponse = client.query.raw(gql_query)
 # print(json.dumps(gqlresponse, indent=2))
 
 # Test results
-assert gqlresponse['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'points', '_additional'}
-assert 'Australia' in gqlresponse['data']['Get']['JeopardyQuestion'][0]['_additional']['generate']['groupedResult']
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "points", "_additional"}
+assert "Australia" in gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"]
 # End test

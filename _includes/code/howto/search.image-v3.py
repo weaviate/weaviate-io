@@ -15,12 +15,12 @@ import base64, requests
 def url_to_base64(url):
     image_response = requests.get(url)
     content = image_response.content
-    return base64.b64encode(content).decode('utf-8')
+    return base64.b64encode(content).decode("utf-8")
 
 # Helper function - get base64 representation from a local file
 def file_to_base64(path):
-    with open(path, 'rb') as file:
-        return base64.b64encode(file.read()).decode('utf-8')
+    with open(path, "rb") as file:
+        return base64.b64encode(file.read()).decode("utf-8")
 
 # Update the url and path to test
 test_image_base64 = url_to_base64("https://path-to-some-online-image.jpg")
@@ -37,18 +37,18 @@ import base64
 import json
 
 client = weaviate.Client(
-    'http://localhost:8080',  # Replace with your Weaviate URL
+    "http://localhost:8080",  # Replace with your Weaviate URL
     # Uncomment if authentication is on and replace w/ your Weaviate instance API key.
     # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
 )
 
 # Fetch URL into `content` variable
-image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
+image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG"
 image_response = requests.get(image_url)
 content = image_response.content
 
 # # Encode content into base64 string
-# base64_string = base64.b64encode(content).decode('utf-8')
+# base64_string = base64.b64encode(content).decode("utf-8")
 """
 # START search with base64
 # highlight-start
@@ -61,10 +61,10 @@ base64_string="SOME_BASE_64_REPRESENTATION"
 # Perform query
 response = (
     client.query
-    .get('Dog', 'breed')
+    .get("Dog", "breed")
     # highlight-start
     .with_near_image(
-        {'image': base64_string},
+        {"image": base64_string},
         encode=False  # False because the image is already base64-encoded
     )
     # highlight-end
@@ -92,7 +92,7 @@ expected_results = """
 """
 
 # Tests
-assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
+assert response["data"]["Get"]["Dog"] == [{"breed": "Corgi"}]
 
 
 # ====================================
@@ -100,16 +100,16 @@ assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 # ====================================
 
 # Save content to file
-with open('image.jpg', 'wb') as file:
+with open("image.jpg", "wb") as file:
     file.write(content)
 
 # Perform query
 # START ImageFileSearch
 response = (
     client.query
-    .get('Dog', 'breed')
+    .get("Dog", "breed")
     # highlight-start
-    .with_near_image({'image': 'image.jpg'})  # default `encode=True` reads & encodes the file
+    .with_near_image({"image": "image.jpg"})  # default `encode=True` reads & encodes the file
     # highlight-end
     .with_limit(1)
     .do()
@@ -117,7 +117,7 @@ response = (
 # END ImageFileSearch
 
 # Tests
-assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
+assert response["data"]["Get"]["Dog"] == [{"breed": "Corgi"}]
 
 
 # ============================
@@ -127,18 +127,18 @@ assert response['data']['Get']['Dog'] == [{'breed': 'Corgi'}]
 # START Distance
 response = (
     client.query
-    .get('Dog', 'breed')
+    .get("Dog", "breed")
     .with_near_image(
         {
-            'image': base64_string,
+            "image": base64_string,
             # highlight-start
-            'distance': 0.2
+            "distance": 0.2
             # highlight-end
         },
         encode=False  # False because the image is already base64-encoded
     )
     # highlight-start
-    .with_additional('distance')
+    .with_additional("distance")
     # highlight-end
     .do()
 )
@@ -166,7 +166,7 @@ expected_results = """
 """
 
 # Tests
-assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
+assert response["data"]["Get"]["Dog"][0]["breed"] == "Corgi"
 
 
 # START HelperFunction
@@ -174,8 +174,8 @@ assert response['data']['Get']['Dog'][0]['breed'] == 'Corgi'
 # encoded_image = weaviate.util.image_encoder_b64(filename)
 # response = (
 #     client.query
-#     .get('Dog', 'breed')
-#     .with_near_image({'image': encoded_image}, encode=False)
+#     .get("Dog", "breed")
+#     .with_near_image({"image": encoded_image}, encode=False)
 #     .with_limit(1)
 #     .do()
 # )
