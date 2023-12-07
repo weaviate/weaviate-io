@@ -82,17 +82,16 @@ By default, [auto-schema](../config-refs/schema.md#autoschema) creates new colle
 
 </details>
 
-## Specify optional parameters
+## Create an object with Vector
 
-When you create an object, you can specify an [ID](../api/graphql/additional-properties.md#id) or a vector. If the ID is not a
-[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), Weaviate generates a random UUID.
+When you create an object, you can provide a vector.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# CreateObjectWithIdAndVector START"
-      endMarker="# CreateObjectWithIdAndVector END"
+      startMarker="# CreateObjectWithVector START"
+      endMarker="# CreateObjectWithVector END"
       language="py"
     />
   </TabItem>
@@ -100,8 +99,8 @@ When you create an object, you can specify an [ID](../api/graphql/additional-pro
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# CreateObjectWithIdAndVector START"
-      endMarker="# CreateObjectWithIdAndVector END"
+      startMarker="# CreateObjectWithVector START"
+      endMarker="# CreateObjectWithVector END"
       language="py"
     />
   </TabItem>
@@ -109,8 +108,8 @@ When you create an object, you can specify an [ID](../api/graphql/additional-pro
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// CreateObjectWithIdAndVector START"
-      endMarker="// CreateObjectWithIdAndVector END"
+      startMarker="// CreateObjectWithVector START"
+      endMarker="// CreateObjectWithVector END"
       language="ts"
     />
   </TabItem>
@@ -118,8 +117,8 @@ When you create an object, you can specify an [ID](../api/graphql/additional-pro
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// CreateObjectWithIdAndVector START"
-      endMarker="// CreateObjectWithIdAndVector END"
+      startMarker="// CreateObjectWithVector START"
+      endMarker="// CreateObjectWithVector END"
       language="java"
     />
   </TabItem>
@@ -127,8 +126,63 @@ When you create an object, you can specify an [ID](../api/graphql/additional-pro
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// CreateObjectWithIdAndVector START"
-      endMarker="// CreateObjectWithIdAndVector END"
+      startMarker="// CreateObjectWithVector START"
+      endMarker="// CreateObjectWithVector END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Create an object with ID
+
+When you create an object, you can specify an [ID](../api/graphql/additional-properties.md#id).
+
+:::info 
+If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+:::
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectWithId START"
+      endMarker="# CreateObjectWithId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CreateObjectWithId START"
+      endMarker="# CreateObjectWithId END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectWithId START"
+      endMarker="// CreateObjectWithId END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// CreateObjectWithId START"
+      endMarker="// CreateObjectWithId END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// CreateObjectWithId START"
+      endMarker="// CreateObjectWithId END"
       language="go"
     />
   </TabItem>
@@ -136,7 +190,12 @@ When you create an object, you can specify an [ID](../api/graphql/additional-pro
 
 ## Generate deterministic IDs
 
-The `id` must be unique. Weaviate throws an error if you duplicate an existing ID. 
+You can generate an ID based on your data object. 
+
+:::info
+Gerenating IDs from an objects is not random, as the same value will always the same ID.<br/>
+Using deterministic IDs allows us to avoid inserting duplicate objects, as Weaviate throws an error if you provide a duplicate ID. 
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

@@ -69,9 +69,29 @@ console.log(JSON.stringify(result, null, 2));  // the returned value is the obje
 result = await client.data.getterById().withClassName(className).withId(result.id).do();
 assert.equal(result.properties['newProperty'], 123);
 
-// ============================================
+// =======================================
+// ===== Create object with a vector =====
+// =======================================
+
+// CreateObjectWithVector START
+result = await client.data
+  .creator()
+  .withClassName('JeopardyQuestion')
+  .withProperties({
+    question: 'This vector DB is OSS and supports automatic property type inference on import',
+    answer: 'Weaviate',
+  })
+  // highlight-start
+  .withVector(Array(1536).fill(0.12345))
+  // highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+// CreateObjectWithVector END
+
+// ===============================================
 // ===== Create object with deterministic id =====
-// ============================================
+// ===============================================
 
 // CreateObjectWithDeterministicId START
 // highlight-start
@@ -102,7 +122,7 @@ assert.equal(result.id, generateUuid5(JSON.stringify(dataObj)));
 // ===== Create object with id and vector =====
 // ============================================
 
-// CreateObjectWithIdAndVector START
+// CreateObjectWithId START
 result = await client.data
   .creator()
   .withClassName('JeopardyQuestion')
@@ -112,12 +132,11 @@ result = await client.data
   })
   // highlight-start
   .withId('12345678-e64f-5d94-90db-c8cfa3fc1234')
-  .withVector(Array(1536).fill(0.12345))
   // highlight-end
   .do();
 
 console.log(JSON.stringify(result, null, 2));  // the returned value is the object
-// CreateObjectWithIdAndVector END
+// CreateObjectWithId END
 
 result = await client.data.getterById().withClassName(className).withId('12345678-e64f-5d94-90db-c8cfa3fc1234').do();
 assert.deepEqual(result.properties, {
