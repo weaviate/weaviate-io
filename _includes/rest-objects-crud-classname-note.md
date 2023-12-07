@@ -1,4 +1,4 @@
-:::caution Class Name in Object CRUD Operations
+:::caution Collection (class) Name in Object CRUD Operations
 Collections act like namespaces, so two different collections could have duplicate IDs between them.<p><br/></p>
 
 Prior to Weaviate `v1.14` you can manipulate objects without specifying the collection name. This method is deprecated. It will be removed in Weaviate `v2.0.0`.<br/><br/>
