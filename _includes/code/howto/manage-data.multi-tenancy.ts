@@ -19,21 +19,33 @@ try {
   // Delete the class if it exists
 }
 
+// =====================
+// ===== Enable MT =====
+// =====================
+
+// START EnableMultiTenancy
+await client.schema
+  .classCreator().withClass({
+    class: 'MultiTenancyCollection',
+    // highlight-start
+    multiTenancyConfig: { enabled: true },
+    // highlight-end
+  })
+  .do();
+// END EnableMultiTenancy
 
 // ================================
 // ===== Add tenants to class =====
 // ================================
 
 // START AddTenantsToClass
-await client.schema
-  .classCreator().withClass({
-    class: 'MultiTenancyCollection',
-    multiTenancyConfig: { enabled: true },
-  })
-  .do();
-
 let tenants = await client.schema
-  .tenantsCreator('MultiTenancyCollection', [{ name: 'tenantA' }, { name: 'tenantB' }])
+  // highlight-start
+  .tenantsCreator(
+    'MultiTenancyCollection',
+    [{ name: 'tenantA' }, { name: 'tenantB' }]
+  )
+  // highlight-end
   .do();
 // END AddTenantsToClass
 
@@ -50,7 +62,9 @@ assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
 
 // START ListTenants
 tenants = await client.schema
+  // highlight-start
   .tenantsGetter('MultiTenancyCollection')
+  // highlight-end
   .do();
 // END ListTenants
 
@@ -65,7 +79,9 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 
 // START RemoveTenants
 await client.schema
+  // highlight-start
   .tenantsDeleter('MultiTenancyCollection', ['tenantB', 'tenantX'])  // tenantX will be ignored
+  // highlight-end
   .do();
 // END RemoveTenants
 

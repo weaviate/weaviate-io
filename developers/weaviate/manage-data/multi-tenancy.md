@@ -45,17 +45,40 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
     />
   </TabItem>
 
-  <TabItem value="json" label="JSON (Other clients)">
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START EnableMultiTenancy"
+      endMarker="# END EnableMultiTenancy"
+      language="py"
+    />
+  </TabItem>
 
-```json
-{
-  "class": "MultiTenancyCollection",
-  // highlight-start
-  "multiTenancyConfig": {"enabled": true}
-  // highlight-end
-}
-```
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="ts"
+    />
+  </TabItem>
 
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="go"
+    />
   </TabItem>
 </Tabs>
 
@@ -231,7 +254,7 @@ Non-existing tenants are ignored.
   </TabItem>
 </Tabs>
 
-## Update tenant(s)
+## Update tenant activity status
 
 Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 

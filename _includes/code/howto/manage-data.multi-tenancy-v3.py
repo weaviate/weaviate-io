@@ -4,17 +4,31 @@ import weaviate
 import os
 
 client = weaviate.Client(
-    'http://localhost:8080',
-    # auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+    "http://localhost:8080",
+    # auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
     }
 )
 
-class_name = 'MultiTenancyCollection'  # aka JeopardyQuestion
+class_name = "MultiTenancyCollection"  # aka JeopardyQuestion
 
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
+
+
+# =====================
+# ===== Enable MT =====
+# =====================
+
+# START EnableMultiTenancy
+client.schema.create_class({
+    "class": "MultiTenancyCollection",
+    # highlight-start
+    "multiTenancyConfig": {"enabled": True}
+    # highlight-end
+})
+# END EnableMultiTenancy
 
 
 # ================================
@@ -24,20 +38,15 @@ if client.schema.exists(class_name):
 # START AddTenantsToClass
 from weaviate import Tenant
 
-client.schema.create_class({
-    'class': 'MultiTenancyCollection',
-    'multiTenancyConfig': {'enabled': True}
-})
-
 client.schema.add_class_tenants(
-  class_name='MultiTenancyCollection',  # The class to which the tenants will be added
-  tenants=[Tenant(name='tenantA'), Tenant(name='tenantB')]
+  class_name="MultiTenancyCollection",  # The class to which the tenants will be added
+  tenants=[Tenant(name="tenantA"), Tenant(name="tenantB")]
 )
 # END AddTenantsToClass
 
 # Test
 the_class = client.schema.get(class_name)
-assert the_class['multiTenancyConfig'] == {'enabled': True}
+assert the_class["multiTenancyConfig"] == {"enabled": True}
 
 
 # ===================================
@@ -46,13 +55,13 @@ assert the_class['multiTenancyConfig'] == {'enabled': True}
 
 # START ListTenants
 tenants = client.schema.get_class_tenants(
-    class_name='MultiTenancyCollection'  # The class from which the tenants will be retrieved
+    class_name="MultiTenancyCollection"  # The class from which the tenants will be retrieved
 )
 # END ListTenants
 
 # Test
-assert Tenant(name='tenantA') in tenants
-assert Tenant(name='tenantB') in tenants
+assert Tenant(name="tenantA") in tenants
+assert Tenant(name="tenantB") in tenants
 
 # =======================================
 # ===== Remove tenants from a class =====
@@ -60,16 +69,16 @@ assert Tenant(name='tenantB') in tenants
 
 # START RemoveTenants
 client.schema.remove_class_tenants(
-    class_name='MultiTenancyCollection',  # The class from which the tenants will be removed
+    class_name="MultiTenancyCollection",  # The class from which the tenants will be removed
     # highlight-start
-    tenants=['tenantB', 'tenantX']  # The tenants to be removed. tenantX will be ignored.
+    tenants=["tenantB", "tenantX"]  # The tenants to be removed. tenantX will be ignored.
     # highlight-end
 )
 # END RemoveTenants
 
 # Test
 tenants = client.schema.get_class_tenants(class_name)
-assert tenants == [Tenant(name='tenantA')]
+assert tenants == [Tenant(name="tenantA")]
 
 
 # ============================
@@ -78,19 +87,19 @@ assert tenants == [Tenant(name='tenantA')]
 
 # START CreateMtObject
 object_id = client.data_object.create(
-      class_name='MultiTenancyCollection',  # The class to which the object will be added
+      class_name="MultiTenancyCollection",  # The class to which the object will be added
       data_object={
-          'question': 'This vector DB is OSS & supports automatic property type inference on import'
+          "question": "This vector DB is OSS & supports automatic property type inference on import"
       },
       # highlight-start
-      tenant='tenantA'  # The tenant to which the object will be added
+      tenant="tenantA"  # The tenant to which the object will be added
       # highlight-end
 )
 # END CreateMtObject
 
 # Test
-result = client.data_object.get(object_id, class_name=class_name, tenant='tenantA')
-assert result['tenant'] == 'tenantA'
+result = client.data_object.get(object_id, class_name=class_name, tenant="tenantA")
+assert result["tenant"] == "tenantA"
 
 
 # =====================
@@ -99,16 +108,16 @@ assert result['tenant'] == 'tenantA'
 
 # START Search
 result = (
-    client.query.get('MultiTenancyCollection', ['question'])
+    client.query.get("MultiTenancyCollection", ["question"])
     # highlight-start
-    .with_tenant('tenantA')
+    .with_tenant("tenantA")
     # highlight-end
     .do()
 )
 # END Search
 
 # Test
-assert 'question' in result['data']['Get'][class_name][0]
+assert "question" in result["data"]["Get"][class_name][0]
 
 
 # ===============================
@@ -116,29 +125,29 @@ assert 'question' in result['data']['Get'][class_name][0]
 # ===============================
 
 category_id = client.data_object.create(
-      class_name='JeopardyCategory',
+      class_name="JeopardyCategory",
       data_object={
-          'category': 'Software'
+          "category": "Software"
       },
 )
 
 # START AddCrossRef
 # Add the cross-reference property to the multi-tenancy class
-client.schema.property.create('MultiTenancyCollection', {
-    'name': 'hasCategory',
-    'dataType': ['JeopardyCategory'],
+client.schema.property.create("MultiTenancyCollection", {
+    "name": "hasCategory",
+    "dataType": ["JeopardyCategory"],
 })
 
 client.data_object.reference.add(
     from_uuid=object_id,  # MultiTenancyCollection object id (a Jeopardy question)
-    from_class_name='MultiTenancyCollection',
-    from_property_name='hasCategory',
-    tenant='tenantA',
-    to_class_name='JeopardyCategory',
+    from_class_name="MultiTenancyCollection",
+    from_property_name="hasCategory",
+    tenant="tenantA",
+    to_class_name="JeopardyCategory",
     to_uuid=category_id
 )
 # END AddCrossRef
 
 # Test
-result = client.data_object.get(object_id, class_name=class_name, tenant='tenantA')
-assert result['properties']['hasCategory'][0]['href'] == f'/v1/objects/JeopardyCategory/{category_id}'
+result = client.data_object.get(object_id, class_name=class_name, tenant="tenantA")
+assert result["properties"]["hasCategory"][0]["href"] == f"/v1/objects/JeopardyCategory/{category_id}"

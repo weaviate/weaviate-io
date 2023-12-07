@@ -61,7 +61,7 @@ client.collections.create(
     ]
 )
 
-# CrossRefDefinition
+# CrossRefDefinition START
 import weaviate.classes as wvc
 
 client.collections.create(
@@ -78,7 +78,7 @@ client.collections.create(
         # highlight-end
     ]
 )
-# END CrossRefDefinition
+# CrossRefDefinition END
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
 dataset.upload_objects(old_client, 100)  # batch-upload objects
@@ -157,6 +157,7 @@ client.collections.create(
 
 # START Collections TwoWay Category2
 # Add the reference to JeopardyQuestion, after it was created
+category = client.collections.get("JeopardyCategory")
 category.config.add_property(
     # highlight-start
     wvc.ReferenceProperty(

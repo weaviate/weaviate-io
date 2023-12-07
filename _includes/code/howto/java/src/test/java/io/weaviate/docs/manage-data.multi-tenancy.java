@@ -65,6 +65,7 @@ class ManageDataMultiTenancyTest {
   @Test
   public void shouldManageDataUpdate() {
     String className = "MultiTenancyCollection";
+    enableMultiTenancy(className);
     addTenantsToClass(className);
     listTenants(className);
     removeTenantsFromClass(className);
@@ -73,25 +74,18 @@ class ManageDataMultiTenancyTest {
     addCrossReference(className);
   }
 
-  private void addTenantsToClass(String className) {
-    // START AddTenantsToClass
-    WeaviateClass MultiTenancyCollection = WeaviateClass.builder()
+
+  private void enableMultiTenancy(String className) {
+    // START EnableMultiTenancy
+    WeaviateClass multiTenancyCollection = WeaviateClass.builder()
       .className("MultiTenancyCollection")
       .multiTenancyConfig(MultiTenancyConfig.builder().enabled(true).build())
       .build();
 
     client.schema().classCreator()
-      .withClass(MultiTenancyCollection)
+      .withClass(multiTenancyCollection)
       .run();
-
-    client.schema().tenantsCreator()
-      .withClassName("MultiTenancyCollection")
-      .withTenants(
-        Tenant.builder().name("tenantA").build(),
-        Tenant.builder().name("tenantB").build()
-      )
-      .run();
-    // END AddTenantsToClass
+    // END EnableMultiTenancy
 
     Result<WeaviateClass> result = client.schema().classGetter().withClassName(className).run();
     assertThat(result).isNotNull()
@@ -101,7 +95,18 @@ class ManageDataMultiTenancyTest {
       .extracting(Result::getResult).isNotNull()
       .extracting(WeaviateClass::getMultiTenancyConfig).isNotNull()
       .returns(true, MultiTenancyConfig::getEnabled);
+  }
 
+  private void addTenantsToClass(String className) {
+    // START AddTenantsToClass
+    client.schema().tenantsCreator()
+      .withClassName("MultiTenancyCollection")
+      .withTenants(
+        Tenant.builder().name("tenantA").build(),
+        Tenant.builder().name("tenantB").build()
+      )
+      .run();
+    // END AddTenantsToClass
     checkTenants(className);
   }
 

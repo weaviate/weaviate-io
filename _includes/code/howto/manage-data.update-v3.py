@@ -9,14 +9,14 @@ import weaviate
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    'http://localhost:8080',  # Replace with your Weaviate URL
-    # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),  # Replace w/ your Weaviate API key
+    "http://localhost:8080",  # Replace with your Weaviate URL
+    # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate API key
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace w/ your OPENAI API key
     }
 )
 
-class_name = 'JeopardyQuestion'
+class_name = "JeopardyQuestion"
 
 
 # ============================
@@ -24,15 +24,15 @@ class_name = 'JeopardyQuestion'
 # ============================
 
 class_definition = {
-    'class': 'JeopardyQuestion',
-    'description': 'A Jeopardy! question',
-    'vectorizer': 'text2vec-openai',
+    "class": "JeopardyQuestion",
+    "description": "A Jeopardy! question",
+    "vectorizer": "text2vec-openai",
 }
 
 
 # Clean slate
-if client.schema.exists('JeopardyQuestion'):
-    client.schema.delete_class('JeopardyQuestion')
+if client.schema.exists("JeopardyQuestion"):
+    client.schema.delete_class("JeopardyQuestion")
 
 client.schema.create_class(class_definition)
 
@@ -42,28 +42,28 @@ client.schema.create_class(class_definition)
 # =============================
 
 # UpdateProps START
-uuid = '...'  # replace with the id of the object you want to update
+uuid = "..."  # replace with the id of the object you want to update
 # UpdateProps END
 
 uuid = client.data_object.create({
-    'question': 'Test question',
-    'answer': 'Test answer',
-    'points': -1,
-}, 'JeopardyQuestion')
+    "question": "Test question",
+    "answer": "Test answer",
+    "points": -1,
+}, "JeopardyQuestion")
 
 # UpdateProps START
 client.data_object.update(
     uuid=uuid,
-    class_name='JeopardyQuestion',
+    class_name="JeopardyQuestion",
     data_object={
-        'points': 100,
+        "points": 100,
     },
 )
 # UpdateProps END
 
 # Test
 result = client.data_object.get_by_id(uuid, class_name=class_name)
-assert result['properties']['points'] == 100
+assert result["properties"]["points"] == 100
 
 
 # =========================
@@ -72,9 +72,9 @@ assert result['properties']['points'] == 100
 # UpdateVector START
 client.data_object.update(
     uuid=uuid,
-    class_name='JeopardyQuestion',
+    class_name="JeopardyQuestion",
     data_object={
-        'points': 100,
+        "points": 100,
     },
     # highlight-start
     vector=[0.12345] * 1536
@@ -84,24 +84,24 @@ client.data_object.update(
 
 # Test
 result = client.data_object.get_by_id(uuid, class_name=class_name, with_vector=True)
-assert set(result['vector']) == {0.12345}
+assert set(result["vector"]) == {0.12345}
 
 
 # ==========================
 # ===== Replace object =====
 # ==========================
 # Replace START
-uuid = '...'  # the id of the object you want to replace
+uuid = "..."  # the id of the object you want to replace
 # Replace END
-uuid = result['id']
+uuid = result["id"]
 # Replace START
 # highlight-start
 client.data_object.replace(
 # highlight-end
     uuid=uuid,
-    class_name='JeopardyQuestion',
+    class_name="JeopardyQuestion",
     data_object={
-        'answer': 'Replaced',
+        "answer": "Replaced",
         # The other properties will be deleted
     },
 )
@@ -109,7 +109,7 @@ client.data_object.replace(
 
 # Test
 result = client.data_object.get_by_id(uuid, class_name=class_name, with_vector=True)
-assert result['properties'] == {'answer': 'Replaced'}  # ensure the other props were deleted
+assert result["properties"] == {"answer": "Replaced"}  # ensure the other props were deleted
 
 
 # =============================
@@ -128,15 +128,15 @@ def del_props(client: Client, uuid: str, class_name: str, prop_names: List[str])
     client.data_object.replace(object_data["properties"], class_name, uuid)
 
 
-uuid = '...'  # replace with the id of the object you want to delete properties from
+uuid = "..."  # replace with the id of the object you want to delete properties from
 # DelProps END
 
-uuid = result['id']  # Actually get the ID for testing
+uuid = result["id"]  # Actually get the ID for testing
 
 # DelProps START
-del_props(client, uuid, 'JeopardyQuestion', ['answer'])
+del_props(client, uuid, "JeopardyQuestion", ["answer"])
 # DelProps END
 
 # Test
 result = client.data_object.get_by_id(uuid, class_name=class_name, with_vector=True)
-assert result['properties'] == {}
+assert result["properties"] == {}

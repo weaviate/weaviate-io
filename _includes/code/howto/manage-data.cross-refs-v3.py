@@ -37,15 +37,14 @@ client = weaviate.Client(
 # ===== Define classes in the schema and upload dataset =====
 # ===========================================================
 
+# CrossRefDefinition START
 class_definitions = [
     {
         "class": "JeopardyCategory",
-        "description": "A Jeopardy! category",
         "properties": [
             {"name": "title", "dataType": ["text"]},
         ],
     },
-    # CrossRefDefinition
     {
         "class": "JeopardyQuestion",
         "description": "A Jeopardy! question",
@@ -61,14 +60,16 @@ class_definitions = [
             # highlight-end
         ],
     },
-    # END CrossRefDefinition
 ]
+# CrossRefDefinition END
 
 client.schema.delete_all()
-if not client.schema.contains({"classes": class_definitions}):
-    client.schema.create({"classes": class_definitions})
-    dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-    dataset.upload_objects(client, 100)  # batch-upload objects
+# if not client.schema.contains({"classes": class_definitions}):
+# CrossRefDefinition START
+client.schema.create({"classes": class_definitions})
+# CrossRefDefinition END
+dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
+dataset.upload_objects(client, 100)  # batch-upload objects
 
 # =================================
 # ===== Add one-way cross-ref =====
@@ -104,7 +105,6 @@ del_prop(us_cities_id, "hasQuestion", "JeopardyCategory")
 # START Collections TwoWay Category1
 category_definition = {
     "class": "JeopardyCategory",
-    "description": "A Jeopardy! category",
     "properties": [
         {"name": "title", "dataType": ["text"]},
     ],

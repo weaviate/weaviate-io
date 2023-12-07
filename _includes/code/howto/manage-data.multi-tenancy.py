@@ -16,9 +16,9 @@ if client.collections.exists("MultiTenancyCollection"):
 
 
 
-# ================================
+# =====================
 # ===== Enable MT =====
-# ================================
+# =====================
 
 # START EnableMultiTenancy
 import weaviate.classes as wvc
@@ -39,14 +39,6 @@ multi_collection = client.collections.create(
 
 # START AddTenantsToClass
 import weaviate.classes as wvc
-
-multi_collection = client.collections.create(
-    name="MultiTenancyCollection",
-    # Enable multi-tenancy on the new collection
-    # highlight-start
-    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
-    # highlight-end
-)
 
 # Add two tenants to the collection
 # highlight-start

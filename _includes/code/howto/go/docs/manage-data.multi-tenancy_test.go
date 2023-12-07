@@ -34,19 +34,25 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 	className := "MultiTenancyCollection"
 
 	t.Run("Add tenants to class", func(t *testing.T) {
-		// START AddTenantsToClass
+		// START EnableMultiTenancy
 		client.Schema().ClassCreator().
 			WithClass(&models.Class{
 				Class: "MultiTenancyCollection",
+				// highlight-start
 				MultiTenancyConfig: &models.MultiTenancyConfig{
 					Enabled: true,
 				},
+				// highlight-end
 			}).
 			Do(ctx)
+		// END EnableMultiTenancy
 
+		// START AddTenantsToClass
 		client.Schema().TenantsCreator().
 			WithClassName("MultiTenancyCollection").
+			// highlight-start
 			WithTenants(models.Tenant{Name: "tenantA"}, models.Tenant{Name: "tenantB"}).
+			// highlight-end
 			Do(ctx)
 		// END AddTenantsToClass
 
