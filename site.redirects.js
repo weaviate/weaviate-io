@@ -145,8 +145,7 @@ const siteRedirects = {
         {
             to: '/developers/weaviate/tutorials/query',
             from: '/developers/weaviate/current/tutorials/semantic-search-through-wikipedia',
-        },developers/weaviate/manage-data/collections.mdx
-
+        },
         {
             to: '/developers/weaviate/tutorials',
             from: [
