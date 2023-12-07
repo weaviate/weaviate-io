@@ -12,11 +12,11 @@ client = weaviate.Client(
 
 # START ReadAllProps
 # STEP 1 - Prepare a helper function to iterate through data in batches
-def get_batch_with_cursor(batch_size, cursor=None):
+def get_batch_with_cursor(collection_name, batch_size, cursor=None):
     # First prepare the query to run through data
     query = (
         client.query.get(
-            "CollectionName", # update with your collection name
+            collection_name,         # update with your collection name
             ["title", "description"] # update with the required properties
         )
         # highlight-start
@@ -35,23 +35,21 @@ def get_batch_with_cursor(batch_size, cursor=None):
     else:
         result = query.do()
     # highlight-end
-    
-    return result["data"]["Get"]["CollectionName"]
+
+    return result["data"]["Get"][collection_name]
 
 # STEP 2 - Iterate through the data
 cursor = None
 while True:
-    # Request the next batch of objects
-    next_batch = get_batch_with_cursor(100, cursor)
+    # Get the next batch of objects
+    next_batch = get_batch_with_cursor("CollectionName", 100, cursor)
 
     # Break the loop if empty – we are done
     if len(next_batch) == 0:
         break
 
-    # highlight-start
     # Here is your next batch of objects
     print(next_batch)
-    # highlight-end
 
     # Move the cursor to the last returned uuid
     cursor=next_batch[-1]["_additional"]["id"]
@@ -63,11 +61,11 @@ while True:
 
 # START ReadAllVectors
 # STEP 1 - Prepare a helper function to iterate through data in batches
-def get_batch_with_cursor(batch_size, cursor=None):
+def get_batch_with_cursor(collection_name, batch_size, cursor=None):
     # First prepare the query to run through data
     query = (
         client.query.get(
-            "CollectionName", # update with your collection name
+            collection_name,         # update with your collection name
             ["title", "description"] # update with the required properties
         )
         # highlight-start
@@ -83,13 +81,13 @@ def get_batch_with_cursor(batch_size, cursor=None):
     else:
         result = query.do()
     
-    return result["data"]["Get"]["CollectionName"]
+    return result["data"]["Get"][collection_name]
 
 # STEP 2 - Iterate through the data
 cursor = None
 while True:
-    # Get Request next batch of objects
-    next_batch = get_batch_with_cursor(100, cursor)
+    # Get the next batch of objects
+    next_batch = get_batch_with_cursor("CollectionName", 100, cursor)
 
     # Break the loop if empty – we are done
     if len(next_batch) == 0:
@@ -108,12 +106,12 @@ while True:
 
 # START ReadAllTenants
 # STEP 1 - Prepare a helper function to iterate through data in batches
-def get_batch_with_cursor(batch_size, cursor, tenant_name):
+def get_batch_with_cursor(collection_name, tenant_name, batch_size, cursor):
     # First prepare the query to run through data
     query = (
         client.query.get(
-            "MultiTenancyCollection", # update with your collection name
-            ["title", "description"], # update with the required properties
+            collection_name,         # update with your collection name
+            ["title", "description"] # update with the required properties
         )
         # highlight-start
         .with_tenant(tenant_name)     # tenant name goes here
@@ -140,12 +138,12 @@ tenants = client.schema.get_class_tenants(
 
 # STEP 2 - Iterate through Tenants
 for tenant in tenants:
-    # For each tenant, reset the cursor to the beginning
+    # Reset the cursor to the beginning
     cursor = None
     while True:
-        # Request the next batch of objects
+        # Get the next batch of objects
         # highlight-start
-        next_batch = get_batch_with_cursor(100, cursor, tenant.name)
+        next_batch = get_batch_with_cursor("MultiTenancyCollection", tenant.name, 100, cursor)
         # highlight-end
 
         # Break the loop if empty – we are done

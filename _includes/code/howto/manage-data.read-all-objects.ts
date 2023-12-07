@@ -122,14 +122,14 @@ while (true) {
 // STEP 1 - Prepare a helper function to iterate through data in batches
 async function getBatchWithCursor(
   collectionName: string,
-  tenant_name: string,
+  tenantName: string,
   batchSize: number,
   cursor: string,
 ): Promise<any[]> {
   const query = client.graphql.get()
     .withClassName(collectionName)
     // highlight-start
-    .withTenant(tenant_name)
+    .withTenant(tenantName)
     // highlight-end
     .withFields('title description _additional { id }')
     .withLimit(batchSize);
