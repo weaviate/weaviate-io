@@ -113,6 +113,49 @@ assert.equal(result['properties'].length, 1);  // no 'body' from the previous ex
 await client.schema.classDeleter().withClassName(className).do();
 
 
+// START SetVectorIndex
+const classWithIndexType = {
+  class: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+  ],
+  vectorizer: 'text2vec-openai',  // this could be any vectorizer
+  // highlight-start
+  vectorIndexType: 'flat',  // or `hnsw`
+  vectorIndexConfig: {
+    bq: {
+        enabled: true,  // Enable BQ compression. Default: False
+        rescoreLimit: 200,  // The minimum number of candidates to fetch before rescoring. Default: -1 (No limit)
+        cache: true,  // Enable use of vector cache. Default: False
+    },
+    vectorCacheMaxObjects: 100000,  // Cache size if `cache` enabled. Default: 1000000000000
+  }
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client
+  .schema
+  .classCreator()
+  .withClass(classWithIndexType)
+  .do();
+
+// The returned value is the full class definition, showing all defaults
+console.log(JSON.stringify(result, null, 2));
+// END SetVectorIndex
+
+// Test
+assert.equal(result['vectorizer'], 'text2vec-openai');
+assert.equal(result['vectorIndexType'], 'flat');
+assert.equal(result['properties'].length, 1);  // no 'body' from the previous example
+
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
+
 // START ModuleSettings
 const classWithModuleSettings = {
   class: 'Article',

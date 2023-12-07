@@ -113,9 +113,7 @@ An example of a complete collection object including properties:
 {
   "class": "Article",                       // The name of the collection in string format
   "description": "An article",              // A description for your reference
-  "vectorIndexType": "hnsw",                // Defaults to hnsw, can be omitted in schema
-                                            //    definition since this is the only available type
-                                            //    for now
+  "vectorIndexType": "hnsw",                // Defaults to hnsw
   "vectorIndexConfig": {
     ...                                     // Vector index type specific settings, including distance metric
   },
@@ -180,11 +178,11 @@ You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. Thi
 
 ### vectorIndexType
 
-The vectorIndexType defaults to [`hnsw`](/developers/weaviate/concepts/vector-index.md#hnsw) since this is the only available vector indexing algorithm implemented at the moment.
+The `vectorIndexType` parameter controls the type of vector index that is used for this collection. The options are `hnsw` (default) and `flat`.
 
 ### vectorIndexConfig
 
-Check the [`hnsw` page](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) for `hnsw` parameters that you can configure. This includes setting the distance metric to be used with Weaviate.
+The `vectorIndexConfig` parameter controls the configuration of the vector index. The available parameters depend on the `vectorIndexType` that is used. See the [vector index configuration](./vector-index.md) page for more details.
 
 ### shardingConfig
 

@@ -81,6 +81,32 @@ assert config.vectorizer.value == "text2vec-openai"
 client.collections.delete("Article")
 
 
+# import weaviate.classes as wvc
+
+# client.collections.create(
+#     "Article",
+#     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+#     # highlight-start
+#     vector_index_type=wvc.Configure.vector_index_type(),
+#     # highlight-end
+#     properties=[ # properties configuration is optional
+#         wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+#         wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+#     ]
+# )
+# START SetVectorIndex
+# Coming soon
+# END SetVectorIndex
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vectorizer.value == "text2vec-openai"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
 # START ModuleSettings
 import weaviate.classes as wvc
 
@@ -208,7 +234,7 @@ assert config.properties[0].name == "body"
 
 # TODOv4 we need to update this part of the example
 # It seemed to be broken when I worked on this example
-# stopwords_preset="en", 
+# stopwords_preset="en",
 
 # START ModifyParam
 import weaviate.classes as wvc

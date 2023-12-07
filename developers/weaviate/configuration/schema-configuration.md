@@ -151,6 +151,47 @@ The following code sets the `text2vec-openai` module as the vectorizer for the `
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
 - [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
 
+### Set vector index type
+
+The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndex"
+      endMarker="// END SetVectorIndex"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
+
 ### Collection level module settings
 
 Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
@@ -333,7 +374,7 @@ The following sections describe how to add a property to a collection and how to
 
 ### Add a property
 
-You can add a new property to an existing collection. 
+You can add a new property to an existing collection.
 
 Add new properties to an existing schema one at a time. To add multiple properties, create a list of the new properties. Then, loop through the list to add one new property on each iteration.
 
