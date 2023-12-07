@@ -50,6 +50,43 @@ console.log(JSON.stringify(result, null, 2));
 // Test
 console.assert('invertedIndexConfig' in result);
 
+// ====================================
+// ===== CREATE A CLASS WITH PROPERTIES
+// ====================================
+
+// Clean slate
+try {
+ await client.schema.classDeleter().withClassName(className).do();
+} catch (e) {
+ // ignore error if class doesn't exist
+}
+
+// START CreateCollectionWithProperties
+const classWithProps = {
+ class: 'Article',
+ properties: [
+   {
+     name: 'title',
+     dataType: ['text'],
+   },
+   {
+     name: 'body',
+     dataType: ['text'],
+   },
+ ],
+};
+
+// Add the class to the schema
+result = await client
+ .schema
+ .classCreator()
+ .withClass(classWithProps)
+ .do();
+
+// The returned value is the full class definition, showing all defaults
+console.log(JSON.stringify(result, null, 2));
+// END CreateCollectionWithProperties
+
 // ================================
 // ===== READ A CLASS =====
 // ================================

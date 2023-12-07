@@ -9,9 +9,9 @@ Use these guides to **manage data** and perform CRUD operations in Weaviate.
 
 The guides cover these topics: 
 
-- [Manage classes (object collections)](./create.mdx): Manage collections of objects (also called classes in Weaviate).
-- [Create objects](./create.mdx): How to create individual objects.
-- [(Batch) Import items](./import.mdx): Import data in bulk.
+- [Manage collections](./create.mdx): Manage collections of objects (also called classes in Weaviate).
+- [Create objects](./create.mdx): Create individual objects.
+- [Batch import](./import.mdx): Import data in bulk.
 - [Read objects](./read.mdx): Read individual objects.
 - [Read all objects](./read-all-objects.mdx): Read all objects in a collection for back up of export.
 - [Update objects](./update.mdx): Update objects.
