@@ -78,7 +78,9 @@ Properties are the data fields in your collection. Each property has a name and 
     Additional information  
   </summary>
 
-Use properties to configure additional parameters such as the data type, index characteristics, or tokenization. For the details, see:
+Use properties to configure additional parameters such as data type, index characteristics, or tokenization. 
+
+For details, see:
 
 - [References: Configuration: Schema](../config-refs/schema.md)
 - [API References: REST: Schema](../api/rest/schema.md#create-a-class)
@@ -118,7 +120,7 @@ Use properties to configure additional parameters such as the data type, index c
 
 ## Disable auto-schema
 
-By default, Weaviate automatically creates missing collections and missing properties. However, when you manage collections manually you have more precise control of the collection settings.
+By default, Weaviate creates missing collections and missing properties. When you configure collections manually, you have more precise control of the collection settings.
 
 To disable [`auto-schema`](../config-refs/schema.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
@@ -167,7 +169,7 @@ Collection level settings override default values and general configuration para
 
 ## Collection level module settings
 
-Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
+To configure how a module works with a specific collection, set the `moduleConfig` parameter in the collection schema.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -198,11 +200,9 @@ Configure the `moduleConfig` parameter at the collection-level to set collection
   </TabItem>
 </Tabs>
 
-The available parameters vary according to the module. ([Learn more](../modules/index.md)).
-
 ## Property-level module settings
 
-Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
+To configure how a module works with specific collection parameters, use `moduleConfig` at the property level.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -233,18 +233,9 @@ Configure the `moduleConfig` parameter at the property-level to set property-lev
   </TabItem>
 </Tabs>
 
-The available parameters vary according to the module. ([Learn more](../modules/index.md)).
-
 ## Indexing, sharding and replication settings
 
-You can also set indexing, sharding and replication settings through the schema. For example, you can set a vector index distance metric or a replication factor for a collection.
-
-This code sets the replication factor.
-
-:::note
-You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup) to test replication factors greater than 1.
-
-:::
+Configure indexing, sharding, and replication per collection. This example configures replication. 
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -275,13 +266,22 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>
+     Additional information
+  </summary>
 
-For details on the configuration parameters, see the following configuration references:
+To test replication factors great then one, use a [multi-node deployment](../installation/docker-compose.md#multi-node-setup).
+
+
+For details on the configuration parameters, see the following:
 
 - [Vector indexes](../config-refs/schema.md#vectorindexconfig)
 - [Inverted indexes](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
 - [Sharding](../config-refs/schema.md#shardingconfig)
 - [Replication](../config-refs/schema.md#replicationconfig)
+
+</details>
 
 ## Multi-tenancy
 
@@ -319,19 +319,7 @@ To enable multi-tenancy, set `multiTenancyConfig` to `{"enabled": true}` in the 
   </TabItem>
 </Tabs>
 
-
-```json
-{
-  "class": "MultiTenancyClass",
-  // highlight-start
-  "multiTenancyConfig": {"enabled": true}
-  // highlight-end
-}
-```
-
-For more details on multi-tenancy operations, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
-
-## Read a collection definition
+## Read a single collection definition
 
 Retrieve a collection definition from the schema.
 
@@ -434,7 +422,7 @@ Fetch the database schema to retrieve all of the collection definitions.
 
 ## Update a collection definition
 
-Use a Weaviate client to update [collection](/developers/weaviate/config-refs/schema) definitions. Some definitions cannot be modified after you create your collection.
+Some definitions cannot be modified after you create your collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -505,7 +493,7 @@ Some parameters cannot be modified after you create your collection.
 
   <TabItem value="js" label="JavaScript/TypeScript">
 
-  >  Coming soon. ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
+  ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
   </TabItem>
 </Tabs>
@@ -545,7 +533,7 @@ Text collection configuration details.
 <details>
   <summary>Additional information</summary>
 
-The following code defines:
+The collection defines the following:
 
 - The collection name (`Article`)
 - The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
@@ -585,7 +573,7 @@ Collection configuration with nested objects.
 <details>
   <summary>Additional information</summary>
 
-The following code defines:
+The collection defines the following:
 
 - The collection name (`Person`)
 - The vectorizer module (`text2vec-huggingface`)
