@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import Header from '/src/components/Workshops/header';
 import ThemeSwitch from '/src/components/ThemeSwitch';
+import styles from './styles.module.scss';
 
 export default function WorkshopPage() {
+  const [isCalendarLoaded, setCalendarLoaded] = useState(false);
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://static.elfsight.com/platform/platform.js';
@@ -16,6 +19,9 @@ export default function WorkshopPage() {
         'elfsight-app-01a3e7d9-f320-4491-a464-8339fafe3e80'
       );
       document.querySelector('.container').appendChild(calendar);
+      setTimeout(() => {
+        setCalendarLoaded(true);
+      }, 1000);
     };
     document.head.appendChild(script);
   }, []);
@@ -23,9 +29,19 @@ export default function WorkshopPage() {
   return (
     <div className="custom-page noBG">
       <Layout>
-        <MetaSEO img="og/company/investors.jpg" />
+        <MetaSEO img="og/content/workshops.jpg" />
         <Header />
-        <div className="container"></div>
+        <div className="container">
+          {!isCalendarLoaded && (
+            <div className={styles.loadGrid}>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
+            </div>
+          )}
+        </div>
       </Layout>
       <ThemeSwitch />
     </div>

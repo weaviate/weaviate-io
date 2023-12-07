@@ -109,17 +109,22 @@ gql_query = """
 # =======================================
 
 # HybridWithScorePython
+import weaviate.classes as wvc
+
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     alpha=0.5,
+    # highlight-start
+    return_metadata=wvc.MetadataQuery(score=True, explain_score=True),
+    # highlight-end
     limit=3
 )
 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
     # highlight-start
-    print(o.metadata.explain_score, o.metadata.score)
+    print(o.metadata.score, o.metadata.explain_score)
     # highlight-end
 # END HybridWithScorePython
 
@@ -280,7 +285,7 @@ gql_query = """
 """
 # gqlresponse = client.query.raw(gql_query)
 # print('--------------------------------------------------------------------------------')
-# print(json.dumps(response, indent=2))
+print(json.dumps(response, indent=2))
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
 
@@ -449,7 +454,6 @@ response = jeopardy.query.hybrid(
   limit=3
 )
  
-#print(response)
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END HybridWithFusionTypePython

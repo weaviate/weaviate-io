@@ -38,6 +38,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
+  
 console.log(JSON.stringify(result, null, 2));
 // END GetNearText
 
@@ -216,7 +217,6 @@ result = await client.graphql
   // highlight-end
   .do();
 
-// For each group, display the properties under _additional.group
 for (const group of result.data.Get.JeopardyQuestion)
   console.log(group['_additional']['group']);
 // END GetWithGroupBy

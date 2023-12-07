@@ -15,37 +15,32 @@ import assert from 'assert';
 // START helper base64 functions
 import { readFileSync } from 'fs'
 
-// Helper function – get base64 representation from an online image
 const urlToBase64 = async (imageUrl) => {
   const response = await fetch(imageUrl);
   const content = await response.buffer();
   return content.toString('base64');
 }
 
-// Helper function – get base64 representation from a local file
+urlToBase64('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deutsches_Museum_Portrait_4.jpg/500px-Deutsches_Museum_Portrait_4.jpg')
+  .then(base64 => { console.log(base64) });
+
+// END helper base64 functions
+
+
+  // Helper function – get base64 representation from a local file
 // This example is for NodeJS
 const fileToBase64 = (file: string) => {
   return readFileSync(file, { encoding: 'base64' });
 }
-
-// Update the url and path to test
-urlToBase64('https://path-to-some-online-image.jpg')
-  .then(base64 => { console.log(base64) });
-
 console.log(fileToBase64('./your-image-here.jpg'))
-// END helper base64 functions
-
 
 // ===========================================
 // ===== Search by base64 representation =====
 // ===========================================
 
-// START search with base64
 import weaviate from 'weaviate-ts-client';
 import fetch from 'node-fetch';
-// END search with base64  // START ImageFileSearch
 import fs from 'fs';
-// END ImageFileSearch  // START search with base64
 
 const client = weaviate.client({
   scheme: 'http',
@@ -59,7 +54,13 @@ const imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welc
 // Fetch URL into `content` variable
 const response = await fetch(imageUrl);
 const content = await response.buffer();
-const base64String = content.toString('base64');
+
+/*
+// START search with base64
+const base64String = 'SOME_BASE_64_REPRESENTATION';
+// END search with base64
+*/
+// START search with base64
 
 // Perform query
 let result = await client.graphql

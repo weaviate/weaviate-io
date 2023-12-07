@@ -25,11 +25,6 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects()
 # highlight-end
 
-# This prints the response object
-print(response)
-
-# This formatting step prints the output that you probably want.
-# The remaining examples use formatted output where appropriate.
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END BasicGetPython
@@ -358,8 +353,8 @@ response = jeopardy.query.fetch_objects(
     limit=1
 )
 
-for r in response.objects:
-    print(r.uuid)
+for o in response.objects:
+    print(o.uuid)
 # END GetObjectIdPython
 
 # Test results
@@ -433,7 +428,6 @@ response = jeopardy.query.fetch_objects(
     limit=2
 )
 
-# print result objects
 for o in response.objects:
     print(o.properties["question"])
     # print referenced objects
@@ -500,6 +494,34 @@ gql_query = """
 # END Test results
 
 
+
+# ====================================
+# ===== GET WITH METADATA EXAMPLE =====
+# ====================================
+
+# GetWithMetadataPython
+# highlight-start
+import weaviate.classes as wvc
+# highlight-end
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    limit=1,
+    # highlight-start
+    return_metadata=wvc.MetadataQuery(creation_time_unix=True)
+    # highlight-end
+)
+
+for o in response.objects:
+    print(json.dumps(o.properties, indent=2))  # View the returned properties
+    print(o.metadata.creation_time_unix)  # View the returned creation time
+# END GetWithMetadataPython
+
+# Test results
+# # NEEDS TESTS
+# END Test results
+
+
 # =========================
 # ===== MULTI-TENANCY =====
 # =========================
@@ -510,15 +532,15 @@ gql_query = """
 import weaviate.classes as wvc
 
 # Connect to the collection
-collectionConnection = client.collections.get("AMultiTenancyCollection")
+mt_collection = client.collections.get("AMultiTenancyCollection")
 
 # Get the specific tenant's version of the collection
 # highlight-start
-connectionForTenantA = collectionConnection.with_tenant("tenantA")
+collection_tenant_a = mt_collection.with_tenant("tenantA")
 # highlight-end
 
 # Query tenantA's version
-result = connectionForTenantA.query.fetch_objects(
+result = collection_tenant_a.query.fetch_objects(
     return_properties=["property1", "property2"],
     limit=1,
 )

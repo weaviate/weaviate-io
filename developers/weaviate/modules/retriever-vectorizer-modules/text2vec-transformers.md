@@ -20,14 +20,17 @@ Key notes:
 - Pre-built `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. models available.
 - Can also use any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
 
-:::tip Significant GPU/CPU speed differences
-Transformer models run *much* faster with GPUs, even for inference (10x+ speeds typically).
+:::tip Do you have GPU acceleration?
 
-Without a GPU, import or `nearText` queries may become bottlenecks in production if using `text2vec-transformers`.
+Transformer model inference speeds are usually about ten times faster with GPUs. If you have a GPU, use one of the GPU enabled models.<br/><br/>
 
-If this is the case, we recommend:
-- An API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md), or
-- The [`text2vec-contextionary`](./text2vec-contextionary.md) module if you prefer a local inference container.
+If you use `text2vec-transformers` without GPU acceleration, imports or `nearText` queries may become bottlenecks. The ONNX-enabled images can use [ONNX Runtime](https://onnxruntime.ai/) for faster inference processing on CPUs. Look for the `-onnx` suffix in the image name.<br/><br/>
+
+Alternatively, consider one of the following options:
+
+- an API-based module such as [`text2vec-cohere`](./text2vec-cohere.md) or [`text2vec-openai`](./text2vec-openai.md)
+- a local inference container such as [`text2vec-contextionary`](./text2vec-contextionary.md) or [`text2vec-gpt4all`](./text2vec-gpt4all.md)
+
 :::
 
 ## Weaviate instance configuration
@@ -89,7 +92,7 @@ services:
 ```
 
 :::note Have you enabled CUDA?
-This module will benefit greatly from GPU usage. Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`).
+Make sure to enable CUDA if you have a compatible GPU available (`ENABLE_CUDA=1`) to take advantage of GPU acceleration.
 :::
 
 
@@ -189,11 +192,14 @@ We have built images from publicly available models that in our opinion are well
 |`sentence-transformers/all-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L12-v2`|
 |`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2`|
 |`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2`|
+|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2-onnx`|
 |`sentence-transformers/multi-qa-distilbert-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-distilbert-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-distilbert-cos-v1`|
 |`sentence-transformers/gtr-t5-base` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
 |`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
 |`google/flan-t5-base` ([Info](https://huggingface.co/google/flan-t5-base))|`semitechnologies/transformers-inference:google-flan-t5-base`|
 |`google/flan-t5-large` ([Info](https://huggingface.co/google/flan-t5-large))|`semitechnologies/transformers-inference:google-flan-t5-large`|
+|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5`|
+|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5`|
 |DPR Models|
 |`facebook/dpr-ctx_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-ctx_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-ctx_encoder-single-nq-base`|
 |`facebook/dpr-question_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-question_encoder-single-nq-base`|
@@ -202,6 +208,20 @@ We have built images from publicly available models that in our opinion are well
 |Bar-Ilan University NLP Lab Models|
 |`biu-nlp/abstract-sim-sentence` ([Info](https://huggingface.co/biu-nlp/abstract-sim-sentence))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-sentence`|
 |`biu-nlp/abstract-sim-query` ([Info](https://huggingface.co/biu-nlp/abstract-sim-query))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-query`|
+
+#### ONNX-enabled images (CPU only)
+
+We also provide ONNX-enabled images for some models. These images use ONNX Runtime for faster inference on CPUs. They are quantized for ARM64 and AMD64 (AVX2) hardware.
+
+Look for the `-onnx` suffix in the image name.
+
+|Model Name|Image Name|
+|---|---|
+|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2-onnx`|
+|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
+|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|[`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
+
+#### Is your preferred model missing?
 
 If your preferred model is missing, please [open an issue](https://github.com/weaviate/weaviate/issues) to include it or build
 a custom image as outlined below.
@@ -285,12 +305,15 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 
 <CodeNearText />
 
-## Model license(s)
+## Model licenses
 
-The `text2vec-transformers` module is compatible with various models, each with their own license. For detailed information, please review the license of the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
+The `text2vec-transformers` module is compatible with various models. Each of the models has its own license. For detailed information, please review the license for the model you are using in the [Hugging Face Model Hub](https://huggingface.co/models).
 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
+## Release notes
+
+The release notes are [here](https://github.com/weaviate/t2v-transformers-models/releases/).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

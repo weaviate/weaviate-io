@@ -175,11 +175,11 @@ curl \
     -d '{
         "class": "Article",
         "type": "text2vec-contextionary-contextual",
-        "basedOnProperties": [
-            "summary"
-        ],
         "classifyProperties": [
             "ofCategory"
+        ],
+        "basedOnProperties": [
+            "summary"
         ],
         "filters": {
           "sourceWhere": {"path": ["wordCount"], "operator": "GreaterThan", "valueInt": 100},

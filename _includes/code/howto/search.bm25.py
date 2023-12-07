@@ -108,6 +108,7 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.bm25(
     query="food",
+    return_metadata=wvc.MetadataQuery(score=True),
     limit=3
 )
 
@@ -364,6 +365,7 @@ response = jeopardy.query.bm25(
     # highlight-start
     query_properties=["question"],
     # highlight-end
+    return_metadata=wvc.MetadataQuery(score=True),
     limit=3
 )
 
@@ -546,7 +548,6 @@ response = jeopardy.query.bm25(
     query="food wine", # search for food or wine
     # highlight-end
     query_properties=["question"],
-    return_properties=["question"], # only return question property
     limit=5
 )
 

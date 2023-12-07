@@ -14,7 +14,7 @@ const katex = require('rehype-katex');
 const config = {
 
 
-    title: 'Weaviate - vector database',
+    title: 'Weaviate - Vector Database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
     url: 'https://weaviate.io',
@@ -169,7 +169,7 @@ const config = {
             announcementBar: {
                 id: 'announcement-bar-python-client',
                 content:
-                    `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/blog/collections-python-client-preview">Shape the Future - Try Our New Python Client API</a> to learn more.`,
+                    `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/client-libraries/python">Shape the Future - Try Our New Python Client API</a> to learn more.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -190,19 +190,21 @@ const config = {
                 items: [
                     {
                         // type: 'dropdown',
-                        label: 'Products',
+                        label: 'Product',
                         position: 'right',
-                        to: '/products',
-                        // items: [
-                        //     {
-                        //         label: 'Pricing',
-                        //         to: '/pricing',
-                        //     },
-                        //     {
-                        //         label: 'Weaviate Cloud console',
-                        //         href: 'https://console.weaviate.cloud',
-                        //     },
-                        // ],
+                        to: '/platform',
+                        items: [
+                          
+                            {
+                                label: 'Vector Database',
+                                    to: '/platform',
+                                 },
+                           
+                           {
+                                label: 'Security',
+                                href: '/security',
+                           },
+                         ],
                     },
                     {
                         type: 'dropdown',
@@ -230,10 +232,6 @@ const config = {
                             {
                                 label: 'Workshops',
                                 to: '/learn/workshops',
-                            },
-                            {
-                                label: 'Partners',
-                                to: '/partners/aws',
                             },
                             {
                                 label: 'Contributor Guide',
@@ -285,6 +283,11 @@ const config = {
                     {
                         label: 'Blog',
                         to: '/blog',
+                        position: 'right',
+                    },
+                    {
+                        label: 'Pricing',
+                        to: '/pricing',
                         position: 'right',
                     },
                     {
@@ -359,8 +362,8 @@ const config = {
                         title: 'Weaviate Cloud Services',
                         items: [
                             {
-                                label: 'Products',
-                                to: '/products',
+                                label: 'Pricing',
+                                to: '/pricing',
                             },
                             {
                                 label: 'Console',

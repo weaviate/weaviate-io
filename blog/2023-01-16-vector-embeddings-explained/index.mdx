@@ -108,7 +108,7 @@ Despite these downsides, transformer models have been wildly successful. Countle
 
 ## Vector embeddings with Weaviate
 
-For this reason, Weaviate is configured to support many different vectorizer models and vectorizer service providers. You can even [bring your own vectors](/developers/weaviate/tutorials/custom-vectors), for example if you already have a vectorization pipeline available, or if none of the publicly available models are suitable for you.
+For this reason, Weaviate is configured to support many different vectorizer models and vectorizer service providers. You can even [bring your own vectors](/developers/weaviate/starter-guides/custom-vectors), for example if you already have a vectorization pipeline available, or if none of the publicly available models are suitable for you.
 
 For one, Weaviate supports using any Hugging Face models through our `text2vec-hugginface` module, so that you can [choose one of the many sentence transformers published on Hugging Face](/blog/how-to-choose-a-sentence-transformer-from-hugging-face). Or, you can use other very popular vectorization APIs such as OpenAI or Cohere through the [`text2vec-openai`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) or [`text2vec-cohere`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere) modules. You can even run transformer models locally with [`text2vec-transformers`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers), and modules such as [`multi2vec-clip`](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip) can convert images and text to vectors using a CLIP model.
 

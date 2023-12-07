@@ -1,6 +1,6 @@
 ---
 title: text2vec-jinaai
-sidebar_position: 12
+sidebar_position: 15
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
@@ -19,7 +19,7 @@ Key notes:
 - When you enable the text2vec-jinaai model, you can use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `jina-embeddings-v2-base-en`.
 
-:::info Available from version `v1.22.3`
+:::info Added in `v1.22.3`
 :::
 
 ## Weaviate instance configuration
