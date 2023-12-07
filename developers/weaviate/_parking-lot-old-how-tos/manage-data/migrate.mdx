@@ -15,38 +15,24 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.migrate.dat
 
 ## Overview
 
-Follow these examples to migrate data manually when using a backup is not possible. They cover all permutations between:
+This guide is for migrating data when using a backup is not possible. They cover all permutations of transferring data between:
 
-- a single-tenancy collection (Collection), and
-- a tenant in a multi-tenancy collection (Tenant).
+- a single-tenancy collection, and
+- a multi-tenancy collection.
 
-<details>
-  <summary>Additional information</summary>
+The examples use two different Weaviate instances, exposed through different ports. The same process can be used for two different instances as well.
 
-  The examples use two different Weaviate instances, exposed through different ports. The same process can be used for two different instances as well.
+:::caution Limitations
+Currently, cross-references cannot be exported. To produce a complete replications, you will need to recreate the cross-references manually or use a backup.
+:::
 
-  Cross-references in Weaviate are properties. As such, you can retrieve cross-reference in one of two ways:
-  1. [Retrieve the object](../api/rest/objects.md#get-a-data-object) that it belongs to.
-  1. [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.
-
-</details>
-
-<details>
-  <summary>What about cross-references?</summary>
-
-These scripts should migrate cross-references as well.
-<br/>
-
-Cross-references are properties. As such, these cursor-based exports will include them.
-During restoration, restore the cross-referenced (i.e. "to") object first, then the object that contains the cross-reference (i.e. "from" object).
-
-</details>
-
-## Collection → Collection
+## Single-tenancy collection → Single-tenancy collection
 
 #### Step 1: Create the target collection(s)
 
-Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance.
+Create a collection at the target instance, matching the collection at the source instance.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -69,9 +55,9 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
 
 #### Step 2: Migrate the data
 
-Migrate:
-- The `source collection` data in the `client_src` instance
-- to `target collection` in the `client_tgt` instance
+This migrates
+- The `source class` data in the `client_src` instance
+- to `target class` in the `client_tgt` instance
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -96,11 +82,13 @@ Migrate:
   </TabItem>
 </Tabs>
 
-## Collection → Tenant
+## Single-tenancy collection → Multi-tenancy collection
 
 #### Step 1: Create the target collection(s)
 
-Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance, and enable multi-tenancy for the target collection.
+Create a collection at the target instance, matching the collection at the source instance as well as enabling multi-tenancy for the collection.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance, with multi-tenancy enabled.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -123,7 +111,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
 
 #### Step 2: Create the tenant(s)
 
-Add tenants at the target instance before adding data objects.
+Any tenants must be added before adding data objects.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -146,9 +134,10 @@ Add tenants at the target instance before adding data objects.
 
 #### Step 3: Migrate the data
 
-Migrate:
-- The `source collection` data in the `client_src` instance
-- to `target tenant` data from `target collection` in the `client_tgt` instance
+This migrates:
+
+- The `source class` data in the `client_src` instance
+- to `target tenant` data from `target class` in the `client_tgt` instance
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -173,11 +162,13 @@ Migrate:
   </TabItem>
 </Tabs>
 
-## Tenant → Collection
+## Multi-tenancy collection → Single-tenancy collection
 
 #### Step 1: Create the target collection(s)
 
-Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance, and enable multi-tenancy for the target collection.
+Create a collection at the target instance, matching the collection at the source instance, but with multi-tenancy disabled.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -200,9 +191,10 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
 
 #### Step 2: Migrate the data
 
-Migrate:
-- The `source tenant` data from `source collection` in the `client_src` instance
-- to `target collection` in the `client_tgt` instance
+This migrates:
+
+- The `source tenant` data from `source class` in the `client_src` instance
+- to `target class` in the `client_tgt` instance
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -227,11 +219,13 @@ Migrate:
   </TabItem>
 </Tabs>
 
-## Tenant → Tenant
+## Multi-tenancy collection → Multi-tenancy collection
 
 #### Step 1: Create the target collection(s)
 
-Create a collection (e.g. `WineReview`) at the target instance, matching the collection (e.g. `WineReview`) at the source instance including enabling multi-tenancy.
+Create a collection at the target instance, matching the collection at the source instance including enabling multi-tenancy.
+
+For example, if the source collection is called `WineReview`, create a collection called `WineReview` at the target instance, with multi-tenancy enabled.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -254,7 +248,7 @@ Create a collection (e.g. `WineReview`) at the target instance, matching the col
 
 #### Step 2: Create the tenant(s)
 
-Add tenants at the target instance before adding data objects.
+Any tenants must be added before adding data objects.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -277,9 +271,10 @@ Add tenants at the target instance before adding data objects.
 
 #### Step 3: Migrate the data
 
-Migrate:
-- The `source tenant` data from `source collection` in the `client_src` instance
-- to `target tenant` data from `target collection` in the `client_tgt` instance
+This migrates:
+
+- The `source tenant` data from `source class` in the `client_src` instance
+- to `target tenant` data from `target class` in the `client_tgt` instance
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -303,12 +298,3 @@ Migrate:
     />
   </TabItem>
 </Tabs>
-
-## Related pages
-
-- [Cursor API](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after)
-- [Multi-tenancy operations](./multi-tenancy.md)
-
-import DocsMoreResources from '/_includes/more-resources-docs.md';
-
-<DocsMoreResources />

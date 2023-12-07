@@ -1,94 +1,158 @@
-# CursorExample
-# Retrieve data
 import weaviate
 
-source_client = weaviate.Client(
+# Instantiate the client
+client = weaviate.Client(
     url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
     auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
 )
 
-batch_size = 20
-class_name = "WineReview"
-class_properties = ["title"]
-cursor = None
+# ============================
+# ===== Read all objects =====
+# ============================
 
-
-def get_batch_with_cursor(client, class_name, class_properties, batch_size, cursor=None):
-
+# START ReadAllProps
+# STEP 1 - Prepare a helper function to iterate through data in batches
+def get_batch_with_cursor(collection_name, batch_size, cursor=None):
+    # First prepare the query to run through data
     query = (
-        client.query.get(class_name, class_properties)
+        client.query.get(
+            collection_name,         # update with your collection name
+            ["title", "description"] # update with the required properties
+        )
         # highlight-start
-        # Optionally retrieve the vector embedding by adding `vector` to the _additional fields
+        .with_additional(["id"])
+        # highlight-end
+        .with_limit(batch_size)
+    )
+
+    # Fetch the next set of results
+    # highlight-start
+    if cursor is not None:
+        result = query.with_after(cursor).do()
+    # highlight-end
+    # Fetch the first set of results
+    # highlight-start
+    else:
+        result = query.do()
+    # highlight-end
+
+    return result["data"]["Get"][collection_name]
+
+# STEP 2 - Iterate through the data
+cursor = None
+while True:
+    # Get the next batch of objects
+    next_batch = get_batch_with_cursor("CollectionName", 100, cursor)
+
+    # Break the loop if empty – we are done
+    if len(next_batch) == 0:
+        break
+
+    # Here is your next batch of objects
+    print(next_batch)
+
+    # Move the cursor to the last returned uuid
+    cursor=next_batch[-1]["_additional"]["id"]
+# END ReadAllProps
+
+# =========================================
+# ===== Read all objects with Vectors =====
+# =========================================
+
+# START ReadAllVectors
+# STEP 1 - Prepare a helper function to iterate through data in batches
+def get_batch_with_cursor(collection_name, batch_size, cursor=None):
+    # First prepare the query to run through data
+    query = (
+        client.query.get(
+            collection_name,         # update with your collection name
+            ["title", "description"] # update with the required properties
+        )
+        # highlight-start
         .with_additional(["id vector"])
         # highlight-end
         .with_limit(batch_size)
     )
 
+    # Fetch the next set of results
     if cursor is not None:
-        return query.with_after(cursor).do()
+        result = query.with_after(cursor).do()
+    # Fetch the first set of results
     else:
-        return query.do()
-# Use this function to retrieve data
+        result = query.do()
+    
+    return result["data"]["Get"][collection_name]
 
+# STEP 2 - Iterate through the data
+cursor = None
+while True:
+    # Get the next batch of objects
+    next_batch = get_batch_with_cursor("CollectionName", 100, cursor)
 
-# START FetchClassDefinition
-class_schema = source_client.schema.get(class_name)
-# END FetchClassDefinition
+    # Break the loop if empty – we are done
+    if len(next_batch) == 0:
+        break
 
-# Restore to a new (target) instance
-target_client = weaviate.Client(
-    url="https://anon-endpoint.weaviate.network",  # Replace with your endpoint
+    # Here is your next batch of objects
+    print(next_batch)
+
+    # Move the cursor to the last returned uuid
+    cursor=next_batch[-1]["_additional"]["id"]
+# END ReadAllVectors
+
+# =========================================
+# ===== Read all objects with Tenants =====
+# =========================================
+
+# START ReadAllTenants
+# STEP 1 - Prepare a helper function to iterate through data in batches
+def get_batch_with_cursor(collection_name, tenant_name, batch_size, cursor):
+    # First prepare the query to run through data
+    query = (
+        client.query.get(
+            collection_name,         # update with your collection name
+            ["title", "description"] # update with the required properties
+        )
+        # highlight-start
+        .with_tenant(tenant_name)     # tenant name goes here
+        # highlight-end
+        .with_additional(["id"])
+        .with_limit(batch_size)
+    )
+
+    # Fetch the next set of results
+    if cursor is not None:
+        result = query.with_after(cursor).do()
+    # Fetch the first set of results
+    else:
+        result = query.do()
+    
+    return result["data"]["Get"]["MultiTenancyCollection"]
+
+# Get Tenants
+# highlight-start
+tenants = client.schema.get_class_tenants(
+    class_name="MultiTenancyCollection"  # The class from which the tenants will be retrieved
 )
+# highlight-end
 
-target_client.schema.create_class(class_schema)
-
-# Finished restoring to the target instance  # END CursorExample
-
-# ===== Tests - pre-population =====
-target_aggregate_resp = target_client.query.aggregate("WineReview").with_meta_count().do()
-target_aggregate_count = target_aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
-assert target_aggregate_count == 0
-# ===== END Tests - pre-population =====
-
-aggregate_count = 0
-
-# Restore to a new (target) instance  # CursorExample
-with target_client.batch(
-    batch_size=50,
-) as batch:
-
-    # Batch import all objects to the target instance
+# STEP 2 - Iterate through Tenants
+for tenant in tenants:
+    # Reset the cursor to the beginning
+    cursor = None
     while True:
-        # From the SOURCE instance, get the next group of objects
-        results = get_batch_with_cursor(source_client, class_name, class_properties, batch_size, cursor)
+        # Get the next batch of objects
+        # highlight-start
+        next_batch = get_batch_with_cursor("MultiTenancyCollection", tenant.name, 100, cursor)
+        # highlight-end
 
-        # If empty, we're finished
-        if len(results["data"]["Get"][class_name]) == 0:
+        # Break the loop if empty – we are done
+        if len(next_batch) == 0:
             break
 
-        # Otherwise, add the objects to the batch to be added to the target instance
-        objects_list = results["data"]["Get"][class_name]
-        aggregate_count += len(objects_list)
+        # Here is your next batch of objects
+        print(next_batch)
 
-        for retrieved_object in objects_list:
-            new_object = dict()
-            for prop in class_properties:
-                new_object[prop] = retrieved_object[prop]
-            batch.add_data_object(
-                new_object,
-                class_name=class_name,
-                # highlight-start
-                # Can update the vector if it was included in _additional above
-                vector=retrieved_object['_additional']['vector']
-                # highlight-end
-            )
-
-        # Update the cursor to the id of the last retrieved object
-        cursor = results["data"]["Get"][class_name][-1]["_additional"]["id"]
-# Finished restoring to the target instance  # END CursorExample
-
-# ===== Tests - post-population =====
-target_aggregate_resp = target_client.query.aggregate("WineReview").with_meta_count().do()
-target_aggregate_count = target_aggregate_resp["data"]["Aggregate"]["WineReview"][0]["meta"]["count"]
-assert target_aggregate_count == aggregate_count
-# ===== END Tests - post-population =====
+        # Move the cursor to the last returned uuid
+        cursor=next_batch[-1]["_additional"]["id"]
+# END ReadAllTenants

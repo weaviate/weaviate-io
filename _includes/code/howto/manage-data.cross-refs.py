@@ -8,6 +8,7 @@ import weaviate
 from weaviate import WeaviateClient
 import weaviate_datasets
 import weaviate.classes as wvc
+from typing import List
 
 sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
 us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
@@ -60,7 +61,7 @@ client.collections.create(
     ]
 )
 
-# CrossRefDefinition
+# CrossRefDefinition START
 import weaviate.classes as wvc
 
 client.collections.create(
@@ -77,7 +78,7 @@ client.collections.create(
         # highlight-end
     ]
 )
-# END CrossRefDefinition
+# CrossRefDefinition END
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
 dataset.upload_objects(old_client, 100)  # batch-upload objects
@@ -156,6 +157,7 @@ client.collections.create(
 
 # START Collections TwoWay Category2
 # Add the reference to JeopardyQuestion, after it was created
+category = client.collections.get("JeopardyCategory")
 category.config.add_property(
     # highlight-start
     wvc.ReferenceProperty(

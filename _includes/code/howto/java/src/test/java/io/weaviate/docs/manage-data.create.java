@@ -58,7 +58,8 @@ class ManageDataCreateTest {
 
     createClass(className);
     createObject(className);
-    createObjectWithIdAndVector(className);
+    createObjectWithVector(className);
+    createObjectWithId(className);
     createObjectWithDeterministicId(className);
     validateObject(className);
   }
@@ -94,7 +95,7 @@ class ManageDataCreateTest {
   private void createObject(String className) {
     // CreateObject START
     Result<WeaviateObject> result = client.data().creator()
-      .withClassName("JeopardyQuestion")
+      .withClassName(className)
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         // put("answer", "Weaviate");  // schema properties can be omitted
@@ -118,22 +119,48 @@ class ManageDataCreateTest {
     print(result);
   }
 
-  private void createObjectWithIdAndVector(String className) {
-    // CreateObjectWithIdAndVector START
+
+  private void createObjectWithVector(String className) {
+    // CreateObjectWithVector START
     Result<WeaviateObject> result = client.data().creator()
-      .withClassName("JeopardyQuestion")
+      .withClassName(className)
+      .withProperties(new HashMap<String, Object>() {{
+        put("question", "This vector DB is OSS and supports automatic property type inference on import");
+        put("answer", "Weaviate");
+      }})
+      // highlight-start
+      .withVector(Collections.nCopies(1536, 0.12345f).toArray(new Float[0]))
+      // highlight-end
+      .run();
+
+    // the returned value is the object
+    // CreateObjectWithVector END
+
+    assertThat(result).isNotNull()
+      .withFailMessage(() -> result.getError().toString())
+      .returns(false, Result::hasErrors)
+      .withFailMessage(null)
+      .extracting(Result::getResult).isNotNull()
+      .returns(className, WeaviateObject::getClassName)
+
+    print(result);
+  }
+
+  private void createObjectWithId(String className) {
+    // CreateObjectWithId START
+    Result<WeaviateObject> result = client.data().creator()
+      .withClassName(className)
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         put("answer", "Weaviate");
       }})
       // highlight-start
       .withID("12345678-e64f-5d94-90db-c8cfa3fc1234")
-      .withVector(Collections.nCopies(1536, 0.12345f).toArray(new Float[0]))
       // highlight-end
       .run();
 
     // the returned value is the object
-    // CreateObjectWithIdAndVector END
+    // CreateObjectWithId END
 
     assertThat(result).isNotNull()
       .withFailMessage(() -> result.getError().toString())
@@ -184,7 +211,7 @@ class ManageDataCreateTest {
       // highlight-start
       .validator()
       // highlight-end
-      .withClassName("JeopardyQuestion")
+      .withClassName(className)
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS and supports automatic property type inference on import");
         put("answer", "Weaviate");
@@ -210,9 +237,9 @@ class ManageDataCreateTest {
   }
 
   private <T> void print(Result<T> result) {
-    // CreateObject START // CreateObjectWithIdAndVector START // CreateObjectWithDeterministicIdTODO START
+    // CreateObject START // CreateObjectWithVector START // CreateObjectWithId START // CreateObjectWithDeterministicIdTODO START
     String json = new GsonBuilder().setPrettyPrinting().create().toJson(result.getResult());
     System.out.println(json);
-    // CreateObject END // CreateObjectWithIdAndVector END // CreateObjectWithDeterministicIdTODO END
+    // CreateObject END // CreateObjectWithVector END // CreateObjectWithId END // CreateObjectWithDeterministicIdTODO END
   }
 }

@@ -31,22 +31,28 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 	err = client.Schema().AllDeleter().Do(ctx)
 	require.NoError(t, err)
 
-	className := "MultiTenancyClass"
+	className := "MultiTenancyCollection"
 
 	t.Run("Add tenants to class", func(t *testing.T) {
-		// START AddTenantsToClass
+		// START EnableMultiTenancy
 		client.Schema().ClassCreator().
 			WithClass(&models.Class{
-				Class: "MultiTenancyClass",
+				Class: "MultiTenancyCollection",
+				// highlight-start
 				MultiTenancyConfig: &models.MultiTenancyConfig{
 					Enabled: true,
 				},
+				// highlight-end
 			}).
 			Do(ctx)
+		// END EnableMultiTenancy
 
+		// START AddTenantsToClass
 		client.Schema().TenantsCreator().
-			WithClassName("MultiTenancyClass").
+			WithClassName("MultiTenancyCollection").
+			// highlight-start
 			WithTenants(models.Tenant{Name: "tenantA"}, models.Tenant{Name: "tenantB"}).
+			// highlight-end
 			Do(ctx)
 		// END AddTenantsToClass
 
@@ -63,7 +69,7 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 	t.Run("List tenants of a class", func(t *testing.T) {
 		// START ListTenants
 		tenants, err := client.Schema().TenantsGetter().
-			WithClassName("MultiTenancyClass").
+			WithClassName("MultiTenancyCollection").
 			Do(ctx)
 		// END ListTenants
 		require.NoError(t, err)
@@ -73,7 +79,7 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 	t.Run("Remove tenants from a class", func(t *testing.T) {
 		// START RemoveTenants
 		client.Schema().TenantsDeleter().
-			WithClassName("MultiTenancyClass").
+			WithClassName("MultiTenancyCollection").
 			WithTenants("tenantB", "tenantX"). // tenantX will be ignored
 			Do(ctx)
 		// END RemoveTenants
@@ -86,7 +92,7 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 	t.Run("Create MT object", func(t *testing.T) {
 		// START CreateMtObject
 		object, err := client.Data().Creator().
-			WithClassName("MultiTenancyClass"). // The class to which the object will be added
+			WithClassName("MultiTenancyCollection"). // The class to which the object will be added
 			WithProperties(map[string]interface{}{
 				"question": "This vector DB is OSS & supports automatic property type inference on import",
 			}).
@@ -104,7 +110,7 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 	t.Run("Search MT", func(t *testing.T) {
 		// START Search
 		result, err := client.GraphQL().Get().
-			WithClassName("MultiTenancyClass").
+			WithClassName("MultiTenancyCollection").
 			WithFields(graphql.Field{Name: "question"}).
 			// highlight-start
 			WithTenant("tenantA").
@@ -144,20 +150,20 @@ func Test_ManageDataMultiTenancy(t *testing.T) {
 		// START AddCrossRef
 		// Add the cross-reference property to the multi-tenancy class
 		client.Schema().PropertyCreator().
-			WithClassName("MultiTenancyClass").
+			WithClassName("MultiTenancyCollection").
 			WithProperty(&models.Property{
 				Name:     "hasCategory",
 				DataType: []string{"JeopardyCategory"},
 			}).
 			Do(ctx)
 
-		// Create the cross-reference from MultiTenancyClass object to the JeopardyCategory object
+		// Create the cross-reference from MultiTenancyCollection object to the JeopardyCategory object
 		client.Data().ReferenceCreator().
-			WithClassName("MultiTenancyClass").
+			WithClassName("MultiTenancyCollection").
 			// highlight-start
 			WithTenant("tenantA").
 			// highlight-end
-			WithID(object.ID.String()). // MultiTenancyClass object id (a Jeopardy question)
+			WithID(object.ID.String()). // MultiTenancyCollection object id (a Jeopardy question)
 			WithReferenceProperty("hasCategory").
 			WithReference(client.Data().ReferencePayloadBuilder().
 				WithClassName("JeopardyCategory").

@@ -345,57 +345,62 @@ const siteRedirects = {
         },
         
         {
-         to: '/developers/weaviate/configuration/compression',
-         from: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/compression',
+            from: '/developers/weaviate/configuration/pq-compression',
+        },
+
+        {
+            to: '/developers/weaviate/manage-data/collections',
+            from: '/developers/weaviate/manage-data/classes',
         },
 
      // Products to Pricing redirects
 
-         {
+        {
             to: "/pricing",
             from: "/products",
-          },
-           
-          {
+        },
+       
+        {
             to: "/pricing",
             from: "/products/byoc",
-          },
-          {
+        },
+        {
             to: "/pricing",
             from: "/products/serverless",
-          },
-          // workshops
-          {
+        },
+        // workshops
+        {
             to: "/learn/workshops",
             from: "/learn/workshop"
-          },
-           // Partners to Platform whilst in development
-           {
+        },
+        // Partners to Platform whilst in development
+        {
             to: "/platform",
             from: "/partners"
-          },
-           // Partners Off
-           {
+        },
+        // Partners Off
+        {
             to: "/pricing",
             from: "/partnersOff"
-          },
+        },
             // Terms and Policies Changes
-            {
-                to: "/service",
-                from: "/service/EULA"
-              },
-              {
-                to: "/service",
-                from: "/service/sla"
-              },
-              {
-                to: "/service",
-                from: "/service/general-terms"
-              },
-              {
-                to: "/service",
-                from: "/service/service-schedule"
-              },
+        {
+            to: "/service",
+            from: "/service/EULA"
+        },
+        {
+            to: "/service",
+            from: "/service/sla"
+        },
+        {
+            to: "/service",
+            from: "/service/general-terms"
+        },
+        {
+            to: "/service",
+            from: "/service/service-schedule"
+        },
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

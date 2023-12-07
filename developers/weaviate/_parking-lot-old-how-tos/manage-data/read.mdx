@@ -5,6 +5,8 @@ image: og/docs/howto.jpg
 # tags: ['how-to', 'CRUD', 'read']
 ---
 
+
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -14,19 +16,35 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read_test.go';
 
+## Overview
 
-Instead of querying your database, you can use an ID to retrieve individual objects.
+This page will show you how to read individual objects in Weaviate.
+
+:::info See also
+- [How-to: Search](../search/index.md)
+- [How-to: Read all objects](./read-all-objects.mdx)
+- [References: REST - /v1/objects](../api/rest/objects.md#get-a-data-object)
+:::
+
+
+## Requirements
+
+To read a specific object from a collection, you'll need its [id](../api/graphql/additional-properties.md#id) and collecion name.
 
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
 <details>
-  <summary>Additional information</summary>
+  <summary>Why specify the collection name?</summary>
   <RestObjectsCRUDClassnameNote/>
 </details>
 
-## Get an object by id
+:::tip Multi-tenancy
+For collections where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
 
-Use an ID to retrieve an object. If the id doesn't exist, Weaviate returns a 404 error.
+## Get object by id
+
+To retrieve an object by id, [make a `GET` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#delete-a-data-object), or use the client code below. If the id doesn't exist in the specified collection, a 404 error will be returned.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -76,9 +94,9 @@ Use an ID to retrieve an object. If the id doesn't exist, Weaviate returns a 404
 </Tabs>
 
 
-## Retrieve the object's vector 
+## Retrieve the object vector
 
-To retrieve the object's vector, set the `vector` parameter:
+To retrieve the object vector, set the `vector` parameter:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -154,11 +172,7 @@ To efficiently check if an object with a given [id](../api/graphql/additional-pr
 </Tabs>
 -->
 
-## Related pages
 
-- [How-to: Search](../search/index.md)
-- [How-to: Read all objects](./read-all-objects.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#get-a-data-object)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

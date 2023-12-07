@@ -31,6 +31,27 @@ client.collections.create("Article")
 # Test
 assert client.collections.exists(collection_name)
 
+# ===============================================
+# ===== CREATE A COLLECTION WITH PROPERTIES =====
+# ===============================================
+
+# Clean slate
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# START CreateCollectionWithProperties
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
+    properties=[
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+)
+# END CreateCollectionWithProperties
+
+
 # ================================
 # ===== READ A COLLECTION =====
 # ================================
