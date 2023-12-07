@@ -60,7 +60,11 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances',
         },
         {
-            to: '/developers/weaviate/configuration/indexes',
+            to: '/developers/weaviate/config-refs/schema/vector-index',
+            from: '/developers/weaviate/configuration/indexes',
+        },
+        {
+            to: '/developers/weaviate/config-refs/schema/vector-index',
             from: '/developers/weaviate/current/configuration/vector-index-type',
         },
         {
@@ -343,10 +347,10 @@ const siteRedirects = {
             to: '/developers/weaviate/installation',
             from: '/developers/weaviate/current/getting-started/installation',
         },
-        
+
         {
-         to: '/developers/weaviate/configuration/compression',
-         from: '/developers/weaviate/configuration/pq-compression',
+            to: '/developers/weaviate/configuration/pq-compression',
+            from: '/developers/weaviate/configuration/compression',
         },
 
      // Products to Pricing redirects
@@ -355,7 +359,7 @@ const siteRedirects = {
             to: "/pricing",
             from: "/products",
           },
-           
+
           {
             to: "/pricing",
             from: "/products/byoc",

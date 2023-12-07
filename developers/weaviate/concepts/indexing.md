@@ -8,7 +8,7 @@ image: og/docs/concepts.jpg
 
 :::info Related pages
 - [Concepts: Vector Indexing](./vector-index.md)
-- [Configuration: Indexes](../configuration/indexes.md)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
 :::
 
 ## Introduction
@@ -75,7 +75,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time.
 
 For more information see:
-- [Configuring the vector index](../configuration/indexes.md)
+- [Configuring the vector index](../config-refs/schema/vector-index.md)
 - [Explanation of vector indexes](../concepts/vector-index.md)
 - [Compressing indexes in memory](/developers/weaviate/configuration/pq-compression.md)
 
@@ -130,6 +130,117 @@ When using vectorizers, you need to set vectorization at the class and property 
 :::note
 Because Weaviate's vectorizer module configuration is set on class and property level, you can have multiple vectorizers for different classes. You can even mix multimodal, NLP, and image modules.
 :::
+
+## Inverted index
+
+### Configure the inverted index
+
+There are two indexes for filtering or searching the data, where the first (filterable) is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
+
+The `indexFilterable` and `indexSearchable` keys can be set to `true` (on) or `false` (off) on a property level. Both are _on_ by default.
+
+The filterable index is only capable of filtering, while the searchable index can be used for both searching and filtering (though not as fast as the filterable index).
+
+So, setting `"indexFilterable": false` and `"indexSearchable": true` (or not setting it at all) will have the trade-off of worse filtering performance but faster imports (due to only needing to update one index) and lower disk usage.
+
+You can set these keys in the schema like shown below, at a property level:
+
+```json
+{
+    "class": "Author",
+    "properties": [ // <== note that the inverted index is set per property
+        {
+            "indexFilterable": false,  // <== turn off the filterable (Roaring Bitmap index) by setting `indexFilterable` to false
+            "indexSearchable": false,  // <== turn off the searchable (for BM25/hybrid) by setting `indexSearchable` to false
+            "dataType": [
+                "text"
+            ],
+            "name": "name"
+        }
+    ]
+}
+```
+
+A rule of thumb to follow when determining whether to switch off indexing is: _if you will never perform queries based on this property, you can turn it off._
+
+:::tip Data types and indexes
+
+Both `indexFilterable` and `indexSearchable` are available for all types of data. However, `indexSearchable` is only relevant for `text`/`text[]`, and in other cases it will be ignored.
+
+:::
+
+You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps).
+
+```js
+{
+    "class": "Author",
+    "invertedIndexConfig": {
+        "indexTimestamps": true // <== false by default
+    },
+    "properties": []
+}
+```
+
+## Collections without indices
+
+If you don't want to set an index at all, neither ANN nor inverted, this is possible too.
+
+To create a collection without any indexes, skip indexing on the collection and on the properties.
+
+```js
+{
+    "class": "Author",
+    "description": "A description of this collection, in this case, it's about authors",
+    "vectorIndexConfig": {
+        "skip": true // <== disable vector index
+    },
+    "properties": [
+        {
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "indexSearchable": false,  // <== disable searchable index for this property
+            "dataType": [
+                "text"
+            ],
+            "description": "The name of the Author",
+            "name": "name"
+        },
+        {
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "dataType": [
+                "int"
+            ],
+            "description": "The age of the Author",
+            "name": "age"
+        },
+        {
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "dataType": [
+                "date"
+            ],
+            "description": "The date of birth of the Author",
+            "name": "born"
+        },
+        {
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "dataType": [
+                "boolean"
+            ],
+            "description": "A boolean value if the Author won a nobel prize",
+            "name": "wonNobelPrize"
+        },
+        {
+            "indexFilterable": false,  // <== disable filterable index for this property
+            "indexSearchable": false,  // <== disable searchable index for this property
+            "dataType": [
+                "text"
+            ],
+            "description": "A description of the author",
+            "name": "description"
+        }
+    ]
+}
+```
+
 
 ## Recap
 

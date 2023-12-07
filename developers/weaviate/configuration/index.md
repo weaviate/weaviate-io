@@ -23,7 +23,7 @@ For example, you can read about how to:
 
 - Extend Weaviate's functionality by adding [modules](./modules.md), including vectorizers
 - Configure how Weaviate stores and indexes data through its [schema](./schema-configuration.md), [data type](../config-refs/datatypes.md) and [distance metric](../config-refs/distances.md)
-- Manage performance vs. cost tradeoffs by its [vector index properties](./indexes.md)
+- Manage performance vs. cost tradeoffs by its [vector index properties](../config-refs/schema/vector-index.md)
 - [Back up](./backups.md) your Weaviate instance
 - Control access through [authentication](./authentication.md) and [authorization](./authorization.md)
 - [Monitor](./monitoring.md) your Weaviate instance

@@ -92,7 +92,7 @@ As of Weaviate 1.18, the `text2vec-openai` vectorizer uses by default the same m
 }
 ```
 
-Another detail to be careful about is how exactly we store the `content_vector` embedding. [Weaviate vectorizes entire objects](../config-refs/schema.md#configure-semantic-indexing) (not properties), and it includes by default the class name in the string serialization of the object it will vectorize. Since OpenAI has provided embeddings only for the `text` (content) field, we need to make sure Weaviate vectorizes an `Article` object the same way. That means we need to disable including the class name in the vectorization, so we must set `vectorizeClassName: false` in the `text2vec-openai` section of the `moduleConfig`. Together, these schema settings will look like this:
+Another detail to be careful about is how exactly we store the `content_vector` embedding. [Weaviate vectorizes entire objects](../config-refs/schema/index.md#configure-semantic-indexing) (not properties), and it includes by default the class name in the string serialization of the object it will vectorize. Since OpenAI has provided embeddings only for the `text` (content) field, we need to make sure Weaviate vectorizes an `Article` object the same way. That means we need to disable including the class name in the vectorization, so we must set `vectorizeClassName: false` in the `text2vec-openai` section of the `moduleConfig`. Together, these schema settings will look like this:
 
 import CreateSchema from '/_includes/code/tutorials.wikipedia.schema.mdx';
 

@@ -28,7 +28,7 @@ import Terminology from '/_includes/collection-class-terminology.md';
 
 We recommend that you define your schema manually to ensure that it aligns with your specific requirements. However, Weaviate also provides an auto-schema feature.
 
-When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema.md#auto-schema)).
+When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema/index.md#auto-schema)).
 
 
 ## Create a collection
@@ -109,7 +109,7 @@ You can use the `properties` field to specify properties for the collection. A c
 
 In addition to the property name, you can use properties to configure parameters such as the data type, inverted index tokenization and more.
 
-- [Property object configuration references](../config-refs/schema.md#property-object)
+- [Property object configuration references](../config-refs/schema/index.md#property-object)
 - [Available data types](../config-refs/datatypes.md)
 
 
@@ -149,7 +149,48 @@ The following code sets the `text2vec-openai` module as the vectorizer for the `
 </Tabs>
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
-- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
+- [Vectorizer configuration references](../config-refs/schema/index.md#vectorizer)
+
+### Set vector index type
+
+The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndex"
+      endMarker="// END SetVectorIndex"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
 
 ### Collection level module settings
 
@@ -266,10 +307,10 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
 
 For details on the configuration parameters, see the following configuration references:
 
-- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
-- [Inverted indexes](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
-- [Sharding](../config-refs/schema.md#shardingconfig)
-- [Replication](../config-refs/schema.md#replicationconfig)
+- [Vector indexes](../config-refs/schema/index.md#vectorindexconfig)
+- [Inverted indexes](../config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding](../config-refs/schema/index.md#shardingconfig)
+- [Replication](../config-refs/schema/index.md#replicationconfig)
 
 ### Multi-tenancy
 
@@ -333,7 +374,7 @@ The following sections describe how to add a property to a collection and how to
 
 ### Add a property
 
-You can add a new property to an existing collection. 
+You can add a new property to an existing collection.
 
 Add new properties to an existing schema one at a time. To add multiple properties, create a list of the new properties. Then, loop through the list to add one new property on each iteration.
 
@@ -539,7 +580,7 @@ The response is a JSON object like the one in this example.
 
 ## Related pages
 - [Tutorial: Schema](../tutorials/schema.md)
-- [References: Schema](../config-refs/schema.md)
+- [References: Schema](../config-refs/schema/index.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 

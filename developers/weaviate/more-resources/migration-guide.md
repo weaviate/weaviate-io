@@ -626,7 +626,7 @@ With the modularization, it becomes possible to vectorize non-text objects. Sear
     * The `moduleConfig` allows configuration per module (by name).
       * See [here](#text2vec-contextionary) for Contextionary specific property configuration.
     * The `vectorIndexType` allows the choosing the vector index (defaults to [HNSW](/developers/weaviate/concepts/vector-index.md#hnsw))
-    * The `vectorIndexConfig` is an arbitrary object passed to the index for config (defaults can be found [here](/developers/weaviate/configuration/indexes.md#how-to-configure-hnsw) )
+    * The `vectorIndexConfig` is an arbitrary object passed to the index for config (defaults can be found [here](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) )
 
     All changes are in this example:
 
