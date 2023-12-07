@@ -4,8 +4,10 @@
 }
 
 .title {
-  text-align: center;
+  text-align: left;
   padding: 1rem 0 2rem 0;
+  margin: auto;
+  width: 83%;
 
   h2 {
     color: #1c1468;
@@ -15,7 +17,7 @@
 .box {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 20px;
@@ -26,15 +28,15 @@
   flex-direction: column;
   justify-content: space-around;
 
-  width: 20rem;
-  height: 20rem;
+  width: 29.24306rem;
+  height: 25.46663rem;
   background-color: #141f39;
   margin: 1rem;
   padding: 2rem;
 
-  border-radius: 0.4375rem;
-  background: #fff;
-  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  border-radius: 0.67781rem;
+  background: #130c49;
+  box-shadow: 0px 37.183px 99.155px 0px rgba(22, 27, 45, 0.08);
 
   @media screen and (max-width: 600px) {
     height: auto;
@@ -47,8 +49,12 @@
   gap: 40px;
 
   h3 {
-    font-size: 28px;
-    color: #1c1468;
+    color: #61bd73;
+    font-family: Inter;
+    font-size: 1.93663rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -58,8 +64,12 @@
 }
 
 .textCardContent {
-  line-height: 1.6rem;
-  font-size: 17px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 1.162rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 1.62675rem */
 }
 
 .cardFooter {

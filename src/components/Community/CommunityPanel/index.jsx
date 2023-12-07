@@ -7,53 +7,88 @@ export default function CommunityPanel() {
     <div className={styles.container}>
       <div className={styles.title}>
         <h2>Join our Online Communities on Slack and Discourse</h2>
+        <p>
+          Connect with the Weaviate Team and hundreds of developers and data
+          engineers! Our community is here to help you<br></br> with your
+          projects and provide expert advice. Share how you build your apps with
+          Weaviate.
+        </p>
       </div>
       <div className={styles.box}>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <div className={`${styles.img} ${styles.chatImg}`} />
-            <h3>Ask the community</h3>
+            <h3>
+              EDUCATION &<br></br>ELEVATION
+            </h3>
           </div>
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
-              Ask anything related to Flyte and receive responses within a few
-              hours.
+              In order to stay up to date Weaviate heroes will have access to
+              special educational material, activities and more:
+              <ul>
+                <li>Special education workshops</li>
+                <li>Internal roundtables with Weaviators</li>
+                <li>Access to dedicated content & material</li>
+                <li>Feature previews</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
+            <h3>
+              EDUCATION &<br></br>ELEVATION
+            </h3>
+          </div>
+          <div className={styles.contentDiv}>
+            <p className={styles.textCardContent}>
+              In order to stay up to date Weaviate heroes will have access to
+              special educational material, activities and more:
+              <ul>
+                <li>Special education workshops</li>
+                <li>Internal roundtables with Weaviators</li>
+                <li>Access to dedicated content & material</li>
+                <li>Feature previews</li>
+              </ul>
             </p>
           </div>
         </div>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <div className={`${styles.img} ${styles.chatImg}`} />
-            <h3>Ask the community</h3>
+            <h3>
+              EDUCATION &<br></br>ELEVATION
+            </h3>
           </div>
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
-              Ask anything related to Flyte and receive responses within a few
-              hours.
+              In order to stay up to date Weaviate heroes will have access to
+              special educational material, activities and more:
+              <ul>
+                <li>Special education workshops</li>
+                <li>Internal roundtables with Weaviators</li>
+                <li>Access to dedicated content & material</li>
+                <li>Feature previews</li>
+              </ul>
             </p>
           </div>
         </div>
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <div className={`${styles.img} ${styles.chatImg}`} />
-            <h3>Ask the community</h3>
+            <h3>
+              EDUCATION &<br></br>ELEVATION
+            </h3>
           </div>
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
-              Ask anything related to Flyte and receive responses within a few
-              hours.
-            </p>
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <div className={`${styles.img} ${styles.chatImg}`} />
-            <h3>Ask the community</h3>
-          </div>
-          <div className={styles.contentDiv}>
-            <p className={styles.textCardContent}>
-              Ask anything related to Flyte and receive responses within a few
-              hours.
+              In order to stay up to date Weaviate heroes will have access to
+              special educational material, activities and more:
+              <ul>
+                <li>Special education workshops</li>
+                <li>Internal roundtables with Weaviators</li>
+                <li>Access to dedicated content & material</li>
+                <li>Feature previews</li>
+              </ul>
             </p>
           </div>
         </div>
