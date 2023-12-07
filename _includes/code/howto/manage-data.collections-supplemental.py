@@ -19,9 +19,9 @@ if client.collections.exists("Article"):
     client.collections.delete("Article")
 
 
-# START CreateCollection
+# START SuppCreateCollection
 client.collections.create("Article")
-# END CreateCollection
+# END SuppCreateCollection
 
 # Test
 assert (client.collections.exists("Article"))
@@ -30,7 +30,7 @@ assert (client.collections.exists("Article"))
 client.collections.delete("Article")
 
 
-# START PropertyDefinition
+# START SuppPropertyDefinition
 # highlight-start
 import weaviate.classes as wvc
 # highlight-end
@@ -44,7 +44,7 @@ client.collections.create(
     ]
     # highlight-end
 )
-# END PropertyDefinition
+# END SuppPropertyDefinition
 
 # Test
 collection = client.collections.get("Article")
@@ -57,29 +57,7 @@ assert len(config.properties) == 2
 client.collections.delete("Article")
 
 
-# START Vectorizer
-import weaviate.classes as wvc
-
-client.collections.create(
-    "Article",
-    # highlight-start
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
-    # highlight-end
-    properties=[ # properties configuration is optional
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
-    ]
-)
-# END Vectorizer
-
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert config.vectorizer.value == "text2vec-openai"
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
-
+#####################
 
 # START ModuleSettings
 import weaviate.classes as wvc

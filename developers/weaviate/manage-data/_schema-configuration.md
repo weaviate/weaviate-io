@@ -1,79 +1,8 @@
 
 #
 
-- [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
-- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
 
-### Collection level module settings
-
-Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START ModuleSettings"
-      endMarker="# END ModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START ModuleSettings"
-      endMarker="// END ModuleSettings"
-      language="ts"
-    />
-  </TabItem>
-</Tabs>
-
-The available parameters vary according to the module. ([Learn more](../modules/index.md)).
-
-
-### Property-level module settings
-
-Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START PropModuleSettings"
-      endMarker="# END PropModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START PropModuleSettings"
-      endMarker="# END PropModuleSettings"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START PropModuleSettings"
-      endMarker="// END PropModuleSettings"
-      language="ts"
-    />
-  </TabItem>
-</Tabs>
-
-The available parameters vary according to the module. ([Learn more](../modules/index.md)).
+#
 
 
 ### Indexing, sharding and replication settings

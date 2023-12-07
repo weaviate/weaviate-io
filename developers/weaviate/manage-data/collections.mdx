@@ -14,6 +14,13 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
+
+manage-data.collections-supplemental
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections-supplemental.py';	
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-supplemental-v3.py';	
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections-supplemental.ts';
+
+
 Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections. 
 
 A note regarding terminology, newer Weaviate documentation discuses "collections." Older Weaviate documentation refers to "classes" instead. Expect to see both terms throughout the documentation.
@@ -121,6 +128,215 @@ Use properties to configure additional parameters such as the data type, index c
 By default, Weaviate automatically creates missing collections and missing properties. However, when you manage collections manually you have more precise control of the collection settings.
 
 To disable [`auto-schema`](../config-refs/schema.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
+
+## Specify a vectorizer	
+
+Specify a `vectorizer` for a collection. 
+
+<details>
+  <summary>Additional information</summary>
+
+Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).	
+
+- [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
+- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
+
+</details>
+
+<Tabs groupId="languages">	
+  <TabItem value="py" label="Python (v4)">	
+    <FilteredTextBlock	
+      text={PyCode}	
+      startMarker="# START Vectorizer"	
+      endMarker="# END Vectorizer"	
+      language="py"	
+    />	
+  </TabItem>	
+
+  <TabItem value="py3" label="Python (v3)">	
+    <FilteredTextBlock	
+      text={PyCodeV3}	
+      startMarker="# START Vectorizer"	
+      endMarker="# END Vectorizer"	
+      language="py"	
+    />	
+  </TabItem>	
+
+  <TabItem value="js" label="JavaScript/TypeScript">	
+    <FilteredTextBlock	
+      text={TSCode}	
+      startMarker="// START Vectorizer"	
+      endMarker="// END Vectorizer"	
+      language="ts"	
+    />	
+  </TabItem>	
+</Tabs>
+
+## Collection level module settings
+
+Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
+
+## Property-level module settings
+
+Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
+
+## Indexing, sharding and replication settings
+
+You can also set indexing, sharding and replication settings through the schema. For example, you can set a vector index distance metric or a replication factor for a collection.
+
+This code sets the replication factor.
+
+:::note
+You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup) to test replication factors greater than 1.
+
+:::
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START IndexReplicationSettings"
+      endMarker="# END IndexReplicationSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START IndexReplicationSettings"
+      endMarker="# END IndexReplicationSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START IndexReplicationSettings"
+      endMarker="// END IndexReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+For details on the configuration parameters, see the following configuration references:
+
+- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
+- [Inverted indexes](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding](../config-refs/schema.md#shardingconfig)
+- [Replication](../config-refs/schema.md#replicationconfig)
+
+## Multi-tenancy
+
+:::info Added in `v1.20`
+:::
+
+To enable multi-tenancy, set `multiTenancyConfig` to `{"enabled": true}` in the collection definition.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Multi-tenancy"
+      endMarker="# END Multi-tenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Multi-tenancy"
+      endMarker="# END Multi-tenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+```json
+{
+  "class": "MultiTenancyClass",
+  // highlight-start
+  "multiTenancyConfig": {"enabled": true}
+  // highlight-end
+}
+```
+
+For more details on multi-tenancy operations, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
 
 ## Read a collection definition
 
@@ -267,6 +483,36 @@ Use a Weaviate client to update [collection](/developers/weaviate/config-refs/sc
 ```go
 // This feature is under development
 ```
+
+  </TabItem>
+</Tabs>
+
+## Update a parameter
+
+Some parameters cannot be modified after you create your collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModifyParam"
+      endMarker="# END ModifyParam"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModifyParam"
+      endMarker="# END ModifyParam"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+  >  Coming soon. ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
   </TabItem>
 </Tabs>
@@ -462,6 +708,8 @@ For image searches, see [Image search](../search/image.md).
 ## Related pages
 
 - [API References: REST: Schema](../api/rest/schema.md)
+- [Tutorial: Schema](../tutorials/schema.md)
+- [References: Schema](../config-refs/schema.md)
 - [References: Configuration: Schema](../config-refs/schema.md)
 - [Concepts: Data structure](../concepts/data.md)
 
