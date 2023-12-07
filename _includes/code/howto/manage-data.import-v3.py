@@ -236,7 +236,7 @@ with client.batch as batch:
         batch.add_data_object(
             data_obj,
             class_name,
-            dynamic=True,    # Weaviate will dynamically adjust the batch size
+            dynamic=True,    # Weaviate dynamically adjusts the batch size
         )
 # END ConfigureBatchImportExample
 
