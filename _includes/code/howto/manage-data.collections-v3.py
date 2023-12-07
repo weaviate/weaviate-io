@@ -212,7 +212,9 @@ assert result['replicationConfig']['factor'] == 3
 # START Multi-tenancy
 class_obj = {
     'class': 'Article',
+    # highlight-start
     'multiTenancyConfig': {'enabled': True}
+    # highlight-end
 }
 
 client.schema.create_class(class_obj)  # returns null on success

@@ -272,7 +272,9 @@ assert.equal(result.replicationConfig.factor, 3);
 await client.schema
   .classCreator().withClass({
     class: 'Article',
+    // highlight-start
     multiTenancyConfig: { enabled: true },
+    // highlight-end
   })
   .do();
 // END Multi-tenancy
