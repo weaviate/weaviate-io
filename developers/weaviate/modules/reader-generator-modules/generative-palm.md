@@ -2,7 +2,7 @@
 title: Generative Search - PaLM
 sidebar_position: 16
 image: og/docs/modules/generative-palm.jpg
-# tags: ['generative', 'transformers', 'palm', 'gcp']
+# tags: ['generative', 'rag', 'palm', 'gcp']
 ---
 
 
