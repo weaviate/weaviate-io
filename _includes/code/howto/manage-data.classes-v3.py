@@ -49,15 +49,15 @@ if client.schema.exists(class_name):
 
 # START CreateCollectionWithProperties
 class_obj = {
-    'class': 'Article',
-    'properties': [
+    "class": "Article",
+    "properties": [
         {
-            'name': 'title',
-            'dataType': ['text'],
+            "name": "title",
+            "dataType": ["text"],
         },
         {
-            'name': 'body',
-            'dataType': ['text'],
+            "name": "body",
+            "dataType": ["text"],
         },
     ],
 }

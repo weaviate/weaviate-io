@@ -208,7 +208,7 @@ If a tenant specified for deletion doesn't belong to the class, it is ignored.
   </TabItem>
 </Tabs>
 
-### Update tenant(s)
+### Update tenant's activity status
 
 :::info Added in `v1.21`
 :::
