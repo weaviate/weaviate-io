@@ -351,11 +351,11 @@ const siteRedirects = {
 
      // Products to Pricing redirects
 
-     {
-        to: "/pricing",
-        from: "/products",
-      },
-       
+         {
+            to: "/pricing",
+            from: "/products",
+          },
+           
           {
             to: "/pricing",
             from: "/products/byoc",
