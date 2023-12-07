@@ -18,8 +18,8 @@ This page explains what vector indices are, and what purpose they serve in Weavi
 
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
-- [Configuration: Indexes](../configuration/indexes.md)
-- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema.md#configure-semantic-indexing)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
+- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
 :::
 
 ## Introduction
@@ -157,7 +157,7 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
-To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configuration/indexes).
+To configure HNSW, see [Configuration: Vector index](/developers/weaviate/configuration/indexes).
 
 To configure PQ, see [Compression](/developers/weaviate/configuration/pq-compression.md).
 
@@ -203,7 +203,7 @@ To configure an existing collection (class) to use PQ, update the vector index c
 
 PQ has a training stage where it creates a codebook. When you convert an existing collection, there is some data already present. PQ needs 10,000 to 100,100,000 records per shard to create the codebook. If you have a smaller collection, consider using binary quantization (BQ) instead. If your collection is very large, PQ will reduce the memory requirements to store the collection but there is some additional overhead while PQ processes the uncompressed vectors.
 
-To enable PQ, set `"enabled": True`. For additional configuration settings, see [Configuration: Indexes](../configuration/indexes.md).
+To enable PQ, set `"enabled": True`. For additional configuration settings, see [Configuration: Vector index](../config-refs/schema/vector-index.md).
 
 ```python
 client.schema.update_config("DeepImage", {
@@ -250,7 +250,7 @@ client.query.get("DeepImage", ["i"]) \
 
 In the configuration above you can see that you can set the `encoder` object to specify how the codebook centroids are generated. Weaviate’s PQ supports using two different encoders. The default is `kmeans` which maps to the traditional approach used for creating centroid.
 
-Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter that controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details about configuration please refer to [Configuration: Indexes](../configuration/indexes.md).
+Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter that controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details about configuration please refer to [Configuration: Vector index](../config-refs/schema/vector-index.md).
 
 
 ## Flat index

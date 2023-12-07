@@ -28,7 +28,7 @@ import Terminology from '/_includes/collection-class-terminology.md';
 
 We recommend that you define your schema manually to ensure that it aligns with your specific requirements. However, Weaviate also provides an auto-schema feature.
 
-When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema.md#auto-schema)).
+When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema/index.md#auto-schema)).
 
 
 ## Create a collection
@@ -109,7 +109,7 @@ You can use the `properties` field to specify properties for the collection. A c
 
 In addition to the property name, you can use properties to configure parameters such as the data type, inverted index tokenization and more.
 
-- [Property object configuration references](../config-refs/schema.md#property-object)
+- [Property object configuration references](../config-refs/schema/index.md#property-object)
 - [Available data types](../config-refs/datatypes.md)
 
 
@@ -149,7 +149,7 @@ The following code sets the `text2vec-openai` module as the vectorizer for the `
 </Tabs>
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
-- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
+- [Vectorizer configuration references](../config-refs/schema/index.md#vectorizer)
 
 ### Set vector index type
 
@@ -307,10 +307,10 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
 
 For details on the configuration parameters, see the following configuration references:
 
-- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
-- [Inverted indexes](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
-- [Sharding](../config-refs/schema.md#shardingconfig)
-- [Replication](../config-refs/schema.md#replicationconfig)
+- [Vector indexes](../config-refs/schema/index.md#vectorindexconfig)
+- [Inverted indexes](../config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding](../config-refs/schema/index.md#shardingconfig)
+- [Replication](../config-refs/schema/index.md#replicationconfig)
 
 ### Multi-tenancy
 
@@ -580,7 +580,7 @@ The response is a JSON object like the one in this example.
 
 ## Related pages
 - [Tutorial: Schema](../tutorials/schema.md)
-- [References: Schema](../config-refs/schema.md)
+- [References: Schema](../config-refs/schema/index.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 

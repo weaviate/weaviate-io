@@ -13,7 +13,7 @@ Vector indexes facilitate efficient, vector-first data storage and retrieval.
 
 ## Index configuration parameters
 
-Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../configuration/schema-configuration.md#set-vector-index-type).
+Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../configuration/schema-configuration.md#set-vector-index-type).
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
@@ -236,8 +236,8 @@ The `vectorQueueLength` field will show the number of remaining objects to be in
 
 
 :::info Related pages
-- [Concepts: Indexing](../concepts/indexing.md)
-- [Concepts: Vector Indexing](../concepts/vector-index.md)
+- [Concepts: Indexing](../../concepts/indexing.md)
+- [Concepts: Vector Indexing](../../concepts/vector-index.md)
 :::
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

@@ -61,6 +61,10 @@ const siteRedirects = {
         },
         {
             to: '/developers/weaviate/config-refs/schema/vector-index',
+            from: '/developers/weaviate/configuration/indexes',
+        },
+        {
+            to: '/developers/weaviate/config-refs/schema/vector-index',
             from: '/developers/weaviate/current/configuration/vector-index-type',
         },
         {
@@ -345,8 +349,8 @@ const siteRedirects = {
         },
 
         {
-         to: '/developers/weaviate/configuration/compression',
-         from: '/developers/weaviate/configuration/pq-compression',
+         to: '/developers/weaviate/configuration/pq-compression',
+         from: '/developers/weaviate/configuration/compression',
         },
 
      // Products to Pricing redirects

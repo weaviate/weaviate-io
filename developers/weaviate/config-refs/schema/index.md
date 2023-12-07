@@ -101,7 +101,7 @@ import initialCaps from '/_includes/schemas/initial-capitalization.md'
 
 ### Properties
 
-Every collection has properties. Properties define the kinds of data that you add to an object in Weaviate. For each property in the schema, you define at least the name and its [dataType](../config-refs/datatypes.md).
+Every collection has properties. Properties define the kinds of data that you add to an object in Weaviate. For each property in the schema, you define at least the name and its [dataType](../../config-refs/datatypes.md).
 
 Property names can contain the following characters: `/[_A-Za-z][_0-9A-Za-z]*/`.
 
@@ -174,7 +174,7 @@ The vectorizer (`"vectorizer": "..."`) can be specified per collection in the sc
 
 #### Weaviate without a vectorizer
 
-You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
 
 ### vectorIndexType
 
@@ -245,7 +245,7 @@ The meaning of the individual fields in detail:
 
 ### replicationConfig
 
-[Replication](../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
+[Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
 The `factor` parameter sets the number of copies of to be stored for objects in this collection.
 
@@ -411,7 +411,7 @@ If necessary, they can be configured in the schema per collection, and can optio
 :::info Added in `v1.20`
 :::
 
-The `multiTenancyConfig` value determines if [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this collection. If enabled, objects of this collection will be isolated for each tenant. It is disabled by default.
+The `multiTenancyConfig` value determines if [multi-tenancy](../../concepts/data.md#multi-tenancy) is enabled for this collection. If enabled, objects of this collection will be isolated for each tenant. It is disabled by default.
 
 To enable it, set the `enabled` key to `true`, as shown below:
 
@@ -480,7 +480,7 @@ Additionally, we strongly recommend that you do not use the following words as p
 This feature was introduced in `v1.12.0`.
 :::
 
-You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../api/graphql/search-operators.md#bm25) and [`hybrid`](../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../api/graphql/filters.md).
+You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../../api/graphql/search-operators.md#bm25) and [`hybrid`](../../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../../api/graphql/filters.md).
 
 The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
 
@@ -615,10 +615,10 @@ client.schema.create_class(class_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](../tutorials/schema.md)
-- [How to: Configure a schema](../configuration/schema-configuration.md)
-- [References: REST API: Schema](../api/rest/schema.md)
-- [Concepts: Data Structure](../concepts/data.md)
+- [Tutorial: Schema](../../tutorials/schema.md)
+- [How to: Configure a schema](../../configuration/schema-configuration.md)
+- [References: REST API: Schema](../../api/rest/schema.md)
+- [Concepts: Data Structure](../../concepts/data.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

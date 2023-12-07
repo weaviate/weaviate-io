@@ -8,7 +8,7 @@ image: og/docs/concepts.jpg
 
 :::info Related pages
 - [Concepts: Vector Indexing](./vector-index.md)
-- [Configuration: Indexes](../configuration/indexes.md)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
 :::
 
 ## Introduction
@@ -75,7 +75,7 @@ _(note that we've removed some JSON that's irrelevant to the topic at hand)._
 As shown above, there are quite a few configurable parameters available for an ANN index. Modifying them can affect Weaviate's performance, such as tradeoffs between the recall performance and query time, or between query time and import time.
 
 For more information see:
-- [Configuring the vector index](../configuration/indexes.md)
+- [Configuring the vector index](../config-refs/schema/vector-index.md)
 - [Explanation of vector indexes](../concepts/vector-index.md)
 - [Compressing indexes in memory](/developers/weaviate/configuration/pq-compression.md)
 
@@ -169,7 +169,7 @@ Both `indexFilterable` and `indexSearchable` are available for all types of data
 
 :::
 
-You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps).
+You can also enable an inverted index to search [based on timestamps](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps).
 
 ```js
 {

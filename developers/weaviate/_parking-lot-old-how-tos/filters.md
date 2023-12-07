@@ -346,7 +346,7 @@ The following example filters `JeopardyQuestion` objects using properties of `Je
 More specifically, the example filters for the `title` property of `JeopardyCategory` objects that are cross-referenced from the `JeopardyQuestion` object. The `title` property must include the substring `Sport`.
 
 :::note Case-sensitivity
-The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema.md#property-tokenization).
+The results are case-insensitive here, as the `title` property is defined with [`word` tokenization](../config-refs/schema/index.md#property-tokenization).
 :::
 
 <Tabs groupId="languages">
