@@ -23,7 +23,7 @@ result = await client
   .withFields('question')
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END BasicGetJS
 
 // Test
@@ -48,7 +48,7 @@ result = await client
   // highlight-end
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitJS
 
 // Test
@@ -75,7 +75,7 @@ result = await client
   // highlight-end
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitOffsetJS
 
 // Test
@@ -138,7 +138,7 @@ result = await client
   .withLimit(1)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectVectorJS
 
 // Test
@@ -164,7 +164,7 @@ result = await client
   .withLimit(1)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectIdJS
 
 // Test
@@ -195,7 +195,7 @@ result = await client.graphql
   .withLimit(2)
   .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetWithCrossRefsJS
 
 // Test
@@ -208,6 +208,34 @@ assert.deepEqual(questionValues, new Set([
 ]));
 // End test
 
+
+// ===================================
+// ===== GET WITH METADATA EXAMPLES =====
+// ===================================
+
+// GetWithMetadataJS
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withLimit(1)
+  // highlight-start
+  .withFields('question _additional { creationTimeUnix }')
+  // highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END GetWithMetadataJS
+
+// Test
+assert('JeopardyQuestion' in result.data.Get);
+assert.equal(result.data.Get.JeopardyQuestion.length, 1);
+questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
+assert.deepEqual(questionKeys, new Set(['question', '_additional']));
+assert('creationTimeUnix' in result.data.Get.JeopardyQuestion[0]._additional);
+// End test
+
+
 // =========================
 // ===== MULTI-TENANCY =====
 // =========================
@@ -219,11 +247,11 @@ result = await client
    .graphql
    .get()
    .withClassName('MultiTenancyClass')
-   .withFields(['property1', 'property2'])
+   .withFields('property1 property2')
    .withTenant('TenantA')
    .do();
 
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END MultiTenancy
 
 // Test results

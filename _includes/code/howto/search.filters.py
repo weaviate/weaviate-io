@@ -35,7 +35,6 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END SingleFilterPython
@@ -121,7 +120,6 @@ response = jeopardy.query.near_text(
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END SingleFilterNearTextPython
@@ -214,7 +212,6 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END LikeFilterPython
@@ -294,13 +291,14 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
+    # Use & as AND
+    #     | as OR 
     filters=Filter("round").equal("Double Jeopardy!") &
             Filter("points").less_than(600),
     # highlight-end
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END MultipleFiltersAndPython
@@ -402,7 +400,6 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END MultipleFiltersNestedPython
@@ -512,7 +509,6 @@ response = jeopardy.query.fetch_objects(
     limit=3
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END CrossReferencePython

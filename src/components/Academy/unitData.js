@@ -521,4 +521,25 @@ export const unitData = {
     //   "TBC"
     // ]
   // },
+
+  intro_weaviate_typescript: {
+    title: "Introduction to Weaviate with TS (or JS)",
+    body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/intro_weaviate_typescript",
+    badgeType: "practical",
+    learningGoals: [
+      "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."
+    ],
+    learningOutcomes: [
+      "Create a cloud (WCS) instance fo Weaviate.",
+      "Gain an understanding of what a vector database is.",
+      "Define a schema (collection definition) and import data.",
+      "Perform queries on your data.",
+      "Integrate Weaviate into your TypeScript/JavaScript app.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  }
+
 };

@@ -144,14 +144,16 @@ client.collections.create(
             name="title",
             data_type=wvc.DataType.TEXT,
             # highlight-start
-            vectorize_property_name=True # use "title" as part of the value to vectorize
+            vectorize_property_name=True,  # Use "title" as part of the value to vectorize
+            tokenization=wvc.Tokenization.LOWERCASE  # Use "lowecase" tokenization
             # highlight-end
         ),
         wvc.Property(
             name="body",
             data_type=wvc.DataType.TEXT,
             # highlight-start
-            skip_vectorization=True # don't vectorize body
+            skip_vectorization=True,  # Don't vectorize this property
+            tokenization=wvc.Tokenization.WHITESPACE  # Use "whitespace" tokenization
             # highlight-end
         ),
     ]

@@ -26,7 +26,7 @@ export default function ProductPage() {
 
   return (
     <div className="custom-page noBG">
-      <Layout>
+      <Layout title="Pricing" description="Pricing models">
         <PricingHeader />
 
         {selectedType === 'serverless' ? (

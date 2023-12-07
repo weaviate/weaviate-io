@@ -11,7 +11,8 @@ export default function BlogItem(props) {
           className={styles.insideBox}
           style={{
             backgroundImage: `url(${details.backgroundImage})`,
-            backgroundSize: '108% 100%',
+            backgroundSize: '100%',
+            backgroundRepeat: 'no-repeat',
           }}
         ></div>
         <div className={styles.textBox}>

@@ -10,7 +10,10 @@ import ThemeSwitch from '/src/components/ThemeSwitch';
 export default function PlatformPage() {
   return (
     <div className="custom-page noBG">
-      <Layout>
+      <Layout
+        title="Vector Database"
+        description="The AI-Native Vector Database"
+      >
         <MetaSEO />
         <PlatformHeader />
         <SOC2 socLight="light" />

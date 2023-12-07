@@ -61,7 +61,7 @@ The `consistency_level` can be specified at query time:
 
 ```bash
 # Get an object by ID, with consistency level ONE
-curl /v1/objects/{ClassName}/{id}?consistency_level=ONE
+curl "http://localhost:8080/v1/objects/{ClassName}/{id}?consistency_level=ONE"
 ```
 
 :::note
