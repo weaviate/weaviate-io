@@ -13,7 +13,7 @@ Vector indexes facilitate efficient, vector-first data storage and retrieval.
 
 ## Index configuration parameters
 
-Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../configuration/schema-configuration.md#set-vector-index-type).
+Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
@@ -65,7 +65,7 @@ import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 <!-- ### Collection configuration example
 
-This is a sample of collection that shows the [data schema](/developers/weaviate/configuration/schema-configuration.md):
+This is a sample of collection that shows the [data schema](/developers/weaviate/manage-data/collections.mdx):
 
 
 ```json
