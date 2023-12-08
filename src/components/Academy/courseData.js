@@ -48,6 +48,7 @@ export const courseData = {
     courseId: "2",
     body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
     buttonType: "Click here",
+    buttonURL: "/developers/academy/building_with_weaviate",
     badgeType: "course",
     isCourse: true,
     units: [
