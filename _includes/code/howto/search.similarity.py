@@ -357,9 +357,9 @@ for o in response.objects:
 # END Autocut Python
 
 # Test results
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'distance'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"distance"}
 # TODO: add tests
 # End test
 

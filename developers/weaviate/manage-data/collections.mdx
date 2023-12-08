@@ -8,15 +8,17 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.classes-v3.py';
-import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
 Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections. 
 
-A note regarding terminology, newer Weaviate documentation discuses "collections." Older Weaviate documentation refers to "classes" instead. Expect to see both terms throughout the documentation.
+:::note Terminology
+Newer Weaviate documentation discuses "collections." Older Weaviate documentation refers to "classes" instead. Expect to see both terms throughout the documentation.
+:::
 
 ## Create a collection
 
@@ -77,11 +79,14 @@ Properties are the data fields in your collection. Each property has a name and 
   <summary>
     Additional information  
   </summary>
-  
-For the available options, see:
+
+Use properties to configure additional parameters such as data type, index characteristics, or tokenization. 
+
+For details, see:
 
 - [References: Configuration: Schema](../config-refs/schema.md)
 - [API References: REST: Schema](../api/rest/schema.md#create-a-class)
+- [Available data types](../config-refs/datatypes.md)
 
 </details>
 
@@ -117,11 +122,292 @@ For the available options, see:
 
 ## Disable auto-schema
 
-By default, Weaviate automatically creates missing collections and missing properties. However, when you manage collections manually you have more precise control of the collection settings.
+By default, Weaviate creates missing collections and missing properties. When you configure collections manually, you have more precise control of the collection settings.
 
 To disable [`auto-schema`](../config-refs/schema.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
-## Read a collection definition
+## Specify a vectorizer	
+
+Specify a `vectorizer` for a collection. 
+
+<details>
+  <summary>Additional information</summary>
+
+Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).	
+
+- [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
+- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
+
+</details>
+
+<Tabs groupId="languages">	
+  <TabItem value="py" label="Python (v4)">	
+    <FilteredTextBlock	
+      text={PyCode}	
+      startMarker="# START Vectorizer"	
+      endMarker="# END Vectorizer"	
+      language="py"	
+    />	
+  </TabItem>	
+
+  <TabItem value="py3" label="Python (v3)">	
+    <FilteredTextBlock	
+      text={PyCodeV3}	
+      startMarker="# START Vectorizer"	
+      endMarker="# END Vectorizer"	
+      language="py"	
+    />	
+  </TabItem>	
+
+  <TabItem value="js" label="JavaScript/TypeScript">	
+    <FilteredTextBlock	
+      text={TSCode}	
+      startMarker="// START Vectorizer"	
+      endMarker="// END Vectorizer"	
+      language="ts"	
+    />	
+  </TabItem>	
+</Tabs>
+
+## Specify vectorizer settings
+
+To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Property-level settings
+
+Configure each property to choose whether to vectorize property name, include property in vectorization, and choose tokenization type.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Specify a distance metric
+
+If you choose to bring your own vectors, you should specify the `distance metric`.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DistanceMetric"
+      endMarker="# END DistanceMetric"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DistanceMetric"
+      endMarker="# END DistanceMetric"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>
+     Additional information
+  </summary>
+
+For details on the configuration parameters, see the following:
+
+- [Distances](../config-refs/distances.md)
+- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
+
+</details>
+
+## Replication settings
+
+Configure replication per collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReplicationSettings"
+      endMarker="# END ReplicationSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReplicationSettings"
+      endMarker="# END ReplicationSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReplicationSettings"
+      endMarker="// END ReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>
+     Additional information
+  </summary>
+
+To test replication factors great then one, use a [multi-node deployment](../installation/docker-compose.md#multi-node-setup).
+
+
+For details on the configuration parameters, see the following:
+
+- [Replication](../config-refs/schema.md#replicationconfig)
+
+</details>
+
+## Sharding settings
+
+Configure sharding per collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ShardingSettings"
+      endMarker="# END ShardingSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ShardingSettings"
+      endMarker="# END ShardingSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>
+     Additional information
+  </summary>
+
+For details on the configuration parameters, see the following:
+
+- [Sharding](../config-refs/schema.md#shardingconfig)
+
+</details>
+
+## Multi-tenancy
+
+:::info Added in `v1.20`
+:::
+
+Create a collection with multi-tenancy enabled.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Multi-tenancy"
+      endMarker="# END Multi-tenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Multi-tenancy"
+      endMarker="# END Multi-tenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+## Read a single collection definition
 
 Retrieve a collection definition from the schema.
 
@@ -170,6 +456,171 @@ Retrieve a collection definition from the schema.
     />
   </TabItem>
 </Tabs>
+
+<details>
+  <summary>Sample configuration: Text objects</summary>
+
+This configuration for text objects defines the following:
+
+- The collection name (`Article`)
+- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
+- A set of properties (`title`, `body`) with `text` data types.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "moduleConfig": {
+        "text2vec-cohere": {
+            "model": "embed-multilingual-v2.0",
+        },
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "body",
+            "dataType": ["text"]
+        },
+    ],
+}
+```
+
+</details>
+
+<details>
+  <summary>Sample configuration: Nested objects</summary>
+
+:::info Added in `v1.22`
+:::
+
+This configuration for nested objects defines the following:
+
+- The collection name (`Person`)
+- The vectorizer module (`text2vec-huggingface`)
+- A set of properties (`last_name`, `address`)
+
+    - `last_name` has `text` data type
+    - `address` has `object` data type
+    
+- The `address` property has two nested properties (`street` and `city`)
+
+```json
+{
+    "class": "Person",
+    "vectorizer": "text2vec-huggingface",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+</details>
+
+<details>
+  <summary>Sample configuration: Generative search</summary>
+
+This configuration for [generative search](../search/generative.md) defines the following:
+
+- The collection name (`Article`)
+- The default vectorizer module (`text2vec-openai`)
+- The generative module (`generative-openai`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`)
+- The tokenization option for the `url` property
+- The vectorization option (`skip` vectorization) for the `url` property
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-openai",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field",
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "skip": true
+                },
+            }
+        },
+    ],
+}
+
+```
+
+</details>
+
+<details>
+  <summary>Sample configuration: Images</summary>
+
+This configuration for image search defines the following:
+
+- The collection name (`Image`)
+- The vectorizer module (`img2vec-neural`)
+
+  - The `image` property configures collection to store image data.
+  
+- The vector index distance metric (`cosine`)
+- A set of properties (`image`), with the `image` property set as `blob`.
+
+For image searches, see [Image search](../search/image.md).
+
+```json
+{
+    "class": "Image",
+    "vectorizer": "img2vec-neural",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "img2vec-neural": {
+            "imageFields": [
+                "image"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "name": "image",
+            "dataType": ["blob"]
+        },
+    ],
+}
+```
+
+</details>
 
 ## Read all collection definitions
 
@@ -224,7 +675,7 @@ Fetch the database schema to retrieve all of the collection definitions.
 
 ## Update a collection definition
 
-Use a Weaviate client to update [collection](/developers/weaviate/config-refs/schema) definitions. Some definitions cannot be modified after you create your collection.
+Some definitions cannot be modified after you create your collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -270,198 +721,48 @@ Use a Weaviate client to update [collection](/developers/weaviate/config-refs/sc
   </TabItem>
 </Tabs>
 
+## Update a parameter
+
+Some parameters cannot be modified after you create your collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModifyParam"
+      endMarker="# END ModifyParam"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModifyParam"
+      endMarker="# END ModifyParam"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+  ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
+
+  </TabItem>
+</Tabs>
+
 ## Delete a collection
 
 import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
 
-## Sample configuration: Text objects
-
-Text collection configuration details.
-
-```json
-{
-    "class": "Article",
-    "vectorizer": "text2vec-cohere",
-    "moduleConfig": {
-        "text2vec-cohere": {
-            "model": "embed-multilingual-v2.0",
-        },
-    },
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        {
-            "name": "body",
-            "dataType": ["text"]
-        },
-    ],
-}
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The following code defines:
-
-- The collection name (`Article`)
-- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
-- A set of properties (`title`, `body`) with `text` data types.
-
-</details>
-
-## Sample configuration: Nested objects
-
-:::info Added in `v1.22`
-
-:::
-
-Collection configuration with nested objects.
-
-```json
-{
-    "class": "Person",
-    "vectorizer": "text2vec-huggingface",
-    "properties": [
-        {
-            "dataType": ["text"],
-            "name": "last_name",
-        },
-        {
-            "dataType": ["object"],
-            "name": "address",
-            "nestedProperties": [
-                {"dataType": ["text"], "name": "street"},
-                {"dataType": ["text"], "name": "city"}
-            ],
-        }
-    ],
-}
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The following code defines:
-
-- The collection name (`Person`)
-- The vectorizer module (`text2vec-huggingface`)
-- A set of properties (`last_name`, `address`)
-
-    - `last_name` has `text` data type
-    - `address` has `object` data type
-    
-- The `address` property has two nested properties (`street` and `city`)
-
-</details>
-
-## Sample configuration: Generative search
-
-Collection configuration for [generative search](../search/generative.md) on text objects.
-
-```json
-{
-    "class": "Article",
-    "vectorizer": "text2vec-openai",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-    },
-    "moduleConfig": {
-        "generative-openai": {}
-    },
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        {
-            "name": "chunk",
-            "dataType": ["text"]
-        },
-        {
-            "name": "chunk_no",
-            "dataType": ["int"]
-        },
-        {
-            "name": "url",
-            "dataType": ["text"],
-            "tokenization": "field",
-            "moduleConfig": {
-                "text2vec-openai": {
-                    "skip": true
-                },
-            }
-        },
-    ],
-}
-
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The collection defines the following:
-
-- The collection name (`Article`)
-- The default vectorizer module (`text2vec-openai`)
-- The generative module (`generative-openai`)
-- A set of properties (`title`, `chunk`, `chunk_no` and `url`)
-- The tokenization option for the `url` property
-- The vectorization option (`skip` vectorization) for the `url` property
-
-</details>
-
-## Sample configuration: Images
-
-Image collection configuration details.
-
-```json
-{
-    "class": "Image",
-    "vectorizer": "img2vec-neural",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-    },
-    "moduleConfig": {
-        "img2vec-neural": {
-            "imageFields": [
-                "image"
-            ]
-        }
-    },
-    "properties": [
-        {
-            "name": "image",
-            "dataType": ["blob"]
-        },
-    ],
-}
-```
-
-<details>
-  <summary>Additional information</summary>
-
-The collection defines the following:
-
-- The collection name (`Image`)
-- The vectorizer module (`img2vec-neural`)
-
-  - The `image` property configures collection to store image data.
-  
-- The vector index distance metric (`cosine`)
-- A set of properties (`image`), with the `image` property set as `blob`.
-
-For image searches, see [Image search](../search/image.md).
-
-</details>
-
 ## Related pages
 
 - [API References: REST: Schema](../api/rest/schema.md)
 - [References: Configuration: Schema](../config-refs/schema.md)
+- [References: Schema](../config-refs/schema.md)
+- [Tutorial: Schema](../tutorials/schema.md)
 - [Concepts: Data structure](../concepts/data.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

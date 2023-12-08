@@ -618,7 +618,7 @@ client.schema.create_class(class_obj)
 
 ## Related pages
 - [Tutorial: Schema](../tutorials/schema.md)
-- [How to: Configure a schema](../configuration/schema-configuration.md)
+- [How to: Configure a schema](../manage-data/collections.mdx)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 

@@ -1,5 +1,6 @@
-# How-to: Configure -> Schema - Python examples
+# How-to: Manage-Data -> Classes
 import os
+import json
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -9,53 +10,50 @@ import weaviate
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
-    additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
-    }
+    port=8080,
+    grpc_port=50051,
 )
 
-# Clean slate
-if client.collections.exists("Article"):
-    client.collections.delete("Article")
+collection_name = "Article"
 
+# ================================
+# ===== CREATE A COLLECTION =====
+# ================================
+
+# Clean slate
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
 
 # START CreateCollection
 client.collections.create("Article")
 # END CreateCollection
 
 # Test
-assert (client.collections.exists("Article"))
+assert client.collections.exists(collection_name)
 
-# Delete the collection to recreate it
-client.collections.delete("Article")
+# ===============================================
+# ===== CREATE A COLLECTION WITH PROPERTIES =====
+# ===============================================
 
+# Clean slate
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
 
-# START PropertyDefinition
-# highlight-start
+# START CreateCollectionWithProperties
 import weaviate.classes as wvc
-# highlight-end
 
 client.collections.create(
     "Article",
-    # highlight-start
     properties=[
         wvc.Property(name="title", data_type=wvc.DataType.TEXT),
         wvc.Property(name="body", data_type=wvc.DataType.TEXT),
     ]
-    # highlight-end
 )
-# END PropertyDefinition
+# END CreateCollectionWithProperties
 
-# Test
-collection = client.collections.get("Article")
-config = collection.config.get()
-assert (client.collections.exists("Article"))
-assert len(config.properties) == 2
-
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
-
+# ===============================================
+# ===== CREATE A COLLECTION WITH VECTORIZER =====
+# ===============================================
 
 # START Vectorizer
 import weaviate.classes as wvc
@@ -80,6 +78,9 @@ assert config.vectorizer.value == "text2vec-openai"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+# ===========================
+# ===== MODULE SETTINGS =====
+# ===========================
 
 # START ModuleSettings
 import weaviate.classes as wvc
@@ -105,6 +106,9 @@ assert config.vectorizer.value == "text2vec-cohere"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+# ====================================
+# ===== MODULE SETTINGS PROPERTY =====
+# ====================================
 
 # START PropModuleSettings
 import weaviate.classes as wvc
@@ -145,8 +149,11 @@ assert config.vectorizer.value == "text2vec-huggingface"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+# ===========================
+# ===== DISTANCE METRIC =====
+# ===========================
 
-# START IndexReplicationSettings
+# START DistanceMetric
 import weaviate.classes as wvc
 
 client.collections.create(
@@ -156,14 +163,8 @@ client.collections.create(
         distance_metric=wvc.VectorDistance.COSINE
     ),
     # highlight-end
-
-    # highlight-start
-    replication_config=wvc.Configure.replication(
-        factor=3
-    )
-    # highlight-end
 )
-# END IndexReplicationSettings
+# END DistanceMetric
 
 # Test
 collection = client.collections.get("Article")
@@ -173,6 +174,67 @@ assert config.vector_index_config.distance_metric.value == "cosine"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+# =======================
+# ===== REPLICATION =====
+# =======================
+
+# START ReplicationSettings
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    replication_config=wvc.Configure.replication(
+        factor=3
+    )
+    # highlight-end
+)
+# END ReplicationSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vector_index_config.distance_metric.value == "cosine"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+# ====================
+# ===== SHARDING =====
+# ====================
+
+# START ShardingSettings
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    sharding_config=wvc.Configure.sharding(
+        virtual_per_physical=128,
+        desired_count=1,
+        actual_count=1,
+        desired_virtual_count=128,
+        actual_virtual_count=128,
+    )
+    # highlight-end
+)
+# END ShardingSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.sharding_config.virtual_per_physical == 128
+assert config.sharding_config.desired_count == 1
+assert config.sharding_config.actual_count == 1
+assert config.sharding_config.desired_virtual_count == 128
+assert config.sharding_config.actual_virtual_count == 128
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+# =========================
+# ===== MULTI-TENANCY =====
+# =========================
 
 # START Multi-tenancy
 client.collections.create(
@@ -183,6 +245,9 @@ client.collections.create(
 )
 # END Multi-tenancy
 
+# ==========================
+# ===== ADD A PROPERTY =====
+# ==========================
 
 # START AddProp
 import weaviate.classes as wvc
@@ -207,10 +272,9 @@ config = collection.config.get()
 assert len(config.properties) == 1
 assert config.properties[0].name == "body"
 
-
-# TODOv4 we need to update this part of the example
-# It seemed to be broken when I worked on this example
-# stopwords_preset="en",
+# ==============================
+# ===== MODIFY A PARAMETER =====
+# ==============================
 
 # START ModifyParam
 import weaviate.classes as wvc
@@ -234,22 +298,74 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.inverted_index_config.stopwords.removals == ["a", "the"]
 
-# DON'T delete the collection yet
+# ================================
+# ===== READ A COLLECTION =====
+# ================================
 
-# START SchemaGet
-collection = client.collections.get("Article")
-# highlight-start
-config = collection.config.get()
-# highlight-end
+# START ReadOneCollection
+articles = client.collections.get("Article")
+articles_config = articles.config.get()
 
-# print some of the config properties
-print(config.vectorizer)
-print(config.inverted_index_config)
-print(config.inverted_index_config.stopwords.removals)
-print(config.multi_tenancy_config)
-print(config.vector_index_config)
-print(config.vector_index_config.distance_metric)
-# END SchemaGet
+print(articles_config)
+# END ReadOneCollection
 
-# Delete the collection to recreate it
-client.collections.delete("Article")
+assert articles_config.name == "Article"
+
+
+# ================================
+# ===== READ ALL COLLECTIONS =====
+# ================================
+
+# START ReadAllCollections
+response = client.collections.list_all()
+
+print(response)
+# END ReadAllCollections
+
+assert type(response) == dict
+assert collection_name in response
+
+
+# ================================
+# ===== UPDATE A COLLECTION =====
+# ================================
+
+# Clean slate
+if client.collections.exists(collection_name):
+    client.collections.delete(collection_name)
+
+# Define and create a collection
+client.collections.create(
+    name="Article",
+    inverted_index_config=wvc.Configure.inverted_index(
+        bm25_k1=1.2
+    )
+)
+
+# START UpdateCollection
+import weaviate.classes as wvc
+
+articles = client.collections.get("Article")
+# END UpdateCollection
+
+
+# Create an object to make sure it remains mutable
+for _ in range(5):
+    articles.data.insert({
+        "title": "A grand day out."
+    })
+old_config = articles.config.get()
+# START UpdateCollection
+
+# Update the collection definition
+articles.config.update(
+    inverted_index_config=wvc.Reconfigure.inverted_index(
+        bm25_k1=1.5
+    )
+)
+# END UpdateCollection
+
+new_config = articles.config.get()
+
+assert old_config.inverted_index_config.bm25.k1 == 1.2
+assert new_config.inverted_index_config.bm25.k1 == 1.5

@@ -11,10 +11,10 @@ import os
 
 # Instantiate the client with the user/password and OpenAI api key
 # client = weaviate.Client(
-#     'https://edu-demo.weaviate.network',
-#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+#     "https://edu-demo.weaviate.network",
+#     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
 #     additional_headers={
-#         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+#         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
@@ -219,10 +219,10 @@ for o in response.objects:
 # END limit Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert len(response['data']['Get']['JeopardyQuestion']) == 3
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 # End test
 
 
@@ -284,7 +284,7 @@ gql_query = """
 
 """
 # gqlresponse = client.query.raw(gql_query)
-# print('--------------------------------------------------------------------------------')
+# print("--------------------------------------------------------------------------------")
 print(json.dumps(response, indent=2))
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
@@ -308,9 +308,9 @@ for o in response.objects:
 # END autocut Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 # End test
 
 

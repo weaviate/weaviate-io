@@ -10,10 +10,10 @@ import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    'https://edu-demo.weaviate.network',
-    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+    "https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
     }
 )
 
@@ -689,11 +689,11 @@ test_gqlresponse(response, gqlresponse)
 # START limit Python
 response = (
     client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
+    .get("JeopardyQuestion", ["question", "answer"])
     .with_hybrid(
-      query='safety'
+      query="safety"
     )
-    .with_additional('score')
+    .with_additional("score")
     # highlight-start
     .with_limit(3)
     # highlight-end
@@ -704,10 +704,10 @@ print(json.dumps(response, indent=2))
 # END limit Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert len(response['data']['Get']['JeopardyQuestion']) == 3
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 # End test
 
 
@@ -768,7 +768,7 @@ gql_query = """
 # END limit GraphQL
 """
 gqlresponse = client.query.raw(gql_query)
-print('--------------------------------------------------------------------------------')
+print("--------------------------------------------------------------------------------")
 print(json.dumps(response, indent=2))
 print(json.dumps(gqlresponse, indent=2))
 test_gqlresponse(response, gqlresponse)
@@ -781,11 +781,11 @@ test_gqlresponse(response, gqlresponse)
 # START autocut Python
 response = (
     client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
+    .get("JeopardyQuestion", ["question", "answer"])
     .with_hybrid(
-      query='safety'
+      query="safety"
     )
-    .with_additional('score')
+    .with_additional("score")
     # highlight-start
     .with_autocut(1)
     # highlight-end
@@ -796,9 +796,9 @@ print(json.dumps(response, indent=2))
 # END autocut Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 # End test
 
 

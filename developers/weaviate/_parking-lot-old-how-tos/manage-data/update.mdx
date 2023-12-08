@@ -39,7 +39,7 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 
 ## Update object properties
 
-To update the values of a list of properties in an object, [make a `PATCH` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` properties are updated, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
+To update the values of a list of properties in an object, [make a `PATCH` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` properties are updated, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../manage-data/collections.mdx#property-level-module-settings)ed).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -131,7 +131,7 @@ If you want to update an object's vector embedding, you can specify the vector p
 
 ## Update (replace) an entire object
 
-To replace an object in its entirety, [make a `PUT` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` property is replaced with a different value, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
+To replace an object in its entirety, [make a `PUT` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` property is replaced with a different value, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../manage-data/collections.mdx#property-level-module-settings)ed).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -182,7 +182,7 @@ To replace an object in its entirety, [make a `PUT` request to the `/v1/objects`
 
 ## Add a new property
 
-Weaviate does not support adding an extra property to an object if the property isn't listed in the schema class definition. You can update the values of existing class properties as seen above, or you can [add the property to the class first](../configuration/schema-configuration.md/#add-a-property), then [update](#update-object-properties) it for the desired object(s).
+Weaviate does not support adding an extra property to an object if the property isn't listed in the schema class definition. You can update the values of existing class properties as seen above, or you can [add the property to the class first](../manage-data/collections.mdx/#add-a-property), then [update](#update-object-properties) it for the desired object(s).
 
 
 ## Delete a property

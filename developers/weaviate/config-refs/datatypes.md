@@ -7,7 +7,7 @@ image: og/docs/configuration.jpg
 
 
 :::info Related pages
-- [Configuration: Schema](../configuration/schema-configuration.md)
+- [Configuration: Schema](../manage-data/collections.mdx)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 :::

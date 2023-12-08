@@ -156,7 +156,7 @@ result = client.data_object.validate(
     uuid="12345678-1234-1234-1234-123456789012",
 )
 
-# "invalid object: no such prop with name 'thisPropShouldNotEndUpInTheSchema' found..."
+# "invalid object: no such prop with name "thisPropShouldNotEndUpInTheSchema" found..."
 print(json.dumps(result, indent=2))
 # ValidateObject END
 

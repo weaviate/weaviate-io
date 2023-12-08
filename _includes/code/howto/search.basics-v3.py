@@ -473,7 +473,7 @@ response = (
     client.query.get("JeopardyQuestion", ["question"])
     .with_limit(1)
     # highlight-start
-    .with_additional('creationTimeUnix')
+    .with_additional("creationTimeUnix")
     # highlight-end
     .do()
 )
