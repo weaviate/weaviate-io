@@ -74,7 +74,7 @@ services:
 
 ## Collection configuration
 
-To configure how the module behaves in each collection, update the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+To configure how the module behaves in each collection, update the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings
 

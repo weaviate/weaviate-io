@@ -12,10 +12,10 @@ import weaviate
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    'http://localhost:8080',  # Replace with your Weaviate URL
-    # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),
+    "http://localhost:8080",  # Replace with your Weaviate URL
+    # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace w/ your OPENAI API key
     }
 )
 
@@ -24,15 +24,15 @@ client = weaviate.Client(
 # ============================
 
 class_definition = {
-    'class': 'JeopardyQuestion',
-    'description': 'A Jeopardy! question',
-    'vectorizer': 'text2vec-openai',
+    "class": "JeopardyQuestion",
+    "description": "A Jeopardy! question",
+    "vectorizer": "text2vec-openai",
 }
 
 # Clean slate
-if client.schema.exists('JeopardyQuestion'):
-    client.schema.delete_class('JeopardyQuestion')
-if not client.schema.exists('JeopardyQuestion'):
+if client.schema.exists("JeopardyQuestion"):
+    client.schema.delete_class("JeopardyQuestion")
+if not client.schema.exists("JeopardyQuestion"):
     client.schema.create_class(class_definition)
 
 
@@ -152,8 +152,8 @@ interval = 20  # print progress every this many records; should be bigger than t
 def add_object(obj) -> None:
     global counter
     properties = {
-        'question': obj['Question'],
-        'answer': obj['Answer'],
+        "question": obj["Question"],
+        "answer": obj["Answer"],
     }
 
     client.batch.configure(batch_size=100)  # Configure batch
@@ -161,7 +161,7 @@ def add_object(obj) -> None:
         # Add the object to the batch
         batch.add_data_object(
             data_object=properties,
-            class_name='JeopardyQuestion',
+            class_name="JeopardyQuestion",
             # If you Bring Your Own Vectors, add the `vector` parameter here
             # vector=obj.vector
         )
@@ -169,15 +169,15 @@ def add_object(obj) -> None:
         # Calculate and display progress
         counter += 1
         if counter % interval == 0:
-            print(f'Imported {counter} articles...')
+            print(f"Imported {counter} articles...")
 
 
 # END JSON streaming  # END CSV streaming
 
 # START JSON streaming
-print('JSON streaming, to avoid running out of memory on large files...')
-with open('jeopardy_1k.json', 'rb') as f:
-    objects = ijson.items(f, 'item')
+print("JSON streaming, to avoid running out of memory on large files...")
+with open("jeopardy_1k.json", "rb") as f:
+    objects = ijson.items(f, "item")
     for o in objects:
         add_object(o)
         # END JSON streaming
@@ -186,10 +186,10 @@ with open('jeopardy_1k.json', 'rb') as f:
 # END JSON streaming
 
 # START CSV streaming
-print('pandas dataframe iterator with lazy-loading, to not load all records in RAM at once...')
+print("pandas dataframe iterator with lazy-loading, to not load all records in RAM at once...")
 with pd.read_csv(
-    'jeopardy_1k.csv',
-    usecols=['Question', 'Answer', 'Category'],
+    "jeopardy_1k.csv",
+    usecols=["Question", "Answer", "Category"],
     chunksize=100,  # number of rows per chunk
 ) as csv_iterator:
     # Iterate through the dataframe chunks and add each CSV record to the batch
@@ -204,13 +204,13 @@ with pd.read_csv(
 
 # START JSON streaming  # START CSV streaming
 
-print(f'Finished importing {counter} articles.')
+print(f"Finished importing {counter} articles.")
 # END JSON streaming  # END CSV streaming
 
 # Test
-response = client.query.aggregate('JeopardyQuestion').with_meta_count().do()
-actual_count = response['data']['Aggregate']['JeopardyQuestion'][0]['meta']['count']
-assert actual_count == MAX_ROWS_TO_IMPORT * 2, f'Expected {MAX_ROWS_TO_IMPORT * 2} but got {actual_count}'
+response = client.query.aggregate("JeopardyQuestion").with_meta_count().do()
+actual_count = response["data"]["Aggregate"]["JeopardyQuestion"][0]["meta"]["count"]
+assert actual_count == MAX_ROWS_TO_IMPORT * 2, f"Expected {MAX_ROWS_TO_IMPORT * 2} but got {actual_count}"
 # END test
 '''
 
@@ -236,6 +236,7 @@ with client.batch as batch:
         batch.add_data_object(
             data_obj,
             class_name,
+            dynamic=True,    # Weaviate dynamically adjusts the batch size
         )
 # END ConfigureBatchImportExample
 

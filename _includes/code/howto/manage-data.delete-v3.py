@@ -8,14 +8,14 @@ import os
 import weaviate
 
 client = weaviate.Client(
-    'http://localhost:8080',  # Replace with your Weaviate URL
-    # auth_client_secret=weaviate.AuthApiKey('YOUR-WEAVIATE-API-KEY'),  # Replace w/ your Weaviate API key
+    "http://localhost:8080",  # Replace with your Weaviate URL
+    # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate API key
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace w/ your OPENAI API key
     }
 )
 
-class_name = 'EphemeralObject'
+class_name = "EphemeralObject"
 
 
 # =========================
@@ -23,12 +23,12 @@ class_name = 'EphemeralObject'
 # =========================
 
 # START DeleteObject
-uuid_to_delete = '...'  # replace with the id of the object you want to delete
+uuid_to_delete = "..."  # replace with the id of the object you want to delete
 # END DeleteObject
 
 uuid_to_delete = client.data_object.create({
-    'name': 'EphemeralObjectA',
-}, 'EphemeralObject')
+    "name": "EphemeralObjectA",
+}, "EphemeralObject")
 
 # Test insertion
 assert client.data_object.get_by_id(uuid_to_delete, class_name=class_name)  # Should not fail if object exists
@@ -37,7 +37,7 @@ assert client.data_object.get_by_id(uuid_to_delete, class_name=class_name)  # Sh
 
 client.data_object.delete(
     uuid=uuid_to_delete,
-    class_name='EphemeralObject',  # Class of the object to be deleted
+    class_name="EphemeralObject",  # Class of the object to be deleted
 )
 # END DeleteObject
 
@@ -54,7 +54,7 @@ assert response == None
 # try:
 #     client.data_object.delete(
 #         uuid=uuid_to_delete,
-#         class_name='EphemeralObject',
+#         class_name="EphemeralObject",
 #     )
 #     # Returns None on success
 # except weaviate.exceptions.UnexpectedStatusCodeException as e:
@@ -71,8 +71,8 @@ assert response == None
 N = 5
 for i in range(N):
     client.data_object.create({
-        'name': f'EphemeralObject_{i}',
-    }, 'EphemeralObject')
+        "name": f"EphemeralObject_{i}",
+    }, "EphemeralObject")
 
 # Test insertion
 response = client.query.aggregate("EphemeralObject").with_meta_count().do()
@@ -80,12 +80,12 @@ assert response["data"]["Aggregate"]["EphemeralObject"][0]["meta"]["count"] == 5
 
 # START DeleteBatch
 client.batch.delete_objects(
-    class_name='EphemeralObject',
+    class_name="EphemeralObject",
     # highlight-start
     where={
-        'path': ['name'],
-        'operator': 'Like',
-        'valueText': 'EphemeralObject*'
+        "path": ["name"],
+        "operator": "Like",
+        "valueText": "EphemeralObject*"
     },
     # highlight-end
 )
@@ -101,12 +101,12 @@ assert response["data"]["Aggregate"]["EphemeralObject"][0]["meta"]["count"] == 0
 
 # START DeleteContains
 client.batch.delete_objects(
-    class_name='EphemeralObject',
+    class_name="EphemeralObject",
     where={
-        'path': ['name'],
+        "path": ["name"],
         # highlight-start
-        'operator': 'ContainsAny',
-        'valueTextArray': ['asia', 'europe']  # Note the array syntax
+        "operator": "ContainsAny",
+        "valueTextArray": ["asia", "europe"]  # Note the array syntax
         # highlight-end
     },
 )
@@ -118,22 +118,22 @@ client.batch.delete_objects(
 N = 5
 for i in range(N):
     client.data_object.create({
-        'name': f'EphemeralObject_{i}',
-    }, 'EphemeralObject')
+        "name": f"EphemeralObject_{i}",
+    }, "EphemeralObject")
 
 # START DryRun
 result = (
     client.batch.delete_objects(
-        class_name='EphemeralObject',
+        class_name="EphemeralObject",
         # Same `where` filter as in the GraphQL API
         where={
-            'path': ['name'],
-            'operator': 'Like',
-            'valueText': 'EphemeralObject*'
+            "path": ["name"],
+            "operator": "Like",
+            "valueText": "EphemeralObject*"
         },
         # highlight-start
         dry_run=True,
-        output='verbose'
+        output="verbose"
         # highlight-end
     )
 )
@@ -196,12 +196,12 @@ expected_results = """
 
 # START DeleteByIDBatch
 client.batch.delete_objects(
-    class_name='EphemeralObject',
+    class_name="EphemeralObject",
     where={
-        'path': ['id'],
+        "path": ["id"],
         # highlight-start
-        'operator': 'ContainsAny',
-        'valueTextArray': ['12c88739-7a4e-49fd-bf53-d6a829ba0261', '3022b8be-a6dd-4ef4-b213-821f65cee53b', '30de68c1-dd53-4bed-86ea-915f34faea63']  # Note the array syntax
+        "operator": "ContainsAny",
+        "valueTextArray": ["12c88739-7a4e-49fd-bf53-d6a829ba0261", "3022b8be-a6dd-4ef4-b213-821f65cee53b", "30de68c1-dd53-4bed-86ea-915f34faea63"]  # Note the array syntax
         # highlight-end
     },
 )

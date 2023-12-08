@@ -82,8 +82,40 @@ func Test_ManageDataCreate(t *testing.T) {
 		// CreateObject END
 	})
 
+	t.Run("create object with vector", func(t *testing.T) {
+		// CreateObjectWithVector START
+		vector := make([]float32, 1536)
+		for i := 0; i < len(vector); i++ {
+			vector[i] = 0.12345
+		}
+
+		w, err := client.Data().Creator().
+			WithClassName("JeopardyQuestion").
+			WithProperties(map[string]interface{}{
+				"question": "This vector DB is OSS and supports automatic property type inference on import",
+				"answer":   "Weaviate",
+			}).
+			// highlight-start
+			WithVector(vector).
+			// highlight-end
+			Do(ctx)
+
+		// CreateObjectWithVector END
+
+		require.NoError(t, err)
+
+		// CreateObjectWithVector START
+		// the returned value is a wrapped object
+		b, err := json.MarshalIndent(w.Object, "", "  ")
+		// CreateObjectWithId END
+		require.NoError(t, err)
+		// CreateObjectWithVector START
+		fmt.Println(string(b))
+		// CreateObjectWithId END
+	})
+
 	t.Run("create object with id and vector", func(t *testing.T) {
-		// CreateObjectWithIdAndVector START
+		// CreateObjectWithId START
 		vector := make([]float32, 1536)
 		for i := 0; i < len(vector); i++ {
 			vector[i] = 0.12345
@@ -97,22 +129,21 @@ func Test_ManageDataCreate(t *testing.T) {
 			}).
 			// highlight-start
 			WithID("12345678-e64f-5d94-90db-c8cfa3fc1234").
-			WithVector(vector).
 			// highlight-end
 			Do(ctx)
 
-		// CreateObjectWithIdAndVector END
+		// CreateObjectWithId END
 
 		require.NoError(t, err)
 
-		// CreateObjectWithIdAndVector START
+		// CreateObjectWithId START
 		// the returned value is a wrapped object
 		b, err := json.MarshalIndent(w.Object, "", "  ")
-		// CreateObjectWithIdAndVector END
+		// CreateObjectWithId END
 		require.NoError(t, err)
-		// CreateObjectWithIdAndVector START
+		// CreateObjectWithId START
 		fmt.Println(string(b))
-		// CreateObjectWithIdAndVector END
+		// CreateObjectWithId END
 	})
 
 	t.Run("create object with deterministic id", func(t *testing.T) {

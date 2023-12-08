@@ -715,3 +715,9 @@ Dropdown style removed.
   color: black;
   text-decoration: none;
 }
+
+.react-player {
+  @media screen and (max-width: 768px) {
+    width: 100% !important;
+  }
+}

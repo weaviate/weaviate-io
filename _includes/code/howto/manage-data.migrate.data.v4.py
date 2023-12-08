@@ -1,6 +1,7 @@
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 import weaviate
 import weaviate.classes as wvc
+from weaviate import Collection
 
 # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
 from tqdm import tqdm
@@ -19,7 +20,9 @@ DATASET_SIZE = 50  # For assertions
 
 
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
-client_src = weaviate.connect_to_local()
+client_src = weaviate.connect_to_local(
+    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+)
 
 # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
 
@@ -34,6 +37,7 @@ assert client_src.is_ready()
 client_tgt = weaviate.connect_to_local(
     port=8099,
     grpc_port=50099,
+    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 )
 
 # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
@@ -44,7 +48,7 @@ client_tgt = weaviate.connect_to_local(
 
 
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
-def create_collection(collection_name, enable_mt=False):
+def create_collection(collection_name: str, enable_mt=False):
     reviews = client_tgt.collections.create(
         name=collection_name,
         multi_tenancy_config=wvc.Configure.multi_tenancy(enabled=enable_mt),
@@ -94,14 +98,15 @@ def create_collection(collection_name, enable_mt=False):
 
 
 # START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
-def migrate_data(collection_src, collection_tgt):
+def migrate_data(collection_src: Collection, collection_tgt: Collection):
     obj_buffer = list()
     batch_size = 100
 
     for i, q in enumerate(tqdm(collection_src.iterator(include_vector=True))):
         new_obj = wvc.DataObject(
             properties=q.properties,
-            vector=q.vector
+            vector=q.vector,
+            uuid=q.uuid
         )
         obj_buffer.append(new_obj)
         if i != 0 and i % batch_size == 0:
@@ -153,6 +158,9 @@ migrate_data(reviews_src, reviews_tgt)
 agg_resp = reviews_tgt.aggregate.over_all(total_count=True)
 assert agg_resp.total_count == DATASET_SIZE
 
+coll_list = [reviews_src, reviews_tgt]
+resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
 # Delete existing collection at target if any
 client_tgt.collections.delete("WineReview")
@@ -192,6 +200,10 @@ migrate_data(reviews_src_tenant_a, reviews_tgt)
 # ============================================================
 agg_resp = reviews_tgt.aggregate.over_all(total_count=True)
 assert agg_resp.total_count == DATASET_SIZE
+
+coll_list = [reviews_src_tenant_a, reviews_tgt]
+resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
 
 # Delete existing collection at target if any
@@ -242,6 +254,10 @@ migrate_data(reviews_src, reviews_tgt_tenant_a)
 agg_resp = reviews_tgt_tenant_a.aggregate.over_all(total_count=True)
 assert agg_resp.total_count == DATASET_SIZE
 
+coll_list = [reviews_src, reviews_tgt_tenant_a]
+resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+
 
 # Delete existing collection at target if any
 client_tgt.collections.delete("WineReviewMT")
@@ -291,3 +307,8 @@ migrate_data(reviews_src_tenant_a, reviews_tgt_tenant_a)
 # ============================================================
 agg_resp = reviews_tgt_tenant_a.aggregate.over_all(total_count=True)
 assert agg_resp.total_count == DATASET_SIZE
+
+coll_list = [reviews_src_tenant_a, reviews_tgt_tenant_a]
+resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
+assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+

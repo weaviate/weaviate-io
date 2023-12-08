@@ -16,30 +16,28 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.update.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.update_test.go';
 
-## Overview
-
-This page will show you how to update objects in Weaviate, either in their entirety, or specific properties.
-
-:::info See also
-- [References: REST - /v1/objects](../api/rest/objects.md#update-a-data-object)
-:::
+Weaviate allows partial or complete object updates.
 
 
-## Requirements
+<details>
+  <summary>Additional information</summary>
 
-To update an object, you'll need:
-1. Its [id](../api/graphql/additional-properties.md#id)
-2. The name of its class
-3. The properties to update, in particular the entire object
+  - Partial updates use [`PATCH` requests to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object) under the hood.
+  - Complete updates use [`PUT` requests to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object) under the hood.
+  - Updates that include a `vector` property will recalculate the vector embedding (unless all updated `text` properties are [skipped](../manage-data/collections.mdx#property-level-module-settings)).
+  - To update objects, you must provide the collection name, id and properties to update.
+  - For [multi-tenancy](../concepts/data.md#multi-tenancy) collections, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+  <br/>
 
-:::tip Multi-tenancy
-For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when updating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
-:::
+
+  <RestObjectsCRUDClassnameNote/>
+
+</details>
 
 
 ## Update object properties
 
-To update the values of a list of properties in an object, [make a `PATCH` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` properties are updated, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
+Update one or more properties by providing the collection name, id and properties to update.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -87,9 +85,10 @@ To update the values of a list of properties in an object, [make a `PATCH` reque
   </TabItem>
 </Tabs>
 
-### Specify the vector
 
-If you want to update an object's vector embedding, you can specify the vector property:
+## Update object vector
+
+The object vector can also be updated similarly to properties.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -129,9 +128,9 @@ If you want to update an object's vector embedding, you can specify the vector p
 </Tabs>
 
 
-## Update (replace) an entire object
+## Replace an entire object
 
-To replace an object in its entirety, [make a `PUT` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` property is replaced with a different value, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../configuration/schema-configuration.md#property-level-module-settings)ed).
+The entire object can be replaced by providing the collection name, id and the new object.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -178,20 +177,13 @@ To replace an object in its entirety, [make a `PUT` request to the `/v1/objects`
     />
   </TabItem>
 </Tabs>
-
-
-## Add a new property
-
-Weaviate does not support adding an extra property to an object if the property isn't listed in the schema class definition. You can update the values of existing class properties as seen above, or you can [add the property to the class first](../configuration/schema-configuration.md/#add-a-property), then [update](#update-object-properties) it for the desired object(s).
 
 
 ## Delete a property
 
-Weaviate does not yet support deleting or updating properties in the schema, but you can [vote for this feature request](https://github.com/weaviate/weaviate/issues/2848).
+Deleting or updating properties in the collection definition is [not yet supported](https://github.com/weaviate/weaviate/issues/2848).
 
-To "delete" a text property, you could [update](#update-object-properties) it to an empty string.
-
-To delete properties from a specific object, you can replace the object with a copy that has those properties deleted:
+At object level, you can replace the object with a copy that has those properties deleted, or set to `""` for text properties.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -239,6 +231,10 @@ To delete properties from a specific object, you can replace the object with a c
   </TabItem>
 </Tabs>
 
+
+## Related pages
+
+- [References: REST - /v1/objects](../api/rest/objects.md#update-a-data-object)
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
