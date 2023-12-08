@@ -41,7 +41,7 @@ This will set up the following resources:
 
 If you prefer to follow along with a video, you can watch the following video. Please note that it was recorded in September 2023, and some details may have changed since then.
 
-<ReactPlayer url='https://youtu.be/_2rBrKp83iM' controls='true'/>
+<ReactPlayer url='https://youtu.be/_2rBrKp83iM' controls='true' width="100%"/>
 <br/>
 
 ### AWS Marketplace
