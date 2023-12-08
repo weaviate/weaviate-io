@@ -233,36 +233,100 @@ assert.equal(result.properties[0].moduleConfig['text2vec-huggingface']['vectoriz
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();
 
-// =============================
-// ===== INDEX REPLICATION =====
-// =============================
+// ===========================
+// ===== DISTANCE METRIC =====
+// ===========================
 
-// START IndexReplicationSettings
-const classWithIndexReplication = {
- class: 'Article',
- // highlight-start
- vectorIndexConfig: {
-   distance: 'cosine',
- },
- replicationConfig: {
-   factor: 3,
- },
- // highlight-end
+// START DistanceMetric
+const classWithDistance = {
+  class: 'Article',
+  // highlight-start
+  vectorIndexConfig: {
+    distance: 'cosine',
+  },
+  // highlight-end
 };
 
 // Add the class to the schema
 result = await client
- .schema
- .classCreator()
- .withClass(classWithIndexReplication)
- .do();
+  .schema
+  .classCreator()
+  .withClass(classWithDistance)
+  .do();
 
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(result, null, 2));
-// END IndexReplicationSettings
+// END DistanceMetric
+
+// Test
+assert.equal(result.vectorIndexConfig.distance, 'cosine');
+
+// =======================
+// ===== REPLICATION =====
+// =======================
+
+// START ReplicationSettings
+const classWithReplication = {
+  class: 'Article',
+  // highlight-start
+  replicationConfig: {
+    factor: 3,
+  },
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client
+  .schema
+  .classCreator()
+  .withClass(classWithReplication)
+  .do();
+
+// The returned value is the full class definition, showing all defaults
+console.log(JSON.stringify(result, null, 2));
+// END ReplicationSettings
 
 // Test
 assert.equal(result.replicationConfig.factor, 3);
+
+// ====================
+// ===== SHARDING =====
+// ====================
+
+// START ShardingSettings
+const classWithSharding = {
+  class: 'Article',
+  // highlight-start
+  vectorIndexConfig: {
+    distance: 'cosine',
+  },
+  shardingConfig: {
+    virtual_per_physical: 128,
+    desired_count: 1,
+    actual_count: 1,
+    desired_virtual_count: 128,
+    actual_virtual_count: 128,
+  },
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client
+  .schema
+  .classCreator()
+  .withClass(classWithSharding)
+  .do();
+
+// The returned value is the full class definition, showing all defaults
+console.log(JSON.stringify(result, null, 2));
+// END ShardingSettings
+
+// Test
+assert.equal(result.shardingConfig.virtual_per_physical, 128);
+assert.equal(result.shardingConfig.desired_count, 1);
+assert.equal(result.shardingConfig.actual_count, 1);
+assert.equal(result.shardingConfig.desired_virtual_count, 128);
+assert.equal(result.shardingConfig.actual_virtual_count, 128);
 
 // =========================
 // ===== MULTI-TENANCY =====

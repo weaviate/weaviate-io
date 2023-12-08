@@ -20,8 +20,8 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START IndexReplicationSettings"
-      endMarker="# END IndexReplicationSettings"
+      startMarker="# START ReplicationSettings"
+      endMarker="# END ReplicationSettings"
       language="py"
     />
   </TabItem>
@@ -29,8 +29,8 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START IndexReplicationSettings"
-      endMarker="# END IndexReplicationSettings"
+      startMarker="# START ReplicationSettings"
+      endMarker="# END ReplicationSettings"
       language="py"
     />
   </TabItem>
@@ -38,8 +38,8 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START IndexReplicationSettings"
-      endMarker="// END IndexReplicationSettings"
+      startMarker="// START ReplicationSettings"
+      endMarker="// END ReplicationSettings"
       language="ts"
     />
   </TabItem>

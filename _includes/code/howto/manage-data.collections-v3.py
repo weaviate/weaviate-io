@@ -181,17 +181,38 @@ assert result["properties"][0]["moduleConfig"]["text2vec-huggingface"]["vectoriz
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
-# =============================
-# ===== INDEX REPLICATION =====
-# =============================
+# ===========================
+# ===== DISTANCE METRIC =====
+# ===========================
 
-# START IndexReplicationSettings
+# START DistanceMetric
 class_obj = {
     "class": "Article",
     # highlight-start
     "vectorIndexConfig": {
         "distance": "cosine",
     },
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END DistanceMetric
+
+# Test
+result = client.schema.get(class_name)
+assert result["vectorIndexConfig"]["distance"] == "cosine"
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+# =======================
+# ===== REPLICATION =====
+# =======================
+
+# START ReplicationSettings
+class_obj = {
+    "class": "Article",
+    # highlight-start
     "replicationConfig": {
         "factor": 3,
     },
@@ -199,11 +220,46 @@ class_obj = {
 }
 
 client.schema.create_class(class_obj)
-# END IndexReplicationSettings
+# END ReplicationSettings
 
 # Test
 result = client.schema.get(class_name)
 assert result["replicationConfig"]["factor"] == 3
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+# ====================
+# ===== SHARDING =====
+# ====================
+
+# START ShardingSettings
+class_obj = {
+    "class": "Article",
+    # highlight-start
+    "shardingConfig": {
+        "virtual_per_physical": 128,
+        "desired_count": 1,
+        "actual_count": 1,
+        "desired_virtual_count": 128,
+        "actual_virtual_count": 128,
+    },
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END ShardingSettings
+
+# Test
+result = client.schema.get(class_name)
+assert result["shardingConfig"]["virtualPerPhysical"] == 128
+assert result["shardingConfig"]["desiredCount"] == 1
+assert result["shardingConfig"]["actualCount"] == 1
+assert result["shardingConfig"]["desiredVirtualCount"] == 128
+assert result["shardingConfig"]["actual_virtual_count"] == 128
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
 
 # =========================
 # ===== MULTI-TENANCY =====
@@ -219,6 +275,9 @@ class_obj = {
 
 client.schema.create_class(class_obj)  # returns null on success
 # END Multi-tenancy
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
 
 # ==========================
 # ===== ADD A PROPERTY =====
@@ -255,9 +314,6 @@ client.schema.update_config("Article", class_obj)
 result = client.schema.get(class_name)
 assert result["invertedIndexConfig"]["stopwords"]["removals"] == ["a", "the"]
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
-
 # ==============================
 # ===== MODIFY A PARAMETER =====
 # ==============================
@@ -279,9 +335,6 @@ client.schema.update_config("Article", class_obj)
 result = client.schema.get(class_name)
 assert result["invertedIndexConfig"]["stopwords"]["removals"] == ["a", "the"]
 
-# Delete the class to recreate it
-client.schema.delete_class(class_name)
-
 # ================================
 # ===== READ A COLLECTION =====
 # ================================
@@ -293,7 +346,6 @@ print(json.dumps(response, indent=2))
 # END ReadOneCollection
 
 assert response["class"] == "Article"
-
 
 # ================================
 # ===== READ ALL COLLECTIONS =====

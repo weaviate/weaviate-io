@@ -149,11 +149,11 @@ assert config.vectorizer.value == "text2vec-huggingface"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
-# =============================
-# ===== INDEX REPLICATION =====
-# =============================
+# ===========================
+# ===== DISTANCE METRIC =====
+# ===========================
 
-# START IndexReplicationSettings
+# START DistanceMetric
 import weaviate.classes as wvc
 
 client.collections.create(
@@ -163,19 +163,71 @@ client.collections.create(
         distance_metric=wvc.VectorDistance.COSINE
     ),
     # highlight-end
+)
+# END DistanceMetric
 
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vector_index_config.distance_metric.value == "cosine"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+# =======================
+# ===== REPLICATION =====
+# =======================
+
+# START ReplicationSettings
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
     # highlight-start
     replication_config=wvc.Configure.replication(
         factor=3
     )
     # highlight-end
 )
-# END IndexReplicationSettings
+# END ReplicationSettings
 
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.vector_index_config.distance_metric.value == "cosine"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+# ====================
+# ===== SHARDING =====
+# ====================
+
+# START ShardingSettings
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
+    # highlight-start
+    sharding_config=wvc.Configure.sharding(
+        virtual_per_physical=128,
+        desired_count=1,
+        actual_count=1,
+        desired_virtual_count=128,
+        actual_virtual_count=128,
+    )
+    # highlight-end
+)
+# END ShardingSettings
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.sharding_config.virtual_per_physical == 128
+assert config.sharding_config.desired_count == 1
+assert config.sharding_config.actual_count == 1
+assert config.sharding_config.desired_virtual_count == 128
+assert config.sharding_config.actual_virtual_count == 128
 
 # Delete the collection to recreate it
 client.collections.delete("Article")

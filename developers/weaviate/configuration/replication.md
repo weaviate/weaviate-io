@@ -14,9 +14,9 @@ Weaviate instances can be replicated to increase availability and read throughpu
 
 For more about how replication is designed and built in Weaviate, see the [Replication Architecture](../concepts/replication-architecture/index.md) pages.
 
-## How to configure: Schema
+## How to configure
 
-Replication is disabled by default and can be enabled per data class in the [collection configuration](../manage-data/collections.mdx#indexing-sharding-and-replication-settings). This means you can set different replication factors per class in your dataset. To enable replication on a class, the replication factor has to be set, which looks like the following:
+Replication is disabled by default and can be enabled per data class in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset. To enable replication on a class, the replication factor has to be set, which looks like the following:
 
 
 ```yaml
