@@ -22,7 +22,7 @@ Newer Weaviate documentation discuses "collections." Older Weaviate documentatio
 
 ## Create a collection
 
-To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema#auto-schema) creates them.  
+To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](/developers/weaviate/config-refs/schema#auto-schema) creates them.  
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -84,7 +84,7 @@ Use properties to configure additional parameters such as data type, index chara
 
 For details, see:
 
-- [References: Configuration: Schema](../config-refs/schema)
+- [References: Configuration: Schema](/developers/weaviate/config-refs/schema)
 - [API References: REST: Schema](../api/rest/schema.md#create-a-class)
 - [Available data types](../config-refs/datatypes.md)
 
@@ -124,7 +124,7 @@ For details, see:
 
 By default, Weaviate creates missing collections and missing properties. When you configure collections manually, you have more precise control of the collection settings.
 
-To disable [`auto-schema`](../config-refs/schema#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
+To disable [`auto-schema`](/developers/weaviate/config-refs/schema#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
 ## Specify a vectorizer	
 
@@ -136,7 +136,7 @@ Specify a `vectorizer` for a collection.
 Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).	
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
-- [Vectorizer configuration references](../config-refs/schema#vectorizer)
+- [Vectorizer configuration references](/developers/weaviate/config-refs/schema#vectorizer)
 
 </details>
 
@@ -276,7 +276,7 @@ If you choose to bring your own vectors, you should specify the `distance metric
 For details on the configuration parameters, see the following:
 
 - [Distances](../config-refs/distances.md)
-- [Vector indexes](../config-refs/schema#vectorindexconfig)
+- [Vector indexes](/developers/weaviate/config-refs/schema#vectorindexconfig)
 
 </details>
 
@@ -323,7 +323,7 @@ To test replication factors great then one, use a [multi-node deployment](../ins
 
 For details on the configuration parameters, see the following:
 
-- [Replication](../config-refs/schema#replicationconfig)
+- [Replication](/developers/weaviate/config-refs/schema#replicationconfig)
 
 </details>
 
@@ -367,7 +367,7 @@ Configure sharding per collection.
 
 For details on the configuration parameters, see the following:
 
-- [Sharding](../config-refs/schema#shardingconfig)
+- [Sharding](/developers/weaviate/config-refs/schema#shardingconfig)
 
 </details>
 
@@ -760,8 +760,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 ## Related pages
 
 - [API References: REST: Schema](../api/rest/schema.md)
-- [References: Configuration: Schema](../config-refs/schema)
-- [References: Schema](../config-refs/schema)
+- [References: Schema](/developers/weaviate/config-refs/schema)
 - [Tutorial: Schema](../tutorials/schema.md)
 - [Concepts: Data structure](../concepts/data.md)
 
