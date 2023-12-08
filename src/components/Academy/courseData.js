@@ -52,6 +52,7 @@ export const courseData = {
     isCourse: true,
     units: [
       "which_search",
+      "schema_design",
       "vectorizer_selection",
       "indexing",
     ],

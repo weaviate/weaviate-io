@@ -114,9 +114,27 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
+  schema_design: {
+    title: "Collection schema design",
+    body: "How to design your collection data structure. Whether to use classes or multi-tenancy, or cross-references.",
+    buttonType: "TBD",
+    badgeType: "theory",
+    buttonURL: "/developers/academy/building_with_weaviate/schema_design",
+    learningGoals: [
+      "Starting suggestions for selecting appropriate data structures to have Weaviate work for your needs.",
+    ],
+    learningOutcomes: [
+      "Outline what collection schema is for.",
+      "Describe when to use single or multi-tenancy collections.",
+      "Explain the impact of cross-references on data, and queries.",
+      "Make informed choices on whether to use cross-references.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
   vectorizer_selection: {
     title: "Vectorizer selection",
-    body: "This unit will discuss the basics on how to select a good baseline vectorizer for given data and task types.",
+    body: "The basics on how to select a good baseline vectorizer for given data and task types.",
     buttonType: "TBD",
     badgeType: "theory",
     buttonURL: "/developers/academy/building_with_weaviate/vectorizer_selection",
