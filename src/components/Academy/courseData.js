@@ -107,7 +107,10 @@ export const courseData = {
     badgeType: "course",
     isCourse: false,
     units: [
-      "chunking", "beyond_text"
+      "chunking",
+      "multi_tenancy_intro",
+      "kubernetes_intro",
+      "beyond_text"
     ]
   }
 };

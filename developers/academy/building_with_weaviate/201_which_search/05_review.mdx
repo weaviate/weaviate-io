@@ -11,6 +11,23 @@ import PyCode from '!!raw-loader!./_snippets/05_review.py';
 
 Weaviate offers three primary search types - namely **vector**, **keyword**, and **hybrid** searches. Let's briefly recap what they are, and how they work.
 
+### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Code examples
+
+These code examples are runnable, with the [`v4` Weaviate Python client](../../../weaviate/client-libraries/python.md). Connect to the pre-configured demo instance of Weaviate with the following code, and try the examples below.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START connectionCode"
+      endMarker="# END connectionCode"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search
 
 A vector search finds objects with the most similar vectors to the query vector.

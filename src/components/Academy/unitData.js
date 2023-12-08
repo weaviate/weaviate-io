@@ -137,7 +137,7 @@ export const unitData = {
     body: "The basics on how to select a good baseline vectorizer for given data and task types.",
     buttonType: "TBD",
     badgeType: "theory",
-    buttonURL: "/developers/academy/building_with_weaviate/vectorizer_selection",
+    // buttonURL: "/developers/academy/building_with_weaviate/vectorizer_selection",
     learningGoals: [
       "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
     ],
@@ -374,30 +374,6 @@ export const unitData = {
   //   owner: "jp",
   //   reviewer: "jp"
   // },
-  // migration: {
-  //   title: "Migration",
-  //   body: "How to upgrade (or downgrade) your Weaviate version.",
-  //   buttonType: "TBD",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     ""
-  //   ],
-  //   learningOutcomes: [
-  //     ""
-  //   ]
-  // },
-  // kubernetes: {
-  //   title: "Weaviate and Kubernetes",
-  //   body: "How to run Weaviate on Kubernetes, and best practice tips.",
-  //   buttonType: "TBD",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     ""
-  //   ],
-  //   learningOutcomes: [
-  //     ""
-  //   ]
-  // },
   // clients: {
   //   title: "Weaviate Clients",
   //   body: "An overview: what's available, where to find them, and their capabilities.",
@@ -483,6 +459,44 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
+  multi_tenancy_intro: {
+    title: "Introduction to multi-tenancy",
+    body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
+    buttonType: "TBD",
+    buttonURL: "/developers/academy/standalone/multi_tenancy",
+    badgeType: "practical",
+    learningGoals: [
+      "What multi-tenancy is and when to use it",
+      "How to enable it and create tenants",
+      "Using Weaviate with multi-tenancy",
+    ],
+    learningOutcomes: [
+      "Describe what multi-tenancy is",
+      "Appropriately select when to use multi-tenancy",
+      "Create tenants and ingest data with multi-tenancy enabled",
+      "Perform operations at tenant level",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  kubernetes_intro: {
+    title: "Weaviate with Kubernetes - An introduction",
+    body: "What is Kubernetes, and how do you configure and run Weaviate on it?.",
+    buttonType: "TBD",
+    badgeType: "practical",
+    learningGoals: [
+      "What Kubernetes is, and why it is used.",
+      "How to set up a local Kubernetes cluster.",
+      "Run a multi-node Weaviate instance on the local Kubernetes cluster.",
+      "How to configure Weaviate running on Kubernetes."
+    ],
+    learningOutcomes: [
+      "Describe what Kubernetes is at a high level",
+      "Set up minikube on your local device and run a multi-node cluster.",
+      "Deploy Weaviate with replication on the multi-node cluster.",
+      "Modify configurations and perform a rolling update on the Weaviate instance.",
+    ]
+  },
   // vectorizer_text_overview: {
   //   title: "Text vectorizers: An overview",
   //   body: "An overview of models - from bag-of-words to word2vec and all the way to transformers.",
@@ -531,5 +545,4 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   }
-
 };
