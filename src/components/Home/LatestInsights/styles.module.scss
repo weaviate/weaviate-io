@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1050px) {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
@@ -35,15 +35,15 @@
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 20.0625rem;
-  height: 27rem;
+  height: 24rem;
   flex-shrink: 0;
   scroll-snap-align: center;
 
   .insideBox {
     border-radius: 0.9375rem 0.9375rem 0rem 0rem;
-    background: #141f39;
+    background: #1b1464;
 
-    height: 13.125rem;
+    height: 11rem;
     background-image: url('/img/site/insight_image_01.png');
     background-position: center;
   }
@@ -75,6 +75,7 @@
 
     p {
       color: #130c49;
+      height: 66px;
     }
   }
 }

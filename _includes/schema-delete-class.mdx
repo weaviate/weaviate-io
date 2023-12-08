@@ -1,12 +1,12 @@
 You can delete any unwanted collection(s), along with the data that they contain.
 
-:::caution Deleting a collection == Deleting its objects
-Know that **deleting a collection will also delete all associated objects**!
+:::caution Deleting a collection also deletes its objects
+When you **delete a collection, you delete all associated objects**!
 
-Do not do this to a production database, or anywhere where you do not wish to delete your data.
-
-Run the code below to delete the relevant collection and its objects.
+Be very careful with deletes on a production database and anywhere else that you have important data.
 :::
+
+This code deletes a collection and its objects.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -22,8 +22,9 @@ import TabItem from '@theme/TabItem';
 <TabItem value="py" label="Python (v4)">
 
 ```python
-# delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
-client.collections.delete("Article")  # Replace with your collection name
+if (client.collections.exists("Article")):
+  # delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
+  client.collections.delete("Article")  # Replace with your collection name
 ```
 
 </TabItem>

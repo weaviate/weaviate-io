@@ -14,7 +14,7 @@ image: og/docs/concepts.jpg
 ::: -->
 
 :::info Related pages
-- [Configuration: Schema](../configuration/schema-configuration.md)
+- [Configuration: Schema](../manage-data/collections.mdx)
 :::
 
 ## Overview
@@ -192,7 +192,7 @@ Designing and adding a data schema does not need to be done manually. In the abs
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../configuration/schema-configuration.md).
+To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../manage-data/collections.mdx).
 
 For now, what's important to know is this:
 
@@ -209,8 +209,8 @@ For now, what's important to know is this:
 :::
 
 :::info Multi-tenancy availability
-- Multi-tenancy available from version `v1.20`
-- Tenant activity status setting available from version `v1.21`
+- Multi-tenancy added in `v1.20`
+- Tenant activity status setting added in `v1.21`
 :::
 
 If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
@@ -221,7 +221,7 @@ When multi-tenancy is enabled, Weaviate uses partition shards to store each tena
 - Fast, efficient querying
 - Easy and robust setup and clean up
 
-Staring in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
+Starting in `v1.20`, shards are more lightweight. You can easily have 50,000, or more, active shards per node. This means that you can support 1M concurrently active tenants with just 20 or so nodes.
 
 Starting in `v1.20.1`, you can specify tenants as active (`HOT`) or inactive (`COLD`). For more details on managing tenants, see [Multi-tenancy operations](../manage-data/multi-tenancy.md).
 
@@ -268,7 +268,7 @@ Note that these numbers relate to active tenants only. The size of tenants per n
 
 ### Tenant status
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active

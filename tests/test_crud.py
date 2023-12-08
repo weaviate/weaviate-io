@@ -13,7 +13,7 @@ import os
         "./_includes/code/howto/manage-data.import.py",
         "./_includes/code/howto/manage-data.delete.py",
         "./_includes/code/howto/manage-data.update.py",
-        "./_includes/code/howto/manage-data.classes.py",
+        "./_includes/code/howto/manage-data.collections.py",
         "./_includes/code/howto/manage-data.multi-tenancy.py",
     ],
 )
@@ -50,7 +50,7 @@ def test_on_edu_demo(empty_weaviates, script_loc):
         # "./_includes/code/howto/manage-data.import.ts",  # Test currently not working - needs work to fix
         "./_includes/code/howto/manage-data.delete.ts",
         "./_includes/code/howto/manage-data.update.ts",
-        "./_includes/code/howto/manage-data.classes.ts",
+        "./_includes/code/howto/manage-data.collections.ts",
         "./_includes/code/howto/manage-data.multi-tenancy.ts",
     ],
 )

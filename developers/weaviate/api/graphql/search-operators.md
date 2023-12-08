@@ -184,7 +184,7 @@ import GraphQLFiltersHybridVector from '/_includes/code/graphql.filters.hybrid.v
 
 ### Hybrid with a conditional filter
 
-:::info Available from version `v1.18.0`
+:::info Added in `v1.18.0`
 :::
 
 A [conditional (`where`) filter](../graphql/filters.md#where-filter) can be used with `hybrid`.
@@ -196,7 +196,7 @@ import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.h
 
 ### Limiting BM25 properties
 
-:::info Available from version `v1.19`
+:::info Added in `v1.19`
 :::
 
 A `hybrid` operator can accept a `properties` array of strings that limits the set of properties that will be searched by the BM25 component of the search. If not specified, all text properties will be searched.
@@ -209,7 +209,7 @@ import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybr
 
 ### Oversearch with `relativeScoreFusion`
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 When `relativeScoreFusion` is used as the `fusionType` with a small search `limit`, a result set can be very sensitive to the limit parameter due to the normalization of the scores.
@@ -286,7 +286,7 @@ The `_additional` property in the GraphQL result exposes the score:
 
 ### BM25 with a conditional filter
 
-:::info Available from version `v1.18`
+:::info Added in `v1.18`
 :::
 
 A [conditional (`where`) filter](../graphql/filters.md#where-filter) can be used with `bm25`.
@@ -409,7 +409,7 @@ This operator allows you to find data objects in the vicinity of the vector repr
 | `concepts` | yes | `[string]` | An array of strings that can be natural language queries, or single words. If multiple strings are used, a centroid is calculated and used. Learn more about how the concepts are parsed [here](#concept-parsing). |
 | `distance` | no | `float` | The maximum allowed distance to the provided search input. Cannot be used together with the `certainty` variable. The interpretation of the value of the distance field depends on the [distance metric used](/developers/weaviate/config-refs/distances.md). |
 | `certainty` | no | `float` | Normalized Distance between the result item and the search vector. Normalized to be between 0 (perfect opposite) and 1 (identical vectors). Can't be used together with the `distance` variable. |
-| `autocorrect` | no | `boolean` | Autocorrect input text values |
+| `autocorrect` | no | `boolean` | Autocorrect input text values. Requires the [`text-spellcheck` module](../../modules/other-modules/spellcheck.md) to be present & enabled.  |
 | `moveTo` | no | `object{}` | Move your search term closer to another vector described by keywords |
 | `moveTo{concepts}`| no | `[string]` | An array of strings - natural language queries or single words. If multiple strings are used, a centroid is calculated and used. |
 | `moveTo{objects}`| no | `[UUID]` | Object IDs to move the results to. This is used to "bias" NLP search results into a certain direction in vector space. |

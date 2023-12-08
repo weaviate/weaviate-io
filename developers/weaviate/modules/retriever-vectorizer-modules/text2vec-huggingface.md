@@ -1,6 +1,6 @@
 ---
 title: text2vec-huggingface
-sidebar_position: 11
+sidebar_position: 13
 image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
@@ -62,7 +62,7 @@ services:
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings
 

@@ -8,16 +8,39 @@
 
 import assert from 'assert';
 
+// =================================================
+// ===== Helper functions to convert to base64 =====
+// =================================================
+
+// START helper base64 functions
+import { readFileSync } from 'fs'
+
+const urlToBase64 = async (imageUrl) => {
+  const response = await fetch(imageUrl);
+  const content = await response.buffer();
+  return content.toString('base64');
+}
+
+urlToBase64('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Deutsches_Museum_Portrait_4.jpg/500px-Deutsches_Museum_Portrait_4.jpg')
+  .then(base64 => { console.log(base64) });
+
+// END helper base64 functions
+
+
+  // Helper function – get base64 representation from a local file
+// This example is for NodeJS
+const fileToBase64 = (file: string) => {
+  return readFileSync(file, { encoding: 'base64' });
+}
+console.log(fileToBase64('./your-image-here.jpg'))
+
 // ===========================================
 // ===== Search by base64 representation =====
 // ===========================================
 
-// START base64
 import weaviate from 'weaviate-ts-client';
 import fetch from 'node-fetch';
-// END base64  // START ImageFileSearch
 import fs from 'fs';
-// END ImageFileSearch  // START base64
 
 const client = weaviate.client({
   scheme: 'http',
@@ -25,14 +48,19 @@ const client = weaviate.client({
   // Uncomment if authentication is on, and replace w/ your Weaviate instance API key.
   // apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),
 });
-// END base64  // START base64
 
 const imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/640px-Welchcorgipembroke.JPG'
 
 // Fetch URL into `content` variable
 const response = await fetch(imageUrl);
 const content = await response.buffer();
-const base64String = content.toString('base64');
+
+/*
+// START search with base64
+const base64String = 'SOME_BASE_64_REPRESENTATION';
+// END search with base64
+*/
+// START search with base64
 
 // Perform query
 let result = await client.graphql
@@ -48,7 +76,7 @@ let result = await client.graphql
   .do();
 
 console.log(JSON.stringify(result, null, 2));
-// END base64
+// END search with base64
 
 // Tests
 assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);

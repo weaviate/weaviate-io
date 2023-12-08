@@ -1,115 +1,172 @@
 // How-to: Manage data -> Read all objects - TypeScript examples
 // run with: node --loader=ts-node/esm read-all-objects.ts
 import assert from 'assert';
-
-// CursorExample  // Retrieve data
 import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
-const sourceClient = weaviate.client({
+const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth enabled. Replace w/ your Weaviate instance API key.
 });
 
-const batchSize = 20;
-const className = 'WineReview';
-const classProperties = ['title'];
-
+// ============================
+// ===== Read all objects =====
+// ============================
+{
+// START ReadAllProps
+// STEP 1 - Prepare a helper function to iterate through data in batches
 async function getBatchWithCursor(
-  client: WeaviateClient,
-  className: string, classProperties: string[],
-  batchSize: number, cursor?: string
-): Promise<{ data: any }> {
+  collectionName: string,
+  batchSize: number,
+  cursor: string
+): Promise<any[]> {
+  // First prepare the query to run through data
   const query = client.graphql.get()
-    .withClassName(className)
+    .withClassName(collectionName)
     // highlight-start
-    // Optionally retrieve the vector embedding by adding `vector` to the _additional fields
-    .withFields(classProperties.join(' ') + ' _additional { id vector }')
+    .withFields('title description _additional { id }')
+    // highlight-end
+    .withLimit(batchSize);
+
+    if (cursor) {
+    // Fetch the next set of results
+    // highlight-start
+    let result = await query.withAfter(cursor).do();
+    return result.data.Get[collectionName];
+    // highlight-end
+  } else {
+    // Fetch the first set of results
+    // highlight-start
+    let result = await query.do();
+    return result.data.Get[collectionName];
+    // highlight-end
+  }
+}
+
+// STEP 2 - Iterate through the data
+let cursor = null;
+
+// Batch import all objects to the target instance
+while (true) {
+  // Get Request next batch of objects
+  // highlight-start
+  let nextBatch = await getBatchWithCursor('CollectionName', 100, cursor);
+  // highlight-end
+
+  // Break the loop if empty – we are done
+  if (nextBatch.length === 0)
+    break;
+
+  // highlight-start
+  // Here is your next batch of objects
+  console.log(JSON.stringify(nextBatch));
+  // highlight-end
+
+  // Move the cursor to the last returned uuid
+  cursor = nextBatch.at(-1)['_additional']['id'];
+}
+// END ReadAllProps
+}
+// =========================================
+// ===== Read all objects with Vectors =====
+// =========================================
+{
+// START ReadAllVectors
+// STEP 1 - Prepare a helper function to iterate through data in batches
+async function getBatchWithCursor(
+  collectionName: string,
+  batchSize: number,
+  cursor: string
+): Promise<any[]> {
+  const query = client.graphql.get()
+    .withClassName(collectionName)
+    // highlight-start
+    .withFields('title description _additional { id vector }')
     // highlight-end
     .withLimit(batchSize);
 
   if (cursor) {
-    return await query.withAfter(cursor).do();
+    let result = await query.withAfter(cursor).do();
+    return result.data.Get[collectionName];
   } else {
-    return await query.do();
+    let result = await query.do();
+    return result.data.Get[collectionName];
   }
 }
-// Use this function to retrieve data
 
+// STEP 2 - Iterate through the data
+let cursor = null;
 
-// START FetchClassDefinition
-const classDef = await sourceClient.schema.classGetter().withClassName(className).do();
-// END FetchClassDefinition
-
-// Restore to a new (target) instance
-const targetClient = weaviate.client({
-  scheme: 'https',
-  host: 'anon-endpoint.weaviate.network',  // Replace with your endpoint
-});
-
-await targetClient.schema.classCreator().withClass(classDef).do();
-
-// Finished restoring to the target instance  // END CursorExample
-
-// ===== Tests - pre-population =====
-let result = await targetClient.graphql.aggregate().withClassName('WineReview').withFields('meta { count }').do();
-assert.deepEqual(result.data.Aggregate['WineReview'], [{ meta: { count: 0 } }]);
-// ===== END Tests - pre-population =====
-
-let aggregateCount = 0;
-
-// Restore to a new (target) instance  // CursorExample
-let targetBatcher = targetClient.batch.objectsBatcher();
-let results, cursor;
-
-// Batch import all objects to the target instance
 while (true) {
-  // From the SOURCE instance, get the next group of objects
-  results = await getBatchWithCursor(sourceClient, className, classProperties, batchSize, cursor);
+  // Request the next batch of objects
+  let nextBatch = await getBatchWithCursor('CollectionName', 100, cursor);
 
-  // If empty, we're finished
-  if (results.data.Get[className].length === 0)
+  // Break the loop if empty – we are done
+  if (nextBatch.length === 0)
     break;
 
-  // Otherwise, add the objects to the batch to be added to the target instance
-  for (const retrievedObject of results.data.Get[className]) {
-    const newObject = {};
-    for (const prop of classProperties)
-      newObject[prop] = retrievedObject[prop];
-    targetBatcher = targetBatcher.withObject({
-      class: className,
-      properties: newObject,
-      // highlight-start
-      // Can update the vector if it was included in _additional above
-      vector: retrievedObject['_additional']['vector'],
-      // highlight-end
-    });
+  // Here is your next batch of objects
+  console.log(JSON.stringify(nextBatch));
 
-    // When the batch counter reaches batchSize, push the objects to Weaviate
-    if (++aggregateCount % batchSize === 0) {
-      console.log(`Imported ${aggregateCount} objects...`);
+  // Move the cursor to the last returned uuid
+  cursor = nextBatch.at(-1)['_additional']['id'];
+}
+// END ReadAllVectors
 
-      // Flush the batch queue and restart it
-      const response = await targetBatcher.do();
-      targetBatcher = targetClient.batch.objectsBatcher();
+}
+// =========================================
+// ===== Read all objects with Tenants =====
+// =========================================
+{
+// START ReadAllTenants
+// STEP 1 - Prepare a helper function to iterate through data in batches
+async function getBatchWithCursor(
+  collectionName: string,
+  tenantName: string,
+  batchSize: number,
+  cursor: string,
+): Promise<any[]> {
+  const query = client.graphql.get()
+    .withClassName(collectionName)
+    // highlight-start
+    .withTenant(tenantName)
+    // highlight-end
+    .withFields('title description _additional { id }')
+    .withLimit(batchSize);
 
-      // Handle errors
-      for (const r of response)
-        if (r.result.errors)
-          throw r.result.errors;
-    }
+  if (cursor) {
+    let result = await query.withAfter(cursor).do();
+    return result.data.Get[collectionName];
+  } else {
+    let result = await query.do();
+    return result.data.Get[collectionName];
   }
-
-  // Update the cursor to the id of the last retrieved object
-  cursor = results.data.Get[className].at(-1)['_additional']['id'];
 }
 
-// Flush any remaining objects
-if (targetBatcher.payload().objects.length > 0)
-  await targetBatcher.do();
-// Finished restoring to the target instance  // END CursorExample
+// Get Tenants
+let tenants = await client.schema
+.tenantsGetter('MultiTenancyClass')
+.do();
 
-// ===== Tests - post-population =====
-result = await targetClient.graphql.aggregate().withClassName('WineReview').withFields('meta { count }').do();
-assert.deepEqual(result.data.Aggregate['WineReview'], [{ meta: { count: aggregateCount } }]);
-// ===== END Tests - post-population =====
+// STEP 2 - Iterate through Tenants
+for await (const tenant of tenants) {
+  // For each tenant, reset the cursor to the beginning
+  let cursor = null;
+  
+  while (true) {
+    // Request the next batch of objects
+    let nextBatch = await getBatchWithCursor('MultiTenancyClass', tenant.name, 100, cursor);
+    
+    // Break the loop if empty – we are done
+    if (nextBatch.length === 0)
+    break;
+  
+    // Here is your next batch of objects
+    console.log(JSON.stringify(nextBatch));
+    
+    // Move the cursor to the last returned uuid
+    cursor = nextBatch.at(-1)['_additional']['id'];
+  }
+}
+// END ReadAllTenants
+}

@@ -2,14 +2,16 @@
   {
     "statement": "When I found Weaviate, the QuickStart guides actually worked on the first try! I felt right at home and my costs were cut by ~1/4 from closed-source alternative.",
     "name": "Evan McFarland",
-    "company": "Uncensored Greats"
+    "company": "Uncensored Greats",
+    "foo": "ee"
   },
   {
-    "statement": "Weaviate has been instrumental in allowing our customers to accurately categorize and search customer feedback. We especially appreciate its ability to filter on top of its vector search.",
-    "name": "Patrick Philbin",
-    "company": "Feedback Sync",
-    "logo": "/img/site/feedbacksync-logo.svg"
+    "statement": "By leveraging Weaviate, I‘ve unlocked new potentials in AI, creating semantic search solutions that are transformative and avant-garde.",
+    "name": "Justin van Grootveld",
+    "company": "iO",
+    "logo": "/img/site/i-o-logo.png"
   },
+
   {
     "statement": "The entire [Weaviate] ecosystem is very clearly designed with developers top of mind, and the community is the best I've ever been part of for responsiveness to questions.",
     "name": "Charles Pierse",
@@ -91,6 +93,12 @@
     "statement": "In my years of teaching at top US business schools, the most empowering moment was showing students how to use Weaviate, LangChain and GPT4 to automate generation of deep economic insights.",
     "name": "Michael Gofman",
     "company": " "
+  },
+  {
+    "statement": "Weaviate has been instrumental in allowing our customers to accurately categorize and search customer feedback. We especially appreciate its ability to filter on top of its vector search.",
+    "name": "Patrick Philbin",
+    "company": "Feedback Sync",
+    "logo": "/img/site/feedbacksync-logo.svg"
   },
   {
     "statement": "Weaviate makes it super simple for us to build and launch a ChatGPT service with embeddings. We love that it makes the requests to fetch embeddings on our behalf, as it simplifies our codebase.",
@@ -269,10 +277,5 @@
     "statement": "After evaluating several vector databases, page.support chose Weaviate due to its ease of use, rich feature set, and friendly pricing. Weaviate makes it easy to build AI applications by integrating features like keyword search, vector search, and document storage that we'd otherwise have to integrate several other services for.",
     "name": "Logan Henriquez",
     "company": " "
-  },
-  {
-    "statement": "By leveraging Weaviate, I‘ve unlocked new potentials in AI, creating semantic search solutions that are transformative and avant-garde.",
-    "name": "Justin van Grootveld",
-    "company": "iO"
   }
 ]

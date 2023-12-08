@@ -8,7 +8,7 @@ image: og/docs/modules/multi2vec-bind.jpg
 
 ## Overview
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 The `multi2vec-bind` module enables Weaviate to use the [ImageBind](https://github.com/facebookresearch/ImageBind) model to vectorize data at import time.
@@ -98,7 +98,7 @@ This module will benefit greatly from GPU usage. Make sure to enable CUDA if you
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Vectorization settings
 

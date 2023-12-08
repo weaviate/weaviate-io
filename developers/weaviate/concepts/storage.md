@@ -35,16 +35,20 @@ Weaviate doesn't rely on any third-party databases. The three components of a sh
 
 #### Object and Inverted Index Store
 
-Since version `v1.5.0`, the object and inverted store are implemented using an [LSM-Treeapproach](https://en.wikipedia.org/wiki/Log-structured_merge-tree). This means that data can be ingested at the speed of memory and after meeting a configured threshold, Weaviate will write the entire (sorted) memtable into a disk segment. When a read request comes in, Weaviate will first check the Memtable for the latest update for a specific object. If it is not present in the memtable, Weaviate will then check all previously written segments starting with the newest. To avoid checking segments which don't contain the desired objects, [Bloom filters](https://en.wikipedia.org/wiki/Bloom_filter) are used.
+Since version `v1.5.0`, the object and inverted store are implemented using an [LSM-Tree approach](https://en.wikipedia.org/wiki/Log-structured_merge-tree). This means that data can be ingested at the speed of memory and after meeting a configured threshold, Weaviate will write the entire (sorted) memtable into a disk segment. When a read request comes in, Weaviate will first check the Memtable for the latest update for a specific object. If it is not present in the memtable, Weaviate will then check all previously written segments starting with the newest. To avoid checking segments which don't contain the desired objects, [Bloom filters](https://en.wikipedia.org/wiki/Bloom_filter) are used.
 
 Weaviate periodically merges older smaller segments into fewer larger segments. Since segments are already sorted, this is a relatively cheap operation - happening constantly in the background. Fewer, larger segments will make lookups more efficient. Especially on the inverted index where data is rarely replaced and often appended, instead of checking all past segments and aggregating potential results, Weaviate can check a single segment (or few large segments) and immediately find all required object pointers. In addition, segments are used to remove past versions of an object that are no longer required, e.g. after a delete or multiple updates.
 
-:::caution Important
-Object/Inverted Storage use an LSM approach which makes use of segmentation. However, the Vector Index is independent from those object stores and is not affected by segmentation.
+:::into Read more
+To learn more about Weaviate's LSM store, see the [in-line documentation](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv).
 :::
 
 :::note
-Prior to version `v1.5.0`, Weaviate used a B+Tree storage mechanismwhich could not keep up with the write requirements of an inverted index andstarted becoming congested over time. With the LSM index, the pure write speed (ignoringvector index building costs) is constant. There is no congestion over time.
+
+- Object/Inverted Storage use an LSM approach which makes use of segmentation. However, the Vector Index is independent from those object stores and is not affected by segmentation.
+
+- Prior to version `v1.5.0`, Weaviate used a B+Tree storage mechanism, which could not keep up with the write requirements of an inverted index and started becoming congested over time. With the LSM index, the pure write speed (ignoring vector index building costs) is constant. There is no congestion over time.
+
 :::
 
 #### HNSW Vector Index Storage

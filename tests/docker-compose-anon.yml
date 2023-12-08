@@ -9,7 +9,7 @@ services:
     - '8080'  # Specify different port to avoid confusion
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.22.2
+    image: semitechnologies/weaviate:1.22.3
     ports:
     - 8080:8080
     - 50051:50051

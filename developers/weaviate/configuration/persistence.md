@@ -99,7 +99,7 @@ changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspe
 
 ## Virtual memory access method
 
-:::info Available from version `v1.21`
+:::info Added in `v1.21`
 :::
 
 You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable.

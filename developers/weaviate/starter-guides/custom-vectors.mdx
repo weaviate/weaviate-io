@@ -1,0 +1,141 @@
+---
+title: Bring your own vectors
+sidebar_position: 20
+image: og/docs/tutorials.jpg
+# tags: ['getting started']
+---
+
+## Overview
+
+As a vector database, Weaviate make use of vector representations, also known as "embeddings", of data objects.
+
+One way to generate these vectors is to use a ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which will generate a vector at import and query time. This can be a convenient method if you are using a publicly available model and want to simplify your pipeline.
+
+Alternatively, you can supply your own, "custom", vector embeddings at import time as well as for any vector-based queries. This is useful if you have a custom model, or if you want to use a model that is not available through a Weaviate module.
+
+This tutorial will guide you through the process of using Weaviate with your own vectors. We will:
+
+1. Create a Weaviate instance
+2. Connect to the Weaviate instance
+3. Import your data, specifying your own vectors
+4. Perform a vector search with Weaviate
+
+
+## Data
+
+We'll use as an example a tiny dataset consisting of 10 questions from the popular quiz show "Jeopardy!". Each object has an associated vector embedding.
+
+In this example, these vectors were obtained through an OpenAI API, using the <nobr>[`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings)</nobr>. But your vectors can come from any source, such as another inference service provider (e.g Cohere or Hugging Face) or your own fine-tuned model.
+
+<details>
+  <summary>Take a look at the dataset</summary>
+
+  |    | Category   | Question                                                                                                          | Answer                  | Vector                                             |
+  |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------| ---------------------------------------------------|
+  |  0 | SCIENCE    | This organ removes excess glucose from the blood & stores it as glycogen                                          | Liver                   | [ -0.006632288, -0.0042016874, ..., -0.020163147 ] |
+  |  1 | ANIMALS    | It's the only living mammal in the order Proboseidea                                                              | Elephant                | [ -0.0166891, -0.00092290324, ..., -0.032253385 ]  |
+  |  2 | ANIMALS    | The gavial looks very much like a crocodile except for this bodily feature                                        | the nose or snout       | [ -0.015592773, 0.019883318, ..., 0.0033349802 ]   |
+  |  3 | ANIMALS    | Weighing around a ton, the eland is the largest species of this animal in Africa                                  | Antelope                | [ 0.014535263, -0.016103541, ..., -0.025882969 ]   |
+  |  4 | ANIMALS    | Heaviest of all poisonous snakes is this North American rattlesnake                                               | the diamondback rattler | [ -0.0030859283, 0.015239313, ..., -0.021798335 ]  |
+  |  5 | SCIENCE    | 2000 news: the Gunnison sage grouse isn't just another northern sage grouse, but a new one of this classification | species                 | [ -0.0090561025, 0.011155112, ..., -0.023036297 ]  |
+  |  6 | SCIENCE    | A metal that is "ductile" can be pulled into this while cold & under pressure                                     | wire                    | [ -0.02735741, 0.01199829, ..., 0.010396339 ]      |
+  |  7 | SCIENCE    | In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance              | DNA                     | [ -0.014227471, 0.020493254, ..., -0.0027445166 ]  |
+  |  8 | SCIENCE    | Changes in the tropospheric layer of this are what gives us weather                                               | the atmosphere          | [ 0.009625228, 0.027518686, ..., -0.0068922946 ]   |
+  |  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           | [ -0.0013459147, 0.0018580769, ..., -0.033439033 ] |
+
+</details>
+
+
+## Installation
+
+Weaviate is open source and you can easily [run the binary on Linux](../installation/embedded.md) or [run a local instance from a Docker image](../installation/docker-compose.md) on any OS, or even easier - you can create a free sandbox instance with the [Weaviate Cloud Services](../../wcs/quickstart.mdx) (WCS).
+
+For this example, we will assume that you are using a WCS instance with authentication enabled.
+
+
+## Client library
+
+For the best experience with Weaviate, we recommend installing a Weaviate client library for one of these languages:
+
+import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
+
+<CodeClientInstall />
+
+For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
+
+## Connect to Weaviate
+
+To connect to your Weaviate instance, you need the following information:
+
+- The Weaviate **URL** (get it from WCS `Details` tab),
+- The Weaviate **API key** (if enabled - get it from WCS `Details` tab), and
+
+Run the following example code to connect to Weaviate. You can re-use the resulting `client` object in the following steps.
+
+import ConnectToWeaviate from '/_includes/code/quickstart/connect.noheader.mdx'
+
+<ConnectToWeaviate />
+
+## Collection definition
+
+Weaviate [stores data](../concepts/data.md) objects in collections, each of which is called a `class`. Each object has a set of properties, and a vector representation generated automatically by a vectorizer, or specified at import time.
+
+Weaviate lets you define vectorizers at the class level, with further control (e.g. specific model, or vectorization behavior) at the property level. Since you're bringing your own vectors, a vectorizer is not needed, so we will set the vectorizer to `none` here.
+
+:::note Optional: Set a **compatible** vectorizer
+If you're using "custom" vectors that utilize the same model available through a Weaviate module, you have the option to **designate that specific model and module** as the class vectorizer.<p><br/></p>
+
+In this tutorial, the vectors were produced using the OpenAI model `ada-002`. As this model is also available through the `text2vec-openai` module, it may be set as the class vectorizer. Doing so will enable Weaviate to generate vectors if any objects are upserted without a vector, and enable the [`nearText` operator](../api/graphql/search-operators.md#neartext).<p><br/></p>
+
+Note that if a class has a specified vectorizer but you provide a vector at the time of import, Weaviate will use your supplied vector.
+:::
+
+import CreateSchema from '/_includes/code/quickstart.byov.schema.mdx'
+
+<CreateSchema />
+
+
+## Import data with vectors
+
+Here is the set of [10 pre-vectorized Jeopardy questions](https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json) in JSON format.
+
+The following will load the question objects with vectors, and import them to Weaviate.
+
+Note that we use a batch import process, so that each request to the inference API contains multiple objects. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+
+import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions+vectors.mdx'
+
+<ImportQuestionsWithVectors />
+
+:::tip vector != object property
+Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
+:::
+
+## Query
+
+Let's say you want to find questions related to biology. We can do that by obtaining a vector embedding for "biology", and finding objects nearest to it.
+In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` operator](../api/graphql/search-operators.md#nearvector):
+
+import NearVector from '/_includes/code/quickstart.query.nearVector.mdx';
+
+<NearVector />
+
+You should see something like this:
+
+import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx';
+
+<BiologyQuestionsJson />
+
+## Recap
+
+If you made it here - well done. We have covered a lot, and you've successfully built a fully functioning vector database! 🥳
+
+You have:
+- Populated your Weaviate instance with your own vectors, and
+- Performed text similarity searches.
+
+Of course, there is a lot more to Weaviate that we have not yet covered, and probably a lot that you wish to know about. So we include a few links below that might help you to get started in your journey with us.
+
+Also, please feel free to reach out to us on our community [Slack](https://weaviate.io/slack). We love to hear from our users.
+
+

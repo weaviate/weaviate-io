@@ -283,7 +283,7 @@ A classification is started, and will run in the background. The following respo
 Once the classification is finished, let's look at how the third article from the example above is classified. We run the following query:
 
 ```bash
-curl http://localhost:8080/v1/objects/8676e36a-8d60-3402-b550-4e792bb9d32f?include=classification
+curl "http://localhost:8080/v1/objects/8676e36a-8d60-3402-b550-4e792bb9d32f?include=classification"
 ```
 
 And get the following result:

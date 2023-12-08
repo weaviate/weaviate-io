@@ -45,7 +45,7 @@ Weaviate incrementally builds up an index (graph representation of the vectors a
 ## Need for disk solutions
 There are other challenges to overcome. Databases have grown so fast that even the above-described algorithms will not be enough. We no longer talk about thousands of vectors but **hundred of millions** or **even billions**! Keeping all the vectors in memory and adding a graph representation of vector connections **requires a lot of RAM**. This sparked the emergence of a new set of algorithms that allow vectors to reside on disk instead of in memory whilst retaining high performance.
 
-Some prominent examples of disk-based solutions include [DiskANN](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) and [SPANN](https://arxiv.org/abs/2111.08566).
+Some prominent examples of disk-based solutions include [DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf) and [SPANN](https://arxiv.org/abs/2111.08566).
 
 ## The future of Weaviate
 Today, users use Weaviate in production to serve large-scale use cases with single-digit millisecond latencies and massive throughput. But not every use case requires such a high throughput that the cost of keeping all indexes in memory is justified. What if you have a case where you have a large-scale dataset but very few queries? What if cost-effectiveness is more of a priority than the lowest possible latencies?
@@ -110,7 +110,7 @@ The chart below illustrates a comparison of the C++ Vamana [reference code](http
 *Fig. 2: Recall vs. Latency when retrieving the hundred approximate nearest neighbors.*
 
 ## Vamana implementation details
-We have also included a development implementation of the Vamana indexing algorithm in Weaviate. For the algorithm to perform well, such an implementation needs careful attention to the optimization of the code. The original algorithm from Microsoft rests upon the greedy search and the robust prune methods, which are described in the [DiskANN paper](https://proceedings.neurips.cc/paper/2019/file/09853c7fb1d3f8ee67a61b6bf4a7f8e6-Paper.pdf) as follows:
+We have also included a development implementation of the Vamana indexing algorithm in Weaviate. For the algorithm to perform well, such an implementation needs careful attention to the optimization of the code. The original algorithm from Microsoft rests upon the greedy search and the robust prune methods, which are described in the [DiskANN paper](https://suhasjs.github.io/files/diskann_neurips19.pdf) as follows:
 
 ![Vamana algorithm](./img/vamana-algorithm.png)
 

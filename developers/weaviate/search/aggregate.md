@@ -5,229 +5,241 @@ image: og/docs/howto.jpg
 # tags: ['how to', 'aggregate data']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/search.aggregate.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.aggregate-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.aggregate.ts';
 
-## Overview
+`Aggregate` queries process the result set to return calculated results. Use `aggregate` queries for groups of objects or the entire result set.
 
-This section shows how to retrieve aggregate data from a results set using the `Aggregate` function.
+<details>
+  <summary>
+    Additional information
+  </summary>
 
-Generally, the usage of `Aggregate` is similar to that of searches using the `Get` function. The main difference is that `Aggregate` returns aggregated data, rather than objects. As `Aggregate` deals with aggregated data, it enables additional (meta) properties such as object counts, as well as aggregated properties such as sums and averages.
+To run an `Aggregate` query, specify the following:
 
-:::info Related pages
-- [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
-:::
+- A target collection to search
+- One or more aggregated properties, such as:
 
-## `Aggregate` function requirements
+   - A meta property
+   - An object property
+   - The `groupedBy` property
 
-To use `Aggregate`, you must specify at least:
-- The target `class` to search, and
-- One or more aggregated properties. The aggregated properties can include:
-    - The `meta` property,
-    - An object property, OR
-    - The `groupedBy` property (if using `groupBy`).
+- Select at least one sub-property for each selected property
 
-You must then select at least one sub-property for each selected property.
+For details, see <a href="https://weaviate.io/developers/weaviate/api/graphql/aggregate">Aggregate</a>.
 
-See the [`Aggregate` function syntax page](../api/graphql/aggregate.md#aggregate-syntax-and-query-structure) for details.
+</details>
 
-## Retrieve a `meta` property
+## Retrieve the `count` meta property
 
-The `meta` property has only one sub-property (`count`) available. This returns the count of objects matched by the query.
+Return the number  of objects matched by the query.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# MetaCount Python"
-    endMarker="# END MetaCount Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MetaCount Python"
+      endMarker="# END MetaCount Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# MetaCount Python"
+      endMarker="# END MetaCount Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// MetaCount TS"
-    endMarker="// END MetaCount TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// MetaCount TS"
+      endMarker="// END MetaCount TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# MetaCount GraphQL"
-    endMarker="# END MetaCount GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# MetaCount GraphQL"
+      endMarker="# END MetaCount GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# MetaCount Expected Results"
     endMarker="# END MetaCount Expected Results"
     language="json"
   />
 </details>
 
-## Retrieve aggregated object `properties`
+## Aggregate `text` properties
 
-You can retrieve aggregations of `text`, `number`, `int`, or `boolean` data types.
-
-The [available sub-types](../api/graphql/aggregate.md#aggregate-syntax-and-query-structure) vary for each data type, except for `type` which is available to all, and `count` which is available to all but cross-references.
-
-### Example with `text`
-
-The following example retrieves information about the most commonly occurring examples in the `question` property:
+This example counts occurrence frequencies in the `question` property:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# TextProp Python"
-    endMarker="# END TextProp Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# TextProp Python"
+      endMarker="# END TextProp Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# TextProp Python"
+      endMarker="# END TextProp Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// TextProp TS"
-    endMarker="// END TextProp TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// TextProp TS"
+      endMarker="// END TextProp TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# TextProp GraphQL"
-    endMarker="# END TextProp GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# TextProp GraphQL"
+      endMarker="# END TextProp GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# TextProp Expected Results"
     endMarker="# END TextProp Expected Results"
     language="json"
   />
 </details>
 
-### Example with `int`
+## Aggregate `int` properties
 
-The following example retrieves the sum of the `points` property values:
+This  example sums the `points` property.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# IntProp Python"
-    endMarker="# END IntProp Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# IntProp Python"
+      endMarker="# END IntProp Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# IntProp Python"
+      endMarker="# END IntProp Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// IntProp TS"
-    endMarker="// END IntProp TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// IntProp TS"
+      endMarker="// END IntProp TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# IntProp GraphQL"
-    endMarker="# END IntProp GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# IntProp GraphQL"
+      endMarker="# END IntProp GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# IntProp Expected Results"
     endMarker="# END IntProp Expected Results"
     language="json"
   />
 </details>
 
-## Retrieve `groupedBy` properties
+## Aggregate `groupedBy` properties
 
-You can use the `groupBy` variable to group the results set into subsets. Then, you can retrieve the grouped aggregate data for each group through the `groupedBy` properties.
+To group your results, use `groupBy` in the query.
 
-For example, to list all distinct values of a property, and the counts for each:
+To retrieve aggregate data for each group, use the `groupedBy` properties.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# groupBy Python"
-    endMarker="# END groupBy Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# groupBy Python"
+      endMarker="# END groupBy Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# groupBy Python"
+      endMarker="# END groupBy Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// groupBy TS"
-    endMarker="// END groupBy TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// groupBy TS"
+      endMarker="// END groupBy TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# groupBy GraphQL"
-    endMarker="# END groupBy GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# groupBy GraphQL"
+      endMarker="# END groupBy GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
@@ -235,10 +247,10 @@ For example, to list all distinct values of a property, and the counts for each:
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# groupBy Expected Results"
     endMarker="# END groupBy Expected Results"
     language="json"
@@ -249,166 +261,173 @@ import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 
 <GroupbyLimitations />
 
-## With `nearXXX`
+## Aggregate with a `similarity search`
 
-When using a [similarity search](./similarity.md) operator (i.e. `nearXXX`) with `Aggregate`, you should include a way to [limit the search results](../api/graphql/aggregate.md#limiting-the-search-space). This is because a vector search in itself does not exclude any objects from the results set - _all_ objects have some degree of similarity to the query.
+You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
 
-Thus, for the vector search to affect the `Aggregate` output, you **must** set a limit on:
-- The number of results returned (with `limit`), or
-- How similar the results are to the query (with `distance`).
-
-### Set an object limit
-
-You can set the `objectLimit` argument to specify the maximum number of results to be aggregated.
-
-The query below retrieves the 10 `question` objects that have the vectors that are closest to the vector for `"animals in space"`. The query also returns the sum total of the `point` property.
+<!-- Make sure to [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).<br/> -->
+Use `objectLimit` to specify the maximum number of objects to aggregate.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithLimit Python"
-    endMarker="# END nearTextWithLimit Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithLimit Python"
+      endMarker="# END nearTextWithLimit Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# nearTextWithLimit Python"
+      endMarker="# END nearTextWithLimit Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// nearTextWithLimit TS"
-    endMarker="// END nearTextWithLimit TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// nearTextWithLimit TS"
+      endMarker="// END nearTextWithLimit TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithLimit GraphQL"
-    endMarker="# END nearTextWithLimit GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithLimit GraphQL"
+      endMarker="# END nearTextWithLimit GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# nearTextWithLimit Expected Results"
     endMarker="# END nearTextWithLimit Expected Results"
     language="json"
   />
 </details>
 
+## Set a similarity `distance`
 
-### Set a maximum `distance`
+You can use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `Near` operators).
 
-You can set the `distance` operator to specify the maximum dissimilarity (i.e. minimum similarity) of results to be aggregated.
+<!-- Make sure to [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space).<br/> -->
+Use `distance` to specify how similar the objects should be.
 
-The query below retrieves the 10 `question` objects that have vectors that are within a distance of `0.19` to the vector for `"animals in space"`. It also returns the sum total of the `point` property.
+<!-- If you use `Aggregate` with a [similarity search](./similarity.md) operator (one of the `nearXXX` operators), [limit your search results](../api/graphql/aggregate.md#limiting-the-search-space). To specify how similar the objects should be, use the `distance` operator. -->
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithDistance Python"
-    endMarker="# END nearTextWithDistance Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithDistance Python"
+      endMarker="# END nearTextWithDistance Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# nearTextWithDistance Python"
+      endMarker="# END nearTextWithDistance Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// nearTextWithDistance TS"
-    endMarker="// END nearTextWithDistance TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// nearTextWithDistance TS"
+      endMarker="// END nearTextWithDistance TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# nearTextWithDistance GraphQL"
-    endMarker="# END nearTextWithDistance GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# nearTextWithDistance GraphQL"
+      endMarker="# END nearTextWithDistance GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# nearTextWithDistance Expected Results"
     endMarker="# END nearTextWithDistance Expected Results"
     language="json"
   />
 </details>
 
+## Filter results
 
-## Add a conditional (`where`) filter
-
-You can add a conditional filter to any aggregate search query to filter the results set.
-
-This example searches for objects where the `round` property equals `Double Jeopardy!` and returns the object count.
+For more specific results, use a `filter` to narrow your search.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# whereFilter Python"
-    endMarker="# END whereFilter Python"
-    language="py"
-  />
-
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# whereFilter Python"
+      endMarker="# END whereFilter Python"
+      language="py"
+    />
   </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# whereFilter Python"
+      endMarker="# END whereFilter Python"
+      language="py"
+    />
+  </TabItem>
+
   <TabItem value="js" label="JavaScript/TypeScript">
-
-  <FilteredTextBlock
-    text={TSCode}
-    startMarker="// whereFilter TS"
-    endMarker="// END whereFilter TS"
-    language="js"
-  />
-
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// whereFilter TS"
+      endMarker="// END whereFilter TS"
+      language="js"
+    />
   </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# whereFilter GraphQL"
-    endMarker="# END whereFilter GraphQL"
-    language="graphql"
-  />
-
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# whereFilter GraphQL"
+      endMarker="# END whereFilter GraphQL"
+      language="graphql"
+    />
   </TabItem>
 </Tabs>
 
 <details>
   <summary>Example response</summary>
 
-  The query should produce a response like the one below:
+  The output is like this:
 
   <FilteredTextBlock
-    text={PythonCode}
+    text={PyCode}
     startMarker="# whereFilter Expected Results"
     endMarker="# END whereFilter Expected Results"
     language="json"
@@ -416,7 +435,9 @@ This example searches for objects where the `round` property equals `Double Jeop
 
 </details>
 
+## Related pages
 
+- [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

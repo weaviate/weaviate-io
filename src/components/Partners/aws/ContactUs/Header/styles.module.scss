@@ -1,0 +1,122 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 43px;
+    font-style: normal;
+
+    line-height: 120%; /* 4.05rem */
+
+    font-weight: bold;
+    line-height: 69.6px;
+    margin-bottom: 1rem;
+  }
+
+  .headerBox {
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+
+  .teamFilter {
+    display: flex;
+    gap: 40px;
+    margin: 10px 0px 10px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    width: 100%;
+
+    a {
+      color: #130c49;
+      font-style: normal;
+      font-weight: 200;
+      border: none;
+      background: whitesmoke;
+      transition: all 0.2s ease-out;
+    }
+
+    a:hover {
+      font-weight: 500;
+    }
+  }
+
+  hr {
+    background: #130c49;
+    width: 65rem;
+    height: 0.0625rem;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    border: 1px solid #130c49;
+    color: #130c49;
+    transition: all 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+  }
+}
+
+.awsBg {
+  background-size: cover;
+  background-image: url('/img/site/weaviate-reinvent-lp-hero.jpg');
+}

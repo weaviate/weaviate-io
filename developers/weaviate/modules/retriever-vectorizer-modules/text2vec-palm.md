@@ -1,6 +1,6 @@
 ---
 title: text2vec-palm
-sidebar_position: 15
+sidebar_position: 19
 image: og/docs/modules/text2vec-palm.jpg
 # tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
@@ -8,23 +8,62 @@ image: og/docs/modules/text2vec-palm.jpg
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings.
+The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
-:::info Available from version `v1.19.1`
+:::info Requirements
+
+`text2vec-palm` was added in version `v1.19.1`.
+
+Google MakerSuite support was added in version `1.22.4`.
+
 :::
 
 Key notes:
 
-- As it uses a third-party API, you will need an API key. The module uses the Google Cloud `access token`.
+- As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `textembedding-gecko@001`.
+- Model names differ between Vertex AI and MakerSuite.
+    - The default model for Vertex AI is `textembedding-gecko@001`.
+    - The default model for MakerSuite `embedding-gecko-001`.
 
-:::caution Ensure PaLM API is enabled on your Google Cloud project
+## Configuring `text2vec-palm` for VertexAI vs MakerSuite
+
+The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
+
+### Google Cloud Vertex AI
+
 As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
-:::
+
+#### API key for Vertex AI users
+
+This is called an `access token` in Google Cloud.
+
+If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+
+```shell
+gcloud auth print-access-token
+```
+
+#### Token expiry for Vertex AI users
+
+import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
+
+<GCPTokenExpiryNotes/>
+
+### Google MakerSuite
+
+At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
+
+#### API key for MakerSuite users
+
+You can obtain an API key by logging in to your MakerSuite account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiry date.
+
+#### `apiEndpoint` for MakerSuite users
+
+In the Weaviate [class configuration](#class-configuration), set the `apiEndpoint` to `generativelanguage.googleapis.com`.
 
 ## Weaviate instance configuration
 
@@ -66,15 +105,15 @@ services:
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings
 
 #### Parameters
 
-- `projectId` (Required): e.g. `cloud-large-language-models`
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` or `textembedding-gecko-multilingual@latest`
+- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (MakerSuite)
 
 #### Example
 
@@ -88,9 +127,9 @@ You can configure how the module will behave in each class through the [Weaviate
       "moduleConfig": {
         // highlight-start
         "text2vec-palm": {
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
+          "modelId": "YOUR-MODEL-ID",                     // Optional.
         },
         // highlight-end
       },
@@ -124,9 +163,9 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-palm",
       "moduleConfig": {
         "text2vec-palm": {
-          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
+          "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
-          "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko@001".
+          "modelId": "YOUR-MODEL-ID",                     // Optional.
           // highlight-start
           "vectorizeClassName": false
           // highlight-end
@@ -159,32 +198,21 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 You can supply the API key at query time by adding it to the HTTP header:
 - `"X-Palm-Api-Key": "YOUR-PALM-API-KEY"`
 
-### API key on Google Cloud
-
-This is called an `access token` in Google Cloud.
-
-If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
-
-```shell
-gcloud auth print-access-token
-```
-
-### Token expiry for Google Cloud users
-
-import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
-
-<GCPTokenExpiryNotes/>
-
 ## Additional information
 
 ### Available models
 
-You can specify the model as a part of the schema as shown earlier.
+You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and MakerSuite.
 
-The available models are:
+The available models for Vertex AI are:
 - `textembedding-gecko@001` (stable)
 - `textembedding-gecko@latest` (public preview: an embeddings model with enhanced AI quality)
 - `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
+
+The only available model for MakerSuite is:
+- `embedding-gecko-001` (stable)
+
+#### Note
 
 At the time of writing, the `textembedding-gecko` models accept a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings. For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 

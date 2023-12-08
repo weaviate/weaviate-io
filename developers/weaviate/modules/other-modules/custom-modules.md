@@ -43,9 +43,12 @@ The picture shows three APIs:
 * The red box is the Module System API, which are interfaces written in Go.
 * The third API is completely owned by the module, which is used to communicate with the separate module container. In this case, this is a Python container, shown on the left.
 
+![Weaviate module APIs overview](/img/contributor-guide/weaviate-modules/weaviate-module-apis.svg "Weaviate module APIs overview")
+
 To use a custom ML model with Weaviate, you have two options: ([further explained below](#how-to-build-and-use-a-custom-module))
 * A: Replace parts of an existing module, where you only replace the inference service (part 2). You don't have to touch Weaviate Core here.
 * B: Build a completely new module and replace all existing (blue) module parts (both 1 and 2). You can configure custom behavior like extending the GraphQL API, as long as the module can hook into the 'red' Module System API. Keep in mind that you'll need to write some module code in Go to achieve this.
+ 
 
 <!-- ![Weaviate module APIs overview](/img/weaviate-module-apis.svg "Weaviate module APIs overview") -->
 
@@ -77,7 +80,7 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
 - General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](/developers/weaviate/api/rest/meta.md).
 - Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](/developers/weaviate/api/graphql/additional-properties.md).
 - A module can add [filters](/developers/weaviate/api/graphql/filters.md) in GraphQL queries.
-- Which vectorizer and other modules are applied to which data classes is configured in the [schema](/developers/weaviate/configuration/schema-configuration.md).
+- Which vectorizer and other modules are applied to which data classes is configured in the [schema](/developers/weaviate/manage-data/collections.mdx).
 
 ## How to build and use a custom module
 

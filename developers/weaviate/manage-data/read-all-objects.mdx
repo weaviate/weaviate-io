@@ -6,7 +6,6 @@ image: og/docs/howto.jpg
 ---
 
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -16,37 +15,17 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-obje
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read-all-objects.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read-all-objects_test.go';
 
-## Overview
+Weaviate provides the necessary APIs to iterate through all your data. This is useful when you want to manually copy/migrate your data (and vector embeddings) from one place to another.
 
-Sometimes, you may wish to list every object in a class, such as for manual backup when the [`backup`](../configuration/backups.md) feature is not suitable, or to export vectors or specific object properties. You may also wish to then restore these objects as well, to a different Weaviate instance for example.
+This is done with the help of the `after` operator, also called the [cursor API](../api/graphql/additional-operators.md#cursor-with-after).
 
-The best way to do this is with the `after` operator, also called the [cursor API](../api/graphql/additional-operators.md#cursor-with-after).
-
-:::info Alternative ordering not possible
-The `after` operator is based on the order of IDs. No other ordering of data, such as sorting or searching, is possible.
+:::info Iterator 
+The new API clients (currently supported by the Python Client v4), encapsulate this functionality as an `Iterator`.
 :::
 
-:::info See also
-- [How-to: Read objects](./read.mdx)
-- [References: GraphQL - Additional Operators](../api/graphql/additional-operators.md#cursor-with-after)
-:::
+## Real all objects
 
-
-## Retrieve and restore objects
-
-:::tip Multi-tenancy
-For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when reading or creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
-:::
-
-### List every object
-
-To list every object, use the `after` operator to loop through the data as shown in the example below.
-
-The example connects to a "source" instance at `https://some-endpoint.weaviate.network`. It also defines a function that will fetch a group of objects (and their `title` property) in the `WineReview` class from using the ID of the last object retrieved as the cursor.
-
-:::tip
-To retrieve (and restore) vectors as well, include the `vector` parameter as shown in the highlighted lines.
-:::
+The following code iterates through all objects, providing the properties and id for each object.
 
 <Tabs groupId="languages">
 
@@ -62,8 +41,8 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# Retrieve data"
-      endMarker="# Use this function to retrieve data"
+      startMarker="# START ReadAllProps"
+      endMarker="# END ReadAllProps"
       language="py"
     />
   </TabItem>
@@ -71,8 +50,8 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// Retrieve data"
-      endMarker="// Use this function to retrieve data"
+      startMarker="// START ReadAllProps"
+      endMarker="// END ReadAllProps"
       language="ts"
     />
   </TabItem>
@@ -96,16 +75,17 @@ To retrieve (and restore) vectors as well, include the `vector` parameter as sho
   </TabItem>
 </Tabs>
 
-### Fetch the class definition
+## Read all objects with Vectors
 
-You can fetch the existing class definition like this:
+Read through all data including `vector embeddings`.
 
 <Tabs groupId="languages">
+
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START COMING SOON"
-      endMarker="# END COMING SOON"
+      startMarker="# START ReadAllVectors"
+      endMarker="# END ReadAllVectors"
       language="py"
     />
   </TabItem>
@@ -113,8 +93,8 @@ You can fetch the existing class definition like this:
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START FetchClassDefinition"
-      endMarker="# END FetchClassDefinition"
+      startMarker="# START ReadAllVectors"
+      endMarker="# END ReadAllVectors"
       language="py"
     />
   </TabItem>
@@ -122,43 +102,28 @@ You can fetch the existing class definition like this:
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FetchClassDefinition"
-      endMarker="// END FetchClassDefinition"
+      startMarker="// START ReadAllVectors"
+      endMarker="// END ReadAllVectors"
       language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START FetchClassDefinition"
-      endMarker="// END FetchClassDefinition"
-      language="java"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START FetchClassDefinition"
-      endMarker="// END FetchClassDefinition"
-      language="go"
     />
   </TabItem>
 </Tabs>
 
-### Restore to a target instance
+## Read all objects with Tenants
 
-And then restore to a target instance, by:
-- Creating the same class in the target instance using the fetched class definition, and
-- Then streaming the objects from the source instance to the target instance using batch imports.
+Iterate through all tenenats and read data for each.
+
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you need to specify the tenant name when reading or creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details.
+:::
 
 <Tabs groupId="languages">
+
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START COMING SOON"
-      endMarker="# END COMING SOON"
+      startMarker="# START ReadAllTenants"
+      endMarker="# END ReadAllTenants"
       language="py"
     />
   </TabItem>
@@ -166,8 +131,8 @@ And then restore to a target instance, by:
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# Restore to a new (target) instance"
-      endMarker="# Finished restoring to the target instance"
+      startMarker="# START ReadAllTenants"
+      endMarker="# END ReadAllTenants"
       language="py"
     />
   </TabItem>
@@ -175,84 +140,17 @@ And then restore to a target instance, by:
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// Restore to a new (target) instance"
-      endMarker="// Finished restoring to the target instance"
+      startMarker="// START ReadAllTenants"
+      endMarker="// END ReadAllTenants"
       language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// Restore to a new (target) instance"
-      endMarker="// Finished restoring to the target instance"
-      language="java"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// Restore to a new (target) instance"
-      endMarker="// Finished restoring to the target instance"
-      language="go"
     />
   </TabItem>
 </Tabs>
 
-
-### Putting it together
-
-Putting the pieces together, the example code retrieves the `WineReview` class definition and objects from `https://some-endpoint.weaviate.network` and uses them to populate the database at `https://anon-endpoint.weaviate.network`:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START COMING SOON"
-      endMarker="# END COMING SOON"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# CursorExample"
-      endMarker="# END CursorExample"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// CursorExample"
-      endMarker="// END CursorExample"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// CursorExample"
-      endMarker="// END CursorExample"
-      language="java"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// CursorExample"
-      endMarker="// END CursorExample"
-      language="go"
-    />
-  </TabItem>
-</Tabs>
-
-
+## Related pages
+- [How-to: Read objects](./read.mdx)
+- [References: GraphQL - Additional Operators](../api/graphql/additional-operators.md#cursor-with-after)
+- [Manage data: multi-tenancy operations](./multi-tenancy.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

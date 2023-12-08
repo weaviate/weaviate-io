@@ -1,0 +1,526 @@
+---
+title: Manage classes (object collections)
+sidebar_position: 5
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'create', 'collections']
+---
+
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.classes-v3.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.classes.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
+
+## Overview
+
+Each Weaviate object belongs to one (and only one) collection. This page covers the essential topics in relation to managing Weaviate collections.
+
+:::info Related pages
+- [API References: REST: Schema](../api/rest/schema.md)
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [Concepts: Data structure](../concepts/data.md)
+:::
+
+:::tip Which endpoint does this use?
+Under the hood, these are carried out through the [`schema` REST endpoint](../api/rest/schema.md). For raw REST commands, or a full list of parameters, please refer to the [reference page](../api/rest/schema.md).
+:::
+
+## Create a collection
+
+You can create a collection either:
+- Manually, or
+- Automatically. Weaviate can create collection as needed, such as at import time. The [`Auto-schema` feature](../config-refs/schema.md#auto-schema) must be enabled for this to occur.
+
+:::tip Manual collection creation recommended
+We recommend you create collection manually, as:
+- You will gain greater control over your data model, and
+- Many of the settings in the collection definition are immutable.
+:::
+
+### Manual creation
+
+To create a collection, you must specify the collection name.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+Typically, you would specify additional configurations. We include examples in the following sections.
+
+
+#### Define Properties
+
+The collection definition can include properties, which are the data fields to be stored in Weaviate. Each property must have a name and a data type. The `Auto-schema` feature can create properties at import time and infer the data type from the data, but we recommend you specify the data type manually.
+
+### Sample configuration
+
+A collection configuration is shown below, which defines:
+- The collection name (`Article`)
+- The [vectorizer module](../modules/retriever-vectorizer-modules/index.md) (`text2vec-cohere`)
+- The [generative module](../modules/reader-generator-modules/index.md) to use (`generative-openai`)
+- A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `body` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
+    - Note that the `body` property is an array of objects.
+    - The `object` and `object[]` data types are available from `1.22`.
+- [Tokenization](../config-refs/schema.md#property-tokenization) option for the `url` property.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "body",
+            "dataType": ["object[]"],  // Array of objects. `object` and `object[]` are available from `1.22`.
+            "nestedProperties": [
+                {
+                    "name": "chunk",
+                    "dataType": ["text"],
+                },
+                {
+                    "name": "chunk_no",
+                    "dataType": ["int"],
+                },
+            ]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field"
+        },
+    ],
+}
+```
+
+You can specify as many of the available options in the collection definition as you would like.
+
+:::tip Where to find a list of available options
+See:
+- [References: Configuration: Schema](../config-refs/schema.md)
+- [API References: REST: Schema](../api/rest/schema.md#create-a-class)
+:::
+
+### Reserved property names
+
+Some property names are reserved for internal use. The list of reserved property names can be [found here](../config-refs/schema.md#reserved-words).
+
+### Auto-schema
+
+If you add objects to a collection that does not yet exist, or if you create objects with properties that do not yet exist, Weaviate can automatically create the missing collection or the missing properties. This is known as the `Auto-schema` feature.
+
+For most cases, we recommend you create collections and properties manually, as you will gain greater control over your data model.
+
+:::info Read more about Auto-schema
+See [this page](../config-refs/schema.md#auto-schema)
+:::
+
+
+## Example collection configurations
+
+We include a few sample collection configurations below as starting points.
+
+<details>
+  <summary>For simple text objects</summary>
+
+The following code defines:
+
+- The collection name (`Article`)
+- The vectorizer module (`text2vec-cohere`) and model (`embed-multilingual-v2.0`)
+- A set of properties (`title`, `body`) with `text` data types.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-cohere",
+    "moduleConfig": {
+        "text2vec-cohere": {
+            "model": "embed-multilingual-v2.0",
+        },
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "body",
+            "dataType": ["text"]
+        },
+    ],
+}
+```
+
+:::tip How to perform similarity or generative searches
+- [Similarity search](../search/similarity.md)
+:::
+
+</details>
+
+<details>
+  <summary>With nested objects</summary>
+
+Weaviate `1.22` adds support for nested objects. This can be very useful for storing structured data such as an address containing a street, city and country.
+
+<br/>
+The following code defines:
+
+- The collection name (`Person`)
+- The vectorizer module (`text2vec-huggingface`)
+- A set of properties (`last_name`, `address`), with `last_name` having a `text` data type and `address` having `object` data type.
+- The `address` property has two nested properties (`street` and `city`), with `text` data types.
+
+```json
+{
+    "class": "Person",
+    "vectorizer": "text2vec-huggingface",
+    "properties": [
+        {
+            "dataType": ["text"],
+            "name": "last_name",
+        },
+        {
+            "dataType": ["object"],
+            "name": "address",
+            "nestedProperties": [
+                {"dataType": ["text"], "name": "street"},
+                {"dataType": ["text"], "name": "city"}
+            ],
+        }
+    ],
+}
+```
+
+</details>
+
+<details>
+  <summary>For text objects and generative search</summary>
+
+The following code defines:
+
+- The collection name (`Article`)
+- The vectorizer module (`text2vec-openai`) and default model
+- Which generative module to use (`generative-openai`)
+- A set of properties (`title`, `chunk`, `chunk_no` and `url`), with data types set accordingly.
+- Tokenization option for the `url` property.
+- Vectorization option (`skip` vectorization) for the `url` property.
+
+```json
+{
+    "class": "Article",
+    "vectorizer": "text2vec-openai",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "generative-openai": {}
+    },
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk",
+            "dataType": ["text"]
+        },
+        {
+            "name": "chunk_no",
+            "dataType": ["int"]
+        },
+        {
+            "name": "url",
+            "dataType": ["text"],
+            "tokenization": "field",
+            "moduleConfig": {
+                "text2vec-openai": {
+                    "skip": true
+                },
+            }
+        },
+    ],
+}
+```
+
+:::tip How to perform similarity or generative searches
+- [Similarity search](../search/similarity.md)
+- [Generative search](../search/generative.md)
+:::
+
+</details>
+
+<details>
+  <summary>For image objects</summary>
+
+The following code defines:
+
+- The collection name (`Image`)
+- The vectorizer module (`img2vec-neural`), with the `image` property set as the store of image data.
+- The vector index distance metric (`cosine`)
+- A set of properties (`image`), with the `image` property set as `blob`.
+
+```json
+{
+    "class": "Image",
+    "vectorizer": "img2vec-neural",
+    "vectorIndexConfig": {
+        "distance": "cosine",
+    },
+    "moduleConfig": {
+        "img2vec-neural": {
+            "imageFields": [
+                "image"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "name": "image",
+            "dataType": ["blob"]
+        },
+    ],
+}
+```
+
+:::tip How to perform image searches
+- [Image search](../search/image.md)
+:::
+
+</details>
+
+## Read a collection definition
+
+You can retrieve a collection definition from the schema using the collection name.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadOneCollection"
+      endMarker="# END ReadOneCollection"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadOneCollection"
+      endMarker="# END ReadOneCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+### Read all collection definitions
+
+You can also retrieve all collection definitions by fetching the entire schema.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllCollections"
+      endMarker="# END ReadAllCollections"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadAllCollections"
+      endMarker="# END ReadAllCollections"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Update a collection definition
+
+You can update collection definitions as follows.
+
+<details>
+  <summary>Are all settings mutable?</summary>
+
+Not all settings are mutable.
+
+A typical use case for this functionality is to update configuration, such as the vectorIndexConfig. Note that even in mutable sections, such as vectorIndexConfig, some fields may be immutable.
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateCollection"
+      endMarker="# END UpdateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START UpdateCollection"
+      endMarker="# END UpdateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+```ts
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+```java
+// This feature is under development
+```
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+```go
+// This feature is under development
+```
+
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>How do I change immutable settings then?</summary>
+
+In this case, you must delete the collection and recreate it. If possible, we recommend using the cursor API to [retrieve all objects and re-populate it](./read-all-objects.mdx).
+
+</details>
+
+## Delete a collection
+
+import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
+
+<CautionSchemaDeleteClass />
+
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

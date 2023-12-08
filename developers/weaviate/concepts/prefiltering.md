@@ -36,7 +36,7 @@ In the section about Storage, [we have described in detail which parts make up a
 
 ### Pre-filtering with Roaring Bitmaps
 
-:::info Available for Weaviate versions `1.18` and up
+:::info Added in `1.18`
 :::
 
 Weaviate versions `1.18.0` and up use Roaring Bitmaps through the `RoaringSet` data type. Roaring Bitmaps employ various strategies to add efficiencies, whereby it divides data into chunks and applies an appropriate storage strategy to each one. This enables high data compression and set operations speeds, resulting in faster filtering speeds for Weaviate.
@@ -47,7 +47,7 @@ In addition, our team maintains our underlying Roaring Bitmap library to address
 
 #### Roaring Bitmaps for `text` properties
 
-:::info Available for Weaviate versions `1.19` and up
+:::info Added in `1.19`
 :::
 
 A roaring bitmap index for `text` properties is available from `1.19` and up, and it is implemented using two separate (`filterable` & `searchable`) indexes, which replaces the existing single index. You can configure the new `indexFilterable` and `indexSearchable` parameters to determine whether to create the roaring set index and the BM25-suitable Map index, respectively. (Both are enabled by default.)
@@ -57,6 +57,10 @@ A roaring bitmap index for `text` properties is available from `1.19` and up, an
 If you are using Weaviate version `< 1.18.0`, you can take advantage of roaring bitmaps by migrating to `1.18.0` or higher, and going through a one-time process to create the new index. Once your Weaviate instance creates the Roaring Bitmap index, it will operate in the background to speed up your work.
 
 This behavior is set through the <code>REINDEX<wbr />_SET_TO<wbr />_ROARINGSET<wbr />_AT_STARTUP</code> [environment variable](../config-refs/env-vars.md). If you do not wish for reindexing to occur, you can set this to `false` prior to upgrading.
+
+:::into Read more
+To learn more about Weaviate's roaring bitmaps implementation, see the [in-line documentation](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv/roaringset).
+:::
 
 ## Recall on Pre-Filtered Searches
 

@@ -89,7 +89,7 @@ The above definition will tell Weaviate to not vectorize objects belonging to th
 
 Since we have set the `DEFAULT_VECTORIZER_MODULE` environment variable to `none` as in the above step,  you do not need to set any additional options here for this tutorial.
 
-Weaviate's [auto-schema](../configuration/schema-configuration.md#auto-schema) feature will generate a schema for classes where one is not provided.
+Weaviate's [auto-schema](../manage-data/collections.mdx#auto-schema) feature will generate a schema for classes where one is not provided.
 
 So, you can define a schema as above, or skip this step altogether. If you are defining a schema, you can follow the code example below:
 
