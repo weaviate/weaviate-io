@@ -509,12 +509,9 @@ The tokenization of `text` properties can be customized via the `tokenization` f
 
 Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
 
-| Tokenization Method | Explanation                                                                  | Indexed Tokens                   |
-|---------------------|------------------------------------------------------------------------------|----------------------------------|
-| `word` (default)    | Keep only alpha-numeric characters, lowercase them, and split by whitespace. | `hello`, `beautiful`, `world`    |
-| `lowercase`         | Lowercase the entire text and split on whitespace.                           | `hello,`, `(beautiful)`, `world` |
-| `whitespace`        | Split the text on whitespace. Searches/filters become case-sensitive.        | `Hello,`, `(beautiful)`, `world` |
-| `field`             | Index the whole field after trimming whitespace characters.                  | `Hello, (beautiful) world`       |
+import TokenizationDefinition from '/_includes/tokenization_definition.mdx';
+
+<TokenizationDefinition/>
 
 ### Tokenization and search / filtering
 

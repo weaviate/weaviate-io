@@ -91,26 +91,87 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
-  // crud_operations: {
-  //   title: "CRUD operations",
-  //   body: "How to perform object manipulation operations in Weaviate.",
-  //   buttonType: "Notify",
-  //   buttonURL: "/developers/academy/units/crud_operations",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     "Learn how to handle data objects in Weaviate, with Create, Read, Update and Delete (CRUD) operations for data objects via its RESTful endpoint."
-  //   ],
-  //   learningOutcomes: [
-  //     "Use the RESTful objects endpoint (GET) to collect data objects from Weaviate.",
-  //     "Use the RESTful objects endpoint (GET) to retrieve data objects with query parameters like limit, sort, order, offset and including fields like the object's vector",
-  //     "Use the RESTful objects endpoint (PUT/PATCH) to update data objects in Weaviate.",
-  //     "Use the RESTful objects endpoint (HEAD) to check and validate if data objects exists without retrieving it."
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
 
-
+  which_search: {
+    title: "Which search is right for me?",
+    body: "Weaviate offers many search types (vector, keyword and hybrid), and options. Let's discuss some good, baseline search strategies.",
+    buttonType: "Click here",
+    badgeType: "mixed",
+    buttonURL: "/developers/academy/building_with_weaviate/which_search",
+    learningGoals: [
+      "Impact of search type on search quality.",
+      "Impact of search type on search performance.",
+      "How the dataset and chunking affect search",
+      "Key considerations for selecting a search type.",
+      "Strategies to apply to improve search quality.",
+    ],
+    learningOutcomes: [
+      "Broadly recite pros and cons of each search type (vector, keyword and hybrid).",
+      "Suggest a suitable search type given a description of the dataset and aim.",
+      "Suggest alternative or additional search strategies to improve search quality.",
+      "Outline broad methods to evaluate search quality."
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  schema_design: {
+    title: "Collection schema design",
+    body: "How to design your collection data structure. Whether to use classes or multi-tenancy, or cross-references.",
+    buttonType: "TBD",
+    badgeType: "theory",
+    // buttonURL: "/developers/academy/building_with_weaviate/schema_design",
+    learningGoals: [
+      "Starting suggestions for selecting appropriate data structures to have Weaviate work for your needs.",
+    ],
+    learningOutcomes: [
+      "Outline what collection schema is for.",
+      "Describe when to use single or multi-tenancy collections.",
+      "Explain the impact of cross-references on data, and queries.",
+      "Make informed choices on whether to use cross-references.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  vectorizer_selection: {
+    title: "Vectorizer selection",
+    body: "The basics on how to select a good baseline vectorizer for given data and task types.",
+    buttonType: "TBD",
+    badgeType: "theory",
+    // buttonURL: "/developers/academy/building_with_weaviate/vectorizer_selection",
+    learningGoals: [
+      "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
+    ],
+    learningOutcomes: [
+      "Describe key considerations in vectorizer selection.",
+      "List types of vectorizer modules available with Weaviate.",
+      "Identify key differences between using an inference service and a local model.",
+      "Select an appropriate vectorizer model for a given data and task type.",
+      "Set the vectorizer for the data collection.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  indexing: {
+    title: "Indexing (Advanced)",
+    buttonType: "TBD",
+    body: "Learn how Weaviate indexes data, and how to balance search quality with speed.",
+    badgeType: "theory",
+    learningGoals: [
+      "How Weaviate indexes data.",
+      "Weaviate's inverted and vector indexes.",
+      "The available vector index algorithms.",
+      "Tunable vector index parameters to balance search quality and performance."
+    ],
+    learningOutcomes: [
+      "Describe how data indexing works within Weaviate.",
+      "Recognize and describe the different indexes.",
+      "Understand available .",
+      "Understand and use vector indexing parameters to balance search quality and performance.",
+      "Strategies for troubleshooting low search quality or performance.",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
 
 
   // vectorization_essentials: {
@@ -161,7 +222,7 @@ export const unitData = {
   // modules: {
   //   title: "Modules",
   //   body: "What roles modules play, and how to enable and use them, including examples.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   buttonURL: "/developers/academy/units/modules",
   //   badgeType: "mixed",
   //   learningGoals: [
@@ -179,64 +240,12 @@ export const unitData = {
 
 
 
-  // search_theory: {
-  //   title: "Vector search theory",
-  //   body: "Vector search powers Weaviate - but what is it and how does it work?",
-  //   buttonType: "Click here",
-  //   badgeType: "theory",
-  //   learningGoals: [
-  //     "Learn what vectors are",
-  //     "Understand how vectors vectors can be used to represent meaning",
-  //     "Understand how vector search works"
-  //   ],
-  //   learningOutcomes: [
-  //     "Understand the connection between vectors and meaning",
-  //     "Understand how vectors representing the meaning of data enables semantic search.",
-  //     "Understand how vectors can be calculated from e.g. machine learning models."
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
-  // queries_3: {
-  //   title: "Queries 3 (Advanced)",
-  //   body: "Learn about BM25 and hybrid searches, and the `Explore` function.",
-  //   buttonType: "Notify",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     "Learn how to do a data search using GraphQL with more complex queries using e.g. BM25, Hybrid Search, Explore and formulate complex filters with multiple operands.",
-  //     "Learn how to use module-specific query functions and parameters."
-  //   ],
-  //   learningOutcomes: [
-  //     "Formulate search queries using BM25.",
-  //     "Construct hybrid search queries using a combination of vector search and BM25.",
-  //     "Use variables in hybrid search to tweak the query to the use case.",
-  //     "Construct GraphQL Explore queries for data exploration",
-  //     "Construct GraphQL queries with module-specific filters, functions and parameters.",
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
-  // indexing: {
-  //   title: "Indexing (Advanced)",
-  //   buttonType: "Notify",
-  //   body: "Learn how Weaviate indexes data, and how to balance retrieval speed with recall.",
-  //   badgeType: "theory",
-  //   learningGoals: [
-  //     "Learn how Weaviate indexes data using one of the available vector indexing plugins.",
-  //     "Learn about HNSW and how to configure it to balance retrieval speed with recall."
-  //   ],
-  //   learningOutcomes: [
-  //     "Describe how data indexing works within Weaviate.",
-  //     "Recognize and describe various indexing methods.",
-  //     "Understand and use configuration parameters of HNSW to balance speed and recall."
-  //   ],
-  //   owner: "jp",
-  //   reviewer: "jp"
-  // },
+
+
   // schema_2: {
   //   title: "Schema 2 (Advanced)",
   //   body: "Implement cross-references, and modify indexing options through the schema.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "practical",
   //   learningGoals: [
   //     "Learn how to implement cross-references between data objects.",
@@ -254,7 +263,7 @@ export const unitData = {
   // t2v_under_hood: {
   //   title: "Text2vec under the hood",
   //   body: "Find out exactly how Weaviate vectorizes text, and how to modify its behavior.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "theory",
   //   learningGoals: [
   //     "Understand Weaviate's default object vectorization behavior in terms of data types and order of text concatenation, and how to modify this"
@@ -271,7 +280,7 @@ export const unitData = {
   // vectorizer_selection_2: {
   //   title: "Vectorizer selection 2",
   //   body: "Get into the weeds in model selection: how to look for a model that best suits your use case.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "theory",
   //   learningGoals: [
   //     ""
@@ -283,7 +292,7 @@ export const unitData = {
   // custom_models: {
   //   title: "Custom models with Weaviate",
   //   body: "How you can combine your custom vectorizer model with Weaviate.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "mixed",
   //   learningGoals: [
   //     ""
@@ -295,7 +304,7 @@ export const unitData = {
   // module_building: {
   //   title: "Module building",
   //   body: "You can extend Weaviate's capabilities with custom modules. Learn how to build one to fit your needs.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "practical",
   //   learningGoals: [
   //     ""
@@ -307,7 +316,7 @@ export const unitData = {
   // backups: {
   //   title: "Backups",
   //   body: "How to back up and restore data in Weaviate: try partial and full backups to local or cloud storage.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "practical",
   //   learningGoals: [
   //     "Learn how to back up and restore data in Weaviate, both partial and full backups to local and cloud storage. "
@@ -322,7 +331,7 @@ export const unitData = {
   // auth: {
   //   title: "Authentication & Authorization",
   //   body: "Identify users and control access with OpenID Connect (OIDC).",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "practical",
   //   learningGoals: [
   //     "An overview of authentication and authorization, as well as how to implement token-based authentication and authorization in Weaviate."
@@ -339,7 +348,7 @@ export const unitData = {
   // scaling: {
   //   title: "Scaling",
   //   body: "What to expect and consider when scaling Weaviate to production.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "theory",
   //   learningGoals: [
   //     ""
@@ -351,7 +360,7 @@ export const unitData = {
   // replication: {
   //   title: "Replication",
   //   body: "What to consider when adding replication, and how to implement it.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "mixed",
   //   learningGoals: [
   //     "Learn what replication is, what to consider and how to implement it for your Weaviate instance."
@@ -365,34 +374,10 @@ export const unitData = {
   //   owner: "jp",
   //   reviewer: "jp"
   // },
-  // migration: {
-  //   title: "Migration",
-  //   body: "How to upgrade (or downgrade) your Weaviate version.",
-  //   buttonType: "Notify",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     ""
-  //   ],
-  //   learningOutcomes: [
-  //     ""
-  //   ]
-  // },
-  // kubernetes: {
-  //   title: "Weaviate and Kubernetes",
-  //   body: "How to run Weaviate on Kubernetes, and best practice tips.",
-  //   buttonType: "Notify",
-  //   badgeType: "practical",
-  //   learningGoals: [
-  //     ""
-  //   ],
-  //   learningOutcomes: [
-  //     ""
-  //   ]
-  // },
   // clients: {
   //   title: "Weaviate Clients",
   //   body: "An overview: what's available, where to find them, and their capabilities.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "mixed",
   //   learningGoals: [
   //     "Learn what Weaviate client libraries offer, which client languages are available and how to use them."
@@ -408,7 +393,7 @@ export const unitData = {
   // docker: {
   //   title: "Weaviate with Docker",
   //   body: "How to run Weaviate on Docker, and best practice tips.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "practical",
   //   learningGoals: [
   //     ""
@@ -420,7 +405,7 @@ export const unitData = {
   // reader_generator: {
   //   title: "Reader and Generator modules",
   //   body: "Overview of question-answering, summarization and named entity recognition modules.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "mixed",
   //   learningGoals: [
   //     "Learn about reader and generator modules like question answering, summerization and NER in a Weaviate pipeline, and how to use them."
@@ -434,26 +419,7 @@ export const unitData = {
   //   owner: "jp",
   //   reviewer: "jp"
   // },
-  vectorizer_selection_1: {
-    title: "Vectorizer selection 1",
-    body: "This unit will discuss the basics on how to select a good baseline vectorizer for given data and task types.",
-    buttonType: "TBD",
-    badgeType: "theory",
-    learningGoals: [
-      "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
-    ],
-    learningOutcomes: [
-      "Describe key considerations in vectorizer selection.",
-      "List types of vectorizer modules available with Weaviate.",
-      "Identify key differences between using an inference service and a local model.",
-      "Describe situations in which a fine-tuned model may significantly outperform a pretrained model.",
-      "Select an appropriate vectorizer model for a given data and task type.",
-      "Demonstrate ability to change the default vectorizer in Weaviate.",
-      "Demonstrate ability to change the class vectorizer in Weaviate.",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
+
   beyond_text: {
     title: "Weaviate: Beyond text",
     body: "How to use Weaviate with non-text media, such as images. What models are available, and how can you use them?",
@@ -493,10 +459,48 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   },
+  multi_tenancy_intro: {
+    title: "Introduction to multi-tenancy",
+    body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
+    buttonType: "TBD",
+    // buttonURL: "/developers/academy/standalone/multi_tenancy",
+    badgeType: "practical",
+    learningGoals: [
+      "What multi-tenancy is and when to use it",
+      "How to enable it and create tenants",
+      "Using Weaviate with multi-tenancy",
+    ],
+    learningOutcomes: [
+      "Describe what multi-tenancy is",
+      "Appropriately select when to use multi-tenancy",
+      "Create tenants and ingest data with multi-tenancy enabled",
+      "Perform operations at tenant level",
+    ],
+    owner: "jp",
+    reviewer: "jp"
+  },
+  kubernetes_intro: {
+    title: "Weaviate with Kubernetes - An introduction",
+    body: "What is Kubernetes, and how do you configure and run Weaviate on it?.",
+    buttonType: "TBD",
+    badgeType: "practical",
+    learningGoals: [
+      "What Kubernetes is, and why it is used.",
+      "How to set up a local Kubernetes cluster.",
+      "Run a multi-node Weaviate instance on the local Kubernetes cluster.",
+      "How to configure Weaviate running on Kubernetes."
+    ],
+    learningOutcomes: [
+      "Describe what Kubernetes is at a high level",
+      "Set up minikube on your local device and run a multi-node cluster.",
+      "Deploy Weaviate with replication on the multi-node cluster.",
+      "Modify configurations and perform a rolling update on the Weaviate instance.",
+    ]
+  },
   // vectorizer_text_overview: {
   //   title: "Text vectorizers: An overview",
   //   body: "An overview of models - from bag-of-words to word2vec and all the way to transformers.",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "mixed",
   //   learningGoals: [
   //     "A brief history of text vectorization in modern natural language processing to provide context for their development including pros and cons."
@@ -512,7 +516,7 @@ export const unitData = {
   // {
   //   title: "Placeholder",
   //   body: "Something something dark side",
-  //   buttonType: "Notify",
+  //   buttonType: "TBD",
   //   badgeType: "mixed",
     // learningGoals: [
     //   "TBC"
@@ -541,5 +545,4 @@ export const unitData = {
     owner: "jp",
     reviewer: "jp"
   }
-
 };
