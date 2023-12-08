@@ -8,7 +8,7 @@ image: og/docs/api.jpg
 
 :::info Related pages
 - [How-to - Manage Collections](/developers/weaviate/manage-data/collections.mdx)
-- [References - Configuration: Schema](/developers/weaviate/config-refs/schema.md).
+- [References - Configuration: Schema](/developers/weaviate/config-refs/schema).
 :::
 
 ## Get the schema

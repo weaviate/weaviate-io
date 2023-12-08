@@ -612,10 +612,10 @@ client.schema.create_class(class_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](../tutorials/schema.md)
-- [How to: Configure a schema](../manage-data/collections.mdx)
-- [References: REST API: Schema](../api/rest/schema.md)
-- [Concepts: Data Structure](../concepts/data.md)
+- [Tutorial: Schema](/developers/weaviate/tutorials/schema)
+- [How to: Configure a schema](/developers/weaviate/manage-data/collections)
+- [References: REST API: Schema](/developers/weaviate/api/rest/schema)
+- [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
