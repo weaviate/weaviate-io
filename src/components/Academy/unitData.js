@@ -93,8 +93,8 @@ export const unitData = {
   },
 
   which_search: {
-    title: "Vector, keyword or hybrid search?",
-    body: "Weaviate offers vector, keyword and hybrid searches. Let's discuss when to use these types of searches",
+    title: "Which search is right for me?",
+    body: "Weaviate offers many search types (vector, keyword and hybrid), and options. Let's discuss some good, baseline search strategies.",
     buttonType: "Click here",
     badgeType: "mixed",
     buttonURL: "/developers/academy/building_with_weaviate/which_search",
