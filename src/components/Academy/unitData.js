@@ -119,7 +119,7 @@ export const unitData = {
     body: "How to design your collection data structure. Whether to use classes or multi-tenancy, or cross-references.",
     buttonType: "TBD",
     badgeType: "theory",
-    buttonURL: "/developers/academy/building_with_weaviate/schema_design",
+    // buttonURL: "/developers/academy/building_with_weaviate/schema_design",
     learningGoals: [
       "Starting suggestions for selecting appropriate data structures to have Weaviate work for your needs.",
     ],
@@ -463,7 +463,7 @@ export const unitData = {
     title: "Introduction to multi-tenancy",
     body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
     buttonType: "TBD",
-    buttonURL: "/developers/academy/standalone/multi_tenancy",
+    // buttonURL: "/developers/academy/standalone/multi_tenancy",
     badgeType: "practical",
     learningGoals: [
       "What multi-tenancy is and when to use it",
