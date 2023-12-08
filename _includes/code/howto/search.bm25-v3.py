@@ -11,10 +11,10 @@ import json
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    'https://edu-demo.weaviate.network',
-    auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+    "https://edu-demo.weaviate.network",
+    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
     additional_headers={
-        'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
     }
 )
 
@@ -386,14 +386,14 @@ test_gqlresponse(response, gqlresponse)
 # START MultipleKeywords Python
 response = (
     client.query
-    .get('JeopardyQuestion', ['question'])
+    .get("JeopardyQuestion", ["question"])
     .with_bm25(
       # highlight-start
-      query='food wine',
+      query="food wine",
       # highlight-end
-      properties=['question']
+      properties=["question"]
     )
-    .with_additional('score')
+    .with_additional("score")
     .with_limit(5)
     .do()
   )
@@ -402,15 +402,15 @@ print(json.dumps(response, indent=2))
 # END MultipleKeywords Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert len(response['data']['Get']['JeopardyQuestion']) == 5
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 5
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 
-# Check that 'food' or "wine" appears in the questions
-pattern = re.compile(r'food|wine', re.IGNORECASE)
-for result in response['data']['Get']['JeopardyQuestion']:
-    assert pattern.search(result['question'])
+# Check that "food" or "wine" appears in the questions
+pattern = re.compile(r"food|wine", re.IGNORECASE)
+for result in response["data"]["Get"]["JeopardyQuestion"]:
+    assert pattern.search(result["question"])
 # End test
 
 
@@ -597,11 +597,11 @@ test_gqlresponse(response, gqlresponse)
 # START limit Python
 response = (
     client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
+    .get("JeopardyQuestion", ["question", "answer"])
     .with_bm25(
-      query='safety'
+      query="safety"
     )
-    .with_additional('score')
+    .with_additional("score")
     # highlight-start
     .with_limit(3)
     # highlight-end
@@ -612,11 +612,11 @@ print(json.dumps(response, indent=2))
 # END limit Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert len(response['data']['Get']['JeopardyQuestion']) == 3
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
+assert "OSHA" in response["data"]["Get"]["JeopardyQuestion"][0]["answer"], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
 # End test
 
 
@@ -687,11 +687,11 @@ test_gqlresponse(response, gqlresponse)
 # START autocut Python
 response = (
     client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
+    .get("JeopardyQuestion", ["question", "answer"])
     .with_bm25(
-      query='safety'
+      query="safety"
     )
-    .with_additional('score')
+    .with_additional("score")
     # highlight-start
     .with_autocut(1)
     # highlight-end
@@ -702,11 +702,11 @@ print(json.dumps(response, indent=2))
 # END autocut Python
 
 # Tests
-assert 'JeopardyQuestion' in response['data']['Get']
-assert len(response['data']['Get']['JeopardyQuestion']) == 1
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
+assert "OSHA" in response["data"]["Get"]["JeopardyQuestion"][0]["answer"], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
 # End test
 
 

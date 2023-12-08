@@ -95,7 +95,7 @@ docker run -itp "8000:8080" semitechnologies/img2vec-neural:resnet50-61dcbf8
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Vectorization settings
 

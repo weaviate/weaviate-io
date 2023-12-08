@@ -1,5 +1,5 @@
 ---
-title: (Batch) Import items
+title: Batch import
 sidebar_position: 15
 image: og/docs/howto.jpg
 # tags: ['how-to', 'import']
@@ -14,66 +14,23 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
-## Overview
-
-This page shows how to efficiently add data objects and cross-references to Weaviate. We will collectively refer to these as "items".
-
-We suggest you use [batch imports](../tutorials/import.md#to-batch-or-not-to-batch) unless you have a specific reason not to. A batch import [drastically improves](../api/rest/objects.md#objects-vs-batch) import speed by processing multiple items per request, and clients can parallelize requests.
-
-:::info See also
-- [How-to: Create objects](./create.mdx)
-- [References: REST - /v1/batch](../api/rest/batch.md)
-:::
+[Batch imports](../tutorials/import.md#to-batch-or-not-to-batch) are an [efficient](../api/rest/objects.md#objects-vs-batch) way to add multiple data objects and cross-references.
 
 
-## Requirements
+<details>
+  <summary>Additional information</summary>
 
-To import items in batches using a Weaviate client,
+To create a bulk import job, follow these steps:
 
-1. Initialize a batcher,
-1. Add items to the batcher, and
-1. Ensure that the last batch is sent (i.e. flushed).
+1. Initialize a batch object.
+1. Add items to the batch object.
+1. Ensure that the last batch is sent (flushed).
 
-### Optimizing for import speed
+</details>
 
-To maximise import speed, enable asynchronous indexing in Weaviate and use gRPC batch imports. Asynchronous indexing decouples vector indexing from object creation ([read more](../configuration/indexes.md#asynchronous-indexing)), and gRPC batch imports are faster than REST batch imports.
+## Basic import
 
-Both features are available in Weaviate `1.22` and higher. (Note that asynchronous indexing is still experimental as of `1.22`, and we do not yet recommend using it in production.)
-
-#### How to use asynchronous indexing
-
-To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in the Weaviate configuration (e.g. in the `docker-compose.yml` file).
-
-For example, the `docker-compose.yml` file might look like this (note the `environment` section):
-
-```yaml
-weaviate:
-  image: semitechnologies/weaviate:||site.weaviate_version||
-  ...
-  environment:
-    ASYNC_INDEXING: 'true'
-  ...
-```
-
-As the asynchronous indexing is being carried out, you can choose to wait for the indexing to complete. For example, the Python client includes a `client.batch.wait_for_vector_indexing()` function to wait for the indexing to complete.
-
-:::info See also
-- [Configuration: Indexes](../configuration/indexes.md#asynchronous-indexing)
-:::
-
-#### How to use gRPC batch imports
-
-The easiest way to use gRPC batch imports is to use the [`v4` Python client](../client-libraries/python.md). Alternatively, you can use the gRPC API ([read more](../api/grpc.md)) if you so wish.
-
-### Notes
-
-- On supported clients, you can also configure the batch parameters.
-- For multi-tenancy collections, you can specify the tenant name.
-- Some clients can be configured for auto-flushing.
-
-## Basic batch import example
-
-The following example will add objects to `YourName` collection using a batch import.
+The following example adds objects to the `YourName` collection.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -122,18 +79,12 @@ The following example will add objects to `YourName` collection using a batch im
   </TabItem>
 </Tabs>
 
-:::info Where is the collection definition?
-In this example, if the collecion `YourName` does not already exist, it will be created by Weaviate with its [auto-schema](../configuration/schema-configuration.md#auto-schema) feature.
-:::
+## Specify an ID value
 
+Weaviate generates an UUID for each object. Object IDs must be unique. If you set object IDs, use one of these [deterministic UUID](#generate-a-deterministic-id) methods to prevent duplicate IDs:
 
-## Optional object parameters
-
-The following does not apply to cross-references.
-
-### `id`
-
-You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) as the ID, or leave it blank to have Weaviate generate one. You can also use a deterministic UUID (UUIDv5) as shown here to [prevent duplicates](#managing-potential-duplication).
+- [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) (Python)
+- `generateUuid5` (TypeScript)
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -182,9 +133,9 @@ You can optionally specify a [UUID](https://en.wikipedia.org/wiki/Universally_un
   </TabItem>
 </Tabs>
 
-### `vector`
+## Specify a vector
 
-You can optionally specify a vector to represent each object. Otherwise, Weaviate will follow the relevant vectorizer setting.
+Use the `vector` property to specify a vector for each object.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -233,15 +184,9 @@ You can optionally specify a vector to represent each object. Otherwise, Weaviat
   </TabItem>
 </Tabs>
 
-## Batch parameters - Python client
+## Python specific batch parameters
 
-We recommend using `client.batch` in a context manager as it will automatically flush the last batch when exiting.
-
-### Set batch parameters
-
-You can set batch parameters using the `client.batch.configure` function.
-
-The following example specifies a batch size of 200 and parallelizes the import process with up to 2 threads:
+The python client v3 has a helper function, `client.batch`, for batch processing. 
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -250,89 +195,26 @@ The following example specifies a batch size of 200 and parallelizes the import 
   language="py"
 />
 
+<details>
+  <summary>Additional information</summary>
 
-### Performance parameters
+The following parameters have the greatest impact on the batch import speed:
 
-The following parameters will have the greatest impact on the batch import speed:
-- `batch_size` (int) - the (initial) size of the batch
-- `num_workers` (int) - the maximum number of parallel workers
-- `dynamic` (bool) - whether to dynamically adjust the `batch_size` based on the number of items in the batch
+| Parameter | Type | Recommended<br/>value | Purpose |
+| :- | :- | :- |:- |
+| `batch_size` | integer | 50 - 200 | Initial batch size
+| `num_workers` | integer | 1 - 2 | Maximum number of parallel workers
+| `dynamic` | boolean | True | If true, dynamically adjust the `batch_size`<br/> based on the number of items in the batch
 
-We recommend starting with:
-- `batch_size`: 50-200
-- `num_workers`: 1-2,
-- `dynamic`: `True` (if you are not sure what batch size to use)
+To automatically flush the last batch of object, use `client.batch` in a context manager.
 
-Using these parameters, you can set dynamic or automatic batching:
+For more information, see [Python client batching](../client-libraries/python.md#batching).
 
-<Tabs groupId="languages">
-<TabItem value="auto" label="Automatic">
+</details>
 
-```python
-with client.batch(
-    batch_size=100,  # Specify the batch size
-    num_workers=2,   # Parallelize the process
-    # dynamic=False  # By default
-) as batch:
-# Add objects to batch
-```
+## Stream data from large files
 
-</TabItem>
-<TabItem value="dynamic" label="Dynamic">
-
-```python
-with client.batch(
-    batch_size=100,  # Specify the batch size
-    num_workers=2,   # Parallelize the process
-    dynamic=True,    # Weaviate will dynamically adjust the batch size
-) as batch:
-# Add objects to batch
-```
-
-</TabItem>
-</Tabs>
-
-
-### Error handling parameters
-
-The following parameters will most impact error handling:
-- `timeout_retries` (int) & `connection_error_retries` (int) - Batch-level numbers of retries
-- `weaviate_error_retries` (int) - Object-level number of retries for an error originating from Weaviate (for example inference / transformer timeouts)
-- `callback` - Call a function at the end of batching - for example to inspect the response
-    - The default is `weaviate.util.check_batch_result`
-
-For a complete list of batch parameters and details about the types of batching, see the [Python client batching](../client-libraries/python.md#batching) section.
-
-
-## Batch parameters - other clients
-
-At this point in time, the other clients do not support batch parameters, and manual flushing is required.
-
-
-## Managing potential duplication
-
-In Weaviate, the only unique field is the `id`. If you try to import an object with an existing id Weaviate will overwrite the object if one exists. (In [single-object creation](./create.mdx), Weaviate will throw an error if the `id` exists.)
-
-To prevent duplicates, we suggest:
-- Using a deterministic ID generation method.
-
-With a deterministic ID, Weaviate will either be creating a new object or overwriting an existing one, depending on whether the object already exists.
-
-### Generate deterministic ID
-
-You can do so with the [`generate_uuid5`](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.util.html#weaviate.util.generate_uuid5) function in the Python client, or the `generateUuid5` function in the TypeScript client. See the [`id` section above](#id) for a concrete example.
-
-### Check if an object exists
-
-You can [check if an object exists](./read.mdx#check-object-existence) given its [id](../api/graphql/additional-properties.md#id).
-
-:::info IDs unique to each collection and tenants
-[Collections](../concepts/data.md#class-collections) and [tenants](../concepts/data.md#multi-tenancy) each work like namespaces. So, it is possible to have the same id in different collections and/or tenants.
-:::
-
-## Tip: Stream data from large files
-
-A good practice for importing large datasets is to stream the input file rather than risking running out of memory by loading it all at once. For Python, this can be achieved with libraries like [ijson](https://pypi.org/project/ijson/) for JSON files and [pandas for CSV files](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html). For Node, a streams-based solution is presented below.
+If your dataset is large, consider streaming the import to avoid out-of-memory issues.
 
 <!-- TODOv4: update Python - JSON and CSV with v4 code -->
 
@@ -340,7 +222,7 @@ A good practice for importing large datasets is to stream the input file rather 
   <TabItem value="py" label="Python - JSON">
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# START JSON streaming"
     endMarker="# END JSON streaming"
     language="py"
@@ -350,7 +232,7 @@ A good practice for importing large datasets is to stream the input file rather 
   <TabItem value="pycsv" label="Python - CSV">
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# START CSV streaming"
     endMarker="# END CSV streaming"
     language="py"
@@ -379,7 +261,31 @@ A good practice for importing large datasets is to stream the input file rather 
   </TabItem>
 </Tabs>
 
+## Additional considerations
 
+:::info Added in `v1.23`.
+:::
+
+To maximize import speed, enable [asynchronous indexing](../configuration/indexes.md#asynchronous-indexing) and use gRPC batch imports. 
+
+Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
+
+To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration file.
+
+```yaml
+weaviate:
+  image: semitechnologies/weaviate:||site.weaviate_version||
+  ...
+  environment:
+    ASYNC_INDEXING: 'true'
+  ...
+```
+
+## Related pages
+
+- [How-to: Create objects](./create.mdx)
+- [References: REST - /v1/batch](../api/rest/batch.md)
+- [Configuration: Indexes](../configuration/indexes.md#asynchronous-indexing)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

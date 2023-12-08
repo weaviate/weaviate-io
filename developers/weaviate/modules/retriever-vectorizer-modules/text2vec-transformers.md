@@ -115,7 +115,7 @@ Then, for example if Weaviate is running outside of Docker, set `TRANSFORMERS_IN
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Vectorization settings
 

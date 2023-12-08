@@ -97,8 +97,44 @@ assert((sf.properties['hasCategory'] as object[]).find(xref => xref['href'] === 
 await delProp(sfId, 'hasCategory', 'JeopardyQuestion');
 await delProp(usCitiesId, 'hasQuestion', 'JeopardyCategory');
 
-// TwoWay TS
-// First, add the "hasQuestion" cross-reference property to the JeopardyCategory class
+
+// START Collections TwoWay Category1
+const jeopardyCategoryClass = {
+  class: 'JeopardyCategory',
+};
+
+await client
+  .schema
+  .classCreator()
+  .withClass(jeopardyCategoryClass)
+  .do();
+// END Collections TwoWay Category1
+
+// START Collections TwoWay Question
+const jeopardyQuestionClass = {
+  class: 'JeopardyQuestion',
+  description: 'A Jeopardy! question',
+  properties: [
+    { name: 'question' , dataType: ['text'] },
+    { name: 'answer', dataType: ['text'] },
+    {
+      name: 'hasCategory',
+      dataType: ['JeopardyCategory'],
+      description: 'The category of the question',
+    },
+  ],
+  vectorizer: 'text2vec-openai',
+};
+
+await client
+  .schema
+  .classCreator()
+  .withClass(jeopardyQuestionClass)
+  .do();
+// END Collections TwoWay Question
+
+// START Collections TwoWay Category2
+// Add the "hasQuestion" cross-reference property to the JeopardyCategory class
 await client.schema
   .propertyCreator()
   .withClassName('JeopardyCategory')
@@ -107,7 +143,10 @@ await client.schema
     dataType: ['JeopardyQuestion'],
   })
   .do();
+// END Collections TwoWay Category2
 
+
+// TwoWay TS
 // For the "San Francisco" JeopardyQuestion object, add a cross-reference to the "U.S. CITIES" JeopardyCategory object
 await client.data
   .referenceCreator()
