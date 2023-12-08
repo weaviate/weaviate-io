@@ -48,13 +48,13 @@ The index type can be specified per data class via the [class definition](/devel
 
 Example of a class [vector index configuration in your data schema](/developers/weaviate/manage-data/collections.mdx):
 
-To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
+To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/manage-data/collections.mdx).
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/manage-data/collections.mdx).
 
 ## Set vector index type
 
-The index type can be specified per data collection via the [collection definition](/developers/weaviate/configuration/schema-configuration.md#set-vector-index-type) settings.
+The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings.
 
 
 ## Hierarchical Navigable Small World (HNSW)
