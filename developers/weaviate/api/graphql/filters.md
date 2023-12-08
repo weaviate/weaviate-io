@@ -136,11 +136,11 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
 
 The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the `tokenization` of the property.
 
-See the [Schema property tokenization section](../../config-refs/schema.md#property-tokenization) for the difference between the available tokenization types.
+See the [Schema property tokenization section](../../config-refs/schema/index.md#property-tokenization) for the difference between the available tokenization types.
 
 ### Stopwords in `text`/`string` filter values
 
-Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists).
+Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists).
 
 ### Example response
 
@@ -352,7 +352,7 @@ import GraphQLFiltersWhereId from '/_includes/code/graphql.filters.where.id.mdx'
 Filtering can be performed with internal timestamps as well, such as `creationTimeUnix` and `lastUpdateTimeUnix`. These values can be represented either as Unix epoch milliseconds, or as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) formatted datetimes. Note that epoch milliseconds should be passed in as a `valueText`, and an RFC3339 datetime should be a `valueDate`.
 
 :::info
-Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indextimestamps) for details.
+Filtering by timestamp requires the target class to be configured to index  timestamps. See [here](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps) for details.
 :::
 
 import GraphQLFiltersWhereTimestamps from '/_includes/code/graphql.filters.where.timestamps.mdx';
@@ -422,7 +422,7 @@ To filter for `Article` class objects with `title` length greater than 10, you w
 ```
 
 :::note
-Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema.md#invertedindexconfig--indexpropertylength).
+Filtering by property length requires the target class to be [configured to index the length](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indexpropertylength).
 :::
 
 ### By cross-references
@@ -573,7 +573,7 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 ```
 
 :::note
-Filtering by null-state requires the target class to be configured to index this. See [here](../../config-refs/schema.md#invertedindexconfig--indexnullstate) for details.
+Filtering by null-state requires the target class to be configured to index this. See [here](../../config-refs/schema/index.md#invertedindexconfig--indexnullstate) for details.
 :::
 
 

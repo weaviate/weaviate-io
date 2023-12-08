@@ -193,8 +193,7 @@ If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedi
 You can generate an ID based on your data object. 
 
 :::info
-Gerenating IDs from an objects is not random, as the same value will always the same ID.<br/>
-Using deterministic IDs allows us to avoid inserting duplicate objects, as Weaviate throws an error if you provide a duplicate ID. 
+Object IDs are not randomly generated. The same value always generates the same ID.<br/>Weaviate throws an error if you provide a duplicate ID. Use deterministic IDs to avoid inserting duplicate objects.
 :::
 
 <Tabs groupId="languages">

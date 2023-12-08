@@ -1,8 +1,259 @@
 
-#
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.schema.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.schema-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure.schema.ts';
+
+# How to configure a collection schema
+
+## Overview
+
+This page describes collection schemas in Weaviate.
+
+import Terminology from '/_includes/collection-class-terminology.md';
+
+<Terminology />
+
+### Auto-schema
+
+We recommend that you define your schema manually to ensure that it aligns with your specific requirements. However, Weaviate also provides an auto-schema feature.
+
+When a collection definition is missing, or when the schema is inadequate for data import, the auto-schema feature generates a schema. The automatically generated schema is based on the Weaviate system defaults and the properties of the imported objects. For more information, see ([Auto-schema](../config-refs/schema/index.md#auto-schema)).
 
 
-#
+## Create a collection
+
+A schema describes the data objects that make up a collection. To create a collection, follow the example below in your preferred language.
+
+### Minimal example
+
+At a minimum, you must specify the `class` parameter for the collection name.
+
+import initialCaps from '/_includes/schemas/initial-capitalization.md'
+
+<initialCaps />
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollection"
+      endMarker="# END CreateCollection"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollection"
+      endMarker="// END CreateCollection"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+### Property definition
+
+You can use the `properties` field to specify properties for the collection. A collection definition can include any number of properties.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PropertyDefinition"
+      endMarker="# END PropertyDefinition"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START PropertyDefinition"
+      endMarker="# END PropertyDefinition"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START PropertyDefinition"
+      endMarker="// END PropertyDefinition"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
+In addition to the property name, you can use properties to configure parameters such as the data type, inverted index tokenization and more.
+
+- [Property object configuration references](../config-refs/schema/index.md#property-object)
+- [Available data types](../config-refs/datatypes.md)
+
+
+### Specify a vectorizer
+
+You can set an optional `vectorizer` for each collection. If you specify a vectorizer for a collection, the specification overrides any default values that are present in the general configuration such as [environment variables](../config-refs/env-vars.md).
+
+The following code sets the `text2vec-openai` module as the vectorizer for the `Article` collection.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Vectorizer"
+      endMarker="# END Vectorizer"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Vectorizer"
+      endMarker="# END Vectorizer"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+- [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
+- [Vectorizer configuration references](../config-refs/schema/index.md#vectorizer)
+
+### Set vector index type
+
+The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndex"
+      endMarker="// END SetVectorIndex"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
+
+### Collection level module settings
+
+Configure the `moduleConfig` parameter at the collection-level to set collection-wide settings for module behavior. For example, you can configure the vectorizer to use a particular model (`model`), or to vectorize the collection name (`vectorizeClassName`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ModuleSettings"
+      endMarker="# END ModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
+
+
+### Property-level module settings
+
+Configure the `moduleConfig` parameter at the property-level to set property-level settings for module behavior. For example, you can vectorize the property name (`vectorizePropertyName`), or ignore the property altogether (`skip`).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START PropModuleSettings"
+      endMarker="# END PropModuleSettings"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+The available parameters vary according to the module. ([Learn more](../modules/index.md)).
 
 
 ### Indexing, sharding and replication settings
@@ -48,10 +299,10 @@ You need a [multi-node setup](../installation/docker-compose.md#multi-node-setup
 
 For details on the configuration parameters, see the following configuration references:
 
-- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
-- [Inverted indexes](../config-refs/schema.md#invertedindexconfig--stopwords-stopword-lists)
-- [Sharding](../config-refs/schema.md#shardingconfig)
-- [Replication](../config-refs/schema.md#replicationconfig)
+- [Vector indexes](../config-refs/schema/index.md#vectorindexconfig)
+- [Inverted indexes](../config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists)
+- [Sharding](../config-refs/schema/index.md#shardingconfig)
+- [Replication](../config-refs/schema/index.md#replicationconfig)
 
 ### Multi-tenancy
 
@@ -115,7 +366,7 @@ The following sections describe how to add a property to a collection and how to
 
 ### Add a property
 
-You can add a new property to an existing collection. 
+You can add a new property to an existing collection.
 
 Add new properties to an existing schema one at a time. To add multiple properties, create a list of the new properties. Then, loop through the list to add one new property on each iteration.
 
@@ -321,7 +572,7 @@ The response is a JSON object like the one in this example.
 
 ## Related pages
 - [Tutorial: Schema](../tutorials/schema.md)
-- [References: Schema](../config-refs/schema.md)
+- [References: Schema](../config-refs/schema/index.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 

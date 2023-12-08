@@ -18,8 +18,8 @@ This page explains what vector indices are, and what purpose they serve in Weavi
 
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
-- [Configuration: Indexes](../configuration/indexes.md)
-- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema.md#configure-semantic-indexing)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
+- [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
 :::
 
 ## Introduction
@@ -27,7 +27,8 @@ This page explains what vector indices are, and what purpose they serve in Weavi
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
 ## Why index data as vectors?
-Now, a long list of numbers does not carry any meaning by itself. But if the numbers in this list are chosen to indicate the [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between the data objects represented by other vectors, then the new vector contains information about the data object's meaning and relation to other data.
+
+Vectors are a great way to represent data objects' meaning, such as meaning of text or contents of images or video. They also enable determination of [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between data objects.
 
 To make this concept more tangible, think of vectors as coordinates in a *n*-dimensional space. For example, we can represent *words* in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. In the picture below, you see how this concept looks (simplified). The words `Apple` and `Banana` are close to each other. The distance between those words, given by the distance between the vectors, is small. But these two fruits are further away from the words `Newspaper` and `Magazine`.
 
@@ -37,45 +38,33 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 
 ![Supermarket map visualization](./img/supermarket.svg "Supermarket map visualization")
 
-## How to choose the right vector index type
+## Which vector index is right for me?
 
-The first vector-storage type Weaviate supports is [HNSW](./vector-index.md#hnsw), which is also the default vector index type. Typical for HNSW is that this index type is super fast at query time, but more costly when it comes to the building process (adding data with vectors). If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
+Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a simple index that is fast to build and query, but it does not scale well to large datasets. The `hnsw` index is a more complex index that is slower to build and query, but it scales well to large datasets.
 
-## Configuration of vector index type
+A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
 
 The index type can be specified per data class via the [class definition](/developers/weaviate/manage-data/collections.mdx). Currently the only index type is HNSW.
 
 Example of a class [vector index configuration in your data schema](/developers/weaviate/manage-data/collections.mdx):
 
-```json
-{
-  "class": "Article",
-  "description": "string",
-  "properties": [
-    {
-      "name": "title",
-      "description": "string",
-      "dataType": ["text"]
-    }
-  ],
-  "vectorIndexType": " ... ",
-  "vectorIndexConfig": { ... }
-}
-```
+To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
 
 Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/manage-data/collections.mdx).
 
-## Can Weaviate support multiple vector index (ANN) types?
+## Set vector index type
 
-* The short answer: _yes_
-* The longer answer: we have a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World (HNSW) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87). In principle, if another ANN algorithm also offers full CRUD support, Weaviate can support it too. If you have suggestions for implementing other ANN index types, please let us know in our [forum](https://forum.weaviate.io).
+The index type can be specified per data collection via the [collection definition](/developers/weaviate/configuration/schema-configuration.md#set-vector-index-type) settings.
 
 
 ## Hierarchical Navigable Small World (HNSW)
-[HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type Weaviate supports.
+
+Weaviate's `hnsw` index is a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
 
 ### What is HNSW?
-HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm.
+HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes provide benefits of very fast queries, but they are more costly when it comes to the building process (adding data with vectors).
+
+At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently.
 
 Consider this diagram of a search using HNSW.
 
@@ -91,19 +80,75 @@ HNSW is very fast, memory efficient, approach to similarity search. The memory c
 
 Have another look at the diagram; it demonstrates how the HNSW algorithm searches. The blue search vector in the top layer connects to a partial result in layer one. The objects in layer one lead HNSW to the result set in layer zero. HNSW makes three hops through the layers (the dotted blue lines) and skips objects that are unrelated to the search query.
 
+If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)).
+
 ### Distance metrics
 
-All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Weaviate supports are also supported with the HNSW index type.
+All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Weaviate supports are also supported with HNSW indexes.
 
 ## Managing search quality vs speed tradeoffs
 
 HNSW parameters can be adjusted to adjust search quality against speed.
 
-The `ef` parameter is a critical setting for balancing the trade-off between search speed and quality. The `ef` parameter dictates the size of the dynamic list used by the HNSW algorithm during the search process. A higher `ef` value results in a more extensive search, enhancing accuracy but potentially slowing down the query.
+The `ef` parameter is a critical setting for balancing the trade-off between search speed and quality.
+
+The `ef` parameter dictates the size of the dynamic list used by the HNSW algorithm during the search process. A higher `ef` value results in a more extensive search, enhancing accuracy but potentially slowing down the query.
 
 In contrast, a lower `ef` makes the search faster but might compromise on accuracy. This balance is crucial in scenarios where either speed or accuracy is a priority. For instance, in applications where rapid responses are critical, a lower `ef` might be preferable, even at the expense of some accuracy. Conversely, in analytical or research contexts where precision is paramount, a higher `ef` would be more suitable, despite the increased query time.
 
 Weaviate allows for `ef` to be configured ef either explicitly or dynamically. If `ef` is set to -1, Weaviate adjusts it dynamically based on the query response limit, enabling a more flexible approach to managing this trade-off. The dynamic `ef` adjustment takes into account the query limit and modifies the size of the ANN (Approximate Nearest Neighbors) list accordingly, bounded by the parameters `dynamicEfMin`, `dynamicEfMax`, and influenced by `dynamicEfFactor`. This feature is particularly beneficial in environments with varying query patterns, as it automatically optimizes the balance between speed and recall based on real-time query requirements.
+
+### Dynamic ef
+
+The `ef` parameter controls the size of the approximate nearest neighbors (ANN) list at query time. You can configure a specific list size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
+
+The length of the list is determined by the query response limit that you set in your query. Weaviate uses the query limit as an anchor and modifies the size of ANN list according to the values you set for the `dynamicEf` parameters.
+
+- `dynamicEfMin` sets a lower bound on the list length.
+- `dynamicEfMax` sets an upper bound on the list length.
+- `dynamicEfFactor` sets a range for the list.
+
+To keep search recall high, the actual dynamic `ef` value stays above `dynamicEfMin` even if the query limit is small enough to suggest a lower value.
+
+To keep search speed reasonable even when retrieving large result sets, the dynamic `ef` value is limited to `dynamicEfMax`. Weaviate doesn't exceed `dynamicEfMax` even if the query limit is large enough to suggest a higher value. If the query limit is higher than `dynamicEfMax`, `dynamicEfMax` does not have any effect. In this case, dynamic `ef` value is equal to the query limit.
+
+To determine the length of the ANN list, Weaviate multiples the query limit by `dynamicEfFactor`. The list range is modified by `dynamicEfMin` and `dynamicEfMax`.
+
+Consider this GraphQL query that sets a limit of 4.
+
+```graphql
+{
+  Get {
+    JeopardyQuestion(limit: 4) {
+      answer
+      question
+    }
+  }
+}
+```
+
+Imagine the collection has dynamic `ef` configured.
+
+```json
+  "vectorIndexConfig": {
+     "ef": -1,
+     "dynamicEfMin": 5
+     "dynamicEfMax": 25
+     "dynamicEfFactor": 10
+  }
+```
+
+The resulting search list has these characteristics.
+
+- A potential length of 40 objects ( ("dynamicEfFactor": 10) * (limit: 4) ).
+- A minimum length of 5 objects ("dynamicEfMin": 5).
+- A maximum length of 25 objects ("dynamicEfMax": 25).
+- An actual size of 5 to 25 objects.
+
+If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/installation/docker-compose) to run your local instance, the `QUERY_DEFAULTS_LIMIT` environment variable sets a reasonable default query limit. To prevent out of memory errors,`QUERY_DEFAULTS_LIMIT` is significantly lower than `QUERY_MAXIMUM_RESULTS`.
+
+To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
+
 
 ## HNSW with compression
 
@@ -113,15 +158,15 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
-To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configuration/indexes).
+To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vector-index.md).
 
 To configure PQ, see [Compression](/developers/weaviate/configuration/pq-compression.md).
 
 ### What is Product Quantization?
 
-Quantization techniques represent larger vectors with a finite set of smaller vectors. A familiar example is rounding a number to the nearest integer.
+[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a multi-step quantization technique that is available for use with `hnsw` indexes. Quantization techniques represent numbers with lower precision numbers. A familiar example is rounding a number to the nearest integer.
 
-[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a multi-step quantization technique. The starting vector is represented as a product of smaller vectors that are called 'segments' or 'subspaces.' Then, each segment is quantized independently to create a compressed vector representation.
+In PQ, the original vector is represented as a product of smaller vectors that are called 'segments' or 'subspaces.' Then, each segment is quantized independently to create a compressed vector representation.
 
 ![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
@@ -157,9 +202,9 @@ PQ is available starting in v1.18, however we recommend using Weaviate 1.23.0 or
 
 To configure an existing collection (class) to use PQ, update the vector index configuration. If your collection is used in production, [backup](../configuration/backups.md) your configuration before making changes.
 
-PQ has a training stage where it creates a codebook. When you convert an existing collection, there is some data already present. PQ needs 10,000 to 100,100,000 records per shard to create the codebook. If you have a smaller collection, consider using binary quantization (BQ) instead. If your collection is very large, PQ will reduce the memory requirements to store the collection but there is some additional overhead while PQ processes the uncompressed vectors. 
+PQ has a training stage where it creates a codebook. When you convert an existing collection, there is some data already present. PQ needs 10,000 to 100,100,000 records per shard to create the codebook. If you have a smaller collection, consider using binary quantization (BQ) instead. If your collection is very large, PQ will reduce the memory requirements to store the collection but there is some additional overhead while PQ processes the uncompressed vectors.
 
-To enable PQ, set `"enabled": True`. For additional configuration settings, see [Configuration: Indexes](../configuration/indexes.md).
+To enable PQ, set `"enabled": True`. For additional configuration settings, see [Configuration: Vector index](../config-refs/schema/vector-index.md).
 
 ```python
 client.schema.update_config("DeepImage", {
@@ -203,9 +248,74 @@ client.query.get("DeepImage", ["i"]) \
 ```
 
 ### Encoders
+
 In the configuration above you can see that you can set the `encoder` object to specify how the codebook centroids are generated. Weaviate’s PQ supports using two different encoders. The default is `kmeans` which maps to the traditional approach used for creating centroid.
 
-Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter that controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details about configuration please refer to [Configuration: Indexes](../configuration/indexes.md).
+Alternatively, there is also the `tile` encoder. This encoder is currently experimental but does have faster import times and better recall on datasets like SIFT and GIST. The `tile` encoder has an additional `distribution` parameter that controls what distribution to use when generating centroids. You can configure the encoder by setting `type` to `tile` or `kmeans` the encoder creates the codebook for product quantization. For more details about configuration please refer to [Configuration: Vector index](../config-refs/schema/vector-index.md).
+
+
+## Flat index
+
+:::info Added in `v1.23`
+:::
+
+The `flat` index is a simple index that is fast to build and query. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
+
+As the name suggests, the flat index is a single layer of data objects. This provides an additional benefit of a small size. A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity for queries, unlike the `hnsw` index which has a logarithmic time complexity.
+
+### Vector cache
+
+The flat index can be combined with a vector cache to improve query performance. The vector cache is a memory cache that stores the vectors of the most recently used data objects. The vector cache is used to speed up queries by reducing the number of disk reads. However it must be balanced with memory usage considerations.
+
+### Binary quantization
+
+Binary quantization (BQ) is a technique that reduces the size of a vector index. BQ is available for the `flat` index type.
+
+BQ works by converting each vector to a binary representation. The binary representation is much smaller than the original vector. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements.
+
+The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector. Some vectorizers work better with BQ than others. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
+
+#### Over-fetching / re-scoring
+
+When using BQ, Weaviate will conditionally over-fetch and then re-score the results. This is because the distance calculation is not as accurate as the original vector.
+
+This is done by fetching the higher of the specified query limit, or the rescore limit objects, and then re-score them using the full vector. As a concrete example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate will fetch `max(10, 500) = 200` objects, and then re-score the top 10 objects using the full vector. This works to offset some of the loss in search quality (recall) caused by compression.
+
+
+## Asynchronous indexing
+
+:::caution Experimental
+Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+:::
+
+Starting in Weaviate `1.22`, you can use asynchronous indexing by opting in.
+
+Asynchronous indexing decouples object creation from vector index updates. Objects are created faster, and the vector index updates in the background. Asynchronous indexing is especially useful for importing large amounts of data.
+
+While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force, that is, without using the vector index. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
+
+
+## Vector cache considerations
+
+For optimal search and import performance, previously imported vectors need to be in memory. A disk lookup for a vector is orders of magnitudes slower than memory lookup, so the disk cache should be used sparingly. However, Weaviate can limit the number of vectors in memory. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created.
+
+During import set `vectorCacheMaxObjects` high enough that all vectors can be held in memory. Each import requires multiple searches. Import performance drops drastically when there isn't enough memory to hold all of the vectors in the cache.
+
+After import, when your workload is mostly querying, experiment with vector cache limits that are less than your total dataset size.
+
+Vectors that aren't currently in cache are added to the cache if there is still room. If the cache fills, Weaviate drops the whole cache. All future vectors have to be read from disk for the first time. Then, subsequent queries run against the cache until it fills again and the procedure repeats. Note that the cache can be a very valuable tool if you have a large dataset, and a large percentage of users only query a specific subset of vectors. In this case you might be able to serve the largest user group from cache while requiring disk lookups for "irregular" queries.
+
+## Deletions
+
+Cleanup is an async process runs that rebuilds the HNSW graph after deletes and updates. Prior to cleanup, objects are marked as deleted, but they are still connected to the HNSW graph. During cleanup, the edges are reassigned and the objects are deleted for good.
+
+## When to skip indexing
+
+There are situations where it doesn't make sense to vectorize a collection. For example, if the collection consists solely of references between two other collections, or if the collection contains mostly duplicate elements.
+
+Importing duplicate vectors into HNSW is very expensive. The import algorithm checks early on if a candidate vector's distance is greater than the worst candidate's distance. When there are lots of duplicate vectors, this early exit condition is never met so each import or query results in an exhaustive search.
+
+To avoid indexing a collection, set `"skip"` to `"true"`. By default, collections are indexed.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

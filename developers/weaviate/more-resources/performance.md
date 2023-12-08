@@ -18,13 +18,9 @@ Inverted indices are used often in document retrieval systems and search engines
 The inverted index currently does not do any weighing (e.g. tf-idf) for sorting, since the vector index is used for these features like sorting. The inverted index is thus, at the moment, rather a binary operation: including or excluding data objects from the query result list, which results in an 'allow list'.
 
 ### Vector index
-Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. Although Weaviate currently supports [HNSW](https://arxiv.org/abs/1603.09320) vector indexes, it is built to be [configurable](/developers/weaviate/concepts/vector-index.md), with more vector index types on the way.
+Everything that has a vector, thus every data object in Weaviate, is also indexed in the vector index. Weaviate currently supports [HNSW](https://arxiv.org/abs/1603.09320) and flat vector indexes.
 
-#### HNSW
-[HNSW](https://arxiv.org/abs/1603.09320) is the first vector index type [supported by Weaviate](/developers/weaviate/concepts/vector-index.md#hnsw). Typically for HNSW is that this index type is super fast at query time, but more costly when it comes to building (adding data with vectors). This means that the process of adding data objects might take longer than you expect or to what you are used to (with other database systems for example). Other database systems, like Elasticsearch, do not make use of vector indexing, but only rely on inverted index. By adding vectorization of data with HNSW, semantic and context-based search is enables, with very high performance on query time.
-
-#### Other vector index types
-The vector index type used Weaviate is pluggable. This means that other types than HNSW can be used for vectorization and querying. If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)). If you want to contribute to a new index type, you can always contact us or make a pull request to Weaviate and build your own index type. Stay tuned for updates!
+See [Concepts: vector index](../concepts/vector-index.md) for more information about the vector index.
 
 
 ## Costs of queries and operations
