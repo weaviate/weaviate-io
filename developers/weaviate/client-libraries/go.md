@@ -62,7 +62,7 @@ import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/cli
 
 ### API key authentication
 
-:::info Available in Weaviate Go client versions `4.7.0` and higher.
+:::info Added in Weaviate Go client version `4.7.0`.
 :::
 
 import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'

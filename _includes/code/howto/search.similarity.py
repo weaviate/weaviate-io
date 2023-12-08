@@ -122,7 +122,7 @@ response = jeopardy.query.near_object(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+  print(json.dumps(o.properties, indent=2))
 # END GetNearObjectPython
 
 # Test results
@@ -226,8 +226,8 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
-    # offset=1, # offset is currently not supported with the Weaviate Client v4
-    limit=2
+    # offset=1, # `offset` support is being added to the client
+    limit=2,  # return 2 objects
     # highlight-end
 )
 
@@ -357,9 +357,9 @@ for o in response.objects:
 # END Autocut Python
 
 # Test results
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'distance'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"distance"}
 # TODO: add tests
 # End test
 
@@ -549,7 +549,7 @@ response = jeopardy.query.near_text(
     # highlight-start
     filters=wvc.Filter("round").equal("Double Jeopardy!"),
     # highlight-end
-    limit=2, # number of close groups
+    limit=2,
 )
 
 for o in response.objects:

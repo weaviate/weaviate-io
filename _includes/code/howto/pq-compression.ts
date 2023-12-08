@@ -81,7 +81,7 @@ async function importQuestions() {
     if (counter++ == batchSize) {
       // flush the batch queue
       const res = await batcher.do();
-      // console.log(res);  // To view the response
+      console.log(res);  // To view the response
 
       // restart the batch queue
       counter = 0;
@@ -91,7 +91,7 @@ async function importQuestions() {
 
   // Flush the remaining objects
   const res = await batcher.do();
-  // console.log(res);  // To view the response
+  console.log(res);  // To view the response
 }
 
 await importQuestions();

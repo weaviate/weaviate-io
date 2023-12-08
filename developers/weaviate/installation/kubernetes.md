@@ -14,11 +14,12 @@ This can be done through either explicitly setting it as part of the `values.yam
 
 ## Requirements
 
-* A Kubernetes Cluster with a recent version (e.g. >=1.23).
+* A recent Kubernetes Cluster (at least version 1.23).
+  * If you are in a development environment, consider using the kubernetes cluster that is built into Docker desktop. For more information, see the [Docker documentation](https://docs.docker.com/desktop/kubernetes/).
 * The cluster needs to be able to provision `PersistentVolumes` through
-  `PersistentVolumeClaims`. No special file systems are required. Any default
-  file system capable of `ReadWriteOnce` access mode is sufficient.
-* Helm (only v3 is compatible from Helm version `"v||site.helm_version||"`)
+  `PersistentVolumeClaims`.
+* No special file systems are required. Any file system that has a `ReadWriteOnce` access mode is sufficient.
+* Helm. To use Helm chart version `"v||site.helm_version||"`, you must have Helm v3 or higher.
 
 ## Weaviate Helm chart
 

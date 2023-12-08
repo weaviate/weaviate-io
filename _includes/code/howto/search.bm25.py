@@ -11,10 +11,10 @@ import json
 
 # Instantiate the client with the user/password and OpenAI api key
 # client = weaviate.Client(
-#     'https://edu-demo.weaviate.network',
-#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+#     "https://edu-demo.weaviate.network",
+#     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
 #     additional_headers={
-#         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+#         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
@@ -214,11 +214,11 @@ for o in response.objects:
 # END limit Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert len(response['data']['Get']['JeopardyQuestion']) == 3
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-# assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
+# assert "OSHA" in response["data"]["Get"]["JeopardyQuestion"][0]["answer"], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
 # End test
 
 
@@ -300,11 +300,11 @@ for o in response.objects:
 # END autocut Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert len(response['data']['Get']['JeopardyQuestion']) == 1
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
-# assert 'OSHA' in response['data']['Get']['JeopardyQuestion'][0]['answer'], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
+# assert "OSHA" in response["data"]["Get"]["JeopardyQuestion"][0]["answer"], f'"OSHA" not found in {response["data"]["Get"]["JeopardyQuestion"][0]["answer"]}'
 # End test
 
 
@@ -548,7 +548,6 @@ response = jeopardy.query.bm25(
     query="food wine", # search for food or wine
     # highlight-end
     query_properties=["question"],
-    return_properties=["question"], # only return question property
     limit=5
 )
 
@@ -557,15 +556,15 @@ for o in response.objects:
 # END MultipleKeywords Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert len(response['data']['Get']['JeopardyQuestion']) == 5
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 5
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 
-# Check that 'food' or "wine" appears in the questions
-# pattern = re.compile(r'food|wine', re.IGNORECASE)
-# for result in response['data']['Get']['JeopardyQuestion']:
-#     assert pattern.search(result['question'])
+# Check that "food" or "wine" appears in the questions
+# pattern = re.compile(r"food|wine", re.IGNORECASE)
+# for result in response["data"]["Get"]["JeopardyQuestion"]:
+#     assert pattern.search(result["question"])
 # End test
 
 

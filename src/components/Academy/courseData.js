@@ -21,28 +21,52 @@ export const courseData = {
       "Differentiate BM25 and hybrid search techniques from vector search techniques",
     ]
   },
-  "building_with_weaviate": {
-    title: "Building with Weaviate",
-    courseId: "2",
-    body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
+  "intro_weaviate_typescript": {
+    title: "Intro to Weaviate with Typescript (or JavaScript)",
+    courseId: "TS/JS-1",
+    body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
+    buttonURL: "/developers/academy/intro_weaviate_typescript",
     badgeType: "course",
     isCourse: true,
     units: [
-      "which_search",
-      "vectorizer_selection",
-      "indexing",
+      "intro_weaviate_typescript"
     ],
     learningGoals: [
-      "In-depth material and best practices to help you build with Weaviate, such as vectorization options, which searches to perform and how to work with your indexes."
+      "The basics of Weaviate, and how to integrate it to a TypeScript app."
     ],
     learningOutcomes: [
-      "Select a suitable vectorizer for your given goals and situation.",
-      "Understand practical differences between search methods and suggest a suitable technique for a given situation.",
-      "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall.",
+      "Create a cloud (WCS) instance fo Weaviate.",
+      "Gain an understanding of what a vector database is.",
+      "Define a schema (collection definition) and import data.",
+      "Perform queries on your data.",
+      "Integrate Weaviate into your TypeScript/JavaScript app.",
     ]
   },
-  // "configuring_weaviate_instance": {
+  // "zero_to_mvp_advanced": {
+  //   title: "Zero to MVP: Advanced",
+  //   courseId: "1A",
+  //   body: "Expand on the `Getting to MVP` course for deeper dives into key topics like search theory, indexing and queries.",
+  //   buttonType: "TBD",
+  //   badgeType: "course",
+  //   isCourse: true,
+  //   units: [
+  //     "vectorizer_selection_1", "search_theory", "queries_2", "indexing", "schema_2"
+  //   ],
+  //   learningGoals: [
+  //     "TBC"
+  //     // "In-depth material on the inner workings of vector searches, as well as additional querying techniques and vectorization strategies."
+  //   ],
+  //   learningOutcomes: [
+  //     "TBC"
+  //     // "Outline how and why a vector search works, and contrast it to scalar searches",
+  //     // "Differentiate BM25 and hybrid search techniques from vector search techniques and apply suitable techniques for given goals",
+  //     // "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall",
+  //     // "Describe when cross-references between classes may be appropriate and demonstrate how to apply them",
+  //     // "Modify vectorization regimes to specify which properties are vectorized and in what order"
+  //   ]
+  // },
+  // "customization_with_modules": {
   //   title: "Customization using modules",
   //   courseId: "2",
   //   body: "",

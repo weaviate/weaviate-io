@@ -48,9 +48,8 @@ export default function RewardProcess() {
           <div className={styles.contentDiv}>
             <p className={styles.textCardContent}>
               Fill out the form below and upload your review screenshot. You
-              have until 11:59pm PT November 21st to submit a review and
-              complete the form below to ensure that you get your limited
-              edition Weaviate shirt!
+              have to submit a review and complete the form below to ensure that
+              you get your limited edition Weaviate shirt!
             </p>
           </div>
           <div className={styles.buttons}>

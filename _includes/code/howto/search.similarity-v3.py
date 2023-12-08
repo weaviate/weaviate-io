@@ -179,6 +179,7 @@ response = (
     .do()
 )
 
+
 print(json.dumps(response, indent=2))
 # END GetNearVectorPython
 
@@ -358,15 +359,15 @@ test_gqlresponse(response, gqlresponse)
 # START Autocut Python
 response = (
     client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
+    .get("JeopardyQuestion", ["question", "answer"])
     .with_near_text({
-        'concepts': ['animals in movies'],
-        'distance': max_distance
+        "concepts": ["animals in movies"],
+        "distance": max_distance
     })
     # highlight-start
     .with_autocut(1)
     # highlight-end
-    .with_additional(['distance'])
+    .with_additional(["distance"])
     .do()
 )
 
@@ -374,9 +375,9 @@ print(json.dumps(response, indent=2))
 # END Autocut Python
 
 # Test results
-assert 'JeopardyQuestion' in response['data']['Get']
-assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'distance'}
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"distance"}
 # TODO: add tests
 # End test
 
@@ -600,7 +601,7 @@ response = (
     .do()
 )
 
-print(json.dumps(response, indent=2))
+# (json.dumps(response, indent=2))
 # END GetWithWherePython
 
 # Test results

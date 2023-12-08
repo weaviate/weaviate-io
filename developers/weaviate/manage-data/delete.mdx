@@ -16,36 +16,27 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.delete.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.delete_test.go';
 
-## Overview
 
-This page will show you how to delete objects in Weaviate by their id or a set of criteria.
+Weaviate allows object deletion by id or by a set of criteria.
 
-:::info See also
-- [References: REST - /v1/objects](../api/rest/objects.md#delete-a-data-object)
-:::
-
-
-## Requirements
-
-To delete a specific object, you'll need its [id](../api/graphql/additional-properties.md#id) and class name.
-
-To delete objects by a set of criteria, you'll need their class name, and a `where` filter.
-
-:::tip Multi-tenancy
-For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when deleting objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
-:::
 
 import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname-note.md';
 
 <details>
-  <summary>Why specify the class name?</summary>
+  <summary>Additional information</summary>
+
+  - To delete objects, you must provide the collection name as well as identifying criteria (e.g. object id or filters).
+  - For [multi-tenancy](../concepts/data.md#multi-tenancy) collections, you will also need to specify the tenant name when deleting objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+  <br/>
+
   <RestObjectsCRUDClassnameNote/>
+
 </details>
 
 
 ## Delete object by id
 
-To delete an object, specify its class name and id as shown below.
+To delete by id, specify the collection name and the object id.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -92,10 +83,6 @@ To delete an object, specify its class name and id as shown below.
     />
   </TabItem>
 </Tabs>
-
-:::tip REST endpoint
-You can also [make a `DELETE` request to the `/v1/objects` endpoint](../api/rest/objects.md#delete-a-data-object) directly.
-:::
 
 
 <!-- ## Error handling
@@ -124,11 +111,10 @@ You can handle errors as follows:
   </TabItem>
 </Tabs> -->
 
+
 ## Delete multiple objects
 
-To delete multiple objects that match a set of criteria, specify the class and a [`where` filter](../search/similarity.md).
-
-Optionally, set `output` to `'verbose'` to see more details (ID and deletion status).
+To delete objects that match a set of criteria, specify the collection and a [`where` filter](../search/similarity.md).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -177,19 +163,19 @@ Optionally, set `output` to `'verbose'` to see more details (ID and deletion sta
   </TabItem>
 </Tabs>
 
-:::tip REST endpoint
-You can also make [`DELETE` request to the `/v1/batch/objects` endpoint](../api/rest/batch.md#batch-delete) directly.
-:::
+<details>
+  <summary>
+    Additional information
+  </summary>
 
-:::info Limit per query
-There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
-:::
+- There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
 
-### ContainsAny / ContainsAll
+</details>
 
-You can use `ContainsAny` / `ContainsAll` filters with the `where` argument to delete objects that contains a specific value in a property.
 
-Note that when using `ContainsAny` or `ContainsAll`, the query must be entered as an array of values. The client-specific syntax varies as follows:
+## Use ContainsAny / ContainsAll
+
+The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a set of criteria.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -262,78 +248,17 @@ client.batch().objectsBatchDeleter()
   </TabItem>
 </Tabs>
 
-
-### Dry-run
-
-You can set the [`dryRun` option](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START DryRun"
-      endMarker="# END DryRun"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# START DryRun"
-      endMarker="# END DryRun"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START DryRun"
-      endMarker="// END DryRun"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START DryRun"
-      endMarker="// END DryRun"
-      language="java"
-    />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START DryRun"
-      endMarker="// END DryRun"
-      language="go"
-    />
-  </TabItem>
-</Tabs>
-
-
 <details>
-  <summary>Example response</summary>
+  <summary>Additional information</summary>
 
-It should produce a response like the one below:
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START ResultsDryRun"
-  endMarker="# END ResultsDryRun"
-  language="json"
-/>
+This feature was added in Weaviate `v1.21`.
 
 </details>
 
-### Delete multiple objects by id
 
-You can also delete multiple objects by their id values. You can do so by using the `id` filter as the `path` and values as `text` in the `where` argument.
+## Delete multiple objects by id
 
-To do so, we recommend using an array of id values with the `ContainsAny` operator.
+To delete multiple objects by their id values, use a filter (e.g. `ContainsAny`) with `id` based criteria.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -406,6 +331,78 @@ client.batch().objectsBatchDeleter()
   </TabItem>
 </Tabs>
 
+
+## Optional parameters
+
+- Enable [`dryRun`](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
+- Set `output` to `'verbose'` to see more details (ID and deletion status) for each deletion.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START DryRun"
+      endMarker="# END DryRun"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+<details>
+  <summary>Example response</summary>
+
+It should produce a response like the one below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START ResultsDryRun"
+  endMarker="# END ResultsDryRun"
+  language="json"
+/>
+
+</details>
+
+
+## Related pages
+
+- [References: REST - /v1/objects](../api/rest/objects.md#delete-a-data-object)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

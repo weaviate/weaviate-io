@@ -6,11 +6,11 @@ import os
 
 # Instantiate the client with the OpenAI API key
 # client = weaviate.Client(
-#     'https://edu-demo.weaviate.network',
-#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+#     "https://edu-demo.weaviate.network",
+#     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
 #     additional_headers={
-#         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY'],
-#         'X-Cohere-Api-Key': os.environ['COHERE_API_KEY']
+#         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
+#         "X-Cohere-Api-Key": os.environ["COHERE_API_KEY"]
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
@@ -32,7 +32,6 @@ response = jeopardy.query.near_text(
     limit=10,
 )
 
-# print result objects 
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END nearText Python
@@ -123,8 +122,8 @@ expected_response = (
 
 # Tests
 # TODOv4 - update tests
-# for question in response['data']['Get']['JeopardyQuestion']:
-#     assert 'distance' in question['_additional']
+# for question in response["data"]["Get"]["JeopardyQuestion"]:
+#     assert "distance" in question["_additional"]
 # End test
 
 
@@ -297,8 +296,8 @@ expected_response = (
 )
 
 # Tests
-# for question in response['data']['Get']['JeopardyQuestion']:
-#     assert 'score' in question['_additional']['rerank'][0]
+# for question in response["data"]["Get"]["JeopardyQuestion"]:
+#     assert "score" in question["_additional"]["rerank"][0]
 # End test
 
 
@@ -480,8 +479,8 @@ expected_response = (
 )
 
 # Tests
-# for question in response['data']['Get']['JeopardyQuestion']:
-#     assert 'score' in question['_additional']['rerank'][0]
+# for question in response["data"]["Get"]["JeopardyQuestion"]:
+#     assert "score" in question["_additional"]["rerank"][0]
 # End test
 
 

@@ -33,7 +33,7 @@ Starting from Weaviate `v1.15`, Weaviate includes a Hugging Face module, which p
 The Hugging Face module, allows you to use the [Hugging Face Inference service](https://huggingface.co/inference-api#pricing) with sentence similarity models, to vectorize and query your data, straight from Weaviate. No need to run the Inference API yourself.
 
 > You can choose between `text2vec-huggingface` (Hugging Face) and `text2vec-openai` (OpenAI) modules to delegate your model inference tasks.<br/>
-> Both modules are enabled by default in the [Weaviate Cloud Services](/products).
+> Both modules are enabled by default in the [Weaviate Cloud Services](/pricing).
 
 ## Overview
 ![Overview](./img/hugging-face-module-overview.png)
@@ -57,7 +57,7 @@ Weaviate manages the whole process for you. From the perspective of writing your
 For example, when you import data into Weaviate, Weaviate will automatically extract the relevant text fields, send them Hugging Face to vectorize, and store the data with the new vectors in the database.
 
 ### Ready to use with a minimum of fuss
-Every new Weaviate instance created with the [Weaviate Cloud Services](/products) has the Hugging Face module enabled out of the box. You don't need to update any configs or anything, it is there ready and waiting.
+Every new Weaviate instance created with the [Weaviate Cloud Services](/pricing) has the Hugging Face module enabled out of the box. You don't need to update any configs or anything, it is there ready and waiting.
 
 On the other hand, to use the Hugging Face module in Weaviate open source (`v1.15` or newer), you only need to set `text2vec-huggingface` as the default vectorizer. Like this:
 

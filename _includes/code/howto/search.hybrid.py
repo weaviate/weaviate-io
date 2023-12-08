@@ -11,10 +11,10 @@ import os
 
 # Instantiate the client with the user/password and OpenAI api key
 # client = weaviate.Client(
-#     'https://edu-demo.weaviate.network',
-#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
+#     "https://edu-demo.weaviate.network",
+#     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
 #     additional_headers={
-#         'X-OpenAI-Api-Key': os.environ['OPENAI_API_KEY']
+#         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
@@ -116,7 +116,7 @@ response = jeopardy.query.hybrid(
     query="food",
     alpha=0.5,
     # highlight-start
-    return_metadata=wvc.MetadataQuery(score=True),
+    return_metadata=wvc.MetadataQuery(score=True, explain_score=True),
     # highlight-end
     limit=3
 )
@@ -124,7 +124,7 @@ response = jeopardy.query.hybrid(
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
     # highlight-start
-    print(o.metadata.explain_score, o.metadata.score)
+    print(o.metadata.score, o.metadata.explain_score)
     # highlight-end
 # END HybridWithScorePython
 
@@ -219,10 +219,10 @@ for o in response.objects:
 # END limit Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert len(response['data']['Get']['JeopardyQuestion']) == 3
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 3
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 # End test
 
 
@@ -284,8 +284,8 @@ gql_query = """
 
 """
 # gqlresponse = client.query.raw(gql_query)
-# print('--------------------------------------------------------------------------------')
-# print(json.dumps(response, indent=2))
+# print("--------------------------------------------------------------------------------")
+print(json.dumps(response, indent=2))
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
 
@@ -308,9 +308,9 @@ for o in response.objects:
 # END autocut Python
 
 # Tests
-# assert 'JeopardyQuestion' in response['data']['Get']
-# assert response['data']['Get']['JeopardyQuestion'][0].keys() == {'question', 'answer', '_additional'}
-# assert response['data']['Get']['JeopardyQuestion'][0]['_additional'].keys() == {'score'}
+# assert "JeopardyQuestion" in response["data"]["Get"]
+# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "_additional"}
+# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"score"}
 # End test
 
 
@@ -454,7 +454,6 @@ response = jeopardy.query.hybrid(
   limit=3
 )
  
-#print(response)
 for o in response.objects:
     print(json.dumps(o.properties, indent=2))
 # END HybridWithFusionTypePython

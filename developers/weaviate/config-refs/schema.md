@@ -56,7 +56,7 @@ Properties can be added to a class after creation, but existing properties canno
 
 ### Auto-schema
 
-:::info Available from version `v1.5`
+:::info Added in `v1.5`
 :::
 
 If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is on by default, but can be disabled (e.g. in `docker-compose.yml`) by setting `AUTOSCHEMA_ENABLED: 'false'`.
@@ -410,7 +410,7 @@ If necessary, they can be configured in the schema per collection, and can optio
 
 ### multiTenancyConfig
 
-:::info Available from `v1.20` onwards
+:::info Added in `v1.20`
 :::
 
 The `multiTenancyConfig` value determines if [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled for this collection. If enabled, objects of this collection will be isolated for each tenant. It is disabled by default.
@@ -618,7 +618,7 @@ client.schema.create_class(class_obj)
 
 ## Related pages
 - [Tutorial: Schema](../tutorials/schema.md)
-- [How to: Configure a schema](../configuration/schema-configuration.md)
+- [How to: Configure a schema](../manage-data/collections.mdx)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)
 

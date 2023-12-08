@@ -1,6 +1,6 @@
 ---
 title: Generative Search - OpenAI
-sidebar_position: 10
+sidebar_position: 14
 image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'transformers', 'openai']
 ---
@@ -8,9 +8,9 @@ image: og/docs/modules/generative-openai.jpg
 
 ## In short
 
-* The Generative OpenAI (`generative-openai`) module generates responses based on the data stored in your Weaviate instance.
+* The Generative OpenAI (`generative-openai`) module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
-* The module adds a `generate {}` operator to the GraphQL `_additional {}` property of the `Get {}` queries.
+* The module enables generative search operations on the Weaviate instance.
 * Added in Weaviate `v1.17.3`.
 * The default OpenAI model is `gpt-3.5-turbo`, but other [models](#supported-models-openai) (e.g. `gpt-4`) are supported.
 * For Azure OpenAI, a model must be specified.
@@ -21,7 +21,7 @@ import OpenAIOrAzureOpenAI from '/_includes/openai.or.azure.openai.mdx';
 
 ## Introduction
 
-`generative-openai` generates responses based on the data stored in your Weaviate instance.
+`generative-openai` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
@@ -32,8 +32,8 @@ You can use the Generative OpenAI module with non-OpenAI upstream modules. For e
 :::
 
 The generative module can provide results for:
-* each returned object - `singleResult{ prompt }`
-* the group of all results together – `groupedResult{ task }`
+* each returned object - `singlePrompt`
+* the group of all results together – `groupedTask`
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
@@ -66,7 +66,7 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 
 ## Organization name
 
-:::info Available from version `v1.21.1`
+:::info AAdded in `v1.21.1`
 :::
 
 For requests that require the OpenAI organization name, you can provide it at query time by adding it to the HTTP header:

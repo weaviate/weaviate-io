@@ -12,28 +12,40 @@ const client = weaviate.client({
   },
 });
 
-const className = 'MultiTenancyClass';  // aka JeopardyQuestion
+const className = 'MultiTenancyCollection';  // aka JeopardyQuestion
 try {
   await client.schema.classDeleter().withClassName(className).do();
 } catch {
   // Delete the class if it exists
 }
 
+// =====================
+// ===== Enable MT =====
+// =====================
+
+// START EnableMultiTenancy
+await client.schema
+  .classCreator().withClass({
+    class: 'MultiTenancyCollection',
+    // highlight-start
+    multiTenancyConfig: { enabled: true },
+    // highlight-end
+  })
+  .do();
+// END EnableMultiTenancy
 
 // ================================
 // ===== Add tenants to class =====
 // ================================
 
 // START AddTenantsToClass
-await client.schema
-  .classCreator().withClass({
-    class: 'MultiTenancyClass',
-    multiTenancyConfig: { enabled: true },
-  })
-  .do();
-
 let tenants = await client.schema
-  .tenantsCreator('MultiTenancyClass', [{ name: 'tenantA' }, { name: 'tenantB' }])
+  // highlight-start
+  .tenantsCreator(
+    'MultiTenancyCollection',
+    [{ name: 'tenantA' }, { name: 'tenantB' }]
+  )
+  // highlight-end
   .do();
 // END AddTenantsToClass
 
@@ -50,7 +62,9 @@ assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
 
 // START ListTenants
 tenants = await client.schema
-  .tenantsGetter('MultiTenancyClass')
+  // highlight-start
+  .tenantsGetter('MultiTenancyCollection')
+  // highlight-end
   .do();
 // END ListTenants
 
@@ -65,7 +79,9 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 
 // START RemoveTenants
 await client.schema
-  .tenantsDeleter('MultiTenancyClass', ['tenantB', 'tenantX'])  // tenantX will be ignored
+  // highlight-start
+  .tenantsDeleter('MultiTenancyCollection', ['tenantB', 'tenantX'])  // tenantX will be ignored
+  // highlight-end
   .do();
 // END RemoveTenants
 
@@ -80,7 +96,7 @@ assert.deepEqual(tenants.length, 1);
 
 // START CreateMtObject
 let object = await client.data.creator()
-  .withClassName('MultiTenancyClass')  // The class to which the object will be added
+  .withClassName('MultiTenancyCollection')  // The class to which the object will be added
   .withProperties({
     question: 'This vector DB is OSS & supports automatic property type inference on import',
   })
@@ -101,7 +117,7 @@ assert.equal(object['tenant'], 'tenantA');
 // START Search
 const result = await client.graphql
   .get()
-  .withClassName('MultiTenancyClass')
+  .withClassName('MultiTenancyCollection')
   .withFields('question')
   // highlight-start
   .withTenant('tenantA')
@@ -126,21 +142,21 @@ const category = await client.data.creator()
 // START AddCrossRef
 // Add the cross-reference property to the multi-tenancy class
 await client.schema.propertyCreator()
-  .withClassName('MultiTenancyClass')
+  .withClassName('MultiTenancyCollection')
   .withProperty({
     'name': 'hasCategory',
     'dataType': ['JeopardyCategory'],
   })
   .do();
 
-// Create the cross-reference from MultiTenancyClass object to the JeopardyCategory object
+// Create the cross-reference from MultiTenancyCollection object to the JeopardyCategory object
 await client.data
   .referenceCreator()
-  .withClassName('MultiTenancyClass')
+  .withClassName('MultiTenancyCollection')
   // highlight-start
   .withTenant('tenantA')
   // highlight-end
-  .withId(object.id)  // MultiTenancyClass object id (a Jeopardy question)
+  .withId(object.id)  // MultiTenancyCollection object id (a Jeopardy question)
   .withReferenceProperty('hasCategory')
   .withReference(
     client.data

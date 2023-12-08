@@ -8,7 +8,9 @@ import json
 
 client = weaviate.Client(
     "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.AuthApiKey(
+        "YOUR-WEAVIATE-API-KEY"
+    ),  # If authentication is on. Replace w/ your Weaviate instance API key
 )
 
 # ==============================
@@ -16,11 +18,7 @@ client = weaviate.Client(
 # ==============================
 
 # BasicGetPython
-response = (
-    client.query
-    .get("JeopardyQuestion", ["question"])
-    .do()
-)
+response = client.query.get("JeopardyQuestion", ["question"]).do()
 
 print(response)
 # END BasicGetPython
@@ -66,15 +64,13 @@ assert gqlresponse == response
 # END Test results
 
 
-
 # ====================================
 # ===== BASIC GET LIMIT EXAMPLES =====
 # ====================================
 
 # GetWithLimitPython
 response = (
-    client.query
-    .get("JeopardyQuestion", ["question"])
+    client.query.get("JeopardyQuestion", ["question"])
     # highlight-start
     .with_limit(1)
     # highlight-end
@@ -130,21 +126,19 @@ assert gqlresponse == response
 # END Test results
 
 
-
 # ==========================================
 # ===== GET LIMIT WITH OFFSET EXAMPLES =====
 # ==========================================
 
 # GetWithLimitOffsetPython
 response = (
-    client.query
-    .get("JeopardyQuestion", ["question"])
+    client.query.get("JeopardyQuestion", ["question"])
     # highlight-start
-    .with_limit(1)
-    .with_offset(1)
+    .with_limit(1).with_offset(1)
     # highlight-end
     .do()
 )
+
 print(response)
 # END GetWithLimitOffsetPython
 
@@ -194,7 +188,6 @@ assert gqlresponse == response
 # END Test results
 
 
-
 # ==========================================
 # ===== GET OBJECT PROPERTIES EXAMPLES =====
 # ==========================================
@@ -205,16 +198,20 @@ response = (
     # highlight-start
     .get("JeopardyQuestion", ["question", "answer", "points"])
     # highlight-end
-    .with_limit(1)
-    .do()
+    .with_limit(1).do()
 )
+
 print(response)
 # END GetPropertiesPython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
 assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {
+    "question",
+    "answer",
+    "points",
+}
 # End test
 
 
@@ -258,28 +255,28 @@ assert gqlresponse == response
 # END Test results
 
 
-
 # ======================================
 # ===== GET OBJECT VECTOR EXAMPLES =====
 # ======================================
 
 # GetObjectVectorPython
 response = (
-    client.query
-    .get("JeopardyQuestion")
+    client.query.get("JeopardyQuestion")
     # highlight-start
     .with_additional("vector")
     # highlight-end
-    .with_limit(1)
-    .do()
+    .with_limit(1).do()
 )
+
 print(response)
 # END GetObjectVectorPython
 
 # Test results
 assert "JeopardyQuestion" in response["data"]["Get"]
 assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"vector"}
+assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {
+    "vector"
+}
 # End test
 
 
@@ -335,14 +332,13 @@ assert gqlresponse == response
 
 # GetObjectIdPython
 response = (
-    client.query
-    .get("JeopardyQuestion")
+    client.query.get("JeopardyQuestion")
     # highlight-start
     .with_additional("id")
     # highlight-end
-    .with_limit(1)
-    .do()
+    .with_limit(1).do()
 )
+
 print(response)
 # END GetObjectIdPython
 
@@ -402,13 +398,12 @@ assert gqlresponse == response
 response = (
     client.query
     # highlight-start
-    .get("JeopardyQuestion", [
-      "question",
-      "hasCategory { ... on JeopardyCategory { title } }"
-    ])
+    .get(
+        "JeopardyQuestion",
+        ["question", "hasCategory { ... on JeopardyCategory { title } }"],
+    )
     # highlight-end
-    .with_limit(2)
-    .do()
+    .with_limit(2).do()
 )
 
 print(json.dumps(response, indent=2))
@@ -416,32 +411,24 @@ print(json.dumps(response, indent=2))
 
 
 expected_response = (
-# GetWithCrossRefs Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "hasCategory": [
-            {
-              "title": "THE BIBLE"
+    # GetWithCrossRefs Expected Results
+    {
+        "data": {
+            "Get": {
+                "JeopardyQuestion": [
+                    {
+                        "hasCategory": [{"title": "THE BIBLE"}],
+                        "question": "This prophet passed the time he spent inside a fish offering up prayers",
+                    },
+                    {
+                        "hasCategory": [{"title": "ANIMALS"}],
+                        "question": "Pythons are oviparous, meaning they do this",
+                    },
+                ]
             }
-          ],
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-        {
-          "hasCategory": [
-            {
-              "title": "ANIMALS"
-            }
-          ],
-          "question": "Pythons are oviparous, meaning they do this"
         }
-      ]
     }
-  }
-}
-# END GetWithCrossRefs Expected Results
+    # END GetWithCrossRefs Expected Results
 )
 
 
@@ -468,27 +455,94 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 # Test results
-assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "hasCategory"}
+assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {
+    "question",
+    "hasCategory",
+}
 assert gqlresponse == response
 assert expected_response == response
 # END Test results
 
+
+# ====================================
+# ===== GET WITH METADATA EXAMPLE =====
+# ====================================
+
+# GetWithMetadataPython
+response = (
+    client.query.get("JeopardyQuestion", ["question"])
+    .with_limit(1)
+    # highlight-start
+    .with_additional("creationTimeUnix")
+    # highlight-end
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END GetWithMetadataPython
+
+# Test results
+assert "JeopardyQuestion" in response["data"]["Get"]
+assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
+assert "_additional" in response["data"]["Get"]["JeopardyQuestion"][0].keys()
+assert "creationTimeUnix" in response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys()
+# End test
+
+
+expected_response = """
+// GetWithMetadataPython Expected Results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "creationTimeUnix": "1701704293965"
+          },
+          "question": "This prophet passed the time he spent inside a fish offering up prayers"
+        }
+      ]
+    }
+  }
+}
+// END GetWithMetadataPython Expected Results
+"""
+
+
+gql_query = """
+# GetWithMetadataGraphQL
+{
+  Get {
+    JeopardyQuestion (
+      limit: 1
+    ) {
+      question
+    # highlight-start
+      _additional { creationTimeUnix }
+    # highlight-end
+    }
+  }
+}
+# END GetWithMetadataGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert gqlresponse == response
+# END Test results
 
 
 # =========================
 # ===== MULTI-TENANCY =====
 # =========================
 
-<!-- NEEDS TESTS -->
-
 # MultiTenancy
 results = (
-      client.query.get("MultiTenancyClass", ["property1", "property2"])
-      .with_limit(1)
-      # highlight-start
-      .with_tenant("tenantA")
-      # highlight-end
-      .do()
+    client.query.get("MultiTenancyClass", ["property1", "property2"]).with_limit(1)
+    # highlight-start
+    .with_tenant("tenantA")
+    # highlight-end
+    .do()
+)
 # END MultiTenancy
 
 # Test results

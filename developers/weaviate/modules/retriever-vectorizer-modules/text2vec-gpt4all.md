@@ -9,7 +9,7 @@ image: og/docs/modules/text2vec-gpt4all.jpg
 ## Overview
 
 :::info Availability
-- `text2vec-gpt` is only available from Weaviate version `v1.21`
+- `text2vec-gpt` added in `v1.21`
 - Currently, `text2vec-gpt4all` is only available for `amd64/x86_64` architecture devices.
     - This is as the `gpt4all` library currently does not support ARM devices, such as Apple M-series.
 :::
@@ -78,7 +78,7 @@ services:
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Example
 

@@ -1,0 +1,246 @@
+---
+title: Update objects
+sidebar_position: 30
+image: og/docs/howto.jpg
+# tags: ['how-to', 'CRUD', 'update']
+---
+
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.update-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.update.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.update_test.go';
+
+## Overview
+
+This page will show you how to update objects in Weaviate, either in their entirety, or specific properties.
+
+:::info See also
+- [References: REST - /v1/objects](../api/rest/objects.md#update-a-data-object)
+:::
+
+
+## Requirements
+
+To update an object, you'll need:
+1. Its [id](../api/graphql/additional-properties.md#id)
+2. The name of its class
+3. The properties to update, in particular the entire object
+
+:::tip Multi-tenancy
+For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you will also need to specify the tenant name when updating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
+:::
+
+
+## Update object properties
+
+To update the values of a list of properties in an object, [make a `PATCH` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` properties are updated, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../manage-data/collections.mdx#property-level-module-settings)ed).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# UpdateProps START"
+      endMarker="# UpdateProps END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# UpdateProps START"
+      endMarker="# UpdateProps END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+### Specify the vector
+
+If you want to update an object's vector embedding, you can specify the vector property:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# UpdateVector START"
+      endMarker="# UpdateVector END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# UpdateVector START"
+      endMarker="# UpdateVector END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+
+  >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
+
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+
+  >  Coming soon
+
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+
+  >  Coming soon
+
+  </TabItem>
+</Tabs>
+
+
+## Update (replace) an entire object
+
+To replace an object in its entirety, [make a `PUT` request to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object), or use the client code below. If a vectorizer is set and any `text` property is replaced with a different value, Weaviate will recalculate the vector embedding (unless all updated `text` properties are [skip](../manage-data/collections.mdx#property-level-module-settings)ed).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# Replace START"
+      endMarker="# Replace END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Replace START"
+      endMarker="# Replace END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+## Add a new property
+
+Weaviate does not support adding an extra property to an object if the property isn't listed in the schema class definition. You can update the values of existing class properties as seen above, or you can [add the property to the class first](../manage-data/collections.mdx/#add-a-property), then [update](#update-object-properties) it for the desired object(s).
+
+
+## Delete a property
+
+Weaviate does not yet support deleting or updating properties in the schema, but you can [vote for this feature request](https://github.com/weaviate/weaviate/issues/2848).
+
+To "delete" a text property, you could [update](#update-object-properties) it to an empty string.
+
+To delete properties from a specific object, you can replace the object with a copy that has those properties deleted:
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# DelProps START"
+      endMarker="# DelProps END"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# DelProps START"
+      endMarker="# DelProps END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

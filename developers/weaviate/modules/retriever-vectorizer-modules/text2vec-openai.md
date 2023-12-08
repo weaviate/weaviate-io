@@ -1,6 +1,6 @@
 ---
 title: text2vec-openai
-sidebar_position: 13
+sidebar_position: 16
 image: og/docs/modules/text2vec-openai.jpg
 # tags: ['text2vec', 'text2vec-openai', 'openai']
 ---
@@ -79,7 +79,7 @@ services:
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings (OpenAI)
 

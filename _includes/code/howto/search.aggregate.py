@@ -331,13 +331,13 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.near_text(
     query="animals in space",
-    return_metrics=wvc.Metrics("points").number(sum_=True),
     # highlight-start
     object_limit=10,
     # highlight-end
+    return_metrics=wvc.Metrics("points").number(sum_=True),
 )
 
-print (response.properties["points"].sum_)
+print(response.properties["points"].sum_)
 # END nearTextWithLimit Python
 
 
@@ -397,15 +397,14 @@ import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.near_text(
-    # highlight-start
     query="animals in space",
+    # highlight-start
     distance=0.19,
     # highlight-end
-    object_limit=10,
     return_metrics=wvc.Metrics("points").number(sum_=True),
 )
 
-print (response.properties["points"].sum_)
+print(response.properties["points"].sum_)
 # END nearTextWithDistance Python
 
 
@@ -472,7 +471,7 @@ response = jeopardy.aggregate.over_all(
     # highlight-end
 )
 
-print (response.total_count)
+print(response.total_count)
 # END whereFilter Python
 
 
