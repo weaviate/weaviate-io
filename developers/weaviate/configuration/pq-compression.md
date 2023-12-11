@@ -44,13 +44,13 @@ If you are using WCS or cannot enable asynchronous indexing, you can still use t
 :::info Added in v1.23.0
 :::
 
-If you have a new collection, enable AutoPQ so that you don't have to load your data in two phases. 
+If you have a new collection, enable AutoPQ so that you don't have to load your data in two phases.
 
 ### Set the environment variable
 
-To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your instance. AutoPQ is a part of the asynchronous indexing feature. There is no setting to enable AutoPQ without asynchronous indexing. 
+To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your instance. AutoPQ is a part of the asynchronous indexing feature. There is no setting to enable AutoPQ without asynchronous indexing.
 
-AutoPQ is not currently available in WCS. 
+AutoPQ is not currently available in WCS.
 
 ### Configure PQ
 
@@ -92,7 +92,7 @@ To enable PQ, update your schema to set `pq_enabled=True`. For additional config
       language="go"
     />
   </TabItem>
-  
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -107,7 +107,7 @@ To enable PQ, update your schema to set `pq_enabled=True`. For additional config
 
 Load your data. AutoPQ creates the PQ codebook when there are 100,000 objects per shard. Weaviate uses the codebook to compress the vectors in your collection. When you use AutoPQ you can load all of your data at once. You do not have to load an initial set of training data.
 
-If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets. 
+If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets.
 
 ## Two phase configuration method
 
@@ -172,7 +172,7 @@ After you install the client, connect to your instance.
       language="go"
     />
   </TabItem>
-    
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -225,7 +225,7 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
       language="go"
     />
   </TabItem>
-  
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -248,54 +248,55 @@ When you load data for this training phase, you can use any of the objects in yo
   </summary>
   <div>
     Use these scripts to get the data for these examples. If you are configuring your own system, you do not need to import this sample data.
-
-    <Tabs groupId="languages">
-      <TabItem value="py" label="Python (v4)">
-         <FilteredTextBlock
-           text={PyCode}
-           startMarker="# START DownloadData"
-           endMarker="# END DownloadData"
-           language="py"
-         />
-      </TabItem>
-
-      <TabItem value="py3" label="Python (v3)">
-         <FilteredTextBlock
-           text={PyCodeV3}
-           startMarker="# START DownloadData"
-           endMarker="# END DownloadData"
-           language="py"
-         />
-      </TabItem>
-
-      <TabItem value="ts" label="JavaScript/TypeScript">
-         <FilteredTextBlock
-           text={TSCode}
-           startMarker="// START FetchData"
-           endMarker="// END FetchData"
-           language="ts"
-         />
-      </TabItem>
-
-      <TabItem value="go" label="Go">
-        <FilteredTextBlock
-          text={GoCode}
-          startMarker="// START DownloadData"
-          endMarker="// END DownloadData"
-          language="go"
-        />
-      </TabItem>
-      
-      <TabItem value="java" label="Java">
-        <FilteredTextBlock
-          text={JavaCode}
-          startMarker="// START DownloadData"
-          endMarker="// END DownloadData"
-          language="java"
-        />
-      </TabItem>
-    </Tabs>
   </div>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+      <FilteredTextBlock
+        text={PyCode}
+        startMarker="# START DownloadData"
+        endMarker="# END DownloadData"
+        language="py"
+      />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+      <FilteredTextBlock
+        text={PyCodeV3}
+        startMarker="# START DownloadData"
+        endMarker="# END DownloadData"
+        language="py"
+      />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+      <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START FetchData"
+        endMarker="// END FetchData"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DownloadData"
+      endMarker="// END DownloadData"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DownloadData"
+      endMarker="// END DownloadData"
+      language="java"
+    />
+  </TabItem>
+</Tabs>
+
 </details>
 
 <Tabs groupId="languages">
@@ -334,7 +335,7 @@ When you load data for this training phase, you can use any of the objects in yo
       language="go"
     />
   </TabItem>
-  
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -392,7 +393,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
       language="go"
     />
   </TabItem>
-  
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
@@ -424,7 +425,7 @@ import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 For most use cases, 100,000 objects is an optimal training size. There is little benefit to increasing `trainingLimit`. If you do increase `trainingLimit`, the training period will take longer. You could also have memory problems if you set a high `trainingLimit`.
 
-If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets. 
+If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets.
 
 ### Check the system logs
 
@@ -488,7 +489,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
       language="go"
     />
   </TabItem>
-  
+
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
