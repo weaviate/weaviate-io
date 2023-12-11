@@ -48,7 +48,7 @@ Note that the vector index type parameter only specifies how the vectors of data
 
 The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
 
-To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
+To learn more about configuring the collection, see [this how-to page](../manage-data/collections.mdx).
 
 ### Distance metrics
 
