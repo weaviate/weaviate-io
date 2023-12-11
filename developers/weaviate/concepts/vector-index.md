@@ -44,13 +44,15 @@ Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a
 
 A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
 
-The index type can be specified per data class via the [class definition](/developers/weaviate/manage-data/collections.mdx). Currently the only index type is HNSW.
+Note that the vector index type parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search.
 
-Example of a class [vector index configuration in your data schema](/developers/weaviate/manage-data/collections.mdx):
+The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
 
-To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/manage-data/collections.mdx).
+To learn more about configuring the data schema, see [How to configure a schema](/developers/weaviate/configuration/schema-configuration.md).
 
-Note that the vector index type only specifies how the vectors of data objects are *indexed* and this is used for data retrieval and similarity search. How the data vectors are determined (which numbers the vectors contain) is specified by the `"vectorizer"` parameter which points to a [module](/developers/weaviate/modules/index.md) such as `"text2vec-contextionary"` (or to `"none"` if you want to import your own vectors). Learn more about all parameters in the data schema [here](/developers/weaviate/manage-data/collections.mdx).
+### Distance metrics
+
+All of [the distance metrics](/developers/weaviate/config-refs/distances.md) can be used with any vector index type.
 
 ## Set vector index type
 
@@ -62,6 +64,7 @@ The index type can be specified per data collection via the [collection definiti
 Weaviate's `hnsw` index is a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
 
 ### What is HNSW?
+
 HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes provide benefits of very fast queries, but they are more costly when it comes to the building process (adding data with vectors).
 
 At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently.
@@ -81,10 +84,6 @@ HNSW is very fast, memory efficient, approach to similarity search. The memory c
 Have another look at the diagram; it demonstrates how the HNSW algorithm searches. The blue search vector in the top layer connects to a partial result in layer one. The objects in layer one lead HNSW to the result set in layer zero. HNSW makes three hops through the layers (the dotted blue lines) and skips objects that are unrelated to the search query.
 
 If your use case values fast data upload higher than super fast query time and high scalability, then other vector index types may be a better solution (e.g. [Spotify's Annoy](https://github.com/spotify/annoy)).
-
-### Distance metrics
-
-All of [the distance metrics](/developers/weaviate/config-refs/distances.md) Weaviate supports are also supported with HNSW indexes.
 
 ## Managing search quality vs speed tradeoffs
 

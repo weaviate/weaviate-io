@@ -79,7 +79,7 @@ assert config.vectorizer.value == "text2vec-openai"
 client.collections.delete("Article")
 
 # ===========================
-# ===== MODULE SETTINGS =====
+# ===== SET VECTORIZER =====
 # ===========================
 
 # import weaviate.classes as wvc
@@ -107,6 +107,10 @@ assert config.vectorizer.value == "text2vec-openai"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+
+# ===========================
+# ===== MODULE SETTINGS =====
+# ===========================
 
 # START ModuleSettings
 import weaviate.classes as wvc
