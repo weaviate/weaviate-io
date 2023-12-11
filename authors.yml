@@ -32,6 +32,11 @@ dan:
   title: Developer Advocate
   url: https://github.com/dandv
   image_url: /img/people/icon/dan.jpg
+dave:
+  name: Dave Cuthbert
+  title: Technical Writer
+  url: https://github.com/daveatweaviate
+  image_url: /img/people/icon/dirk.jpg
 dirk:
   name: Dirk Kulawiak
   title: Core Engineer
