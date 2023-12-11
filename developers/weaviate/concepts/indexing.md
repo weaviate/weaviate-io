@@ -135,7 +135,7 @@ Because Weaviate's vectorizer module configuration is set on class and property 
 
 ### Configure the inverted index
 
-There are two indexes for filtering or searching the data, where the first (filterable) is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
+There are two inverted indexes for filtering or searching the data. The first (filterable) index is for building a fast, Roaring Bitmaps index, and the second (searchable) index is for a BM25 or hybrid search.
 
 The `indexFilterable` and `indexSearchable` keys can be set to `true` (on) or `false` (off) on a property level. Both are _on_ by default.
 
