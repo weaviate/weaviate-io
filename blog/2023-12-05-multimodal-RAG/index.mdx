@@ -30,7 +30,7 @@ In this post we’ll touch on:
 
 ## Contrastive Learning
 
-One way to train a model that understands multimodal data including images, audio, video, and text is to first train individual models that understand each one of these modalities separately and then unify their representations of data using a training process called contrastive training.
+One way to train a model that understands multimodal data including images, audio, video, and text is to first train individual models that understand each one of these modalities separately and then unify their representations of data using a process called contrastive training.
 
 The idea behind contrastive training is that we can unify the vector space representation of models by taking embeddings across modalities and pushing them further apart or pulling them closer together depending on whether they are similar or different conceptually. This is demonstrated in the image below:
 
@@ -39,12 +39,12 @@ The idea behind contrastive training is that we can unify the vector space repre
 
 This process was carried out in MetaAI’s [ImageBind paper](https://arxiv.org/abs/2305.05665) to unify vector spaces across 6 different modalities including images, text, audio, and video. To successfully perform contrastive training they used multiple labeled datasets of positive points across multiple modalities and randomly sampled for negative points.
 
-To get a better intuitive understanding of how this process works imagine you embed the image of a lion into vector space using a vision model. Now the concept behind this object is similar to the audio of a lion roaring, so the audio object embedding can be used as a positive sample and the contrastive loss function works to pull these two points together in embedding space. On the other hand, the embedding of an image of a salad is a negative example and therefore needs to be pushed apart. Have a look at the modification of the above visual to account for cross-modal contrastive training:
+To get a better intuitive understanding of how this process works imagine you embed the image of a lion into vector space using a vision model. The concept behind this object is similar to the audio of a lion roaring, so the audio object embedding can be used as a positive sample and the contrastive loss function works to pull these two points together in embedding space. On the other hand, the embedding of an image of a salad is a negative example and therefore needs to be pushed apart. Have a look at the modification of the above visual to account for cross-modal contrastive training:
 
 ![crossMCLR](./img/image_b.png)
 *Source: [Zolfaghari et al. 2021](https://lmb.informatik.uni-freiburg.de/Publications/2021/ZB21/)*
 
-If we can continually do this for a large enough dataset of labeled points then we can tighten the representations of data objects in embedding space and even unify the models of different modalities. Another benefit, that ImageBind demonstrated, was that of using frozen image model representations to bind other modalities with cross-modal contrast loss training - hence the name ImageBind. Embeddings that start differently can then be pulled towards the image representations and thus all of the similar concepts across modalities can be unified such that a concept across all modalities will have similar vectors  - demonstrated in the image below. To learn in more depth about contrastive representation learning I would recommend this [blog](https://lilianweng.github.io/posts/2021-05-31-contrastive/).
+If we can continually do this for a large enough dataset of labeled points then we can tighten the representations of data objects in embedding space and even unify the models of different modalities. Another benefit, that ImageBind demonstrated, was that of using frozen image model representations to bind other modalities with cross-modal contrastive loss training - hence the name ImageBind. Embeddings that start differently can then be pulled towards the image representations and thus all of the similar concepts across modalities can be unified such that a concept across all modalities will have similar vectors - demonstrated in the image below. To learn in more depth about contrastive representation learning I would recommend this [blog](https://lilianweng.github.io/posts/2021-05-31-contrastive/).
 
 ![unified_emb_Dark](./img/unified_emb_D.png#gh-dark-mode-only)
 ![unified_emb__Light](./img/unified_emb_L.png#gh-light-mode-only)
@@ -52,13 +52,13 @@ If we can continually do this for a large enough dataset of labeled points then 
 
 ## Any-to-Any Search
 
-Once we have a unified cross-modal embedding space we can take advantage of this to perform cross-modal object operations such as cross-model search and retrieval, meaning that we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space and get back objects of any other modality that are similar in concept. You can also use this unified embedding space to perform cross-modal embedding arithmetic, for example, you can answer questions like what an image of a pigeon and the audio of a bike revving look like together.
+Once we have a unified embedding space we can take advantage of this to perform cross-modal object operations such as cross-modal search and retrieval, meaning that we can pass in as a query any modality the model understands and use it to perform vector similarity search in multimodal embedding space, getting back objects of any other modality that are similar in concept. You can also use this unified embedding space to perform cross-modal embedding arithmetic, for example, you can answer questions like what an image of a pigeon and the audio of a bike revving look like together.
 
 ![cross_modal](./img/cross_modal.png)
 *[Source](https://imagebind.metademolab.com/)*
 
-In the Jupyter notebook [here](https://github.com/weaviate-tutorials/multimodal-workshop/blob/main/2-multimodal/1-multimedia-search-complete.ipynb) we show how you can use the `multi2vec-bind` module in Weaviate to use the ImageBind model to add multimedia files to a vector database and then consequently perform any-to-any search using that data.
-You can also use this diagram explaining any-to-any search to get an intuition of how the following code leverages the unified embedding space previously generated to perform search.
+In the Jupyter notebook [here](https://github.com/weaviate-tutorials/multimodal-workshop/blob/main/2-multimodal/1-multimedia-search-complete.ipynb) we show how you can use the `multi2vec-bind` module in Weaviate to use the ImageBind model to add multimedia files to a vector database. Then we can perform any-to-any search over that data.
+You can also use this diagram explaining any-to-any search to get an intuition of how the following code leverages the unified embedding space previously generated to perform the search.
 
 ![any2any_Dark](./img/any2any_D.png#gh-dark-mode-only)
 ![any2any_Light](./img/any2any_L.png#gh-light-mode-only)
@@ -105,7 +105,7 @@ response = animals.query.near_image(
 )
 ```
 
-For a more detailed breakdown refer to the complete [notebook](https://github.com/weaviate-tutorials/multimodal-workshop/blob/main/2-multimodal/1-multimedia-search-complete.ipynb).
+For a more detailed breakdown refer to the complete [notebook](https://github.com/weaviate-tutorials/multimodal-workshop/blob/main/2-multimodal/1-multimedia-search-complete.ipynb) and supporting repository.
 
 The use of a vector database to store and perform fast and real-time retrieval of object embeddings allows us to scale the usage of these multimodal models to power multimodal search in production and to integrate into our applications the cross-modal operations that we've discussed.
 
@@ -119,9 +119,9 @@ By externalizing the knowledge of a model, [RAG can provide](https://cs.stanford
 - **Controllability**: allowing updating or customizing the knowledge by simply performing CRUD operations in a vector DB
 - **Interpretability**: retrieved items serving as the reference to source in model predictions
 
-However, the issue with the current RAG workflows is that they only leverage retrieved text source material. This is because most LLMs only understood language and so any information that's retrieved had to be in text format … until now! 
+However, the issue with the current RAG workflows is that they only leverage retrieved text source material. This is because most LLMs only understand language and so any information that's retrieved had to be in text format … until now! 
 
-Recently, there have been a group of large generative models, both closed and open source, that understand both text and images and as a result, we can now support multimodal rag where we can retrieve images from our vector database and pass those into the large multimodal model(LMM) to then generate using. This simple two-step process, illustrated below, is the main idea behind Multimodal-RAG.
+Recently, there have been a group of large generative models, both closed and open source, that understand both text and images. As a result, we can now support multimodal RAG, where we can retrieve images from our vector database and pass those into the large multimodal model(LMM) to then generate with. This simple two-step process, illustrated below, is the main idea behind Multimodal-RAG.
 
 ![mmRAG_Dark](./img/mmRAG_D.png#gh-dark-mode-only)
 ![mmRAG_Light](./img/mmRAG_D.png#gh-light-mode-only)
@@ -140,14 +140,13 @@ MM-RAG gives us a way to further control the awesome generative power of these n
 
 ## MM-RAG Code Demo
 
-Below we provide code that allows you to implement MM-RAG by retrieving from the multimodal Weaviate collection that we set up earlier and then stuffing a base64 encoded image along with a text prompt to the GPT4-Vision model released recently by OpenAI. We then take the generated description and pass it into DALL-E-3 to recreate the image from the description. The full code for the example below can be found in this [Jupyter notebook](https://github.com/weaviate-tutorials/multimodal-workshop/blob/main/2-multimodal/2-multimedia-rag.ipynb).
+Below we provide code that allows you to implement MM-RAG by retrieving from the multimodal Weaviate collection that we set up earlier and then stuffing a `base64` encoded image along with a text prompt to the GPT4-Vision model released recently by OpenAI. We then take the generated description and pass it into DALL-E-3 to recreate the image from the description. The full code for the example below can be found in this [Jupyter notebook](https://github.com/weaviate-tutorials/multimodal-workshop/blob/main/2-multimodal/2-multimedia-rag.ipynb).
 
 ### Retrieve an Object from a Multimodal Collection
 
 ```python
 def retrieve_image(query):
     response = animals.query.near_text(
-        # query='meerkat on a log',
         query=query,
         filters=wvc.Filter(path="mediaType").equal("image"),
         return_properties=['name','path','mediaType','image'],
@@ -190,7 +189,6 @@ def generate_description_from_image_gpt4(prompt, image64):
             {
               "type": "image_url",
               "image_url": {
-                # "url": f"data:image/jpeg;base64,{response.objects[0].properties['image']}" #base64 encoded image from Weaviate
                 "url": f"data:image/jpeg;base64,{image64}" #base64 encoded image from Weaviate
               }
             }
