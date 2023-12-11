@@ -248,54 +248,55 @@ When you load data for this training phase, you can use any of the objects in yo
   </summary>
   <div>
     Use these scripts to get the data for these examples. If you are configuring your own system, you do not need to import this sample data.
-
-    <Tabs groupId="languages">
-      <TabItem value="py" label="Python (v4)">
-         <FilteredTextBlock
-           text={PyCode}
-           startMarker="# START DownloadData"
-           endMarker="# END DownloadData"
-           language="py"
-         />
-      </TabItem>
-
-      <TabItem value="py3" label="Python (v3)">
-         <FilteredTextBlock
-           text={PyCodeV3}
-           startMarker="# START DownloadData"
-           endMarker="# END DownloadData"
-           language="py"
-         />
-      </TabItem>
-
-      <TabItem value="ts" label="JavaScript/TypeScript">
-         <FilteredTextBlock
-           text={TSCode}
-           startMarker="// START FetchData"
-           endMarker="// END FetchData"
-           language="ts"
-         />
-      </TabItem>
-
-      <TabItem value="go" label="Go">
-        <FilteredTextBlock
-          text={GoCode}
-          startMarker="// START DownloadData"
-          endMarker="// END DownloadData"
-          language="go"
-        />
-      </TabItem>
-
-      <TabItem value="java" label="Java">
-        <FilteredTextBlock
-          text={JavaCode}
-          startMarker="// START DownloadData"
-          endMarker="// END DownloadData"
-          language="java"
-        />
-      </TabItem>
-    </Tabs>
   </div>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+      <FilteredTextBlock
+        text={PyCode}
+        startMarker="# START DownloadData"
+        endMarker="# END DownloadData"
+        language="py"
+      />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+      <FilteredTextBlock
+        text={PyCodeV3}
+        startMarker="# START DownloadData"
+        endMarker="# END DownloadData"
+        language="py"
+      />
+  </TabItem>
+
+  <TabItem value="ts" label="JavaScript/TypeScript">
+      <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START FetchData"
+        endMarker="// END FetchData"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START DownloadData"
+      endMarker="// END DownloadData"
+      language="go"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START DownloadData"
+      endMarker="// END DownloadData"
+      language="java"
+    />
+  </TabItem>
+</Tabs>
+
 </details>
 
 <Tabs groupId="languages">
