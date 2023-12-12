@@ -91,7 +91,7 @@
 
 .innerBar {
   display: flex;
-  animation: scroll 300s linear infinite;
+  animation: scroll 400s linear infinite;
 
   @media screen and (max-width: 485px) {
     animation: scroll 200s linear infinite;
