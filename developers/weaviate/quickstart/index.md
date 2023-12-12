@@ -355,7 +355,7 @@ Each of the following modules is available in the free sandbox.
 - Generative modules:
     - `generative-cohere`
     - `generative-openai`
-    - `generative-palm`
+    - `generative-google`
 
 Depending on your choice, make sure to pass on the API key(s). You can do so by setting the header with the appropriate line(s) from below, remembering to replace the placeholder with your actual key:
 

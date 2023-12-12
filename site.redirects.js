@@ -320,6 +320,13 @@ const siteRedirects = {
             ],
         },
 
+        // rename google generator
+        {
+         to: 'developers/weaviate/modules/reader-generator-modules/generative-google',
+         from: 'developers/weaviate/modules/reader-generator-modules/generative-palm',
+        },
+     
+        
         // moved Quickstart installation to Quickstart
         {
             to: '/developers/weaviate/quickstart',

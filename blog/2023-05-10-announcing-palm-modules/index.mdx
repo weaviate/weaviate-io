@@ -17,7 +17,7 @@ We are thrilled to announce two brand new Weaviate modules that will help you to
 
 These new modules are:
 - [`text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) for generating vector embeddings and running semantic (`nearText`) queries, and
-- [`generative-palm`](/developers/weaviate/modules/reader-generator-modules/generative-palm) for generative search.
+- [`generative-palm`](/developers/weaviate/modules/reader-generator-modules/generative-google) for generative search.
 
 <!-- TODO - check Weaviate version number before merging. -->
 These modules are available to all Weaviate users as of **today**, with the release of Weaviate version `v1.19.1`. They integrate the new Vertex PaLM API with Weaviate, allowing you to hit the ground running straight away with the latest in LLM and [vector database](https://weaviate.io/blog/what-is-a-vector-database) technologies.
@@ -49,7 +49,7 @@ In other words, you can not only use PaLM off-the-shelf, but also customize the 
 
 ![You can use Weaviate with the Vertex PALM API](./img/highlight.png)
 
-And we are excited to tell you about the ['text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) and ['generative-palm'](/developers/weaviate/modules/reader-generator-modules/generative-palm) modules. These modules will help you to bring the power of the newest LLM on the block to the, *ahem*, `PaLM` of your hand - or at least, to your Weaviate instance.
+And we are excited to tell you about the ['text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm) and ['generative-palm'](/developers/weaviate/modules/reader-generator-modules/generative-google) modules. These modules will help you to bring the power of the newest LLM on the block to the, *ahem*, `PaLM` of your hand - or at least, to your Weaviate instance.
 
 ### <i class="fa-solid fa-input-numeric"></i> Embeddings with `text2vec-palm`
 
@@ -63,7 +63,7 @@ Please note that according to Google, the embedding endpoint does *not* support 
 
 ### <i class="fa-solid fa-typewriter"></i> Generative search with `generative-palm`
 
-The [`generative-palm`](/developers/weaviate/modules/reader-generator-modules/generative-palm) module is another exciting development for Weaviate and Google Cloud / Vertex AI users.
+The [`generative-palm`](/developers/weaviate/modules/reader-generator-modules/generative-google) module is another exciting development for Weaviate and Google Cloud / Vertex AI users.
 
 Our generative search modules work in two stages. First, a search is performed in Weaviate, and then a generative model such as PaLM is called to action, whereby the results are sent to prompt the LLM (PaLM in this case).
 
@@ -82,7 +82,7 @@ The base PaLM model for generative search is `text-bison-001`, which has the fol
 You can read more about how to use these modules in our documentation! See the pages for:
 
 - [`text2vec-palm`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm), and
-- [`generative-palm`](/developers/weaviate/modules/reader-generator-modules/generative-palm).
+- [`generative-palm`](/developers/weaviate/modules/reader-generator-modules/generative-google).
 
 import WhatNext from '/_includes/what-next.mdx'
 

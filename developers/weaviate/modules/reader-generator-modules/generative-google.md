@@ -1,14 +1,14 @@
 ---
 title: Generative Search - PaLM
 sidebar_position: 16
-image: og/docs/modules/generative-palm.jpg
+image: og/docs/modules/generative-google.jpg
 # tags: ['generative', 'transformers', 'palm', 'gcp']
 ---
 
 
 ## Overview
 
-* The `generative-palm` module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
+* The `generative-google` module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
 * You need an API key for a PaLM API to use this module.
@@ -22,9 +22,10 @@ image: og/docs/modules/generative-palm.jpg
 
 Google MakerSuite support was added in version `1.22.4`.
 
+`generative-google` was added in version `v1.22.5`.
 :::
 
-## Configuring `generative-palm` for VertexAI vs MakerSuite
+## Configuring `generative-google` for VertexAI vs MakerSuite
 
 The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
@@ -62,14 +63,14 @@ In the Weaviate [schema configuration](#schema-configuration), set the `apiEndpo
 
 ## Introduction
 
-`generative-palm` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
+`generative-google` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. (Weaviate) Run a search query in Weaviate to find relevant objects.
 2. (PaLM) Use a PaLM model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative PaLM module with non-PaLM upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-palm` module to generate a response.
+You can use the Generative PaLM module with non-PaLM upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere` or `text2vec-huggingface` to vectorize and query your data, but then rely on the `generative-google` module to generate a response.
 :::
 
 The generative module can provide results for:
@@ -81,7 +82,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 ## Inference API key
 
 :::caution Important: Provide PaLM API key to Weaviate
-As the `generative-palm` uses a PaLM API endpoint, you must provide a valid PaLM API key to weaviate.
+As the `generative-google` uses a PaLM API endpoint, you must provide a valid PaLM API key to weaviate.
 :::
 
 ### Providing the key to Weaviate
@@ -115,16 +116,16 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-google` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
-ENABLE_MODULES: 'text2vec-palm,generative-palm'
+ENABLE_MODULES: 'text2vec-palm,generative-google'
 ```
 
 <details>
-  <summary>See a full example of a Docker configuration with <code>generative-palm</code></summary>
+  <summary>See a full example of a Docker configuration with <code>generative-google</code></summary>
 
-Here is a full example of a Docker configuration, which uses the `generative-palm` module in combination with `text2vec-palm`, and provides the API key:
+Here is a full example of a Docker configuration, which uses the `generative-google` module in combination with `text2vec-palm`, and provides the API key:
 
 ```yaml
 ---
@@ -149,7 +150,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-palm'
       // highlight-next-line
-      ENABLE_MODULES: 'text2vec-palm,generative-palm'
+      ENABLE_MODULES: 'text2vec-palm,generative-google'
       PALM_APIKEY: sk-foobar  # Setting this parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
@@ -179,7 +180,7 @@ For example, the following schema configuration will set the PaLM API informatio
       ...,
       "moduleConfig": {
         // highlight-start
-        "generative-palm": {
+        "generative-google": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.
           "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to `"chat-bison"` for Vertex AI and `"chat-bison-001"` for MakerSuite.
