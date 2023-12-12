@@ -24,8 +24,8 @@ print(client.is_ready())
 # =====  EnableBQ =====
 # ==============================
 
-if client.schema.exists("Question"):
-    client.schema.delete_class("Question")
+if client.schema.exists("YourCollection"):
+    client.schema.delete_class("YourCollection")
 
 # START EnableBQ
 class_definition = {
@@ -37,7 +37,7 @@ class_definition = {
             "enabled": False,
         },
     },
-    # Remainder not shown
+    #  Remainder not shown
 }
 
 client.schema.create_class(class_definition)
@@ -47,8 +47,8 @@ client.schema.create_class(class_definition)
 # =====  EnableBQ with Options =====
 # ==============================
 
-if client.schema.exists("Question"):
-    client.schema.delete_class("Question")
+if client.schema.exists("YourCollection"):
+    client.schema.delete_class("YourCollection")
 
 # START BQWithOptions
 class_definition = {

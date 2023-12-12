@@ -8,11 +8,11 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/pq-compression.py';
+import PyCode from '!!raw-loader!/_includes/code/howto/bq-compression.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/bq-compression-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
-import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/pq-compression.java';
-import GoCode from '!!raw-loader!/_includes/code/howto/pq-compression.go';
+import TSCode from '!!raw-loader!/_includes/code/howto/bq-compression.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/bq-compression.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/bq-compression.go';
 
 :::info Added in `v1.23`
 :::
@@ -36,8 +36,8 @@ This can be done by setting the `vector index config` of the collection to enabl
   <TabItem value="py" label="Python (v4)">
       <FilteredTextBlock
         text={PyCode}
-        startMarker="# START DownloadData"
-        endMarker="# END DownloadData"
+        startMarker="# START EnableBQ"
+        endMarker="# END EnableBQ"
         language="py"
       />
   </TabItem>
@@ -54,8 +54,8 @@ This can be done by setting the `vector index config` of the collection to enabl
   <TabItem value="ts" label="JavaScript/TypeScript">
       <FilteredTextBlock
         text={TSCode}
-        startMarker="// START FetchData"
-        endMarker="// END FetchData"
+        startMarker="// START EnableBQ"
+        endMarker="// END EnableBQ"
         language="ts"
       />
   </TabItem>
@@ -63,8 +63,8 @@ This can be done by setting the `vector index config` of the collection to enabl
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
+      startMarker="// START EnableBQ"
+      endMarker="// END EnableBQ"
       language="go"
     />
   </TabItem>
@@ -72,8 +72,8 @@ This can be done by setting the `vector index config` of the collection to enabl
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
+      startMarker="// START EnableBQ"
+      endMarker="// END EnableBQ"
       language="java"
     />
   </TabItem>
@@ -82,20 +82,24 @@ This can be done by setting the `vector index config` of the collection to enabl
 
 ## Set BQ parameters
 
-The following parameters are available for BQ compression, under `vectorIndexConfig:bq`:
+The following parameters are available for BQ compression, under `vectorIndexConfig`:
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `enabled` | boolean | `false` | Enable BQ. Weaviate uses binary quantization (BQ) compression when `true`. |
-| `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
-| `cache` | boolean | `false` | Whether to use the vector cache. |
+| `bq` : `enabled` | boolean | `false` | Enable BQ. Weaviate uses binary quantization (BQ) compression when `true`. |
+| `bq` : `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
+| `bq` : `cache` | boolean | `false` | Whether to use the vector cache. |
+| `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
+
+
+For example:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
       <FilteredTextBlock
         text={PyCode}
-        startMarker="# START DownloadData"
-        endMarker="# END DownloadData"
+        startMarker="# START BQWithOptions"
+        endMarker="# END BQWithOptions"
         language="py"
       />
   </TabItem>
@@ -103,8 +107,8 @@ The following parameters are available for BQ compression, under `vectorIndexCon
   <TabItem value="py3" label="Python (v3)">
       <FilteredTextBlock
         text={PyCodeV3}
-        startMarker="# START EnableBQ"
-        endMarker="# END EnableBQ"
+        startMarker="# START BQWithOptions"
+        endMarker="# END BQWithOptions"
         language="py"
       />
   </TabItem>
@@ -112,8 +116,8 @@ The following parameters are available for BQ compression, under `vectorIndexCon
   <TabItem value="ts" label="JavaScript/TypeScript">
       <FilteredTextBlock
         text={TSCode}
-        startMarker="// START FetchData"
-        endMarker="// END FetchData"
+        startMarker="// START BQWithOptions"
+        endMarker="// END BQWithOptions"
         language="ts"
       />
   </TabItem>
@@ -121,8 +125,8 @@ The following parameters are available for BQ compression, under `vectorIndexCon
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
+      startMarker="// START BQWithOptions"
+      endMarker="// END BQWithOptions"
       language="go"
     />
   </TabItem>
@@ -130,8 +134,8 @@ The following parameters are available for BQ compression, under `vectorIndexCon
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// START DownloadData"
-      endMarker="// END DownloadData"
+      startMarker="// START BQWithOptions"
+      endMarker="// END BQWithOptions"
       language="java"
     />
   </TabItem>
