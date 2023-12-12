@@ -322,8 +322,8 @@ const siteRedirects = {
 
         // rename google generator
         {
-         to: 'developers/weaviate/modules/reader-generator-modules/generative-google',
-         from: 'developers/weaviate/modules/reader-generator-modules/generative-palm',
+         to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
+         from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
         },
      
         
