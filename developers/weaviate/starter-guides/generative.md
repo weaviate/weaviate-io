@@ -263,7 +263,7 @@ To use generative search, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and
 - Specified in the class definition.
 
-Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-google` for PaLM models.
+Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-google` for PaLM and Gemini models.
 
 If you are using WCS, you will not need to do anything to enable modules.
 
