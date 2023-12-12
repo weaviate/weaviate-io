@@ -48,13 +48,15 @@ func main() {
 	// END ConnectCode
 
 	// START EnableBQ
+	simple_bq := map[string]interface{}{
+			"enabled":	true,
+	}
 	class := &models.Class{
 			Class:      "YourCollection",
 			Vectorizer: "text2vec-openai",
-			cfg["bq"] = map[string]interface{}{
-				"enabled":       true,
-			}
-			class.VectorIndexConfig = cfg
+			VectorIndexConfig: map[string]interface{}{
+				"bq": simple_bq,
+			},
 			// Remainder not shown
 	}
 
@@ -67,16 +69,18 @@ func main() {
 	// END EnableBQ
 
 	// START BQWithOptions
+	custom_bq := map[string]interface{}{
+			"enabled":      true,
+			"rescoreLimit": 200,
+			"cache":        true,
+	}
 	class := &models.Class{
 			Class:      "YourCollection",
 			Vectorizer: "text2vec-openai",
-			cfg["bq"] = map[string]interface{}{
-				"enabled":      true,
-				"rescoreLimit": 200,
-				"cache":        true,
-			}
-			vectorCacheMaxObjects: 100_000,
-			class.VectorIndexConfig = cfg
+			VectorIndexConfig: map[string]interface{}{
+				"bq": custom_bq,
+				"vectorCacheMaxObjects": 100_000,
+			},
 			// Remainder not shown
 	}
 

@@ -19,6 +19,8 @@ import GoCode from '!!raw-loader!/_includes/code/howto/bq-compression.go';
 
 Binary quantization (BQ) is a technique that reduces the size of a vector index. BQ is available for the `flat` index type.
 
+To use BQ, enable it as shown below and add data to the collection.
+
 <details>
   <summary>Additional information</summary>
 
@@ -26,7 +28,8 @@ Binary quantization (BQ) is a technique that reduces the size of a vector index.
 
 </details>
 
-## Enable BQ compression
+
+## Simple BQ configuration
 
 Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it.
 
@@ -80,7 +83,7 @@ This can be done by setting the `vector index config` of the collection to enabl
 </Tabs>
 
 
-## Set BQ parameters
+## BQ with custom settings
 
 The following parameters are available for BQ compression, under `vectorIndexConfig`:
 
