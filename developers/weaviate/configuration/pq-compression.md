@@ -105,8 +105,6 @@ To enable PQ, update your collection definition. In the vector index section, se
 
 Load your data. You do not have to load an initial set of training data. AutoPQ creates the PQ codebook when the object counts reach the training limit. By default, training limit is 100,000 objects per shard.
 
-If you have fewer than 100,000 objects per shard and want to enable compression, consider using binary quantization (BQ) instead. BQ is a better choice for smaller data sets.
-
 ## Two phase configuration method
 
 If you cannot enable AutoPQ, use the two phase configuration method to enable PQ. If you are configuring PQ on a new collection, be sure to import a set of 10,000 to 100,000 objects per shard before enabling PQ. Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete. 
@@ -115,7 +113,6 @@ To enable PQ compression using the two step method, complete the following steps
 
 - Phase One: Create a codebook
 
-    - [Connect to a Weaviate instance](#step-1-connect-to-a-weaviate-instance)
     - [Configure an initial schema without PQ](#step-2-configure-an-initial-schema-without-pq)
     - [Load some training data](#step-3-load-some-training-data)
     - [Enable and train PQ](#step-4-enable-and-train-pq)
@@ -128,60 +125,7 @@ The next few sections work through these steps.
 
 ### Phase One: Create a codebook
 
-####  Connect to a Weaviate instance
-
 Use one of the Weaviate [client libraries](/developers/weaviate/client-libraries) to connect to your instance.
-
-After you install the client, connect to your instance.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-     <FilteredTextBlock
-       text={PyCode}
-       startMarker="# START ConnectCode"
-       endMarker="# END ConnectCode"
-       language="py"
-     />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-     <FilteredTextBlock
-       text={PyCodeV3}
-       startMarker="# START ConnectCode"
-       endMarker="# END ConnectCode"
-       language="py"
-     />
-  </TabItem>
-
-  <TabItem value="ts" label="JavaScript/TypeScript">
-     <FilteredTextBlock
-       text={TSCode}
-       startMarker="// START DockerInstantiationExample"
-       endMarker="// END DockerInstantiationExample"
-       language="ts"
-     />
-  </TabItem>
-
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START ConnectCode"
-      endMarker="// END ConnectCode"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START ConnectCode"
-      endMarker="// END ConnectCode"
-      language="java"
-    />
-  </TabItem>
-</Tabs>
-
-Weaviate returns `True` if the connection is successful.
 
 #### Configure an initial schema without PQ
 
