@@ -1,7 +1,7 @@
 ---
 title: Generative Search - Google
 sidebar_position: 16
-image: og/docs/modules/generative-google.jpg
+image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'transformers', 'palm', 'gcp']
 ---
 
