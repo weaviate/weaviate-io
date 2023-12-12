@@ -709,6 +709,20 @@
   }
 }
 
+.codeBlockContentRight .codeBlockTitle,
+.codeBlockContentRight .lineBar {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.codeBlockContentRight:hover .codeBlockTitle,
+.codeBlockContentRight:hover .lineBar {
+  opacity: 0;
+  pointer-events: none;
+  overflow-y: scroll;
+}
+
 .codeImage {
   height: 27.9375rem;
   width: 24rem;
