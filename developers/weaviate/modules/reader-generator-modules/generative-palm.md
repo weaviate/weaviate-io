@@ -22,6 +22,8 @@ image: og/docs/modules/generative-palm.jpg
 
 Google MakerSuite support was added in version `1.22.4`.
 
+`gemini-pro` MakerSuite support was added in version `1.22.7`.
+
 :::
 
 ## Configuring `generative-palm` for VertexAI vs MakerSuite

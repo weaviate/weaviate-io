@@ -17,8 +17,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 ```python
 import weaviate
 
-client  = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+client = weaviate.Client(
+  url="https://some-endpoint.weaviate.network/",
   additional_headers={
         "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
         "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
@@ -53,8 +53,8 @@ import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new ApiKey('learn-weaviate'),
+  host: 'some-endpoint.weaviate.network',
+  apiKey: new ApiKey('YOUR-API-KEY'),
   headers: {
     'X-AWS-Access-Key': 'YOUR_ACCESS_KEY',
     'X-AWS-Secret-Key': 'YOUR_SECRET_KEY'

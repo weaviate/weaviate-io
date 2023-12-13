@@ -4,14 +4,25 @@ import PyCode from '!!raw-loader!/_includes/code/graphql.filters.nearText.py';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START NearTextAWS"
+      endMarker="# END NearTextAWS"
+      language="py"
+    />
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
 
 client = weaviate.Client(
-    url="http://localhost:8080"
-    # The AWS credentials must be set in the environment
+  url="https://some-endpoint.weaviate.network/",
+  additional_headers={
+        "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
+        "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
+  }
 )
 
 nearText = {
@@ -42,12 +53,16 @@ print(result)
 <TabItem value="js" label="JavaScript/TypeScript">
 
 ```js
-import weaviate from 'weaviate-ts-client';
+import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
-  scheme: 'http',
-  host: 'localhost:8080',
-  // The AWS credentials must be set in the environment
+  scheme: 'https',
+  host: 'some-endpoint.weaviate.network',
+  apiKey: new ApiKey('YOUR-API-KEY'),
+  headers: {
+    'X-AWS-Access-Key': 'YOUR_ACCESS_KEY',
+    'X-AWS-Secret-Key': 'YOUR_SECRET_KEY'
+  },
 });
 
 const response = await client.graphql
@@ -86,9 +101,12 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "localhost:8080",
-    Scheme:  "http",
-    // The AWS credentials must be set in the environment
+    Host:    "some-endpoint.weaviate.network",
+    Scheme:  "https",
+    Headers: map[string]string{
+      "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
+      "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
+    },
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -155,8 +173,11 @@ import java.util.Map;
 
 public class App {
   public static void main(String[] args) {
-    // The AWS credentials must be set in the environment
-    Config config = new Config("http", "localhost:8080", headers);
+    Map<String, String> headers = new HashMap<String, String>() { {
+      put("X-AWS-Access-Key", "YOUR_ACCESS_KEY");
+      put("X-AWS-Secret-Key", "YOUR_SECRET_KEY");
+    } };
+    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
     WeaviateClient client = new WeaviateClient(config);
 
     NearTextMoveParameters moveTo = NearTextMoveParameters.builder()
@@ -230,8 +251,11 @@ echo '{
 }' | curl \
     -X POST \
     -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -H "X-AWS-Access-Key: $YOUR_ACCESS_KEY" \
+    -H "X-AWS-Secret-Key: $YOUR_SECRET_KEY" \
     -d @- \
-    https://edu-demo.weaviate.network/v1/graphql
+    https://some-endpoint.weaviate.network/v1/graphql
 ```
 
 </TabItem>
