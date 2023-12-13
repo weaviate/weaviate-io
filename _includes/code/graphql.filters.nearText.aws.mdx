@@ -1,15 +1,28 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START NearTextAWS"
+      endMarker="# END NearTextAWS"
+      language="py"
+    />
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
 
 client = weaviate.Client(
-    url="http://localhost:8080"
-    # The AWS credentials must be set in the environment
+    url="http://localhost:8080",
+    additional_headers={
+        "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
+        "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
+    }
 )
 
 nearText = {
