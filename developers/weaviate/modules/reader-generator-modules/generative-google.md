@@ -1,6 +1,6 @@
 ---
 title: Generative Search - Google
-sidebar_position: 16
+sidebar_position: 14
 image: og/docs/modules/generative-google.jpg
 # tags: ['generative', 'gemini', 'palm', 'gcp']
 ---

@@ -1,6 +1,6 @@
 ---
 title: text2vec-jinaai
-sidebar_position: 15
+sidebar_position: 17
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 

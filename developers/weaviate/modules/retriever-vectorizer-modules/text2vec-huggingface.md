@@ -1,6 +1,6 @@
 ---
 title: text2vec-huggingface
-sidebar_position: 13
+sidebar_position: 16
 image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---

@@ -1,6 +1,6 @@
 ---
 title: text2vec-google
-sidebar_position: 19
+sidebar_position: 14
 image: og/docs/modules/text2vec-google.jpg
 # tags: ['text2vec', 'text2vec-google', 'palm', 'gcp']
 ---
