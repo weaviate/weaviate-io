@@ -28,18 +28,18 @@ client = weaviate.connect_to_local(
     }
 )
 
-articles = client.collections.get("Article")
+publications = client.collections.get("Publication")
 
 # instruction for the generative module
-generate_prompt = "Describe the following as a Facebook Ad: {summary}"
+generate_prompt = "Explain why these magazines or newspapers are about finance"
 
-response = articles.generate.near_text(
-    query="Italian food",
-    single_prompt=generate_prompt,
+response = publications.generate.near_text(
+    query="magazine or newspaper about finance",
+    grouped_task=generate_prompt,
     limit=5
 )
 
+print(response.generated)  # "Grouped task" generations are attributes of the entire response
 for o in response.objects:
-    print(o.generated)  # "Single prompt" generations are attributes of each object
     print(o.properties)  # To inspect the retrieved object
 # END-ANY
