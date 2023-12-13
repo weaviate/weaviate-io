@@ -41,7 +41,7 @@ To use the generative search feature, you must:
 
   You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant Docker Compose file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
-  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
+  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$GOOGLE_APIKEY`), unless you want the client to supply the API key (recommended).
 
   <Tabs groupId="modules">
 <TabItem value="OpenAI" label="OpenAI">
@@ -72,7 +72,7 @@ services:
 services:
   weaviate:
     environment:
-      PALM_APIKEY: $PALM_APIKEY
+      GOOGLE_APIKEY: $GOOGLE_APIKEY
       ENABLE_MODULES: '...,generative-google,...'
 ```
 

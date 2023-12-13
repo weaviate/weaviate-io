@@ -88,22 +88,22 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ### Provide the key to Weaviate
 
-To provide your Google API key, use the `"X-Palm-Api-Key"` request header. If you use a Weaviate client, follow these examples:
+To provide your Google API key, use the `"X-Google-Api-Key"` request header. If you use a Weaviate client, follow these examples:
 
 import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
 
 <ClientKey />
 
-Optionally (not recommended), you can provide the PaLM API key as an environment variable.
+Optionally (not recommended), you can provide the Google API key as an environment variable.
 
 <details>
   <summary>How to provide the Google API key as an environment variable</summary>
 
-During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
+During the **configuration** of your Docker instance, by adding `GOOGLE_APIKEY` under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
-    PALM_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
+    GOOGLE_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
     ...
   ```
 
@@ -152,7 +152,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-google'
       // highlight-next-line
       ENABLE_MODULES: 'text2vec-google,generative-google'
-      PALM_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
+      GOOGLE_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
