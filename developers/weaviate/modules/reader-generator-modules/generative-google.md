@@ -20,10 +20,18 @@ image: og/docs/modules/generative-google.jpg
 
 `generative-google` was added in version `v1.19.1` under its old name, `generative-palm`.
 
-It was renamed in version `v1.22.7`. The module is still available under the old name, but it will be removed in a future release.
-
 Google MakerSuite support was added in version `1.22.4`.
 :::
+
+
+### Changes from `generative-palm` to `generative-google`
+
+Prior to Weaviate `v1.22.7`, the `generative-google` module was called `generative-palm`. The module is still available under the old name, but it will be removed in a future release.
+
+Along with the name change:
+- The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
+- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`.
+
 
 ## Configuring `generative-google` for VertexAI or MakerSuite
 

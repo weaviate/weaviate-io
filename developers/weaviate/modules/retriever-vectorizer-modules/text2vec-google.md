@@ -10,11 +10,9 @@ image: og/docs/modules/text2vec-google.jpg
 
 The `text2vec-google` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
-:::info Requirements
+:::info Releases and versions
 
 `text2vec-google` was added in version `v1.19.1` with its original name, `text2vec-palm`.
-
-It was renamed in version `v1.22.7`. The module is still available under the old name, but it will be removed in a future release.
 
 Google MakerSuite support was added in version `1.22.4`.
 :::
@@ -29,6 +27,16 @@ Key notes:
 - Model names differ between Vertex AI and MakerSuite.
     - The default model for Vertex AI is `textembedding-gecko@001`.
     - The default model for MakerSuite `embedding-gecko-001`.
+
+
+### Changes from `text2vec-palm` to `text2vec-google`
+
+Prior to Weaviate `v1.22.7`, the `text2vec-google` module was called `text2vec-palm`. The module is still available under the old name, but it will be removed in a future release.
+
+Along with the name change:
+- The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
+- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`.
+
 
 ## Configuring `text2vec-google` for VertexAI or MakerSuite
 
