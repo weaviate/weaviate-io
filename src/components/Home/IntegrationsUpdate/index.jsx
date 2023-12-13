@@ -53,7 +53,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoW} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google">
             <div className={styles.logoBg}>
               <span className={styles.logoG} />
             </div>
@@ -91,7 +91,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoLa} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google">
             <div className={styles.logoBg}>
               <span className={styles.logoG} />
             </div>
@@ -143,7 +143,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoLa} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google">
             <div className={styles.logoBg}>
               <span className={styles.logoG} />
             </div>
@@ -192,7 +192,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoH} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm">
+          <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google">
             <div className={styles.logoBg}>
               <span className={styles.logoG} />
             </div>

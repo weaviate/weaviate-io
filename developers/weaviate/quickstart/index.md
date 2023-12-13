@@ -351,7 +351,7 @@ Each of the following modules is available in the free sandbox.
     - `text2vec-cohere`
     - `text2vec-huggingface`
     - `text2vec-openai`
-    - `text2vec-palm`
+    - `text2vec-google`
 - Generative modules:
     - `generative-cohere`
     - `generative-openai`
@@ -425,9 +425,9 @@ class_obj = {
 ```js
 class_obj = {
   "class": "Question",
-  "vectorizer": "text2vec-palm",
+  "vectorizer": "text2vec-google",
   "moduleConfig": {
-    "text2vec-palm": {
+    "text2vec-google": {
       "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
       "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
       "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".

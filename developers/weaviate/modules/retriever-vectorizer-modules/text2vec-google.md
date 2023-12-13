@@ -1,21 +1,22 @@
 ---
-title: text2vec-palm
+title: text2vec-google
 sidebar_position: 19
-image: og/docs/modules/text2vec-palm.jpg
-# tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
+image: og/docs/modules/text2vec-google.jpg
+# tags: ['text2vec', 'text2vec-google', 'palm', 'gcp']
 ---
 
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+The `text2vec-google` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
 :::info Requirements
 
-`text2vec-palm` was added in version `v1.19.1`.
+`text2vec-google` was added in version `v1.19.1` with its original name, `text2vec-palm`.
+
+It was renamed in version `v1.22.7`. The module is still available under the old name, but it will be removed in a future release.
 
 Google MakerSuite support was added in version `1.22.4`.
-
 :::
 
 Key notes:
@@ -29,7 +30,7 @@ Key notes:
     - The default model for Vertex AI is `textembedding-gecko@001`.
     - The default model for MakerSuite `embedding-gecko-001`.
 
-## Configuring `text2vec-palm` for VertexAI vs MakerSuite
+## Configuring `text2vec-google` for VertexAI or MakerSuite
 
 The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
@@ -73,12 +74,12 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Docker Compose file
 
-To use `text2vec-palm`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
+To use `text2vec-google`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
 
 #### Parameters
 
-- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-palm` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-palm` to make it the default for all classes.
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-google` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-google` to make it the default for all classes.
 - `PALM_APIKEY` (Optional): Your PaLM API key. You can also provide the key at query time.
 
 ```yaml
@@ -95,8 +96,8 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
       # highlight-start
-      ENABLE_MODULES: text2vec-palm
-      DEFAULT_VECTORIZER_MODULE: text2vec-palm
+      ENABLE_MODULES: text2vec-google
+      DEFAULT_VECTORIZER_MODULE: text2vec-google
       PALM_APIKEY: sk-foobar  # Optional; you can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
@@ -123,10 +124,10 @@ You can configure how the module will behave in each class through the [Weaviate
     {
       "class": "Document",
       "description": "A class called document",
-      "vectorizer": "text2vec-palm",
+      "vectorizer": "text2vec-google",
       "moduleConfig": {
         // highlight-start
-        "text2vec-palm": {
+        "text2vec-google": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-MODEL-ID",                     // Optional.
@@ -160,9 +161,9 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
     {
       "class": "Document",
       "description": "A class called document",
-      "vectorizer": "text2vec-palm",
+      "vectorizer": "text2vec-google",
       "moduleConfig": {
-        "text2vec-palm": {
+        "text2vec-google": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-MODEL-ID",                     // Optional.
@@ -178,7 +179,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "description": "Content that will be vectorized",
           // highlight-start
           "moduleConfig": {
-            "text2vec-palm": {
+            "text2vec-google": {
               "skip": false,
               "vectorizePropertyName": false
             }
@@ -237,7 +238,7 @@ import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.examp
 
 ## Usage example
 
-This is an example of a `nearText` query with `text2vec-palm`.
+This is an example of a `nearText` query with `text2vec-google`.
 
 import CodeNearText from '/_includes/code/graphql.filters.nearText.palm.mdx';
 

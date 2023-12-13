@@ -1,8 +1,8 @@
 ---
 title: Generative Search - Google
 sidebar_position: 16
-image: og/docs/modules/generative-palm.jpg
-# tags: ['generative', 'transformers', 'palm', 'gcp']
+image: og/docs/modules/generative-google.jpg
+# tags: ['generative', 'gemini', 'palm', 'gcp']
 ---
 
 
@@ -18,11 +18,11 @@ image: og/docs/modules/generative-palm.jpg
 
 :::info Releases and versions
 
-`generative-palm` was added in version `v1.19.1`.
+`generative-google` was added in version `v1.19.1` under its old name, `generative-palm`.
+
+It was renamed in version `v1.22.7`. The module is still available under the old name, but it will be removed in a future release.
 
 Google MakerSuite support was added in version `1.22.4`.
-
-`generative-palm` was renamed to `generative-google` in version `v1.22.7`. The module is still available under the old name, but it will be removed in a future release.
 :::
 
 ## Configuring `generative-google` for VertexAI or MakerSuite
@@ -120,13 +120,13 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-google` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
-ENABLE_MODULES: 'text2vec-palm,generative-google'
+ENABLE_MODULES: 'text2vec-google,generative-google'
 ```
 
 <details>
   <summary>See a full example of a Docker configuration with <code>generative-google</code></summary>
 
-Here is a full example of a Docker configuration that uses the `generative-google` module in combination with `text2vec-palm`. The configuration also provides the API key:
+Here is a full example of a Docker configuration that uses the `generative-google` module in combination with `text2vec-google`. The configuration also provides the API key:
 
 ```yaml
 ---
@@ -149,9 +149,9 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-palm'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-google'
       // highlight-next-line
-      ENABLE_MODULES: 'text2vec-palm,generative-google'
+      ENABLE_MODULES: 'text2vec-google,generative-google'
       PALM_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```

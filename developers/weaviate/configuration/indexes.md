@@ -24,13 +24,13 @@ These parameters configure Weaviate indexing across index types. The `vectorInde
 
 
 ## HNSW vector indexes
-HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process. 
+HNSW indexes are scalable and super fast at query time, but HNSW algorithms are costly when you add data during the index building process.
 
 For an alternative approach to building indexes that may help with some use cases, see [Asynchronous indexing](/developers/weaviate/configuration/indexes#asynchronous-indexing).
 
 ### HNSW index parameters
 
-HNSW indexes use a combination of techniques to improve search speed. At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently. This two-phase approach means you can update some HNSW parameters at run time, but others cannot be modified after you create your collection. 
+HNSW indexes use a combination of techniques to improve search speed. At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently. This two-phase approach means you can update some HNSW parameters at run time, but others cannot be modified after you create your collection.
 
 The `ef` parameter controls the size of the nearest neighbors list and helps to balance search speed and recall. You can set an explicit `ef` value or let Weaviate set a [dynamic `ef`](#dynamic-ef). These parameters let you tune `ef`, dynamic `ef`, and other aspects of the HNSW algorithm.
 
@@ -60,15 +60,15 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 <PQMakesCodebook />
 
 These parameters let you fine tune `pq`.
- 
+
 import PQParameters from '/_includes/pq-compression/parameters.mdx' ;
 
 <PQParameters />
 
-### Collection configuration example 
+### Collection configuration example
 
 This is a sample of collection that shows the [data schema](/developers/weaviate/manage-data/collections.mdx):
-  
+
 
 ```json
 {
@@ -171,9 +171,9 @@ This set of values is a good starting point for many use cases.
 |`maxConnections`|`32`|
 :::
 
-## Vector index types 
+## Vector index types
 
-The `vectorIndexType` parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search. 
+The `vectorIndexType` parameter only specifies how the vectors of data objects are *indexed*. The index is used for data retrieval and similarity search.
 
 The `vectorizer` parameter determines how the data vectors are created (which numbers the vectors contain). `vectorizer` specifies a [module](/developers/weaviate/modules/index.md), such as `text2vec-contextionary`, that Weaviate uses to create the vectors. (You can also set to `vectorizer` to `none` if you want to import your own vectors).
 
@@ -238,7 +238,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'text2vec-openai'
-      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-palm,generative-cohere,generative-openai,generative-google'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-openai,text2vec-google,generative-cohere,generative-openai,generative-google'
       CLUSTER_HOSTNAME: 'node1'
       AUTOSCHEMA_ENABLED: 'false'
       ASYNC_INDEXING: 'true'
