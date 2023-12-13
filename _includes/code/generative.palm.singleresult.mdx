@@ -1,41 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/generative.singleprompt.examples.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(
-      nearText: {
-        concepts: ["Italian food"]
-      }
-      limit: 1
-    ) {
-      title
-      summary
-      _additional {
-        # highlight-start
-        generate(
-          singleResult: {
-            prompt: """
-              Describe the following as a Facebook Ad: {summary}
-            """
-          }
-        ) {
-          singleResult
-          error
-        }
-        # highlight-end
-      }
-    }
-  }
-}
-```
-
+<TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GenerativeGoogle"
+      endMarker="# END GenerativeGoogle"
+      language="py"
+    />
 </TabItem>
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
@@ -204,6 +181,39 @@ public class App {
       return;
     }
     System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(
+      nearText: {
+        concepts: ["Italian food"]
+      }
+      limit: 1
+    ) {
+      title
+      summary
+      _additional {
+        # highlight-start
+        generate(
+          singleResult: {
+            prompt: """
+              Describe the following as a Facebook Ad: {summary}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+        # highlight-end
+      }
+    }
   }
 }
 ```
