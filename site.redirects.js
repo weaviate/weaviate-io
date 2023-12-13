@@ -405,6 +405,11 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+        // TEMP Redirect
+        {
+            to: "/developers/weaviate/modules/reader-generator-modules/generative-palm",
+            from: "/developers/weaviate/modules/reader-generator-modules/generative-google"
+        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
