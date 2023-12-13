@@ -339,17 +339,21 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 
 ### Supported models
 
-You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and MakerSuite.
+You can specify the model as a part of the schema as shown earlier. Available models and names differ between Vertex AI and MakerSuite.
 
-The only available model for Vertex AI is `chat-bison`.
-The only available model for MakerSuite is `chat-bison-001`.
+Vertex AI:
+- `chat-bison` (default)
 
-The model has the following properties:
+MakerSuite:
+- `chat-bison-001` (default)
+- `gemini-pro`
 
-- Max input token: 8,192
-- Max output tokens: 1,024
-- Training data: Up to Feb 2023
+:::info Additional model support in progress
 
+- `gemini-pro-vision` for Vertex AI and MakerSuite
+- `gemini-pro` on Vertex AI
+
+:::
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
