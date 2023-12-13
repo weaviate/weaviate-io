@@ -27,13 +27,13 @@ func Test_ManageDataClasses(t *testing.T) {
 	err = client.Schema().AllDeleter().Do(ctx)
 	require.NoError(t, err)
 
-	// START CreateCollection  // START ReadOneCollection  // START UpdateCollection
+	// START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
 	className := "Article"
 
-	// END CreateCollection  // END ReadOneCollection  // END UpdateCollection
+	// END BasicCreateCollection  // END ReadOneCollection  // END UpdateCollection
 
 	t.Run("create class", func(t *testing.T) {
-		// START CreateCollection
+		// START BasicCreateCollection
 		emptyClass := &models.Class{
 			Class: className,
 		}
@@ -43,7 +43,7 @@ func Test_ManageDataClasses(t *testing.T) {
 			WithClass(emptyClass).
 			Do(ctx)
 
-		// END CreateCollection
+		// END BasicCreateCollection
 
 		require.NoError(t, err)
 	})

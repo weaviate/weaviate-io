@@ -15,10 +15,10 @@ const client = weaviate.client({
   },
 });
 
-// START CreateCollection  // START ReadOneCollection  // START UpdateCollection
+// START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
 const className = 'Article';
 
-// END CreateCollection  // END ReadOneCollection  // END UpdateCollection
+// END BasicCreateCollection  // END ReadOneCollection  // END UpdateCollection
 
 // ================================
 // ===== CREATE A CLASS =====
@@ -31,7 +31,7 @@ try {
   // ignore error if class doesn't exist
 }
 
-// START CreateCollection
+// START BasicCreateCollection
 const emptyClassDefinition = {
   class: className,
 };
@@ -45,7 +45,7 @@ let result = await client
 
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(result, null, 2));
-// END CreateCollection
+// END BasicCreateCollection
 
 // Test
 console.assert('invertedIndexConfig' in result);
