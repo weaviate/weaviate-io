@@ -22,10 +22,10 @@ image: og/docs/modules/generative-palm.jpg
 
 Google MakerSuite support was added in version `1.22.4`.
 
-`generative-google` was added in version `v1.22.5`.
+`generative-palm` was renamed to `generative-google` in version `v1.22.7`. The module is still available under the old name, but it will be removed in a future release.
 :::
 
-## Configuring `generative-google` for VertexAI and MakerSuite
+## Configuring `generative-google` for VertexAI or MakerSuite
 
 The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
@@ -67,23 +67,23 @@ In the Weaviate [schema configuration](#schema-configuration), set the `apiEndpo
 
 The module works in two steps:
 1. Run a search query in Weaviate to find relevant objects.
-2. Use a PaLM or Genesis model to generate a response. The response is based on the results of the previous step and a prompt or task that you provide.
+2. Use a PaLM or Gemini model to generate a response. The response is based on the results of the previous step and a prompt or task that you provide.
 
 :::note
-You can use the `generative-google` module with different upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere`, or `text2vec-huggingface` to vectorize and query your data. Then, you can pass the query results to the `generative-google` module to generate a response.
+You can use the `generative-google` module with any upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere`, or `text2vec-huggingface` to vectorize and query your data. Then, you can pass the query results to the `generative-google` module to generate a response.
 :::
 
 The generative module provides results for individual objects or groups of objects:
 
 * `singlePrompt` returns a response for each object.
-* `groupedTask` groups the results to return a single response. 
+* `groupedTask` groups the results to return a single response.
 
 You need to input both a query and a prompt (for individual responses) or a task (for all responses).
 
 ## Inference API key
 
-:::caution Important: Provide the correct API key to Weaviate
-`generative-google` uses a PaLM or Genesis API endpoint, you must provide a valid API key to Weaviate.
+:::caution Important: Provide the google API key to Weaviate
+`generative-google` uses a google API endpoint, you must provide a valid google API key to Weaviate.
 :::
 
 ### Provide the key to Weaviate
@@ -208,7 +208,7 @@ If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers
 
 </details>
 
-## Return a single or grouped result
+## How to use the module
 
 This module extends the `_additional {...}` property with a `generate` operator.
 
