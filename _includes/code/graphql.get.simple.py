@@ -1,68 +1,102 @@
-# ===== PYTHON EXAMPLE =====
+# ========================================
+# GraphQLGetSimple
+# ========================================
+
+# START GraphQLGetSimple  # START ConsistencyExample
 import weaviate
+import weaviate.classes as wvc
+import os
 
-client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
+client = weaviate.connect_to_local()
+
+# END GraphQLGetSimple  # END ConsistencyExample
+
+
+# Actual client instantiation
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_EDU_DEMO_URL"),
+    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_EDU_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
 )
 
-# ===== END PYTHON EXAMPLE =====
-# Actual instantiation for testing
-client = weaviate.Client(
-    "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+
+# START GraphQLGetSimple
+collection = client.collections.get("JeopardyQuestion")
+response = collection.query.fetch_objects()
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+    # END GraphQLGetSimple
+
+    # TEST
+    assert type(o.properties) == dict
+
+
+# ========================================
+# GroupByExample
+# ========================================
+
+# START GroupByExample
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query_group_by.near_text(
+    query="animals",
+    distance=0.2,
+    group_by_property="points",
+    number_of_groups=3,
+    objects_per_group=5
 )
-# END Actual instantiation
-# ===== PYTHON EXAMPLE =====
-result = client.query.get("JeopardyQuestion", ["question", "answer", "points"]).do()
-print(result)
-# ===== END PYTHON EXAMPLE =====
 
-# ===== TEST RESULTS =====
-def check_results(result_in):
-    assert "JeopardyQuestion" in result_in["data"]["Get"]
-    assert result_in["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
+for k, v in response.groups.items():  # View by group
+    print(k, v)
 
-check_results(result)
-# ===== END TEST =====
+for o in response.objects:  # View by object
+    print(o)
+
+# END GroupByExample
+
+# TEST
+assert type(response.objects[0].properties) == dict
+assert len(response.groups.keys()) == 3
+
+# ========================================
+# ConsistencyExample
+# ========================================
+
+# START ConsistencyExample
+questions = client.collections.get("JeopardyQuestion").with_consistency_level(consistency_level=weaviate.ConsistencyLevel.QUORUM)
+response = collection.query.fetch_objects()
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+    # END ConsistencyExample
+
+    # TEST
+    assert type(o.properties) == dict
 
 
+# ========================================
+# GetCrossRefProp
+# ========================================
 
+# START GetCrossRefProp
+questions = client.collections.get("JeopardyQuestion")
+response = questions.query.fetch_objects(
+    return_references=wvc.FromReference(
+        link_on="hasCategory",
+        return_properties=["title"]
+    )
+)
 
-gql_query = """
-# ===== GRAPHQL EXAMPLE =====
-{
-  Get {
-    JeopardyQuestion {
-      question
-      answer
-      points
-    }
-  }
-}
-# ===== END GRAPHQL EXAMPLE =====
-"""
-result = client.query.raw(gql_query)
-print(result)
+for o in response.objects:
+    print(f"References for {o.uuid}")
+    for ro in o.references["hasCategory"].objects:  # Inspect returned references
+        print(ro.properties)
+# END GetCrossRefProp
 
-expected_result = """
-// ===== EXPECTED RESULT =====
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "answer": "Jonah",
-          "points": 100,
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-        // shortened for brevity
-      ]
-    }
-  }
-}
-// ===== END EXPECTED RESULT =====
-"""
-
-# ===== TEST RESULTS =====
-check_results(result)
-# ===== END TEST =====
+# TEST
+for o in response.objects:
+    assert "hasCategory" in list(o.references.keys())
+    #     "title" in ro.properties.keys()
+    # assert "hasCategory" in o.references[0].keys()
