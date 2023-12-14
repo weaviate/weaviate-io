@@ -2,13 +2,22 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
-import UnfilteredCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
+import PyCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/graphql.get.simple.v3.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GraphQLGetSimple"
+    endMarker="END GraphQLGetSimple"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 <FilteredTextBlock
-  text={UnfilteredCode}
+  text={PyCodeV3}
   startMarker="# ===== PYTHON EXAMPLE ====="
   endMarker="# ===== END PYTHON EXAMPLE ====="
   language="py"
@@ -133,7 +142,7 @@ echo '{
 <TabItem value="graphql" label="GraphQL">
 
 <FilteredTextBlock
-  text={UnfilteredCode}
+  text={PyCodeV3}
   startMarker="# ===== GRAPHQL EXAMPLE ====="
   endMarker="# ===== END GRAPHQL EXAMPLE ====="
   language="py"

@@ -545,7 +545,7 @@ result = collection_tenant_a.query.fetch_objects(
     limit=1,
 )
 
-print (result.objects[0].properties)
+print(result.objects[0].properties)
 # END MultiTenancy
 
 
