@@ -1,6 +1,6 @@
 ---
-title: GraphQL - Explore{}
-sidebar_position: 19
+title: Explore
+sidebar_position: 99
 image: og/docs/api.jpg
 # tags: ['graphql', 'explore{}']
 ---
