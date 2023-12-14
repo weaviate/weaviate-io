@@ -3,9 +3,6 @@ import weaviate
 import weaviate.classes as wvc
 import os
 
-# As of November 2023, we are working towards making all WCS instances compatible with the new API introduced in the v4 Python client.
-# Accordingly, we show you how to connect to a local instance of Weaviate.
-# Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
@@ -14,6 +11,8 @@ client = weaviate.connect_to_local(
     }
 )
 # END DockerInstantiationExample
+
+assert client.is_ready()
 
 # EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
@@ -26,7 +25,7 @@ import os
 
 # END EndToEndExample  # Test import
 
-"""
+# TODO -> Replace this with WCS example when sandbox ready
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
 # As of November 2023, we are working towards making all WCS instances compatible with the new API introduced in the v4 Python client.
@@ -41,7 +40,8 @@ client = weaviate.connect_to_local(
 )
 
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
-"""
+
+assert client.is_ready()
 
 client.collections.delete("Question")
 

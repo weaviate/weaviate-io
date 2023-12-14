@@ -70,13 +70,16 @@ client.collections.create(
     properties=[
         wvc.Property(name="question", data_type=wvc.DataType.TEXT),
         wvc.Property(name="answer", data_type=wvc.DataType.TEXT),
-        # highlight-start
+    ],
+    # highlight-start
+    references=[
         wvc.ReferenceProperty(
             name="hasCategory",
             target_collection="JeopardyCategory"
         )
-        # highlight-end
     ]
+    # highlight-end
+
 )
 # CrossRefDefinition END
 
@@ -145,19 +148,22 @@ client.collections.create(
     properties=[
         wvc.Property(name="question", data_type=wvc.DataType.TEXT),
         wvc.Property(name="answer", data_type=wvc.DataType.TEXT),
-        # highlight-start
+    ],
+    # highlight-start
+    references=[
         wvc.ReferenceProperty(
             name="hasCategory",
             target_collection="JeopardyCategory"
         )
-        # highlight-end
     ]
+    # highlight-end
 )
 # END Collections TwoWay Question
 
 # START Collections TwoWay Category2
 # Add the reference to JeopardyQuestion, after it was created
 category = client.collections.get("JeopardyCategory")
+# category.config.add_reference(
 category.config.add_property(
     # highlight-start
     wvc.ReferenceProperty(

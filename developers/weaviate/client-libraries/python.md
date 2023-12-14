@@ -220,6 +220,16 @@ You can instantiate a collection object by creating a collection, or by retrievi
   />
 
 </TabItem>
+<TabItem value="crossref" label="With cross-references">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START CreateCollectionWithRefsExample"
+    endMarker="# END CreateCollectionWithRefsExample"
+    language="py"
+  />
+
+</TabItem>
 <TabItem value="get" label="Get a collection">
 
 <FilteredTextBlock
@@ -276,16 +286,6 @@ We are evaluating modifing this to send multiple requests by matches in the futu
   />
 
 </TabItem>
-<TabItem value="delete_by_id" label="Delete by id">
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# START DeleteObjectExample"
-  endMarker="# END DeleteObjectExample"
-  language="py"
-/>
-
-</TabItem>
 <TabItem value="insert_many" label="Insert many">
 
   <FilteredTextBlock
@@ -294,6 +294,16 @@ We are evaluating modifing this to send multiple requests by matches in the futu
     endMarker="# END InsertManyExample"
     language="py"
   />
+
+</TabItem>
+<TabItem value="delete_by_id" label="Delete by id">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START DeleteObjectExample"
+  endMarker="# END DeleteObjectExample"
+  language="py"
+/>
 
 </TabItem>
 <TabItem value="delete_many" label="Delete many">
@@ -307,6 +317,19 @@ We are evaluating modifing this to send multiple requests by matches in the futu
 
 </TabItem>
 </Tabs>
+
+#### `insert_many` with DataObjects
+
+The `insert_many` function allows you to pass in a list of `DataObject` instances or a list of dictionaries. This is useful if you want to specify additional information to the properties, such as cross-references, object uuid, or a custom vector.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START InsertManyDataObjectExample"
+  endMarker="# END InsertManyDataObjectExample"
+  language="py"
+/>
+
+
 
 
 ### `query`
@@ -535,7 +558,7 @@ Each response includes attributes such as `objects` and `generated`. Then, each 
 
 To limit the response payload, you can specify which properties and metadata to return.
 
-Additionally, to view the response object in a more readable format, you can use the `json.dumps()` function as shown below
+<!-- Additionally, to view the response object in a more readable format, you can use the `json.dumps()` function as shown below
 
 <FilteredTextBlock
   text={PythonCode}
@@ -551,7 +574,7 @@ This is the formatted output.
   startMarker="# START ResultJSONDisplayResults"
   endMarker="# END ResultJSONDisplayResults"
   language="bash"
-/>
+/> -->
 
 ### Tab completion in Jupyter notebooks
 
