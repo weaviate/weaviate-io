@@ -27,7 +27,7 @@ export default function Investors({ selectedType, handleSelected }) {
               </Link>
               , <Link to="https://www.gtmfund.com/">GTM-fund</Link>,{' '}
               <Link to="https://www.sav.vc/">Scale Asia Ventures</Link>, and{' '}
-              <Link to="https://www.alexvanleeuwen.co/">Alex van Leeuwen</Link>.
+              <Link to="https://www.alexvanleeuwen.co">Alex van Leeuwen</Link>.
             </p>
             <p>
               <strong>Find more information about us:</strong>

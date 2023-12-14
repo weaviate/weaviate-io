@@ -23,7 +23,7 @@ This page explains what modules are, and what purpose they serve in Weaviate.
 
 ## Introduction
 
-Weaviate adopts a modularized structure, where for examples functionalities such as vectorization or backups are carried out by *optional* modules.
+Weaviate has a modularized structure. Functionality such as vectorization or backups is handled by *optional* modules.
 
 The core of Weaviate, without any modules attached, is a pure vector-native database.
 [![Weaviate modules introduction](./img/weaviate-module-diagram.svg "Weaviate Module Diagram")](./img/weaviate-module-diagram.svg)

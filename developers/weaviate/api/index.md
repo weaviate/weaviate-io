@@ -19,13 +19,14 @@ image: og/docs/api.jpg
 
 This section includes references for the RESTful and GraphQL APIs. RESTful API end-points can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
 
-### References - GraphQL
-- [Get{}](./graphql/get.md)
-- [Aggregate{}](./graphql/aggregate.md)
-- [Explore{}](./graphql/explore.md)
-- [Filters](./graphql/filters.md)
+### References - Search
+- [Get](./graphql/get.md)
+- [Aggregate](./graphql/aggregate.md)
 - [Search operators](./graphql/search-operators.md)
+- [Conditional filters](./graphql/filters.md)
+- [Additional operators](./graphql/additional-operators.md)
 - [Additional properties](./graphql/additional-properties.md)
+- [Explore](./graphql/explore.md)
 
 ### References - RESTful API
 - [Overview](./rest/index.md)

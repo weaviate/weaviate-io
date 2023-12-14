@@ -41,10 +41,10 @@ class ManageDataClassesTest {
 
   @Test
   public void shouldManageDataClasses() {
-    // START CreateCollection  // START ReadOneCollection  // START UpdateCollection
+    // START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
     String className = "Article";
 
-    // END CreateCollection  // END ReadOneCollection  // END UpdateCollection
+    // END BasicCreateCollection  // END ReadOneCollection  // END UpdateCollection
 
     createCollection(className);
     readOneCollection(className);
@@ -53,7 +53,7 @@ class ManageDataClassesTest {
   }
 
   private void createCollection(String className) {
-    // START CreateCollection
+    // START BasicCreateCollection
     WeaviateClass emptyClass = WeaviateClass.builder()
       .className(className)
       .build();
@@ -63,7 +63,7 @@ class ManageDataClassesTest {
       .withClass(emptyClass)
       .run();
 
-    // END CreateCollection
+    // END BasicCreateCollection
 
     assertThat(result).isNotNull()
       .withFailMessage(() -> result.getError().toString())

@@ -1,5 +1,5 @@
 ---
-title: GraphQL - Additional properties
+title: Additional properties
 sidebar_position: 45
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional properties', 'additional', 'underscore']

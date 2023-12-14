@@ -1,8 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/graphql.filters.nearText.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START NearTextJinaai"
+      endMarker="# END NearTextJinaai"
+      language="py"
+    />
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
@@ -48,7 +58,7 @@ import weaviate from 'weaviate-ts-client';
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: { 'X-Jinaai-Api-Key': process.env['YOUR_JINAAI_API_KEY'] }, 
+  headers: { 'X-Jinaai-Api-Key': process.env['YOUR_JINAAI_API_KEY'] },
 });
 
 const response = await client.graphql
@@ -118,7 +128,7 @@ func main() {
   }
   nearText := client.GraphQL().NearTextArgBuilder().
     WithConcepts(concepts).
-    WithDistance(distance). 
+    WithDistance(distance).
     WithMoveTo(moveTo).
     WithMoveAwayFrom(moveAwayFrom)
 
@@ -171,7 +181,7 @@ public class App {
 
     NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
       .concepts(new String[]{ "fashion" })
-      .distance(0.6f) 
+      .distance(0.6f)
       .moveTo(moveTo)
       .moveAwayFrom(moveAway)
       .build();

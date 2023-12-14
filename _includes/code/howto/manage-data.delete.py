@@ -132,7 +132,7 @@ result = collection.data.delete_many(
     # highlight-end
 )
 
-print (result)
+print(result)
 # END DryRun
 
 assert result.matches == N
