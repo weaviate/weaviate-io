@@ -24,9 +24,9 @@ collection_name = "Article"
 if client.collections.exists(collection_name):
     client.collections.delete(collection_name)
 
-# START CreateCollection
+# START BasicCreateCollection
 client.collections.create("Article")
-# END CreateCollection
+# END BasicCreateCollection
 
 # Test
 assert client.collections.exists(collection_name)

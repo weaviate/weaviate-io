@@ -17,10 +17,10 @@ client = weaviate.Client(
 )
 
 
-# START CreateCollection  # START ReadOneCollection  # START UpdateCollection
+# START BasicCreateCollection  # START ReadOneCollection  # START UpdateCollection
 class_name = "Article"
 
-# END CreateCollection  # END ReadOneCollection  # END UpdateCollection
+# END BasicCreateCollection  # END ReadOneCollection  # END UpdateCollection
 
 # ================================
 # ===== CREATE A COLLECTION =====
@@ -30,11 +30,11 @@ class_name = "Article"
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
-# START CreateCollection
+# START BasicCreateCollection
 class_obj = {"class": class_name}
 
 client.schema.create_class(class_obj)  # returns null on success
-# END CreateCollection
+# END BasicCreateCollection
 
 # Test
 assert client.schema.get(class_name)["class"] == class_name

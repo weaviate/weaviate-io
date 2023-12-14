@@ -38,7 +38,7 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-  
+
 console.log(JSON.stringify(result, null, 2));
 // END GetNearText
 
@@ -181,7 +181,7 @@ assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 // ===== With GroupBy =====
 // ========================
 
-// groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
+// groupBy - https://weaviate.io/developers/weaviate/api/graphql/get#get-groupby
 // GetWithGroupBy
 result = await client.graphql
   .get()

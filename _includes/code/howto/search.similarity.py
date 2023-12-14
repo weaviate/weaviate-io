@@ -397,7 +397,7 @@ gql_query = """
 # ==============================
 
 
-# https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
+# https://weaviate.io/developers/weaviate/api/graphql/get#get-groupby
 # GetWithGroupbyPython
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
@@ -412,7 +412,7 @@ response = jeopardy.aggregate_group_by.near_text(
 # print the group names (as per group_by) and
 #       the total count (out of 100 as per object_limit)
 for group in response:
-    print (group.grouped_by.value, group.total_count)
+    print(group.grouped_by.value, group.total_count)
 # END GetWithGroupbyPython
 
 # Test results

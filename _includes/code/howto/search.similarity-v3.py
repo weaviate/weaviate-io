@@ -415,7 +415,7 @@ test_gqlresponse(response, gqlresponse)
 # ==============================
 
 
-# https://weaviate.io/developers/weaviate/api/graphql/get#groupby-argument
+# https://weaviate.io/developers/weaviate/api/graphql/get#get-groupby
 # GetWithGroupbyPython
 max_groups = 2
 max_objects_per_group = 2
