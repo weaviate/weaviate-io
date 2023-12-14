@@ -71,6 +71,7 @@ services:
     image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
+    - 50051:50051
     restart: on-failure:0
     environment:
       CONTEXTIONARY_URL: contextionary:9999
@@ -99,7 +100,7 @@ services:
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Vectorization settings
 

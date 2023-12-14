@@ -121,7 +121,7 @@ export default function SafetyTypes() {
             <p>
               <Link
                 className={styles.cardLink}
-                to="/developers/weaviate/configuration/compression"
+                to="/developers/weaviate/configuration/pq-compression"
               >
                 Learn more
               </Link>

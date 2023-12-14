@@ -137,6 +137,7 @@ services:
     image: semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
+    - 50051:50051
     restart: on-failure:0
     environment:
       QUERY_DEFAULTS_LIMIT: 25
@@ -157,7 +158,8 @@ services:
     image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
-     - "8080:8080"
+    - 8080:8080
+    - 50051:50051
     environment:
       QUERY_DEFAULTS_LIMIT: 20
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
@@ -238,6 +240,7 @@ services:
     ports:
     - 8080:8080
     - 6060:6060
+    - 50051:50051
     restart: on-failure:0
     volumes:
       - ./data-node-1:/var/lib/weaviate
@@ -265,6 +268,7 @@ services:
     ports:
     - 8081:8080
     - 6061:6060
+    - 50052:50051
     restart: on-failure:0
     volumes:
       - ./data-node-2:/var/lib/weaviate
@@ -293,6 +297,7 @@ services:
     ports:
     - 8082:8080
     - 6062:6060
+    - 50053:50051
     restart: on-failure:0
     volumes:
       - ./data-node-3:/var/lib/weaviate

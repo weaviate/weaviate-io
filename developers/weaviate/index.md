@@ -5,18 +5,12 @@ image: og/docs/introduction.jpg
 # tags: []
 ---
 
-import Badges from '/_includes/badges.mdx';
-
-<Badges/>
-
-## Overview
-
 Welcome to the documentation for **Weaviate**, an open source vector database.
 
 ### About the docs
 The content is grouped into categories by goals:
 
-| | 🔧<br/>How-to | 📚<br/>References | 💡<br/>Concepts | 🎓<br/>Tutorials |
+| |How-to |References |Concepts |Tutorials |
 | ----- | ----- | ----- | ----- | ----- |
 | **Goal** | **Solve** a problem | Find **itemized** information | **Explanations** of topics | Guided **lessons** |
 

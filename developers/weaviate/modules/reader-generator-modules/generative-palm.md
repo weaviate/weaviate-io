@@ -22,6 +22,8 @@ image: og/docs/modules/generative-palm.jpg
 
 Google MakerSuite support was added in version `1.22.4`.
 
+`gemini-pro` MakerSuite support was added in version `1.22.7`.
+
 :::
 
 ## Configuring `generative-palm` for VertexAI vs MakerSuite
@@ -50,7 +52,7 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ### Google MakerSuite
 
-At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
+At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://ai.google.dev/available_regions) for the latest information.
 
 #### API key for MakerSuite users
 
@@ -158,7 +160,7 @@ services:
 
 ## Schema configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 Note that the `projectId` parameter is required.
 
@@ -339,17 +341,21 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 
 ### Supported models
 
-You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and MakerSuite.
+You can specify the model as a part of the schema as shown earlier. Available models and names differ between Vertex AI and MakerSuite.
 
-The only available model for Vertex AI is `chat-bison`.
-The only available model for MakerSuite is `chat-bison-001`.
+Vertex AI:
+- `chat-bison` (default)
 
-The model has the following properties:
+MakerSuite:
+- `chat-bison-001` (default)
+- `gemini-pro`
 
-- Max input token: 8,192
-- Max output tokens: 1,024
-- Training data: Up to Feb 2023
+:::info Additional model support in progress
 
+- `gemini-pro-vision` for Vertex AI and MakerSuite
+- `gemini-pro` on Vertex AI
+
+:::
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

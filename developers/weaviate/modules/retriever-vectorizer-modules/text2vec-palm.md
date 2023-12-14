@@ -55,7 +55,7 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ### Google MakerSuite
 
-At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
+At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://ai.google.dev/available_regions) for the latest information.
 
 #### API key for MakerSuite users
 
@@ -105,7 +105,7 @@ services:
 
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/configuration/schema-configuration.md).
+You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings
 

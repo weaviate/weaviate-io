@@ -14,7 +14,7 @@ image: og/docs/concepts.jpg
 ::: -->
 
 :::info Related pages
-- [Configuration: Schema](../configuration/schema-configuration.md)
+- [Configuration: Schema](../manage-data/collections.mdx)
 :::
 
 ## Overview
@@ -192,7 +192,7 @@ Designing and adding a data schema does not need to be done manually. In the abs
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../configuration/schema-configuration.md).
+To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../manage-data/collections.mdx).
 
 For now, what's important to know is this:
 

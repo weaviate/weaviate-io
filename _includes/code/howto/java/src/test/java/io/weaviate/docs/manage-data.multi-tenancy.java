@@ -64,7 +64,8 @@ class ManageDataMultiTenancyTest {
 
   @Test
   public void shouldManageDataUpdate() {
-    String className = "MultiTenancyClass";
+    String className = "MultiTenancyCollection";
+    enableMultiTenancy(className);
     addTenantsToClass(className);
     listTenants(className);
     removeTenantsFromClass(className);
@@ -73,25 +74,18 @@ class ManageDataMultiTenancyTest {
     addCrossReference(className);
   }
 
-  private void addTenantsToClass(String className) {
-    // START AddTenantsToClass
-    WeaviateClass multiTenancyClass = WeaviateClass.builder()
-      .className("MultiTenancyClass")
+
+  private void enableMultiTenancy(String className) {
+    // START EnableMultiTenancy
+    WeaviateClass multiTenancyCollection = WeaviateClass.builder()
+      .className("MultiTenancyCollection")
       .multiTenancyConfig(MultiTenancyConfig.builder().enabled(true).build())
       .build();
 
     client.schema().classCreator()
-      .withClass(multiTenancyClass)
+      .withClass(multiTenancyCollection)
       .run();
-
-    client.schema().tenantsCreator()
-      .withClassName("MultiTenancyClass")
-      .withTenants(
-        Tenant.builder().name("tenantA").build(),
-        Tenant.builder().name("tenantB").build()
-      )
-      .run();
-    // END AddTenantsToClass
+    // END EnableMultiTenancy
 
     Result<WeaviateClass> result = client.schema().classGetter().withClassName(className).run();
     assertThat(result).isNotNull()
@@ -101,14 +95,25 @@ class ManageDataMultiTenancyTest {
       .extracting(Result::getResult).isNotNull()
       .extracting(WeaviateClass::getMultiTenancyConfig).isNotNull()
       .returns(true, MultiTenancyConfig::getEnabled);
+  }
 
+  private void addTenantsToClass(String className) {
+    // START AddTenantsToClass
+    client.schema().tenantsCreator()
+      .withClassName("MultiTenancyCollection")
+      .withTenants(
+        Tenant.builder().name("tenantA").build(),
+        Tenant.builder().name("tenantB").build()
+      )
+      .run();
+    // END AddTenantsToClass
     checkTenants(className);
   }
 
   private void listTenants(String className) {
     // START ListTenants
     client.schema().tenantsGetter()
-      .withClassName("MultiTenancyClass")
+      .withClassName("MultiTenancyCollection")
       .run();
     // END ListTenants
     checkTenants(className);
@@ -117,7 +122,7 @@ class ManageDataMultiTenancyTest {
   private void removeTenantsFromClass(String className) {
     // START RemoveTenants
     client.schema().tenantsDeleter()
-      .withClassName("MultiTenancyClass")
+      .withClassName("MultiTenancyCollection")
       .withTenants("tenantB", "tenantX") // tenantX will be ignored
       .run();
     // END RemoveTenants
@@ -134,7 +139,7 @@ class ManageDataMultiTenancyTest {
   private void createMTObject() {
     // START CreateMtObject
     Result<WeaviateObject> result = client.data().creator()
-      .withClassName("MultiTenancyClass") // The class to which the object will be added
+      .withClassName("MultiTenancyCollection") // The class to which the object will be added
       .withProperties(new HashMap<String, Object>() {{
         put("question", "This vector DB is OSS & supports automatic property type inference on import");
       }})
@@ -155,7 +160,7 @@ class ManageDataMultiTenancyTest {
   private void searchMT(String className) {
     // START Search
     Result<GraphQLResponse> result = client.graphQL().get()
-      .withClassName("MultiTenancyClass")
+      .withClassName("MultiTenancyCollection")
       .withFields(Field.builder().name("question").build())
       // highlight-start
       .withTenant("tenantA")
@@ -208,20 +213,20 @@ class ManageDataMultiTenancyTest {
     // START AddCrossRef
     // Add the cross-reference property to the multi-tenancy class
     client.schema().propertyCreator()
-      .withClassName("MultiTenancyClass")
+      .withClassName("MultiTenancyCollection")
       .withProperty(Property.builder()
         .name("hasCategory")
         .dataType(Collections.singletonList("JeopardyCategory")).build()
       )
       .run();
 
-    // Create the cross-reference from MultiTenancyClass object to the JeopardyCategory object
+    // Create the cross-reference from MultiTenancyCollection object to the JeopardyCategory object
     client.data().referenceCreator()
-      .withClassName("MultiTenancyClass")
+      .withClassName("MultiTenancyCollection")
       // highlight-start
       .withTenant("tenantA")
       // highlight-end
-      .withID(object.getId()) // MultiTenancyClass object id (a Jeopardy question)
+      .withID(object.getId()) // MultiTenancyCollection object id (a Jeopardy question)
       .withReferenceProperty("hasCategory")
       .withReference(
         client.data()

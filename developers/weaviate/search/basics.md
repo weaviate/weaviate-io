@@ -204,7 +204,7 @@ The output is like this:
 
 </details>
 
-To paginate through the entire database, use a [cursor](../manage-data/read-all-objects.mdx#list-every-object) instead of offset and limit.
+To paginate through the entire database, use a [cursor](../manage-data/read-all-objects.mdx#read-all-objects) instead of offset and limit.
 
 
 ## Specify object `properties`
