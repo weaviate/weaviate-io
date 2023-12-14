@@ -63,6 +63,12 @@ p {
   color: white;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-end;
+  gap: 40px;
+  justify-content: center;
+
   h3 {
     color: #130c49;
   }
@@ -80,14 +86,7 @@ p {
 }
 
 .investorLogos {
-  justify-content: center;
-  align-items: center;
-  padding-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 30px;
-  flex: 1;
+  flex: 1 15%;
 
   @media screen and (max-width: 780px) {
     flex-direction: column;
@@ -119,7 +118,9 @@ p {
 
 .investorDiagram {
   background: url('/img/site/investors-diagram.png');
-  background-size: cover;
-  width: 90%;
-  height: 330px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+  min-height: 400px;
 }
