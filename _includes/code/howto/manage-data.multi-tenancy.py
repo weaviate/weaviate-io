@@ -67,7 +67,7 @@ multi_collection = client.collections.get("MultiTenancyCollection")
 tenants = multi_collection.tenants.get()
 # highlight-end
 
-print (tenants)
+print(tenants)
 # END ListTenants
 
 # Test
@@ -159,10 +159,9 @@ multi_tenantA = multi_collection.with_tenant("tenantA")
 # highlight-start
 result = multi_tenantA.query.fetch_objects(
     limit=2,
-    filters=wvc.Filter("question").like("This vector*")
 )
 # highlight-end
-print (result.objects[0].properties)
+print(result.objects[0].properties)
 # END Search
 
 # Test

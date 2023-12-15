@@ -21,7 +21,7 @@ Humans have a remarkable ability to learn and build world models through the int
 If you’d like to explore this line of thinking further and the potential problems that need to be addressed when getting computers to take advantage of multimodal data, have a look at my previous [blog](https://weaviate.io/blog/multimodal-models) where I cover the topic in detail.
 
 :::info TLDR
-In this post we’ll touch on: 
+In this post we’ll touch on:
 - **Contrastive Learning** - One particular approach to training multimodal embedding models that can understand images, audio, video, text, and more
 - **Any-to-Any Search and Retrieval** - Using multimodal embedding models to perform any-to-any search and scaling these multimodal embeddings into production using Vector Databases (*With code examples!*)
 - **Multimodal Retrieval Augmented Generation(MM-RAG)**: Augmenting the generation from Large Multimodal Models(LMMs) with multimodal retrieval of images and more
@@ -114,12 +114,12 @@ The use of a vector database to store and perform fast and real-time retrieval o
 Retrieval augmented generation(RAG) allows us to pack retrieved context into a prompt so that a language model can read relevant information before generating a response. This allows us to scale the knowledge of large language models without having to train or fine-tune them every time we have updated information.
 
 By externalizing the knowledge of a model, [RAG can provide](https://cs.stanford.edu/~myasu/blog/racm3/) benefits such as:
-- **Scalability**: reducing the model size and training cost, as well as allowing easy expansion of knowledge 
+- **Scalability**: reducing the model size and training cost, as well as allowing easy expansion of knowledge
 - **Accuracy**: grounding the model to facts and reducing hallucination
 - **Controllability**: allowing updating or customizing the knowledge by simply performing CRUD operations in a vector DB
 - **Interpretability**: retrieved items serving as the reference to source in model predictions
 
-However, the issue with the current RAG workflows is that they only leverage retrieved text source material. This is because most LLMs only understand language and so any information that's retrieved had to be in text format … until now! 
+However, the issue with the current RAG workflows is that they only leverage retrieved text source material. This is because most LLMs only understand language and so any information that's retrieved had to be in text format … until now!
 
 Recently, there have been a group of large generative models, both closed and open source, that understand both text and images. As a result, we can now support multimodal RAG, where we can retrieve images from our vector database and pass those into the large multimodal model(LMM) to then generate with. This simple two-step process, illustrated below, is the main idea behind Multimodal-RAG.
 
@@ -213,7 +213,7 @@ GENERATED_DESCRIPTION = generate_description_from_image_gpt4(
 The cuteness is amplified by a handwritten sign hung around its neck with the words "FREE KISSES" and a little heart symbol, extending a sweet and whimsical offer to all who come near. The sign, coupled with the dog's innocent gaze, conjures up feelings of warmth and companionship. This tiny ambassador of affection sits proudly, almost as if understanding the joy it brings to those around it. With its compact size and affectionate demeanor, this little canine looks ready to dispense unlimited love and puppy kisses on demand.
 
 ### Use Text to Reconstruct the Image from DALL-E-3 (Diffusion Model):
- 
+
 Currently, GPT4-V can't produce images so to generate an image from the above description we will use the new DALL-E-3 model instead:
 
 <details>
@@ -231,7 +231,7 @@ def generate_image_dalee3(prompt):
     n=1,
   )
   result = response_oai.data[0].url
-  print (f"Generated image url: {result}")
+  print(f"Generated image url: {result}")
   return result
 image_url = generate_image_dalee3(GENERATED_DESCRIPTION)
 ```
