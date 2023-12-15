@@ -1,5 +1,5 @@
 ---
-title: GraphQL - Search operators
+title: Search operators
 sidebar_position: 20
 image: og/docs/api.jpg
 # tags: ['graphql', 'search operators']

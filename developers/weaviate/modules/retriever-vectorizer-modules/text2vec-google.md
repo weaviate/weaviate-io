@@ -64,7 +64,7 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ### Google MakerSuite
 
-At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
+At the time of writing (November 2023), MakerSuite is not available in all regions. See [this page](https://ai.google.dev/available_regions) for the latest information.
 
 #### API key for MakerSuite users
 

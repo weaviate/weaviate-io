@@ -1,8 +1,20 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.get.simple.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/graphql.get.simple.v3.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START ConsistencyExample"
+    endMarker="END ConsistencyExample"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
@@ -13,7 +25,7 @@ client = weaviate.Client("http://localhost:8080")
 resp = (
     client.query.get("Article", ["name"])
     .with_additional("isConsistent")
-    .with_consistency_level(ConsistencyLevel.ONE)
+    .with_consistency_level(ConsistencyLevel.QUORUM)
     .do()
 )
 
@@ -35,7 +47,7 @@ const response = await client.graphql
   .get()
   .withClassName('Article')
   .withFields('_additional { id isConsistent }')
-  .withConsistencyLevel('ONE')
+  .withConsistencyLevel('QUORUM')
   .do();
 
 console.log(JSON.stringify(response, null, 2));
@@ -48,7 +60,7 @@ console.log(JSON.stringify(response, null, 2));
 resp, err := client.GraphQL().Get().
     WithClassName("Article").
     WithFields(fields...).
-    WithConsistencyLevel(replication.ConsistencyLevel.ONE).
+    WithConsistencyLevel(replication.ConsistencyLevel.QUORUM).
     Do(ctx)
 ```
 
@@ -63,7 +75,7 @@ Field _additional = Field.builder()
       .build();
 
 Result<GraphQLResponse> result = client.graphQL().get()
-      .withClassName("Article").withConsistencyLevel(ConsistencyLevel.ONE)
+      .withClassName("Article").withConsistencyLevel(ConsistencyLevel.QUORUM)
       .withFields(name, _additional)
       .run();
 ```
@@ -74,7 +86,7 @@ Result<GraphQLResponse> result = client.graphQL().get()
 ```graphql
 {
   Get {
-    Article (consistencyLevel: ONE) {
+    Article (consistencyLevel: QUORUM) {
       name
       _additional {
         isConsistent

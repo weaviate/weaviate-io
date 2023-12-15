@@ -159,7 +159,7 @@ gql_query = """
 
 # START nearTextRerank Python
 # Reranking is not yet supported in the Python Client v4.
-print ("Work in Progress 👷🏼")
+print("Work in Progress 👷🏼")
 # END nearTextRerank Python
 
 expected_response = (
@@ -341,7 +341,7 @@ gql_query = """
 
 # START bm25Rerank Python
 # Reranking is not yet supported in the Python Client v4.
-print ("Work in Progress 👷🏼")
+print("Work in Progress 👷🏼")
 # END bm25Rerank Python
 
 
