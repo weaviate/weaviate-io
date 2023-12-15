@@ -17,12 +17,12 @@ import os
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
-client = weaviate.connect_to_wcs(
-    cluster_id="some-endpoint",
+client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
 )
+
 
 # ===============================
 # ===== QUERY WITH nearText =====
@@ -40,7 +40,7 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetNearTextPython
 
 # Test results
@@ -122,7 +122,7 @@ response = jeopardy.query.near_object(
 )
 
 for o in response.objects:
-  print(json.dumps(o.properties, indent=2))
+  print(o.properties)
 # END GetNearObjectPython
 
 # Test results
@@ -177,7 +177,7 @@ response = jeopardy.query.near_vector(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetNearVectorPython
 
 # Test results
@@ -232,7 +232,7 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetLimitOffsetPython
 
 # Test results
@@ -298,7 +298,7 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetWithDistancePython
 
 # Test results
@@ -353,7 +353,7 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END Autocut Python
 
 # Test results
@@ -553,7 +553,7 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetWithWherePython
 
 # Test results

@@ -18,13 +18,12 @@ import os
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
-client = weaviate.connect_to_wcs(
-    cluster_id="some-endpoint",
+client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
 )
-   
+
 # ==============================
 # ===== Basic Hybrid Query =====
 # ==============================
@@ -39,7 +38,7 @@ response = jeopardy.query.hybrid(
 # highlight-end
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridBasicPython
 
 # <!-- TESTS FROM THIS FILE HAVE NOT BEEN VALIDATED -->
@@ -122,7 +121,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
     # highlight-start
     print(o.metadata.score, o.metadata.explain_score)
     # highlight-end
@@ -215,7 +214,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END limit Python
 
 # Tests
@@ -285,7 +284,6 @@ gql_query = """
 """
 # gqlresponse = client.query.raw(gql_query)
 # print("--------------------------------------------------------------------------------")
-print(json.dumps(response, indent=2))
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
 
@@ -304,7 +302,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END autocut Python
 
 # Tests
@@ -368,7 +366,7 @@ gql_query = """
 # HybridWithAlphaPython
 client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
-    query="food", 
+    query="food",
     # highlight-start
     alpha=0.25,
     # highlight-end
@@ -376,7 +374,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridWithAlphaPython
 
 # Tests
@@ -453,9 +451,9 @@ response = jeopardy.query.hybrid(
   # highlight-end
   limit=3
 )
- 
+
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridWithFusionTypePython
 
 # Tests
@@ -512,7 +510,7 @@ gql_query = """
 }
 # END HybridWithFusionTypeGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
+# gqlresponse = client.query.raw(gql_query)
 # TODOv4 - update tests below
 # test_gqlresponse(response, gqlresponse)
 
@@ -533,7 +531,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridWithPropertiesPython
 
 # Tests
@@ -609,7 +607,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridWithPropertyWeightingPython
 
 # Tests
@@ -687,7 +685,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridWithVectorPython
 
 # Tests
@@ -767,7 +765,7 @@ response = jeopardy.query.hybrid(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END HybridWithFilterPython
 
 # Tests
