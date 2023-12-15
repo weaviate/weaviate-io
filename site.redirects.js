@@ -60,7 +60,11 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances',
         },
         {
-            to: '/developers/weaviate/configuration/indexes',
+            to: '/developers/weaviate/config-refs/schema/vector-index',
+            from: '/developers/weaviate/configuration/indexes',
+        },
+        {
+            to: '/developers/weaviate/config-refs/schema/vector-index',
             from: '/developers/weaviate/current/configuration/vector-index-type',
         },
         {

@@ -28,7 +28,7 @@ import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
 <PQTradeoffs />
 
-To configure HNSW, see [Configuration: Indexes](/developers/weaviate/configuration/indexes) .
+To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vector-index.md) .
 
 ## Enable PQ compression
 
@@ -502,7 +502,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
 
 ## Related pages
 
-- [Configuration: Indexes](../configuration/indexes.md)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Tutorial: Schema](../tutorials/schema.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

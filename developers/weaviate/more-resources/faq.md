@@ -110,7 +110,7 @@ image: og/docs/more-resources.jpg
 <details>
   <summary>Answer</summary>
 
-> The `text` and `string` datatypes differ in tokenization behavior. Note that `string` is now deprecated. Read more in [this section](../config-refs/schema.md#property-tokenization) on the differences.
+> The `text` and `string` datatypes differ in tokenization behavior. Note that `string` is now deprecated. Read more in [this section](../config-refs/schema/index.md#property-tokenization) on the differences.
 
 </details>
 
@@ -406,12 +406,12 @@ More concretely: If you had to pick between a machine that has 16 GB of RAM and 
 
 </details>
 
-#### Q: Data import takes long / is slow (slower than before v1.0.0), what is causing this and what can I do?
+#### Q: Data import takes long / is slow, what is causing this and what can I do?
 
 <details>
   <summary>Answer</summary>
 
-> The first supported vector index type HNSW is super fast at query time, but slower on vectorization. This means that adding and updating data objects costs relatively more time. When there are other vector index types available, you van try another vector index type.
+> HNSW is super fast at query time, but slower on vectorization. This means that adding and updating data objects costs relatively more time. You could try [asynchronous indexing](../config-refs/schema/vector-index.md#asynchronous-indexing), which separates data ingestion from vectorization.
 
 </details>
 

@@ -1,8 +1,8 @@
 ---
 title: Generative Search - AWS
-sidebar_position: 10
+sidebar_position: 11
 image: og/docs/modules/generative-aws.jpg
-# tags: ['generative', 'transformers', 'aws']
+# tags: ['generative', 'rag', 'aws']
 ---
 
 

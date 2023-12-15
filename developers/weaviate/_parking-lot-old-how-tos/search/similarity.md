@@ -255,7 +255,7 @@ To limit the number of results returned by a `near...` query, add the `limit` op
 
 You can set a threshold for similarity search by setting a maximum `distance`. The distance indicates how dissimilar two objects are.
 
-Multiple [distance metrics](../config-refs/distances.md) are available in Weaviate. You can set it in the schema [as shown here](../config-refs/schema.md#default-distance-metric).
+Multiple [distance metrics](../config-refs/distances.md) are available in Weaviate. You can set it in the schema [as shown here](../config-refs/schema/index.md#default-distance-metric).
 
 The example below searches the `JeopardyQuestion` class for objects best matching `"animals in movies"`, returning those with a `distance` less than `0.18`:
 
