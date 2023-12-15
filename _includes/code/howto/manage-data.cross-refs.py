@@ -84,7 +84,7 @@ client.collections.create(
 # CrossRefDefinition END
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-dataset.upload_objects(old_client, 100)  # batch-upload objects
+dataset.upload_objects(client, 100)  # batch-upload objects
 
 # =================================
 # ===== Add one-way cross-ref =====
@@ -173,11 +173,11 @@ category.config.add_property(
     # highlight-end
 )
 # END Collections TwoWay Category2
-dataset.upload_objects(old_client, 100)
+dataset.upload_objects(client, 100)
 
 # Delete any existing cross-references from the source and target objects
-del_props(sf_id, "hasCategory", "JeopardyQuestion")
-del_props(us_cities_id, "hasQuestion", "JeopardyCategory")
+# del_props(sf_id, "hasCategory", "JeopardyQuestion")
+# del_props(us_cities_id, "hasQuestion", "JeopardyCategory")
 
 # TwoWay Python
 import weaviate.classes as wvc
