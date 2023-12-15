@@ -9,10 +9,7 @@ from weaviate import WeaviateClient
 import weaviate_datasets
 import weaviate.classes as wvc
 from typing import List
-
-sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
-museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
+import os
 
 # https://stackoverflow.com/questions/76171703/in-weaviate-how-to-remove-a-property-in-existing-class/76177363#76177363
 # class_name is required to avoid the warning to use "class namespaced APIs"
@@ -23,12 +20,11 @@ museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
 #         del object_data["properties"][prop_name]
 #     client.data_object.replace(object_data["properties"], class_name, uuid)
 
-def del_props(uuid_to_update: str, collection_name: str, prop_names: List[str]) -> None:
-    global client
+def del_props(client: WeaviateClient, uuid_to_update: str, collection_name: str, prop_names: List[str]) -> None:
     collection = client.collections.get(collection_name)
 
     # fetch the object to update
-    object_data = collection.query.fetch_object_by_id(uuid_to_update)
+    object_data = collection.query.fetch_object_by_id(uuid_to_update, include_vector=True)
     properties_to_update = object_data.properties
 
     # remove unwanted properties
@@ -39,19 +35,22 @@ def del_props(uuid_to_update: str, collection_name: str, prop_names: List[str]) 
     # replace the properties
     collection.data.replace(
         uuid=uuid_to_update,
-        properties=properties_to_update
+        properties=properties_to_update,
+        vector=object_data.vector
     )
 
-
 # Instantiate the client anonymously
-client = weaviate.connect_to_local()
+client = weaviate.connect_to_local(
+    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
+)
 old_client = weaviate.Client("http://localhost:8080")
+
 
 # ===========================================================
 # ===== Define classes in the schema and upload dataset =====
 # ===========================================================
 
-client.collections.delete_all()
+client.collections.delete(["JeopardyQuestion", "JeopardyCategory"])
 
 client.collections.create(
     name="JeopardyCategory",
@@ -86,6 +85,17 @@ client.collections.create(
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
 dataset.upload_objects(client, 100)  # batch-upload objects
 
+# sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
+# us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
+# museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
+
+questions = client.collections.get("JeopardyQuestion")
+categories = client.collections.get("JeopardyCategory")
+
+question_obj_id = questions.query.fetch_objects(limit=1).objects[0].uuid
+category_obj_id = categories.query.fetch_objects(limit=1).objects[0].uuid
+category_obj_id_alt = categories.query.fetch_objects(limit=2).objects[1].uuid
+
 # =================================
 # ===== Add one-way cross-ref =====
 # =================================
@@ -93,15 +103,14 @@ dataset.upload_objects(client, 100)  # batch-upload objects
 # OneWay Python
 import weaviate.classes as wvc
 
-sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
-
 questions = client.collections.get("JeopardyQuestion")
+
 questions.data.reference_add(
-    from_uuid=sf_id,
+    from_uuid=question_obj_id,
     from_property="hasCategory",
     # highlight-start
-    ref=wvc.Reference.to(uuids=us_cities_id)
+    # ref=wvc.Reference.to(uuids=us_cities_id)
+    ref=wvc.Reference.to(uuids=category_obj_id)
     # highlight-end
 )
 # END OneWay Python
@@ -126,8 +135,7 @@ questions.data.reference_add(
 # # ===== Add bidirectional cross-ref =====
 # # =======================================
 
-client.collections.delete_all()
-
+client.collections.delete(["JeopardyQuestion", "JeopardyCategory"])
 
 # START Collections TwoWay Category1
 import weaviate.classes as wvc
@@ -160,6 +168,10 @@ client.collections.create(
 )
 # END Collections TwoWay Question
 
+dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
+dataset.upload_objects(client, 100)  # batch-upload objects
+
+
 # START Collections TwoWay Category2
 # Add the reference to JeopardyQuestion, after it was created
 category = client.collections.get("JeopardyCategory")
@@ -173,25 +185,21 @@ category.config.add_property(
     # highlight-end
 )
 # END Collections TwoWay Category2
-dataset.upload_objects(client, 100)
 
 # Delete any existing cross-references from the source and target objects
-# del_props(sf_id, "hasCategory", "JeopardyQuestion")
-# del_props(us_cities_id, "hasQuestion", "JeopardyCategory")
+del_props(client=client, uuid_to_update=question_obj_id, collection_name="JeopardyQuestion", prop_names=["hasCategory"])
+# del_props(client=client, uuid_to_update=category_obj_id, collection_name="JeopardyCategory", prop_names=["hasQuestion"])
 
 # TwoWay Python
 import weaviate.classes as wvc
-
-sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
 
 # For the "San Francisco" JeopardyQuestion object, add a cross-reference to the "U.S. CITIES" JeopardyCategory object
 questions = client.collections.get("JeopardyQuestion")
 # highlight-start
 questions.data.reference_add(
-    from_uuid=sf_id,
+    from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(us_cities_id)
+    ref=wvc.Reference.to(category_obj_id)
 )
 # highlight-end
 
@@ -199,9 +207,9 @@ questions.data.reference_add(
 categories = client.collections.get("JeopardyCategory")
 # highlight-start
 categories.data.reference_add(
-    from_uuid=us_cities_id,
+    from_uuid=category_obj_id,
     from_property="hasQuestion",
-    ref=wvc.Reference.to(sf_id)
+    ref=wvc.Reference.to(question_obj_id)
 )
 # highlight-end
 # END TwoWay Python
@@ -225,21 +233,17 @@ categories.data.reference_add(
 # ===================================
 
 # Delete any existing cross-references from the source object
-del_props(sf_id, "hasCategory", "JeopardyQuestion")
+del_props(client=client, uuid_to_update=question_obj_id, collection_name="JeopardyQuestion", prop_names=["hasCategory"])
 
 # Multiple Python
 import weaviate.classes as wvc
 
-sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
-museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
-
 questions = client.collections.get("JeopardyQuestion")
 questions.data.reference_add(
-    from_uuid=sf_id,
+    from_uuid=question_obj_id,
     from_property="hasCategory",
     # highlight-start
-    ref=wvc.Reference.to([us_cities_id, museums_id]) # add multiple references
+    ref=wvc.Reference.to([category_obj_id, category_obj_id_alt]) # add multiple references
     # highlight-end
 )
 # END Multiple Python
@@ -261,17 +265,14 @@ questions.data.reference_add(
 # Delete Python
 import weaviate.classes as wvc
 
-sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
-
 # From the "San Francisco" JeopardyQuestion object, delete the "MUSEUMS" category cross-reference
 questions = client.collections.get("JeopardyQuestion")
 # highlight-start
 questions.data.reference_delete(
 # highlight-end
-    from_uuid=sf_id,
+    from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(museums_id)
+    ref=wvc.Reference.to(category_obj_id)
 )
 # END Delete Python
 
@@ -293,17 +294,14 @@ questions.data.reference_delete(
 # Update Python
 import weaviate.classes as wvc
 
-sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
-
 # In the "San Francisco" JeopardyQuestion object, set the "hasCategory" cross-reference only to "MUSEUMS"
 questions = client.collections.get("JeopardyQuestion")
 # highlight-start
 questions.data.reference_replace(
 # highlight-end
-    from_uuid=sf_id,
+    from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(museums_id)
+    ref=wvc.Reference.to(category_obj_id)
 )
 # END Update Python
 
