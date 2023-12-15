@@ -22,7 +22,7 @@ Newer Weaviate documentation discuses "collections." Older Weaviate documentatio
 
 ## Create a collection
 
-To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema.md#auto-schema) creates them.
+To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema/index.md#auto-schema) creates them.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -124,7 +124,7 @@ For details, see:
 
 By default, Weaviate creates missing collections and missing properties. When you configure collections manually, you have more precise control of the collection settings.
 
-To disable [`auto-schema`](/developers/weaviate/config-refs/schema#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
+To disable [`auto-schema`](../config-refs/schema/index.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
 ## Specify a vectorizer
 
