@@ -1,0 +1,105 @@
+.benefitsBg {
+  background: #ededed;
+}
+
+.title {
+  text-align: center;
+  padding: 1rem 0 2rem 0;
+  max-width: 30rem;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.box {
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+  // margin-top: 2rem;
+
+  // @media screen and (max-width: 860px) {
+  //   grid-template-rows: 1fr 1fr 1fr;
+  // }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  max-width: 30%;
+
+  @media screen and (max-width: 860px) {
+    max-width: 100%;
+  }
+}
+
+.img {
+  width: 100%;
+  height: 6rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.flowerImg {
+  background-image: url('../../../../static/img/company/careers/flower.png');
+}
+
+.facesImg {
+  background-image: url('../../../../static/img/company/careers/square-faces.png');
+}
+
+.earthImg {
+  background-image: url('../../../../static/img/company/careers/earth.png');
+}
+
+.itemText {
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-theme='light'] {
+  .title {
+    p {
+      color: #1c1468;
+    }
+
+    h2 {
+      color: #1c1468;
+    }
+  }
+
+  .itemText {
+    h3 {
+      color: #1c1468;
+    }
+  }
+
+  .flowerImg {
+    background-image: url('../../../../static/img/company/careers/flower-light.png');
+  }
+
+  .facesImg {
+    background-image: url('../../../../static/img/company/careers/square-faces-light.png');
+  }
+
+  .earthImg {
+    background-image: url('../../../../static/img/company/careers/earth-light.png');
+  }
+}
