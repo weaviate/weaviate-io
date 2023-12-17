@@ -1,5 +1,5 @@
 ---
-title: GraphQL - Conditional filters
+title: Conditional filters
 sidebar_position: 35
 image: og/docs/api.jpg
 # tags: ['graphql', 'filters']

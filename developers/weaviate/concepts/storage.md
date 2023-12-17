@@ -39,7 +39,7 @@ Since version `v1.5.0`, the object and inverted store are implemented using an [
 
 Weaviate periodically merges older smaller segments into fewer larger segments. Since segments are already sorted, this is a relatively cheap operation - happening constantly in the background. Fewer, larger segments will make lookups more efficient. Especially on the inverted index where data is rarely replaced and often appended, instead of checking all past segments and aggregating potential results, Weaviate can check a single segment (or few large segments) and immediately find all required object pointers. In addition, segments are used to remove past versions of an object that are no longer required, e.g. after a delete or multiple updates.
 
-:::into Read more
+:::info Read more
 To learn more about Weaviate's LSM store, see the [in-line documentation](https://pkg.go.dev/github.com/weaviate/weaviate/adapters/repos/db/lsmkv).
 :::
 

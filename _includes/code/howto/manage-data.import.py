@@ -23,15 +23,17 @@ client = weaviate.connect_to_local(
     }
 )
 
+assert client.is_ready()
+
 # ============================
 # ===== Define the class =====
 # ============================
 
 # Clean slate
-client.collections.delete("YourName")
+client.collections.delete("YourCollection")
 
 client.collections.create(
-    "YourName",
+    "YourCollection",
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
 )
 
@@ -44,7 +46,7 @@ data = [
     {"title": f"Object {i+1}"} for i in range(5)
 ]
 
-collection = client.collections.get("YourName")
+collection = client.collections.get("YourCollection")
 
 # highlight-start
 response = collection.data.insert_many(data)
@@ -84,7 +86,7 @@ data = [
     ),
 ]
 
-collection = client.collections.get("YourName")  # Replace with your collection name
+collection = client.collections.get("YourCollection")  # Replace with your collection name
 collection.data.insert_many(data)
 
 # END BatchImportWithIDExample
@@ -123,7 +125,7 @@ data = [
     ),
 ]
 
-collection = client.collections.get("YourName")  # Replace with your collection name
+collection = client.collections.get("YourCollection")  # Replace with your collection name
 collection.data.insert_many(data)
 # END BatchImportWithVectorExample
 
@@ -138,6 +140,47 @@ response = collection.query.bm25(
 test_vector = response.objects[0].vector
 assert (test_vector[0] >= 0.1)
 assert (test_vector[0] < 0.11)
+
+# Clean up
+client.collections.delete(collection.name)
+
+
+# =======================================
+# ===== Batch import with cross-reference =====
+# =======================================
+
+# TODO - add in when reference feature added
+
+# target_collection = client.collections.create("TargetCollection")
+# target_collection.data.insert(
+#     {"title": "something"}
+# )
+# target_uuid = target_collection.query.fetch_objects(limit=1).objects[0].uuid
+
+# # BatchImportWithRefExample
+
+# data = [
+#     # use DataObject to provide uuid value
+#     wvc.DataObject(
+#         properties={"title": "Object 1"},
+#         # highlight-start
+#         # references=[wvc.Reference.to(uuid=target_uuid)],
+#         # highlight-end
+#     ),
+#     wvc.DataObject(
+#         properties={"title": "Object 2"},
+#         uuid=generate_uuid5({"title": "Object 2"})
+#     ),
+# ]
+
+# collection = client.collections.get("YourCollection")  # Replace with your collection name
+# insert_response = collection.data.insert_many(data)
+
+# # END BatchImportWithRefExample
+
+# # Tests
+# response = collection.query.fetch_object_by_id(insert_response.all_responses[0])
+
 
 # Clean up
 client.collections.delete(collection.name)

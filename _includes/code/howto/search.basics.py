@@ -8,8 +8,6 @@ import json, os
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
@@ -26,7 +24,7 @@ response = jeopardy.query.fetch_objects()
 # highlight-end
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END BasicGetPython
 
 # TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET
@@ -86,7 +84,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetWithLimitPython
 
 # Test results
@@ -150,7 +148,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetWithLimitOffsetPython
 
 # Test results
@@ -214,7 +212,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END GetPropertiesPython
 
 # Test results
@@ -409,6 +407,8 @@ gql_query = """
 # ===== GET WITH CROSS-REF EXAMPLES =====
 # ==============================
 
+# TODO - REVIEW this when 1.23 live & corresponding client live
+"""
 # GetWithCrossRefsPython
 # highlight-start
 import weaviate.classes as wvc
@@ -416,7 +416,7 @@ import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
-    return_properties=[
+    return_references=[
         # highlight-start
         wvc.FromReference(
             link_on="hasCategory",
@@ -431,9 +431,10 @@ response = jeopardy.query.fetch_objects(
 for o in response.objects:
     print(o.properties["question"])
     # print referenced objects
-    for ref in o.properties["hasCategory"].objects:
+    for ref in o.references["hasCategory"].objects:
         print(ref.properties)
 # END GetWithCrossRefsPython
+"""
 
 expected_response = (
 # GetWithCrossRefs Expected Results
@@ -513,7 +514,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))  # View the returned properties
+    print(o.properties)  # View the returned properties
     print(o.metadata.creation_time_unix)  # View the returned creation time
 # END GetWithMetadataPython
 
@@ -532,7 +533,7 @@ for o in response.objects:
 import weaviate.classes as wvc
 
 # Connect to the collection
-mt_collection = client.collections.get("AMultiTenancyCollection")
+mt_collection = client.collections.get("WineReviewMT")
 
 # Get the specific tenant's version of the collection
 # highlight-start
@@ -541,11 +542,11 @@ collection_tenant_a = mt_collection.with_tenant("tenantA")
 
 # Query tenantA's version
 result = collection_tenant_a.query.fetch_objects(
-    return_properties=["property1", "property2"],
+    return_properties=["review_body", "title"],
     limit=1,
 )
 
-print (result.objects[0].properties)
+print(result.objects[0].properties)
 # END MultiTenancy
 
 

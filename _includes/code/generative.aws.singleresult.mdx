@@ -1,49 +1,27 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/generative.singleprompt.examples.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="graphql" label="GraphQL">
-
-```graphql
-{
-  Get {
-    Article(
-      nearText: {
-        concepts: ["Italian food"]
-      }
-      limit: 1
-    ) {
-      title
-      summary
-      _additional {
-        # highlight-start
-        generate(
-          singleResult: {
-            prompt: """
-              Describe the following as a Facebook Ad: {summary}
-            """
-          }
-        ) {
-          singleResult
-          error
-        }
-        # highlight-end
-      }
-    }
-  }
-}
-```
-
+<TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GenerativeAWS"
+      endMarker="# END GenerativeAWS"
+      language="py"
+    />
 </TabItem>
-<TabItem value="py" label="Python">
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
 
-client  = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+client = weaviate.Client(
+  url="https://some-endpoint.weaviate.network/",
   additional_headers={
-      "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"
+        "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
+        "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
   }
 )
 
@@ -75,9 +53,12 @@ import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new ApiKey('learn-weaviate'),
-  headers: { 'X-Cohere-Api-Key': process.env['COHERE_API_KEY'] },
+  host: 'some-endpoint.weaviate.network',
+  apiKey: new ApiKey('YOUR-API-KEY'),
+  headers: {
+    'X-AWS-Access-Key': 'YOUR_ACCESS_KEY',
+    'X-AWS-Secret-Key': 'YOUR_SECRET_KEY'
+  },
 });
 
 // highlight-start
@@ -117,7 +98,10 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network",
     Scheme:  "https",
-    Headers: map[string]string{"X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"},
+    Headers: map[string]string{
+      "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
+      "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
+    },
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -170,9 +154,10 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
-    Map<String, String> headers = new HashMap<String, String>() {
-      {put("X-Cohere-Api-Key", "YOUR-COHERE-API-KEY");}
-    };
+    Map<String, String> headers = new HashMap<String, String>() { {
+      put("X-AWS-Access-Key", "YOUR_ACCESS_KEY");
+      put("X-AWS-Secret-Key", "YOUR_SECRET_KEY");
+    } };
     Config config = new Config("https", "some-endpoint.weaviate.network", headers);
     WeaviateClient client = new WeaviateClient(config);
 
@@ -204,6 +189,39 @@ public class App {
       return;
     }
     System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    Article(
+      nearText: {
+        concepts: ["Italian food"]
+      }
+      limit: 1
+    ) {
+      title
+      summary
+      _additional {
+        # highlight-start
+        generate(
+          singleResult: {
+            prompt: """
+              Describe the following as a Facebook Ad: {summary}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+        # highlight-end
+      }
+    }
   }
 }
 ```
@@ -245,7 +263,8 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
-    -H "X-Cohere-Api-Key: $COHERE_API_KEY" \
+    -H "X-AWS-Access-Key: $YOUR_ACCESS_KEY" \
+    -H "X-AWS-Secret-Key: $YOUR_SECRET_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```

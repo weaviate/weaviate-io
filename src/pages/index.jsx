@@ -6,7 +6,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 import HomepageHeader from '/src/components/Home/Header';
 import HomepageFeatures from '/src/components/Home/FeaturesUpdate';
 import HomepageWhatYouCanDo from '/src/components/Home/WhatYouCanDoUpdate';
-import HomepageLovedByDevelopers from '/src/components/Home/LovedByDevelopers';
+import HomepageLovedByDevelopers from '/src/components/Home/LovedByDeveloperUpdate';
 import HomepageLearn from '/src/components/Home/Learn';
 import HomepageJoinCommunity from '/src/components/Home/JoinCommunityUpdate';
 import HomepageReady from '/src/components/Home/Contact';

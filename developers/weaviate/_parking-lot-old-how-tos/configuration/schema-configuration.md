@@ -179,7 +179,7 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
 <details>
   <summary>Additional information</summary>
 
-- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+- Read more about index types & compression in [Concepts: Vector index](../../concepts/vector-index.md).
 
 </details>
 

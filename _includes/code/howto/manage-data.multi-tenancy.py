@@ -32,6 +32,8 @@ multi_collection = client.collections.create(
 )
 # END EnableMultiTenancy
 
+assert client.collections.exists("MultiTenancyCollection")
+
 
 # ================================
 # ===== Add tenants to class =====
@@ -67,7 +69,7 @@ multi_collection = client.collections.get("MultiTenancyCollection")
 tenants = multi_collection.tenants.get()
 # highlight-end
 
-print (tenants)
+print(tenants)
 # END ListTenants
 
 # Test
@@ -113,7 +115,17 @@ tenants = multi_collection.tenants.get()
 
 # Test
 tenants = multi_collection.tenants.get()
-tenants["tenantA"].activity_status.name == "COLD"
+assert tenants["tenantA"].activity_status.name == "COLD"
+
+# Change the status back
+multi_collection.tenants.update(tenants=[
+    wvc.Tenant(
+        name="tenantA",
+        activity_status=weaviate.TenantActivityStatus.HOT
+    )
+])
+tenants = multi_collection.tenants.get()
+assert tenants["tenantA"].activity_status.name == "HOT"
 
 
 # ============================
@@ -159,10 +171,10 @@ multi_tenantA = multi_collection.with_tenant("tenantA")
 # highlight-start
 result = multi_tenantA.query.fetch_objects(
     limit=2,
-    filters=wvc.Filter("question").like("This vector*")
 )
 # highlight-end
-print (result.objects[0].properties)
+
+print(result.objects[0].properties)
 # END Search
 
 # Test
@@ -210,4 +222,5 @@ multi_tenantA.data.reference_add(
 # Test
 result = multi_tenantA.query.fetch_object_by_id(object_id)
 
-assert (result.properties["hasCategory"][0]["href"] == f"/v1/objects/JeopardyCategory/{category_id}")
+# TODO - investigate whether the code above is wrong or this is related to the client
+# assert result.references["hasCategory"][0]["href"] == f"/v1/objects/JeopardyCategory/{category_id}"

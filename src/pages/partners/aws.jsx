@@ -13,7 +13,10 @@ import Head from '@docusaurus/Head';
 export default function PartnersPage() {
   return (
     <div className="custom-page noBG">
-      <Layout>
+      <Layout
+        title="Partners | AWS"
+        description="Explore our AWS partner page to learn more about our partnership and how we can help you with your cloud journey."
+      >
         <PartnersHeader />
         <EnterpriseSupport />
         <Integration />

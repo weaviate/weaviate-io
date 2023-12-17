@@ -14,7 +14,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.t
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
-Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections. 
+Every object in Weaviate belongs to exactly one collection. Use the examples on this page to manage your collections.
 
 :::note Terminology
 Newer Weaviate documentation discuses "collections." Older Weaviate documentation refers to "classes" instead. Expect to see both terms throughout the documentation.
@@ -22,14 +22,14 @@ Newer Weaviate documentation discuses "collections." Older Weaviate documentatio
 
 ## Create a collection
 
-To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](/developers/weaviate/config-refs/schema#auto-schema) creates them.  
+To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema/index.md#auto-schema) creates them.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateCollection"
-      endMarker="# END CreateCollection"
+      startMarker="# START BasicCreateCollection"
+      endMarker="# END BasicCreateCollection"
       language="py"
     />
   </TabItem>
@@ -37,8 +37,8 @@ To create a collection, specify at least the collection name. If you don't speci
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START CreateCollection"
-      endMarker="# END CreateCollection"
+      startMarker="# START BasicCreateCollection"
+      endMarker="# END BasicCreateCollection"
       language="py"
     />
   </TabItem>
@@ -46,8 +46,8 @@ To create a collection, specify at least the collection name. If you don't speci
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START CreateCollection"
-      endMarker="// END CreateCollection"
+      startMarker="// START BasicCreateCollection"
+      endMarker="// END BasicCreateCollection"
       language="ts"
     />
   </TabItem>
@@ -55,8 +55,8 @@ To create a collection, specify at least the collection name. If you don't speci
   <TabItem value="java" label="Java">
     <FilteredTextBlock
       text={JavaCode}
-      startMarker="// START CreateCollection"
-      endMarker="// END CreateCollection"
+      startMarker="// START BasicCreateCollection"
+      endMarker="// END BasicCreateCollection"
       language="java"
     />
   </TabItem>
@@ -64,8 +64,8 @@ To create a collection, specify at least the collection name. If you don't speci
   <TabItem value="go" label="Go">
     <FilteredTextBlock
       text={GoCode}
-      startMarker="// START CreateCollection"
-      endMarker="// END CreateCollection"
+      startMarker="// START BasicCreateCollection"
+      endMarker="// END BasicCreateCollection"
       language="go"
     />
   </TabItem>
@@ -77,10 +77,10 @@ Properties are the data fields in your collection. Each property has a name and 
 
 <details>
   <summary>
-    Additional information  
+    Additional information
   </summary>
 
-Use properties to configure additional parameters such as data type, index characteristics, or tokenization. 
+Use properties to configure additional parameters such as data type, index characteristics, or tokenization.
 
 For details, see:
 
@@ -108,7 +108,7 @@ For details, see:
       language="py"
     />
   </TabItem>
-  
+
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
@@ -117,7 +117,7 @@ For details, see:
       language="ts"
     />
   </TabItem>
-    
+
 </Tabs>
 
 ## Disable auto-schema
@@ -126,47 +126,47 @@ By default, Weaviate creates missing collections and missing properties. When yo
 
 To disable [`auto-schema`](/developers/weaviate/config-refs/schema#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
-## Specify a vectorizer	
+## Specify a vectorizer
 
-Specify a `vectorizer` for a collection. 
+Specify a `vectorizer` for a collection.
 
 <details>
   <summary>Additional information</summary>
 
-Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).	
+Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
 - [Vectorizer configuration references](/developers/weaviate/config-refs/schema#vectorizer)
 
 </details>
 
-<Tabs groupId="languages">	
-  <TabItem value="py" label="Python (v4)">	
-    <FilteredTextBlock	
-      text={PyCode}	
-      startMarker="# START Vectorizer"	
-      endMarker="# END Vectorizer"	
-      language="py"	
-    />	
-  </TabItem>	
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Vectorizer"
+      endMarker="# END Vectorizer"
+      language="py"
+    />
+  </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">	
-    <FilteredTextBlock	
-      text={PyCodeV3}	
-      startMarker="# START Vectorizer"	
-      endMarker="# END Vectorizer"	
-      language="py"	
-    />	
-  </TabItem>	
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Vectorizer"
+      endMarker="# END Vectorizer"
+      language="py"
+    />
+  </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">	
-    <FilteredTextBlock	
-      text={TSCode}	
-      startMarker="// START Vectorizer"	
-      endMarker="// END Vectorizer"	
-      language="ts"	
-    />	
-  </TabItem>	
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## Specify vectorizer settings
@@ -201,6 +201,47 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 </Tabs>
+
+## Set vector index type
+
+The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndex"
+      endMarker="// END SetVectorIndex"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
 
 ## Property-level settings
 
@@ -276,7 +317,7 @@ If you choose to bring your own vectors, you should specify the `distance metric
 For details on the configuration parameters, see the following:
 
 - [Distances](../config-refs/distances.md)
-- [Vector indexes](/developers/weaviate/config-refs/schema#vectorindexconfig)
+- [Vector indexes](../config-refs/schema/vector-index.md)
 
 </details>
 
@@ -504,7 +545,7 @@ This configuration for nested objects defines the following:
 
     - `last_name` has `text` data type
     - `address` has `object` data type
-    
+
 - The `address` property has two nested properties (`street` and `city`)
 
 ```json
@@ -591,7 +632,7 @@ This configuration for image search defines the following:
 - The vectorizer module (`img2vec-neural`)
 
   - The `image` property configures collection to store image data.
-  
+
 - The vector index distance metric (`cosine`)
 - A set of properties (`image`), with the `image` property set as `blob`.
 

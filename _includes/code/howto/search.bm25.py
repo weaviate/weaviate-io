@@ -18,10 +18,11 @@ import json
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
-client = weaviate.connect_to_wcs(
-    cluster_id="some-endpoint",
+client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+        "X-Cohere-Api-Key": os.getenv("COHERE_APIKEY"),
+        "X-HuggingFace-Api-Key": os.getenv("HUGGINGFACE_APIKEY"),
     }
 )
 
@@ -39,7 +40,7 @@ response = jeopardy.query.bm25(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END BM25BasicPython
 
 
@@ -92,7 +93,7 @@ gql_query = """
 }
 # END BM25BasicGraphQL
 """
-gqlresponse = client.query.raw(gql_query)
+# gqlresponse = client.query.raw(gql_query)
 # Tests
 # assert gqlresponse == expected_response
 # End test
@@ -113,7 +114,7 @@ response = jeopardy.query.bm25(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
     # highlight-start
     print(o.metadata.score)
     # highlight-end
@@ -210,7 +211,7 @@ response = jeopardy.query.bm25(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END limit Python
 
 # Tests
@@ -296,7 +297,7 @@ response = jeopardy.query.bm25(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END autocut Python
 
 # Tests
@@ -371,7 +372,7 @@ response = jeopardy.query.bm25(
 
 for o in response.objects:
     # highlight-start
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
     print(o.metadata.score)
     # highlight-end
 # END BM25WithPropertiesPython
@@ -464,7 +465,7 @@ response = jeopardy.query.bm25(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END BM25WithBoostedPropertiesPython
 
 # Tests
@@ -656,7 +657,7 @@ response = jeopardy.query.bm25(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END BM25WithFilterPython
 
 # Tests

@@ -17,10 +17,10 @@ client = weaviate.Client(
 )
 
 
-# START CreateCollection  # START ReadOneCollection  # START UpdateCollection
+# START BasicCreateCollection  # START ReadOneCollection  # START UpdateCollection
 class_name = "Article"
 
-# END CreateCollection  # END ReadOneCollection  # END UpdateCollection
+# END BasicCreateCollection  # END ReadOneCollection  # END UpdateCollection
 
 # ================================
 # ===== CREATE A COLLECTION =====
@@ -30,11 +30,11 @@ class_name = "Article"
 if client.schema.exists(class_name):
     client.schema.delete_class(class_name)
 
-# START CreateCollection
+# START BasicCreateCollection
 class_obj = {"class": class_name}
 
 client.schema.create_class(class_obj)  # returns null on success
-# END CreateCollection
+# END BasicCreateCollection
 
 # Test
 assert client.schema.get(class_name)["class"] == class_name
@@ -98,6 +98,47 @@ assert len(result["properties"]) == 1  # no "body" from the previous example
 
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
+
+
+# ===============================================
+# ===== SetVectorIndex =====
+# ===============================================
+
+# START SetVectorIndex
+class_obj = {
+    'class': 'Article',
+    'properties': [
+        {
+            'name': 'title',
+            'dataType': ['text'],
+        },
+    ],
+    'vectorizer': 'text2vec-openai',  # this could be any vectorizer
+    # highlight-start
+    "vectorIndexType": "flat",
+    "vectorIndexConfig": {
+        "bq": {
+            "enabled": True,  # Enable BQ compression. Default: False
+            "rescoreLimit": 200,  # The minimum number of candidates to fetch before rescoring. Default: -1 (No limit)
+            "cache": True,  # Enable use of vector cache. Default: False
+        },
+        "vectorCacheMaxObjects": 100000,  # Cache size if `cache` enabled. Default: 1000000000000
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetVectorIndex
+
+# Test
+result = client.schema.get(class_name)
+assert result['vectorizer'] == 'text2vec-openai'
+assert result['vectorIndexType'] == 'flat'
+assert len(result['properties']) == 1  # no 'body' from the previous example
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
 
 # ===========================
 # ===== MODULE SETTINGS =====

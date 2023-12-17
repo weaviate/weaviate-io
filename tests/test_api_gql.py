@@ -6,7 +6,7 @@ import utils
     "script_loc",
     [
         "./_includes/code/graphql.get.simple.py",
-        "./_includes/code/graphql.get.beacon.py",
+        "./_includes/code/graphql.get.beacon.v3.py",
     ],
 )
 def test_py(empty_weaviates, script_loc):

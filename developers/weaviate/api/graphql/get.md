@@ -1,5 +1,5 @@
 ---
-title: GraphQL - Get{}
+title: Object-level queries (Get)
 sidebar_position: 10
 image: og/docs/api.jpg
 # tags: ['graphql', 'get{}']
@@ -13,17 +13,36 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Overview
 
-:::info Related pages
-- [How-to: Search: Basics](../../search/basics.md)
-:::
+This page covers object-level query functions. They are collectively referred to as `Get` queries within.
 
-The `Get{}` function is for retrieving individual objects.
 
-## Syntax and query structure
+### Parameters
 
-The `Get{}` function requires the target class name, and the properties to be fetched.
+A `Get` query requires the target collection to be specified.
 
-For example, the following will fetch `JeopardyQuestion` objects and their `question`, `answer` and `points`  properties:
+- In GraphQL calls, the properties to be retrieved to be must be specified explicitly.
+- In gRPC calls, all properties are fetched by default.
+
+- Metadata retrieval is optional in both GraphQL and gRPC calls.
+
+#### Available arguments
+
+Each `Get` query can have any of the following types of arguments:
+
+| Argument | Description | Required |
+| -------- | ----------- | -------- |
+| Collection | Also called "class". The object collection to be retrieved from. | Yes |
+| Properties | Properties to be retrieved | Yes (GraphQL) <br/> (No if using gRPC API) |
+| Cross-references | Cross-references to be retrieved | No |
+| [Metadata](./additional-properties.md) | Metadata (additional properties) to be retrieved | No |
+| [Conditional filters](./filters.md) | Filter the objects to be retrieved | No |
+| [Search operators](./search-operators.md) | Specify the search strategy (e.g. near text, hybrid, bm25) | No |
+| [Additional operators](./additional-operators.md) | Specify additional operators (e.g. limit, offset, sort) | No |
+| [Tenant name](#multi-tenancy) | Specify the tenant name | Yes, if multi-tenancy enabled. ([Read more: what is multi-tenancy?](../../concepts/data.md#multi-tenancy)) |
+| [Consistency level](#consistency-levels) | Specify the consistency level | No |
+
+
+#### Example usage
 
 import GraphQLGetSimple from '/_includes/code/graphql.get.simple.mdx';
 
@@ -58,13 +77,18 @@ Accordingly, such a `Get` query is not suitable for a substantive object retriev
 - [How-to search: Basics](../../search/basics.md)
 :::
 
-### groupBy argument
+### `Get` groupBy
 
-You can use `groupBy` to retrieve groups of objects from Weaviate. The `groupBy{}` argument is structured as follows for the `Get{}` function:
+You can use retrieve groups of objects that match the query.
+
+The groups are defined by a property, and the number of groups and objects per group can be limited.
 
 import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 
 <GroupbyLimitations />
+
+
+#### Syntax
 
 ```graphql
 {
@@ -99,20 +123,22 @@ import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 }
 ```
 
-:::tip Read more
-- [How-to search: Basics # groupBy](../../search/basics.md#groupby)
-:::
+#### Example usage:
+
+
+import GraphQLGroupBy from '/_includes/code/graphql.get.groupby.mdx';
+
+<GraphQLGroupBy/>
+
 
 ### Consistency levels
 
 :::info Added in `v1.19`
 :::
 
-Where replication is configured, the `Get{}` function can be configured to return results with different levels of consistency. This is useful when you want to retrieve the most up-to-date data, or when you want to retrieve data as fast as possible.
-
-The available consistency options are:
+Where replication is enabled, you can specify a `consistency` argument with a `Get` query. The available options are:
 - `ONE`
-- `QUORUM`
+- `QUORUM` (Default)
 - `ALL`
 
 Read more about consistency levels [here](../../concepts/replication-architecture/consistency.md).
@@ -126,22 +152,12 @@ import GraphQLGetConsistency from '/_includes/code/graphql.get.consistency.mdx';
 :::info Added in `v1.20`
 :::
 
-Where multi-tenancy is configured, the `Get{}` function can be configured to return results from a specific tenant.
+In a multi-tenancy collection, each `Get` query must specify a tenant.
 
-You can do so by specifying the `tenant` parameter in the GraphQL query as shown below, or using the equivalent client function.
+import GraphQLGetMT from '/_includes/code/graphql.get.multitenancy.mdx';
 
-```graphql
-{
-  Get {
-    Article (
-      tenant: "tenantA"
-      limit: 1
-    ) {
-      name
-    }
-  }
-}
-```
+<GraphQLGetMT/>
+
 
 :::tip Read more
 - [How-to manage data: Multi-tenancy operations](../../manage-data/multi-tenancy.md)
@@ -149,13 +165,15 @@ You can do so by specifying the `tenant` parameter in the GraphQL query as shown
 
 ## Cross-references
 
-You can retrieve any cross-referenced properties.
+Weaviate supports cross-references between objects. Each cross-reference behaves like a property.
+
+You can retrieve cross-referenced properties with a `Get` query.
 
 import GraphQLGetBeacon from '/_includes/code/graphql.get.beacon.mdx';
 
 <GraphQLGetBeacon/>
 
-import GraphQLGetBeaconUnfiltered from '!!raw-loader!/_includes/code/graphql.get.beacon.py';
+import GraphQLGetBeaconUnfiltered from '!!raw-loader!/_includes/code/graphql.get.beacon.v3.py';
 
 <details>
   <summary>Expected response</summary>
@@ -246,6 +264,10 @@ For further information see:
 :::tip Read more
 - [References: GraphQL: Additional Operators](./additional-operators.md)
 :::
+
+
+##  Related pages
+- [How-to: Search: Basics](../../search/basics.md)
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
