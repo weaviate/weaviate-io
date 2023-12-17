@@ -18,7 +18,7 @@ image: og/docs/modules/generative-google.jpg
 
 :::info Releases and versions
 
-`generative-google` was added in version `v1.19.1` under its old name, `generative-palm`.
+`generative-google` was added in version `v1.19.1` under its previous name, `generative-palm`.
 
 Google MakerSuite support was added in version `1.22.4`.
 :::
@@ -152,6 +152,7 @@ services:
       semitechnologies/weaviate:||site.weaviate_version||
     ports:
       - 8080:8080
+      - 50051:50051
     restart: on-failure:0
     environment:
       QUERY_DEFAULTS_LIMIT: 25

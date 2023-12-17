@@ -324,7 +324,7 @@ const siteRedirects = {
             ],
         },
 
-        // rename google modules
+        // Rename google modules
         {
             to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
             from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
@@ -333,7 +333,6 @@ const siteRedirects = {
             to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
             from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
         },
-
 
         // moved Quickstart installation to Quickstart
         {
@@ -420,11 +419,6 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
-        // TEMP Redirect
-        {
-            to: "/developers/weaviate/modules/reader-generator-modules/generative-palm",
-            from: "/developers/weaviate/modules/reader-generator-modules/generative-google"
-        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

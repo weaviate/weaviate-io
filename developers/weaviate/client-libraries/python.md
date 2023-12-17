@@ -65,8 +65,8 @@ A port for gRPC must be open on your Weaviate server. If you are running Weaviat
 
 ```yaml
     ports:
-     - "8080:8080"
-     - "50051:50051"
+     - 8080:8080
+     - 50051:50051
 ```
 
 #### WCS availability
