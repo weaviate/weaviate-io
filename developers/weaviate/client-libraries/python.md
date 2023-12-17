@@ -320,7 +320,7 @@ We are evaluating modifing this to send multiple requests by matches in the futu
 
 #### `insert_many` with DataObjects
 
-The `insert_many` function allows you to pass in a list of `DataObject` instances or a list of dictionaries. This is useful if you want to specify additional information to the properties, such as cross-references, object uuid, or a custom vector.
+The `insert_many` function takes a list of `DataObject` instances or a list of dictionaries. This is useful if you want to specify additional information to the properties, such as cross-references, object uuid, or a custom vector.
 
 <FilteredTextBlock
   text={PythonCode}
