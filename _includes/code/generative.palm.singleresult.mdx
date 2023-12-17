@@ -20,7 +20,7 @@ import weaviate
 client  = weaviate.Client(
   url = "https://some-endpoint.weaviate.network/",
   additional_headers={
-      "X-Palm-Api-Key": "YOUR-PALM-API-KEY"
+      "X-Google-Api-Key": "YOUR-GOOGLE-API-KEY"
   }
 )
 
@@ -54,7 +54,7 @@ const client = weaviate.client({
   scheme: 'https',
   host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
-  headers: { 'X-Palm-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your PALM API key
+  headers: { 'X-Google-Api-Key': process.env['GOOGLE_API_KEY'] },  // Replace with your GOOGLE API key
 });
 
 // highlight-start
@@ -94,7 +94,7 @@ func main() {
   cfg := weaviate.Config{
     Host:    "some-endpoint.weaviate.network",
     Scheme:  "https",
-    Headers: map[string]string{"X-Palm-Api-Key": "YOUR-PALM-API-KEY"},
+    Headers: map[string]string{"X-Google-Api-Key": "YOUR-GOOGLE-API-KEY"},
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -148,7 +148,7 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() {
-      {put("X-Palm-Api-Key", "YOUR-PALM-API-KEY");}
+      {put("X-Google-Api-Key", "YOUR-GOOGLE-API-KEY");}
     };
     Config config = new Config("https", "some-endpoint.weaviate.network", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -255,7 +255,7 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
-    -H "X-Palm-Api-Key: $PALM_API_KEY" \
+    -H "X-Google-Api-Key: $GOOGLE_API_KEY" \
     -d @- \
     https://some-endpoint.weaviate.network/v1/graphql
 ```

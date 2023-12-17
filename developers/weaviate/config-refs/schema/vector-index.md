@@ -168,8 +168,8 @@ services:
     image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
-     - "8080:8080"
-     - "50051:50051"
+     - 8080:8080
+     - 50051:50051
     environment:
       QUERY_DEFAULTS_LIMIT: 25
       QUERY_MAXIMUM_RESULTS: 10000

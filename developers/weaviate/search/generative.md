@@ -26,7 +26,7 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
 
    - [`generative-openai`](../modules/reader-generator-modules/generative-openai.md)
    - [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md)
-   - [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)
+   - [`generative-google`](../modules/reader-generator-modules/generative-google.md)
 
  2. Configure the target collection to use the generator module. For details, see schema configuration on the module reference page.
  3. Query your database to retrieve one or more objects.
@@ -215,7 +215,7 @@ The output is like this:
 
 - [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
 - [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
-- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
+- [References: Modules: generative-google](../modules/reader-generator-modules/generative-google.md)
 - [API References: GraphQL: Get](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

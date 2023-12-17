@@ -26,9 +26,9 @@ If you are new to Weaviate, this is a good place to start.
 :::
 
 We prepared a starter Docker Compose file, which will let you:
-* Run vector searches with `Cohere`, `HuggingFace`, `OpenAI`, and `Google PaLM`.
+* Run vector searches with `Cohere`, `HuggingFace`, `OpenAI`, and `Google` modules.
 * Search already vectorized data – no vectorizer required.
-* Retrieval augmentated generation (RAG) with `OpenAI` (i.e. `gpt-4`), `Cohere`, and `Google PaLM`.
+* Retrieval augmentated generation (RAG) with `OpenAI` (i.e. `gpt-4`), `Cohere`, `Google` modules.
 
 ### Download and run
 
@@ -58,7 +58,7 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-palm,text2vec-openai,generative-openai,generative-cohere,generative-palm,ref2vec-centroid,reranker-cohere,qna-openai'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-google,text2vec-openai,generative-openai,generative-cohere,generative-google,ref2vec-centroid,reranker-cohere,qna-openai'
       CLUSTER_HOSTNAME: 'node1'
 volumes:
   weaviate_data:

@@ -324,6 +324,16 @@ const siteRedirects = {
             ],
         },
 
+        // Rename google modules
+        {
+            to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+        },
+        {
+            to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+        },
+
         // moved Quickstart installation to Quickstart
         {
             to: '/developers/weaviate/quickstart',
@@ -361,15 +371,15 @@ const siteRedirects = {
             to: '/developers/weaviate/manage-data/collections',
             from: '/developers/weaviate/configuration/schema-configuration',
         },
-        
+
      // Products to Pricing redirects
 
         {
             to: "/pricing",
             from: "/products",
-          },
+        },
 
-          {
+        {
             to: "/pricing",
             from: "/products/byoc",
         },
@@ -409,11 +419,6 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
-        // TEMP Redirect
-        {
-            to: "/developers/weaviate/modules/reader-generator-modules/generative-palm",
-            from: "/developers/weaviate/modules/reader-generator-modules/generative-google"
-        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {
