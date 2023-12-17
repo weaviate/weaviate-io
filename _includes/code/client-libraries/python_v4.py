@@ -6,20 +6,27 @@ client = weaviate.connect_to_local()  # Connect with default parameters
 
 assert client.is_ready()
 
+"""
 # EmbeddedInstantiationBasic
 import weaviate
 
 client = weaviate.connect_to_embedded()  # Connect with default parameters
 # END EmbeddedInstantiationBasic
+"""
 
+client = weaviate.connect_to_embedded(
+    port=8085,
+    grpc_port=50055
+)  # Connect with default parameters
 assert client.is_ready()
 
 # WCSInstantiation
 import weaviate
+import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url="YOUR_WCS_URL",
-    auth_credentials=weaviate.AuthApiKey("YOUR_API_KEY")
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
 )
 # END WCSInstantiation
 
@@ -29,10 +36,10 @@ assert client.is_ready()
 import weaviate
 
 client = weaviate.connect_to_wcs(
-    cluster_url="YOUR_WCS_URL",
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
     auth_credentials=weaviate.AuthClientPassword(
-        username=os.environ["MY_USERNAME"],
-        password=os.environ["MY_PASSWORD"]
+        username=os.getenv("WCS_USERNAME"),  # Your WCS username
+        password=os.getenv("WCS_PASSWORD")   # Your WCS password
     )
 )
 # END WCSwOIDCInstantiation
@@ -43,14 +50,14 @@ assert client.is_ready()
 import weaviate
 
 client = weaviate.connect_to_custom(
-    http_host="YOUR_HTTP_HOST",
-    http_port="YOUR_HTTP_PORT",
-    http_secure=True,
-    grpc_host="YOUR_gRPC_HOST",
-    grpc_port="YOUR_gRPC_PORT",
-    grpc_secure=True,
+    http_host="localhost",
+    http_port="8080",
+    http_secure=False,
+    grpc_host="localhost",
+    grpc_port="50051",
+    grpc_secure=False,
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Or any other inference API keys
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Or any other inference API keys
     }
 )
 
@@ -75,7 +82,7 @@ import os
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    headers={"X-OpenAI-Api": os.environ["OPENAI_APIKEY"]}
+    headers={"X-OpenAI-Api": os.getenv("OPENAI_APIKEY")}
 )
 # END LocalInstantiationWithHeaders
 
@@ -91,19 +98,20 @@ assert client.is_ready()
 
 # DirectInstantiationFull
 import weaviate
+import os
 
 client = weaviate.WeaviateClient(
     connection_params=weaviate.ConnectionParams.from_params(
-        http_host="YOUR_HTTP_HOST",
-        http_port="YOUR_HTTP_PORT",
-        http_secure=True,
-        grpc_host="YOUR_gRPC_HOST",
-        grpc_port="YOUR_gRPC_PORT",
-        grpc_secure=True,
+        http_host="localhost",
+        http_port="8099",
+        http_secure=False,
+        grpc_host="localhost",
+        grpc_port="50052",
+        grpc_secure=False,
     ),
-    auth_client_secret=weaviate.AuthApiKey("YOUR_APIKEY"),
+    auth_client_secret=weaviate.AuthApiKey("secr3tk3y"),
     additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
     additional_config=weaviate.AdditionalConfig(
         startup_period=10,
@@ -118,6 +126,10 @@ assert client.is_ready()
 # Collection instantiation
 # =====================================================================================
 
+client = weaviate.connect_to_local()
+client.collections.delete("TestArticle")
+assert not client.collections.exists("TestArticle")
+
 # START CreateCollectionExample
 import weaviate
 import weaviate.classes as wvc
@@ -126,7 +138,8 @@ client = weaviate.connect_to_local()
 
 collection = client.collections.create(
     name="TestArticle",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(),
+    generative_config=wvc.Configure.Generative.cohere(),
     properties=[
         wvc.Property(
             name="title",
@@ -135,6 +148,63 @@ collection = client.collections.create(
     ]
 )
 # END CreateCollectionExample
+
+assert client.collections.exists("TestArticle")
+testarticles = client.collections.get("TestArticle")
+articles_config = testarticles.config.get()
+assert articles_config.name == "TestArticle"
+assert len(articles_config.properties) == 1
+
+client = weaviate.connect_to_local()
+for cname in ["TestArticle", "TestAuthor"]:
+    client.collections.delete(cname)
+    assert not client.collections.exists(cname)
+
+
+# START CreateCollectionWithRefsExample
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+articles = client.collections.create(
+    name="TestArticle",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(),
+    generative_config=wvc.Configure.Generative.cohere(),
+    properties=[
+        wvc.Property(
+            name="title",
+            data_type=wvc.DataType.TEXT
+        )
+    ]
+)
+
+authors = client.collections.create(
+    name="TestAuthor",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(),
+    generative_config=wvc.Configure.Generative.cohere(),
+    properties=[
+        wvc.Property(
+            name="name",
+            data_type=wvc.DataType.TEXT
+        )
+    ],
+    references=[
+        wvc.ReferenceProperty(
+            name="wroteArticle",
+            target_collection="TestArticle"
+        )
+    ]
+)
+# END CreateCollectionWithRefsExample
+
+
+for cname in ["TestArticle", "TestAuthor"]:
+    assert client.collections.exists(cname)
+    collection = client.collections.get(cname)
+    collection_config = collection.config.get()
+    assert collection_config.name == cname
+
 
 # START GetCollectionExample
 import weaviate
@@ -150,8 +220,12 @@ collection = client.collections.get("TestArticle")
 # =====================================================================================
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]},
+    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
 )
+
+categories = client.collections.get("JeopardyCategory")
+response = categories.query.fetch_objects(limit=0)
+target_uuid = response.objects[0].uuid
 
 # START CreateObjectExample
 questions = client.collections.get("JeopardyQuestion")
@@ -159,13 +233,47 @@ questions = client.collections.get("JeopardyQuestion")
 tmp_uuid = questions.data.insert(
     properties={
         "question": "This is the capital of Australia."
-    }
+    },
+    references=[  # For adding cross-references
+        wvc.Reference.to(
+            uuids=[target_uuid]
+        )
+    ]
 )
 # END CreateObjectExample
 
 from uuid import UUID
 
 assert type(tmp_uuid) == UUID
+
+# START InsertManyExample
+questions = client.collections.get("JeopardyQuestion")
+
+properties = [{"question": f"Test Question {i+1}"} for i in range(5)]
+response = questions.data.insert_many(properties)
+# END InsertManyExample
+
+# START InsertManyDataObjectExample
+from weaviate.util import generate_uuid5
+
+questions = client.collections.get("JeopardyQuestion")
+
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.DataObject(
+        properties=properties,
+        # END InsertManyDataObjectExample
+        # TODO - add this back in when `references` available
+        # references=[
+        #     wvc.Reference.to(uuids=[target_uuid])
+        # ],
+        # START InsertManyDataObjectExample
+        uuid=generate_uuid5(properties)
+    )
+
+response = questions.data.insert_many(properties)
+# END InsertManyDataObjectExample
 
 # START DeleteObjectExample
 questions = client.collections.get("JeopardyQuestion")
@@ -174,13 +282,6 @@ deleted = questions.data.delete_by_id(uuid=tmp_uuid)
 # END DeleteObjectExample
 
 assert deleted == True
-
-# START InsertManyExample
-questions = client.collections.get("JeopardyQuestion")
-
-properties = [{"question": f"Test Question"} for i in range(5)]
-response = questions.data.insert_many(properties)
-# END InsertManyExample
 
 # START DeleteManyExample
 from weaviate.classes import Filter
@@ -197,7 +298,7 @@ response = questions.data.delete_many(
 # =====================================================================================
 
 client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]},
+    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
 )
 
 # START BM25QueryExample
@@ -377,28 +478,29 @@ _GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('f448a778-78bb-5565-9b3b-
 # END ResultDisplayOutput
 """
 
-# START ResultJSONDisplayExample
-import json
+# THIS DOES NOT RELIABLY WORK AS THE PROPS CAN CONTAIN DATETIME
+# # START ResultJSONDisplayExample
+# import json
 
-questions = client.collections.get("JeopardyQuestion")
-response = questions.query.fetch_objects(limit=1)
+# questions = client.collections.get("JeopardyQuestion")
+# response = questions.query.fetch_objects(limit=1)
 
-# Print result object properties
-for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
-# END ResultJSONDisplayExample
+# # Print result object properties
+# for o in response.objects:
+#     print(o.properties)
+# # END ResultJSONDisplayExample
 
-"""
-# START ResultJSONDisplayResults
-{
-  "points": 100.0,
-  "answer": "Jonah",
-  "air_date": "2001-01-10T00:00:00Z",
-  "round": "Jeopardy!",
-  "question": "This prophet passed the time he spent inside a fish offering up prayers"
-}
-# END ResultJSONDisplayResults
-"""
+# """
+# # START ResultJSONDisplayResults
+# {
+#   "points": 100.0,
+#   "answer": "Jonah",
+#   "air_date": "2001-01-10T00:00:00Z",
+#   "round": "Jeopardy!",
+#   "question": "This prophet passed the time he spent inside a fish offering up prayers"
+# }
+# # END ResultJSONDisplayResults
+# """
 
 # IteratorBasic
 all_objects = [question for question in questions.iterator()]

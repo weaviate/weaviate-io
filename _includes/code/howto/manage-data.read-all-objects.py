@@ -11,7 +11,7 @@ client = weaviate.connect_to_local(
 # ============================
 
 # START ReadAllProps
-collection = client.collections.get("CollectionName")
+collection = client.collections.get("WineReview")
 
 # highlight-start
 for item in collection.iterator():
@@ -24,7 +24,7 @@ for item in collection.iterator():
 # =========================================
 
 # START ReadAllVectors
-collection = client.collections.get("CollectionName")
+collection = client.collections.get("WineReview")
 
 for item in collection.iterator(
     # highlight-start
@@ -42,7 +42,7 @@ for item in collection.iterator(
 # =========================================
 
 # START ReadAllTenants
-multi_collection = client.collections.get("MultiTenancyCollection")
+multi_collection = client.collections.get("WineReviewMT")
 
 # Get a list of tenants
 # highlight-start
