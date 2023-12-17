@@ -19,11 +19,11 @@ Weaviate provides the necessary APIs to iterate through all your data. This is u
 
 This is done with the help of the `after` operator, also called the [cursor API](../api/graphql/additional-operators.md#cursor-with-after).
 
-:::info Iterator 
+:::info Iterator
 The new API clients (currently supported by the Python Client v4), encapsulate this functionality as an `Iterator`.
 :::
 
-## Read all objects
+## Read object properties and ids
 
 The following code iterates through all objects, providing the properties and id for each object.
 
@@ -75,7 +75,7 @@ The following code iterates through all objects, providing the properties and id
   </TabItem>
 </Tabs>
 
-## Read all objects with Vectors
+## Read all objects including vectors
 
 Read through all data including `vector embeddings`.
 
@@ -109,7 +109,7 @@ Read through all data including `vector embeddings`.
   </TabItem>
 </Tabs>
 
-## Read all objects with Tenants
+## Read all objects - Multi-tenant collections
 
 Iterate through all tenenats and read data for each.
 
