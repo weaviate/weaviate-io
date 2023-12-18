@@ -1,21 +1,36 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/graphql.search-operators.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GraphQLnearObject"
+    endMarker="END GraphQLnearObject"
+    language="py"
+  />
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-nearObject = {"id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"} # or {"beacon": "weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"}
+nearObject = {
+  "id": "32d5a368-ace8-3bb7-ade7-9f7ff03eddb6",  # or {"beacon": "weaviate://localhost/32d5a368-ace8-3bb7-ade7-9f7ff03eddb6"}
+  "distance": 0.6,
+}
 
 result = (
   client.query
   .get("Publication", "name")
   .with_additional("distance") # "certainty" only supported if distance==cosine
   .with_near_object(nearObject)
+  .with_limit(5)
   .do()
 )
 
@@ -37,7 +52,11 @@ const response = await client.graphql
   .get()
   .withClassName('Publication')
   .withFields('name _additional {certainty distance}}')  // certainty only supported if distance==cosine
-  .withNearObject({ id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6' })
+  .withNearObject({
+    id: '32d5a368-ace8-3bb7-ade7-9f7ff03eddb6',
+    distance: 0.6,
+  })
+  .withLimit(5)
   .do();
 console.log(response);
 ```
