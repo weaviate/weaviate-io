@@ -14,8 +14,8 @@ client = weaviate.connect_to_local()
 
 # Actual client instantiation
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_EDU_DEMO_URL"),
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_EDU_DEMO_RO_KEY")),
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     }

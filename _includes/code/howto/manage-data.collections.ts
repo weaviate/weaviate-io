@@ -309,6 +309,48 @@ console.log(JSON.stringify(result, null, 2));
 // Test
 assert.equal(result.vectorIndexConfig.distance, 'cosine');
 
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
+// ===============================================
+// ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
+// ===============================================
+
+// START SetGenerative
+const classWithGenerative = {
+  class: 'Article',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+  ],
+  vectorizer: 'text2vec-openai',  // this could be any vectorizer
+  // highlight-start
+  moduleConfig: {
+    'generative-openai': {}  // set your generative module
+  }
+  // highlight-end
+ };
+
+ // Add the class to the schema
+ result = await client
+  .schema
+  .classCreator()
+  .withClass(classWithGenerative)
+  .do();
+
+ // The returned value is the full class definition, showing all defaults
+ console.log(JSON.stringify(result, null, 2));
+ // END SetGenerative
+
+ // Test
+ Object.keys(result['moduleConfig']).includes('generative-openai');
+
+ // Delete the class to recreate it
+ await client.schema.classDeleter().withClassName(className).do();
+
+
 // =======================
 // ===== REPLICATION =====
 // =======================

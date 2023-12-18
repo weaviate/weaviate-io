@@ -123,6 +123,8 @@ services:
 
 You can define settings for this module in the schema.
 
+[See this page](../../manage-data/collections.mdx#specify-a-generative-module) for code examples on how to specify a generative module.
+
 ### OpenAI vs Azure OpenAI
 
 - **OpenAI** users can optionally set the `model` parameter.
