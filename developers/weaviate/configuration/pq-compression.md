@@ -185,9 +185,11 @@ If you are starting with a new collection, you should load between 10,000 and 10
 When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, try to chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
 
 <details>
+
   <summary>
     Download sample data
   </summary>
+
   <div>
     Use these scripts to get the data for these examples. If you are configuring your own system, you do not need to import this sample data.
   </div>
