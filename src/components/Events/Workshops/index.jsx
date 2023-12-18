@@ -21,6 +21,9 @@ export default function WorkshopSection() {
     <>
       <header>
         <div className={styles.container}>
+          <div className={styles.headerBox}>
+            <h2>All our upcoming events around the World</h2>
+          </div>
           <div className={styles.workshopWrapper}>
             <div className="workshopContainer"></div>
           </div>

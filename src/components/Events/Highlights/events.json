@@ -1,0 +1,32 @@
+[
+  {
+    "link": "/blog/zero-downtime-upgrades",
+    "type": "Blog",
+    "backgroundImage": "/img/site/multi-node-set-up.png",
+    "tagline": "Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup",
+    "photo": "avatar_etienne.png",
+    "name": "Etienne Dilocker",
+    "title": "CTO",
+    "date": "Nov 30, 2023"
+  },
+  {
+    "link": "/blog/rag-evaluation",
+    "type": "Blog",
+    "backgroundImage": "/img/site/rag-evaluation.png",
+    "tagline": "An Overview on RAG Evaluation",
+    "photo": "avatar_erika.png",
+    "name": "Erika Cardenas",
+    "title": "Developer Advocate",
+    "date": "November 21, 2023"
+  },
+  {
+    "link": "/learn/workshops",
+    "type": "Workshop",
+    "backgroundImage": "/img/site/Zain-workshop.jpg",
+    "tagline": "Workshop: Introduction to Weaviate",
+    "photo": "avatar_zain.png",
+    "name": "Zain Hasan",
+    "title": "Senior Dev Advocate",
+    "date": "Dec 13, 2023"
+  }
+]
