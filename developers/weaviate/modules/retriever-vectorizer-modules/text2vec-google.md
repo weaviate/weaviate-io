@@ -1,18 +1,19 @@
 ---
-title: text2vec-google
+title: text2vec-palm
 sidebar_position: 14
-image: og/docs/modules/text2vec-google.jpg
-# tags: ['text2vec', 'text2vec-google', 'palm', 'gcp']
+image: og/docs/modules/text2vec-palm.jpg
+# tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
 
 
 ## Overview
 
-The `text2vec-google` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
 
 :::info Releases and versions
 
-`text2vec-google` was added in version `v1.19.1` with its original name, `text2vec-palm`.
+<!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
+<!-- `text2vec-google` was added in version `v1.19.1` with its original name, `text2vec-palm`. -->
 
 Google MakerSuite support was added in version `1.22.4`.
 :::
@@ -29,16 +30,17 @@ Key notes:
     - The default model for MakerSuite `embedding-gecko-001`.
 
 
-### Changes from `text2vec-palm` to `text2vec-google`
+<!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
+<!-- ### Changes from `text2vec-palm` to `text2vec-google`
 
 Prior to Weaviate `v1.22.7`, the `text2vec-google` module was called `text2vec-palm`. The module is still available under the old name, but it will be removed in a future release.
 
 Along with the name change:
 - The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
-- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`.
+- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
 
 
-## Configuring `text2vec-google` for VertexAI or MakerSuite
+## Configuring `text2vec-palm` for VertexAI or MakerSuite
 
 The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
@@ -82,13 +84,13 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Docker Compose file
 
-To use `text2vec-google`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
+To use `text2vec-palm`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
 
 #### Parameters
 
-- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-google` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-google` to make it the default for all classes.
-- `GOOGLE_APIKEY` (Optional): Your Google API key. You can also provide the key at query time.
+- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-palm` to enable the module.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-palm` to make it the default for all classes.
+- `PALM_APIKEY` (Optional): Your Google API key. You can also provide the key at query time.
 
 ```yaml
 ---
@@ -105,9 +107,9 @@ services:
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
       # highlight-start
-      ENABLE_MODULES: text2vec-google
-      DEFAULT_VECTORIZER_MODULE: text2vec-google
-      GOOGLE_APIKEY: sk-foobar  # Optional; you can also provide the key at query time.
+      ENABLE_MODULES: text2vec-palm
+      DEFAULT_VECTORIZER_MODULE: text2vec-palm
+      PALM_APIKEY: sk-foobar  # Optional; you can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -134,10 +136,10 @@ You can configure how the module will behave in each class through the [Weaviate
     {
       "class": "Document",
       "description": "A class called document",
-      "vectorizer": "text2vec-google",
+      "vectorizer": "text2vec-palm",
       "moduleConfig": {
         // highlight-start
-        "text2vec-google": {
+        "text2vec-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-MODEL-ID",                     // Optional.
@@ -172,9 +174,9 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
     {
       "class": "Document",
       "description": "A class called document",
-      "vectorizer": "text2vec-google",
+      "vectorizer": "text2vec-palm",
       "moduleConfig": {
-        "text2vec-google": {
+        "text2vec-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-MODEL-ID",                     // Optional.
@@ -191,7 +193,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "description": "Content that will be vectorized",
           // highlight-start
           "moduleConfig": {
-            "text2vec-google": {
+            "text2vec-palm": {
               "skip": false,
               "vectorizePropertyName": false
             }
@@ -209,7 +211,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 ### API key
 
 You can supply the API key at query time by adding it to the HTTP header:
-- `"X-Google-Api-Key": "YOUR-GOOGLE-API-KEY"`
+- `"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"`
 
 ## Additional information
 
@@ -232,7 +234,7 @@ The available models for MakerSuite are:
 
 The Google API requires a `task_type` parameter at the time of vectorization for some models.
 
-This is not required with the `text2vec-google` module, as Weaviate determines the `task_type` Google API parameter based on the usage context.
+This is not required with the `text2vec-palm` module, as Weaviate determines the `task_type` Google API parameter based on the usage context.
 
 During object creation, Weaviate supplies `RETRIEVAL_DOCUMENT` as the task type. During search, Weaviate supplies `RETRIEVAL_QUERY` as the task type.
 
@@ -261,7 +263,7 @@ import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.examp
 
 ## Usage example
 
-This is an example of a `nearText` query with `text2vec-google`.
+This is an example of a `nearText` query with `text2vec-palm`.
 
 import CodeNearText from '/_includes/code/graphql.filters.nearText.palm.mdx';
 

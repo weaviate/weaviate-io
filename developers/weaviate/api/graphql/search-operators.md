@@ -397,7 +397,7 @@ Enabled by the modules:
 - [text2vec-huggingface](../../modules/retriever-vectorizer-modules/text2vec-huggingface.md),
 - [text2vec-transformers](../../modules/retriever-vectorizer-modules/text2vec-transformers.md),
 - [text2vec-contextionary](../../modules/retriever-vectorizer-modules/text2vec-contextionary.md).
-- [text2vec-google](../../modules/retriever-vectorizer-modules/text2vec-google.md).
+- [text2vec-palm](../../modules/retriever-vectorizer-modules/text2vec-google.md).
 - [multi2vec-clip](../../modules/retriever-vectorizer-modules/multi2vec-clip.md).
 
 This operator allows you to find data objects in the vicinity of the vector representation of a single or multiple concepts. It's supported by the `Get{}` function.

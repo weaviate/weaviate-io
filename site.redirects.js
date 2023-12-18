@@ -324,15 +324,25 @@ const siteRedirects = {
             ],
         },
 
-        // Rename google modules
+        // // Rename google modules
+        // {
+        //     to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
+        //     from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+        // },
+        // {
+        //     to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
+        //     from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+        // },
+        // REMOVE WHEN MODULE RENAMING IMPLEMENTED: Temp redirect.
         {
-            to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
-            from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+            to: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-google',
         },
         {
-            to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
-            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+            to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
         },
+
 
         // moved Quickstart installation to Quickstart
         {
