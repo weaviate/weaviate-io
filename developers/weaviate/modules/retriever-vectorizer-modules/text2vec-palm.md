@@ -222,9 +222,9 @@ The available models for MakerSuite are:
 
 The Google API requires a `task_type` parameter at the time of vectorization for some models.
 
-This is not required with `text2vec-palm` module, as Weaviate determines the `task_type` Google API parameter based on the usage context.
+This is not required with the `text2vec-google` module, as Weaviate determines the `task_type` Google API parameter based on the usage context.
 
-During object creation, Weaviate uses `RETRIEVAL_DOCUMENT` as the task type. During search, Weaviate uses `RETRIEVAL_QUERY` as the task type.
+During object creation, Weaviate supplies `RETRIEVAL_DOCUMENT` as the task type. During search, Weaviate supplies `RETRIEVAL_QUERY` as the task type.
 
 #### Note
 
