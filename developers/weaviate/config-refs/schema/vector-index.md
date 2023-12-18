@@ -122,6 +122,9 @@ This set of values is a good starting point for many use cases.
 
 ## Flat indexes
 
+:::info Added in `v1.23`
+:::
+
 Flat indexes are recommended for use cases where the number of objects per index is low, such as in multi-tenancy use cases.
 
 | Parameter | Type | Default | Changeable | Details |
