@@ -103,7 +103,7 @@ assert len(response.objects) == 5
 
 '''
 # START GraphQLSemanticPath
-# Semantic path is not supported by the V4 client. Please use a raw GraphQL query instead.
+# Semantic path is not yet supported by the V4 client. Please use a raw GraphQL query instead.
 response = client.graphql_raw_query(
 """
 {
@@ -164,7 +164,7 @@ for o in response.objects:
 # END GraphQLHybridSearch
 
     # TEST
-    assert len(o.metadata.score) > 0
+    assert o.metadata.score > 0
 
 
 # ========================================
@@ -194,4 +194,132 @@ for o in response.objects:
 # END GraphQLHybridWithVector
 
     # TEST
-    assert len(o.metadata.score) > 0
+    assert o.metadata.score > 0
+
+
+# ========================================
+# GraphQLHybridWithFilter
+# ========================================
+
+# START GraphQLHybridWithFilter
+collection = client.collections.get("Article")
+
+response = collection.query.hybrid(
+    query="How to catch an Alaskan Pollock",
+    alpha=0.5,
+    filters=wvc.Filter("wordCount").less_than(1000),
+    limit=5,
+)
+
+for o in response.objects:
+    print(o.properties)
+# END GraphQLHybridWithFilter
+
+# TEST
+assert len(response.objects) == 5
+
+
+# ========================================
+# GraphQLHybridWithPropertiesSpecified
+# ========================================
+
+# START GraphQLHybridWithPropertiesSpecified
+collection = client.collections.get("JeopardyQuestion")
+
+response = collection.query.hybrid(
+    query="Venus",
+    alpha=0.25,
+    query_properties=["question"],
+    return_metadata=wvc.MetadataQuery(score=True),
+    limit=5,
+)
+
+for o in response.objects:
+    print(o.properties)
+    print(o.metadata.score)
+# END GraphQLHybridWithPropertiesSpecified
+
+# TEST
+assert len(response.objects) == 5
+
+
+# ========================================
+# GraphQLBM25Basic
+# ========================================
+
+# START GraphQLBM25Basic
+collection = client.collections.get("Article")
+
+response = collection.query.bm25(
+    query="fox",
+    query_properties=["question"],
+    return_metadata=wvc.MetadataQuery(score=True),
+    limit=5,
+)
+
+for o in response.objects:
+    print(o.properties)
+    print(o.metadata.score)
+# END GraphQLBM25Basic
+
+# TEST
+assert len(response.objects) == 5
+
+
+# ========================================
+# GraphQLBM25WithFilter
+# ========================================
+
+# START GraphQLBM25WithFilter
+collection = client.collections.get("Article")
+
+response = collection.query.bm25(
+    query="how to fish",
+    return_metadata=wvc.MetadataQuery(score=True),
+    filters=wvc.Filter("wordCount").less_than(1000),
+    limit=5,
+)
+
+for o in response.objects:
+    print(o.properties)
+    print(o.metadata.score)
+# END GraphQLBM25WithFilter
+
+# TEST
+assert len(response.objects) == 5
+
+
+# ========================================
+# GraphQLQnAExample
+# ========================================
+
+'''
+# START GraphQLQnAExample
+# QnA module use is not yet supported by the V4 client. Please use a raw GraphQL query instead.
+response = client.graphql_raw_query(
+"""
+{
+  Get {
+    Article(
+      ask: {
+        question: "Who is the king of the Netherlands?",
+        properties: ["summary"],
+      },
+      limit: 1
+    ) {
+      title
+      _additional {
+        answer {
+          hasAnswer
+          property
+          result
+          startPosition
+          endPosition
+        }
+      }
+    }
+  }
+}
+"""
+# END GraphQLQnAExample
+'''

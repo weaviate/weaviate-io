@@ -307,14 +307,12 @@ import GraphQLFiltersHybridFilterExample from '/_includes/code/graphql.filters.h
 <GraphQLFiltersHybridFilterExample/>
 
 
-### Limiting BM25 properties
+### Specify object properties for BM25 search
 
 :::info Added in `v1.19`
 :::
 
-A `hybrid` operator can accept a `properties` array of strings that limits the set of properties that will be searched by the BM25 component of the search. If not specified, all text properties will be searched.
-
-In the examples below, the `alpha` parameter is set close to 0 to favor BM25 search, and changing the `properties` from `"question"` to `"answer"` will yield a different set of results.
+A `hybrid` operator can accept an array of strings to limit the set of properties for the BM25 component of the search. If unspecified, all text properties will be searched.
 
 import GraphQLFiltersHybridProperties from '/_includes/code/graphql.filters.hybrid.properties.mdx';
 
@@ -352,25 +350,15 @@ The `bm25` operator supports the following variables:
 Specific properties can be boosted by a factor specified as a number after the caret sign, for example `properties: ["title^3", "summary"]`.
 :::
 
+### Additional metadata response
+
+The BM25F `score` metadata can be optionally retrieved in the response. A higher score indicates higher relevance.
+
 ### Example query
 
 import GraphQLFiltersBM25 from '/_includes/code/graphql.filters.bm25.mdx';
 
 <GraphQLFiltersBM25/>
-
-### GraphQL response
-
-The `_additional` property in the GraphQL result exposes the score:
-
-```json
-{
-  "_additional": {
-    "score": "5.3201",
-    "distance": null,  # always null
-    "certainty": null  # always null
-  }
-}
-```
 
 <details>
   <summary>Expected response</summary>
@@ -456,9 +444,9 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 
 <QNATransformersAsk/>
 
-### GraphQL response
+### Additional metadata response
 
-The `_additional{}` property is extended with the answer and a certainty of the answer.
+The `answer` and a `certainty` can be retrieved.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
