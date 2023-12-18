@@ -396,19 +396,3 @@ If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-
-
-
-
-Hey folks, one more feature which will be included in the 1.23 release on the DB side: auto resource limiting
-Context:
-One pain-point that OpenAI mentioned specifically is that they don’t want to set GOMEMLIMIT and GOMAXPROCS for the ideal values.
-Instead, they expect Weaviate to determine those values automatically from the environment. In practice, these would be cgroup limits in the form of Kubernetes resource limits.
-So with this PR, and LIMIT_RESOURCES=true set, weaviate will configure  GOMEMLIMIT/GOMAXPROCS based on the available cores and memory.
-
-
-
-
-
-10:07
-Another main motivation for doing this is to introduce more guardrails into the application. Users should not be able to crash Weaviate by running out of resources.
