@@ -17,7 +17,8 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 client = weaviate.connect_to_embedded(
     port=8085,
     grpc_port=50055
-)  # Connect with default parameters
+)
+
 assert client.is_ready()
 
 # WCSInstantiation
@@ -161,6 +162,7 @@ for cname in ["TestArticle", "TestAuthor"]:
     assert not client.collections.exists(cname)
 
 
+# TODO - review why this ref isn't working
 # START CreateCollectionWithRefsExample
 import weaviate
 import weaviate.classes as wvc
@@ -189,12 +191,12 @@ authors = client.collections.create(
             data_type=wvc.DataType.TEXT
         )
     ],
-    references=[
-        wvc.ReferenceProperty(
-            name="wroteArticle",
-            target_collection="TestArticle"
-        )
-    ]
+    # references=[
+    #     wvc.ReferenceProperty(
+    #         name="wroteArticle",
+    #         target_collection="TestArticle"
+    #     )
+    # ]
 )
 # END CreateCollectionWithRefsExample
 
@@ -224,27 +226,28 @@ client = weaviate.connect_to_local(
 )
 
 categories = client.collections.get("JeopardyCategory")
-response = categories.query.fetch_objects(limit=0)
+response = categories.query.fetch_objects(limit=1)
 target_uuid = response.objects[0].uuid
 
+print(response)
+
+# TODO - review why why the below xref isn't working
 # START CreateObjectExample
 questions = client.collections.get("JeopardyQuestion")
 
-tmp_uuid = questions.data.insert(
+new_uuid = questions.data.insert(
     properties={
         "question": "This is the capital of Australia."
     },
-    references=[  # For adding cross-references
-        wvc.Reference.to(
-            uuids=[target_uuid]
-        )
-    ]
+    references={  # For adding cross-references
+        "hasCategory": wvc.Reference.to(uuids=[target_uuid])
+    }
 )
 # END CreateObjectExample
 
 from uuid import UUID
 
-assert type(tmp_uuid) == UUID
+assert type(new_uuid) == UUID
 
 # START InsertManyExample
 questions = client.collections.get("JeopardyQuestion")
@@ -254,31 +257,30 @@ response = questions.data.insert_many(properties)
 # END InsertManyExample
 
 # START InsertManyDataObjectExample
-from weaviate.util import generate_uuid5
+# from weaviate.util import generate_uuid5
 
-questions = client.collections.get("JeopardyQuestion")
+# questions = client.collections.get("JeopardyQuestion")
 
-data_objects = list()
-for i in range(5):
-    properties = {"question": f"Test Question {i+1}"}
-    data_object = wvc.DataObject(
-        properties=properties,
-        # END InsertManyDataObjectExample
-        # TODO - add this back in when `references` available
-        # references=[
-        #     wvc.Reference.to(uuids=[target_uuid])
-        # ],
-        # START InsertManyDataObjectExample
-        uuid=generate_uuid5(properties)
-    )
+# data_objects = list()
+# for i in range(5):
+#     properties = {"question": f"Test Question {i+1}"}
+#     data_object = wvc.DataObject(
+#         properties=properties,
+#         # END InsertManyDataObjectExample
+#         references=[
+#             wvc.Reference.to(uuids=target_uuid)
+#         ],
+#         # START InsertManyDataObjectExample
+#         uuid=generate_uuid5(properties)
+#     )
 
-response = questions.data.insert_many(properties)
+# response = questions.data.insert_many(data_objects)
 # END InsertManyDataObjectExample
 
 # START DeleteObjectExample
 questions = client.collections.get("JeopardyQuestion")
 
-deleted = questions.data.delete_by_id(uuid=tmp_uuid)
+deleted = questions.data.delete_by_id(uuid=new_uuid)
 # END DeleteObjectExample
 
 assert deleted == True
@@ -502,6 +504,7 @@ _GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('f448a778-78bb-5565-9b3b-
 # # END ResultJSONDisplayResults
 # """
 
+# TODO - review why this isn't working
 # IteratorBasic
 all_objects = [question for question in questions.iterator()]
 # END IteratorBasic
@@ -510,6 +513,7 @@ all_objects = [question for question in questions.iterator()]
 all_object_answer_ids = [question for question in questions.iterator(return_properties=["answer"])]
 # END IteratorAnswerOnly
 
+# TODO - review why this isn't working
 # IteratorMetadataOnly
 all_object_ids = [question for question in questions.iterator(return_metadata=wvc.MetadataQuery(creation_time_unix=True))]  # Only return IDs
 # END IteratorMetadataOnly
