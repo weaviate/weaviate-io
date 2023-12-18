@@ -126,7 +126,7 @@ You can configure how the module will behave in each class through the [Weaviate
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
 - `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (MakerSuite)
-- `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model use as the title.
+- `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title.
 
 #### Example
 
@@ -227,7 +227,7 @@ The available models for Vertex AI are:
 - `textembedding-gecko-multilingual@001` (stable)
 - `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
 
-The available models for MakerSuite are:
+The available model for MakerSuite is:
 - `embedding-gecko-001` (stable) (default)
 
 #### Task type
