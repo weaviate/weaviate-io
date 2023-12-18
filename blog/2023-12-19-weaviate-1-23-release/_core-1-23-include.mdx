@@ -6,10 +6,11 @@ Here are the release ⭐️*highlights*⭐️ relating to this release:
 
 <!-- truncate -->
 1. **AutoPQ** - Weaviate now automatically triggers the use of Product Quantization (PQ) for vector indexing. This improves the developer experience for switching on PQ. We've also added auto `segment` size setting.
-2. **Flat vector index + Binary Quantization** - Weaviate now supports another (`flat`) vector index type, with optional binary quantization. This is particularly useful for multi-tenancy use cases.
-3. **OSS LLM support through Anyscale** - Weaviate now supports open-source large language models such as Llama2-70b, CodeLlama-34b or Mistral-7B-Instruct.
-4. **Performance improvements** - We improved mean time to recovery (MMTR)) for Weaviate by changing the way shards are loaded. We also added automatic resource limiting to prevent out-of-memory errors.
-5. **Minor changes** - The `nodes` endpoint has been updated with a new `minimal` output default for those of you with many shards/tenants.
+1. **Flat vector index + Binary Quantization** - Weaviate now supports another (`flat`) vector index type, with optional binary quantization. This is particularly useful for multi-tenancy use cases.
+1. **OSS LLM support through Anyscale** - Weaviate now supports open-source large language models such as Llama2-70b, CodeLlama-34b or Mistral-7B-Instruct.
+1. **Performance improvements** - We improved mean time to recovery (MMTR) for Weaviate by changing the way shards are loaded. We also added automatic resource limiting to prevent out-of-memory errors.
+1. **Python client beta update** - This release coincies with a new beta release of the Python client. This release includes support for the new `1.23` changes, as well as additional syntax changes to make the client more intuitive.
+1. **Minor changes** - The `nodes` endpoint has been updated with a new `minimal` output default for those of you with many shards/tenants.
 
 :::tip Available on WCS
 `1.23` is already available on [Weaviate Cloud Services](https://console.weaviate.cloud/) - so try it out!
@@ -31,21 +32,66 @@ Together, AutoPQ and improved segment sizing make using PQ easier than ever.
 ![flat-index](./img/weaviate-release-1-23-flat-index_1.png#gh-light-mode-only)
 
 
-Weaviate now supports a new vector index type: `flat`, which is designed to minimize memory footprint for small object sets. This index type is particularly useful for multi-tenancy use cases, where each tenant's collection is relatively small.
+Weaviate now supports a new `flat` vector index type.
+
+As the name suggests, the `flat` index is a disk-based single layer of data objects, with a correspondingly small size and minimal memory footprint. This index type is particularly useful for multi-tenancy use cases, where each tenant's collection is relatively small, and thus does not need the overhead that comes with building `hnsw` indexes.
+
+The `flat` index can be combined with a vector cache, and binary quantization (BQ).
+
+Similarly to with HNSW indexes, the vector cache can be used to to improve query performance by storing vectors of the most recently used data objects. Note that it must be balanced with memory usage considerations, as each vector in the cache will occupy (~4 bytes * number of dimensions) of memory.
 
 
+### Binary quantization
 
+Binary quantization (BQ) compression is available for the `flat` index type.
+
+BQ works by converting each vector to a binary representation, such as consisting of N dimensions of signs. This binary representation is then used for distance calculations, instead of the original vector.
+
+Of course, this comes with some loss in similarity calculations. Weaviate deals with any loss in vector similarity accuracy by conditionally over-fetching and then re-scoring the results. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled.
+
+We expect that BQ will generally work better for vectors with higher dimensions. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
+
+* Read more about the `flat` index [here](/developers/weaviate/concepts/vector-index#flat-index).
 
 
 ## OSS LLM support (`generative-anyscale` module)
 
 ![Weaviate 1.23](./img/generative-anyscale.png)
 
+With the `1.23` release, it is easier to use Weaviate with many open-source large language models (LLMs) such as Llama2-70b, CodeLlama-34b or Mistral-7B-Instruct. This is made possible by the [generative-anyscale](/developers/weaviate/modules/reader-generator-modules/generative-anyscale) module.
+
+This module integrates Weaviate with the [Anyscale](https://www.anyscale.com/) service, which provides a hosted inference service for large language models. This allows Weaviate users to perform retrieval augmented generation (RAG) with open-source LLMs, without having to worry about the infrastructure required to run these models.
+
+Currently, these models are supported:
+
+* `meta-llama/Llama-2-70b-chat-hf`
+* `meta-llama/Llama-2-13b-chat-hf`
+* `meta-llama/Llama-2-7b-chat-hf`
+* `codellama/CodeLlama-34b-Instruct-hf`
+* `HuggingFaceH4/zephyr-7b-beta`
+* `mistralai/Mistral-7B-Instruct-v0.1`
+
+If you have used any of the other `generative` modules in Weaviate, the usage pattern is identical. Make sure you supply your Anyscale API key to Weaviate, and enjoy using these models!
+
+* Read more about the `generative-anyscale` module [here](/developers/weaviate/modules/reader-generator-modules/generative-anyscale).
+
+## Python client beta update
+
+The Weaviate Python client has been updated to support the new `1.23` features. This release also includes additional syntax changes to make the client more intuitive.
+
+This `4.4b2` beta release is designed to be used with Weaviate `1.23`. The nature of gRPC means that many changes are coupled between the server and the client. If you upgrade Weaviate to `1.23`, please also update the Python client to use them together.
+
 
 ## Performance improvements
+
 [Lazy shard loading](/developers/weaviate/concepts/data#lazy-shard-loading) allows you to start working with your data sooner. After a restart, shards load in the background. If the shard you want to query is already loaded, you can get your results right away. If the shard is not loaded yet, Weaviate prioritizes loading that shard and returns a response when it is ready.
 
 ## Minor changes
+
+The [`nodes` endpoint](/developers/weaviate/api/rest/nodes) can be used to output information about the nodes in your cluster.
+
+This endpoint has been updated with a new `output` parameter that has a `minimal` default. This is useful for those of you with many shards or tenants, as it reduces the amount of data returned by the endpoint.
+
 
 ## Summary
 
