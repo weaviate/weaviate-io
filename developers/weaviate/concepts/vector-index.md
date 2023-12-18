@@ -40,7 +40,7 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 
 ## Which vector index is right for me?
 
-Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a simple index that is fast to build and query, designed for small datasets. The `hnsw` index is a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
+Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a simple, lightweight index that is designed for small datasets. The `hnsw` index is a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
 
 A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
 
@@ -258,9 +258,11 @@ Alternatively, there is also the `tile` encoder. This encoder is currently exper
 :::info Added in `v1.23`
 :::
 
-The `flat` index is a simple index that is fast to build and query. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
+The `flat` index is a simple, lightweight index that is fast to build and has a very small memory footprint. This index type is a good choice for use cases where each end user (i.e. tenant) has their own, isolated, dataset, such as in a SaaS product for example, or a database of isolated record sets.
 
-As the name suggests, the flat index is a single layer of data objects. This provides an additional benefit of a small size. A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity for queries, unlike the `hnsw` index which has a logarithmic time complexity.
+As the name suggests, the flat index is a single layer of data objects. This provides an additional benefit of a small size. It is disk-backed, thus minimizing memory usage.
+
+A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
 
 ### Vector cache
 
@@ -268,11 +270,13 @@ The flat index can be combined with a vector cache to improve query performance.
 
 ### Binary quantization
 
-Binary quantization (BQ) is a technique that reduces the size of a vector index. BQ is available for the `flat` index type.
+Binary quantization (BQ) is a technique that can speed up vector search. BQ is available for the `flat` index type.
 
-BQ works by converting each vector to a binary representation. The binary representation is much smaller than the original vector. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements.
+BQ works by converting each vector to a binary representation. The binary representation is much smaller than the original vector. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
 
-The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector. Some vectorizers work better with BQ than others. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
+The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector.
+
+Some vectorizers work better with BQ than others. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
 
 #### Over-fetching / re-scoring
 
