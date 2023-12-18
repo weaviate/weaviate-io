@@ -6,29 +6,23 @@ image: og/docs/api.jpg
 ---
 
 
-
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
 ## Overview
 
-Conditional filters can be added to queries on the class level. The operator used for filtering is also called a `where` filter.
-<!--
-import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
+Conditional filters may be added to [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries. The operator used for filtering is also called a `where` filter.
 
-<GraphQLFiltersExample/> -->
+A filter may consist of one or more conditions, which are combined using the `And` or `Or` operators. Each condition consists of a property path, an operator, and a value.
 
-:::info Related pages
-- [How-to search: Filters](../../search/filters.md)
-:::
 
 ## Single operand (condition)
 
 Each set of algebraic conditions is called an "operand". For each operand, the required properties are:
-- The GraphQL property path,
-- The operator type, and
-- The valueType with the value.
+- The operator type,
+- The property path, and
+- The value as well as the value type.
 
 For example, this filter will only allow objects from the class `Article` with a `wordCount` that is `GreaterThan` than `1000`.
 
@@ -61,8 +55,6 @@ import GraphQLFiltersWhereSimple from '/_includes/code/graphql.filters.where.sim
 
 ## Filter structure
 
-Supported by the [`Get{}`](./get.md) and [`Aggregate{}`](./aggregate.md) functions.
-
 The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebraic_structure), which takes the following arguments:
 
 - `Operator` (which takes one of the following values)
@@ -79,23 +71,20 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
   - `IsNull`
   - `ContainsAny`  (*Only for array and text properties)
   - `ContainsAll`  (*Only for array and text properties)
-- `Operands`: Is a list of `Operator` objects of this same structure, only used if the parent `Operator` is set to `And` or `Or`.
-- `Path`: Is a list of strings in [XPath](https://en.wikipedia.org/wiki/XPath#Abbreviated_syntax) style, indicating the property name of the class.
-  If the property is a beacon (i.e., cross-reference), the path should be followed to the property of the beacon which should be specified as a list of strings. For a schema structure like:
- ```json
- {
-   "inPublication": {
-     "Publication": {
-       "name": "Wired"
-     }
-   }
- }
- ```
-  Here, the path selector for `name` will be `["inPublication", "Publication", "name"]`.
-
+- `Path`: Is a list of strings in [XPath](https://en.wikipedia.org/wiki/XPath#Abbreviated_syntax) style, indicating the property name of the collection.
+  - If the property is a cross-reference, the path should be followed as a list of strings. For a `inPublication` reference property that refers to `Publication` collection, the path selector for `name` will be `["inPublication", "Publication", "name"]`.
 - `valueType`
+  - `valueInt`: For `int` data type.
+  - `valueBoolean`: For `boolean` data type.
+  - `valueString`: For `string` data type (note: `string` has been deprecated).
+  - `valueText`: For `text`, `uuid`, `geoCoordinates`, `phoneNumber` data types.
+  - `valueNumber`: For `number` data type.
+  - `valueDate`: For `date` (ISO 8601 timestamp, formatted as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/)) data type.
 
-### Example filter structure
+If the operator is `And` or `Or`, the operands are a list of `where` filters.
+
+<details>
+  <summary>Example filter structure (GraphQL)</summary>
 
 ```graphql
 {
@@ -123,26 +112,10 @@ The `where` filter is an [algebraic object](https://en.wikipedia.org/wiki/Algebr
 }
 ```
 
-### Available `valueType` values
+</details>
 
-- `valueInt`: The integer value that the last property in the `Path` selector should be compared to.
-- `valueBoolean`: The boolean value that the last property in `Path` should be compared to.
-- `valueString`: The string value that the last property in `Path` should be compared to. (Note: `string` has been deprecated.)
-- `valueText`: The text value that the last property in `Path` should be compared to.
-- `valueNumber`: The number (float) value that the last property in `Path` should be compared to.
-- `valueDate`: The date (ISO 8601 timestamp, formatted as [RFC3339](https://datatracker.ietf.org/doc/rfc3339/)) value that the last property  in `Path` should be compared to.
-
-### Filter behavior of multi-word queries in `Equal` operator
-
-The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the `tokenization` of the property.
-
-See the [Schema property tokenization section](../../config-refs/schema/index.md#property-tokenization) for the difference between the available tokenization types.
-
-### Stopwords in `text`/`string` filter values
-
-Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists).
-
-### Example response
+<details>
+  <summary>Example response</summary>
 
 ```json
 {
@@ -159,11 +132,23 @@ Starting with `v1.12.0` you can configure your own [stopword lists for the inver
 }
 ```
 
+</details>
+
+### Filter behaviors
+
+#### Multi-word queries in `Equal` filters
+
+The behavior for the `Equal` operator on multi-word textual properties in `where` filters depends on the `tokenization` of the property.
+
+See the [Schema property tokenization section](../../config-refs/schema/index.md#property-tokenization) for the difference between the available tokenization types.
+
+#### Stopwords in `text` filters
+
+Starting with `v1.12.0` you can configure your own [stopword lists for the inverted index](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists).
+
 ## Multiple operands
 
-You can set multiple operands by providing an array, and you can also [nest conditions](../../search/filters.md#nested-multiple-conditions).
-
-For example, these filters select based on the class Article with a wordCount higher than 1000 and who are published before January 1st 2020.
+You can set multiple operands or [nest conditions](../../search/filters.md#nest-filters).
 
 :::tip
 You can filter datetimes similarly to numbers, with the `valueDate` given as `string` in [RFC3339](https://datatracker.ietf.org/doc/rfc3339/) format.
@@ -202,7 +187,7 @@ import GraphQLFiltersWhereOperands from '/_includes/code/graphql.filters.where.o
 
 ### `Like`
 
-Using the `Like` operator allows you to do string searches based on partial match. The capabilities of this operator are:
+The `Like` operator filters `text` data based on partial matches. It can be used with the following wildcard characters:
 
 - `?` -> exactly one unknown character
   - `car?` matches `cart`, `care`, but not `car`
@@ -213,10 +198,6 @@ Using the `Like` operator allows you to do string searches based on partial matc
 import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.mdx';
 
 <GraphQLFiltersWhereLike/>
-
-#### `Like` - notes
-
-Each query using the `Like` operator iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size. Be aware that there might be a point where this query is too expensive and will not work anymore. We will improve this implementation in a future release. You can leave feedback or feature requests in a [GitHub issue](https://github.com/weaviate/weaviate/issues).
 
 <details>
   <summary>Expected response</summary>
@@ -246,19 +227,22 @@ Each query using the `Like` operator iterates over the entire inverted index for
 
 </details>
 
+#### `Like` - notes
+
+Each `Like` filter iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size, and may become slow for large datasets.
+
+
 ### `ContainsAny` / `ContainsAll`
 
 The `ContainsAny` and `ContainsAll` operators filter objects using values of an array as criteria.
 
 Both operators expect an array of values and return objects that match based on the input values.
 
-:::note Text as an array
-The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
+:::note `ContainsAny` and `ContainsAll` notes:
+- The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
+- When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the usage in search, where the `valueText` argument that can be used.
 :::
 
-#### Use with batch delete
-
-When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the GraphQL usage such as in search, where the `valueText` argument that can be used.
 
 #### `ContainsAny`
 
@@ -575,6 +559,11 @@ Using the `IsNull` operator allows you to do filter for objects where given prop
 :::note
 Filtering by null-state requires the target class to be configured to index this. See [here](../../config-refs/schema/index.md#invertedindexconfig--indexnullstate) for details.
 :::
+
+
+## Related pages
+
+- [How-to search: Filters](../../search/filters.md)
 
 
 
