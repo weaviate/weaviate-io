@@ -114,6 +114,7 @@ You can configure how the module will behave in each class through the [Weaviate
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
 - `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (MakerSuite)
+- `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model use as the title.
 
 #### Example
 
@@ -130,6 +131,7 @@ You can configure how the module will behave in each class through the [Weaviate
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-MODEL-ID",                     // Optional.
+          "titleProperty": "YOUR-TITLE-PROPERTY"          // Optional (e.g. "title")
         },
         // highlight-end
       },
@@ -166,6 +168,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
           "modelId": "YOUR-MODEL-ID",                     // Optional.
+          "titleProperty": "YOUR-TITLE-PROPERTY"          // Optional (e.g. "title")
           // highlight-start
           "vectorizeClassName": false
           // highlight-end
@@ -205,16 +208,27 @@ You can supply the API key at query time by adding it to the HTTP header:
 You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and MakerSuite.
 
 The available models for Vertex AI are:
-- `textembedding-gecko@001` (stable)
+- `textembedding-gecko@001` (stable) (default)
+- `textembedding-gecko@002` (stable)
+- `textembedding-gecko@003` (stable)
 - `textembedding-gecko@latest` (public preview: an embeddings model with enhanced AI quality)
+- `textembedding-gecko-multilingual@001` (stable)
 - `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
 
-The only available model for MakerSuite is:
-- `embedding-gecko-001` (stable)
+The available models for MakerSuite are:
+- `embedding-gecko-001` (stable) (default)
+
+#### Task type
+
+The Google API requires a `task_type` parameter at the time of vectorization for some models.
+
+This is not required with the `text2vec-google` module, as Weaviate determines the `task_type` Google API parameter based on the usage context.
+
+During object creation, Weaviate supplies `RETRIEVAL_DOCUMENT` as the task type. During search, Weaviate supplies `RETRIEVAL_QUERY` as the task type.
 
 #### Note
 
-At the time of writing, the `textembedding-gecko` models accept a maximum of 3,072 input tokens, and outputs 768-dimensional vector embeddings. For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
+For more information, please see the [official documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-text-embeddings).
 
 ### API rate limits
 
