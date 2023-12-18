@@ -1,6 +1,6 @@
 ---
 title: text2vec-huggingface
-sidebar_position: 13
+sidebar_position: 16
 image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
@@ -47,7 +47,8 @@ services:
     image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
-     - "8080:8080"
+     - 8080:8080
+     - 50051:50051
     environment:
       QUERY_DEFAULTS_LIMIT: 20
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'

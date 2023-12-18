@@ -10,13 +10,27 @@ image: og/docs/concepts.jpg
 
 Weaviate scales well for large projects. Smaller projects, less than 1M objects, do not require resource planning. For medium and large-scale projects, you should plan how to get the best performance from your resources. While you design you system, keep in mind CPU and memory management. CPU and memory are the primary resources for Weaviate instances. Depending on the modules you use, GPUs may also play a role.
 
+
+## Limit available resources
+
+You can set [environment variables](../config-refs/env-vars.md) to manage Weaviate's resource usage, as to prevent Weaviate from using all available resources. The following environment variables are available:
+
+- `LIMIT_RESOURCES`: When set to true, Weaviate automatically limits its resource usage. It sets memory usage to 80% of the total memory and uses all but one CPU core. It overrides any `GOMEMLIMIT` values but respects `GOMAXPROCS` settings.
+
+- `GOMEMLIMIT`: This sets the memory limit for the Go runtime, which should be around 10-20% of the total memory available for Weaviate. It controls the aggressiveness of the Garbage Collector as memory usage approaches this limit.
+
+- `GOMAXPROCS`: This sets the maximum number of threads for concurrent execution. If set, it's respected by `LIMIT_RESOURCES`, allowing users to specify the exact number of CPU cores Weaviate should use.
+
+These settings help in optimizing Weaviate's performance by balancing resource utilization with the available system resources.
+
+
 ## The role of CPUs
 
 :::tip Rule of thumb
 The CPU has a direct effect on query and import speed, but does not affect dataset size.
 :::
 
-Vector search is the most CPU intensive process in Weaviate operations. Queries are CPU-bound, but imports are also CPU-bound because imports rely on vector search for indexing. Weaviate uses the HNSW (Hierarchical Navigable Small World) algorithm to index vectors. You can [tune the HNSW index](/developers/weaviate/configuration/indexes) on a per collection basis in order to maximize performance for your primary use case.
+Vector search is the most CPU intensive process in Weaviate operations. Queries are CPU-bound, but imports are also CPU-bound because imports rely on vector search for indexing. Weaviate uses the HNSW (Hierarchical Navigable Small World) algorithm to index vectors. You can [tune the HNSW index](../config-refs/schema/vector-index.md) on a per collection basis in order to maximize performance for your primary use case.
 
 Each insert, or search, is single-threaded. However, if you make multiple searches or inserts at the same time, Weaviate can make use of multiple threads. [Batch inserts](/developers/weaviate/manage-data/import) use multiple threads to process data in parallel.
 
@@ -34,7 +48,7 @@ Memory determines the maximum supported dataset size. Memory does not directly i
 
 The HNSW index must be stored in memory. The memory required is directly related to the size of your dataset. There is no correlation between the size of your dataset and the current query load. You can use [`product quantization (PQ)`](/developers/weaviate/concepts/vector-index#hnsw-with-product-quantization-pq) to compress the vectors in your dataset in increase the number of vectors your can hold in memory.
 
-Weaviate let's you configure a limit to the number of vectors held in memory in order to prevent unexpected Out-of-Memory ("OOM") situations. The default value is one trillion (`1e12`) objects.  per collection. To adjust the number of objects, update the value of [`vectorCacheMaxObjects`](/developers/weaviate/configuration/indexes) in your index settings.
+Weaviate let's you configure a limit to the number of vectors held in memory in order to prevent unexpected Out-of-Memory ("OOM") situations. The default value is one trillion (`1e12`) objects.  per collection. To adjust the number of objects, update the value of [`vectorCacheMaxObjects`](../config-refs/schema/vector-index.md) in your index settings.
 
 Weaviate also uses [memory-mapped files](https://en.wikipedia.org/wiki/Memory-mapped_file) for data stored on disks. Memory-mapped files are efficient, but disk storage is much slower than in-memory storage.
 
@@ -43,7 +57,7 @@ Weaviate also uses [memory-mapped files](https://en.wikipedia.org/wiki/Memory-ma
 The HNSW vector index is the primary driver of memory usage. These factors influence the amount of memory Weaviate uses:
 
 - **The total number of object vectors**. The number of vectors is important, but the raw size of the original objects is not important. Only the vector is stored in memory. The size of the original text or other data is not a limiting factor.
-- **The `maxConnections` HNSW index setting**. Each object in memory has at most [`maxConnections`](/developers/weaviate/configuration/indexes) connections per layer. Each of the connections uses 8-10B of memory. Note that the base layer allows for `2 * maxConnections`.
+- **The `maxConnections` HNSW index setting**. Each object in memory has at most [`maxConnections`](../config-refs/schema/vector-index.md) connections per layer. Each of the connections uses 8-10B of memory. Note that the base layer allows for `2 * maxConnections`.
 
 ### An example calculation
 
@@ -92,7 +106,7 @@ Reducing `maxConnections` adversely affects HNSW recall performance. To mitigate
 
 ## Vector Cache
 
-For optimal search and import performance, all previously imported vectors need to be held in memory. The size of the vector cache is specified by the [`vectorCacheMaxObjects`](/developers/weaviate/configuration/indexes) parameter in the collection definition. By default this limit is set to one trillion (`1e12`) objects when you create a new collection.
+For optimal search and import performance, all previously imported vectors need to be held in memory. The size of the vector cache is specified by the [`vectorCacheMaxObjects`](../config-refs/schema/vector-index.md) parameter in the collection definition. By default this limit is set to one trillion (`1e12`) objects when you create a new collection.
 
 You can reduce the size of `vectorCacheMaxObjects`, but a disk lookup for a vector is orders of magnitudes slower than memory lookup. Only reduce the size of `vectorCacheMaxObjects` with care and as a last resort.
 

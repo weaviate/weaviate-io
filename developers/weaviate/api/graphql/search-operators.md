@@ -336,7 +336,7 @@ The search is case-insensitive, and case matching does not confer a score advant
 
 ### Schema configuration
 
-The [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function) are configurable and optional. See the [schema reference](../../config-refs/schema.md#invertedindexconfig--bm25) for more details.
+The [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function) are configurable and optional. See the [schema reference](../../config-refs/schema/index.md#invertedindexconfig--bm25) for more details.
 
 ### Variables
 The `bm25` operator supports the following variables:

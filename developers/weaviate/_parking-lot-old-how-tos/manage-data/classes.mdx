@@ -22,7 +22,7 @@ Each Weaviate object belongs to one (and only one) collection. This page covers 
 
 :::info Related pages
 - [API References: REST: Schema](../api/rest/schema.md)
-- [References: Configuration: Schema](../config-refs/schema.md)
+- [References: Configuration: Schema](../config-refs/schema/index.md)
 - [Concepts: Data structure](../concepts/data.md)
 :::
 
@@ -34,7 +34,7 @@ Under the hood, these are carried out through the [`schema` REST endpoint](../ap
 
 You can create a collection either:
 - Manually, or
-- Automatically. Weaviate can create collection as needed, such as at import time. The [`Auto-schema` feature](../config-refs/schema.md#auto-schema) must be enabled for this to occur.
+- Automatically. Weaviate can create collection as needed, such as at import time. The [`Auto-schema` feature](../config-refs/schema/index.md#auto-schema) must be enabled for this to occur.
 
 :::tip Manual collection creation recommended
 We recommend you create collection manually, as:
@@ -109,7 +109,7 @@ A collection configuration is shown below, which defines:
 - A set of [properties](../concepts/data.md#data-object-nomenclature) (`title`, `body` and `url`), with [data types](../config-refs/datatypes.md) set accordingly.
     - Note that the `body` property is an array of objects.
     - The `object` and `object[]` data types are available from `1.22`.
-- [Tokenization](../config-refs/schema.md#property-tokenization) option for the `url` property.
+- [Tokenization](../config-refs/schema/index.md#property-tokenization) option for the `url` property.
 
 ```json
 {
@@ -158,13 +158,13 @@ You can specify as many of the available options in the collection definition as
 
 :::tip Where to find a list of available options
 See:
-- [References: Configuration: Schema](../config-refs/schema.md)
+- [References: Configuration: Schema](../config-refs/schema/index.md)
 - [API References: REST: Schema](../api/rest/schema.md#create-a-class)
 :::
 
 ### Reserved property names
 
-Some property names are reserved for internal use. The list of reserved property names can be [found here](../config-refs/schema.md#reserved-words).
+Some property names are reserved for internal use. The list of reserved property names can be [found here](../config-refs/schema/index.md#reserved-words).
 
 ### Auto-schema
 
@@ -173,7 +173,7 @@ If you add objects to a collection that does not yet exist, or if you create obj
 For most cases, we recommend you create collections and properties manually, as you will gain greater control over your data model.
 
 :::info Read more about Auto-schema
-See [this page](../config-refs/schema.md#auto-schema)
+See [this page](../config-refs/schema/index.md#auto-schema)
 :::
 
 

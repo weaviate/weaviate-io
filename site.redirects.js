@@ -60,7 +60,11 @@ const siteRedirects = {
             from: '/developers/weaviate/current/vector-index-plugins/distances',
         },
         {
-            to: '/developers/weaviate/configuration/indexes',
+            to: '/developers/weaviate/config-refs/schema/vector-index',
+            from: '/developers/weaviate/configuration/indexes',
+        },
+        {
+            to: '/developers/weaviate/config-refs/schema/vector-index',
             from: '/developers/weaviate/current/configuration/vector-index-type',
         },
         {
@@ -320,6 +324,26 @@ const siteRedirects = {
             ],
         },
 
+        // // Rename google modules
+        // {
+        //     to: '/developers/weaviate/modules/reader-generator-modules/generative-google',
+        //     from: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+        // },
+        // {
+        //     to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
+        //     from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+        // },
+        // REMOVE WHEN MODULE RENAMING IMPLEMENTED: Temp redirect.
+        {
+            to: '/developers/weaviate/modules/reader-generator-modules/generative-palm',
+            from: '/developers/weaviate/modules/reader-generator-modules/generative-google',
+        },
+        {
+            to: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-palm',
+            from: '/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-google',
+        },
+
+
         // moved Quickstart installation to Quickstart
         {
             to: '/developers/weaviate/quickstart',
@@ -342,7 +366,7 @@ const siteRedirects = {
             to: '/developers/weaviate/installation',
             from: '/developers/weaviate/current/getting-started/installation',
         },
-        
+
         {
             to: '/developers/weaviate/configuration/pq-compression',
             from: '/developers/weaviate/configuration/compression',
@@ -357,14 +381,14 @@ const siteRedirects = {
             to: '/developers/weaviate/manage-data/collections',
             from: '/developers/weaviate/configuration/schema-configuration',
         },
-        
+
      // Products to Pricing redirects
 
         {
             to: "/pricing",
             from: "/products",
         },
-       
+
         {
             to: "/pricing",
             from: "/products/byoc",
@@ -405,11 +429,6 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
-        // TEMP Redirect
-        {
-            to: "/developers/weaviate/modules/reader-generator-modules/generative-palm",
-            from: "/developers/weaviate/modules/reader-generator-modules/generative-google"
-        }
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

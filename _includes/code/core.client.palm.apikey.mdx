@@ -11,7 +11,7 @@ client = weaviate.Client(
   url = "https://some-endpoint.weaviate.network/",
   # highlight-start
   additional_headers = {
-    "X-Palm-Api-Key": "YOUR-PALM-API-KEY",  # Replace with your API key
+    "X-PaLM-Api-Key": "YOUR-PALM-API-KEY",  # Replace with your API key
   }
   # highlight-end
 )
@@ -29,7 +29,7 @@ const client = weaviate.client({
   // highlight-start
   // Replace with your API key
   headers: {
-    'X-Palm-Api-Key': 'YOUR-PALM-API-KEY',
+    'X-PaLM-Api-Key': 'YOUR-PALM-API-KEY',
   },
   // highlight-end
 });
@@ -55,7 +55,7 @@ func main() {
         // highlight-start
         // Replace with your API key
         Headers: map[string]string{
-          "X-Palm-Api-Key": "YOUR-PALM-API-KEY",
+          "X-PaLM-Api-Key": "YOUR-PALM-API-KEY",
         }
         // highlight-end
     }
@@ -82,7 +82,7 @@ public class App {
     // highlight-start
     Map<String, String> headers = new HashMap<String, String>() { {
       // Replace with your API key
-      put("X-Palm-Api-Key", "YOUR-PALM-API-KEY");
+      put("X-PaLM-Api-Key", "YOUR-PALM-API-KEY");
     } };
     // highlight-end
 

@@ -8,23 +8,37 @@ image: og/docs/api.jpg
 
 ## Usage
 
-The nodes endpoint accepts a `GET` request:
+The nodes endpoint accepts a `GET` request and returns information about relevant nodes in the cluster. The query can be for the entire cluster, or for a particular collection.
 
 ```js
 GET /v1/nodes
 ```
 
+Or
+
+```js
+GET /v1/nodes/{CollectionName}
+```
+
+### Parameters
+
+| Name | Location | Type | Description |
+| ---- | -------- | ---- | ----------- |
+| `output` | body | string | How much information to include in the output. Options:  `minimal` (default) and `verbose` (includes shard information). |
+
+### Returned data:
+
 And it returns a `nodes` field containing array of nodes with the following fields:
 - `name`: Name of the node.
-- `status`: Status of the node (one of: HEALTHY, UNHEALTHY, UNAVAILABLE, INDEXING).
+- `status`: Status of the node (one of: `HEALTHY`, `UNHEALTHY`, `UNAVAILABLE`, `INDEXING`).
 - `version`: Version of Weaviate running on the node.
 - `gitHash`: Short git hash of latest commit of Weaviate running on the node.
 - `stats`: Statistics of the node with the following fields:
     - `shardCount`: Total number of shards on the node.
     - `objectCount` Total number of indexed objects on the node.
-- `shards`: Array of shards with the following fields:
+- `shards`: (Only if `output` == `verbose`) Array of shards with the following fields:
     - `name`: Name of the shard.
-    - `class`: Name of the objects' class stored on the shard.
+    - `class`: Name of the collection stored on the shard.
     - `objectCount`: Number of indexed objects on the shard.
     - `vectorQueueLength`: Number of objects waiting to be indexed on the shard. (Available in Weaviate `1.22` and higher, if `ASYNC_INDEXING` is enabled.)
 
@@ -36,7 +50,7 @@ import Nodes from '/_includes/code/nodes.mdx';
 
 <Nodes/>
 
-Example output (format may slightly vary depending on the client used):
+Example output:
 
 ```json
 {
@@ -47,22 +61,6 @@ Example output (format may slightly vary depending on the client used):
       },
       "gitHash": "e6b37ce",
       "name": "weaviate-0",
-      "shards": [
-        {
-          "class": "TestArticle",
-          "name": "nq1Bg9Q5lxxP",
-          "objectCount": 0,
-          "vectorIndexingStatus": "READY",
-          "vectorQueueLength": 0
-        },
-        {
-          "class": "TestAuthor",
-          "name": "MINLtCghkdG8",
-          "objectCount": 0,
-          "vectorIndexingStatus": "READY",
-          "vectorQueueLength": 0
-        }
-      ],
       "stats": {
         "objectCount": 0,
         "shardCount": 2
@@ -76,22 +74,6 @@ Example output (format may slightly vary depending on the client used):
       },
       "gitHash": "e6b37ce",
       "name": "weaviate-1",
-      "shards": [
-        {
-          "class": "TestArticle",
-          "name": "HuPocHE5w2LP",
-          "objectCount": 1,
-          "vectorIndexingStatus": "READY",
-          "vectorQueueLength": 0
-        },
-        {
-          "class": "TestAuthor",
-          "name": "PeQjZRmK0xNB",
-          "objectCount": 0,
-          "vectorIndexingStatus": "READY",
-          "vectorQueueLength": 0
-        }
-      ],
       "stats": {
         "objectCount": 1,
         "shardCount": 2
@@ -105,22 +87,6 @@ Example output (format may slightly vary depending on the client used):
       },
       "gitHash": "e6b37ce",
       "name": "weaviate-2",
-      "shards": [
-        {
-          "class": "TestArticle",
-          "name": "JTg39c7ZlFUX",
-          "objectCount": 0,
-          "vectorIndexingStatus": "READY",
-          "vectorQueueLength": 0
-        },
-        {
-          "class": "TestAuthor",
-          "name": "W5ulmuJGDTxj",
-          "objectCount": 1,
-          "vectorIndexingStatus": "READY",
-          "vectorQueueLength": 0
-        }
-      ],
       "stats": {
         "objectCount": 1,
         "shardCount": 2

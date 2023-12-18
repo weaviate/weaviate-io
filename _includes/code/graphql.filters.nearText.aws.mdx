@@ -12,17 +12,18 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
       language="py"
     />
 </TabItem>
+
 <TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
 
 client = weaviate.Client(
-  url="https://some-endpoint.weaviate.network/",
-  additional_headers={
+    url="http://localhost:8080",
+    additional_headers={
         "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
         "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
-  }
+    }
 )
 
 nearText = {

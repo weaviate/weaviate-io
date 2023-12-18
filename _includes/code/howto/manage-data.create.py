@@ -51,7 +51,7 @@ print(uuid)  # the return value is the object's UUID
 
 # Test
 result = jeopardy.query.fetch_object_by_id(uuid)
-assert result["properties"]["newProperty"] == 123
+assert result.properties["newProperty"] == 123
 
 
 # =======================================
@@ -97,7 +97,7 @@ uuid = jeopardy.data.insert(
 # CreateObjectWithDeterministicId END
 
 # Test
-assert generate_uuid5(data_object) == uuid
+assert generate_uuid5(data_object) == str(uuid)
 jeopardy.data.delete_by_id(uuid)  # Clean up
 
 
@@ -122,7 +122,7 @@ print(uuid)  # the return value is the object's UUID
 
 # Test
 result = jeopardy.query.fetch_object_by_id(uuid)
-assert result["properties"] == {
+assert result.properties == {
     "question": "This vector DB is OSS and supports automatic property type inference on import",
     "answer": "Weaviate"
 }
@@ -136,23 +136,23 @@ assert result["properties"] == {
 # Validate is currently not supported with the Weaviate Python client v4
 # ValidateObject END
 
-# ValidateObject-TODO START
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-#TODO: see if this is supported
-result = jeopardy.data.validate(
-# highlight-end
-    properties={
-      "question": "This vector DB is open-source and supports auto-schema",
-      "answer": "Weaviate",
-      "thisPropShouldNotEndUpInTheSchema": -1,
-    },
-    uuid="12345678-1234-1234-1234-123456789012",
-)
+# # ValidateObject-TODO START
+# jeopardy = client.collections.get("JeopardyQuestion")
+# # highlight-start
+# #TODO: see if this is supported
+# result = jeopardy.data.validate(
+# # highlight-end
+#     properties={
+#       "question": "This vector DB is open-source and supports auto-schema",
+#       "answer": "Weaviate",
+#       "thisPropShouldNotEndUpInTheSchema": -1,
+#     },
+#     uuid="12345678-1234-1234-1234-123456789012",
+# )
 
-# "invalid object: no such prop with name "thisPropShouldNotEndUpInTheSchema" found..."
-print(json.dumps(result, indent=2))
-# ValidateObject-TODO END
+# # "invalid object: no such prop with name "thisPropShouldNotEndUpInTheSchema" found..."
+# print(json.dumps(result, indent=2))
+# # ValidateObject-TODO END
 
-# TODO: update the assertion
+# # TODO: update the assertion
 # assert "thisPropShouldNotEndUpInTheSchema" in result["error"][0]["message"]

@@ -14,30 +14,26 @@ client = weaviate.connect_to_local(
     grpc_port=50051,
 )
 
-collection_name = "Article"
-
 # ================================
 # ===== CREATE A COLLECTION =====
 # ================================
 
 # Clean slate
-if client.collections.exists(collection_name):
-    client.collections.delete(collection_name)
+client.collections.delete("Article")
 
 # START BasicCreateCollection
 client.collections.create("Article")
 # END BasicCreateCollection
 
 # Test
-assert client.collections.exists(collection_name)
+assert client.collections.exists("Article")
 
 # ===============================================
 # ===== CREATE A COLLECTION WITH PROPERTIES =====
 # ===============================================
 
 # Clean slate
-if client.collections.exists(collection_name):
-    client.collections.delete(collection_name)
+client.collections.delete("Article")
 
 # START CreateCollectionWithProperties
 import weaviate.classes as wvc
@@ -51,9 +47,17 @@ client.collections.create(
 )
 # END CreateCollectionWithProperties
 
+# Test
+articles = client.collections.get("Article")
+assert client.collections.exists("Article")
+assert len(articles.config.get().properties) == 2
+
 # ===============================================
 # ===== CREATE A COLLECTION WITH VECTORIZER =====
 # ===============================================
+
+# Clean slate
+client.collections.delete("Article")
 
 # START Vectorizer
 import weaviate.classes as wvc
@@ -63,7 +67,7 @@ client.collections.create(
     # highlight-start
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
     # highlight-end
-    properties=[ # properties configuration is optional
+    properties=[  # properties configuration is optional
         wvc.Property(name="title", data_type=wvc.DataType.TEXT),
         wvc.Property(name="body", data_type=wvc.DataType.TEXT),
     ]
@@ -75,8 +79,35 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.vectorizer.value == "text2vec-openai"
 
-# Delete the collection to recreate it
+# ===========================
+# ===== SET VECTOR INDEX =====
+# ===========================
+
+# Clean slate
 client.collections.delete("Article")
+
+# START SetVectorIndex
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    vector_index_config=wvc.Configure.VectorIndex.hnsw(),
+    # highlight-end
+    properties=[
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+)
+# END SetVectorIndex
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.vectorizer.value == "text2vec-openai"
+assert config.vector_index_type.name == "HNSW"
+
 
 
 # ===============================================
@@ -112,6 +143,9 @@ client.collections.delete("Article")
 # ===== MODULE SETTINGS =====
 # ===========================
 
+# Clean slate
+client.collections.delete("Article")
+
 # START ModuleSettings
 import weaviate.classes as wvc
 
@@ -120,7 +154,7 @@ client.collections.create(
     # highlight-start
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(
         model="embed-multilingual-v2.0",
-        vectorize_class_name=True
+        vectorize_collection_name=True
     ),
     # highlight-end
 )
@@ -130,15 +164,14 @@ client.collections.create(
 collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.vectorizer.value == "text2vec-cohere"
-# TODOv4 make sure we can verify the model name
-# assert config.vectorizer.model == "embed-multilingual-v2.0"
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
+assert config.vectorizer_config.model["model"] == "embed-multilingual-v2.0"
 
 # ====================================
 # ===== MODULE SETTINGS PROPERTY =====
 # ====================================
+
+# Clean slate
+client.collections.delete("Article")
 
 # START PropModuleSettings
 import weaviate.classes as wvc
@@ -173,15 +206,19 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 
 assert config.vectorizer.value == "text2vec-huggingface"
+for p in config.properties:
+    if p.name == "title":
+        assert p.tokenization.name == "LOWERCASE"
+    elif p.name == "body":
+        assert p.tokenization.name == "WHITESPACE"
 
-# assert result["properties"][0]["moduleConfig"]["text2vec-huggingface"]["vectorizePropertyName"] is False
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
 
 # ===========================
 # ===== DISTANCE METRIC =====
 # ===========================
+
+# Clean slate
+client.collections.delete("Article")
 
 # START DistanceMetric
 import weaviate.classes as wvc
@@ -189,7 +226,7 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     # highlight-start
-    vector_index_config=wvc.Configure.vector_index(
+    vector_index_config=wvc.Configure.VectorIndex.hnsw(
         distance_metric=wvc.VectorDistance.COSINE
     ),
     # highlight-end
@@ -201,12 +238,17 @@ collection = client.collections.get("Article")
 config = collection.config.get()
 assert config.vector_index_config.distance_metric.value == "cosine"
 
-# Delete the collection to recreate it
-client.collections.delete("Article")
-
 # =======================
 # ===== REPLICATION =====
 # =======================
+
+# Clean slate
+client.collections.delete("Article")
+
+# Connect to a setting with 3 replicas
+client = weaviate.connect_to_local(
+    port=8180
+)
 
 # START ReplicationSettings
 import weaviate.classes as wvc
@@ -224,14 +266,16 @@ client.collections.create(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-assert config.vector_index_config.distance_metric.value == "cosine"
-
-# Delete the collection to recreate it
-client.collections.delete("Article")
+assert config.replication_config.factor == 3
 
 # ====================
 # ===== SHARDING =====
 # ====================
+
+client = weaviate.connect_to_local()
+
+# Clean slate
+client.collections.delete("Article")
 
 # START ShardingSettings
 import weaviate.classes as wvc
@@ -259,12 +303,12 @@ assert config.sharding_config.actual_count == 1
 assert config.sharding_config.desired_virtual_count == 128
 assert config.sharding_config.actual_virtual_count == 128
 
-# Delete the collection to recreate it
-client.collections.delete("Article")
-
 # =========================
 # ===== MULTI-TENANCY =====
 # =========================
+
+# Clean slate
+client.collections.delete("Article")
 
 # START Multi-tenancy
 client.collections.create(
@@ -274,6 +318,10 @@ client.collections.create(
     # highlight-end
 )
 # END Multi-tenancy
+
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.multi_tenancy_config.enabled == True
 
 # ==========================
 # ===== ADD A PROPERTY =====
@@ -353,7 +401,7 @@ print(response)
 # END ReadAllCollections
 
 assert type(response) == dict
-assert collection_name in response
+assert "Article" in response
 
 
 # ================================
@@ -361,8 +409,7 @@ assert collection_name in response
 # ================================
 
 # Clean slate
-if client.collections.exists(collection_name):
-    client.collections.delete(collection_name)
+client.collections.delete("Article")
 
 # Define and create a collection
 client.collections.create(
@@ -371,21 +418,20 @@ client.collections.create(
         bm25_k1=1.2
     )
 )
+old_config = articles.config.get()
+
+
+# Create an object to check that it remains mutable
+for _ in range(5):
+    articles.data.insert({
+        "title": "A grand day out."
+    })
+
 
 # START UpdateCollection
 import weaviate.classes as wvc
 
 articles = client.collections.get("Article")
-# END UpdateCollection
-
-
-# Create an object to make sure it remains mutable
-for _ in range(5):
-    articles.data.insert({
-        "title": "A grand day out."
-    })
-old_config = articles.config.get()
-# START UpdateCollection
 
 # Update the collection definition
 articles.config.update(

@@ -266,7 +266,7 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
 :::info Added in `v1.23`.
 :::
 
-To maximize import speed, enable [asynchronous indexing](../configuration/indexes.md#asynchronous-indexing) and use gRPC batch imports. 
+To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) and use gRPC batch imports. 
 
 Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
 
@@ -285,7 +285,7 @@ weaviate:
 
 - [How-to: Create objects](./create.mdx)
 - [References: REST - /v1/batch](../api/rest/batch.md)
-- [Configuration: Indexes](../configuration/indexes.md#asynchronous-indexing)
+- [Configuration: Indexes](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

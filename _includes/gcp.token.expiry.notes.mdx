@@ -39,7 +39,7 @@ def re_instantiate_weaviate() -> weaviate.Client:
     client = weaviate.Client(
       url = "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
       additional_headers = {
-        "X-Palm-Api-Key": token,
+        "X-PaLM-Api-Key": token,
       }
     )
     return client
@@ -85,7 +85,7 @@ def re_instantiate_weaviate() -> weaviate.Client:
     client = weaviate.Client(
       url = "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
       additional_headers = {
-        "X-Palm-Api-Key": token,
+        "X-PaLM-Api-Key": token,
       }
     )
     return client
