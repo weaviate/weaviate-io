@@ -111,6 +111,8 @@ services:
 
 In your Weaviate schema, you can define settings for this module.
 
+[See this page](../../manage-data/collections.mdx#specify-a-generative-module) for code examples on how to specify a generative module.
+
 For example, the following schema configuration will set Weaviate to use the `generative-cohere` module with the `Document` class, with the `command-xlarge-nightly` model. You can also configure additional parameters for the Cohere endpoint through the parameters shown below. Other models you can use from Cohere are `command-xlarge-beta` and `command-xlarge`.
 
 ```json

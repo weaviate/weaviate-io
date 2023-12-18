@@ -5,14 +5,50 @@ image: og/docs/api.jpg
 # tags: ['graphql', 'aggregate', 'aggregate{}', 'meta']
 ---
 
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Aggregate{} syntax and query structure
+# Overview
 
-This example shows how to aggregate over the entire database. [Below](#aggregating-a-vector-search--faceted-vector-search) you will find examples of how to dynamically retrieve objects using a vector search and then aggregating only the matches. The `Aggregate{}` function is structured as follows:
+This page covers aggregation queries. They are collectively referred to as `Aggregate` queries within.
+
+An `Aggregate` query can aggregate over an entire collection, or the [results of a search](#aggregating-a-vector-search--faceted-vector-search).
+
+
+### Parameters
+
+An `Aggregate` query requires the target collection to be specified. Each query can include any of the following types of arguments:
+
+| Argument | Description | Required |
+| -------- | ----------- | -------- |
+| Collection | Also called "class". The object collection to be retrieved from. | Yes |
+| Properties | Properties to be retrieved | Yes |
+| [Conditional filters](./filters.md) | Filter the objects to be retrieved | No |
+| [Search operators](./search-operators.md) | Specify the search strategy (e.g. near text, hybrid, bm25) | No |
+| [Additional operators](./additional-operators.md) | Specify additional operators (e.g. limit, offset, sort) | No |
+| [Tenant name](#multi-tenancy) | Specify the tenant name | Yes, if multi-tenancy enabled. ([Read more: what is multi-tenancy?](../../concepts/data.md#multi-tenancy)) |
+| [Consistency level](#consistency-levels) | Specify the consistency level | No |
+
+
+### Available properties
+
+Each data type has its own set of available aggregated properties. The following table shows the available properties for each data type.
+
+| Data type | Available properties |
+| --------- | -------------------- |
+| Text | `count`, `type`, `topOccurrences (value, occurs)` |
+| Number | `count`, `type`, `minimum`, `maximum`, `mean`, `median`, `mode`, `sum` |
+| Integer | `count`, `type`, `minimum`, `maximum`, `mean`, `median`, `mode`, `sum` |
+| Boolean | `count`, `type`, `totalTrue`, `totalFalse`, `percentageTrue`, `percentageFalse` |
+| Date | `count`, `type`, `minimum`, `maximum`, `mean`, `median`, `mode` |
+| UUID | `count`, `type`, `topOccurrences` |
+
+
+<details>
+  <summary>See a GraphQL Aggregate format</summary>
 
 ```graphql
 {
@@ -24,14 +60,6 @@ This example shows how to aggregate over the entire database. [Below](#aggregati
       }
       meta {
         count
-      }
-      <propertyOfDatatypeString> {
-          count
-          type
-          topOccurrences {
-              value
-              occurs
-          }
       }
       <propertyOfDatatypeText> {
           count
@@ -67,7 +95,9 @@ This example shows how to aggregate over the entire database. [Below](#aggregati
 }
 ```
 
-Below is an example query to obtain meta information about the data in the class `Article`. Note that the data is not grouped yet, the meta information is about all the data objects found with the class `Article`.
+</details>
+
+Below is an example query to obtain meta information about the `Article` collection. Note that the data is not grouped here, and results relate to all data objects in the `Article` collection.
 
 import GraphQLAggregateSimple from '/_includes/code/graphql.aggregate.simple.mdx';
 
@@ -123,7 +153,7 @@ import GroupbyLimitations from '/_includes/groupby-limitations.mdx';
 
 <GroupbyLimitations />
 
-The `groupBy{}` argument is structured as follows for the `Aggregate{}` function:
+The `groupBy` argument is structured as follows for the `Aggregate` function:
 
 ```graphql
 {
@@ -197,11 +227,11 @@ import GraphQLAggGroupby from '/_includes/code/graphql.aggregate.groupby.mdx';
 
 ### Additional filters
 
-`Aggregate{}` functions can be extended with search filters. Because the filters work on multiple core functions (like `Get{}`) there is a [specific documentation page dedicated to filters](filters.md).
+`Aggregate` functions can be extended with conditional filters [read more](filters.md).
 
 ### `topOccurrences` property
 
-Aggregating data makes the `topOccurrences` sub-property available. Note that the counts are not dependent on tokenization. The `topOccurrences` count is based on occurrences of the entire property, or one of the values if the property is an array.
+Aggregating data makes the `topOccurrences` property available. Note that the counts are not dependent on tokenization. The `topOccurrences` count is based on occurrences of the entire property, or one of the values if the property is an array.
 
 ### Consistency levels
 
@@ -214,9 +244,9 @@ Aggregating data makes the `topOccurrences` sub-property available. Note that th
 :::info Added in `v1.20`
 :::
 
-Where multi-tenancy is configured, the `Aggregate{}` function can be configured to aggregate results from a specific tenant.
+Where multi-tenancy is configured, the `Aggregate` function can be configured to aggregate results from a specific tenant.
 
-You can do so by specifying the `tenant` parameter in the GraphQL query as shown below, or using the equivalent client function.
+You can do so by specifying the `tenant` parameter in the query as shown below, or in the client.
 
 ```graphql
 {
@@ -246,19 +276,19 @@ You can combine a vector search (e.g. `nearObject`, `nearVector`, `nearText`, `n
 
 ### Limiting the search space
 
-Vector searches are different from keyword-based searches in the sense that they do not filter the result set, they just return the objects in a different order. Imagine having 1,000 objects and a vector search for `"apple iphone"`. If there was no explicit limit, every single object in the database would be a potential match. Some matches would have a very high score (certainty), and the last matches would most likely have a very low score. But nevertheless all 1,000 objects could potentially be scored. The value in this search is in the order. If we only look at the top 10 results, they will be very closely related to the query vector. Similarly, the last 10 objects on the list would be very unrelated. However, the order is not visible within an aggregation.
+Vector searches compare objects by similarity. Thus they do not exclude any objects.
 
-As a result, whenever the goal is to aggregate vector search results, there needs to be something that limits the search space. Otherwise the Aggregation results (over all matches) will look exactly like an Aggregation without any additional `near<Media>` operator.
+As a result, for a search operator to have an impact on an aggregation, you must limit the search space with an `objectLimit` or `certainty`.
 
 You can achieve such a restriction of the search space in two different ways:
 
-* Set an explicit `objectLimit`, e.g. `objectLimit: 100`. This tells Weaviate to retrieve the top 100 objects related to your vector search query, then aggregate them. *This is useful when you know up front how many results you want to serve, for example in a recommendation scenario, where you want to produce 100 recommendations.*
+* `objectLimit`, e.g. `objectLimit: 100` specifies Weaviate to retrieve the top 100 objects related to a vector search query, then aggregate them. *This is useful when you know up front how many results you want to serve, for example in a recommendation scenario, where you want to produce 100 recommendations.*
 
-* Set an explicit `certainty`, e.g. `certainty: 0.7`. This tells Weaviate to retrieve all possible matches that have a certainty of 0.7 or higher. This list has no fixed length, it depends on how many objects were good matches. *This is useful in user-facing search scenarios, such as e-commerce. The user might be interested in all search results semantically similar to "apple iphone" and then generate facets.*
+* `certainty`, e.g. `certainty: 0.7` specifies Weaviate to retrieve all possible matches that have a certainty of 0.7 or higher. This list has no fixed length, it depends on how many objects were good matches. *This is useful in user-facing search scenarios, such as e-commerce. The user might be interested in all search results semantically similar to "apple iphone" and then generate facets.*
 
 If neither an `objectLimit`, nor a `certainty` is set the query will error.
 
-### API
+### Examples
 
 Below are examples for `nearObject`, `nearVector`, and `nearText`.
 Any `near<Media>` will work.

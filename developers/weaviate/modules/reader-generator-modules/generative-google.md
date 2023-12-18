@@ -173,6 +173,8 @@ To configure how the module behaves in a collection, see [Weaviate schema](/deve
 
 Note that the `projectId` parameter is required for Vertex AI.
 
+[See this page](../../manage-data/collections.mdx#specify-a-generative-module) for code examples on how to specify a generative module.
+
 ### Example schema
 
 This schema configuration sets the Google API information, as well as some optional parameters.

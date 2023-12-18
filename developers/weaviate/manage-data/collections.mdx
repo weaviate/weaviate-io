@@ -8,8 +8,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
@@ -320,6 +320,46 @@ For details on the configuration parameters, see the following:
 - [Vector indexes](../config-refs/schema/vector-index.md)
 
 </details>
+
+## Specify a generative module
+
+Specify a `generative` module for a collection (for RAG).
+
+<details>
+  <summary>Additional information</summary>
+
+- [Available generative modules](../modules/reader-generator-modules/index.md)
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetGenerative"
+      endMarker="# END SetGenerative"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetGenerative"
+      endMarker="# END SetGenerative"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetGenerative"
+      endMarker="// END SetGenerative"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## Replication settings
 
