@@ -227,8 +227,6 @@ The available models for Vertex AI are:
 
 The available models for MakerSuite are:
 - `embedding-gecko-001` (stable) (default)
-- `embedding-gecko-002`
-- `embedding-gecko-003`
 
 #### Task type
 
