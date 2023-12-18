@@ -205,6 +205,42 @@ assert result["vectorIndexConfig"]["distance"] == "cosine"
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+# ===============================================
+# ===== CREATE A COLLECTION WITH VECTORIZER =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START SetGenerative
+class_obj = {
+    "class": "Article",
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"],
+        },
+    ],
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "generative-openai": {}  # set your generative module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetGenerative
+
+# Test
+result = client.schema.get(class_name)
+assert "generative-openai" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
 # =======================
 # ===== REPLICATION =====
 # =======================

@@ -78,6 +78,36 @@ assert config.vectorizer.value == "text2vec-openai"
 # Delete the collection to recreate it
 client.collections.delete("Article")
 
+
+# ===============================================
+# ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
+# ===============================================
+
+# START SetGenerative
+import weaviate.classes as wvc
+
+client.collections.create(
+    "Article",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    generative_config=wvc.Configure.Generative.openai(),
+    # highlight-end
+    properties=[ # properties configuration is optional
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+)
+# END SetGenerative
+
+# Test
+collection = client.collections.get("Article")
+config = collection.config.get()
+assert config.generative_config.generator == "generative-openai"
+
+# Delete the collection to recreate it
+client.collections.delete("Article")
+
+
 # ===========================
 # ===== MODULE SETTINGS =====
 # ===========================
