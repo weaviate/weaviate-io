@@ -124,7 +124,7 @@ client.collections.create(
     # highlight-start
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(
         model="embed-multilingual-v2.0",
-        vectorize_class_name=True
+        vectorize_collection_name=True
     ),
     # highlight-end
 )
