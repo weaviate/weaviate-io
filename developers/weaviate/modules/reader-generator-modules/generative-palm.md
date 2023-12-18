@@ -1,14 +1,14 @@
 ---
 title: Generative Search - Google
 sidebar_position: 14
-image: og/docs/modules/generative-google.jpg
+image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'gemini', 'palm', 'gcp']
 ---
 
 
 ## Overview
 
-* The `generative-google` module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
+* The `generative-palm` module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each returned object, or a single response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
 * You need an API key for a Google generative model API to use this module.
@@ -18,22 +18,24 @@ image: og/docs/modules/generative-google.jpg
 
 :::info Releases and versions
 
-`generative-google` was added in version `v1.19.1` under its previous name, `generative-palm`.
+<!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
+<!-- `generative-google` was added in version `v1.19.1` under its previous name, `generative-palm`. -->
 
 Google MakerSuite support was added in version `1.22.4`.
 :::
 
 
-### Changes from `generative-palm` to `generative-google`
+<!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
+<!-- ### Changes from `generative-palm` to `generative-google`
 
 Prior to Weaviate `v1.22.7`, the `generative-google` module was called `generative-palm`. The module is still available under the old name, but it will be removed in a future release.
 
 Along with the name change:
 - The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
-- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`.
+- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
 
 
-## Configuring `generative-google` for VertexAI or MakerSuite
+## Configuring `generative-palm` for VertexAI or MakerSuite
 
 The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
 
@@ -71,14 +73,14 @@ In the Weaviate [schema configuration](#schema-configuration), set the `apiEndpo
 
 ## Introduction
 
-`generative-google` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
+`generative-palm` performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 
 The module works in two steps:
 1. Run a search query in Weaviate to find relevant objects.
 2. Use a PaLM or Gemini model to generate a response. The response is based on the results of the previous step and a prompt or task that you provide.
 
 :::note
-You can use the `generative-google` module with any upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere`, or `text2vec-huggingface` to vectorize and query your data. Then, you can pass the query results to the `generative-google` module to generate a response.
+You can use the `generative-palm` module with any upstream modules. For example, you could use `text2vec-openai`, `text2vec-cohere`, or `text2vec-huggingface` to vectorize and query your data. Then, you can pass the query results to the `generative-palm` module to generate a response.
 :::
 
 The generative module provides results for individual objects or groups of objects:
@@ -91,12 +93,12 @@ You need to input both a query and a prompt (for individual responses) or a task
 ## Inference API key
 
 :::caution Important: Provide the google API key to Weaviate
-`generative-google` uses a google API endpoint, you must provide a valid google API key to Weaviate.
+`generative-palm` uses a google API endpoint, you must provide a valid google API key to Weaviate.
 :::
 
 ### Provide the key to Weaviate
 
-To provide your Google API key, use the `"X-Google-Api-Key"` request header. If you use a Weaviate client, follow these examples:
+To provide your Google API key, use the `"X-PaLM-Api-Key"` request header. If you use a Weaviate client, follow these examples:
 
 import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
 
@@ -107,11 +109,11 @@ Optionally (not recommended), you can provide the Google API key as an environme
 <details>
   <summary>How to provide the Google API key as an environment variable</summary>
 
-During the **configuration** of your Docker instance, by adding `GOOGLE_APIKEY` under `environment` to your `Docker Compose` file, like this:
+During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
 
   ```yaml
   environment:
-    GOOGLE_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
+    PALM_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
     ...
   ```
 
@@ -125,16 +127,16 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 
 ### Docker Compose file (Weaviate open source only)
 
-You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-google` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
+You can enable the Generative Palm module in your Docker Compose file (e.g. `docker-compose.yml`). Add the `generative-palm` module (alongside any other module you may need) to the `ENABLE_MODULES` property, like this:
 
 ```
-ENABLE_MODULES: 'text2vec-google,generative-google'
+ENABLE_MODULES: 'text2vec-palm,generative-palm'
 ```
 
 <details>
-  <summary>See a full example of a Docker configuration with <code>generative-google</code></summary>
+  <summary>See a full example of a Docker configuration with <code>generative-palm</code></summary>
 
-Here is a full example of a Docker configuration that uses the `generative-google` module in combination with `text2vec-google`. The configuration also provides the API key:
+Here is a full example of a Docker configuration that uses the `generative-palm` module in combination with `text2vec-palm`. The configuration also provides the API key:
 
 ```yaml
 ---
@@ -158,10 +160,10 @@ services:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-google'
+      DEFAULT_VECTORIZER_MODULE: 'text2vec-palm'
       // highlight-next-line
-      ENABLE_MODULES: 'text2vec-google,generative-google'
-      GOOGLE_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
+      ENABLE_MODULES: 'text2vec-palm,generative-palm'
+      PALM_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
@@ -194,7 +196,7 @@ This schema configuration sets the Google API information, as well as some optio
       ...,
       "moduleConfig": {
         // highlight-start
-        "generative-google": {
+        "generative-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.
           "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to `"chat-bison"` for Vertex AI and `"chat-bison-001"` for MakerSuite.

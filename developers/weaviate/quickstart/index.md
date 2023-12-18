@@ -352,11 +352,11 @@ Each of the following modules is available in the free sandbox.
     - `text2vec-cohere`
     - `text2vec-huggingface`
     - `text2vec-openai`
-    - `text2vec-google`
+    - `text2vec-palm`
 - Generative modules:
     - `generative-cohere`
     - `generative-openai`
-    - `generative-google`
+    - `generative-palm`
 
 Depending on your choice, make sure to pass on the API key(s). You can do so by setting the header with the appropriate line(s) from below, remembering to replace the placeholder with your actual key:
 
@@ -364,7 +364,7 @@ Depending on your choice, make sure to pass on the API key(s). You can do so by 
 "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
 "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
 "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
-"X-Google-Api-Key": "YOUR-GOOGLE-API-KEY",  // For PaLM
+"X-PaLM-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
 ```
 
 Additionally, we also provide suggested `vectorizer` module configurations.
@@ -426,9 +426,9 @@ class_obj = {
 ```js
 class_obj = {
   "class": "Question",
-  "vectorizer": "text2vec-google",
+  "vectorizer": "text2vec-palm",
   "moduleConfig": {
-    "text2vec-google": {
+    "text2vec-palm": {
       "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Required. Replace with your value: (e.g. "cloud-large-language-models")
       "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.com".
       "modelId": "YOUR-GOOGLE-CLOUD-MODEL-ID",        // Optional. Defaults to "textembedding-gecko".

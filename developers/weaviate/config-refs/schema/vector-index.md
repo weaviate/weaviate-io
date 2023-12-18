@@ -122,12 +122,15 @@ This set of values is a good starting point for many use cases.
 
 ## Flat indexes
 
+:::info Added in `v1.23`
+:::
+
 Flat indexes are recommended for use cases where the number of objects per index is low, such as in multi-tenancy use cases.
 
 | Parameter | Type | Default | Changeable | Details |
 | :-- | :-- | :-- | :-- | :-- |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
-| `bq` | object | -- | No | Enable and configure [binary quantization (PQ)](../../concepts/vector-index.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
+| `bq` | object | -- | No | Enable and configure [binary quantization (BQ)](../../concepts/vector-index.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
 
 ### BQ configuration parameters
 

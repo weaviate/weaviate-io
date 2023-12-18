@@ -20,7 +20,7 @@ import weaviate
 client = weaviate.Client(
     url="http://localhost:8080",
     additional_headers={
-        "X-Google-Api-Key": "YOUR-GOOGLE-API-KEY"
+        "X-PaLM-Api-Key": "YOUR-PALM-API-KEY"
     }
 )
 
@@ -57,7 +57,7 @@ import weaviate from 'weaviate-ts-client';
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: { 'X-Google-Api-Key': 'YOUR-GOOGLE-API-KEY' },
+  headers: { 'X-PaLM-Api-Key': 'YOUR-PALM-API-KEY' },
 });
 
 const response = await client.graphql
@@ -98,7 +98,7 @@ func main() {
   cfg := weaviate.Config{
     Host:    "localhost:8080",
     Scheme:  "http",
-    Headers: map[string]string{"X-Google-Api-Key": "YOUR-GOOGLE-API-KEY"},
+    Headers: map[string]string{"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"},
   }
   client, err := weaviate.NewClient(cfg)
   if err != nil {
@@ -166,7 +166,7 @@ import java.util.Map;
 public class App {
   public static void main(String[] args) {
     Map<String, String> headers = new HashMap<String, String>() { {
-      put("X-Google-Api-Key", "YOUR-GOOGLE-API-KEY");
+      put("X-PaLM-Api-Key", "YOUR-PALM-API-KEY");
     } };
     Config config = new Config("http", "localhost:8080", headers);
     WeaviateClient client = new WeaviateClient(config);
@@ -244,7 +244,7 @@ echo '{
     -X POST \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer learn-weaviate' \
-    -H "X-Google-Api-Key: $GOOGLE_API_KEY" \
+    -H "X-PaLM-Api-Key: $PALM_API_KEY" \
     -d @- \
     https://edu-demo.weaviate.network/v1/graphql
 ```
