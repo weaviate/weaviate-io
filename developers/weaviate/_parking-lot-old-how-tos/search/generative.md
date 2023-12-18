@@ -24,13 +24,13 @@ A generative search uses a large language model (LLM) to generate text based on 
 - [API References: GraphQL: Get](../api/graphql/get.md)
 - [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
 - [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
-- [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
+- [References: Modules: generative-google](../modules/reader-generator-modules/generative-google.md)
 :::
 
 ## Requirements
 
 To use the generative search feature, you must:
-1. Configure Weaviate to use a generator module ([`generative-openai`](../modules/reader-generator-modules/generative-openai.md), [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md), [`generative-palm`](../modules/reader-generator-modules/generative-palm.md)),
+1. Configure Weaviate to use a generator module ([`generative-openai`](../modules/reader-generator-modules/generative-openai.md), [`generative-cohere`](../modules/reader-generator-modules/generative-cohere.md), [`generative-google`](../modules/reader-generator-modules/generative-google.md)),
 2. Configure the parameters for the `generative-*` module in the target class,
 3. Specify a query to retrieve one or more objects, and
 4. Provide a [`single prompt`](#single-prompt) or a [`grouped task`](#grouped-task) to generate text from.
@@ -41,7 +41,7 @@ To use the generative search feature, you must:
 
   You must enable the desired generative search module and (optionally) specify the corresponding inference service (OpenAI, Cohere, PaLM) API key in the relevant Docker Compose file (e.g. `docker-compose.yml`), or (recommended) request that client code provide it with every request. You can generate this file using the [Weaviate configuration tool](../installation/docker-compose.md#configurator).
 
-  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$PALM_APIKEY`), unless you want the client to supply the API key (recommended).
+  Here are the relevant settings from the Docker Compose file. Ensure the corresponding environment variable is set (i.e. `$OPENAI_APIKEY`, `$COHERE_APIKEY`, or `$GOOGLE_APIKEY`), unless you want the client to supply the API key (recommended).
 
   <Tabs groupId="modules">
 <TabItem value="OpenAI" label="OpenAI">
@@ -72,8 +72,8 @@ services:
 services:
   weaviate:
     environment:
-      PALM_APIKEY: $PALM_APIKEY
-      ENABLE_MODULES: '...,generative-palm,...'
+      GOOGLE_APIKEY: $GOOGLE_APIKEY
+      ENABLE_MODULES: '...,generative-google,...'
 ```
 
 </TabItem>

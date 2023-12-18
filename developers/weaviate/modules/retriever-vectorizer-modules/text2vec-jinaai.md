@@ -1,6 +1,6 @@
 ---
 title: text2vec-jinaai
-sidebar_position: 15
+sidebar_position: 17
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
@@ -58,7 +58,8 @@ services:
     image: semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
-     - "8080:8080"
+     - 8080:8080
+     - 50051:50051
     environment:
       QUERY_DEFAULTS_LIMIT: 20
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'

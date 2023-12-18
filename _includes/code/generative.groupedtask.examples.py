@@ -16,7 +16,7 @@ client = weaviate.connect_to_local(
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
         # END GenerativeOpenAI
         # START GenerativeGoogle
-        "X-Palm-Api-Key": "YOUR_GOOGLE_APIKEY",
+        "X-Google-Api-Key": "YOUR_GOOGLE_APIKEY",
         # END GenerativeGoogle
         # START GenerativeHuggingface
         "X-HuggingFace-Api-Key": "YOUR_HUGGINGFACE_APIKEY",

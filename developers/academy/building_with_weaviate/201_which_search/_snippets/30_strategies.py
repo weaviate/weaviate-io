@@ -17,7 +17,7 @@ products = client.collections.create(
     name="Product",
     vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(
         # highlight-start
-        vectorize_class_name=True
+        vectorize_collection_name=True
         # highlight-end
         ),
     properties=[
