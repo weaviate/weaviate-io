@@ -40,7 +40,7 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 
 ## Which vector index is right for me?
 
-Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a simple index that is fast to build and query, but it does not scale well to large datasets. The `hnsw` index is a more complex index that is slower to build and query, but it scales well to large datasets.
+Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a simple index that is fast to build and query, designed for small datasets. The `hnsw` index is a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
 
 A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
 
