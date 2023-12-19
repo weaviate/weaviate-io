@@ -400,6 +400,8 @@ These queries return a `_QueryReturn` object, which contains a list of `_Object`
 </TabItem>
 </Tabs>
 
+#### Queries with custom returns
+
 You can further specify:
 - Whether to include the object vector (via `include_vector`)
     - Default is `False`
@@ -601,7 +603,7 @@ You can choose to provide a generic type to a query or data operation. This can 
 * `[object].metadata.uuid` is now `[object].uuid`.
 * `[object].metadata.creation_time_unix` is now `[object].metadata.creation_time`.
 * `[object].metadata.last_update_time_unix` is now `[object].metadata.last_update`.
-* Any `vector` parameter for requesting the vector in the returned data is now `include_vector`.
+* To request the vector in the returned data, use the `include_vector` parameter ([example](#queries-with-custom-returns)).
 
 #### Data types
 
