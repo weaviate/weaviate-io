@@ -43,6 +43,7 @@ export default function LearnMore() {
             <Link to="/developers/weaviate">
               <div className={styles.sectionB}>
                 <h3 className={styles.cardHeader}>Documentation</h3>
+                <h3 className={styles.cardSub}>How to start with Weaviate</h3>
                 <p className={styles.pressText}>
                   Weaviate’ search engine opens up new ways to query your data
                 </p>

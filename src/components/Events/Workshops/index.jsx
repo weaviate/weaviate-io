@@ -23,32 +23,28 @@ export default function WorkshopSection() {
   }, []);
 
   return (
-    <>
-      <header>
-        <div className={styles.container}>
-          <div className={styles.headerBox}>
-            <h2>All our upcoming events around the World</h2>
-            <p>
-              We believe that the next wave of software infrastructure is
-              AI-first and that a strong open-source community is a basis for
-              creating high-quality software. Our workshops deliver new
-              information and details on our service.
-            </p>
-          </div>
-          <div className={styles.workshopWrapper}>
-            <div className="workshopContainer">
-              {!isCalendarLoaded && (
-                <div className={styles.loadGrid}>
-                  <div className={styles.loader}></div>
-                  <div className={styles.loader}></div>
-                  <div className={styles.loader}></div>
-                  <div className={styles.loader}></div>
-                </div>
-              )}
+    <div className={styles.container}>
+      <div className={styles.headerBox}>
+        <h2>All our upcoming events around the World</h2>
+        <p>
+          We believe that the next wave of software infrastructure is AI-first
+          and that a strong open-source community is a basis for creating
+          high-quality software. Our workshops deliver new information and
+          details on our service.
+        </p>
+      </div>
+      <div className={styles.workshopWrapper}>
+        <div className="workshopContainer">
+          {!isCalendarLoaded && (
+            <div className={styles.loadGrid}>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
+              <div className={styles.loader}></div>
             </div>
-          </div>
+          )}
         </div>
-      </header>
-    </>
+      </div>
+    </div>
   );
 }

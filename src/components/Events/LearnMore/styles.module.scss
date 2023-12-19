@@ -135,6 +135,14 @@ p {
   grid-template-areas:
     'div1 div2'
     'div3 div3';
+
+  @media screen and (max-width: 950px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'div1'
+      'div2'
+      'div3';
+  }
 }
 
 .div1 {
@@ -148,10 +156,12 @@ p {
   background-position: -18% 100%;
   background-repeat: no-repeat;
   @media screen and (max-width: 950px) {
-    background: url('/img/site/home-page-bg-pattern.svg') !important;
-    background-size: 100% !important;
-    background-repeat: no-repeat !important;
-    background-position-y: bottom !important;
+    border-radius: 0.4375rem;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -160,6 +170,10 @@ p {
 
   a {
     color: #130c49;
+
+    @media screen and (max-width: 950px) {
+      color: #fff;
+    }
   }
 }
 
@@ -174,13 +188,19 @@ p {
   background-position: 120% 1%;
   background-repeat: no-repeat;
   @media screen and (max-width: 950px) {
-    background: url('/img/site/home-page-bg-pattern.svg') !important;
-    background-size: 100% !important;
-    background-repeat: no-repeat !important;
-    background-position-y: bottom !important;
+    border-radius: 0.4375rem;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   a {
     color: #130c49;
+
+    @media screen and (max-width: 950px) {
+      color: #fff;
+    }
   }
 }
 
@@ -195,12 +215,19 @@ p {
   background-position: 0% 58%;
   background-repeat: no-repeat;
   @media screen and (max-width: 950px) {
-    background-image: url('/img/site/home-page-bg-pattern.svg') !important;
-    background-size: cover;
+    border-radius: 0.4375rem;
+    background: #130c49;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
-
   a {
     color: #130c49;
+
+    @media screen and (max-width: 950px) {
+      color: #fff;
+    }
   }
 }
 
@@ -224,6 +251,12 @@ p {
     color: #130c49;
     font-size: 1.25rem;
     font-weight: 400;
+
+    @media screen and (max-width: 950px) {
+      color: #61bd73;
+      font-size: 1.5rem;
+      text-decoration-line: underline;
+    }
   }
 
   @media screen and (max-width: 950px) {
@@ -233,7 +266,7 @@ p {
     margin: auto;
 
     p {
-      font-size: 15px;
+      font-size: 20px;
     }
   }
 
@@ -249,10 +282,6 @@ p {
   @media screen and (max-width: 1050px) {
     margin: unset;
   }
-
-  @media screen and (max-width: 1440px) {
-    margin: 60px 10px;
-  }
 }
 .date {
   font-weight: 200;
@@ -267,6 +296,11 @@ p {
     color: #130c49;
     font-size: 1.25rem;
     font-weight: 400;
+    @media screen and (max-width: 950px) {
+      color: #61bd73;
+      font-size: 1.5rem;
+      text-decoration-line: underline;
+    }
   }
 
   .date {
@@ -280,15 +314,15 @@ p {
     margin: auto;
 
     p {
-      font-size: 15px;
+      font-size: 20px;
     }
     .date {
-      margin-top: 27px;
+      display: none;
     }
   }
 
   @media screen and (max-width: 1050px) {
-    margin: 60px 13px;
+    margin: unset;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
@@ -316,12 +350,32 @@ p {
   float: right;
   width: 68%;
   margin: auto;
-  padding: 68px 13px;
+  padding: 43px 13px;
 
   .cardHeader {
     color: #130c49;
     font-size: 1.25rem;
     font-weight: 400;
+
+    @media screen and (max-width: 950px) {
+      color: #61bd73;
+      font-size: 1.5rem;
+      text-decoration-line: underline;
+    }
+  }
+
+  .cardSub {
+    color: #130c49;
+
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 700;
+
+    @media screen and (max-width: 950px) {
+      color: #fff;
+      font-size: 1.3rem;
+      margin: 20px 0px;
+    }
   }
 
   @media screen and (max-width: 1440px) {
@@ -342,7 +396,7 @@ p {
       font-size: 15px;
     }
     .date {
-      margin-top: 40px;
+      display: none;
     }
   }
 
