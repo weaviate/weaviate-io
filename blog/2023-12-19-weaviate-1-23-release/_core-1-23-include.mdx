@@ -20,6 +20,9 @@ For more details, keep scrolling ⬇️!
 
 ## AutoPQ
 
+![AutoPQ](./img/weaviate-release-1-23-lazy.png#gh-dark-mode-only)
+![AutoPQ](./img/weaviate-release-1-23-lazy_1.png#gh-light-mode-only)
+
 Weaviate introduced Product Quantization (PQ) earlier this year. Since then, we've improved how PQ works with your data. In v1.23 we've made it easier to get started. PQ requires a training step. We've heard that the training step was tricky to configure, so we created AutoPQ to take care of the training for you. Just [enable AutoPQ](/developers/weaviate/configuration/pq-compression/#configure-autopq) in your system configuration. Then, any time you enable PQ on a new collection, AutoPQ takes care of training and initializes PQ for you.
 
 We have other improvements too. PQ uses [segments](/developers/weaviate/concepts/vector-index/#what-is-product-quantization) to compress vectors. In this release we have a new algorithm to determine the optimal segment size for your vectors. You can still set the segment size manually, but you shouldn't have to.
