@@ -248,53 +248,15 @@ Both operators expect an array of values and return objects that match based on 
 
 `ContainsAny` returns objects where at least one of the values from the input array is present.
 
-Consider a dataset of `Person`, where each object represents a person with a `name` and a `languages_spoken` property.
+Consider a dataset of `Person`, where each object represents a person with a `languages_spoken` property with a `text` datatype.
 
-Using `ContainsAny`, you can fetch all people who speak at least one of the provided languages.
-
-```graphql
-{
-  Get {
-    Person (
-      where: {
-        path: ["languages_spoken"],
-        operator: ContainsAny,
-        valueText: ["Chinese", "French", "English"]
-      }
-    )
-    {
-      languages_spoken
-      name
-    }
-  }
-}
-```
-
-This query fetches individuals who speak **one or more of the specified languages**. That is, at least one of `Chinese`, `French`, or `English`.
+A `ContainsAny` query on a path of `["languages_spoken"]` with a value of `["Chinese", "French", "English"]` will return objects where at least one of those languages is present in the `languages_spoken` array.
 
 #### `ContainsAll`
 
 `ContainsAll` returns objects where all the values from the input array are present.
 
-```graphql
-{
-  Get {
-    Person (
-      where: {
-        path: ["languages_spoken"],
-        operator: ContainsAll,
-        valueText: ["Chinese", "French", "English"]
-      }
-    )
-    {
-      languages_spoken
-      name
-    }
-  }
-}
-```
-
-This query fetches individuals who can speak **all three languages**: `Chinese`, `French`, and `English`.
+Using the same dataset of `Person` objects as above, a `ContainsAll` query on a path of `["languages_spoken"]` with a value of `["Chinese", "French", "English"]` will return objects where all three of those languages are present in the `languages_spoken` array.
 
 ## Filter performance
 
