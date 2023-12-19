@@ -268,9 +268,6 @@ A drawback of the flat index is that it does not scale well to large collections
 
 The flat index can be combined with a vector cache to improve query performance. The vector cache is a memory cache that stores the vectors of the most recently used data objects. The vector cache is used to speed up queries by reducing the number of disk reads. However it must be balanced with memory usage considerations.
 
-As each vector in the cache will occupy (~4 bytes * number of dimensions) of memory, a vector cache of 10 million OpenAI vectors with 1536 dimensions will require up to ~60GB of memory.
-
-
 ### Binary quantization
 
 Binary quantization (BQ) is a technique that can speed up vector search. BQ is available for the `flat` index type.

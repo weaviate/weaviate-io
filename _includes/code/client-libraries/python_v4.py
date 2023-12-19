@@ -17,8 +17,7 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 client = weaviate.connect_to_embedded(
     port=8085,
     grpc_port=50055
-)
-
+)  # Connect with default parameters
 assert client.is_ready()
 
 # WCSInstantiation
