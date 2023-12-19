@@ -280,6 +280,10 @@ p {
   }
 
   @media screen and (max-width: 1050px) {
+    margin: 20px 20px;
+  }
+
+  @media screen and (max-width: 500px) {
     margin: unset;
   }
 }
@@ -328,7 +332,7 @@ p {
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
     float: left;
     width: 50%;
-    margin: 32px 34px;
+    margin: 20px 20px;
 
     .date {
       margin-top: 98px;
@@ -338,7 +342,7 @@ p {
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     float: left;
     width: 50%;
-    margin: 20px 34px;
+    margin: 20px 20px;
 
     .date {
       margin-top: 121px;
@@ -367,7 +371,7 @@ p {
   .cardSub {
     color: #130c49;
 
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
 
@@ -383,6 +387,9 @@ p {
   }
 
   @media screen and (max-width: 1050px) {
+    p {
+      font-size: 1.1rem;
+    }
     width: 53%;
   }
 
