@@ -38,12 +38,7 @@ As the name suggests, the `flat` index is a single layer of disk-based reference
 
 This index type is particularly useful for multi-tenancy use cases, where each tenant's collection is relatively small, and thus does not need the overhead that comes with building `hnsw` indexes.
 
-The `flat` index can be combined with a vector cache, and binary quantization (BQ).
-
-
-### Vector cache
-
-Similarly to with HNSW indexes, the vector cache can be used to to improve query performance by storing vectors of the most recently used data objects. Note that it must be balanced with memory usage considerations.
+The `flat` index can be optionally combined with binary quantization (BQ).
 
 
 ### Binary quantization
@@ -55,6 +50,8 @@ BQ works by converting each vector to a binary representation, such as consistin
 Weaviate deals with any loss in vector similarity accuracy by conditionally over-fetching and then re-scoring the results. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled.
 
 We expect that BQ will generally work better for vectors with higher dimensions. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
+
+When BQ is enabled, a vector cache can be used to to improve query performance by storing the quantized vectors of the most recently used data objects. Note that it must be balanced with memory usage considerations.
 
 * Read more about the `flat` index [here](/developers/weaviate/concepts/vector-index#flat-index).
 

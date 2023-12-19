@@ -568,10 +568,16 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 ### `v4.4b1` to `v4.4b2`
 
+#### References
+
 * References are now added through a `references` parameter during collection creation, object insertion and queries. See examples for:
     * [Collection creation](#instantiate-a-collection)
     * [Cross-reference creation](#cross-reference-creation)
     * [Queries](#query)
+* The `FromReference` class is now called `QueryReference`.
+
+#### Name changes
+
 * `weaviate.classes` submodule further split into:
     * `weaviate.classes.config`
     * `weaviate.classes.data`
@@ -590,13 +596,16 @@ You can choose to provide a generic type to a query or data operation. This can 
         # highlight-end
     )
     ```
-* `vectorize_class_name` becomes `vectorize_collection_name`
+* `vectorize_class_name` parameter in the `Property` constructor method is `vectorize_collection_name`.
+* `[object].metadata.uuid` is now `[object].uuid`.
+* Any `vector` parameter for requesting the vector in the returned data is now `include_vector`.
+
+#### Data types
+
 * Time metadata (for creation and last updated time) now returns a `datetime` object, and the parameters are renamed to `creation_time` and `last_update_time` under `MetadataQuery`.
     * `metadata.creation_time.timestamp() * 1000` will return the same value as before.
 * `query.fetch_object_by_id()` now uses gRPC under the hood (rather than REST), and returns objects in the same format as other queries.
 * `UUID` and `DATE` properties are returned as typed objects.
-* `[object].metadata.uuid` is now `[object].uuid`.
-* Any `vector` parameter for requesting the vector in the returned data is now `include_vector`.
 
 
 ## Best practices and notes
