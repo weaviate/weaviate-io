@@ -230,7 +230,7 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Events & Workshops',
+                                label: 'Events & Webinars',
                                 to: '/community/events',
                             },
                             {
