@@ -588,16 +588,19 @@ You can choose to provide a generic type to a query or data operation. This can 
     client.collections.create(
         name="YourCollection",
         # highlight-start
-        vector_index_config=wvc.Configure.VectorIndex.flat(
+        vector_index_config=wvc.Configure.VectorIndex.hnsw(
             distance_metric=wvc.VectorDistance.COSINE,
             vector_cache_max_objects=1000000,
-            quantitizer=wvc.Configure.VectorIndex.Quantitizer.bq()
+            quantitizer=wvc.Configure.VectorIndex.Quantitizer.pq()
         ),
         # highlight-end
     )
     ```
+    * `vector_index_type` parameter has been removed.
 * `vectorize_class_name` parameter in the `Property` constructor method is `vectorize_collection_name`.
 * `[object].metadata.uuid` is now `[object].uuid`.
+* `[object].metadata.creation_time_unix` is now `[object].metadata.creation_time`.
+* `[object].metadata.last_update_time_unix` is now `[object].metadata.last_update`.
 * Any `vector` parameter for requesting the vector in the returned data is now `include_vector`.
 
 #### Data types
