@@ -14,14 +14,15 @@ image: og/docs/modules/generative-palm.jpg
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
     * Please check the vendor pricing.
-* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google MakerSuite](https://developers.generativeai.google/products/makersuite).
+* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
 
 :::info Releases and versions
 
 <!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
 <!-- `generative-google` was added in version `v1.19.1` under its previous name, `generative-palm`. -->
 
-Google MakerSuite support was added in version `1.22.4`.
+Google AI Studio (previously called MakerSuite) support was added in version `1.22.4`.
+
 :::
 
 
@@ -35,9 +36,9 @@ Along with the name change:
 - The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
 
 
-## Configuring `generative-palm` for VertexAI or MakerSuite
+## Configuring `generative-palm` for VertexAI or Google AI Studio
 
-The module can be used with either Google Cloud Vertex AI or Google MakerSuite. The configurations vary slightly for each.
+The module can be used with either Google Cloud Vertex AI or Google Google AI Studio. The configurations vary slightly for each.
 
 ### Google Cloud Vertex AI
 
@@ -59,15 +60,15 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 <GCPTokenExpiryNotes/>
 
-### Google MakerSuite
+### Google Google AI Studio
 
-MakerSuite may not be available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
+Google AI Studio may not be available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
 
-#### API key for MakerSuite users
+#### API key for Google AI Studio users
 
-You can obtain an API key by logging in to your MakerSuite account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiration date.
+You can obtain an API key by logging in to your Google AI Studio account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiration date.
 
-#### `apiEndpoint` for MakerSuite users
+#### `apiEndpoint` for Google AI Studio users
 
 In the Weaviate [schema configuration](#schema-configuration), set the `apiEndpoint` to `generativelanguage.googleapis.com`.
 
@@ -185,7 +186,7 @@ This schema configuration sets the Google API information, as well as some optio
 |:--|:--|:--|
 | `"projectId"` | Only required with Vertex AI | `"cloud-large-language-models"` |
 | `"apiEndpoint"` | Optional | `"us-central1-aiplatform.googleapis.com"` |
-| `"modelId"` | Optional | `"chat-bison"` (Vertex AI) <br/> `"chat-bison-001"` (MakerSuite) |
+| `"modelId"` | Optional | `"chat-bison"` (Vertex AI) <br/> `"chat-bison-001"` (Google AI Studio) |
 
 ```json
 {
@@ -199,7 +200,7 @@ This schema configuration sets the Google API information, as well as some optio
         "generative-palm": {
           "projectId": "YOUR-GOOGLE-CLOUD-PROJECT-ID",    // Only required if using Vertex AI. Replace with your value: (e.g. "cloud-large-language-models")
           "apiEndpoint": "YOUR-API-ENDPOINT",             // Optional. Defaults to "us-central1-aiplatform.googleapis.
-          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to `"chat-bison"` for Vertex AI and `"chat-bison-001"` for MakerSuite.
+          "modelId": "YOUR-GOOGLE-CLOUD-ENDPOINT-ID",     // Optional. Defaults to `"chat-bison"` for Vertex AI and `"chat-bison-001"` for Google AI Studio.
           "temperature": 0.2,      // Optional
           "maxOutputTokens": 512,  // Optional
           "topK": 3,               // Optional
@@ -357,18 +358,18 @@ import PalmGroupedResult from '/_includes/code/generative.palm.groupedresult.mdx
 
 ### Supported models
 
-You can specify the model as a part of the schema as shown earlier. Available models and names differ between Vertex AI and MakerSuite.
+You can specify the model as a part of the schema as shown earlier. Available models and names differ between Vertex AI and Google AI Studio.
 
 Vertex AI:
 - `chat-bison` (default)
 
-MakerSuite:
+Google AI Studio:
 - `chat-bison-001` (default)
 - `gemini-pro`
 
 :::info Additional model support in progress
 
-- `gemini-pro-vision` for Vertex AI and MakerSuite
+- `gemini-pro-vision` for Vertex AI and Google AI Studio
 - `gemini-pro` on Vertex AI
 
 :::
