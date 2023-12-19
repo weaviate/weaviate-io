@@ -114,6 +114,8 @@ assert config.vector_index_type.name == "HNSW"
 # ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 # ===============================================
 
+client.collections.delete("Article")
+
 # START SetGenerative
 import weaviate.classes as wvc
 
@@ -336,7 +338,7 @@ articles = client.collections.get("Article")
 # Add a new property
 articles.config.add_property(
     # highlight-start
-    additional_property=wvc.Property(
+    prop=wvc.Property(
         name="body",
         data_type=wvc.DataType.TEXT
     )
@@ -415,6 +417,7 @@ client.collections.delete("Article")
 client.collections.create(
     name="Article",
     inverted_index_config=wvc.Configure.inverted_index(
+        bm25_b=0.7,
         bm25_k1=1.2
     )
 )

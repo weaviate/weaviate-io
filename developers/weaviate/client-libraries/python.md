@@ -12,7 +12,14 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 :::caution Beta version
 
- The Python client is currently in beta, and we want to hear from you. You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS. If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
+The Python client is currently in beta. Please note the following:
+<br/>
+
+- We strongly encourage you to use the latest version of the Python client *and* the Weaviate server.
+- You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS).
+- It is not yet available on the free (sandbox) tier of WCS.
+- Please report any bugs or feedback on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
+
 :::
 
 ## Overview
@@ -20,6 +27,8 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 This page describes the `v4` Python client for Weaviate.
 
 The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
+
+Please see the migration guide below for key changes between beta releases.
 
 ### Key changes from `v3`
 
@@ -36,6 +45,14 @@ But it may be convenient to import the whole set of classes like this.
 ```
 import weaviate.classes as wvc
 ```
+
+For discoverability, the submodule is further divided into:
+
+* `weaviate.classes.config`
+* `weaviate.classes.data`
+* `weaviate.classes.query`
+* `weaviate.classes.generic`
+
 
 ## Installation
 
@@ -55,7 +72,9 @@ pip install --pre -U "weaviate-client==4.*"
 The API may change on the client-side and the server-side, especially during the beta period. Accordingly, we encourage you to use the latest version of the Python client *and* the Weaviate server.
 :::
 
-The `v4` client is designed for use with Weaviate `1.22` and higher to take advantage of the gRPC API. If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
+The latest `v4` client is designed for use with Weaviate `1.23` and higher.
+
+If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
 
 Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
 
@@ -386,6 +405,7 @@ You can further specify:
     - Default is `False`
 - Which properties to include (via `return_properties`)
     - All properties are returned by default
+- Which references to include (via `return_references`)
 - Which metadata to include
     - No metadata is returned by default
 
@@ -543,6 +563,41 @@ You can choose to provide a generic type to a query or data operation. This can 
   endMarker="# END GenericsExample"
   language="py"
 />
+
+## Migration guides
+
+### `v4.4b1` to `v4.4b2`
+
+* References are now added through a `references` parameter during collection creation, object insertion and queries. See examples for:
+    * [Collection creation](#instantiate-a-collection)
+    * [Cross-reference creation](#cross-reference-creation)
+    * [Queries](#query)
+* `weaviate.classes` submodule further split into:
+    * `weaviate.classes.config`
+    * `weaviate.classes.data`
+    * `weaviate.classes.query`
+    * `weaviate.classes.generic`
+* `vector_index_config` parameter factory functions for `wvc.Configure` and `wvc.Reconfigure` have changed to, e.g.:
+    ```python
+    client.collections.create(
+        name="YourCollection",
+        # highlight-start
+        vector_index_config=wvc.Configure.VectorIndex.flat(
+            distance_metric=wvc.VectorDistance.COSINE,
+            vector_cache_max_objects=1000000,
+            quantitizer=wvc.Configure.VectorIndex.Quantitizer.bq()
+        ),
+        # highlight-end
+    )
+    ```
+* `vectorize_class_name` becomes `vectorize_collection_name`
+* Time metadata (for creation and last updated time) now returns a `datetime` object, and the parameters are renamed to `creation_time` and `last_update_time` under `MetadataQuery`.
+    * `metadata.creation_time.timestamp() * 1000` will return the same value as before.
+* `query.fetch_object_by_id()` now uses gRPC under the hood (rather than REST), and returns objects in the same format as other queries.
+* `UUID` and `DATE` properties are returned as typed objects.
+* `[object].metadata.uuid` is now `[object].uuid`.
+* Any `vector` parameter for requesting the vector in the returned data is now `include_vector`.
+
 
 ## Best practices and notes
 

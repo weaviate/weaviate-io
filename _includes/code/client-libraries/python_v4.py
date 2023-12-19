@@ -351,6 +351,7 @@ response = questions.query.bm25(
 
 for o in response.objects:
     print(o.properties)  # All properties by default
+    print(o.references)  # References not returned by default
     print(o.uuid)  # UUID included by default
     print(o.vector)  # No vector
     print(o.metadata)  # No metadata
@@ -363,11 +364,13 @@ response = questions.query.bm25(
     include_vector=True,
     return_properties=["question"],
     return_metadata=wvc.MetadataQuery(distance=True),
+    return_references=wvc.QueryReference(link_on="hasCategory"),
     limit=2
 )
 
 for o in response.objects:
     print(o.properties)  # Selected properties only
+    print(o.references)  # Selected references
     print(o.uuid)  # UUID included by default
     print(o.vector)  # With vector
     print(o.metadata)  # With selected metadata
