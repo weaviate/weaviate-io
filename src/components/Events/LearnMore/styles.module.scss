@@ -147,8 +147,9 @@ p {
   background-image: url('/img/site/events-connor.png');
   background-position: -18% 100%;
   background-repeat: no-repeat;
-  @media screen and (max-width: 700px) {
-    background-image: none;
+  @media screen and (max-width: 950px) {
+    background: url('/img/site/home-page-bg-pattern.svg') !important;
+    background-size: cover;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -170,8 +171,9 @@ p {
   background-image: url('/img/site/press-background-2.png');
   background-position: 120% 1%;
   background-repeat: no-repeat;
-  @media screen and (max-width: 700px) {
-    background-image: none;
+  @media screen and (max-width: 950px) {
+    background: url('/img/site/home-page-bg-pattern.svg') !important;
+    background-size: cover;
   }
   a {
     color: #130c49;
@@ -188,8 +190,9 @@ p {
   background-image: url('/img/site/press-background-3.png');
   background-position: 0% 58%;
   background-repeat: no-repeat;
-  @media screen and (max-width: 700px) {
-    background-image: none;
+  @media screen and (max-width: 950px) {
+    background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+    background-size: cover;
   }
 
   a {
@@ -219,7 +222,7 @@ p {
     font-weight: 400;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 950px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
@@ -237,6 +240,14 @@ p {
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     margin: 7px 30px;
+  }
+
+  @media screen and (max-width: 1050px) {
+    margin: unset;
+  }
+
+  @media screen and (max-width: 1440px) {
+    margin: 60px 10px;
   }
 }
 .date {
@@ -258,7 +269,7 @@ p {
     margin-top: 60px;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 950px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
@@ -270,6 +281,10 @@ p {
     .date {
       margin-top: 27px;
     }
+  }
+
+  @media screen and (max-width: 1050px) {
+    margin: 60px 13px;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
@@ -305,7 +320,15 @@ p {
     font-weight: 400;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1440px) {
+    width: 63%;
+  }
+
+  @media screen and (max-width: 1050px) {
+    width: 53%;
+  }
+
+  @media screen and (max-width: 950px) {
     padding: 10px 10px;
     float: none;
     width: 100%;
