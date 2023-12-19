@@ -9,8 +9,8 @@ import json
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    "http://localhost:8080",  # Replace with your Weaviate URL
+    # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
     }
@@ -629,6 +629,60 @@ gql_query = """
 }
 # END CrossReferenceGraphQL
 """
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+assert gqlresponse == response
+# End test
+
+
+# ========================================
+# FilterByID
+# ========================================
+
+# START FilterById
+target_id = "00037775-1432-35e5-bc59-443baaef7d80"
+response = (
+    client.query
+    .get("Article", ["title"])
+    .with_where({
+        "path": "id",
+        "operator": "Equal",
+        "valueText": target_id
+    })
+    .with_additional("id")
+    .do()
+)
+
+print(response)
+# END FilterById
+
+# TEST
+assert response["data"]["Get"]["Article"][0]["_additional"]["id"] == target_id
+
+
+gql_query = """
+# GQLFilterById
+{
+  Get {
+    Article(
+# highlight-start
+      where: {
+        path: ["id"],
+        operator: Equal,
+        valueText: "00037775-1432-35e5-bc59-443baaef7d80"
+      }
+# highlight-end
+    ) {
+      title
+      _additional { id }
+    }
+  }
+}
+# END GQLFilterById
+"""
+
+print(gqlresponse)
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
