@@ -242,7 +242,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
-    offset=1, # `offset` support is being added to the client
+    # offset=1, # `offset` support is being added to the client
     limit=2,  # return 2 objects
     # highlight-end
     return_metadata=wvc.query.MetadataQuery(distance=True)
