@@ -255,25 +255,26 @@ properties = [{"question": f"Test Question {i+1}"} for i in range(5)]
 response = questions.data.insert_many(properties)
 # END InsertManyExample
 
+# TODO - review next example also
 # START InsertManyDataObjectExample
-# from weaviate.util import generate_uuid5
+from weaviate.util import generate_uuid5
 
-# questions = client.collections.get("JeopardyQuestion")
+questions = client.collections.get("JeopardyQuestion")
 
-# data_objects = list()
-# for i in range(5):
-#     properties = {"question": f"Test Question {i+1}"}
-#     data_object = wvc.DataObject(
-#         properties=properties,
-#         # END InsertManyDataObjectExample
-#         references=[
-#             wvc.Reference.to(uuids=target_uuid)
-#         ],
-#         # START InsertManyDataObjectExample
-#         uuid=generate_uuid5(properties)
-#     )
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.DataObject(
+        properties=properties,
+        # END InsertManyDataObjectExample
+        references=[
+            wvc.Reference.to(uuids=target_uuid)
+        ],
+        # START InsertManyDataObjectExample
+        uuid=generate_uuid5(properties)
+    )
 
-# response = questions.data.insert_many(data_objects)
+response = questions.data.insert_many(data_objects)
 # END InsertManyDataObjectExample
 
 # START DeleteObjectExample
