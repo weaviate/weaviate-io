@@ -37,7 +37,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    height: 37rem;
+    height: auto;
   }
 }
 
@@ -54,13 +54,12 @@
 
   @media screen and (max-width: 1100px) {
     display: flex;
-    overflow-x: scroll;
     width: 100%;
     height: auto;
     flex-flow: row;
-    justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    flex-direction: column;
   }
 }
 
@@ -73,11 +72,11 @@
 }
 
 .firstSection {
-  background-image: url('/img/site/highlight-02.png');
+  background-image: url('/img/site/highlight-01.png');
   background-size: cover;
 }
 .secondSection {
-  background-image: url('/img/site/highlight-01.png');
+  background-image: url('/img/site/highlight-02.png');
   background-size: cover;
 }
 

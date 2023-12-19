@@ -149,7 +149,9 @@ p {
   background-repeat: no-repeat;
   @media screen and (max-width: 950px) {
     background: url('/img/site/home-page-bg-pattern.svg') !important;
-    background-size: cover;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+    background-position-y: bottom !important;
   }
 
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -173,7 +175,9 @@ p {
   background-repeat: no-repeat;
   @media screen and (max-width: 950px) {
     background: url('/img/site/home-page-bg-pattern.svg') !important;
-    background-size: cover;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+    background-position-y: bottom !important;
   }
   a {
     color: #130c49;
