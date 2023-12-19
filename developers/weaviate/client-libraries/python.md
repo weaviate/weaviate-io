@@ -209,6 +209,8 @@ Please refer to the [`v3` client documentation](./python_v3.md) if you are using
 
 You can instantiate a collection object by creating a collection, or by retrieving an existing collection.
 
+Note that when adding a cross-reference property, you should use the `references` parameter. Using the `properties` parameter to add references is deprecated and will be removed in the future.
+
 <Tabs groupId="languages">
 <TabItem value="create" label="Create a collection">
 
@@ -329,8 +331,26 @@ The `insert_many` function takes a list of `DataObject` instances or a list of d
   language="py"
 />
 
+#### Cross-reference creation
 
+Cross-references should be added under a `references` parameter in the relevant function/method, with a structure like:
 
+```python
+{
+    "<REFERENCE_PROPERTY_NAME>": Reference.to(uuids=<TARGET_UUID>)
+}
+```
+
+For example:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START InsertManyDataObjectReferenceExample"
+  endMarker="# END InsertManyDataObjectReferenceExample"
+  language="py"
+/>
+
+Using the `properties` parameter to add references is deprecated and will be removed in the future.
 
 ### `query`
 
@@ -547,7 +567,7 @@ Each query response object typically include multiple attributes. Consider this 
   language="py"
 />
 
-Each response includes attributes such as `objects` and `generated`. Then, each object in `objects` include multiple attributes such as `uuid`, `vector`, `properties`, `metadata` and `generated`.
+Each response includes attributes such as `objects` and `generated`. Then, each object in `objects` include multiple attributes such as `uuid`, `vector`, `properties`, `references`, `metadata` and `generated`.
 
 <FilteredTextBlock
   text={PythonCode}

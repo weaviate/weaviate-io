@@ -161,7 +161,6 @@ for cname in ["TestArticle", "TestAuthor"]:
     assert not client.collections.exists(cname)
 
 
-# TODO - review why this ref isn't working
 # START CreateCollectionWithRefsExample
 import weaviate
 import weaviate.classes as wvc
@@ -190,12 +189,14 @@ authors = client.collections.create(
             data_type=wvc.DataType.TEXT
         )
     ],
-    # references=[
-    #     wvc.ReferenceProperty(
-    #         name="wroteArticle",
-    #         target_collection="TestArticle"
-    #     )
-    # ]
+    # highlight-start
+    references=[
+        wvc.ReferenceProperty(
+            name="wroteArticle",
+            target_collection="TestArticle"
+        )
+    ]
+    # highlight-end
 )
 # END CreateCollectionWithRefsExample
 
@@ -230,7 +231,6 @@ target_uuid = response.objects[0].uuid
 
 print(response)
 
-# TODO - review why why the below xref isn't working
 # START CreateObjectExample
 questions = client.collections.get("JeopardyQuestion")
 
@@ -255,7 +255,6 @@ properties = [{"question": f"Test Question {i+1}"} for i in range(5)]
 response = questions.data.insert_many(properties)
 # END InsertManyExample
 
-# TODO - review next example also
 # START InsertManyDataObjectExample
 from weaviate.util import generate_uuid5
 
@@ -266,16 +265,34 @@ for i in range(5):
     properties = {"question": f"Test Question {i+1}"}
     data_object = wvc.DataObject(
         properties=properties,
-        # END InsertManyDataObjectExample
-        references=[
-            wvc.Reference.to(uuids=target_uuid)
-        ],
-        # START InsertManyDataObjectExample
         uuid=generate_uuid5(properties)
     )
+    data_objects.append(data_object)
 
 response = questions.data.insert_many(data_objects)
 # END InsertManyDataObjectExample
+
+# START InsertManyDataObjectReferenceExample
+from weaviate.util import generate_uuid5
+
+questions = client.collections.get("JeopardyQuestion")
+
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.DataObject(
+        properties=properties,
+        # highlight-start
+        references={
+            "hasCategory": wvc.Reference.to(uuids=target_uuid)
+        },
+        # highlight-end
+        uuid=generate_uuid5(properties)
+    )
+    data_objects.append(data_object)
+
+response = questions.data.insert_many(data_objects)
+# END InsertManyDataObjectReferenceExample
 
 # START DeleteObjectExample
 questions = client.collections.get("JeopardyQuestion")
@@ -504,7 +521,6 @@ _GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('f448a778-78bb-5565-9b3b-
 # # END ResultJSONDisplayResults
 # """
 
-# TODO - review why this isn't working
 # IteratorBasic
 all_objects = [question for question in questions.iterator()]
 # END IteratorBasic
@@ -513,7 +529,6 @@ all_objects = [question for question in questions.iterator()]
 all_object_answer_ids = [question for question in questions.iterator(return_properties=["answer"])]
 # END IteratorAnswerOnly
 
-# TODO - review why this isn't working
 # IteratorMetadataOnly
 all_object_ids = [question for question in questions.iterator(return_metadata=wvc.MetadataQuery(creation_time_unix=True))]  # Only return IDs
 # END IteratorMetadataOnly
