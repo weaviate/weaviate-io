@@ -376,7 +376,44 @@ The output is like this:
 
 ## Filter by metadata
 
-Filters also work with metadata properties such as object id, property length, and timestamp. For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
+Filters also work with metadata properties such as object id, property length, and timestamp.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterById"
+      endMarker="# END FilterById"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FilterById"
+      endMarker="# END FilterById"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// filterById"
+      endMarker="// END filterById"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GQLFilterById"
+      endMarker="# END GQLFilterById"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
 ## Improve filter performance
 

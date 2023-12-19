@@ -5,6 +5,7 @@
 # ================================
 
 import weaviate
+import weaviate.classes as wvc
 import json
 import os
 
@@ -596,3 +597,26 @@ gql_query = """
 # gqlresponse = client.query.raw(gql_query)
 # assert gqlresponse == response
 # End test
+
+
+# ========================================
+# FilterByID
+# ========================================
+
+# START FilterById
+from weaviate.collections.classes.filters import FilterMetadata
+
+collection = client.collections.get("Article")
+
+target_id = "00037775-1432-35e5-bc59-443baaef7d80"
+response = collection.query.fetch_objects(
+    filters=FilterMetadata.ById.equal(target_id)
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+    print(o.uuid)
+# END FilterById
+
+# TEST
+assert str(response.objects[0].uuid) == target_id

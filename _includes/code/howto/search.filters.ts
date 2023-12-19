@@ -252,3 +252,30 @@ for (const question of result.data.Get.JeopardyQuestion) {
 }
 // searchCrossReference
 // END searchCrossReference
+
+
+// ===================================================
+// ===== Filters using Id =====
+// ===================================================
+
+// filterById
+let target_id = '00037775-1432-35e5-bc59-443baaef7d80'
+result = await client.graphql
+  .get()
+  .withClassName('Article')
+// highlight-start
+  .withWhere({
+    path: ['id'],
+    operator: 'Equal',
+    valueText: target_id,
+  })
+// highlight-end
+  .withFields('title _additional { id }')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END filterById
+
+// Tests
+result.data.Get.JeopardyQuestion[0]._additional.id;
+assert.equal(target_id, result.data.Get.JeopardyQuestion[0]._additional.id);
