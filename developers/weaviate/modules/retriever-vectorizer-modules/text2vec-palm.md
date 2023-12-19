@@ -15,7 +15,7 @@ The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddi
 <!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
 <!-- `text2vec-google` was added in version `v1.19.1` with its original name, `text2vec-palm`. -->
 
-Google Google AI Studio (previously called MakerSuite) support was added in version `1.22.4`.
+AI Studio (previously called MakerSuite) support was added in version `1.22.4`.
 :::
 
 Key notes:
@@ -25,9 +25,9 @@ Key notes:
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- Model names differ between Vertex AI and Google AI Studio.
+- Model names differ between Vertex AI and AI Studio.
     - The default model for Vertex AI is `textembedding-gecko@001`.
-    - The default model for Google AI Studio `embedding-gecko-001`.
+    - The default model for AI Studio `embedding-gecko-001`.
 
 
 <!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
@@ -40,9 +40,9 @@ Along with the name change:
 - The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
 
 
-## Configuring `text2vec-palm` for VertexAI or Google AI Studio
+## Configuring `text2vec-palm` for VertexAI or AI Studio
 
-The module can be used with either Google Cloud Vertex AI or Google Google AI Studio. The configurations vary slightly for each.
+The module can be used with either Google Cloud Vertex AI or AI Studio. The configurations vary slightly for each.
 
 ### Google Cloud Vertex AI
 
@@ -64,15 +64,15 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 <GCPTokenExpiryNotes/>
 
-### Google Google AI Studio
+### AI Studio
 
-At the time of writing (November 2023), Google AI Studio is not available in all regions. See [this page](https://ai.google.dev/available_regions) for the latest information.
+At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/available_regions) for the latest information.
 
-#### API key for Google AI Studio users
+#### API key for AI Studio users
 
-You can obtain an API key by logging in to your Google AI Studio account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiry date.
+You can obtain an API key by logging in to your AI Studio account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiry date.
 
-#### `apiEndpoint` for Google AI Studio users
+#### `apiEndpoint` for AI Studio users
 
 In the Weaviate [class configuration](#class-configuration), set the `apiEndpoint` to `generativelanguage.googleapis.com`.
 
@@ -125,7 +125,7 @@ You can configure how the module will behave in each class through the [Weaviate
 
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (Google AI Studio)
+- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (AI Studio)
 - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title.
 
 #### Example
@@ -217,7 +217,7 @@ You can supply the API key at query time by adding it to the HTTP header:
 
 ### Available models
 
-You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and Google AI Studio.
+You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and AI Studio.
 
 The available models for Vertex AI are:
 - `textembedding-gecko@001` (stable) (default)
@@ -227,7 +227,7 @@ The available models for Vertex AI are:
 - `textembedding-gecko-multilingual@001` (stable)
 - `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
 
-The available model for Google AI Studio is:
+The available model for AI Studio is:
 - `embedding-gecko-001` (stable) (default)
 
 #### Task type
