@@ -1,32 +1,23 @@
 [
   {
-    "link": "/blog/zero-downtime-upgrades",
-    "type": "Blog",
-    "backgroundImage": "/img/site/multi-node-set-up.png",
-    "tagline": "Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup",
-    "photo": "avatar_etienne.png",
-    "name": "Etienne Dilocker",
-    "title": "CTO",
-    "date": "Nov 30, 2023"
+    "type": "WEBINAR",
+    "title": "Intro to Weaviate for JavaScript Developers with Daniel #01",
+    "date": "JAN 9th 2024 13:00-14:00 ET",
+    "imageClass": "daniel",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeAf5NW-uGPyj5BidCwb9f6RCz_oo9QeFpPFDxVUbTHfO9mcA/viewform"
   },
   {
-    "link": "/blog/rag-evaluation",
-    "type": "Blog",
-    "backgroundImage": "/img/site/rag-evaluation.png",
-    "tagline": "An Overview on RAG Evaluation",
-    "photo": "avatar_erika.png",
-    "name": "Erika Cardenas",
-    "title": "Developer Advocate",
-    "date": "November 21, 2023"
+    "type": "MEETUP",
+    "title": "How to build an AI-Native foundation for enterprise apps",
+    "date": "JAN 9th 2024 13:00-14:00 ET",
+    "imageClass": "jp",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeAf5NW-uGPyj5BidCwb9f6RCz_oo9QeFpPFDxVUbTHfO9mcA/viewform"
   },
   {
-    "link": "/learn/workshops",
-    "type": "Workshop",
-    "backgroundImage": "/img/site/Zain-workshop.jpg",
-    "tagline": "Workshop: Introduction to Weaviate",
-    "photo": "avatar_zain.png",
-    "name": "Zain Hasan",
-    "title": "Senior Dev Advocate",
-    "date": "Dec 13, 2023"
+    "type": "ONLINE WORKSHOP",
+    "title": "How to build an AI-Native foundation for enterprise apps",
+    "date": "JAN 9th 2024 13:00-14:00 ET",
+    "imageClass": "zain",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeAf5NW-uGPyj5BidCwb9f6RCz_oo9QeFpPFDxVUbTHfO9mcA/viewform"
   }
 ]

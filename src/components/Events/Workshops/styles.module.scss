@@ -5,11 +5,21 @@
 
 .headerBox {
   padding: 0rem 4rem;
+  width: 70%;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding: 0rem;
+  }
 }
 .workshopWrapper {
   padding: 0rem 1rem;
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    padding: 0rem;
+  }
 }
 .buttons {
   margin-top: 30px;
@@ -119,4 +129,41 @@ p {
   align-items: center;
   gap: 30px;
   padding: 20px 0px 10px;
+}
+
+.loader {
+  width: 287px;
+  height: 287px;
+  background: linear-gradient(0.25turn, transparent, #fff, transparent),
+    linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
+    linear-gradient(#ddd, #ddd);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 215px 197px, 319px 197px, 100px 15px, 150px 15px;
+  background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+  animation: loading 1.5s infinite;
+
+  border-radius: 16px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    background-size: 215px 221px, 368px 219px, 117px 15px, 150px 15px;
+    background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+  }
+}
+
+@keyframes loading {
+  to {
+    background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
+  }
+}
+
+.loadGrid {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  gap: 57px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 30px;
 }

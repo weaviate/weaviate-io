@@ -37,6 +37,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+    height: 37rem;
   }
 }
 
@@ -48,6 +49,8 @@
   justify-content: center;
   align-items: center;
   white-space: nowrap;
+  height: 400px;
+  overflow-y: hidden;
 
   @media screen and (max-width: 1100px) {
     display: flex;
@@ -57,6 +60,7 @@
     flex-flow: row;
     justify-content: flex-start;
     align-items: center;
+    gap: 10px;
   }
 }
 
@@ -97,7 +101,10 @@
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
+    white-space: normal;
     line-height: normal;
+    word-break: break-word;
+    width: 340px;
   }
 
   .eventText {
@@ -110,6 +117,6 @@
     justify-content: space-between;
   }
   @media screen and (max-width: 800px) {
-    margin: 20px;
+    margin: 30px 10px;
   }
 }
