@@ -13,7 +13,10 @@ import LearnMore from '../../components/Events/LearnMore';
 export default function EventsPage() {
   return (
     <div className="custom-page noBG">
-      <Layout>
+      <Layout
+        title="Events & Webinars"
+        description="Join us at conferences, meetups, webinars or workshops"
+      >
         <MetaSEO img="og/company/Community.jpg" />
         <Header />
         <HighlightPanel />

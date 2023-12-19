@@ -133,6 +133,7 @@ p {
 
 .loader {
   width: 287px;
+  min-width: 250px;
   height: 287px;
   background: linear-gradient(0.25turn, transparent, #fff, transparent),
     linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
@@ -162,8 +163,8 @@ p {
   display: flex;
   align-items: center;
   margin: auto;
-  gap: 57px;
+  gap: 50px;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 30px;
+  padding: 140px 30px;
 }

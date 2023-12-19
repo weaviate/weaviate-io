@@ -29,17 +29,16 @@ export default function WorkshopSection() {
           <div className={styles.headerBox}>
             <h2>All our upcoming events around the World</h2>
             <p>
-              Connect with the Weaviate Team and hundreds of developers and data
-              engineers! Our community is here to help you with your projects
-              and provide expert advice. Share how you build your apps with
-              Weaviate.
+              We believe that the next wave of software infrastructure is
+              AI-first and that a strong open-source community is a basis for
+              creating high-quality software. Our workshops deliver new
+              information and details on our service.
             </p>
           </div>
           <div className={styles.workshopWrapper}>
             <div className="workshopContainer">
               {!isCalendarLoaded && (
                 <div className={styles.loadGrid}>
-                  <div className={styles.loader}></div>
                   <div className={styles.loader}></div>
                   <div className={styles.loader}></div>
                   <div className={styles.loader}></div>
