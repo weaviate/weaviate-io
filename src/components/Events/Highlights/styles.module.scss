@@ -72,18 +72,19 @@
   background-image: url('/img/site/workshops-daniel.png');
 }
 
-.daniel {
-  background-image: url('/img/site/workshops-daniel.png');
+.firstSection {
+  background-image: url('/img/site/highlight-02.png');
   background-size: cover;
 }
-.jp {
-  background-image: url('/img/site/workshops-jp.png');
+.secondSection {
+  background-image: url('/img/site/highlight-01.png');
   background-size: cover;
 }
 
-.zain {
-  background-image: url('/img/site/workshops-zain.png');
+.thirdSection {
+  background-image: url('/img/site/highlight-03.png');
   background-size: cover;
+  background-position-y: center;
 }
 
 .eventBox {
