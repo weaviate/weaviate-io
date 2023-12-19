@@ -27,7 +27,7 @@ A `Get` query requires the target collection to be specified.
 
 #### Available arguments
 
-Each `Get` query can have any of the following types of arguments:
+Each `Get` query can include any of the following types of arguments:
 
 | Argument | Description | Required |
 | -------- | ----------- | -------- |

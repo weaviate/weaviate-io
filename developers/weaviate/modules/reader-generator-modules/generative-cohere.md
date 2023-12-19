@@ -2,16 +2,18 @@
 title: Generative Search - Cohere
 sidebar_position: 12
 image: og/docs/modules/generative-cohere.jpg
-# tags: ['generative', 'transformers', 'cohere']
+# tags: ['generative', 'rag', 'cohere']
 ---
 
 
 ## In short
 
+:::info Added in `v1.19.0`
+:::
+
 * The Generative Cohere (`generative-cohere`) module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-* Added in Weaviate `v1.19.0`
 * The default model is `command-xlarge-nightly`, which the Cohere team trains nightly and pushes updates.
 
 ## Introduction
@@ -92,6 +94,7 @@ services:
       semitechnologies/weaviate:||site.weaviate_version||
     ports:
       - 8080:8080
+      - 50051:50051
     restart: on-failure:0
     environment:
       QUERY_DEFAULTS_LIMIT: 25
@@ -107,6 +110,8 @@ services:
 ## Schema configuration
 
 In your Weaviate schema, you can define settings for this module.
+
+[See this page](../../manage-data/collections.mdx#specify-a-generative-module) for code examples on how to specify a generative module.
 
 For example, the following schema configuration will set Weaviate to use the `generative-cohere` module with the `Document` class, with the `command-xlarge-nightly` model. You can also configure additional parameters for the Cohere endpoint through the parameters shown below. Other models you can use from Cohere are `command-xlarge-beta` and `command-xlarge`.
 

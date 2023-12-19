@@ -6,6 +6,7 @@
 
 import weaviate
 import json
+import os
 
 # Instantiate the client with the user/password and OpenAI api key
 # client = weaviate.Client(
@@ -16,8 +17,10 @@ import json
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
-client = weaviate.connect_to_wcs(
-    cluster_id="some-endpoint"
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+    }
 )
 
 # ==========================================
@@ -36,7 +39,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END SingleFilterPython
 
 
@@ -121,7 +124,7 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END SingleFilterNearTextPython
 
 
@@ -213,7 +216,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END LikeFilterPython
 
 
@@ -292,7 +295,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
     # Use & as AND
-    #     | as OR 
+    #     | as OR
     filters=Filter("round").equal("Double Jeopardy!") &
             Filter("points").less_than(600),
     # highlight-end
@@ -300,7 +303,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END MultipleFiltersAndPython
 
 
@@ -401,7 +404,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END MultipleFiltersNestedPython
 
 
@@ -510,7 +513,7 @@ response = jeopardy.query.fetch_objects(
 )
 
 for o in response.objects:
-    print(json.dumps(o.properties, indent=2))
+    print(o.properties)
 # END CrossReferencePython
 
 

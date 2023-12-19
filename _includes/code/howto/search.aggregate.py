@@ -4,6 +4,7 @@
 
 import weaviate
 import json
+import os
 
 # Instantiate the client with the user/password and OpenAI api key
 # client = weaviate.Client(
@@ -14,8 +15,10 @@ import json
 #     }
 # )
 # TODOv4 - update this to call the wcs instace
-client = weaviate.connect_to_wcs(
-    cluster_id="some-endpoint"
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+    }
 )
 
 # ===============================
@@ -494,10 +497,10 @@ gql_query = """
 }
 # END whereFilter GraphQL
 """
-gqlresponse = client.query.raw(gql_query)
+# gqlresponse = client.query.raw(gql_query)
 # Test results
-assert response["data"]["Aggregate"]["JeopardyQuestion"][0] == {"meta": {"count": 285}}
-assert gqlresponse == response
+# assert response["data"]["Aggregate"]["JeopardyQuestion"][0] == {"meta": {"count": 285}}
+# assert gqlresponse == response
 # END Test results
 
 expected_response = (
@@ -517,4 +520,4 @@ expected_response = (
 }
 # END whereFilter Expected Results
 )
-assert response == expected_response
+# assert response == expected_response

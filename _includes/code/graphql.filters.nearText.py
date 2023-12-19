@@ -18,7 +18,7 @@ client = weaviate.connect_to_local(
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
         # END NearTextOpenAI
         # START NearTextGoogle
-        "X-Palm-Api-Key": "YOUR_GOOGLE_APIKEY",
+        "X-PaLM-Api-Key": "YOUR_PALM_APIKEY",
         # END NearTextGoogle
         # START NearTextHuggingface
         "X-HuggingFace-Api-Key": "YOUR_HUGGINGFACE_APIKEY",

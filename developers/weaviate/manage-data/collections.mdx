@@ -8,8 +8,8 @@ image: og/docs/howto.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
@@ -22,7 +22,7 @@ Newer Weaviate documentation discuses "collections." Older Weaviate documentatio
 
 ## Create a collection
 
-To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema.md#auto-schema) creates them.
+To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema/index.md#auto-schema) creates them.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -84,7 +84,7 @@ Use properties to configure additional parameters such as data type, index chara
 
 For details, see:
 
-- [References: Configuration: Schema](../config-refs/schema.md)
+- [References: Configuration: Schema](/developers/weaviate/config-refs/schema)
 - [API References: REST: Schema](../api/rest/schema.md#create-a-class)
 - [Available data types](../config-refs/datatypes.md)
 
@@ -124,7 +124,7 @@ For details, see:
 
 By default, Weaviate creates missing collections and missing properties. When you configure collections manually, you have more precise control of the collection settings.
 
-To disable [`auto-schema`](../config-refs/schema.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
+To disable [`auto-schema`](../config-refs/schema/index.md#auto-schema) set `AUTOSCHEMA_ENABLED: 'false'` in your system configuration file.
 
 ## Specify a vectorizer
 
@@ -136,7 +136,7 @@ Specify a `vectorizer` for a collection.
 Collection level settings override default values and general configuration parameters such as [environment variables](../config-refs/env-vars.md).
 
 - [Available vectorizers](../modules/retriever-vectorizer-modules/index.md)
-- [Vectorizer configuration references](../config-refs/schema.md#vectorizer)
+- [Vectorizer configuration references](/developers/weaviate/config-refs/schema#vectorizer)
 
 </details>
 
@@ -201,6 +201,47 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 </Tabs>
+
+## Set vector index type
+
+The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndex"
+      endMarker="# END SetVectorIndex"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndex"
+      endMarker="// END SetVectorIndex"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
 
 ## Property-level settings
 
@@ -276,9 +317,49 @@ If you choose to bring your own vectors, you should specify the `distance metric
 For details on the configuration parameters, see the following:
 
 - [Distances](../config-refs/distances.md)
-- [Vector indexes](../config-refs/schema.md#vectorindexconfig)
+- [Vector indexes](../config-refs/schema/vector-index.md)
 
 </details>
+
+## Specify a generative module
+
+Specify a `generative` module for a collection (for RAG).
+
+<details>
+  <summary>Additional information</summary>
+
+- [Available generative modules](../modules/reader-generator-modules/index.md)
+
+</details>
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetGenerative"
+      endMarker="# END SetGenerative"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetGenerative"
+      endMarker="# END SetGenerative"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetGenerative"
+      endMarker="// END SetGenerative"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## Replication settings
 
@@ -323,7 +404,7 @@ To test replication factors great then one, use a [multi-node deployment](../ins
 
 For details on the configuration parameters, see the following:
 
-- [Replication](../config-refs/schema.md#replicationconfig)
+- [Replication](/developers/weaviate/config-refs/schema#replicationconfig)
 
 </details>
 
@@ -367,7 +448,7 @@ Configure sharding per collection.
 
 For details on the configuration parameters, see the following:
 
-- [Sharding](../config-refs/schema.md#shardingconfig)
+- [Sharding](/developers/weaviate/config-refs/schema#shardingconfig)
 
 </details>
 
@@ -760,8 +841,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 ## Related pages
 
 - [API References: REST: Schema](../api/rest/schema.md)
-- [References: Configuration: Schema](../config-refs/schema.md)
-- [References: Schema](../config-refs/schema.md)
+- [References: Schema](/developers/weaviate/config-refs/schema)
 - [Tutorial: Schema](../tutorials/schema.md)
 - [Concepts: Data structure](../concepts/data.md)
 

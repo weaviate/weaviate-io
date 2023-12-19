@@ -503,6 +503,75 @@ For example:
 </Tabs>
 
 
+## group
+
+You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
+
+### Variables
+
+| Variable | Required | Type | Description |
+| --------- | -------- | ---- | ----------- |
+| `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
+| `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
+
+### Example
+
+import GraphQLFiltersGroup from '/_includes/code/graphql.filters.group.mdx';
+
+<GraphQLFiltersGroup/>
+
+This results in the following. Note that publications `International New York Times`, `The New York Times Company` and `New York Times` are merged. The property values that do not have an exact overlap will all be shown, with the value of the most central concept before the brackets.
+
+<details>
+  <summary>Expected response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "Publication": [
+        {
+          "name": "Fox News"
+        },
+        {
+          "name": "Wired"
+        },
+        {
+          "name": "The New York Times Company (New York Times, International New York Times)"
+        },
+        {
+          "name": "Game Informer"
+        },
+        {
+          "name": "New Yorker"
+        },
+        {
+          "name": "Wall Street Journal"
+        },
+        {
+          "name": "Vogue"
+        },
+        {
+          "name": "The Economist"
+        },
+        {
+          "name": "Financial Times"
+        },
+        {
+          "name": "The Guardian"
+        },
+        {
+          "name": "CNN"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

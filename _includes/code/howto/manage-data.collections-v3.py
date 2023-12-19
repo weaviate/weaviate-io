@@ -99,6 +99,47 @@ assert len(result["properties"]) == 1  # no "body" from the previous example
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
 
+
+# ===============================================
+# ===== SetVectorIndex =====
+# ===============================================
+
+# START SetVectorIndex
+class_obj = {
+    'class': 'Article',
+    'properties': [
+        {
+            'name': 'title',
+            'dataType': ['text'],
+        },
+    ],
+    'vectorizer': 'text2vec-openai',  # this could be any vectorizer
+    # highlight-start
+    "vectorIndexType": "flat",
+    "vectorIndexConfig": {
+        "bq": {
+            "enabled": True,  # Enable BQ compression. Default: False
+            "rescoreLimit": 200,  # The minimum number of candidates to fetch before rescoring. Default: -1 (No limit)
+            "cache": True,  # Enable use of vector cache. Default: False
+        },
+        "vectorCacheMaxObjects": 100000,  # Cache size if `cache` enabled. Default: 1000000000000
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetVectorIndex
+
+# Test
+result = client.schema.get(class_name)
+assert result['vectorizer'] == 'text2vec-openai'
+assert result['vectorIndexType'] == 'flat'
+assert len(result['properties']) == 1  # no 'body' from the previous example
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
+
 # ===========================
 # ===== MODULE SETTINGS =====
 # ===========================
@@ -204,6 +245,42 @@ assert result["vectorIndexConfig"]["distance"] == "cosine"
 
 # Delete the class to recreate it
 client.schema.delete_class(class_name)
+
+# ===============================================
+# ===== CREATE A COLLECTION WITH VECTORIZER =====
+# ===============================================
+
+# Clean slate
+if client.schema.exists(class_name):
+    client.schema.delete_class(class_name)
+
+# START SetGenerative
+class_obj = {
+    "class": "Article",
+    "properties": [
+        {
+            "name": "title",
+            "dataType": ["text"],
+        },
+    ],
+    "vectorizer": "text2vec-openai",  # set your vectorizer module
+    # highlight-start
+    "moduleConfig": {
+        "generative-openai": {}  # set your generative module
+    }
+    # highlight-end
+}
+
+client.schema.create_class(class_obj)
+# END SetGenerative
+
+# Test
+result = client.schema.get(class_name)
+assert "generative-openai" in result["moduleConfig"].keys()
+
+# Delete the class to recreate it
+client.schema.delete_class(class_name)
+
 
 # =======================
 # ===== REPLICATION =====

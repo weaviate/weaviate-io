@@ -1,8 +1,8 @@
 ---
 title: Generative Search - AWS
-sidebar_position: 10
+sidebar_position: 11
 image: og/docs/modules/generative-aws.jpg
-# tags: ['generative', 'transformers', 'aws']
+# tags: ['generative', 'rag', 'aws']
 ---
 
 
@@ -97,6 +97,8 @@ volumes:
 ## Class configuration
 
 You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
+
+[See this page](../../manage-data/collections.mdx#specify-a-generative-module) for code examples on how to specify a generative module.
 
 ### API settings
 

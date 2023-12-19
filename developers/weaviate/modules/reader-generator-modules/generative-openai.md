@@ -1,8 +1,8 @@
 ---
 title: Generative Search - OpenAI
-sidebar_position: 14
+sidebar_position: 18
 image: og/docs/modules/generative-openai.jpg
-# tags: ['generative', 'transformers', 'openai']
+# tags: ['generative', 'rag', 'openai']
 ---
 
 
@@ -104,6 +104,7 @@ services:
       semitechnologies/weaviate:||site.weaviate_version||
     ports:
       - 8080:8080
+      - 50051:50051
     restart: on-failure:0
     environment:
       QUERY_DEFAULTS_LIMIT: 25
@@ -121,6 +122,8 @@ services:
 ## Schema configuration
 
 You can define settings for this module in the schema.
+
+[See this page](../../manage-data/collections.mdx#specify-a-generative-module) for code examples on how to specify a generative module.
 
 ### OpenAI vs Azure OpenAI
 

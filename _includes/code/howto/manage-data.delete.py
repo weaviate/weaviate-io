@@ -12,6 +12,9 @@ client = weaviate.connect_to_local(
     grpc_port=50051,
 )
 
+client.collections.delete("EphemeralObject")
+client.collections.create("EphemeralObject")
+
 # =========================
 # ===== Delete object =====
 # =========================
@@ -114,11 +117,17 @@ collection.data.delete_many(
 # ===================
 # ===== Dry run =====
 # ===================
+
+client.collections.delete("EphemeralObject")
+client.collections.create("EphemeralObject")
+
+collection = client.collections.get("EphemeralObject")
+
 N = 5
 for i in range(N):
-    client.data_object.create({
+    collection.data.insert({
         "name": f"EphemeralObject_{i}",
-    }, "EphemeralObject")
+    })
 
 # START DryRun
 import weaviate.classes as wvc
@@ -136,11 +145,14 @@ print(result)
 # END DryRun
 
 assert result.matches == N
-assert collection.aggregate.over_all(total_count=True) == N
+assert collection.aggregate.over_all(total_count=True).total_count == N
 
 # =================================
 # ===== Batch delete with IDs =====
 # =================================
+client.collections.delete("EphemeralObject")
+client.collections.create("EphemeralObject")
+
 N = 5
 for i in range(N):
     collection.data.insert({

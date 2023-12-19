@@ -54,7 +54,7 @@ That's because Weaviate inferred them for us, using the "auto-schema" feature.
 
 Weaviate requires a complete schema for each class of data objects.
 
-If any required information is missing, Weaviate will use the [auto-schema feature](../config-refs/schema.md#auto-schema) to fill in infer the rest from the data being imported as well as the default settings.
+If any required information is missing, Weaviate will use the [auto-schema feature](../config-refs/schema/index.md#auto-schema) to fill in infer the rest from the data being imported as well as the default settings.
 
 While this may be suitable in some circumstances, in many cases you may wish to explicitly define a schema. Manually defining the schema will help you ensure that the schema is suited for your specific data and needs.
 
@@ -94,7 +94,7 @@ import CodeCreateSchema from '/_includes/code/quickstart.schema.create.mdx';
 <CodeCreateSchema />
 
 :::note Classes and Properties - best practice
-Classes always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../config-refs/schema.md).
+Classes always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../config-refs/schema/index.md).
 :::
 
 The result should look something like this:
@@ -215,7 +215,7 @@ Some of it is what we specified, such as the class name (`class`), and `properti
 
 And depending on your needs, you might want to change any number of these. For example, you might change:
 
-- `dataType` to modify the type of data being saved. For example, classes with dataType `text` will be tokenized differently to those with `string` dataType ([read more](../config-refs/schema.md#property-tokenization)).
+- `dataType` to modify the type of data being saved. For example, classes with dataType `text` will be tokenized differently to those with `string` dataType ([read more](../config-refs/schema/index.md#property-tokenization)).
 - `moduleConfig` to modify how each module behaves. In this case, you could change the model and/or version for the OpenAI inference API, and the vectorization behavior such as whether the class name is used for vectorization.
 - `properties` / `moduleConfig` to further modify module behavior at a class data property level. You might choose to skip a particular property being included for vectorization.
 - `invertedIndexConfig` to add or remove particular stopwords, or change BM25 indexing constants.
@@ -261,7 +261,7 @@ You can read more about various schema, data types, modules, and index configura
 - [Schema](../manage-data/collections.mdx)
 - [Data types](../config-refs/datatypes.md)
 - [Modules](../configuration/modules.md)
-- [Indexes](../configuration/indexes.md)
+- [Indexes](../config-refs/schema/vector-index.md)
 
 ## Recap
 
