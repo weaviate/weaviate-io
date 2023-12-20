@@ -52,9 +52,9 @@ AutoPQ is not currently available in WCS.
 
 ### Configure PQ
 
-To enable PQ, update your collection definition. 
+To enable PQ for a collection, update your collection definition. 
 
-If you use the Python client v4, enable a `quantizer`. 
+If you use the Python client v4, set `quantizer=wvc.Reconfigure.VectorIndex.Quantizer.pq()`. 
 
 If you use one of the other clients, set `pq_enabled=True` in the vector index configuration section, . 
 
@@ -113,7 +113,9 @@ Load your data. You do not have to load an initial set of training data. AutoPQ 
 
 ## Two phase configuration method
 
-If you cannot enable AutoPQ, use the two phase configuration method to enable PQ. If you are configuring PQ on a new collection, be sure to import a set of 10,000 to 100,000 objects per shard before enabling PQ. Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete. 
+If you cannot enable AutoPQ, use the two phase configuration method to enable PQ. If you are configuring PQ on a new collection, be sure to import a set of 10,000 to 100,000 objects per shard before enabling PQ.
+
+Weaviate [logs messages](#check-the-system-logs) when PQ is enabled and when vector compression is complete. Do not import the rest of your data until the training step is complete. 
 
 To enable PQ compression using the two step method, complete the following steps.
 
