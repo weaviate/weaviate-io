@@ -12,7 +12,14 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 :::caution Beta version
 
- The Python client is currently in beta, and we want to hear from you. You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS. If you notice any bugs, or have any feedback, please let us know on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
+The Python client is currently in beta. Please note the following:
+<br/>
+
+- We strongly encourage you to use the latest version of the Python client *and* the Weaviate server.
+- You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS).
+- It is not yet available on the free (sandbox) tier of WCS.
+- Please report any bugs or feedback on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
+
 :::
 
 ## Overview
@@ -20,6 +27,8 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 This page describes the `v4` Python client for Weaviate.
 
 The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
+
+Please see the migration guide below for key changes between beta releases.
 
 ### Key changes from `v3`
 
@@ -36,6 +45,14 @@ But it may be convenient to import the whole set of classes like this.
 ```
 import weaviate.classes as wvc
 ```
+
+For discoverability, the submodule is further divided into:
+
+* `weaviate.classes.config`
+* `weaviate.classes.data`
+* `weaviate.classes.query`
+* `weaviate.classes.generic`
+
 
 ## Installation
 
@@ -55,7 +72,9 @@ pip install --pre -U "weaviate-client==4.*"
 The API may change on the client-side and the server-side, especially during the beta period. Accordingly, we encourage you to use the latest version of the Python client *and* the Weaviate server.
 :::
 
-The `v4` client is designed for use with Weaviate `1.22` and higher to take advantage of the gRPC API. If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
+The latest `v4` client is designed for use with Weaviate `1.23` and higher.
+
+If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
 
 Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
 
@@ -209,6 +228,8 @@ Please refer to the [`v3` client documentation](./python_v3.md) if you are using
 
 You can instantiate a collection object by creating a collection, or by retrieving an existing collection.
 
+Note that when adding a cross-reference property, you should use the `references` parameter. Using the `properties` parameter to add references is deprecated and will be removed in the future.
+
 <Tabs groupId="languages">
 <TabItem value="create" label="Create a collection">
 
@@ -329,8 +350,26 @@ The `insert_many` function takes a list of `DataObject` instances or a list of d
   language="py"
 />
 
+#### Cross-reference creation
 
+Cross-references should be added under a `references` parameter in the relevant function/method, with a structure like:
 
+```python
+{
+    "<REFERENCE_PROPERTY_NAME>": Reference.to(uuids=<TARGET_UUID>)
+}
+```
+
+For example:
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START InsertManyDataObjectReferenceExample"
+  endMarker="# END InsertManyDataObjectReferenceExample"
+  language="py"
+/>
+
+Using the `properties` parameter to add references is deprecated and will be removed in the future.
 
 ### `query`
 
@@ -361,11 +400,14 @@ These queries return a `_QueryReturn` object, which contains a list of `_Object`
 </TabItem>
 </Tabs>
 
+#### Queries with custom returns
+
 You can further specify:
 - Whether to include the object vector (via `include_vector`)
     - Default is `False`
 - Which properties to include (via `return_properties`)
     - All properties are returned by default
+- Which references to include (via `return_references`)
 - Which metadata to include
     - No metadata is returned by default
 
@@ -524,6 +566,56 @@ You can choose to provide a generic type to a query or data operation. This can 
   language="py"
 />
 
+## Migration guides
+
+### `v4.4b1` to `v4.4b2`
+
+#### References
+
+* References are now added through a `references` parameter during collection creation, object insertion and queries. See examples for:
+    * [Collection creation](#instantiate-a-collection)
+    * [Cross-reference creation](#cross-reference-creation)
+    * [Queries](#query)
+* The `FromReference` class is now called `QueryReference`.
+
+#### Reorganization of classes/parameters
+
+* `weaviate.classes` submodule further split into:
+    * `weaviate.classes.config`
+    * `weaviate.classes.data`
+    * `weaviate.classes.query`
+    * `weaviate.classes.generic`
+* `vector_index_config` parameter factory functions for `wvc.Configure` and `wvc.Reconfigure` have changed to, e.g.:
+    ```python
+    client.collections.create(
+        name="YourCollection",
+        # highlight-start
+        vector_index_config=wvc.Configure.VectorIndex.hnsw(
+            distance_metric=wvc.VectorDistance.COSINE,
+            vector_cache_max_objects=1000000,
+            quantitizer=wvc.Configure.VectorIndex.Quantitizer.pq()
+        ),
+        # highlight-end
+    )
+    ```
+    * `vector_index_type` parameter has been removed.
+* `vectorize_class_name` parameter in the `Property` constructor method is `vectorize_collection_name`.
+* `[collection].data.update()` / `.replace()` *args order changed, aiming to accommodate not providing properties when updating.
+* `[collection].data.reference_add` / `.reference_delete` / `.reference_replace` the `ref` keyword was renamed to `to`.
+* `collections.create()` / `get()`: `data_model` kwarg to keyword to provide generics was renamed to `data_model_properties` .
+* `[object].metadata.uuid` is now `[object].uuid`.
+* `[object].metadata.creation_time_unix` is now `[object].metadata.creation_time`.
+* `[object].metadata.last_update_time_unix` is now `[object].metadata.last_update`.
+* To request the vector in the returned data, use the `include_vector` parameter ([example](#queries-with-custom-returns)).
+
+#### Data types
+
+* Time metadata (for creation and last updated time) now returns a `datetime` object, and the parameters are renamed to `creation_time` and `last_update_time` under `MetadataQuery`.
+    * `metadata.creation_time.timestamp() * 1000` will return the same value as before.
+* `query.fetch_object_by_id()` now uses gRPC under the hood (rather than REST), and returns objects in the same format as other queries.
+* `UUID` and `DATE` properties are returned as typed objects.
+
+
 ## Best practices and notes
 
 ### Thread-safety
@@ -547,7 +639,7 @@ Each query response object typically include multiple attributes. Consider this 
   language="py"
 />
 
-Each response includes attributes such as `objects` and `generated`. Then, each object in `objects` include multiple attributes such as `uuid`, `vector`, `properties`, `metadata` and `generated`.
+Each response includes attributes such as `objects` and `generated`. Then, each object in `objects` include multiple attributes such as `uuid`, `vector`, `properties`, `references`, `metadata` and `generated`.
 
 <FilteredTextBlock
   text={PythonCode}

@@ -189,12 +189,14 @@ authors = client.collections.create(
             data_type=wvc.DataType.TEXT
         )
     ],
+    # highlight-start
     references=[
         wvc.ReferenceProperty(
             name="wroteArticle",
             target_collection="TestArticle"
         )
     ]
+    # highlight-end
 )
 # END CreateCollectionWithRefsExample
 
@@ -224,27 +226,27 @@ client = weaviate.connect_to_local(
 )
 
 categories = client.collections.get("JeopardyCategory")
-response = categories.query.fetch_objects(limit=0)
+response = categories.query.fetch_objects(limit=1)
 target_uuid = response.objects[0].uuid
+
+print(response)
 
 # START CreateObjectExample
 questions = client.collections.get("JeopardyQuestion")
 
-tmp_uuid = questions.data.insert(
+new_uuid = questions.data.insert(
     properties={
         "question": "This is the capital of Australia."
     },
-    references=[  # For adding cross-references
-        wvc.Reference.to(
-            uuids=[target_uuid]
-        )
-    ]
+    references={  # For adding cross-references
+        "hasCategory": wvc.Reference.to(uuids=[target_uuid])
+    }
 )
 # END CreateObjectExample
 
 from uuid import UUID
 
-assert type(tmp_uuid) == UUID
+assert type(new_uuid) == UUID
 
 # START InsertManyExample
 questions = client.collections.get("JeopardyQuestion")
@@ -263,22 +265,39 @@ for i in range(5):
     properties = {"question": f"Test Question {i+1}"}
     data_object = wvc.DataObject(
         properties=properties,
-        # END InsertManyDataObjectExample
-        # TODO - add this back in when `references` available
-        # references=[
-        #     wvc.Reference.to(uuids=[target_uuid])
-        # ],
-        # START InsertManyDataObjectExample
         uuid=generate_uuid5(properties)
     )
+    data_objects.append(data_object)
 
-response = questions.data.insert_many(properties)
+response = questions.data.insert_many(data_objects)
 # END InsertManyDataObjectExample
+
+# START InsertManyDataObjectReferenceExample
+from weaviate.util import generate_uuid5
+
+questions = client.collections.get("JeopardyQuestion")
+
+data_objects = list()
+for i in range(5):
+    properties = {"question": f"Test Question {i+1}"}
+    data_object = wvc.DataObject(
+        properties=properties,
+        # highlight-start
+        references={
+            "hasCategory": wvc.Reference.to(uuids=target_uuid)
+        },
+        # highlight-end
+        uuid=generate_uuid5(properties)
+    )
+    data_objects.append(data_object)
+
+response = questions.data.insert_many(data_objects)
+# END InsertManyDataObjectReferenceExample
 
 # START DeleteObjectExample
 questions = client.collections.get("JeopardyQuestion")
 
-deleted = questions.data.delete_by_id(uuid=tmp_uuid)
+deleted = questions.data.delete_by_id(uuid=new_uuid)
 # END DeleteObjectExample
 
 assert deleted == True
@@ -332,6 +351,7 @@ response = questions.query.bm25(
 
 for o in response.objects:
     print(o.properties)  # All properties by default
+    print(o.references)  # References not returned by default
     print(o.uuid)  # UUID included by default
     print(o.vector)  # No vector
     print(o.metadata)  # No metadata
@@ -344,11 +364,13 @@ response = questions.query.bm25(
     include_vector=True,
     return_properties=["question"],
     return_metadata=wvc.MetadataQuery(distance=True),
+    return_references=wvc.QueryReference(link_on="hasCategory"),
     limit=2
 )
 
 for o in response.objects:
     print(o.properties)  # Selected properties only
+    print(o.references)  # Selected references
     print(o.uuid)  # UUID included by default
     print(o.vector)  # With vector
     print(o.metadata)  # With selected metadata

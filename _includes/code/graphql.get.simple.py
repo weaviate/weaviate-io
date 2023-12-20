@@ -83,7 +83,7 @@ for o in response.objects:
 # START GetCrossRefProp
 questions = client.collections.get("JeopardyQuestion")
 response = questions.query.fetch_objects(
-    return_references=wvc.FromReference(
+    return_references=wvc.QueryReference(
         link_on="hasCategory",
         return_properties=["title"]
     )

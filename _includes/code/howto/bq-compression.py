@@ -49,7 +49,19 @@ client.is_ready()
 client.collections.delete("YourCollection")
 
 # START EnableBQ
-# Coming soon
+import weaviate.classes as wvc
+
+client.collections.create(
+    name="YourCollection",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    vector_index_config=wvc.Configure.VectorIndex.flat(),
+    # highlight-end
+    properties=[
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+)
 # END EnableBQ
 
 # ==============================
@@ -59,5 +71,21 @@ client.collections.delete("YourCollection")
 client.collections.delete("YourCollection")
 
 # START BQWithOptions
-# Coming soon
+import weaviate.classes as wvc
+
+client.collections.create(
+    name="YourCollection",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    vector_index_config=wvc.Configure.VectorIndex.flat(
+        distance_metric=wvc.VectorDistance.COSINE,
+        vector_cache_max_objects=1000000,
+        quantitizer=wvc.Configure.VectorIndex.Quantitizer.bq()
+    ),
+    # highlight-end
+    properties=[
+        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+    ]
+)
 # END BQWithOptions

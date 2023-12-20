@@ -264,10 +264,6 @@ As the name suggests, the flat index is a single layer of data objects. This pro
 
 A drawback of the flat index is that it does not scale well to large collections as it has a linear time complexity as a function of the number of data objects, unlike the `hnsw` index which has a logarithmic time complexity.
 
-### Vector cache
-
-The flat index can be combined with a vector cache to improve query performance. The vector cache is a memory cache that stores the vectors of the most recently used data objects. The vector cache is used to speed up queries by reducing the number of disk reads. However it must be balanced with memory usage considerations.
-
 ### Binary quantization
 
 Binary quantization (BQ) is a technique that can speed up vector search. BQ is available for the `flat` index type.
@@ -277,6 +273,8 @@ BQ works by converting each vector to a binary representation. The binary repres
 The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector.
 
 Some vectorizers work better with BQ than others. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` model with BQ enabled. We advise you to test BQ with your own data and preferred vectorizer to determine if it is suitable for your use case.
+
+Note that when BQ is enabled, a vector cache can be used to improve query performance. The vector cache is used to speed up queries by reducing the number of disk reads for the quantized vectors. Note that it must be balanced with memory usage considerations, with each vector taking up `n_dimensions` bits.
 
 #### Over-fetching / re-scoring
 

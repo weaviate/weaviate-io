@@ -255,7 +255,7 @@ Please refer to specific module pages such as:
 
 ## hybrid
 
-This operator allows you to combine [BM25](#bm25) and vector search to get the best of both search methods. It's supported by the `Get{}` function.
+This operator allows you to combine [BM25](#bm25) and vector search to get a "best of both worlds" type search results set.
 
 ### Variables
 
@@ -275,6 +275,22 @@ This operator allows you to combine [BM25](#bm25) and vector search to get the b
     * `fusionType` can be `rankedFusion` or `relativeScoreFusion`
         * `rankedFusion` (default) adds inverted ranks of the BM25 and vector search methods
         * `relativeScoreFusion` adds normalized scores of the BM25 and vector search methods
+
+### Fusion algorithms
+
+#### Ranked fusion
+
+The `rankedFusion` algorithm is Weaviate's original hybrid fusion algorithm.
+
+In this algorithm, each object is scored according to its position in the results for that search (vector or keyword). The top-ranked objects in each search get the highest scores. Scores decrease going from top to least ranked. The total score is calculated by adding the rank-based scores from the vector and keyword searches.
+
+#### Relative score fusion
+
+New in Weaviate version 1.20.
+
+In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
+
+For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms)
 
 ### Additional metadata response
 
