@@ -6,7 +6,7 @@ import Header from '../../components/Events/Header';
 import Intro from '../../components/Events/Intro';
 import HighlightPanel from '../../components/Events/Highlights';
 import WorkshopSection from '../../components/Events/Workshops';
-import ContactForm from '/src/components/Home/ContactForm/contactForm';
+import ContactForm from '/src/components/Events/ContactForm/contactForm';
 import ThemeSwitch from '../../components/ThemeSwitch';
 import LearnMore from '../../components/Events/LearnMore';
 

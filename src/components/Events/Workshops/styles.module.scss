@@ -4,8 +4,9 @@
 }
 
 .headerBox {
-  padding: 0rem 4rem;
-  width: 70%;
+  width: 50%;
+  margin: auto;
+  text-align: center;
 
   @media screen and (max-width: 900px) {
     width: 100%;

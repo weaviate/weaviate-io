@@ -25,7 +25,7 @@ export default function WorkshopSection() {
   return (
     <div className={styles.container}>
       <div className={styles.headerBox}>
-        <h2>All our upcoming events around the World</h2>
+        <h2>All our upcoming events around the world</h2>
         <p>
           We believe that the next wave of software infrastructure is AI-first
           and that a strong open-source community is a basis for creating

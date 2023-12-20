@@ -17,7 +17,7 @@ export default function LearnMore() {
         </div>
         <div className={styles.parent}>
           <div className={styles.div1}>
-            <Link to="/podcasts">
+            <Link to="/podcast">
               <div className={styles.sectionL}>
                 <h3 className={styles.cardHeader}>Podcasts</h3>
                 <p className={styles.pressText}>
