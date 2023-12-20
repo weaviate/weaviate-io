@@ -1,13 +1,13 @@
 [
   {
-    "type": "WEBINAR",
+    "type": "ONLINE WORKSHOP",
     "title": "Intro to Weaviate for JavaScript Developers with Daniel #01",
     "date": "JAN 24th 2024 13:00-14:00 ET",
     "imageClass": "firstSection",
     "url": "https://form.jotform.com/233442262304345"
   },
   {
-    "type": "ONLINE WORKSHOP",
+    "type": "WEBINAR",
     "title": "How to Build an AI-Native Foundation for Enterprise Apps",
     "date": "JAN 9th 2024 13:00-14:00 ET",
     "imageClass": "secondSection",
