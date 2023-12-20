@@ -593,7 +593,7 @@ You can choose to provide a generic type to a query or data operation. This can 
         vector_index_config=wvc.Configure.VectorIndex.hnsw(
             distance_metric=wvc.VectorDistance.COSINE,
             vector_cache_max_objects=1000000,
-            quantitizer=wvc.Configure.VectorIndex.Quantitizer.pq()
+            quantizer=wvc.Configure.VectorIndex.Quantizer.pq()
         ),
         # highlight-end
     )
@@ -606,6 +606,7 @@ You can choose to provide a generic type to a query or data operation. This can 
 * `[object].metadata.uuid` is now `[object].uuid`.
 * `[object].metadata.creation_time_unix` is now `[object].metadata.creation_time`.
 * `[object].metadata.last_update_time_unix` is now `[object].metadata.last_update`.
+* `quantitizer` is renamed to `quantizer` 
 * To request the vector in the returned data, use the `include_vector` parameter ([example](#queries-with-custom-returns)).
 
 #### Data types

@@ -80,7 +80,7 @@ client.collections.create(
     vector_index_config=wvc.Configure.VectorIndex.flat(
         distance_metric=wvc.VectorDistance.COSINE,
         vector_cache_max_objects=1000000,
-        quantitizer=wvc.Configure.VectorIndex.Quantitizer.bq()
+        quantizer=wvc.Configure.VectorIndex.Quantizer.bq()
     ),
     # highlight-end
     properties=[
