@@ -52,11 +52,10 @@ p {
   margin-bottom: 10px;
 }
 .box {
+  align-items: center;
   display: flex;
   flex-direction: column;
-
-  align-items: flex-start;
-  text-align: left;
+  text-align: center;
 
   h2 {
     color: #130c49;
