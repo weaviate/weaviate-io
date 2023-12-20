@@ -16,7 +16,7 @@ import os
 #         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace w/ your OPENAI API key
 #     }
 # )
-# TODOv4 - update this to call the wcs instace
+# TODOv4 - update this to call the wcs instance
 client = weaviate.connect_to_local(
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
@@ -43,8 +43,10 @@ response = jeopardy.query.near_text(
 )
 
 for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
+    for p in o.properties:
+        print( f"{p}: {o.properties[p]}")
+    print( f"distance: {o.metadata.distance}")
+    print()
 # END GetNearTextPython
 
 # Test results
@@ -55,31 +57,23 @@ for o in response.objects:
 # assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"distance"}
 # End test
 
-
-
 expected_results = """
 # START Expected nearText results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "answer": "meerkats",
-          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]",
-          "_additional": { "distance": 0.17602634 }
-        },
-        {
-          "answer": "dogs",
-          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions",
-          "_additional": { "distance": 0.17842108 }
-        }
-      ]
-    }
-  }
-}
+points: 300.0
+answer: meerkats
+air_date: 1998-06-01 00:00:00+00:00
+question: Group of mammals seen <a href="http://www.j-archive.com/media/1998-06-01_J_28.jpg" target="_blank">here</a>:  [like Timon in <i>The Lion King</i>]
+round: Jeopardy!
+distance: 0.17587274312973022
+
+points: 100.0
+answer: dogs
+air_date: 1984-09-12 00:00:00+00:00
+question: Scooby-Doo, Goofy & Pluto are cartoon versions
+round: Jeopardy!
+distance: 0.17830491065979004
 # END Expected nearText results
 """
-
 
 gql_query = """
 # GetNearTextGraphql
@@ -251,6 +245,7 @@ response = jeopardy.query.near_text(
 for o in response.objects:
     print(o.properties)
     print(o.metadata.distance)
+
 # END GetLimitOffsetPython
 
 # Test results
@@ -416,7 +411,23 @@ gql_query = """
 # gqlresponse = client.query.raw(gql_query)
 # test_gqlresponse(response, gqlresponse)
 
+expected_results = """
+# START Expected autocut results
+points: 300.0
+air_date: 1998-06-01 00:00:00+00:00
+answer: meerkats
+round: Jeopardy!
+question: Group of mammals seen <a href="http://www.j-archive.com/media/1998-06-01_J_28.jpg" target="_blank">here</a>:  [like Timon in <i>The Lion King</i>]
+distance: 0.17587274312973022
 
+points: 100.0
+air_date: 1984-09-12 00:00:00+00:00
+answer: dogs
+round: Jeopardy!
+question: Scooby-Doo, Goofy & Pluto are cartoon versions
+distance: 0.17830491065979004
+# END Expected autocut results
+"""
 
 # ==============================
 # ===== QUERY WITH groupBy =====
@@ -463,66 +474,27 @@ for grp, grp_items in response.groups.items():
 
 expected_results = """
 # Expected groupBy results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "group": {
-              "count": 2,
-              "groupedBy": {
-                "path": [
-                  "round"
-                ],
-                "value": "Jeopardy!"
-              },
-              "hits": [
-                {
-                  "answer": "meerkats",
-                  "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
-                },
-                {
-                  "answer": "dogs",
-                  "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
-                }
-              ],
-              "id": 0,
-              "maxDistance": 0.17842054,
-              "minDistance": 0.17602539
-            }
-          }
-        },
-        {
-          "_additional": {
-            "group": {
-              "count": 1,
-              "groupedBy": {
-                "path": [
-                  "round"
-                ],
-                "value": "Double Jeopardy!"
-              },
-              "hits": [
-                {
-                  "answer": "fox",
-                  "question": "In titles, animal associated with both Volpone and Reynard"
-                }
-              ],
-              "id": 1,
-              "maxDistance": 0.18770188,
-              "minDistance": 0.18770188
-            }
-          }
-        }
-      ]
-    }
-  }
-}
+d53fd7ea-35c1-5f8d-a35a-e53511db1a2a
+Jeopardy!
+0.17587274312973022
+56b9449e-65db-5df4-887b-0a4773f52aa7
+Jeopardy!
+0.17830491065979004
+539cb271-7c5a-5e06-a64c-66dd004a6d89
+Double Jeopardy!
+0.18756139278411865
+==========Jeopardy!==========
+2
+{'points': 300.0, 'answer': 'meerkats', 'air_date': datetime.datetime(1998, 6, 1, 0, 0, tzinfo=datetime.timezone.utc), 'round': 'Jeopardy!', 'question': 'Group of mammals seen <a href="http://www.j-archive.com/media/1998-06-01_J_28.jpg" target="_blank">here</a>:  [like Timon in <i>The Lion King</i>]'}
+_MetadataReturn(creation_time=None, last_update_time=None, distance=0.17587274312973022, certainty=None, score=None, explain_score=None, is_consistent=None)
+{'points': 100.0, 'answer': 'dogs', 'air_date': datetime.datetime(1984, 9, 12, 0, 0, tzinfo=datetime.timezone.utc), 'question': 'Scooby-Doo, Goofy & Pluto are cartoon versions', 'round': 'Jeopardy!'}
+_MetadataReturn(creation_time=None, last_update_time=None, distance=0.17830491065979004, certainty=None, score=None, explain_score=None, is_consistent=None)
+==========Double Jeopardy!==========
+1
+{'points': 200.0, 'air_date': datetime.datetime(1987, 11, 11, 0, 0, tzinfo=datetime.timezone.utc), 'answer': 'fox', 'question': 'In titles, animal associated with both Volpone and Reynard', 'round': 'Double Jeopardy!'}
+_MetadataReturn(creation_time=None, last_update_time=None, distance=0.18756139278411865, certainty=None, score=None, explain_score=None, is_consistent=None)
 # END Expected groupBy results
 """
-
-
 
 gql_query = """
 # GetWithGroupbyGraphQL
@@ -608,30 +580,19 @@ for o in response.objects:
 
 expected_results = """
 # Expected where results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "distance": 0.18759078
-          },
-          "answer": "fox",
-          "question": "In titles, animal associated with both Volpone and Reynard",
-          "round": "Double Jeopardy!"
-        },
-        {
-          "_additional": {
-            "distance": 0.19532347
-          },
-          "answer": "Swan",
-          "question": "In a Tchaikovsky ballet, Prince Siegfried goes hunting for these animals & falls in love with 1 of them",
-          "round": "Double Jeopardy!"
-        }
-      ]
-    }
-  }
-}
+points: 200.0
+answer: fox
+air_date: 1987-11-11 00:00:00+00:00
+round: Double Jeopardy!
+question: In titles, animal associated with both Volpone and Reynard
+distance: 0.1876813769340515
+
+points: 600.0
+answer: Swan
+air_date: 1990-02-16 00:00:00+00:00
+round: Double Jeopardy!
+question: In a Tchaikovsky ballet, Prince Siegfried goes hunting for these animals & falls in love with 1 of them
+distance: 0.19543564319610596
 # END Expected where results
 """
 

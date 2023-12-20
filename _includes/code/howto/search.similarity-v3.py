@@ -362,7 +362,7 @@ response = (
     .get("JeopardyQuestion", ["question", "answer"])
     .with_near_text({
         "concepts": ["animals in movies"],
-        "distance": max_distance
+        "distance": .2   # Replace this with a value for your data
     })
     # highlight-start
     .with_autocut(1)
@@ -380,8 +380,6 @@ assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "an
 assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"distance"}
 # TODO: add tests
 # End test
-
-
 
 gql_query = """
 # START Autocut GraphQL
@@ -408,8 +406,32 @@ gql_query = """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
 
-
-
+expected_results = """
+# START Expected autocut results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.17587274
+          },
+          "answer": "meerkats",
+          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
+        },
+        {
+          "_additional": {
+            "distance": 0.17830491
+          },
+          "answer": "dogs",
+          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
+        }
+      ]
+    }
+  }
+}
+# END Expected autocut results
+"""
 # ==============================
 # ===== QUERY WITH groupBy =====
 # ==============================

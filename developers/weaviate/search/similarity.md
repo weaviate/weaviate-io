@@ -61,12 +61,26 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
 
 The output is like this:
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START Expected nearText results"
-  endMarker="# END Expected nearText results"
-  language="json"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Expected nearText results"
+      endMarker="# END Expected nearText results"
+      language="json"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">  
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START Expected nearText results"
+      endMarker="# END Expected nearText results"
+      language="json"
+    />
+  </TabItem>
+</Tabs>
+
 
 </details>
 
@@ -347,12 +361,25 @@ To limit results to groups of similar distances to the query, use the [`autocut`
 
 The output is like this:
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START Expected nearText results"
-  endMarker="# END Expected nearText results"
-  language="json"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START Expected autocut results"
+    endMarker="# END Expected autocut results"
+    language="json"
+    />
+ </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+    text={PyCodeV3}
+    startMarker="# START Expected autocut results"
+    endMarker="# END Expected autocut results"
+    language="json"
+    />
+ </TabItem>
+</Tabs>
 
 </details>
 
@@ -402,12 +429,25 @@ Use a property or a cross-reference to group results. To group returned objects,
 
 The output is like this:
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# Expected groupBy results"
-  endMarker="# END Expected groupBy results"
-  language="json"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# Expected groupBy results"
+      endMarker="# END Expected groupBy results"
+      language="json"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">  
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Expected groupBy results"
+      endMarker="# END Expected groupBy results"
+      language="json"
+    />
+  </TabItem>
+</Tabs>
 
 </details>
 
@@ -458,13 +498,26 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 
 The output is like this:
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# Expected where results"
-  endMarker="# END Expected where results"
-  language="json"
-/>
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# Expected where results"
+      endMarker="# END Expected where results"
+      language="json"
+    />
+  </TabItem>
 
+  <TabItem value="py3" label="Python (v3)">  
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# Expected where results"
+      endMarker="# END Expected where results"
+      language="json"
+    />
+  </TabItem>
+</Tabs>
+    
 </details>
 
 ## Related pages
