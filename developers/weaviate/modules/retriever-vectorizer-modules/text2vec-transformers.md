@@ -19,6 +19,7 @@ Key notes:
 - Models encapsulated in Docker containers.
 - Pre-built `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. models available.
 - Can also use any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
+- The `text2vec-transformers` module automatically chunks text before it is passed to the model.
 
 :::tip Do you have GPU acceleration?
 
