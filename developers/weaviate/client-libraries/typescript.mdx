@@ -336,6 +336,98 @@ The code snippet at the top of this page shows a simple query corresponding to t
 - In the case of an error, the Promise rejects with the specific error message. (If using `async`/`await`, a rejected promises acts like a thrown exception).
 - Internally the client uses `isomorphic-fetch` to make the REST calls, so it should work from both the browser and NodeJS applications without any required changes.
 
+## TypeScript for JavaScript users
+
+TypeScript is a superset of JavaScript. There are, however, some differences that you should be aware of. This section offers some suggestions for JavaScript users who are new to TypeScript.
+
+### Run a TypeScript file
+
+To run a TypeScript file, first convert it to JavaScript. The `typescript` package from `npm` includes the `tsc` utility. Use `tsc` to convert (transpile) the TypeScript file. 
+
+Install the `typescript` package. Add the `-g` flag if you want the package to be available globally.
+
+```bash
+npm install typescript
+```
+
+Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`.
+
+- Compiler options
+
+  - `"target": "esnext"` 
+  - `"module": "esnext"`
+  - `"moduleResolution": "node"` 
+
+- `"include": ["*.ts"]`  (Or specific files)
+- `"lib": [ "es2018" ]`
+
+Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
+
+```bash
+tsc
+```
+
+`node` only allows the `import` statement in modules. To allow the `import` statement, add the following to your `package.json` file.
+
+```json
+{ 
+   "type": "module"
+}
+```
+
+### Example
+
+To run this example, complete these steps. 
+
+- Install the `typescript` package. 
+- Update the `tsconfig.json` and `package.json` files as described above.
+- Copy the sample code.
+- Save the code as `sample.ts` in the same directory as `tsconfig.json` and `package.json`.
+- Convert and run the code.
+
+Use this code to create `sample.ts`.
+
+<details>
+  <summary>Sample TypeScript code</summary>
+
+```ts
+import weaviate from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
+});
+
+console.log(client.misc)
+```
+</details>
+
+Convert `sample.ts`.
+
+```bash
+tsc 
+```
+
+Run the converted file.
+
+```bash
+node sample.js  
+```
+
+The output looks like this.
+
+<details>
+  <summary>Sample output</summary>
+
+```json
+{
+  "clientId": "wcs",
+  "href": "https://auth.wcs.api.weaviate.io/auth/realms/SeMI/.well-known/openid-configuration"
+}
+```
+</details>
+
 ## Client releases
 
 import MatrixIntro from '/_includes/clients/matrix-intro.md';
