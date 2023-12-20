@@ -578,7 +578,7 @@ You can choose to provide a generic type to a query or data operation. This can 
     * [Queries](#query)
 * The `FromReference` class is now called `QueryReference`.
 
-#### Name changes
+#### Reorganization of classes/parameters
 
 * `weaviate.classes` submodule further split into:
     * `weaviate.classes.config`
@@ -600,6 +600,9 @@ You can choose to provide a generic type to a query or data operation. This can 
     ```
     * `vector_index_type` parameter has been removed.
 * `vectorize_class_name` parameter in the `Property` constructor method is `vectorize_collection_name`.
+* `[collection].data.update()` / `.replace()` *args order changed, aiming to accommodate not providing properties when updating.
+* `[collection].data.reference_add` / `.reference_delete` / `.reference_replace` the `ref` keyword was renamed to `to`.
+* `collections.create()` / `get()`: `data_model` kwarg to keyword to provide generics was renamed to `data_model_properties` .
 * `[object].metadata.uuid` is now `[object].uuid`.
 * `[object].metadata.creation_time_unix` is now `[object].metadata.creation_time`.
 * `[object].metadata.last_update_time_unix` is now `[object].metadata.last_update`.
