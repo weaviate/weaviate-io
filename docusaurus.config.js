@@ -230,8 +230,8 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Workshops',
-                                to: '/learn/workshops',
+                                label: 'Events & Webinars',
+                                to: '/community/events',
                             },
                             {
                                 label: 'Contributor Guide',

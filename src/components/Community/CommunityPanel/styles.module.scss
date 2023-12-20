@@ -1,0 +1,186 @@
+.container {
+  padding: 3rem;
+  background: #ededed;
+}
+
+.title {
+  text-align: left;
+  padding: 1rem 0 2rem 0;
+  margin: auto;
+  width: 83%;
+
+  h2 {
+    color: #1c1468;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 29.24306rem;
+  height: 25.46663rem;
+  background-color: #141f39;
+  margin: 1rem;
+  padding: 2rem;
+
+  border-radius: 0.67781rem;
+  background: #130c49;
+  box-shadow: 0px 37.183px 99.155px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.cardHeader {
+  display: grid;
+  gap: 40px;
+
+  h3 {
+    color: #61bd73;
+    font-family: Inter;
+    font-size: 1.93663rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+
+.contentDiv {
+  height: 100%;
+  margin-top: 0.5rem;
+}
+
+.textCardContent {
+  color: #fff;
+  font-family: Inter;
+  font-size: 1.162rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 1.62675rem */
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 0;
+
+  .cardFooterDiv {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    p {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-bottom: 0.7rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 1rem 0 0 0;
+  }
+}
+
+.img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  // background-color: red;
+}
+
+.startImg {
+  background-image: url('../../../../static/img/company/careers/star-dark.png');
+  width: 2rem;
+  height: 2rem;
+
+  margin-right: 0.5rem;
+}
+
+.chatImg {
+  background-image: url('../../../../static/img/company/careers/chat-dark.png');
+  width: 5rem;
+  height: 5rem;
+
+  @media screen and (max-width: 600px) {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  a {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: #61bd73;
+  color: #130c49;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+
+.buttonOutline {
+  font-weight: 400;
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  color: #130c49;
+  transition: all 1s ease-out;
+}
+
+.buttonGradient:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.buttonOutline:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}

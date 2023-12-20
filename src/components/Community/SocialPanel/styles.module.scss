@@ -1,0 +1,99 @@
+.container {
+  padding: 3rem;
+  background: #ededed;
+}
+
+.title {
+  text-align: center;
+  padding: 1rem 0 2rem 0;
+
+  h2 {
+    color: #1c1468;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.twitter-tweet.twitter-tweet-rendered {
+  box-shadow: 0px 1px 64px 0px rgba(22, 27, 45, 0.08);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: auto;
+  height: 20rem;
+
+  margin: 1rem;
+  padding: 2rem;
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  a {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.buttonGradient {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: #61bd73;
+  color: #130c49;
+  font-weight: 400;
+  transition: all 1s ease-out;
+}
+
+.buttonOutline {
+  font-weight: 400;
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  color: #130c49;
+  transition: all 1s ease-out;
+}
+
+.buttonGradient:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}
+
+.buttonOutline:hover {
+  border-radius: 0.3125rem;
+  outline: 1px solid #130c49;
+  background: rgb(15, 0, 50);
+  color: #fff;
+  font-weight: 400;
+}

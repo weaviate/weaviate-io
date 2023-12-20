@@ -399,8 +399,14 @@ const siteRedirects = {
         },
         // workshops
         {
-            to: "/learn/workshops",
+            to: "/community/events",
             from: "/learn/workshop"
+        },
+
+        {
+            to: "/community/events",
+            from: "/learn/workshops"
+
         },
         // Partners to Platform whilst in development
         {
@@ -429,6 +435,8 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+
+
     ],
     createRedirects(existingPath) {
         if (existingPath.includes('/weaviate/api/graphql')) {

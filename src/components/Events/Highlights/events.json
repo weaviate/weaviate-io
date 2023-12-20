@@ -1,0 +1,23 @@
+[
+  {
+    "type": "ONLINE WORKSHOP",
+    "title": "Intro to Weaviate for JavaScript Developers with Daniel #01",
+    "date": "JAN 24th 2024 13:00-14:00 ET",
+    "imageClass": "firstSection",
+    "url": "https://form.jotform.com/233442262304345"
+  },
+  {
+    "type": "WEBINAR",
+    "title": "How to Build an AI-Native Foundation for Enterprise Apps",
+    "date": "JAN 9th 2024 13:00-14:00 ET",
+    "imageClass": "secondSection",
+    "url": "https://webinars.devops.com/how-to-build-an-ai-native-foundation-for-enterprise-apps"
+  },
+  {
+    "type": "MEETUP",
+    "title": "AI Accelerators Berlin - The Grid Edition",
+    "date": "JAN 23, 18:00-21:00 CET",
+    "imageClass": "thirdSection",
+    "url": "https://lu.ma/jz2kswfb"
+  }
+]
