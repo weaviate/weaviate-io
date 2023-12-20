@@ -100,10 +100,11 @@ import weaviate.classes as wvc
 
 jeopardy = client.collections.get("Question")
 jeopardy.config.update(
-    vector_index_config=wvc.Reconfigure.vector_index(
-        pq_enabled=True, pq_segments=96, pq_training_limit=100000
+    vector_index_config=wvc.Reconfigure.VectorIndex.hnsw(
+        quantizer=wvc.Reconfigure.VectorIndex.Quantizer.pq()
     )
 )
+
 
 # END UpdateSchema
 

@@ -89,7 +89,7 @@ The following parameters are available for BQ compression, under `vectorIndexCon
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `bq` : `enabled` | boolean | `false` | Enable BQ. Weaviate uses binary quantization (BQ) compression when `true`. |
+| `bq` : `enabled` | boolean | `false` | Enable BQ. Weaviate uses binary quantization (BQ) compression when `true`.  <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable BQ with the v4 client, set a `quantizer` in the collection definition. |
 | `bq` : `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
 | `bq` : `cache` | boolean | `false` | Whether to use the vector cache. |
 | `vectorCacheMaxObjects` | integer | `1e12` | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../concepts/vector-index.md#vector-cache-considerations). |
