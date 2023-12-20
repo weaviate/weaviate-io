@@ -52,7 +52,13 @@ AutoPQ is not currently available in WCS.
 
 ### Configure PQ
 
-To enable PQ, update your collection definition. In the vector index section, set `pq_enabled=True`. For additional configuration options, see the [parameter table](#pq-parameters).
+To enable PQ, update your collection definition. 
+
+If you use the Python client v4, enable a `quantizer`. 
+
+If you use one of the other clients, set `pq_enabled=True` in the vector index configuration section, . 
+
+For additional configuration options, see the [parameter table](#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -292,7 +298,7 @@ When you load data for this training phase, you can use any of the objects in yo
 
 #### Enable PQ and create the codebook
 
-To enable PQ compression, update your collection (class) schema to set `pq_enabled=True`. After you update the schema, Weaviate uses up to `pq_training_limit` objects to train PQ.
+To enable PQ compression, update your collection (class) schema to set `pq_enabled=True` (or define a `quantizer` if you use the Python Client v4.). After you update the schema, Weaviate uses up to `pq_training_limit` objects to train PQ.
 
 import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
