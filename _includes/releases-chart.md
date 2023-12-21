@@ -8,7 +8,7 @@ To see release notes for a particular version, click on the version number.
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-:|
-| [1.23.0][c1.23.0] | 2023-12-18 | [3.25.2][p3.25.2] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.4.2][j4.4.2] |
+| [1.23.0][c1.23.0] | 2023-12-18 | [3.25.3][p3.25.3] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.4.2][j4.4.2] |
 | [1.22.0][c1.22.0] | 2023-10-27 | '' | '' | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] |
 | [1.21.0][c1.21.0] | 2023-08-17 | [3.22.1][p3.22.1] | [1.4.0][ts1.4.0] | [4.9.0][g4.9.0] | [4.2.1][j4.2.1] |
 | [1.20.0][c1.20.0] | 2023-07-06 | [3.22.0][p3.22.0] | '' | '' | [4.2.0][j4.2.0] |
@@ -159,6 +159,8 @@ For links to the Python Client releases, expand this section.
 
    | Client Version | Release Date |
    | :- | :- |
+   | [3.26.0][p3.26.0] | 2023-12-20 |
+   | [3.25.3][p3.25.3] | 2023-11-07 |
    | [3.25.2][p3.25.2] | 2023-10-31 |
    | [3.25.1][p3.25.1] | 2023-10-27 |
    | [3.25.0][p3.25.0] | 2023-10-27 |
@@ -491,6 +493,8 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( python client links )
 
+[p3.26.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.0
+[p3.25.3]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.3
 [p3.25.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.2
 [p3.25.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.1
 [p3.25.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.0
