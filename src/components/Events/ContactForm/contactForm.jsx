@@ -1,18 +1,32 @@
 import React from 'react';
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 
 export default function ContactForm() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//js.hsforms.net/forms/embed/v2.js';
+    document.body.appendChild(script);
+
+    script.addEventListener('load', () => {
+      // @TS-ignore
+      if (window.hbspt) {
+        // @TS-ignore
+        window.hbspt.forms.create({
+          portalId: '8738733',
+          formId: '2573dc63-a3d4-4cff-9229-79a366f2f26f',
+          target: '#hubspotForm',
+        });
+      }
+    });
+  }, []);
   return (
     <div className={styles.contactBackground}>
       <div className="container">
         <div className={styles.contactContainer}>
           <div className={styles.contactSection}>
-            <form
-              className={styles.formContact}
-              action="https://formcarry.com/s/FZwYB5WwuG"
-              method="POST"
-            >
+            <form className={styles.formContact}>
               <h2 className={styles.title}>Contact us </h2>
               <div className={styles.links}>
                 <p>
@@ -20,29 +34,7 @@ export default function ContactForm() {
                   Let’s get this conversation started.
                 </p>
               </div>
-
-              <input
-                type="input"
-                name="formName"
-                placeholder="First Name"
-              ></input>
-              <span></span>
-              <input
-                type="email"
-                name="formEmail"
-                placeholder="Work Email Address"
-              ></input>
-              <span></span>
-
-              <textarea
-                type="text"
-                name="formMessage"
-                className={styles.formMessage}
-                placeholder="Message"
-              ></textarea>
-              <button type="submit" name="formSumbit">
-                Send
-              </button>
+              <div id="hubspotForm"></div>
             </form>
           </div>
         </div>
