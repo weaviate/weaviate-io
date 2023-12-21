@@ -128,6 +128,7 @@ When importing large datasets, it may be worth planning out an optimized import 
 1. To use multiple CPUs efficiently, enable sharding when you import data. For the fastest imports, enable sharding even on a single node.
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
 1. Use `htop` when importing to see if all CPUs are maxed out.
+1. Configure the GOMEMLIMIT environment variable. For details, see [Environment variables](../config-refs/env-vars), [blog post](/blog/weaviate-1-15-release#better-control-over-garbage-collector).
 1. For Kubernetes, a few large machines are faster than many small machines (due to network latency).
 
 Our rules of thumb are:
