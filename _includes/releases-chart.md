@@ -159,6 +159,7 @@ For links to the Python Client releases, expand this section.
 
    | Client Version | Release Date |
    | :- | :- |
+   | [3.26.0][p3.26.0] | 2023-12-20 |
    | [3.25.2][p3.25.2] | 2023-10-31 |
    | [3.25.1][p3.25.1] | 2023-10-27 |
    | [3.25.0][p3.25.0] | 2023-10-27 |
@@ -491,6 +492,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( python client links )
 
+[p3.26.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.26.0
 [p3.25.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.2
 [p3.25.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.1
 [p3.25.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v3.25.0
