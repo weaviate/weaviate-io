@@ -187,7 +187,10 @@ The output is like this:
 :::info Added in `v1.20`
 :::
 
-`Ranked Fusion` is the default fusion algorithm. To use objects' keyword and vector search scores instead of ranks, use `Relative Score Fusion`.
+`Ranked Fusion` is the default fusion algorithm.
+
+- To use objects' keyword and vector search scores instead of ranks, use `Relative Score Fusion`.
+- To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -463,7 +466,7 @@ Optionally, use `offset` to paginate the results.
 
 ## Limit result groups
 
-To limit results to groups of similar distances to the query, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter to set the number of groups to return.
+To limit results to groups with similar distances from the query, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter. Specify the `Relative Score Fusion` ranking method when you use autocut with hybrid search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
