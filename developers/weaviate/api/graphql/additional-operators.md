@@ -21,7 +21,7 @@ import CurlCode from '!!raw-loader!/_includes/code/graphql.additional.sh';
 
 ## Syntax
 
-Additional operators such as `limit`, `autocut` and `sort` are available to modify queries at the class level.
+Operators such as `limit`, `autocut`, and `sort` modify queries at the class level.
 <!--
 For example:
 
@@ -125,14 +125,37 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 
 ## Autocut
 
-Starting with Weaviate `v1.20`, the `autocut` filter can be added as an argument to class objects retrieved via the `nearXXX`, `bm25` and `hybrid` operators. `autocut: <N>`, where N is an integer > 0, limits the number of results to those up to the Nth "jump"/"drop" in the distance/score from the query. For example, if the distances for six objects returned by `nearText` were `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]` then `autocut: 1` would return the first three objects, `autocut: 2` would return all but the last object, and `autocut: 3` would return all objects. Autocut is disabled by default, and can be disabled explicitly by setting its value to `0` or a negative number.
+:::info Added in `v1.20`
+:::
 
-If `autocut` is combined with `limit: N`, then `autocut`'s input will be limited to the first `N` objects.
+The autocut filter limits results based on discontinuities in the result set. The filter looks for discontinuities, or jumps, in the result [scores](#score--explainscore). To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
+
+For example, consider a `nearText` search that returns objects with these distance values:
+
+ `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]`.
+
+Autocut returns the following:
+
+- `autocut: 1`: `[0.1899, 0.1901, 0.191]`
+- `autocut: 2`:  `[0.1899, 0.1901, 0.191, 0.21, 0.215]`
+- `autocut: 3`:  `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]`
+
+Autocut works with these operators:
+
+- `nearXXX`
+- `bm25`
+- `hybrid`
+
+To use autocut with the `hybrid` operator, specify the `relativeScoreFusion` ranking method.
+
+Autocut is disabled by default. To explicitly disable autocut, set the number of jumps to `0` or a negative value.
+
+If autocut is combined with the limit filter, autocut only considers the first objects returned up to the value of `limit`.
 
 <!-- TODO: Update with link to blog:
 For more `autocut` examples and to learn about the motivation behind this filter, see the [v1.20 release blog post](/blog). -->
 
-Autocut can be used as follows:
+Sample client code:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python">
@@ -166,7 +189,7 @@ Autocut can be used as follows:
 <details>
   <summary>Example response</summary>
 
-It should produce a response like the one below:
+The output is like this:
 
 <FilteredTextBlock
   text={AutocutPyCode}
