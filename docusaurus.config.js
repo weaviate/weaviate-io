@@ -271,6 +271,10 @@ const config = {
                                 to: '/company/careers',
                             },
                             {
+                                label: 'Newsletter',
+                                to: 'https://newsletter.weaviate.io/',
+                            },
+                            {
                                 label: 'Investors',
                                 to: '/company/investors',
                             },
