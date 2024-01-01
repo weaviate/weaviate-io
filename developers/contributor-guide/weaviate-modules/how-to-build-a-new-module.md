@@ -10,7 +10,7 @@ If you have your own vectorizer, machine learning or other model that you want t
 
 The visualization below shows how modules are part of and connected to Weaviate. The black border indicates Weaviate Core, with the grey boxes as internals. Everything in red involves how Weaviate uses the modules that are connected, with the general Module System API. The red Module API spans two internal 'layers', because it can influence the Weaviate APIs (e.g. by extending GraphQL or providing additional properties), and it can influence the business logic (e.g. by taking the properties of an object and setting a vector).
 
-Everything that is blue belongs to a specific module (more than one module can be attached, but here we show one module). Here we have the example of Weaviate using the `text2vec-transformers` module `bert-base-uncased`. Everything that belongs to the `text2vec-transformers` module is thus drawn in blue. The blue box inside Weaviate Core is the part 1 of the module: the module code for Weaviate. The blue box outside Weaviate Core is the separate inference service, part 2.
+Everything that is blue belongs to a specific module (more than one module can be attached, but here we show one module). Here we have an example of Weaviate using the `text2vec-transformers` module `bert-base-uncased`. Everything that belongs to the `text2vec-transformers` module is thus drawn in blue. The blue box inside Weaviate Core is the part 1 of the module: the module code for Weaviate. The blue box outside Weaviate Core is the separate inference service, part 2.
 
 The picture shows three APIs:
 * The first grey box inside Weaviate Core, which is the user-facing RESTful and GraphQL API.
@@ -38,16 +38,16 @@ If you want to make a pull request to Weaviate with your custom module, make sur
 Before you start programming, make sure you have a good design and idea how your module should look like:
 1. The name of the module should follow the [naming convention](./overview.md#module-characteristics). For a vectorizer: `<media>2vec-<name>-<optional>` and other modules: `<functionality>-<name>-<optional>`.
 2. Optional GraphQL [`_additional` property fields](/developers/weaviate/api/graphql/additional-properties.md). Here you can return any new field with data that you would like. Make sure the field name doesn't clash with existing field names, like `id`, `certainty`, `classification` and `featureProjection`, and `_additional` fields of other modules that you activate in the same startup configuration. New `_additional` fields can also have subfields.
-3. Optional GraphQL [filters](/developers/weaviate/api/graphql/filters.md). You can make a new GraphQL filter on different levels. If your filter is a 'class-level influencer' which influence which results will be returned, you can introduce them on the `Class` level. Examples are `near<Foo>`, `limit` or `ask`. If your module would only enhance existing results, you should scope the filter to the new `_additional` property. An example is `featureProjection`.
+3. Optional GraphQL [filters](/developers/weaviate/api/graphql/filters.md). You can make a new GraphQL filter on different levels. If your filter is a 'class-level influencer' that influences which results will be returned, you can introduce it at the `Class` level. Examples are `near<Foo>`, `limit` or `ask`. If your module would only enhance existing results, you should scope the filter to the new `_additional` property. An example is `featureProjection`.
 4. Think about what you or another user should be able to configure to use this Weaviate Module. Configuration can be passed in the Weaviate configuration (e.g. in the [docker-compose.yml file](https://github.com/weaviate/weaviate-examples/blob/4edd6ee767d0e80bca1dd8d982db2378992ddb67/weaviate-contextionary-newspublications/docker-compose.yaml#L24-L29)).
 
 ## Design the inference model (part 2)
 
 The inference model is a service that provides at least four API endpoints:
-1. `GET /.well-known/live` -> which should respond `204` when the app is alive
-2. `GET /.well-known/ready` -> which should respond `204` when the app is ready to serve traffic
-3. `GET /meta` -> which should respond meta information about the inference model
-4. `POST /<foo>` (at least 1) -> which is the endpoint that the Weaviate Module uses for inference. For a vectorizer this might for example be `POST /vectors`, which takes a JSON body with the data to vectorize. A vector will be returned (in JSON format). The Question Answering model, on the other hand, has an endpoint `POST /answers`, which takes a JSON body with the text to tokenize and returns a list of tokens found in the text (also formatted as JSON).
+1. `GET /.well-known/live` responds `204` when the app is alive.
+2. `GET /.well-known/ready` responds `204` when the app is ready to serve traffic.
+3. `GET /meta` responds meta information about the inference model.
+4. `POST /<foo>` (at least 1) is the endpoint that the Weaviate Module uses for inference. For a vectorizer this might for example be `POST /vectors`, which takes a JSON body with the data to vectorize. A vector will be returned (in JSON format). The Question Answering model, on the other hand, has an endpoint `POST /answers`, which takes a JSON body with the text to tokenize and returns a list of tokens found in the text (also formatted as JSON).
 
 You can always ask us on [the forum](https://forum.weaviate.io/), [Slack](https://weaviate.io/slack) or [GitHub](https://github.com/weaviate/weaviate/issues) to get help with the design.
 
@@ -84,7 +84,7 @@ Make sure to also write tests for the GraphQL field and for the result (e.g. [th
 
 ## 3. Add GraphQL filter (other than in `_additional`)
 
-If you choose to add a filter outside the `_additional` GraphQL field, you need to take a slight different approach then the adding the filter arguments as explained in the previous step. That is because you can't include the filter arguments in the `/additional` GraphQL field. For example, the QnA module has the filter `ask` on class level (click [here](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md#graphql-ask-search) for an example). This argument was created in a new folder inside the new module folder in Weaviate ([example](https://github.com/weaviate/weaviate/tree/master/modules/qna-transformers/ask)). To achieve this, make sure to follow these steps:
+If you choose to add a filter outside the `_additional` GraphQL field, you need to take a slightly different approach to add the filter arguments as explained in the previous step. That is because you can't include the filter arguments in the `/additional` GraphQL field. For example, the QnA module has the filter `ask` on class level (click [here](/developers/weaviate/modules/reader-generator-modules/qna-transformers.md#graphql-ask-search) for an example). This argument was created in a new folder inside the new module folder in Weaviate ([example](https://github.com/weaviate/weaviate/tree/master/modules/qna-transformers/ask)). To achieve this, make sure to follow these steps:
 1. Create a new folder inside your new module folder with the name of the filter (e.g. [`/ask`](https://github.com/weaviate/weaviate/tree/master/modules/qna-transformers/ask)). In this folder:
 2. Define the GraphQL filter arguments in `graphql_argument.go` ([example](https://github.com/weaviate/weaviate/blob/master/modules/qna-transformers/ask/graphql_argument.go), and also write a test for this.
 3. Define the parameters in `params.go` ([example](https://github.com/weaviate/weaviate/blob/master/modules/qna-transformers/ask/param.go)).
@@ -124,9 +124,9 @@ Add user-specific configuration to both the Weaviate module and the inference AP
 During development of the new Module, you can run Weaviate locally. Make sure to have the following set:
 1. Your module should be present in the (local) [`/modules` folder](https://github.com/weaviate/weaviate/tree/master/modules).
 2. Hook up the module to Weaviate. The module will not be 'turned on' if you don't say so in `docker-compose.yml`.
-    1. In `/adapters/handlers/rest/configure_api.go`, add your module to the import list ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L37)), and register it as a module ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L330-L332)). The module will not be turned on if you don't say so in the Docker Compose file. Use the name of the module here, the same as you have used as folder name in `/modules`.
+    1. In `/adapters/handlers/rest/configure_api.go`, add your module to the import list ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L37)), and register it as a module ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/adapters/handlers/rest/configure_api.go#L330-L332)). The module will not be turned on if you don't say so in the Docker Compose file. Use the name of the module here, the same as you have used as folder name in the `/modules`.
     2. Add the service to `tools/dev/restart_dev_environment.go` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/restart_dev_environment.sh#L21-L23)). Here you define the argument (to start the dev environment) that will start the correct Weaviate setup. In the example, the argument is `i2v-neural`.
-    3. Add the service to `tools/dev/run_dev_server.sh` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/run_dev_server.sh#L77-L92)). This is the Docker Compose setup for running the development server. You should define the modules that you want to run with your new dev setup: where they are running and their configuration. It also includes the command to run Weaviate, you can copy this.
+    3. Add the service to `tools/dev/run_dev_server.sh` ([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/tools/dev/run_dev_server.sh#L77-L92)). This is the Docker Compose setup for running the development server. Define where the new modules should run and configure them. It also includes the command to run Weaviate, you can copy this.
     4. And add the service to `docker-compose.yml`([example](https://github.com/weaviate/weaviate/blob/7036332051486b393d83f9ea2ffb0ca1b2269328/docker-compose.yml#L37-L40)). The inference container (part 2) should be running on the defined port.
 
 Inside the Weaviate project folder, run
@@ -146,4 +146,4 @@ tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>
 You can now load in any sample or test dataset. If you only make changes in the `/modules/<new-module>` folder afterwards, you only need to re-run `tools/dev/run_dev_server.sh --<LOCAL-CONFIG-NAME>` to apply the changes. The data will be kept, so no need to re-import.
 
 #### Passing tests
-Finally, and before you make a PR, your Weaviate with your complete module implementation should pass all tests (all existing tests and tests added by you). How to run tests, [check this page](../weaviate-core/tests.md#run-the-whole-pipeline).
+Before you submit your PR, your new module implementation must pass all existing tests and any new tests that you added. How to run tests, [check this page](../weaviate-core/tests.md#run-the-whole-pipeline).
