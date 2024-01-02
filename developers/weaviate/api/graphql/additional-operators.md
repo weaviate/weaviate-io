@@ -9,8 +9,10 @@ import TabItem from '@theme/TabItem';
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import AutocutPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import AutocutPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import AutocutTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import PyCode from '!!raw-loader!/_includes/code/graphql.additional.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/graphql.additional-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/graphql.additional.ts';
 import GoCode from '!!raw-loader!/_includes/code/graphql.additional.go';
 import JavaCode from '!!raw-loader!/_includes/code/graphql.additional.java';
@@ -158,9 +160,18 @@ For more `autocut` examples and to learn about the motivation behind this filter
 Sample client code:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={AutocutPyCode}
+      startMarker="# START Autocut Python"
+      endMarker="# END Autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={AutocutPyCodeV3}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
       language="py"
