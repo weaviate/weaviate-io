@@ -54,7 +54,7 @@ A GraphQL JSON object is defined as:
 }
 ```
 
-GraphQL queries follows a defined structure, defined to interact with your data in Weaviate as good as possible. Queries are structured as follows:
+GraphQL queries follow a defined structure. Queries are structured as follows:
 
 
 ```graphql
