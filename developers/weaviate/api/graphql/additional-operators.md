@@ -34,9 +34,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Limit argument
 
-Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
-
-A `limit` argument limits the number of results to a specified positive integer:
+The `limit` argument restricts the number of results to a specified positive integer. `Get{}`, `Explore{}` and `Aggregate{}` support the `limit` argument.
 
 import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
@@ -75,11 +73,11 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 ## Pagination with `offset`
 
-Supported by the `Get{}` and `Explore{}` functions.
+To return sets of results, "pages", use `offset` and `limit` to iterate over the query response.
 
-The `offset` operator works in conjunction with the existing `limit` operator. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80, limit: 10` to effectively display results 81-90.
-
-Here's an example of `limit` + `offset`:
+For example, to list the first ten results, set `limit: 10` and `offset: 0`. To display the next ten results, the second "page", set `offset: 10`. To continue iterating over the results increase the offset again.
+ 
+The `Get{}` and `Explore{}` functions support `offset`.
 
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
@@ -326,7 +324,16 @@ Sorting can be performed by one or more properties. If the values for the first 
 
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START Sorting Python"
+      endMarker="# END Sorting Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Sorting Python"

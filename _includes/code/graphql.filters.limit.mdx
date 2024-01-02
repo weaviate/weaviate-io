@@ -2,7 +2,23 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py4" label="Python (v4)">
+
+```python
+article=client.collections.get("Article")
+result = article.query.fetch_objects(
+    # highlight-start
+    limit=5
+    # highlight-end
+)
+
+for o in result.objects:
+    print( f"Title: {o.properties["title"]}")
+```
+
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
