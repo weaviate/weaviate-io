@@ -101,7 +101,7 @@ test/integration/run.sh
 
 * Use the `integrationTest` build tag on your test, so it is ignored during unit test runs.
 * Make sure the test prepares for and cleans up after itself, so tests can be run in succession.
-* If your test requires a lot of time to execute, consider marking them as a slow test and making them optional. (see below).
+* If your test requires a lot of time to execute, consider marking it as a slow test and making it optional. (see below).
 
 #### Slow integration tests
 
