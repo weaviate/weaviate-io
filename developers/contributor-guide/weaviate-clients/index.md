@@ -22,7 +22,7 @@ These clients, and all future clients are and will be developed according to the
    2. These features can be solved in a client's native way (follow the current design of the client for consistency)
    3. Preferably the functionalities are consistent across clients.
 4. Keep the design (nomenclature and builder structures) as consistent as possible, with the nomenclature of the RESTful and GraphQL API functions as base, then adopting names from similar functions in a client in another language.
-5. Clients must at the minimum contain journey-tests to be considered complete. See "Testing" below.
+5. To be considered complete, clients must, at a minimum, include journey tests. Please refer to the 'Testing' section below for more details."
 
 # Design philosophy and API patterns
 

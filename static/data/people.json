@@ -264,6 +264,12 @@
     "team": "applied-research"
   },
   {
+    "name": "Jose Luis Franco",
+    "title": "QA Engineer",
+    "photo": "Jose-Luis-Franco.jpeg",
+    "team": "cloud"
+  },
+  {
     "name": "Laura Stoye",
     "title": "Executive Assistant",
     "photo": "laura.jpg",
@@ -301,12 +307,24 @@
     "team": "developer-relations"
   },
   {
+    "name": "Mike Hoppe",
+    "title": "Client-Focused SRE",
+    "photo": "Mike-Hoppe.jpeg",
+    "team": "cloud"
+  },
+  {
     "name": "Mike Wyer",
     "title": "Site Reliability Engineer",
     "photo": "mike.jpg",
     "linkedin": "mikewyer",
     "twitter": "BigBeardyGeek",
     "team": "wcs"
+  },
+  {
+    "name": "Mohamed Badawi",
+    "title": "Software Engineer",
+    "photo": "Mohamed-Badawi.jpeg",
+    "team": "cloud"
   },
   {
     "name": "Mohamed Shahin",
