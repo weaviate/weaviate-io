@@ -36,7 +36,7 @@ can choose to implement. The module provider will skip modules which do not
 implement a specific capability when calling all modules hooked-in functions.
 
 An example for such a capability interface would be the `Vectorizer`
-capability. If your module should be able to vectorize an object, it must
+capability. If your module is able to vectorize an object, it must
 implement [this small
 interface](https://github.com/weaviate/weaviate/blob/master/entities/modulecapabilities/vectorizer.go).
 
@@ -59,22 +59,21 @@ capability interface methods.
 
 Here is a detailed explanation of what you can find in [`additional.go`](https://github.com/weaviate/weaviate/blob/master/entities/modulecapabilities/additional.go):
 * The function `GraphQLFieldFn` generates a GraphQL field based on a class name.
-* The function `ExtractAdditionalFn`extracts parameters from graphql queries.
-* The interface `AdditionalPropertyWithSearchVector`defines additional property parameters with the ability to pass a search vector. If an additional parameter must contain a search vector, then a given param needs to implement `SetSearchVector` method, so that then that search vector will be added to given parameter.
+* The function `ExtractAdditionalFn` extracts parameters from graphql queries.
+* The interface `AdditionalPropertyWithSearchVector`defines additional property parameters with the ability to pass a search vector. If an additional parameter contains a search vector, then a given param needs to implement `SetSearchVector` method, so that the search vector is added to given parameter.
 * The function `AdditionalPropertyFn` defines interface for additional property functions performing given logic. It gives the capability of extending a search result with a given additional property.
 * The struct `AdditionalSearch` defines on which type of query a given additional logic can be performed. The function `AdditionalPropertyFn` will be called after search is done. You can then extend the results of a query with some additional property, and with that method you're defining how you want to add those additional properties.
-    * `ObjectGet`, `ObjectList` - are methods used by REST API
-    * `ExploreGet`, `ExploreList` - are methods used by GraphQL API
-    * You can define if a given additional attribute will be available to use using graphql or rest api
+    * `ObjectGet`, `ObjectList` - are methods used by REST API.
+    * `ExploreGet`, `ExploreList` - are methods used by GraphQL API.
+    * You can define if a given additional attribute will be available to use using graphql or rest api.
 * The struct `AdditionalProperty` defines all the needed settings and methods to be set in order to add the additional property to Weaviate.
-  * `RestNames              []string`: look `handlers_kinds.go` - defines rest api parameter names
-	* `DefaultValue           interface{}`: look `handlers_kinds.go` - defines a default value for a parameter
-	* `GraphQLNames           []string`: graphql additional parameter name
-	* `GraphQLFieldFunction   GraphQLFieldFn`: defines the additional property graphql argument
-	* `GraphQLExtractFunction ExtractAdditionalFn`: defines the extract function for additional property argument
-	* `SearchFunctions        AdditionalSearch`: defines all of the functions for rest api and graphql
-* The interface `AdditionalProperties` groups whole interface methods needed for adding the capability of additional properties, and defines all of the additional property parameters.
-
+  * `RestNames              []string`: look `handlers_kinds.go` defines rest api parameter names.
+	* `DefaultValue           interface{}`: look `handlers_kinds.go` defines a default value for a parameter.
+	* `GraphQLNames           []string`: graphql additional parameter name.
+	* `GraphQLFieldFunction   GraphQLFieldFn`: defines the additional property graphql argument.
+	* `GraphQLExtractFunction ExtractAdditionalFn`: defines the extract function for additional property argument.
+	* `SearchFunctions        AdditionalSearch`: defines all of the functions for rest api and graphql.
+* The `AdditionalProperties` interface groups all the methods required for adding the capability of additional properties and defines the parameters for these additional properties.
 
 ## Visualization
 
