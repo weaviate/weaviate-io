@@ -11,6 +11,11 @@
     "company": "iO",
     "logo": "/img/site/i-o-logo.png"
   },
+  {
+    "statement": "We picked Weaviate mainly because it's open-source. After using it in multiple AI projects, we are pleased with the developer experience it provides, especially the well-written documentation and the continually evolving feature set. The prototype-friendly trial plan also has been helpful.",
+    "name": "CD Athuraliya",
+    "company": "ConscientAI"
+  },
 
   {
     "statement": "The entire [Weaviate] ecosystem is very clearly designed with developers top of mind, and the community is the best I've ever been part of for responsiveness to questions.",
