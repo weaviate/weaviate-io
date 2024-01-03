@@ -128,7 +128,7 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 :::info Added in `v1.20`
 :::
 
-The autocut filter limits results based on discontinuities in the result set. The filter looks for discontinuities, or jumps, in the result [scores](#score--explainscore). To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
+The autocut filter limits results based on discontinuities in the result set. The filter looks for discontinuities, or jumps, in the resulting metric such as vector distances or search scores. To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
 
 For example, consider a `nearText` search that returns objects with these distance values:
 
