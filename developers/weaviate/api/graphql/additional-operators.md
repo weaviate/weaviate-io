@@ -561,7 +561,7 @@ import GraphQLFiltersGroup from '/_includes/code/graphql.filters.group.mdx';
 
 <GraphQLFiltersGroup/>
 
-This results in the following. Note that publications `International New York Times`, `The New York Times Company` and `New York Times` are merged. The property values that do not have an exact overlap will all be shown, with the value of the most central concept before the brackets.
+The query merges the results for `International New York Times`, `The New York Times Company` and `New York Times`. The central concept, `The New York Times Company` is given first. Related property values follow in parentheses.
 
 <details>
   <summary>Expected response</summary>

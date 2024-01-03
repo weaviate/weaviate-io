@@ -2,7 +2,46 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py4" label="Python (v4)">
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+get_articles_group = """
+  {
+    Get {
+      Publication(
+        group:{
+          type: merge,
+          force:0.05
+        }
+      ) {
+        name
+      }
+    }
+  }
+"""  
+query_result = client.query.raw(get_articles_group)
+print(query_result)
+
+
+article=client.collections.get("Article")
+result = article.query.fetch_objects(
+    limit=3,
+    # highlight-start
+    
+    # highlight-end
+)  
+
+for o in result.objects:
+    print( f"Title: {o.properties["title"]}")
+
+```
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
