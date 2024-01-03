@@ -1,8 +1,8 @@
 ---
-title: Additional properties
+title: Additional properties (Metadata)
 sidebar_position: 45
 image: og/docs/api.jpg
-# tags: ['graphql', 'additional properties', 'additional', 'underscore']
+# tags: ['graphql', 'additional properties', 'additional', 'metadata']
 ---
 
 
@@ -10,11 +10,25 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 <TryEduDemo />
 
-## Introduction
+## Overview
 
-GraphQL additional properties can be used on data objects in Get{} Queries to get additional information about the returned data objects. Which additional properties are available depends on the modules that are attached to Weaviate. The fields `id`, `vector`, `certainty`, `featureProjection` and `classification` are available from Weaviate Core. On nested GraphQL fields (references to other data classes), only the `id` can be returned. Explanation on specific additional properties can be found on the module pages, see for example [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#additional-graphql-api-properties).
+Various 'additional properties', also called 'metadata', can be retrieved for objects.
 
-## Example
+### Available additional properties
+
+The fields `id`, `vector`, `certainty`, `distance`, `featureProjection` and `classification` are available by default.
+
+Further additional properties may be available for each query, depending on the query type as well as enabled Weaviate modules.
+
+Note that only the `id` is available from cross-referenced objects.
+
+### Requesting additional properties
+
+In GraphQL queries, all additional properties to be retrieved can be set through the reserved `_additional{}` property.
+
+Each of the client libraries may handle this differently. See the examples below.
+
+### Usage example
 
 An example query getting the [UUID](#id) and the [distance](#distance).
 
@@ -53,61 +67,15 @@ import GraphQLUnderscoreDistance from '/_includes/code/graphql.underscorepropert
 
 </details>
 
-## _additional property
-
-All additional properties can be set in the reserved `_additional{}` property.
-
-For example:
-
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        # property 1
-        # property 2
-        # etc...
-      }
-    }
-  }
-}
-```
+## Additional properties
 
 ### id
 
-The `id` field contains the unique [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) of the data object.
-
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        id
-      }
-    }
-  }
-}
-```
+Use the `id` field to fetch the object [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
 ### vector
 
-The `vector` fields contains the vector representation of the data object
-
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        vector
-      }
-    }
-  }
-}
-```
-
+Use the `vector` field to fetch the vector representation of the data object
 
 ### generate
 
@@ -140,6 +108,8 @@ The `generate` field can be used to perform a [generative search](../../search/g
 }
 ```
 
+A `generate` query will cause corresponding additional result fields to be available, such as `singleResult`, `groupedResult` and `error`.
+
 
 ### rerank
 
@@ -152,8 +122,6 @@ The `rerank` field can be used to [reorder the search results](../../search/rera
 |--------------|----------|------------|--------------|
 | `property`   | yes      | `string`   | Which property to pass to the reranker. For example, you may want to run a similarity search on a Products collection, then rerank specifically on the Name field. |
 | `query`      | no       | `string`    | Optionally specify a different query. |
-
-Syntax:
 
 ```graphql
 {
@@ -173,81 +141,61 @@ Syntax:
 }
 ```
 
+A `rerank` query will cause corresponding additional `score` field to be available.
+
+
 ### creationTimeUnix
 
-The `creationTimeUnix` field is the timestamp of when the data object was created.
-
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        creationTimeUnix
-      }
-    }
-  }
-}
-```
+Use the `creationTimeUnix` field to fetch the data object creation timestamp.
 
 ### lastUpdateTimeUnix
 
-The `lastUpdateTimeUnix` field is the timestamp of when the data object was last updated.
+Use the `lastUpdateTimeUnix` field to fetch the data object last updated timestamp.
 
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        lastUpdateTimeUnix
-      }
-    }
-  }
-}
-```
+### Vector search metadata
 
-### distance
+Use the `distance` or `certainty` field to fetch a vector similarity metric between the query vector and each result of a vector search.
 
-Any time a vector search is involved, the `distance` can be displayed to show
-the distance between the query vector and each result. The distance is the raw
-distance metric that was used as part of the vector search. For example, if the
-distance metric is `cosine`, distance will return a number between 0 and 2. See
-the full overview of [distance metrics and the expected distance
-ranges](/developers/weaviate/config-refs/distances.md).
+#### Distance
 
-A distance would be typical in any place that you retrieve objects using a
-vector, for example `Get {}` with `nearObject`, `nearVector`, or `near<Media>`.
-The results are ordered by the ascending distance - unless you explicitly sort
-by another property.
+:::info Added in `v1.14.0`
+:::
 
-A lower value for a distance always means that two vectors are closer to
-another, than a higher value. Depending on the distance metric used, this can
-also mean that distances would return negative values. For example, if dot
-product distance is used, a distance of `-50` would indicate more similarity
-between a vector pair than `20`. See [the distances
-page](/developers/weaviate/config-refs/distances.md) for details and exact
-definitions.
+`Distance` is the raw distance determined as part of the vector search, displayed in the same unit as the distance metric used.
 
-*Note that the distance field was introduced in `v1.14.0`.*
+See the full overview of [distance metrics and the expected distance ranges](../../config-refs/distances.md#available-distance-metrics).
+
+A lower value for a distance always means that two vectors are closer to one another than a higher value.
 
 #### Certainty (only for cosine distance)
 
-Prior to `v1.14`, certainty was the only way to display vector similarity in
-the results. `certainty` is an opinionated measure that always returns a number
-between 0 and 1. It is therefore only usable with fixed-range distance metrics,
-such as `cosine`.
+`Certainty` is an opinionated measure that always returns a number between 0 and 1. It is therefore only usable with fixed-range distance metrics, such as `cosine`.
 
-For a class with `cosine` distance metrics, the `certainty` is a
-normalization of the distance using the formula:
+### Keyword search metadata
 
-```
-certainty = 1 - distance/2
-```
+Use the `score` and `explainScore` field to fetch the scores and explanations of each result of a keyword (BM25) search.
 
-Given that a cosine distance is always a number between 0 and 2, this will
-result in certainties between 0 and 1, with 1 indicating identical vectors, and
-0 indicating opposing angles. This definition only exists in an angular space.
+#### Score
+
+The `score` will be the BM25F score of the result. Note that this score is relative to the dataset and query.
+
+#### ExplainScore
+
+The `explainScore` will explain the BM25F score of the result, broken down into its components. This can be used to understand why a result was scored the way it was.
+
+
+### Hybrid search metadata
+
+Use the `score` and `explainScore` field to fetch the scores and explanations of each result of a hybrid search.
+
+#### Score
+
+The `score` will be the hybrid score of the result, based on the nominated [fusion algorithm](./search-operators.md#fusion-algorithms). Note that this score is relative to the dataset and query.
+
+#### ExplainScore
+
+The `explainScore` will be the hybrid score of the result, broken down into its vector and keyword search components. This can be used to understand why a result was scored the way it was.
+
 
 ### Classification
 
@@ -259,7 +207,7 @@ import GraphQLUnderscoreClassification from '/_includes/code/graphql.underscorep
 
 ### Feature Projection
 
-Because Weaviate stores all data in a vector space, you can visualize the results according to the results of your query. The feature projection is intended to reduce the dimensionality of the object's vector into something easily suitable for visualizing, such as 2d or 3d. The underlying algorithm is exchangeable, the first algorithm to be provided is [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding).
+Use feature projection to reduce the results' vectors to 2d or 3d for easy visualization. Currently [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding) is used.
 
 To tweak the feature projection optional parameters (currently GraphQL-only) can be provided. The values and their defaults are:
 
@@ -320,10 +268,9 @@ The above result can be plotted as follows (where the result in red is the first
 
 ![Weaviate T-SNE example](./img/plot-noSettings.png?i=1 "Weaviate T-SNE example")
 
-#### Best practices and notes
-* There is no request size limit (other than the global 10,000 items request limit) which can be used on a `featureProjection` query. However, due to the O(n^2) complexity of the `t-SNE` algorithm, large requests size have an exponential effect on the response time. We recommend to keep the request size at or below 100 items, as we have noticed drastic increases in response time thereafter.
-* Feature Projection happens in real-time, per query. The dimensions returned have no meaning across queries.
-* Currently only root elements (not resolved cross-references) are taken into consideration for the featureProjection.
+####  best practices and notes
+* Due to the O(n^2) complexity of the `t-SNE` algorithm, we recommend to keep the request size at or below 100 items.
+* `t-SNE` is non-deterministic and lossy, and happens in real-time per query. The dimensions returned have no meaning across queries.
 * Due to the relatively high cost of the underlying algorithm, we recommend to limit requests including a `featureProjection` in high-load situations where response time matters. Avoid parallel requests including a `featureProjection`, so that some threads stay available to serve other, time-critical requests.
 
 
