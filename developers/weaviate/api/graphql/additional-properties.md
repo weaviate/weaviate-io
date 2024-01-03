@@ -1,5 +1,5 @@
 ---
-title: Additional properties (Metadata)
+title: Additional properties (metadata)
 sidebar_position: 45
 image: og/docs/api.jpg
 # tags: ['graphql', 'additional properties', 'additional', 'metadata']
@@ -12,7 +12,7 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Overview
 
-Various 'additional properties', also called 'metadata', can be retrieved for objects.
+Various 'additional properties', also called 'metadata', can be retrieved in queries.
 
 ### Available additional properties
 
@@ -84,31 +84,9 @@ Use the `vector` field to fetch the vector representation of the data object
 
 The `generate` field can be used to perform a [generative search](../../search/generative.md).
 
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        generate(
-          singleResult: {
-            prompt: """
-            LLM Prompt:
-
-            {property_a} - {property_b}
-            """
-          }
-        ) {
-          singleResult
-          error
-        }
-      }
-    }
-  }
-}
-```
-
 A `generate` query will cause corresponding additional result fields to be available, such as `singleResult`, `groupedResult` and `error`.
+
+For examples, see the [related how-to page](../../search/generative.md).
 
 
 ### rerank
@@ -123,25 +101,9 @@ The `rerank` field can be used to [reorder the search results](../../search/rera
 | `property`   | yes      | `string`   | Which property to pass to the reranker. For example, you may want to run a similarity search on a Products collection, then rerank specifically on the Name field. |
 | `query`      | no       | `string`    | Optionally specify a different query. |
 
-```graphql
-{
-  Get {
-    Class {
-      property
-      _additional {
-        rerank(
-          property: "..."
-          query: "..."
-        ) {
-          score
-        }
-      }
-    }
-  }
-}
-```
-
 A `rerank` query will cause corresponding additional `score` field to be available.
+
+For examples, see the [related how-to page](../../search/rerank.md).
 
 
 ### creationTimeUnix
