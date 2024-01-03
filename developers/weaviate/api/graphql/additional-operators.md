@@ -335,7 +335,7 @@ Sorting can be performed by one or more properties. If the values for the first 
 
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START Sorting Python"
       endMarker="# END Sorting Python"
       language="py"
@@ -425,7 +425,7 @@ Sorting can be performed by one or more properties. If the values for the first 
 To sort by more than one property, pass an array of { `path`, `order` } objects to the sort operator:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START MultiplePropSorting Python"
@@ -434,6 +434,15 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
     />
   </TabItem>
 
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START MultiplePropSorting Python"
+      endMarker="# END MultiplePropSorting Python"
+      language="py"
+    />
+  </TabItem>
+  
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
@@ -488,9 +497,18 @@ Sometimes sorting by an additional property is required, such as `id`, `creation
 For example:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START AdditionalPropSorting Python"
+      endMarker="# END AdditionalPropSorting Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START AdditionalPropSorting Python"
       endMarker="# END AdditionalPropSorting Python"
       language="py"
@@ -611,8 +629,6 @@ The query merges the results for `International New York Times`, `The New York T
 ```
 
 </details>
-
-
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

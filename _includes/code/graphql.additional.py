@@ -18,20 +18,20 @@
 # ===== Sorting =====
 # ===================
 # START Sorting Python
-response = (
-    client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
+from weaviate.collections.classes.grpc import Sort
+  
+article=client.collections.get("JeopardyQuestion")
+response = article.query.fetch_objects(
     # highlight-start
-    .with_sort({
-        'path': ['answer'],
-        'order': 'asc',
-    })
+    sort=Sort(prop="answer", ascending=True),
     # highlight-end
-    .with_limit(3)
-    .do()
-)
+    limit=3
+)  
 
-print(json.dumps(response, indent=2))
+for o in response.objects:
+    print( f"Answer: {o.properties['answer']}")
+    print( f"Points: {o.properties['points']}")
+    print( f"Question: {o.properties['question']}")
 # END Sorting Python
 
 # TEST DISABLED - sandbox needed
@@ -58,7 +58,6 @@ gql_query = """
 # END Sorting GraphQL
 """
 
-# TEST DISABLED - sandbox needed
 # gqlresponse = client.query.raw(gql_query)
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
@@ -68,26 +67,20 @@ gql_query = """
 # ===== Sorting by multiple properties =====
 # ==========================================
 # START MultiplePropSorting Python
-response = (
-    client.query
-    .get('JeopardyQuestion', ['question', 'answer', 'points'])
-    # highlight-start
-    .with_sort([
-        {
-            'path': ['points'],
-            'order': 'desc',
-        },
-        {
-            'path': ['question'],
-            'order': 'asc',
-        }
-    ])
-    # highlight-end
-    .with_limit(3)
-    .do()
+from weaviate.collections.classes.grpc import Sort
+  
+article=client.collections.get("JeopardyQuestion")
+response = article.query.fetch_objects(
+    sort=[Sort(prop="points", ascending=False),
+          Sort(prop="answer", ascending=True)
+         ],
+    limit=3
 )
 
-print(json.dumps(response, indent=2))
+for o in response.objects:
+    print( f"Answer: {o.properties['answer']}")
+    print( f"Points: {o.properties['points']}")
+    print( f"Question: {o.properties['question']}")
 # END MultiplePropSorting Python
 
 # TEST DISABLED - sandbox needed
@@ -131,6 +124,8 @@ gql_query = """
 # ===== Sorting by _additional property =====
 # ===========================================
 # START AdditionalPropSorting Python
+return_metadata=wvc.MetadataQuery(creation_time_unix=True)
+
 response = (
     client.query
     .get('JeopardyQuestion', ['question', 'answer'])
