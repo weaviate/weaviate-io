@@ -25,7 +25,7 @@ All references have their individual subpages. Click on one of the references be
 - [Conditional filters](./filters.md)
 - [Additional operators](./additional-operators.md)
 - [Additional properties](./additional-properties.md)
-- [Explore{}](./explore.md)
+- [Explore](./explore.md)
 
 
 ## GraphQL API
