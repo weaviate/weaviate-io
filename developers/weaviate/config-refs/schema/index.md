@@ -9,101 +9,11 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-This page includes details related to the collection schema, such as parameters and available configurations.
+A collection describes how a set of data objects are to be stored and indexed in Weaviate. This page includes details related to the collection schema, such as parameters and available configurations.
 
 import Terminology from '/_includes/collection-class-terminology.md';
 
 <Terminology />
-
-## Collection schema creation
-
-### Mutability
-
-Please note that only the following parameters are mutable after creation.
-
-- `description`
-- `invertedIndexConfig`
-  - `bm25`
-    - `b`
-    - `k1`
-  - `cleanupIntervalSeconds`
-  - `stopwords`
-    - `additions`
-    - `preset`
-    - `removals`
-- `replicationConfig`
-  - `factor`
-- `vectorIndexConfig`
-  - `dynamicEfFactor`
-  - `dynamicEfMin`
-  - `dynamicEfMax`
-  - `flatSearchCutoff`
-  - `skip`
-  - `vectorCacheMaxObjects`
-  - `pq`
-    - `bitCompression`
-    - `centroids`
-    - `enabled`
-    - `segments`
-    - `trainingLimit`
-    - `encoder`
-      - `type`
-      - `distribution`
-
-Other parameters cannot be changed after class creation. If you wish to change these parameters, you must delete the class and create it again.
-
-Properties can be added to a class after creation, but existing properties cannot be modified after creation.
-
-### Auto-schema
-
-:::info Added in `v1.5`
-:::
-
-If you don't create a schema manually before adding data, a schema will be generated automatically. This feature is on by default, but can be disabled (e.g. in `docker-compose.yml`) by setting `AUTOSCHEMA_ENABLED: 'false'`.
-
-It has the following characteristics:
-
-* If an object being added contains a property that does not exist in the schema, a corresponding property will be added prior to import.
-* If an object being added contains a property that conflicts with an existing schema type, an error is thrown. (e.g. trying to import text into a field that exists in the schema as `int`).
-* When an object is imported to a new collection, the collection is created including all properties.
-* The auto-schema also automatically recognizes array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]` and `date[]`.
-* Auto-schema can automatically create nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
-
-:::tip Define the class manually for production use
-Generally speaking, we recommend that you disable auto-schema for production use. For one, a manual class definition will provide more precise control. Another reasons is that there is a performance penalty associated with inferring the data structure at import time. This may be small in most cases, but in some cases such as with complex nested properties, this may be a costly operation.
-:::
-
-### Datatypes
-
-Additional configurations are available to help the auto-schema infer properties to suit your needs.
-
-* `AUTOSCHEMA_DEFAULT_NUMBER=number` - create `number` columns for any numerical values (as opposed to `int`, etc).
-* `AUTOSCHEMA_DEFAULT_DATE=date` - create `date` columns for any date-like values.
-
-The following are not allowed:
-* Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
-* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the ClassName to be able to alter the schema.
-
-### Collection
-
-A collection describes a data object.
-
-Collection names are always written with an initial **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
-
-- `dataType: ["text"]` is `text`
-- `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
-
-After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
-
-import initialCaps from '/_includes/schemas/initial-capitalization.md'
-
-<initialCaps />
-
-### Properties
-
-Every collection has properties. Properties define the kinds of data that you add to an object in Weaviate. For each property in the schema, you define at least the name and its [dataType](../../config-refs/datatypes.md).
-
-Property names can contain the following characters: `/[_A-Za-z][_0-9A-Za-z]*/`.
 
 ## Collection object
 
@@ -117,7 +27,7 @@ An example of a complete collection object including properties:
   "vectorIndexConfig": {
     ...                                     // Vector index type specific settings, including distance metric
   },
-  "vectorizer": "text2vec-contextionary",   // Vectorizer to use for data objects added to this class
+  "vectorizer": "text2vec-contextionary",   // Vectorizer to use for data objects added to this collection
   "moduleConfig": {
     "text2vec-contextionary": {
       "vectorizeClassName": true            // Include the collection name in vector calculation (default true)
@@ -168,100 +78,141 @@ An example of a complete collection object including properties:
 }
 ```
 
-### vectorizer
+## Collection creation
 
-The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](/developers/weaviate/modules/index.md) for available vectorizer modules.
+### Mutability
 
-#### Weaviate without a vectorizer
+Please note that only some of the parameters are mutable after creation. Other parameters cannot be changed after collection creation. If you wish to change these parameters, you must delete the collection and create it again.
 
-You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
+<details>
+  <summary>List of the mutable parameters</summary>
 
-### vectorIndexType
+- `description`
+- `invertedIndexConfig`
+  - `bm25`
+    - `b`
+    - `k1`
+  - `cleanupIntervalSeconds`
+  - `stopwords`
+    - `additions`
+    - `preset`
+    - `removals`
+- `replicationConfig`
+  - `factor`
+- `vectorIndexConfig`
+  - `dynamicEfFactor`
+  - `dynamicEfMin`
+  - `dynamicEfMax`
+  - `flatSearchCutoff`
+  - `skip`
+  - `vectorCacheMaxObjects`
+  - `pq`
+    - `bitCompression`
+    - `centroids`
+    - `enabled`
+    - `segments`
+    - `trainingLimit`
+    - `encoder`
+      - `type`
+      - `distribution`
 
-The `vectorIndexType` parameter controls the type of vector index that is used for this collection. The options are `hnsw` (default) and `flat`.
+</details>
 
-### vectorIndexConfig
+Properties can be added to a collection after creation, but existing properties cannot be modified after creation.
 
-The `vectorIndexConfig` parameter controls the configuration of the vector index. The available parameters depend on the `vectorIndexType` that is used. See the [vector index configuration](./vector-index.md) page for more details.
+### Auto-schema
 
-### shardingConfig
-
-:::note
-Introduced in v1.8.0.
+:::info Added in `v1.5`
 :::
 
-The `"shardingConfig"` controls how a collection is [sharded and distributed across multiple nodes](/developers/weaviate/concepts/cluster.md). All values are optional and default to the following settings:
+The "Auto-schema" feature generates a collection definition automatically by inferring parameters from data being added. It is enabled by default, and can be disabled (e.g. in `docker-compose.yml`) by setting `AUTOSCHEMA_ENABLED: 'false'`.
 
-```json
-  "shardingConfig": {
-    "virtualPerPhysical": 128,
-    "desiredCount": 1,           // defaults to the amount of Weaviate nodes in the cluster
-    "actualCount": 1,
-    "desiredVirtualCount": 128,
-    "actualVirtualCount": 128,
-    "key": "_id",
-    "strategy": "hash",
-    "function": "murmur3"
-  }
-```
+It will:
 
-The meaning of the individual fields in detail:
+* Create a collection if an object is added to a non-existent collection.
+* Add any missing property from an object being added.
+* Infer array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
+* Infer nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
+* Throw an error if an object being added contains a property that conflicts with an existing schema type. (e.g. trying to import text into a field that exists in the schema as `int`).
 
-* `"desiredCount"`: *integer, immutable, optional*, defaults to the number of nodes in the
-  cluster. This value controls how many shards should be created for this collection
-  index. The typical setting is that a collection should be distributed across all
-  the nodes in the cluster, but you can explicitly set this value to a lower
-  value. If the `"desiredCount"` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.
+:::tip Define the collection manually for production use
+Generally speaking, we recommend that you disable auto-schema for production use.
+- A manual collection definition will provide more precise control.
+- There is a performance penalty associated with inferring the data structure at import time. This may be a costly operation in some cases, such as complex nested properties.
+:::
 
-* `"actualCount"`: *integer, read-only*. Typically matches desired count, unless there was
-  a problem initiating the shards at creation time.
+#### Auto-schema data types
 
-* `"virtualPerPhysical"`: *integer, immutable, optional*, defaults to `128`.
-  Weaviate uses virtual shards. This helps in reducing the amount of data
-  moved when resharding.
+Additional configurations are available to help the auto-schema infer properties to suit your needs.
 
-* `"desiredVirtualCount"`: *integer, readonly*. Matches `desiredCount *
-  virtualPerPhysical`
+* `AUTOSCHEMA_DEFAULT_NUMBER=number` - create `number` columns for any numerical values (as opposed to `int`, etc).
+* `AUTOSCHEMA_DEFAULT_DATE=date` - create `date` columns for any date-like values.
 
-* `"actualVirtualCount"`: *integer, readonly*. Like `actualCount`, but for
-  virtual shards, instead of physical.
+The following are not allowed:
+* Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
+* Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-* `"strategy"`: *string, optional, immutable*. As of `v1.8.0` only supports `"hash"`. This
-  value controls how Weaviate should decide which (virtual - and therefore
-  physical) shard a new object belongs to. The hash is performed on the field
-  specified in `"key"`.
+## Available parameters
 
-* `"key"`: *string, optional, immutable*. As of `v1.8.0` only supports `"_id"`.
-  This value controls the partitioning key that is used for the hashing function
-  to determine the target shard. As of now, only the internal id-field
-  (containing the object's UUID) can be used to determine the target shard.
-  Custom keys may be supported at a later point.
+### `class`
 
-* `"function"`: *string, optional, immutable*. As of `v1.8.0` only `"murmur3"` is
-  supported as a hashing function. It describes the hashing function used on
-  the `"key"` property to determine the hash which in turn determines the
-  target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit
-  hash making hash collisions very unlikely.
+This is the name of the collection. The name is to start with a **capital letter**. This helps to distinguish collections from primitive data types when the name is used as a property value. Consider these examples using the `dataType` property:
 
-### replicationConfig
+- `dataType: ["text"]` is `text`
+- `dataType: ["Text"]` is a cross-reference type to a collection named `Text`.
 
-[Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
+After the first letter, collection names may use any GraphQL-compatible characters. The collection name validation regex is `/^[A-Z][_0-9A-Za-z]*$/`.
 
-The `factor` parameter sets the number of copies of to be stored for objects in this collection.
+import initialCaps from '/_includes/schemas/initial-capitalization.md'
 
-```json
+<initialCaps />
+
+### `description`
+
+A description of the collection. This is for your reference only.
+
+### `invertedIndexConfig`
+
+This configures the inverted index for the collection.
+
+### invertedIndexConfig > bm25
+
+The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
+
+They can be configured per collection, and can optionally be overridden per property:
+
+```js
 {
   "class": "Article",
-  "vectorizer": "text2vec-openai",
-  // highlight-start
-  "replicationConfig": {
-    "factor": 3,
+  // Configuration of the sparse index
+  "invertedIndexConfig": {
+    "bm25": {
+      "b": 0.75,
+      "k1": 1.2
+    }
   },
-  // highlight-end
+  "properties": [
+    {
+      "name": "title",
+      "description": "title of the article",
+      "dataType": [
+        "text"
+      ],
+      // Property-level settings override the collection-level settings
+      "invertedIndexConfig": {
+        "bm25": {
+          "b": 0.75,
+          "k1": 1.2
+        }
+      },
+      "indexFilterable": true,
+      "indexSearchable": true,
+    }
+  ]
 }
 ```
 
-### invertedIndexConfig > stopwords (stopword lists)
+### `invertedIndexConfig` > stopwords (stopword lists)
 
 :::note
 This feature was introduced in `v1.12.0`.
@@ -305,7 +256,7 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-class_obj = {
+collection_obj = {
     "invertedIndexConfig": {
         "stopwords": {
             "preset": "en",
@@ -314,7 +265,7 @@ class_obj = {
     }
 }
 
-client.schema.update_config("Article", class_obj)
+client.schema.update_config("Article", collection_obj)
 ```
 
 ### invertedIndexConfig > indexTimestamps
@@ -369,44 +320,80 @@ To configure indexing based on property length, set `indexPropertyLength` to `tr
 Using these features requires more resources. The additional inverted indices must be created and maintained for the lifetime of the collection.
 :::
 
-### invertedIndexConfig > bm25
+### `vectorizer`
 
-The settings for BM25 are the [free parameters `k1` and `b`](https://en.wikipedia.org/wiki/Okapi_BM25#The_ranking_function), and they are optional. The defaults (`k1` = 1.2 and `b` = 0.75) work well for most cases.
+The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](../../modules/index.md) for available vectorizer modules.
 
-If necessary, they can be configured in the schema per collection, and can optionally be overridden per property:
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
+
+### `vectorIndexType`
+
+The `vectorIndexType` parameter controls the type of vector index that is used for this collection. The options are `hnsw` (default) and `flat`.
+
+### `vectorIndexConfig`
+
+The `vectorIndexConfig` parameter controls the configuration of the vector index. The available parameters depend on the `vectorIndexType` that is used.
+
+See the [vector index configuration](./vector-index.md) page for more details.
+
+### shardingConfig
+
+:::note
+Introduced in v1.8.0.
+:::
+
+The `"shardingConfig"` controls how a collection is [sharded and distributed across multiple nodes](../../concepts/cluster.md). All values are optional and default to the following settings:
+
+```json
+  "shardingConfig": {
+    "virtualPerPhysical": 128,
+    "desiredCount": 1,           // defaults to the amount of Weaviate nodes in the cluster
+    "actualCount": 1,
+    "desiredVirtualCount": 128,
+    "actualVirtualCount": 128,
+    "key": "_id",
+    "strategy": "hash",
+    "function": "murmur3"
+  }
+```
+
+These parameters are explained below:
+
+* `"desiredCount"`: *integer, immutable, optional*, defaults to the number of nodes in the cluster. This value controls how many shards should be created for this collection index. The typical setting is that a collection should be distributed across all the nodes in the cluster, but you can explicitly set this value to a lower value. If the `"desiredCount"` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.
+
+* `"actualCount"`: *integer, read-only*. Typically matches desired count, unless there was a problem initiating the shards at creation time.
+
+* `"virtualPerPhysical"`: *integer, immutable, optional*, defaults to `128`. Weaviate uses virtual shards. This helps in reducing the amount of data moved when resharding.
+
+* `"desiredVirtualCount"`: *integer, readonly*. Matches `desiredCount * virtualPerPhysical`
+
+* `"actualVirtualCount"`: *integer, readonly*. Like `actualCount`, but for virtual shards, instead of physical.
+
+* `"strategy"`: *string, optional, immutable*. Only supports `"hash"`. This value controls how Weaviate should decide which (virtual - and therefore physical) shard a new object belongs to. The hash is performed on the field specified in `"key"`.
+
+* `"key"`: *string, optional, immutable*. Only supports `"_id"`. This value controls the partitioning key that is used for the hashing function to determine the target shard. As of now, only the internal id-field (containing the object's UUID) can be used to determine the target shard. Custom keys may be supported at a later point.
+
+* `"function"`: *string, optional, immutable*. Only `"murmur3"` is supported as a hashing function. It describes the hashing function used on the `"key"` property to determine the hash which in turn determines the target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit hash making hash collisions very unlikely.
+
+### `replicationConfig`
+
+[Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
+
+The `factor` parameter sets the number of copies of to be stored for objects in this collection.
 
 ```json
 {
   "class": "Article",
-  # Configuration of the sparse index
-  "invertedIndexConfig": {
-    "bm25": {
-      "b": 0.75,
-      "k1": 1.2
-    }
+  "vectorizer": "text2vec-openai",
+  // highlight-start
+  "replicationConfig": {
+    "factor": 3,
   },
-  "properties": [
-    {
-      "name": "title",
-      "description": "title of the article",
-      "dataType": [
-        "text"
-      ],
-      # Property-level settings override the class-level settings
-      "invertedIndexConfig": {
-        "bm25": {
-          "b": 0.75,
-          "k1": 1.2
-        }
-      },
-      "indexFilterable": true,
-      "indexSearchable": true,
-    }
-  ]
+  // highlight-end
 }
 ```
 
-### multiTenancyConfig
+### `multiTenancyConfig`
 
 :::info Added in `v1.20`
 :::
@@ -424,9 +411,15 @@ To enable it, set the `enabled` key to `true`, as shown below:
 }
 ```
 
-## Property object
+## `properties`
 
-Property names allow `/[_A-Za-z][_0-9A-Za-z]*/` in the name.
+Properties define the data structure of objects to be stored and indexed. For each property in the collection, you must specify at least the name and its [dataType](../../config-refs/datatypes.md).
+
+### `name`
+
+Property names can contain the following characters: `/[_A-Za-z][_0-9A-Za-z]*/`.
+
+### Property object example
 
 An example of a complete property object:
 
@@ -434,30 +427,18 @@ An example of a complete property object:
 {
     "name": "title",                     // The name of the property
     "description": "title of the article",              // A description for your reference
-    "dataType": [                         // The data type of the object as described above. When
-                                          //    creating cross-references, a property can have
-                                          //    multiple dataTypes.
+    "dataType": [                         // The data type of the object as described above. When creating cross-references, a property can have multiple dataTypes.
       "text"
     ],
-    "tokenization": "word",               // Split field contents into word-tokens when indexing
-                                          //    into the inverted index. See "Property
-                                          //    Tokenization" below for more detail.
+    "tokenization": "word",               // Split field contents into word-tokens when indexing into the inverted index. See "Property Tokenization" below for more detail.
     "moduleConfig": {                     // Module-specific settings
       "text2vec-contextionary": {
-          "skip": true,                   // If true, the whole property is NOT included in
-                                          //    vectorization. Default is false, meaning that the
-                                          //    object will be NOT be skipped.
-          "vectorizePropertyName": true   // Whether the name of the property is used in the
-                                          //    calculation for the vector position of data
-                                          //    objects. Default false.
+          "skip": true,                   // If true, the whole property is NOT included in vectorization. Default is false, meaning that the object will be NOT be skipped.
+          "vectorizePropertyName": true   // Whether the name of the property is used in the calculation for the vector position of data objects. Default false.
       }
     },
-    "indexFilterable": true,              // Optional, default is true. By default each property is
-                                          //    indexed with a roaring bitmap index where available
-                                          //    for efficient filtering.
-    "indexSearchable": true               // Optional, default is true. By default each property is
-                                          //    indexed with a searchable index for BM25-suitable
-                                          //    Map index for BM25 or hybrid searching.
+    "indexFilterable": true,              // Optional, default is true. By default each property is indexed with a roaring bitmap index where available for efficient filtering.
+    "indexSearchable": true               // Optional, default is true. By default each property is indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
 }
 ```
 
@@ -474,7 +455,7 @@ Additionally, we strongly recommend that you do not use the following words as p
 - `vector`
 - `_vector`
 
-### Property tokenization
+### `tokenization`
 
 :::note
 This feature was introduced in `v1.12.0`.
@@ -513,19 +494,19 @@ import TokenizationDefinition from '/_includes/tokenization_definition.mdx';
 
 ### Tokenization and search / filtering
 
-Tokenization will impact how filters or keywords searches behave. This is because the filter or keyword search is also tokenized before being matched against the inverted index.
+Tokenization impacts how filters or keywords searches behave. The filter or keyword search query is also tokenized before being matched against the inverted index.
 
 The following table shows an example scenario showing whether a filter or keyword search would identify a `text` property with value `Hello, (beautiful) world` as a hit.
 
 - **Row**: Various tokenization methods.
 - **Column**: Various search strings.
 
-|   | `Beautiful` | `(Beautiful)` | `(beautiful)` | `Hello, (beautiful) world` |
-|---|-------------|---------------|---------------|----------------------------|
-| `word` (default)    | ✅ | ✅ | ✅ | ✅ |
-| `lowercase`         | ❌ | ✅ | ✅ | ✅ |
-| `whitespace`        | ❌ | ❌ | ✅ | ✅ |
-| `field`             | ❌ | ❌ | ❌ | ✅ |
+|                        | `Beautiful` | `(Beautiful)` | `(beautiful)` | `Hello, (beautiful) world` |
+|------------------------|-------------|---------------|---------------|----------------------------|
+| `word` (default)       | ✅          | ✅            | ✅             | ✅                         |
+| `lowercase`            | ❌          | ✅            | ✅             | ✅                         |
+| `whitespace`           | ❌          | ❌            | ✅             | ✅                         |
+| `field`                | ❌          | ❌            | ❌             | ✅                         |
 
 :::caution `string` is deprecated
 The `string` data type has been deprecated from Weaviate `v1.19` onwards. Please use `text` instead.
@@ -558,7 +539,7 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 </details>
 :::
 
-### Inverted indexing
+### `indexFilterable` and `indexSearchable`
 
 :::info `indexInverted` is deprecated
 The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards in lieu of `indexFilterable` and `indexSearchable`.
@@ -566,8 +547,8 @@ The `indexInverted` parameter has been deprecated from Weaviate `v1.19` onwards 
 
 The `indexFilterable` and `indexSearchable` parameters control whether a property is going to be indexed for filtering and searching, respectively.
 
-`indexFilterable` determines whether a property is to be indexed with a Roaring Bitmap index for fast filtering.
-`indexSearchable` determines whether a property is to be indexed with a searchable index for BM25-suitable Map index for BM25 or hybrid searching.
+- `indexFilterable` enables/disables a Roaring Bitmap index for fast filtering (default: `true`).
+- `indexSearchable` enables/disables a searchable index for BM25-suitable Map index for BM25 or hybrid searching (default: `true`).
 
 ## Configure semantic indexing
 
@@ -601,14 +582,14 @@ To configure vectorization on a per-property basis, use `skip` and `vectorizePro
 Weaviate allows you to configure the `DEFAULT_VECTOR_DISTANCE_METRIC` which will be applied to every collection unless overridden individually. You can choose from: `cosine` (default), `dot`, `l2-squared`, `manhattan`, `hamming`.
 
 ```python
-class_obj = {
+collection_obj = {
     "class": "Article",
     "vectorIndexConfig": {
         "distance": "dot",
     },
 }
 
-client.schema.create_class(class_obj)
+client.schema.create_class(collection_obj)
 ```
 
 ## Related pages

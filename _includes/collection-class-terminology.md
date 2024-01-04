@@ -1,6 +1,5 @@
-:::info New terminology
-Weaviate client APIs are transitioning from the term "class" to "collection."
+:::info "collection" == "class"
 
-Older Weaviate documentation refers to "classes." Newer documentation uses "collections." Expect to see both terms during the transition period.
+We are transitioning from the term "class" to "collection." Expect to see both terms during the transition period.
 
 :::
