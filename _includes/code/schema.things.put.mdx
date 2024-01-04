@@ -1,8 +1,20 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.schema.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START UpdateCollection"
+    endMarker="END UpdateCollection"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
@@ -12,22 +24,15 @@ client = weaviate.Client("http://localhost:8080")
 class_obj = {
     "class": "Article",  # immutable - must be kept the same, or omitted
     "description": "A written text, for example a news article or blog post",
-    "properties": [
-        {
-        "dataType": [
-            "text"
-        ],
-        "description": "Title of the article",
-        "name": "title",
-        },
-        {
-        "dataType": [
-            "text"
-        ],
-        "description": "The content of the article",
-        "name": "content"
+    "invertedIndexConfig": {
+        "bm25": {
+            "b": 0.8,
+            "k1": 1.1
         }
-    ]
+    },
+    "vectorIndexConfig": {
+        "dynamicEfFactor": 10
+    }
 }
 
 client.schema.update_config("Article", class_obj)
@@ -43,22 +48,15 @@ curl \
     -d '{
         "class": "Article",
         "description": "A written text, for example a news article or blog post",
-        "properties": [
-            {
-            "dataType": [
-                "text"
-            ],
-            "description": "Title of the article",
-            "name": "title"
-            },
-            {
-            "dataType": [
-                "text"
-            ],
-            "description": "The content of the article",
-            "name": "content"
+        "invertedIndexConfig": {
+            "bm25": {
+                "b": 0.8,
+                "k1": 1.1
             }
-        ]
+        },
+        "vectorIndexConfig": {
+            "dynamicEfFactor": 10
+        }
     }' \
     http://localhost:8080/v1/schema/Article
 ```
