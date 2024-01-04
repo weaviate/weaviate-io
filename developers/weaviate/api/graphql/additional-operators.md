@@ -490,9 +490,15 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
 </Tabs>
 
 
-#### Additional properties
+#### Metadata properties
 
-Sometimes sorting by an additional property is required, such as `id`, `creationTimeUnix`, or `lastUpdateTimeUnix`.  This can be achieved by prefixing the property name with an underscore.
+To sort with metadata, add an underscore to the property name.
+
+| Property Name | Python Client 4 Name | Sort Property  Name |
+| :- | :- | :- |
+| `id` | `uuid` |`_id` |
+| `creationTimeUnix` | `creation_time` | `_creationTimeUnix` |
+| `lastUpdateTimeUnix` | `last_update_time` | `_lastUpdateTimeUnix` |
 
 For example:
 

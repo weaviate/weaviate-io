@@ -123,24 +123,22 @@ gql_query = """
 # ===========================================
 # ===== Sorting by _additional property =====
 # ===========================================
-# START AdditionalPropSorting Python
-return_metadata=wvc.MetadataQuery(creation_time_unix=True)
 
-response = (
-    client.query
-    .get('JeopardyQuestion', ['question', 'answer'])
-    .with_additional('creationTimeUnix')
-    .with_sort({
-        # highlight-start
-        'path': ['_creationTimeUnix'],
-        'order': 'asc'
-        # highlight-end
-    })
-    .with_limit(3)
-    .do()
+# START AdditionalPropSorting Python
+from weaviate.collections.classes.grpc import Sort
+ 
+article=client.collections.get("JeopardyQuestion")
+response = article.query.fetch_objects(
+    return_metadata=wvc.MetadataQuery(creation_time=True),
+    sort=Sort(ascending=True, prop="_creationTimeUnix"),
+    limit=3
 )
 
-print(json.dumps(response, indent=2))
+for o in response.objects:
+    print( f"Answer: {o.properties['answer']}")
+    print( f"Points: {o.properties['points']}")
+    print( f"Question: {o.properties['question']}")
+
 # END AdditionalPropSorting Python
 
 # TEST DISABLED - sandbox needed
