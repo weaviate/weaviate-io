@@ -133,7 +133,7 @@ When importing large datasets, it may be worth planning out an optimized import 
 
 Our rules of thumb are:
 * You should always use batch import.
-* Use sharding.
+* Use multiple shards.
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
 * Some clients (e.g. Python) have some built-in logic to efficiently control batch importing.
