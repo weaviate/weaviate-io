@@ -486,7 +486,7 @@ response = questions.generate.near_text(
     grouped_task="Summarize this into a sentence",
     return_metadata=wvc.MetadataQuery(
         distance=True,
-        creation_time_unix=True
+        creation_time=True
     )
 )
 
@@ -496,7 +496,7 @@ print(response)
 
 """
 # START ResultDisplayOutput
-_GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('f448a778-78bb-5565-9b3b-fd4aed03dad0'), metadata=_MetadataReturn(creation_time_unix=1701373868665, last_update_time_unix=None, distance=0.19842731952667236, certainty=None, score=None, explain_score=None, is_consistent=None), properties={'points': 100.0, 'answer': 'Greyhound', 'air_date': '1996-11-15T00:00:00Z', 'round': 'Jeopardy!', 'question': 'A Hibbing, Minn. museum traces the history of this bus company founded there in 1914 using Hupmobiles'}, vector=None, generated="Un musée à Hibbing, dans le Minnesota, retrace l'histoire de cette compagnie de bus fondée en 1914 en utilisant des Hupmobiles."), _GenerativeObject(uuid=UUID('28ec4a1a-c68e-5cff-b392-f74bf26aef62'), metadata=_MetadataReturn(creation_time_unix=1701373868664, last_update_time_unix=None, distance=0.2006242275238037, certainty=None, score=None, explain_score=None, is_consistent=None), properties={'points': 200.0, 'air_date': '1996-03-26T00:00:00Z', 'answer': 'Harvard', 'round': 'Double Jeopardy!', 'question': "1995 marked the 200th anniversary of this university's Hasty Pudding Club"}, vector=None, generated='1995 a marqué le 200e anniversaire du Hasty Pudding Club de cette université.')], generated="The Greyhound bus company, founded in Hibbing, Minn. in 1914, is traced in a museum using Hupmobiles, while Harvard University's Hasty Pudding Club celebrated its 200th anniversary in 1995.")
+_GenerativeReturn(objects=[_GenerativeObject(uuid=UUID('61e29275-8f53-5e28-a355-347d45a847b3'), metadata=_MetadataReturn(creation_time=datetime.datetime(2024, 1, 2, 18, 3, 7, 475000, tzinfo=datetime.timezone.utc), last_update_time=None, distance=0.19253945350646973, certainty=None, score=None, explain_score=None, is_consistent=None, rerank_score=None), properties={'points': 1000.0, 'answer': 'Daniel Boorstein', 'air_date': datetime.datetime(1990, 3, 26, 0, 0, tzinfo=datetime.timezone.utc), 'round': 'Double Jeopardy!', 'question': 'This historian & former Librarian of Congress was teaching history at Harvard while studying law at Yale'}, references=None, vector=None, generated="Cet historien et ancien bibliothécaire du Congrès enseignait l'histoire à Harvard tout en étudiant le droit à Yale."), _GenerativeObject(uuid=UUID('e987d1a1-2599-5dd8-bd22-4f3b0338539a'), metadata=_MetadataReturn(creation_time=datetime.datetime(2024, 1, 2, 18, 3, 8, 185000, tzinfo=datetime.timezone.utc), last_update_time=None, distance=0.193121075630188, certainty=None, score=None, explain_score=None, is_consistent=None, rerank_score=None), properties={'points': 400.0, 'air_date': datetime.datetime(2007, 5, 11, 0, 0, tzinfo=datetime.timezone.utc), 'answer': 'an opinion', 'round': 'Jeopardy!', 'question': 'This, a personal view or belief, comes from the Old French for "to think"'}, references=None, vector=None, generated='Ceci, une opinion personnelle ou une croyance, provient du vieux français signifiant "penser".')], generated='Daniel Boorstein, a historian and former Librarian of Congress, taught history at Harvard while studying law at Yale, and an opinion is a personal view or belief derived from the Old French word for "to think".')
 # END ResultDisplayOutput
 """
 
@@ -533,7 +533,7 @@ all_object_answer_ids = [question for question in questions.iterator(return_prop
 # END IteratorAnswerOnly
 
 # IteratorMetadataOnly
-all_object_ids = [question for question in questions.iterator(return_metadata=wvc.MetadataQuery(creation_time_unix=True))]  # Only return IDs
+all_object_ids = [question for question in questions.iterator(return_metadata=wvc.MetadataQuery(creation_time=True))]  # Only return IDs
 # END IteratorMetadataOnly
 
 
@@ -550,6 +550,6 @@ class Question(TypedDict):
 response = questions.query.fetch_objects(
     limit=2,
     return_properties=Question,  # Your generic class is used to extract the return properties and statically type the response
-    return_metadata=wvc.MetadataQuery(creation_time_unix=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
+    return_metadata=wvc.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
 )
 # END GenericsExample
