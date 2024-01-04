@@ -529,7 +529,7 @@ all_objects = [question for question in questions.iterator()]
 # END IteratorBasic
 
 # IteratorAnswerOnly
-all_object_answer_ids = [question for question in questions.iterator(return_properties=["answer"])]
+all_object_answers = [question for question in questions.iterator(return_properties=["answer"])]
 # END IteratorAnswerOnly
 
 # IteratorMetadataOnly

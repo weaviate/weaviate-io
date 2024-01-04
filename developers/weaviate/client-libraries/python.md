@@ -526,7 +526,7 @@ The results are organized the group, returning a list of groups.
 
 The `v4` client adds a Pythonic iterator method for each collection. This wraps the `cursor` API and allows you to iterate over all objects in a collection.
 
-This example fetches all objects in the `questions` collection and their properties.
+This example fetches all the objects, and their properties, from the `questions` collection.
 
 <FilteredTextBlock
   text={PythonCode}
