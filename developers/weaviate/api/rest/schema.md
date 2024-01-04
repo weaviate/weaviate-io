@@ -517,6 +517,16 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 
 ## Multi-tenancy
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
+
+
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
 - (Experimental) Tenant activity status setting available from version `v1.21`
@@ -528,6 +538,55 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 :::
 
 Tenants are used to separate data between different users or groups of users. They can be specified as follows:
+
+### Enable multi-tenancy
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START EnableMultiTenancy"
+      endMarker="# END EnableMultiTenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START EnableMultiTenancy"
+      endMarker="# END EnableMultiTenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
 
 ### Add tenant(s)
 
@@ -560,11 +619,105 @@ import TenantNameFormat from '/_includes/tenant-names.mdx';
 POST v1/schema/{collection_name}/tenants
 ```
 
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddTenantsToClass"
+      endMarker="# END AddTenantsToClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START AddTenantsToClass"
+      endMarker="# END AddTenantsToClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
 ### List tenants
 
 ```js
 GET v1/schema/{collection_name}/tenants
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ListTenants"
+      endMarker="# END ListTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ListTenants"
+      endMarker="# END ListTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
 
 ### Remove tenants
 
@@ -573,6 +726,54 @@ Pass a payload with an array of tenant names in the form of `["TENANT_NAME1", "T
 ```js
 DELETE v1/schema/{collection_name}/tenants
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RemoveTenants"
+      endMarker="# END RemoveTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START RemoveTenants"
+      endMarker="# END RemoveTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
 
 ### Update tenants
 
@@ -596,6 +797,17 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
   }
 ]
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateTenants"
+      endMarker="# END UpdateTenants"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
