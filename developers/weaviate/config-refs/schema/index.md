@@ -336,7 +336,7 @@ The `vectorIndexConfig` parameter controls the configuration of the vector index
 
 See the [vector index configuration](./vector-index.md) page for more details.
 
-### shardingConfig
+### `shardingConfig`
 
 :::note
 Introduced in v1.8.0.
