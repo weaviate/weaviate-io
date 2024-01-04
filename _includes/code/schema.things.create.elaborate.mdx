@@ -1,8 +1,20 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.schema.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START CreateCollectionElaborate"
+    endMarker="END CreateCollectionElaborate"
+    language="py"
+  />
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
@@ -31,7 +43,8 @@ class_obj = {
             ],
             "description": "Title of the article",
             "name": "title",
-            "indexInverted": True,
+            "indexFilterable": True,
+            "indexSearchable": True,
             "moduleConfig": {
                 "text2vec-contextionary": {
                   "skip": False,
@@ -45,7 +58,8 @@ class_obj = {
             ],
             "description": "The content of the article",
             "name": "content",
-            "indexInverted": True,
+            "indexFilterable": True,
+            "indexSearchable": True,
             "moduleConfig": {
                 "text2vec-contextionary": {
                   "skip": False,
@@ -58,9 +72,6 @@ class_obj = {
       "virtualPerPhysical": 128,
       "desiredCount": 1,
       "desiredVirtualCount": 128,
-      "key": "_id",
-      "strategy": "hash",
-      "function": "murmur3"
     },
     "invertedIndexConfig": {
       "stopwords": {
@@ -111,7 +122,8 @@ const classObj = {
       ],
       description: 'Title of the article',
       name: 'title',
-      indexInverted: true,
+      indexFilterable: true,
+      indexSearchable: true,
       moduleConfig: {
         'text2vec-contextionary': {
           skip: false,
@@ -125,7 +137,8 @@ const classObj = {
       ],
       description: 'The content of the article',
       name: 'content',
-      indexInverted: true,
+      indexFilterable: true,
+      indexSearchable: true,
       moduleConfig: {
         'text2vec-contextionary': {
           skip: false,
@@ -138,9 +151,6 @@ const classObj = {
     virtualPerPhysical: 128,
     desiredCount: 1,
     desiredVirtualCount: 128,
-    key: '_id',
-    strategy: 'hash',
-    function: 'murmur3',
   },
   invertedIndexConfig: {
     stopwords: {
@@ -202,11 +212,15 @@ func main() {
         DataType:    []string{"text"},
         Description: "Title of the article",
         Name:        "title",
+        IndexFilterable: true,
+        IndexSearchable: true,
       },
       {
         DataType:    []string{"text"},
         Description: "The content of the article",
         Name:        "content",
+        IndexFilterable: true,
+        IndexSearchable: true,
       },
     },
     InvertedIndexConfig: &models.InvertedIndexConfig{
@@ -281,9 +295,6 @@ public class App {
     ShardingConfig shardingConfig = ShardingConfig.builder()
       .desiredCount(1)
       .desiredVirtualCount(128)
-      .function("murmur3")
-      .key("_id")
-      .strategy("hash")
       .virtualPerPhysical(128)
       .build();
 
@@ -306,11 +317,15 @@ public class App {
           .dataType(new ArrayList(){ { add(DataType.TEXT); } })
           .description("Title of the article")
           .name("title")
+          .indexFilterable(true)
+          .indexSearchable(true)
           .build());
         add(Property.builder()
           .dataType(new ArrayList(){ { add(DataType.TEXT); } })
           .description("The content of the article")
           .name("content")
+          .indexFilterable(true)
+          .indexSearchable(true)
           .build());
       } })
       .build();
@@ -354,7 +369,8 @@ curl \
             ],
             "description": "Title of the article",
             "name": "title",
-            "indexInverted": true,
+            "indexFilterable": true,
+            "indexSearchable": true,
             "moduleConfig": {
                 "text2vec-contextionary": {
                   "skip": false,
@@ -368,7 +384,8 @@ curl \
             ],
             "description": "The content of the article",
             "name": "content",
-            "indexInverted": true,
+            "indexFilterable": true,
+            "indexSearchable": true,
             "moduleConfig": {
                 "text2vec-contextionary": {
                   "skip": false,
@@ -381,9 +398,6 @@ curl \
       "virtualPerPhysical": 128,
       "desiredCount": 1,
       "desiredVirtualCount": 128,
-      "key": "_id",
-      "strategy": "hash",
-      "function": "murmur3"
     },
     "invertedIndexConfig": {
       "stopwords": {
