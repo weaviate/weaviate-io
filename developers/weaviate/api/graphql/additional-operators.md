@@ -34,7 +34,7 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Limit argument
 
-The `limit` argument restricts the number of results to a specified positive integer. These operators support `limit`:
+The `limit` argument restricts the number of results. These operators support `limit`:
 
 - `Get{}`
 - `Explore{}`
@@ -77,7 +77,7 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 ## Pagination with `offset`
 
-To return sets of results, "pages", use `offset` and `limit` together to iterate over the query response.
+To return sets of results, "pages", use `offset` and `limit` together to specify a sub-set of the query response.
 
 For example, to list the first ten results, set `limit: 10` and `offset: 0`. To display the next ten results, set `offset: 10`. To continue iterating over the results, increase the offset again. For more details, see [performance considerations](./additional-operators.md#performance-considerations)
  
@@ -573,6 +573,8 @@ To sort with metadata, add an underscore to the property name.
 ## `group` operator
 
 You can use a group operator to combine similar concepts (also known as _entity merging_). There are two ways of grouping semantically similar objects together, `closest` and `merge`. To return the closest concept, set `type: closest`. To combine similar entities into a single string, set `type: merge`
+
+The Python client v4 doesn't have a `group` operator. Use `graphql_raw_query` to issue a GraphQL query instead.
 
 ### Variables
 
