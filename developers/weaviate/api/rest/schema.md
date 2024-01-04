@@ -7,12 +7,17 @@ image: og/docs/api.jpg
 
 
 :::info Related pages
-- [How-to - Manage Collections](/developers/weaviate/manage-data/collections.mdx)
-- [References - Configuration: Schema](/developers/weaviate/config-refs/schema).
+- [How-to - Manage Collections](../../manage-data/collections.mdx)
+- [References - Configuration: Schema](../../config-refs/schema).
 :::
 
+## Overview
+
+The `schema` endpoint is for creating, reading, updating and deleting collections (also called collections) and properties. The overall configuration is referred to as the schema.
+
 ## Get the schema
-Dumps the current Weaviate schema. The result contains an array of objects.
+
+The response will contain an array of objects.
 
 ### Method and URL
 
@@ -26,8 +31,8 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
 
 <CodeSchemaDump />
 
-### Example response
-<!-- TODO: Does this really needs to be this long? -->
+<details>
+  <summary>Example response</summary>
 
 ```json
 {
@@ -229,12 +234,14 @@ import CodeSchemaDump from '/_includes/code/schema.dump.mdx';
 }
 ```
 
-## Create a class
+</details>
 
-Create a new data object class in the schema.
+## Create a collection
+
+Create a new data object collection in the schema.
 
 :::note
-From `v1.5.0` onwards, creating a schema is optional. Learn more about [Auto Schema](/developers/weaviate/config-refs/schema/index.md#auto-schema).
+From `v1.5.0` onwards, manual creation of a schema is optional. Learn more about [Auto Schema](../../config-refs/schema/index.md#auto-schema).
 :::
 
 ### Method and URL
@@ -245,52 +252,58 @@ POST /v1/schema
 
 ### Parameters
 
-Learn more about the schema configuration [here](/developers/weaviate/config-refs/schema/index.md).
+For more details on these parameters, see the [schema configuration reference page](../../config-refs/schema/index.md).
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `class` | body | string | The name of the class. Multiple words should be concatenated in CamelCase, e.g. `ArticleAuthor`. |
-| `description` | body | string | Description of the class. |
-| `vectorIndexType` | body | string | Defaults to hnsw. Can be omitted in schema definition since this is the only available type for now. |
-| `vectorIndexConfig` | body | object | Vector index type specific settings. |
-| `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
-| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | boolean | Include the class name in vector calculation (default true). Learn more about [semantic indexing in Weaviate](/developers/weaviate/config-refs/schema/index.md#configure-semantic-indexing). |
+| `class` | body | string | The name of the collection (a.k.a. class). Multiple words should be concatenated in CamelCase, e.g. `ArticleAuthor`. |
+| `description` | body | string | Description of the collection. |
+| `vectorizer` | body | string | Vectorizer to use for data objects added to this collection. Default can be set via Weaviate environment variables. |
+| `vectorIndexType` | body | string | Vector index type. Defaults to hnsw. |
+| `vectorIndexConfig` | body | object | Vector index type specific settings. See the [vector index configuration](../../config-refs/schema/vector-index.md) page for more details. |
+| `moduleConfig` > `<module_name>`  > `vectorizeClassName` | body | boolean | Include the collection name in vector calculation (default true). Learn more about [semantic indexing in Weaviate](../../config-refs/schema/index.md#configure-semantic-indexing). |
 | `properties` | body | array | An array of property objects. |
-| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md). |
-| `properties` > `description` | body | string | Description of the property. |
-| `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
-| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about [semantic indexing in Weaviate](/developers/weaviate/config-refs/schema/index.md#configure-semantic-indexing). |
 | `properties` > `name` | body | string | The name of the property. Multiple words should be concatenated in camelCase, e.g. `nameOfAuthor`. |
-| `properties` > `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#inverted-index). |
-| `properties` > `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more on how to [configure indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#inverted-index). |
-| `properties` > `indexInverted` (deprecated) | body | boolean | Should the data stored in this property be indexed? Learn more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#inverted-index). |
-| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. Learn more about [property tokenization](/developers/weaviate/config-refs/schema/index.md#property-tokenization).|
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored on querying (stopwords are still indexed).<br/> Since `v1.18`, stopwords can be configured at runtime.<br/>See [more details here](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists). |
-| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix`.<br/>See [more details here](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps). |
+| `properties` > `dataType` | body | array | See the [available data types](../../config-refs/datatypes.md). |
+| `properties` > `description` | body | string | Description of the property. |
+| `properties` > `moduleConfig`  > `<module_name>` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
+| `properties` > `moduleConfig`  > `<module_name>` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about [semantic indexing in Weaviate](../../config-refs/schema/index.md#configure-semantic-indexing). |
+| `properties` > `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [indexing in Weaviate](../../config-refs/schema/index.md#indexfilterable-and-indexsearchable). |
+| `properties` > `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more on how to [configure indexing in Weaviate](../../config-refs/schema/index.md#indexfilterable-and-indexsearchable). |
+| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`, can be set to `"field"`. Learn more about [property tokenization](../../config-refs/schema/index.md#tokenization).|
+| `invertedIndexConfig` > `bm25` > `b` | body | float | `b` parameter for `BM25` searches. Default: 0.75 |
+| `invertedIndexConfig` > `bm25` > `k1` | body | float | `k1` parameter for `BM25` searches. Default: 1.2 |
+| `invertedIndexConfig` > `stopwords` | body | object | Configure stopword behavior. See [more details here](../../config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists). |
+| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix`.<br/>See [more details here](../../config-refs/schema/index.md#invertedindexconfig--indextimestamps). |
+| `invertedIndexConfig` > `indexNullState` | body | boolean | Index null values to allow filtering. |
+| `invertedIndexConfig` > `indexPropertyLength` | body | boolean | Index property lengths to allow filtering. |
+| `shardingConfig` | body | object | Sharding specific settings. See the [schema configuration reference](../../config-refs/schema/index.md#shardingconfig) page for more details. |
 | `replicationConfig` > `factor` | body | int | The replication factor, aka the number of copies in a replicated Weaviate setup. |
-| `multiTenancyConfig` > `enabled` | body | Boolean | Whether to enable multi-tenancy for this class. (Defaults to `false`.) |
+| `multiTenancyConfig` > `enabled` | body | Boolean | Whether to enable multi-tenancy for this collection. (Defaults to `false`.) |
 
-### Example request for creating a class
+### Example request for creating a collection
+
+You can specify as few parameters as the collection name.
 
 import CodeSchemaCreate from '/_includes/code/schema.things.create.mdx';
 
 <CodeSchemaCreate />
 
-Or with all the possible parameters:
+Or you can manually specify any number of the possible parameters:
 
 import CodeSchemaCreateElaborate from '/_includes/code/schema.things.create.elaborate.mdx';
 
 <CodeSchemaCreateElaborate />
 
 
-## Get a single class from the schema
+## Get a single collection from the schema
 
-Retrieves the configuration of a single class in the schema.
+Retrieves the configuration of a single collection in the schema.
 
 ### Method and URL
 
 ```js
-GET /v1/schema/{ClassName}
+GET /v1/schema/{collection_name}
 ```
 
 ### Example request
@@ -299,77 +312,81 @@ import CodeSchemaGetClass from '/_includes/code/schema.get.class.mdx';
 
 <CodeSchemaGetClass />
 
-## Delete a class
+## Delete a collection
 
-Remove a class (and all data in the instances) from the schema.
+Remove a collection (and all its data objects).
 
 ### Method and URL
 
 ```js
-DELETE v1/schema/{class_name}
+DELETE v1/schema/{collection_name}
 ```
 
 ### URL parameters
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{class_name}` | path | string | The name of the class |
+| `{collection_name}` | path | string | The name of the collection |
 
-### Example request for deleting a class
+### Example request for deleting a collection
 
 import CodeSchemaDelete from '/_includes/code/schema.things.delete.mdx';
 
 <CodeSchemaDelete />
 
-## Update a class
+## Update a collection
 
-Update settings of an existing schema class. Use this endpoint to alter an existing class in the schema.
+Update settings of an existing collection. Use this endpoint to alter an existing collection in the schema.
 
-:::caution Limitations
+:::info Not all settings are mutable
 
-- Please note that not all settings are mutable. The list of mutable settings are shown below:
+- Please note that not all settings are mutable.
+- To update any other (i.e. immutable) setting, you need to delete the collection, re-create it with the correct setting and then re-import the data.
 
-  - `description`
-  - `invertedIndexConfig`
-    - `bm25`
-      - `b`
-      - `k1`
-    - `cleanupIntervalSeconds`
-    - `stopwords`
-      - `additions`
-      - `preset`
-      - `removals`
-  - `replicationConfig`
-    - `factor`
-  - `vectorIndexConfig`
-    - `dynamicEfFactor`
-    - `dynamicEfMin`
-    - `dynamicEfMax`
-    - `flatSearchCutoff`
-    - `skip`
-    - `vectorCacheMaxObjects`
-    - `pq`
-      - `bitCompression`
-      - `centroids`
-      - `enabled`
-      - `segments`
-      - `trainingLimit`
-      - `encoder`
-        - `type`
-        - `distribution`
+<details>
+  <summary>The list of mutable settings</summary>
 
-- To update any other (i.e. immutable) setting, you need to delete the class, re-create it with the correct setting and then re-import the data.
+- `description`
+- `invertedIndexConfig`
+  - `bm25`
+    - `b`
+    - `k1`
+  - `cleanupIntervalSeconds`
+  - `stopwords`
+    - `additions`
+    - `preset`
+    - `removals`
+- `replicationConfig`
+  - `factor`
+- `vectorIndexConfig`
+  - `dynamicEfFactor`
+  - `dynamicEfMin`
+  - `dynamicEfMax`
+  - `flatSearchCutoff`
+  - `skip`
+  - `vectorCacheMaxObjects`
+  - `pq`
+    - `bitCompression`
+    - `centroids`
+    - `enabled`
+    - `segments`
+    - `trainingLimit`
+    - `encoder`
+      - `type`
+      - `distribution`
+
+</details>
 
 :::
 
-This endpoint cannot be used to introduce additional properties. For this, use [`POST /v1/schema/{ClassName}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as `vectorIndexConfig/dynamicEfFactor` or `vectorIndexConfig/pq/bitCompression`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
+This endpoint cannot be used to introduce additional properties. For this, use [`POST /v1/schema/{collection_name}/properties`](#add-a-property). A typical use case for this endpoint is to update configuration, such as `vectorIndexConfig/dynamicEfFactor` or `vectorIndexConfig/pq/bitCompression`. Note that even in mutable sections, such as `vectorIndexConfig`, some fields may be immutable.
 
-You should attach a body to this PUT request with the **entire** new configuration of the class.
+You should attach a body to this PUT request with the **entire** new configuration of the collection.
 
 ### Method and URL
 
 ```js
-PUT v1/schema/{class_name}
+PUT v1/schema/{collection_name}
 ```
 
 ### Parameters
@@ -378,33 +395,21 @@ The URL must contain the following parameter:
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{class_name}` | path | string | The name of the class |
+| `{collection_name}` | path | string | The name of the collection |
 
 Parameters in the PUT body:
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `class` | body | string | The name of the class. Multiple words should be concatenated in CamelCase, e.g. `ArticleAuthor`. |
-| `description` | body | string | Description of the class. |
-| `vectorIndexType` | body | string | Defaults to hnsw. Can be omitted in schema definition since this is the only available type for now. |
-| `vectorIndexConfig` | body | object | Vector index type specific settings. |
-| `vectorizer` | body | string | Vectorizer to use for data objects added to this class. Default can be set via Weaviate environment variables. |
-| `moduleConfig` > `text2vec-contextionary`  > `vectorizeClassName` | body | boolean | Include the class name in vector calculation (default true). Learn more about how to [configure indexing in Weaviate](/developers/weaviate/config-refs/schema/index.md#configure-semantic-indexing). |
-| `properties` | body | array | An array of property objects. |
-| `properties` > `dataType` | body | array | See the [available data types](/developers/weaviate/config-refs/datatypes.md) |
-| `properties` > `description` | body | string | Description of the property. |
-| `properties` > `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
-| `properties` > `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/config-refs/schema/index.md#configure-semantic-indexing). |
-| `properties` > `name` | body | string | The name of the property. Multiple words should be concatenated in camelCase, e.g. `nameOfAuthor`. |
-| `properties` > `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#configure-semantic-indexing). |
-| `properties` > `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#configure-semantic-indexing). |
-| `properties` > `indexInverted` (deprecated) | body | boolean | Should the data stored in this property be indexed? Learn more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#configure-semantic-indexing). |
-| `properties` > `tokenization` | body | string | Only for `string`/`text` props. Introduced in `v1.12.0`. Control how a field is tokenized in the inverted index. Defaults to `"word"`. If `string` is used, can be set to `"field"`. Learn more about [property tokenization](/developers/weaviate/config-refs/schema/index.md#property-tokenization). |
-| `invertedIndexConfig` > `stopwords` | body | object | Configure which words should be treated as stopwords and therefore be ignored when querying (stopwords are still indexed).<br/> Since`v1.18`, stopwords can be configured at runtime.<br/>See [more details here](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists). |
-| `invertedIndexConfig` > `indexTimestamps` | body | boolean | Maintain an inverted index for each object by its internal timestamps, currently including `creationTimeUnix` and `lastUpdateTimeUnix` See [more details here](/developers/weaviate/config-refs/schema/index.md#invertedindexconfig--indextimestamps). |
+| `class` | body | string | The name of the collection (a.k.a. class). Multiple words should be concatenated in CamelCase, e.g. `ArticleAuthor`. |
+| `description` | body | string | Description of the collection. |
+| `vectorIndexConfig` | body | object | Vector index type specific settings. See the [vector index configuration](../../config-refs/schema/vector-index.md) page for more details. |
+| `invertedIndexConfig` > `bm25` > `b` | body | float | `b` parameter for `BM25` searches. Default: 0.75 |
+| `invertedIndexConfig` > `bm25` > `k1` | body | float | `k1` parameter for `BM25` searches. Default: 1.2 |
+| `invertedIndexConfig` > `stopwords` | body | object | Configure stopword behavior. See [more details here](../../config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists). |
+| `replicationConfig` > `factor` | body | int | The replication factor, aka the number of copies in a replicated Weaviate setup. |
 
-
-#### Example request for updating a class
+#### Example request for updating a collection
 
 import CodeSchemaUpdate from '/_includes/code/schema.things.put.mdx';
 
@@ -424,7 +429,7 @@ This is caused by the inverted index being built at import time. If you add a pr
 
 To avoid this, you can either:
 - Add the property before importing objects.
-- Delete the class, re-create it with the new property and then re-import the data.
+- Delete the collection, re-create it with the new property and then re-import the data.
 
 We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
 
@@ -433,21 +438,21 @@ We are working on a re-indexing API to allow you to re-index the data after addi
 ### Method and URL
 
 ```js
-POST v1/schema/{class_name}/properties
+POST v1/schema/{collection_name}/properties
 ```
 
 ### Parameters
 
 | Name | Location | Type | Description |
 | ---- | -------- | -----| ----------- |
-| `dataType` | body | array | An available [data type](/developers/weaviate/config-refs/datatypes.md). |
+| `dataType` | body | array | An available [data type](../../config-refs/datatypes.md). |
 | `description` | body | string | Description of the property. |
-| `moduleConfig`  > `text2vec-contextionary` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
-| `moduleConfig`  > `text2vec-contextionary` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](/developers/weaviate/config-refs/schema/index.md#configure-semantic-indexing). |
+| `moduleConfig`  > `<module_name>` > `skip` | body | boolean | If true, the whole property will NOT be included in vectorization. Default is false, meaning that the object will be NOT be skipped. |
+| `moduleConfig`  > `<module_name>` > `vectorizePropertyName` | body | boolean | Whether the name of the property is used in the calculation for the vector position of data objects. Default is true. Learn more about how to [configure indexing in Weaviate](../../config-refs/schema/index.md#configure-semantic-indexing). |
 | `name` | body | string | The name of the property. Multiple words should be concatenated in camelCase like `nameOfAuthor`. |
-| `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#configure-semantic-indexing). |
-| `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#configure-semantic-indexing). |
-| `indexInverted` (deprecated) | body | boolean | Should the data stored in this property be indexed? Learn more about [indexing in Weaviate](/developers/weaviate/config-refs/schema/vector-index.md#configure-semantic-indexing). |
+| `indexFilterable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed with the filterable, Roaring Bitmap index? Read more about [indexing in Weaviate](../../config-refs/schema/vector-index.md#configure-semantic-indexing). |
+| `indexSearchable` (available from `v1.19`) | body | boolean | Should the data stored in this property be indexed to allow BM25/hybrid-search index? Read more about [indexing in Weaviate](../../config-refs/schema/vector-index.md#configure-semantic-indexing). |
+| `indexInverted` (deprecated) | body | boolean | Should the data stored in this property be indexed? Learn more about [indexing in Weaviate](../../config-refs/schema/vector-index.md#configure-semantic-indexing). |
 
 ### Example request for adding a property
 
@@ -455,11 +460,11 @@ import CodeSchemaAddProperties from '/_includes/code/schema.things.properties.ad
 
 <CodeSchemaAddProperties />
 
-## Inspect the shards of a class
+## Inspect the shards of a collection
 
-As described in [Architecture > Storage](/developers/weaviate/concepts/storage.md#logical-storage-units-indices-shards-stores), creation of a class leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a class index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
+As described in [Architecture > Storage](../../concepts/storage.md#logical-storage-units-indices-shards-stores), creation of a collection leads to creating an index which manages all the disk storage and vector indexing. An index itself can be comprised of multiple shards. If a collection index is used on multiple nodes of a multi-node Weaviate cluster there must be at least one shard per node.
 
-You can view a list of all shards for a particular class:
+You can view a list of all shards for a particular collection:
 
 ### Method and URL
 
@@ -468,16 +473,16 @@ This API was added in `v1.12.0`.
 :::
 
 ```js
-GET v1/schema/{class_name}/shards
+GET v1/schema/{collection_name}/shards
 ```
 
 ### Parameters
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{class_name}` | URL path | string | The name of the class |
+| `{collection_name}` | URL path | string | The name of the collection |
 
-### Example request viewing shards of a class
+### Example request viewing shards of a collection
 
 import CodeSchemaShardsGet from '/_includes/code/schema.shards.get.mdx';
 
@@ -485,7 +490,7 @@ import CodeSchemaShardsGet from '/_includes/code/schema.shards.get.mdx';
 
 ## Update shard status
 
-A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a class.
+A shard may have been marked as read-only, for example because the disk was full. You can manually set a shard to `READY` again using the following API. There is also a convenience function in each client to set the status of all shards of a collection.
 
 ### Method and URL
 
@@ -494,14 +499,14 @@ This API was added in `v1.12.0`
 :::
 
 ```js
-PUT v1/schema/{class_name}/shards/{shard_name}
+PUT v1/schema/{collection_name}/shards/{shard_name}
 ```
 
 ### Parameters
 
 | Name | Location | Type | Description |
 | ---- | -------- | ---- | ----------- |
-| `{class_name}` | URL path | string | The name of the class. |
+| `{collection_name}` | URL path | string | The name of the collection. |
 | `{shard_name}` | URL path | string | The name/id of the shard. |
 | `status` | body | string | The status to update the shard to. One of `READONLY`, `READY`. |
 
@@ -512,6 +517,16 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 <CodeSchemaShardsUpdate />
 
 ## Multi-tenancy
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
+
 
 :::info Multi-tenancy availability
 - Multi-tenancy available from version `v1.20`
@@ -524,6 +539,55 @@ import CodeSchemaShardsUpdate from '/_includes/code/schema.shards.put.mdx';
 :::
 
 Tenants are used to separate data between different users or groups of users. They can be specified as follows:
+
+### Enable multi-tenancy
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START EnableMultiTenancy"
+      endMarker="# END EnableMultiTenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START EnableMultiTenancy"
+      endMarker="# END EnableMultiTenancy"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
 
 ### Add tenant(s)
 
@@ -553,27 +617,169 @@ import TenantNameFormat from '/_includes/tenant-names.mdx';
 <TenantNameFormat/>
 
 ```js
-POST v1/schema/{class_name}/tenants
+POST v1/schema/{collection_name}/tenants
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START AddTenantsToClass"
+      endMarker="# END AddTenantsToClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START AddTenantsToClass"
+      endMarker="# END AddTenantsToClass"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
 
 ### List tenants
 
 ```js
-GET v1/schema/{class_name}/tenants
+GET v1/schema/{collection_name}/tenants
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ListTenants"
+      endMarker="# END ListTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ListTenants"
+      endMarker="# END ListTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
 
 ### Remove tenants
 
-Pass a payload with an array of tenant names in the form of `["TENANT_NAME1", "TENANT_NAME2"]` to remove from the class.
+Pass a payload with an array of tenant names in the form of `["TENANT_NAME1", "TENANT_NAME2"]` to remove from the collection.
 
 ```js
-DELETE v1/schema/{class_name}/tenants
+DELETE v1/schema/{collection_name}/tenants
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START RemoveTenants"
+      endMarker="# END RemoveTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START RemoveTenants"
+      endMarker="# END RemoveTenants"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
 
 ### Update tenants
 
 ```js
-PUT v1/schema/{class_name}/tenants
+PUT v1/schema/{collection_name}/tenants
 ```
 
 Pass a payload with an array of tenant objects. For updating tenants, both `name` and `activityStatus` are required.
@@ -592,6 +798,17 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
   }
 ]
 ```
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateTenants"
+      endMarker="# END UpdateTenants"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

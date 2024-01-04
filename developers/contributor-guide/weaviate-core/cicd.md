@@ -30,7 +30,7 @@ In practice this means:
 
   There might be situations, especially when developing complex features, where
   you explicitly make commits which are "not production-ready". For example to
-  get a get an integration test to pass you might require several commits.
+  get an integration test to pass you might require several commits.
   Please, clearly mark such commits as "WIP".
 
 * The best time to merge a PR is yesterday. There is no harm in having a

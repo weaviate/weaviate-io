@@ -141,7 +141,7 @@ class ManageDataCreateTest {
       .returns(false, Result::hasErrors)
       .withFailMessage(null)
       .extracting(Result::getResult).isNotNull()
-      .returns(className, WeaviateObject::getClassName)
+      .returns(className, WeaviateObject::getClassName);
 
     print(result);
   }

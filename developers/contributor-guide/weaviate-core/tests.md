@@ -23,9 +23,9 @@ This makes tests fast to execute, easy to adapt and easy to run with third-party
 
 #### Integration tests
 
-Integration tests tests anything that crosses a boundary. A boundary could be the dependence on an external party (e.g. a third-party database) or an independent custom tool, such as the contextionary.
+Integration tests test anything that crosses a boundary. A boundary could be the dependence on an external party (e.g. a third-party database) or an independent custom tool, such as the contextionary.
 
-With the standalone feature we also make use of integration tests to test disk access. As outlined above, unit tests are meant to be stateless. We consider accessing the filesystem from the code a boundary in the sense that they should be an integration test.
+With the standalone feature we also make use of integration tests to test disk access. As outlined above, unit tests are meant to be stateless. We consider accessing the filesystem from the code as a boundary in the sense that they should be an integration test.
 
 Integration tests may require third-party dependencies which can be spun up using docker. Convenience scripts are provided, see below.
 
@@ -33,9 +33,9 @@ Slow integration tests (run-time of over 10s) receive a different build tag, so 
 
 #### Journey tests
 
-The highest level tests are journey tests. As the top of the pyramid those tests come with the highest execution cost. There should thus be few. At the same time they provide a lot of value as they make sure all components play together. Journey tests don't usually care about edge cases, but rather about validating that a user journey is possible.
+The highest level tests are journey tests. As the top of the pyramid, those tests come with the highest execution cost. There should thus be a few. At the same time they provide a lot of value as they make sure all the components play together. Journey tests don't usually care about edge cases, but rather about validating that a user journey is possible.
 
-Journey-tests are black-box tests. This means the test code is completely unaware of any of the internals of Weaviate. Compare this to the unit or integration tests which tests snippets of (Golang) code. The journey test test an application. The only way for the journey test to interact with the application is through means that are also available to users, such as the public APIs. Our Journey tests are written in Golang to keep the context-switching to a minimum for developers, but the fact that they only test APIs and not code means that they could technically be written in any language.
+Journey-tests are black-box tests. This means the test code is completely unaware of any of the internals of Weaviate. Compare this to the unit or integration tests which tests snippets of (Golang) code. The journey tests test an application. The only way for the journey test to interact with the application is through means that are also available to users, such as the public APIs. Our Journey tests are written in Golang to keep the context-switching to a minimum for developers, but the fact that they only test APIs and not code means that they could technically be written in any language.
 
 This makes sure that the UX for our users is great and the most important features are always working as intended. As a downside they come with the highest execution cost because journey tests need to compile and run the application before being able to run the tests themselves. In addition any runtime [backing service](https://12factor.net/backing-services) must also be present in a test scenario. To make this easy for developers, we provide convenience scripts which build both the application and all backing services and runs them in `Docker Compose`.
 
@@ -45,8 +45,8 @@ Backing services are always ephemeral and will be created solely for the tests. 
 
 These tests have two functions:
 
-1) Identify regressions automatically before they are merged
-2) Enable performance tracking over time
+1) Identify regressions automatically before they are merged.
+2) Enable performance tracking over time.
 
 They are currently very limited but will be extended over time.
 
@@ -87,7 +87,7 @@ go test ./...
 #### Adding new unit tests
 
 * Add unit tests in the same folder as the code they are testing
-* Aim to write "black box" unit tests which test the public ("exported") methods of the class under test without knowing too much about the internals
+* Aim to write "black box" unit tests that test the public ("exported") methods of the class under test without knowing too much about the internals.
 * Do not use any build tags.
 
 ### Integration tests
@@ -99,9 +99,9 @@ test/integration/run.sh
 
 #### Adding new integration tests
 
-* Use the `integrationTest` build tag on your test, so it is ignored during unit test runs
-* Make sure the test prepares for and cleans up after itself, so tests can be run succession
-* If your test requires a lot of time to execute, consider marking them as a slow test and making them optional. (see below)
+* Use the `integrationTest` build tag on your test, so it is ignored during unit test runs.
+* Make sure the test prepares for and cleans up after itself, so tests can be run in succession.
+* If your test requires a lot of time to execute, consider marking it as a slow test and making it optional. (see below).
 
 #### Slow integration tests
 
@@ -109,7 +109,7 @@ With the introduction of Standalone mode there is some behavior that needs to be
 
 Similarly tests which test recall (in an HNSW index) require a dataset size, where the number of nodes is considerably larger than the `ef` parameter at search. Otherwise the search is a full-dataset scan which will always have 100% recall.
 
-These tests are considered "slow tests". They are an important part in our test pipeline, we wouldn't want to release Weaviate without them passing. However, they might not play a major role during every feature we develop. Therefore these test are opt-in with the `--include-slow` flag on the test runner:
+These tests are considered "slow tests". They are an important part in our test pipeline. The slow tests are important for release testing, however, individual tests might not be important for feature testing. Therefore these tests. Therefore these tests are opt-in with the `--include-slow` flag on the test runner:
 
 ```sh
 test/integration/run.sh --include-slow
@@ -120,7 +120,7 @@ Note that while slow tests are optional on the integration test runner script, t
 To mark an integration test as "slow" simply use the `integrationTestSlow` build tag, instead of the `integrationTest` tag.
 
 ### Journey tests
-As outline in the Philosophy, journey tests require the application to be compiled as well as all backing services to be running. We have a convenience script available which starts all required services in `docker-compose` and runs the tests against it.
+As outline in the Philosophy, journey tests require the application to be compiled as well as all backing services to be running. We have a convenience script available which starts all required services in `Docker Compose` and runs the tests against it.
 
 The script is part of the overall pipeline script, but you can configure it to run only the journey tests like so:
 
@@ -168,7 +168,7 @@ require.Nil(t, err)
 assert.Equal(t, "foo", res.Name)
 ```
 
-If we didn't use `require` on the on the error, the test would continue executing. Therefore the last line would panic as `res.Name` would try to access a property of a nil-object.
+If we didn't use `require` on the error, the test would continue executing. Therefore the last line would panic as `res.Name` would try to access a property of a nil-object.
 
 By using `require.Nil` we can abort this test early, if an unexpected error was returned.
 

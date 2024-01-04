@@ -25,7 +25,7 @@ All references have their individual subpages. Click on one of the references be
 - [Conditional filters](./filters.md)
 - [Additional operators](./additional-operators.md)
 - [Additional properties](./additional-properties.md)
-- [Explore{}](./explore.md)
+- [Explore](./explore.md)
 
 
 ## GraphQL API
@@ -54,7 +54,7 @@ A GraphQL JSON object is defined as:
 }
 ```
 
-GraphQL queries follows a defined structure, defined to interact with your data in Weaviate as good as possible. Queries are structured as follows:
+GraphQL queries follow a defined structure. Queries are structured as follows:
 
 
 ```graphql
