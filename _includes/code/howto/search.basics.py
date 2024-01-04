@@ -509,13 +509,13 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     limit=1,
     # highlight-start
-    return_metadata=wvc.MetadataQuery(creation_time_unix=True)
+    return_metadata=wvc.MetadataQuery(creation_time=True)
     # highlight-end
 )
 
 for o in response.objects:
     print(o.properties)  # View the returned properties
-    print(o.metadata.creation_time_unix)  # View the returned creation time
+    print(o.metadata.creation_time)  # View the returned creation time
 # END GetWithMetadataPython
 
 # Test results

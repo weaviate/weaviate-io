@@ -526,7 +526,7 @@ The results are organized the group, returning a list of groups.
 
 The `v4` client adds a Pythonic iterator method for each collection. This wraps the `cursor` API and allows you to iterate over all objects in a collection.
 
-This will fetch all objects in the `questions` collection, including its properties.
+This example fetches all the objects, and their properties, from the `questions` collection.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -535,7 +535,7 @@ This will fetch all objects in the `questions` collection, including its propert
   language="py"
 />
 
-You can specify what properties to retrieve. This will only fetch the `title` property.
+You can specify which properties to retrieve. This example fetches the `answer` property.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -544,7 +544,7 @@ You can specify what properties to retrieve. This will only fetch the `title` pr
   language="py"
 />
 
-You can also specify what metadata to retrieve. This will only fetch the `creation_time_unix` metadata.
+You can also specify which metadata to retrieve. This example fetches the `creation_time` metadata.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -553,7 +553,7 @@ You can also specify what metadata to retrieve. This will only fetch the `creati
   language="py"
 />
 
-Note that as the `cursor` API inherently requires the object UUID for indexing, the `uuid` metadata is always retrieved.
+Since the `cursor` API requires the object UUID for indexing, the `uuid` metadata is always retrieved.
 
 ### Data model / generics
 
