@@ -490,7 +490,16 @@ response = questions.generate.near_text(
     )
 )
 
-print(response)
+print("Grouped Task generated outputs:")
+print(response.generated)
+for o in response.objects:
+    print(f"Outputs for object {o.uuid}")
+    print(f"Generated text:")
+    print(o.generated)
+    print(f"Properties:")
+    print(o.properties)
+    print(f"Metadata")
+    print(o.metadata)
 # END ResultDisplayExample
 
 
