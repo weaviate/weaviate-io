@@ -1,13 +1,25 @@
-# TEST DISABLED - sandbox needed
-
-# import weaviate
+# TESTS NEED TO BE UPDATED
+# START-ANY
 # import json
+# import os
+# import weaviate
+# import weaviate.classes as wvc
+# from weaviate.collections.classes.grpc import Sort
 
-# client = weaviate.Client(
-#     'https://edu-demo.weaviate.network',
-#     auth_client_secret=weaviate.AuthApiKey('learn-weaviate'),
-# )
 
+# client = weaviate.connect_to_local()
+
+# END-ANY
+
+
+# Actual client instantiation
+client = weaviate.connect_to_wcs(
+    cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",
+    auth_credentials=weaviate.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+    }
+)
 
 # def test_gqlresponse(response_in, gqlresponse_in):
 #     for i, result in enumerate(response_in['data']['Get']['JeopardyQuestion']):
@@ -34,8 +46,7 @@ for o in response.objects:
     print( f"Question: {o.properties['question']}")
 # END Sorting Python
 
-# TEST DISABLED - sandbox needed
-# assert response['data']['Get']['JeopardyQuestion'][0]['answer'] == '$5 (Lincoln Memorial in the background)'
+# assert response.objects[0].properties['answer'] == '$5 (Lincoln Memorial in the background)'
 
 gql_query = """
 # START Sorting GraphQL
@@ -58,7 +69,7 @@ gql_query = """
 # END Sorting GraphQL
 """
 
-# gqlresponse = client.query.raw(gql_query)
+# gqlresponse = client.graphql_raw_query(gql_query)
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
 
