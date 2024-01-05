@@ -9,7 +9,6 @@ import weaviate.classes as wvc
 from weaviate.collections.classes.grpc import Sort
 
 client = weaviate.connect_to_local()
-
 # END-ANY
 
 # Actual client instantiation
@@ -94,7 +93,7 @@ for o in response.objects:
 # END MultiplePropSorting Python
 
 # TODO FIX TEST
-# assert response.objects[0].properties['points'] == 10000
+assert response.objects[0].properties["points"] == 10000
 # assert response['data']['Get']['JeopardyQuestion'][0]['question'].startswith('A flurry of ballerinas')
 
 gql_query = """
@@ -147,11 +146,11 @@ for o in response.objects:
     print( f"Answer: {o.properties['answer']}")
     print( f"Points: {o.properties['points']}")
     print( f"Question: {o.properties['question']}")
+    print(f"Creation time: {o.metadata.creation_time}")
 
 # END AdditionalPropSorting Python
 
-# TEST DISABLED - sandbox needed
-# assert 'creationTimeUnix' in response['data']['Get']['JeopardyQuestion'][0]['_additional']
+assert response.objects[0].metadata.creation_time != None
 
 gql_query = """
 # START AdditionalPropSorting GraphQL
