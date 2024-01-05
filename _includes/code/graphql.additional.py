@@ -1,10 +1,15 @@
 # TESTS NEED TO BE UPDATED
-# START-ANY
+
 import json
+
+# START-ANY
 import os
 import weaviate
 import weaviate.classes as wvc
 from weaviate.collections.classes.grpc import Sort
+
+client = weaviate.connect_to_local()
+
 # END-ANY
 
 # Actual client instantiation
@@ -25,7 +30,6 @@ def test_gqlresponse(response_in, gqlresponse_in):
 # ===== Sorting =====
 # ===================
 # START Sorting Python
-from weaviate.collections.classes.grpc import Sort
   
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
@@ -74,7 +78,6 @@ gql_query = """
 # ===== Sorting by multiple properties =====
 # ==========================================
 # START MultiplePropSorting Python
-from weaviate.collections.classes.grpc import Sort
   
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
@@ -132,8 +135,7 @@ gql_query = """
 # ===========================================
 
 # START AdditionalPropSorting Python
-from weaviate.collections.classes.grpc import Sort
- 
+
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
     return_metadata=wvc.MetadataQuery(creation_time=True),

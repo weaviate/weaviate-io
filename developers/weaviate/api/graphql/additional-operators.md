@@ -505,13 +505,6 @@ To sort with metadata, add an underscore to the property name.
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
-
-| Property Name | Sort Property  Name |
-| :- | :- |
-| `uuid` |`_id` |
-| `creation_time` | `_creationTimeUnix` |
-| `last_update_time` | `_lastUpdateTimeUnix` |
-
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AdditionalPropSorting Python"
@@ -575,6 +568,16 @@ To sort with metadata, add an underscore to the property name.
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Python client v4 property names</summary>
+
+| Property Name | Sort Property  Name |
+| :- | :- |
+| `uuid` |`_id` |
+| `creation_time` | `_creationTimeUnix` |
+| `last_update_time` | `_lastUpdateTimeUnix` |
+
+</details>
 
 ## Grouping
 
