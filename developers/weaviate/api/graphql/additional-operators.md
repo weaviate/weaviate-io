@@ -23,7 +23,7 @@ import CurlCode from '!!raw-loader!/_includes/code/graphql.additional.sh';
 
 ## Syntax
 
-Operators such as `limit`, `autocut`, and `sort` modify queries at the class level.
+Functions such as `limit`, `autocut`, and `sort` modify queries at the class level.
 <!--
 For example:
 
@@ -34,11 +34,11 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Limit argument
 
-The `limit` argument restricts the number of results. These operators support `limit`:
+The `limit` argument restricts the number of results. These functions support `limit`:
 
-- `Get{}`
-- `Explore{}`
-- `Aggregate{}`
+- `Get`
+- `Explore`
+- `Aggregate`
 
 import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
@@ -81,7 +81,7 @@ To return sets of results, "pages", use `offset` and `limit` together to specify
 
 For example, to list the first ten results, set `limit: 10` and `offset: 0`. To display the next ten results, set `offset: 10`. To continue iterating over the results, increase the offset again. For more details, see [performance considerations](./additional-operators.md#performance-considerations)
  
-The `Get{}` and `Explore{}` functions support `offset`.
+The `Get` and `Explore` functions support `offset`.
 
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
@@ -122,10 +122,9 @@ import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
 Pagination is not a cursor-based implementation. This has the following implications:
 
-- **Response time and system load increase as the number of pages grows**. Every additional page request requires a new, larger call against your collection.
-- **The cost to retrieve a page increases with each call**. For example, if your `offset` and `limit` specify results from 21-30, Weaviate retrieves 30 objects and drops the first 20. On the next call, Weaviate retrieves 40 objects and drops the first 30.
+- **Response time and system load increase as the number of pages grows**. As the offset grows, each additional page request requires a new, larger call against your collection. For example, if your `offset` and `limit` specify results from 21-30, Weaviate retrieves 30 objects and drops the first 20. On the next call, Weaviate retrieves 40 objects and drops the first 30.
 - **Resource requirements are amplified in multi-shard configurations.** Each shard retrieves a full list of objects. Each shard also drops the objects before the offset. If you have 10 shards configured and ask for results 91-100, Weaviate retrieves 1000 objects (100 per shard) and drops 990 of them.
-- **The number of objects you can retrieve is limited**. Since pagination is resources intensive, there is a limit to how many objects you can retrieve. To change the limit, edit the `QUERY_MAXIMUM_RESULTS` environment variable. If you increase `QUERY_MAXIMUM_RESULTS`, use the lowest value possible to avoid performance problems. If the sum of `offset` and `limit` exceeds `QUERY_MAXIMUM_RESULTS`, Weaviate returns an error.
+- **The number of objects you can retrieve is limited**. A single query returns up to `QUERY_MAXIMUM_RESULTS`. If the sum of `offset` and `limit` exceeds `QUERY_MAXIMUM_RESULTS`, Weaviate returns an error. To change the limit, edit the `QUERY_MAXIMUM_RESULTS` environment variable. If you increase `QUERY_MAXIMUM_RESULTS`, use the lowest value possible to avoid performance problems. 
  - **Pagination is not stateful**. If the database state changes between calls, your pages might miss results. An insertion or a deletion will change the object count. An update could change object order. However, if there are no writes the overall results set is the same if you retrieve a large single page or many smaller ones.
 
 
@@ -134,7 +133,7 @@ Pagination is not a cursor-based implementation. This has the following implicat
 :::info Added in `v1.20`
 :::
 
-The autocut filter limits results based on discontinuities in the result set. The filter looks for discontinuities, or jumps, in the resulting metric such as vector distances or search scores.
+The autocut function limits results based on discontinuities in the result set. Specifically, autocut looks for discontinuities, or jumps, in result metrics such as vector distance or search score.
 
 To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
 
@@ -148,13 +147,13 @@ Autocut returns the following:
 - `autocut: 2`:  `[0.1899, 0.1901, 0.191, 0.21, 0.215]`
 - `autocut: 3`:  `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]`
 
-Autocut works with these operators:
+Autocut works with these functions:
 
 - `nearXXX`
 - `bm25`
 - `hybrid`
 
-To use autocut with the `hybrid` operator, specify the `relativeScoreFusion` ranking method.
+To use autocut with the `hybrid` search, specify the `relativeScoreFusion` ranking method.
 
 Autocut is disabled by default. To explicitly disable autocut, set the number of jumps to `0` or a negative value.
 
@@ -217,7 +216,7 @@ The output is like this:
 
 </details>
 
-For more client code examples for each operator category, see these pages:
+For more client code examples for each functional category, see these pages:
 
 - [Autocut with similarity search](../../search/similarity.md#autocut).
 - [Autocut with `bm25` search](../../search/bm25.md#autocut).
@@ -226,11 +225,11 @@ For more client code examples for each operator category, see these pages:
 
 ## Cursor with `after`
 
-Starting with version `v1.18`, you can use the `after` operator to retrieve objects sequentially. For example, you can use `after` to retrieve an complete set of objects from a collection.
+Starting with version `v1.18`, you can use `after` to retrieve objects sequentially. For example, you can use `after` to retrieve a complete set of objects from a collection.
 
 `after` creates a cursor that is compatible with single shard and multi-shard configurations.
 
-The `after` operator relies on object ids, it only works with list queries that do not specify search operators. `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, or similar searches. For those use cases, use pagination with `offset` and `limit`.
+The `after` function relies on object ids, it only works with list queries. `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, or similar searches. For those use cases, use pagination with `offset` and `limit`.
 
 import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 
@@ -288,7 +287,7 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 Added in `v1.13.0`.
 :::
 
-You can sort results by any primitive property, such as `text`, `string`, `number`, or `int`. When query results, for example, `near<Media>` vector search results, have a natural order, sort operators override that order.
+You can sort results by any primitive property, such as `text`, `number`, or `int`. When query results, for example, `near<Media>` vector search results, have a natural order, sort functions override that order.
 
 ### Sorting considerations
 
@@ -319,11 +318,11 @@ Examples:
 
 Sorting can be performed by one or more properties. If the values for the first property are identical, Weaviate uses the second property to determine the order, and so on. 
 
-The sort operator takes either an object, or an array of objects, that describe a property and a sort order.
+The sort function takes either an object, or an array of objects, that describe a property and a sort order.
 
 | Parameter | Required | Type            | Description                                               |
 |-----------|----------|-----------------|-----------------------------------------------------------|
-| `path`    | yes      | `[text]`        | The path to the sort field is an single element array that contains the field name. GraphQL supports specifying the field name directly. |
+| `path`    | yes      | `text`        | The path to the sort field is an single element array that contains the field name. GraphQL supports specifying the field name directly. |
 | `order`   | varies by client       | `asc` or `desc` | The sort order, ascending (default) or descending.|
 
 
@@ -426,7 +425,7 @@ The sort operator takes either an object, or an array of objects, that describe 
 
 #### Sorting by multiple properties
 
-To sort by more than one property, pass an array of { `path`, `order` } objects to the sort operator:
+To sort by more than one property, pass an array of { `path`, `order` } objects to the sort function:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -498,14 +497,21 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
 
 To sort with metadata, add an underscore to the property name.
 
-| Property Name | Python Client 4 Name | Sort Property  Name |
-| :- | :- | :- |
-| `id` | `uuid` |`_id` |
-| `creationTimeUnix` | `creation_time` | `_creationTimeUnix` |
-| `lastUpdateTimeUnix` | `last_update_time` | `_lastUpdateTimeUnix` |
+| Property Name | Sort Property  Name |
+| :- | :- |
+| `id` | `_id` |
+| `creationTimeUnix` | `_creationTimeUnix` |
+| `lastUpdateTimeUnix` | `_lastUpdateTimeUnix` |
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
+
+| Property Name | Sort Property  Name |
+| :- | :- |
+| `uuid` |`_id` |
+| `creation_time` | `_creationTimeUnix` |
+| `last_update_time` | `_lastUpdateTimeUnix` |
+
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AdditionalPropSorting Python"
@@ -570,11 +576,9 @@ To sort with metadata, add an underscore to the property name.
 </Tabs>
 
 
-## `group` operator
+## Grouping
 
-You can use a group operator to combine similar concepts (also known as _entity merging_). There are two ways of grouping semantically similar objects together, `closest` and `merge`. To return the closest concept, set `type: closest`. To combine similar entities into a single string, set `type: merge`
-
-The Python client v4 doesn't have a `group` operator. Use `graphql_raw_query` to issue a GraphQL query instead.
+You can use a group to combine similar concepts (also known as _entity merging_). There are two ways of grouping semantically similar objects together, `closest` and `merge`. To return the closest concept, set `type: closest`. To combine similar entities into a single string, set `type: merge`
 
 ### Variables
 
