@@ -1,16 +1,11 @@
 # TESTS NEED TO BE UPDATED
 # START-ANY
-# import json
-# import os
-# import weaviate
-# import weaviate.classes as wvc
-# from weaviate.collections.classes.grpc import Sort
-
-
-# client = weaviate.connect_to_local()
-
+import json
+import os
+import weaviate
+import weaviate.classes as wvc
+from weaviate.collections.classes.grpc import Sort
 # END-ANY
-
 
 # Actual client instantiation
 client = weaviate.connect_to_wcs(
@@ -21,9 +16,9 @@ client = weaviate.connect_to_wcs(
     }
 )
 
-# def test_gqlresponse(response_in, gqlresponse_in):
-#     for i, result in enumerate(response_in['data']['Get']['JeopardyQuestion']):
-#         assert result['question'] == gqlresponse_in['data']['Get']['JeopardyQuestion'][i]['question']
+def test_gqlresponse(response_in, gqlresponse_in):
+    for i, result in enumerate(response_in['data']['Get']['JeopardyQuestion']):
+        assert result['question'] == gqlresponse_in['data']['Get']['JeopardyQuestion'][i]['question']
 
 
 # ===================
@@ -46,7 +41,7 @@ for o in response.objects:
     print( f"Question: {o.properties['question']}")
 # END Sorting Python
 
-# assert response.objects[0].properties['answer'] == '$5 (Lincoln Memorial in the background)'
+assert response.objects[0].properties['answer'] == '$5 (Lincoln Memorial in the background)'
 
 gql_query = """
 # START Sorting GraphQL
@@ -69,6 +64,7 @@ gql_query = """
 # END Sorting GraphQL
 """
 
+# TODO Fix response formatting
 # gqlresponse = client.graphql_raw_query(gql_query)
 # print(json.dumps(gqlresponse, indent=2))
 # test_gqlresponse(response, gqlresponse)
@@ -94,8 +90,8 @@ for o in response.objects:
     print( f"Question: {o.properties['question']}")
 # END MultiplePropSorting Python
 
-# TEST DISABLED - sandbox needed
-# assert response['data']['Get']['JeopardyQuestion'][0]['points'] == 10000
+# TODO FIX TEST
+# assert response.objects[0].properties['points'] == 10000
 # assert response['data']['Get']['JeopardyQuestion'][0]['question'].startswith('A flurry of ballerinas')
 
 gql_query = """

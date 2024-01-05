@@ -194,7 +194,7 @@ Sample client code:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={AutocutPyCode}
+      text={AutocutPyCodeV3}
       startMarker="# START Autocut GraphQL"
       endMarker="# END Autocut GraphQL"
       language="graphql"
@@ -383,7 +383,7 @@ The sort function takes either an object, or an array of objects, that describe 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START Sorting GraphQL"
       endMarker="# END Sorting GraphQL"
       language="graphql"
@@ -484,7 +484,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START MultiplePropSorting GraphQL"
       endMarker="# END MultiplePropSorting GraphQL"
       language="graphql"
@@ -567,7 +567,7 @@ To sort with metadata, add an underscore to the property name.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START AdditionalPropSorting GraphQL"
       endMarker="# END AdditionalPropSorting GraphQL"
       language="graphql"
