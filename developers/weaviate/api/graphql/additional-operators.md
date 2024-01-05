@@ -9,8 +9,10 @@ import TabItem from '@theme/TabItem';
 import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import AutocutPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import AutocutPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import AutocutTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 import PyCode from '!!raw-loader!/_includes/code/graphql.additional.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/graphql.additional-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/graphql.additional.ts';
 import GoCode from '!!raw-loader!/_includes/code/graphql.additional.go';
 import JavaCode from '!!raw-loader!/_includes/code/graphql.additional.java';
@@ -21,7 +23,7 @@ import CurlCode from '!!raw-loader!/_includes/code/graphql.additional.sh';
 
 ## Syntax
 
-Operators such as `limit`, `autocut`, and `sort` modify queries at the class level.
+Functions such as `limit`, `autocut`, and `sort` modify queries at the class level.
 <!--
 For example:
 
@@ -32,9 +34,11 @@ import GraphQLFiltersExample from '/_includes/code/graphql.filters.example.mdx';
 
 ## Limit argument
 
-Supported by the `Get{}`, `Explore{}` and `Aggregate{}` function.
+The `limit` argument restricts the number of results. These functions support `limit`:
 
-A `limit` argument limits the number of results to a specified positive integer:
+- `Get`
+- `Explore`
+- `Aggregate`
 
 import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
@@ -73,11 +77,11 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 
 ## Pagination with `offset`
 
-Supported by the `Get{}` and `Explore{}` functions.
+To return sets of results, "pages", use `offset` and `limit` together to specify a sub-set of the query response.
 
-The `offset` operator works in conjunction with the existing `limit` operator. For example, to list the first ten results, set `limit: 10`. Then, to "display the second page of 10", set `offset: 10`, `limit:10` and so on. E.g. to show the 9th page of 10 results, set `offset: 80, limit: 10` to effectively display results 81-90.
-
-Here's an example of `limit` + `offset`:
+For example, to list the first ten results, set `limit: 10` and `offset: 0`. To display the next ten results, set `offset: 10`. To continue iterating over the results, increase the offset again. For more details, see [performance considerations](./additional-operators.md#performance-considerations)
+ 
+The `Get` and `Explore` functions support `offset`.
 
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
@@ -114,13 +118,14 @@ import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
 
 </details>
 
-### Performance and resource considerations & limitations
+### Performance considerations
 
-The pagination implementation is an offset-based implementation, not a cursor-based implementation. This has the following implications:
+Pagination is not a cursor-based implementation. This has the following implications:
 
-- The cost of retrieving one further page is higher than that of the last. Effectively when searching for search results 91-100, Weaviate will internally retrieve 100 search results and discard results 0-90 before serving them to the user. This effect is amplified if running in a multi-shard setup, where each shard would retrieve 100 results, then the results aggregated and ultimately cut off. So in a 10-shard setup asking for results 91-100 Weaviate will effectively have to retrieve 1000 results (100 per shard) and discard 990 of them before serving. This means, high page numbers lead to longer response times and more load on the machine/cluster.
-- Due to the increasing cost of each page outlined above, there is a limit to how many objects can be retrieved using pagination. By default setting the sum of `offset` and `limit` to higher than 10,000 objects, will lead to an error. If you must retrieve more than 10,000 objects, you can increase this limit by setting the environment variable `QUERY_MAXIMUM_RESULTS=<desired-value>`. Warning: Setting this to arbitrarily high values can make the memory consumption of a single query explode and single queries can slow down the entire cluster. We recommend setting this value to the lowest possible value that does not interfere with your users' expectations.
-- The pagination setup is not stateful. If the database state has changed between retrieving two pages there is no guarantee that your pages cover all results. If no writes happened, then pagination can be used to retrieve all possible within the maximum limit. This means asking for a single page of 10,000 objects will lead to the same results overall as asking for 100 pages of 100 results.
+- **Response time and system load increase as the number of pages grows**. As the offset grows, each additional page request requires a new, larger call against your collection. For example, if your `offset` and `limit` specify results from 21-30, Weaviate retrieves 30 objects and drops the first 20. On the next call, Weaviate retrieves 40 objects and drops the first 30.
+- **Resource requirements are amplified in multi-shard configurations.** Each shard retrieves a full list of objects. Each shard also drops the objects before the offset. If you have 10 shards configured and ask for results 91-100, Weaviate retrieves 1000 objects (100 per shard) and drops 990 of them.
+- **The number of objects you can retrieve is limited**. A single query returns up to `QUERY_MAXIMUM_RESULTS`. If the sum of `offset` and `limit` exceeds `QUERY_MAXIMUM_RESULTS`, Weaviate returns an error. To change the limit, edit the `QUERY_MAXIMUM_RESULTS` environment variable. If you increase `QUERY_MAXIMUM_RESULTS`, use the lowest value possible to avoid performance problems. 
+ - **Pagination is not stateful**. If the database state changes between calls, your pages might miss results. An insertion or a deletion will change the object count. An update could change object order. However, if there are no writes the overall results set is the same if you retrieve a large single page or many smaller ones.
 
 
 ## Autocut
@@ -128,7 +133,9 @@ The pagination implementation is an offset-based implementation, not a cursor-ba
 :::info Added in `v1.20`
 :::
 
-The autocut filter limits results based on discontinuities in the result set. The filter looks for discontinuities, or jumps, in the resulting metric such as vector distances or search scores. To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
+The autocut function limits results based on discontinuities in the result set. Specifically, autocut looks for discontinuities, or jumps, in result metrics such as vector distance or search score.
+
+To use autocut, specify how many jumps there should be in your query. The query stops returning results after the specified number of jumps.
 
 For example, consider a `nearText` search that returns objects with these distance values:
 
@@ -140,13 +147,13 @@ Autocut returns the following:
 - `autocut: 2`:  `[0.1899, 0.1901, 0.191, 0.21, 0.215]`
 - `autocut: 3`:  `[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]`
 
-Autocut works with these operators:
+Autocut works with these functions:
 
 - `nearXXX`
 - `bm25`
 - `hybrid`
 
-To use autocut with the `hybrid` operator, specify the `relativeScoreFusion` ranking method.
+To use autocut with the `hybrid` search, specify the `relativeScoreFusion` ranking method.
 
 Autocut is disabled by default. To explicitly disable autocut, set the number of jumps to `0` or a negative value.
 
@@ -158,9 +165,18 @@ For more `autocut` examples and to learn about the motivation behind this filter
 Sample client code:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={AutocutPyCode}
+      startMarker="# START Autocut Python"
+      endMarker="# END Autocut Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={AutocutPyCodeV3}
       startMarker="# START Autocut Python"
       endMarker="# END Autocut Python"
       language="py"
@@ -178,7 +194,7 @@ Sample client code:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={AutocutPyCode}
+      text={AutocutPyCodeV3}
       startMarker="# START Autocut GraphQL"
       endMarker="# END Autocut GraphQL"
       language="graphql"
@@ -200,18 +216,20 @@ The output is like this:
 
 </details>
 
-For more client code examples for each operator category, see [autocut with similarity search](../../search/similarity.md#autocut), [autocut with `bm25`](../../search/bm25.md#autocut) and [autocut with `hybrid`](../../search/hybrid.md#autocut).
+For more client code examples for each functional category, see these pages:
+
+- [Autocut with similarity search](../../search/similarity.md#autocut).
+- [Autocut with `bm25` search](../../search/bm25.md#autocut).
+- [Autocut with `hybrid` search](../../search/hybrid.md#autocut).
 
 
 ## Cursor with `after`
 
-Starting with version `v1.18`, the `after` operator can be used to sequentially retrieve class objects from Weaviate. This may be useful for retrieving an entire set of objects from Weaviate, for example.
+Starting with version `v1.18`, you can use `after` to retrieve objects sequentially. For example, you can use `after` to retrieve a complete set of objects from a collection.
 
-The `after` operator relies on the order of ids. It can therefore only be applied to list queries without any search operators. In other words, `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, etc.
+`after` creates a cursor that is compatible with single shard and multi-shard configurations.
 
-For those cases, use pagination with `offset`.
-
-An example of the `after` operator usage:
+The `after` function relies on object ids, it only works with list queries. `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, or similar searches. For those use cases, use pagination with `offset` and `limit`.
 
 import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 
@@ -263,40 +281,32 @@ import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 
 </details>
 
-:::note
-The `after` cursor is available on both single-shard and multi-shard set-ups.
-:::
-
-
 ## Sorting
 
 :::info
-Support for sorting was added in `v1.13.0`.
+Added in `v1.13.0`.
 :::
 
-You can sort results by any primitive property, such as a `text`, `string`,
-`number`, or `int`. When a query has a natural order (e.g. because of a
-`near<Media>` vector search), adding a sort operator will override the order.
+You can sort results by any primitive property, such as `text`, `number`, or `int`. When query results, for example, `near<Media>` vector search results, have a natural order, sort functions override that order.
 
+### Sorting considerations
 
-### Cost of sorting / architecture
+Weaviate's sorting implementation does not lead to massive memory spikes. Weaviate does not load all object properties into memory; only the property values being sorted are kept in memory.
 
-Weaviate's sorting implementation is built in a way that it does not lead to massive memory spikes; it does not need to load all objects to be sorted into memory completely. Only the property value being sorted is kept in memory.
+Weaviate does not use any sorting-specific data structures on disk. When objects are sorted, Weaviate identifies the object and extracts the relevant properties. This works reasonably well for small scales (100s of thousand or millions of objects). It is expensive if you sort large lists of objects (100s of millions, billions). In the future, Weaviate may add a column-oriented storage mechanism to overcome this performance limitation.
 
-As of now, Weaviate does not have any data structures on disk specific to sorting, such as a column-oriented storage mechanism. As a result when an object should be sorted, the whole object is identified on disk and the relevant property extracted. This works reasonably well for small scales (100s of thousand or millions), but comes with a high cost at large lists of objects to be sorted (100s of millions, billions).  A column-oriented storage mechanism may be introduced in the future to  overcome this performance limitation.
+### Sort order
 
-### Sorting decisions
-
-#### booleans order
+#### boolean values
 `false` is considered smaller than `true`. `false` comes before `true` in ascending order and after `true` in descending order.
 
-#### nulls order
+#### null values
 `null` values are considered smaller than any non-`null` values. `null` values come first in ascending order and last in descending order.
 
-#### arrays order
-Arrays are compared by each element separately. Elements at the same position are compared to each other, starting from the beginning of an array. First element smaller than its counterpart makes whole array smaller.
+#### arrays
+Arrays are compared by each element separately. Elements at the same position are compared to each other, starting from the beginning of an array. When Weaviate finds an array element in one array that is smaller than its counterpart in the second array, Weaviate considers the whole first array to be smaller than the second one.
 
-Arrays are equal if they have the same size and all elements are equal. If array is subset of other array it is considered smaller.
+Arrays are equal if they have the same length and all elements are equal. If one array is subset of another array it is considered smaller.
 
 Examples:
 - `[1, 2, 3] = [1, 2, 3]`
@@ -306,18 +316,29 @@ Examples:
 
 ### Sorting API
 
-Sorting can be performed by one or more properties. If the values for the first property are identical, Weaviate uses the second property to determine the order, and so on. Thus, the sort operator takes either an object or an array of objects with the two properties described below:
+Sorting can be performed by one or more properties. If the values for the first property are identical, Weaviate uses the second property to determine the order, and so on. 
+
+The sort function takes either an object, or an array of objects, that describe a property and a sort order.
 
 | Parameter | Required | Type            | Description                                               |
 |-----------|----------|-----------------|-----------------------------------------------------------|
-| `path`    | yes      | `[text]`        | Path to the field to sort by: an array of one element containing the field name. GraphQL supports specifying directly the field name. |
-| `order`   | varies by client       | `asc` or `desc` | Which order to sort by, ascending (default) or descending |
+| `path`    | yes      | `text`        | The path to the sort field is an single element array that contains the field name. GraphQL supports specifying the field name directly. |
+| `order`   | varies by client       | `asc` or `desc` | The sort order, ascending (default) or descending.|
 
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START Sorting Python"
+      endMarker="# END Sorting Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START Sorting Python"
       endMarker="# END Sorting Python"
       language="py"
@@ -362,7 +383,7 @@ Sorting can be performed by one or more properties. If the values for the first 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START Sorting GraphQL"
       endMarker="# END Sorting GraphQL"
       language="graphql"
@@ -404,10 +425,10 @@ Sorting can be performed by one or more properties. If the values for the first 
 
 #### Sorting by multiple properties
 
-To sort by more than one property, pass an array of { `path`, `order` } objects to the sort operator:
+To sort by more than one property, pass an array of { `path`, `order` } objects to the sort function:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START MultiplePropSorting Python"
@@ -416,6 +437,15 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
     />
   </TabItem>
 
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START MultiplePropSorting Python"
+      endMarker="# END MultiplePropSorting Python"
+      language="py"
+    />
+  </TabItem>
+  
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}
@@ -454,7 +484,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START MultiplePropSorting GraphQL"
       endMarker="# END MultiplePropSorting GraphQL"
       language="graphql"
@@ -463,16 +493,29 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
 </Tabs>
 
 
-#### Additional properties
+#### Metadata properties
 
-Sometimes sorting by an additional property is required, such as `id`, `creationTimeUnix`, or `lastUpdateTimeUnix`.  This can be achieved by prefixing the property name with an underscore.
+To sort with metadata, add an underscore to the property name.
 
-For example:
+| Property Name | Sort Property  Name |
+| :- | :- |
+| `id` | `_id` |
+| `creationTimeUnix` | `_creationTimeUnix` |
+| `lastUpdateTimeUnix` | `_lastUpdateTimeUnix` |
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START AdditionalPropSorting Python"
+      endMarker="# END AdditionalPropSorting Python"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START AdditionalPropSorting Python"
       endMarker="# END AdditionalPropSorting Python"
       language="py"
@@ -517,7 +560,7 @@ For example:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START AdditionalPropSorting GraphQL"
       endMarker="# END AdditionalPropSorting GraphQL"
       language="graphql"
@@ -525,17 +568,27 @@ For example:
   </TabItem>
 </Tabs>
 
+<details>
+  <summary>Python client v4 property names</summary>
 
-## group
+| Property Name | Sort Property  Name |
+| :- | :- |
+| `uuid` |`_id` |
+| `creation_time` | `_creationTimeUnix` |
+| `last_update_time` | `_lastUpdateTimeUnix` |
 
-You can use a group operator to combine similar concepts (aka _entity merging_). There are two ways of grouping objects with a semantic similarity together.
+</details>
+
+## Grouping
+
+You can use a group to combine similar concepts (also known as _entity merging_). There are two ways of grouping semantically similar objects together, `closest` and `merge`. To return the closest concept, set `type: closest`. To combine similar entities into a single string, set `type: merge`
 
 ### Variables
 
 | Variable | Required | Type | Description |
 | --------- | -------- | ---- | ----------- |
-| `type` | yes | `string` | You can only show the closest concept (`closest`) or merge all similar entities into one single string (`merge`). |
-| `force` | yes | `float` | The force to apply for a particular movements. Must be between 0 and 1 where 0 is equivalent to no movement and 1 is equivalent to largest movement possible. |
+| `type` | yes | `string` | Either `closest` or `merge` |
+| `force` | yes | `float` | The force to apply for a particular movements.<br/>Must be between `0` and `1`. `0` is no movement. `1` is maximum movement. |
 
 ### Example
 
@@ -543,7 +596,9 @@ import GraphQLFiltersGroup from '/_includes/code/graphql.filters.group.mdx';
 
 <GraphQLFiltersGroup/>
 
-This results in the following. Note that publications `International New York Times`, `The New York Times Company` and `New York Times` are merged. The property values that do not have an exact overlap will all be shown, with the value of the most central concept before the brackets.
+The query merges the results for `International New York Times`, `The New York Times Company` and `New York Times`.
+
+The central concept in the group, `The New York Times Company`, leads the group. Related values follow in parentheses.
 
 <details>
   <summary>Expected response</summary>
@@ -593,8 +648,6 @@ This results in the following. Note that publications `International New York Ti
 ```
 
 </details>
-
-
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
