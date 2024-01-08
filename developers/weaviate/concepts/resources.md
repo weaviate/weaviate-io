@@ -32,7 +32,7 @@ The CPU has a direct effect on query and import speed, but does not affect datas
 
 Vector search is the most CPU intensive process in Weaviate operations. Queries are CPU-bound, but imports are also CPU-bound because imports rely on vector search for indexing. Weaviate uses the HNSW (Hierarchical Navigable Small World) algorithm to index vectors. You can [tune the HNSW index](../config-refs/schema/vector-index.md) on a per collection basis in order to maximize performance for your primary use case.
 
-To use multiple CPUs efficiently, enable sharding when you import data. For the fastest imports, enable sharding even on a single node.
+To use multiple CPUs efficiently, create multiple shards for your collection. For the fastest imports, create multiple shards even on a single node.
 
 Each insert, or search, is single-threaded. However, if you make multiple searches or inserts at the same time, Weaviate can make use of multiple threads. [Batch inserts](/developers/weaviate/manage-data/import) use multiple threads to process data in parallel.
 
