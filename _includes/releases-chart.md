@@ -8,8 +8,9 @@ To see release notes for a particular version, click on the version number.
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-:|
-| [1.23.1][c1.23.1] | 2024-01-05 | [3.25.3][p3.25.3] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.4.2][j4.4.2] |
-| [1.23.0][c1.23.0] | 2023-12-18 | ''] | '' | '' | '' |
+| [1.23.2][c1.23.2] | 2024-01-08 | [3.25.3][p3.25.3] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.5.1][j4.5.1] |
+| [1.23.1][c1.23.1] | 2024-01-05 | '' | '' | '' | [4.4.2][j4.4.2] |
+| [1.23.0][c1.23.0] | 2023-12-18 | '' | '' | '' | '' |
 | [1.22.0][c1.22.0] | 2023-10-27 | '' | '' | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] |
 | [1.21.0][c1.21.0] | 2023-08-17 | [3.22.1][p3.22.1] | [1.4.0][ts1.4.0] | [4.9.0][g4.9.0] | [4.2.1][j4.2.1] |
 | [1.20.0][c1.20.0] | 2023-07-06 | [3.22.0][p3.22.0] | '' | '' | [4.2.0][j4.2.0] |
@@ -225,9 +226,9 @@ For links to the Python Client releases, expand this section.
 
 </details>
 
-## Typescript, Javascript Client
+## Typescript and Javascript Clients
 
-For links to the TypeScript and JavaScript Client releases, expand this section.
+For links to the TypeScript Client releases, expand this section. 
 
 <details>
   <summary>Releases</summary>
@@ -246,6 +247,15 @@ For links to the TypeScript and JavaScript Client releases, expand this section.
   | [1.2.0][ts1.2.0] | 2023-05-05 |
   | [1.1.0][ts1.1.0] | 2023-04-21 |
   | [1.0.0][ts1.0.0] | 2023-05-04 |
+
+</details>
+
+The JavaScript client is no longer maintained. The TypeScript client accepts code written in JavaScript and TypeScript. Migrate your JavaScript client code to the TypeScript client.  
+
+For links to the JavaScript Client releases, expand this section. 
+
+<details>
+  <summary>Releases</summary>
 
   ### JavaScript Client
 
@@ -395,6 +405,7 @@ For links to the Java Client releases, expand this section.
 
 
 [comment]: # ( core links )
+[c1.23.2]: https://github.com/weaviate/weaviate/releases/tag/v1.23.2
 [c1.23.1]: https://github.com/weaviate/weaviate/releases/tag/v1.23.1
 [c1.23.0]: https://github.com/weaviate/weaviate/releases/tag/v1.23.0
 [c1.22.9]: https://github.com/weaviate/weaviate/releases/tag/v1.22.9
