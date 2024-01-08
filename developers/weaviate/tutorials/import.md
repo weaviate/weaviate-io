@@ -12,8 +12,6 @@ In this section, we will explore data import, including details of the batch imp
 
 ## Prerequisites
 
-We recommend you complete the [Quickstart tutorial](../quickstart/index.md) first.
-
 Before you start this tutorial, you should follow the steps in the tutorials to have:
 
 - An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.cloud)),
@@ -127,12 +125,15 @@ The result should look something like this:
 When importing large datasets, it may be worth planning out an optimized import strategy. Here are a few things to keep in mind.
 
 1. The most likely bottleneck is the import script. Accordingly, aim to max out all the CPUs available.
-  1. Use `htop` when importing to see if all CPUs are maxed out.
+1. To use multiple CPUs efficiently, enable sharding when you import data. For the fastest imports, enable sharding even on a single node.
 1. Use [parallelization](https://www.computerhope.com/jargon/p/parallelization.htm#:~:text=Parallelization%20is%20the%20act%20of,the%20next%2C%20then%20the%20next.); if the CPUs are not maxed out, just add another import process.
-1. For Kubernetes, fewer large machines are faster than more small machines (due to network latency).
+1. Use `htop` when importing to see if all CPUs are maxed out.
+1. To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars).
+1. For Kubernetes, a few large machines are faster than many small machines (due to network latency).
 
 Our rules of thumb are:
 * You should always use batch import.
+* Use multiple shards.
 * As mentioned above, max out your CPUs (on the Weaviate cluster). Often your import script is the bottleneck.
 * Process error messages.
 * Some clients (e.g. Python) have some built-in logic to efficiently control batch importing.

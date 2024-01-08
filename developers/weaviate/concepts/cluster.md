@@ -47,7 +47,9 @@ All of the scenarios below assume that - as sharding or replication is increased
 
 ### Advantages when increasing sharding
 * Run larger datasets
-* Speed up imports
+* Speed up imports.
+
+To use multiple CPUs efficiently, enable sharding when you import data. For the fastest imports, enable sharding even on a single node.
 
 ### Disadvantages when increasing sharding
 * Query throughput does not improve when adding more sharded nodes

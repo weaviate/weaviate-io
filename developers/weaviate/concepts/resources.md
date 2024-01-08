@@ -32,6 +32,8 @@ The CPU has a direct effect on query and import speed, but does not affect datas
 
 Vector search is the most CPU intensive process in Weaviate operations. Queries are CPU-bound, but imports are also CPU-bound because imports rely on vector search for indexing. Weaviate uses the HNSW (Hierarchical Navigable Small World) algorithm to index vectors. You can [tune the HNSW index](../config-refs/schema/vector-index.md) on a per collection basis in order to maximize performance for your primary use case.
 
+To use multiple CPUs efficiently, enable sharding when you import data. For the fastest imports, enable sharding even on a single node.
+
 Each insert, or search, is single-threaded. However, if you make multiple searches or inserts at the same time, Weaviate can make use of multiple threads. [Batch inserts](/developers/weaviate/manage-data/import) use multiple threads to process data in parallel.
 
 ### When to add more CPUs
@@ -86,6 +88,9 @@ The memory calculation that includes `maxConnections` describes the system state
 
 ### Out-of-Memory issues due to garbage collection
 In rare situations - typically on large machines with very high import speeds - Weaviate can allocate memory faster than the garbage collector can free it. When this happens, the system kernel can trigger an `out of memory kill (OOM-Kill)`. This is a known issue that Weaviate is actively working on.
+
+### Data import
+To avoid out-of-memory issues during imports, set `LIMIT_RESOURCES` to `True` or configure the `GOMEMLIMIT` environment variable. For details, see [Environment variables](../config-refs/env-vars).
 
 ## Strategies to reduce memory usage
 
