@@ -135,8 +135,8 @@ const config = {
                     routeBasePath: 'developers', // route name – where to navigate for docs i.e. weaviate.io/<route-base-path>/...
 
                     // TODO: Update to 'main' for release
-                    // editUrl:
-                       // 'https://github.com/weaviate/weaviate-io/tree/main/',
+                    editUrl:
+                       'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace, math],
                     rehypePlugins: [katex],
                 },

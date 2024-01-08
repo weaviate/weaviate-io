@@ -2,17 +2,21 @@
   "Edu demo WCS connect": {
     "prefix": "edu-demo-wcs-connect",
     "body": [
+      "# START-ANY"
       "import weaviate",
       "import weaviate.classes as wvc",
       "import os",
       "",
       "client = weaviate.connect_to_wcs(",
-      "    url=os.getenv(\"WCS_EDU_DEMO_URL\"),",
-      "    auth_credentials=weaviate.AuthApiKey(os.getenv(\"WCS_EDU_DEMO_RO_KEY\"))",
-	  "    headers={",
+      "    url=os.getenv(\"WCS_DEMO_URL\"),",
+      "    auth_credentials=weaviate.AuthApiKey(os.getenv(\"WCS_DEMO_RO_KEY\"))",
+	    "    headers={",
       "        \"X-OpenAI-Api-Key\": os.getenv(\"OPENAI_APIKEY\")",
+      "        \"X-Cohere-Api-Key\": os.getenv(\"COHERE_APIKEY\")",
       "    }",
       ")"
+      "# END-ANY"
+      ""
     ],
     "description": "Connect to WCS edu demo instance"
   },
