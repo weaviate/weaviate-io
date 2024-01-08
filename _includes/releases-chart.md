@@ -250,9 +250,9 @@ For links to the TypeScript Client releases, expand this section.
 
 </details>
 
-For links to the JavaScript Client releases, expand this section. 
-
 The JavaScript client is no longer maintained. The TypeScript client accepts code written in JavaScript and TypeScript. Migrate your JavaScript client code to the TypeScript client.  
+
+For links to the JavaScript Client releases, expand this section. 
 
 <details>
   <summary>Releases</summary>
