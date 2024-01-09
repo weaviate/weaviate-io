@@ -568,6 +568,40 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 ## Migration guides
 
+<!-- For future release (probably `v4.4b7`) - note from Dirk on 2024-01-09
+
+### `v4.4b6` to `v4.4b7`
+
+#### References
+
+The syntax for `reference_add_many` has changed, so that for example:
+
+```python
+collection.data.reference_add_many(
+    [
+        DataReferenceOneToMany(
+            from_property="ref",
+            from_uuid=uuid_from
+            to=Reference.to(*one or a list of UUIDs*),
+        )
+    ],
+)
+```
+
+is now:
+
+```python
+collection.data.reference_add_many(
+    [
+        DataReference(
+            from_property="ref",
+            from_uuid=uuid_from,
+            to_uuid=*one or a list of UUIDs*,
+        )
+    ]
+)
+``` -->
+
 ### `v4.4b1` to `v4.4b2`
 
 #### References
@@ -606,7 +640,7 @@ You can choose to provide a generic type to a query or data operation. This can 
 * `[object].metadata.uuid` is now `[object].uuid`.
 * `[object].metadata.creation_time_unix` is now `[object].metadata.creation_time`.
 * `[object].metadata.last_update_time_unix` is now `[object].metadata.last_update`.
-* `quantitizer` is renamed to `quantizer` 
+* `quantitizer` is renamed to `quantizer`
 * To request the vector in the returned data, use the `include_vector` parameter ([example](#queries-with-custom-returns)).
 
 #### Data types
