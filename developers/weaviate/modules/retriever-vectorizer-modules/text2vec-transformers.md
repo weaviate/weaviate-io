@@ -16,10 +16,13 @@ Key notes:
 
 - This module is not available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- Models encapsulated in Docker containers.
-- Pre-built `BERT`, `DilstBERT`, `RoBERTa`, `DilstilROBERTa`, etc. models available.
-- Can also use any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
-- The `text2vec-transformers` module automatically chunks text before it is passed to the model.
+- This module is only compatible with modules encapsulated in Docker containers.
+- [Pre-built images](#option-1-pre-built-images) are available with popular models.
+- You can also use other models, such as:
+    - Any publicly available model from the Hugging Face model hub](https://huggingface.co/models) ([read more](#option-2-a-hugging-face-model)).
+    - Any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer` ([read more](#option-3-a-private-or-local-model)).
+- The `text2vec-transformers` module can automatically chunk text based on the model's maximum token length before it is passed to the model.
+    - See [HuggingFaceVectorizer.vectorizer()](https://github.com/weaviate/t2v-transformers-models/blob/main/vectorizer.py) for more details.
 
 :::tip Do you have GPU acceleration?
 
@@ -262,7 +265,7 @@ You can now push your image to your favorite registry or reference it locally in
 
 ### Option 3: A private or local model
 
-You can build a Docker image which supports any model which is compatible with Hugging Face's `AutoModel` and `AutoTokenzier`.
+You can build a Docker image which supports any model which is compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
 
 In the following example, we are going to build a custom image for a non-public model which we have locally stored at `./my-model`.
 
