@@ -2,7 +2,18 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py4" label="Python (v4)">
+
+  ```python
+  import weaviate
+  
+  client = weaviate.connect_to_embedded()
+
+  ```
+
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
 
   ```python
   import weaviate
@@ -14,6 +25,7 @@ import TabItem from '@theme/TabItem';
   ```
 
   </TabItem>
+  
   <TabItem value="js" label="JavaScript/TypeScript">
 
   ```js
