@@ -24,7 +24,7 @@ The Python client is currently in beta. Please note the following:
 
 ## Overview
 
-This page discuses key ideas and aspects of the new Python client. There are code samples throughout the Weaviate documentation, and the "how-to" sections have a large number of task oriented examples. 
+This page discuses key ideas and aspects of the new Python client. In addition to the code samples here, there are code samples throughout the Weaviate documentation. The "how-to" sections also have a large number of task oriented examples. 
 
 Please see the migration guide below for changes in the client between beta releases.
 
