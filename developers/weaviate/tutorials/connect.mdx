@@ -77,23 +77,27 @@ To connect to Weaviate with a client application that uses OIDC, follow these ex
 
 <EmbeddedInstantiationSimple/>
 
-## Providing inference API keys
+## Third party API keys
 
-Additionally, you can provide inference API keys to Weaviate so that you can use modules that leverage external APIs, for example `generative-openai` or `text2vec-cohere`.
+Modules that use external APIs often need API keys. The Weaviate clients send these keys as additional headers.
 
-This is done via an additional header, added as below:
+To add third party API keys, follow these examples:
 
 <WCSAuthenticationApiKeyWithInferenceKey/>
 
 ## Next
 
-You can read more about some of the concepts discussed here, such as:
+For more details, see:
+
 - [Authentication](../configuration/authentication.md)
 - [Configuration](../configuration/index.md)
 - [Modules](../modules/index.md)
 
-For more in-depth [tutorials](../tutorials/index.md), learn how to [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
+For additional tutorials, see:
 
+- [Build schemas](../tutorials/schema.md)
+- [Import data](../tutorials/import.md)
+- [Query data](../tutorials/query.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

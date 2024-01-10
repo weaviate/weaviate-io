@@ -12,8 +12,8 @@ import os
 client = weaviate.connect_to_wcs(
     cluster_url="https://some-endpoint.weaviate.network",
     auth_credentials=weaviate.AuthClientPassword(
-        username: os.getenv("WCS_USER_NAME"),  # Set this environment variable 
-        password: os.getenv("WCS_PASSWORD")  # Set this environment variable
+        username=os.getenv("WCS_USER_NAME"),  # Set this environment variable 
+        password=os.getenv("WCS_PASSWORD")  # Set this environment variable
     )
 )
 ```
