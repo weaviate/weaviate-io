@@ -137,7 +137,7 @@ The `nearText` operator finds data objects based on their vector similarity to a
 
 This operator is enabled if a compatible vectorizer module is configured for the collection. Compatible vectorizer modules are:
 
-* Any `text2ec` module
+* Any `text2vec` module
 * Any `multi2vec` module
 
 
