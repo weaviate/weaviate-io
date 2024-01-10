@@ -24,11 +24,11 @@ The Python client is currently in beta. Please note the following:
 
 ## Overview
 
-This page describes the `v4` Python client for Weaviate.
+This page discuses key ideas and aspects of the Weaviate Python client `v4`.
 
-The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
+In addition to the code samples here, there are code samples throughout the Weaviate documentation. The "how-to" sections also have a large number of task oriented examples. 
 
-Please see the migration guide below for key changes between beta releases.
+For changes in the client between beta releases, please see the [migration guide](../client-libraries/python#migration-guides).
 
 ### Key changes from `v3`
 
