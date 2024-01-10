@@ -11,9 +11,9 @@ import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.p
 import WCSAuthenticationApiKeyWithInferenceKey from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
 import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.simple.mdx';
 
-## Overview
+Learn how to connect to Weaviate.
 
-Learn how to connect to Weaviate. Configure your connection to provide authentication parameters and API keys for Weaviate and third-party API services like Cohere, Hugging Face and OpenAI.
+Configure your connection to provide authentication parameters and API keys for Weaviate and third-party API services like Cohere, Hugging Face and OpenAI.
 
 ## Prerequisites
 
@@ -23,23 +23,23 @@ To configure a connection, you need the following information:
 - If authentication is enabled, the allowed authentication methods
 - If you are using modules, the API keys and module connection details
 
-### Weaviate Cloud Services (WCS)
+### Where to find connection details
 
-The Weaviate Cloud Services dashboard has the cluster URL, authentication status, and enabled modules details.
+**Weaviate Cloud Services (WCS)** If you are using Weaviate Cloud Services (WCS), the dashboard has a "Details" button. Click the button to get the following information:
 
-### Docker and Kubernetes
+ - The cluster URL
+ - Authentication type
+ - API keys, if enabled
+ - Module details
 
-Your container configuration files include connection details. 
+**Docker and Kubernetes** If you are using Docker or Kubernetes, your container configuration files have the connection details. 
 
 - For Docker Compose, see `docker-compose.yml`.
 - For Kubernetes, see `values.yaml` in the Helm chart.
 
 Docker instances often use the `http://localhost:8080` address.
 
-### Embedded Weaviate
-If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication details. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
-
-<EmbeddedInstantiationSimple/>
+**Embedded Weaviate** If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication details. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
 
 ## Connecting to Weaviate
 
@@ -49,29 +49,33 @@ If you are using Embedded Weaviate, you do not need to specify a URL when you cr
 Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
 :::
 
+To connect to Weaviate with a client application, follow these examples: 
+
 <WCSWithoutAuthentication/>
 
-## With authentication enabled
+### With authentication
 
-If authentication is enabled, use a Weaviate API key or OIDC to connect.
+If authentication is enabled, use a Weaviate API key or OIDC to connect. For details, see [Authentication](../configuration/authentication).
 
-### Use a Weaviate API key
+#### Weaviate API keys
+
+To connect to Weaviate with a client application that uses a Weaviate API key, follow these examples.
 
 Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
 
 <WCSAuthenticationApiKey/>
 
-### Use OIDC 
+#### OIDC (WCS username & password) 
 
-WCS username & password
+This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
-:::note Shown setup is for WCS
-This authentication method is available for WCS. Your specific identity provider may use a different authentication configuration, of which there are many.
-
-- Read more about [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
-:::
+To connect to Weaviate with a client application that uses OIDC, follow these examples:
 
 <WCSAuthenticationUserPass/>
+
+### Connect to embedded Weaviate
+
+<EmbeddedInstantiationSimple/>
 
 ## Providing inference API keys
 

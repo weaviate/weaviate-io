@@ -3,7 +3,23 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py4" label="Python (v4)">
+
+```python
+import weaviate
+import os
+
+client = weaviate.connect_to_wcs(
+    cluster_url="https://some-endpoint.weaviate.network",
+    auth_credentials=weaviate.AuthClientPassword(
+        username: os.getenv("WCS_USER_NAME"),  # Set this environment variable 
+        password: os.getenv("WCS_PASSWORD")  # Set this environment variable
+    )
+)
+```
+
+</TabItem>
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
