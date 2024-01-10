@@ -23,7 +23,7 @@ If there is an OIDC provider, the endpoint returns the following fields:
 - `href`: The reference to the client.
 - `cliendID`: The ID of the client.
 
-If there is no OIDC provider, the endpoint returns a `404` HTML status code.
+If there is no OIDC provider, the endpoint returns a `404` HTTP status code.
 
 #### Example
 
