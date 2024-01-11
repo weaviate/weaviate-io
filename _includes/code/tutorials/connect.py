@@ -29,8 +29,8 @@ client = weaviate.connect_to_custom(
 
 # Alternative: Connect to a WCS instance
 # client = weaviate.connect_to_wcs(
-#     cluster_url=os.getenv("WCS_DEMO_URL"),  # Set this environment variable
-#     auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Set this environment variable
+#     cluster_url=os.getenv("YOUR_WCS_URL"),  # Set this environment variable
+#     auth_credentials=weaviate.AuthApiKey(os.getenv("YOUR_WCS_AUTH_KEY"))  # Set this environment variable
 # )
 # END WeaviateAPIKey
 
@@ -62,8 +62,8 @@ import os
 
 client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
-    }
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with the header and key for 
+    }                                                    # the service you are connecting to.
 )
 # END AuthOpenAIAPIKey
 
