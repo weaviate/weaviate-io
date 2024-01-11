@@ -26,7 +26,7 @@ The Python client is currently in beta. Please note the following:
 
 This page discuses key ideas and aspects of the Weaviate Python client `v4`.
 
-In addition to the code samples here, there are code samples throughout the Weaviate documentation. The "how-to" sections also have a large number of task oriented examples. 
+In addition to the code samples here, there are code samples throughout the Weaviate documentation. The "how-to" sections also have a large number of task oriented examples.
 
 For changes in the client between beta releases, please see the [migration guide](../client-libraries/python#migration-guides).
 
@@ -567,6 +567,17 @@ You can choose to provide a generic type to a query or data operation. This can 
 />
 
 ## Migration guides
+
+<!-- For future release (probably `v4.4b7`)
+
+The client will require explicit connection to be established (`.connect()` method) and closed (`.close()` method) to the server. This is to ensure that the client is `async` compatible.
+
+See internal Slack discussions for further notes.
+
+# TODO - also update code patterns everywhere where applicable.
+# Probably not so much on standalone snippets, but where connections are explicitly shown they should also be shown to close.
+
+-->
 
 <!-- For future release (probably `v4.4b7`) - note from Dirk on 2024-01-09
 
