@@ -1,16 +1,17 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
-
-  ```python
-  import weaviate
+     <FilteredTextBlock
+       text={PyCode}
+       startMarker="# START ConnectEmbedded"
+       endMarker="# END ConnectEmbedded"
+       language="py"
+     />
   
-  client = weaviate.connect_to_embedded()
-
-  ```
-
   </TabItem>
 
   <TabItem value="py3" label="Python (v3)">
