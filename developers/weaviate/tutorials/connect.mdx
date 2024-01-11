@@ -13,7 +13,7 @@ import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.si
 
 Learn how to connect to Weaviate.
 
-Configure your connection to provide authentication parameters and API keys for Weaviate and third-party API services like Cohere, Hugging Face and OpenAI.
+Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data. 
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ To configure a connection, you need the following information:
 
 Docker instances often use the `http://localhost:8080` address.
 
-**Embedded Weaviate** If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication details. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
+**Embedded Weaviate** If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication credentials. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
 
 ## Connecting to Weaviate
 
@@ -49,7 +49,7 @@ Docker instances often use the `http://localhost:8080` address.
 Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
 :::
 
-To connect to Weaviate with a client application, follow these examples: 
+To connect to Weaviate without authentication, follow these examples: 
 
 <WCSWithoutAuthentication/>
 
@@ -59,7 +59,7 @@ If authentication is enabled, use a Weaviate API key or OIDC to connect. For det
 
 #### Weaviate API keys
 
-To connect to Weaviate with a client application that uses a Weaviate API key, follow these examples.
+To authenticate with a Weaviate API key, follow these examples.
 
 Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
 
@@ -69,7 +69,7 @@ Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate 
 
 This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
-To connect to Weaviate with a client application that uses OIDC, follow these examples:
+To authenticate with OIDC, follow these examples:
 
 <WCSAuthenticationUserPass/>
 

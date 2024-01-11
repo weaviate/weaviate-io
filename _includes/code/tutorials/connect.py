@@ -24,7 +24,7 @@ client = weaviate.connect_to_custom(
     grpc_host="localhost",
     grpc_port=50051,
     grpc_secure=False,
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Set this environment variable
+    auth_credentials=weaviate.AuthApiKey(os.getenv("YOUR_API_KEY"))  # Set this environment variable
 )
 
 # Alternative: Connect to a WCS instance
