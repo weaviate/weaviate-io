@@ -294,7 +294,7 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 
 ### Additional metadata response
 
-Hybrid search results are sorted by their BM25F score (higher is more relevant). This `score`, and additionally the `explainScore` metadata can be optionally retrieved in the response.
+Hybrid search results are sorted by a score, derived as a fused combination of their BM25F score and `nearText` similarity (higher is more relevant). This `score`, and additionally the `explainScore` metadata can be optionally retrieved in the response.
 
 
 ### Example
