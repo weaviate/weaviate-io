@@ -568,6 +568,25 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 ## Migration guides
 
+
+<!-- For future release (probably `v4.4b7`)
+
+The filter syntax will likely change, to something like:
+
+```python
+wvc.Filter.by_property("name").equal_to("John")
+wvc.Filter.by_creation_time().equal_to(<SOME_DATE>)
+wvc.Filter.by_ref().link_on("refProp").property("name").equal_to(<SOME_DATE>)
+wvc.Filter.by_ref().link_on_multi("refProp", target_collection="targetColl").property("name").equal_to(<SOME_DATE>)
+```
+
+Current syntax will likely be deprecated
+e.g. wvc.Filter(path="name").equal_to("John")
+
+wvc.Filter will remain at the top `wvc` namespace; possibly also be in `wvc.query` namespace and `wvc.data` (needed for `delete_many`)
+
+-->
+
 <!-- For future release (probably `v4.4b7`)
 
 The client will require explicit connection to be established (`.connect()` method) and closed (`.close()` method) to the server. This is to ensure that the client is `async` compatible.
