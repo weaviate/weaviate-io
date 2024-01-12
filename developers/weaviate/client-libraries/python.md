@@ -568,6 +568,15 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 ## Migration guides
 
+<!-- For future release (probably `v4.4b7`)
+
+Batching updates
+
+not possible to use client.batch directly, only per context manager
+manual mode (eg sending batches manually via .create_objects) has been removed
+Batching is dynamic (for workers+ batch sizes) by default, fixed batches can be set via batch.configure_fixed_size(...)
+
+-->
 
 <!-- For future release (probably `v4.4b7`)
 
