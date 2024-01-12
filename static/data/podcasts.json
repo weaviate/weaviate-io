@@ -1,5 +1,78 @@
 [
   {
+    "title": "Weaviate at NeurIPS 2023 (Interview Series)",
+    "description": "Our interview series from the NeurIPS (Neural Information Processing Systems) conference 2023!",
+    "youtube": "xrZxk0H2cmY",
+    "date": "24-01-10",
+    "cover_image": "/img/podcasts/podcast-80.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Weaviate 1.23 Release Podcast with Etienne Dilocker",
+    "description": "Weaviate 1.23 Release Podcast with Weaviate Co-Founder and CTO Etienne Dilocker!",
+    "youtube": "e88O18_2wyo",
+    "date": "2023-12-14",
+    "cover_image": "/img/podcasts/podcast-79.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Rudy Lai on Tactic Generate - Weaviate Podcast #78",
+    "description": "The 78th episode of the Weaviate podcast featuring Rudy Lai, the founder and CEO of Tactic Generate!",
+    "youtube": "igK4JN2-1m4",
+    "date": "2023-11-29",
+    "cover_image": "/img/podcasts/podcast-78.png",
+    "is_use_case": false
+  },
+  {
+    "title": "RAGAS with Jithin James, Shahul Es, and Erika Cardenas - Weaviate Podcast #77",
+    "description": "The 77th Weaviate Podcast on RAGAS, featuring Jithin James, Shahul ES, and Erika Cardenas!",
+    "youtube": "C-UQwvO8Koc",
+    "date": "2023-11-20",
+    "cover_image": "/img/podcasts/podcast-77.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Patrick Lewis on Retrieval-Augmented Generation - Weaviate Podcast #76",
+    "description": "Our 76th Weaviate Podcast featuring Patrick Lewis, an NLP Research Scientist at Cohere!",
+    "youtube": "bHrYZQOEV_Q",
+    "date": "2023-11-14",
+    "cover_image": "/img/podcasts/podcast-76.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Tanmay Chopra on Emissary - Weaviate Podcast #75",
+    "description": "The 75th Weaviate Podcast featuring Tanmay Chopra!",
+    "youtube": "iIy2pbXXxX4",
+    "date": "2023-11-08",
+    "cover_image": "/img/podcasts/podcast-75.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Simba Khadder on FeatureForm - Weaviate Podcast #74",
+    "description": "The 74th Weaviate Podcast feature Simba Khadder, the CEO and Co-Founder of FeatureForm!",
+    "youtube": "fNL_fodHMXE",
+    "date": "2023-11-07",
+    "cover_image": "/img/podcasts/podcast-74.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Charles Packer on MemGPT - Weaviate Podcast #73",
+    "description": "Our 73rd Weaviate Podcast with Charles Packer, the lead author of MemGPT at UC Berkeley!",
+    "youtube": "rxjsbUiuOFo",
+    "date": "2023-11-02",
+    "cover_image": "/img/podcasts/podcast-73.png",
+    "is_use_case": false
+  },
+  {
+    "title": "Madelon Hulsebos on Tabular Machine Learning - Weaviate Podcast #72",
+    "description": "The 72nd episode of the Weaviate Podcast with Madelon Hulsebos!",
+    "youtube": "BMqxJpC4-Co",
+    "date": "2023-11-01",
+    "cover_image": "/img/podcasts/podcast-72.png",
+    "is_use_case": false
+  },
+
+  {
     "title": "LLM Agents",
     "description": "Greg Kamradt and Colin Harmon explain the latest on LLM Agents!",
     "youtube": "iB4ki6gdAdc",
