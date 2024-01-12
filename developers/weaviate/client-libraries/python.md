@@ -24,11 +24,11 @@ The Python client is currently in beta. Please note the following:
 
 ## Overview
 
-This page describes the `v4` Python client for Weaviate.
+This page discuses key ideas and aspects of the Weaviate Python client `v4`.
 
-The full set of features is covered in the client documentation pages. This page covers key ideas and aspects of the new Python client.
+In addition to the code samples here, there are code samples throughout the Weaviate documentation. The "how-to" sections also have a large number of task oriented examples.
 
-Please see the migration guide below for key changes between beta releases.
+For changes in the client between beta releases, please see the [migration guide](../client-libraries/python#migration-guides).
 
 ### Key changes from `v3`
 
@@ -567,6 +567,36 @@ You can choose to provide a generic type to a query or data operation. This can 
 />
 
 ## Migration guides
+
+
+<!-- For future release (probably `v4.4b7`)
+
+The filter syntax will likely change, to something like:
+
+```python
+wvc.Filter.by_property("name").equal_to("John")
+wvc.Filter.by_creation_time().equal_to(<SOME_DATE>)
+wvc.Filter.by_ref().link_on("refProp").property("name").equal_to(<SOME_DATE>)
+wvc.Filter.by_ref().link_on_multi("refProp", target_collection="targetColl").property("name").equal_to(<SOME_DATE>)
+```
+
+Current syntax will likely be deprecated
+e.g. wvc.Filter(path="name").equal_to("John")
+
+wvc.Filter will remain at the top `wvc` namespace; possibly also be in `wvc.query` namespace and `wvc.data` (needed for `delete_many`)
+
+-->
+
+<!-- For future release (probably `v4.4b7`)
+
+The client will require explicit connection to be established (`.connect()` method) and closed (`.close()` method) to the server. This is to ensure that the client is `async` compatible.
+
+See internal Slack discussions for further notes.
+
+# TODO - also update code patterns everywhere where applicable.
+# Probably not so much on standalone snippets, but where connections are explicitly shown they should also be shown to close.
+
+-->
 
 <!-- For future release (probably `v4.4b7`) - note from Dirk on 2024-01-09
 

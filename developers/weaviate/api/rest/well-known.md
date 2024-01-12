@@ -7,7 +7,9 @@ image: og/docs/api.jpg
 
 
 ## OpenID Configuration
-The RESTful API discovery gives information if [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md) authentication is enabled. The endpoint redirects to the token issued if one is configured.
+If [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md) authentication is enabled, the endpoint returns configuration details.
+
+If a token is configured, the endpoint redirects to it.
 
 #### Usage
 
@@ -17,20 +19,19 @@ The discovery endpoint accepts a `GET` request:
 GET /v1/.well-known/openid-configuration
 ```
 
-And it returns the following fields:
+If there is an OIDC provider, the endpoint returns the following fields:
 - `href`: The reference to the client.
 - `cliendID`: The ID of the client.
 
-If no OIDC provider is present, a `404` code will be returned.
+If there is no OIDC provider, the endpoint returns a `404` HTTP status code.
 
 #### Example
-The following command:
 
 import WellknownOpenIDConfig from '/_includes/code/wellknown.openid-configuration.mdx';
 
 <WellknownOpenIDConfig/>
 
-returns:
+If OIDC is configured, the endpoint returns a document like this:
 
 ```json
 {
@@ -41,30 +42,29 @@ returns:
 
 ## Liveness
 
-Live determines whether the application is alive. It can be used for Kubernetes liveness probe.
+The `live` endpoint checks if the application is alive. You can use it for a Kubernetes liveness probe.
 
 #### Usage
 
-The discovery endpoint accepts a `GET` request:
+The endpoint accepts a `GET` request:
 
 ```js
 GET /v1/.well-known/live
 ```
 
-And it returns 200 if the application is able to respond to HTTP requests.
+The endpoint returns HTTP status code `200` if the application is able to respond to HTTP requests.
 
 #### Example
-If the following command:
 
 import WellKnownLive from '/_includes/code/wellknown.live.mdx';
 
 <WellKnownLive/>
 
-returns nothing (a 200 response), you know the application is able to respond to HTTP requests.
+The endpoint returns HTTP status code `200` if the application is able to respond to HTTP requests. 
 
 ## Readiness
 
-Live determines whether the application is ready to receive traffic. It can be used for Kubernetes readiness probe.
+The `ready` endpoint checks if the application is ready to receive traffic. You can use it for Kubernetes readiness probe.
 
 ## Usage
 
@@ -74,16 +74,17 @@ The discovery endpoint accepts a `GET` request:
 GET /v1/.well-known/ready
 ```
 
-And it returns 200 if the application is able to respond to HTTP requests, and 503 if the application is currently not able to serve traffic. If other horizontal replicas of Weaviate are available and they are capable of receiving traffic, all traffic should be redirected there instead.
+The endpoint returns HTTP status code `200` if the application is able to respond to HTTP requests. If the application is currently unable to serve traffic, the endpoint returns HTTP status code `503`.
+
+If the application is unavailable and you have horizontal replicas of Weaviate that can receive traffic, redirect traffic to one of the replicas.
 
 #### Example
-If the following command:
 
 import WellknownReady from '/_includes/code/wellknown.ready.mdx';
 
 <WellknownReady/>
 
-returns nothing (a 200 response), you know the application is able to respond to HTTP requests.
+The endpoint returns HTTP status code `200` if the application is able to respond to HTTP requests.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

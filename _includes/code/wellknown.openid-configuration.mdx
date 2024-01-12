@@ -2,7 +2,20 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+<TabItem value="py4" label="Python (v4)">
+
+```python
+import weaviate
+
+client = weaviate.connect_to_local()
+
+open_id_configuration = client.get_open_id_configuration()
+print(open_id_configuration)
+```
+
+</TabItem>
+
+<TabItem value="py3" label="Python (v3)">
 
 ```python
 import weaviate
