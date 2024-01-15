@@ -40,7 +40,7 @@
 }
 
 .bgColor {
-  background: #f5f5f5;
+  background: #ededed;
   padding: 70px;
 
   @media screen and (max-width: 860px) {
@@ -48,89 +48,53 @@
   }
 }
 
-.openAIPartners {
+.innovativePartners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/openai-logo-partners.svg');
+  background-image: url('../../../../static/img/site/innovative-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
 }
 
-.nvidiaPartners {
+.smartCatPartners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/nvidia-logo-partners.svg');
+  background-image: url('../../../../static/img/site/smartCat-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
 }
-
-.AI21Partners {
+.ml6Partners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/AI21-logo-partners.svg');
+  background-image: url('../../../../static/img/site/ml6-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
 }
-
-.unstructuredPartners {
+.nttDataPartners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/unstructured-logo-partners.svg');
+  background-image: url('../../../../static/img/site/ntt-data-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
 }
-
-.dithubPartners {
+.bigDataPartners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/ditHub-logo-partners.svg');
-  width: 50%;
-  height: 70px;
-  margin: auto;
-}
-
-.datadogPartners {
-  display: flex;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/dataDog-logo-partners.svg');
-  width: 50%;
-  height: 70px;
-  margin: auto;
-}
-
-.haystackPartners {
-  display: flex;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/haystack-logo-partners.svg');
-  width: 50%;
-  height: 70px;
-  margin: auto;
-}
-
-.intelPartners {
-  display: flex;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/intel-logo-partners.svg');
+  background-image: url('../../../../static/img/site/bigdata-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;

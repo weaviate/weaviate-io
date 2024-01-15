@@ -8,7 +8,7 @@ export default function TechnologyPartners() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Strategic Partners</h2>
+          <h2>Technology Partners</h2>
           <p>
             If you have a complementary technology or product, we want to
             collaborate with you.<br></br> Integrate Weaviate's powerful AI
@@ -19,28 +19,78 @@ export default function TechnologyPartners() {
         <div className={styles.techContainer}>
           <div className={styles.techList}>
             <div className={styles.techBox}>
-              <Link to="/partners/awsOff">
-                <span className={styles.aws} />
+              <Link to="#">
+                <span className={styles.openAIPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.gcp} />
+              <Link to="#">
+                <span className={styles.openAIPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.azure} />
+              <Link to="#">
+                <span className={styles.openAIPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.azure} />
+              <Link to="#">
+                <span className={styles.openAIPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.azure} />
+              <Link to="#">
+                <span className={styles.openAIPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.intelPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.openAIPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.openAIPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.haystackPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.datadogPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.dithubPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.unstructuredPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.AI21Partners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.openAIPartners} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="#">
+                <span className={styles.nvidiaPartners} />
               </Link>
             </div>
           </div>
