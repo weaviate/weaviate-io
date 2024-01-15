@@ -1,5 +1,5 @@
 ---
-title: Python (v4)
+title: Python (Client v4)
 sidebar_position: 10
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library', 'experimental']
@@ -12,7 +12,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 :::caution Beta version
 
-The Python client is currently in beta. Please note the following:
+The Python client v4 is currently in beta. Please note the following:
 <br/>
 
 - We strongly encourage you to use the latest version of the Python client *and* the Weaviate server.
