@@ -33,6 +33,16 @@ export default function TechnologyPartners() {
                 <span className={styles.azure} />
               </Link>
             </div>
+            <div className={styles.techBox}>
+              <Link to="/partners/aws">
+                <span className={styles.azure} />
+              </Link>
+            </div>
+            <div className={styles.techBox}>
+              <Link to="/partners/aws">
+                <span className={styles.azure} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
