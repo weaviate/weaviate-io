@@ -292,8 +292,8 @@ The `data` submodule contains all object-level CUD operations, including:
 See some examples below. Note that each function will return varying types of objects.
 
 :::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` will send one request for the entire function call.
-We are evaluating modifing this to send multiple requests by matches in the future.
+As of `4.4b1`, `insert_many` sends one request for the entire function call.
+We are evaluating modifying this to send multiple requests by batches in the future.
 :::
 
 <Tabs groupId="languages">
