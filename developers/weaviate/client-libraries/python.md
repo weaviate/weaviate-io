@@ -593,7 +593,7 @@ The v4.4b7 client introduces changes to `client.batch`.
 
 - `client.batch` requires a context manager. 
 - Manual mode is removed, you cannot send batches with `.create_objects`.
-- Batch size and the number of works are dynamically assigned. Use `batch.configure_fixed_size` to specify a batch size. 
+- Batch size and the number of concurrent requests are dynamically assigned. Use `batch.configure_fixed_size` to specify values. 
 - The `add_reference` method is updated.
 - The `to_object_collection` method is removed.
 
