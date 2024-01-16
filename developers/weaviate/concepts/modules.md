@@ -34,11 +34,11 @@ Depending on the type of data you want to store and search (text, images, etc.),
 
 ## Available module types
 
-This graphic displays the available modules for the latest Weaviate version (v||site.weaviate_version|), broadly categorized into one of the following:
+This graphic displays the available modules for the latest Weaviate version (v||site.weaviate_version|). Modules are grouped into these categories:
 
-- Vectorization modules,
-- Vectorization + additional functionality modules, and
-- Other modules.
+- Vectorization modules
+- Vectorization and additional functionality modules
+- Other modules
 
 ![Weaviate module ecosystem](./img/weaviate-modules.png "Weaviate module ecosystem")
 
