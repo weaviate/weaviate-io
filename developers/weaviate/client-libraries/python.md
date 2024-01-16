@@ -1,5 +1,5 @@
 ---
-title: Python (v4)
+title: Python (Client v4)
 sidebar_position: 10
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library', 'experimental']
@@ -12,7 +12,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 :::caution Beta version
 
-The Python client is currently in beta. Please note the following:
+The Python client v4 is currently in beta. Please note the following:
 <br/>
 
 - We strongly encourage you to use the latest version of the Python client *and* the Weaviate server.
@@ -292,8 +292,8 @@ The `data` submodule contains all object-level CUD operations, including:
 See some examples below. Note that each function will return varying types of objects.
 
 :::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` will send one request for the entire function call.
-We are evaluating modifing this to send multiple requests by matches in the future.
+As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may 
+send multiple requests as batches.
 :::
 
 <Tabs groupId="languages">
