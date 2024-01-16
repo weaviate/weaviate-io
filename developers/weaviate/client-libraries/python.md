@@ -293,7 +293,7 @@ See some examples below. Note that each function will return varying types of ob
 
 :::caution `insert_many` sends one request
 As of `4.4b1`, `insert_many` will send one request for the entire function call.
-We are evaluating modifing this to send multiple requests by matches in the future.
+We are evaluating modifing this to send multiple requests by batches in the future.
 :::
 
 <Tabs groupId="languages">
