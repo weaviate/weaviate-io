@@ -568,6 +568,16 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 ## Migration guide
 
+### Changes in `v4.4b8`
+
+#### Reference filters
+
+Reference filters have a simplified syntax. The new syntax looks like this:
+
+```python
+Filter.by_ref("ref").by_property("target_property")
+```
+ 
 ### Changes in `v4.4b7`
 
 #### Library imports
@@ -611,7 +621,9 @@ Updated `client.batch` parameters
         
 #### Filter syntax
 
-Filter syntax is updated. 
+Filter syntax is updated in v4.4b7.
+
+NOTE: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |
