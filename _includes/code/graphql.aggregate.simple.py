@@ -200,3 +200,8 @@ print(response.properties)
 assert "inPublication" in response.properties.keys()
 assert "wordCount" in response.properties.keys()
 assert response.total_count > 0
+
+# START-ANY
+
+client.close()
+# END-ANY

@@ -180,3 +180,8 @@ gql_query = """
 # TEST DISABLED - sandbox needed
 # gqlresponse = client.query.raw(gql_query)
 # test_gqlresponse(response, gqlresponse)
+
+# START-ANY
+
+client.close()
+# END-ANY

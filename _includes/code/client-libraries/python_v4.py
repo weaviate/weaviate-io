@@ -562,3 +562,8 @@ response = questions.query.fetch_objects(
     return_metadata=wvc.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
 )
 # END GenericsExample
+
+# START-ANY
+
+client.close()
+# END-ANY

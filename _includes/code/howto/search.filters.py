@@ -17,7 +17,7 @@ import os
 #         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
 #     }
 # )
-# TODOv4 - update this to call the wcs instace
+# TODOv4 - update this to call the wcs instance
 client = weaviate.connect_to_local(
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
@@ -620,3 +620,8 @@ for o in response.objects:
 
 # TEST
 assert str(response.objects[0].uuid) == target_id
+
+# START-ANY
+
+client.close()
+# END-ANY

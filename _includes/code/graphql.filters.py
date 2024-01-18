@@ -116,3 +116,8 @@ assert len(response.objects) == 1
 # END FilterByGeoCoordinates
 
 # TEST
+
+# START-ANY
+
+client.close()
+# END-ANY

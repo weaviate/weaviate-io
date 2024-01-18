@@ -124,3 +124,8 @@ print(f"Segments: { pq_config.segments }")
 print(f"Centroids: { pq_config.centroids }")
 
 # END GetSchema
+
+# START-ANY
+
+client.close()
+# END-ANY

@@ -224,3 +224,8 @@ result = multi_tenantA.query.fetch_object_by_id(object_id)
 
 # TODO - investigate whether the code above is wrong or this is related to the client
 # assert result.references["hasCategory"][0]["href"] == f"/v1/objects/JeopardyCategory/{category_id}"
+
+# START-ANY
+
+client.close()
+# END-ANY
