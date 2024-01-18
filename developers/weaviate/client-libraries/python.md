@@ -555,7 +555,7 @@ You can also specify which metadata to retrieve. This example fetches the `creat
 
 Since the `cursor` API requires the object UUID for indexing, the `uuid` metadata is always retrieved.
 
-### Data model / generics
+### Data model and generics
 
 You can choose to provide a generic type to a query or data operation. This can be beneficial as the generic class is used to extract the return properties and statically type the response.
 
@@ -566,68 +566,83 @@ You can choose to provide a generic type to a query or data operation. This can 
   language="py"
 />
 
-## Migration guides
+## Migration guide
 
-<!-- For future release (probably `v4.4b7`)
+### Changes in `v4.4b7`
 
-Batching updates
+#### Library imports
 
-not possible to use client.batch directly, only per context manager
-manual mode (eg sending batches manually via .create_objects) has been removed
-Batching is dynamic (for workers+ batch sizes) by default, fixed batches can be set via batch.configure_fixed_size(...)
+Importing directly from `weaviate` is deprecated. Use `import weaviate.classes as wvc` instead.
 
--->
+#### Close client connections
 
-<!-- For future release (probably `v4.4b7`)
-
-The filter syntax will likely change, to something like:
+The v4.4b7 client introduces aysnc processing. As a result, you have to explicitly close your client connections. 
 
 ```python
-wvc.Filter.by_property("name").equal_to("John")
-wvc.Filter.by_creation_time().equal_to(<SOME_DATE>)
-wvc.Filter.by_ref().link_on("refProp").property("name").equal_to(<SOME_DATE>)
-wvc.Filter.by_ref().link_on_multi("refProp", target_collection="targetColl").property("name").equal_to(<SOME_DATE>)
+import weaviate
+client = weaviate.connect_to_local()
+
+print(client.is_ready())
+
+client.close()
 ```
 
-Current syntax will likely be deprecated
-e.g. wvc.Filter(path="name").equal_to("John")
+#### Batch processing
 
-wvc.Filter will remain at the top `wvc` namespace; possibly also be in `wvc.query` namespace and `wvc.data` (needed for `delete_many`)
+The v4.4b7 client introduces changes to `client.batch`. 
 
--->
+- `client.batch` requires a context manager. 
+- Manual mode is removed, you cannot send batches with `.create_objects`.
+- Batch size and the number of concurrent requests are dynamically assigned. Use `batch.configure_fixed_size` to specify values. 
+- The `add_reference` method is updated.
+- The `to_object_collection` method is removed.
 
-<!-- For future release (probably `v4.4b7`)
+Updated `client.batch` parameters
 
-The client will require explicit connection to be established (`.connect()` method) and closed (`.close()` method) to the server. This is to ensure that the client is `async` compatible.
+| Old value | Value in v4.4b7 |
+| :-- | :-- |
+| from_object_uuid: UUID | from_uuid: UUID | 
+| from_object_collection: str | from_collection: str |
+| from_property_name: str | from_property: str |
+| to_object_uuid: UUID | to: Union[WeaviateReference, List[UUID]] |
+| to_object_collection: Optional[str] = None | |
+| tenant: Optional[str] = None | tenant: Optional[str] = None |
 
-See internal Slack discussions for further notes.
+        
+#### Filter syntax
 
-# TODO - also update code patterns everywhere where applicable.
-# Probably not so much on standalone snippets, but where connections are explicitly shown they should also be shown to close.
+Filter syntax is updated. 
 
--->
+| Old syntax | New syntax in v4.4b7 |
+| :-- | :-- |
+| Filter(path=property) | Filter.by_property(property) |
+| Filter(path=["ref", "target_class", "target_property"]) | Filter.by_ref().link_on("ref").by_property("target_property") |
+| FilterMetadata.ByXX | Filter.by_id()<br/> Filter.by_creation_time() <br/> Filter.by_update_time() |
 
-<!-- For future release (probably `v4.4b7`) - note from Dirk on 2024-01-09
-
-### `v4.4b6` to `v4.4b7`
-
-#### References
-
-The syntax for `reference_add_many` has changed, so that for example:
+The pre-4.4b7 filter syntax is deprecated. The new, v4.4b7 syntax looks like this.
 
 ```python
-collection.data.reference_add_many(
-    [
-        DataReferenceOneToMany(
-            from_property="ref",
-            from_uuid=uuid_from
-            to=Reference.to(*one or a list of UUIDs*),
-        )
-    ],
-)
+import weaviate
+import datetime
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    filters=wvc.Filter.by_property("round").equal("Double Jeopardy!") &
+            wvc.Filter.by_creation_time().greater_or_equal(datetime.datetime(2005, 1, 1)) |
+            wvc.Filter.by_creation_time().greater_or_equal(datetime.datetime(2000, 12, 31)),
+            limit=3
+    )
+
+
+client.close()
 ```
 
-is now:
+#### `reference_add_many` updated
+
+The `reference_add_many` syntax is updated; `DataReferenceOneToMany` is now `DataReference`.
 
 ```python
 collection.data.reference_add_many(
@@ -639,9 +654,19 @@ collection.data.reference_add_many(
         )
     ]
 )
-``` -->
+```
 
-### `v4.4b1` to `v4.4b2`
+#### References
+
+Multi-target references updated. These are the new functions:
+
+- `ReferenceProperty.MultiTarget`
+- `DataReference.MultiTarget`
+- `QueryReference.MultiTarget`
+
+Use `ReferenceToMulti` for multi-target references.
+
+### Older client changes
 
 #### References
 
