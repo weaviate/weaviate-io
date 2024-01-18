@@ -10,6 +10,9 @@ import weaviate
 client = weaviate.connect_to_local()
 
 is_ready = client.is_ready()
+
+client.close()
+
 print(is_ready) # returns True if Weaviate is ready
 ```
 
