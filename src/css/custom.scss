@@ -737,3 +737,7 @@ Dropdown style removed.
     width: 100% !important;
   }
 }
+
+.navbar [href='/jp'] {
+  display: none !important;
+}

@@ -1,0 +1,225 @@
+[data-theme='light'] {
+  .socialBox {
+    .slack {
+      background-image: url('/img/site/slack_new.png');
+    }
+    .github {
+      background-image: url('/img/site/github.png');
+    }
+    .twitter {
+      background-image: url('/img/site/twitter-x.png');
+    }
+  }
+}
+
+.rightText {
+  margin: 0 0 22px;
+}
+
+.mobileSocialBox {
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    align-content: center;
+    justify-content: space-around;
+  }
+}
+
+.communityForm {
+  display: flex;
+  width: inherit;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 60px;
+    row-gap: 20px;
+    width: 100%;
+
+    iframe {
+      height: 200px;
+    }
+  }
+}
+
+.communityButton {
+  border-radius: 0.3125rem;
+  background: #61bd73;
+  width: 10.0625rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-style: none;
+  margin-left: -158px;
+
+  @media screen and (max-width: 768px) {
+    margin-left: unset;
+  }
+}
+
+.subscribeInput {
+  width: 31.25rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #1c1468;
+  border-style: none;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.subscribeInput::placeholder {
+  color: #c3c5d8 !important;
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 144.9%; /* 1.449rem */
+  letter-spacing: -0.01rem;
+}
+.communityWrapper {
+  background: #130c49;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  row-gap: 50px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  color: #ffffff;
+  margin-top: 60px;
+
+  h2 {
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    display: flex;
+    align-content: center;
+    gap: 30px;
+  }
+}
+.rightSide {
+  display: flex;
+  gap: 25px;
+  width: 22rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 400px) {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.leftSide {
+  display: flex;
+  width: 33rem;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+    flex-wrap: nowrap;
+  }
+}
+.socialBox {
+  display: flex;
+  flex: 35%;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border-radius: 0.9375rem;
+  border: 1px solid #130c49;
+  background: #fff;
+  background-size: contain;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 8.75rem;
+  height: 8.75rem;
+  justify-content: center;
+
+  @media screen and (max-width: 500px) {
+    width: 9.38156rem;
+    height: 3.875rem;
+    flex-shrink: 0;
+  }
+
+  .slack {
+    display: flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    @media screen and (max-width: 500px) {
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-shrink: 0;
+    }
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/slack_new.png');
+  }
+  .text {
+    padding-top: 10px;
+    text-align: center;
+    color: #130c49;
+  }
+
+  .github {
+    display: flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/github.png');
+
+    @media screen and (max-width: 500px) {
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-shrink: 0;
+    }
+  }
+  .twitter {
+    display: flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/twitter-x.png');
+
+    @media screen and (max-width: 500px) {
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .forum {
+    display: flex;
+    width: 3.75rem;
+    height: 3.75rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/w-forum.png');
+
+    @media screen and (max-width: 500px) {
+      width: 2.25rem;
+      height: 2.25rem;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.sc-VigVT.dbVBAB {
+  background: #61bd73 !important;
+  color: #1c1468;
+}
