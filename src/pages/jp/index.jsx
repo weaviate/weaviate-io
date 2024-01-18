@@ -31,9 +31,7 @@ export default function HomeJP() {
         <HomepageHeader />
         <main>
           <HomepageWhatYouCanDo />
-          <HomepageIntegrations />
-          <HomepageJoinCommunity />
-          <HomepageLatestInsights />
+
           <ContactForm />
         </main>
       </Layout>
