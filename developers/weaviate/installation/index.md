@@ -5,14 +5,7 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-:::info Related pages
-- [WCS Quickstart](../../wcs/quickstart.mdx)
-- [References: Configuration](../configuration/index.md)
-:::
-
-## Overview
-
-This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option.
+Weaviate is available as a hosted service, Weaviate Cloud Services (WCS) or as a self managed instance. This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option.
 
 ## How to run Weaviate
 
@@ -77,6 +70,9 @@ After the build is complete, you can run this Weaviate build with docker compose
 docker compose up
 ```
 
+## Related pages
+- [WCS Quickstart](../../wcs/quickstart.mdx)
+- [References: Configuration](../configuration/index.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
