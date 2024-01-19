@@ -586,7 +586,9 @@ Importing directly from `weaviate` is deprecated. Use `import weaviate.classes a
 
 #### Close client connections
 
-The v4.4b7 client introduces aysnc processing. As a result, you have to explicitly close your client connections. 
+Starting in v4.4b7, you have to explicitly close your client connections. There are two ways to close client connections. 
+
+Use `client.close()` to explicitly close your client connections.  
 
 ```python
 import weaviate
@@ -595,6 +597,17 @@ client = weaviate.connect_to_local()
 print(client.is_ready())
 
 client.close()
+```
+
+Use a context manager to close client connections for you.
+
+```python
+import weaviate
+
+with weaviate.connect_to_local() as client:
+     print(client.is_ready())
+
+# Python closes the client when you leave the 'with' block     
 ```
 
 #### Batch processing
@@ -623,7 +636,7 @@ Updated `client.batch` parameters
 
 Filter syntax is updated in v4.4b7.
 
-NOTE: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
+**NOTE**: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |
