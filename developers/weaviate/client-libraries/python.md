@@ -586,7 +586,7 @@ Importing directly from `weaviate` is deprecated. Use `import weaviate.classes a
 
 #### Close client connections
 
-Starting in v4.4b7 you have to explicitly close your client connections. There are two ways to close client connections. 
+Starting in v4.4b7, you have to explicitly close your client connections. There are two ways to close client connections. 
 
 Use `client.close()` to explicitly close your client connections.  
 
