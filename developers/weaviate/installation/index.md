@@ -5,17 +5,14 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-Weaviate is available as a hosted service, Weaviate Cloud Services (WCS) or as a self managed instance. This section shows you available options for running Weaviate, and how to install and configure Weaviate with each option.
+Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. For details on how to configure Weaviate, see the following.
 
-## How to run Weaviate
+- **[Weaviate Cloud Services](../../wcs/quickstart.mdx)**: Use this managed Weaviate service for both development and production environments.
+- **[Docker Compose](./docker-compose.md)**: Opt for this containerized deployment method primarily for development projects.
+- **[Kubernetes](./kubernetes.md)**: Ideal for scalable, containerized deployments, this method is typically employed for production setups.
+- **[Embedded Weaviate](./embedded.md)**: For in-line instantiation from a client; currently in experimental stage and great for evaluation.
+- **[AWS Marketplace](./aws-marketplace.md)**: Conveniently deploy directly from the AWS Marketplace.
 
-You can run Weaviate with any of the following methods:
-
-* [Weaviate Cloud Services](../../wcs/quickstart.mdx) – Use this managed Weaviate service for both development and production environments.
-* [Docker Compose](./docker-compose.md) – Opt for this containerized deployment method primarily for development projects.
-* [Kubernetes](./kubernetes.md) – Ideal for scalable, containerized deployments, this method is typically employed for production setups.
-* [Embedded Weaviate](./embedded.md) - For in-line instantiation from a client; currently in experimental stage and great for evaluation.
-* [AWS Marketplace](./aws-marketplace.md) - Conveniently deploy directly from the AWS Marketplace.
 
 The Weaviate library is identical regardless of whether it is used via Weaviate Cloud Services (WCS) or by downloading an open source version. The only difference that WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
