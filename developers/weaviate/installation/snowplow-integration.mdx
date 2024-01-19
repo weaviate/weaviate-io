@@ -1,28 +1,26 @@
 ---
 title: Snowpark Container Services (SPCS)
-sidebar_position: 10
+sidebar_position: 20
 image: og/docs/installation.jpg
-# tags: ['installation', 'AWS Marketplace']
+# tags: ['installation', 'Snowpark', 'SPCS']
 ---
 
+Snowflake provides a hosted solution, [Snowpark Container Services (SPCS)](https://docs.snowflake.com/en/developer-guide/snowpark-container-services/overview), that runs containers inside the Snowflake ecosystem. To configure a Weaviate container in SPCS, follow the steps on this page.
 
-# Configure a Weaviate Container in SPCS: A Step-by-Step Guide
+The code in this guide configures a sample Snowpark Container Services (SPCS) instance. Change the database name, warehouse name, image repository name, and other example values to match your deployment.
 
-The code in this guide configures a sample Snowpark Container Services (SPCS). You should change the database name, warehouse name, image repository name, and other example values to match your deployment.
 
-## Initial Setup
+## 1. Log into Snowflake
 
-### 1. Log into Snowflake
-
-Use the [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql) client to connect to Snowflake.
+Download the [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql) client. Use the SnowSQL client to connect to Snowflake.
 
 ```bash  
 snowsql -a "YOURINSTANCE" -u "YOURUSER"
 ```
 
-### 2. Setup a `user` and a `role`
+## 2. Setup a `user` and a `role`
 
-To setup a user and role, edit the `PASSWORD` field and run this SQL code:
+Create a role, and a user, for the Weaviate instance. To setup a user and role, edit the `PASSWORD` field then use the SnowSQL client to run this SQL code:
 
 ```sql
 USE ROLE ACCOUNTADMIN;
@@ -42,7 +40,7 @@ ALTER USER weaviate_user SET DEFAULT_ROLE = WEAVIATE_ROLE;
 
 ### 3. Create a database and a warehouse
 
-Create a database and warehouse to use with Weaviate. Edit the database name and repository name, then run this code.
+TO create a database and warehouse to use with Weaviate, edit the database name and repository name, then run this code.
 
 ```sql
 USE ROLE SYSADMIN;
