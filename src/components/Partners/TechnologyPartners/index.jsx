@@ -25,22 +25,22 @@ export default function TechnologyPartners() {
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.coherePartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.langchainPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.databricksPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.jinaPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
@@ -50,12 +50,12 @@ export default function TechnologyPartners() {
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.redhatPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.astronomerPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
@@ -85,7 +85,7 @@ export default function TechnologyPartners() {
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.openAIPartners} />
+                <span className={styles.arizePartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
