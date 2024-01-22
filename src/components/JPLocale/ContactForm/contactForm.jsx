@@ -13,24 +13,15 @@ export default function ContactForm() {
               action="https://formcarry.com/s/FZwYB5WwuG"
               method="POST"
             >
-              <h2 className={styles.title}>Contact us </h2>
-              <div className={styles.links}>
-                <p>
-                  Do you have any questions? Let’s get this conversation
-                  started.
-                </p>
-              </div>
+              <h2 className={styles.title}>お問い合わせ</h2>
+              <div className={styles.links}></div>
 
-              <input
-                type="input"
-                name="formName"
-                placeholder="First Name"
-              ></input>
+              <input type="input" name="formName" placeholder="名前"></input>
               <span></span>
               <input
                 type="email"
                 name="formEmail"
-                placeholder="Work Email Address"
+                placeholder="メールアドレス"
               ></input>
               <span></span>
 
@@ -38,10 +29,10 @@ export default function ContactForm() {
                 type="text"
                 name="formMessage"
                 className={styles.formMessage}
-                placeholder="Message"
+                placeholder="メッセージ"
               ></textarea>
               <button type="submit" name="formSumbit">
-                Send
+                送信
               </button>
             </form>
           </div>

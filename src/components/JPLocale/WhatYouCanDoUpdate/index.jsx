@@ -19,7 +19,7 @@ export default function HomepageWhatYouCanDo() {
   return (
     <div className="container">
       <div className={styles.header}>
-        <h2 className={styles.title}>クイックスタート</h2>
+        <h1 className={styles.title}>クイックスタート</h1>
         <p className={styles.subtitle}></p>
       </div>
 
@@ -204,6 +204,61 @@ export default function HomepageWhatYouCanDo() {
 
         <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
           <CodeAutoschemaImport />
+        </div>
+      </div>
+
+      <div className={styles.tutorialBox}>
+        <h2>4. クエリ方法</h2>
+        <p>
+          Weaviateを使ってベクトル検索、キーワード検索とハイブリッド検索のクエリを実行できます。
+        </p>
+
+        <p>Generatorモジュールを使って簡単に検索拡張生成もできます。</p>
+        <p>
+          このチュートリアルではベクトル検索と検索拡張生成の方法を紹介させていただきます。
+        </p>
+      </div>
+
+      <div className={styles.tutorialBox}>
+        <h3>ベクトル検索</h3>
+        <p>まずは、ベクトル検索のクエリを実行します。</p>
+
+        <p>
+          クエリの<code>nearText</code>
+          で指定した文章に関連するデータオブジェクトが取得でます。
+        </p>
+        <p>テキストを入力値として、類似度の高いデータを検索します。</p>
+
+        <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
+          <CodeAutoschemaNeartext />
+        </div>
+        <p>結果はこちら</p>
+
+        <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
+          <BiologyQuestionsJson />
+        </div>
+      </div>
+
+      <div className={styles.tutorialBox}>
+        <h3>検索拡張生成 (RAG)</h3>
+        <p>次は、検索拡張生成のクエリを実行します。</p>
+
+        <p>
+          まずは、ベクトル検索のクエリと似たように<code>nearText</code>
+          で検索します。
+        </p>
+        <p>
+          <code>nearText</code>
+          で検索したデータオブジェクトに対して、Generatorモジュールを使ってプロンプトで結果を加工することがでます。
+        </p>
+
+        <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
+          <CodeAutoschemaGenerative />
+        </div>
+        <p>結果はこちら</p>
+
+        <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
+          <BiologyGenerativeSearchJson />
         </div>
       </div>
     </div>

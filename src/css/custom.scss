@@ -738,6 +738,10 @@ Dropdown style removed.
   }
 }
 
-.navbar [href='/jp'] {
+.jp-page .navbar {
+  display: none !important;
+}
+
+.jp-page .row.footer__links {
   display: none !important;
 }

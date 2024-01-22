@@ -19,6 +19,10 @@ export default function HomeJP() {
     if (navbar) {
       navbar.style.display = 'none';
     }
+
+    if (window.location.pathname === '/jp') {
+      document.body.classList.add('jp-page');
+    }
   }, []);
 
   return (
