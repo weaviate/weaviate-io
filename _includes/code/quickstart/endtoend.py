@@ -20,6 +20,7 @@ client.close()
 import weaviate
 import weaviate.classes as wvc
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
+
 # ===== import data =====  # EndToEndExample
 import requests
 import json
@@ -179,4 +180,7 @@ assert obj_count.total_count == 10
 
 client.collections.delete("Question")  # Cleanup after
 
+# DockerInstantiationExample  # EndToEndExample  # InstantiationExample  # NearTextExample
+
 client.close()
+# END DockerInstantiationExample  # END EndToEndExample  # END InstantiationExample  # END NearTextExample
