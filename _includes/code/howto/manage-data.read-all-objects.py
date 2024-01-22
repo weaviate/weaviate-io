@@ -49,7 +49,7 @@ multi_collection = client.collections.get("WineReviewMT")
 tenants = multi_collection.tenants.get()
 # highlight-end
 
-# Iterate thourgh tenants
+# Iterate through tenants
 for tenant_name in tenants.keys():
     # Iterate through objects within each tenant
     # highlight-start
@@ -57,3 +57,8 @@ for tenant_name in tenants.keys():
     # highlight-end
         print(f"{tenant_name}: {item.properties}")
 # END ReadAllTenants
+
+# START-ANY
+
+client.close()
+# END-ANY

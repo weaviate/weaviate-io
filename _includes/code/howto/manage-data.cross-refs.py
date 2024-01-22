@@ -314,3 +314,8 @@ questions.data.reference_replace(
 #     "href": f"/v1/objects/JeopardyCategory/{museums_id}"
 # }]
 # END Test results
+
+# START-ANY
+
+client.close()
+# END-ANY

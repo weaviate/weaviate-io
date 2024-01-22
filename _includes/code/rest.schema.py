@@ -200,3 +200,8 @@ print(article_shards)
 # START UpdateCollectionShards
 # Coming soon :)
 # END UpdateCollectionShards
+
+# START-ANY
+
+client.close()
+# END-ANY

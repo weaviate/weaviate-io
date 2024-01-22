@@ -59,3 +59,8 @@ print(result)
 # Tests needed
 
 client.collections.delete("Question")
+
+# START-ANY
+
+client.close()
+# END-ANY
