@@ -13,7 +13,9 @@ Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as 
 - **[Embedded Weaviate](./embedded.md)**: For in-line instantiation from a client; currently in experimental stage and great for evaluation.
 - **[AWS Marketplace](./aws-marketplace.md)**: Conveniently deploy directly from the AWS Marketplace.
 
+TODO NEXT: ADD google cloud, Snowflake. Updae desrip[tions, reorder
 
+] 
 The Weaviate library is identical regardless of whether it is used via Weaviate Cloud Services (WCS) or by downloading an open source version. The only difference that WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
 
 :::info configuration yaml files
