@@ -290,7 +290,105 @@ New in Weaviate version 1.20.
 
 In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
 
-For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms)
+<details>
+  <summary>Worked fusion scoring comparison</summary>
+
+An example set of score calculations are shown below.
+
+#### Base Search Results
+
+Let's say that a search returns **five objects** with **document id** (from 0 to 4), and **scores** from **keyword** and **vector search**, **ordered by score**:
+
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 5</td><td>(0): 2.6</td><td>(2): 2.3</td><td>(4): 0.2</td><td>(3): 0.09</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(2): 0.6</td><td>(4): 0.598</td><td>(0): 0.596</td><td>(1): 0.594</td><td>(3): 0.009</td>
+  </tr>
+</table>
+
+
+#### Ranked Fusion
+
+The score depends on the rank of each result and is computed according to `1/(RANK + 60 +1)`, resulting in:
+
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 0.0164</td><td>(0): 0.0161</td><td>(2): 0.0159</td><td>(4): 0.0156</td><td>(3): 0.0154</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(2): 0.0164</td><td>(4): 0.0161</td><td>(0): 0.0159</td><td>(1): 0.0156</td><td>(3): 0.0154</td>
+  </tr>
+</table>
+
+As you can see, the results of each rank is identical, regardless of the input score.
+
+#### Relative Score Fusion
+
+Here, we normalize the scores – the largest score is set to 1 and the lowest to 0, and all entries in-between are scaled according to their **relative distance** to the **maximum** and **minimum values**.
+
+<table>
+  <tr>
+    <th>Search Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Keyword</td>
+    <td>(1): 1.0</td><td>(0): 0.511</td><td>(2): 0.450</td><td>(4): 0.022</td><td>(3): 0.0</td>
+  </tr>
+  <tr>
+    <td>Vector</td>
+    <td>(2): 1.0</td><td>(4): 0.996</td><td>(0): 0.993</td><td>(1): 0.986</td><td>(3): 0.0</td>
+  </tr>
+</table>
+
+Here, the scores reflect the relative distribution of the original scores. For example, the vector search scores of the first 4 documents were almost identical, which is still the case for the normalized scores.
+
+#### Weighting & final scores
+
+Before adding these scores up, they are weighted according to the alpha parameter. Let’s assume `alpha=0.5`, meaning both search types contribute equally to the final result and therefore each score is multiplied by 0.5.
+
+Now, we can add the scores for each document up and compare the results from both fusion algorithms.
+
+<table>
+  <tr>
+    <th>Algorithm Type</th>
+    <th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th><th>(id): score</th>
+  </tr>
+  <tr>
+    <td>Ranked</td>
+    <td>(2): 0.01615</td><td>(1): 0.016</td><td>(0): 0.016</td><td>(4): 0.01585</td><td>(3): 0.0154</td>
+  </tr>
+  <tr>
+    <td>Relative</td>
+    <td>(1): 0.993</td><td>(0): 0.752</td><td>(2): 0.725</td><td>(4): 0.509</td><td>(3): 0.0</td>
+  </tr>
+</table>
+
+#### What can we learn from this?
+
+For the vector search, the scores for the top 4 objects (**IDs 2, 4, 0, 1**) were almost identical, and all of them were good results. While for the keyword search, one object (**ID 1**) was much better than the rest.
+
+This is captured in the final result of `relativeScoreFusion`, which identified the object **ID 1** the top result. This is justified because this document was the best result in the keyword search with a big gap to the next-best score and in the top group of vector search.
+
+In contrast, for `rankedFusion`, the object **ID 2** is the top result, closely followed by objects **ID 1** and **ID 0**.
+
+</details>
+
+For a fuller discussion of fusion methods, see [this blog post](/blog/hybrid-search-fusion-algorithms)
 
 ### Additional metadata response
 
