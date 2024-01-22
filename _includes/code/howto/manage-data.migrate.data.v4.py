@@ -51,35 +51,35 @@ client_tgt = weaviate.connect_to_local(
 def create_collection(collection_name: str, enable_mt=False):
     reviews = client_tgt.collections.create(
         name=collection_name,
-        multi_tenancy_config=wvc.Configure.multi_tenancy(enabled=enable_mt),
+        multi_tenancy_config=wvc.config.Configure.multi_tenancy(enabled=enable_mt),
         # Additional settings not shown
         # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
-        vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
-        generative_config=wvc.Configure.Generative.openai(),
+        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
+        generative_config=wvc.config.Configure.Generative.openai(),
         properties=[
-            wvc.Property(
+            wvc.config.Property(
                 name="review_body",
-                data_type=wvc.DataType.TEXT,
+                data_type=wvc.config.DataType.TEXT,
                 description="Review body"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="title",
-                data_type=wvc.DataType.TEXT,
+                data_type=wvc.config.DataType.TEXT,
                 description="Name of the wine"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="country",
-                data_type=wvc.DataType.TEXT,
+                data_type=wvc.config.DataType.TEXT,
                 description="Originating country"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="points",
-                data_type=wvc.DataType.INT,
+                data_type=wvc.config.DataType.INT,
                 description="Review score in points"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="price",
-                data_type=wvc.DataType.NUMBER,
+                data_type=wvc.config.DataType.NUMBER,
                 description="Listed price"
             )
         ]
@@ -103,7 +103,7 @@ def migrate_data(collection_src: Collection, collection_tgt: Collection):
     batch_size = 100
 
     for i, q in enumerate(tqdm(collection_src.iterator(include_vector=True))):
-        new_obj = wvc.DataObject(
+        new_obj = wvc.data.DataObject(
             properties=q.properties,
             vector=q.vector,
             uuid=q.uuid

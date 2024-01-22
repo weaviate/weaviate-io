@@ -34,7 +34,7 @@ client.collections.delete("YourCollection")
 
 client.collections.create(
     "YourCollection",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
 )
 
 # ==============================
@@ -70,17 +70,17 @@ from weaviate.util import generate_uuid5  # Generate a deterministic ID
 
 data = [
     # use DataObject to provide uuid value
-    wvc.DataObject(
+    wvc.data.DataObject(
         properties={"title": "Object 1"},
         # highlight-start
         uuid=generate_uuid5({"title": "Object 1"})
         # highlight-end
     ),
-    wvc.DataObject(
+    wvc.data.DataObject(
         properties={"title": "Object 2"},
         uuid=generate_uuid5({"title": "Object 2"})
     ),
-    wvc.DataObject(
+    wvc.data.DataObject(
         properties={"title": "Object 3"},
         uuid=generate_uuid5({"title": "Object 3"})
     ),
@@ -109,17 +109,17 @@ client.collections.delete(collection.name)
 # BatchImportWithVectorExample
 data = [
     # use DataObject to provide uuid value
-    wvc.DataObject(
+    wvc.data.DataObject(
         properties={"title": "Object 1"},
         # highlight-start
         vector=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
         # highlight-end
     ),
-    wvc.DataObject(
+    wvc.data.DataObject(
         properties={"title": "Object 2"},
         vector=[0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
     ),
-    wvc.DataObject(
+    wvc.data.DataObject(
         properties={"title": "Object 3"},
         vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
     ),
@@ -161,13 +161,13 @@ client.collections.delete(collection.name)
 
 # data = [
 #     # use DataObject to provide uuid value
-#     wvc.DataObject(
+#     wvc.data.DataObject(
 #         properties={"title": "Object 1"},
 #         # highlight-start
-#         # references=[wvc.Reference.to(uuid=target_uuid)],
+#         # references=[wvc.data.Reference.to(uuid=target_uuid)],
 #         # highlight-end
 #     ),
-#     wvc.DataObject(
+#     wvc.data.DataObject(
 #         properties={"title": "Object 2"},
 #         uuid=generate_uuid5({"title": "Object 2"})
 #     ),

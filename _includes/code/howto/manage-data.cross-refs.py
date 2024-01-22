@@ -56,7 +56,7 @@ client.collections.create(
     name="JeopardyCategory",
     description="A Jeopardy! category",
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT)
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT)
     ]
 )
 
@@ -67,12 +67,12 @@ client.collections.create(
     name="JeopardyQuestion",
     description="A Jeopardy! question",
     properties=[
-        wvc.Property(name="question", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="answer", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="question", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="answer", data_type=wvc.config.DataType.TEXT),
     ],
     # highlight-start
     references=[
-        wvc.ReferenceProperty(
+        wvc.config.ReferenceProperty(
             name="hasCategory",
             target_collection="JeopardyCategory"
         )
@@ -109,8 +109,8 @@ questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
     # highlight-start
-    # ref=wvc.Reference.to(uuids=us_cities_id)
-    ref=wvc.Reference.to(uuids=category_obj_id)
+    # ref=wvc.data.Reference.to(uuids=us_cities_id)
+    ref=wvc.data.Reference.to(uuids=category_obj_id)
     # highlight-end
 )
 # END OneWay Python
@@ -144,7 +144,7 @@ category = client.collections.create(
     name="JeopardyCategory",
     description="A Jeopardy! category",
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT)
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT)
     ]
 )
 # END Collections TwoWay Category1
@@ -154,12 +154,12 @@ client.collections.create(
     name="JeopardyQuestion",
     description="A Jeopardy! question",
     properties=[
-        wvc.Property(name="question", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="answer", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="question", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="answer", data_type=wvc.config.DataType.TEXT),
     ],
     # highlight-start
     references=[
-        wvc.ReferenceProperty(
+        wvc.config.ReferenceProperty(
             name="hasCategory",
             target_collection="JeopardyCategory"
         )
@@ -178,7 +178,7 @@ category = client.collections.get("JeopardyCategory")
 # category.config.add_reference(
 category.config.add_property(
     # highlight-start
-    wvc.ReferenceProperty(
+    wvc.config.ReferenceProperty(
         name="hasQuestion",
         target_collection="JeopardyQuestion"
     )
@@ -199,7 +199,7 @@ questions = client.collections.get("JeopardyQuestion")
 questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_obj_id)
+    ref=wvc.data.Reference.to(category_obj_id)
 )
 # highlight-end
 
@@ -209,7 +209,7 @@ categories = client.collections.get("JeopardyCategory")
 categories.data.reference_add(
     from_uuid=category_obj_id,
     from_property="hasQuestion",
-    ref=wvc.Reference.to(question_obj_id)
+    ref=wvc.data.Reference.to(question_obj_id)
 )
 # highlight-end
 # END TwoWay Python
@@ -243,7 +243,7 @@ questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
     # highlight-start
-    ref=wvc.Reference.to([category_obj_id, category_obj_id_alt]) # add multiple references
+    ref=wvc.data.Reference.to([category_obj_id, category_obj_id_alt]) # add multiple references
     # highlight-end
 )
 # END Multiple Python
@@ -272,7 +272,7 @@ questions.data.reference_delete(
 # highlight-end
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_obj_id)
+    ref=wvc.data.Reference.to(category_obj_id)
 )
 # END Delete Python
 
@@ -301,7 +301,7 @@ questions.data.reference_replace(
 # highlight-end
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_obj_id)
+    ref=wvc.data.Reference.to(category_obj_id)
 )
 # END Update Python
 

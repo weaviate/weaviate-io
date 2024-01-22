@@ -29,7 +29,7 @@ if client.collections.exists("JeopardyQuestion"):
 client.collections.create(
     name="JeopardyQuestion",
     description="A Jeopardy! question",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
 )
 
 # =============================

@@ -29,14 +29,14 @@ def test_gqlresponse(response_in, gqlresponse_in):
 # ===== Sorting =====
 # ===================
 # START Sorting Python
-  
+
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
     # highlight-start
     sort=Sort(prop="answer", ascending=True),
     # highlight-end
     limit=3
-)  
+)
 
 for o in response.objects:
     print( f"Answer: {o.properties['answer']}")
@@ -77,7 +77,7 @@ gql_query = """
 # ===== Sorting by multiple properties =====
 # ==========================================
 # START MultiplePropSorting Python
-  
+
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
     sort=[Sort(prop="points", ascending=False),
@@ -137,7 +137,7 @@ gql_query = """
 
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
-    return_metadata=wvc.MetadataQuery(creation_time=True),
+    return_metadata=wvc.query.MetadataQuery(creation_time=True),
     sort=Sort(ascending=True, prop="_creationTimeUnix"),
     limit=3
 )

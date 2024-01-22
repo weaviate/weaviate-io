@@ -17,7 +17,7 @@ for query in ["cat", "kitten"]:
     response = questions.query.near_text(
         query=query,
         limit=1,
-        return_metadata=wvc.MetadataQuery(distance=True),
+        return_metadata=wvc.query.MetadataQuery(distance=True),
         return_properties=["question", "answer"]
     )
 
@@ -57,7 +57,7 @@ for query in ["cat", "catt", "caat"]:
     response = questions.query.near_text(
         query=query,
         limit=1,
-        return_metadata=wvc.MetadataQuery(distance=True),
+        return_metadata=wvc.query.MetadataQuery(distance=True),
         return_properties=["question", "answer"]
     )
 

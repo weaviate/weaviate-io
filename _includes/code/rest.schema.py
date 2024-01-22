@@ -142,7 +142,7 @@ client.collections.create(
         bm25_k1=1.2,
         bm25_b=0.7
     ),
-    vector_index_config=wvc.Configure.VectorIndex.hnsw(
+    vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
         dynamic_ef_factor=8
     )
 )

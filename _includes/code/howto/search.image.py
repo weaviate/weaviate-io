@@ -91,7 +91,7 @@ response = dogs.query.near_image(
     near_image=Path("./images/search-image.jpg"),  # Provide a `Path` object
     # highlight-end
     return_properties=["breed"],
-    limit=1 
+    limit=1
 )
 
 print(response.objects[0])
@@ -114,7 +114,7 @@ response = dogs.query.near_image(
     near_image=Path("./images/search-image.jpg"),
     # highlight-start
     distance=0.8, # Maximum accepted distance
-    return_metadata=wvc.MetadataQuery(distance=True), # return distance from the source image
+    return_metadata=wvc.query.MetadataQuery(distance=True), # return distance from the source image
     # highlight-end
 
     return_properties=["breed"],

@@ -585,7 +585,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="animals in movies",
     # highlight-start
-    filters=wvc.Filter("round").equal("Double Jeopardy!"),
+    filters=wvc.query.Filter("round").equal("Double Jeopardy!"),
     # highlight-end
     limit=2,
     return_metadata=wvc.query.MetadataQuery(distance=True),

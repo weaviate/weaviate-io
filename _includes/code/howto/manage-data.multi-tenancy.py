@@ -27,7 +27,7 @@ multi_collection = client.collections.create(
     name="MultiTenancyCollection",
     # Enable multi-tenancy on the new collection
     # highlight-start
-    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
+    multi_tenancy_config=wvc.config.Configure.multi_tenancy(True)
     # highlight-end
 )
 # END EnableMultiTenancy
@@ -198,7 +198,7 @@ import weaviate.classes as wvc
 multi_collection = client.collections.get("MultiTenancyCollection")
 # Add the cross-reference property to the multi-tenancy class
 multi_collection.config.add_property(
-    wvc.ReferenceProperty(
+    wvc.config.ReferenceProperty(
         name="hasCategory",
         target_collection="JeopardyCategory"
     )
@@ -215,7 +215,7 @@ multi_tenantA.data.reference_add(
 # highlight-end
     from_uuid=object_id,  # MultiTenancyCollection object id (a Jeopardy question)
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_id) # JeopardyCategory id
+    ref=wvc.data.Reference.to(category_id) # JeopardyCategory id
 )
 # END AddCrossRef
 

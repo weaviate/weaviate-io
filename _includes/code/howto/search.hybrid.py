@@ -115,7 +115,7 @@ response = jeopardy.query.hybrid(
     query="food",
     alpha=0.5,
     # highlight-start
-    return_metadata=wvc.MetadataQuery(score=True, explain_score=True),
+    return_metadata=wvc.query.MetadataQuery(score=True, explain_score=True),
     # highlight-end
     limit=3
 )
@@ -447,7 +447,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
   query="food",
   # highlight-start
-  fusion_type=wvc.HybridFusion.RELATIVE_SCORE,
+  fusion_type=wvc.query.HybridFusion.RELATIVE_SCORE,
   # highlight-end
   limit=3
 )
@@ -759,7 +759,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     # highlight-start
-    filters=wvc.Filter("round").equal("Double Jeopardy!"),
+    filters=wvc.query.Filter("round").equal("Double Jeopardy!"),
     # highlight-end
     limit=3
 )

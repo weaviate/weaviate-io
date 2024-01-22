@@ -418,7 +418,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     return_references=[
         # highlight-start
-        wvc.QueryReference(
+        wvc.query.QueryReference(
             link_on="hasCategory",
             return_properties=["title"]
         ),
@@ -509,7 +509,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     limit=1,
     # highlight-start
-    return_metadata=wvc.MetadataQuery(creation_time=True)
+    return_metadata=wvc.query.MetadataQuery(creation_time=True)
     # highlight-end
 )
 
