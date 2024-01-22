@@ -14,6 +14,8 @@ client = weaviate.connect_to_local(
 
 assert client.is_ready()
 
+client.close()
+
 # EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
 import weaviate.classes as wvc
