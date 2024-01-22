@@ -5,72 +5,80 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. For details on how to configure Weaviate, see the following.
+Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS. 
 
-- **[Weaviate Cloud Services](../../wcs/quickstart.mdx)**: Use this managed Weaviate service for both development and production environments.
-- **[Docker Compose](./docker-compose.md)**: Opt for this containerized deployment method primarily for development projects.
-- **[Kubernetes](./kubernetes.md)**: Ideal for scalable, containerized deployments, this method is typically employed for production setups.
-- **[Embedded Weaviate](./embedded.md)**: For in-line instantiation from a client; currently in experimental stage and great for evaluation.
-- **[AWS Marketplace](./aws-marketplace.md)**: Conveniently deploy directly from the AWS Marketplace.
+## Installation methods
 
-TODO NEXT: ADD google cloud, Snowflake. Updae desrip[tions, reorder
+For details on how to run Weaviate, see the following:
 
-] 
-The Weaviate library is identical regardless of whether it is used via Weaviate Cloud Services (WCS) or by downloading an open source version. The only difference that WCS manages your Weaviate instance for you and comes with a specific SLA, whereas Weaviate open source comes with a [BSD-3 license](https://github.com/weaviate/weaviate/blob/master/LICENSE).
+- **[Weaviate Cloud Services](../../wcs/quickstart.mdx)**: This managed service works well for both development and production environments.
+- **[Docker Compose](./docker-compose.md)**: Docker containers are well suited for development and testing.
+- **[Kubernetes](./kubernetes.md)**: Kubernetes is ideal for scalable, production deployments.
+- **[AWS Marketplace](./aws-marketplace.md)**: Deploy Weaviate directly from the AWS Marketplace.
+- **[Google Cloud Marketplace](./gc-marketplace.md)** Deploy Weaviate directly from the Google Cloud Marketplace.
+- **[Snowpark Container Services](./snowplow-integration.mdx)** Deploy Weaviate in Snowflake's Snowpark environment.
+- **[Embedded Weaviate](./embedded.md)**: Experimental. Embedded Weaviate is a client based tool. 
 
-:::info configuration yaml files
-Both Docker Compose and Kubernetes setups use a yaml file for customizing Weaviate instances, typically called `docker-compose.yml` or `values.yaml` respectively. These files will be referred to throughout the documentation as `configuration yaml files`.
+
+## Configuration files
+
+Docker Compose and Kubernetes use yaml files to configure Weaviate instances. Docker uses the [`docker-compose.yml`](./docker-compose#starter-docker-compose-file) file. Kubernetes relies on [Helm charts](./kubernetes#weaviate-helm-chart) and the `values.yaml` file. The Weaviate documentation also calls these files `configuration yaml files`.
+
+If you are self-hosting, consider experimenting on a small scale with Docker and then transferring your configuration to Kubernetes Helm charts when you are more familiar with Weaviate.
+
+## Unreleased versions
+
+:::warning Unreleased software
+DISCLAIMER: Release candidate images and other unreleased software are not supported.
+
+Unreleased software and images may contain bugs. APIs may change. Features under development may be withdrawn or modified. Do not use unreleased software in production. 
+ 
 :::
 
-:::tip Docker <i class="fa-regular fa-circle-arrow-right"></i> Kubernetes
-If self-hosting, we recommend starting with Docker and gaining familiarity with Weaviate and its configurations. You can later apply this knowledge when you are creating your Helm charts.
-:::
+If you want to run an unreleased version of Weaviate, configure your configuration yaml file to build using an unreleased image. 
 
-### Run an unreleased version
-
-You can run Weaviate with `docker compose`, building your own container off the [`master`](https://github.com/weaviate/weaviate) branch. Note that this may not be an officially release, and may contain bugs.
-
-```sh
-git clone https://github.com/weaviate/weaviate.git
-cd weaviate
-docker build --target weaviate -t name-of-your-weaviate-image .
-```
-
-Then, make a `docker-compose.yml` file with this new image. For example:
+For example, to run the image for a release candidate (`rc` version), edit your `docker-config.yaml` to call the release candidate image.
 
 ```yml
 version: '3.4'
+name: "weaviate-v1-23-0-release-candidate"
 services:
   weaviate:
-    image: name-of-your-weaviate-image
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: semitechnologies/weaviate:1.23.0-rc.1
     ports:
-      - 8080:8080
+    - 8080:8080
+    - 50051:50051
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
     environment:
-      CONTEXTIONARY_URL: contextionary:9999
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: './data'
-      ENABLE_MODULES: 'text2vec-contextionary'
-      DEFAULT_VECTORIZER_MODULE: 'text2vec-contextionary'
-      AUTOSCHEMA_ENABLED: 'false'
-  contextionary:
-    environment:
-      OCCURRENCE_WEIGHT_LINEAR_FACTOR: 0.75
-      EXTENSIONS_STORAGE_MODE: weaviate
-      EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
-      NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
-      ENABLE_COMPOUND_SPLITTING: 'false'
-    image: semitechnologies/contextionary:en0.16.0-v1.2.1
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'none'
+      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-palm,text2vec-openai,generative-openai,generative-cohere,generative-palm,ref2vec-centroid,reranker-cohere,qna-openai'
+      CLUSTER_HOSTNAME: 'node1'
+      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_APIKEY_ALLOWED_KEYS: '<YOUR-API-AUTHENTICATION-KEY>'
+      AUTHENTICATION_APIKEY_USERS: '<YOUR-API-AUTHENTICATION-PASSWORD>'
+volumes:
+  weaviate_data:
+  
 ```
 
-After the build is complete, you can run this Weaviate build with docker compose:
+If you try out new features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
 
-```bash
-docker compose up
-```
 
 ## Related pages
-- [WCS Quickstart](../../wcs/quickstart.mdx)
+- [Weaviate Quickstart](../quickstart/index.md)
+- [Weaviate Cloud Services Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
