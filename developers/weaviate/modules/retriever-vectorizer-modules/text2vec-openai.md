@@ -127,6 +127,7 @@ The following example configures the `Document` class by setting the vectorizer 
 |:-|:-|
 |`resourceName`|Azure resource name|
 |`deploymentId`|Azure deployment ID (your model name)|
+| `baseURL` |Set the endpoint of your Azure Open AI Deployments e.g. `https://eastus.api.cognitive.microsoft.com`|
 
 #### Example
 

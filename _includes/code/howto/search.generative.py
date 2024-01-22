@@ -12,7 +12,7 @@ import weaviate, os, json
 #         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
 #     }
 # )
-# TODOv4 - update this to call the wcs instace
+# TODOv4 - update this to call the wcs instance
 client = weaviate.connect_to_local(
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
@@ -419,3 +419,8 @@ gql_query = '''
 # assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "points", "_additional"}
 # assert "Australia" in gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"]
 # End test
+
+# START-ANY
+
+client.close()
+# END-ANY

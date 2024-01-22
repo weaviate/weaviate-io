@@ -155,6 +155,11 @@ articles_config = testarticles.config.get()
 assert articles_config.name == "TestArticle"
 assert len(articles_config.properties) == 1
 
+# START CreateCollectionExample
+
+client.close()
+# END CreateCollectionExample
+
 client = weaviate.connect_to_local()
 for cname in ["TestArticle", "TestAuthor"]:
     client.collections.delete(cname)
@@ -207,7 +212,11 @@ for cname in ["TestArticle", "TestAuthor"]:
     collection_config = collection.config.get()
     assert collection_config.name == cname
 
+# START CreateCollectionWithRefsExample
 
+client.close()
+# END CreateCollectionWithRefsExample
+ 
 # START GetCollectionExample
 import weaviate
 import weaviate.classes as wvc
@@ -215,6 +224,8 @@ import weaviate.classes as wvc
 client = weaviate.connect_to_local()
 
 collection = client.collections.get("TestArticle")
+
+client.close()
 # END GetCollectionExample
 
 # =====================================================================================
@@ -562,3 +573,5 @@ response = questions.query.fetch_objects(
     return_metadata=wvc.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
 )
 # END GenericsExample
+
+client.close()

@@ -516,3 +516,8 @@ gql_query = """
 # Tests
 # gqlresponse = client.query.raw(gql_query)
 # assert [q["answer"] for q in gqlresponse["data"]["Get"]["JeopardyQuestion"]] == [q["answer"] for q in response["data"]["Get"]["JeopardyQuestion"]]
+
+# START-ANY
+
+client.close()
+# END-ANY
