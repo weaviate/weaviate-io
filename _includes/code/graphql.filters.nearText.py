@@ -45,3 +45,8 @@ for o in response.objects:
     print(o.properties)
     print(o.metadata)
 # END-ANY
+    
+# START-ANY
+
+client.close()
+# END-ANY

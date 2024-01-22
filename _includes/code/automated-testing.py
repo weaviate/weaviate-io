@@ -1,5 +1,5 @@
 # Blog: Automated testing for Weaviate applications - Python code
-#SATRT Connect  # START ConnectAndCleanup
+#START Connect  # START ConnectAndCleanup
 import weaviate
 import os
 

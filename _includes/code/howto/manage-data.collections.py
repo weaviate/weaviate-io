@@ -448,3 +448,8 @@ new_config = articles.config.get()
 
 assert old_config.inverted_index_config.bm25.k1 == 1.2
 assert new_config.inverted_index_config.bm25.k1 == 1.5
+
+# START-ANY
+
+client.close()
+# END-ANY

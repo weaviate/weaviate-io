@@ -176,3 +176,8 @@ assert questions_definition.name == "Question"
 assert obj_count.total_count == 10
 
 client.collections.delete("Question")  # Cleanup after
+
+# START-ANY
+
+client.close()
+# END-ANY

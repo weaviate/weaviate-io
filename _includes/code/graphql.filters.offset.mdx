@@ -20,6 +20,8 @@ result = article.query.fetch_objects(
     # highlight-end
 )  
 
+client.close()
+
 for o in result.objects:
     print( f"Title: {o.properties["title"]}")
  

@@ -10,6 +10,9 @@ import weaviate
 client = weaviate.connect_to_local()
 
 open_id_configuration = client.get_open_id_configuration()
+
+client.close()
+
 print(open_id_configuration)
 ```
 

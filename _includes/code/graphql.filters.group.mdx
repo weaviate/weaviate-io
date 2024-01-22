@@ -32,6 +32,8 @@ article=client.graphql_raw_query(
 for a in article.get["Publication"]:
     print(a)
 
+client.close()
+
 ```
 
 </TabItem>

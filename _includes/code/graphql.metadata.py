@@ -36,3 +36,8 @@ for o in response.objects:
     print(o.uuid)  # Inspect UUID (returned by default)
     print(o.properties)  # Inspect returned objects
 # END MetadataUUIDDistance
+
+# START-ANY
+
+client.close()
+# END-ANY
