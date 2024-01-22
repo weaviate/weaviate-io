@@ -155,6 +155,57 @@ export default function HomepageWhatYouCanDo() {
           </tbody>
         </table>
       </div>
+      <div className={styles.tutorialBox}>
+        <h3>データコレクションの定義</h3>
+        <p>
+          次は、クラスを作成して
+          <a href="https://weaviate.io/developers/weaviate/tutorials/schema">
+            Schema
+          </a>
+          を定義します。
+        </p>
+
+        <p>クラスは、オブジェクトを格納するデータコレクションです。</p>
+        <p>
+          クラスのSchemaに
+          <a href="https://weaviate.io/developers/weaviate/modules">
+            モジュール
+          </a>
+          を定義します。
+        </p>
+        <ul>
+          <li>
+            Vectorizerモジュールには<code>text2vec-openai</code>を使用します。
+          </li>
+          <li>
+            Generatorモジュールには<code>generative-openai</code>を使用します。
+          </li>
+        </ul>
+        <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
+          <CodeAutoschemaMinimumSchema />
+        </div>
+      </div>
+      <div className={styles.tutorialBox}>
+        <h3>データ登録</h3>
+        <p>次はWeaviateのClientにデータを登録します。</p>
+
+        <p>
+          事前にベクトル化する必要はなく、Vectorizerモジュールでベクトル化して取り込めます。
+        </p>
+        <p>る。</p>
+        <p>
+          なので、ベクトルデータではなくデータオブジェクトをそのまま登録します。
+        </p>
+        <p>
+          内部的にはVectorizerの<code>text2vec-openai</code>
+          モジュールが、OpenAPIのEmbeddings
+          APIを実行してベクトルに変換しています。
+        </p>
+
+        <div className="theme-admonition theme-admonition-info alert alert--info admonition_LlT9">
+          <CodeAutoschemaImport />
+        </div>
+      </div>
     </div>
   );
 }
