@@ -578,6 +578,7 @@ The output is like this:
 ## Related pages
 
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
+- About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).
 - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
 
