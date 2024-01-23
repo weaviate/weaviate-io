@@ -286,7 +286,7 @@ For this example, you will need access to a Weaviate instance that you can write
 ### Configure generative search
 
 :::caution Generative module cannot be changed
-Currently, a generative module cannot be changed in the Weaviate class definition once it has been set. We are looking to change this going forward.
+Currently, a generative module cannot be changed in the Weaviate collection definition once it has been set. We are looking to change this going forward.
 <br/>
 
 If you would like for us to prioritize this issue, please [go to GitHub here](https://github.com/weaviate/weaviate/issues/3364), and give it a thumbs up.
@@ -294,7 +294,7 @@ If you would like for us to prioritize this issue, please [go to GitHub here](ht
 
 To use generative search, the appropriate `generative-xxx` module must be:
 - Enabled in Weaviate, and
-- Specified in the class definition.
+- Specified in the collection definition.
 
 Each module is tied to a specific group of LLMs, such as `generative-cohere` for Cohere models, `generative-openai` for OpenAI models and `generative-palm` for PaLM and Gemini models.
 
@@ -355,7 +355,7 @@ Check the specific documentation for your deployment method ([Docker](../install
 <details>
   <summary>How to configure the language model</summary>
 
-Model properties are exposed through the Weaviate module configuration. Accordingly, you can customize them through the `moduleConfig` parameter in the class definition.
+Model properties are exposed through the Weaviate module configuration. Accordingly, you can customize them through the `moduleConfig` parameter in the collection definition.
 
 For example, the `generative-cohere` module has the following properties:
 
@@ -430,11 +430,11 @@ In the following snippet, we download a chapter of the `Pro Git` book, clean it 
 
 This will download the text from the chapter, and return a list/array of strings of 150 word chunks, with a 25-word overlap added in front.
 
-#### Create class definitions
+#### Create collection definitions
 
-We can now create a class definition for the chunks. To use generative search, your desired generative module must be specified at the class level as shown below.
+We can now create a collection definition for the chunks. To use generative search, your desired generative module must be specified at the collection level as shown below.
 
-he below class definition for the `GitBookChunk` class specifies `text2vec-openai` as the vectorizer and `generative-openai` as the generative module. Note that the `generative-openai` parameter can have an empty dictionary/object as its value, which will use the default parameters.
+The below collection definition for the `GitBookChunk` collection specifies `text2vec-openai` as the vectorizer and `generative-openai` as the generative module. Note that the `generative-openai` parameter can have an empty dictionary/object as its value, which will use the default parameters.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
