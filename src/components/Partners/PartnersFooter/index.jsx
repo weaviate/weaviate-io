@@ -11,13 +11,11 @@ export default function PartnersFooter() {
             <div className={styles.dialogBoxText}>
               <h2>Become a Weaviate partner</h2>
               <p>
-                At Weaviate, we believe that great things happen when great
-                minds come together. Join our Partner<br></br> Program and let's
-                embark on an exciting journey of innovation, growth, and
-                success.
+                Interested in learning more about the Weaviate Partner Program?
+                <br></br> Click below to connect with us.
               </p>
               <div className={styles.buttons}>
-                <div className={styles.buttonGradient}>Become a Partner</div>
+                <div className={styles.buttonGradient}>Contact us</div>
               </div>
             </div>
           </div>

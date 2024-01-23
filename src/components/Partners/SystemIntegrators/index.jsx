@@ -10,10 +10,9 @@ export default function SystemIntegrators() {
         <div className={styles.header}>
           <h2>System Integrators</h2>
           <p>
-            If you have a complementary technology or product, we want to
-            collaborate with you.<br></br> Integrate Weaviate's powerful AI
-            capabilities into your solutions to provide enhanced value<br></br>{' '}
-            to your customers.
+            Managed service providers and consultancies leverage Weaviate to
+            build, manage,<br></br> and scale AI applications for their
+            customers.
           </p>
         </div>
         <div className={styles.techContainer}>

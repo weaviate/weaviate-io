@@ -375,7 +375,7 @@ const config = {
                             },
                             {
                                 label: 'Partners',
-                                to: '/partners/aws',
+                                to: '/partners',
                             },
                             {
                                 label: 'Terms & Policies',

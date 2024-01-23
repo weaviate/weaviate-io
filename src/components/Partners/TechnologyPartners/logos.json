@@ -1,0 +1,117 @@
+{
+  "logos": [
+    {
+      "companyName": "AWS",
+      "cssClass": "awsPartners",
+      "image": "../../../../static/img/site/aws-logo-partners.svg",
+      "link": "/partners/aws"
+    },
+    {
+      "companyName": "Google Cloud Platform",
+      "cssClass": "gcpPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Microsoft Azure",
+      "cssClass": "azurePartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Snowflake",
+      "cssClass": "snowflakePartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Confluent",
+      "cssClass": "confluentPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "OpenAI",
+      "cssClass": "openAIPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Cohere",
+      "cssClass": "coherePartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Mistral AI",
+      "cssClass": "mistralaiPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Anthropic",
+      "cssClass": "anthropicPartners",
+      "link": "#"
+    },
+
+    {
+      "companyName": "Langchain",
+      "cssClass": "langchainPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Databricks",
+      "cssClass": "databricksPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Jina",
+      "cssClass": "jinaPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Intel",
+      "cssClass": "intelPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Red Hat",
+      "cssClass": "redhatPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "DataDog",
+      "cssClass": "datadogPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "NVIDIA",
+      "cssClass": "nvidiaPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Haystack",
+      "cssClass": "haystackPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Astronomer",
+      "cssClass": "astronomerPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "DitHub",
+      "cssClass": "dithubPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Unstructured",
+      "cssClass": "unstructuredPartners",
+      "link": "#"
+    },
+    {
+      "companyName": "AI21",
+      "cssClass": "AI21Partners",
+      "link": "#"
+    },
+
+    {
+      "companyName": "Arize",
+      "cssClass": "arizePartners",
+      "link": "#"
+    }
+  ]
+}

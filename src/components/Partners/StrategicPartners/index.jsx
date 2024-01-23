@@ -40,7 +40,7 @@ export default function StrategicPartners() {
             </div>
             <div className={styles.techBox}>
               <Link to="#">
-                <span className={styles.databricks} />
+                <span className={styles.confluent} />
               </Link>
             </div>
           </div>

@@ -18,7 +18,7 @@ export default function PartnersPage() {
       </Head>
       <Layout>
         <PartnersHeader />
-        <StrategicPartners />
+
         <TechnologyPartners />
         <SystemIntegrators />
         <PartnersFooter />
