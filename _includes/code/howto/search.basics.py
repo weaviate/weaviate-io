@@ -4,12 +4,14 @@
 
 # ===== Instantiation shown on snippet
 import weaviate
+import weaviate.classes as wvc
 import os
 
-# Instantiate the client with the OpenAI API key
-client = weaviate.connect_to_local(
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }
 )
 
