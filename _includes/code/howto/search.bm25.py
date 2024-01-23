@@ -12,7 +12,7 @@ import json
 # Instantiate the client with the user/password and OpenAI api key
 # client = weaviate.Client(
 #     "https://edu-demo.weaviate.network",
-#     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+#     auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),
 #     additional_headers={
 #         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
 #     }

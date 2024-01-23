@@ -24,7 +24,7 @@ client = weaviate.connect_to_custom(
     grpc_host="localhost",
     grpc_port=50051,
     grpc_secure=False,
-    auth_credentials=weaviate.AuthApiKey(
+    auth_credentials=weaviate.auth.AuthApiKey(
         os.getenv("YOUR_API_KEY")
     ),  # Set this environment variable
 )
@@ -41,7 +41,7 @@ import os
 # Connect to a WCS instance
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("YOUR_WCS_URL"),  # Set this environment variable
-    auth_credentials=weaviate.AuthApiKey(
+    auth_credentials=weaviate.auth.AuthApiKey(
         os.getenv("YOUR_WCS_AUTH_KEY")
     ),  # Set this environment variable
 )
@@ -76,7 +76,7 @@ import os
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("YOUR_WCS_URL"),
-    auth_credentials=weaviate.AuthApiKey(os.getenv("YOUR_WCS_KEY")),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("YOUR_WCS_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.environ[
             "YOUR_OPENAI_API_KEY"

@@ -4,7 +4,7 @@ import os
 
 client = weaviate.Client(
     url="https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey(api_key="learn-weaviate"),
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),
     additional_headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # <-- Replace with your API key
     }

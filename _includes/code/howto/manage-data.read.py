@@ -11,11 +11,11 @@ import os
 
 # client = weaviate.Client(
 #     "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
-#     auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),  # Replace w/ your Weaviate API key
+#     auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),  # Replace w/ your Weaviate API key
 # )
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your Weaviate URL
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
 )
 
 # =======================

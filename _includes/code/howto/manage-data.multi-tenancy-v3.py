@@ -5,7 +5,7 @@ import os
 
 client = weaviate.Client(
     "http://localhost:8080",
-    # auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    # auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),
     additional_headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]
     }

@@ -26,7 +26,7 @@ import os
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
 )
 # END WCSInstantiation
 
@@ -109,7 +109,7 @@ client = weaviate.WeaviateClient(
         grpc_port="50052",
         grpc_secure=False,
     ),
-    auth_client_secret=weaviate.AuthApiKey("secr3tk3y"),
+    auth_client_secret=weaviate.auth.AuthApiKey("secr3tk3y"),
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
