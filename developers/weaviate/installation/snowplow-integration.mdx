@@ -5,9 +5,9 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Snowpark', 'SPCS']
 ---
 
-Snowflake provides a hosted solution, [Snowpark Container Services (SPCS)](https://docs.snowflake.com/en/developer-guide/snowpark-container-services/overview), that runs containers inside the Snowflake ecosystem. To configure a Weaviate container in SPCS, follow the steps on this page.
+Snowflake provides a hosted solution, [Snowpark Container Services (SPCS)](https://docs.snowflake.com/en/developer-guide/snowpark-container-services/overview), that runs containers inside the Snowflake ecosystem. To configure a Weaviate instance that runs in SPCS, follow the steps on this page.
 
-The code in this guide configures a sample Snowpark Container Services (SPCS) instance. Change the database name, warehouse name, image repository name, and other example values to match your deployment.
+The code in this guide configures a sample SPCS instance. The sample instance demonstrates how to run Weaviate in Snowpark. To configure your own SPCS instance, change the database name, warehouse name, image repository name, and other example values to match your deployment.
 
 
 ## 1. Log into Snowflake
@@ -20,7 +20,9 @@ snowsql -a "YOURINSTANCE" -u "YOURUSER"
 
 ## 2. Setup a `user` and a `role`
 
-Create a role, and a user, for the Weaviate instance. To setup a user and role, edit the `PASSWORD` field then use the SnowSQL client to run this SQL code:
+Create a role, and a user, for the Weaviate instance. 
+
+Run this code to create the sample instance.
 
 ```sql
 USE ROLE ACCOUNTADMIN;
@@ -38,9 +40,15 @@ GRANT ROLE WEAVIATE_ROLE TO USER weaviate_user;
 ALTER USER weaviate_user SET DEFAULT_ROLE = WEAVIATE_ROLE;
 ```
 
+To configure your own instance, edit these fields before you run the SQL code.
+
+- Add a user
+- Add a role
+- Edit the `PASSWORD` field
+ 
 ### 3. Create a database and a warehouse
 
-TO create a database and warehouse to use with Weaviate, edit the database name and repository name, then run this code.
+Create a database and warehouse to use with Weaviate.
 
 ```sql
 USE ROLE SYSADMIN;
@@ -54,9 +62,20 @@ USE DATABASE WEAVIATE_DB_001;
 CREATE IMAGE REPOSITORY WEAVIATE_DB_001.PUBLIC.WEAVIATE_REPO;
 ```
 
+Grant privileges on the databases to the WEAVIATE_ROLE:
+
+```sql
+USE ROLE ACCOUNTADMIN;
+grant all PRIVILEGES on database WEAVIATE_DB_001 to WEAVIATE_ROLE;
+grant all PRIVILEGES on schema PUBLIC to WEAVIATE_ROLE;
+grant all on schema PUBLIC to role WEAVIATE_ROLE;
+```
+
+To configure your own instance, edit the database name and repository name before you run the SQL code..
+
 ### 4. Setup compute pools
 
-Create compute pools.
+Create compute pools. This code creates compute pools for the sample application. 
 
 ```sql
 USE ROLE SYSADMIN;
@@ -77,6 +96,8 @@ CREATE COMPUTE POOL IF NOT EXISTS JUPYTER_COMPUTE_POOL
   AUTO_RESUME = true;
 ```
 
+To configure your own instance, edit the pool names and pool sizes to support your application.
+
 To check if the compute pools are active, run `DESCRIBE COMPUTE POOL <Pool Name>`.
 
 ```sql
@@ -89,71 +110,79 @@ The compute pools are ready for use when they reach the `ACTIVE` or `IDLE` state
 
 ### 5. Setup files and stages
 
-Create stages for YAML and Data.
+Create stages for YAML and Data.    
 
 ```sql
+USE ROLE SYSADMIN;
 USE DATABASE WEAVIATE_DB_001;
 CREATE OR REPLACE STAGE YAML_STAGE;
 CREATE OR REPLACE STAGE DATA ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
 CREATE OR REPLACE STAGE FILES ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
 ```
 
-The configuration files are in this repo. Before you upload the spec files, edit the image repository value for your deployment.
+SPCS uses `spec files` to configure services. The configuration spec files are in [this repo](https://github.com/Snowflake-Labs/sfguide-weaviate-on-spcs). 
+
+Download the spec files, then edit them to specify an image repository. To configure your own instance, add your deployment's image repository instead of the sample repository.
 
 ```bash
 "SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/DATABASE/SCHEMA/weaviate_repo/weaviate"
+"SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/DATABASE/SCHEMA/weaviate_repo/text2vec"
+"SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/DATABASE/SCHEMA/weaviate_repo/jupyter"
 ``` 
-When the files are updated, upload them. 
+When the files are updated, use the `snowsql` client to upload them. 
 
 ```sql
-PUT file:///path/to/spec-jupyter.yaml @yaml_stage;
-PUT file:///path/to/spec-text2vec.yaml @yaml_stage;
-PUT file:///path/to/spec-weaviate.yaml @yaml_stage;
+PUT file:///path/to/spec-jupyter.yaml @yaml_stage overwrite=true auto_compress=false;
+PUT file:///path/to/spec-text2vec.yaml @yaml_stage overwrite=true auto_compress=false;
+PUT file:///path/to/spec-weaviate.yaml @yaml_stage overwrite=true auto_compress=false;
 ```
 
 ### 6 Build the Docker images
 
-Exit the `snowsql` client. Build the Docker images in your local shell. There are three images.
+Exit the `snowsql` client, then build the Docker images in your local shell. There are three images.
 
 - The Weaviate image runs the database.
 - The `text2vec` image lets you process data without leaving Snowpark.
 - The Jupyter image lets you store your notebooks.
 
-```bash
-docker build --rm --platform linux/amd64 -t weaviate -f ./dockerfiles/weaviate.Dockerfile .
-docker build --rm --platform linux/amd64 -t jupyter -f ./dockerfiles/jupyter.Dockerfile .
-docker build --rm --platform linux/amd64 -t text2vec -f ./dockerfiles/text2vec.Dockerfile .
-```
-
-Log in to the Docker repository.
+The Docker files are in [this repo](https://github.com/Snowflake-Labs/sfguide-weaviate-on-spcs/tree/main/dockerfiles). You don't need to modify them to run this sample instance. If you need to use non-standard ports or make other changes for your deployment, edit the Dockerfiles before you create the containers.
 
 ```bash
-docker login SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/THE_REPO_YOU_CREATED_ABOVE  -u YOUR_SNOWFLAKE_USERNAME
+docker build --rm --platform linux/amd64 -t weaviate -f /path/to/dockerfiles/weaviate.Dockerfile .
+docker build --rm --platform linux/amd64 -t jupyter -f /path/to/dockerfiles/jupyter.Dockerfile .
+docker build --rm --platform linux/amd64 -t text2vec -f /path/to/dockerfiles/text2vec.Dockerfile .
 ```
 
-Tag and push the Docker images to the repository you created earlier.
+Log in to the Docker repository. The Snowpark account name, username, and password are the same as your `snowsql` credentials.
 
 ```bash
-docker tag weaviate YOUR_REPOSITORY_URL
-docker tag juypter YOUR_REPOSITORY_URL
-docker tag text2vec YOUR_REPOSITORY_URL
-
-docker push YOUR_REPOSITORY_URL
+docker login YOUR_SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/THE_REPO_YOU_CREATED_ABOVE  -u YOUR_SNOWFLAKE_USERNAME
 ```
 
-The `docker push` command looks like this.
+After you login to the Docker repository, tag the images and push them to the repository.
+
+The `docker tag` commands look like this:
+
+```bash
+docker tag weaviate YOUR_REPOSITORY_URL/weaviate
+docker tag juypter YOUR_REPOSITORY_URL/jupyter
+docker tag text2vec YOUR_REPOSITORY_URL/text2vec
+```
+
+The `docker push` commands look like this:
 
 ```bash
 docker push x0000000000000-xx00000.registry.snowflakecomputing.com/weaviate_db_001/public/weaviate_repo/weaviate
+docker push x0000000000000-xx00000.registry.snowflakecomputing.com/weaviate_db_001/public/weaviate_repo/jupyter
+docker push x0000000000000-xx00000.registry.snowflakecomputing.com/weaviate_db_001/public/weaviate_repo/text2vec
 ```
-
-Push all three images.
 
 ### 7. Create the services
 
-Create a service for each component.
+Use `snowsql` to create a service for each component.
 
 ```sql
+USE ROLE SYSADMIN;
 CREATE SERVICE WEAVIATE
   IN COMPUTE POOL WEAVIATE_COMPUTE_POOL 
   FROM @YAML_STAGE
