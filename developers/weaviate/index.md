@@ -9,21 +9,174 @@ image: og/docs/introduction.jpg
 Welcome to the documentation for **Weaviate**, an open source 
 vector database.
 
-<div class="welcomeSection">
-<div class ="welcomeBox"> 
-<div class = "welcomeHeader"> New to Weaviate? </div>
+<div className="welcomeSection">
+<div className ="welcomeBox"> 
+<div className = "welcomeHeader"> New to Weaviate? </div>
 <p>Start with the <a href="/quickstart/index.md">Quickstart tutorial</a> - an end-to-end demo that takes 15-30 minutes.</p>
 </div>
-<div class ="welcomeBox"> 
-<div class = "welcomeHeader">Questions </div>
+<div className ="welcomeBox"> 
+<div className = "welcomeHeader">Questions </div>
 <p>Please visit our <a href="https://forum.weaviate.io/c/support/">forum</a> to get help from the Weaviate community including the Weaviate team.</p>
 </div>
 </div>
+<br/>
 
 
 
-### About the docs
-The content is grouped into categories by goals:
+Getting Started
+
+### Step 1 - Choose your deployment
+All options include Vectorizer integration, RAG module integration and Optional data replication
+
+
+<div className="deploySection">
+<div className ="deployBox"> 
+<div className ="tabContainer">
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab">Evaluation</div>
+</div>
+<div className = "deployContent">
+<div className = "deployHeader"> New to Weaviate? </div>
+<ul className = "deployList">
+<li>From evaluation (sandbox) to production</li>
+<li>Serverless (infrastructure managed by Weaviate)</li>
+</ul>
+<button className = "deployButton">Submit</button>
+</div>
+</div>
+
+<div className ="deployBox"> 
+<div className ="tabContainer">
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab inactive">Evaluation</div>
+</div>
+<div className = "deployContent">
+<div className = "deployHeader"> New to Weaviate? </div>
+<ul className = "deployList">
+<li>From evaluation (sandbox) to production</li>
+<li>Serverless (infrastructure managed by Weaviate)</li>
+</ul>
+<button className = "deployButton">Submit</button>
+</div>
+</div>
+
+
+
+
+</div>
+<br/>
+
+
+<div className="deploySection">
+<div className ="deployBox"> 
+<div className ="tabContainer">
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab">Evaluation</div>
+</div>
+<div className = "deployContent">
+<div className = "deployHeader"> New to Weaviate? </div>
+<ul className = "deployList">
+<li>From evaluation (sandbox) to production</li>
+<li>Serverless (infrastructure managed by Weaviate)</li>
+</ul>
+<button className = "deployButton">Submit</button>
+</div>
+</div>
+
+<div className ="deployBox"> 
+<div className ="tabContainer">
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab">Evaluation</div>
+<div className ="deployTab inactive">Evaluation</div>
+</div>
+<div className = "deployContent">
+<div className = "deployHeader"> New to Weaviate? </div>
+<ul className = "deployList">
+<li>From evaluation (sandbox) to production</li>
+<li>Serverless (infrastructure managed by Weaviate)</li>
+</ul>
+<button className = "deployButton">Submit</button>
+</div>
+</div>
+
+
+
+
+</div>
+<br/>
+
+
+### Step 2 - Choose your scenario
+All options include Vectorizer integration, RAG module integration and Optional data replication
+
+
+<div className="deploySection scenario">
+
+<div className="scenarioBox">
+
+<div className="hexLogo"></div>
+<div className="scenarioText">
+<span>Data imports to vector searches, made easy</span>
+
+<p>Weaviate abstracts away complexities of building a vector database.</p>
+<p>Learn how to import data with a Weaviate vectorizer, and run basic queries.</p>
+</div>
+
+
+</div>
+<div className="scenarioBox">
+
+<div className="hexLogo"></div>
+<div className="scenarioText">
+<span>Custom vectors with Weaviate</span>
+
+
+<p>It’s easy to import data with pre-existing vectors into Weaviate.</p>
+<p>Learn how Weaviate can just as easily work with your existing data and corresponding vectors.</p>
+<p>You can perform the same searches, and even work with a vectorizer if a compatible one is available.</p>
+
+</div>
+
+
+</div>
+<div className="scenarioBox">
+
+<div className="hexLogo"></div>
+<div className="scenarioText">
+<span>Semantic search and RAG</span>
+
+<p>Weaviate makes it easy for you to find the right information.</p>
+<p>Learn how to perform different types of available searches, including vector, keyword and hybrid searches.</p>
+<p>See how filters can add to these capabilities, and how to perform retrieval augmented generation.</p>
+</div>
+
+
+</div>
+
+</div>
+
+
+### What Next
+We recommend starting with these sections
+
+
+<div className="deploySection whatsNext"> 
+
+<div className="whatnextBox">
+<span>Custom vectors with Weaviate</span>
+<p>See how filters can add to these capabilities, and how to perform retrieval augmented generation.</p>
+<div className= "wtLearn">Learn more</div>
+</div>
+<div className="whatnextBox"></div>
+<div className="whatnextBox small"></div>
+<div className="whatnextBox small"></div>
+<div className="whatnextBox small"></div>
+
+</div>
+
 
 | |How-to |References |Concepts |Tutorials |
 | ----- | ----- | ----- | ----- | ----- |

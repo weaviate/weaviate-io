@@ -742,7 +742,7 @@ Dropdown style removed.
   display: flex;
   column-gap: 50px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1280px) {
     flex-direction: column;
     row-gap: 50px;
   }
@@ -774,4 +774,170 @@ Dropdown style removed.
     font-weight: 400;
     line-height: 157.33%; /* 1.37663rem */
   }
+}
+
+.deploySection {
+  display: flex;
+  column-gap: 50px;
+
+  @media screen and (max-width: 1280px) {
+    flex-direction: column;
+    row-gap: 50px;
+  }
+}
+
+.scenario {
+  column-gap: 25px;
+}
+
+.whatsNext {
+  gap: 24px;
+  width: 843px;
+  display: flex;
+  column-gap: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 30px 0px;
+}
+
+.deployBox {
+  border-radius: 0.3125rem;
+  background: #141f39;
+  width: 25.625rem;
+  height: 20.75rem;
+  flex-shrink: 0;
+}
+
+.tabContainer {
+  display: flex;
+  gap: 4px;
+}
+
+.deployTab {
+  border-radius: 0.125rem;
+  background: rgba(97, 189, 115, 0.7);
+  width: 8.375rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.inactive {
+  opacity: 0.5;
+}
+
+.deployContent {
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 45px;
+}
+
+.deployList {
+  //margin: 20px 0px;
+  li {
+    color: #fff;
+    font-family: Inter;
+    font-size: 0.75rem !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.18rem */
+  }
+}
+.deployHeader {
+  color: #fff;
+  font-family: 'Plus Jakarta Sans';
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 1.5rem */
+  margin: 13px 0px;
+}
+
+.deployButton {
+  width: 14.9519rem;
+  height: 1.875rem;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  border: 0.5px solid rgb(97, 189, 115);
+  margin: auto;
+  background: transparent;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scenarioBox {
+  border-radius: 0.9375rem;
+  background: #141f39;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 17.069rem;
+  height: 26.0625rem;
+  flex-shrink: 0;
+  padding: 28px 30px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.scenarioText {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  p {
+    color: #fff;
+    font-family: Inter;
+    font-size: 0.75rem;
+    font-style: normal;
+    padding-left: 0 !important;
+    font-weight: 400;
+    line-height: 157.33%;
+  }
+  span {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+}
+
+.hexLogo {
+  width: 7rem;
+  height: 5rem;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/img/site/weaviate-hex.svg');
+}
+
+.whatnextBox {
+  width: 26.25rem;
+  height: 13.0625rem;
+  flex-shrink: 0;
+  border-radius: 0.9375rem;
+  background: #141f39;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+}
+
+.small {
+  width: 17.0625rem;
+  height: 15.875rem;
+  flex-shrink: 0;
+  border-radius: 0.9375rem;
+  background: #141f39;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 }
