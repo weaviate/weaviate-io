@@ -208,7 +208,7 @@ CREATE SERVICE TEXT2VEC
 
 ```  
 
-### 8. Grant Permissions to the user
+### 8. Grant user permissions
 
 Grant permission to the services to the weaviate_role. 
 
@@ -216,19 +216,6 @@ Grant permission to the services to the weaviate_role.
 GRANT USAGE ON SERVICE JUPYTER TO ROLE WEAVIATE_ROLE;
 GRANT USAGE ON SERVICE WEAVIATE TO ROLE WEAVIATE_ROLE;
 GRANT USAGE ON SERVICE TEXT2VEC TO ROLE WEAVIATE_ROLE;
-```
-
-Load the logs from the jupyter endpoint to get a Jupyter key.
-
-```sql
-CALL SYSTEM$GET_SERVICE_LOGS('WEAVIATE_PRODUCT_REVIEWS.PUBLIC.JUPYTER', '0', 'jupyter');
-```
-
-Get the endpoint that you use to access Jupyter Notebooks.
-
-```sql
-SHOW ENDPOINTS IN SERVICE jupyter;
-
 ```
 
 ### 9. Load your data
@@ -246,7 +233,38 @@ Then, load your data into the Snowflake stage. The upload takes a few seconds.
 PUT file:///path/to/sample-data/SampleJSON.json @DATA;
 ```
 
-Load your data into Weaviate. To use a Jupyter Notebook, use the `weaviate_user` credentials to log into the Jupyter endpoint.
+### 10. Configure the Jupyter Notebook login
+
+Follow these steps to configure login for Jupyter Notebooks. 
+
+1. Load the logs from the jupyter endpoint.
+
+   ```sql
+   CALL SYSTEM$GET_SERVICE_LOGS('WEAVIATE_PRODUCT_REVIEWS.PUBLIC.JUPYTER', '0', 'jupyter');
+   ```
+
+   Near the end of the log, there are two URLs like this:
+
+   ```
+   http://statefulset-0:8888/tree?token=abcd90991a280794f1f1ce0281234e96e877674aa0399999                                                                                
+   
+   http://127.0.0.1:8888/tree?token=abcd90991a280794f1f1ce0281234e96e877674aa0399999  
+   ```
+
+   Save the token, `abcd90991a280794f1f1ce0281234e96e877674aa0399999`.
+
+1. Get the `ingress_url` URL that you use to access the Jupyter notebook server.
+
+   ```sql
+   SHOW ENDPOINTS IN SERVICE jupyter;
+   ```
+
+1. Open the `ingress_url` in a browser. Use the `weaviate_user` credentials to log in. 
+1. Use the token from the logs to set a password.
+
+### 11. Use a Jupyter Notebook to load your data
+
+This client code creates a schema and loads the data you uploaded earlier into Weaviate.
  
 #### V3 Python Client
 
@@ -275,14 +293,14 @@ with open("SampleJSON.json") as file:
 
 with client.batch(batch_size=100) as batch:
  for record in data:
- batch.add_data_object(
- {
- "answer": record["Answer"],
- "question": record["Question"],
- "category": record["Category"]
- },
- "Question"
- )
+  batch.add_data_object(
+  {
+  "answer": record["Answer"],
+  "question": record["Question"],
+  "category": record["Category"]
+  },
+  "Question"
+  )
 ```
 
 #### V4 Python Client
@@ -303,8 +321,8 @@ for i, d in enumerate(data):
        "question": d["Question"],
        "category": d["Category"],
    }
-  items_to_insert.append(new_item)
-# Insert every 100 items
+   items_to_insert.append(new_item)
+   # Insert every 100 items
    if(len(items_to_insert) == 100):
        articles.data.insert_many(items_to_insert)
        items_to_insert.clear()
