@@ -73,8 +73,3 @@ assert len(data_object.vector) == 1536
 
 # Test
 # assert exists is True
-
-# START-ANY
-
-client.close()
-# END-ANY

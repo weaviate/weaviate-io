@@ -153,8 +153,3 @@ assert result.properties == {
 
 # # TODO: update the assertion
 # assert "thisPropShouldNotEndUpInTheSchema" in result["error"][0]["message"]
-
-# START-ANY
-
-client.close()
-# END-ANY
