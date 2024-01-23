@@ -4,7 +4,7 @@
 
 # ===== Instantiation shown on snippet
 import weaviate
-import json, os
+import os
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
@@ -30,46 +30,9 @@ for o in response.objects:
 # TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET
 
 # Test results
-# TODOv4 update tests
-# assert "JeopardyQuestion" in response["data"]["Get"]
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+assert response.objects[0].collection == "JeopardyQuestion"
+assert "question" in response.objects[0].properties.keys()
 # End test
-
-expected_response = """
-// BasicGet Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-        // shortened for brevity
-      ]
-    }
-  }
-}
-// END BasicGet Expected Results
-"""
-
-gql_query = """
-# BasicGetGraphQL
-{
-  Get {
-    JeopardyQuestion {
-      question
-    }
-  }
-}
-# END BasicGetGraphQL
-"""
-
-# gqlresponse = client.query.raw(gql_query)
-
-# Test results
-# assert gqlresponse == response
-
-# END Test results
 
 # ====================================
 # ===== BASIC GET LIMIT EXAMPLES =====
@@ -88,50 +51,10 @@ for o in response.objects:
 # END GetWithLimitPython
 
 # Test results
-# assert "JeopardyQuestion" in response["data"]["Get"]
-# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+assert response.objects[0].collection == "JeopardyQuestion"
+assert "question" in response.objects[0].properties.keys()
+assert len(response.objects) == 1
 # End test
-
-
-expected_response = """
-// GetWithLimit Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-        // Note this will only have one result as we limited it to 1
-      ]
-    }
-  }
-}
-// END GetWithLimit Expected Results
-"""
-
-
-gql_query = """
-# GetWithLimitGraphQL
-{
-  Get {
-    JeopardyQuestion (
-    # highlight-start
-      limit: 1
-    # highlight-end
-    ) {
-      question
-    }
-  }
-}
-# END GetWithLimitGraphQL
-"""
-# gqlresponse = client.query.raw(gql_query)
-# Test results
-# assert gqlresponse == response
-# END Test results
-
 
 
 # ==========================================
@@ -152,50 +75,10 @@ for o in response.objects:
 # END GetWithLimitOffsetPython
 
 # Test results
-# assert "JeopardyQuestion" in response["data"]["Get"]
-# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question"}
+assert response.objects[0].collection == "JeopardyQuestion"
+assert "question" in response.objects[0].properties.keys()
+assert len(response.objects) == 1
 # End test
-
-
-expected_response = """
-// GetWithLimitOffset Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "question": "Pythons are oviparous, meaning they do this"
-        }
-      ]
-    }
-  }
-}
-// END GetWithLimitOffset Expected Results
-"""
-
-
-gql_query = """
-# GetWithLimitOffsetGraphQL
-{
-  Get {
-    JeopardyQuestion (
-    # highlight-start
-      limit: 1
-      offset: 1
-    # highlight-end
-    ) {
-      question
-    }
-  }
-}
-# END GetWithLimitOffsetGraphQL
-"""
-# gqlresponse = client.query.raw(gql_query)
-# Test results
-# assert gqlresponse == response
-# END Test results
-
 
 
 # ==========================================
@@ -216,51 +99,10 @@ for o in response.objects:
 # END GetPropertiesPython
 
 # Test results
-# assert "JeopardyQuestion" in response["data"]["Get"]
-# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "answer", "points"}
+assert response.objects[0].collection == "JeopardyQuestion"
+for prop_name in ["question", "answer", "points"]:
+  assert prop_name in response.objects[0].properties.keys()
 # End test
-
-
-expected_response = """
-// GetProperties Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "answer": "Jonah",
-          "points": 100,
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-      ]
-    }
-  }
-}
-// END GetProperties Expected Results
-"""
-
-
-gql_query = """
-# GetPropertiesGraphQL
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-    # highlight-start
-      question
-      answer
-      points
-    # highlight-end
-    }
-  }
-}
-# END GetPropertiesGraphQL
-"""
-# gqlresponse = client.query.raw(gql_query)
-# Test results
-# assert gqlresponse == response
-# END Test results
-
 
 
 # ======================================
@@ -284,56 +126,10 @@ print(response.objects[0].vector)
 # END GetObjectVectorPython
 
 # Test results
-# assert "JeopardyQuestion" in response["data"]["Get"]
-# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"vector"}
+assert response.objects[0].collection == "JeopardyQuestion"
+assert type(response.objects[0].vector) == list
+assert len(response.objects[0].vector) >= 100
 # End test
-
-
-expected_response = """
-// GetObjectVector Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "vector": [
-              0.0065065133,
-              -0.017786196,
-              0.005879146,
-              0.006707012,
-              ...  // shortened for brevity
-            ]
-          }
-        },
-      ]
-    }
-  }
-}
-// END GetObjectVector Expected Results
-"""
-
-
-gql_query = """
-# GetObjectVectorGraphQL
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-    # highlight-start
-      _additional {
-        vector
-      }
-    # highlight-end
-    }
-  }
-}
-# END GetObjectVectorGraphQL
-"""
-# gqlresponse = client.query.raw(gql_query)
-# Test results
-# assert gqlresponse == response
-# END Test results
 
 
 # ==================================
@@ -355,60 +151,19 @@ for o in response.objects:
     print(o.uuid)
 # END GetObjectIdPython
 
+
 # Test results
-# assert "JeopardyQuestion" in response["data"]["Get"]
-# assert len(response["data"]["Get"]["JeopardyQuestion"]) == 1
-# assert response["data"]["Get"]["JeopardyQuestion"][0]["_additional"].keys() == {"id"}
+from weaviate.collections.queries.base import _WeaviateUUIDInt
+
+assert response.objects[0].collection == "JeopardyQuestion"
+assert type(response.objects[0].uuid) == _WeaviateUUIDInt
 # End test
-
-
-expected_response = """
-// GetObjectId Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "id": "0002bf92-80c8-5d94-af34-0d6c5fea1aaf"
-          }
-        },
-        // shortened for brevity
-      ]
-    }
-  }
-}
-// END GetObjectId Expected Results
-"""
-
-
-gql_query = """
-# GetObjectIdGraphQL
-{
-  Get {
-    JeopardyQuestion (limit: 1) {
-    # highlight-start
-      _additional {
-        id
-      }
-    # highlight-end
-    }
-  }
-}
-# END GetObjectIdGraphQL
-"""
-# gqlresponse = client.query.raw(gql_query)
-# Test results
-# assert gqlresponse == response
-# END Test results
 
 
 # ==============================
 # ===== GET WITH CROSS-REF EXAMPLES =====
 # ==============================
 
-# TODO - REVIEW this when 1.23 live & corresponding client live
-"""
 # GetWithCrossRefsPython
 # highlight-start
 import weaviate.classes as wvc
@@ -416,84 +171,28 @@ import weaviate.classes as wvc
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
+    # highlight-start
     return_references=[
-        # highlight-start
         wvc.query.QueryReference(
             link_on="hasCategory",
             return_properties=["title"]
         ),
-        # highlight-end
-        "question",
     ],
+    # highlight-end
     limit=2
 )
 
 for o in response.objects:
     print(o.properties["question"])
     # print referenced objects
-    for ref in o.references["hasCategory"].objects:
-        print(ref.properties)
+    for ref_obj in o.references["hasCategory"].objects:
+        print(ref_obj.properties)
 # END GetWithCrossRefsPython
-"""
 
-expected_response = (
-# GetWithCrossRefs Expected Results
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "hasCategory": [
-            {
-              "title": "THE BIBLE"
-            }
-          ],
-          "question": "This prophet passed the time he spent inside a fish offering up prayers"
-        },
-        {
-          "hasCategory": [
-            {
-              "title": "ANIMALS"
-            }
-          ],
-          "question": "Pythons are oviparous, meaning they do this"
-        }
-      ]
-    }
-  }
-}
-# END GetWithCrossRefs Expected Results
-)
-
-
-gql_query = """
-# GetWithCrossRefsGraphQL
-{
-  Get {
-    JeopardyQuestion (
-      limit: 2
-    )
-    # highlight-start
-    {
-      question
-      hasCategory {
-        ... on JeopardyCategory {
-          title
-        }
-      }
-    }
-    # highlight-end
-  }
-}
-# END GetWithCrossRefsGraphQL
-"""
-# gqlresponse = client.query.raw(gql_query)
 # Test results
-# assert response["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "hasCategory"}
-# assert gqlresponse == response
-# assert expected_response == response
-# END Test results
-
+assert response.objects[0].collection == "JeopardyQuestion"
+assert len(response.objects[0].references["hasCategory"].objects) > 0
+# END Test
 
 
 # ====================================
@@ -519,15 +218,14 @@ for o in response.objects:
 # END GetWithMetadataPython
 
 # Test results
-# # NEEDS TESTS
+assert response.objects[0].collection == "JeopardyQuestion"
+assert response.objects[0].metadata.creation_time is not None
 # END Test results
 
 
 # =========================
 # ===== MULTI-TENANCY =====
 # =========================
-
-# <!-- NEEDS TESTS -->
 
 # MultiTenancy
 import weaviate.classes as wvc
@@ -541,27 +239,19 @@ collection_tenant_a = mt_collection.with_tenant("tenantA")
 # highlight-end
 
 # Query tenantA's version
-result = collection_tenant_a.query.fetch_objects(
+response = collection_tenant_a.query.fetch_objects(
     return_properties=["review_body", "title"],
     limit=1,
 )
 
-print(result.objects[0].properties)
+print(response.objects[0].properties)
 # END MultiTenancy
 
 
 # Test results
-pass
+assert len(response.objects) > 0
+assert response.objects[0].collection == "WineReviewMT"
 # End test
 
 
-expected_response = """
-// MultiTenancy Expected Results
-pass
-// END MultiTenancy Expected Results
-"""
-
-# START-ANY
-
 client.close()
-# END-ANY
