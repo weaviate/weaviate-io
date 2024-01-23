@@ -1,6 +1,5 @@
 # How-to: Manage-Data -> Classes
 import os
-import json
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -10,8 +9,9 @@ import weaviate
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+    }
 )
 
 # ================================

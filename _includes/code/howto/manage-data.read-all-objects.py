@@ -1,10 +1,17 @@
 import weaviate
+import weaviate_datasets as wd
+import os
 
 # Instantiate the client
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+    }
 )
+
+for dataset in [wd.WineReviews, wd.WineReviewsMT]:
+    d = dataset()
+    d.upload_dataset(client, overwrite=True)
 
 # ============================
 # ===== Read all objects =====

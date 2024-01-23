@@ -80,8 +80,6 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={"X-OpenAI-Api": os.getenv("OPENAI_APIKEY")}
 )
 # END LocalInstantiationWithHeaders

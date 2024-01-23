@@ -26,8 +26,8 @@ def test_on_blank_instance(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        # "./_includes/code/howto/manage-data.read.py",
-        # "./_includes/code/howto/manage-data.read-all-objects.py"
+        "./_includes/code/howto/manage-data.read.py",
+        "./_includes/code/howto/manage-data.read-all-objects.py"
     ],
 )
 def test_on_edu_demo(empty_weaviates, script_loc):

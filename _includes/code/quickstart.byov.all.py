@@ -2,10 +2,7 @@
 import weaviate
 import json
 
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-)
+client = weaviate.connect_to_local()
 
 # ===== Create schema =====
 import weaviate.classes as wvc

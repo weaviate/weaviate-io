@@ -1,5 +1,4 @@
 # How-to: Manage-data -> Retrieve objects - Python examples
-import os
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
