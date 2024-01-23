@@ -3,10 +3,10 @@ import weaviate
 import os
 
 client = weaviate.Client(
-    url="https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),
+    url=os.getenv("WCS_DEMO_URL"),
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("WCS_DEMO_RO_KEY")),
     additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # <-- Replace with your API key
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # <-- Replace with your API key
     }
 )
 # END Instantiation
@@ -53,7 +53,7 @@ response = (
     client.query
     .get(class_name=collection_name, properties=["review_body", "title", "country", "points"])
     .with_near_text({"concepts": ["fruity white wine"]})
-    .with_limit(5)
+    .with_limit(3)
     .with_generate(single_prompt="""
         Translate this review into French, using emojis:
         ===== Country of origin: {country}, Title: {title}, Review body: {review_body}
@@ -62,7 +62,7 @@ response = (
 )
 # END TransformIndividualObjects
 
-assert len(response["data"]["Get"][collection_name]) == 5
+assert len(response["data"]["Get"][collection_name]) == 3
 assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["singleResult"]) > 10
 
 # ListModules

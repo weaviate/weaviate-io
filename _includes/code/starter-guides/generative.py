@@ -46,7 +46,7 @@ collection_name = "WineReview"
 reviews = client.collections.get(collection_name)
 response = reviews.generate.near_text(
     query="fruity white wine",
-    limit=5,
+    limit=3,
     # highlight-start
     single_prompt="""
         Translate this review into French, using emojis:
@@ -56,7 +56,7 @@ response = reviews.generate.near_text(
 )
 # END TransformIndividualObjects
 
-assert len(response.objects) == 5
+assert len(response.objects) == 3
 assert len(response.objects[0].generated) > 10
 
 # ListModules
@@ -110,10 +110,11 @@ assert type(chunked_text[0]) == str
 import weaviate.classes as wvc
 
 
+collection_name = "GitBookChunk"
+
 if client.collections.exists(collection_name):  # In case we've created this collection before
     client.collections.delete(collection_name)  # THIS WILL DELETE ALL DATA IN THE COLLECTION
 
-collection_name = "GitBookChunk"
 chunks = client.collections.create(
     name=collection_name,
     properties=[
