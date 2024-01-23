@@ -70,7 +70,7 @@ create-next-app <project-name> –ts –tailwind –app
 ```
 
 ### Getting Weaviate Running
-In the newly created folder, create a `docker-compose.yml` and paste the following code in it. 
+In the newly created folder, create a `docker-compose.yml` file and paste the following code in it. 
 
 ```yml
 version: '3.4'
@@ -100,16 +100,16 @@ Then run `docker-compose up -d` in your terminal to start an instance of Weaviat
 
 ### Importing Data
 
-Next, we will create a Weavaite collection and import data into it. In your public folder, create three folders called image, audio, video. These will store the media  corresponding to their folder name. You can add your own data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application. 
+Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your own data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application. 
 
-Install the Weaviate Client and other project dependencies with the following command 
+We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-ts-client) and other project dependencies with the following command.
 ```bash
 yarn add weaviate-ts-client use-debounce rimraf 
 ```
 
-To import data, we need to create a folder called `src` and add do the following
+To import our data, we need to create a folder called `src` were our import scripts will go. 
 
-Create a file called `client.ts`, 
+To start, create a file called `client.ts` and paste the following code in it to initialize the Weaviate client. 
 
 ```typescript
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
@@ -129,10 +129,8 @@ export const getWeaviateClient = () => {
 
 ```
 
-This file 
 
-
-Create a file called `util.ts`, 
+Next, still in `./src` we create a file called `util.ts` and paste the following code in it. 
 
 ```typescript
 import {readdirSync, readFileSync, } from 'fs'
@@ -157,10 +155,95 @@ export const getBase64 = (file: string) => {
 
 ```
 
-This file 
+This file defines base64 as the encoding for the files we are importing and lists all the files in a directory.
+
+We then create a file called `collection.ts`, where we define our Weaviate collection and its properties.
+
+```typescript
+import { WeaviateClient } from 'weaviate-ts-client';
+import { getWeaviateClient } from './client';
+
+const client: WeaviateClient = getWeaviateClient();
+
+const collectionExists = async (name: string) => {
+  return client.schema.exists(name);
+}
+
+export const createBindCollection = async (name: string) => {
+  if(await collectionExists(name)) {
+    console.log(`The collection [${name}] already exists. No need to create it.`);
+    return;
+  }
+  
+  console.log(`Creating collection [${name}].`);
+
+  const bindSchema = {
+    class: name,
+    moduleConfig: {
+      'multi2vec-bind': {
+        imageFields: ['image'],
+        audioFields: ['audio'],
+        videoFields: ['video'],
+      }
+    },
+    properties: [
+      {
+        name: 'name',
+        dataType: ['text'],
+        moduleConfig: {
+          'multi2vec-bind': { skip: true },
+        },
+      },
+      {
+        name: 'media',
+        dataType: ['text'],
+        moduleConfig: {
+          'multi2vec-bind': { skip: true },
+        },
+      },
+      {
+        name: 'image',
+        dataType: ['blob'],
+      },
+      {
+        name: 'audio',
+        dataType: ['blob'],
+      },
+      {
+        name: 'video',
+        dataType: ['blob'],
+      }
+    ],
+    vectorIndexType: 'hnsw',
+    vectorizer: 'multi2vec-bind'
+  }
+  
+  const res = await client
+    .schema.classCreator()
+    .withClass(bindSchema)
+    .do();
+
+}
+
+export const deleteCollection = async (name: string) => {
+  console.log(`Deleting collection ${name}...`);
+  await client.schema
+  .classDeleter()
+  .withClassName(name)
+  .do();
+
+  console.log(`Deleted collection ${name}.`);
+}
+
+```
+
+This file conatins a function to create a collection, a function to delete a collection, and a function to check if a collection exists. If there are any details we want to change that would define our collections, we can do so in this file.
+
+Notably, we create a new class and define media types of image, video and audio to our `multi2vec-bind` module. We also add the following properties to our collection: `media`, `name`, `image`, `audio`, and `video`. Think of these as properties we will be able to query against when we start to make queries or import data to Weavaite.
 
 
-Create a file called `import.ts`, 
+
+Now we create a file called `import.ts` that uses Weaviates `ObjectsBatcher` to batch import files.
 
 ```typescript
 import { ObjectsBatcher, WeaviateClient, generateUuid5 } from 'weaviate-ts-client';
@@ -305,94 +388,10 @@ const insertVideo = async (collectionName: string) => {
 
 ```
 
-This file 
-
-Create a file called `collection.ts`, 
-
-```typescript
-import { WeaviateClient } from 'weaviate-ts-client';
-import { getWeaviateClient } from './client';
-
-const client: WeaviateClient = getWeaviateClient();
-
-const collectionExists = async (name: string) => {
-  return client.schema.exists(name);
-}
-
-export const createBindCollection = async (name: string) => {
-  if(await collectionExists(name)) {
-    console.log(`The collection [${name}] already exists. No need to create it.`);
-    return;
-  }
-  
-  console.log(`Creating collection [${name}].`);
-
-  const bindSchema = {
-    class: name,
-    moduleConfig: {
-      'multi2vec-bind': {
-        // textFields: ['name'],
-        imageFields: ['image'],
-        audioFields: ['audio'],
-        videoFields: ['video'],
-      }
-    },
-    properties: [
-      {
-        name: 'name',
-        dataType: ['text'],
-        moduleConfig: {
-          'multi2vec-bind': { skip: true },
-        },
-      },
-      {
-        name: 'media',
-        dataType: ['text'],
-        moduleConfig: {
-          'multi2vec-bind': { skip: true },
-        },
-      },
-      {
-        name: 'image',
-        dataType: ['blob'],
-      },
-      {
-        name: 'audio',
-        dataType: ['blob'],
-      },
-      {
-        name: 'video',
-        dataType: ['blob'],
-      }
-    ],
-    vectorIndexType: 'hnsw',
-    vectorizer: 'multi2vec-bind'
-  }
-  
-  const res = await client
-    .schema.classCreator()
-    .withClass(bindSchema)
-    .do();
-
-  console.log(JSON.stringify(res, null, 2));
-}
-
-export const deleteCollection = async (name: string) => {
-  console.log(`Deleting collection ${name}...`);
-  await client.schema
-  .classDeleter()
-  .withClassName(name)
-  .do();
-
-  console.log(`Deleted collection ${name}.`);
-}
-
-```
-
-This file 
+This file reads out image, video and audio directories for media and then encodes them before sending them to Weaviate to be stored.
 
 
-Create a file called `index.ts`, 
+We then create a file called `index.ts` where we run all the files we created above. 
 
 ```typescript
 import { createBindCollection, deleteCollection } from './collection';
@@ -410,11 +409,12 @@ run();
 
 ```
 
-This file 
+In `index.ts` we can change our collection name to our liking. When this file is run, we delete any exsting collection that exists with the name we specify, create a new collection with the same name and then import all the media files in our `.public` folder.
 
-Now we have everything we need to import data, 
+> It's important to not that we need our Weaviate instance running with Docker before going to the next step. 
 
-We need to add scripst to our `package.json`
+
+To run our import proces, we need to add the following scripts to our `package.json` file.
 
 ```js
   …
@@ -422,25 +422,20 @@ We need to add scripst to our `package.json`
     	…
     "preimport": "rimraf ./build && tsc src/*.ts --outDir build",
     "import": "npm run preimport && node build/index.js"
-      …
+        …
   },
   …
 ```
 
-
-
-We can now run 
-
-```bash
-yarn run import 
-```
+We can now run `yarn run import` to start the import process. Depending on how much data you're importing, it can take a little time. While that run, lets create our Search interface.
 
 ### Building Search Functionality
 
+We wo
 
 Now we need to create a couple of components that will go in our web application.
 
-Create a file called search.tsx and paste the following code in it.
+Create a `./components` folder and add a file called `search.tsx`. Paste the following code in it.
 
 ```typescript 
 'use client'
@@ -481,15 +476,17 @@ export default function Search({ placeholder }: { placeholder: string }) {
 
 ```
 
+We have an input tag that takes search terms from users. We then pass these search terms to our URL params and then use the `replace` method from `next/navigation` to update the URL. This will update the URL and trigger a new search when the user stops typing.
 
 
-Optionally, you can import the footer and search components, we don’t really need them for the app but they make the app look nicer! 
+Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstate Multimodal search but they make the app look nicer! 
 
 
-In the app folder, paste the following code in page.tsx, 
+In the `./app` folder, paste the following code in `page.tsx`, 
 
 ```typescript
-import Footer from '@/components/footer';
+// import Footer from '@/components/footer';
+// import Navigation from '@/components/navigation';
 import Search from '../components/search'
 import Link from 'next/link'
 
@@ -497,7 +494,6 @@ import weaviate, {
   WeaviateClient,
   WeaviateObject,
 } from "weaviate-ts-client";
-import Navigation from '@/components/navigation';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'http',
@@ -521,7 +517,7 @@ export default async function Home({
       <body>
         <div className="fixed h-screen w-full bg-gradient-to-br from-lime-100 via-teal-50 to-amber-100" />
         
-        <Navigation /> 
+       {/* <Navigation />  */}
 
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
 
@@ -572,7 +568,7 @@ export default async function Home({
             ))}
           </div>
         </main>
-        <Footer />
+         {/* <Footer /> */}
       </body>
     </html>
   )
@@ -594,11 +590,11 @@ async function searchDB(search: string) {
 
 ```
 
-In our `searchDB()`, do this  
-
-Then you should see this 
+Here we define a function `searchDB()`, that makes a call to Weaviate to search for the given search term. We then map the results to the UI. Weaviate lets us run a vector search from our `BindExample` collection with `withNearText()` and pass the user entered search term as a query. We have the ability to define properties we want to search on with `withFields()` and the number of results we want to return with `withLimit()`. We then pass the query response to be displayed on the UI.
 
 
+### Final Result
+Then you should be able to search like this 
 
 ![the final multimodal search project](./img/mumose-1.gif)
 
