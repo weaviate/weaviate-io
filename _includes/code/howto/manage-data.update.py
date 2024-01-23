@@ -145,3 +145,5 @@ del_props(client, uuid, "JeopardyQuestion", ["answer"])
 # Test
 result = jeopardy.query.fetch_object_by_id(uuid)
 assert result.properties == {}
+
+client.close()

@@ -64,3 +64,5 @@ for tenant_name in tenants.keys():
     # highlight-end
         print(f"{tenant_name}: {item.properties}")
 # END ReadAllTenants
+
+client.close()

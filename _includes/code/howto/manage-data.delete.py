@@ -182,3 +182,5 @@ collection.data.delete_many(
 # Test deletion
 response = collection.aggregate.over_all(total_count=True)
 assert response.total_count == 2
+
+client.close()

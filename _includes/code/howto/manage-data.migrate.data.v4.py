@@ -148,9 +148,6 @@ reviews_src = client_src.collections.get("WineReview")
 reviews_tgt = client_tgt.collections.get("WineReview")
 
 migrate_data(reviews_src, reviews_tgt)
-
-client_src.close()
-client_tgt.close()
 # END CollectionToCollection
 
 
@@ -193,9 +190,6 @@ reviews_src_tenant_a = reviews_src.with_tenant("tenantA")
 reviews_tgt = client_tgt.collections.get("WineReview")
 
 migrate_data(reviews_src_tenant_a, reviews_tgt)
-
-client_src.close()
-client_tgt.close()
 # END TenantToCollection
 
 
@@ -248,9 +242,6 @@ reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_tgt_tenant_a = reviews_mt_tgt.with_tenant(tenants_tgt[0].name)
 
 migrate_data(reviews_src, reviews_tgt_tenant_a)
-
-client_src.close()
-client_tgt.close()
 # END CollectionToTenant
 
 
@@ -304,9 +295,6 @@ reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_tgt_tenant_a = reviews_mt_tgt.with_tenant(tenants_tgt[0].name)
 
 migrate_data(reviews_src_tenant_a, reviews_tgt_tenant_a)
-
-client_src.close()
-client_tgt.close()
 # END TenantToTenant
 
 
@@ -319,3 +307,9 @@ assert agg_resp.total_count == DATASET_SIZE
 coll_list = [reviews_src_tenant_a, reviews_tgt_tenant_a]
 resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
 assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
+
+# START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
+
+client_src.close()
+client_tgt.close()
+# END CollectionToCollection  # END TenantToCollection  # END CollectionToTenant  # END TenantToTenant

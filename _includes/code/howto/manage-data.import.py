@@ -182,3 +182,5 @@ client.collections.delete(collection.name)
 
 # Clean up
 client.collections.delete(collection.name)
+
+client.close()
