@@ -28,7 +28,7 @@ client = weaviate.connect_to_wcs(
 # START SingleConditionFilter
 collection = client.collections.get("Article")
 response = collection.query.fetch_objects(
-    filters=wvc.query.Filter("wordCount").greater_than(1000),
+    filters=wvc.query.Filter.by_property("wordCount").greater_than(1000),
     limit=5
 )
 
@@ -44,7 +44,7 @@ for o in response.objects:
 # START FilterWithLike
 collection = client.collections.get("Article")
 response = collection.query.fetch_objects(
-    filters=wvc.query.Filter("title").like("New *"),
+    filters=wvc.query.Filter.by_property("title").like("New *"),
     limit=5
 )
 

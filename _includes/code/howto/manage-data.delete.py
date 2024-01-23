@@ -82,7 +82,7 @@ import weaviate.classes as wvc
 collection = client.collections.get("EphemeralObject")
 collection.data.delete_many(
     # highlight-start
-    where=wvc.query.Filter("name").like("EphemeralObject*")
+    where=wvc.query.Filter.by_property("name").like("EphemeralObject*")
     # highlight-end
 )
 # END DeleteBatch
@@ -108,7 +108,7 @@ import weaviate.classes as wvc
 collection = client.collections.get("EphemeralObject")
 collection.data.delete_many(
     # highlight-start
-    where=wvc.query.Filter("name").contains_any(["europe", "asia"])
+    where=wvc.query.Filter.by_property("name").contains_any(["europe", "asia"])
     # highlight-end
 )
 # END DeleteContains
@@ -134,7 +134,7 @@ import weaviate.classes as wvc
 
 collection = client.collections.get("EphemeralObject")
 result = collection.data.delete_many(
-    where=wvc.query.Filter("name").like("EphemeralObject*"),
+    where=wvc.query.Filter.by_property("name").like("EphemeralObject*"),
     # highlight-start
     dry_run=True,
     verbose=True
@@ -177,7 +177,7 @@ ids = [o.uuid for o in response.objects]  # These can be lists of strings, or `U
 
 collection.data.delete_many(
     # highlight-start
-    where=wvc.query.Filter("id").contains_any(ids)  # Delete the 3 objects
+    where=wvc.query.Filter.by_id().contains_any(ids)  # Delete the 3 objects
     # highlight-end
 )
 # END DeleteByIDBatch

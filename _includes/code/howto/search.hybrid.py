@@ -759,7 +759,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     query="food",
     # highlight-start
-    filters=wvc.query.Filter("round").equal("Double Jeopardy!"),
+    filters=wvc.query.Filter.by_property("round").equal("Double Jeopardy!"),
     # highlight-end
     limit=3
 )

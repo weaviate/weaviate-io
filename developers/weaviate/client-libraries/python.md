@@ -725,7 +725,7 @@ Use `ReferenceToMulti` for multi-target references.
         name="YourCollection",
         # highlight-start
         vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
-            distance_metric=wvc.data.VectorDistance.COSINE,
+            distance_metric=wvc.config.VectorDistance.COSINE,
             vector_cache_max_objects=1000000,
             quantizer=wvc.config.Configure.VectorIndex.Quantizer.pq()
         ),

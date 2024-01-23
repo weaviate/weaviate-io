@@ -207,7 +207,7 @@ collection = client.collections.get("Article")
 response = collection.query.hybrid(
     query="How to catch an Alaskan Pollock",
     alpha=0.5,
-    filters=wvc.query.Filter("wordCount").less_than(1000),
+    filters=wvc.query.Filter.by_property("wordCount").less_than(1000),
     limit=5,
 )
 
@@ -276,7 +276,7 @@ collection = client.collections.get("Article")
 response = collection.query.bm25(
     query="how to fish",
     return_metadata=wvc.query.MetadataQuery(score=True),
-    filters=wvc.query.Filter("wordCount").less_than(1000),
+    filters=wvc.query.Filter.by_property("wordCount").less_than(1000),
     limit=5,
 )
 

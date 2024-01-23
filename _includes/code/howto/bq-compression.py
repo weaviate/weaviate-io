@@ -78,7 +78,7 @@ client.collections.create(
     vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
     vector_index_config=wvc.config.Configure.VectorIndex.flat(
-        distance_metric=wvc.data.VectorDistance.COSINE,
+        distance_metric=wvc.config.VectorDistance.COSINE,
         vector_cache_max_objects=1000000,
         quantizer=wvc.config.Configure.VectorIndex.Quantizer.bq()
     ),

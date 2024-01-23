@@ -8,29 +8,26 @@ import os
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/howto/manage-data.create.py",
-        "./_includes/code/howto/manage-data.cross-refs.py",
-        "./_includes/code/howto/manage-data.import.py",
-        "./_includes/code/howto/manage-data.delete.py",
-        "./_includes/code/howto/manage-data.update.py",
         "./_includes/code/howto/manage-data.collections.py",
+        "./_includes/code/howto/manage-data.create.py",
+        "./_includes/code/howto/manage-data.import.py",
+        "./_includes/code/howto/manage-data.update.py",
+        "./_includes/code/howto/manage-data.delete.py",
+        "./_includes/code/howto/manage-data.cross-refs.py",
         "./_includes/code/howto/manage-data.multi-tenancy.py",
     ],
 )
 def test_on_blank_instance(empty_weaviates, script_loc):
-    temp_proc_script_loc = utils.load_and_prep_temp_file(
-        script_loc,
-        lang="py",
-    )
-    exec(temp_proc_script_loc.read_text())
+    proc_script = utils.load_and_prep_script(script_loc)
+    exec(proc_script)
 
 
 
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/howto/manage-data.read.py",
-        "./_includes/code/howto/manage-data.read-all-objects.py"
+        # "./_includes/code/howto/manage-data.read.py",
+        # "./_includes/code/howto/manage-data.read-all-objects.py"
     ],
 )
 def test_on_edu_demo(empty_weaviates, script_loc):

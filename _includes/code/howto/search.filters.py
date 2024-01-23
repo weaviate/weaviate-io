@@ -34,7 +34,7 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
-    filters=Filter("round").equal("Double Jeopardy!"),
+    filters=Filter.by_property("round").equal("Double Jeopardy!"),
     # highlight-end
     limit=3
 )
@@ -119,7 +119,7 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
     query="fashion icons",
     # highlight-start
-    filters=Filter("points").greater_than(200),
+    filters=Filter.by_property("points").greater_than(200),
     # highlight-end
     limit=3
 )
@@ -211,7 +211,7 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
-    filters=Filter("answer").like("*inter*"),
+    filters=Filter.by_property("answer").like("*inter*"),
     # highlight-end
     limit=3
 )
@@ -297,8 +297,8 @@ response = jeopardy.query.fetch_objects(
     # highlight-start
     # Use & as AND
     #     | as OR
-    filters=Filter("round").equal("Double Jeopardy!") &
-            Filter("points").less_than(600),
+    filters=Filter.by_property("round").equal("Double Jeopardy!") &
+            Filter.by_property("points").less_than(600),
     # highlight-end
     limit=3
 )
@@ -398,8 +398,8 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
-    filters=Filter("question").like("*nest*") &
-            (Filter("points").greater_than(700) | Filter("points").less_than(300)),
+    filters=Filter.by_property("question").like("*nest*") &
+            (Filter.by_property("points").greater_than(700) | Filter.by_property("points").less_than(300)),
     # highlight-end
     limit=3
 )
@@ -508,7 +508,7 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
     # highlight-start
-    filters=Filter(["hasCategory", "JeopardyCategory", "title"]).like("*Sport*"),
+    filters=Filter.by_property(["hasCategory", "JeopardyCategory", "title"]).like("*Sport*"),
     # highlight-end
     limit=3
 )

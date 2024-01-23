@@ -105,7 +105,7 @@ multi_collection = client.collections.get("MultiTenancyCollection")
 multi_collection.tenants.update(tenants=[
     wvc.Tenant(
         name="tenantA",
-        activity_status=weaviate.TenantActivityStatus.COLD
+        activity_status=weaviate.schema.TenantActivityStatus.COLD
     )
 ])
 # highlight-end
@@ -121,7 +121,7 @@ assert tenants["tenantA"].activity_status.name == "COLD"
 multi_collection.tenants.update(tenants=[
     wvc.Tenant(
         name="tenantA",
-        activity_status=weaviate.TenantActivityStatus.HOT
+        activity_status=weaviate.schema.TenantActivityStatus.HOT
     )
 ])
 tenants = multi_collection.tenants.get()
@@ -197,7 +197,7 @@ import weaviate.classes as wvc
 
 multi_collection = client.collections.get("MultiTenancyCollection")
 # Add the cross-reference property to the multi-tenancy class
-multi_collection.config.add_property(
+multi_collection.config.add_reference(
     wvc.config.ReferenceProperty(
         name="hasCategory",
         target_collection="JeopardyCategory"
@@ -215,7 +215,7 @@ multi_tenantA.data.reference_add(
 # highlight-end
     from_uuid=object_id,  # MultiTenancyCollection object id (a Jeopardy question)
     from_property="hasCategory",
-    ref=wvc.data.Reference.to(category_id) # JeopardyCategory id
+    to=category_id # JeopardyCategory id
 )
 # END AddCrossRef
 

@@ -83,7 +83,7 @@ client.collections.create(
 # CrossRefDefinition END
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-dataset.upload_objects(client, 100)  # batch-upload objects
+dataset.upload_objects(client)  # batch-upload objects
 
 # sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
 # us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
@@ -109,18 +109,10 @@ questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
     # highlight-start
-    # ref=wvc.data.Reference.to(uuids=us_cities_id)
-    ref=wvc.data.Reference.to(uuids=category_obj_id)
+    to=category_obj_id
     # highlight-end
 )
 # END OneWay Python
-# client.data_object.reference.add(
-#     from_class_name="JeopardyQuestion",
-#     from_uuid=sf_id,
-#     from_property_name="hasCategory",
-#     to_class_name="JeopardyCategory",
-#     to_uuid=us_cities_id,
-# )
 
 # Test results
 # TODOv4 - fix the test
@@ -169,14 +161,14 @@ client.collections.create(
 # END Collections TwoWay Question
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-dataset.upload_objects(client, 100)  # batch-upload objects
+dataset.upload_objects(client)  # batch-upload objects
 
 
 # START Collections TwoWay Category2
 # Add the reference to JeopardyQuestion, after it was created
 category = client.collections.get("JeopardyCategory")
 # category.config.add_reference(
-category.config.add_property(
+category.config.add_reference(
     # highlight-start
     wvc.config.ReferenceProperty(
         name="hasQuestion",
@@ -199,7 +191,7 @@ questions = client.collections.get("JeopardyQuestion")
 questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.data.Reference.to(category_obj_id)
+    to=category_obj_id
 )
 # highlight-end
 
@@ -209,7 +201,7 @@ categories = client.collections.get("JeopardyCategory")
 categories.data.reference_add(
     from_uuid=category_obj_id,
     from_property="hasQuestion",
-    ref=wvc.data.Reference.to(question_obj_id)
+    to=question_obj_id
 )
 # highlight-end
 # END TwoWay Python
@@ -239,13 +231,18 @@ del_props(client=client, uuid_to_update=question_obj_id, collection_name="Jeopar
 import weaviate.classes as wvc
 
 questions = client.collections.get("JeopardyQuestion")
-questions.data.reference_add(
-    from_uuid=question_obj_id,
-    from_property="hasCategory",
-    # highlight-start
-    ref=wvc.data.Reference.to([category_obj_id, category_obj_id_alt]) # add multiple references
-    # highlight-end
-)
+
+# highlight-start
+refs_list = []
+for temp_uuid in [category_obj_id, category_obj_id_alt]:
+    ref_obj = wvc.data.DataReference(
+        from_uuid=question_obj_id,
+        from_property="hasCategory",
+        to_uuid=temp_uuid
+    )
+    refs_list.append(ref_obj)
+questions.data.reference_add_many(refs_list)
+# highlight-end
 # END Multiple Python
 
 # Test results
@@ -272,7 +269,7 @@ questions.data.reference_delete(
 # highlight-end
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.data.Reference.to(category_obj_id)
+    to=category_obj_id
 )
 # END Delete Python
 
@@ -301,7 +298,7 @@ questions.data.reference_replace(
 # highlight-end
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.data.Reference.to(category_obj_id)
+    to=category_obj_id
 )
 # END Update Python
 

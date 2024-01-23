@@ -319,7 +319,7 @@ from weaviate.classes import Filter
 questions = client.collections.get("JeopardyQuestion")
 
 response = questions.data.delete_many(
-    where=Filter(path="question").equal("Test Question")
+    where=Filter.by_property(prop="question").equal("Test Question")
 )
 # END DeleteManyExample
 
@@ -428,7 +428,7 @@ for o in response.objects:
 # START AggregateCountExample
 questions = client.collections.get("JeopardyQuestion")
 response = questions.aggregate.over_all(
-    filters=wvc.query.Filter(path="question").like("*animal*"),
+    filters=wvc.query.Filter.by_property(prop="question").like("*animal*"),
     total_count=True
 )
 

@@ -470,7 +470,7 @@ from weaviate.classes import Filter
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.over_all(
     # highlight-start
-    filters=Filter("round").equal("Final Jeopardy!")
+    filters=Filter.by_property("round").equal("Final Jeopardy!")
     # highlight-end
 )
 
