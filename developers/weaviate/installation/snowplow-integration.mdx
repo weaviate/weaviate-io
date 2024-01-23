@@ -207,7 +207,7 @@ CREATE SERVICE TEXT2VEC
 ```  
 
 ### 8. Grant Permissions to the user
-Grant permission to the services to the weaviate_role and load the logs from the jupyter endpoint to get Jupyter key. Finally, get the public endpoint you can use to access Jupyter Notebooks.
+Grant permission to the services to the weaviate_role and load the logs from the jupyter endpoint to get a Jupyter key. Finally, get the public endpoint that you can use to access Jupyter Notebooks.
 ```sql
 GRANT USAGE ON SERVICE JUPYTER TO ROLE WEAVIATE_ROLE;
 GRANT USAGE ON SERVICE WEAVIATE TO ROLE WEAVIATE_ROLE;
