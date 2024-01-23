@@ -1,26 +1,11 @@
 ---
-title: Home
+title: Introduction
 sidebar_position: 0
 image: og/docs/introduction.jpg
 # tags: []
 ---
-# Welcome to Weaviate docs
 
-Welcome to the documentation for **Weaviate**, an open source 
-vector database.
-
-<div class="welcomeSection">
-<div class ="welcomeBox"> 
-<div class = "welcomeHeader"> New to Weaviate? </div>
-<p>Start with the <a href="/quickstart/index.md">Quickstart tutorial</a> - an end-to-end demo that takes 15-30 minutes.</p>
-</div>
-<div class ="welcomeBox"> 
-<div class = "welcomeHeader">Questions </div>
-<p>Please visit our <a href="https://forum.weaviate.io/c/support/">forum</a> to get help from the Weaviate community including the Weaviate team.</p>
-</div>
-</div>
-
-
+Welcome to the documentation for **Weaviate**, an open source vector database.
 
 ### About the docs
 The content is grouped into categories by goals:

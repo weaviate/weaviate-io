@@ -737,3 +737,41 @@ Dropdown style removed.
     width: 100% !important;
   }
 }
+
+.welcomeSection {
+  display: flex;
+  column-gap: 50px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    row-gap: 50px;
+  }
+}
+.welcomeBox {
+  border-radius: 0.9375rem;
+  background: #141f39;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 25.5625rem;
+  height: 11.512rem;
+  flex-shrink: 0;
+  padding: 29px 11px;
+
+  .welcomeHeader {
+    color: #61bd73;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+
+    font-weight: 700;
+
+    margin: 12px 6px;
+  }
+
+  p {
+    color: #fff;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.37663rem */
+  }
+}
