@@ -1,12 +1,13 @@
 # Instantiation
 import weaviate
+import weaviate.classes as wvc
 import os
 
-client = weaviate.Client(
-    url="https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),
-    additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # <-- Replace with your API key
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(api_key=os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # <-- Replace with your API key
     }
 )
 # END Instantiation
@@ -16,54 +17,47 @@ assert client.is_ready()
 # DataRetrieval
 collection_name = "GitBookChunk"
 
-response = (
-    client.query
-    .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
-    .with_near_text({"concepts": ["history of git"]})
-    .with_limit(3)
-    .do()
-)
+chunks = client.collections.get(collection_name)
+response = chunks.query.near_text(query="history of git", limit=3)
 # END DataRetrieval
 
-assert len(response["data"]["Get"][collection_name]) == 3
+assert len(response.objects) == 3
 
 # TransformResultSets
 collection_name = "GitBookChunk"
 
-response = (
-    client.query
-    .get(class_name=collection_name, properties=["chunk", "chapter_title", "chunk_index"])
-    .with_near_text({"concepts": ["history of git"]})
-    .with_limit(3)
+chunks = client.collections.get(collection_name)
+response = chunks.generate.near_text(
+    query="history of git",
+    limit=3,
     # highlight-start
-    .with_generate(grouped_task="Summarize the key information here in bullet points")
+    grouped_task="Summarize the key information here in bullet points"
     # highlight-end
-    .do()
 )
 
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
+print(response.generated)
 # END TransformResultSets
 
-assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"]) > 10
+assert len(response.generated) > 10
 
 # TransformIndividualObjects
 collection_name = "WineReview"
 
-response = (
-    client.query
-    .get(class_name=collection_name, properties=["review_body", "title", "country", "points"])
-    .with_near_text({"concepts": ["fruity white wine"]})
-    .with_limit(5)
-    .with_generate(single_prompt="""
+reviews = client.collections.get(collection_name)
+response = reviews.generate.near_text(
+    query="fruity white wine",
+    limit=5,
+    # highlight-start
+    single_prompt="""
         Translate this review into French, using emojis:
         ===== Country of origin: {country}, Title: {title}, Review body: {review_body}
-    """)
-    .do()
+    """
+    # highlight-end
 )
 # END TransformIndividualObjects
 
-assert len(response["data"]["Get"][collection_name]) == 5
-assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["singleResult"]) > 10
+assert len(response.objects) == 5
+assert len(response.objects[0].generated) > 10
 
 # ListModules
 response = client.get_meta()
@@ -71,11 +65,14 @@ print(response)
 # END ListModules
 
 
-# Re-instantiate for writing data to
-client = weaviate.Client(
-    url="http://localhost:8080",
-    additional_headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # <-- Replace with your API key
+# Re-instantiate for writing data
+# Close previous connection
+client.close()
+
+# Create new connection
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # <-- Replace with your API key
     }
 )
 
@@ -110,136 +107,110 @@ assert type(chunked_text[0]) == str
 
 
 # CreateClass
-collection_name = "GitBookChunk"
+import weaviate.classes as wvc
 
-chunk_class = {
-    "class": collection_name,
-    "properties": [
-        {
-            "name": "chunk",
-            "dataType": ["text"],
-        },
-        {
-            "name": "chapter_title",
-            "dataType": ["text"],
-        },
-        {
-            "name": "chunk_index",
-            "dataType": ["int"],
-        }
+
+if client.collections.exists(collection_name):  # In case we've created this collection before
+    client.collections.delete(collection_name)  # THIS WILL DELETE ALL DATA IN THE COLLECTION
+
+collection_name = "GitBookChunk"
+chunks = client.collections.create(
+    name=collection_name,
+    properties=[
+        wvc.config.Property(
+            name="chunk",
+            data_type=wvc.config.DataType.TEXT
+        ),
+        wvc.config.Property(
+            name="chapter_title",
+            data_type=wvc.config.DataType.TEXT
+        ),
+        wvc.config.Property(
+            name="chunk_index",
+            data_type=wvc.config.DataType.INT
+        ),
     ],
     # highlight-start
-    "vectorizer": "text2vec-openai",  # Use `text2vec-openai` as the vectorizer
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),  # Use `text2vec-openai` as the vectorizer
+    generative_config=wvc.config.Configure.Generative.openai(),  # Use `generative-openai` with default parameters
     # highlight-end
-    # highlight-start
-    "moduleConfig": {
-        "generative-openai": {}  # Use `generative-openai` with default parameters
-    }
-    # highlight-end
-}
-
-if client.schema.exists(collection_name):  # In case we've created this collection before
-    client.schema.delete_class(collection_name)  # THIS WILL DELETE ALL DATA IN THE CLASS
-
-client.schema.create_class(chunk_class)
+)
 # END CreateClass
 
-assert client.schema.exists(collection_name)
+assert client.collections.exists(collection_name)
 
 
 # ImportData
-client.batch.configure(batch_size=100)
-with client.batch as batch:
-    for i, chunk in enumerate(chunked_text):
-        data_object = {
-            "chapter_title": "What is Git",
-            "chunk": chunk,
-            "chunk_index": i
-        }
-        batch.add_data_object(data_object=data_object, class_name=collection_name)
+chunks_list = list()
+for i, chunk in enumerate(chunked_text):
+    data_properties = {
+        "chapter_title": "What is Git",
+        "chunk": chunk,
+        "chunk_index": i
+    }
+    data_object = wvc.data.DataObject(properties=data_properties)
+    chunks_list.append(data_object)
+chunks.data.insert_many(chunks_list)
 # END ImportData
 
 
 # CountObjects
-response = client.query.aggregate("GitBookChunk").with_meta_count().do()
-print(response)
+response = chunks.aggregate.over_all(total_count=True)
+print(response.total_count)
 # END CountObjects
 
-assert response["data"]["Aggregate"]["GitBookChunk"][0]["meta"]["count"] > 0
+assert response.total_count > 0
 
 
 # SinglePrompt
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    .with_generate(
-        single_prompt="Write the following as a haiku: ===== {chunk} "
-    )
-    .with_limit(2)
-    .do()
+response = chunks.generate.fetch_objects(
+    limit=2,
+    single_prompt="Write the following as a haiku: ===== {chunk} "
 )
 
-for r in response["data"]["Get"][collection_name]:
-    print(f"\n===== Object index: [{r['chunk_index']}] =====")
-    print(r["_additional"]["generate"]["singleResult"])
+for o in response.objects:
+    print(f"\n===== Object index: [{o.properties['chunk_index']}] =====")
+    print(o.generated)
 # END SinglePrompt
 
-assert len(response["data"]["Get"][collection_name]) == 2
-assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["singleResult"]) > 10
+assert len(response.objects) == 2
+assert len(response.objects[0].generated) > 10
 
 
 # GroupedTask
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    .with_generate(
-        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
-    )
-    .with_limit(2)
-    .do()
+response = chunks.generate.fetch_objects(
+    limit=2,
+    grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
 )
 
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
+print(response.generated)
 # END GroupedTask
 
-assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"]) > 10
+assert len(response.generated) > 10
 
 
 # NearTextGroupedTask
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    # highlight-start
-    .with_near_text({"concepts": "states of git"})
-    # highlight-end
-    .with_generate(
-        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
-    )
-    .with_limit(2)
-    .do()
+response = chunks.generate.near_text(
+    query="states of git",
+    limit=2,
+    grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
 )
 
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
+print(response.generated)
 # END NearTextGroupedTask
 
-assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"]) > 10
+assert len(response.generated) > 10
 
 
 # SecondNearTextGroupedTask
-response = (
-    client.query
-    .get(collection_name, ["chunk", "chunk_index"])
-    # highlight-start
-    .with_near_text({"concepts": "how git saves data"})
-    # highlight-end
-    .with_generate(
-        grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
-    )
-    .with_limit(2)
-    .do()
+response = chunks.generate.near_text(
+    query="how git saves data",
+    limit=2,
+    grouped_task="Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
 )
 
-print(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"])
+print(response.generated)
 # END SecondNearTextGroupedTask
 
-assert len(response["data"]["Get"][collection_name][0]["_additional"]["generate"]["groupedResult"]) > 10
+assert len(response.generated) > 10
+client.close()
