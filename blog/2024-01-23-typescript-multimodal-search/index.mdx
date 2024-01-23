@@ -13,7 +13,7 @@ description: "We look at how to build Multimodal applications in Typescript and 
 ![Cover, Building Multimodal AI in TypeScript](./img/hero.png)
 
 
-For a lot of people, Multimodal AI and its derivatives are strong contenders for technology of the year. The promises of Multimodal applications of artificial intelligence are exciting and speak to behavioral changes in media consumption and general interaction with the internet. I'm here to show you how you can get a piece of the pie. In this article, we’ll look at how to build Multimodal applications in Typescript and dive into everything that needs to happen in between.
+For a lot of people, Multimodal AI and its derivatives are strong contenders for technology of the year. The promises of Multimodal applications of artificial intelligence are exciting and speak to behavioural changes in media consumption and general interaction with the internet. I'm here to show you how you can get a piece of the pie. In this article, we’ll look at how to build Multimodal applications in Typescript and dive into everything that needs to happen in between.
 
 
 
@@ -24,7 +24,7 @@ For a lot of people, Multimodal AI and its derivatives are strong contenders for
 
 Historically, search has been over text, emphasizing the relevance of [keyword search](https://weaviate.io/developers/weaviate/search/bm25). This type of search was focused on matching text search terms to large datasets of text and returning the most relevant. This was the single modality; text search through data and get back text.
 
-Even with the onset of multimedia; images, videos and audio. We leveraged metadata and attached text to these more complex modalities and essentially ran keyword searches. Still a single modality search. 
+Even with the onset of multimedia; images, videos and audio. We leveraged metadata and attached text to these more complex modalities and essentially ran keyword searches. Still a single-modality search. 
 
 Early versions of large language models followed suit. With most being single modality models, with a single model inference.
 
@@ -32,13 +32,13 @@ Early versions of large language models followed suit. With most being single mo
 
 
 
-### Multi Modality
+### Multi-Modality
 
 In today's world, not only are people optimizing for TikTok searches but the video hosting service is the search engine of choice for a [majority of Gen Z](https://www.campaignasia.com/article/tiktok-trumps-google-as-a-search-engine-research-finds/492905). Multimodality enables search queries with multiple media types over multiple media types. Enabling you to text search over datasets of video or mixed media. 
 
 Mostly enabled by [vector](https://weaviate.io/developers/weaviate/search/similarity) and [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid), Vector databases by design are uniquely adapted to storing, indexing and enabling efficient retrieval for multimodal use cases. On the machine learning model side of things, we’re seeing the rise of multimodal models that can infer numerous modalities. 
 
-This means, we can interact with an LLM via chat and have the LLMs generate text, audio or video. By definition, this would enable interaction with similar models via text or even video.
+This means we can interact with an LLM via chat and have the LLMs generate text, audio or video. By definition, this would enable interaction with similar models via text or even video.
 
 
 ![Multimodal Architecture](./img/multimodal-1.png)
@@ -47,9 +47,9 @@ This means, we can interact with an LLM via chat and have the LLMs generate text
 
 ## Building our own Multimodal Search
 
-Now that we have a better understanding on multi modal search, let’s build a search application with [Weaviate](https://weaviate.io/) and [Next.js](https://nextjs.org/)
+Now that we have a better understanding of multi-modal search, let’s build a search application with [Weaviate](https://weaviate.io/) and [Next.js](https://nextjs.org/)
 
-Specwise, we want to be able to run text search through image, video and audio data without leveraging the files metadata. 
+Specwise, we want to be able to run a text search through image, video and audio data without leveraging the file's metadata. 
 
 
 ### Requirements
@@ -70,7 +70,7 @@ create-next-app <project-name> –ts –tailwind –app
 ```
 
 ### Getting Weaviate Running
-In the newly created folder, create a `docker-compose.yml` file and paste the following code in it. 
+In the newly created folder, create a `docker-compose.yml` file and paste the following code into it. 
 
 ```yml
 version: '3.4'
@@ -100,14 +100,14 @@ Then run `docker-compose up -d` in your terminal to start an instance of Weaviat
 
 ### Importing Data
 
-Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your own data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application. 
+Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application. 
 
 We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-ts-client) and other project dependencies with the following command.
 ```bash
 yarn add weaviate-ts-client use-debounce rimraf 
 ```
 
-To import our data, we need to create a folder called `src` were our import scripts will go. 
+To import our data, we need to create a folder called `src` where our import scripts will go. 
 
 To start, create a file called `client.ts` and paste the following code in it to initialize the Weaviate client. 
 
@@ -237,7 +237,7 @@ export const deleteCollection = async (name: string) => {
 
 ```
 
-This file conatins a function to create a collection, a function to delete a collection, and a function to check if a collection exists. If there are any details we want to change that would define our collections, we can do so in this file.
+This file contains a function to create a collection, a function to delete a collection, and a function to check if a collection exists. If there are any details we want to change that would define our collections, we can do so in this file.
 
 Notably, we create a new class and define media types of image, video and audio to our `multi2vec-bind` module. We also add the following properties to our collection: `media`, `name`, `image`, `audio`, and `video`. Think of these as properties we will be able to query against when we start to make queries or import data to Weavaite.
 
@@ -388,7 +388,7 @@ const insertVideo = async (collectionName: string) => {
 
 ```
 
-This file reads out image, video and audio directories for media and then encodes them before sending them to Weaviate to be stored.
+This file reads out images, video and audio directories for media and then encodes them before sending them to Weaviate to be stored.
 
 
 We then create a file called `index.ts` where we run all the files we created above. 
@@ -409,17 +409,17 @@ run();
 
 ```
 
-In `index.ts` we can change our collection name to our liking. When this file is run, we delete any exsting collection that exists with the name we specify, create a new collection with the same name and then import all the media files in our `.public` folder.
+In `index.ts` we can change our collection name to our liking. When this file is run, we delete any existing collection that exists with the name we specify, create a new collection with the same name and then import all the media files in our `.public` folder.
 
-> It's important to not that we need our Weaviate instance running with Docker before going to the next step. 
+> It's important to note that we need our Weaviate instance running with Docker before going to the next step. 
 
 
-To run our import proces, we need to add the following scripts to our `package.json` file.
+To run our import process, we need to add the following scripts to our `package.json` file.
 
 ```js
   …
 "scripts": {
-    	…
+      …
     "preimport": "rimraf ./build && tsc src/*.ts --outDir build",
     "import": "npm run preimport && node build/index.js"
         …
@@ -427,7 +427,7 @@ To run our import proces, we need to add the following scripts to our `package.j
   …
 ```
 
-We can now run `yarn run import` to start the import process. Depending on how much data you're importing, it can take a little time. While that run, lets create our Search interface.
+We can now run `yarn run import` to start the import process. Depending on how much data you're importing, it can take a little time. While that runs, let's create our Search interface.
 
 ### Building Search Functionality
 
@@ -479,7 +479,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 We have an input tag that takes search terms from users. We then pass these search terms to our URL params and then use the `replace` method from `next/navigation` to update the URL. This will update the URL and trigger a new search when the user stops typing.
 
 
-Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstate Multimodal search but they make the app look nicer! 
+Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer! 
 
 
 In the `./app` folder, paste the following code in `page.tsx`, 
@@ -590,7 +590,7 @@ async function searchDB(search: string) {
 
 ```
 
-Here we define a function `searchDB()`, that makes a call to Weaviate to search for the given search term. We then map the results to the UI. Weaviate lets us run a vector search from our `BindExample` collection with `withNearText()` and pass the user entered search term as a query. We have the ability to define properties we want to search on with `withFields()` and the number of results we want to return with `withLimit()`. We then pass the query response to be displayed on the UI.
+Here we define a function `searchDB()`, which makes a call to Weaviate to search for the given search term. We then map the results to the UI. Weaviate lets us run a vector search from our `BindExample` collection with `withNearText()` and pass the user-entered search term as a query. We can define properties we want to search on with `withFields()` and the number of results we want to return with `withLimit()`. We then pass the query response to be displayed on the UI.
 
 
 ### Final Result
@@ -600,7 +600,7 @@ Then you should be able to search like this
 
 ## Conclusion
 
-We just saw how to leverage a Multimodal AI model to power our MultiModal search in Typescript with Next.js. A lot is happening in the space and this only just scratches the surface of Multimodal use cases. One could take this a step further and enable search via image, video or audio uploads. Another avenue worth expoloring is generative multimodal models to either enhance results or interact with existing datasets. If this is something you find interesting or would love to continue a conversation on, find me online as [malgamves](https://malgamves.dev).
+We just saw how to leverage a Multimodal AI model to power our Multimodal search in Typescript with Next.js. A lot is happening in the space and this only just scratches the surface of Multimodal use cases. One could take this a step further and enable search via image, video or audio uploads. Another avenue worth exploring is Generative Multimodal models to either enhance results or interact with existing datasets. If this is something you find interesting or would love to continue a conversation on, find me online at [malgamves](https://malgamves.dev).
 
 
 import WhatNext from '/_includes/what-next.mdx'
