@@ -250,47 +250,12 @@ Follow these steps to configure the login for Jupyter Notebooks.
 
 ### 10. Load data into your Weaviate instance
 
-Download the 
-This client code creates a schema and loads the data you uploaded earlier into Weaviate.
+Follow these steps to create a schema, and load some sample data into your Weaviate instance.
+
+1. Download the [`SampleJSON.json`](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/blob/main/sample-data/SampleJSON.json) file to your desktop.
+1. Drag the file into the Jupyter tree view in your browser.
+1. Copy the code for the Weaviate Python client into a Jupyter notebook and run it.
  
-#### V3 Python Client
-
-```python
-import weaviate
-import json
-import os
-print("Connecting...")
-client = weaviate.Client(
-   url = "http://weaviate:8080",  
- )
-print("Success!")
-
-
-if client.schema.exists("Question"):
-    client.schema.delete_class("Question")
-class_obj = {
-    "class": "Question",
-    "vectorizer": "text2vec-transformers"
-}
-
-client.schema.create_class(class_obj)
-
-with open("SampleJSON.json") as file:
- data = json.load(file)
-
-with client.batch(batch_size=100) as batch:
- for record in data:
-  batch.add_data_object(
-  {
-  "answer": record["Answer"],
-  "question": record["Question"],
-  "category": record["Category"]
-  },
-  "Question"
-  )
-```
-
-#### V4 Python Client
 ```python
 
 # Import all Questions in batches
