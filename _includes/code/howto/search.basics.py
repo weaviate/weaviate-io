@@ -2,7 +2,7 @@
 # ===== INSTANTIATION-COMMON =====
 # ================================
 
-# ===== Instantiation shown on snippet
+# ===== Instantiation
 import weaviate
 import weaviate.classes as wvc
 import os
