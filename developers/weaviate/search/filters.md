@@ -49,7 +49,7 @@ Add a `filter` to your query, to limit the result set.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# SingleFilterGraphQL"
       endMarker="# END SingleFilterGraphQL"
       language="graphql"
@@ -63,7 +63,7 @@ Add a `filter` to your query, to limit the result set.
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected SingleFilter results"
   endMarker="# END Expected SingleFilter results"
   language="json"
@@ -105,7 +105,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# MultipleFiltersAndGraphQL"
       endMarker="# END MultipleFiltersAndGraphQL"
       language="graphql"
@@ -119,7 +119,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected MultipleFiltersAnd results"
   endMarker="# END Expected MultipleFiltersAnd results"
   language="json"
@@ -161,7 +161,7 @@ You can group and nest filters.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# MultipleFiltersNestedGraphQL"
       endMarker="# END MultipleFiltersNestedGraphQL"
       language="graphql"
@@ -175,7 +175,7 @@ You can group and nest filters.
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected MultipleFiltersNested results"
   endMarker="# END Expected MultipleFiltersNested results"
   language="json"
@@ -231,7 +231,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# SingleFilterNearTextGraphQL"
       endMarker="# END SingleFilterNearTextGraphQL"
       language="graphql"
@@ -245,7 +245,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected SingleFilterNearText results"
   endMarker="# END Expected SingleFilterNearText results"
   language="json"
@@ -287,7 +287,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# LikeFilterGraphQL"
       endMarker="# END LikeFilterGraphQL"
       language="graphql"
@@ -301,7 +301,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected LikeFilter results"
   endMarker="# END Expected LikeFilter results"
   language="json"
@@ -352,7 +352,7 @@ To filter on properties from a cross-referenced object, add the collection name 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# CrossReferenceGraphQL"
       endMarker="# END CrossReferenceGraphQL"
       language="graphql"
@@ -366,7 +366,7 @@ To filter on properties from a cross-referenced object, add the collection name 
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected CrossReferencePython results"
   endMarker="# END Expected CrossReferencePython results"
   language="json"
