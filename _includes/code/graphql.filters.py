@@ -124,6 +124,20 @@ for o in response.objects:
 # FilterByCountOfReferences
 # ========================================
 
+# TODO - Add this when it's available in the Python client
+# collection = client.collections.get("Article")
+
+# response = collection.query.fetch_objects(
+#     filters=wvc.query.Filter.by_ref_count(link_on="inPublication").greater_than(2),
+#     return_references=wvc.query.QueryReference(link_on="inPublication", return_properties=["name"]),
+#     limit=2
+# )
+
+# for o in response.objects:
+#     print(o.properties)  # Inspect returned objects
+#     for ref_o in o.references["inPublication"].objects:
+#         print(ref_o.properties)
+
 # START FilterByCountOfReferences
 # Coming soon
 # END FilterByCountOfReferences
