@@ -323,3 +323,8 @@ response = client.graphql_raw_query(
 """
 # END GraphQLQnAExample
 '''
+
+# START-ANY
+
+client.close()
+# END-ANY

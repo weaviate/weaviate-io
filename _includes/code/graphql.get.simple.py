@@ -100,3 +100,8 @@ for o in response.objects:
     assert "hasCategory" in list(o.references.keys())
     #     "title" in ro.properties.keys()
     # assert "hasCategory" in o.references[0].keys()
+
+# START-ANY
+
+client.close()
+# END-ANY

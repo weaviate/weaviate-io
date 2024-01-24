@@ -80,3 +80,8 @@ print(result)
 
 # Test
 assert result["status"] == "SUCCESS"
+
+# START-ANY
+
+client.close()
+# END-ANY

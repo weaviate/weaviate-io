@@ -92,21 +92,25 @@ A port for gRPC must be open on your Weaviate server. If you are running Weaviat
 
 You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS.
 
-## Instantiation
+## Instantiate a client
 
-You can instantiate the client using one of multiple methods. For example, you can use one of the following helper `connect` functions:
+There are multiple ways to connect to your Weaviate instance. To instantiate a client, use one of these styles:
+
+- [Python client v4 helper methods](./python.md#python-client-v4-helper-methods)
+- [Python client v4 explicit connection](./python.md#python-client-v4-explicit-connection)
+- [Python client v3 style connection](./python.md#python-client-v3-style-connection)
+
+### Python client v4 helper methods
 
 - `weaviate.connect_to_wcs()`
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
 
-See the examples below:
-
 <Tabs groupId="languages">
 <TabItem value="wcs" label="WCS">
 
-<p><small>Note: As of December 2023, WCS sandboxes are not compatible with the <code>v4</code> client.</small></p>
+<p><small>Note: WCS sandboxes are not compatible with the <code>v4</code> client.(Updated, January, 2024)</small></p>
 
 <FilteredTextBlock
   text={PythonCode}
@@ -148,11 +152,15 @@ See the examples below:
 </TabItem>
 </Tabs>
 
-Or, you can [instantiate a `weaviate.WeaviateClient` object directly](#advanced-direct-instantiation).
+The client v4 helper methods provide some optional parameters to customize your client. 
 
-#### API keys for external API use
+- [Specify external API keys](./python.md#external-api-keys)
+- [Specify connection timeout values](./python.md#timeout-values)
+- [Specify authentication details](./python.md#authentication)
 
-You can pass on API keys for services such as Cohere, OpenAI and so on through additional headers. For example:
+#### External API keys
+
+To add API keys for services such as Cohere or OpenAI, use the `headers` parameter.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -163,7 +171,9 @@ You can pass on API keys for services such as Cohere, OpenAI and so on through a
 
 #### Timeout values
 
-You can set timeout values for the client as a tuple  (connection timeout & read timeout time) in seconds.
+Set timeout values, in seconds, for the client.
+
+The syntax is: `timeout=(<connection timeout>, <read timeout>)`
 
 <FilteredTextBlock
   text={PythonCode}
@@ -172,11 +182,9 @@ You can set timeout values for the client as a tuple  (connection timeout & read
   language="py"
 />
 
-### Authentication
+#### Authentication
 
-Some helper `connect` functions allow you to pass on authentication credentials.
-
-For example, the `connect_to_wcs` method allows for a WCS api key or OIDC authentication credentials to be passed in.
+Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCS API key or OIDC authentication credentials.
 
 <Tabs groupId="languages">
 <TabItem value="api_key" label="API Key">
@@ -201,13 +209,16 @@ For example, the `connect_to_wcs` method allows for a WCS api key or OIDC authen
 </TabItem>
 </Tabs>
 
-The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
+For OIDC authentication with the Client Credentials flow, use the `AuthClientCredentials` class.
 
-If a particular helper function does not support the desired workflow, directly instantiate the `WeaviateClient` object.
+For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class. 
 
-### Advanced: Direct instantiation
+If the helper functions do not provide the customization you need, use the [`WeaviateClient`](./python.md#python-client-v4-explicit-connection) class to instantiate the client.
 
-You can also instantiate a client (`WeaviateClient`) object directly and pass on custom parameters. This is the most flexible way to instantiate the client.
+
+### Python client v4 explicit connection
+
+If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -216,11 +227,11 @@ You can also instantiate a client (`WeaviateClient`) object directly and pass on
   language="py"
 />
 
-### V3 `Client` instantiation
+### Python client v3 style connection
 
-You can instantiate a `v3` style `Client` object using the `weaviate.Client` class. This is the legacy instantiation method, and is still available for backwards compatibility.
+To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method available for backwards compatibility. Where possible, use a client v4 connection.
 
-Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
+To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
 ## Working with collections
 
@@ -586,7 +597,9 @@ Importing directly from `weaviate` is deprecated. Use `import weaviate.classes a
 
 #### Close client connections
 
-The v4.4b7 client introduces aysnc processing. As a result, you have to explicitly close your client connections. 
+Starting in v4.4b7, you have to explicitly close your client connections. There are two ways to close client connections. 
+
+Use `client.close()` to explicitly close your client connections.  
 
 ```python
 import weaviate
@@ -595,6 +608,17 @@ client = weaviate.connect_to_local()
 print(client.is_ready())
 
 client.close()
+```
+
+Use a context manager to close client connections for you.
+
+```python
+import weaviate
+
+with weaviate.connect_to_local() as client:
+     print(client.is_ready())
+
+# Python closes the client when you leave the 'with' block     
 ```
 
 #### Batch processing
@@ -623,7 +647,7 @@ Updated `client.batch` parameters
 
 Filter syntax is updated in v4.4b7.
 
-NOTE: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
+**NOTE**: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |

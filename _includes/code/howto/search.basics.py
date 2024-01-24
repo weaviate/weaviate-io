@@ -560,3 +560,8 @@ expected_response = """
 pass
 // END MultiTenancy Expected Results
 """
+
+# START-ANY
+
+client.close()
+# END-ANY

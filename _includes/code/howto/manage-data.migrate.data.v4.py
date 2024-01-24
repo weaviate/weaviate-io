@@ -312,3 +312,8 @@ coll_list = [reviews_src_tenant_a, reviews_tgt_tenant_a]
 resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
 assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
+# START-ANY
+
+client_src.close()
+client_tgt.close()
+# END-ANY

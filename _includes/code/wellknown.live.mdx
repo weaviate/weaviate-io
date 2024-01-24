@@ -9,9 +9,11 @@ import weaviate
 
 client = weaviate.connect_to_local()
 
-is_live = client.is_live() 
+is_live = client.is_live()
+
 print(is_live)
 
+client.close()
 ```
 
 </TabItem>
