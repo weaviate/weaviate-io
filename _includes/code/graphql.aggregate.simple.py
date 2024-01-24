@@ -65,7 +65,7 @@ assert response.total_count > 0
 
 # START GraphQLSimpleAggregateGroupby
 collection = client.collections.get("Article")
-response = collection.aggregate_group_by.over_all(
+response = collection.aggregate.over_all(
     group_by="inPublication",
     total_count=True,
     return_metrics=wvc.Metrics("wordCount").integer(mean=True)

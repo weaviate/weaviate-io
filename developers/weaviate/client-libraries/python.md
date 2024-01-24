@@ -283,8 +283,6 @@ Operations in the `v4` client are grouped into submodules. The key submodules fo
 - `generate`: Retrieval augmented generation operations
     - Build on top of `query` operations
 - `aggregate`: Aggregation operations
-- `query_group_by`: Object-level group by operations
-- `aggregate_group_by`: Aggregation-level group by operations
 
 ### `data`
 
@@ -520,7 +518,7 @@ The results are organized by both their individual objects as well as the group.
   language="py"
 />
 
-### `aggregate_group_by`
+### `aggregate` + group by
 
 Results of a query can be grouped and aggregated as shown here.
 
@@ -578,6 +576,8 @@ You can choose to provide a generic type to a query or data operation. This can 
 />
 
 ## Migration guide
+
+<!-- NOTE: Add note re: query_group_by and aggregate_group_by being deprecated and then removed -->
 
 ### Changes in `v4.4b8`
 

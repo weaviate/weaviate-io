@@ -450,12 +450,14 @@ print(response.properties)
 
 # START QueryGroupbyExample
 questions = client.collections.get("JeopardyQuestion")
-response = questions.query_group_by.near_text(
+response = questions.query.near_text(
     query="animal",
     distance=0.2,
-    group_by_property="points",
-    number_of_groups=3,
-    objects_per_group=5
+    group_by=wvc.query.GroupBy(
+        prop="points",
+        number_of_groups=3,
+        objects_per_group=5
+    )
 )
 
 for k, v in response.groups.items():  # View by group
@@ -471,7 +473,7 @@ for o in response.objects:  # View by object
 
 # START AggregateGroupbyExample
 questions = client.collections.get("JeopardyQuestion")
-response = questions.aggregate_group_by.near_text(
+response = questions.aggregate.near_text(
     query="animal",
     distance=0.2,
     group_by="points",
