@@ -8,6 +8,7 @@ import subprocess
     [
         "./_includes/code/howto/search.basics.py",
         "./_includes/code/howto/search.similarity.py",
+        # "./_includes/code/howto/search.image.py",  # Needs an easily reproducible dataset / imports
         "./_includes/code/howto/search.bm25.py",
         "./_includes/code/howto/search.hybrid.py",
         "./_includes/code/howto/search.filters.py",
