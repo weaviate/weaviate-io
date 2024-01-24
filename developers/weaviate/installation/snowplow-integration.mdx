@@ -9,8 +9,8 @@ Snowflake provides a hosted solution, [Snowpark Container Services (SPCS)](https
 
 The code in this guide configures a sample SPCS instance. The sample instance demonstrates how to run Weaviate in Snowpark. To configure your own SPCS instance, change the database name, warehouse name, image repository name, and other example values to match your deployment.
 
-
-## 1. Log into Snowflake
+## Configure your instance
+### 1. Log into Snowflake
 
 Download the [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql) client. Use the SnowSQL client to connect to Snowflake.
 
@@ -18,7 +18,7 @@ Download the [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql) client.
 snowsql -a "YOURINSTANCE" -u "YOURUSER"
 ```
 
-## 2. Setup a `user` and a `role`
+### 2. Setup a `user` and a `role`
 
 Create a role, and a user, for the Weaviate instance. 
 
@@ -255,7 +255,10 @@ Follow these steps to create a schema, and load some sample data into your Weavi
 1. Download the [`SampleJSON.json`](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/blob/main/sample-data/SampleJSON.json) file to your desktop.
 1. Drag the file into the Jupyter tree view in your browser.
 1. Copy the code for the Weaviate Python client into a Jupyter notebook and run it.
- 
+
+<details>
+  <summary>Python client code</summary>
+
 ```python
 
 import weaviate
@@ -321,8 +324,9 @@ if(len(items_to_insert) > 0):
 
 print("Data inserted into Weaviate!")
 ```
+</details>
 
-### 11. Query your data
+## Query your data
 
 To query your data, run these queries in the a Jupyter notebook.
 
@@ -342,11 +346,17 @@ client = weaviate.connect_to_custom(
 
 collection = client.collections.get("Questions")
 
-# run a simple search
+# Simple search
 response = collection.query.near_text(query="animal",limit=2, include_vector=True)
 #confirm vectors exist
 for o in response.objects:
     print(o.vector)
+
+# Hybrid search	client.close()
+response = collection.query.hybrid(	
+    query="animals",	
+    limit=5	
+)	
 
 client.close()
 ```
