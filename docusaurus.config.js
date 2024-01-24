@@ -230,6 +230,10 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                                label: 'Newsletter',
+                                to: 'https://newsletter.weaviate.io/',
+                            },
+                            {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
                             },
@@ -269,10 +273,6 @@ const config = {
                             {
                                 label: 'Careers',
                                 to: '/company/careers',
-                            },
-                            {
-                                label: 'Newsletter',
-                                to: 'https://newsletter.weaviate.io/',
                             },
                             {
                                 label: 'Investors',
@@ -448,6 +448,10 @@ const config = {
                             {
                                 label: 'Playbook',
                                 to: 'company/playbook',
+                            },
+                            {
+                                label: 'Newsletter',
+                                to: 'https://newsletter.weaviate.io/',
                             },
 
 
