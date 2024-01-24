@@ -12,11 +12,15 @@ client = weaviate.connect_to_local(
 
 
 # Actual client instantiation
-# client = weaviate.connect_to_wcs(
-#     cluster_url=os.getenv("WCS_DEMO_URL"),
-#     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
-#     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
-# )
+client.close()
+
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
 
 
 # ========================================
@@ -252,7 +256,7 @@ collection = client.collections.get("Article")
 
 response = collection.query.bm25(
     query="fox",
-    query_properties=["question"],
+    query_properties=["title"],
     return_metadata=wvc.query.MetadataQuery(score=True),
     limit=5,
 )
