@@ -86,4 +86,10 @@ for o in response.objects:
 # END bm25Rerank Python
 
 
+# Tests
+assert response.objects[0].collection == "JeopardyQuestion"
+assert response.objects[0].metadata.score is not None
+# End test
+
+
 client.close()
