@@ -230,7 +230,7 @@ use DATABASE WEAVIATE_DB_001;
 Then, load your data into the Snowflake stage. The upload takes a few seconds.
 
 ```sql
-PUT file:///path/to/sample-data/SampleJSON.json @DATA;
+PUT file:///path/to/sample-data/SampleJSON.json @DATA overwrite=true auto_compress=false;
 ```
 
 ### 10. Configure the Jupyter Notebook login
