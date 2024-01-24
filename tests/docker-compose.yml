@@ -6,10 +6,10 @@ services:
     - --host
     - 0.0.0.0
     - --port
-    - '8080'  # Specify different port to avoid confusion
+    - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.23.0
+    image: semitechnologies/weaviate:1.23.3
     ports:
     - 8099:8080
     - 50052:50051
