@@ -323,17 +323,29 @@ print("Data inserted into Weaviate!")
 ```
 
 ### 11. Query your data
-Using Jupyter Notebooks, you can now query your data and confirm vectors are there.
+
+To query your data, run these queries in the a Jupyter notebook.
 
 ```python
-questions = client.collections.get("Question")
-response = questions.query.near_text(
-    query="animal",
-    limit=2,
-    include_vector=True
+import weaviate
+import json
+import os
+
+client = weaviate.connect_to_custom(
+    http_host="weaviate",
+    http_port="8080",
+    http_secure=False,
+    grpc_host="weaviate",
+    grpc_port="50051",
+    grpc_secure=False
 )
+
+# run a simple search
+response = collection.query.near_text(query="animal",limit=2, include_vector=True)
+#confirm vectors exist
 for o in response.objects:
     print(o.vector)
+    
 ```
 
 ## Suspend and resume services
