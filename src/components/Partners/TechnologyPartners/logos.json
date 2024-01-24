@@ -1,32 +1,6 @@
 {
   "logos": [
     {
-      "companyName": "AWS",
-      "cssClass": "awsPartners",
-      "image": "../../../../static/img/site/aws-logo-partners.svg",
-      "link": "/partners/aws"
-    },
-    {
-      "companyName": "Google Cloud Platform",
-      "cssClass": "gcpPartners",
-      "link": "#"
-    },
-    {
-      "companyName": "Microsoft Azure",
-      "cssClass": "azurePartners",
-      "link": "#"
-    },
-    {
-      "companyName": "Snowflake",
-      "cssClass": "snowflakePartners",
-      "link": "#"
-    },
-    {
-      "companyName": "Confluent",
-      "cssClass": "confluentPartners",
-      "link": "#"
-    },
-    {
       "companyName": "OpenAI",
       "cssClass": "openAIPartners",
       "link": "#"
@@ -34,6 +8,11 @@
     {
       "companyName": "Cohere",
       "cssClass": "coherePartners",
+      "link": "#"
+    },
+    {
+      "companyName": "Databricks",
+      "cssClass": "databricksPartners",
       "link": "#"
     },
     {
@@ -53,8 +32,8 @@
       "link": "#"
     },
     {
-      "companyName": "Databricks",
-      "cssClass": "databricksPartners",
+      "companyName": "DataDog",
+      "cssClass": "datadogPartners",
       "link": "#"
     },
     {
@@ -73,8 +52,8 @@
       "link": "#"
     },
     {
-      "companyName": "DataDog",
-      "cssClass": "datadogPartners",
+      "companyName": "DitHub",
+      "cssClass": "dithubPartners",
       "link": "#"
     },
     {
@@ -88,13 +67,13 @@
       "link": "#"
     },
     {
-      "companyName": "Astronomer",
-      "cssClass": "astronomerPartners",
+      "companyName": "Arize",
+      "cssClass": "arizePartners",
       "link": "#"
     },
     {
-      "companyName": "DitHub",
-      "cssClass": "dithubPartners",
+      "companyName": "Astronomer",
+      "cssClass": "astronomerPartners",
       "link": "#"
     },
     {
@@ -105,12 +84,6 @@
     {
       "companyName": "AI21",
       "cssClass": "AI21Partners",
-      "link": "#"
-    },
-
-    {
-      "companyName": "Arize",
-      "cssClass": "arizePartners",
       "link": "#"
     }
   ]
