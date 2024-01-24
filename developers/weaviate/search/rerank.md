@@ -64,7 +64,7 @@ To rerank the results of a vector search, configure the object properties to sor
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START nearTextRerank GraphQL"
       endMarker="# END nearTextRerank GraphQL"
       language="graphql"
@@ -78,7 +78,7 @@ To rerank the results of a vector search, configure the object properties to sor
 The response should look like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# START Expected nearTextRerank results"
     endMarker="# END Expected nearTextRerank results"
     language="json"
@@ -120,7 +120,7 @@ To rerank the results of a keyword search, configure the object properties to so
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START bm25Rerank GraphQL"
       endMarker="# END bm25Rerank GraphQL"
       language="graphql"
@@ -134,7 +134,7 @@ To rerank the results of a keyword search, configure the object properties to so
 The response should look like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# START Expected bm25Rerank results"
     endMarker="# END Expected bm25Rerank results"
     language="json"

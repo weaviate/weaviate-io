@@ -161,7 +161,7 @@ response = (
         "concepts": ["flying"]
     })
     # highlight-start
-    .with_additional("rerank(property: "answer" query: "floating") { score }")
+    .with_additional("rerank(property: \"answer\" query: \"floating\") { score }")
     # highlight-end
     .with_limit(10)
     .do()
@@ -356,7 +356,7 @@ response = (
       query="paper"
     )
     # highlight-start
-    .with_additional("rerank(property: "question" query: "publication") { score }")
+    .with_additional("rerank(property: \"question\" query: \"publication\") { score }")
     # highlight-end
     .with_limit(10)
     .do()
