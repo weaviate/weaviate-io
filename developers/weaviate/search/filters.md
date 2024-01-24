@@ -415,6 +415,43 @@ Filters also work with metadata properties such as object id, property length, a
 
 For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
+## By geo-coordinates
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterbyGeolocation"
+      endMarker="# END FilterbyGeolocation"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FilterbyGeolocation"
+      endMarker="# END FilterbyGeolocation"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterbyGeolocation"
+      endMarker="// END FilterbyGeolocation"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START GQLFilterbyGeolocation"
+      endMarker="# END GQLFilterbyGeolocation"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
 ## Improve filter performance
 
 If you encounter slow filter performance, consider adding a `limit` parameter or additional `where` operators to restrict the size of your data set.

@@ -210,4 +210,59 @@ for o in response.objects:
 assert str(response.objects[0].uuid) == target_id
 # End test
 
+
+# ========================================
+# FilterByGeolocation
+# ========================================
+
+# Test this on a local instance with a temporary collection
+client.close()
+
+client = weaviate.connect_to_local()
+
+for c in ["Article", "Author", "Publication"]:
+    client.collections.delete(c)
+
+publications = client.collections.create(
+    "Publication",
+    properties=[
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="headquartersGeoLocation", data_type=wvc.config.DataType.GEO_COORDINATES)
+    ]
+)
+
+publications.data.insert(
+    properties={
+        "headquartersGeoLocation": {
+            "latitude": 52.3932696,
+            "longitude": 4.8374263
+        }
+    },
+)
+
+# START FilterbyGeolocation
+response = publications.query.fetch_objects(
+    filters=(
+        wvc.query.Filter
+        .by_property("headquartersGeoLocation")
+        .within_geo_range(
+            coordinate=wvc.data.GeoCoordinate(
+                latitude=52.39,
+                longitude=4.84
+            ),
+            distance=1000  # In meters
+        )
+    )
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+# END FilterbyGeolocation
+
+
+# Tests
+assert len(response.objects) == 1
+# End test
+
+
 client.close()

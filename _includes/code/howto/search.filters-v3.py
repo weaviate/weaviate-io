@@ -688,3 +688,74 @@ print(gqlresponse)
 gqlresponse = client.query.raw(gql_query)
 assert gqlresponse == response
 # End test
+
+
+# ========================================
+# FilterByGeolocation
+# ========================================
+
+
+# TODO - Add geolocation data to the test data set & uncomment this section
+'''
+# START FilterbyGeolocation
+get_publications_where = """
+  {
+    Get {
+      Publication(where: {
+        operator: WithinGeoRange,
+        valueGeoRange: {
+          geoCoordinates: {
+            latitude: 52.3932696,    # latitude
+            longitude: 4.8374263     # longitude
+          },
+          distance: {
+            max: 1000           # distance in meters
+          }
+        },
+        path: ["headquartersGeoLocation"]  # property needs to be a geoLocation data type.
+      }) {
+        name
+        headquartersGeoLocation {
+          latitude
+          longitude
+        }
+      }
+    }
+  }
+"""
+
+query_result = client.query.raw(get_publications_where)
+print(query_result)
+# END FilterbyGeolocation
+'''
+
+
+# GQL query
+
+"""
+# START GQLFilterbyGeolocation
+  {
+    Get {
+      Publication(where: {
+        operator: WithinGeoRange,
+        valueGeoRange: {
+          geoCoordinates: {
+            latitude: 52.3932696,    # latitude
+            longitude: 4.8374263     # longitude
+          },
+          distance: {
+            max: 1000           # distance in meters
+          }
+        },
+        path: ["headquartersGeoLocation"]  # property needs to be a geoLocation data type.
+      }) {
+        name
+        headquartersGeoLocation {
+          latitude
+          longitude
+        }
+      }
+    }
+  }
+# END GQLFilterbyGeolocation
+"""

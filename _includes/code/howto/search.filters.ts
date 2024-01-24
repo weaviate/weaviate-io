@@ -279,3 +279,30 @@ console.log(JSON.stringify(result, null, 2));
 // Tests
 result.data.Get.JeopardyQuestion[0]._additional.id;
 assert.equal(target_id, result.data.Get.JeopardyQuestion[0]._additional.id);
+
+
+// ===================================================
+// ===== Filters with Geolocation =====
+// ===================================================
+
+// FilterbyGeolocation
+const response = await client.graphql
+  .get()
+  .withClassName('Publication')
+  .withFields('name headquartersGeoLocation {latitude longitude}')
+  .withWhere({
+    operator: 'WithinGeoRange',
+    path: ['headquartersGeoLocation'],
+    valueGeoRange: {
+      geoCoordinates: {
+        latitude: 52.3932696,
+        longitude: 4.8374263,
+      },
+      distance: {
+        max: 1000,
+      },
+    },
+  })
+  .do();
+console.log(response);
+// END FilterbyGeolocation
