@@ -18,27 +18,27 @@ export default function SystemIntegrators() {
         <div className={styles.techContainer}>
           <div className={styles.techList}>
             <div className={styles.techBox}>
-              <Link to="#">
+              <Link to="">
                 <span className={styles.innovativePartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="#">
+              <Link to="">
                 <span className={styles.smartCatPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="#">
+              <Link to="">
                 <span className={styles.ml6Partners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="#">
+              <Link to="">
                 <span className={styles.nttDataPartners} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="#">
+              <Link to="">
                 <span className={styles.bigDataPartners} />
               </Link>
             </div>

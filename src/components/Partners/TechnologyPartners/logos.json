@@ -3,88 +3,88 @@
     {
       "companyName": "OpenAI",
       "cssClass": "openAIPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Cohere",
       "cssClass": "coherePartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Databricks",
       "cssClass": "databricksPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Mistral AI",
       "cssClass": "mistralaiPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Anthropic",
       "cssClass": "anthropicPartners",
-      "link": "#"
+      "link": ""
     },
 
     {
       "companyName": "Langchain",
       "cssClass": "langchainPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "DataDog",
       "cssClass": "datadogPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Jina",
       "cssClass": "jinaPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Intel",
       "cssClass": "intelPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Red Hat",
       "cssClass": "redhatPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "DitHub",
       "cssClass": "dithubPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "NVIDIA",
       "cssClass": "nvidiaPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Haystack",
       "cssClass": "haystackPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Arize",
       "cssClass": "arizePartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Astronomer",
       "cssClass": "astronomerPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "Unstructured",
       "cssClass": "unstructuredPartners",
-      "link": "#"
+      "link": ""
     },
     {
       "companyName": "AI21",
       "cssClass": "AI21Partners",
-      "link": "#"
+      "link": ""
     }
   ]
 }

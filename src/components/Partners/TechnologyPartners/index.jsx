@@ -9,11 +9,6 @@ export default function TechnologyPartners() {
       <div className="container">
         <div className={styles.header}>
           <h2>Technology Partners</h2>
-          <p>
-            An industry-leading group of technology providers integrate with
-            Weaviate's powerful AI<br></br> capabilities to provide enhanced
-            value to their customers.
-          </p>
         </div>
         <div className={styles.techContainer}>
           <div className={styles.techList}>
