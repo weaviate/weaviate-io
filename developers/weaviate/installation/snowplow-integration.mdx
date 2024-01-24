@@ -258,11 +258,47 @@ Follow these steps to create a schema, and load some sample data into your Weavi
  
 ```python
 
-# Import all Questions in batches
 import weaviate
+import weaviate.classes as wvc
 import json
 import os
 
+print("Connecting...")
+
+client = weaviate.connect_to_custom(
+    http_host="weaviate",
+    http_port="8080",
+    http_secure=False,
+    grpc_host="weaviate",
+    grpc_port="50051",
+    grpc_secure=False
+)
+
+print("Success!")
+
+#Create the Questions collection
+collection = client.collections.create(
+    name="Questions",
+    vectorizer_config=wvc.Configure.Vectorizer.text2vec_transformers(),
+    properties=[
+        wvc.Property(
+            name="answer",
+            data_type=wvc.DataType.TEXT
+        ),
+         wvc.Property(
+            name="question",
+            data_type=wvc.DataType.TEXT
+        ),
+         wvc.Property(
+            name="category",
+            data_type=wvc.DataType.TEXT
+        )
+    ]
+)
+
+print("Collection Created!")
+
+# Import all Questions in batches
 items_to_insert = []
 with open("SampleJSON.json") as file:
  data = json.load(file)
@@ -276,23 +312,19 @@ for i, d in enumerate(data):
    items_to_insert.append(new_item)
    # Insert every 100 items
    if(len(items_to_insert) == 100):
-       articles.data.insert_many(items_to_insert)
+       collection.data.insert_many(items_to_insert)
        items_to_insert.clear()
 
 # Insert remaining items
 if(len(items_to_insert) > 0):
-   articles.data.insert_many(items_to_insert)
+   collection.data.insert_many(items_to_insert)
+
+print("Data inserted into Weaviate!")
 ```
 
-### 10. Query your data
+### 11. Query your data
 Using Jupyter Notebooks, you can now query your data and confirm vectors are there.
 
-#### V3 Client
-```python
-client.data_object.get(with_vector=True)
-```
-
-#### V4 Client
 ```python
 questions = client.collections.get("Question")
 response = questions.query.near_text(
