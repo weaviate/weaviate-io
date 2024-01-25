@@ -162,7 +162,7 @@ client.collections.delete(collection.name)
 #     wvc.data.DataObject(
 #         properties={"title": "Object 1"},
 #         # highlight-start
-#         # references=[wvc.data.Reference.to(uuid=target_uuid)],
+#         # references=[target_uuid],
 #         # highlight-end
 #     ),
 #     wvc.data.DataObject(
