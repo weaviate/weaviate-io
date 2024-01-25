@@ -2,7 +2,7 @@ import pytest
 import utils
 
 
-@pytest.mark.py
+@pytest.mark.pyv4
 @pytest.mark.parametrize(
     "script_loc",
     [

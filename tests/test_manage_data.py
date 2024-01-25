@@ -5,7 +5,7 @@ import shlex
 import os
 
 
-@pytest.mark.py
+@pytest.mark.pyv4
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -24,7 +24,7 @@ def test_on_blank_instance_py(empty_weaviates, script_loc):
 
 
 
-@pytest.mark.py
+@pytest.mark.pyv4
 @pytest.mark.parametrize(
     "script_loc",
     [
