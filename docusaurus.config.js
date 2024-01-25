@@ -275,6 +275,10 @@ const config = {
                                 to: '/company/careers',
                             },
                             {
+                                label: 'Partners',
+                                to: '/partners',
+                            },
+                            {
                                 label: 'Investors',
                                 to: '/company/investors',
                             },
@@ -375,7 +379,7 @@ const config = {
                             },
                             {
                                 label: 'Partners',
-                                to: '/partners/aws',
+                                to: '/partners',
                             },
                             {
                                 label: 'Terms & Policies',
