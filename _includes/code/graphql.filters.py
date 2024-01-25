@@ -124,22 +124,17 @@ for o in response.objects:
 # FilterByCountOfReferences
 # ========================================
 
-# TODO - Add this when it's available in the Python client
-# collection = client.collections.get("Article")
-
-# response = collection.query.fetch_objects(
-#     filters=wvc.query.Filter.by_ref_count(link_on="inPublication").greater_than(2),
-#     return_references=wvc.query.QueryReference(link_on="inPublication", return_properties=["name"]),
-#     limit=2
-# )
-
-# for o in response.objects:
-#     print(o.properties)  # Inspect returned objects
-#     for ref_o in o.references["inPublication"].objects:
-#         print(ref_o.properties)
-
 # START FilterByCountOfReferences
-# Coming soon
+response = collection.query.fetch_objects(
+    filters=wvc.query.Filter.by_ref_count(link_on="inPublication").greater_than(2),
+    return_references=wvc.query.QueryReference(link_on="inPublication", return_properties=["name"]),
+    limit=2
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+    for ref_o in o.references["inPublication"].objects:
+        print(ref_o.properties)
 # END FilterByCountOfReferences
 
 
@@ -147,8 +142,25 @@ for o in response.objects:
 # FilterByGeoCoordinates
 # ========================================
 
+publications = client.collections.get("Publication")
+
 # START FilterByGeoCoordinates
-# Coming soon
+response = publications.query.fetch_objects(
+    filters=(
+        wvc.query.Filter
+        .by_property("headquartersGeoLocation")
+        .within_geo_range(
+            coordinate=wvc.data.GeoCoordinate(
+                latitude=33.7579,
+                longitude=84.3948
+            ),
+            distance=10000  # In meters
+        )
+    ),
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
 # END FilterByGeoCoordinates
 
 # TEST
