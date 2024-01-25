@@ -4,8 +4,6 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
@@ -27,7 +25,7 @@ multi_collection = client.collections.create(
     name="MultiTenancyCollection",
     # Enable multi-tenancy on the new collection
     # highlight-start
-    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
+    multi_tenancy_config=wvc.config.Configure.multi_tenancy(True)
     # highlight-end
 )
 # END EnableMultiTenancy
@@ -105,7 +103,7 @@ multi_collection = client.collections.get("MultiTenancyCollection")
 multi_collection.tenants.update(tenants=[
     wvc.Tenant(
         name="tenantA",
-        activity_status=weaviate.TenantActivityStatus.COLD
+        activity_status=weaviate.schema.TenantActivityStatus.COLD
     )
 ])
 # highlight-end
@@ -121,7 +119,7 @@ assert tenants["tenantA"].activity_status.name == "COLD"
 multi_collection.tenants.update(tenants=[
     wvc.Tenant(
         name="tenantA",
-        activity_status=weaviate.TenantActivityStatus.HOT
+        activity_status=weaviate.schema.TenantActivityStatus.HOT
     )
 ])
 tenants = multi_collection.tenants.get()
@@ -197,8 +195,8 @@ import weaviate.classes as wvc
 
 multi_collection = client.collections.get("MultiTenancyCollection")
 # Add the cross-reference property to the multi-tenancy class
-multi_collection.config.add_property(
-    wvc.ReferenceProperty(
+multi_collection.config.add_reference(
+    wvc.config.ReferenceProperty(
         name="hasCategory",
         target_collection="JeopardyCategory"
     )
@@ -215,7 +213,7 @@ multi_tenantA.data.reference_add(
 # highlight-end
     from_uuid=object_id,  # MultiTenancyCollection object id (a Jeopardy question)
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_id) # JeopardyCategory id
+    to=category_id # JeopardyCategory id
 )
 # END AddCrossRef
 
@@ -225,7 +223,4 @@ result = multi_tenantA.query.fetch_object_by_id(object_id)
 # TODO - investigate whether the code above is wrong or this is related to the client
 # assert result.references["hasCategory"][0]["href"] == f"/v1/objects/JeopardyCategory/{category_id}"
 
-# START-ANY
-
 client.close()
-# END-ANY

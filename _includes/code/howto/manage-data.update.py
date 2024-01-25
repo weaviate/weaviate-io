@@ -11,8 +11,6 @@ import json
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
@@ -29,7 +27,7 @@ if client.collections.exists("JeopardyQuestion"):
 client.collections.create(
     name="JeopardyQuestion",
     description="A Jeopardy! question",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
 )
 
 # =============================
@@ -148,7 +146,4 @@ del_props(client, uuid, "JeopardyQuestion", ["answer"])
 result = jeopardy.query.fetch_object_by_id(uuid)
 assert result.properties == {}
 
-# START-ANY
-
 client.close()
-# END-ANY

@@ -4,8 +4,6 @@ import weaviate.classes as wvc
 import os
 
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }
@@ -35,8 +33,6 @@ import os
 # Accordingly, we show you how to connect to a local instance of Weaviate.
 # Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }

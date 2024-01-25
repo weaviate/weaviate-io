@@ -152,7 +152,7 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 </TabItem>
 </Tabs>
 
-The client v4 helper methods provide some optional parameters to customize your client. 
+The client v4 helper methods provide some optional parameters to customize your client.
 
 - [Specify external API keys](./python.md#external-api-keys)
 - [Specify connection timeout values](./python.md#timeout-values)
@@ -211,7 +211,7 @@ Some of the `connect` helper functions take authentication credentials. For exam
 
 For OIDC authentication with the Client Credentials flow, use the `AuthClientCredentials` class.
 
-For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class. 
+For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class.
 
 If the helper functions do not provide the customization you need, use the [`WeaviateClient`](./python.md#python-client-v4-explicit-connection) class to instantiate the client.
 
@@ -283,8 +283,6 @@ Operations in the `v4` client are grouped into submodules. The key submodules fo
 - `generate`: Retrieval augmented generation operations
     - Build on top of `query` operations
 - `aggregate`: Aggregation operations
-- `query_group_by`: Object-level group by operations
-- `aggregate_group_by`: Aggregation-level group by operations
 
 ### `data`
 
@@ -303,7 +301,7 @@ The `data` submodule contains all object-level CUD operations, including:
 See some examples below. Note that each function will return varying types of objects.
 
 :::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may 
+As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may
 send multiple requests as batches.
 :::
 
@@ -520,7 +518,7 @@ The results are organized by both their individual objects as well as the group.
   language="py"
 />
 
-### `aggregate_group_by`
+### `aggregate` + group by
 
 Results of a query can be grouped and aggregated as shown here.
 
@@ -578,6 +576,8 @@ You can choose to provide a generic type to a query or data operation. This can 
 />
 
 ## Migration guide
+
+<!-- NOTE: Add note re: query_group_by and aggregate_group_by being deprecated and then removed -->
 
 ### Changes in `v4.4b9`
 
@@ -644,7 +644,7 @@ Reference filters have a simplified syntax. The new syntax looks like this:
 ```python
 Filter.by_ref("ref").by_property("target_property")
 ```
- 
+
 ### Changes in `v4.4b7`
 
 #### Library imports
@@ -653,9 +653,9 @@ Importing directly from `weaviate` is deprecated. Use `import weaviate.classes a
 
 #### Close client connections
 
-Starting in v4.4b7, you have to explicitly close your client connections. There are two ways to close client connections. 
+Starting in v4.4b7, you have to explicitly close your client connections. There are two ways to close client connections.
 
-Use `client.close()` to explicitly close your client connections.  
+Use `client.close()` to explicitly close your client connections.
 
 ```python
 import weaviate
@@ -674,16 +674,16 @@ import weaviate
 with weaviate.connect_to_local() as client:
      print(client.is_ready())
 
-# Python closes the client when you leave the 'with' block     
+# Python closes the client when you leave the 'with' block
 ```
 
 #### Batch processing
 
-The v4.4b7 client introduces changes to `client.batch`. 
+The v4.4b7 client introduces changes to `client.batch`.
 
-- `client.batch` requires a context manager. 
+- `client.batch` requires a context manager.
 - Manual mode is removed, you cannot send batches with `.create_objects`.
-- Batch size and the number of concurrent requests are dynamically assigned. Use `batch.configure_fixed_size` to specify values. 
+- Batch size and the number of concurrent requests are dynamically assigned. Use `batch.configure_fixed_size` to specify values.
 - The `add_reference` method is updated.
 - The `to_object_collection` method is removed.
 
@@ -691,14 +691,14 @@ Updated `client.batch` parameters
 
 | Old value | Value in v4.4b7 |
 | :-- | :-- |
-| from_object_uuid: UUID | from_uuid: UUID | 
+| from_object_uuid: UUID | from_uuid: UUID |
 | from_object_collection: str | from_collection: str |
 | from_property_name: str | from_property: str |
 | to_object_uuid: UUID | to: Union[WeaviateReference, List[UUID]] |
 | to_object_collection: Optional[str] = None | |
 | tenant: Optional[str] = None | tenant: Optional[str] = None |
 
-        
+
 #### Filter syntax
 
 Filter syntax is updated in v4.4b7.
@@ -775,15 +775,15 @@ Use `ReferenceToMulti` for multi-target references.
     * `weaviate.classes.data`
     * `weaviate.classes.query`
     * `weaviate.classes.generic`
-* `vector_index_config` parameter factory functions for `wvc.Configure` and `wvc.Reconfigure` have changed to, e.g.:
+* `vector_index_config` parameter factory functions for `wvc.config.Configure` and `wvc.config.Reconfigure` have changed to, e.g.:
     ```python
     client.collections.create(
         name="YourCollection",
         # highlight-start
-        vector_index_config=wvc.Configure.VectorIndex.hnsw(
-            distance_metric=wvc.VectorDistance.COSINE,
+        vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
+            distance_metric=wvc.config.VectorDistance.COSINE,
             vector_cache_max_objects=1000000,
-            quantizer=wvc.Configure.VectorIndex.Quantizer.pq()
+            quantizer=wvc.config.Configure.VectorIndex.Quantizer.pq()
         ),
         # highlight-end
     )

@@ -48,7 +48,7 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetNearTextGraphql"
       endMarker="# END GetNearTextGraphql"
       language="graphql"
@@ -62,7 +62,7 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# START Expected nearText results"
   endMarker="# END Expected nearText results"
   language="json"
@@ -145,7 +145,7 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetNearObjectGraphQL"
       endMarker="# END GetNearObjectGraphQL"
       language="graphql"
@@ -197,7 +197,7 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetNearVectorGraphQL"
       endMarker="# END GetNearVectorGraphQL"
       language="graphql"
@@ -239,7 +239,7 @@ To set a similarity threshold between the search and target vectors, define a ma
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetWithDistanceGraphQL"
       endMarker="# END GetWithDistanceGraphQL"
       language="graphql"
@@ -292,7 +292,7 @@ Optionally, use `offset` to paginate the results.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetLimitOffsetGraphQL"
       endMarker="# END GetLimitOffsetGraphQL"
       language="graphql"
@@ -334,7 +334,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# START Autocut GraphQL"
       endMarker="# END Autocut GraphQL"
       language="graphql"
@@ -348,7 +348,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# START Expected nearText results"
   endMarker="# END Expected nearText results"
   language="json"
@@ -389,7 +389,7 @@ Use a property or a cross-reference to group results. To group returned objects,
   </TabItem>
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetWithGroupbyGraphQL"
       endMarker="# END GetWithGroupbyGraphQL"
       language="graphql"
@@ -403,7 +403,7 @@ Use a property or a cross-reference to group results. To group returned objects,
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected groupBy results"
   endMarker="# END Expected groupBy results"
   language="json"
@@ -445,7 +445,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GetWithWhereGraphQL"
       endMarker="# END GetWithWhereGraphQL"
       language="graphql"
@@ -459,7 +459,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# Expected where results"
   endMarker="# END Expected where results"
   language="json"

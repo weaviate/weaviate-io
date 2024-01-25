@@ -51,35 +51,35 @@ client_tgt = weaviate.connect_to_local(
 def create_collection(collection_name: str, enable_mt=False):
     reviews = client_tgt.collections.create(
         name=collection_name,
-        multi_tenancy_config=wvc.Configure.multi_tenancy(enabled=enable_mt),
+        multi_tenancy_config=wvc.config.Configure.multi_tenancy(enabled=enable_mt),
         # Additional settings not shown
         # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
-        vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
-        generative_config=wvc.Configure.Generative.openai(),
+        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
+        generative_config=wvc.config.Configure.Generative.openai(),
         properties=[
-            wvc.Property(
+            wvc.config.Property(
                 name="review_body",
-                data_type=wvc.DataType.TEXT,
+                data_type=wvc.config.DataType.TEXT,
                 description="Review body"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="title",
-                data_type=wvc.DataType.TEXT,
+                data_type=wvc.config.DataType.TEXT,
                 description="Name of the wine"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="country",
-                data_type=wvc.DataType.TEXT,
+                data_type=wvc.config.DataType.TEXT,
                 description="Originating country"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="points",
-                data_type=wvc.DataType.INT,
+                data_type=wvc.config.DataType.INT,
                 description="Review score in points"
             ),
-            wvc.Property(
+            wvc.config.Property(
                 name="price",
-                data_type=wvc.DataType.NUMBER,
+                data_type=wvc.config.DataType.NUMBER,
                 description="Listed price"
             )
         ]
@@ -103,7 +103,7 @@ def migrate_data(collection_src: Collection, collection_tgt: Collection):
     batch_size = 100
 
     for i, q in enumerate(tqdm(collection_src.iterator(include_vector=True))):
-        new_obj = wvc.DataObject(
+        new_obj = wvc.data.DataObject(
             properties=q.properties,
             vector=q.vector,
             uuid=q.uuid
@@ -148,7 +148,6 @@ reviews_src = client_src.collections.get("WineReview")
 reviews_tgt = client_tgt.collections.get("WineReview")
 
 migrate_data(reviews_src, reviews_tgt)
-
 # END CollectionToCollection
 
 
@@ -191,7 +190,6 @@ reviews_src_tenant_a = reviews_src.with_tenant("tenantA")
 reviews_tgt = client_tgt.collections.get("WineReview")
 
 migrate_data(reviews_src_tenant_a, reviews_tgt)
-
 # END TenantToCollection
 
 
@@ -244,7 +242,6 @@ reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_tgt_tenant_a = reviews_mt_tgt.with_tenant(tenants_tgt[0].name)
 
 migrate_data(reviews_src, reviews_tgt_tenant_a)
-
 # END CollectionToTenant
 
 
@@ -298,7 +295,6 @@ reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_tgt_tenant_a = reviews_mt_tgt.with_tenant(tenants_tgt[0].name)
 
 migrate_data(reviews_src_tenant_a, reviews_tgt_tenant_a)
-
 # END TenantToTenant
 
 
@@ -312,8 +308,8 @@ coll_list = [reviews_src_tenant_a, reviews_tgt_tenant_a]
 resps = [r.query.near_text("Earthy but very drinkable", limit=1) for r in coll_list]
 assert resps[0].objects[0].uuid == resps[1].objects[0].uuid
 
-# START-ANY
+# START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
 
 client_src.close()
 client_tgt.close()
-# END-ANY
+# END CollectionToCollection  # END TenantToCollection  # END CollectionToTenant  # END TenantToTenant

@@ -12,11 +12,15 @@ client = weaviate.connect_to_local(
 
 
 # Actual client instantiation
-# client = weaviate.connect_to_wcs(
-#     cluster_url=os.getenv("WCS_DEMO_URL"),
-#     auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
-#     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
-# )
+client.close()
+
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
 
 
 # ========================================
@@ -80,11 +84,11 @@ collection = client.collections.get("Article")
 response = collection.query.near_text(
     query="travelling in Asia",
     certainty=0.7,
-    move_to=wvc.Move(
+    move_to=wvc.query.Move(
         force=0.75,
         objects="c4209549-7981-3699-9648-61a78c2124b9"
     ),
-    return_metadata=wvc.MetadataQuery(certainty=True),
+    return_metadata=wvc.query.MetadataQuery(certainty=True),
     limit=5,
 )
 
@@ -153,7 +157,7 @@ collection = client.collections.get("Article")
 response = collection.query.hybrid(
     query="Fisherman that catches salmon",
     alpha=0.5,
-    return_metadata=wvc.MetadataQuery(score=True, explain_score=True),
+    return_metadata=wvc.query.MetadataQuery(score=True, explain_score=True),
     limit=5,
 )
 
@@ -183,7 +187,7 @@ response = collection.query.hybrid(
     query="Fisherman that catches salmon",
     vector=query_vector,
     alpha=0.5,
-    return_metadata=wvc.MetadataQuery(score=True, explain_score=True),
+    return_metadata=wvc.query.MetadataQuery(score=True, explain_score=True),
     limit=5,
 )
 
@@ -207,7 +211,7 @@ collection = client.collections.get("Article")
 response = collection.query.hybrid(
     query="How to catch an Alaskan Pollock",
     alpha=0.5,
-    filters=wvc.Filter("wordCount").less_than(1000),
+    filters=wvc.query.Filter.by_property("wordCount").less_than(1000),
     limit=5,
 )
 
@@ -230,7 +234,7 @@ response = collection.query.hybrid(
     query="Venus",
     alpha=0.25,
     query_properties=["question"],
-    return_metadata=wvc.MetadataQuery(score=True),
+    return_metadata=wvc.query.MetadataQuery(score=True),
     limit=5,
 )
 
@@ -252,8 +256,8 @@ collection = client.collections.get("Article")
 
 response = collection.query.bm25(
     query="fox",
-    query_properties=["question"],
-    return_metadata=wvc.MetadataQuery(score=True),
+    query_properties=["title"],
+    return_metadata=wvc.query.MetadataQuery(score=True),
     limit=5,
 )
 
@@ -275,8 +279,8 @@ collection = client.collections.get("Article")
 
 response = collection.query.bm25(
     query="how to fish",
-    return_metadata=wvc.MetadataQuery(score=True),
-    filters=wvc.Filter("wordCount").less_than(1000),
+    return_metadata=wvc.query.MetadataQuery(score=True),
+    filters=wvc.query.Filter.by_property("wordCount").less_than(1000),
     limit=5,
 )
 

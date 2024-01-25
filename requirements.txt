@@ -41,5 +41,5 @@ tzdata==2023.4
 urllib3==2.1.0
 validators==0.22.0
 weaviate-client==4.4b8
-weaviate-demo-datasets==0.4.2
+weaviate-demo-datasets==0.4.4
 wrapt==1.16.0

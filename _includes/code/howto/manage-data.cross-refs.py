@@ -56,7 +56,7 @@ client.collections.create(
     name="JeopardyCategory",
     description="A Jeopardy! category",
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT)
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT)
     ]
 )
 
@@ -67,12 +67,12 @@ client.collections.create(
     name="JeopardyQuestion",
     description="A Jeopardy! question",
     properties=[
-        wvc.Property(name="question", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="answer", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="question", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="answer", data_type=wvc.config.DataType.TEXT),
     ],
     # highlight-start
     references=[
-        wvc.ReferenceProperty(
+        wvc.config.ReferenceProperty(
             name="hasCategory",
             target_collection="JeopardyCategory"
         )
@@ -83,11 +83,7 @@ client.collections.create(
 # CrossRefDefinition END
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-dataset.upload_objects(client, 100)  # batch-upload objects
-
-# sf_id = "00ff6900-e64f-5d94-90db-c8cfa3fc851b"
-# us_cities_id = "20ffc68d-986b-5e71-a680-228dba18d7ef"
-# museums_id = "fec50326-dfa1-53c9-90e8-63d0240bd933"
+dataset.upload_objects(client)  # batch-upload objects
 
 questions = client.collections.get("JeopardyQuestion")
 categories = client.collections.get("JeopardyCategory")
@@ -109,25 +105,21 @@ questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
     # highlight-start
-    # ref=wvc.Reference.to(uuids=us_cities_id)
-    ref=wvc.Reference.to(uuids=category_obj_id)
+    to=category_obj_id
     # highlight-end
 )
 # END OneWay Python
-# client.data_object.reference.add(
-#     from_class_name="JeopardyQuestion",
-#     from_uuid=sf_id,
-#     from_property_name="hasCategory",
-#     to_class_name="JeopardyCategory",
-#     to_uuid=us_cities_id,
-# )
 
 # Test results
-# TODOv4 - fix the test
-# sf = questions.query.fetch_object_by_id(sf_id)
-# assert sf["class"] == "JeopardyQuestion"
-# xrefs = [category["href"] for category in sf["properties"]["hasCategory"]]
-# assert f"/v1/objects/JeopardyCategory/{us_cities_id}" in xrefs
+result = questions.query.fetch_object_by_id(
+    question_obj_id,
+    return_references=wvc.query.QueryReference(
+        link_on="hasCategory"
+    )
+)
+assert result.collection == "JeopardyQuestion"
+xref_ids = [o.uuid for o in result.references["hasCategory"].objects]
+assert category_obj_id in xref_ids
 # END Test results
 
 
@@ -144,7 +136,7 @@ category = client.collections.create(
     name="JeopardyCategory",
     description="A Jeopardy! category",
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT)
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT)
     ]
 )
 # END Collections TwoWay Category1
@@ -154,12 +146,12 @@ client.collections.create(
     name="JeopardyQuestion",
     description="A Jeopardy! question",
     properties=[
-        wvc.Property(name="question", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="answer", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="question", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="answer", data_type=wvc.config.DataType.TEXT),
     ],
     # highlight-start
     references=[
-        wvc.ReferenceProperty(
+        wvc.config.ReferenceProperty(
             name="hasCategory",
             target_collection="JeopardyCategory"
         )
@@ -169,16 +161,16 @@ client.collections.create(
 # END Collections TwoWay Question
 
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
-dataset.upload_objects(client, 100)  # batch-upload objects
+dataset.upload_objects(client)  # batch-upload objects
 
 
 # START Collections TwoWay Category2
 # Add the reference to JeopardyQuestion, after it was created
 category = client.collections.get("JeopardyCategory")
 # category.config.add_reference(
-category.config.add_property(
+category.config.add_reference(
     # highlight-start
-    wvc.ReferenceProperty(
+    wvc.config.ReferenceProperty(
         name="hasQuestion",
         target_collection="JeopardyQuestion"
     )
@@ -199,7 +191,7 @@ questions = client.collections.get("JeopardyQuestion")
 questions.data.reference_add(
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_obj_id)
+    to=category_obj_id
 )
 # highlight-end
 
@@ -209,22 +201,21 @@ categories = client.collections.get("JeopardyCategory")
 categories.data.reference_add(
     from_uuid=category_obj_id,
     from_property="hasQuestion",
-    ref=wvc.Reference.to(question_obj_id)
+    to=question_obj_id
 )
 # highlight-end
 # END TwoWay Python
 
 # Test results
-# TODOv4 fix the tests
-# sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion")
-# us_cities = client.data_object.get(uuid=us_cities_id, class_name="JeopardyCategory")
-
-# assert sf["class"] == "JeopardyQuestion"
-# assert us_cities["class"] == "JeopardyCategory"
-# xrefs = [category["href"] for category in sf["properties"]["hasCategory"]]
-# assert f"/v1/objects/JeopardyCategory/{us_cities_id}" in xrefs
-# xrefs = [category["href"] for category in us_cities["properties"]["hasQuestion"]]
-# assert f"/v1/objects/JeopardyQuestion/{sf_id}" in xrefs
+result = categories.query.fetch_object_by_id(
+    category_obj_id,
+    return_references=wvc.query.QueryReference(
+        link_on="hasQuestion"
+    )
+)
+assert result.collection == "JeopardyCategory"
+xref_ids = [o.uuid for o in result.references["hasQuestion"].objects]
+assert question_obj_id in xref_ids
 # END Test results
 
 
@@ -239,22 +230,31 @@ del_props(client=client, uuid_to_update=question_obj_id, collection_name="Jeopar
 import weaviate.classes as wvc
 
 questions = client.collections.get("JeopardyQuestion")
-questions.data.reference_add(
-    from_uuid=question_obj_id,
-    from_property="hasCategory",
-    # highlight-start
-    ref=wvc.Reference.to([category_obj_id, category_obj_id_alt]) # add multiple references
-    # highlight-end
-)
+
+# highlight-start
+refs_list = []
+for temp_uuid in [category_obj_id, category_obj_id_alt]:
+    ref_obj = wvc.data.DataReference(
+        from_uuid=question_obj_id,
+        from_property="hasCategory",
+        to_uuid=temp_uuid
+    )
+    refs_list.append(ref_obj)
+questions.data.reference_add_many(refs_list)
+# highlight-end
 # END Multiple Python
 
 # Test results
-# TODOv4 fix tests
-# sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion")
-# assert sf["class"] == "JeopardyQuestion"
-# xrefs = [category["href"] for category in sf["properties"]["hasCategory"]]
-# assert f"/v1/objects/JeopardyCategory/{us_cities_id}" in xrefs
-# assert f"/v1/objects/JeopardyCategory/{museums_id}" in xrefs
+result = questions.query.fetch_object_by_id(
+    question_obj_id,
+    return_references=wvc.query.QueryReference(
+        link_on="hasCategory"
+    )
+)
+assert result.collection == "JeopardyQuestion"
+xref_ids = [o.uuid for o in result.references["hasCategory"].objects]
+for temp_uuid in [category_obj_id, category_obj_id_alt]:
+    assert temp_uuid in xref_ids
 # END Test results
 
 
@@ -272,18 +272,20 @@ questions.data.reference_delete(
 # highlight-end
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_obj_id)
+    to=category_obj_id
 )
 # END Delete Python
 
 # Test results
-# TODOv4 fix tests
-# sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion")
-# assert sf["class"] == "JeopardyQuestion"
-# assert sf["properties"]["hasCategory"] == [{
-#     "beacon": f"weaviate://localhost/JeopardyCategory/{us_cities_id}",
-#     "href": f"/v1/objects/JeopardyCategory/{us_cities_id}"
-# }]
+result = questions.query.fetch_object_by_id(
+    question_obj_id,
+    return_references=wvc.query.QueryReference(
+        link_on="hasCategory"
+    )
+)
+assert result.collection == "JeopardyQuestion"
+xref_ids = [o.uuid for o in result.references["hasCategory"].objects]
+assert category_obj_id not in xref_ids
 # END Test results
 
 
@@ -301,21 +303,20 @@ questions.data.reference_replace(
 # highlight-end
     from_uuid=question_obj_id,
     from_property="hasCategory",
-    ref=wvc.Reference.to(category_obj_id)
+    to=category_obj_id
 )
 # END Update Python
 
 # Test results
-# TODOv4 fix tests
-# sf = client.data_object.get(uuid=sf_id, class_name="JeopardyQuestion")
-# assert sf["class"] == "JeopardyQuestion"
-# assert sf["properties"]["hasCategory"] == [{
-#     "beacon": f"weaviate://localhost/JeopardyCategory/{museums_id}",
-#     "href": f"/v1/objects/JeopardyCategory/{museums_id}"
-# }]
+result = questions.query.fetch_object_by_id(
+    question_obj_id,
+    return_references=wvc.query.QueryReference(
+        link_on="hasCategory"
+    )
+)
+assert result.collection == "JeopardyQuestion"
+xref_ids = [o.uuid for o in result.references["hasCategory"].objects]
+assert category_obj_id in xref_ids
 # END Test results
 
-# START-ANY
-
 client.close()
-# END-ANY

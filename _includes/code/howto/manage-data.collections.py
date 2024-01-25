@@ -1,6 +1,5 @@
 # How-to: Manage-Data -> Classes
 import os
-import json
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -10,8 +9,9 @@ import weaviate
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
+    }
 )
 
 # ================================
@@ -41,8 +41,8 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
 # END CreateCollectionWithProperties
@@ -65,11 +65,11 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     # highlight-start
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
     # highlight-end
     properties=[  # properties configuration is optional
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
 # END Vectorizer
@@ -91,13 +91,13 @@ import weaviate.classes as wvc
 
 client.collections.create(
     "Article",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    vector_index_config=wvc.Configure.VectorIndex.hnsw(),
+    vector_index_config=wvc.config.Configure.VectorIndex.hnsw(),
     # highlight-end
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
 # END SetVectorIndex
@@ -121,13 +121,13 @@ import weaviate.classes as wvc
 
 client.collections.create(
     "Article",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    generative_config=wvc.Configure.Generative.openai(),
+    generative_config=wvc.config.Configure.Generative.openai(),
     # highlight-end
     properties=[ # properties configuration is optional
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
 # END SetGenerative
@@ -154,7 +154,7 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     # highlight-start
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(
         model="embed-multilingual-v2.0",
         vectorize_collection_name=True
     ),
@@ -180,23 +180,23 @@ import weaviate.classes as wvc
 
 client.collections.create(
     "Article",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_huggingface(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_huggingface(),
 
     properties=[
-        wvc.Property(
+        wvc.config.Property(
             name="title",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
             # highlight-start
             vectorize_property_name=True,  # Use "title" as part of the value to vectorize
-            tokenization=wvc.Tokenization.LOWERCASE  # Use "lowecase" tokenization
+            tokenization=wvc.config.Tokenization.LOWERCASE  # Use "lowecase" tokenization
             # highlight-end
         ),
-        wvc.Property(
+        wvc.config.Property(
             name="body",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
             # highlight-start
             skip_vectorization=True,  # Don't vectorize this property
-            tokenization=wvc.Tokenization.WHITESPACE  # Use "whitespace" tokenization
+            tokenization=wvc.config.Tokenization.WHITESPACE  # Use "whitespace" tokenization
             # highlight-end
         ),
     ]
@@ -228,8 +228,8 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     # highlight-start
-    vector_index_config=wvc.Configure.VectorIndex.hnsw(
-        distance_metric=wvc.VectorDistance.COSINE
+    vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
+        distance_metric=wvc.config.VectorDistance.COSINE
     ),
     # highlight-end
 )
@@ -249,7 +249,7 @@ client.collections.delete("Article")
 
 # Connect to a setting with 3 replicas
 client = weaviate.connect_to_local(
-    port=8180
+    port=8180  # Port for demo setup with 3 replicas
 )
 
 # START ReplicationSettings
@@ -258,7 +258,7 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     # highlight-start
-    replication_config=wvc.Configure.replication(
+    replication_config=wvc.config.Configure.replication(
         factor=3
     )
     # highlight-end
@@ -285,7 +285,7 @@ import weaviate.classes as wvc
 client.collections.create(
     "Article",
     # highlight-start
-    sharding_config=wvc.Configure.sharding(
+    sharding_config=wvc.config.Configure.sharding(
         virtual_per_physical=128,
         desired_count=1,
         actual_count=1,
@@ -316,7 +316,7 @@ client.collections.delete("Article")
 client.collections.create(
     "Article",
     # highlight-start
-    multi_tenancy_config=wvc.Configure.multi_tenancy(True)
+    multi_tenancy_config=wvc.config.Configure.multi_tenancy(True)
     # highlight-end
 )
 # END Multi-tenancy
@@ -338,9 +338,9 @@ articles = client.collections.get("Article")
 # Add a new property
 articles.config.add_property(
     # highlight-start
-    prop=wvc.Property(
+    prop=wvc.config.Property(
         name="body",
-        data_type=wvc.DataType.TEXT
+        data_type=wvc.config.DataType.TEXT
     )
     # highlight-end
 )
@@ -366,7 +366,7 @@ articles = client.collections.get("Article")
 # highlight-start
 articles.config.update(
     # Note, use Reconfigure here (not Configure)
-    inverted_index_config=wvc.Reconfigure.inverted_index(
+    inverted_index_config=wvc.config.Reconfigure.inverted_index(
         stopwords_removals=["a", "the"]
     )
 )
@@ -416,7 +416,7 @@ client.collections.delete("Article")
 # Define and create a collection
 client.collections.create(
     name="Article",
-    inverted_index_config=wvc.Configure.inverted_index(
+    inverted_index_config=wvc.config.Configure.inverted_index(
         bm25_b=0.7,
         bm25_k1=1.2
     )
@@ -438,7 +438,7 @@ articles = client.collections.get("Article")
 
 # Update the collection definition
 articles.config.update(
-    inverted_index_config=wvc.Reconfigure.inverted_index(
+    inverted_index_config=wvc.config.Reconfigure.inverted_index(
         bm25_k1=1.5
     )
 )
@@ -449,7 +449,4 @@ new_config = articles.config.get()
 assert old_config.inverted_index_config.bm25.k1 == 1.2
 assert new_config.inverted_index_config.bm25.k1 == 1.5
 
-# START-ANY
-
 client.close()
-# END-ANY

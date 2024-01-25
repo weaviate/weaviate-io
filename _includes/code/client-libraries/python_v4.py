@@ -26,7 +26,7 @@ import os
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
 )
 # END WCSInstantiation
 
@@ -80,8 +80,6 @@ import weaviate
 import os
 
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={"X-OpenAI-Api": os.getenv("OPENAI_APIKEY")}
 )
 # END LocalInstantiationWithHeaders
@@ -109,7 +107,7 @@ client = weaviate.WeaviateClient(
         grpc_port="50052",
         grpc_secure=False,
     ),
-    auth_client_secret=weaviate.AuthApiKey("secr3tk3y"),
+    auth_client_secret=weaviate.auth.AuthApiKey("secr3tk3y"),
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
@@ -138,12 +136,12 @@ client = weaviate.connect_to_local()
 
 collection = client.collections.create(
     name="TestArticle",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(),
-    generative_config=wvc.Configure.Generative.cohere(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
+    generative_config=wvc.config.Configure.Generative.cohere(),
     properties=[
-        wvc.Property(
+        wvc.config.Property(
             name="title",
-            data_type=wvc.DataType.TEXT
+            data_type=wvc.config.DataType.TEXT
         )
     ]
 )
@@ -174,29 +172,29 @@ client = weaviate.connect_to_local()
 
 articles = client.collections.create(
     name="TestArticle",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(),
-    generative_config=wvc.Configure.Generative.cohere(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
+    generative_config=wvc.config.Configure.Generative.cohere(),
     properties=[
-        wvc.Property(
+        wvc.config.Property(
             name="title",
-            data_type=wvc.DataType.TEXT
+            data_type=wvc.config.DataType.TEXT
         )
     ]
 )
 
 authors = client.collections.create(
     name="TestAuthor",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_cohere(),
-    generative_config=wvc.Configure.Generative.cohere(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
+    generative_config=wvc.config.Configure.Generative.cohere(),
     properties=[
-        wvc.Property(
+        wvc.config.Property(
             name="name",
-            data_type=wvc.DataType.TEXT
+            data_type=wvc.config.DataType.TEXT
         )
     ],
     # highlight-start
     references=[
-        wvc.ReferenceProperty(
+        wvc.config.ReferenceProperty(
             name="wroteArticle",
             target_collection="TestArticle"
         )
@@ -216,7 +214,7 @@ for cname in ["TestArticle", "TestAuthor"]:
 
 client.close()
 # END CreateCollectionWithRefsExample
- 
+
 # START GetCollectionExample
 import weaviate
 import weaviate.classes as wvc
@@ -250,7 +248,7 @@ new_uuid = questions.data.insert(
         "question": "This is the capital of Australia."
     },
     references={  # For adding cross-references
-        "hasCategory": wvc.Reference.to(uuids=[target_uuid])
+        "hasCategory": wvc.data.Reference.to(uuids=[target_uuid])
     }
 )
 # END CreateObjectExample
@@ -274,7 +272,7 @@ questions = client.collections.get("JeopardyQuestion")
 data_objects = list()
 for i in range(5):
     properties = {"question": f"Test Question {i+1}"}
-    data_object = wvc.DataObject(
+    data_object = wvc.data.DataObject(
         properties=properties,
         uuid=generate_uuid5(properties)
     )
@@ -291,11 +289,11 @@ questions = client.collections.get("JeopardyQuestion")
 data_objects = list()
 for i in range(5):
     properties = {"question": f"Test Question {i+1}"}
-    data_object = wvc.DataObject(
+    data_object = wvc.data.DataObject(
         properties=properties,
         # highlight-start
         references={
-            "hasCategory": wvc.Reference.to(uuids=target_uuid)
+            "hasCategory": wvc.data.Reference.to(uuids=target_uuid)
         },
         # highlight-end
         uuid=generate_uuid5(properties)
@@ -319,7 +317,7 @@ from weaviate.classes import Filter
 questions = client.collections.get("JeopardyQuestion")
 
 response = questions.data.delete_many(
-    where=Filter(path="question").equal("Test Question")
+    where=Filter.by_property(prop="question").equal("Test Question")
 )
 # END DeleteManyExample
 
@@ -374,8 +372,8 @@ response = questions.query.bm25(
     query="animal",
     include_vector=True,
     return_properties=["question"],
-    return_metadata=wvc.MetadataQuery(distance=True),
-    return_references=wvc.QueryReference(link_on="hasCategory"),
+    return_metadata=wvc.query.MetadataQuery(distance=True),
+    return_references=wvc.query.QueryReference(link_on="hasCategory"),
     limit=2
 )
 
@@ -428,7 +426,7 @@ for o in response.objects:
 # START AggregateCountExample
 questions = client.collections.get("JeopardyQuestion")
 response = questions.aggregate.over_all(
-    filters=wvc.Filter(path="question").like("*animal*"),
+    filters=wvc.query.Filter.by_property(prop="question").like("*animal*"),
     total_count=True
 )
 
@@ -452,12 +450,14 @@ print(response.properties)
 
 # START QueryGroupbyExample
 questions = client.collections.get("JeopardyQuestion")
-response = questions.query_group_by.near_text(
+response = questions.query.near_text(
     query="animal",
     distance=0.2,
-    group_by_property="points",
-    number_of_groups=3,
-    objects_per_group=5
+    group_by=wvc.query.GroupBy(
+        prop="points",
+        number_of_groups=3,
+        objects_per_group=5
+    )
 )
 
 for k, v in response.groups.items():  # View by group
@@ -473,7 +473,7 @@ for o in response.objects:  # View by object
 
 # START AggregateGroupbyExample
 questions = client.collections.get("JeopardyQuestion")
-response = questions.aggregate_group_by.near_text(
+response = questions.aggregate.near_text(
     query="animal",
     distance=0.2,
     group_by="points",
@@ -495,7 +495,7 @@ response = questions.generate.near_text(
     limit=2,
     single_prompt="Translate this into French {question}",
     grouped_task="Summarize this into a sentence",
-    return_metadata=wvc.MetadataQuery(
+    return_metadata=wvc.query.MetadataQuery(
         distance=True,
         creation_time=True
     )
@@ -553,7 +553,7 @@ all_object_answers = [question for question in questions.iterator(return_propert
 # END IteratorAnswerOnly
 
 # IteratorMetadataOnly
-all_object_ids = [question for question in questions.iterator(return_metadata=wvc.MetadataQuery(creation_time=True))]  # Only return IDs
+all_object_ids = [question for question in questions.iterator(return_metadata=wvc.query.MetadataQuery(creation_time=True))]  # Only return IDs
 # END IteratorMetadataOnly
 
 
@@ -570,7 +570,7 @@ class Question(TypedDict):
 response = questions.query.fetch_objects(
     limit=2,
     return_properties=Question,  # Your generic class is used to extract the return properties and statically type the response
-    return_metadata=wvc.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
+    return_metadata=wvc.query.MetadataQuery(creation_time=True)  # MetaDataQuery object is used to specify the metadata to be returned in the response
 )
 # END GenericsExample
 

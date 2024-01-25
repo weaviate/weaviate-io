@@ -1,6 +1,7 @@
 # START-ANY
 import weaviate
 # END-ANY
+
 # START CreateSimpleCollection  # START CreateCollectionElaborate
 import weaviate.classes as wvc
 # END CreateSimpleCollection  # END CreateCollectionElaborate
@@ -63,7 +64,7 @@ client.collections.create(
         ef=128,
         max_connections=64
     ),
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_contextionary(
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(
         vectorize_collection_name=True,
     ),
     properties=[
@@ -142,7 +143,7 @@ client.collections.create(
         bm25_k1=1.2,
         bm25_b=0.7
     ),
-    vector_index_config=wvc.Configure.VectorIndex.hnsw(
+    vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
         dynamic_ef_factor=8
     )
 )
