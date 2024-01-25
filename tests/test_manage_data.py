@@ -5,6 +5,7 @@ import shlex
 import os
 
 
+@pytest.mark.py
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -23,6 +24,7 @@ def test_on_blank_instance_py(empty_weaviates, script_loc):
 
 
 
+@pytest.mark.py
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -39,6 +41,7 @@ def test_on_edu_demo_py(empty_weaviates, script_loc):
     exec(temp_proc_script_loc.read_text())
 
 
+@pytest.mark.ts
 @pytest.mark.parametrize(
     "script_loc",
     [
