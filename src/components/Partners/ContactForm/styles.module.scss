@@ -29,6 +29,15 @@
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
   padding: 60px;
 
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%;
+  }
+
   @media screen and (max-width: 768px) {
     background: #fff;
     width: 100%;
