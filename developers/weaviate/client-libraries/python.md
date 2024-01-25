@@ -579,6 +579,62 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 <!-- NOTE: Add note re: query_group_by and aggregate_group_by being deprecated and then removed -->
 
+### Changes in `v4.4b9`
+
+### `weaviate.connect_to_x` methods
+
+The `timeout` argument has been moved into the `additional_config` argument that takes the class `weaviate.config.AdditionalConfig` as input.
+
+### Queries
+
+All optional arguments to methods in the `query` namespace now are enforced as keyword arguments.
+
+There is now runtime logic for parsing query arguments enforcing the correct type.
+
+### Batch processing
+
+Introduction of three distinct algorithms using different batching styles under-the-hood:
+- `client.batch.dynamic()`
+- `client.batch.fixed_size()`
+- `client.batch.rate_limit()`
+
+`client.batch.dynamic() as batch` is a drop-in replacement for the previous `client.batch as batch`, which is now deprecated and will be removed on release.
+```python
+with client.batch.dynamic() as batch:
+  ...
+```
+is equivalent to:
+```python
+with client.batch as batch:
+  ...
+```
+
+`client.batch.fixed_size() as batch` is a way to configure your batching algorithm to only use a fixed size.
+```python
+with client.batch.dynamic() as batch:
+  ...
+```
+is equivalent to:
+```python
+client.batch.configure_fixed_size()
+with client.batch as batch:
+  ...
+```
+
+`client.batch.rate_limit() as batch` is a new way to help avoid hitting third-party vectorization API rate limits. By specifying `request_per_minute` in the
+`rate_limit()` method, you can force the batching algorithm to send objects to Weaviate at the speed your third-party API is capable of processing objects.
+
+These methods now return completely localised context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
+in any subsequent calls.
+
+Finally, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread rather than silently erroring.
+
+### Filters
+
+The argument `prop` in `Filter.by_property` has been renamed to `name`
+
+Ref counting is now achievable using `Filter.by_ref_count(ref)` rather than `Filter([ref])`
+
 ### Changes in `v4.4b8`
 
 #### Reference filters
