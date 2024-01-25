@@ -8,7 +8,7 @@ client = weaviate.Client(
 # ===== END PYTHON EXAMPLE =====
 client = weaviate.Client(
     "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),
 )
 
 # ===== PYTHON EXAMPLE =====

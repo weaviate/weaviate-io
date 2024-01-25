@@ -13,10 +13,14 @@ client = weaviate.connect_to_local()
 
 
 # Actual client instantiation
+client.close()
+
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
 )
 
 
@@ -65,13 +69,13 @@ assert response.total_count > 0
 
 # START GraphQLSimpleAggregateGroupby
 collection = client.collections.get("Article")
-response = collection.aggregate_group_by.over_all(
+response = collection.aggregate.over_all(
     group_by="inPublication",
     total_count=True,
     return_metrics=wvc.Metrics("wordCount").integer(mean=True)
 )
 
-for g in response:
+for g in response.groups:
     print(g.total_count)
     print(g.properties)
     print(g.grouped_by)
@@ -200,3 +204,8 @@ print(response.properties)
 assert "inPublication" in response.properties.keys()
 assert "wordCount" in response.properties.keys()
 assert response.total_count > 0
+
+# START-ANY
+
+client.close()
+# END-ANY

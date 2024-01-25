@@ -4,8 +4,6 @@ import weaviate.classes as wvc
 import os
 
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }
@@ -14,10 +12,13 @@ client = weaviate.connect_to_local(
 
 assert client.is_ready()
 
+client.close()
+
 # EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
 import weaviate.classes as wvc
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
+
 # ===== import data =====  # EndToEndExample
 import requests
 import json
@@ -32,8 +33,6 @@ import os
 # Accordingly, we show you how to connect to a local instance of Weaviate.
 # Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }
@@ -49,8 +48,8 @@ client.collections.delete("Question")
 # ===== define collection =====
 questions = client.collections.create(
     name="Question",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
-    generative_config=wvc.Configure.Generative.openai()  # Ensure the `generative-openai` module is used for generative queries
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    generative_config=wvc.config.Configure.Generative.openai()  # Ensure the `generative-openai` module is used for generative queries
 )
 
 # ===== import data =====
@@ -96,7 +95,7 @@ questions = client.collections.get("Question")
 response = questions.query.near_text(
     query="biology",
     limit=2,
-    filters=wvc.Filter(path="category").equal("ANIMALS")
+    filters=wvc.query.Filter.by_property("category").equal("ANIMALS")
 )
 
 print(response.objects[0].properties)  # Inspect the first object
@@ -156,7 +155,7 @@ data = json.loads(resp.text)  # Load data
 
 question_objs = list()
 for i, d in enumerate(data):
-    question_objs.append(wvc.DataObject(
+    question_objs.append(wvc.data.DataObject(
         properties={
             "answer": d["Answer"],
             "question": d["Question"],
@@ -176,3 +175,8 @@ assert questions_definition.name == "Question"
 assert obj_count.total_count == 10
 
 client.collections.delete("Question")  # Cleanup after
+
+# DockerInstantiationExample  # EndToEndExample  # InstantiationExample  # NearTextExample
+
+client.close()
+# END DockerInstantiationExample  # END EndToEndExample  # END InstantiationExample  # END NearTextExample

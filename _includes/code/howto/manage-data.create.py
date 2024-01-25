@@ -7,12 +7,9 @@ import os
 
 import weaviate
 import weaviate.classes as wvc
-import json
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
@@ -28,7 +25,7 @@ if client.collections.exists("JeopardyQuestion"):
 
 client.collections.create(
     "JeopardyQuestion",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai()
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
 )
 
 # =========================
@@ -156,3 +153,5 @@ assert result.properties == {
 
 # # TODO: update the assertion
 # assert "thisPropShouldNotEndUpInTheSchema" in result["error"][0]["message"]
+
+client.close()

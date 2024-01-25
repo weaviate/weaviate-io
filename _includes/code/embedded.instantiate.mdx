@@ -1,8 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START SimpleInstantiationEmbedded"
+  endMarker="# END SimpleInstantiationEmbedded"
+  language="py"
+/>
+</TabItem>
+<TabItem value="py3" label="Python (V3)">
 
   ```python
   import weaviate

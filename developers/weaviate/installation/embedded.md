@@ -65,41 +65,9 @@ The following modules are enabled by default:
 
 Additional modules can be enabled by setting additional environment variables as [laid out above](#embedded-options). For instance, to add a module called `backup-s3` to the set, you would pass it at instantiation as follows:
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+import EmbeddedInstantiationVerbose from '/_includes/code/embedded.instantiate.verbose.mdx';
 
-  ```python
-  import weaviate
-  from weaviate.embedded import EmbeddedOptions
-
-  client = weaviate.Client(
-      embedded_options=EmbeddedOptions(
-          additional_env_vars={
-          "ENABLE_MODULES":
-          "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
-      )
-  )
-  ```
-
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-
-  ```js
-  import weaviate, { EmbeddedOptions } from 'weaviate-ts-embedded';
-
-  const client = weaviate.client(
-    new EmbeddedOptions({
-      env: {
-        ENABLE_MODULES: "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai",
-      },
-    })
-  );
-  ```
-
-  </TabItem>
-</Tabs>
-
+<EmbeddedInstantiationVerbose />
 
 ## Starting Embedded Weaviate under the hood
 

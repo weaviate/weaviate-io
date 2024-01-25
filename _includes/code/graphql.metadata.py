@@ -9,11 +9,13 @@ client = weaviate.connect_to_local()
 
 
 # Actual client instantiation
+client.close()
+
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
     headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
     }
 )
 
@@ -36,3 +38,8 @@ for o in response.objects:
     print(o.uuid)  # Inspect UUID (returned by default)
     print(o.properties)  # Inspect returned objects
 # END MetadataUUIDDistance
+
+# START-ANY
+
+client.close()
+# END-ANY

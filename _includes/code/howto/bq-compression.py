@@ -53,13 +53,13 @@ import weaviate.classes as wvc
 
 client.collections.create(
     name="YourCollection",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    vector_index_config=wvc.Configure.VectorIndex.flat(),
+    vector_index_config=wvc.config.Configure.VectorIndex.flat(),
     # highlight-end
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
 # END EnableBQ
@@ -75,17 +75,22 @@ import weaviate.classes as wvc
 
 client.collections.create(
     name="YourCollection",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    vector_index_config=wvc.Configure.VectorIndex.flat(
-        distance_metric=wvc.VectorDistance.COSINE,
+    vector_index_config=wvc.config.Configure.VectorIndex.flat(
+        distance_metric=wvc.config.VectorDistance.COSINE,
         vector_cache_max_objects=1000000,
-        quantizer=wvc.Configure.VectorIndex.Quantizer.bq()
+        quantizer=wvc.config.Configure.VectorIndex.Quantizer.bq()
     ),
     # highlight-end
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
-        wvc.Property(name="body", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
 # END BQWithOptions
+
+# START-ANY
+
+client.close()
+# END-ANY

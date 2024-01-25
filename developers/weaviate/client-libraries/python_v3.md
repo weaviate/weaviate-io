@@ -1,5 +1,5 @@
 ---
-title: Python (v3)
+title: Python (Client v3)
 sidebar_position: 15
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
@@ -83,7 +83,7 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 ```python
 import weaviate
 
-auth_config = weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
 
 # Instantiate the client with the auth config
 client = weaviate.Client(

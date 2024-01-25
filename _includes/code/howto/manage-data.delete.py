@@ -7,10 +7,7 @@ import os
 
 import weaviate
 
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-)
+client = weaviate.connect_to_local()
 
 client.collections.delete("EphemeralObject")
 client.collections.create("EphemeralObject")
@@ -82,7 +79,7 @@ import weaviate.classes as wvc
 collection = client.collections.get("EphemeralObject")
 collection.data.delete_many(
     # highlight-start
-    where=wvc.Filter("name").like("EphemeralObject*")
+    where=wvc.query.Filter.by_property("name").like("EphemeralObject*")
     # highlight-end
 )
 # END DeleteBatch
@@ -108,7 +105,7 @@ import weaviate.classes as wvc
 collection = client.collections.get("EphemeralObject")
 collection.data.delete_many(
     # highlight-start
-    where=wvc.Filter("name").contains_any(["europe", "asia"])
+    where=wvc.query.Filter.by_property("name").contains_any(["europe", "asia"])
     # highlight-end
 )
 # END DeleteContains
@@ -134,7 +131,7 @@ import weaviate.classes as wvc
 
 collection = client.collections.get("EphemeralObject")
 result = collection.data.delete_many(
-    where=wvc.Filter("name").like("EphemeralObject*"),
+    where=wvc.query.Filter.by_property("name").like("EphemeralObject*"),
     # highlight-start
     dry_run=True,
     verbose=True
@@ -177,7 +174,7 @@ ids = [o.uuid for o in response.objects]  # These can be lists of strings, or `U
 
 collection.data.delete_many(
     # highlight-start
-    where=wvc.Filter("id").contains_any(ids)  # Delete the 3 objects
+    where=wvc.query.Filter.by_id().contains_any(ids)  # Delete the 3 objects
     # highlight-end
 )
 # END DeleteByIDBatch
@@ -185,3 +182,5 @@ collection.data.delete_many(
 # Test deletion
 response = collection.aggregate.over_all(total_count=True)
 assert response.total_count == 2
+
+client.close()

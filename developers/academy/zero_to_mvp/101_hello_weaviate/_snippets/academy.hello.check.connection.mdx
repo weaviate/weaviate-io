@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-auth_config = weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate API key
 
 # Instantiate the client
 client = weaviate.Client(

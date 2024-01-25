@@ -1,5 +1,5 @@
 ---
-title: How to connect to Weaviate
+title: Connect to Weaviate
 sidebar_position: 5
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
@@ -9,92 +9,97 @@ import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 import WCSAuthenticationApiKeyWithInferenceKey from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
+import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.simple.mdx';
 
-## Overview
+Learn how to connect to Weaviate.
 
-Here, you will learn how to connect to your instance of Weaviate, including how to provide authentication parameters such as the Weaviate API key, and inference API keys (e.g. Cohere, Hugging Face or OpenAI API keys).
+Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data. 
 
 ## Prerequisites
 
-For this tutorial, you need to know:
-- The location of your Weaviate instance, and
-- The **configuration** of the Weaviate instance, especially:
-    - Whether **authentication is enabled**, and if so, the allowed authentication methods.
-    - If any **modules** are being used that use external inference APIs (e.g. OpenAI).
+To configure a connection, you need the following information:
 
-import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.simple.mdx';
+- The location of your Weaviate instance
+- If authentication is enabled, the allowed authentication methods
+- If you are using modules, the API keys and module connection details
 
-### For WCS users
+### Where to find connection details
 
-You can find the cluster URL, authentication status and enabled modules for each instance, in the Weaviate Cloud Services dashboard.
+**Weaviate Cloud Services (WCS)** If you are using Weaviate Cloud Services (WCS), the dashboard has a "Details" button. Click the button to get the following information:
 
-### For Docker/Kubernetes deployments
+ - The cluster URL
+ - Authentication type
+ - API keys, if enabled
+ - Module details
 
-You can find the relevant configuration in the configuration files, such as `docker-compose.yml` for Docker Compose, or `values.yaml` in the Helm chart.
+**Docker and Kubernetes** If you are using Docker or Kubernetes, your container configuration files have the connection details. 
 
-For Docker instances, your URL will likely be `http://localhost:8080` unless specified otherwise.
+- For Docker Compose, see `docker-compose.yml`.
+- For Kubernetes, see `values.yaml` in the Helm chart.
 
-:::tip For Embedded Weaviate
-If you are using Embedded Weaviate, you do not need to specify a URL at the client instantiation step, and most likely will not need any authentication.
-<br/>
-<p>
-So, you can simply instantiate with the following.
-</p>
+Docker instances often use the `http://localhost:8080` address.
 
-<EmbeddedInstantiationSimple/>
+**Embedded Weaviate** If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication credentials. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
 
-For the default configuration, and more about the option in general, see the [Embedded Weaviate documentation](../installation/embedded.md).
+## Connecting to Weaviate
+
+### Without authentication
+
+:::warning Use authentication
+Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
 :::
 
-# Connecting to Weaviate
-
-## Without Authentication
-
-:::note Not recommended
-This set up is not recommended in general as anyone can access your Weaviate instance as long as they have the URL.
-:::
+To connect to Weaviate without authentication, follow these examples: 
 
 <WCSWithoutAuthentication/>
 
-## With authentication enabled
+### With authentication
 
-If you do have authentication enabled, you can log in with an API key (recommended), or with OIDC.
+If authentication is enabled, use a Weaviate API key or OIDC to connect. For details, see [Authentication](../configuration/authentication).
 
-### With API key authentication (recommended)
+#### Weaviate API keys
 
-:::info This is your Weaviate API key
-This is **not** the place to specify the API key for services such as Cohere, Hugging Face or OpenAI.
-:::
+To authenticate with a Weaviate API key, follow these examples.
+
+Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
 
 <WCSAuthenticationApiKey/>
 
-### With OIDC authentication (WCS username & password)
+#### OIDC (WCS username & password) 
 
-:::note Shown setup is for WCS
-This authentication method is available for WCS. Your specific identity provider may use a different authentication configuration, of which there are many.
+This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
-- Read more about [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
-:::
+To authenticate with OIDC, follow these examples:
 
 <WCSAuthenticationUserPass/>
 
-## Providing inference API keys
+### Connect to embedded Weaviate
 
-Additionally, you can provide inference API keys to Weaviate so that you can use modules that leverage external APIs, for example `generative-openai` or `text2vec-cohere`.
+Embedded instances usually don't need authentication credentials.
 
-This is done via an additional header, added as below:
+<EmbeddedInstantiationSimple/>
+
+## Third party API keys
+
+Modules that use external APIs often need API keys. The Weaviate clients send these keys as additional headers.
+
+To add third party API keys, follow these examples:
 
 <WCSAuthenticationApiKeyWithInferenceKey/>
 
 ## Next
 
-You can read more about some of the concepts discussed here, such as:
+For more details, see:
+
 - [Authentication](../configuration/authentication.md)
 - [Configuration](../configuration/index.md)
 - [Modules](../modules/index.md)
 
-For more in-depth [tutorials](../tutorials/index.md), learn how to [build schemas](../tutorials/schema.md), [import data](../tutorials/import.md), [query data](../tutorials/query.md) and more.
+For additional tutorials, see:
 
+- [Build schemas](../tutorials/schema.md)
+- [Import data](../tutorials/import.md)
+- [Query data](../tutorials/query.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

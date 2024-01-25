@@ -18,11 +18,13 @@ result = article.query.fetch_objects(
     limit=5,
     offset=2
     # highlight-end
-)  
+)
+
+client.close()
 
 for o in result.objects:
-    print( f"Title: {o.properties["title"]}")
- 
+    print(f"Title: {o.properties["title"]}")
+
 ```
 
 </TabItem>

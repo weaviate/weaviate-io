@@ -1,18 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+import PyCode from '!!raw-loader!/_includes/code/rest.well-known.py';
+
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
-
-```python
-import weaviate
-
-client = weaviate.connect_to_local()
-
-open_id_configuration = client.get_open_id_configuration()
-print(open_id_configuration)
-```
-
+<TabItem value="py" label="Python (v4)">
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="START GetOIDCInfo"
+    endMarker="END GetOIDCInfo"
+    language="py"
+  />
 </TabItem>
 
 <TabItem value="py3" label="Python (v3)">

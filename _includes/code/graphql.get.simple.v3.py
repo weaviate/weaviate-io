@@ -16,7 +16,7 @@ client = weaviate.Client(
 # Actual instantiation for testing
 client = weaviate.Client(
     "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),
 )
 # END Actual instantiation
 # ===== PYTHON EXAMPLE =====
@@ -86,7 +86,7 @@ check_results(result)
 # Actual client instantiation
 client = weaviate.Client(
     url=os.getenv("WCS_EDU_DEMO_URL"),
-    auth_client_secret=weaviate.AuthApiKey(os.getenv("WCS_EDU_DEMO_RO_KEY")),
+    auth_client_secret=weaviate.auth.AuthApiKey(os.getenv("WCS_EDU_DEMO_RO_KEY")),
     additional_headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
 )
 
