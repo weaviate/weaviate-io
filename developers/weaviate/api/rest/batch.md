@@ -6,6 +6,9 @@ image: og/docs/api.jpg
 ---
 
 import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
+import PythonV4BatchAPI from '/_includes/client-python-v4-batching-api.md';
+
+<PythonV4BatchAPI/>
 
 ## Batch create objects
 
@@ -57,10 +60,6 @@ import BatchObjects from '/_includes/code/batch.objects.mdx';
 
 <BatchObjects/>
 
-## Batch create objects with the Python Client
-
-Specific documentation for the Python client can be found at [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/weaviate.batch.html). Learn more about different types of batching and tip&tricks on the [Weaviate Python client page](/developers/weaviate/client-libraries/python.md).
-
 
 ## Batch create references
 
@@ -104,9 +103,6 @@ property name.
 import BatchReferences from '/_includes/code/batch.references.mdx';
 
 <BatchReferences/>
-
-
-For detailed information and instructions of batching in Python, see the [weaviate.batch.Batch](https://weaviate-python-client.readthedocs.io/en/latest/weaviate.batch.html#weaviate.batch.Batch) documentation.
 
 ## Batch delete
 
@@ -210,6 +206,12 @@ When sending a batch request to your Weaviate instance, it could be the case tha
 You can check if an error occurred, and of what kind.
 
 A batch request will always return an HTTP `200` status code when the batch request was successful. That means that the batch was successfully sent to Weaviate, and there were no issues with the connection or processing of the batch, and the request was not malformed (`4xx` status code). However, with a `200` status code, there might still be individual failures of the data objects which are not contained in the response. Thus, a `200` status code does not guarantee that each batch item has been added/created. An example of an error on an individual data object that might be unnoticed by sending a batch request without checking the individual results is this: adding an object to the batch that is in conflict with the schema (for example a non-existing class name).
+
+## Use with the Python client (v3)
+
+Learn more about different types of batching and tip&tricks on the [Weaviate Python client (v3) page](../../client-libraries/python_v3.md).
+
+### Batch create objects with the Python Client
 
 The following Python code can be used to handle errors on individual data objects in the batch.
 
