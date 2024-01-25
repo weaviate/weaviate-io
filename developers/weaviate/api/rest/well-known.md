@@ -60,13 +60,13 @@ import WellKnownLive from '/_includes/code/wellknown.live.mdx';
 
 <WellKnownLive/>
 
-The endpoint returns HTTP status code `200` if the application is able to respond to HTTP requests. 
+The endpoint returns HTTP status code `200` if the application is able to respond to HTTP requests.
 
 ## Readiness
 
 The `ready` endpoint checks if the application is ready to receive traffic. You can use it for Kubernetes readiness probe.
 
-## Usage
+#### Usage
 
 The discovery endpoint accepts a `GET` request:
 
