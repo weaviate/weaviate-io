@@ -28,13 +28,25 @@ client = weaviate.connect_to_local(
     }
 )
 
-publications = client.collections.get("Publication")
+# END-ANY
+client.close()
+
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
+
+# START-ANY
+reviews = client.collections.get("WineReview")
 
 # instruction for the generative module
-generate_prompt = "Explain why these magazines or newspapers are about finance"
+generate_prompt = "Explain what occasion these wines might be good for."
 
-response = publications.generate.near_text(
-    query="magazine or newspaper about finance",
+response = reviews.generate.near_text(
+    query="dry red wine",
     grouped_task=generate_prompt,
     limit=5
 )
@@ -42,4 +54,6 @@ response = publications.generate.near_text(
 print(response.generated)  # "Grouped task" generations are attributes of the entire response
 for o in response.objects:
     print(o.properties)  # To inspect the retrieved object
+
+client.close()
 # END-ANY
