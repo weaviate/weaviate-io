@@ -55,10 +55,10 @@ assert response.objects[0].properties['answer'] == '$5 (Lincoln Memorial in the 
 # ==========================================
 
 # START MultiplePropSorting Python
-article=client.collections.get("JeopardyQuestion")
-response = article.query.fetch_objects(
-    sort=[Sort.by_property(prop="points", ascending=False),
-          Sort.by_property(prop="answer", ascending=True)],
+questions=client.collections.get("JeopardyQuestion")
+response = questions.query.fetch_objects(
+    # Note: To sort by multiple properties, chain the relevant `by_xxx` methods.
+    sort=Sort.by_property(name="points", ascending=False).by_property(name="answer", ascending=True),
     limit=3
 )
 
@@ -81,7 +81,7 @@ assert response.objects[0].properties["points"] == 10000
 article=client.collections.get("JeopardyQuestion")
 response = article.query.fetch_objects(
     return_metadata=wvc.query.MetadataQuery(creation_time=True),
-    sort=Sort.by_property(ascending=True, prop="_creationTimeUnix"),
+    sort=Sort.by_property(name="_creationTimeUnix", ascending=True),
     limit=3
 )
 
