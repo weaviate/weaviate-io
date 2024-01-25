@@ -275,9 +275,14 @@ const config = {
                                 to: 'https://newsletter.weaviate.io/',
                             },
                             {
+                                label: 'Partners',
+                                to: '/partners',
+                            },
+                            {
                                 label: 'Investors',
                                 to: '/company/investors',
                             },
+                           
                             {
                                 label: 'Contact us',
                                 href: 'mailto:hello@weaviate.io',
