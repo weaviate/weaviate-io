@@ -220,6 +220,8 @@ If the helper functions do not provide the customization you need, use the [`Wea
 
 If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
 
+Please note that when directly instantiating a connection, you must connect to the server manually by calling the `.connect()` method.
+
 <FilteredTextBlock
   text={PythonCode}
   startMarker="# DirectInstantiationFull"
@@ -365,7 +367,7 @@ Cross-references should be added under a `references` parameter in the relevant 
 
 ```python
 {
-    "<REFERENCE_PROPERTY_NAME>": Reference.to(uuids=<TARGET_UUID>)
+    "<REFERENCE_PROPERTY_NAME>": "<TARGET_UUID>"
 }
 ```
 

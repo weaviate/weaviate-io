@@ -197,7 +197,7 @@ collection = client.collections.get("Article")
 
 target_id = "00037775-1432-35e5-bc59-443baaef7d80"
 response = collection.query.fetch_objects(
-    filters=FilterMetadata.ById.equal(target_id)
+    filters=Filter.by_id().equal(target_id)
 )
 
 for o in response.objects:

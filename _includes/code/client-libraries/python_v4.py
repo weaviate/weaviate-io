@@ -6,6 +6,8 @@ client = weaviate.connect_to_local()  # Connect with default parameters
 
 assert client.is_ready()
 
+client.close()
+
 """
 # EmbeddedInstantiationBasic
 import weaviate
@@ -17,8 +19,10 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 client = weaviate.connect_to_embedded(
     port=8085,
     grpc_port=50055
-)  # Connect with default parameters
+)
+
 assert client.is_ready()
+client.close()
 
 # WCSInstantiation
 import weaviate
@@ -31,13 +35,14 @@ client = weaviate.connect_to_wcs(
 # END WCSInstantiation
 
 assert client.is_ready()
+client.close()
 
 # WCSwOIDCInstantiation
 import weaviate
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.AuthClientPassword(
+    auth_credentials=weaviate.auth.AuthClientPassword(
         username=os.getenv("WCS_USERNAME"),  # Your WCS username
         password=os.getenv("WCS_PASSWORD")   # Your WCS password
     )
@@ -45,6 +50,7 @@ client = weaviate.connect_to_wcs(
 # END WCSwOIDCInstantiation
 
 assert client.is_ready()
+client.close()
 
 # CustomInstantiationBasic
 import weaviate
@@ -64,16 +70,20 @@ client = weaviate.connect_to_custom(
 # END CustomInstantiationBasic
 
 assert client.is_ready()
+client.close()
 
-# DirectInstantiationBasic
+# # DirectInstantiationBasic
 import weaviate
 
 client = weaviate.WeaviateClient(
-    weaviate.ConnectionParams.from_url("http://localhost:8080", 50051)
+    weaviate.connect.ConnectionParams.from_url("http://localhost:8080", 50051)
 )
+
+client.connect()  # When directly instantiating, you need to connect manually
 # END DirectInstantiationBasic
 
 assert client.is_ready()
+client.close()
 
 # LocalInstantiationWithHeaders
 import weaviate
@@ -85,21 +95,27 @@ client = weaviate.connect_to_local(
 # END LocalInstantiationWithHeaders
 
 assert client.is_ready()
+client.close()
 
 # LocalInstantiationWithTimeout
 import weaviate
 
-client = weaviate.connect_to_local(port=8080, grpc_port=50051, timeout=(5, 15))
+client = weaviate.connect_to_local(
+    port=8080,
+    grpc_port=50051,
+    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))
+)
 # END LocalInstantiationWithTimeout
 
 assert client.is_ready()
+client.close()
 
 # DirectInstantiationFull
 import weaviate
 import os
 
 client = weaviate.WeaviateClient(
-    connection_params=weaviate.ConnectionParams.from_params(
+    connection_params=weaviate.connect.ConnectionParams.from_params(
         http_host="localhost",
         http_port="8099",
         http_secure=False,
@@ -111,22 +127,21 @@ client = weaviate.WeaviateClient(
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
-    additional_config=weaviate.AdditionalConfig(
+    additional_config=weaviate.config.AdditionalConfig(
         startup_period=10,
         timeout=(5, 15)
     ),
 )
+
+client.connect()  # When directly instantiating, you need to connect manually
 # END DirectInstantiationFull
 
 assert client.is_ready()
+client.close()
 
 # =====================================================================================
 # Collection instantiation
 # =====================================================================================
-
-client = weaviate.connect_to_local()
-client.collections.delete("TestArticle")
-assert not client.collections.exists("TestArticle")
 
 # START CreateCollectionExample
 import weaviate
@@ -134,6 +149,13 @@ import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 
+# END CreateCollectionExample
+
+# Delete any existing collections
+client.collections.delete("TestArticle")
+assert not client.collections.exists("TestArticle")
+
+# START CreateCollectionExample
 collection = client.collections.create(
     name="TestArticle",
     vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
@@ -163,6 +185,7 @@ for cname in ["TestArticle", "TestAuthor"]:
     client.collections.delete(cname)
     assert not client.collections.exists(cname)
 
+client.close()
 
 # START CreateCollectionWithRefsExample
 import weaviate
@@ -248,7 +271,7 @@ new_uuid = questions.data.insert(
         "question": "This is the capital of Australia."
     },
     references={  # For adding cross-references
-        "hasCategory": wvc.data.Reference.to(uuids=[target_uuid])
+        "hasCategory": [target_uuid]
     }
 )
 # END CreateObjectExample
@@ -293,7 +316,7 @@ for i in range(5):
         properties=properties,
         # highlight-start
         references={
-            "hasCategory": wvc.data.Reference.to(uuids=target_uuid)
+            "hasCategory": target_uuid
         },
         # highlight-end
         uuid=generate_uuid5(properties)
@@ -317,7 +340,7 @@ from weaviate.classes import Filter
 questions = client.collections.get("JeopardyQuestion")
 
 response = questions.data.delete_many(
-    where=Filter.by_property(prop="question").equal("Test Question")
+    where=Filter.by_property(name="question").equal("Test Question")
 )
 # END DeleteManyExample
 
@@ -325,8 +348,15 @@ response = questions.data.delete_many(
 # Query examples
 # =====================================================================================
 
-client = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+client.close()
+
+# Connect to WCS instance for query examples
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
 )
 
 # START BM25QueryExample
@@ -362,7 +392,14 @@ for o in response.objects:
     print(o.properties)  # All properties by default
     print(o.references)  # References not returned by default
     print(o.uuid)  # UUID included by default
+    # END BM25QueryDefaultReturnsExample
+    """
+    # Don't actually show vector when script runs
+    # START BM25QueryDefaultReturnsExample
     print(o.vector)  # No vector
+    # END BM25QueryDefaultReturnsExample
+    """
+    # START BM25QueryDefaultReturnsExample
     print(o.metadata)  # No metadata
 # END BM25QueryDefaultReturnsExample
 
@@ -381,7 +418,14 @@ for o in response.objects:
     print(o.properties)  # Selected properties only
     print(o.references)  # Selected references
     print(o.uuid)  # UUID included by default
+    # END BM25QueryCustomReturnsExample
+    """
+    # Don't actually show vector when script runs
+    # START BM25QueryCustomReturnsExample
     print(o.vector)  # With vector
+    # END BM25QueryCustomReturnsExample
+    """
+    # START BM25QueryCustomReturnsExample
     print(o.metadata)  # With selected metadata
 # END BM25QueryCustomReturnsExample
 
@@ -426,7 +470,7 @@ for o in response.objects:
 # START AggregateCountExample
 questions = client.collections.get("JeopardyQuestion")
 response = questions.aggregate.over_all(
-    filters=wvc.query.Filter.by_property(prop="question").like("*animal*"),
+    filters=wvc.query.Filter.by_property(name="question").like("*animal*"),
     total_count=True
 )
 
@@ -480,7 +524,7 @@ response = questions.aggregate.near_text(
     return_metrics=wvc.Metrics("points").integer(mean=True)
 )
 
-for o in response:
+for o in response.groups:
     print(o)
 # END AggregateGroupbyExample
 

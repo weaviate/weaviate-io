@@ -28,18 +28,32 @@ client = weaviate.connect_to_local(
     }
 )
 
-articles = client.collections.get("Article")
+# END-ANY
+client.close()
+
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+    }
+)
+
+# START-ANY
+reviews = client.collections.get("WineReview")
 
 # instruction for the generative module
-generate_prompt = "Describe the following as a Facebook Ad: {summary}"
+generate_prompt = "Describe the following as a Facebook Ad: {review_body}"
 
-response = articles.generate.near_text(
-    query="Italian food",
+response = reviews.generate.near_text(
+    query="fruity white wine",
     single_prompt=generate_prompt,
-    limit=5
+    limit=3
 )
 
 for o in response.objects:
     print(o.generated)  # "Single prompt" generations are attributes of each object
     print(o.properties)  # To inspect the retrieved object
+
+client.close()
 # END-ANY

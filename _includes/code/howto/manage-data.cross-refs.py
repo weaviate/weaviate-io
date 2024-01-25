@@ -43,7 +43,6 @@ def del_props(client: WeaviateClient, uuid_to_update: str, collection_name: str,
 client = weaviate.connect_to_local(
     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 )
-old_client = weaviate.Client("http://localhost:8080")
 
 
 # ===========================================================
