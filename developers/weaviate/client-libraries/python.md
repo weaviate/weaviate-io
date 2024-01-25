@@ -594,9 +594,9 @@ There is now runtime logic for parsing query arguments enforcing the correct typ
 ### Batch processing
 
 Introduction of three distinct algorithms using different batching styles under-the-hood:
-- `client.batch.dynamic()`,
-- `client.batch.fixed_size()`,
-- `client.batch.rate_limit()`.
+- `client.batch.dynamic()`
+- `client.batch.fixed_size()`
+- `client.batch.rate_limit()`
 
 `client.batch.dynamic() as batch` is a drop-in replacement for the previous `client.batch as batch`, which is now deprecated and will be removed on release.
 ```python
