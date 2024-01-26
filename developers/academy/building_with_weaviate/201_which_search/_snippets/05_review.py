@@ -86,7 +86,7 @@ assert "question" in response.objects[0].properties.keys()
 
 # START hybridExample
 questions = client.collections.get("JeopardyQuestion")
-response = questions.query.bm25(
+response = questions.query.hybrid(
     query="space travel",  # Your query string
     limit=2
 )
