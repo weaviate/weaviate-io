@@ -221,11 +221,9 @@ import SchemaWithIndexSettings from '/_includes/code/tutorial.schema.index-setti
 
 #### Replication
 
-Replication settings determine how many copies of the data are stored. For example, a replication setting of 3 means that each object is stored on 3 different replicas. This is very important for providing redundancy and fault tolerance.
+Replication settings determine how many copies of the data are stored. For example, a replication setting of 3 means that each object is stored on 3 different replicas. This is important for providing redundancy and fault tolerance in production. (The default replication factor is 1.)
 
 This goes hand-in-hand with consistency settings, which determine how many replicas must respond before an operation is considered successful.
-
-The default replication factor is 1.
 
 We recommend that you read the [concepts page on replication](../concepts/replication-architecture/index.md) for information on how replication works in Weaviate. To specify a replication factor, follow [this how-to](../manage-data/collections.mdx#replication-settings).
 
