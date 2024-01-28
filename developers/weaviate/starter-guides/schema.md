@@ -237,7 +237,7 @@ Sharding settings determine how each collection is sharded and distributed acros
 
 ### Collection & property names
 
-Collection names always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more [here](../config-refs/schema/index.md).
+Collection names always start with a capital letter. Properties always begin with a small letter. You can use `PascalCase` class names, and property names allow underscores. Read more [here](../config-refs/schema/index.md).
 
 ### Related resources
 
