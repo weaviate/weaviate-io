@@ -94,7 +94,7 @@ import CodeCreateSchema from '/_includes/code/quickstart.schema.create.mdx';
 <CodeCreateSchema />
 
 :::note Classes and Properties - best practice
-Classes always start with a capital letter. Properties always begin with a small letter. You can use `CamelCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../config-refs/schema/index.md).
+Classes always start with a capital letter. Properties always begin with a small letter. You can use `PascalCase` class names, and property names allow underscores. Read more about schema classes, properties and data types [here](../config-refs/schema/index.md).
 :::
 
 The result should look something like this:
