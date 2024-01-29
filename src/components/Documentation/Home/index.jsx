@@ -7,10 +7,10 @@ const DocHomePage = () => {
       <h1 className={styles.docHeadText}>Welcome to Weviate Docs</h1>
 
       <p className={styles.docText}>
-        Weaviate is an open source, AI-native vector database.<br></br>
-        Learn how to store and retrieve data objects and vector embeddings.
-        Seamlessly connect <br></br> to your favorite ML models. And build
-        intuitive, reliable AI applications that scale.
+        Weaviate is an open source, AI-native vector database. Learn how to
+        store and retrieve data objects and vector embeddings. Seamlessly
+        connect to your favorite ML models. And build intuitive, reliable AI
+        applications that scale.
       </p>
 
       <div className={styles.welcomeSection}>
@@ -21,8 +21,8 @@ const DocHomePage = () => {
           </div>
           <p>
             Start with the{' '}
-            <a href="/quickstart/index.md">Quickstart tutorial</a> - an
-            end-to-end demo that takes 15-30 minutes.
+            <a href="/developers/weaviate/quickstart">Quickstart tutorial</a> -
+            an end-to-end demo that takes 15-30 minutes.
           </p>
         </div>
         <div className={styles.welcomeBox}>
