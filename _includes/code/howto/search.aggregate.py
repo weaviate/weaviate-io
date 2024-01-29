@@ -42,7 +42,7 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.over_all(
     # highlight-start
-    return_metrics=wvc.Metrics("answer").text(
+    return_metrics=wvc.query.Metrics("answer").text(
         top_occurrences_count=True,
         top_occurrences_value=True
     )
@@ -68,7 +68,7 @@ import weaviate.classes as wvc
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.aggregate.over_all(
     # highlight-start
-    return_metrics=wvc.Metrics("points").number(sum_=True, maximum=True, minimum=True),
+    return_metrics=wvc.query.Metrics("points").number(sum_=True, maximum=True, minimum=True),
     # highlight-end
 )
 
@@ -121,7 +121,7 @@ response = jeopardy.aggregate.near_text(
     # highlight-start
     object_limit=10,
     # highlight-end
-    return_metrics=wvc.Metrics("points").number(sum_=True),
+    return_metrics=wvc.query.Metrics("points").number(sum_=True),
 )
 
 print(response.properties["points"].sum_)
@@ -146,7 +146,7 @@ response = jeopardy.aggregate.near_text(
     # highlight-start
     distance=0.19,
     # highlight-end
-    return_metrics=wvc.Metrics("points").number(sum_=True),
+    return_metrics=wvc.query.Metrics("points").number(sum_=True),
 )
 
 print(response.properties["points"].sum_)
@@ -164,7 +164,7 @@ assert response.properties["points"].sum_ > 0
 
 # whereFilter Python
 # highlight-start
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 # highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")

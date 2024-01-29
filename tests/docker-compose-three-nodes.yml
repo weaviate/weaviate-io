@@ -9,7 +9,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.23.4
+    image: semitechnologies/weaviate:1.23.5
     restart: on-failure:0
     ports:
      - "8180:8080"
@@ -34,7 +34,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.23.4
+    image: semitechnologies/weaviate:1.23.5
     restart: on-failure:0
     ports:
      - "8181:8080"
@@ -59,7 +59,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.23.4
+    image: semitechnologies/weaviate:1.23.5
     restart: on-failure:0
     ports:
      - "8182:8080"

@@ -100,7 +100,7 @@ questions = client.collections.create(
     # highlight-start
     # Configure the vector index
     vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
-        distance_metric=wvc.config.VectorDistance.COSINE,
+        distance_metric=wvc.config.VectorDistances.COSINE,
         quantizer=wvc.config.Configure.VectorIndex.Quantizer.pq(segments=192),
     ),
     # Configure the inverted index

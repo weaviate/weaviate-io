@@ -724,9 +724,9 @@ client = weaviate.connect_to_local()
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
-    filters=wvc.Filter.by_property("round").equal("Double Jeopardy!") &
-            wvc.Filter.by_creation_time().greater_or_equal(datetime.datetime(2005, 1, 1)) |
-            wvc.Filter.by_creation_time().greater_or_equal(datetime.datetime(2000, 12, 31)),
+    filters=wvc.query.Filter.by_property("round").equal("Double Jeopardy!") &
+            wvc.query.Filter.by_creation_time().greater_or_equal(datetime.datetime(2005, 1, 1)) |
+            wvc.query.Filter.by_creation_time().greater_or_equal(datetime.datetime(2000, 12, 31)),
             limit=3
     )
 
@@ -783,7 +783,7 @@ Use `ReferenceToMulti` for multi-target references.
         name="YourCollection",
         # highlight-start
         vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
-            distance_metric=wvc.config.VectorDistance.COSINE,
+            distance_metric=wvc.config.VectorDistances.COSINE,
             vector_cache_max_objects=1000000,
             quantizer=wvc.config.Configure.VectorIndex.Quantizer.pq()
         ),

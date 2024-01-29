@@ -60,7 +60,7 @@ client.collections.create(
     name="Article",
     description="A written text, for example a news article or blog post",
     vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
-        distance_metric=wvc.config.VectorDistance.COSINE,
+        distance_metric=wvc.config.VectorDistances.COSINE,
         ef=128,
         max_connections=64
     ),

@@ -44,8 +44,8 @@ import weaviate.classes as wvc
 # highlight-start
 multi_collection.tenants.create(
     tenants=[
-        wvc.Tenant(name="tenantA"),
-        wvc.Tenant(name="tenantB"),
+        wvc.tenants.Tenant(name="tenantA"),
+        wvc.tenants.Tenant(name="tenantB"),
     ]
 )
 # highlight-end
@@ -101,7 +101,7 @@ assert ("tenantB" in tenants) == False
 multi_collection = client.collections.get("MultiTenancyCollection")
 # highlight-start
 multi_collection.tenants.update(tenants=[
-    wvc.Tenant(
+    wvc.tenants.Tenant(
         name="tenantA",
         activity_status=weaviate.schema.TenantActivityStatus.COLD
     )
@@ -117,7 +117,7 @@ assert tenants["tenantA"].activity_status.name == "COLD"
 
 # Change the status back
 multi_collection.tenants.update(tenants=[
-    wvc.Tenant(
+    wvc.tenants.Tenant(
         name="tenantA",
         activity_status=weaviate.schema.TenantActivityStatus.HOT
     )

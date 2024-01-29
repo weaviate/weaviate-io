@@ -28,7 +28,7 @@ client = weaviate.connect_to_wcs(
 collection = client.collections.get("Article")
 response = collection.aggregate.over_all(
     total_count=True,
-    return_metrics=wvc.Metrics("wordCount").integer(
+    return_metrics=wvc.query.Metrics("wordCount").integer(
         count=True,
         maximum=True,
         mean=True,
@@ -72,7 +72,7 @@ collection = client.collections.get("Article")
 response = collection.aggregate.over_all(
     group_by="inPublication",
     total_count=True,
-    return_metrics=wvc.Metrics("wordCount").integer(mean=True)
+    return_metrics=wvc.query.Metrics("wordCount").integer(mean=True)
 )
 
 for g in response.groups:
@@ -99,7 +99,7 @@ response = collection.aggregate.near_object(
     object_limit=200,
     total_count=True,
     return_metrics=[
-        wvc.Metrics("wordCount").integer(
+        wvc.query.Metrics("wordCount").integer(
             count=True,
             maximum=True,
             mean=True,
@@ -108,7 +108,7 @@ response = collection.aggregate.near_object(
             mode=True,
             sum_=True,
         ),
-        wvc.Metrics("inPublication").reference(
+        wvc.query.Metrics("inPublication").reference(
             pointing_to=True,
         )
     ]
@@ -140,7 +140,7 @@ response = collection.aggregate.near_vector(
     object_limit=100,
     total_count=True,
     return_metrics=[
-        wvc.Metrics("wordCount").integer(
+        wvc.query.Metrics("wordCount").integer(
             count=True,
             maximum=True,
             mean=True,
@@ -149,7 +149,7 @@ response = collection.aggregate.near_vector(
             mode=True,
             sum_=True,
         ),
-        wvc.Metrics("inPublication").reference(
+        wvc.query.Metrics("inPublication").reference(
             pointing_to=True,
         )
     ]
@@ -181,7 +181,7 @@ response = collection.aggregate.near_text(
     object_limit=200,
     total_count=True,
     return_metrics=[
-        wvc.Metrics("wordCount").integer(
+        wvc.query.Metrics("wordCount").integer(
             count=True,
             maximum=True,
             mean=True,
@@ -190,7 +190,7 @@ response = collection.aggregate.near_text(
             mode=True,
             sum_=True,
         ),
-        wvc.Metrics("inPublication").reference(
+        wvc.query.Metrics("inPublication").reference(
             pointing_to=True,
         )
     ]

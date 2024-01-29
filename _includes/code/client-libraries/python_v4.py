@@ -20,7 +20,7 @@ client = weaviate.connect_to_embedded()  # Connect with default parameters
 
 client = weaviate.connect_to_embedded(
     port=8085,
-    grpc_port=50055
+    grpc_port=50055,
 )
 
 assert client.is_ready()
@@ -340,7 +340,7 @@ deleted = questions.data.delete_by_id(uuid=new_uuid)
 assert deleted == True
 
 # START DeleteManyExample
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 questions = client.collections.get("JeopardyQuestion")
 
@@ -487,7 +487,7 @@ questions = client.collections.get("JeopardyQuestion")
 response = questions.aggregate.near_text(
     query="animal",
     object_limit=5,
-    return_metrics=wvc.Metrics("points").integer(mean=True)
+    return_metrics=wvc.query.Metrics("points").integer(mean=True)
 )
 
 print(response.properties)
@@ -526,7 +526,7 @@ response = questions.aggregate.near_text(
     query="animal",
     distance=0.2,
     group_by="points",
-    return_metrics=wvc.Metrics("points").integer(mean=True)
+    return_metrics=wvc.query.Metrics("points").integer(mean=True)
 )
 
 for o in response.groups:

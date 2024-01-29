@@ -229,7 +229,7 @@ client.collections.create(
     "Article",
     # highlight-start
     vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
-        distance_metric=wvc.config.VectorDistance.COSINE
+        distance_metric=wvc.config.VectorDistances.COSINE
     ),
     # highlight-end
 )

@@ -21,7 +21,7 @@ client = weaviate.connect_to_wcs(
 # ==========================================
 
 # SingleFilterPython
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
@@ -47,7 +47,7 @@ assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # ==========================================
 
 # SingleFilterNearTextPython
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.near_text(
@@ -75,7 +75,7 @@ assert response.objects[0].properties["points"] > 200
 
 
 # LikeFilterPython
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
@@ -101,7 +101,7 @@ assert "inter" in response.objects[0].properties["answer"].lower()
 # ==========================================
 
 # MultipleFiltersAndPython
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
@@ -131,7 +131,7 @@ assert response.objects[0].properties["points"] < 600
 # ==========================================
 
 # MultipleFiltersNestedPython
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
@@ -163,7 +163,7 @@ assert (
 # ===================================================
 
 # CrossReferencePython
-from weaviate.classes import Filter
+from weaviate.classes.query import Filter
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.fetch_objects(
