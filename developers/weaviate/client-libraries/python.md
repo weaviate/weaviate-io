@@ -22,6 +22,9 @@ The Python client v4 is currently in beta. Please note the following:
 
 :::
 
+<!-- TODO - add section on timeout defaults & troubleshooting -->
+<!-- TODO - suggest updating gRPC generation error message to suggest increasing timeout value -->
+
 ## Overview
 
 This page discuses key ideas and aspects of the Weaviate Python client `v4`.

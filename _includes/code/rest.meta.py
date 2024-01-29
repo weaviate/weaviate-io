@@ -15,17 +15,20 @@ client = weaviate.connect_to_wcs(
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
 )
 
-# ========================================
-# GetServerMeta
-# ========================================
+try:
 
-# START GetServerMeta
-meta_info = client.get_meta()
-print(meta_info)
-# END GetServerMeta
+    # ========================================
+    # GetServerMeta
+    # ========================================
+
+    # START GetServerMeta
+    meta_info = client.get_meta()
+    print(meta_info)
+    # END GetServerMeta
 
 
 # START-ANY
 
-client.close()
+finally:
+    client.close()
 # END-ANY

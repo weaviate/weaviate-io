@@ -40,20 +40,21 @@ client = weaviate.connect_to_wcs(
 )
 
 # START-ANY
-reviews = client.collections.get("WineReview")
+try:
+    reviews = client.collections.get("WineReview")
 
-# instruction for the generative module
-generate_prompt = "Explain what occasion these wines might be good for."
+    # instruction for the generative module
+    generate_prompt = "Explain what occasion these wines might be good for."
 
-response = reviews.generate.near_text(
-    query="dry red wine",
-    grouped_task=generate_prompt,
-    limit=5
-)
+    response = reviews.generate.near_text(
+        query="dry red wine",
+        grouped_task=generate_prompt,
+        limit=5
+    )
 
-print(response.generated)  # "Grouped task" generations are attributes of the entire response
-for o in response.objects:
-    print(o.properties)  # To inspect the retrieved object
-
-client.close()
+    print(response.generated)  # "Grouped task" generations are attributes of the entire response
+    for o in response.objects:
+        print(o.properties)  # To inspect the retrieved object
+finally:
+    client.close()
 # END-ANY

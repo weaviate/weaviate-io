@@ -15,20 +15,23 @@ client = weaviate.connect_to_wcs(
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
 )
 
-# ========================================
-# GetNodes
-# ========================================
+try:
 
-# START GetNodes
-nodes_info = client.cluster.nodes(
-    collection="JeopardyQuestion",  # If omitted, all collections will be returned
-    output="verbose"  #  If omitted, will be "minimal"
-)
-print(nodes_info)
-# END GetNodes
+    # ========================================
+    # GetNodes
+    # ========================================
+
+    # START GetNodes
+    nodes_info = client.cluster.nodes(
+        collection="JeopardyQuestion",  # If omitted, all collections will be returned
+        output="verbose"  #  If omitted, will be "minimal"
+    )
+    print(nodes_info)
+    # END GetNodes
 
 
 # START-ANY
 
-client.close()
+finally:
+    client.close()
 # END-ANY

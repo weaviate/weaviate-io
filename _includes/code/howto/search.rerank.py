@@ -13,83 +13,86 @@ client = weaviate.connect_to_wcs(
     }
 )
 
-# ==================================
-# ===== nearText before rerank =====
-# ==================================
+try:
 
-# START nearText Python
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.near_text(
-    query="flying",
-    limit=10,
-)
+    # ==================================
+    # ===== nearText before rerank =====
+    # ==================================
 
-for o in response.objects:
-    print(o.properties)
-# END nearText Python
+    # START nearText Python
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.near_text(
+        query="flying",
+        limit=10,
+    )
 
-
-# Tests
-assert response.objects[0].collection == "JeopardyQuestion"
-# End test
+    for o in response.objects:
+        print(o.properties)
+    # END nearText Python
 
 
-# =================================
-# ===== nearText after rerank =====
-# =================================
-
-# START nearTextRerank Python
-jeopardy = client.collections.get("JeopardyQuestion")
-
-response = jeopardy.query.near_text(
-    query="flying",
-    limit=10,
-    rerank=wvc.query.Rerank(
-        prop="question",
-        query="publication"
-    ),
-    return_metadata=wvc.query.MetadataQuery(score=True)
-)
-
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.score)
-# END nearTextRerank Python
+    # Tests
+    assert response.objects[0].collection == "JeopardyQuestion"
+    # End test
 
 
-# Tests
-assert response.objects[0].collection == "JeopardyQuestion"
-assert response.objects[0].metadata.score is not None
-# End test
+    # =================================
+    # ===== nearText after rerank =====
+    # =================================
+
+    # START nearTextRerank Python
+    jeopardy = client.collections.get("JeopardyQuestion")
+
+    response = jeopardy.query.near_text(
+        query="flying",
+        limit=10,
+        rerank=wvc.query.Rerank(
+            prop="question",
+            query="publication"
+        ),
+        return_metadata=wvc.query.MetadataQuery(score=True)
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.score)
+    # END nearTextRerank Python
 
 
-# ============================
-# ===== bm25 with rerank =====
-# ============================
-
-# START bm25Rerank Python
-jeopardy = client.collections.get("JeopardyQuestion")
-
-response = jeopardy.query.bm25(
-    query="paper",
-    limit=10,
-    rerank=wvc.query.Rerank(
-        prop="question",
-        query="publication"
-    ),
-    return_metadata=wvc.query.MetadataQuery(score=True)
-)
-
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.score)
-# END bm25Rerank Python
+    # Tests
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert response.objects[0].metadata.score is not None
+    # End test
 
 
-# Tests
-assert response.objects[0].collection == "JeopardyQuestion"
-assert response.objects[0].metadata.score is not None
-# End test
+    # ============================
+    # ===== bm25 with rerank =====
+    # ============================
+
+    # START bm25Rerank Python
+    jeopardy = client.collections.get("JeopardyQuestion")
+
+    response = jeopardy.query.bm25(
+        query="paper",
+        limit=10,
+        rerank=wvc.query.Rerank(
+            prop="question",
+            query="publication"
+        ),
+        return_metadata=wvc.query.MetadataQuery(score=True)
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.score)
+    # END bm25Rerank Python
 
 
-client.close()
+    # Tests
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert response.objects[0].metadata.score is not None
+    # End test
+
+
+finally:
+    client.close()

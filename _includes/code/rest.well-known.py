@@ -15,34 +15,36 @@ client = weaviate.connect_to_wcs(
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
 )
 
-# ========================================
-# GetOIDCInfo
-# ========================================
+try:
+    # ========================================
+    # GetOIDCInfo
+    # ========================================
 
-# START GetOIDCInfo
-open_id_configuration = client.get_open_id_configuration()
+    # START GetOIDCInfo
+    open_id_configuration = client.get_open_id_configuration()
 
-print(open_id_configuration)
-# END GetOIDCInfo
+    print(open_id_configuration)
+    # END GetOIDCInfo
 
-# ========================================
-# GetLiveness
-# ========================================
+    # ========================================
+    # GetLiveness
+    # ========================================
 
-# START GetLiveness
-print(client.is_live())
-# END GetLiveness
+    # START GetLiveness
+    print(client.is_live())
+    # END GetLiveness
 
-# ========================================
-# GetReadiness
-# ========================================
+    # ========================================
+    # GetReadiness
+    # ========================================
 
-# START GetReadiness
-print(client.is_ready())
-# END GetReadiness
+    # START GetReadiness
+    print(client.is_ready())
+    # END GetReadiness
 
 
 # START-ANY
 
-client.close()
+finally:
+    client.close()
 # END-ANY

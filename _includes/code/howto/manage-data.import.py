@@ -21,166 +21,169 @@ client = weaviate.connect_to_local(
     }
 )
 
-assert client.is_ready()
+try:
 
-# ============================
-# ===== Define the class =====
-# ============================
+    assert client.is_ready()
 
-# Clean slate
-client.collections.delete("YourCollection")
+    # ============================
+    # ===== Define the class =====
+    # ============================
 
-client.collections.create(
-    "YourCollection",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
-)
+    # Clean slate
+    client.collections.delete("YourCollection")
 
-# ==============================
-# ===== Basic batch import =====
-# ==============================
+    client.collections.create(
+        "YourCollection",
+        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
+    )
 
-# BasicBatchImportExample
-data = [
-    {"title": f"Object {i+1}"} for i in range(5)
-]
+    # ==============================
+    # ===== Basic batch import =====
+    # ==============================
 
-collection = client.collections.get("YourCollection")
+    # BasicBatchImportExample
+    data = [
+        {"title": f"Object {i+1}"} for i in range(5)
+    ]
 
-# highlight-start
-response = collection.data.insert_many(data)
-# highlight-end
-print(response.uuids)
-# END BasicBatchImportExample
+    collection = client.collections.get("YourCollection")
 
-result = collection.aggregate.over_all(total_count=True)
-assert result.total_count == 5
-# Clean up
-client.collections.delete(collection.name)
+    # highlight-start
+    response = collection.data.insert_many(data)
+    # highlight-end
+    print(response.uuids)
+    # END BasicBatchImportExample
 
-# =======================================
-# ===== Batch import with custom ID =====
-# =======================================
+    result = collection.aggregate.over_all(total_count=True)
+    assert result.total_count == 5
+    # Clean up
+    client.collections.delete(collection.name)
 
-# BatchImportWithIDExample
-# highlight-start
-from weaviate.util import generate_uuid5  # Generate a deterministic ID
-# highlight-end
+    # =======================================
+    # ===== Batch import with custom ID =====
+    # =======================================
 
-data = [
-    # use DataObject to provide uuid value
-    wvc.data.DataObject(
-        properties={"title": "Object 1"},
-        # highlight-start
-        uuid=generate_uuid5({"title": "Object 1"})
-        # highlight-end
-    ),
-    wvc.data.DataObject(
-        properties={"title": "Object 2"},
-        uuid=generate_uuid5({"title": "Object 2"})
-    ),
-    wvc.data.DataObject(
-        properties={"title": "Object 3"},
-        uuid=generate_uuid5({"title": "Object 3"})
-    ),
-]
+    # BatchImportWithIDExample
+    # highlight-start
+    from weaviate.util import generate_uuid5  # Generate a deterministic ID
+    # highlight-end
 
-collection = client.collections.get("YourCollection")  # Replace with your collection name
-collection.data.insert_many(data)
+    data = [
+        # use DataObject to provide uuid value
+        wvc.data.DataObject(
+            properties={"title": "Object 1"},
+            # highlight-start
+            uuid=generate_uuid5({"title": "Object 1"})
+            # highlight-end
+        ),
+        wvc.data.DataObject(
+            properties={"title": "Object 2"},
+            uuid=generate_uuid5({"title": "Object 2"})
+        ),
+        wvc.data.DataObject(
+            properties={"title": "Object 3"},
+            uuid=generate_uuid5({"title": "Object 3"})
+        ),
+    ]
 
-# END BatchImportWithIDExample
+    collection = client.collections.get("YourCollection")  # Replace with your collection name
+    collection.data.insert_many(data)
 
-# Tests
-result = collection.aggregate.over_all(total_count=True)
-assert result.total_count == 3
+    # END BatchImportWithIDExample
 
-first_id = generate_uuid5({"title": "Object 1"})
-response = collection.query.fetch_object_by_id(first_id)
-assert response != None
+    # Tests
+    result = collection.aggregate.over_all(total_count=True)
+    assert result.total_count == 3
 
-# Clean up
-client.collections.delete(collection.name)
+    first_id = generate_uuid5({"title": "Object 1"})
+    response = collection.query.fetch_object_by_id(first_id)
+    assert response != None
 
-# ===========================================
-# ===== Batch import with custom vector =====
-# ===========================================
+    # Clean up
+    client.collections.delete(collection.name)
 
-# BatchImportWithVectorExample
-data = [
-    # use DataObject to provide uuid value
-    wvc.data.DataObject(
-        properties={"title": "Object 1"},
-        # highlight-start
-        vector=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
-        # highlight-end
-    ),
-    wvc.data.DataObject(
-        properties={"title": "Object 2"},
-        vector=[0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
-    ),
-    wvc.data.DataObject(
-        properties={"title": "Object 3"},
-        vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
-    ),
-]
+    # ===========================================
+    # ===== Batch import with custom vector =====
+    # ===========================================
 
-collection = client.collections.get("YourCollection")  # Replace with your collection name
-collection.data.insert_many(data)
-# END BatchImportWithVectorExample
+    # BatchImportWithVectorExample
+    data = [
+        # use DataObject to provide uuid value
+        wvc.data.DataObject(
+            properties={"title": "Object 1"},
+            # highlight-start
+            vector=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+            # highlight-end
+        ),
+        wvc.data.DataObject(
+            properties={"title": "Object 2"},
+            vector=[0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+        ),
+        wvc.data.DataObject(
+            properties={"title": "Object 3"},
+            vector=[0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
+        ),
+    ]
 
-# Tests
-result = collection.aggregate.over_all(total_count=True)
-assert result.total_count == 3
+    collection = client.collections.get("YourCollection")  # Replace with your collection name
+    collection.data.insert_many(data)
+    # END BatchImportWithVectorExample
 
-response = collection.query.bm25(
-    query="Object 1",
-    include_vector=True
-)
-test_vector = response.objects[0].vector
-assert (test_vector[0] >= 0.1)
-assert (test_vector[0] < 0.11)
+    # Tests
+    result = collection.aggregate.over_all(total_count=True)
+    assert result.total_count == 3
 
-# Clean up
-client.collections.delete(collection.name)
+    response = collection.query.bm25(
+        query="Object 1",
+        include_vector=True
+    )
+    test_vector = response.objects[0].vector
+    assert (test_vector[0] >= 0.1)
+    assert (test_vector[0] < 0.11)
 
-
-# =======================================
-# ===== Batch import with cross-reference =====
-# =======================================
-
-# TODO - add in when reference feature added
-
-# target_collection = client.collections.create("TargetCollection")
-# target_collection.data.insert(
-#     {"title": "something"}
-# )
-# target_uuid = target_collection.query.fetch_objects(limit=1).objects[0].uuid
-
-# # BatchImportWithRefExample
-
-# data = [
-#     # use DataObject to provide uuid value
-#     wvc.data.DataObject(
-#         properties={"title": "Object 1"},
-#         # highlight-start
-#         # references=[target_uuid],
-#         # highlight-end
-#     ),
-#     wvc.data.DataObject(
-#         properties={"title": "Object 2"},
-#         uuid=generate_uuid5({"title": "Object 2"})
-#     ),
-# ]
-
-# collection = client.collections.get("YourCollection")  # Replace with your collection name
-# insert_response = collection.data.insert_many(data)
-
-# # END BatchImportWithRefExample
-
-# # Tests
-# response = collection.query.fetch_object_by_id(insert_response.all_responses[0])
+    # Clean up
+    client.collections.delete(collection.name)
 
 
-# Clean up
-client.collections.delete(collection.name)
+    # =======================================
+    # ===== Batch import with cross-reference =====
+    # =======================================
 
-client.close()
+    # TODO - add in when reference feature added
+
+    # target_collection = client.collections.create("TargetCollection")
+    # target_collection.data.insert(
+    #     {"title": "something"}
+    # )
+    # target_uuid = target_collection.query.fetch_objects(limit=1).objects[0].uuid
+
+    # # BatchImportWithRefExample
+
+    # data = [
+    #     # use DataObject to provide uuid value
+    #     wvc.data.DataObject(
+    #         properties={"title": "Object 1"},
+    #         # highlight-start
+    #         # references=[target_uuid],
+    #         # highlight-end
+    #     ),
+    #     wvc.data.DataObject(
+    #         properties={"title": "Object 2"},
+    #         uuid=generate_uuid5({"title": "Object 2"})
+    #     ),
+    # ]
+
+    # collection = client.collections.get("YourCollection")  # Replace with your collection name
+    # insert_response = collection.data.insert_many(data)
+
+    # # END BatchImportWithRefExample
+
+    # # Tests
+    # response = collection.query.fetch_object_by_id(insert_response.all_responses[0])
+
+
+    # Clean up
+    client.collections.delete(collection.name)
+
+finally:
+    client.close()

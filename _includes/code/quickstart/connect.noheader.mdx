@@ -14,10 +14,13 @@ import weaviate
 # As of November 2023, WCS sandbox instances are not yet compatible with the new API introduced in the v4 Python client.
 # This example connects to a local instance of Weaviate. You do not need to provide the Weaviate API key when local,
 # anonymous, authentication is enabled.
-client = weaviate.connect_to_local(
-    port=8080,
-    grpc_port=50051,
-)
+client = weaviate.connect_to_local()
+
+try:
+    # Your code here
+except:
+    # Close the connection gracefully
+    client.close()
 ```
 
 </TabItem>
