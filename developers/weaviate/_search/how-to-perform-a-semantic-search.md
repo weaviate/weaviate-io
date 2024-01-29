@@ -18,7 +18,7 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
 ## Introduction
 
 - Weaviate has RESTful API endpoints to query data, but Weaviate's query language is [GraphQL](https://graphql.org/).
-- You can query a Weaviate after you've created a [schema](../tutorials/schema.md) and [populated it](/developers/weaviate/tutorials/import.md) with data.
+- You can query a Weaviate after you've created a [schema](../starter-guides/schema.md) and [populated it](/developers/weaviate/tutorials/import.md) with data.
 - You can perform simple [`Get{}`](../api/graphql/get.md) queries to easily retrieve data, learn how [here](./how-to-query-data.md).
 - To narrow down search results from a `Get{}` query based on semantics, use the `nearText` filter in the `Get{}` query. Read how in [this tutorial](#neartext-filter).
 - To search and find for data objects in a fuzzy manner, you can use the GraphQL `Explore{}` function, read how in [this tutorial](#explore-graphql-function), and on the [reference page](../api/graphql/explore.md).
@@ -27,7 +27,7 @@ Migrated from "How to perform a semantic search" tutorial from Weaviate Docs Cla
  1. **Connect to a Weaviate instance.**\\
  If you haven't set up a Weaviate instance yet, check the [Quickstart guide](/developers/weaviate/quickstart/index.md). In this guide we assume your instance is running at `http://localhost:8080` with [text2vec-contextionary](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md) as vectorization module.
  2. **Upload a schema**. \\
- Learn how to create and upload a schema [here](../tutorials/schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
+ Learn how to create and upload a schema [here](../starter-guides/schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author`.
  3. **Add data**. \\
  Make sure there is data available in your Weaviate instance, you can read how to do this in the [previous guide](/developers/weaviate/tutorials/how-to-import-data.md). In this tutorial we assume there are data objects of `Publication`s, `Article`s and `Author`s present.
 
