@@ -414,11 +414,7 @@ const siteRedirects = {
             from: "/learn/workshops"
 
         },
-        // Partners to Platform whilst in development
-        {
-            to: "/platform",
-            from: "/partners"
-        },
+     
         // Partners Off
         {
             to: "/pricing",

@@ -1,0 +1,90 @@
+{
+  "logos": [
+    {
+      "companyName": "OpenAI",
+      "cssClass": "openAIPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Cohere",
+      "cssClass": "coherePartners",
+      "link": ""
+    },
+    {
+      "companyName": "Databricks",
+      "cssClass": "databricksPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Mistral AI",
+      "cssClass": "mistralaiPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Anthropic",
+      "cssClass": "anthropicPartners",
+      "link": ""
+    },
+
+    {
+      "companyName": "Langchain",
+      "cssClass": "langchainPartners",
+      "link": ""
+    },
+    {
+      "companyName": "DataDog",
+      "cssClass": "datadogPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Jina",
+      "cssClass": "jinaPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Intel",
+      "cssClass": "intelPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Red Hat",
+      "cssClass": "redhatPartners",
+      "link": ""
+    },
+    {
+      "companyName": "DitHub",
+      "cssClass": "dithubPartners",
+      "link": ""
+    },
+    {
+      "companyName": "NVIDIA",
+      "cssClass": "nvidiaPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Haystack",
+      "cssClass": "haystackPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Arize",
+      "cssClass": "arizePartners",
+      "link": ""
+    },
+    {
+      "companyName": "Astronomer",
+      "cssClass": "astronomerPartners",
+      "link": ""
+    },
+    {
+      "companyName": "Unstructured",
+      "cssClass": "unstructuredPartners",
+      "link": ""
+    },
+    {
+      "companyName": "AI21",
+      "cssClass": "AI21Partners",
+      "link": ""
+    }
+  ]
+}
