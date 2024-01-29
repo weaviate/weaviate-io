@@ -47,6 +47,22 @@ for o in response.objects:
 
 
 # ========================================
+# MultipleConditionsFilter
+# ========================================
+
+# START MultipleConditionsFilter
+collection = client.collections.get("Article")
+response = collection.query.fetch_objects(
+    filters=(wvc.query.Filter.by_property("wordCount").greater_than(1000) & wvc.query.Filter.by_property("title").like("*economy*")),
+    limit=5
+)
+
+for o in response.objects:
+    print(o.properties)  # Inspect returned objects
+# END MultipleConditionsFilter
+
+
+# ========================================
 # FilterWithLike
 # ========================================
 
