@@ -13,7 +13,7 @@ import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.si
 
 Learn how to connect to Weaviate.
 
-Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data. 
+Configure your connection to provide authentication parameters and API keys for Weaviate and third-party services. Connect with services like Cohere, Hugging Face, and OpenAI to use their models with your data.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ To configure a connection, you need the following information:
  - API keys, if enabled
  - Module details
 
-**Docker and Kubernetes** If you are using Docker or Kubernetes, your container configuration files have the connection details. 
+**Docker and Kubernetes** If you are using Docker or Kubernetes, your container configuration files have the connection details.
 
 - For Docker Compose, see `docker-compose.yml`.
 - For Kubernetes, see `values.yaml` in the Helm chart.
@@ -49,7 +49,7 @@ Docker instances often use the `http://localhost:8080` address.
 Do not expose your Weaviate instance to the public internet if authentication is not enabled. If you do not enable authentication, anyone who has the URL can access your Weaviate instance.
 :::
 
-To connect to Weaviate without authentication, follow these examples: 
+To connect to Weaviate without authentication, follow these examples:
 
 <WCSWithoutAuthentication/>
 
@@ -65,7 +65,7 @@ Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate 
 
 <WCSAuthenticationApiKey/>
 
-#### OIDC (WCS username & password) 
+#### OIDC (WCS username & password)
 
 This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
@@ -97,7 +97,7 @@ For more details, see:
 
 For additional tutorials, see:
 
-- [Build schemas](../tutorials/schema.md)
+- [Build schemas](../starter-guides/schema.md)
 - [Import data](../tutorials/import.md)
 - [Query data](../tutorials/query.md)
 
