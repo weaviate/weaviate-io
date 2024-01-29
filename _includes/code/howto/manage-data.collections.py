@@ -244,13 +244,13 @@ assert config.vector_index_config.distance_metric.value == "cosine"
 # ===== REPLICATION =====
 # =======================
 
-# Clean slate
-client.collections.delete("Article")
-
 # Connect to a setting with 3 replicas
 client = weaviate.connect_to_local(
     port=8180  # Port for demo setup with 3 replicas
 )
+
+# Clean slate
+client.collections.delete("Article")
 
 # START ReplicationSettings
 import weaviate.classes as wvc

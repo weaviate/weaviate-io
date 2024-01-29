@@ -1,3 +1,5 @@
+import weaviate_datasets as wd
+
 # LocalInstantiationBasic
 import weaviate
 
@@ -256,6 +258,9 @@ client.close()
 client = weaviate.connect_to_local(
     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
 )
+
+d = wd.JeopardyQuestions10k()
+d.upload_dataset(client, overwrite=True)
 
 categories = client.collections.get("JeopardyCategory")
 response = categories.query.fetch_objects(limit=1)
