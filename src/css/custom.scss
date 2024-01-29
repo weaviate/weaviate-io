@@ -1212,6 +1212,12 @@ Dropdown style removed.
 
 [data-theme='light'] {
   .docHome,
+  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module
+    .container {
+    background-color: #ededed !important;
+  }
+
+  .docHome,
   .docMainContainer_gTbr .container {
     background-color: #ededed !important;
   }
