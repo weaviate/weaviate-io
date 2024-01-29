@@ -756,14 +756,15 @@ Dropdown style removed.
   height: 11.512rem;
   flex-shrink: 0;
   padding: 29px 11px;
+  a {
+    color: #61bd73;
+  }
 
   .welcomeHeader {
     color: #61bd73;
     font-family: 'Plus Jakarta Sans';
     font-size: 1.25rem;
-
     font-weight: 700;
-
     margin: 12px 6px;
   }
 
@@ -941,6 +942,10 @@ Dropdown style removed.
   display: flex;
   justify-content: center;
   align-items: center;
+
+  a {
+    color: rgb(255, 255, 255);
+  }
 }
 
 .scenarioBox {
@@ -956,6 +961,11 @@ Dropdown style removed.
   align-items: center;
   flex-wrap: wrap;
   align-content: flex-start;
+
+  a {
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+  }
 
   @media screen and (max-width: 870px) {
     width: 25.625rem;
@@ -1062,6 +1072,9 @@ Dropdown style removed.
 }
 
 .wtLearn {
+  a {
+    color: #61bd73;
+  }
   color: #61bd73;
   font-family: Inter;
   font-size: 0.8125rem;
@@ -1075,12 +1088,15 @@ Dropdown style removed.
   height: 15.875rem;
   flex-shrink: 0;
   gap: 14px;
+  justify-content: space-between;
   border-radius: 0.9375rem;
   background: #141f39;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
 
   p {
-    line-height: 2.4rem;
+    line-height: 1.4rem;
+    height: 80px;
+    width: 72%;
   }
 
   @media screen and (max-width: 1180px) {
@@ -1120,6 +1136,10 @@ Dropdown style removed.
     align-items: center;
     justify-content: center;
 
+    a {
+      color: #fff;
+    }
+
     @media screen and (max-width: 1180px) {
       width: 88%;
     }
@@ -1146,6 +1166,10 @@ Dropdown style removed.
 
   .email::before {
     background-image: url(/img/site/email-doc-icon.svg);
+  }
+
+  .github::before {
+    background-image: url(/img/site/github-doc-icon.svg);
   }
 
   .forum::before {
@@ -1188,7 +1212,8 @@ Dropdown style removed.
 
 [data-theme='light'] {
   .docHome,
-  .container {
+  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module
+    .container {
     background-color: #ededed !important;
   }
 
@@ -1220,12 +1245,19 @@ Dropdown style removed.
   .small,
   .secondaryTabs {
     background-color: #f5f5f5;
+    a {
+      color: #0c1428;
+    }
   }
 
   .deployButton {
     border-radius: 0.3125rem;
     border: 0.5px solid #130c49;
     color: #0c1428;
+
+    a {
+      color: #0c1428;
+    }
   }
 
   .deployTab {

@@ -11,8 +11,10 @@ hide_title: true
 
 <h1 className = "docHeadText">Welcome to Weviate Docs</h1>
 
-<p className ="docText">Welcome to the documentation for <b>Weaviate</b>, an open source 
-vector database.</p>
+<p className ="docText">Weaviate is an open source, AI-native vector database.<br></br>
+Learn how to store and retrieve data objects and vector embeddings. Seamlessly connect <br></br>  to your favorite ML models. And build intuitive, reliable AI applications that scale.
+
+</p>
 
 <div className="welcomeSection">
 <div className ="welcomeBox"> 
@@ -47,7 +49,7 @@ vector database.</p>
 <li>From evaluation (sandbox) to production</li>
 <li>Serverless (infrastructure managed by Weaviate)</li>
 </ul>
-<button className = "deployButton">Submit</button>
+<button className = "deployButton"><a href = "/developers/wcs/guides/create-instance">Set up a WCS instance</a></button>
 </div>
 </div>
 
@@ -67,7 +69,7 @@ vector database.</p>
 <li>System agnostic</li>
 <li>Easy to set up</li>
 </ul>
-<button className = "deployButton">Submit</button>
+<button className = "deployButton"><a href = "/developers/weaviate/installation/docker-compose">Run Weaviate with Docker</a></button>
 </div>
 </div>
 
@@ -88,7 +90,7 @@ vector database.</p>
 <div className = "deployContent">
 <div className = "deployHeader kubernetes">Kubernetes</div>
 <ul className = "deployList">
-<li>KubernetesFor development to production</li>
+<li>For development to production</li>
 <li>Local inference containers available</li>
 <li>Multi-modal models available</li>
 <li>Fully customizable</li>
@@ -96,7 +98,7 @@ vector database.</p>
 <li>Zero-downtime updates</li>
 <li>Self-deploy or Marketplace deployment</li>
 </ul>
-<button className = "deployButton">Submit</button>
+<button className = "deployButton"><a href = "/developers/weaviate/installation/kubernetes">Run Weaviate with Kubernetes</a></button>
 </div>
 </div>
 
@@ -114,7 +116,7 @@ vector database.</p>
 <li>For basic, quick evaluation</li>
 <li>Conveniently launch Weaviate directly from Python or TS/JS</li>
 </ul>
-<button className = "deployButton">Submit</button>
+<button className = "deployButton"><a href = "/developers/weaviate/installation/embedded">Run Embedded Weaviate</a></button>
 </div>
 </div>
 
@@ -126,7 +128,8 @@ vector database.</p>
 
 
 <h3 className = "docHeader">Step 2 - Choose your scenario</h3>
-<p className="docText">All options include Vectorizer integration, RAG module integration and Optional data replication</p>
+<p className="docText">Import data with Weaviate vectorizer, execute basic queries and discover the best<br></br> search options, including vector, keyword and hybrid searches.
+</p>
 
 
 <div className="deploySection scenario">
@@ -135,7 +138,7 @@ vector database.</p>
 
 <div className="scenarioLogo data"></div>
 <div className="scenarioText">
-<span>Data imports to vector searches, made easy</span>
+<span><a href="/developers/weaviate/manage-data/import">Data imports</a> to <a href="/developers/weaviate/search/similarity">vector</a> searches, made easy</span>
 
 <p>Weaviate abstracts away complexities of building a vector database.</p>
 <p>Learn how to import data with a Weaviate vectorizer, and run basic queries.</p>
@@ -147,7 +150,7 @@ vector database.</p>
 
 <div className="scenarioLogo custom"></div>
 <div className="scenarioText">
-<span>Custom vectors with Weaviate</span>
+<span><a href="/developers/weaviate/starter-guides/custom-vectors">Custom vectors with Weaviate</a></span>
 
 
 <p>It’s easy to import data with pre-existing vectors into Weaviate.</p>
@@ -162,11 +165,11 @@ vector database.</p>
 
 <div className="scenarioLogo semantic"></div>
 <div className="scenarioText">
-<span>Semantic search and RAG</span>
+<span><a href="/developers/weaviate/search">Semantic search</a> and <a href="/developers/weaviate/starter-guides/generative">RAG</a></span>
 
 <p>Weaviate makes it easy for you to find the right information.</p>
-<p>Learn how to perform different types of available searches, including vector, keyword and hybrid searches.</p>
-<p>See how filters can add to these capabilities, and how to perform retrieval augmented generation.</p>
+<p><a href="/developers/weaviate/search">Learn how to perform different types of available searches</a>, including vector, keyword and hybrid searches.</p>
+<p>See how filters can add to these capabilities, and <a href="/developers/weaviate/starter-guides/generative">how to perform retrieval augmented generation</a>.</p>
 </div>
 
 
@@ -184,55 +187,37 @@ vector database.</p>
 <div className="whatnextBox">
 <span>What is Weaviate?</span>
 <p>Weaviate is an open source vector search engine that stores both objects and vectors.</p>
-<div className= "wtLearn">Learn more</div>
+<div className= "wtLearn"><a href="/developers/weaviate#what-is-weaviate">Learn more</a></div>
 </div>
 <div className="whatnextBox">
 <span>What can you do with Weaviate?</span>
 <p>Features, examples, demo applications, recipes, use cases, etc..</p>
-<div className= "wtLearn">Learn more</div>
+<div className= "wtLearn"><a href="/developers/weaviate/more-resources/example-use-cases">Learn more</a></div>
 </div>
 <div className="whatnextBox small">
 <span className="filters">Installation</span>
-<p>This section shows you
-Available options for running, 
-Installing and configuring 
-Weaviate.</p>
-<div className= "wtLearn">Learn more</div>
+<p>Learn about the available options for running Weaviate, along with instructions on installation and configuration.</p>
+<div className= "wtLearn"><a href="/developers/weaviate/installation">Learn more</a></div>
 </div>
 <div className="whatnextBox small">
 <span className="filters">How-to: Configure</span>
-<p>This section shows you
-Available options for running, 
-Installing and configuring 
-Weaviate.</p>
-<div className= "wtLearn">Learn more</div>
+<p>Discover how to configure Weaviate to suit your specific needs.</p>
+<div className= "wtLearn"><a href="/developers/weaviate/configuration">Learn more</a></div>
 </div>
 <div className="whatnextBox small">
 <span className="filters">Concepts</span>
-<p>This section shows you
-Available options for running, 
-Installing and configuring 
-Weaviate.</p>
-<div className= "wtLearn">Learn more</div>
+<p>Get the most out of Weaviate and learn about its architecture and various features.</p>
+<div className= "wtLearn"><a href="/developers/weaviate/concepts">Learn more</a></div>
 </div>
 
-</div>
-
-
-
-<div className="secondaryContent">
-<h3>Client Libraries</h3>
-<div className="secondaryTabs python">Python</div>
-<div className="secondaryTabs python">Python</div>
-<div className="secondaryTabs python">Python</div>
 </div>
 
 
 <div className="secondaryContent">
 <h3>Need Help</h3>
-<div className="secondaryTabs slack">Slack</div>
-<div className="secondaryTabs email">Email</div>
-<div className="secondaryTabs forum">Forum</div>
+<div className="secondaryTabs slack"><a href="https://weaviate.io/slack">Slack</a></div>
+<div className="secondaryTabs github"><a href="https://github.com/weaviate/weaviate">Github</a></div>
+<div className="secondaryTabs forum"><a href="https://forum.weaviate.io/">Forum</a></div>
 </div>
 
 
