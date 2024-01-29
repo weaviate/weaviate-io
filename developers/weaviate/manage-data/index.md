@@ -19,6 +19,6 @@ The guides cover these topics:
 - [Cross-references](./cross-references.mdx): Manage references between collections.
 - [Multi-tenancy operations](./multi-tenancy.md): Operational differences when multi-tenancy is enabled.
 
-import DocsMoreResources from '/\_includes/more-resources-docs.md';
+import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
