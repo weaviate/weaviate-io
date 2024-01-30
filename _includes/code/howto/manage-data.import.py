@@ -29,7 +29,7 @@ try:
 
     client.collections.create(
         "YourCollection",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
+        vectorizer_config=wvc.config.Configure.Vectorizer.none()
     )
 
     # ==============================
@@ -53,7 +53,6 @@ try:
     # END BasicBatchImportExample
 
     result = collection.aggregate.over_all(total_count=True)
-    print(result.total_count)
     assert result.total_count == 5
 
     # Clean up
