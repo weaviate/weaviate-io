@@ -16,6 +16,7 @@ import os
         "./_includes/code/howto/manage-data.delete.py",
         "./_includes/code/howto/manage-data.cross-refs.py",
         "./_includes/code/howto/manage-data.multi-tenancy.py",
+        "./_includes/code/howto/manage-data.migrate.data.v4.py",
     ],
 )
 def test_on_blank_instance_py(empty_weaviates, script_loc):
