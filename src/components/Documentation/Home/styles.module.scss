@@ -16,6 +16,10 @@
   height: 11.512rem;
   flex-shrink: 0;
   padding: 25px 25px;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
   a {
     color: #61bd73;
   }
@@ -105,6 +109,10 @@
   width: 25.625rem;
   height: 22.75rem;
   flex-shrink: 0;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
 }
 
 .tabContainer {
@@ -123,6 +131,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 450px) {
+    width: 7.65rem;
+  }
 }
 
 .inactive {
@@ -230,6 +242,10 @@
   @media screen and (max-width: 870px) {
     width: 25.625rem;
   }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
 }
 
 .scenarioText {
@@ -289,6 +305,10 @@
   flex-direction: column;
   justify-content: center;
   padding: 20px;
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
 
   span,
   .filters {
@@ -361,6 +381,10 @@
 
   @media screen and (max-width: 1180px) {
     width: 26.25rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
   }
 }
 
