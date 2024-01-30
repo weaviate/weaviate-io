@@ -331,7 +331,7 @@ In the batching process, if the background thread responsible for sending the ba
 
 During a batch import, any failed objects or references will be stored for retrieval.
 
-A list of failed objects can be obtained by calling `batch.failed_objects()` and a list of failed references can be obtained by calling `batch.failed_references()`.
+A list of failed objects can be obtained through `batch.failed_objects` and a list of failed references can be obtained through `batch.failed_references`.
 
 Note that these lists are reset when a batching process is initialized. So make sure to retrieve them before starting a new batch import block.
 

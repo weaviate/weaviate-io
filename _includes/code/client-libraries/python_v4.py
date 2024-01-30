@@ -243,8 +243,8 @@ try:
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
         pass  # Batch import objects/references
     # highlight-start
-    failed_objs_a = client.batch.failed_objects()  # Get failed objects from the first batch import
-    failed_refs_a = client.batch.failed_references()  # Get failed references from the first batch import
+    failed_objs_a = client.batch.failed_objects  # Get failed objects from the first batch import
+    failed_refs_a = client.batch.failed_references  # Get failed references from the first batch import
     # highlight-end
 
     # ===== Second batch import block =====
@@ -252,8 +252,8 @@ try:
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
         pass  # Batch import objects/references
     # highlight-start
-    failed_objs_b = client.batch.failed_objects()  # Get failed objects from the second batch import
-    failed_refs_b = client.batch.failed_references()  # Get failed references from the second batch import
+    failed_objs_b = client.batch.failed_objects  # Get failed objects from the second batch import
+    failed_refs_b = client.batch.failed_references  # Get failed references from the second batch import
     # highlight-end
 
 finally:
