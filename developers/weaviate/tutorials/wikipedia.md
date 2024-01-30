@@ -74,7 +74,7 @@ import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
 ## Create the schema
 
-The [schema](./schema.md) defines the data structure for objects in a given Weaviate class. We'll create a schema for a Wikipedia `Article` class mapping the CSV columns, and using the [text2vec-openai vectorizer](../manage-data/collections.mdx#specify-a-vectorizer). The schema will have two properties:
+The [schema](../starter-guides/schema.md) defines the data structure for objects in a given Weaviate class. We'll create a schema for a Wikipedia `Article` class mapping the CSV columns, and using the [text2vec-openai vectorizer](../manage-data/collections.mdx#specify-a-vectorizer). The schema will have two properties:
 * `title` - article title, not vectorized
 * `content` - article content, corresponding to the `text` column from the CSV
 
@@ -176,7 +176,7 @@ In this tutorial, we've learned
 
 ## Suggested reading
 
-- [Tutorial: Schemas in detail](./schema.md)
+- [Tutorial: Schemas in detail](../starter-guides/schema.md)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
 
