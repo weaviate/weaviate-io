@@ -73,7 +73,7 @@
   display: flex;
   column-gap: 50px;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1140px) {
     flex-direction: column;
     row-gap: 50px;
   }
