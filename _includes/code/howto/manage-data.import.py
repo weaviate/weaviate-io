@@ -246,6 +246,7 @@ try:
     # ===== Stream data - JSON =====
     # ===========================================
 
+    # Clean slate
     client.collections.delete("JeopardyQuestion")
 
     # Download the data from https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/jeopardy_1k.json
@@ -266,32 +267,27 @@ try:
     counter = 0
     interval = 100  # print progress every this many records; should be bigger than the batch_size
 
-    def add_object(obj) -> None:
-        global counter
-        properties = {
-            "question": obj["Question"],
-            "answer": obj["Answer"],
-        }
-
-        with client.batch.fixed_size(batch_size=200) as batch:
-            batch.add_object(
-                collection="JeopardyQuestion",
-                properties=properties,
-                # If you Bring Your Own Vectors, add the `vector` parameter here
-                # vector=obj.vector
-            )
-
-            # Calculate and display progress
-            counter += 1
-            if counter % interval == 0:
-                print(f"Imported {counter} articles...")
-
-
     print("JSON streaming, to avoid running out of memory on large files...")
-    with open("jeopardy_1k.json", "rb") as f:
-        objects = ijson.items(f, "item")
-        for o in objects:
-            add_object(o)
+    with client.batch.fixed_size(batch_size=200) as batch:
+        with open("jeopardy_1k.json", "rb") as f:
+            objects = ijson.items(f, "item")
+            for obj in objects:
+                properties = {
+                    "question": obj["Question"],
+                    "answer": obj["Answer"],
+                }
+                batch.add_object(
+                    collection="JeopardyQuestion",
+                    properties=properties,
+                    # If you Bring Your Own Vectors, add the `vector` parameter here
+                    # vector=obj.vector
+                )
+
+                # Calculate and display progress
+                counter += 1
+                if counter % interval == 0:
+                    print(f"Imported {counter} articles...")
+
 
     print(f"Finished importing {counter} articles.")
     # END JSON streaming
@@ -343,15 +339,30 @@ try:
 
 
     print("pandas dataframe iterator with lazy-loading, to not load all records in RAM at once...")
-    with pd.read_csv(
-        "jeopardy_1k.csv",
-        usecols=["Question", "Answer", "Category"],
-        chunksize=100,  # number of rows per chunk
-    ) as csv_iterator:
-        # Iterate through the dataframe chunks and add each CSV record to the batch
-        for chunk in csv_iterator:
-            for index, row in chunk.iterrows():
-                add_object(row)
+    with client.batch.fixed_size(batch_size=200) as batch:
+        with pd.read_csv(
+            "jeopardy_1k.csv",
+            usecols=["Question", "Answer", "Category"],
+            chunksize=100,  # number of rows per chunk
+        ) as csv_iterator:
+            # Iterate through the dataframe chunks and add each CSV record to the batch
+            for chunk in csv_iterator:
+                for index, row in chunk.iterrows():
+                    properties = {
+                        "question": obj["Question"],
+                        "answer": obj["Answer"],
+                    }
+                    batch.add_object(
+                        collection="JeopardyQuestion",
+                        properties=properties,
+                        # If you Bring Your Own Vectors, add the `vector` parameter here
+                        # vector=obj.vector
+                    )
+
+            # Calculate and display progress
+            counter += 1
+            if counter % interval == 0:
+                print(f"Imported {counter} articles...")
 
     print(f"Finished importing {counter} articles.")
     # END CSV streaming
