@@ -137,7 +137,7 @@ try:
 
     collection = client.collections.get("Article")
     rand_obj = collection.query.fetch_objects(limit=1, include_vector=True)
-    some_vector = rand_obj.objects[0].vector
+    some_vector = rand_obj.objects[0].vector["default"]
 
     # START GraphQLnearVectorAggregate
     collection = client.collections.get("Article")

@@ -230,7 +230,7 @@ try:
     my_actor = actors.query.fetch_object_by_id(uuid=object_uuid, include_vector=True)
     assert my_actor.properties["first_name"] == "Gary"
     assert my_actor.properties["last_name"] == "Oldman"
-    assert round(my_actor.vector[0], 1) == 0.3
+    assert round(my_actor.vector["default"][0], 1) == 0.3
     # END test
 
 
@@ -248,7 +248,7 @@ try:
     my_actor = actors.query.fetch_object_by_id(uuid=object_uuid, include_vector=True)
     assert my_actor.properties["first_name"] == "Randy"
     assert my_actor.properties["last_name"] == "Oldman"
-    assert round(my_actor.vector[0], 1) == 0.4
+    assert round(my_actor.vector["default"][0], 1) == 0.4
     # END test
 
 
@@ -270,7 +270,7 @@ try:
     my_actor = actors.query.fetch_object_by_id(uuid=object_uuid, include_vector=True)
     assert my_actor.properties["first_name"] == "Randy"
     assert my_actor.properties["last_name"] == "Newman"
-    assert round(my_actor.vector[0], 1) == 0.5
+    assert round(my_actor.vector["default"][0], 1) == 0.5
     # END test
 
 

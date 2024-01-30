@@ -126,13 +126,13 @@ try:
         limit=1
     )
 
-    print(response.objects[0].vector)
+    print(response.objects[0].vector["default"])
     # END GetObjectVectorPython
 
     # Test results
     assert response.objects[0].collection == "JeopardyQuestion"
-    assert type(response.objects[0].vector) == list
-    assert len(response.objects[0].vector) >= 100
+    assert type(response.objects[0].vector["default"]) == list
+    assert len(response.objects[0].vector["default"]) >= 100
     # End test
 
 

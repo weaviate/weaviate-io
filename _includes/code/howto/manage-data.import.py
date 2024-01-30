@@ -135,7 +135,7 @@ try:
         query="Object 1",
         include_vector=True
     )
-    test_vector = response.objects[0].vector
+    test_vector = response.objects[0].vector["default"]
     assert (test_vector[0] >= 0.1)
     assert (test_vector[0] < 0.11)
 
@@ -280,7 +280,7 @@ try:
                     collection="JeopardyQuestion",
                     properties=properties,
                     # If you Bring Your Own Vectors, add the `vector` parameter here
-                    # vector=obj.vector
+                    # vector=obj.vector["default"]
                 )
 
                 # Calculate and display progress
@@ -329,7 +329,7 @@ try:
                 collection="JeopardyQuestion",
                 properties=properties,
                 # If you Bring Your Own Vectors, add the `vector` parameter here
-                # vector=obj.vector
+                # vector=obj.vector["default"]
             )
 
             # Calculate and display progress
@@ -356,7 +356,7 @@ try:
                         collection="JeopardyQuestion",
                         properties=properties,
                         # If you Bring Your Own Vectors, add the `vector` parameter here
-                        # vector=obj.vector
+                        # vector=obj.vector["default"]
                     )
 
             # Calculate and display progress
