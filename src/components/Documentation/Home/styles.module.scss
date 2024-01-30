@@ -73,7 +73,7 @@
   display: flex;
   column-gap: 50px;
 
-  @media screen and (max-width: 870px) {
+  @media screen and (max-width: 1024px) {
     flex-direction: column;
     row-gap: 50px;
   }
@@ -401,7 +401,11 @@
     }
 
     @media screen and (max-width: 1180px) {
-      width: 88%;
+      width: 57%;
+    }
+
+    @media screen and (max-width: 580px) {
+      width: 100%;
     }
   }
 
