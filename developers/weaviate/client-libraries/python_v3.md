@@ -747,6 +747,64 @@ result = client.batch.create_references()
 check_batch_result(result)
 ```
 
+
+<details>
+  <summary>Example code</summary>
+
+The following Python code can be used to handle errors on individual data objects in the batch.
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+def check_batch_result(results: dict):
+  """
+  Check batch results for errors.
+
+  Parameters
+  ----------
+  results : dict
+      The Weaviate batch creation return value, i.e. returned value of the client.batch.create_objects().
+  """
+  if results is not None:
+    for result in results:
+      if 'result' in result and 'errors' in result['result']:
+        if 'error' in result['result']['errors']:
+          print("We got an error!", result)
+
+object_to_add = {
+    "name": "Jane Doe",
+    "writesFor": [{
+        "beacon": "weaviate://localhost/f81bfe5e-16ba-4615-a516-46c2ae2e5a80"
+    }]
+}
+
+client.batch.configure(
+  # `batch_size` takes an `int` value to enable auto-batching
+  # (`None` is used for manual batching)
+  batch_size=100,
+  # dynamically update the `batch_size` based on import speed
+  dynamic=False,
+  # `timeout_retries` takes an `int` value to retry on time outs
+  timeout_retries=3,
+  # checks for batch-item creation errors
+  # this is the default in weaviate-client >= 3.6.0
+  callback=check_batch_result,
+  consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+)
+
+with client.batch as batch:
+  batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303", vector=[1,2])
+  # lets force an error, adding a second object with unmatching vector dimensions
+  batch.add_data_object(object_to_add, "Author", "cb7d0da4-ceaa-42d0-a483-282f545deed7", vector=[1,2,3])
+```
+
+This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validations at the object and reference level. Adding this validation on single data objects like above makes it less likely for errors to go undiscovered.
+
+</details>
+
+
 ## Design
 
 ### GraphQL query builder pattern

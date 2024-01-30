@@ -8,6 +8,7 @@ import utils
     [
         "_includes/code/rest.schema.py",
         "_includes/code/rest.objects.py",
+        "_includes/code/rest.batch.py",
         "_includes/code/rest.meta.py",
         "_includes/code/rest.nodes.py",
         "_includes/code/rest.well-known.py",
