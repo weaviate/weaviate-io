@@ -86,12 +86,13 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-| Parameter | Required | Default | Purpose |
-| :- | :- | :- | :- |
-| `model` | Optional | ` text-embedding-ada-002`| A model family, e.g. `davinci`. |
-| `modelVersion` | Optional | | Version string, e.g. `003`. |
-| `type` | Optional | | Model type. Can be `text` or `code`. |
-| `baseURL` | Optional | ` https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
+| Parameter | Data type | Required | Default | Purpose |
+| :- | :- | :- | :- | :- |
+| `model` | string | Optional | `ada` | For v3 OpenAI embedding models, the model name. For earlier models, model family, e.g. `ada`. |
+| `dimensions` | int | Optional | `1536` for `text-embedding-3-small`<br/>`3072` for `text-embedding-3-large` | Number of dimensions. Applicable to v3 OpenAI models only. |
+| `modelVersion` | string | Optional | | Version string, e.g. `003`. |
+| `type` | string | Optional | | Model type. Can be `text` or `code`. |
+| `baseURL` | string | Optional | `https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
 
 #### Example
 
@@ -107,8 +108,10 @@ The following example configures the `Document` class by setting the vectorizer 
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
-          "model": "ada",
-          "modelVersion": "002",
+          // "model": "ada",
+          // "modelVersion": "002",  // Parameter only applicable for `ada` model family and older
+          "model": "text-embedding-3-large",
+          "dimensions": 3072,  // Parameter only applicable for `v3` model family and newer
           "type": "text",
           "baseURL": "https://proxy.yourcompanydomain.com"  // Optional. Can be overridden by one set in the HTTP header.
         }
@@ -127,6 +130,7 @@ The following example configures the `Document` class by setting the vectorizer 
 |:-|:-|
 |`resourceName`|Azure resource name|
 |`deploymentId`|Azure deployment ID (your model name)|
+| `baseURL` |Set the endpoint of your Azure Open AI Deployments e.g. `https://eastus.api.cognitive.microsoft.com`|
 
 #### Example
 
@@ -179,8 +183,10 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-openai",
       "moduleConfig": {
         "text2vec-openai": {
-          "model": "ada",
-          "modelVersion": "002",
+          // "model": "ada",
+          // "modelVersion": "002",  // Parameter only applicable for `ada` model family and older
+          "model": "text-embedding-3-large",
+          "dimensions": 3072,  // Parameter only applicable for `v3` model family and newer
           "type": "text",
           // highlight-start
           "vectorizeClassName": false
@@ -224,13 +230,23 @@ You can supply parameters at query time by adding it to the HTTP header.
 
 You can use any OpenAI embedding model with `text2vec-openai`.
 
-For document embeddings, choose from the following models:
-* [ada](https://platform.openai.com/docs/models/ada)
-* [babbage](https://platform.openai.com/docs/models/babbage)
-* [curie](https://platform.openai.com/docs/models/curie)
-* [davinci](https://platform.openai.com/docs/models/davinci)
+For document embeddings, choose from the following [embedding models](https://platform.openai.com/docs/models/embeddings):
+* text-embedding-3
+    * Available dimensions:
+        * `text-embedding-3-large`: `256`, `1024`, `3072` (default)
+        * `text-embedding-3-small`: `512`, `1536` (default)
+* ada
+* babbage
+* davinci
 
-For code embeddings, see the [Codex models](https://platform.openai.com/docs/models/codex).
+### The following models are now deprecated
+
+[Source](https://platform.openai.com/docs/deprecations)
+
+* Codex
+* babbage-001
+* davinci-001
+* curie
 
 :::note Model size vs resource requirements
 The more dimensions a model produces, the larger your data footprint will be. You can estimate the total size of your dataset [here](/developers/weaviate/concepts/resources.md#an-example-calculation).

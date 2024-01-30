@@ -1,0 +1,100 @@
+.techBox {
+  width: 14.3125rem;
+  height: 6.5625rem;
+  border-radius: 0.9375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  display: grid;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header {
+  text-align: left;
+  margin: auto;
+}
+
+.techList {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin: 50px 0px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 860px) {
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    padding: 5px 10px 20px;
+    scroll-padding: 20%;
+    scroll-snap-type: x mandatory;
+  }
+}
+
+.techContainer {
+  margin: auto;
+}
+
+.bgColor {
+  background: #f5f5f5;
+
+  @media screen and (max-width: 860px) {
+    padding: 0px;
+  }
+}
+
+.innovativePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/innovative-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.smartCatPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/smartCat-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+.ml6Partners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/ml6-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+.nttDataPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/ntt-data-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+.bigDataPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/bigdata-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}

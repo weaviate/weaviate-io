@@ -53,10 +53,10 @@ if (client.collections.exists("Question")):
 client.collections.create(
     name="Question",
     description="A Jeopardy! question",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(),
-    generative_config=wvc.Configure.Generative.openai(),
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
+    generative_config=wvc.config.Configure.Generative.openai(),
     properties=[
-        wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
     ],
 )
 
@@ -100,8 +100,8 @@ import weaviate.classes as wvc
 
 jeopardy = client.collections.get("Question")
 jeopardy.config.update(
-    vector_index_config=wvc.Reconfigure.VectorIndex.hnsw(
-        quantizer=wvc.Reconfigure.VectorIndex.Quantizer.pq()
+    vector_index_config=wvc.config.Reconfigure.VectorIndex.hnsw(
+        quantizer=wvc.config.Reconfigure.VectorIndex.Quantizer.pq()
     )
 )
 
@@ -124,3 +124,8 @@ print(f"Segments: { pq_config.segments }")
 print(f"Centroids: { pq_config.centroids }")
 
 # END GetSchema
+
+# START-ANY
+
+client.close()
+# END-ANY

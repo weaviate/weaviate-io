@@ -1,6 +1,6 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
-
+import logosData from './logos.json';
 import styles from './styles.module.scss';
 
 export default function TechnologyPartners() {
@@ -8,31 +8,17 @@ export default function TechnologyPartners() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Strategic Partners</h2>
-          <p>
-            If you have a complementary technology or product, we want to
-            collaborate with you.<br></br> Integrate Weaviate's powerful AI
-            capabilities into your solutions to provide enhanced value<br></br>{' '}
-            to your customers.
-          </p>
+          <h2>Technology Partners</h2>
         </div>
         <div className={styles.techContainer}>
           <div className={styles.techList}>
-            <div className={styles.techBox}>
-              <Link to="/partners/awsOff">
-                <span className={styles.aws} />
-              </Link>
-            </div>
-            <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.gcp} />
-              </Link>
-            </div>
-            <div className={styles.techBox}>
-              <Link to="/partners/aws">
-                <span className={styles.azure} />
-              </Link>
-            </div>
+            {logosData.logos.map((logo) => (
+              <div className={styles.techBox} key={logo.companyName}>
+                <Link to={logo.link}>
+                  <span className={styles[logo.cssClass]} />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -15,26 +15,26 @@ client.collections.delete("Product")
 # START skipVectorizationExample
 products = client.collections.create(
     name="Product",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_openai(
+    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(
         # highlight-start
         vectorize_collection_name=True
         # highlight-end
         ),
     properties=[
-        wvc.Property(
+        wvc.config.Property(
             name="name",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
             # highlight-start
             vectorize_property_name=True,
             # highlight-end
         ),
-        wvc.Property(
+        wvc.config.Property(
             name="description",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
         ),
-        wvc.Property(
+        wvc.config.Property(
             name="manufacturing_process",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
             # highlight-start
             skip_vectorization=True  # Skip unwanted property
             # highlight-end
@@ -53,23 +53,23 @@ client.collections.delete("SomeCollection")
 things = client.collections.create(
     name="SomeCollection",
     properties=[
-        wvc.Property(
+        wvc.config.Property(
             name="name",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
             # highlight-start
-            tokenization=wvc.Tokenization.WORD  # Default
+            tokenization=wvc.config.Tokenization.WORD  # Default
             # highlight-end
         ),
-        wvc.Property(
+        wvc.config.Property(
             name="description",
-            data_type=wvc.DataType.TEXT,
-            tokenization=wvc.Tokenization.WHITESPACE  # Will keep case & special characters
+            data_type=wvc.config.DataType.TEXT,
+            tokenization=wvc.config.Tokenization.WHITESPACE  # Will keep case & special characters
         ),
-        wvc.Property(
+        wvc.config.Property(
             name="email",
-            data_type=wvc.DataType.TEXT,
+            data_type=wvc.config.DataType.TEXT,
             # highlight-start
-            tokenization=wvc.Tokenization.FIELD  # Do not tokenize at all
+            tokenization=wvc.config.Tokenization.FIELD  # Do not tokenize at all
             # highlight-end
         ),
     ]
@@ -81,7 +81,7 @@ client.collections.delete("SomeCollection")
 
 client = weaviate.connect_to_wcs(
     cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",
-    auth_credentials=weaviate.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
+    auth_credentials=weaviate.auth.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 )
 
@@ -118,7 +118,7 @@ questions = client.collections.get("JeopardyQuestion")
 
 response = questions.query.hybrid(
     "imaging",
-    fusion_type=wvc.HybridFusion.RELATIVE_SCORE,  # Use relative score fusion
+    fusion_type=wvc.query.HybridFusion.RELATIVE_SCORE,  # Use relative score fusion
     limit=5
 )
 

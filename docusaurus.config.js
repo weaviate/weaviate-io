@@ -230,6 +230,10 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                                label: 'Newsletter',
+                                to: 'https://newsletter.weaviate.io/',
+                            },
+                            {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
                             },
@@ -271,8 +275,8 @@ const config = {
                                 to: '/company/careers',
                             },
                             {
-                                label: 'Newsletter',
-                                to: 'https://newsletter.weaviate.io/',
+                                label: 'Partners',
+                                to: '/partners',
                             },
                             {
                                 label: 'Investors',
@@ -375,7 +379,7 @@ const config = {
                             },
                             {
                                 label: 'Partners',
-                                to: '/partners/aws',
+                                to: '/partners',
                             },
                             {
                                 label: 'Terms & Policies',
@@ -448,6 +452,10 @@ const config = {
                             {
                                 label: 'Playbook',
                                 to: 'company/playbook',
+                            },
+                            {
+                                label: 'Newsletter',
+                                to: 'https://newsletter.weaviate.io/',
                             },
 
 

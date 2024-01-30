@@ -83,7 +83,7 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 ```python
 import weaviate
 
-auth_config = weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
@@ -273,6 +273,16 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 1. ***Auto-batching***
 2. ***Dynamic-batching***
 3. ***Manual-batching***
+
+Generally, we recommend use of `client.batch` in a context manager, which will automatically flush the batch when exiting. This is the easiest way to use the batching functionality.
+
+The following parameters have the greatest impact on the batch import speed:
+
+| Parameter | Type | Recommended<br/>value | Purpose |
+| :- | :- | :- |:- |
+| `batch_size` | integer | 50 - 200 | Initial batch size
+| `num_workers` | integer | 1 - 2 | Maximum number of parallel workers
+| `dynamic` | boolean | True | If true, dynamically adjust the `batch_size`<br/> based on the number of items in the batch
 
 ### Multi-threading batch import
 

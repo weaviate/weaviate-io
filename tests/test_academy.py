@@ -2,6 +2,7 @@ import pytest
 import utils
 
 
+@pytest.mark.pyv3
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -17,6 +18,7 @@ def test_against_empty_weaviate(empty_weaviates, script_loc):
     exec(proc_script)
 
 
+@pytest.mark.pyv3
 @pytest.mark.parametrize(
     "script_loc",
     [

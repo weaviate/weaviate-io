@@ -33,7 +33,7 @@ To overcome this potential accuracy loss with BPR, the original paper suggests a
 - Calculating the Hamming distances on the hashes is considerably cheaper than calculating the cosine distances, so the initial lookup is cheaper than a pure cosine-based search. (This holds true regardless of whether a vector-index is used or not, see more later on.)
 - The number of candidates is small enough (e.g. 1,000), so that a brute-force re-ranking based on the original vectors requires a negligible amount of compute time.
 
-## BRP in Weaviate
+## BPR in Weaviate
 
 :::note
 BPR support in Weaviate is currently under development.
@@ -57,7 +57,7 @@ BPR support will be available around the end of Q1 2022 in production quality. I
 
 #### What vector distances are used with BPR?
 
-To generate candidates (step 1), a Hamming distance is used on the binary hashes. To re-rank the candidates and produce the final result set (step 2), the distance metric is the same as without BRP. Typically this is cosine distance or dot product on the raw vector representation.
+To generate candidates (step 1), a Hamming distance is used on the binary hashes. To re-rank the candidates and produce the final result set (step 2), the distance metric is the same as without BPR. Typically this is cosine distance or dot product on the raw vector representation.
 
 #### Do we still need a (HNSW or similar) vector index with BPR?
 
