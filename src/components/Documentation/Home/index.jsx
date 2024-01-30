@@ -5,9 +5,14 @@ import content from './content.json';
 const DocHomePage = () => {
   return (
     <div className={styles.docHome}>
-      <h1 className={styles.docHeadText}>{content.header}</h1>
+      <h1 className={styles.docHeadText}>Welcome to Weaviate Docs</h1>
 
-      <p className={styles.docText}>{content.introText}</p>
+      <p className={styles.docText}>
+        Weaviate is an open source, AI-native vector database. Learn how to
+        store and retrieve data objects and vector embeddings. Seamlessly
+        connect to your favorite ML models. And build intuitive, reliable AI
+        applications that scale.
+      </p>
 
       <div className={styles.welcomeSection}>
         <div className={styles.welcomeBox}>
