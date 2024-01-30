@@ -8,6 +8,7 @@ _includes/code/howto/go/vendor
 **/.ipynb_checkpoints/*
 scratch
 jeopardy_1k.json
+jeopardy_1k.csv
 
 # Dependencies
 **/node_modules
