@@ -13,6 +13,7 @@ services:
     restart: on-failure:0
     ports:
      - "8180:8080"
+     - 50151:50051
     environment:
       AUTOSCHEMA_ENABLED: 'false'
       OPENAI_APIKEY: $OPENAI_APIKEY
@@ -38,6 +39,7 @@ services:
     restart: on-failure:0
     ports:
      - "8181:8080"
+     - 50152:50051
     environment:
       OPENAI_APIKEY: $OPENAI_APIKEY
       COHERE_APIKEY: $COHERE_APIKEY
@@ -63,6 +65,7 @@ services:
     restart: on-failure:0
     ports:
      - "8182:8080"
+     - 50153:50051
     environment:
       OPENAI_APIKEY: $OPENAI_APIKEY
       COHERE_APIKEY: $COHERE_APIKEY

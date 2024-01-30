@@ -43,9 +43,7 @@ You can run tests for a specific marker by running `pytest -m <marker>`, for exa
 The tests and related files are located in `./tests`.
 Before tests are run, `pytest` is configured to run `start-weaviate.sh` to spin up multiple instances of Weaviate (e.g. per `docker-compose.yml`).
 
-Thus, tests can be run against a permanent WCS instance, or one of these two ephemeral instances.
-
-See more in individual `test_xxx.py` scripts.
+Thus, tests can be run against a permanent WCS instance, or one of these ephemeral instances. Check the individual Docker Compose files for the ports that are used for each instance.
 
 #### (Optional) ☕️ Run TypeScript tests separately
 
