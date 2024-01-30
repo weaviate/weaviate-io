@@ -1,5 +1,28 @@
 import weaviate_datasets as wd
 
+# TryFinallyExample
+import weaviate
+
+client = weaviate.connect_to_local()  # Connect with default parameters
+
+try:
+    pass  # Do something with the client
+
+finally:
+    client.close()  # Ensure the connection is closed
+# END TryFinallyExample
+
+
+# ClientContextManagerExample
+import weaviate
+
+with weaviate.connect_to_local() as client:
+    # Do something with the client
+    pass
+    # The connection is closed automatically when the context manager exits
+# END ClientContextManagerExample
+
+
 # LocalInstantiationBasic
 import weaviate
 
@@ -157,6 +180,86 @@ try:
     assert client.is_ready()
 finally:
     client.close()
+
+
+# =====================================================================================
+# Batch examples
+# =====================================================================================
+
+
+# START BatchDynamic
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+try:
+    with client.batch.dynamic() as batch:  # or <collection>.batch.dynamic()
+        pass  # Batch import objects/references
+
+finally:
+    client.close()
+# END BatchDynamic
+
+
+# START BatchFixedSize
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+try:
+    with client.batch.fixed_size(batch_size=200) as batch:  # or <collection>.batch.fixed_size()
+        pass  # Batch import objects/references
+
+finally:
+    client.close()
+# END BatchFixedSize
+
+
+# START BatchRateLimit
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+try:
+    with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
+        pass  # Batch import objects/references
+
+finally:
+    client.close()
+# END BatchRateLimit
+
+
+# START BatchErrorHandling
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+try:
+    # ===== First batch import block =====
+    with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
+        pass  # Batch import objects/references
+    # highlight-start
+    failed_objs_a = client.batch.failed_objects()  # Get failed objects from the first batch import
+    failed_refs_a = client.batch.failed_references()  # Get failed references from the first batch import
+    # highlight-end
+
+    # ===== Second batch import block =====
+    # This will clear the failed objects/references
+    with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
+        pass  # Batch import objects/references
+    # highlight-start
+    failed_objs_b = client.batch.failed_objects()  # Get failed objects from the second batch import
+    failed_refs_b = client.batch.failed_references()  # Get failed references from the second batch import
+    # highlight-end
+
+finally:
+    client.close()
+# END BatchErrorHandling
+
 
 # =====================================================================================
 # Collection instantiation

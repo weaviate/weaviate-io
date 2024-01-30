@@ -6,11 +6,7 @@ MAX_ROWS_TO_IMPORT = 50  # limit vectorization calls
 # ===== INSTANTIATION-COMMON =====
 # ================================
 
-# TODO: create streaming examples with the V4 client
-# START JSON streaming  # START CSV streaming
 import weaviate
-# END JSON streaming  # END CSV streaming
-
 import weaviate.classes as wvc
 import json
 
@@ -22,7 +18,6 @@ client = weaviate.connect_to_local(
 )
 
 try:
-
     assert client.is_ready()
 
     # ============================
@@ -42,28 +37,33 @@ try:
     # ==============================
 
     # BasicBatchImportExample
-    data = [
+    data_rows = [
         {"title": f"Object {i+1}"} for i in range(5)
     ]
 
     collection = client.collections.get("YourCollection")
 
     # highlight-start
-    response = collection.data.insert_many(data)
+    with collection.batch.dynamic() as batch:
+        for data_row in data_rows:
+            batch.add_object(
+                properties=data_row,
+            )
     # highlight-end
-    print(response.uuids)
     # END BasicBatchImportExample
 
     result = collection.aggregate.over_all(total_count=True)
+    print(result.total_count)
     assert result.total_count == 5
+
     # Clean up
     client.collections.delete(collection.name)
 
     # =======================================
-    # ===== Batch import with custom ID =====
+    # ===== Insert_many with custom ID =====
     # =======================================
 
-    # BatchImportWithIDExample
+    # InsertManyWithIDExample
     # highlight-start
     from weaviate.util import generate_uuid5  # Generate a deterministic ID
     # highlight-end
@@ -88,8 +88,7 @@ try:
 
     collection = client.collections.get("YourCollection")  # Replace with your collection name
     collection.data.insert_many(data)
-
-    # END BatchImportWithIDExample
+    # END InsertManytWithIDExample
 
     # Tests
     result = collection.aggregate.over_all(total_count=True)
@@ -103,12 +102,12 @@ try:
     client.collections.delete(collection.name)
 
     # ===========================================
-    # ===== Batch import with custom vector =====
+    # ===== Insert many with custom vector =====
     # ===========================================
 
-    # BatchImportWithVectorExample
+    # InsertManyWithVectorExample
     data = [
-        # use DataObject to provide uuid value
+        # use DataObject to provide custom vector
         wvc.data.DataObject(
             properties={"title": "Object 1"},
             # highlight-start
@@ -127,7 +126,7 @@ try:
 
     collection = client.collections.get("YourCollection")  # Replace with your collection name
     collection.data.insert_many(data)
-    # END BatchImportWithVectorExample
+    # END InsertManyWithVectorExample
 
     # Tests
     result = collection.aggregate.over_all(total_count=True)
@@ -141,6 +140,64 @@ try:
     assert (test_vector[0] >= 0.1)
     assert (test_vector[0] < 0.11)
 
+    # Clean up
+    client.collections.delete(collection.name)
+
+
+    # =======================================
+    # ===== Insert many with custom ID =====
+    # =======================================
+
+    # BatchImportWithIDExample
+    # highlight-start
+    from weaviate.util import generate_uuid5  # Generate a deterministic ID
+    # highlight-end
+
+    # BatchImportWithIDExample
+    data_rows = [{"title": f"Object {i+1}"} for i in range(5)]
+
+    collection = client.collections.get("YourCollection")
+
+    # highlight-start
+    with collection.batch.dynamic() as batch:
+        for data_row in data_rows:
+            obj_uuid = generate_uuid5(data_row)
+            batch.add_object(
+                properties=data_row,
+                uuid=obj_uuid
+            )
+    # highlight-end
+    # END BatchImportWithIDExample
+
+    result = collection.aggregate.over_all(total_count=True)
+    assert result.total_count == 5
+    resp_obj = collection.query.fetch_object_by_id(obj_uuid)
+    assert resp_obj != None
+    # Clean up
+    client.collections.delete(collection.name)
+
+    # ===========================================
+    # ===== Batch import with custom vector =====
+    # ===========================================
+
+    # BatchImportWithVectorExample
+    data_rows = [{"title": f"Object {i+1}"} for i in range(5)]
+    vectors = [[0.1] * 1536 for i in range(5)]
+
+    collection = client.collections.get("YourCollection")
+
+    # highlight-start
+    with collection.batch.dynamic() as batch:
+        for i, data_row in enumerate(data_rows):
+            batch.add_object(
+                properties=data_row,
+                vector=vectors[i]
+            )
+    # highlight-end
+    # END BatchImportWithVectorExample
+
+    result = collection.aggregate.over_all(total_count=True)
+    assert result.total_count == 5
     # Clean up
     client.collections.delete(collection.name)
 
@@ -184,6 +241,128 @@ try:
 
     # Clean up
     client.collections.delete(collection.name)
+
+
+    # ===========================================
+    # ===== Stream data - JSON =====
+    # ===========================================
+
+    client.collections.delete("JeopardyQuestion")
+
+    # Download the data from https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/jeopardy_1k.json
+    # and save it in the same folder as this script
+
+    import requests
+    import json
+
+    request = requests.get("https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/jeopardy_1k.json")
+    with open("jeopardy_1k.json", "w") as f:
+        f.write(request.text)
+
+
+    # START JSON streaming
+    import ijson
+
+    # Settings for displaying the import progress
+    counter = 0
+    interval = 20  # print progress every this many records; should be bigger than the batch_size
+
+    def add_object(obj) -> None:
+        global counter
+        properties = {
+            "question": obj["Question"],
+            "answer": obj["Answer"],
+        }
+
+        with client.batch.fixed_size(batch_size=100) as batch:
+            batch.add_object(
+                collection="JeopardyQuestion",
+                properties=properties,
+                # If you Bring Your Own Vectors, add the `vector` parameter here
+                # vector=obj.vector
+            )
+
+            # Calculate and display progress
+            counter += 1
+            if counter % interval == 0:
+                print(f"Imported {counter} articles...")
+
+
+    print("JSON streaming, to avoid running out of memory on large files...")
+    with open("jeopardy_1k.json", "rb") as f:
+        objects = ijson.items(f, "item")
+        for o in objects:
+            add_object(o)
+
+    print(f"Finished importing {counter} articles.")
+    # END JSON streaming
+
+    # Tests
+    questions = client.collections.get("JeopardyQuestion")
+    response = questions.aggregate.over_all(total_count=True)
+    assert response.total_count == 1000
+
+    # Cleanup
+    client.collections.delete("JeopardyQuestion")
+
+
+    # ===========================================
+    # ===== Stream data - CSV =====
+    # ===========================================
+
+    # START CSV streaming
+    import pandas as pd
+
+    # Settings for displaying the import progress
+    counter = 0
+    interval = 20  # print progress every this many records; should be bigger than the batch_size
+
+    def add_object(obj) -> None:
+        global counter
+        properties = {
+            "question": obj["Question"],
+            "answer": obj["Answer"],
+        }
+
+        with client.batch.fixed_size(batch_size=100) as batch:
+            batch.add_object(
+                collection="JeopardyQuestion",
+                properties=properties,
+                # If you Bring Your Own Vectors, add the `vector` parameter here
+                # vector=obj.vector
+            )
+
+            # Calculate and display progress
+            counter += 1
+            if counter % interval == 0:
+                print(f"Imported {counter} articles...")
+
+
+    print("pandas dataframe iterator with lazy-loading, to not load all records in RAM at once...")
+    with pd.read_csv(
+        "jeopardy_1k.csv",
+        usecols=["Question", "Answer", "Category"],
+        chunksize=100,  # number of rows per chunk
+    ) as csv_iterator:
+        # Iterate through the dataframe chunks and add each CSV record to the batch
+        for chunk in csv_iterator:
+            for index, row in chunk.iterrows():
+                add_object(row)
+
+    print(f"Finished importing {counter} articles.")
+    # END CSV streaming
+
+    # Tests
+    questions = client.collections.get("JeopardyQuestion")
+    response = questions.aggregate.over_all(total_count=True)
+    assert response.total_count == 1000
+
+    # Cleanup
+    client.collections.delete("JeopardyQuestion")
+
+    # Delete the downloaded files
+    os.remove("jeopardy_1k.json")
+
 
 finally:
     client.close()
