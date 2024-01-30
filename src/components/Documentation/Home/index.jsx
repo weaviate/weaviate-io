@@ -8,10 +8,9 @@ const DocHomePage = () => {
       <h1 className={styles.docHeadText}>Welcome to Weaviate Docs</h1>
 
       <p className={styles.docText}>
-        Weaviate is an open source, AI-native vector database. Learn how to
-        store and retrieve data objects and vector embeddings. Seamlessly
-        connect to your favorite ML models. And build intuitive, reliable AI
-        applications that scale.
+        Weaviate <i>(we-vee-eight)</i> is an open source, AI-native vector database.
+        The documentation aims to help you get started with Weaviate and
+        understand its features and capabilities, to help you get the most out of it.
       </p>
 
       <div className={styles.welcomeSection}>
@@ -43,8 +42,9 @@ const DocHomePage = () => {
 
       <h3 className={styles.docHeader}>Step 1 - Choose your deployment</h3>
       <p className={styles.docText}>
-        All options include Vectorizer integration, RAG module integration and
-        Optional data replication
+        Multiple deployment options are available to cater for
+        different users and use cases.
+        All options offer vectorizer and RAG module integration.
       </p>
 
       <div className={styles.deploySection}>
@@ -59,6 +59,8 @@ const DocHomePage = () => {
             <ul className={styles.deployList}>
               <li>From evaluation (sandbox) to production</li>
               <li>Serverless (infrastructure managed by Weaviate)</li>
+              <li>(Optional) Data replication (high-availability)</li>
+              <li>(Optional) Zero-downtime updates</li>
             </ul>
             <button className={styles.deployButton}>
               <a href="/developers/wcs/guides/create-instance">
@@ -82,11 +84,9 @@ const DocHomePage = () => {
             </div>
             <ul className={styles.deployList}>
               <li>For local evaluation & development</li>
-              <li>Local inference containers available</li>
-              <li>Multi-modal models available</li>
-              <li>Fully customizable</li>
-              <li>System agnostic</li>
-              <li>Easy to set up</li>
+              <li>Local inference containers</li>
+              <li>Multi-modal models</li>
+              <li>Customizable configurations</li>
             </ul>
             <button className={styles.deployButton}>
               <a href="/developers/weaviate/installation/docker-compose">
@@ -113,12 +113,11 @@ const DocHomePage = () => {
             </div>
             <ul className={styles.deployList}>
               <li>For development to production</li>
-              <li>Local inference containers available</li>
-              <li>Multi-modal models available</li>
-              <li>Fully customizable</li>
-              <li>System agnostic</li>
-              <li>Zero-downtime updates</li>
+              <li>Local inference containers</li>
+              <li>Multi-modal models</li>
+              <li>Customizable configurations</li>
               <li>Self-deploy or Marketplace deployment</li>
+              <li>(Optional) Zero-downtime updates</li>
             </ul>
             <button className={styles.deployButton}>
               <a href="/developers/weaviate/installation/kubernetes">
@@ -158,9 +157,8 @@ const DocHomePage = () => {
 
       <h3 className={styles.docHeader}>Step 2 - Choose your scenario</h3>
       <p className={styles.docText}>
-        Import data with Weaviate vectorizer, execute basic queries and discover
-        the best<br></br> search options, including vector, keyword and hybrid
-        searches.
+        Choose your next step. Weaviate is flexible and can be used in many
+        contexts and scenarios.
       </p>
 
       <div className={`${styles.deploySection} ${styles.scenario}`}>
@@ -168,18 +166,24 @@ const DocHomePage = () => {
           <div className={`${styles.scenarioLogo} ${styles.data}`}></div>
           <div className={styles.scenarioText}>
             <span>
-              <a href="/developers/weaviate/manage-data/import">Data imports</a>{' '}
-              to <a href="/developers/weaviate/search/similarity">vector</a>{' '}
-              searches, made easy
+              <a href="/developers/weaviate/starter-guides/schema">Schema configuration</a>{' '}
+              to <a href="/developers/weaviate/search">searches</a>{' '}
             </span>
 
             <p>
-              Weaviate abstracts away complexities of building a vector
-              database.
+              You can customize collections' data structures
+              and its vectorization, RAG, multi-tenancy, or replication behavior.
             </p>
             <p>
-              Learn how to import data with a Weaviate vectorizer, and run basic
-              queries.
+              Learn how to {' '}
+              <a href="/developers/weaviate/starter-guides/schema">
+                configure collections
+              </a>
+              , and {' '}
+              <a href="/developers/weaviate/search">
+                how to search them
+              </a>
+              , using different search types and filters.
             </p>
           </div>
         </div>
@@ -188,7 +192,7 @@ const DocHomePage = () => {
           <div className={styles.scenarioText}>
             <span>
               <a href="/developers/weaviate/starter-guides/custom-vectors">
-                Custom vectors with Weaviate
+                Bring your own vectors
               </a>
             </span>
 
@@ -196,11 +200,11 @@ const DocHomePage = () => {
               It’s easy to import data with pre-existing vectors into Weaviate.
             </p>
             <p>
-              Learn how Weaviate can just as easily work with your existing data
-              and corresponding vectors.
+              Learn how to work with your existing data
+              and your own vectors.
             </p>
             <p>
-              You can perform the same searches, and even work with a vectorizer
+              You can perform vector searches, and even work with a vectorizer
               if a compatible one is available.
             </p>
           </div>
@@ -209,23 +213,20 @@ const DocHomePage = () => {
           <div className={`${styles.scenarioLogo} ${styles.semantic}`}></div>
           <div className={styles.scenarioText}>
             <span>
-              <a href="/developers/weaviate/search">Semantic search</a> and{' '}
-              <a href="/developers/weaviate/starter-guides/generative">RAG</a>
+              <a href="/developers/weaviate/starter-guides/generative">RAG</a>{' '}
+              for AI-powered apps
             </span>
 
-            <p>Weaviate makes it easy for you to find the right information.</p>
             <p>
-              <a href="/developers/weaviate/search">
-                Learn how to perform different types of available searches
-              </a>
-              , including vector, keyword and hybrid searches.
+              Retrieval augmented generation (RAG) is a
+              powerful tool for building AI-powered applications.
             </p>
             <p>
-              See how filters can add to these capabilities, and{' '}
+              Read{' '}
               <a href="/developers/weaviate/starter-guides/generative">
-                how to perform retrieval augmented generation
+                this starter guide for retrieval augmented generation
               </a>
-              .
+              in Weaviate, which will help you get started on this journey.
             </p>
           </div>
         </div>
@@ -288,7 +289,7 @@ const DocHomePage = () => {
       </div>
 
       <div className={styles.secondaryContent}>
-        <h3>Need Help</h3>
+        <h3>Can we help?</h3>
         <div className={`${styles.secondaryTabs} ${styles.slack}`}>
           <a href="https://weaviate.io/slack">Slack</a>
         </div>
