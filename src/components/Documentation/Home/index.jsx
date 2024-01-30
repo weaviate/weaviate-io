@@ -8,9 +8,10 @@ const DocHomePage = () => {
       <h1 className={styles.docHeadText}>Welcome to Weaviate Docs</h1>
 
       <p className={styles.docText}>
-        Weaviate <i>(we-vee-eight)</i> is an open source, AI-native vector database.
-        The documentation aims to help you get started with Weaviate and
-        understand its features and capabilities, to help you get the most out of it.
+        Weaviate <i>(we-vee-eight)</i> is an open source, AI-native vector
+        database. The documentation aims to help you get started with Weaviate
+        and understand its features and capabilities, to help you get the most
+        out of it.
       </p>
 
       <div className={styles.welcomeSection}>
@@ -42,9 +43,8 @@ const DocHomePage = () => {
 
       <h3 className={styles.docHeader}>Step 1 - Choose your deployment</h3>
       <p className={styles.docText}>
-        Multiple deployment options are available to cater for
-        different users and use cases.
-        All options offer vectorizer and RAG module integration.
+        Multiple deployment options are available to cater for different users
+        and use cases. All options offer vectorizer and RAG module integration.
       </p>
 
       <div className={styles.deploySection}>
@@ -166,23 +166,22 @@ const DocHomePage = () => {
           <div className={`${styles.scenarioLogo} ${styles.data}`}></div>
           <div className={styles.scenarioText}>
             <span>
-              <a href="/developers/weaviate/starter-guides/schema">Schema configuration</a>{' '}
+              <a href="/developers/weaviate/starter-guides/schema">
+                Schema configuration
+              </a>{' '}
               to <a href="/developers/weaviate/search">searches</a>{' '}
             </span>
 
             <p>
-              You can customize collections' data structures
-              and its vectorization, RAG, multi-tenancy, or replication behavior.
+              You can customize collections' data structures and its
+              vectorization, RAG, multi-tenancy, or replication behavior.
             </p>
             <p>
-              Learn how to {' '}
+              Learn how to{' '}
               <a href="/developers/weaviate/starter-guides/schema">
                 configure collections
               </a>
-              , and {' '}
-              <a href="/developers/weaviate/search">
-                how to search them
-              </a>
+              , and <a href="/developers/weaviate/search">how to search them</a>
               , using different search types and filters.
             </p>
           </div>
@@ -200,8 +199,7 @@ const DocHomePage = () => {
               It’s easy to import data with pre-existing vectors into Weaviate.
             </p>
             <p>
-              Learn how to work with your existing data
-              and your own vectors.
+              Learn how to work with your existing data and your own vectors.
             </p>
             <p>
               You can perform vector searches, and even work with a vectorizer
@@ -218,14 +216,14 @@ const DocHomePage = () => {
             </span>
 
             <p>
-              Retrieval augmented generation (RAG) is a
-              powerful tool for building AI-powered applications.
+              Retrieval augmented generation (RAG) is a powerful tool for
+              building AI-powered applications.
             </p>
             <p>
               Read{' '}
               <a href="/developers/weaviate/starter-guides/generative">
                 this starter guide for retrieval augmented generation
-              </a>
+              </a>{' '}
               in Weaviate, which will help you get started on this journey.
             </p>
           </div>
