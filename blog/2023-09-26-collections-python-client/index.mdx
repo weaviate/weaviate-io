@@ -356,7 +356,7 @@ Well, no more! Now, you can use Python classes all the way through, with your ID
 client.collection.create(
     name="Article",
     vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
-    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistance.COSINE),
+    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistances.COSINE),
     generative_config=wvc.ConfigFactory.Generative.openai(),
     properties=[
         wvc.Property(
@@ -384,7 +384,7 @@ articles = client.collection.create(
     # Skipped for brevity ...
     # highlight-start
     vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
-    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistance.COSINE),
+    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistances.COSINE),
     generative_config=wvc.ConfigFactory.Generative.openai(),
     # highlight-end
 )

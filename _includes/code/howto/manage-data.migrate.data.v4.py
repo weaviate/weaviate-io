@@ -220,7 +220,7 @@ reviews_mt_tgt = create_collection("WineReviewMT", enable_mt=True)
 
 
 # START CreateTenants
-tenants_tgt = [wvc.Tenant(name="tenantA"), wvc.Tenant(name="tenantB")]
+tenants_tgt = [weaviate.Tenant(name="tenantA"), weaviate.Tenant(name="tenantB")]
 
 reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_mt_tgt.tenants.create(tenants_tgt)
@@ -272,7 +272,7 @@ reviews_mt_tgt = create_collection("WineReviewMT", enable_mt=True)
 
 
 # Re-create tenants
-tenants_tgt = [wvc.Tenant(name="tenantA"), wvc.Tenant(name="tenantB")]
+tenants_tgt = [weaviate.Tenant(name="tenantA"), weaviate.Tenant(name="tenantB")]
 
 reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_mt_tgt.tenants.create(tenants_tgt)

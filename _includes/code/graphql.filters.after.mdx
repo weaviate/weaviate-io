@@ -1,32 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/graphql.additional.py';
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START LimitWithAfter"
+      endMarker="# END LimitWithAfter"
+      language="py"
+    />
+  </TabItem>
 
-```py
-import os
-import weaviate
-import weaviate.classes as wvc
-from weaviate.collections.classes.grpc import Sort
-
-client = weaviate.connect_to_local()
-
-article=client.collections.get("Article")
-result = article.query.fetch_objects(
-    # highlight-start
-    limit=3,
-    after="002d5cb3-298b-380d-addb-2e026b76c8ed"
-    # highlight-end
-)
-
-client.close()
-
-for o in result.objects:
-    print(f"Title: {o.properties["title"]}")
-```
-
-</TabItem>
 <TabItem value="py3" label="Python (v3)">
 
 ```py

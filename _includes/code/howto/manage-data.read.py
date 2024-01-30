@@ -17,61 +17,63 @@ client = weaviate.connect_to_wcs(
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
 )
 
-# =======================
-# ===== Read object =====
-# =======================
+try:
+    # =======================
+    # ===== Read object =====
+    # =======================
 
-# ReadObject START
-jeopardy = client.collections.get("JeopardyQuestion")
+    # ReadObject START
+    jeopardy = client.collections.get("JeopardyQuestion")
 
-# highlight-start
-data_object = jeopardy.query.fetch_object_by_id("00ff6900-e64f-5d94-90db-c8cfa3fc851b")
-# highlight-end
-
-print(data_object.properties)
-# ReadObject END
-
-# Test
-assert data_object.properties["answer"] == "San Francisco"
-
-
-# ===================================
-# ===== Read object with vector =====
-# ===================================
-
-# TODOv4 -  include_vector
-
-# ReadObjectWithVector START
-jeopardy = client.collections.get("JeopardyQuestion")
-
-data_object = jeopardy.query.fetch_object_by_id(
-    "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
     # highlight-start
-    include_vector=True
+    data_object = jeopardy.query.fetch_object_by_id("00ff6900-e64f-5d94-90db-c8cfa3fc851b")
     # highlight-end
-)
 
-print(data_object.vector)
-# ReadObjectWithVector END
+    print(data_object.properties)
+    # ReadObject END
 
-# Test
-assert len(data_object.vector) == 1536
+    # Test
+    assert data_object.properties["answer"] == "San Francisco"
 
-# ==================================
-# ===== Check object existence =====
-# ==================================
 
-# CheckObject START
-# TODO: broken due to https://weaviate-org.slack.com/archives/C03KGRATUDD/p1685746400315799
-# exists = client.data_object.exists(
-#     uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
-#     class_name="JeopardyQuestion",
-# )
-#
-# print(exists)
-# CheckObject END
+    # ===================================
+    # ===== Read object with vector =====
+    # ===================================
 
-# Test
-# assert exists is True
+    # TODOv4 -  include_vector
 
-client.close()
+    # ReadObjectWithVector START
+    jeopardy = client.collections.get("JeopardyQuestion")
+
+    data_object = jeopardy.query.fetch_object_by_id(
+        "00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+        # highlight-start
+        include_vector=True
+        # highlight-end
+    )
+
+    print(data_object.vector)
+    # ReadObjectWithVector END
+
+    # Test
+    assert len(data_object.vector) == 1536
+
+    # ==================================
+    # ===== Check object existence =====
+    # ==================================
+
+    # CheckObject START
+    # TODO: broken due to https://weaviate-org.slack.com/archives/C03KGRATUDD/p1685746400315799
+    # exists = client.data_object.exists(
+    #     uuid="00ff6900-e64f-5d94-90db-c8cfa3fc851b",
+    #     class_name="JeopardyQuestion",
+    # )
+    #
+    # print(exists)
+    # CheckObject END
+
+    # Test
+    # assert exists is True
+
+finally:
+    client.close()

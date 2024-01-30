@@ -14,121 +14,125 @@ client = weaviate.connect_to_wcs(
     }
 )
 
-# =====================================
-# ===== SINGLE GENERATIVE EXAMPLE =====
-# =====================================
+try:
 
-# SingleGenerativePython
-# highlight-start
-prompt = "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
-# highlight-end
+    # =====================================
+    # ===== SINGLE GENERATIVE EXAMPLE =====
+    # =====================================
 
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.generate.near_text(
-# highlight-end
-    query="World history",
-    limit=2,
+    # SingleGenerativePython
     # highlight-start
-    single_prompt=prompt
+    prompt = "Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}."
     # highlight-end
-)
 
-for o in response.objects:
-    print(o.properties["question"])
+    jeopardy = client.collections.get("JeopardyQuestion")
     # highlight-start
-    print(o.generated)
+    response = jeopardy.generate.near_text(
     # highlight-end
-# END SingleGenerativePython
+        query="World history",
+        limit=2,
+        # highlight-start
+        single_prompt=prompt
+        # highlight-end
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].generated) > 0
-# End test
+    for o in response.objects:
+        print(o.properties["question"])
+        # highlight-start
+        print(o.generated)
+        # highlight-end
+    # END SingleGenerativePython
 
-
-# =====================================================
-# ===== SINGLE GENERATIVE EXAMPLE WITH PROPERTIES =====
-# =====================================================
-
-# SingleGenerativePropertiesPython
-# highlight-start
-prompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
-# highlight-end
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.generate.near_text(
-    query="World history",
-    limit=2,
-    single_prompt=prompt
-)
-
-# print source properties and generated responses
-for o in response.objects:
-    print(o.properties)
-    print(o.generated)
-# END SingleGenerativePropertiesPython
-
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].generated) > 0
-# End test
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects[0].generated) > 0
+    # End test
 
 
-# ======================================
-# ===== GROUPED GENERATIVE EXAMPLE =====
-# ======================================
+    # =====================================================
+    # ===== SINGLE GENERATIVE EXAMPLE WITH PROPERTIES =====
+    # =====================================================
 
-# GroupedGenerativePython
-# highlight-start
-task = "What do these animals have in common, if anything?"
-# highlight-end
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.generate.near_text(
-    query="Cute animals",
-    limit=3,
+    # SingleGenerativePropertiesPython
     # highlight-start
-    grouped_task=task
+    prompt = "Convert this quiz question: {question} and answer: {answer} into a trivia tweet."
     # highlight-end
-)
 
-# print the generated response
-print(response.generated)
-# END GroupedGenerativePython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.generate.near_text(
+        query="World history",
+        limit=2,
+        single_prompt=prompt
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.generated) > 0
-# End test
+    # print source properties and generated responses
+    for o in response.objects:
+        print(o.properties)
+        print(o.generated)
+    # END SingleGenerativePropertiesPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects[0].generated) > 0
+    # End test
 
 
-# ======================================================
-# ===== GROUPED GENERATIVE EXAMPLE WITH PROPERTIES =====
-# ======================================================
+    # ======================================
+    # ===== GROUPED GENERATIVE EXAMPLE =====
+    # ======================================
 
-# GroupedGenerativeProperties Python
-task = "What do these animals have in common, if anything?"
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.generate.near_text(
-    query="Australian animals",
-    limit=3,
-    grouped_task=task,
+    # GroupedGenerativePython
     # highlight-start
-    grouped_properties=["answer", "question"]
+    task = "What do these animals have in common, if anything?"
     # highlight-end
-)
 
-# print the generated response
-# highlight-start
-print(response.generated)
-# highlight-end
-# END GroupedGenerativeProperties Python
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.generate.near_text(
+        query="Cute animals",
+        limit=3,
+        # highlight-start
+        grouped_task=task
+        # highlight-end
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.generated) > 0
-# End test
+    # print the generated response
+    print(response.generated)
+    # END GroupedGenerativePython
 
-client.close()
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.generated) > 0
+    # End test
+
+
+    # ======================================================
+    # ===== GROUPED GENERATIVE EXAMPLE WITH PROPERTIES =====
+    # ======================================================
+
+    # GroupedGenerativeProperties Python
+    task = "What do these animals have in common, if anything?"
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.generate.near_text(
+        query="Australian animals",
+        limit=3,
+        grouped_task=task,
+        # highlight-start
+        grouped_properties=["answer", "question"]
+        # highlight-end
+    )
+
+    # print the generated response
+    # highlight-start
+    print(response.generated)
+    # highlight-end
+    # END GroupedGenerativeProperties Python
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.generated) > 0
+    # End test
+
+
+finally:
+    client.close()

@@ -17,291 +17,292 @@ client = weaviate.connect_to_wcs(
     },
 )
 
+try:
 
-# ===============================
-# ===== QUERY WITH nearText =====
-# ===============================
+    # ===============================
+    # ===== QUERY WITH nearText =====
+    # ===============================
 
-# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
+    # https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
 
-# GetNearTextPython
-import weaviate.classes as wvc
+    # GetNearTextPython
+    import weaviate.classes as wvc
 
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.query.near_text(
-    query="animals in movies",
-# highlight-end
-    limit=2,
-    return_metadata=wvc.query.MetadataQuery(distance=True)
-)
-
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
-# END GetNearTextPython
-
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects) == 2
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-# End test
-
-
-# =================================
-# ===== QUERY WITH nearObject =====
-# =================================
-
-# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
-
-# GetNearObjectPython
-import weaviate.classes as wvc
-
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.query.near_object(
-    near_object="56b9449e-65db-5df4-887b-0a4773f52aa7",
-# highlight-end
-    limit=2,
-    return_metadata=wvc.query.MetadataQuery(distance=True)
-)
-
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
-# END GetNearObjectPython
-
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects) == 2
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-# End test
-
-
-# =================================
-# ===== QUERY WITH nearVector =====
-# =================================
-
-# https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearvector
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(limit=1, include_vector=True)
-query_vector = response.objects[0].vector
-
-# GetNearVectorPython
-import weaviate.classes as wvc
-
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.query.near_vector(
-    near_vector=query_vector, # your query vector goes here
-# highlight-end
-    limit=2,
-    return_metadata=wvc.query.MetadataQuery(distance=True)
-)
-
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
-# END GetNearVectorPython
-
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects) == 2
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-# End test
-
-
-# ==========================================
-# ===== QUERY WITH OFFSET AND LIMIT =====
-# ==========================================
-
-
-# Query with LimitOffset - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
-
-# GetLimitOffsetPython
-# import weaviate.classes as wvc
-
-# jeopardy = client.collections.get("JeopardyQuestion")
-# response = jeopardy.query.near_text(
-#     query="animals in movies",
-#     # highlight-start
-#     # offset=1, # `offset` support is being added to the client
-#     limit=2,  # return 2 objects
-#     # highlight-end
-#     return_metadata=wvc.query.MetadataQuery(distance=True)
-# )
-
-# for o in response.objects:
-#     print(o.properties)
-#     print(o.metadata.distance)
-# END GetLimitOffsetPython
-
-# Test results
-# no_offset_response = jeopardy.query.near_text(
-#     query="animals in movies",
-#     limit=3,
-#     return_metadata=wvc.query.MetadataQuery(distance=True)
-# )
-
-# assert response.objects[0].collection == "JeopardyQuestion"
-# assert len(response.objects) == 2
-# assert "question" in response.objects[0].properties.keys()
-# assert response.objects[0].metadata.distance is not None
-# assert no_offset_response.objects[1].properties == response.objects[0].properties
-# End test
-
-
-# ===============================
-# ===== QUERY WITH DISTANCE =====
-# ===============================
-
-# http://weaviate.io/developers/weaviate/config-refs/distances
-
-# GetWithDistancePython
-import weaviate.classes as wvc
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.near_text(
-    query="animals in movies",
+    jeopardy = client.collections.get("JeopardyQuestion")
     # highlight-start
-    distance=0.18, # max accepted distance
+    response = jeopardy.query.near_text(
+        query="animals in movies",
     # highlight-end
-    return_metadata=wvc.query.MetadataQuery(distance=True)
-)
+        limit=2,
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
 
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
-# END GetWithDistancePython
-
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-for o in response.objects:
-    assert o.metadata.distance < 0.18
-# End test
-
-
-# ===============================
-# ===== Query with autocut =====
-# ===============================
-
-# http://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut
-
-# START Autocut Python
-import weaviate.classes as wvc
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.near_text(
-    query="animals in movies",
-    # highlight-start
-    auto_limit=1, # number of close groups
-    # highlight-end
-    return_metadata=wvc.query.MetadataQuery(distance=True)
-)
-
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
-# END Autocut Python
-
-# Test results
-assert len(response.objects) > 0
-assert response.objects[0].collection == "JeopardyQuestion"
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-# End test
-
-
-# ==============================
-# ===== QUERY WITH groupBy =====
-# ==============================
-
-
-# https://weaviate.io/developers/weaviate/api/graphql/get#get-groupby
-# GetWithGroupbyPython
-import weaviate.classes as wvc
-
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-
-group_by = wvc.query.GroupBy(
-    prop="round",  # group by this property
-    objects_per_group=2,  # maximum objects per group
-    number_of_groups=2,  # maximum number of groups
-)
-
-response = jeopardy.query.near_text(
-    query="animals in movies", # find object based on this query
-    limit=10,  # maximum total objects
-    return_metadata=wvc.query.MetadataQuery(distance=True),
-    group_by=group_by
-)
-# highlight-end
-
-
-for o in response.objects:
-    print(o.uuid)
-    print(o.belongs_to_group)
-    print(o.metadata.distance)
-
-for grp, grp_items in response.groups.items():
-    print("=" * 10 + grp_items.name + "=" * 10)
-    print(grp_items.number_of_objects)
-    for o in grp_items.objects:
+    for o in response.objects:
         print(o.properties)
-        print(o.metadata)
-# END GetWithGroupbyPython
+        print(o.metadata.distance)
+    # END GetNearTextPython
 
-# Test results
-assert len(response.objects) > 0
-assert response.objects[0].collection == "JeopardyQuestion"
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-
-assert len(response.groups) > 0
-assert len(response.groups) <= 2
-for grp, grp_items in response.groups.items():
-    assert grp_items.number_of_objects <= 2
-# End test
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects) == 2
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    # End test
 
 
-# ============================
-# ===== QUERY WITH WHERE =====
-# ============================
+    # =================================
+    # ===== QUERY WITH nearObject =====
+    # =================================
 
-# https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
+    # https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearobject
 
-# GetWithWherePython
-import weaviate.classes as wvc
+    # GetNearObjectPython
+    import weaviate.classes as wvc
 
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.near_text(
-    query="animals in movies",
+    jeopardy = client.collections.get("JeopardyQuestion")
     # highlight-start
-    filters=wvc.query.Filter.by_property("round").equal("Double Jeopardy!"),
+    response = jeopardy.query.near_object(
+        near_object="56b9449e-65db-5df4-887b-0a4773f52aa7",
     # highlight-end
-    limit=2,
-    return_metadata=wvc.query.MetadataQuery(distance=True),
-)
+        limit=2,
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
 
-for o in response.objects:
-    print(o.properties)
-    print(o.metadata.distance)
-# END GetWithWherePython
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
+    # END GetNearObjectPython
 
-# Test results
-assert len(response.objects) > 0
-assert response.objects[0].collection == "JeopardyQuestion"
-assert response.objects[0].properties["round"] == "Double Jeopardy!"
-assert "question" in response.objects[0].properties.keys()
-assert response.objects[0].metadata.distance is not None
-# End test
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects) == 2
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    # End test
 
 
-client.close()
+    # =================================
+    # ===== QUERY WITH nearVector =====
+    # =================================
+
+    # https://weaviate.io/developers/weaviate/api/graphql/search-operators#nearvector
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(limit=1, include_vector=True)
+    query_vector = response.objects[0].vector
+
+    # GetNearVectorPython
+    import weaviate.classes as wvc
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    # highlight-start
+    response = jeopardy.query.near_vector(
+        near_vector=query_vector, # your query vector goes here
+    # highlight-end
+        limit=2,
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
+    # END GetNearVectorPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects) == 2
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    # End test
+
+
+    # ==========================================
+    # ===== QUERY WITH OFFSET AND LIMIT =====
+    # ==========================================
+
+
+    # Query with LimitOffset - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
+
+    # GetLimitOffsetPython
+    # import weaviate.classes as wvc
+
+    # jeopardy = client.collections.get("JeopardyQuestion")
+    # response = jeopardy.query.near_text(
+    #     query="animals in movies",
+    #     # highlight-start
+    #     # offset=1, # `offset` support is being added to the client
+    #     limit=2,  # return 2 objects
+    #     # highlight-end
+    #     return_metadata=wvc.query.MetadataQuery(distance=True)
+    # )
+
+    # for o in response.objects:
+    #     print(o.properties)
+    #     print(o.metadata.distance)
+    # END GetLimitOffsetPython
+
+    # Test results
+    # no_offset_response = jeopardy.query.near_text(
+    #     query="animals in movies",
+    #     limit=3,
+    #     return_metadata=wvc.query.MetadataQuery(distance=True)
+    # )
+
+    # assert response.objects[0].collection == "JeopardyQuestion"
+    # assert len(response.objects) == 2
+    # assert "question" in response.objects[0].properties.keys()
+    # assert response.objects[0].metadata.distance is not None
+    # assert no_offset_response.objects[1].properties == response.objects[0].properties
+    # End test
+
+
+    # ===============================
+    # ===== QUERY WITH DISTANCE =====
+    # ===============================
+
+    # http://weaviate.io/developers/weaviate/config-refs/distances
+
+    # GetWithDistancePython
+    import weaviate.classes as wvc
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.near_text(
+        query="animals in movies",
+        # highlight-start
+        distance=0.18, # max accepted distance
+        # highlight-end
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
+    # END GetWithDistancePython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    for o in response.objects:
+        assert o.metadata.distance < 0.18
+    # End test
+
+
+    # ===============================
+    # ===== Query with autocut =====
+    # ===============================
+
+    # http://weaviate.io/developers/weaviate/api/graphql/additional-operators#autocut
+
+    # START Autocut Python
+    import weaviate.classes as wvc
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.near_text(
+        query="animals in movies",
+        # highlight-start
+        auto_limit=1, # number of close groups
+        # highlight-end
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
+    # END Autocut Python
+
+    # Test results
+    assert len(response.objects) > 0
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    # End test
+
+
+    # ==============================
+    # ===== QUERY WITH groupBy =====
+    # ==============================
+
+
+    # https://weaviate.io/developers/weaviate/api/graphql/get#get-groupby
+    # GetWithGroupbyPython
+    import weaviate.classes as wvc
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    # highlight-start
+
+    group_by = wvc.query.GroupBy(
+        prop="round",  # group by this property
+        objects_per_group=2,  # maximum objects per group
+        number_of_groups=2,  # maximum number of groups
+    )
+
+    response = jeopardy.query.near_text(
+        query="animals in movies", # find object based on this query
+        limit=10,  # maximum total objects
+        return_metadata=wvc.query.MetadataQuery(distance=True),
+        group_by=group_by
+    )
+    # highlight-end
+
+
+    for o in response.objects:
+        print(o.uuid)
+        print(o.belongs_to_group)
+        print(o.metadata.distance)
+
+    for grp, grp_items in response.groups.items():
+        print("=" * 10 + grp_items.name + "=" * 10)
+        print(grp_items.number_of_objects)
+        for o in grp_items.objects:
+            print(o.properties)
+            print(o.metadata)
+    # END GetWithGroupbyPython
+
+    # Test results
+    assert len(response.objects) > 0
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+
+    assert len(response.groups) > 0
+    assert len(response.groups) <= 2
+    for grp, grp_items in response.groups.items():
+        assert grp_items.number_of_objects <= 2
+    # End test
+
+
+    # ============================
+    # ===== QUERY WITH WHERE =====
+    # ============================
+
+    # https://weaviate.io/developers/weaviate/api/graphql/search-operators#neartext
+
+    # GetWithWherePython
+    import weaviate.classes as wvc
+
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.near_text(
+        query="animals in movies",
+        # highlight-start
+        filters=wvc.query.Filter.by_property("round").equal("Double Jeopardy!"),
+        # highlight-end
+        limit=2,
+        return_metadata=wvc.query.MetadataQuery(distance=True),
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
+    # END GetWithWherePython
+
+    # Test results
+    assert len(response.objects) > 0
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert response.objects[0].properties["round"] == "Double Jeopardy!"
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    # End test
+
+finally:
+    client.close()

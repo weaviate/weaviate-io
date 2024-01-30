@@ -15,245 +15,248 @@ client = weaviate.connect_to_wcs(
     }
 )
 
-# ==============================
-# ===== BASIC GET EXAMPLES =====
-# ==============================
+try:
 
-# BasicGetPython
-jeopardy = client.collections.get("JeopardyQuestion")
-# highlight-start
-response = jeopardy.query.fetch_objects()
-# highlight-end
+    # ==============================
+    # ===== BASIC GET EXAMPLES =====
+    # ==============================
 
-for o in response.objects:
-    print(o.properties)
-# END BasicGetPython
-
-# TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET
-
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert "question" in response.objects[0].properties.keys()
-# End test
-
-# ====================================
-# ===== BASIC GET LIMIT EXAMPLES =====
-# ====================================
-
-# GetWithLimitPython
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
+    # BasicGetPython
+    jeopardy = client.collections.get("JeopardyQuestion")
     # highlight-start
-    limit=1
+    response = jeopardy.query.fetch_objects()
     # highlight-end
-)
 
-for o in response.objects:
-    print(o.properties)
-# END GetWithLimitPython
+    for o in response.objects:
+        print(o.properties)
+    # END BasicGetPython
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert "question" in response.objects[0].properties.keys()
-assert len(response.objects) == 1
-# End test
+    # TESTS IN THIS FILE NOT CHECKED OR EXPECTED TO RUN YET
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert "question" in response.objects[0].properties.keys()
+    # End test
+
+    # ====================================
+    # ===== BASIC GET LIMIT EXAMPLES =====
+    # ====================================
+
+    # GetWithLimitPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        # highlight-start
+        limit=1
+        # highlight-end
+    )
+
+    for o in response.objects:
+        print(o.properties)
+    # END GetWithLimitPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert "question" in response.objects[0].properties.keys()
+    assert len(response.objects) == 1
+    # End test
 
 
-# ==========================================
-# ===== GET LIMIT WITH OFFSET EXAMPLES =====
-# ==========================================
+    # ==========================================
+    # ===== GET LIMIT WITH OFFSET EXAMPLES =====
+    # ==========================================
 
-# GetWithLimitOffsetPython
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
+    # GetWithLimitOffsetPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        # highlight-start
+        limit=1,
+        offset=1
+        # highlight-end
+    )
+
+    for o in response.objects:
+        print(o.properties)
+    # END GetWithLimitOffsetPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert "question" in response.objects[0].properties.keys()
+    assert len(response.objects) == 1
+    # End test
+
+
+    # ==========================================
+    # ===== GET OBJECT PROPERTIES EXAMPLES =====
+    # ==========================================
+
+    # GetPropertiesPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        # highlight-start
+        limit=1,
+        return_properties=["question", "answer", "points"]
+        # highlight-end
+    )
+
+    for o in response.objects:
+        print(o.properties)
+    # END GetPropertiesPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    for prop_name in ["question", "answer", "points"]:
+        assert prop_name in response.objects[0].properties.keys()
+    # End test
+
+
+    # ======================================
+    # ===== GET OBJECT VECTOR EXAMPLES =====
+    # ======================================
+
+    # GetObjectVectorPython
     # highlight-start
-    limit=1,
-    offset=1
+    import weaviate.classes as wvc
     # highlight-end
-)
 
-for o in response.objects:
-    print(o.properties)
-# END GetWithLimitOffsetPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        # highlight-start
+        include_vector=True,
+        # highlight-end
+        limit=1
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert "question" in response.objects[0].properties.keys()
-assert len(response.objects) == 1
-# End test
+    print(response.objects[0].vector)
+    # END GetObjectVectorPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert type(response.objects[0].vector) == list
+    assert len(response.objects[0].vector) >= 100
+    # End test
 
 
-# ==========================================
-# ===== GET OBJECT PROPERTIES EXAMPLES =====
-# ==========================================
+    # ==================================
+    # ===== GET OBJECT ID EXAMPLES =====
+    # ==================================
 
-# GetPropertiesPython
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
+    # GetObjectIdPython
     # highlight-start
-    limit=1,
-    return_properties=["question", "answer", "points"]
+    import weaviate.classes as wvc
     # highlight-end
-)
 
-for o in response.objects:
-    print(o.properties)
-# END GetPropertiesPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        # Object IDs are included by default with the `v4` client! :)
+        limit=1
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-for prop_name in ["question", "answer", "points"]:
-  assert prop_name in response.objects[0].properties.keys()
-# End test
+    for o in response.objects:
+        print(o.uuid)
+    # END GetObjectIdPython
 
 
-# ======================================
-# ===== GET OBJECT VECTOR EXAMPLES =====
-# ======================================
+    # Test results
+    from weaviate.collections.queries.base import _WeaviateUUIDInt
 
-# GetObjectVectorPython
-# highlight-start
-import weaviate.classes as wvc
-# highlight-end
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert type(response.objects[0].uuid) == _WeaviateUUIDInt
+    # End test
 
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
+
+    # ==============================
+    # ===== GET WITH CROSS-REF EXAMPLES =====
+    # ==============================
+
+    # GetWithCrossRefsPython
     # highlight-start
-    include_vector=True,
+    import weaviate.classes as wvc
     # highlight-end
-    limit=1
-)
 
-print(response.objects[0].vector)
-# END GetObjectVectorPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        # highlight-start
+        return_references=[
+            wvc.query.QueryReference(
+                link_on="hasCategory",
+                return_properties=["title"]
+            ),
+        ],
+        # highlight-end
+        limit=2
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert type(response.objects[0].vector) == list
-assert len(response.objects[0].vector) >= 100
-# End test
+    for o in response.objects:
+        print(o.properties["question"])
+        # print referenced objects
+        for ref_obj in o.references["hasCategory"].objects:
+            print(ref_obj.properties)
+    # END GetWithCrossRefsPython
 
-
-# ==================================
-# ===== GET OBJECT ID EXAMPLES =====
-# ==================================
-
-# GetObjectIdPython
-# highlight-start
-import weaviate.classes as wvc
-# highlight-end
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
-    # Object IDs are included by default with the `v4` client! :)
-    limit=1
-)
-
-for o in response.objects:
-    print(o.uuid)
-# END GetObjectIdPython
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects[0].references["hasCategory"].objects) > 0
+    # END Test
 
 
-# Test results
-from weaviate.collections.queries.base import _WeaviateUUIDInt
+    # ====================================
+    # ===== GET WITH METADATA EXAMPLE =====
+    # ====================================
 
-assert response.objects[0].collection == "JeopardyQuestion"
-assert type(response.objects[0].uuid) == _WeaviateUUIDInt
-# End test
-
-
-# ==============================
-# ===== GET WITH CROSS-REF EXAMPLES =====
-# ==============================
-
-# GetWithCrossRefsPython
-# highlight-start
-import weaviate.classes as wvc
-# highlight-end
-
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
+    # GetWithMetadataPython
     # highlight-start
-    return_references=[
-        wvc.query.QueryReference(
-            link_on="hasCategory",
-            return_properties=["title"]
-        ),
-    ],
+    import weaviate.classes as wvc
     # highlight-end
-    limit=2
-)
 
-for o in response.objects:
-    print(o.properties["question"])
-    # print referenced objects
-    for ref_obj in o.references["hasCategory"].objects:
-        print(ref_obj.properties)
-# END GetWithCrossRefsPython
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.fetch_objects(
+        limit=1,
+        # highlight-start
+        return_metadata=wvc.query.MetadataQuery(creation_time=True)
+        # highlight-end
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert len(response.objects[0].references["hasCategory"].objects) > 0
-# END Test
+    for o in response.objects:
+        print(o.properties)  # View the returned properties
+        print(o.metadata.creation_time)  # View the returned creation time
+    # END GetWithMetadataPython
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert response.objects[0].metadata.creation_time is not None
+    # END Test results
 
 
-# ====================================
-# ===== GET WITH METADATA EXAMPLE =====
-# ====================================
+    # =========================
+    # ===== MULTI-TENANCY =====
+    # =========================
 
-# GetWithMetadataPython
-# highlight-start
-import weaviate.classes as wvc
-# highlight-end
+    # MultiTenancy
+    import weaviate.classes as wvc
 
-jeopardy = client.collections.get("JeopardyQuestion")
-response = jeopardy.query.fetch_objects(
-    limit=1,
+    # Connect to the collection
+    mt_collection = client.collections.get("WineReviewMT")
+
+    # Get the specific tenant's version of the collection
     # highlight-start
-    return_metadata=wvc.query.MetadataQuery(creation_time=True)
+    collection_tenant_a = mt_collection.with_tenant("tenantA")
     # highlight-end
-)
 
-for o in response.objects:
-    print(o.properties)  # View the returned properties
-    print(o.metadata.creation_time)  # View the returned creation time
-# END GetWithMetadataPython
+    # Query tenantA's version
+    response = collection_tenant_a.query.fetch_objects(
+        return_properties=["review_body", "title"],
+        limit=1,
+    )
 
-# Test results
-assert response.objects[0].collection == "JeopardyQuestion"
-assert response.objects[0].metadata.creation_time is not None
-# END Test results
+    print(response.objects[0].properties)
+    # END MultiTenancy
 
 
-# =========================
-# ===== MULTI-TENANCY =====
-# =========================
-
-# MultiTenancy
-import weaviate.classes as wvc
-
-# Connect to the collection
-mt_collection = client.collections.get("WineReviewMT")
-
-# Get the specific tenant's version of the collection
-# highlight-start
-collection_tenant_a = mt_collection.with_tenant("tenantA")
-# highlight-end
-
-# Query tenantA's version
-response = collection_tenant_a.query.fetch_objects(
-    return_properties=["review_body", "title"],
-    limit=1,
-)
-
-print(response.objects[0].properties)
-# END MultiTenancy
+    # Test results
+    assert len(response.objects) > 0
+    assert response.objects[0].collection == "WineReviewMT"
+    # End test
 
 
-# Test results
-assert len(response.objects) > 0
-assert response.objects[0].collection == "WineReviewMT"
-# End test
-
-
-client.close()
+finally:
+    client.close()
