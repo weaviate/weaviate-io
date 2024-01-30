@@ -18,7 +18,7 @@ Before you start this tutorial, you should follow the steps in the tutorials to 
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
 - Set up a `Question` class in your schema.
-    - You can follow the Quickstart guide, or the [schema tutorial](./schema.md) to construct the Question class if you have not already.
+    - You can follow the Quickstart guide, or the [schema tutorial](../starter-guides/schema.md) to construct the Question class if you have not already.
 
 We will use the dataset below. We suggest that you download it to your working directory.
 
@@ -28,7 +28,7 @@ We will use the dataset below. We suggest that you download it to your working d
 
 ## Import setup
 
-As mentioned in the [schema tutorial](./schema.md), the `schema` specifies the data structure for Weaviate.
+As mentioned in the [schema tutorial](../starter-guides/schema.md), the `schema` specifies the data structure for Weaviate.
 
 So the data import must map properties of each record to those of the relevant class in the schema. In this case, the relevant class is **Question** as defined in the previous section.
 
@@ -156,7 +156,7 @@ A request with a `200` response may still include object-level errors, which is 
 
 ## Suggested reading
 
-- [Tutorial: Schemas in detail](./schema.md)
+- [Tutorial: Schemas in detail](../starter-guides/schema.md)
 - [Tutorial: Queries in detail](./query.md)
 - [Tutorial: Introduction to modules](./modules.md)
 - [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
