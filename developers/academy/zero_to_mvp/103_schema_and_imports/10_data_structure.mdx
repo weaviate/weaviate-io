@@ -37,7 +37,7 @@ We will cover more about different available tokenization methods later on.
 
 Each object in Weaviate can be associated with a vector. These vectors are what enables similarity searches that you have seen before. As we mentioned, however, brute-force similarity searches are computationally expensive, as well as growing linearly with the size of the dataset.
 
-To tackle this problem Weaviate uses vector indexes that utilize an Approximate Nearest Neighbor (ANN) algorithm. The ANN algorithm enables each vector index to organizes a set of vectors, so that similar ones to a query can be retrieved at lightning-fast speeds. Weaviate currently uses an HNSW-based ANN index.
+To tackle this problem Weaviate uses vector indexes that utilize an Approximate Nearest Neighbor (ANN) algorithm. The ANN algorithm enables each vector index to organize a set of vectors, so that similar ones to a query can be retrieved at lightning-fast speeds. Weaviate currently uses an HNSW-based ANN index.
 
 import HNSWLayersImg from '/developers/weaviate/concepts/img/hnsw-layers.svg';
 
