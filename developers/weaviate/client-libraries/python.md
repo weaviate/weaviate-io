@@ -683,7 +683,7 @@ You can choose to provide a generic type to a query or data operation. This can 
   language="py"
 />
 
-## Migration guide
+## Migration guides
 
 ### Beta releases
 
