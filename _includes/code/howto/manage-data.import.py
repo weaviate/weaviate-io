@@ -264,7 +264,7 @@ try:
 
     # Settings for displaying the import progress
     counter = 0
-    interval = 20  # print progress every this many records; should be bigger than the batch_size
+    interval = 100  # print progress every this many records; should be bigger than the batch_size
 
     def add_object(obj) -> None:
         global counter
@@ -273,7 +273,7 @@ try:
             "answer": obj["Answer"],
         }
 
-        with client.batch.fixed_size(batch_size=100) as batch:
+        with client.batch.fixed_size(batch_size=200) as batch:
             batch.add_object(
                 collection="JeopardyQuestion",
                 properties=properties,
@@ -309,12 +309,17 @@ try:
     # ===== Stream data - CSV =====
     # ===========================================
 
+    import pandas as pd
+
+    df = pd.read_json("jeopardy_1k.json")
+    df.to_csv("jeopardy_1k.csv", index=False)
+
     # START CSV streaming
     import pandas as pd
 
     # Settings for displaying the import progress
     counter = 0
-    interval = 20  # print progress every this many records; should be bigger than the batch_size
+    interval = 100  # print progress every this many records; should be bigger than the batch_size
 
     def add_object(obj) -> None:
         global counter
@@ -323,7 +328,7 @@ try:
             "answer": obj["Answer"],
         }
 
-        with client.batch.fixed_size(batch_size=100) as batch:
+        with client.batch.fixed_size(batch_size=200) as batch:
             batch.add_object(
                 collection="JeopardyQuestion",
                 properties=properties,
@@ -361,6 +366,7 @@ try:
 
     # Delete the downloaded files
     os.remove("jeopardy_1k.json")
+    os.remove("jeopardy_1k.csv")
 
 
 finally:
