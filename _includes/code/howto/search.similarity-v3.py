@@ -410,6 +410,69 @@ test_gqlresponse(response, gqlresponse)
 
 
 
+"""
+# START AutoCutResults
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.17591828
+          },
+          "answer": "meerkats",
+          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
+        },
+        {
+          "_additional": {
+            "distance": 0.17837524
+          },
+          "answer": "dogs",
+          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
+        },
+        {
+          "_additional": {
+            "distance": 0.18658042
+          },
+          "answer": "The Call of the Wild Thornberrys",
+          "question": "Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals"
+        },
+        {
+          "_additional": {
+            "distance": 0.18755406
+          },
+          "answer": "fox",
+          "question": "In titles, animal associated with both Volpone and Reynard"
+        },
+        {
+          "_additional": {
+            "distance": 0.18817466
+          },
+          "answer": "Lion Tamers/Wild Animal Trainers",
+          "question": "Mabel Stark, Clyde Beatty & Gunther Gebel-Williams"
+        },
+        {
+          "_additional": {
+            "distance": 0.19061792
+          },
+          "answer": "a fox",
+          "question": "\"Sly\" creature sought by sportsmen riding to hounds"
+        },
+        {
+          "_additional": {
+            "distance": 0.191764
+          },
+          "answer": "a lion",
+          "question": "The animal featured both in Rousseau's \"The Sleeping Gypsy\" & \"The Dream\""
+        }
+      ]
+    }
+  }
+}
+# END AutoCutResults
+"""
+
+
 # ==============================
 # ===== QUERY WITH groupBy =====
 # ==============================
