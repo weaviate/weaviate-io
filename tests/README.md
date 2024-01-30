@@ -2,6 +2,7 @@
 
 We are working on making as much of the site's code examples testable, so that they are robust to edits and remain up-to-date.
 
+
 ### Set-up
 
 #### Python virtual environment
@@ -25,13 +26,22 @@ After installing Node, run `yarn` to install the project dependencies.
 
 Then, from the repo root directory, run `pytest` from the shell. This will initialize all tests.
 
+#### Test markers
+
+Tests are marked with `@pytest.mark.<marker>`, for example:
+
+`pyv4`: Tests Python snippets that use the v4 client library.
+`pyv3`: Tests Python snippets that use the v3 client library.
+`ts`: Tests JavaScript/TypeScript snippets in scripts.
+`java`: Tests Java snippets in scripts.
+`go`: Tests Go snippets in scripts.
+
+You can run tests for a specific marker by running `pytest -m <marker>`, for example `pytest -m pyv4` to run only tests for Python v4 snippets.
+
 #### Test configuration
 
 The tests and related files are located in `./tests`.
-Before tests are run, `pytest` is configured to run `start-weaviate.sh` to spin up two instances of Weaviate.
-
-- One with anonymous access at: `http://localhost:8080` and
-- One with API key access at: `http://localhost:8099` and
+Before tests are run, `pytest` is configured to run `start-weaviate.sh` to spin up multiple instances of Weaviate (e.g. per `docker-compose.yml`).
 
 Thus, tests can be run against a permanent WCS instance, or one of these two ephemeral instances.
 
