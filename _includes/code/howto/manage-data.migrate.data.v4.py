@@ -47,7 +47,10 @@ client_tgt = weaviate.connect_to_local(
 
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 def create_collection(client_in: WeaviateClient, collection_name: str, enable_mt=False):
+    # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
+    # Added as the import was failing in tests
     import weaviate.classes as wvc
+    # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 
     reviews = client_in.collections.create(
         name=collection_name,
@@ -99,7 +102,10 @@ def create_collection(client_in: WeaviateClient, collection_name: str, enable_mt
 
 # START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
 def migrate_data(collection_src: Collection, collection_tgt: Collection):
+    # END CollectionToCollection  # END TenantToCollection  # END CollectionToTenant  # END TenantToTenant
+    # Added as the import was failing in tests
     from tqdm import tqdm
+    # START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
 
     with collection_tgt.batch.fixed_size(batch_size=100) as batch:
         for q in tqdm(collection_src.iterator(include_vector=True)):
