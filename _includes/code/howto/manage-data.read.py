@@ -52,11 +52,11 @@ try:
         # highlight-end
     )
 
-    print(data_object.vector)
+    print(data_object.vector["default"])
     # ReadObjectWithVector END
 
     # Test
-    assert len(data_object.vector) == 1536
+    assert len(data_object.vector["default"]) == 1536
 
     # ==================================
     # ===== Check object existence =====

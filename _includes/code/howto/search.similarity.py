@@ -89,7 +89,7 @@ try:
 
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.query.fetch_objects(limit=1, include_vector=True)
-    query_vector = response.objects[0].vector
+    query_vector = response.objects[0].vector["default"]
 
     # GetNearVectorPython
     import weaviate.classes as wvc

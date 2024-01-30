@@ -83,8 +83,8 @@ try:
 
     # Test
     result = jeopardy.query.fetch_object_by_id(uuid, include_vector=True)
-    assert len(result.vector) == 1536
-    assert str(result.vector[0])[:7] == str(0.12345)
+    assert len(result.vector["default"]) == 1536
+    assert str(result.vector["default"][0])[:7] == str(0.12345)
 
 
     # ==========================

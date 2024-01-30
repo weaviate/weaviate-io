@@ -43,7 +43,7 @@ try:
         collection.data.replace(
             uuid=uuid_to_update,
             properties=properties_to_update,
-            vector=object_data.vector
+            vector=object_data.vector["default"]
         )
 
 

@@ -35,7 +35,7 @@ try:
 
   collection = client.collections.get("Article")
   rand_obj = collection.query.fetch_objects(limit=1, include_vector=True)
-  query_vector = rand_obj.objects[0].vector
+  query_vector = rand_obj.objects[0].vector["default"]
 
   # START GraphQLnearVector
   collection = client.collections.get("Article")
@@ -60,7 +60,7 @@ try:
 
   collection = client.collections.get("Article")
   rand_obj = collection.query.fetch_objects(limit=1, include_vector=True)
-  query_vector = rand_obj.objects[0].vector
+  query_vector = rand_obj.objects[0].vector["default"]
   object_id = rand_obj.objects[0].uuid
 
   # START GraphQLnearObject
@@ -183,7 +183,7 @@ try:
 
   collection = client.collections.get("Article")
   rand_obj = collection.query.fetch_objects(limit=1, include_vector=True)
-  query_vector = rand_obj.objects[0].vector
+  query_vector = rand_obj.objects[0].vector["default"]
 
 
   # START GraphQLHybridWithVector
