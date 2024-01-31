@@ -571,7 +571,7 @@ The response is a JSON object like the one in this example.
 </details>
 
 ## Related pages
-- [Tutorial: Schema](../tutorials/schema.md)
+- [Tutorial: Schema](../starter-guides/schema.md)
 - [References: Schema](../config-refs/schema/index.md)
 - [References: REST API: Schema](../api/rest/schema.md)
 - [Concepts: Data Structure](../concepts/data.md)

@@ -29,15 +29,11 @@ client = weaviate.connect_to_local()
 # ===== Search by base64 representation =====
 # ===========================================
 
-"""
+
 # START search with base64
 # highlight-start
 base64_string="SOME_BASE_64_REPRESENTATION"
 # highlight-end
-# END search with base64
-"""
-
-# START search with base64
 
 # Get the collection containing images
 dogs = client.collections.get("Dog")
@@ -92,7 +88,7 @@ from pathlib import Path
 dogs = client.collections.get("Dog")
 response = dogs.query.near_image(
     # highlight-start
-    near_image=Path("./images/search-image.jpg")  # Provide a `Path` object
+    near_image=Path("./images/search-image.jpg"),  # Provide a `Path` object
     # highlight-end
     return_properties=["breed"],
     limit=1
@@ -118,7 +114,7 @@ response = dogs.query.near_image(
     near_image=Path("./images/search-image.jpg"),
     # highlight-start
     distance=0.8, # Maximum accepted distance
-    return_metadata=wvc.MetadataQuery(distance=True), # return distance from the source image
+    return_metadata=wvc.query.MetadataQuery(distance=True), # return distance from the source image
     # highlight-end
 
     return_properties=["breed"],
@@ -163,3 +159,8 @@ expected_results = """
 #     .do()
 # )
 # END HelperFunction
+
+# START-ANY
+
+client.close()
+# END-ANY

@@ -188,25 +188,6 @@ import SemanticKindGet from '/_includes/code/semantic-kind.get.mdx';
 
 Create a new data object. The provided meta-data and schema values are validated.
 
-### `objects` vs `batch`
-
-:::tip
-The `objects` endpoint is meant for individual object creations.
-:::
-
-If you plan on importing a large number of objects, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
-
-1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
-1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing.
-1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
-1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
-
-:::note Idempotence of POST requests in `objects` and `batch`
-The idempotence behavior differs between these two endpoints. POST /batch/objects is idempotent, and will overwrite any existing object given an id. POST /objects will fail if an id is provided which already exists in the class.
-
-To update an existing object with the `objects` endpoint, use the [PUT or PATCH method](#update-a-data-object).
-:::
-
 #### Method and URL
 
 ```http
@@ -241,6 +222,25 @@ The request body for a new object has the following fields:
 import SemanticKindCreate from '/_includes/code/semantic-kind.create.mdx';
 
 <SemanticKindCreate/>
+
+### `objects` vs `batch`
+
+:::tip
+The `objects` endpoint is meant for individual object creations.
+:::
+
+If you plan on importing a large number of objects, it's much more efficient to use the [`/v1/batch`](./batch.md) endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty:
+
+1. Each sequential request would be handled by a single thread server-side while most of the server resources are idle. In addition, if you only send the second request once the first has been completed, you will wait for a lot of network overhead.
+1. It's much more efficient to parallelize imports. This will minimize the connection overhead and use multiple threads server-side for indexing.
+1. You do not have to do the parallelization yourself, you can use the [`/v1/batch`](./batch.md) endpoint for this. Even if you are sending batches from a single client thread, the objects within a batch will be handled by multiple server threads.
+1. Import speeds, especially for large datasets, will drastically improve when using the batching endpoint.
+
+:::note Idempotence of POST requests in `objects` and `batch`
+The idempotence behavior differs between these two endpoints. POST /batch/objects is idempotent, and will overwrite any existing object given an id. POST /objects will fail if an id is provided which already exists in the class.
+
+To update an existing object with the `objects` endpoint, use the [PUT or PATCH method](#update-a-data-object).
+:::
 
 ### With geoCoordinates
 

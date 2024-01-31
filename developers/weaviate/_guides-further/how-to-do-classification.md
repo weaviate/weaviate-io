@@ -32,7 +32,7 @@ If you haven't set up a Weaviate instance yet, check the [quickstart tutorial](/
 
 **2. Upload a schema**
 
-Learn how to create and upload a schema [here](../tutorials/schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author` and `Category`.
+Learn how to create and upload a schema [here](../starter-guides/schema.md). In this guide we assume to have a similar schema uploaded with the classes `Publication`, `Article` and `Author` and `Category`.
 
 **3. Add data**
 

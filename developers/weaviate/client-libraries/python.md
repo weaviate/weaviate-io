@@ -12,7 +12,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 :::caution Beta version
 
-The Python client v4 is currently in beta. Please note the following:
+The Python client `v4` is currently in beta. Please note the following:
 <br/>
 
 - We strongly encourage you to use the latest version of the Python client *and* the Weaviate server.
@@ -24,63 +24,89 @@ The Python client v4 is currently in beta. Please note the following:
 
 ## Overview
 
-This page discuses key ideas and aspects of the Weaviate Python client `v4`.
-
-In addition to the code samples here, there are code samples throughout the Weaviate documentation. The "how-to" sections also have a large number of task oriented examples.
+This page discuses key ideas and aspects of `v4` release of the Weaviate Python client (`v4` client). For Weaviate usage information not specific to the Python client, see the relevant pages in the [Weaviate documentation](../index.md).
 
 For changes in the client between beta releases, please see the [migration guide](../client-libraries/python#migration-guides).
 
-### Key changes from `v3`
+## Key changes from `v3`
 
-This client is also called the `collections` client, because it adds new collection-level (previously called "class") interactions.
+### Helper classes
 
 This client also includes numerous additional Python classes to provide IDE assistance and typing help. You can import them individually, like so:
 
 ```
-from weaviate.classes import Property, ConfigFactory, DataObject
+from weaviate.classes.config import Property, ConfigFactory
+from weaviate.classes.data import DataObject
+from weaviate.classes.query import Filter
 ```
 
-But it may be convenient to import the whole set of classes like this.
+But it may be convenient to import the whole set of classes like this. For brevity, the documentation uses this import style.
 
 ```
 import weaviate.classes as wvc
 ```
 
-For discoverability, the submodule is further divided into:
+For discoverability, the classes are arranged into submodules.
 
-* `weaviate.classes.config`
-* `weaviate.classes.data`
-* `weaviate.classes.query`
-* `weaviate.classes.generic`
+<details>
+  <summary>See the list of submodules</summary>
 
+| Module                      | Description                         |
+|-----------------------------|-------------------------------------|
+| `weaviate.classes.config`   | Collection creation / modification  |
+| `weaviate.classes.data`     | CUD operations                      |
+| `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.generic`  | generics                            |
+| `weaviate.classes.init`     | initialization                      |
+| `weaviate.classes.tenants`  | tenants                             |
+| `weaviate.classes.batch`    | batch operations                    |
+
+</details>
+
+### Connection termination
+
+You must ensure your client connections are closed. You can use `client.close()`, or use a context manager to close client connections for you.
+
+#### `client.close()` with `try` / `finally`
+
+This will close the client connection when the `try` block is complete (or if an exception is raised).
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# TryFinallyExample"
+  endMarker="# END TryFinallyExample"
+  language="py"
+/>
+
+#### Context manager
+
+This will close the client connection when you leave the `with` block.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# ClientContextManagerExample"
+  endMarker="# END ClientContextManagerExample"
+  language="py"
+/>
 
 ## Installation
 
-The Python library is available on [PyPI.org](https://pypi.org/project/weaviate-client/). The package can be installed using [pip](https://pypi.org/project/pip/). The client is developed and tested for Python 3.8 to 3.12.
-
-Install the client with the following command:
+The Python client library is developed and tested using Python 3.8 to 3.12. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
 
 ```bash
-pip install --pre -U "weaviate-client==4.*"
+pip install -U "weaviate-client==4.*"  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
 ```
 
 ### Requirements
 
-#### Weaviate version
+#### gRPC
 
-:::caution Beta version
-The API may change on the client-side and the server-side, especially during the beta period. Accordingly, we encourage you to use the latest version of the Python client *and* the Weaviate server.
-:::
+The `v4` client uses remote procedure calls (RPCs) under-the-hood. Accordingly, a port for gRPC must be open on your Weaviate server.
 
-The latest `v4` client is designed for use with Weaviate `1.23` and higher.
+<details>
+  <summary>docker-compose.yml example</summary>
 
-If you are using an older version of Weaviate, or otherwise unable to use gRPC, please use the `v3` client, or the legacy instantiation method through the `weaviate.Client` class which is still available.
-
-Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
-
-#### gRPC port
-
-A port for gRPC must be open on your Weaviate server. If you are running Weaviate locally, you can open the default port (`50051`) by adding the following to your `docker-compose.yml` file:
+If you are running Weaviate with Docker, you can map the default port (`50051`) by adding the following to your `docker-compose.yml` file:
 
 ```yaml
     ports:
@@ -88,25 +114,35 @@ A port for gRPC must be open on your Weaviate server. If you are running Weaviat
      - 50051:50051
 ```
 
-#### WCS availability
+</details>
 
-You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS). It is not yet available on the free (sandbox) tier of WCS.
+#### WCS compatibility
 
-## Instantiation
+The free (sandbox) tier of WCS is currently not compatible with the `v4` client. (Last updated: January, 2024)
 
-You can instantiate the client using one of multiple methods. For example, you can use one of the following helper `connect` functions:
+#### Weaviate server version
+
+Generally, we encourage you to use the latest version of the Python client *and* the Weaviate server.
+
+## Instantiate a client
+
+There are multiple ways to connect to your Weaviate instance. To instantiate a client, use one of these styles:
+
+- [Python client v4 helper methods](./python.md#python-client-v4-helper-methods)
+- [Python client v4 explicit connection](./python.md#python-client-v4-explicit-connection)
+- [Python client v3 style connection](./python.md#python-client-v3-style-connection)
+
+### Python client v4 helper functions
 
 - `weaviate.connect_to_wcs()`
 - `weaviate.connect_to_local()`
 - `weaviate.connect_to_embedded()`
 - `weaviate.connect_to_custom()`
 
-See the examples below:
-
 <Tabs groupId="languages">
 <TabItem value="wcs" label="WCS">
 
-<p><small>Note: As of December 2023, WCS sandboxes are not compatible with the <code>v4</code> client.</small></p>
+<p><small>Note: WCS sandboxes are not compatible with the <code>v4</code> client. (Updated, January, 2024)</small></p>
 
 <FilteredTextBlock
   text={PythonCode}
@@ -148,11 +184,15 @@ See the examples below:
 </TabItem>
 </Tabs>
 
-Or, you can [instantiate a `weaviate.WeaviateClient` object directly](#advanced-direct-instantiation).
+The `v4` client helper functions provide some optional parameters to customize your client.
 
-#### API keys for external API use
+- [Specify external API keys](./python.md#external-api-keys)
+- [Specify connection timeout values](./python.md#timeout-values)
+- [Specify authentication details](./python.md#authentication)
 
-You can pass on API keys for services such as Cohere, OpenAI and so on through additional headers. For example:
+#### External API keys
+
+To add API keys for services such as Cohere or OpenAI, use the `headers` parameter.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -163,7 +203,9 @@ You can pass on API keys for services such as Cohere, OpenAI and so on through a
 
 #### Timeout values
 
-You can set timeout values for the client as a tuple  (connection timeout & read timeout time) in seconds.
+Set timeout values, in seconds, for the client.
+
+The syntax is: `timeout=(<connection timeout>, <read timeout>)`
 
 <FilteredTextBlock
   text={PythonCode}
@@ -172,11 +214,17 @@ You can set timeout values for the client as a tuple  (connection timeout & read
   language="py"
 />
 
-### Authentication
+:::tip Timeouts on `generate` (RAG) queries
 
-Some helper `connect` functions allow you to pass on authentication credentials.
+If you are seeing errors while using the `generate` submodule, try increasing the timeout values (e.g. to `(60, 120)`). The `generate` submodule uses a large language model to generate text.
+<br/>
 
-For example, the `connect_to_wcs` method allows for a WCS api key or OIDC authentication credentials to be passed in.
+Accordingly, the speed of the `generate` submodule is dependent on the speed of the language model (and any API that is serving the language model). Increasing the timeout values will allow the client to wait longer for the language model to respond.
+:::
+
+#### Authentication
+
+Some of the `connect` helper functions take authentication credentials. For example, `connect_to_wcs` accepts a WCS API key or OIDC authentication credentials.
 
 <Tabs groupId="languages">
 <TabItem value="api_key" label="API Key">
@@ -201,13 +249,18 @@ For example, the `connect_to_wcs` method allows for a WCS api key or OIDC authen
 </TabItem>
 </Tabs>
 
-The client also supports OIDC authentication with Client Credentials flow and Refresh Token flow. They are available through the `AuthClientCredentials` and `AuthBearerToken` classes respectively.
+For OIDC authentication with the Client Credentials flow, use the `AuthClientCredentials` class.
 
-If a particular helper function does not support the desired workflow, directly instantiate the `WeaviateClient` object.
+For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class.
 
-### Advanced: Direct instantiation
+If the helper functions do not provide the customization you need, use the [`WeaviateClient`](./python.md#python-client-v4-explicit-connection) class to instantiate the client.
 
-You can also instantiate a client (`WeaviateClient`) object directly and pass on custom parameters. This is the most flexible way to instantiate the client.
+
+### Python client v4 explicit connection
+
+If you need to pass custom parameters, use the `weaviate.WeaviateClient` class to instantiate a client. This is the most flexible way to instantiate the client object.
+
+Please note that when directly instantiating a connection, you must connect to the server manually by calling the `.connect()` method.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -216,19 +269,89 @@ You can also instantiate a client (`WeaviateClient`) object directly and pass on
   language="py"
 />
 
-### V3 `Client` instantiation
+### Python client v3 API
 
-You can instantiate a `v3` style `Client` object using the `weaviate.Client` class. This is the legacy instantiation method, and is still available for backwards compatibility.
+To create an older, `v3` style `Client` object, use the `weaviate.Client` class. This method available for backwards compatibility. Where possible, use a client v4 connection.
 
-Please refer to the [`v3` client documentation](./python_v3.md) if you are using this instantiation method.
+To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
+
+## Batching
+
+The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.
+
+We recommend using the collection object to perform batch imports of single collections or tenants. If you are importing objects across many collections, such as in a multi-tenancy configuration, using `client.batch` may be more convenient.
+
+### Batch sizing
+
+There are three ways to configure the batch size. They are `dynamic`, `fixed_size` and `rate_limit`.
+
+| Method | Description | When to use |
+| :-- | :-- | :-- |
+| `dynamic` | The batch size is dynamically calculated by Weaviate. | Recommended starting point. |
+| `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
+| `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
+
+#### Usage
+
+We recommend using a context manager as shown below.
+
+These methods return completely localized context managers. Accordingly, attributes of one batch such as `failed_objects` and `failed_references` will not be included in any subsequent calls.
+
+<Tabs groupId="languages">
+<TabItem value="dynamic" label="Dynamic">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BatchDynamic"
+    endMarker="# END BatchDynamic"
+    language="py"
+  />
+
+</TabItem>
+<TabItem value="fizedsize" label="Fixed Size">
+
+  <FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BatchFixedSize"
+    endMarker="# END BatchFixedSize"
+    language="py"
+  />
+
+</TabItem>
+<TabItem value="ratelimit" label="Rate limitd">
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START BatchRateLimit"
+  endMarker="# END BatchRateLimit"
+  language="py"
+/>
+
+</TabItem>
+</Tabs>
+
+In the batching process, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread.
+
+### Error handling
+
+During a batch import, any failed objects or references will be stored for retrieval.
+
+A list of failed objects can be obtained through `batch.failed_objects` and a list of failed references can be obtained through `batch.failed_references`.
+
+Note that these lists are reset when a batching process is initialized. So make sure to retrieve them before starting a new batch import block.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START BatchErrorHandling"
+  endMarker="# END BatchErrorHandling"
+  language="py"
+/>
 
 ## Working with collections
 
 ### Instantiate a collection
 
 You can instantiate a collection object by creating a collection, or by retrieving an existing collection.
-
-Note that when adding a cross-reference property, you should use the `references` parameter. Using the `properties` parameter to add references is deprecated and will be removed in the future.
 
 <Tabs groupId="languages">
 <TabItem value="create" label="Create a collection">
@@ -268,12 +391,11 @@ Note that when adding a cross-reference property, you should use the `references
 Operations in the `v4` client are grouped into submodules. The key submodules for interacting with objects are:
 
 - `data`: CUD operations (read operations are in `query`)
+- `batch`: Batch import operations
 - `query`: Search operations
 - `generate`: Retrieval augmented generation operations
     - Build on top of `query` operations
 - `aggregate`: Aggregation operations
-- `query_group_by`: Object-level group by operations
-- `aggregate_group_by`: Aggregation-level group by operations
 
 ### `data`
 
@@ -292,7 +414,7 @@ The `data` submodule contains all object-level CUD operations, including:
 See some examples below. Note that each function will return varying types of objects.
 
 :::caution `insert_many` sends one request
-As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may 
+As of `4.4b1`, `insert_many` sends one request for the entire function call. A future release may
 send multiple requests as batches.
 :::
 
@@ -356,7 +478,7 @@ Cross-references should be added under a `references` parameter in the relevant 
 
 ```python
 {
-    "<REFERENCE_PROPERTY_NAME>": Reference.to(uuids=<TARGET_UUID>)
+    "<REFERENCE_PROPERTY_NAME>": "<TARGET_UUID>"
 }
 ```
 
@@ -438,6 +560,21 @@ For example:
 </TabItem>
 </Tabs>
 
+#### `query` + group by
+
+Results of a query can be grouped by a property as shown here.
+
+The results are organized by both their individual objects as well as the group.
+- The `objects` attribute is a list of objects, each containing a `belongs_to_group` property to indicate which group it belongs to.
+- The `group` attribute is a dictionary with each key indicating the value of the group, and the value being a list of objects belonging to that group.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START QueryGroupbyExample"
+  endMarker="# END QueryGroupbyExample"
+  language="py"
+/>
+
 ### `generate`
 
 The RAG / generative search functionality is a two-step process involving a search followed by prompting a large language model. Therefore, function names are shared across the `query` and `generate` submodules, with additional parameters available in the `generate` submodule.
@@ -494,22 +631,7 @@ To use the `aggregate` submodule, supply one or more ways to aggregate the data.
 </TabItem>
 </Tabs>
 
-### `query_group_by`
-
-Results of a query can be grouped by a property as shown here.
-
-The results are organized by both their individual objects as well as the group.
-- The `objects` attribute is a list of objects, each containing a `belongs_to_group` property to indicate which group it belongs to.
-- The `group` attribute is a dictionary with each key indicating the value of the group, and the value being a list of objects belonging to that group.
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# START QueryGroupbyExample"
-  endMarker="# END QueryGroupbyExample"
-  language="py"
-/>
-
-### `aggregate_group_by`
+#### `aggregate` + group by
 
 Results of a query can be grouped and aggregated as shown here.
 
@@ -555,7 +677,7 @@ You can also specify which metadata to retrieve. This example fetches the `creat
 
 Since the `cursor` API requires the object UUID for indexing, the `uuid` metadata is always retrieved.
 
-### Data model / generics
+### Data model and generics
 
 You can choose to provide a generic type to a query or data operation. This can be beneficial as the generic class is used to extract the return properties and statically type the response.
 
@@ -568,66 +690,167 @@ You can choose to provide a generic type to a query or data operation. This can 
 
 ## Migration guides
 
-<!-- For future release (probably `v4.4b7`)
+### Beta releases
 
-Batching updates
+<details>
+  <summary>Migration guides - beta releases</summary>
 
-not possible to use client.batch directly, only per context manager
-manual mode (eg sending batches manually via .create_objects) has been removed
-Batching is dynamic (for workers+ batch sizes) by default, fixed batches can be set via batch.configure_fixed_size(...)
+#### Changes in `v4.4b9`
 
--->
+##### `weaviate.connect_to_x` methods
 
-<!-- For future release (probably `v4.4b7`)
+The `timeout` argument has been moved into the `additional_config` argument that takes the class `weaviate.config.AdditionalConfig` as input.
 
-The filter syntax will likely change, to something like:
+##### Queries
 
+All optional arguments to methods in the `query` namespace now are enforced as keyword arguments.
+
+There is now runtime logic for parsing query arguments enforcing the correct type.
+
+##### Batch processing
+
+Introduction of three distinct algorithms using different batching styles under-the-hood:
+- `client.batch.dynamic()`
+- `client.batch.fixed_size()`
+- `client.batch.rate_limit()`
+
+`client.batch.dynamic() as batch` is a drop-in replacement for the previous `client.batch as batch`, which is now deprecated and will be removed on release.
 ```python
-wvc.Filter.by_property("name").equal_to("John")
-wvc.Filter.by_creation_time().equal_to(<SOME_DATE>)
-wvc.Filter.by_ref().link_on("refProp").property("name").equal_to(<SOME_DATE>)
-wvc.Filter.by_ref().link_on_multi("refProp", target_collection="targetColl").property("name").equal_to(<SOME_DATE>)
+with client.batch.dynamic() as batch:
+  ...
+```
+is equivalent to:
+```python
+with client.batch as batch:
+  ...
 ```
 
-Current syntax will likely be deprecated
-e.g. wvc.Filter(path="name").equal_to("John")
-
-wvc.Filter will remain at the top `wvc` namespace; possibly also be in `wvc.query` namespace and `wvc.data` (needed for `delete_many`)
-
--->
-
-<!-- For future release (probably `v4.4b7`)
-
-The client will require explicit connection to be established (`.connect()` method) and closed (`.close()` method) to the server. This is to ensure that the client is `async` compatible.
-
-See internal Slack discussions for further notes.
-
-# TODO - also update code patterns everywhere where applicable.
-# Probably not so much on standalone snippets, but where connections are explicitly shown they should also be shown to close.
-
--->
-
-<!-- For future release (probably `v4.4b7`) - note from Dirk on 2024-01-09
-
-### `v4.4b6` to `v4.4b7`
-
-#### References
-
-The syntax for `reference_add_many` has changed, so that for example:
-
+`client.batch.fixed_size() as batch` is a way to configure your batching algorithm to only use a fixed size.
 ```python
-collection.data.reference_add_many(
-    [
-        DataReferenceOneToMany(
-            from_property="ref",
-            from_uuid=uuid_from
-            to=Reference.to(*one or a list of UUIDs*),
-        )
-    ],
-)
+with client.batch.dynamic() as batch:
+  ...
+```
+is equivalent to:
+```python
+client.batch.configure_fixed_size()
+with client.batch as batch:
+  ...
 ```
 
-is now:
+`client.batch.rate_limit() as batch` is a new way to help avoid hitting third-party vectorization API rate limits. By specifying `request_per_minute` in the
+`rate_limit()` method, you can force the batching algorithm to send objects to Weaviate at the speed your third-party API is capable of processing objects.
+
+These methods now return completely localised context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
+in any subsequent calls.
+
+Finally, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread rather than silently erroring.
+
+##### Filters
+
+The argument `prop` in `Filter.by_property` has been renamed to `name`
+
+Ref counting is now achievable using `Filter.by_ref_count(ref)` rather than `Filter([ref])`
+
+#### Changes in `v4.4b8`
+
+##### Reference filters
+
+Reference filters have a simplified syntax. The new syntax looks like this:
+
+```python
+Filter.by_ref("ref").by_property("target_property")
+```
+
+#### Changes in `v4.4b7`
+
+##### Library imports
+
+Importing directly from `weaviate` is deprecated. Use `import weaviate.classes as wvc` instead.
+
+##### Close client connections
+
+Starting in v4.4b7, you have to explicitly close your client connections. There are two ways to close client connections.
+
+Use `client.close()` to explicitly close your client connections.
+
+```python
+import weaviate
+client = weaviate.connect_to_local()
+
+print(client.is_ready())
+
+client.close()
+```
+
+Use a context manager to close client connections for you.
+
+```python
+import weaviate
+
+with weaviate.connect_to_local() as client:
+     print(client.is_ready())
+
+# Python closes the client when you leave the 'with' block
+```
+
+##### Batch processing
+
+The v4.4b7 client introduces changes to `client.batch`.
+
+- `client.batch` requires a context manager.
+- Manual mode is removed, you cannot send batches with `.create_objects`.
+- Batch size and the number of concurrent requests are dynamically assigned. Use `batch.configure_fixed_size` to specify values.
+- The `add_reference` method is updated.
+- The `to_object_collection` method is removed.
+
+Updated `client.batch` parameters
+
+| Old value | Value in v4.4b7 |
+| :-- | :-- |
+| from_object_uuid: UUID | from_uuid: UUID |
+| from_object_collection: str | from_collection: str |
+| from_property_name: str | from_property: str |
+| to_object_uuid: UUID | to: Union[WeaviateReference, List[UUID]] |
+| to_object_collection: Optional[str] = None | |
+| tenant: Optional[str] = None | tenant: Optional[str] = None |
+
+
+##### Filter syntax
+
+Filter syntax is updated in v4.4b7.
+
+**NOTE**: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
+
+| Old syntax | New syntax in v4.4b7 |
+| :-- | :-- |
+| Filter(path=property) | Filter.by_property(property) |
+| Filter(path=["ref", "target_class", "target_property"]) | Filter.by_ref().link_on("ref").by_property("target_property") |
+| FilterMetadata.ByXX | Filter.by_id()<br/> Filter.by_creation_time() <br/> Filter.by_update_time() |
+
+The pre-4.4b7 filter syntax is deprecated. The new, v4.4b7 syntax looks like this.
+
+```python
+import weaviate
+import datetime
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.fetch_objects(
+    filters=wvc.query.Filter.by_property("round").equal("Double Jeopardy!") &
+            wvc.query.Filter.by_creation_time().greater_or_equal(datetime.datetime(2005, 1, 1)) |
+            wvc.query.Filter.by_creation_time().greater_or_equal(datetime.datetime(2000, 12, 31)),
+            limit=3
+    )
+
+
+client.close()
+```
+
+##### `reference_add_many` updated
+
+The `reference_add_many` syntax is updated; `DataReferenceOneToMany` is now `DataReference`.
 
 ```python
 collection.data.reference_add_many(
@@ -639,11 +862,21 @@ collection.data.reference_add_many(
         )
     ]
 )
-``` -->
+```
 
-### `v4.4b1` to `v4.4b2`
+##### References
 
-#### References
+Multi-target references updated. These are the new functions:
+
+- `ReferenceProperty.MultiTarget`
+- `DataReference.MultiTarget`
+- `QueryReference.MultiTarget`
+
+Use `ReferenceToMulti` for multi-target references.
+
+#### Older client changes
+
+##### References
 
 * References are now added through a `references` parameter during collection creation, object insertion and queries. See examples for:
     * [Collection creation](#instantiate-a-collection)
@@ -651,22 +884,22 @@ collection.data.reference_add_many(
     * [Queries](#query)
 * The `FromReference` class is now called `QueryReference`.
 
-#### Reorganization of classes/parameters
+##### Reorganization of classes/parameters
 
 * `weaviate.classes` submodule further split into:
     * `weaviate.classes.config`
     * `weaviate.classes.data`
     * `weaviate.classes.query`
     * `weaviate.classes.generic`
-* `vector_index_config` parameter factory functions for `wvc.Configure` and `wvc.Reconfigure` have changed to, e.g.:
+* `vector_index_config` parameter factory functions for `wvc.config.Configure` and `wvc.config.Reconfigure` have changed to, e.g.:
     ```python
     client.collections.create(
         name="YourCollection",
         # highlight-start
-        vector_index_config=wvc.Configure.VectorIndex.hnsw(
-            distance_metric=wvc.VectorDistance.COSINE,
+        vector_index_config=wvc.config.Configure.VectorIndex.hnsw(
+            distance_metric=wvc.config.VectorDistances.COSINE,
             vector_cache_max_objects=1000000,
-            quantizer=wvc.Configure.VectorIndex.Quantizer.pq()
+            quantizer=wvc.config.Configure.VectorIndex.Quantizer.pq()
         ),
         # highlight-end
     )
@@ -682,13 +915,14 @@ collection.data.reference_add_many(
 * `quantitizer` is renamed to `quantizer`
 * To request the vector in the returned data, use the `include_vector` parameter ([example](#queries-with-custom-returns)).
 
-#### Data types
+##### Data types
 
 * Time metadata (for creation and last updated time) now returns a `datetime` object, and the parameters are renamed to `creation_time` and `last_update_time` under `MetadataQuery`.
     * `metadata.creation_time.timestamp() * 1000` will return the same value as before.
 * `query.fetch_object_by_id()` now uses gRPC under the hood (rather than REST), and returns objects in the same format as other queries.
 * `UUID` and `DATE` properties are returned as typed objects.
 
+</details>
 
 ## Best practices and notes
 

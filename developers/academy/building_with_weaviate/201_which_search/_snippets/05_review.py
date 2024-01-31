@@ -7,7 +7,7 @@ import weaviate.classes as wvc
 
 client = weaviate.connect_to_wcs(
     cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",  # Demo instance URL
-    auth_credentials=weaviate.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),  # Read-only key
+    auth_credentials=weaviate.auth.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),  # Read-only key
     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key (for vector and hybrid searches)
 )
 # END connectionCode
@@ -86,7 +86,7 @@ assert "question" in response.objects[0].properties.keys()
 
 # START hybridExample
 questions = client.collections.get("JeopardyQuestion")
-response = questions.query.bm25(
+response = questions.query.hybrid(
     query="space travel",  # Your query string
     limit=2
 )

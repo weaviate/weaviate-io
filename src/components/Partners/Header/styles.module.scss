@@ -1,23 +1,20 @@
 .partnersHead {
   background: #130c49;
+  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-size: cover;
 
   p {
     color: white;
   }
 }
 .grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-
+  display: flex;
   padding: 2rem 0 2rem 0;
-
-  @media screen and (max-width: 1100px) {
-    margin-bottom: 0;
-  }
-
-  @media screen and (max-width: 950px) {
-    grid-template-columns: 1fr;
-  }
+  justify-items: center;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  flex-direction: column;
 }
 
 .leftGrid {

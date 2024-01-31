@@ -7,9 +7,9 @@ image: og/docs/howto.jpg
 
 Use these guides to **manage data** and perform CRUD operations in Weaviate.
 
-The guides cover these topics: 
+The guides cover these topics:
 
-- [Manage collections](./create.mdx): Manage collections of objects (also called classes in Weaviate).
+- [Manage collections](./collections.mdx): Manage collections of objects (also called classes in Weaviate).
 - [Create objects](./create.mdx): Create individual objects.
 - [Batch import](./import.mdx): Import data in bulk.
 - [Read objects](./read.mdx): Read individual objects.
@@ -22,4 +22,3 @@ The guides cover these topics:
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-

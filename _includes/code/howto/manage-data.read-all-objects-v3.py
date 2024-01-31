@@ -3,7 +3,7 @@ import weaviate
 # Instantiate the client
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace w/ your Weaviate instance API key
 )
 
 # ============================
@@ -80,7 +80,7 @@ def get_batch_with_cursor(collection_name, batch_size, cursor=None):
     # Fetch the first set of results
     else:
         result = query.do()
-    
+
     return result["data"]["Get"][collection_name]
 
 # STEP 2 - Iterate through the data
@@ -126,7 +126,7 @@ def get_batch_with_cursor(collection_name, tenant_name, batch_size, cursor):
     # Fetch the first set of results
     else:
         result = query.do()
-    
+
     return result["data"]["Get"]["MultiTenancyCollection"]
 
 # Get Tenants

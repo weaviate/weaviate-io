@@ -1,10 +1,11 @@
 .techBox {
+  width: 15.3125rem;
+  height: 7.5625rem;
   border-radius: 0.9375rem;
-  border: 1px solid #130c49;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-  width: 14.375rem;
-  height: 9.1875rem;
+  display: grid;
+  align-items: center;
   flex-shrink: 0;
 }
 
@@ -16,10 +17,10 @@
 .techList {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   gap: 30px;
   margin: 50px 0px;
-  justify-content: space-around;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 860px) {
     flex-wrap: nowrap;
@@ -36,57 +37,265 @@
 
 .techContainer {
   margin: auto;
-  width: 90%;
-
-  @media screen and (max-width: 860px) {
-    width: 100%;
-  }
 }
 
 .bgColor {
-  background: #f5f5f5;
-  padding: 70px;
+  background: #ededed;
 
   @media screen and (max-width: 860px) {
     padding: 0px;
   }
 }
 
-.aws {
+.openAIPartners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/awsLogo.svg');
-  transition: all 1s ease-out;
+  background-image: url('../../../../static/img/site/openai-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
-  margin-top: 37px;
 }
 
-.gcp {
+.nvidiaPartners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/google_cloud-icon.svg');
-  transition: all 1s ease-out;
+  background-image: url('../../../../static/img/site/nvidia-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
-  margin-top: 37px;
 }
 
-.azure {
+.AI21Partners {
   display: flex;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../../../../static/img/site/azureLogo.svg');
-  transition: all 1s ease-out;
+  background-image: url('../../../../static/img/site/AI21-logo-partners.svg');
   width: 50%;
   height: 70px;
   margin: auto;
-  margin-top: 37px;
+}
+
+.unstructuredPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/unstructured-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.dithubPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/ditHub-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.datadogPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/dataDog-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.haystackPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/haystack-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.intelPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/intel-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.coherePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/cohere-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.langchainPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/langchain-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.databricksPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/databricks-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.jinaPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/jina-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.redhatPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/redhat-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.astronomerPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/astronomer-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.arizePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/arize-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.awsPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/aws-logo-partners.svg');
+  width: 28%;
+  height: 70px;
+  margin: auto;
+}
+
+.gcpPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/gcp-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.azurePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/azure-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.snowflakePartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/snowflake-logo-partners.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.confluentPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/confluent-logo-partner.svg');
+  width: 100%;
+  height: 110px;
+  margin: auto;
+}
+
+.anthropicPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/anthropic-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.anthropicPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/anthropic-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
+}
+
+.mistralaiPartners {
+  display: flex;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../../../static/img/site/mistral-ai-logo-partner.svg');
+  width: 50%;
+  height: 70px;
+  margin: auto;
 }

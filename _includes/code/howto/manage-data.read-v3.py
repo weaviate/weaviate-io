@@ -10,7 +10,7 @@ import json
 
 client = weaviate.Client(
     "https://edu-demo.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),  # Replace w/ your Weaviate API key
+    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),  # Replace w/ your Weaviate API key
 )
 
 # =======================
