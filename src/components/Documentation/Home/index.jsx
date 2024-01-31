@@ -288,14 +288,14 @@ const DocHomePage = () => {
 
       <div className={styles.secondaryContent}>
         <h3>Can we help?</h3>
-        <div className={`${styles.secondaryTabs} ${styles.slack}`}>
-          <a href="https://weaviate.io/slack">Slack</a>
+        <div className={`${styles.secondaryTabs} ${styles.forum}`}>
+          <a href="https://forum.weaviate.io/">Forum</a>
         </div>
         <div className={`${styles.secondaryTabs} ${styles.github}`}>
           <a href="https://github.com/weaviate/weaviate">Github</a>
         </div>
-        <div className={`${styles.secondaryTabs} ${styles.forum}`}>
-          <a href="https://forum.weaviate.io/">Forum</a>
+        <div className={`${styles.secondaryTabs} ${styles.slack}`}>
+          <a href="https://weaviate.io/slack">Slack</a>
         </div>
       </div>
     </div>
