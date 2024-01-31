@@ -108,7 +108,7 @@ The free (sandbox) tier of WCS is compatible with the `v4` client as of 31 Janua
 
 #### Weaviate server version
 
-Generally, we encourage you to use the latest version of the Python client *and* the Weaviate server.
+The `v4` client requires Weaviate `1.23.7` or higher. Generally, we encourage you to use the latest version of the Python client *and* the Weaviate server.
 
 ## Instantiate a client
 
