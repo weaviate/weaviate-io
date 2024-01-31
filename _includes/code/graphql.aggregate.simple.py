@@ -6,11 +6,13 @@
 import weaviate
 import weaviate.classes as wvc
 import os
+# START GraphQLSimpleAggregateGroupby
+from weaviate.classes.aggregate import GroupByAggregate
+# END GraphQLSimpleAggregateGroupby
 
 client = weaviate.connect_to_local()
 
 # END-ANY
-
 
 # Actual client instantiation
 client.close()
@@ -74,7 +76,7 @@ try:
     # START GraphQLSimpleAggregateGroupby
     collection = client.collections.get("Article")
     response = collection.aggregate.over_all(
-        group_by="inPublication",
+        group_by=GroupByAggregate(prop="inPublication"),
         total_count=True,
         return_metrics=wvc.query.Metrics("wordCount").integer(mean=True)
     )
