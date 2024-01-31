@@ -114,7 +114,7 @@ client.batch.configure(batch_size=10)  # Configure batch
 
 # Batch import all objects
 # (Yes, batch import is an overkill for 3 objects, but it is recommended for large volumes of data)
- with client.batch as batch:
+with client.batch as batch:
     for item in data:
         properties = {
          "content": item
