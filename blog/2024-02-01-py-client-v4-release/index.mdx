@@ -70,24 +70,31 @@ This helps you to write the correct code, and also helps you to catch errors ear
 
 #### Submodules
 
-:::caution TODO
-**Describe submodule organisation, import patterns**
-:::
+For discoverability, the classes are arranged into submodules like this.
+
+| Module                      | Description                         |
+|-----------------------------|-------------------------------------|
+| `weaviate.classes.config`   | Collection creation / modification  |
+| `weaviate.classes.data`     | CUD operations                      |
+| `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.generic`  | generics                            |
+| `weaviate.classes.init`     | initialization                      |
+| `weaviate.classes.tenants`  | tenants                             |
+| `weaviate.classes.batch`    | batch operations                    |
+
+You can import the whole `classes` module, or just the classes you need.
+
 
 ## Practical examples
 
-:::caution TODO
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc.
-:::
+Here are some practical examples. You'll find plenty of them throughout our site documentation - here, we present a few commonly used operations, with notes as required.
 
 ### `v4` vs `v3` API
 
 import CollectionsV4 from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 import CollectionsV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 
-:::caution TODO
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc.
-:::
+Here is an example that really captures the difference between the `v4` and `v3` APIs. Look at the difference in the code required to create a collection with properties.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -108,11 +115,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis 
   </TabItem>
 </Tabs>
 
+The `v3` client API uses an untyped dictionary to specify the collection definition. It's efficient, but not very robust, and not particularly easy to use.
+
+On the other hand, the `v4` client API provides plenty of help through type hints and autocomplete suggestions as you navigate to the `.create` method, and use classes such as `Property` and `DataType`. It's also more robust, and easier to use.
+
 ### Connections
 
-:::caution TODO
-**Describe helper functions**
-:::
+The `v4` client provide a set of helper functions, for connecting to Weaviate through its various deployment methods.
 
 Direct instantiation with full control over the parameters is also possible, too. And, if you need an instance of the `v3` style client, you can still use it.
 
@@ -168,36 +177,15 @@ Just remember that with the new `WeaviateClient` instances (i.e. `v4` API), you'
     language="py"
 />
 
-### Collections
-
-:::caution TODO
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc.
-:::
-
-<Tabs groupId="languages">
-<TabItem value="create" label="Create a collection">
-    <FilteredTextBlock
-        text={ManageCollectionsCode}
-        startMarker="# START CreateCollectionWithProperties"
-        endMarker="# END CreateCollectionWithProperties"
-        language="py"
-    />
-</TabItem>
-<TabItem value="delete" label="Delete a collection">
-    <FilteredTextBlock
-        text={ManageCollectionsCode}
-        startMarker="# START DeleteCollection"
-        endMarker="# END DeleteCollection"
-        language="py"
-    />
-</TabItem>
-</Tabs>
-
 ### Batch operations
 
-:::caution TODO
-**Describe batch insertion modes**
-:::
+The new client provides a set of methods to configure batching. These methods help you to control the batching behavior - including a handy `rate_limit()` method to avoid going past any third-party API rate limits.
+
+| Method | Description | When to use |
+| :-- | :-- | :-- |
+| `dynamic` | The batch size is dynamically calculated by Weaviate. | Recommended starting point. |
+| `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
+| `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
 
 <Tabs groupId="languages">
     <TabItem value="wcs" label="Dynamic">
@@ -226,10 +214,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis 
     </TabItem>
 </Tabs>
 
-:::caution TODO
-- Batch vs insert_many (vs single insert)
-    - e.g. insert_many to quickly batch-import a list
-:::
+There's also single insertion methods, of course. And to that, we've added a `insert_many` method which is a convenience method for inserting a list of objects.
 
 <Tabs groupId="languages">
     <TabItem value="batching" label="Batch">
@@ -263,14 +248,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis 
 
 ### Query
 
-:::caution TODO
-- General ideas
-- What is returned (properties/metadata)
-    - Properties & ID by default (no blobs)
-    - How to get metadata / vectors
-    - References easier to retrieve
-:::
+Queries are available for each collection through the `query` submodule. You can use different methods such as `hybrid`, `near_text` and so on for searches. When it comes to performing RAG queries, switch to the `generate` submodule, and provide any additional parameters as required for the prompts!
 
+This makes it easy to switch between the different query types, and also makes it easy to discover the different query types available.
 
 <Tabs groupId="languages">
     <TabItem value="hybrid" label="Hybrid">
@@ -313,15 +293,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis 
 
 #### Responses
 
-:::caution TODO
-**How to parse/use the returned objects**
-:::
+As mentioned before, the default behavior now is to return all properties (except `blob`s) by default, as well as object uuids.
+
+For less-often used attributes such as cross-references, metadata (previously under `_additional`) and vectors must be requested specifically. This is done through the `return_references`, `return_metadata` and `include_vector` parameters.
+
+Responses from Weaviate are now parsed into instances of custom classes. For example, each query response will have a list of objects in the `objects` attribute, and each object will have a set of attributes itself. Responses for RAG queries will include a `generated` attribute at the top level for `grouped_task` query, and each object will also have a `generated` attribute for `single_prompt` queries.
 
 ### Iterator
 
-:::caution TODO
-**Iterators are cool!**
-:::
+The client includes an iterator to make convenient use of the `cursor` API. This is useful for retrieving large numbers of objects, such as when manually exporting or migrating a collection.
 
 <Tabs groupId="languages">
     <TabItem value="basic" label="Default">
