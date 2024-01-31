@@ -91,6 +91,8 @@ try:
     # ============================
 
     # groupBy Python
+    from weaviate.classes.aggregate import GroupByAggregate
+
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.aggregate.over_all(
         # highlight-start
