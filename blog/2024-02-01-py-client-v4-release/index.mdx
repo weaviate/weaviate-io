@@ -16,52 +16,78 @@ import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-dat
 
 ![Weaviate Python Client v4 Release](./img/hero.png)
 
-**Describe overview & motivations**
+The `v4` release of the Weaviate Python client library has landed 🎉🥳. This is a major update, as reflected by the bump in the major version number. If you're keen to use it, just `pip` install it with:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+```bash
+pip install -U weaviate-client
+```
+
+But if you're curious about what's new, read on - there's a lot that we are excited about!
 
 ## Key ideas
 
-So many of the changes are exciting. However, two key ideas are:
+The `v4` client does things a little differently than the `v3` client. Two of the key ideas where it differs are:
 
 - Collection-based interactions, and
 - Default property returns to queries.
 
-In this query, for example:
+Take this query, for example:
 
-<Tabs groupId="languages">
-    <TabItem value="hybrid" label="Hybrid">
-        <FilteredTextBlock
-            text={PythonCode}
-            startMarker="# START HybridQueryExample"
-            endMarker="# END HybridQueryExample"
-            language="py"
-        />
-    </TabItem>
-</Tabs>
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START HybridQueryExample"
+    endMarker="# END HybridQueryExample"
+    language="py"
+/>
 
-### Speed improvements
+Here, you'll notice that the query:
+- is performed on a collection (`questions`), not the `client` itself, and
+- does not specify any properties to return.
 
-some speed comparison for query and insert and mention GRPC (and keep any details for later). I can provide numbers in a bit
-
-### Typing & type safety
-
-short paragraph about typing and type-safety (and you can make another blogpost with Tommy later)
+This is because the `v4` client is collection-based, and will return all properties (except `blob`s) by default. We think this makes the code more concise, and easier to use.
 
 ### IDE assistance / autocomplete
 
+And writing the queries is now also much easier, with more IDE assistance and autocomplete. For example, here's a query that uses the `Filter` class:
+
 ![Weaviate Python Client v4 Release](./img/pyv4_ide_example2_filter.gif)
 
-## Code examples
+Notice all the nice autocomplete suggestions as we type! This extends to a great majority of operations, from collection creation to object insertion to query building.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+### Speed improvements
+
+:::caution TODO
+Some speed comparison for query and insert and mention GRPC (and keep any details for later). Dirk to help w/ numbers.
+:::
+
+### Typing & type safety
+
+Provision of these classes also means that the client is able to provide far more type hints, proving higher type safety.
+
+For example, the `like` method in our `Filter` class example above helpfully tells you to insert the argument as a `str`. But we were to use a `within_geo_range` method, it would tell us to use a coordinate as a `GeoCoordinate` instance, and a distance as a `float`.
+
+This helps you to write the correct code, and also helps you to catch errors early.
+
+#### Submodules
+
+:::caution TODO
+**Describe submodule organisation, import patterns**
+:::
+
+## Practical examples
+
+:::caution TODO
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc.
+:::
 
 ### `v4` vs `v3` API
 
 import CollectionsV4 from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 import CollectionsV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+:::caution TODO
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc.
+:::
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -84,11 +110,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
 
 ### Connections
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
-
+:::caution TODO
 **Describe helper functions**
+:::
 
-Direct instantiation will full control over the parameters is also possible, too. And, if you need an instance of the `v3` style client, you can still use it.
+Direct instantiation with full control over the parameters is also possible, too. And, if you need an instance of the `v3` style client, you can still use it.
 
 <Tabs groupId="languages">
     <TabItem value="wcs" label="WCS">
@@ -144,7 +170,9 @@ Just remember that with the new `WeaviateClient` instances (i.e. `v4` API), you'
 
 ### Collections
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+:::caution TODO
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc. Sed euismod, nisl quis tempor aliquam, ipsum nisl aliquet nunc, eget ultricies nisl nisl vitae nunc.
+:::
 
 <Tabs groupId="languages">
 <TabItem value="create" label="Create a collection">
@@ -165,11 +193,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
 </TabItem>
 </Tabs>
 
-### Data
+### Batch operations
 
-#### Batching
-- Batching
-    - modes
+:::caution TODO
+**Describe batch insertion modes**
+:::
 
 <Tabs groupId="languages">
     <TabItem value="wcs" label="Dynamic">
@@ -198,8 +226,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
     </TabItem>
 </Tabs>
 
+:::caution TODO
 - Batch vs insert_many (vs single insert)
     - e.g. insert_many to quickly batch-import a list
+:::
 
 <Tabs groupId="languages">
     <TabItem value="batching" label="Batch">
@@ -233,11 +263,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
 
 ### Query
 
+:::caution TODO
 - General ideas
 - What is returned (properties/metadata)
     - Properties & ID by default (no blobs)
     - How to get metadata / vectors
     - References easier to retrieve
+:::
+
 
 <Tabs groupId="languages">
     <TabItem value="hybrid" label="Hybrid">
@@ -280,11 +313,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
 
 #### Responses
 
-How to parse/use the returned objects
+:::caution TODO
+**How to parse/use the returned objects**
+:::
 
 ### Iterator
 
-Iterators are cool!
+:::caution TODO
+**Iterators are cool!**
+:::
 
 <Tabs groupId="languages">
     <TabItem value="basic" label="Default">
@@ -315,10 +352,12 @@ Iterators are cool!
 
 ## How to get started
 
+:::caution TODO
 - Installation
 - Where to find useful docs
     - V4 client page
     - Code snippets (howtos etc.)
+:::
 
 
 import WhatNext from '/_includes/what-next.mdx'
