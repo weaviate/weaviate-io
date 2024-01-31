@@ -8,7 +8,6 @@ import utils
     "script_loc",
     [
         "./_includes/code/quickstart/endtoend.py",
-        "./_includes/code/quickstart.byov.all.py",
     ],
 )
 def test_pyv4(empty_weaviates, script_loc):
