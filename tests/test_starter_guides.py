@@ -12,7 +12,7 @@ import utils
         "./_includes/code/starter-guides/schema.py",
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_pyv4(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 
@@ -28,6 +28,6 @@ def test_py(empty_weaviates, script_loc):
         # "./_includes/code/starter-guides/generative_v3.py",
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_pyv3(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)

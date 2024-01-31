@@ -14,6 +14,6 @@ import utils
         "_includes/code/rest.well-known.py",
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_pyv4(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)

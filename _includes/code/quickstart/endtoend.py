@@ -39,6 +39,15 @@ client = weaviate.connect_to_wcs(
 
 assert client.is_ready()
 
+client.close()
+
+# Actual instantiation for testing
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
+    }
+)
+
 client.collections.delete("Question")
 
 
