@@ -12,18 +12,83 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 
 ![Weaviate Python Client v4 Release](./img/hero.png)
 
-**overview & motivations**
+**Describe overview & motivations**
 
-## Key changes
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
 
-If you're coming from
+## Key ideas
+
+So many of the changes are exciting. However, two key ideas are:
+
+- Collection-based interactions, and
+- Default property returns to queries.
+
+In this query, for example:
+
+<Tabs groupId="languages">
+    <TabItem value="hybrid" label="Hybrid">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START HybridQueryExample"
+            endMarker="# END HybridQueryExample"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Speed improvements
+
+some speed comparison for query and insert and mention GRPC (and keep any details for later). I can provide numbers in a bit
+
+### Typing & type safety
+
+short paragraph about typing and type-safety (and you can make another blogpost with Tommy later)
+
+### IDE assistance / autocomplete
+
+![Weaviate Python Client v4 Release](./img/pyv4_ide_example2_filter.gif)
+
+## Code examples
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+
+### `v4` vs `v3` API
+
+import CollectionsV4 from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import CollectionsV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={CollectionsV4}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={CollectionsV3}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="python"
+    />
+  </TabItem>
+</Tabs>
 
 ### Connections
 
-#### Helper functions
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+
+**Describe helper functions**
+
+Direct instantiation will full control over the parameters is also possible, too. And, if you need an instance of the `v3` style client, you can still use it.
 
 <Tabs groupId="languages">
     <TabItem value="wcs" label="WCS">
@@ -50,62 +115,54 @@ If you're coming from
             language="py"
         />
     </TabItem>
+    <TabItem value="direct" label="Direct instantiation">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# DirectInstantiationFull"
+            endMarker="# END DirectInstantiationFull"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="v3" label="V3 API">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# InstantiationV3API"
+            endMarker="# END InstantiationV3API"
+            language="py"
+        />
+    </TabItem>
 </Tabs>
 
-#### Close connections
+Just remember that with the new `WeaviateClient` instances (i.e. `v4` API), you'll have to close the connection when you're done with it. This is still not necessary with the `v3` API.
 
 <FilteredTextBlock
     text={PythonCode}
-    startMarker="# PLACEHOLDER"
-    endMarker="# END PLACEHOLDER"
+    startMarker="# TryFinallyExample"
+    endMarker="# END TryFinallyExample"
     language="py"
 />
-
-
-#### V3 API still available
-
-<FilteredTextBlock
-    text={PythonCode}
-    startMarker="# PLACEHOLDER"
-    endMarker="# END PLACEHOLDER"
-    language="py"
-/>
-
-### Default behavior
-
-different default behaviour, like auto return all non-blob/ref properties
-
-### Speed improvements
-
-some speed comparison for query and insert and mention GRPC (and keep any details for later). I can provide numbers in a bit
-
-### Typing & type safety
-
-short paragraph about typing and type-safety (and you can make another blogpost with Tommy later)
-
-## Code examples
-
-### Comparisons vs v3 API
 
 ### Collections
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis
+
 <Tabs groupId="languages">
-    <TabItem value="create" label="Create a collection">
-        <FilteredTextBlock
-            text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
-            language="py"
-        />
-    </TabItem>
-    <TabItem value="delete" label="Delete a collection">
-        <FilteredTextBlock
-            text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
-            language="py"
-        />
-    </TabItem>
+<TabItem value="create" label="Create a collection">
+    <FilteredTextBlock
+        text={ManageCollectionsCode}
+        startMarker="# START CreateCollectionWithProperties"
+        endMarker="# END CreateCollectionWithProperties"
+        language="py"
+    />
+</TabItem>
+<TabItem value="delete" label="Delete a collection">
+    <FilteredTextBlock
+        text={ManageCollectionsCode}
+        startMarker="# START DeleteCollection"
+        endMarker="# END DeleteCollection"
+        language="py"
+    />
+</TabItem>
 </Tabs>
 
 ### Data
@@ -114,12 +171,32 @@ short paragraph about typing and type-safety (and you can make another blogpost 
 - Batching
     - modes
 
-<FilteredTextBlock
-    text={PythonCode}
-    startMarker="# PLACEHOLDER"
-    endMarker="# END PLACEHOLDER"
-    language="py"
-/>
+<Tabs groupId="languages">
+    <TabItem value="wcs" label="Dynamic">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchDynamic"
+            endMarker="# END BatchDynamic"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="local" label="Fixed size">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchFixedSize"
+            endMarker="# END BatchFixedSize"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="embedded" label="Rate limit">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchRateLimit"
+            endMarker="# END BatchRateLimit"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
 
 - Batch vs insert_many (vs single insert)
     - e.g. insert_many to quickly batch-import a list
@@ -128,31 +205,31 @@ short paragraph about typing and type-safety (and you can make another blogpost 
     <TabItem value="batching" label="Batch">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
+            startMarker="# START BatchBasic"
+            endMarker="# END BatchBasic"
             language="py"
         />
+        <i>Generally recommended for any multi-object operations.</i>
     </TabItem>
     <TabItem value="insert_many" label="Insert many">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
+            startMarker="# START InsertManyBasic"
+            endMarker="# END InsertManyBasic"
             language="py"
         />
+        <i>If you just have a list of objects to insert.</i>
     </TabItem>
     <TabItem value="insert" label="Single insert">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
+            startMarker="# START CreateObjectExample"
+            endMarker="# END CreateObjectExample"
             language="py"
         />
+        <i>For single-insertions; not for bulk operations.</i>
     </TabItem>
 </Tabs>
-
-
-- Create objects vs references
 
 ### Query
 
@@ -162,54 +239,79 @@ short paragraph about typing and type-safety (and you can make another blogpost 
     - How to get metadata / vectors
     - References easier to retrieve
 
-- Searches
-- RAG
-
 <Tabs groupId="languages">
-    <TabItem value="search" label="Search">
+    <TabItem value="hybrid" label="Hybrid">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
+            startMarker="# START HybridQueryExample"
+            endMarker="# END HybridQueryExample"
+            language="py"
+        />
+        <p><small>The search query returns a parsed response, with the <code>.objects</code> property containing the retrieved Weaviate objects.</small></p>
+    </TabItem>
+    <TabItem value="neartext" label="NearText">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START NearTextQueryExample"
+            endMarker="# END NearTextQueryExample"
+            language="py"
+        />
+        <p><small>The search query returns a parsed response, with the <code>.objects</code> property containing the retrieved Weaviate objects.</small></p>
+    </TabItem>
+    <TabItem value="rag" label="NearText + RAG">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START NearTextGenerateExample"
+            endMarker="# END NearTextGenerateExample"
+            language="py"
+        />
+        <p><small>The RAG query is very similar to the equivalent search query, but using methods in the <code>generate</code> submodule.</small></p>
+    </TabItem>
+    <TabItem value="filter" label="Aggregate + Filter">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START AggregateCountExample"
+            endMarker="# END AggregateCountExample"
+            language="py"
+        />
+        <p><small>This example retrieves a count of objects that match the filter criteria.</small></p><br/>
+    </TabItem>
+</Tabs>
+
+#### Responses
+
+How to parse/use the returned objects
+
+### Iterator
+
+Iterators are cool!
+
+<Tabs groupId="languages">
+    <TabItem value="basic" label="Default">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# IteratorBasic"
+            endMarker="# END IteratorBasic"
             language="py"
         />
     </TabItem>
-    <TabItem value="rag" label="RAG">
+    <TabItem value="oneprop" label="Selected properties">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# PLACEHOLDER"
-            endMarker="# END PLACEHOLDER"
+            startMarker="# IteratorAnswerOnly"
+            endMarker="# END IteratorAnswerOnly"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="meta" label="Metadata Only">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# IteratorMetadataOnly"
+            endMarker="# END IteratorMetadataOnly"
             language="py"
         />
     </TabItem>
 </Tabs>
-
-- Filters
-
-<FilteredTextBlock
-    text={PythonCode}
-    startMarker="# PLACEHOLDER"
-    endMarker="# END PLACEHOLDER"
-    language="py"
-/>
-
-- Aggregation (get object count)
-
-<FilteredTextBlock
-    text={PythonCode}
-    startMarker="# PLACEHOLDER"
-    endMarker="# END PLACEHOLDER"
-    language="py"
-/>
-
-### Iterator
-
-<FilteredTextBlock
-    text={PythonCode}
-    startMarker="# PLACEHOLDER"
-    endMarker="# END PLACEHOLDER"
-    language="py"
-/>
 
 ## How to get started
 
