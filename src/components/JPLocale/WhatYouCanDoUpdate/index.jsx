@@ -88,7 +88,7 @@ export default function HomepageWhatYouCanDo() {
           <ConnectToWeaviateWithKey />
         </div>
 
-        <h2>サンプルデータ</h2>
+        <h3>サンプルデータ</h3>
 
         <p>今回用いるサンプルデータは、"Jeopardy!"データです。</p>
         <table>
@@ -192,7 +192,6 @@ export default function HomepageWhatYouCanDo() {
         <p>
           事前にベクトル化する必要はなく、Vectorizerモジュールでベクトル化して取り込めます。
         </p>
-        <p>る。</p>
         <p>
           なので、ベクトルデータではなくデータオブジェクトをそのまま登録します。
         </p>

@@ -15,21 +15,25 @@ export default function HomeJP() {
   const { siteConfig } = useDocusaurusContext();
 
   useEffect(() => {
-    const navbar = document.querySelector('.navbar');
+    /*  const navbar = document.querySelector('.navbar');
     if (navbar) {
       navbar.style.display = 'none';
-    }
+    } */
+
+    const tryButton = document.querySelector('.tryNow');
 
     if (window.location.pathname === '/jp') {
       document.body.classList.add('jp-page');
+
+      tryButton.innerHTML = '無料で始める';
     }
   }, []);
 
   return (
     <div className="custom-page noBG">
       <Layout
-        title="いらっしゃいませ"
-        description="Weaviate - ベクターデータベース"
+        title="Weaviate ベクトルデータベース"
+        description="Weaviate ベクトルデータベース"
       >
         <MetaSEO img="og/website/home.jpg" />
         <HomepageHeader />
