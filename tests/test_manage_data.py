@@ -19,7 +19,7 @@ import os
         "./_includes/code/howto/manage-data.migrate.data.v4.py",
     ],
 )
-def test_on_blank_instance_py(empty_weaviates, script_loc):
+def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 
@@ -33,7 +33,7 @@ def test_on_blank_instance_py(empty_weaviates, script_loc):
         "./_includes/code/howto/manage-data.read-all-objects.py"
     ],
 )
-def test_on_edu_demo_py(empty_weaviates, script_loc):
+def test_on_edu_demo_py_pyv4(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="py",
