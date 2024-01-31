@@ -6,14 +6,6 @@ of the client. Earlier client releases have less detailed version information.
 
 To see release notes for a particular version, click on the version number.
 
-   | [4.4.0][p4.4.0] | 2024-01-31 |
-   | [3.26.2][p3.26.2] | 2024-01-22 |
-   | [3.26.1][p3.26.1] | 2024-01-15 |
-   | [3.26.0][p3.26.0] | 2023-12-20 |
-   | [3.25.3][p3.25.3] | 2023-11-07 |
-   | [3.25.2][p3.25.2] | 2023-10-31 |
-
-
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-:|
 | [1.23.7][c1.23.7] | 2024-01-30 | [3.26.2][p3.26.2] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.5.1][j4.5.1] |
