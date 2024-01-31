@@ -1,0 +1,222 @@
+---
+title: Major release - Python client (v4)
+slug: py-client-v4-release
+authors: [dirk, jp]
+date: 2024-02-01
+image: ./img/hero.png
+tags: ['release', 'engineering', 'concepts']
+description: "The new (v4) release of the Weaviate Python Client is - faster (gRPC), provides better IDE support and more type-safety, and many other developer experience improvements. Check out the new release and let us know what you think!"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+
+![Weaviate Python Client v4 Release](./img/hero.png)
+
+**overview & motivations**
+
+## Key changes
+
+### Connections
+
+#### Helper functions
+
+<Tabs groupId="languages">
+    <TabItem value="wcs" label="WCS">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# WCSInstantiation"
+            endMarker="# END WCSInstantiation"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="local" label="Local">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# LocalInstantiationBasic"
+            endMarker="# END LocalInstantiationBasic"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="embedded" label="Embedded">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# EmbeddedInstantiationBasic"
+            endMarker="# END EmbeddedInstantiationBasic"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Close connections
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# PLACEHOLDER"
+    endMarker="# END PLACEHOLDER"
+    language="py"
+/>
+
+
+#### V3 API still available
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# PLACEHOLDER"
+    endMarker="# END PLACEHOLDER"
+    language="py"
+/>
+
+### Default behavior
+
+different default behaviour, like auto return all non-blob/ref properties
+
+### Speed improvements
+
+some speed comparison for query and insert and mention GRPC (and keep any details for later). I can provide numbers in a bit
+
+### Typing & type safety
+
+short paragraph about typing and type-safety (and you can make another blogpost with Tommy later)
+
+## Code examples
+
+### Comparisons vs v3 API
+
+### Collections
+
+<Tabs groupId="languages">
+    <TabItem value="create" label="Create a collection">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="delete" label="Delete a collection">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Data
+
+#### Batching
+- Batching
+    - modes
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# PLACEHOLDER"
+    endMarker="# END PLACEHOLDER"
+    language="py"
+/>
+
+- Batch vs insert_many (vs single insert)
+    - e.g. insert_many to quickly batch-import a list
+
+<Tabs groupId="languages">
+    <TabItem value="batching" label="Batch">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="insert_many" label="Insert many">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="insert" label="Single insert">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+
+- Create objects vs references
+
+### Query
+
+- General ideas
+- What is returned (properties/metadata)
+    - Properties & ID by default (no blobs)
+    - How to get metadata / vectors
+    - References easier to retrieve
+
+- Searches
+- RAG
+
+<Tabs groupId="languages">
+    <TabItem value="search" label="Search">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="rag" label="RAG">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# PLACEHOLDER"
+            endMarker="# END PLACEHOLDER"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+- Filters
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# PLACEHOLDER"
+    endMarker="# END PLACEHOLDER"
+    language="py"
+/>
+
+- Aggregation (get object count)
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# PLACEHOLDER"
+    endMarker="# END PLACEHOLDER"
+    language="py"
+/>
+
+### Iterator
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# PLACEHOLDER"
+    endMarker="# END PLACEHOLDER"
+    language="py"
+/>
+
+## How to get started
+
+- Installation
+- Where to find useful docs
+    - V4 client page
+    - Code snippets (howtos etc.)
+
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />
