@@ -10,29 +10,15 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-:::caution Beta version
-
-The Python client `v4` is currently in beta. Please note the following:
-<br/>
-
-- We strongly encourage you to use the latest version of the Python client *and* the Weaviate server.
-- You can test the new client locally, or on paid instances of Weaviate Cloud Services (WCS).
-- It is not yet available on the free (sandbox) tier of WCS.
-- Please report any bugs or feedback on [this forum thread](https://forum.weaviate.io/t/python-v4-client-feedback-megathread/892)
-
-:::
-
 ## Overview
 
-This page discuses key ideas and aspects of `v4` release of the Weaviate Python client (`v4` client). For Weaviate usage information not specific to the Python client, see the relevant pages in the [Weaviate documentation](../index.md).
+This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../index.md).
 
-For changes in the client between beta releases, please see the [migration guide](../client-libraries/python#migration-guides).
-
-## Key changes from `v3`
+## High-level ideas
 
 ### Helper classes
 
-This client also includes numerous additional Python classes to provide IDE assistance and typing help. You can import them individually, like so:
+The client library provides numerous additional Python classes to provide IDE assistance and typing help. You can import them individually, like so:
 
 ```
 from weaviate.classes.config import Property, ConfigFactory
@@ -40,7 +26,7 @@ from weaviate.classes.data import DataObject
 from weaviate.classes.query import Filter
 ```
 
-But it may be convenient to import the whole set of classes like this. For brevity, the documentation uses this import style.
+But it may be convenient to import the whole set of classes like this. You will see both usage styles in our documentation.
 
 ```
 import weaviate.classes as wvc
@@ -91,7 +77,7 @@ This will close the client connection when you leave the `with` block.
 
 ## Installation
 
-The Python client library is developed and tested using Python 3.8 to 3.12. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
+The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
 
 ```bash
 pip install -U "weaviate-client==4.*"  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
@@ -101,7 +87,7 @@ pip install -U "weaviate-client==4.*"  # For beta versions: `pip install --pre -
 
 #### gRPC
 
-The `v4` client uses remote procedure calls (RPCs) under-the-hood. Accordingly, a port for gRPC must be open on your Weaviate server.
+The `v4` client uses remote procedure calls (RPCs) under-the-hood. Accordingly, a port for gRPC must be open to your Weaviate server.
 
 <details>
   <summary>docker-compose.yml example</summary>
@@ -118,7 +104,7 @@ If you are running Weaviate with Docker, you can map the default port (`50051`) 
 
 #### WCS compatibility
 
-The free (sandbox) tier of WCS is currently not compatible with the `v4` client. (Last updated: January, 2024)
+The free (sandbox) tier of WCS is compatible with the `v4` client as of 31 January, 2024. Sandboxes created before this date will not be compatible with the `v4` client.
 
 #### Weaviate server version
 
@@ -141,8 +127,6 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 <Tabs groupId="languages">
 <TabItem value="wcs" label="WCS">
-
-<p><small>Note: WCS sandboxes are not compatible with the <code>v4</code> client. (Updated, January, 2024)</small></p>
 
 <FilteredTextBlock
   text={PythonCode}
