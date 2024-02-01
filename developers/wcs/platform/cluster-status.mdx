@@ -4,7 +4,7 @@ sidebar_position: 5
 # image: og/wcs/user_guides.jpg
 ---
 
-The Weaviate Cloud Services (WCS) provides a web interface and an API endpoint that let you check instance details. 
+Weaviate Cloud Services (WCS) provides a web interface and an API endpoint that provide information about your Weaviate instance. 
 
 ## Web interface
 
@@ -26,27 +26,10 @@ The `Details` view also has an `Advanced configuration` button. Click on `Advanc
 - CORS origins
 
 
-## Upgrade
+## API Endpoint
 
-WCS does not automatically update existing clusters when a new version of Weaviate core is released. 
+To get collection details programmatically, use the [`nodes`](/weaviate/api/rest/nodes) REST endpoint. 
 
-To check if you are running the latest version of Weaviate core, follow these steps. 
+import APIOutputs from '_includes/rest/node-endpoint-info.mdx';
 
-1. Connect to the WCS console, and find your cluster in the Dashboard tab.
-1. Click the "Details" button.
-1. Find the version tile in the details panel. 
-
-The tile has an "Update!" button when a newer version is available. Consider your business needs, and upgrade your cluster when you have a suitable maintenance window.  
-
-## Security upgrades
-
- WCS does not automatically update clusters, however if an existing cluster has a security vulnerability, WCS upgrades the cluster when a fix is released.
- 
- For security updates, WCS upgrades the cluster to the most current production release unless there are known compatibility issues. If there are compatibility issues, WCS upgrades the cluster to the most recent compatible version. 
-
-## Additional considerations
-
-- **Billing**. If your cluster's Weaviate core version cannot support the billing requirements for your pricing plan, WCS upgrades your cluster to the current production version or the most recent compatible version. 
-- **Data integrity**. If your cluster's Weaviate core version has a known risk of data loss or corruption, WCS upgrades the cluster when a fix is released.
-- **Downgrade**. You cannot downgrade your WCS cluster to an earlier version of Weaviate core.
-- **Enterprise customers**. If you are an enterprise customer and you require a specific version of Weaviate core, contact your support representative. In some circumstances, WCS can install a specific Weaviate core version.
+<import APIOutputs />
