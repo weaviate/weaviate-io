@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/configure.backups.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.backups-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/configure.backups.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/configure.backups.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/configure.backups.java';
@@ -217,9 +218,18 @@ You cannot set `include` and `exclude` at the same time. Set none or exactly one
 :::
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="pyv3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START CreateBackup"
       endMarker="# END CreateBackup"
       language="py"
@@ -289,9 +299,17 @@ GET /v1/backups/{backend}/{backup_id}
 The response contains a `"status"` field. If the status is `SUCCESS`, the backup is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="pyv3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START StatusCreateBackup"
       endMarker="# END StatusCreateBackup"
       language="py"
@@ -369,9 +387,17 @@ The request takes a json object with the following properties:
 *Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="pyv3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START RestoreBackup"
       endMarker="# END RestoreBackup"
       language="py"
@@ -438,9 +464,17 @@ GET /v1/backups/{backend}/{backup_id}/restore
 The response contains a `"status"` field. If the status is `SUCCESS`, the restore is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
+      startMarker="# START CreateBackup"
+      endMarker="# END CreateBackup"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="pyv3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
       startMarker="# START StatusRestoreBackup"
       endMarker="# END StatusRestoreBackup"
       language="py"
