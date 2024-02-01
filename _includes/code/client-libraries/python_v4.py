@@ -651,11 +651,13 @@ try:
     # =====================================================================================
 
     # START AggregateGroupbyExample
+    from weaviate.classes.aggregate import GroupByAggregate
+
     questions = client.collections.get("JeopardyQuestion")
     response = questions.aggregate.near_text(
         query="animal",
         distance=0.2,
-        group_by="points",
+        group_by=GroupByAggregate(prop="points"),
         return_metrics=wvc.query.Metrics("points").integer(mean=True)
     )
 

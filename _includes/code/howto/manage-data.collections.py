@@ -137,7 +137,7 @@ try:
     # Test
     collection = client.collections.get("Article")
     config = collection.config.get()
-    assert config.generative_config.generator == "generative-openai"
+    assert config.generative_config.generative == "generative-openai"
 
     # Delete the collection to recreate it
     client.collections.delete("Article")
