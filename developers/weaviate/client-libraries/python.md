@@ -662,6 +662,15 @@ You can also specify which metadata to retrieve. This example fetches the `creat
 
 Since the `cursor` API requires the object UUID for indexing, the `uuid` metadata is always retrieved.
 
+You can also get the size of the collection by using the built-in `len` function.
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START LenCollectonExample"
+    endMarker="# END LenCollectonExample"
+    language="py"
+/>
+
 ### Data model and generics
 
 You can choose to provide a generic type to a query or data operation. This can be beneficial as the generic class is used to extract the return properties and statically type the response.

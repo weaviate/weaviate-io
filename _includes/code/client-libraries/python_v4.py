@@ -253,9 +253,9 @@ try:
     with questions.batch.dynamic() as batch:
         pass  # Batch import objects/references
 
-    # # Option 2: Client-level batching
-    # with client.batch.dynamic() as batch:
-    #     pass  # Batch import objects/references
+    # Option 2: Client-level batching
+    with client.batch.dynamic() as batch:
+        pass  # Batch import objects/references
 # END BatchBasic
 finally:
     client.close()
@@ -842,6 +842,12 @@ try:
     # IteratorMetadataOnly
     all_object_ids = [question for question in questions.iterator(return_metadata=wvc.query.MetadataQuery(creation_time=True))]  # Only return IDs
     # END IteratorMetadataOnly
+
+
+    # START LenCollectonExample
+    articles = client.collections.get("Article")
+    print(len(articles))
+    # END LenCollectonExample
 
 
     # GenericsExample

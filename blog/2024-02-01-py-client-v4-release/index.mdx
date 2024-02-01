@@ -62,19 +62,22 @@ Notice all the nice autocomplete suggestions as we type! This extends to a great
 
 The new client is much faster than the `v3` client, too. This is because it uses gRPC extensively under-the-hood.
 
-The speed improvements during imports will increase along with the request size. As some rough examples, a 50s import of `ANN` benchmark dataset with the `v3` client will take ~30s with the `v4` client,
+The speed improvements during imports will increase along with the request size. As some rough examples, we've seen:
 
-Queries will also be faster with the `v4` client.
+| Data imported | `v3` client | `v4` client |
+| --- | --- | --- |
+| `ann` dataset | ~50s | ~30s |
+| 50k `sphere` objects | ~200s | ~120s |
 
-Anecdotally, a query on an HNSW index with an `ef` of 16 that had a QPS (queries per second) of 162 with the `v3` client had a QPS of 1560 with the `v4` client. Another query with an `ef` of 256 had a QPS of 110 with the `v3` client, and a QPS of 193 with the `v4` client. (This is a function of how long each query takes server-side, as that is not affected by the client improvements.)
+Queries will also be faster with the `v4` client, with ~40% - ~80% speed improvements being seen in our internal testing.
 
-These are just some rough examples, but we think many of you will see noticeable speed improvements across the board.
+These are just some rough examples, but we think many of you will see noticeable speed improvements across the board. Also keep an eye out for a follow-up blogpost on this topic, where we'll dive into the details 😉.
 
 ### Typing & type safety
 
 Provision of these classes also means that the client is able to provide far more type hints, proving higher type safety.
 
-For example, the `like` method in our `Filter` class example above helpfully tells you to insert the argument as a `str`. But we were to use a `within_geo_range` method, it would tell us to use a coordinate as a `GeoCoordinate` instance, and a distance as a `float`.
+For example, the `like` method in our `Filter` class example above helpfully tells you to insert the argument as a `str`. But if we were to use a `within_geo_range` method, it would tell us to use a coordinate as a `GeoCoordinate` instance, and a distance as a `float`.
 
 This helps you to write the correct code, and also helps you to catch errors early.
 
@@ -136,7 +139,7 @@ You can import the whole `classes` module, or just the classes you need. Many ex
 
 </details>
 
-### Connections
+### Client instantiation
 
 The `v4` client provide a set of helper functions, for connecting to Weaviate through its various deployment methods.
 
@@ -351,7 +354,7 @@ This makes it easy to switch between the different query types, and to discover 
 
 #### Returned data
 
-As mentioned before, the default behavior now is to return all properties (except `blob`s) by default, as well as object uuids.
+As mentioned before, the default behavior now is to return all properties (except `blob`s and references) by default, as well as object uuids.
 
 For less-often used attributes such as cross-references, metadata (previously under `_additional`) and vectors must be requested specifically. This is done through the `return_references`, `return_metadata` and `include_vector` parameters.
 
@@ -382,7 +385,7 @@ Responses from Weaviate are now parsed into instances of custom classes. For exa
 
 ### Iterator
 
-The client includes an iterator to make convenient use of the `cursor` API. This is useful for retrieving large numbers of objects, such as when manually exporting or migrating a collection.
+The client includes an iterator to make convenient use of the `cursor` API. This is useful for retrieving large numbers of objects, such as when [manually exporting](/developers/weaviate/manage-data/read-all-objects) or [migrating a collection](/developers/weaviate/manage-data/migrate).
 
 <Tabs groupId="languages">
     <TabItem value="basic" label="Default">
@@ -410,6 +413,15 @@ The client includes an iterator to make convenient use of the `cursor` API. This
         />
     </TabItem>
 </Tabs>
+
+You can even simply get the size of the collection by using the built-in `len` function - like this!
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START LenCollectonExample"
+    endMarker="# END LenCollectonExample"
+    language="py"
+/>
 
 ## How to get started
 
