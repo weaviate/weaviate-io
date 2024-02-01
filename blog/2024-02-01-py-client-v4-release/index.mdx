@@ -1,0 +1,448 @@
+---
+title: Weaviate Python client (v4) goes GA
+slug: py-client-v4-release
+authors: [dirk, tommy, jp]
+date: 2024-02-01
+image: ./img/hero.png
+tags: ['release', 'engineering', 'concepts']
+description: "The new (v4) release of the Weaviate Python Client is - faster (gRPC), provides better IDE support and more type-safety, and many other developer experience improvements. Check out the new release and let us know what you think!"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+
+![Weaviate Python Client v4 Release](./img/hero.png)
+
+The `v4` Weaviate Python client library has landed in GA (general availability) form. The `v4` client has a brand new API that is more powerful and easier to use 🎉🥳. This is a big update, as reflected by the bump in the major version number.
+
+It still includes the existing (`v3`) API for now, so you can continue to use it without any changes. But we do note and the `v3` API is considered deprecated, and will be removed in the future (estimated ~6 months).
+
+If you're keen to get on with it, just `pip` install it with:
+
+```bash
+pip install -U weaviate-client
+```
+
+But if you're curious about what's new, read on - there's a lot that we are excited about!
+
+## Key ideas
+
+The `v4` client does things a little differently than the `v3` client. Two of the key ideas where it differs are:
+
+- Collection-based interactions, and
+- Default property returns to queries.
+
+Take this query, for example:
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START HybridQueryExample"
+    endMarker="# END HybridQueryExample"
+    language="py"
+/>
+
+Here, you'll notice that the query:
+- is performed on a collection (`questions`), not the `client` itself, and
+- does not specify any properties to return.
+
+This is because the `v4` client is collection-based, and will return all properties (except `blob`s and references) by default. We think this makes the code more concise, and easier to use.
+
+### IDE assistance / autocomplete
+
+And writing the queries is now also much easier, with more IDE assistance and autocomplete. For example, here's a query that uses the `Filter` class:
+
+![Weaviate Python Client v4 Release](./img/pyv4_ide_example2_filter.gif)
+
+Notice all the nice autocomplete suggestions as we type! This extends to a great majority of operations, from collection creation to object insertion to query building.
+
+### Speed improvements
+
+The new client is much faster than the `v3` client, too. This is because it uses gRPC extensively under-the-hood.
+
+The speed improvements during imports will increase along with the request size. As some rough examples, we've seen:
+
+| Data imported | `v3` client | `v4` client |
+| --- | --- | --- |
+| `ann` dataset | ~50s | ~30s |
+| 50k `sphere` objects | ~200s | ~120s |
+
+Queries will also be faster with the `v4` client, with ~40% - ~80% speed improvements being seen in our internal testing.
+
+These are just some rough examples, but we think many of you will see noticeable speed improvements across the board. Also keep an eye out for a follow-up blogpost on this topic, where we'll dive into the details 😉.
+
+### Typing & type safety
+
+Provision of these classes also means that the client is able to provide far more type hints, proving higher type safety.
+
+For example, the `like` method in our `Filter` class example above helpfully tells you to insert the argument as a `str`. But if we were to use a `within_geo_range` method, it would tell us to use a coordinate as a `GeoCoordinate` instance, and a distance as a `float`.
+
+This helps you to write the correct code, and also helps you to catch errors early.
+
+## Practical examples
+
+Here are some practical examples. You'll find plenty of them throughout our site documentation - here, we present a few commonly used operations, with notes as required.
+
+### `v4` vs `v3` API
+
+import CollectionsV4 from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import CollectionsV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+
+Here is an example that really captures the difference between the `v4` and `v3` APIs. Look at the difference in the code required to create a collection with properties.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={CollectionsV4}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={CollectionsV3}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="python"
+    />
+  </TabItem>
+</Tabs>
+
+The `v3` client API uses an untyped dictionary to specify the collection definition. It's efficient, but not very robust, and not particularly easy to use.
+
+On the other hand, the `v4` client API provides plenty of help through type hints and autocomplete suggestions as you navigate to the `.create` method, and use classes such as `Property` and `DataType`. It's also more robust, and easier to use.
+
+### Submodules
+
+For discoverability, the classes that are used as arguments in function calls are arranged into submodules based on the type of operation they are used in.
+
+<details>
+  <summary>Submodule details</summary>
+
+The structure is similar to the collections structure. For example, if you are performing a query (e.g. `collection.query.XXX`) you'll find the needed classes in general under `wvc.query.XXX`. The following table shows the submodules and their descriptions.
+
+| Module                      | Description                         |
+|-----------------------------|-------------------------------------|
+| `weaviate.classes.config`   | Collection creation / modification  |
+| `weaviate.classes.data`     | CUD operations                      |
+| `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.aggregate`| aggregate operations                |
+| `weaviate.classes.generic`  | generics                            |
+| `weaviate.classes.init`     | initialization                      |
+| `weaviate.classes.tenants`  | tenants                             |
+| `weaviate.classes.batch`    | batch operations                    |
+
+You can import the whole `classes` module, or just the classes you need. Many examples throughout the documentation use `import weaviate.classes as wvc` as a convention.
+
+</details>
+
+### Client instantiation
+
+The `v4` client provide a set of helper functions, for connecting to Weaviate through its various deployment methods.
+
+Direct instantiation with full control over the parameters is also possible, too. And, if you need an instance of the `v3` style client, you can still use it.
+
+<Tabs groupId="languages">
+    <TabItem value="wcs" label="WCS">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# WCSInstantiation"
+            endMarker="# END WCSInstantiation"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="local" label="Local">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# LocalInstantiationBasic"
+            endMarker="# END LocalInstantiationBasic"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="embedded" label="Embedded">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# EmbeddedInstantiationBasic"
+            endMarker="# END EmbeddedInstantiationBasic"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="direct" label="Direct instantiation">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# DirectInstantiationFull"
+            endMarker="# END DirectInstantiationFull"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="v3" label="V3 API">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# InstantiationV3API"
+            endMarker="# END InstantiationV3API"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+Just remember that with the new `WeaviateClient` instances (i.e. `v4` API), you should close the connection when you're done with it, as shown in the examples below. (This is still not necessary with the `v3` API.)
+
+<Tabs groupId="languages">
+    <TabItem value="try" label="Try / Finally">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# TryFinallyExample"
+            endMarker="# END TryFinallyExample"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="context" label="Context Manager">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# ClientContextManagerExample"
+            endMarker="# END ClientContextManagerExample"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Batch operations
+
+The new client provides a set of methods to configure batching. These methods help you to control the batching behavior - including a handy `rate_limit()` method to avoid going past any third-party API rate limits.
+
+| Method | Description | When to use |
+| :-- | :-- | :-- |
+| `dynamic` | The batch size is dynamically calculated by Weaviate. | Recommended starting point. |
+| `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
+| `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
+
+<Tabs groupId="languages">
+    <TabItem value="wcs" label="Dynamic">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchDynamic"
+            endMarker="# END BatchDynamic"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="local" label="Fixed size">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchFixedSize"
+            endMarker="# END BatchFixedSize"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="embedded" label="Rate limit">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchRateLimit"
+            endMarker="# END BatchRateLimit"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Error handling in batch operations
+
+The `v4` client introduces additional error handling operations. You can now monitor the number of errors in an ongoing batching operation, or simply review the errors after the operation has completed.
+
+<Tabs groupId="languages">
+    <TabItem value="progress" label="During batching">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchErrorMonitor"
+            endMarker="# END BatchErrorMonitor"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="end" label="After completion">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchSimpleErrorHandling"
+            endMarker="# END BatchSimpleErrorHandling"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Insertion methods
+
+There's also single insertion methods, of course. And to that, we've added a `insert_many` method which is a convenience method for inserting a list of objects.
+
+<Tabs groupId="languages">
+    <TabItem value="batching" label="Batch">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchBasic"
+            endMarker="# END BatchBasic"
+            language="py"
+        />
+        <i>Generally recommended for any multi-object operations.</i>
+    </TabItem>
+    <TabItem value="insert_many" label="Insert many">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START InsertManyBasic"
+            endMarker="# END InsertManyBasic"
+            language="py"
+        />
+        <i>If you just have a list of objects to insert.</i>
+    </TabItem>
+    <TabItem value="insert" label="Single insert">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START CreateObjectExample"
+            endMarker="# END CreateObjectExample"
+            language="py"
+        />
+        <i>For single-insertions; not for bulk operations.</i>
+    </TabItem>
+</Tabs>
+
+### Queries
+
+Various types of queries are available for each collection. The `query` submodule is for single-object based queries, while the `generate` submodule is for RAG queries and `aggregate` for aggregation.
+
+You can use different methods such as `hybrid`, `near_text` and so on within each submodule.
+
+We've tried to keep methods as consistent as possible. So after you've tried object queries, you can enhance it to RAG queries by switching to the `generate` submodule, and provide any additional parameters as required for the prompts!
+
+This makes it easy to switch between the different query types, and to discover the different query types available.
+
+<Tabs groupId="languages">
+    <TabItem value="hybrid" label="Hybrid">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START HybridQueryExample"
+            endMarker="# END HybridQueryExample"
+            language="py"
+        />
+        <p><small>The search query returns a parsed response, with the <code>.objects</code> property containing the retrieved Weaviate objects.</small></p>
+    </TabItem>
+    <TabItem value="neartext" label="NearText">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START NearTextQueryExample"
+            endMarker="# END NearTextQueryExample"
+            language="py"
+        />
+        <p><small>The search query returns a parsed response, with the <code>.objects</code> property containing the retrieved Weaviate objects.</small></p>
+    </TabItem>
+    <TabItem value="rag" label="NearText + RAG">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START NearTextGenerateExample"
+            endMarker="# END NearTextGenerateExample"
+            language="py"
+        />
+        <p><small>The RAG query is very similar to the equivalent search query, but using methods in the <code>generate</code> submodule.</small></p>
+    </TabItem>
+    <TabItem value="filter" label="Aggregate + Filter">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START AggregateCountExample"
+            endMarker="# END AggregateCountExample"
+            language="py"
+        />
+        <p><small>This example retrieves a count of objects that match the filter criteria.</small></p><br/>
+    </TabItem>
+</Tabs>
+
+#### Returned data
+
+As mentioned before, the default behavior now is to return all properties (except `blob`s and references) by default, as well as object uuids.
+
+For less-often used attributes such as cross-references, metadata (previously under `_additional`) and vectors must be requested specifically. This is done through the `return_references`, `return_metadata` and `include_vector` parameters.
+
+Note in the example below how the `MetadataQuery` and `QueryReference` classes reduce the amount of syntax memorization required to request metadata or cross-referenced data.
+
+<Tabs groupId="languages">
+    <TabItem value="custom" label="Specify returns">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BM25QueryCustomReturnsExample"
+            endMarker="# END BM25QueryCustomReturnsExample"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="default" label="Default returns">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BM25QueryDefaultReturnsExample"
+            endMarker="# END BM25QueryDefaultReturnsExample"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Responses
+
+Responses from Weaviate are now parsed into instances of custom classes. For example, each query response will have a list of objects in the `objects` attribute, and each object will have a set of attributes itself. Responses for RAG queries will include a `generated` attribute at the top level for `grouped_task` query, and each object will also have a `generated` attribute for `single_prompt` queries.
+
+### Iterator
+
+The client includes an iterator to make convenient use of the `cursor` API. This is useful for retrieving large numbers of objects, such as when [manually exporting](/developers/weaviate/manage-data/read-all-objects) or [migrating a collection](/developers/weaviate/manage-data/migrate).
+
+<Tabs groupId="languages">
+    <TabItem value="basic" label="Default">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# IteratorBasic"
+            endMarker="# END IteratorBasic"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="oneprop" label="Selected properties">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# IteratorAnswerOnly"
+            endMarker="# END IteratorAnswerOnly"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="meta" label="Metadata Only">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# IteratorMetadataOnly"
+            endMarker="# END IteratorMetadataOnly"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+You can even simply get the size of the collection by using the built-in `len` function - like this!
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START LenCollectonExample"
+    endMarker="# END LenCollectonExample"
+    language="py"
+/>
+
+## How to get started
+
+As you can see - we are very excited about the release, and we hope you are, too. To get started with the client, just `pip` install it with:
+
+```bash
+pip install -U weaviate-client
+```
+
+Then, we have a few resources to help you get started:
+
+
+| Title | Description | Link |
+| --- | --- | --- |
+| Python client library page | An overview of the client library | [`/developers/weaviate/client-libraries/python`](/developers/weaviate/client-libraries/python) |
+| How-to: Manage data | CUD (create/update/delete) operation examples, including collection creation | [`/developers/weaviate/manage-data`](/developers/weaviate/manage-data/) |
+| How-to: Search | Search/query operation examples | [`/developers/weaviate/search`](/developers/weaviate/search/) |
+| References: Search | Reference documentation for searches; more detailed than the How-to guides | [`/developers/weaviate/api/graphql`](/developers/weaviate/api/graphql/) |
+| References: REST | Reference documentation for using the REST API | [`/developers/weaviate/api/rest`](/developers/weaviate/api/rest/) |
+
+
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />

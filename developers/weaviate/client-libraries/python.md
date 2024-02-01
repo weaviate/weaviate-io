@@ -42,6 +42,7 @@ For discoverability, the classes are arranged into submodules.
 | `weaviate.classes.config`   | Collection creation / modification  |
 | `weaviate.classes.data`     | CUD operations                      |
 | `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.aggregate`| aggregate operations                |
 | `weaviate.classes.generic`  | generics                            |
 | `weaviate.classes.init`     | initialization                      |
 | `weaviate.classes.tenants`  | tenants                             |
@@ -660,6 +661,15 @@ You can also specify which metadata to retrieve. This example fetches the `creat
 />
 
 Since the `cursor` API requires the object UUID for indexing, the `uuid` metadata is always retrieved.
+
+You can also get the size of the collection by using the built-in `len` function.
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START LenCollectonExample"
+    endMarker="# END LenCollectonExample"
+    language="py"
+/>
 
 ### Data model and generics
 
