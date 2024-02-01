@@ -355,6 +355,8 @@ As mentioned before, the default behavior now is to return all properties (excep
 
 For less-often used attributes such as cross-references, metadata (previously under `_additional`) and vectors must be requested specifically. This is done through the `return_references`, `return_metadata` and `include_vector` parameters.
 
+Note in the example below how the `MetadataQuery` and `QueryReference` classes reduce the amount of syntax memorization required to request metadata or cross-referenced data.
+
 <Tabs groupId="languages">
     <TabItem value="custom" label="Specify returns">
         <FilteredTextBlock

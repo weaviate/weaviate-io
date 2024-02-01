@@ -647,7 +647,11 @@ try:
         include_vector=True,
         return_properties=["question"],
         return_metadata=wvc.query.MetadataQuery(distance=True),
-        return_references=wvc.query.QueryReference(link_on="hasCategory"),
+        return_references=wvc.query.QueryReference(
+            link_on="hasCategory",
+            return_properties=["title"],
+            return_metadata=wvc.query.MetadataQuery(creation_time=True)
+        ),
         limit=2
     )
 
