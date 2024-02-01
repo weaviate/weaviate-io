@@ -38,13 +38,13 @@ try:
     client.collections.delete("Article")
 
     # START CreateCollectionWithProperties
-    import weaviate.classes as wvc
+    from weaviate.classes.config import Property, DataType
 
     client.collections.create(
         "Article",
         properties=[
-            wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
-            wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
+            Property(name="title", data_type=DataType.TEXT),
+            Property(name="body", data_type=DataType.TEXT),
         ]
     )
     # END CreateCollectionWithProperties
@@ -137,7 +137,7 @@ try:
     # Test
     collection = client.collections.get("Article")
     config = collection.config.get()
-    assert config.generative_config.generator == "generative-openai"
+    assert config.generative_config.generative == "generative-openai"
 
     # Delete the collection to recreate it
     client.collections.delete("Article")
@@ -458,6 +458,17 @@ try:
 
     assert old_config.inverted_index_config.bm25.k1 == 1.2
     assert new_config.inverted_index_config.bm25.k1 == 1.5
+
+
+    # ================================
+    # ===== DELETE A COLLECTION =====
+    # ================================
+
+    # START DeleteCollection
+    # delete collection "Article" - THIS WILL DELETE THE COLLECTION AND ALL ITS DATA
+    client.collections.delete("Article")  # Replace with your collection name
+    # END DeleteCollection
+
 
 finally:
     client.close()

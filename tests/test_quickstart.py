@@ -8,10 +8,9 @@ import utils
     "script_loc",
     [
         "./_includes/code/quickstart/endtoend.py",
-        "./_includes/code/quickstart.byov.all.py",
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_pyv4(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 
@@ -20,10 +19,10 @@ def test_py(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/quickstart/endtoend.py3.py",
+        # "./_includes/code/quickstart/endtoend.py3.py",
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_pyv3(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 

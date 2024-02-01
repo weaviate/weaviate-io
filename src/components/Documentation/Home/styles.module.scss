@@ -3,7 +3,7 @@
   column-gap: 50px;
   margin: 40px 0px;
 
-  @media screen and (max-width: 1180px) {
+  @media screen and (max-width: 780px) {
     flex-direction: column;
     row-gap: 50px;
   }
@@ -16,6 +16,10 @@
   height: 11.512rem;
   flex-shrink: 0;
   padding: 25px 25px;
+
+  @media screen and (max-width: 1180px) {
+    flex-shrink: 1;
+  }
 
   @media screen and (max-width: 450px) {
     width: 100%;
@@ -75,16 +79,23 @@
 
 .deploySection {
   display: flex;
-  column-gap: 50px;
+  gap: 50px;
+  flex-wrap: wrap;
 
-  @media screen and (max-width: 1140px) {
+  @media screen and (max-width: 740px) {
     flex-direction: column;
     row-gap: 50px;
   }
 }
 
 .scenario {
-  column-gap: 25px;
+  gap: 25px;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 840px) {
+    flex-direction: column;
+    row-gap: 50px;
+  }
 }
 
 .whatsNext {
@@ -110,6 +121,18 @@
   height: 22.75rem;
   flex-shrink: 0;
 
+  @media screen and (max-width: 1180px) {
+    flex-basis: 22.625rem;
+    flex-shrink: 1;
+    max-width: 22.625rem;
+  }
+
+  @media screen and (max-width: 740px) {
+    width: 100%;
+    max-width: 25.625rem;
+    flex-shrink: 0;
+  }
+
   @media screen and (max-width: 450px) {
     width: 100%;
   }
@@ -132,8 +155,13 @@
   align-items: center;
   justify-content: center;
 
+  @media screen and (max-width: 1180px) {
+    flex-shrink: 1;
+  }
+
   @media screen and (max-width: 450px) {
     width: 7.65rem;
+    flex-shrink: 0;
   }
 }
 
@@ -226,7 +254,7 @@
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   width: 17.069rem;
   height: 26.0625rem;
-  flex-shrink: 0;
+  flex-shrink: 1;
   padding: 28px 30px;
   display: flex;
   gap: 28px;
@@ -245,6 +273,7 @@
 
   @media screen and (max-width: 450px) {
     width: 100%;
+    flex-shrink: 0;
   }
 }
 
