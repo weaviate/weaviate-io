@@ -212,11 +212,21 @@ The request takes a JSON object with the following properties:
 | `id` | string (lowercase letters, numbers, underscore, minus) | yes | The id of the backup. This string must be provided on all future requests, such as status checking or restoration. |
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
 | `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+| `config`  | object          | no | An optional object to configure the backup.  If not set, it will assign defaults from config table.|
 
 :::note
 You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.
 :::
 
+##### Config object properties
+| name | type | required | default | description |
+| ---- | ---- | ---- | ---- |---- |
+| `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
+| `chunkSize`       | number | no | `128MB` | An optional integer represents the desired size for chunks. Weaviate will attempt to come close the specified size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB.|
+| `compressionLevel`| string | no | `DefaultCompression` | An optional compression level used by compression algorithm from options. `DefaultCompression`, `BestSpeed`, `BestCompression`|
+:::note
+Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default.
+:::
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
@@ -381,10 +391,16 @@ The request takes a json object with the following properties:
 | ---- | ---- | ---- | ---- |
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
 | `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+| `config`  | object          | no | An optional object to configure the restore.  If not set, it will assign defaults from config table.|
 
 *Note 1: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
 
 *Note 2: `include` and `exclude` are relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
+
+##### Config object properties
+| name | type | required | default | description |
+| ---- | ---- | ---- | ---- |---- |
+| `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
