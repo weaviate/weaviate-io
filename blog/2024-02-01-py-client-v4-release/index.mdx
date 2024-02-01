@@ -1,7 +1,7 @@
 ---
 title: Major release - Python client (v4)
 slug: py-client-v4-release
-authors: [dirk, jp]
+authors: [dirk, tommy, jp]
 date: 2024-02-01
 image: ./img/hero.png
 tags: ['release', 'engineering', 'concepts']
@@ -16,7 +16,11 @@ import ManageCollectionsCode from '!!raw-loader!/_includes/code/howto/manage-dat
 
 ![Weaviate Python Client v4 Release](./img/hero.png)
 
-The `v4` release of the Weaviate Python client library has landed 🎉🥳. This is a major update, as reflected by the bump in the major version number. If you're keen to use it, just `pip` install it with:
+The `v4` release of the Weaviate Python client library has landed, with a brand new API that is more powerful and easier to use 🎉🥳. This is a major update, as reflected by the bump in the major version number.
+
+It still includes the existing (`v3`) API for now, so you can continue to use it without any changes. But we do note and the `v3` API is considered deprecated, and will be removed in the future (estimated ~6 months).
+
+If you're keen to get on with it, just `pip` install it with:
 
 ```bash
 pip install -U weaviate-client
@@ -44,7 +48,7 @@ Here, you'll notice that the query:
 - is performed on a collection (`questions`), not the `client` itself, and
 - does not specify any properties to return.
 
-This is because the `v4` client is collection-based, and will return all properties (except `blob`s) by default. We think this makes the code more concise, and easier to use.
+This is because the `v4` client is collection-based, and will return all properties (except `blob`s and references) by default. We think this makes the code more concise, and easier to use.
 
 ### IDE assistance / autocomplete
 
@@ -56,9 +60,15 @@ Notice all the nice autocomplete suggestions as we type! This extends to a great
 
 ### Speed improvements
 
-:::caution TODO
-Some speed comparison for query and insert and mention GRPC (and keep any details for later). Dirk to help w/ numbers.
-:::
+The new client is much faster than the `v3` client, too. This is because it uses gRPC extensively under-the-hood.
+
+The speed improvements during imports will increase along with the request size. As some rough examples, a 50s import of `ANN` benchmark dataset with the `v3` client will take ~30s with the `v4` client,
+
+Queries will also be faster with the `v4` client.
+
+Anecdotally, a query on an HNSW index with an `ef` of 16 that had a QPS (queries per second) of 162 with the `v3` client had a QPS of 1560 with the `v4` client. Another query with an `ef` of 256 had a QPS of 110 with the `v3` client, and a QPS of 193 with the `v4` client. (This is a function of how long each query takes server-side, as that is not affected by the client improvements.)
+
+These are just some rough examples, but we think many of you will see noticeable speed improvements across the board.
 
 ### Typing & type safety
 
@@ -67,23 +77,6 @@ Provision of these classes also means that the client is able to provide far mor
 For example, the `like` method in our `Filter` class example above helpfully tells you to insert the argument as a `str`. But we were to use a `within_geo_range` method, it would tell us to use a coordinate as a `GeoCoordinate` instance, and a distance as a `float`.
 
 This helps you to write the correct code, and also helps you to catch errors early.
-
-#### Submodules
-
-For discoverability, the classes are arranged into submodules like this.
-
-| Module                      | Description                         |
-|-----------------------------|-------------------------------------|
-| `weaviate.classes.config`   | Collection creation / modification  |
-| `weaviate.classes.data`     | CUD operations                      |
-| `weaviate.classes.query`    | query/search operations             |
-| `weaviate.classes.generic`  | generics                            |
-| `weaviate.classes.init`     | initialization                      |
-| `weaviate.classes.tenants`  | tenants                             |
-| `weaviate.classes.batch`    | batch operations                    |
-
-You can import the whole `classes` module, or just the classes you need.
-
 
 ## Practical examples
 
@@ -118,6 +111,30 @@ Here is an example that really captures the difference between the `v4` and `v3`
 The `v3` client API uses an untyped dictionary to specify the collection definition. It's efficient, but not very robust, and not particularly easy to use.
 
 On the other hand, the `v4` client API provides plenty of help through type hints and autocomplete suggestions as you navigate to the `.create` method, and use classes such as `Property` and `DataType`. It's also more robust, and easier to use.
+
+### Submodules
+
+For discoverability, the classes that are used as arguments in function calls are arranged into submodules based on the type of operation they are used in.
+
+<details>
+  <summary>Submodule details</summary>
+
+The structure is similar to the collections structure. For example, if you are performing a query (e.g. `collection.query.XXX`) you'll find the needed classes in general under `wvc.query.XXX`. The following table shows the submodules and their descriptions.
+
+| Module                      | Description                         |
+|-----------------------------|-------------------------------------|
+| `weaviate.classes.config`   | Collection creation / modification  |
+| `weaviate.classes.data`     | CUD operations                      |
+| `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.aggregate`| aggregate operations                |
+| `weaviate.classes.generic`  | generics                            |
+| `weaviate.classes.init`     | initialization                      |
+| `weaviate.classes.tenants`  | tenants                             |
+| `weaviate.classes.batch`    | batch operations                    |
+
+You can import the whole `classes` module, or just the classes you need. Many examples throughout the documentation use `import weaviate.classes as wvc` as a convention.
+
+</details>
 
 ### Connections
 
@@ -168,14 +185,26 @@ Direct instantiation with full control over the parameters is also possible, too
     </TabItem>
 </Tabs>
 
-Just remember that with the new `WeaviateClient` instances (i.e. `v4` API), you'll have to close the connection when you're done with it. This is still not necessary with the `v3` API.
+Just remember that with the new `WeaviateClient` instances (i.e. `v4` API), you should close the connection when you're done with it, as shown in the examples below. (This is still not necessary with the `v3` API.)
 
-<FilteredTextBlock
-    text={PythonCode}
-    startMarker="# TryFinallyExample"
-    endMarker="# END TryFinallyExample"
-    language="py"
-/>
+<Tabs groupId="languages">
+    <TabItem value="try" label="Try / Finally">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# TryFinallyExample"
+            endMarker="# END TryFinallyExample"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="context" label="Context Manager">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# ClientContextManagerExample"
+            endMarker="# END ClientContextManagerExample"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
 
 ### Batch operations
 
@@ -214,6 +243,31 @@ The new client provides a set of methods to configure batching. These methods he
     </TabItem>
 </Tabs>
 
+#### Error handling in batch operations
+
+The `v4` client introduces additional error handling operations. You can now monitor the number of errors in an ongoing batching operation, or simply review the errors after the operation has completed.
+
+<Tabs groupId="languages">
+    <TabItem value="progress" label="During batching">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchErrorMonitor"
+            endMarker="# END BatchErrorMonitor"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="end" label="After completion">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BatchSimpleErrorHandling"
+            endMarker="# END BatchSimpleErrorHandling"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+### Insertion methods
+
 There's also single insertion methods, of course. And to that, we've added a `insert_many` method which is a convenience method for inserting a list of objects.
 
 <Tabs groupId="languages">
@@ -246,11 +300,15 @@ There's also single insertion methods, of course. And to that, we've added a `in
     </TabItem>
 </Tabs>
 
-### Query
+### Queries
 
-Queries are available for each collection through the `query` submodule. You can use different methods such as `hybrid`, `near_text` and so on for searches. When it comes to performing RAG queries, switch to the `generate` submodule, and provide any additional parameters as required for the prompts!
+Various types of queries are available for each collection. The `query` submodule is for single-object based queries, while the `generate` submodule is for RAG queries and `aggregate` for aggregation.
 
-This makes it easy to switch between the different query types, and also makes it easy to discover the different query types available.
+You can use different methods such as `hybrid`, `near_text` and so on within each submodule.
+
+We've tried to keep methods as consistent as possible. So after you've tried object queries, you can enhance it to RAG queries by switching to the `generate` submodule, and provide any additional parameters as required for the prompts!
+
+This makes it easy to switch between the different query types, and to discover the different query types available.
 
 <Tabs groupId="languages">
     <TabItem value="hybrid" label="Hybrid">
@@ -291,11 +349,32 @@ This makes it easy to switch between the different query types, and also makes i
     </TabItem>
 </Tabs>
 
-#### Responses
+#### Returned data
 
 As mentioned before, the default behavior now is to return all properties (except `blob`s) by default, as well as object uuids.
 
 For less-often used attributes such as cross-references, metadata (previously under `_additional`) and vectors must be requested specifically. This is done through the `return_references`, `return_metadata` and `include_vector` parameters.
+
+<Tabs groupId="languages">
+    <TabItem value="custom" label="Specify returns">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BM25QueryCustomReturnsExample"
+            endMarker="# END BM25QueryCustomReturnsExample"
+            language="py"
+        />
+    </TabItem>
+    <TabItem value="default" label="Default returns">
+        <FilteredTextBlock
+            text={PythonCode}
+            startMarker="# START BM25QueryDefaultReturnsExample"
+            endMarker="# END BM25QueryDefaultReturnsExample"
+            language="py"
+        />
+    </TabItem>
+</Tabs>
+
+#### Responses
 
 Responses from Weaviate are now parsed into instances of custom classes. For example, each query response will have a list of objects in the `objects` attribute, and each object will have a set of attributes itself. Responses for RAG queries will include a `generated` attribute at the top level for `grouped_task` query, and each object will also have a `generated` attribute for `single_prompt` queries.
 
@@ -332,12 +411,22 @@ The client includes an iterator to make convenient use of the `cursor` API. This
 
 ## How to get started
 
-:::caution TODO
-- Installation
-- Where to find useful docs
-    - V4 client page
-    - Code snippets (howtos etc.)
-:::
+As you can see - we are very excited about the release, and we hope you are, too. To get started with the client, just `pip` install it with:
+
+```bash
+pip install -U weaviate-client
+```
+
+Then, we have a few resources to help you get started:
+
+
+| Title | Description | Link |
+| --- | --- | --- |
+| Python client library page | An overview of the client library | [`/developers/weaviate/client-libraries/python`](/developers/weaviate/client-libraries/python) |
+| How-to: Manage data | CUD (create/update/delete) operation examples, including collection creation | [`/developers/weaviate/manage-data`](/developers/weaviate/manage-data/) |
+| How-to: Search | Search/query operation examples | [`/developers/weaviate/search`](/developers/weaviate/search/) |
+| References: Search | Reference documentation for searches; more detailed than the How-to guides | [`/developers/weaviate/api/graphql`](/developers/weaviate/api/graphql/) |
+| References: REST | Reference documentation for using the REST API | [`/developers/weaviate/api/rest`](/developers/weaviate/api/rest/) |
 
 
 import WhatNext from '/_includes/what-next.mdx'

@@ -42,6 +42,7 @@ For discoverability, the classes are arranged into submodules.
 | `weaviate.classes.config`   | Collection creation / modification  |
 | `weaviate.classes.data`     | CUD operations                      |
 | `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.aggregate`| aggregate operations                |
 | `weaviate.classes.generic`  | generics                            |
 | `weaviate.classes.init`     | initialization                      |
 | `weaviate.classes.tenants`  | tenants                             |

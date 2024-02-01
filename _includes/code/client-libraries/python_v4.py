@@ -218,7 +218,7 @@ import weaviate
 client = weaviate.connect_to_local()
 
 try:
-    with client.batch.fixed_size(batch_size=200) as batch:  # or <collection>.batch.fixed_size()
+    with client.batch.fixed_size(batch_size=100, concurrent_requests=4) as batch:  # or <collection>.batch.fixed_size()
         pass  # Batch import objects/references
 
 finally:
@@ -287,6 +287,49 @@ try:
 finally:
     client.close()
 # END BatchErrorHandling
+
+
+# START BatchErrorMonitor
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+max_errors = 500
+
+try:
+    with client.batch.rate_limit(requests_per_minute=600) as batch:
+
+        # Insert objects here
+
+        # highlight-start
+        if batch.number_errors > max_errors:  # Monitor
+        # highlight-end
+            pass  # Do something (e.g. break)
+
+finally:
+    client.close()
+# END BatchErrorMonitor
+
+
+# START BatchSimpleErrorHandling
+import weaviate
+import weaviate.classes as wvc
+
+client = weaviate.connect_to_local()
+
+try:
+    with client.batch.rate_limit(requests_per_minute=600) as batch:
+        pass  # Batch import objects/references
+
+    # highlight-start
+    failed_objs_a = client.batch.failed_objects  # Get failed objects from the batch import
+    failed_refs_a = client.batch.failed_references  # Get failed references from the batch import
+    # highlight-end
+
+finally:
+    client.close()
+# END BatchSimpleErrorHandling
 
 
 # =====================================================================================
