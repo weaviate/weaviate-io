@@ -194,6 +194,18 @@ finally:
     client.close()
 
 
+# WCSQuickStartInstantiation
+import weaviate
+import os
+
+with weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+) as client:  # Use this context manager to ensure the connection is closed
+    client.collections.list_all()
+# END WCSQuickStartInstantiation
+
+
 # =====================================================================================
 # Batch examples
 # =====================================================================================
@@ -759,11 +771,13 @@ try:
     # =====================================================================================
 
     # START AggregateGroupbyExample
+    from weaviate.classes.aggregate import GroupByAggregate
+
     questions = client.collections.get("JeopardyQuestion")
     response = questions.aggregate.near_text(
         query="animal",
         distance=0.2,
-        group_by="points",
+        group_by=GroupByAggregate(prop="points"),
         return_metrics=wvc.query.Metrics("points").integer(mean=True)
     )
 

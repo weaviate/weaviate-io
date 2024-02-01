@@ -78,10 +78,10 @@ try:
     # START limit Python
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.query.hybrid(
-    query="food",
-    # highlight-start
-    limit=3
-    # highlight-end
+        query="food",
+        # highlight-start
+        limit=3
+        # highlight-end
     )
 
     for o in response.objects:
@@ -101,10 +101,11 @@ try:
     # START autocut Python
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.query.hybrid(
-    query="food",
-    # highlight-start
-    auto_limit=1
-    # highlight-end
+        query="food",
+        # highlight-start
+        fusion_type=wvc.query.HybridFusion.RELATIVE_SCORE,
+        auto_limit=1
+        # highlight-end
     )
 
     for o in response.objects:
@@ -150,11 +151,11 @@ try:
 
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.query.hybrid(
-    query="food",
-    # highlight-start
-    fusion_type=wvc.query.HybridFusion.RELATIVE_SCORE,
-    # highlight-end
-    limit=3
+        query="food",
+        # highlight-start
+        fusion_type=wvc.query.HybridFusion.RELATIVE_SCORE,
+        # highlight-end
+        limit=3
     )
 
     for o in response.objects:

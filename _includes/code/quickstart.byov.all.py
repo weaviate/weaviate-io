@@ -1,3 +1,11 @@
+# Clean slate
+import weaviate
+import json
+
+with weaviate.connect_to_local() as client:
+    client.collections.delete("Question")
+
+
 # Bring your own vectors - Python complete sample
 import weaviate
 import json
