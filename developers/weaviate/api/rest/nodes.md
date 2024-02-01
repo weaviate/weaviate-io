@@ -30,7 +30,7 @@ GET /v1/nodes/{CollectionName}
 
 import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
 
-<import APIOutputs />
+<APIOutputs />
 
 ## Example
 
