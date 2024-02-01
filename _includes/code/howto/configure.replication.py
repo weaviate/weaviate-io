@@ -24,7 +24,7 @@ try:
     articles = client.collections.create(
         name="Article",
         properties=[
-            Property(name="title", data_type=[DataType.TEXT])
+            Property(name="title", data_type=DataType.TEXT)
         ],
         replication_config=Configure.replication(factor=3)
     )
