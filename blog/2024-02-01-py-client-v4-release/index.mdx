@@ -83,7 +83,7 @@ This helps you to write the correct code, and also helps you to catch errors ear
 
 ## Practical examples
 
-Here are some practical examples. You'll find plenty of them throughout our site documentation - here, we present a few commonly used operations, with notes as required.
+Here are some practical examples. You'll find plenty of them throughout the [Weaviate documentation](/developers/weaviate/) - here, we present a few commonly used operations, with notes as required.
 
 ### `v4` vs `v3` API
 
@@ -404,17 +404,19 @@ The client includes an iterator to make convenient use of the `cursor` API. This
             language="py"
         />
     </TabItem>
-    <TabItem value="meta" label="Metadata Only">
+    <TabItem value="meta" label="Get metadata">
         <FilteredTextBlock
             text={PythonCode}
-            startMarker="# IteratorMetadataOnly"
-            endMarker="# END IteratorMetadataOnly"
+            startMarker="# IteratorWithMetadata"
+            endMarker="# END IteratorWithMetadata"
             language="py"
         />
     </TabItem>
 </Tabs>
 
-You can even simply get the size of the collection by using the built-in `len` function - like this!
+### `len`
+
+You can even get the size of the collection by using the built-in `len` function - like this!
 
 <FilteredTextBlock
     text={PythonCode}
@@ -436,6 +438,7 @@ Then, we have a few resources to help you get started:
 
 | Title | Description | Link |
 | --- | --- | --- |
+| Weaviate Quickstart | New to Weaviate? Start here. | [`/developers/weaviate/quickstart`](/developers/weaviate/quickstart) |
 | Python client library page | An overview of the client library | [`/developers/weaviate/client-libraries/python`](/developers/weaviate/client-libraries/python) |
 | How-to: Manage data | CUD (create/update/delete) operation examples, including collection creation | [`/developers/weaviate/manage-data`](/developers/weaviate/manage-data/) |
 | How-to: Search | Search/query operation examples | [`/developers/weaviate/search`](/developers/weaviate/search/) |
