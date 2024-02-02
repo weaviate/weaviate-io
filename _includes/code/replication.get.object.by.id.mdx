@@ -1,8 +1,19 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.replication.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START QueryWithReplication"
+      endMarker="# END QueryWithReplication"
+      language="py"
+    />
+  </TabItem>
+
+<TabItem value="pyv3" label="Python (v3)">
 
 ```python
 import weaviate
