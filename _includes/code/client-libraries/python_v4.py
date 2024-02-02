@@ -210,6 +210,28 @@ with weaviate.connect_to_wcs(
 # Batch examples
 # =====================================================================================
 
+import weaviate
+from weaviate.classes.config import Property, DataType, ReferenceProperty
+from weaviate.classes.data import DataReference
+from weaviate.util import generate_uuid5
+
+client = weaviate.connect_to_local()
+
+client.collections.delete("WikiArticle")
+client.collections.create(
+    name="WikiArticle",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT)
+    ],
+    references=[
+        ReferenceProperty(name="linkedArticle", target_collection="WikiArticle")
+    ]
+)
+src_uuid = generate_uuid5("Multitenancy")
+tgt_uuid = generate_uuid5("Database schema")
+
+client.close()
+
 # START BatchDynamic
 import weaviate
 
@@ -217,7 +239,10 @@ client = weaviate.connect_to_local()
 
 try:
     with client.batch.dynamic() as batch:  # or <collection>.batch.dynamic()
-        pass  # Batch import objects/references
+        # Batch import objects/references - e.g.:
+        batch.add_object(properties={"title": "Multitenancy"}, collection="WikiArticle", uuid=src_uuid)
+        batch.add_object(properties={"title": "Database schema"}, collection="WikiArticle", uuid=tgt_uuid)
+        batch.add_reference(from_collection="WikiArticle", from_uuid=src_uuid, from_property="linkedArticle", to=DataReference.to_uuid(tgt_uuid))
 
 finally:
     client.close()
@@ -231,7 +256,10 @@ client = weaviate.connect_to_local()
 
 try:
     with client.batch.fixed_size(batch_size=100, concurrent_requests=4) as batch:  # or <collection>.batch.fixed_size()
-        pass  # Batch import objects/references
+        # Batch import objects/references - e.g.:
+        batch.add_object(properties={"title": "Multitenancy"}, collection="WikiArticle", uuid=src_uuid)
+        batch.add_object(properties={"title": "Database schema"}, collection="WikiArticle", uuid=tgt_uuid)
+        batch.add_reference(from_collection="WikiArticle", from_uuid=src_uuid, from_property="linkedArticle", to=DataReference.to_uuid(tgt_uuid))
 
 finally:
     client.close()
@@ -245,7 +273,10 @@ client = weaviate.connect_to_local()
 
 try:
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
-        pass  # Batch import objects/references
+        # Batch import objects/references - e.g.:
+        batch.add_object(properties={"title": "Multitenancy"}, collection="WikiArticle", uuid=src_uuid)
+        batch.add_object(properties={"title": "Database schema"}, collection="WikiArticle", uuid=tgt_uuid)
+        batch.add_reference(from_collection="WikiArticle", from_uuid=src_uuid, from_property="linkedArticle", to=DataReference.to_uuid(tgt_uuid))
 
 finally:
     client.close()
@@ -487,7 +518,7 @@ try:
             "question": "This is the capital of Australia."
         },
         references={  # For adding cross-references
-            "hasCategory": [target_uuid]
+            "hasCategory": target_uuid
         }
     )
     # END CreateObjectExample
@@ -853,9 +884,9 @@ try:
     all_object_answers = [question for question in questions.iterator(return_properties=["answer"])]
     # END IteratorAnswerOnly
 
-    # IteratorMetadataOnly
-    all_object_ids = [question for question in questions.iterator(return_metadata=wvc.query.MetadataQuery(creation_time=True))]  # Only return IDs
-    # END IteratorMetadataOnly
+    # IteratorWithMetadata
+    all_object_ids = [question for question in questions.iterator(return_metadata=wvc.query.MetadataQuery(creation_time=True))]  # Get selected metadata
+    # END IteratorWithMetadata
 
 
     # START LenCollectonExample

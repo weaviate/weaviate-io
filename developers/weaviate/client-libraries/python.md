@@ -655,8 +655,8 @@ You can also specify which metadata to retrieve. This example fetches the `creat
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# IteratorMetadataOnly"
-  endMarker="# END IteratorMetadataOnly"
+  startMarker="# IteratorWithMetadata"
+  endMarker="# END IteratorWithMetadata"
   language="py"
 />
 
