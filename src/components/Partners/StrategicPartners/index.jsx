@@ -23,7 +23,7 @@ export default function StrategicPartners() {
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="">
+              <Link to="/partners/gcp">
                 <span className={styles.gcp} />
               </Link>
             </div>
