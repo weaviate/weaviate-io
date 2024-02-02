@@ -317,7 +317,7 @@ Let's say that a search returns **five objects** with **document id** (from 0 to
 
 #### Ranked Fusion
 
-The score depends on the rank of each result and is computed according to `1/(RANK + 60 +1)`, resulting in:
+The score depends on the rank of the result. The score is equal to `1/(RANK + 60)`:
 
 <table>
   <tr>
@@ -326,11 +326,11 @@ The score depends on the rank of each result and is computed according to `1/(RA
   </tr>
   <tr>
     <td>Keyword</td>
-    <td>(1): 0.0164</td><td>(0): 0.0161</td><td>(2): 0.0159</td><td>(4): 0.0156</td><td>(3): 0.0154</td>
+    <td>(1): 0.0154</td><td>(0): 0.0160</td><td>(2): 0.0161</td><td>(4): 0.0167</td><td>(3): 0.0166</td>
   </tr>
   <tr>
     <td>Vector</td>
-    <td>(2): 0.0164</td><td>(4): 0.0161</td><td>(0): 0.0159</td><td>(1): 0.0156</td><td>(3): 0.0154</td>
+    <td>(2): 0.016502</td><td>(4): 0.016502</td><td>(0): 0.016503</td><td>(1): 0.016503</td><td>(3): 0.016666</td>
   </tr>
 </table>
 
