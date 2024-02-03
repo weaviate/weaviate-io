@@ -56,6 +56,7 @@ Weaviate:
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-transformers` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-transformers` to make it the default for all classes.
 - `TRANSFORMERS_INFERENCE_API` (Required): The URL of the inference container.
+- `USE_SENTENCE_TRANSFORMERS_VECTORIZER` (Optional): (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only.
 
 Inference container:
 
@@ -259,6 +260,8 @@ docker build -f distilroberta.Dockerfile -t distilroberta-inference .
 #### Step 3: Use the image
 
 You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `distilroberta-inference`.
+
+Note: When using a custom image, you have the option of using the `USE_SENTENCE_TRANSFORMERS_VECTORIZER` environment variable to use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library).
 
 
 ### Option 3: A private or local model
