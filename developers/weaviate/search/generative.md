@@ -74,7 +74,7 @@ The properties you use in the prompt do not have to be among the properties you 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# SingleGenerativePropertiesGraphQL"
       endMarker="# END SingleGenerativePropertiesGraphQL"
       language="graphql"
@@ -88,7 +88,7 @@ The properties you use in the prompt do not have to be among the properties you 
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# SingleGenerativeProperties Expected Results"
   endMarker="# END SingleGenerativeProperties Expected Results"
   language="json"
@@ -130,7 +130,7 @@ Grouped task search returns one response that includes all of the query results.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GroupedGenerativeGraphQL"
       endMarker="# END GroupedGenerativeGraphQL"
       language="graphql"
@@ -144,7 +144,7 @@ Grouped task search returns one response that includes all of the query results.
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# GroupedGenerative Expected Results"
   endMarker="# END GroupedGenerative Expected Results"
   language="json"
@@ -189,7 +189,7 @@ Define object `properties` to use in the prompt. This limits the information in 
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# GroupedGenerativePropertiesGraphQL"
       endMarker="# END GroupedGenerativePropertiesGraphQL"
       language="graphql"
@@ -203,7 +203,7 @@ Define object `properties` to use in the prompt. This limits the information in 
 The output is like this:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# GroupedGenerativeProperties Expected Results"
   endMarker="# END GroupedGenerativeProperties Expected Results"
   language="json"

@@ -142,7 +142,7 @@ For example, the following schema configuration will set Weaviate to use the `ge
 <details>
   <summary>New to Weaviate Schemas?</summary>
 
-If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers/weaviate/tutorials/schema.md).
+If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers/weaviate/starter-guides/schema.md).
 
 </details>
 

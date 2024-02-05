@@ -39,7 +39,7 @@ import json
 client = weaviate.Client(
     "http://localhost:8080",  # Replace with your Weaviate URL
     # Uncomment if authentication is on and replace w/ your Weaviate instance API key.
-    # auth_client_secret=weaviate.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
+    # auth_client_secret=weaviate.auth.AuthApiKey("YOUR-WEAVIATE-API-KEY"),
 )
 
 # Fetch URL into `content` variable

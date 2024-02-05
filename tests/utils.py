@@ -3,6 +3,12 @@ import re
 from pathlib import Path
 
 
+def load_script(script_path: str) -> str:
+    with open(script_path, "r") as f:
+        code_block = f.read()
+    return code_block
+
+
 def populate_inference_api_keys(codeblock_in: str) -> str:
 
     codeblock_out = codeblock_in

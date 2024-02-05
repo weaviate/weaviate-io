@@ -184,33 +184,12 @@ Use the `vector` property to specify a vector for each object.
   </TabItem>
 </Tabs>
 
-## Python specific batch parameters
+## Python-specific batching
 
-The python client v3 has a helper function, `client.batch`, for batch processing. 
+The Python clients have built-in batching methods to help you optimize your import speed. Please see the relevant documentation for more information.
 
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# ConfigureBatchImportExample"
-  endMarker="# END ConfigureBatchImportExample"
-  language="py"
-/>
-
-<details>
-  <summary>Additional information</summary>
-
-The following parameters have the greatest impact on the batch import speed:
-
-| Parameter | Type | Recommended<br/>value | Purpose |
-| :- | :- | :- |:- |
-| `batch_size` | integer | 50 - 200 | Initial batch size
-| `num_workers` | integer | 1 - 2 | Maximum number of parallel workers
-| `dynamic` | boolean | True | If true, dynamically adjust the `batch_size`<br/> based on the number of items in the batch
-
-To automatically flush the last batch of object, use `client.batch` in a context manager.
-
-For more information, see [Python client batching](../client-libraries/python.md#batching).
-
-</details>
+- [Batching: Python client `v4`](../client-libraries/python.md#batching)
+- [Batching: Python client `v3`](../client-libraries/python_v3.md#batching)
 
 ## Stream data from large files
 
@@ -219,7 +198,27 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
 <!-- TODOv4: update Python - JSON and CSV with v4 code -->
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python - JSON">
+  <TabItem value="py" label="Python (v4) - JSON">
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START JSON streaming"
+    endMarker="# END JSON streaming"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="pycsv" label="Python (v4) - CSV">
+
+  <FilteredTextBlock
+    text={PyCode}
+    startMarker="# START CSV streaming"
+    endMarker="# END CSV streaming"
+    language="py"
+  />
+
+  </TabItem>
+  <TabItem value="py3" label="Python (v3) - JSON">
 
   <FilteredTextBlock
     text={PyCodeV3}
@@ -229,7 +228,7 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
   />
 
   </TabItem>
-  <TabItem value="pycsv" label="Python - CSV">
+  <TabItem value="py3csv" label="Python (v3) - CSV">
 
   <FilteredTextBlock
     text={PyCodeV3}
@@ -266,7 +265,7 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
 :::info Added in `v1.23`.
 :::
 
-To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) and use gRPC batch imports. 
+To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) and use gRPC batch imports.
 
 Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
 

@@ -5,27 +5,27 @@ import shlex
 import os
 
 
+@pytest.mark.pyv4
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./_includes/code/howto/manage-data.create.py",
-        "./_includes/code/howto/manage-data.cross-refs.py",
-        "./_includes/code/howto/manage-data.import.py",
-        "./_includes/code/howto/manage-data.delete.py",
-        "./_includes/code/howto/manage-data.update.py",
         "./_includes/code/howto/manage-data.collections.py",
+        "./_includes/code/howto/manage-data.create.py",
+        "./_includes/code/howto/manage-data.import.py",
+        "./_includes/code/howto/manage-data.update.py",
+        "./_includes/code/howto/manage-data.delete.py",
+        "./_includes/code/howto/manage-data.cross-refs.py",
         "./_includes/code/howto/manage-data.multi-tenancy.py",
+        "./_includes/code/howto/manage-data.migrate.data.v4.py",
     ],
 )
-def test_on_blank_instance(empty_weaviates, script_loc):
-    temp_proc_script_loc = utils.load_and_prep_temp_file(
-        script_loc,
-        lang="py",
-    )
-    exec(temp_proc_script_loc.read_text())
+def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
+    proc_script = utils.load_and_prep_script(script_loc)
+    exec(proc_script)
 
 
 
+@pytest.mark.pyv4
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -33,7 +33,7 @@ def test_on_blank_instance(empty_weaviates, script_loc):
         "./_includes/code/howto/manage-data.read-all-objects.py"
     ],
 )
-def test_on_edu_demo(empty_weaviates, script_loc):
+def test_on_edu_demo_py_pyv4(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="py",
@@ -42,6 +42,7 @@ def test_on_edu_demo(empty_weaviates, script_loc):
     exec(temp_proc_script_loc.read_text())
 
 
+@pytest.mark.ts
 @pytest.mark.parametrize(
     "script_loc",
     [

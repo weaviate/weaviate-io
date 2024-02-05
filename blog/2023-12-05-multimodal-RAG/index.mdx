@@ -69,7 +69,7 @@ You can also use this diagram explaining any-to-any search to get an intuition o
 ```python
 client.collections.create(
     name="Animals",
-    vectorizer_config=wvc.Configure.Vectorizer.multi2vec_bind(
+    vectorizer_config=wvc.config.Configure.Vectorizer.multi2vec_bind(
         audio_fields=["audio"],
         image_fields=["image"],
         video_fields=["video"],
@@ -148,7 +148,7 @@ Below we provide code that allows you to implement MM-RAG by retrieving from the
 def retrieve_image(query):
     response = animals.query.near_text(
         query=query,
-        filters=wvc.Filter(path="mediaType").equal("image"),
+        filters=wvc.query.Filter(path="mediaType").equal("image"),
         return_properties=['name','path','mediaType','image'],
         limit = 1,
     )

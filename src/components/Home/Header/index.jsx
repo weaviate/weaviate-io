@@ -23,65 +23,65 @@ export default function HomepageHeader() {
     }
   `;
 
-  const codeExample = `collection = (    
-    client.collections    
+  const codeExample = `collection = (
+    client.collections
     .get("Article")
  )
- 
+
  # Find relevant articles
  # with hybrid search
- response = (    
-    collection.query    
-    .hybrid(        
-          query="Generative AI",        
-          limit=2  
+ response = (
+    collection.query
+    .hybrid(
+          query="Generative AI",
+          limit=2
     )
  )
 `;
 
-  const codeExample2 = `collection = (    
-    client.collections    
+  const codeExample2 = `collection = (
+    client.collections
     .get("Article")
     )
-  
-  # Perform RAG with a command 
-  response = (   
-    collection   
-      .generate.hybrid( 
-        query="Generative AI",        
-        limit=5,        
-        grouped_task="""        
-        Summarize highlights         
-        from these as bullet points.        
-        """    
+
+  # Perform RAG with a command
+  response = (
+    collection
+      .generate.hybrid(
+        query="Generative AI",
+        limit=5,
+        grouped_task="""
+        Summarize highlights
+        from these as bullet points.
+        """
     )
   )
   # View the generated points
   print(response.generated)`;
 
   const codeExample3 = `listings = client.collections.get("Listing")
-  ads = client.collections.get("Ad") 
-  
-  # Perform RAG 
-  response = (    
+  ads = client.collections.get("Ad")
+
+  # Perform RAG
+  response = (
     listings.generate.fetch_objects(
-      single_prompt="""        
-      Write an engaging advertisement        
-      for this AirBnb listing {description}        
-      """,        
-      limit=5,    
+      single_prompt="""
+      Write an engaging advertisement
+      for this AirBnb listing {description}
+      """,
+      limit=5,
     )
-  ) 
-  
-  # Save the results as new data 
-  for obj in response.objects:    
+  )
+
+  # Save the results as new data
+  for obj in response.objects:
   new_ad_id = ads.data.insert(
-    properties={"content": obj.generated},    
-  )    
+    properties={"content": obj.generated},
+  )
   listings.data.reference_add(
-    from_uuid=obj.uuid,        
-    from_property="hasAd",        
-    ref=Reference.to([new_ad_id])    
+    from_uuid=obj.uuid,
+    from_property="hasAd",
+    ref=[new_ad_id]
   )`;
 
   const settings = {

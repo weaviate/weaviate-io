@@ -1,42 +1,18 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/graphql.additional.py';
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START MergingEntities"
+      endMarker="# END MergingEntities"
+      language="py"
+    />
+  </TabItem>
 
-```python
-import os
-import weaviate
-import weaviate.classes as wvc
-from weaviate.collections.classes.grpc import Sort
-
-client = weaviate.connect_to_local()
-
-article=client.graphql_raw_query(
-"""
-   {
-     Get {
-      Publication(
-        group:{
-          type: merge,
-          force:0.05
-        }
-      ) {
-        name
-      }
-    }
-  }
-"""  
-)
-
-for a in article.get["Publication"]:
-    print(a)
-
-client.close()
-
-```
-
-</TabItem>
 <TabItem value="py3" label="Python (v3)">
 
 ```python

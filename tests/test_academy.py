@@ -2,6 +2,7 @@ import pytest
 import utils
 
 
+@pytest.mark.pyv3
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -12,11 +13,12 @@ import utils
         "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/40_import_example_1.py",
     ],
 )
-def test_against_empty_weaviate(empty_weaviates, script_loc):
+def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 
 
+@pytest.mark.pyv3
 @pytest.mark.parametrize(
     "script_loc",
     [
@@ -26,7 +28,7 @@ def test_against_empty_weaviate(empty_weaviates, script_loc):
         "./developers/academy/zero_to_mvp/104_queries_2/_snippets/40_qna.py",
     ],
 )
-def test_against_edu_demo(empty_weaviates, script_loc):
+def test_against_edu_demo_pyv3(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="py",

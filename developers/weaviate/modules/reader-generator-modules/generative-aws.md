@@ -136,7 +136,7 @@ The following example configures the `Document` class to use the `generative-aws
 <details>
   <summary>New to Weaviate Schemas?</summary>
 
-If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers/weaviate/tutorials/schema.md).
+If you are new to Weaviate, check out the [Weaviate schema tutorial](/developers/weaviate/starter-guides/schema.md).
 
 </details>
 
