@@ -157,9 +157,14 @@ IN WITNESS WHEREOF, the duly authorized representatives of each of the parties h
 
 | Fees                   |                                                           |
 |------------------------|-----------------------------------------------------------|
-| License fee            | **REMOVE THE PLANS THAT ARE NOT APPLICABLE FOR THIS ORDER** " **Weaviate Enterprise Dedicated / Serverless /BYOC / Support Package"** **Estimated Usage** - … **Support Package Parameters** - … **Plan:** - **Standard** - Price per 1M embeddings: $0.095 - With a floor price of $25.00, per (prod-cluster), based on the Standard support SLA type. - **Enterprise** - Price per 1M embeddings: $0.145 - With a floor price of $135.00, per (prod-cluster), based on the Enterprise support SLA type. - **Business Critical** - Price per 1M embeddings: $0.195 - With a floor price $450.00, per (prod-cluster), based on the Business Critical support SLA type. **Package Inclusions:** - … **Pricing:** - $...| 
-| Payment Terms | The term of this Agreement will commence on the date these Terms are accepted by both parties.|
-
+| License fee            | **REMOVE THE PLANS THAT ARE NOT APPLICABLE FOR THIS ORDER** |
+| Standard               | Price per 1M embeddings: $0.095                           |
+|                        | With a floor price of $25.00, per (prod-cluster), based on the Standard support SLA type. |
+| Enterprise             | Price per 1M embeddings: $0.145                           |
+|                        | With a floor price of $135.00, per (prod-cluster), based on the Enterprise support SLA type. |
+| Business Critical      | Price per 1M embeddings: $0.195                           |
+|                        | With a floor price of $450.00, per (prod-cluster), based on the Business Critical support SLA type. |
+| Additional Payment Terms | At the end of the initial Term set forth in this Order Form, and upon the automatic renewal of this Agreement, Customer’s current fees will increase to Weaviate’s then current pricing available at: [Weaviate Pricing](https://weaviate.io/pricing/) |
 ---
 ### **Exhibit B**
 
