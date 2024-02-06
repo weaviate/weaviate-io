@@ -11,7 +11,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Last Updated: January, 2024**
 
-This Customer Agreement (this “**_Agreement_**”) is between Weaviate, B.V., a private limited company (“**_Weaviate_**”), and \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (“**_Customer_**”) and is effective as of \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (the “**_Effective Date_**”).
+This Customer Agreement (this “**_Agreement_**”) is between Weaviate, LLC, a private limited liability company (“**_Weaviate_**”), and \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (“**_Customer_**”) and is effective as of \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (the “**_Effective Date_**”).
 
 ### **Background**
 
