@@ -12,6 +12,9 @@ client = weaviate.connect_to_local(
 try:
 # END-ANY
 
+    # Clean slate
+    client.collections.delete(name="Question")
+
     # START BasicSchema
     questions = client.collections.create(
         name="Question",
@@ -60,6 +63,8 @@ try:
     )
     # END SchemaWithPropertyOptions
 
+    # Clean slate
+    client.collections.delete(name="Question")
 
     # START SchemaWithMultiTenancy
     questions = client.collections.create(
@@ -82,6 +87,8 @@ try:
     )
     # END SchemaWithMultiTenancy
 
+    # Clean slate
+    client.collections.delete(name="Question")
 
     # START SchemaWithIndexSettings
     questions = client.collections.create(

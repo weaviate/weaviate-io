@@ -80,7 +80,7 @@ import GraphQLFiltersLimit from '/_includes/code/graphql.filters.limit.mdx';
 To return sets of results, "pages", use `offset` and `limit` together to specify a sub-set of the query response.
 
 For example, to list the first ten results, set `limit: 10` and `offset: 0`. To display the next ten results, set `offset: 10`. To continue iterating over the results, increase the offset again. For more details, see [performance considerations](./additional-operators.md#performance-considerations)
- 
+
 The `Get` and `Explore` functions support `offset`.
 
 import GraphQLFiltersOffset from '/_includes/code/graphql.filters.offset.mdx';
@@ -124,7 +124,7 @@ Pagination is not a cursor-based implementation. This has the following implicat
 
 - **Response time and system load increase as the number of pages grows**. As the offset grows, each additional page request requires a new, larger call against your collection. For example, if your `offset` and `limit` specify results from 21-30, Weaviate retrieves 30 objects and drops the first 20. On the next call, Weaviate retrieves 40 objects and drops the first 30.
 - **Resource requirements are amplified in multi-shard configurations.** Each shard retrieves a full list of objects. Each shard also drops the objects before the offset. If you have 10 shards configured and ask for results 91-100, Weaviate retrieves 1000 objects (100 per shard) and drops 990 of them.
-- **The number of objects you can retrieve is limited**. A single query returns up to `QUERY_MAXIMUM_RESULTS`. If the sum of `offset` and `limit` exceeds `QUERY_MAXIMUM_RESULTS`, Weaviate returns an error. To change the limit, edit the `QUERY_MAXIMUM_RESULTS` environment variable. If you increase `QUERY_MAXIMUM_RESULTS`, use the lowest value possible to avoid performance problems. 
+- **The number of objects you can retrieve is limited**. A single query returns up to `QUERY_MAXIMUM_RESULTS`. If the sum of `offset` and `limit` exceeds `QUERY_MAXIMUM_RESULTS`, Weaviate returns an error. To change the limit, edit the `QUERY_MAXIMUM_RESULTS` environment variable. If you increase `QUERY_MAXIMUM_RESULTS`, use the lowest value possible to avoid performance problems.
  - **Pagination is not stateful**. If the database state changes between calls, your pages might miss results. An insertion or a deletion will change the object count. An update could change object order. However, if there are no writes the overall results set is the same if you retrieve a large single page or many smaller ones.
 
 
@@ -208,9 +208,9 @@ Sample client code:
 The output is like this:
 
 <FilteredTextBlock
-  text={AutocutPyCode}
-  startMarker="# START Expected nearText results"
-  endMarker="# END Expected nearText results"
+  text={AutocutPyCodeV3}
+  startMarker="# START AutoCutResults"
+  endMarker="# END AutoCutResults"
   language="json"
 />
 
@@ -316,7 +316,7 @@ Examples:
 
 ### Sorting API
 
-Sorting can be performed by one or more properties. If the values for the first property are identical, Weaviate uses the second property to determine the order, and so on. 
+Sorting can be performed by one or more properties. If the values for the first property are identical, Weaviate uses the second property to determine the order, and so on.
 
 The sort function takes either an object, or an array of objects, that describe a property and a sort order.
 
@@ -445,7 +445,7 @@ To sort by more than one property, pass an array of { `path`, `order` } objects 
       language="py"
     />
   </TabItem>
-  
+
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={TSCode}

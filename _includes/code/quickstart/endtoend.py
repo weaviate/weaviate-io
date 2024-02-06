@@ -23,16 +23,13 @@ import weaviate.classes as wvc
 import requests
 import json
 import os
-
 # END EndToEndExample  # Test import
 
-# TODO -> Replace this with WCS example when sandbox ready
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
-# As of November 2023, we are working towards making all WCS instances compatible with the new API introduced in the v4 Python client.
-# Accordingly, we show you how to connect to a local instance of Weaviate.
-# Here, authentication is switched off, which is why you do not need to provide the Weaviate API key.
-client = weaviate.connect_to_local(
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_CLUSTER_URL"),
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_API_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
     }
@@ -41,6 +38,15 @@ client = weaviate.connect_to_local(
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 
 assert client.is_ready()
+
+client.close()
+
+# Actual instantiation for testing
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
+    }
+)
 
 client.collections.delete("Question")
 

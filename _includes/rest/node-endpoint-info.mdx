@@ -1,0 +1,14 @@
+The `nodes` endpoint returns an array of nodes. The nodes have the following fields:
+
+- `name`: Name of the node.
+- `status`: Status of the node (one of: `HEALTHY`, `UNHEALTHY`, `UNAVAILABLE`, `INDEXING`).
+- `version`: Version of Weaviate running on the node.
+- `gitHash`: Short git hash of the latest commit of Weaviate running on the node.
+- `stats`: Statistics for the node.
+    - `shardCount`: Total number of shards on the node.
+    - `objectCount` Total number of indexed objects on the node.
+- `shards`: Array of shard statistics. To see `shards` details, set `output == verbose`. 
+    - `name`: Name of the shard.
+    - `class`: Name of the collection stored on the shard.
+    - `objectCount`: Number of indexed objects on the shard.
+    - `vectorQueueLength`: Number of objects waiting to be indexed on the shard. (Available starting in Weaviate `1.22` when `ASYNC_INDEXING` is enabled.)

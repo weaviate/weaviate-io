@@ -551,8 +551,6 @@ The request body is an object with the following field:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, in the format `weaviate://localhost/<ClassName>/<id>` |
 
-<BeaconsRequireLocalhost />
-
 <BeaconsBackCompatOmitClassname />
 
 #### Example request
@@ -604,8 +602,6 @@ The `PUT` request body is a list of beacons:
 | Name | Type | Required | Description |
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon array | yes | Array of beacons in the format `weaviate://localhost/<ClassName>/<id>` |
-
-<BeaconsRequireLocalhost />
 
 <BeaconsBackCompatOmitClassname />
 
@@ -659,8 +655,6 @@ The request body is a beacon object:
 | ---- | ---- | -------- | ----------- |
 | `beacon` | Weaviate Beacon | yes | The beacon URL of the reference, formatted as `weaviate://localhost/<ClassName>/<id>` |
 
-<BeaconsRequireLocalhost />
-
 :::note
 For backward compatibility, beacons generally support an older,
 deprecated format without the class name, as well. This means you might find
@@ -686,6 +680,9 @@ When using multi-tenancy, cross-references can only be made:
 - From a multi-tenancy object to a non-multi-tenancy object.
 - From a multi-tenancy object to a multi-tenancy object, as long as they belong to the same tenant.
 
+## Notes
+
+<BeaconsRequireLocalhost />
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

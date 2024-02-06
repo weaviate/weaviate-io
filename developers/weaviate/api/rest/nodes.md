@@ -28,19 +28,9 @@ GET /v1/nodes/{CollectionName}
 
 ### Returned data:
 
-And it returns a `nodes` field containing array of nodes with the following fields:
-- `name`: Name of the node.
-- `status`: Status of the node (one of: `HEALTHY`, `UNHEALTHY`, `UNAVAILABLE`, `INDEXING`).
-- `version`: Version of Weaviate running on the node.
-- `gitHash`: Short git hash of latest commit of Weaviate running on the node.
-- `stats`: Statistics of the node with the following fields:
-    - `shardCount`: Total number of shards on the node.
-    - `objectCount` Total number of indexed objects on the node.
-- `shards`: (Only if `output` == `verbose`) Array of shards with the following fields:
-    - `name`: Name of the shard.
-    - `class`: Name of the collection stored on the shard.
-    - `objectCount`: Number of indexed objects on the shard.
-    - `vectorQueueLength`: Number of objects waiting to be indexed on the shard. (Available in Weaviate `1.22` and higher, if `ASYNC_INDEXING` is enabled.)
+import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
+
+<APIOutputs />
 
 ## Example
 

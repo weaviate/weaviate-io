@@ -18,7 +18,7 @@ import subprocess
         "./_includes/code/howto/search.rerank.py",
     ],
 )
-def test_py(empty_weaviates, script_loc):
+def test_pyv4(empty_weaviates, script_loc):
     temp_proc_script_loc = utils.load_and_prep_temp_file(
         script_loc,
         lang="py",

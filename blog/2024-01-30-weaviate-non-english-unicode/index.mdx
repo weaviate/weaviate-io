@@ -121,7 +121,7 @@ with client.batch as batch:
         }
 
         # the call that performs data insert
-        client.batch.add_data_object(
+        batch.add_data_object(
             class_name="MyCollection",
             data_object=properties,
         )

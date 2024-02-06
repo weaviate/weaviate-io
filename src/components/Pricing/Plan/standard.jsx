@@ -91,7 +91,6 @@ export default function PricingStandard() {
             &times;
           </span>
           <SlaPlan />
-          <Calculator />
         </div>
       </div>
     </>

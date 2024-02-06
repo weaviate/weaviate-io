@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
+import Calculator from '../Calculator';
 
 export default function HybridBusinessCritical() {
   return (
     <div className={styles.bgColor}>
+      <Calculator />
       <div className="container">
         <div className={styles.marketTitle}>
           <h2 className={styles.marketText}>

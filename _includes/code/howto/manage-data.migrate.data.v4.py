@@ -1,22 +1,14 @@
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 import weaviate
 import weaviate.classes as wvc
-from weaviate import Collection
+from weaviate.collections import Collection
+from weaviate.client import WeaviateClient
 
 # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
 from tqdm import tqdm
 # ===== Load demo dataset for testing =====
 import weaviate_datasets as wd
 import os
-
-client_src = weaviate.connect_to_local(
-    headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
-)
-
-for dataset in [wd.WineReviews, wd.WineReviewsMT]:
-    d = dataset()
-    d.upload_dataset(client_src, overwrite=True)
-DATASET_SIZE = 50  # For assertions
 
 
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
@@ -25,6 +17,12 @@ client_src = weaviate.connect_to_local(
 )
 
 # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
+
+
+for dataset in [wd.WineReviews, wd.WineReviewsMT]:
+    d = dataset()
+    d.upload_dataset(client_src, overwrite=True)
+DATASET_SIZE = 50  # For assertions
 
 
 # ============================================================
@@ -35,8 +33,8 @@ assert client_src.is_ready()
 
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
 client_tgt = weaviate.connect_to_local(
-    port=8099,
-    grpc_port=50099,
+    port=8090,
+    grpc_port=50061,
     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 )
 
@@ -48,8 +46,13 @@ client_tgt = weaviate.connect_to_local(
 
 
 # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
-def create_collection(collection_name: str, enable_mt=False):
-    reviews = client_tgt.collections.create(
+def create_collection(client_in: WeaviateClient, collection_name: str, enable_mt=False):
+    # END CreateCollectionCollectionToCollection  # END CreateCollectionTenantToCollection  # END CreateCollectionCollectionToTenant  # END CreateCollectionTenantToTenant
+    # Added as the import was failing in tests
+    import weaviate.classes as wvc
+    # START CreateCollectionCollectionToCollection  # START CreateCollectionTenantToCollection  # START CreateCollectionCollectionToTenant  # START CreateCollectionTenantToTenant
+
+    reviews = client_in.collections.create(
         name=collection_name,
         multi_tenancy_config=wvc.config.Configure.multi_tenancy(enabled=enable_mt),
         # Additional settings not shown
@@ -99,22 +102,18 @@ def create_collection(collection_name: str, enable_mt=False):
 
 # START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
 def migrate_data(collection_src: Collection, collection_tgt: Collection):
-    obj_buffer = list()
-    batch_size = 100
+    # END CollectionToCollection  # END TenantToCollection  # END CollectionToTenant  # END TenantToTenant
+    # Added as the import was failing in tests
+    from tqdm import tqdm
+    # START CollectionToCollection  # START TenantToCollection  # START CollectionToTenant  # START TenantToTenant
 
-    for i, q in enumerate(tqdm(collection_src.iterator(include_vector=True))):
-        new_obj = wvc.data.DataObject(
-            properties=q.properties,
-            vector=q.vector,
-            uuid=q.uuid
-        )
-        obj_buffer.append(new_obj)
-        if i != 0 and i % batch_size == 0:
-            collection_tgt.data.insert_many(obj_buffer)
-            obj_buffer = list()
-
-    if len(obj_buffer) != 0:
-        collection_tgt.data.insert_many(obj_buffer)
+    with collection_tgt.batch.fixed_size(batch_size=100) as batch:
+        for q in tqdm(collection_src.iterator(include_vector=True)):
+            batch.add_object(
+                properties=q.properties,
+                vector=q.vector["default"],
+                uuid=q.uuid
+            )
 
     return True
 
@@ -132,7 +131,7 @@ assert not client_tgt.collections.exists("WineReview")
 
 
 # START CreateCollectionCollectionToCollection
-reviews_tgt = create_collection("WineReview", enable_mt=False)
+reviews_tgt = create_collection(client_tgt, "WineReview", enable_mt=False)
 # END CreateCollectionCollectionToCollection
 
 
@@ -172,7 +171,7 @@ assert not client_tgt.collections.exists("WineReview")
 
 
 # START CreateCollectionTenantToCollection
-reviews_tgt = create_collection("WineReview", enable_mt=False)
+reviews_tgt = create_collection(client_tgt, "WineReview", enable_mt=False)
 # END CreateCollectionTenantToCollection
 
 
@@ -215,12 +214,12 @@ assert not client_tgt.collections.exists("WineReviewMT")
 
 
 # START CreateCollectionCollectionToTenant
-reviews_mt_tgt = create_collection("WineReviewMT", enable_mt=True)
+reviews_mt_tgt = create_collection(client_tgt, "WineReviewMT", enable_mt=True)
 # END CreateCollectionCollectionToTenant
 
 
 # START CreateTenants
-tenants_tgt = [weaviate.Tenant(name="tenantA"), weaviate.Tenant(name="tenantB")]
+tenants_tgt = [wvc.tenants.Tenant(name="tenantA"), wvc.tenants.Tenant(name="tenantB")]
 
 reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_mt_tgt.tenants.create(tenants_tgt)
@@ -267,12 +266,12 @@ assert not client_tgt.collections.exists("WineReviewMT")
 
 
 # START CreateCollectionTenantToTenant
-reviews_mt_tgt = create_collection("WineReviewMT", enable_mt=True)
+reviews_mt_tgt = create_collection(client_tgt, "WineReviewMT", enable_mt=True)
 # END CreateCollectionTenantToTenant
 
 
 # Re-create tenants
-tenants_tgt = [weaviate.Tenant(name="tenantA"), weaviate.Tenant(name="tenantB")]
+tenants_tgt = [wvc.tenants.Tenant(name="tenantA"), wvc.tenants.Tenant(name="tenantB")]
 
 reviews_mt_tgt = client_tgt.collections.get("WineReviewMT")
 reviews_mt_tgt.tenants.create(tenants_tgt)
