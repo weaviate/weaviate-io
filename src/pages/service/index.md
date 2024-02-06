@@ -17,6 +17,7 @@ For more information related to one of the documents below, please reach out to 
 - Customers
 
   - [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement)
+  - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
   - [Weaviate Non Enterprise Agreement](/service/weaviate-non-enterprise-agreement)
 
 
