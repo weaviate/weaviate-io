@@ -5,7 +5,7 @@
       "type": "Blog",
       "backgroundImage": "/img/site/about-playbook-01.png",
       "tagline": "Weaviate celebrates a fourth birthday!",
-      "photo": "avatar_bob.png",
+      "photo": "bob.jpg",
       "name": "Bob van Luijt",
       "title": "CEO",
       "date": "July 11, 2023"
@@ -15,7 +15,7 @@
       "type": "Blog",
       "backgroundImage": "/img/site/about-playbook-02.png",
       "tagline": "Hiring at Weaviate - finding our perfect matches!",
-      "photo": "avatar_jessie.png",
+      "photo": "jessie.png",
       "name": "Jessie de Groot",
       "title": "Head of People and Culture",
       "date": "July 7, 2023"
@@ -25,7 +25,7 @@
       "type": "Blog",
       "backgroundImage": "/img/site/about-playbook-03.png",
       "tagline": "Cell Theory - Planning for organic growth",
-      "photo": "avatar_bob.png",
+      "photo": "bob.jpg",
       "name": "Bob van Luijt",
       "title": "CEO",
       "date": "June 23, 2023"
@@ -33,34 +33,34 @@
   ],
   "blog": [
     {
-      "link": "/blog/zero-downtime-upgrades",
+      "link": "/blog/py-client-v4-release",
       "type": "Blog",
-      "backgroundImage": "/img/site/multi-node-set-up.png",
-      "tagline": "Zero-Downtime Upgrades with Weaviate’s Multi-Node Setup",
-      "photo": "avatar_etienne.png",
-      "name": "Etienne Dilocker",
-      "title": "CTO",
-      "date": "Nov 30, 2023"
+      "backgroundImage": "/img/site/hero-python-ga.png",
+      "tagline": "Weaviate Python client (v4) goes GA",
+      "photo": "jp.jpg",
+      "name": "Joon-Pil (JP) Hwang",
+      "title": "Educator",
+      "date": "February 1, 2024"
     },
     {
-      "link": "/blog/rag-evaluation",
+      "link": "/blog/weaviate-non-english-languages",
       "type": "Blog",
-      "backgroundImage": "/img/site/rag-evaluation.png",
-      "tagline": "An Overview on RAG Evaluation",
-      "photo": "avatar_erika.png",
-      "name": "Erika Cardenas",
+      "backgroundImage": "/img/site/hero-language.png",
+      "tagline": "Using Weaviate with Non-English Languages",
+      "photo": "leonie.jpg",
+      "name": "Leonie Monigatti",
       "title": "Developer Advocate",
-      "date": "November 21, 2023"
+      "date": "January 30, 2024"
     },
     {
-      "link": "/learn/workshops",
+      "link": "/community/events",
       "type": "Workshop",
-      "backgroundImage": "/img/site/Zain-workshop.jpg",
+      "backgroundImage": "/img/site/workshops-zain-website.png",
       "tagline": "Workshop: Introduction to Weaviate",
-      "photo": "avatar_zain.png",
+      "photo": "zain.jpg",
       "name": "Zain Hasan",
       "title": "Senior Dev Advocate",
-      "date": "Dec 13, 2023"
+      "date": "February 13, 2024"
     }
   ]
 }
