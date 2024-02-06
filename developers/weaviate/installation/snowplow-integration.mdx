@@ -18,11 +18,13 @@ Download the [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql) client.
 snowsql -a "YOURINSTANCE" -u "YOURUSER"
 ```
 
-### 2. Setup a `user` and a `role`
+### 2. Setup the user environment
 
-Create a role, and a user, for the Weaviate instance. 
+Configure roles and services.
 
-Run this code to create the sample instance.
+#### Configure OAUTH
+
+Set up OAUTH integration. Snowflake uses OAUTH to authenticate users to your service.
 
 ```sql
 USE ROLE ACCOUNTADMIN;
@@ -30,28 +32,43 @@ CREATE SECURITY INTEGRATION SNOWSERVICES_INGRESS_OAUTH
   TYPE=oauth
   OAUTH_CLIENT=snowservices_ingress
   ENABLED=true;
+```
+
+#### Grant SYSADMIN privileges
+
+The SYSADMIN uses the BIND SERVICE ENDPOINT to create services.
+
+```sql
+USE ROLE ACCOUNTADMIN;
+GRANT BIND SERVICE ENDPOINT ON ACCOUNT TO ROLE SYSADMIN;
+```
+
+#### Create Weaviate role and user
+
+Create a role, and a user, for the Weaviate instance. The Jupyter server uses the Weaviate user.
+
+```sql
+USE ROLE SECURITYADMIN;
 CREATE ROLE WEAVIATE_ROLE;
+
+USE ROLE USERADMIN;
 CREATE USER weaviate_user
   PASSWORD='weaviate123'
   DEFAULT_ROLE = WEAVIATE_ROLE
   DEFAULT_SECONDARY_ROLES = ('ALL')
   MUST_CHANGE_PASSWORD = FALSE;
+  
+USE ROLE SECURITYADMIN;
 GRANT ROLE WEAVIATE_ROLE TO USER weaviate_user;
-ALTER USER weaviate_user SET DEFAULT_ROLE = WEAVIATE_ROLE;
-GRANT BIND SERVICE ENDPOINT ON ACCOUNT TO ROLE WEAVIATE_ROLE;
-GRANT BIND SERVICE ENDPOINT ON ACCOUNT TO ROLE SYSADMIN;
-GRANT ALL PRIVILEGES ON STAGE FILES TO WEAVIATE_ROLE;
 ```
 
-To configure your own instance, edit these fields before you run the SQL code.
+### 3. Configure data storage
 
-- Add a user
-- Add a role
-- Edit the `PASSWORD` field
- 
-### 3. Create a database and a warehouse
+Create a database, an image repository, and stages. The image repository holds container images. The stages hold service specification files and files that the service creates.
 
-Create a database and warehouse to use with Weaviate.
+#### Create a warehouse
+
+Create a warehouse to use with Weaviate.
 
 ```sql
 USE ROLE SYSADMIN;
@@ -60,25 +77,59 @@ CREATE OR REPLACE WAREHOUSE WEAVIATE_WAREHOUSE WITH
   AUTO_SUSPEND = 180
   AUTO_RESUME = true
   INITIALLY_SUSPENDED=false;
-CREATE DATABASE IF NOT EXISTS WEAVIATE_DB_001;
-USE DATABASE WEAVIATE_DB_001;
-CREATE IMAGE REPOSITORY WEAVIATE_DB_001.PUBLIC.WEAVIATE_REPO;
 ```
 
-Grant privileges on the databases to the WEAVIATE_ROLE:
+#### Create a database
+
+Create a Weaviate database and stages.
+
+```sql  
+USE ROLE SYSADMIN;
+CREATE DATABASE IF NOT EXISTS WEAVIATE_DEMO;
+USE DATABASE WEAVIATE_DEMO;
+CREATE IMAGE REPOSITORY WEAVIATE_DEMO.PUBLIC.WEAVIATE_REPO;
+CREATE OR REPLACE STAGE YAML_STAGE;
+CREATE OR REPLACE STAGE DATA ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
+CREATE OR REPLACE STAGE FILES ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
+```
+
+#### Grant privileges
+
+Grant privileges to the WEAVIATE_ROLE:
 
 ```sql
-USE ROLE ACCOUNTADMIN;
-grant all PRIVILEGES on database WEAVIATE_DB_001 to WEAVIATE_ROLE;
-grant all PRIVILEGES on schema PUBLIC to WEAVIATE_ROLE;
-grant all on schema PUBLIC to role WEAVIATE_ROLE;
+USE ROLE SECURITYADMIN;
+GRANT ALL PRIVILEGES ON DATABASE WEAVIATE_DEMO TO WEAVIATE_ROLE;
+GRANT ALL PRIVILEGES ON SCHEMA WEAVIATE_DEMO.PUBLIC TO WEAVIATE_ROLE;
+GRANT ALL PRIVILEGES ON WAREHOUSE WEAVIATE_WAREHOUSE TO WEAVIATE_ROLE;
+GRANT ALL PRIVILEGES ON STAGE WEAVIATE_DEMO.PUBLIC.FILES TO WEAVIATE_ROLE;
 ```
 
-To configure your own instance, edit the database name and repository name before you run the SQL code..
+#### Allow external access
+
+:::warning Internet access
+The user credentials on this page are for demonstration purposes only. Change the user credentials and password before you connect to the open internet.
+:::
+  
+```sql
+USE ROLE ACCOUNTADMIN;
+USE DATABASE WEAVIATE_DEMO;
+USE SCHEMA PUBLIC;
+CREATE NETWORK RULE allow_all_rule
+  TYPE = 'HOST_PORT'
+  MODE= 'EGRESS'
+  VALUE_LIST = ('0.0.0.0:443','0.0.0.0:80');
+
+CREATE EXTERNAL ACCESS INTEGRATION allow_all_eai
+  ALLOWED_NETWORK_RULES=(allow_all_rule)
+  ENABLED=TRUE;
+
+GRANT USAGE ON INTEGRATION allow_all_eai TO ROLE SYSADMIN;
+```
 
 ### 4. Setup compute pools
 
-Create compute pools. This code creates compute pools for the sample application. 
+Create compute pools. The compute pools run the application services. 
 
 ```sql
 USE ROLE SYSADMIN;
@@ -109,57 +160,30 @@ DESCRIBE COMPUTE POOL TEXT2VEC_COMPUTE_POOL;
 DESCRIBE COMPUTE POOL JUPYTER_COMPUTE_POOL;
 ```
 
-The compute pools are ready for use when they reach the `ACTIVE` or `IDLE` state.
+The compute pools take a few minutes to initialize. The pools are ready for use when they reach the `ACTIVE` or `IDLE` state.
 
-### 5. Setup files and stages
+### 5. Build the Docker images
 
-Create stages for YAML and Data.    
-
-```sql
-USE ROLE SYSADMIN;
-USE DATABASE WEAVIATE_DB_001;
-CREATE OR REPLACE STAGE YAML_STAGE;
-CREATE OR REPLACE STAGE DATA ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
-CREATE OR REPLACE STAGE FILES ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE');
-```
-
-SPCS uses `spec files` to configure services. The configuration spec files are in [this repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs). 
-
-Download the spec files, then edit them to specify an image repository. To configure your own instance, add your deployment's image repository instead of the sample repository.
-
-```bash
-"SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/DATABASE/SCHEMA/weaviate_repo/weaviate"
-"SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/DATABASE/SCHEMA/weaviate_repo/text2vec"
-"SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/DATABASE/SCHEMA/weaviate_repo/jupyter"
-``` 
-When the files are updated, use the `snowsql` client to upload them. 
-
-```sql
-PUT file:///path/to/spec-jupyter.yaml @yaml_stage overwrite=true auto_compress=false;
-PUT file:///path/to/spec-text2vec.yaml @yaml_stage overwrite=true auto_compress=false;
-PUT file:///path/to/spec-weaviate.yaml @yaml_stage overwrite=true auto_compress=false;
-```
-
-### 6 Build the Docker images
-
-Exit the `snowsql` client, then build the Docker images in your local shell. There are three images.
+Build the Docker images in your local shell. There are three images.
 
 - The Weaviate image runs the database.
 - The `text2vec` image lets you process data without leaving Snowpark.
-- The Jupyter image lets you store your notebooks.
+- The Jupyter image serves notebooks.
 
-The Docker files are in [this repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/dockerfiles). You don't need to modify them to run this sample instance. If you need to use non-standard ports or make other changes for your deployment, edit the Dockerfiles before you create the containers.
+The Docker files are in [this repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/images). Clone the repo, and go to the top level directory. 
+
+You don't need to modify the Dockerfiles to run this sample instance. However, if you need to use non-standard ports, or make other changes for your deployment, edit the Dockerfiles before you create the containers.
 
 ```bash
-docker build --rm --platform linux/amd64 -t weaviate -f /path/to/dockerfiles/weaviate.Dockerfile .
-docker build --rm --platform linux/amd64 -t jupyter -f /path/to/dockerfiles/jupyter.Dockerfile .
-docker build --rm --platform linux/amd64 -t text2vec -f /path/to/dockerfiles/text2vec.Dockerfile .
+docker build --rm --no-cache --platform linux/amd64 -t weaviate ./images/weaviate
+docker build --rm --no-cache --platform linux/amd64 -t jupyter ./images/jupyter
+docker build --rm --no-cache --platform linux/amd64 -t text2vec ./images/text2vec
 ```
 
-Log in to the Docker repository. The Snowpark account name, username, and password are the same as your `snowsql` credentials.
+Log in to your Docker repository. The Snowpark account name, username, and password are the same as your `snowsql` credentials.
 
 ```bash
-docker login YOUR_SNOWACCOUNT-SNOWORG.registry.snowflakecomputing.com/THE_REPO_YOU_CREATED_ABOVE  -u YOUR_SNOWFLAKE_USERNAME
+docker login <YOUR_SNOWACCOUNT>-<SNOWORG>.registry.snowflakecomputing.com  -u YOUR_SNOWFLAKE_USERNAME
 ```
 
 After you login to the Docker repository, tag the images and push them to the repository.
@@ -167,43 +191,71 @@ After you login to the Docker repository, tag the images and push them to the re
 The `docker tag` commands look like this:
 
 ```bash
-docker tag weaviate YOUR_REPOSITORY_URL/weaviate
-docker tag juypter YOUR_REPOSITORY_URL/jupyter
-docker tag text2vec YOUR_REPOSITORY_URL/text2vec
+docker tag weaviate <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/weaviate
+docker tag jupyter <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/jupyter
+docker tag text2vec <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/text2vec
 ```
 
 The `docker push` commands look like this:
 
 ```bash
-docker push x0000000000000-xx00000.registry.snowflakecomputing.com/weaviate_db_001/public/weaviate_repo/weaviate
-docker push x0000000000000-xx00000.registry.snowflakecomputing.com/weaviate_db_001/public/weaviate_repo/jupyter
-docker push x0000000000000-xx00000.registry.snowflakecomputing.com/weaviate_db_001/public/weaviate_repo/text2vec
+docker push <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/weaviate
+docker push <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/jupyter
+docker push <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/text2vec
+```
+
+### 6. Setup services
+
+SPCS uses `spec files` to configure services. The configuration spec files are also in [the repo](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/tree/main/specs) you cloned earlier. 
+
+Edit the `spec files` to specify an image repository for each service. For example, update `weaviate.yaml` to reference the `weaviate`
+image. 
+
+```bash
+image: "<SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>.registry.snowflakecomputing.com/weaviate_demo/public/weaviate_repo/weaviate"
+```
+
+When you edit the `jupyter.yaml` spec file, update the `SNOW_ACCOUNT` field with your Snowflake account name. 
+
+```bash
+SNOW_ACCOUNT: <SNOWFLAKE_ORG>-<SNOWFLAKE_ACCOUNT>
+```
+
+After the spec files are updated, use the `snowsql` client to upload them. 
+
+```sql
+PUT file:///path/to/jupyter.yaml @yaml_stage overwrite=true auto_compress=false;
+PUT file:///path/to/text2vec.yaml @yaml_stage overwrite=true auto_compress=false;
+PUT file:///path/to/weaviate.yaml @yaml_stage overwrite=true auto_compress=false;
 ```
 
 ### 7. Create the services
 
-Use `snowsql` to create a service for each component.
+Use the `snowsql` client to create a service for each component.
 
 ```sql
 USE ROLE SYSADMIN;
+USE DATABASE WEAVIATE_DEMO;
+USE SCHEMA PUBLIC;
+
 CREATE SERVICE WEAVIATE
   IN COMPUTE POOL WEAVIATE_COMPUTE_POOL 
   FROM @YAML_STAGE
-  SPEC='spec-weaviate.yaml'
+  SPEC='weaviate.yaml'
   MIN_INSTANCES=1
   MAX_INSTANCES=1;
 
 CREATE SERVICE JUPYTER
   IN COMPUTE POOL JUPYTER_COMPUTE_POOL 
   FROM @YAML_STAGE
-  SPEC='spec-jupyter.yaml'
+  SPEC='jupyter.yaml'
   MIN_INSTANCES=1
   MAX_INSTANCES=1;
 
 CREATE SERVICE TEXT2VEC
   IN COMPUTE POOL TEXT2VEC_COMPUTE_POOL 
   FROM @YAML_STAGE
-  SPEC='spec-text2vec.yaml'
+  SPEC='text2vec.yaml'
   MIN_INSTANCES=1
   MAX_INSTANCES=1;
 
@@ -211,120 +263,33 @@ CREATE SERVICE TEXT2VEC
 
 ### 8. Grant user permissions
 
-Grant permission to the services to the weaviate_role. 
+Grant permission for the services to the `weaviate_role`. 
 
 ```sql
-GRANT USAGE ON SERVICE JUPYTER TO ROLE WEAVIATE_ROLE;
-GRANT USAGE ON SERVICE WEAVIATE TO ROLE WEAVIATE_ROLE;
-GRANT USAGE ON SERVICE TEXT2VEC TO ROLE WEAVIATE_ROLE;
+USE ROLE SECURITYADMIN;
+GRANT USAGE ON SERVICE WEAVIATE_DEMO.PUBLIC.JUPYTER TO ROLE WEAVIATE_ROLE;
 ```
 
-### 9. Configure the Jupyter Notebook login
+### 9. Log in to the Jupyter Notebook server
 
-Follow these steps to configure the login for Jupyter Notebooks. 
+Get the `ingress_url` URL that you use to access the Jupyter notebook server.
 
-1. Load the logs from the jupyter endpoint.
+```sql
 
-   ```sql
-   CALL SYSTEM$GET_SERVICE_LOGS('WEAVIATE_DB_001.PUBLIC.JUPYTER', '0', 'jupyter');
-   ```
+USE ROLE SYSADMIN;
+SHOW ENDPOINTS IN SERVICE WEAVIATE_DEMO.PUBLIC.JUPYTER;
+```
 
-   Near the end of the log, there are two URLs like this:
-
-   ```
-   http://statefulset-0:8888/tree?token=abcd90991a280794f1f1ce0281234e96e877674aa0399999                                                                                
-   
-   http://127.0.0.1:8888/tree?token=abcd90991a280794f1f1ce0281234e96e877674aa0399999  
-   ```
-
-   Save the token, `abcd90991a280794f1f1ce0281234e96e877674aa0399999`.
-
-1. Get the `ingress_url` URL that you use to access the Jupyter notebook server.
-
-   ```sql
-   SHOW ENDPOINTS IN SERVICE jupyter;
-   ```
-
-1. Open the `ingress_url` in a browser. Use the `weaviate_user` credentials to log in. 
-1. Use the token from the logs to set a password.
+Open the `ingress_url` in a browser. Use the `weaviate_user` credentials to log in. 
 
 ### 10. Load data into your Weaviate instance
 
 Follow these steps to create a schema, and load some sample data into your Weaviate instance.
 
-1. Download the [`SampleJSON.json`](https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs/blob/main/sample-data/SampleJSON.json) file to your desktop.
-1. Drag the file into the Jupyter tree view in your browser.
-1. Copy the code for the Weaviate Python client into a Jupyter notebook and run it.
-
-<details>
-  <summary>Python client code</summary>
-
-```python
-
-import weaviate
-import weaviate.classes as wvc
-import json
-import os
-
-print("Connecting...")
-
-client = weaviate.connect_to_custom(
-    http_host="weaviate",
-    http_port="8080",
-    http_secure=False,
-    grpc_host="weaviate",
-    grpc_port="50051",
-    grpc_secure=False
-)
-
-print("Success!")
-
-#Create the Questions collection
-collection = client.collections.create(
-    name="Questions",
-    vectorizer_config=wvc.Configure.Vectorizer.text2vec_transformers(),
-    properties=[
-        wvc.Property(
-            name="answer",
-            data_type=wvc.DataType.TEXT
-        ),
-         wvc.Property(
-            name="question",
-            data_type=wvc.DataType.TEXT
-        ),
-         wvc.Property(
-            name="category",
-            data_type=wvc.DataType.TEXT
-        )
-    ]
-)
-
-print("Collection Created!")
-
-# Import all Questions in batches
-items_to_insert = []
-with open("SampleJSON.json") as file:
- data = json.load(file)
-
-for i, d in enumerate(data):
-   new_item = {
-       "answer": d["Answer"],
-       "question": d["Question"],
-       "category": d["Category"],
-   }
-   items_to_insert.append(new_item)
-   # Insert every 100 items
-   if(len(items_to_insert) == 100):
-       collection.data.insert_many(items_to_insert)
-       items_to_insert.clear()
-
-# Insert remaining items
-if(len(items_to_insert) > 0):
-   collection.data.insert_many(items_to_insert)
-
-print("Data inserted into Weaviate!")
-```
-</details>
+1. Download [a set of sample Jeopardy Questions](https://github.com/weaviate-tutorials/quickstart/blob/main/data/jeopardy_tiny.json).
+1. Rename the file `SampleJSON.json`, and save it to your desktop.
+1. Upload the file. Drag the file into the Jupyter tree view in your browser or use the 'Upload' button at the upper-right corner.
+1. Copy the data into Weaviate. Use the `TestWeaviate.ipynb` notebook to copy the data from `SampleJSON.json` into Weaviate.
 
 ## Query your data
 
