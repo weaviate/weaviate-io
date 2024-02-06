@@ -66,7 +66,7 @@
   }
 
   .textBox {
-    padding: 21px 17px 30px;
+    padding: 18px 17px 26px;
 
     h3 {
       color: #130c49;
@@ -262,4 +262,9 @@
     color: #fff;
     font-weight: 400;
   }
+}
+
+.smallImage {
+  border-radius: 50%;
+  width: 13%;
 }
