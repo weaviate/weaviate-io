@@ -70,11 +70,11 @@ This data only includes reviews and has no product information except the ASIN, 
 
 ![data](img/data.png)
 
-Now that my data is available in Snowflake I need to start creating Docker images locally that I can upload to SPCS. In the repository for this blog, I have included the commands you will need to create the docker images for Weaviate, a text-2-vec vectorizer module, Jupyter Notebooks, and Ollama.  
+Now that my data is available in Snowflake I need to start creating Docker images locally that I can upload to SPCS. In the repository for this blog, I have included the commands you will need to create the docker images for Weaviate, a text2vec vectorizer module, Jupyter Notebooks, and Ollama.  
 
-I am using the [text-2-vec](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers) module to create the embeddings Weaviate will use, and using [Ollama](https://ollama.ai/) to host our Mistral model locally. 
+I am using the [text2vec](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers) module to create the embeddings Weaviate will use, and using [Ollama](https://ollama.ai/) to host our Mistral model locally. 
 
-The goal is to send data from Snowflake, to Mistral, back to Snowflake, then to Weaviate.  Weaviate will automatically vectorize the data using the text-2-vec vectorizer, then we are ready to start searching!
+The goal is to send data from Snowflake, to Mistral, back to Snowflake, then to Weaviate.  Weaviate will automatically vectorize the data using the text2vec vectorizer, then we are ready to start searching!
 
 ![Snowflake Container Services](img/SCS-text.png)
 
@@ -90,7 +90,7 @@ docker build --rm --no-cache --platform linux/amd64 -t ollama ./images/ollama
 
 This Dockerfile will not only install and run Ollama, but will also download and load the Mistral model.  If you want to use a different model, you can change the Dockerfile to load any model that Ollama supports.
 
-Once I had the Ollama image, I created images for Jupyter, Weaviate, and Text-2-Vec vectorizer.
+Once I had the Ollama image, I created images for Jupyter, Weaviate, and the text2vec module.
 
 I tagged the images, then uploaded them to the image repository in SPCS. 
 
