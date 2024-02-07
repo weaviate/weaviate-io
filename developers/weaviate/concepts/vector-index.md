@@ -30,11 +30,17 @@ Weaviate's vector-first storage system takes care of all storage operations with
 
 ## Why index data as vectors?
 
-Vectors are a great way to represent data objects' meaning, such as meaning of text or contents of images or video. They also enable determination of [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between data objects, which enables vector databases to retrieve data objects based on their similarity to a query vector - also called similarity search.
+Vectors are a great way to represent meaning. Vectors are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
 
-To make this concept more tangible, think of vectors as coordinates in a *n*-dimensional vector space. For example, we can represent *words* in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors or [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings)) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. 
+Vector databases make it easier to work with high dimensional vectors. Consider search; Vector databases efficiently measure [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between data objects. When you run a similarity search, a vector database like Weaviate uses a vectorized version of the query to find objects in the database that have vectors similar to the query vector.
 
-In the picture below, you see how this concept looks (simplified). The words `Apple` and `Banana` are close to each other. The distance between those words, given by the distance between the vectors, is small. But these two fruits are further away from the words `Newspaper` and `Magazine` in the same vector space.
+Vectors are like coordinates in a multi-dimensional space. A very simple vector might represent objects, *words* in this case, in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors or [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings)) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. 
+
+In the graph below, the words `Apple` and `Banana` are shown close to each other. `Newspaper` and `Magazine` are also close to each other, but they are far away from `Apple` and `Banana` in the same vector space.
+
+Within each pair, the distance between words is small because the objects have similar vector representations. The distance between the pairs is larger because the difference between the vectors is larger. Intuitively, fruits are similar to each other, but fruits are not similar to reading material.
+
+For more details of this representation, see: ([GloVe](https://github.com/stanfordnlp/GloVe)) and [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings.
 
 ![2D Vectors visualization](./img/vectors-2d.png "2D Vectors visualization")
 
@@ -67,7 +73,7 @@ The index type can be specified per data collection via the [collection definiti
 
 ## What is Hierarchical Navigable Small World (HNSW)
 
-Hierarchical Navigable Small World (HNSW) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes provide benefits of very fast queries, but they are more costly when it comes to the building process (adding data with vectors).
+Hierarchical Navigable Small World (HNSW) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
 
 Weaviate's `hnsw` index is a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
 
@@ -99,7 +105,9 @@ The `ef` parameter dictates the size of the dynamic list used by the HNSW algori
 
 In contrast, a lower `ef` makes the search faster but might compromise on accuracy. This balance is crucial in scenarios where either speed or accuracy is a priority. For instance, in applications where rapid responses are critical, a lower `ef` might be preferable, even at the expense of some accuracy. Conversely, in analytical or research contexts where precision is paramount, a higher `ef` would be more suitable, despite the increased query time.
 
-Weaviate allows for `ef` to be configured ef either explicitly or dynamically. If `ef` is set to -1, Weaviate adjusts it dynamically based on the query response limit, enabling a more flexible approach to managing this trade-off. The dynamic `ef` adjustment takes into account the query limit and modifies the size of the ANN list accordingly, bounded by the parameters `dynamicEfMin`, `dynamicEfMax`, and influenced by `dynamicEfFactor`. This feature is particularly beneficial in environments with varying query patterns, as it automatically optimizes the balance between speed and recall based on real-time query requirements.
+`ef` can be configured explicitly or dynamically. This feature is particularly beneficial in environments with varying query patterns. When `ef` is configured dynamically, Weaviate optimizes the balance between speed and recall based on real-time query requirements.
+
+To enable dynamic `ef`, set `ef`: -1. Weaviate adjusts the size of the ANN list based on the query response limit. The calculation also takes into account the values of `dynamicEfMin`, `dynamicEfMax`, and `dynamicEfFactor`.
 
 ### Dynamic ef
 
