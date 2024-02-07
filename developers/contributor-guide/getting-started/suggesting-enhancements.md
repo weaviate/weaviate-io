@@ -20,7 +20,7 @@ Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](http
 * **Explain why this change would be useful** to Weaviate users.
 * Specify which **version of Weaviate** you're using. Check the version in your `docker-compose.yml` file.
 
-## Working on your own suggestion
+## Working on your own ideas
 
 You are welcome to implement your own suggestion and submit it! If you have any questions, feel free to reach out to us and the wider community on the [forum](https://forum.weaviate.io).
 
