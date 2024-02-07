@@ -9,9 +9,8 @@ const DocHomePage = () => {
 
       <p className={styles.docText}>
         Weaviate <i>(we-vee-eight)</i> is an open source, AI-native vector
-        database. The documentation aims to help you get started with Weaviate
-        and understand its features and capabilities, to help you get the most
-        out of it.
+        database. Use this documentation to get started with Weaviate and to
+        learn how to get the most out of Weaviate's features.
       </p>
 
       <div className={styles.welcomeSection}>
@@ -32,8 +31,8 @@ const DocHomePage = () => {
           </div>
           <p>
             Please visit our{' '}
-            <a href="https://forum.weaviate.io/c/support/">forum</a> to get help
-            from the Weaviate community including the Weaviate team.
+            <a href="https://forum.weaviate.io/c/support/">forum</a>. The
+            Weaviate team and our awesome community can help.
           </p>
         </div>
       </div>
