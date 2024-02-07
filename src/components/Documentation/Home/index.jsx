@@ -231,7 +231,7 @@ const DocHomePage = () => {
 
       <h3 className={styles.docHeader}>What Next</h3>
       <p className={styles.docText}>
-        We recommend starting with these sections
+        We recommend starting with these sections:
       </p>
 
       <div className={`${styles.deploySection} ${styles.whatsNext}`}>
@@ -291,7 +291,7 @@ const DocHomePage = () => {
           <a href="https://github.com/weaviate/weaviate">Github</a>
         </div>
         <div className={`${styles.secondaryTabs} ${styles.forum}`}>
-          <a href="https://forum.weaviate.io/">Forum</a>
+          <a href="https://forum.weaviate.io/">Community forum</a>
         </div>
         <div className={`${styles.secondaryTabs} ${styles.slack}`}>
           <a href="https://weaviate.io/slack">Slack</a>

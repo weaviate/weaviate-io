@@ -33,7 +33,7 @@ It is important that any contributions such as suggestions or bug reports be mad
 
 ### Work on existing issues
 
-You can also contribute by working on existing issues. Check the issues pages in Weaviate's GitHub repositories like  [weaviate core](https://github.com/weaviate/weaviate/issues). Consider beginning with issues tagged '[good first issues](https://github.com/weaviate/weaviate/labels/good-first-issue)'.
+You can also contribute by working on existing issues. Check the issues pages in Weaviate's GitHub repositories like the [weaviate core repository](https://github.com/weaviate/weaviate/issues). Consider starting with issues tagged '[good first issues](https://github.com/weaviate/weaviate/labels/good-first-issue)'.
 
 ## Background reading
 

@@ -244,7 +244,7 @@ For any changes you commit, make sure that you:
 
 * Compare your Pull Request's source changes to staging to ensure that the output matches the source and that everything is rendering as expected. This assists in detecting issues such as typos or content that isn't rendering due to versioning issues.
 
-* If there are any failing checks in your PR, try to resolve them. If you get stuck, you can ask for help on the [ community forum](https://forum.weaviate.io/) or [Slack](https://weaviate.io/slack).
+* If there are failing checks in your PR, try to resolve them. If you get stuck, you can ask for help on the [community forum](https://forum.weaviate.io/) or [Slack](https://weaviate.io/slack).
 
 ### Documentation-specific guidelines
 
