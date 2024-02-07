@@ -244,7 +244,7 @@ For any changes you commit, make sure that you:
 
 * Compare your Pull Request's source changes to staging to ensure that the output matches the source and that everything is rendering as expected. This assists in detecting issues such as typos or content that isn't rendering due to versioning issues.
 
-* If there are any failing checks in your PR, try troubleshooting them until they are passing or ask for help on [the forum](https://forum.weaviate.io/) or [Slack](https://weaviate.io/slack).
+* If there are failing checks in your PR, try to resolve them. If you get stuck, you can ask for help on the [community forum](https://forum.weaviate.io/) or [Slack](https://weaviate.io/slack).
 
 ### Documentation-specific guidelines
 
@@ -359,7 +359,7 @@ git branch -a
 
 ## Additional resources
 
-There are lots of resources out there on git and GitHub. For example:
+To learn more about git and GitHub, see:
 
-- [**GitHub Skills**](https://skills.github.com/) is a learning program provided by GitHub that will teach you the fundamentals of git and GitHub
-- [**Pro Git Book**](https://git-scm.com/book/en/v2) is a comprehensive reference book on git
+- [**GitHub Skills**](https://skills.github.com/) is a learning program provided by GitHub that teaches git and GitHub fundamentals.
+- [**Pro Git Book**](https://git-scm.com/book/en/v2) is a comprehensive reference book on git.

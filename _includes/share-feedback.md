@@ -1,4 +1,9 @@
-Please share your feedback with us on the [forum](https://forum.weaviate.io), via [Slack](https://weaviate.io/slack), [Twitter](https://twitter.com/weaviate_io), or [GitHub](https://github.com/weaviate/weaviate).
+Please share your feedback with us:
+
+- [Community forum](https://forum.weaviate.io)
+- [GitHub](https://github.com/weaviate/weaviate)
+- [Slack](https://weaviate.io/slack)
+- [X (Twitter)](https://twitter.com/weaviate_io)
 
 import { GiscusBlogPostComment } from '/src/components/GiscusComment';
 

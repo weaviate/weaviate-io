@@ -9,9 +9,8 @@ const DocHomePage = () => {
 
       <p className={styles.docText}>
         Weaviate <i>(we-vee-eight)</i> is an open source, AI-native vector
-        database. The documentation aims to help you get started with Weaviate
-        and understand its features and capabilities, to help you get the most
-        out of it.
+        database. Use this documentation to get started with Weaviate and to
+        learn how to get the most out of Weaviate's features.
       </p>
 
       <div className={styles.welcomeSection}>
@@ -32,8 +31,8 @@ const DocHomePage = () => {
           </div>
           <p>
             Please visit our{' '}
-            <a href="https://forum.weaviate.io/c/support/">forum</a> to get help
-            from the Weaviate community including the Weaviate team.
+            <a href="https://forum.weaviate.io/c/support/">forum</a>. The
+            Weaviate team and our awesome community can help.
           </p>
         </div>
       </div>
@@ -232,7 +231,7 @@ const DocHomePage = () => {
 
       <h3 className={styles.docHeader}>What Next</h3>
       <p className={styles.docText}>
-        We recommend starting with these sections
+        We recommend starting with these sections:
       </p>
 
       <div className={`${styles.deploySection} ${styles.whatsNext}`}>
@@ -292,7 +291,7 @@ const DocHomePage = () => {
           <a href="https://github.com/weaviate/weaviate">Github</a>
         </div>
         <div className={`${styles.secondaryTabs} ${styles.forum}`}>
-          <a href="https://forum.weaviate.io/">Forum</a>
+          <a href="https://forum.weaviate.io/">Community forum</a>
         </div>
         <div className={`${styles.secondaryTabs} ${styles.slack}`}>
           <a href="https://weaviate.io/slack">Slack</a>
