@@ -2,10 +2,12 @@
 title: Weaviate Privacy Policy
 # image: og/service/privacy_policy.jpg
 ---
-import styles from '/src/pages/privacy/styles.module.scss';
+
 import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/privacy_policy.jpg" />
+
+<div class="privacyPolicy">
 
 ### **PRIVACY POLICY OF WEAVIATE B.V.**
 
@@ -408,3 +410,6 @@ You can always contact us if you have any questions, remarks, or complaints in r
 <br></br>
 
 If you have any unresolved concerns, you have the right to lodge a complaint with the Dutch Data Protection Authority (_Autoriteit Persoonsgegevens_).
+
+
+</div>
