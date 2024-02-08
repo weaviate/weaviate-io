@@ -133,6 +133,12 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/console',
         },
 
+        // WCS redireects
+        {
+            to: 'developers/wcs/faq'
+            from: '/developers/wcs/troubleshooting'
+        },
+        
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
