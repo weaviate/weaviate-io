@@ -12,6 +12,10 @@ image: og/wcs/tips_faqs.jpg
 
 Yes, go the [WCS login page](https://console.weaviate.cloud/) and click the "Log in" button. Then, click "Forgot Password" and enter your email address on the next screen.
 
+### Where is my verification email?
+
+If you do not receive a verification email, check your spam folder. If you still cannot find it, follow [the steps to reset you password](./faq.mdx#can-i-reset-or-change-my-account-password) to get a new letter.
+
 ### Sandboxes
 
 #### When do sandboxes expire?
@@ -44,7 +48,7 @@ Not currently. Clusters are provisioned for common usage scenarios. WCS monitors
 
 #### Can I request more cluster resources?
 
-Possibly. If you want to customize your cluster provisioning, contact our support team to discuss possible solutions.
+Possibly. If you want to customize your cluster provisioning, contact our support team at [support@weaviate.io](mailto:support@weaviate.io) to discuss possible solutions.
 
 ### Infrastructure
 
@@ -56,21 +60,11 @@ WCS runs in Google Cloud (GCP). Amazon Web services (AWS) and Microsoft Azure ar
 
 #### Does the WCS console collect data from users?
 
-The console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
+The WCS console doesn't collect any data from your Weaviate instance. However, WCS does monitor your instances and collect operational data in order to manage them. 
 
 #### Can the WCS console connect to non-WCS instances?
 
-Yes, the WCS console can connect to a Weaviate instance regardless of whether it is a WCS instance or not.
-
-## Account Troubleshooting
-
-### Password reset
-
-You can reset your password if you forgot it, or simply want to change it. To do so, navigate to the WCS login page and click <kbd>Forgot Password</kbd>.
-
-### Where is my verification email?
-
-If you did not receive a verification email, please check your spam folder. If you still cannot find it, you can try again using the same steps as the [password reset](#password-reset).
+Yes. The Weaviate GraphQL interface in the WCS console can connect to Weaviate instances outside WCS as well as WCS instances.
 
 ## Support & Troubleshooting
 
