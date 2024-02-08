@@ -33,7 +33,7 @@ export default function StrategicPartners() {
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="">
+              <Link to="/partners/snowflake">
                 <span className={styles.snowflake} />
               </Link>
             </div>
