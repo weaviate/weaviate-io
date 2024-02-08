@@ -133,9 +133,9 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/console',
         },
 
-        // WCS redireects
+        // WCS redirects
         {
-            to: 'developers/wcs/faq',
+            to: '/developers/wcs/faq',
             from: '/developers/wcs/troubleshooting',
         },
         
