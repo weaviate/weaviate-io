@@ -11,8 +11,9 @@ export default function CallingSection() {
         <div className={styles.header}>
           <h2>Calling developers, architects, and builders of all levels</h2>
           <p>
-            What’s ahead for AI-native applications, explore hands-on demos
-            <br></br> and learn more about the power of Weaviate on AWS.
+            Meet with our team to hear what’s ahead for AI-native applications,
+            explore hands-on demos<br></br> and learn more about the power of
+            Weaviate on Google Cloud.
           </p>
         </div>
         <div className={styles.features}>
