@@ -71,16 +71,17 @@
 }
 
 .firstSection {
-  background-image: url('/img/site/highlight-01.png');
+  background-image: url('/img/site/ndc-london-highlight.png');
   background-size: cover;
 }
 .secondSection {
-  background-image: url('/img/site/highlight-02.png');
-  background-size: cover;
+  background-image: url('/img/site/sf-meetup-highlight.png');
+  background-size: 125%;
+  background-position: center;
 }
 
 .thirdSection {
-  background-image: url('/img/site/highlight-03.png');
+  background-image: url('/img/site/weaviate-workshop-highlight.png');
   background-size: cover;
   background-position-y: center;
 }

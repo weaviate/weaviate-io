@@ -83,7 +83,7 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 ```python
 import weaviate
 
-auth_config = weaviate.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
@@ -273,6 +273,16 @@ Batching is a way of importing/creating `objects` and `references` in bulk using
 1. ***Auto-batching***
 2. ***Dynamic-batching***
 3. ***Manual-batching***
+
+Generally, we recommend use of `client.batch` in a context manager, which will automatically flush the batch when exiting. This is the easiest way to use the batching functionality.
+
+The following parameters have the greatest impact on the batch import speed:
+
+| Parameter | Type | Recommended<br/>value | Purpose |
+| :- | :- | :- |:- |
+| `batch_size` | integer | 50 - 200 | Initial batch size
+| `num_workers` | integer | 1 - 2 | Maximum number of parallel workers
+| `dynamic` | boolean | True | If true, dynamically adjust the `batch_size`<br/> based on the number of items in the batch
 
 ### Multi-threading batch import
 
@@ -736,6 +746,64 @@ check_batch_result(result)
 result = client.batch.create_references()
 check_batch_result(result)
 ```
+
+
+<details>
+  <summary>Example code</summary>
+
+The following Python code can be used to handle errors on individual data objects in the batch.
+
+```python
+import weaviate
+
+client = weaviate.Client("http://localhost:8080")
+
+def check_batch_result(results: dict):
+  """
+  Check batch results for errors.
+
+  Parameters
+  ----------
+  results : dict
+      The Weaviate batch creation return value, i.e. returned value of the client.batch.create_objects().
+  """
+  if results is not None:
+    for result in results:
+      if 'result' in result and 'errors' in result['result']:
+        if 'error' in result['result']['errors']:
+          print("We got an error!", result)
+
+object_to_add = {
+    "name": "Jane Doe",
+    "writesFor": [{
+        "beacon": "weaviate://localhost/f81bfe5e-16ba-4615-a516-46c2ae2e5a80"
+    }]
+}
+
+client.batch.configure(
+  # `batch_size` takes an `int` value to enable auto-batching
+  # (`None` is used for manual batching)
+  batch_size=100,
+  # dynamically update the `batch_size` based on import speed
+  dynamic=False,
+  # `timeout_retries` takes an `int` value to retry on time outs
+  timeout_retries=3,
+  # checks for batch-item creation errors
+  # this is the default in weaviate-client >= 3.6.0
+  callback=check_batch_result,
+  consistency_level=weaviate.data.replication.ConsistencyLevel.ALL,  # default QUORUM
+)
+
+with client.batch as batch:
+  batch.add_data_object(object_to_add, "Author", "36ddd591-2dee-4e7e-a3cc-eb86d30a4303", vector=[1,2])
+  # lets force an error, adding a second object with unmatching vector dimensions
+  batch.add_data_object(object_to_add, "Author", "cb7d0da4-ceaa-42d0-a483-282f545deed7", vector=[1,2,3])
+```
+
+This can also be applied to adding references in batch. Note that sending batches, especially references, skips some validations at the object and reference level. Adding this validation on single data objects like above makes it less likely for errors to go undiscovered.
+
+</details>
+
 
 ## Design
 

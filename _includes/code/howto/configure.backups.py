@@ -7,81 +7,92 @@
 # START CreateBackup
 import weaviate
 
-client = weaviate.Client("http://localhost:8080")
-# END CreateBackup
+client = weaviate.connect_to_local()
 
-# Create the classes, whether they exist or not
-client.data_object.create({"title": "Dummy"}, class_name="Article")
-client.data_object.create({"title": "Dummy"}, class_name="Publication")
-# START CreateBackup
-result = client.backup.create(
-  backup_id="my-very-first-backup",
-  backend="filesystem",
-  include_classes=["Article", "Publication"],
-  wait_for_completion=True,
-)
+try:
+    # END CreateBackup
 
-print(result)
-# END CreateBackup
+    # Create the collections, whether they exist or not
+    client.collections.delete(["Article", "Publication"])
+    articles = client.collections.create(name="Article")
+    publications = client.collections.create(name="Publication")
 
-# Test
-assert result["status"] == "SUCCESS"
+    articles.data.insert(properties={"title": "Dummy"})
+    publications.data.insert(properties={"title": "Dummy"})
 
+    # START CreateBackup
+    result = client.backup.create(
+      backup_id="my-very-first-backup",
+      backend="filesystem",
+      include_collections=["Article", "Publication"],
+      wait_for_completion=True,
+    )
 
-# ==============================================
-# ===== Check status while creating backup =====
-# ==============================================
+    print(result)
+    # END CreateBackup
 
-# START StatusCreateBackup
-result = client.backup.get_create_status(
-  backup_id="my-very-first-backup",
-  backend="filesystem",
-)
-
-print(result)
-# END StatusCreateBackup
-
-# Test
-assert result["status"] == "SUCCESS"
+    # Test
+    assert result.status == "SUCCESS"
 
 
-# ==========================
-# ===== Restore backup =====
-# ==========================
+    # ==============================================
+    # ===== Check status while creating backup =====
+    # ==============================================
 
-client.schema.delete_class("Publication")
-# START RestoreBackup
-result = client.backup.restore(
-  backup_id="my-very-first-backup",
-  backend="filesystem",
-  exclude_classes="Article",
-  wait_for_completion=True,
-)
+    # START StatusCreateBackup
+    result = client.backup.get_create_status(
+    backup_id="my-very-first-backup",
+    backend="filesystem",
+    )
 
-print(result)
-# END RestoreBackup
+    print(result)
+    # END StatusCreateBackup
 
-# Test
-assert result["status"] == "SUCCESS"
+    # Test
+    assert result.status == "SUCCESS"
 
 
-# ==============================================
-# ===== Check status while restoring backup =====
-# ==============================================
+    # ==========================
+    # ===== Restore backup =====
+    # ==========================
 
-# START StatusRestoreBackup
-result = client.backup.get_restore_status(
-  backup_id="my-very-first-backup",
-  backend="filesystem",
-)
+    client.collections.delete("Publication")
+    # START RestoreBackup
+    result = client.backup.restore(
+    backup_id="my-very-first-backup",
+    backend="filesystem",
+    exclude_collections="Article",
+    wait_for_completion=True,
+    )
 
-print(result)
-# END StatusRestoreBackup
+    print(result)
+    # END RestoreBackup
 
-# Test
-assert result["status"] == "SUCCESS"
+    # Test
+    assert result.status == "SUCCESS"
+
+
+    # ==============================================
+    # ===== Check status while restoring backup =====
+    # ==============================================
+
+    # START StatusRestoreBackup
+    result = client.backup.get_restore_status(
+    backup_id="my-very-first-backup",
+    backend="filesystem",
+    )
+
+    print(result)
+    # END StatusRestoreBackup
+
+    # Test
+    assert result.status == "SUCCESS"
+
+    # Clean up
+    client.collections.delete(["Article", "Publication"])
 
 # START-ANY
 
-client.close()
+finally:
+    client.close()
 # END-ANY

@@ -291,13 +291,13 @@ New in Weaviate version 1.20.
 In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
 
 <details>
-  <summary>Worked fusion scoring comparison</summary>
+  <summary>Fusion scoring comparison</summary>
 
-An example set of score calculations are shown below.
+This example uses a small search result set to compare the ranked fusion and relative fusion algorithms. The table shows the following information:
 
-#### Base Search Results
-
-Let's say that a search returns **five objects** with **document id** (from 0 to 4), and **scores** from **keyword** and **vector search**, **ordered by score**:
+- `document id`, from 0 to 4
+- `keyword score`, sorted
+- `vector search score`, sorted
 
 <table>
   <tr>
@@ -314,10 +314,11 @@ Let's say that a search returns **five objects** with **document id** (from 0 to
   </tr>
 </table>
 
+The ranking algorithms use these scores to derive the hybrid ranking.
 
 #### Ranked Fusion
 
-The score depends on the rank of each result and is computed according to `1/(RANK + 60 +1)`, resulting in:
+The score depends on the rank of the result. The score is equal to `1/(RANK + 60)`:
 
 <table>
   <tr>
@@ -326,11 +327,11 @@ The score depends on the rank of each result and is computed according to `1/(RA
   </tr>
   <tr>
     <td>Keyword</td>
-    <td>(1): 0.0164</td><td>(0): 0.0161</td><td>(2): 0.0159</td><td>(4): 0.0156</td><td>(3): 0.0154</td>
+    <td>(1): 0.0154</td><td>(0): 0.0160</td><td>(2): 0.0161</td><td>(4): 0.0167</td><td>(3): 0.0166</td>
   </tr>
   <tr>
     <td>Vector</td>
-    <td>(2): 0.0164</td><td>(4): 0.0161</td><td>(0): 0.0159</td><td>(1): 0.0156</td><td>(3): 0.0154</td>
+    <td>(2): 0.016502</td><td>(4): 0.016502</td><td>(0): 0.016503</td><td>(1): 0.016503</td><td>(3): 0.016666</td>
   </tr>
 </table>
 
@@ -370,7 +371,7 @@ Now, we can add the scores for each document up and compare the results from bot
   </tr>
   <tr>
     <td>Ranked</td>
-    <td>(2): 0.01615</td><td>(1): 0.016</td><td>(0): 0.016</td><td>(4): 0.01585</td><td>(3): 0.0154</td>
+    <td>(2): 0.016301</td><td>(1): 0.015952</td><td>(0): 0.015952</td><td>(4): 0.016600</td><td>(3): 0.016630</td>
   </tr>
   <tr>
     <td>Relative</td>

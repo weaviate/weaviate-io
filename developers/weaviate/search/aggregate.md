@@ -68,7 +68,7 @@ Return the number  of objects matched by the query.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# MetaCount GraphQL"
       endMarker="# END MetaCount GraphQL"
       language="graphql"
@@ -82,7 +82,7 @@ Return the number  of objects matched by the query.
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# MetaCount Expected Results"
     endMarker="# END MetaCount Expected Results"
     language="json"
@@ -123,7 +123,7 @@ This example counts occurrence frequencies in the `question` property:
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# TextProp GraphQL"
       endMarker="# END TextProp GraphQL"
       language="graphql"
@@ -137,7 +137,7 @@ This example counts occurrence frequencies in the `question` property:
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# TextProp Expected Results"
     endMarker="# END TextProp Expected Results"
     language="json"
@@ -178,7 +178,7 @@ This  example sums the `points` property.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# IntProp GraphQL"
       endMarker="# END IntProp GraphQL"
       language="graphql"
@@ -192,7 +192,7 @@ This  example sums the `points` property.
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# IntProp Expected Results"
     endMarker="# END IntProp Expected Results"
     language="json"
@@ -235,7 +235,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# groupBy GraphQL"
       endMarker="# END groupBy GraphQL"
       language="graphql"
@@ -250,7 +250,7 @@ To retrieve aggregate data for each group, use the `groupedBy` properties.
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# groupBy Expected Results"
     endMarker="# END groupBy Expected Results"
     language="json"
@@ -298,7 +298,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# nearTextWithLimit GraphQL"
       endMarker="# END nearTextWithLimit GraphQL"
       language="graphql"
@@ -312,7 +312,7 @@ Use `objectLimit` to specify the maximum number of objects to aggregate.
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# nearTextWithLimit Expected Results"
     endMarker="# END nearTextWithLimit Expected Results"
     language="json"
@@ -358,7 +358,7 @@ Use `distance` to specify how similar the objects should be.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# nearTextWithDistance GraphQL"
       endMarker="# END nearTextWithDistance GraphQL"
       language="graphql"
@@ -372,7 +372,7 @@ Use `distance` to specify how similar the objects should be.
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# nearTextWithDistance Expected Results"
     endMarker="# END nearTextWithDistance Expected Results"
     language="json"
@@ -413,7 +413,7 @@ For more specific results, use a `filter` to narrow your search.
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={PyCode}
+      text={PyCodeV3}
       startMarker="# whereFilter GraphQL"
       endMarker="# END whereFilter GraphQL"
       language="graphql"
@@ -427,7 +427,7 @@ For more specific results, use a `filter` to narrow your search.
   The output is like this:
 
   <FilteredTextBlock
-    text={PyCode}
+    text={PyCodeV3}
     startMarker="# whereFilter Expected Results"
     endMarker="# END whereFilter Expected Results"
     language="json"

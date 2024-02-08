@@ -10,6 +10,10 @@ description: "A preview release of our new Python client is now available! Help 
 
 ![The pre-release Weaviate Python client with a new API](./img/hero.png)
 
+:::tip Update (2024-Feb-01)
+The `v4` client has since been officially released! Thank you to everyone who provided feedback and helped shape the client. You can find the official release announcement [here](/blog/py-client-v4-release/).
+:::
+
 :::info TL;DR
 
 We've released a pre-release version of our new Python client API. It's available for you to try out and provide feedback [through this form](https://tally.so/r/wa4NDB). We've made a number of major improvements, including strong typing, a collections-first approach, and performance improvements.
@@ -147,7 +151,7 @@ This is the same for all searches, retrieval augmented generations, and data ope
 articles.data  # For data operations
 articles.query  # For searches
 articles.generate  # For retrieval augmented generations
-articles.query_group_by  # To group results by a property
+articles.aggregate  # For aggregating results
 ```
 
 We think that these changes will make the code more readable and intuitive.
@@ -214,7 +218,7 @@ from weaviate.util import generate_uuid5
 articles_to_add = list()
 for i, row in enumerate(data_source):
     # highlight-start
-    article_obj = wvc.DataObject(
+    article_obj = wvc.data.DataObject(
         properties={
             "title": row["title"],
             "body": row["title"],
@@ -356,7 +360,7 @@ Well, no more! Now, you can use Python classes all the way through, with your ID
 client.collection.create(
     name="Article",
     vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
-    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.VectorDistance.COSINE),
+    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistances.COSINE),
     generative_config=wvc.ConfigFactory.Generative.openai(),
     properties=[
         wvc.Property(
@@ -384,7 +388,7 @@ articles = client.collection.create(
     # Skipped for brevity ...
     # highlight-start
     vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
-    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.VectorDistance.COSINE),
+    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistances.COSINE),
     generative_config=wvc.ConfigFactory.Generative.openai(),
     # highlight-end
 )

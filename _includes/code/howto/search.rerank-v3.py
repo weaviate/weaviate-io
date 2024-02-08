@@ -7,7 +7,7 @@ import os
 # Instantiate the client with the OpenAI API key
 client = weaviate.Client(
     "https://edu-demo.weaviate.network",
-    auth_client_secret=weaviate.AuthApiKey("learn-weaviate"),
+    auth_client_secret=weaviate.auth.AuthApiKey("learn-weaviate"),
     additional_headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
         "X-Cohere-Api-Key": os.environ["COHERE_API_KEY"]
@@ -161,7 +161,7 @@ response = (
         "concepts": ["flying"]
     })
     # highlight-start
-    .with_additional("rerank(property: "answer" query: "floating") { score }")
+    .with_additional("rerank(property: \"answer\" query: \"floating\") { score }")
     # highlight-end
     .with_limit(10)
     .do()
@@ -356,7 +356,7 @@ response = (
       query="paper"
     )
     # highlight-start
-    .with_additional("rerank(property: "question" query: "publication") { score }")
+    .with_additional("rerank(property: \"question\" query: \"publication\") { score }")
     # highlight-end
     .with_limit(10)
     .do()

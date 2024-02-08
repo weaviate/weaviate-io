@@ -6,7 +6,7 @@ import json
 
 client = weaviate.connect_to_wcs(
     cluster_url="https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud",
-    auth_credentials=weaviate.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
+    auth_credentials=weaviate.auth.AuthApiKey("nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus"),
     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 )
 
@@ -17,7 +17,7 @@ for query in ["cat", "kitten"]:
     response = questions.query.near_text(
         query=query,
         limit=1,
-        return_metadata=wvc.MetadataQuery(distance=True),
+        return_metadata=wvc.query.MetadataQuery(distance=True),
         return_properties=["question", "answer"]
     )
 
@@ -57,7 +57,7 @@ for query in ["cat", "catt", "caat"]:
     response = questions.query.near_text(
         query=query,
         limit=1,
-        return_metadata=wvc.MetadataQuery(distance=True),
+        return_metadata=wvc.query.MetadataQuery(distance=True),
         return_properties=["question", "answer"]
     )
 

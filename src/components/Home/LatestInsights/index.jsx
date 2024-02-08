@@ -27,7 +27,7 @@ export default function HomepageLatestInsights() {
         <Link className={styles.buttonGradient} to="/blog">
           Go to Blog
         </Link>
-        <Link className={styles.buttonOutline} to="/learn/workshops">
+        <Link className={styles.buttonOutline} to="/community/events">
           Go to Workshops
         </Link>
       </div>

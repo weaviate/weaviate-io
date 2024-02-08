@@ -192,14 +192,14 @@ Designing and adding a data schema does not need to be done manually. In the abs
 A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-To learn how to build a schema, [see our schema tutorial](../tutorials/schema.md), or [how-to on schema configuration](../manage-data/collections.mdx).
+To learn how to build a schema, [see our schema tutorial](../starter-guides/schema.md), or [how-to on schema configuration](../manage-data/collections.mdx).
 
 For now, what's important to know is this:
 
 1. Classes and properties (as explained above) are defined in the schema.
 1. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
 1. You can link classes (even if they use different embeddings) by setting cross-references.
-1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the [schema tutorial](../tutorials/schema.md)).
+1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the [schema tutorial](../starter-guides/schema.md)).
 
 ## Multi-tenancy
 

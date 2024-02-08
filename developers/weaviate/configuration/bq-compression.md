@@ -149,7 +149,7 @@ For example:
 
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Concepts: Vector index](../concepts/vector-index.md)
-- [Tutorial: Schema](../tutorials/schema.md)
+- [Tutorial: Schema](../starter-guides/schema.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
