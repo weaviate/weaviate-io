@@ -135,8 +135,8 @@ const siteRedirects = {
 
         // WCS redireects
         {
-            to: 'developers/wcs/faq'
-            from: '/developers/wcs/troubleshooting'
+            to: 'developers/wcs/faq',
+            from: '/developers/wcs/troubleshooting',
         },
         
         // Tutorial redirects
