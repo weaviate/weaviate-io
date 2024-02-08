@@ -19,7 +19,7 @@ export default function PartnersHeader() {
               <div className={styles.buttons}>
                 <Link
                   className={styles.buttonGradient}
-                  to="https://github.com/Snowflake-Labs/sfguide-weaviate-on-spcs"
+                  to="https://github.com/Snowflake-Labs/sfguide-getting-started-weaviate-on-spcs"
                 >
                   Get started with Snowpark Container Services
                 </Link>
