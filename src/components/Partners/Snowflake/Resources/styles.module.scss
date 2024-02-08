@@ -60,19 +60,19 @@
   }
 
   .resource1 {
-    background-image: url('/img/site/weaviate-bedrock.jpg');
-    background-size: cover;
-    background-position-x: left;
+    background-image: url('/img/site/snowflake-blog-resource-01.svg');
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
   }
   .resource2 {
-    background-image: url('/img/site/resource-image-02.png');
+    background-image: url('/img/site/snowflake-blog-resource-2.png');
+    background-size: cover;
   }
   .resource3 {
-    background-image: url('/img/site/resource-image-03.png');
-  }
-  .resource4 {
-    background-image: url('/img/site/resource-image-04.jpeg');
-    background-size: cover;
+    background-image: url('/img/site/snowflake-blog-resource-3.png');
+    background-color: white;
+    background-size: 100%;
   }
 
   .textBox {

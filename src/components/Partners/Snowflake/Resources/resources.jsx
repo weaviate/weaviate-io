@@ -44,7 +44,7 @@ export default function Resources() {
           </Link>
           <Link to="https://github.com/Snowflake-Labs/sfguide-weaviate-on-spcs">
             <div className={styles.latestBox}>
-              <div className={`${styles.insideBox} ${styles.resource4}`}></div>
+              <div className={`${styles.insideBox} ${styles.resource3}`}></div>
               <div className={styles.textBox}>
                 <h3>Guide</h3>
                 <p>Guide: Weaviate on SPCS</p>
