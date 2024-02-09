@@ -45,7 +45,7 @@ export default function enterpriseSupport() {
             <div className={styles.icon3}> </div>
             <h4 className={styles.title}>Secure deployment on GCP</h4>
 
-            <p className={styles.subTitle}>
+            <p className={`${styles.subTitle} ${styles.text3} `}>
               Weaviate is available in the GCP marketplace and allows one-click
               container based scalable deployment inside the customers’ tenant.
             </p>

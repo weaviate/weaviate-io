@@ -88,6 +88,18 @@
       font-size: 1rem;
       text-align: left;
     }
+
+    @media screen and (max-width: 1024px) {
+      .text3 {
+        width: 40%;
+      }
+    }
+
+    @media screen and (max-width: 670px) {
+      .text3 {
+        width: 100%;
+      }
+    }
   }
 }
 

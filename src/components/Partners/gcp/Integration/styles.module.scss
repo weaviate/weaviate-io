@@ -30,6 +30,10 @@
   p {
     width: 87%;
     margin-bottom: 34px;
+
+    @media screen and (max-width: 860px) {
+      width: 100%;
+    }
   }
 }
 
@@ -84,7 +88,7 @@
   }
 
   @media screen and (max-width: 650px) {
-    iframe {
+    video {
       width: 100%;
       height: 320px;
     }

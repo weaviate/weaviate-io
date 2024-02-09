@@ -34,12 +34,18 @@ export default function Integration() {
           </div>
 
           <div className={styles.diagram}>
-            <iframe
+            <video
               width="560"
               height="315"
-              src="https://drive.google.com/file/d/1oqsFIuHl8P3wDPqkCd2OOyNnN3EkfaCE/preview"
-              title="YouTube video player"
-            ></iframe>
+              controls
+              poster="/img/site/Weaviate-Google-Springboard.jpg"
+            >
+              <source
+                src="/img/site/Weaviate-Google-Springboard.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
