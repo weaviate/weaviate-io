@@ -12,45 +12,33 @@ import WCScreate from './img/wcs-create.png';
 import WCScreationProgress from './img/wcs-creation-progress.png';
 
 
-Welcome to the **Quickstart guide** for Weaviate Cloud Services (WCS). Here, you will learn:
-- How to set up a Weaviate instance on WCS, and
-- How to instantiate a Weaviate client to communicate with the WCS instance.
+In just a few steps, this Quickstart guide shows you how to get started with Weaviate Cloud Services (WCS). 
 
+## Create a WCS account
 
-By the end of this tutorial, you will be familiar with the basics of WCS. You will have:
-- Created a WCS account,
-- Created a new free WCS sandbox instance without authentication,
-- Installed a Weaviate client of your choice, and
-- Queried your new WCS sandbox instance with the Weaviate client.
-
-And if you wish, you will be ready to move onto our [Weaviate Quickstart tutorial](../weaviate/quickstart/index.md) next.
-
-## Sign in to WCS
-
-1. First, go to the [WCS Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
-    1. Click <kbd>Sign in with the Weaviate Cloud Services</kbd>.
-    1. If you don't have a WCS account, click on <kbd>Register</kbd>.
-1. Sign in with your WCS username and password.
+1. Go the [WCS homepage](https://console.weaviate.cloud).
+1. Click, "Create an account".
+1. Provide an email address and password. 
+1. After you confirm your email address, return to the login page.
+1. Log in to the WCS console.
 
 ## Create a Weaviate Cluster
 
-To create a new Weaviate Cluster, click the <kbd>Create cluster</kbd> button.
+The WCS console start page has tools to help you manage your WCS account. When you create a cluster, the WCS console displays a tile on this page with cluster details. There are no clusters when you log in to a new account.
 
-Then:
+Follow these steps to create a cluster.
 
-1. Select the <kbd>Free sandbox</kbd> tier.
-1. Provide a *Cluster name*. This will become a part of its URL, with a suffix added to ensure uniqueness.
-1. Set *Enable Authentication?* to <kbd>YES</kbd>.
+1. Click the "Create cluster" button.
+1. Select the "Free sandbox" tab. 
+1. Give your cluster a name. WCS adds a suffix to ensure uniqueness.
+1. Verify that "Enable Authentication?" is set to "Yes".
+1. Click create.
 
-Click <kbd>Create</kbd>. This will take ~2 minutes and you'll see a check mark ✔️ when finished.
+It takes a minute or two to create the new cluster. When the cluster is ready, WCS displays a check mark (`✔️`) next to the cluster name.
 
-This will start the process to create a new instance, and you will see a progress indicator.
+The process is similar to create a managed cluster. However, you have to add your billing details first.
 
-<img src={WCScreationProgress} width="65%" alt="Creation in progress"/>
-
-Instance creation should take a minute or two, and you will see a check mark ✔️ when it's done, indicating that the instance is ready.
-
-#### Your cluster details
+#### Review cluster details
 
 To access your cluster, you will need:
 - The Weaviate URL, and
