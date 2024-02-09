@@ -33,13 +33,13 @@ export default function StrategicPartners() {
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="/partners/snowflake">
-                <span className={styles.snowflake} />
+              <Link to="">
+                <span className={styles.confluent} />
               </Link>
             </div>
             <div className={styles.techBox}>
-              <Link to="">
-                <span className={styles.confluent} />
+              <Link to="/partners/snowflake">
+                <span className={styles.snowflake} />
               </Link>
             </div>
           </div>
