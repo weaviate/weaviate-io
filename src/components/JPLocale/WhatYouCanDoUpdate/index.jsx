@@ -35,7 +35,7 @@ export default function HomepageWhatYouCanDo() {
         </p>
         <p>
           クラウド環境のセットアップにあたっては、
-          <a href="notion://www.notion.so/weaviate/developers/wcs/quickstart.mdx">
+          <a href="https://weaviate.io/developers/wcs/quickstart">
             WCS クイックスタート
           </a>{' '}
           も参考にしてください。
