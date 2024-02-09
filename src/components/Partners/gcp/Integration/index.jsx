@@ -33,7 +33,14 @@ export default function Integration() {
             </p>
           </div>
 
-          <div className={styles.diagram}></div>
+          <div className={styles.diagram}>
+            <iframe
+              width="560"
+              height="315"
+              src="https://drive.google.com/file/d/1oqsFIuHl8P3wDPqkCd2OOyNnN3EkfaCE/preview"
+              title="YouTube video player"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

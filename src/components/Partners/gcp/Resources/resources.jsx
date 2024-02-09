@@ -15,16 +15,17 @@ export default function Resources() {
           <p className={styles.subtitle}></p>
         </div>
         <div className={styles.latestModule}>
-          <Link to="https://weaviate.io/blog/announcing-palm-modules">
+          <Link to="https://www.prnewswire.com/news-releases/build-with-google-gemini-using-weaviates-native-integration-302014138.html">
             <div className={styles.latestBox}>
-              <div className={`${styles.insideBox} ${styles.resource1}`}></div>
+              <div className={`${styles.insideBox} ${styles.resource3}`}></div>
               <div className={styles.textBox}>
-                <h3>Blog post</h3>
-                <p>Try Google's newly announced PaLM API with Weaviate </p>
+                <h3>Press Release</h3>
+                <p>
+                  Build with Google Gemini using Weaviate's native integration
+                </p>
               </div>
             </div>
           </Link>
-
           <Link to="https://weaviate.io/developers/weaviate/installation/gc-marketplace">
             <div className={styles.latestBox}>
               <div className={`${styles.insideBox} ${styles.resource2}`}></div>
@@ -37,14 +38,12 @@ export default function Resources() {
               </div>
             </div>
           </Link>
-          <Link to="https://www.prnewswire.com/news-releases/build-with-google-gemini-using-weaviates-native-integration-302014138.html">
+          <Link to="https://weaviate.io/blog/announcing-palm-modules">
             <div className={styles.latestBox}>
-              <div className={`${styles.insideBox} ${styles.resource3}`}></div>
+              <div className={`${styles.insideBox} ${styles.resource1}`}></div>
               <div className={styles.textBox}>
-                <h3>Press Release</h3>
-                <p>
-                  Build with Google Gemini using Weaviate's native integration
-                </p>
+                <h3>Blog post</h3>
+                <p>Try Google's newly announced PaLM API with Weaviate </p>
               </div>
             </div>
           </Link>

@@ -21,7 +21,7 @@ export default function PartnersHeader() {
                   className={styles.buttonGradient}
                   to="https://console.cloud.google.com/marketplace/product/mp-container-public/weaviate-gcp-k8s"
                 >
-                  Try free on Google Cloud Marketplace
+                  Try on Google Cloud Marketplace
                 </Link>
               </div>
             </div>
