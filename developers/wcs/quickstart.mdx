@@ -5,13 +5,6 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
 
-import registerImg from './img/register.png';
-import WCSoptions from './img/wcs-options.png';
-import WCScreateButton from './img/wcs-create-button.png';
-import WCScreate from './img/wcs-create.png';
-import WCScreationProgress from './img/wcs-creation-progress.png';
-
-
 In just a few steps, this Quickstart guide shows you how to get started with Weaviate Cloud Services (WCS). 
 
 ## Create a WCS account
@@ -24,11 +17,9 @@ In just a few steps, this Quickstart guide shows you how to get started with Wea
 
 ## Create a Weaviate Cluster
 
-The WCS console start page has tools to help you manage your WCS account. 
-
 When you log into the WCS web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account.
 
-Follow these steps to create a cluster.
+To create a cluster, follow these steps:
 
 1. Click the "Create cluster" button.
 1. Select the "Free sandbox" tab. 
@@ -40,31 +31,26 @@ It takes a minute or two to create the new cluster. When the cluster is ready, W
 
 The process is similar to create a managed cluster. However, you have to add your billing details first.
 
-#### Explore the Details panel
-
-The Details panel lists cluster metrics, authorization details, and other useful information. To access your cluster, you need the cluster URL and authentication details. 
-
-Follow these steps to get the information.
-
-1. Click <kbd>Details</kbd> to see them.
-
-For the Weaviate API key, click on the <kbd>API keys <i class="fa-solid fa-key"></i></kbd> button.
-
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <SandBoxExpiry/>
 
-In the meantime, let's start installing a client library.
+## Explore the Details panel
+
+The Details panel lists cluster metrics, authorization details, and other useful information. To access your cluster, you need the cluster URL and authentication details. 
+
+To get the cluster URL and authentication details, follow these steps:
+
+1. Click the `Details` button to open the Details panel.
+1. To get the API key, click the `API keys` button.
+1. Copy the API key for the `Admin` user to a safe place.
+1. The cluster URL begins with the cluster name. Copy it to a safe place.  
 
 ## Install a client library
 
-We suggest using a [Weaviate client](/developers/weaviate/client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
+The WCS console includes a query interface, but most most WCS interactions rely on a [Weaviate client](/developers/weaviate/client-libraries/index.md). Clients are available in several programming languages. Chose one that makes sense for your project. 
 
-import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
-
-<ClientCapabilitiesOverview />
-
-Install your preferred client by following the relevant instructions below:
+To install a client, follow these steps for your language:
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
@@ -72,29 +58,23 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Connect to your WCS instance
 
-By now, you should have:
-* Set up a sandbox instance of Weaviate on WCS, and
-* Installed a Weaviate client library.
+These code samples demonstrate how to connect use a Weaviate client to your WCS cluster. 
 
-From the <kbd>Details</kbd> tab in WCS, get:
-- The Weaviate **API key**, and
-- The Weaviate **URL**.
+To connect to your cluster, follow these steps for your language:
 
-Replace the endpoint address and API key in the following code with your address and key, then run the code for your preferred client:
+1. Replace the endpoint URL and the API key with the values you got on the Details panel.
+1. Run the client code.
 
-import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
+import WCSClientIsReady from '/_includes/code/wcs.client.is_ready.mdx';
 
-<WCSClientInstantiation/>
+<WCSClientIsReady/>
 
-You should receive a response containing the current schema, confirming the server is ready.
+If you connected successfully, the server returns the current schema.
 
-Congratulations! You have successfully set up a cloud-based vector database with WCS.
+## Next steps
 
-## Next
 
-Now that you are set up with a WCS instance:
-* If you are new to Weaviate at large, we recommend moving to the [Weaviate Quickstart Tutorial](../weaviate/quickstart/index.md).
-* Otherwise, we hope you enjoy your experience with WCS.
+
 
 ## Support
 
