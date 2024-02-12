@@ -66,6 +66,24 @@ const config = {
                 showReadingTime: true,
             },
         ],
+        // Playbook configuration
+        [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Paper Reviews',
+                blogDescription: '<todo>',
+                blogSidebarCount: 0,
+                postsPerPage: 6,
+                blogSidebarTitle: 'Weaviate Paper Reviews',
+
+                id: 'papers-blog',
+                routeBasePath: '/learn/papers',
+                // path to data on filesystem relative to site dir.
+                path: 'papers',
+                authorsMapPath: '../authors.yml',
+                showReadingTime: true,
+            },
+        ],
         // Add HTML Header tags
         () => ({
             name: 'inject-tag',
@@ -236,6 +254,10 @@ const config = {
                             {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
+                            },
+                            {
+                                label: 'Paper Reviews',
+                                to: '/learn/papers',
                             },
                             {
                                 label: 'Contributor Guide',
