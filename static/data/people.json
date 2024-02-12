@@ -381,6 +381,12 @@
     "team": "developer-growth"
   },
   {
+    "name": "Piaras Hoban",
+    "title": "Client-Focused SRE",
+    "photo": "piaras-hoban.jpg",
+    "team": "cloud"
+  },
+  {
     "name": "Redouan 'Red' El Rhazouani",
     "title": "Core Engineer",
     "photo": "redo.png",
