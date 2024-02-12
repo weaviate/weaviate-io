@@ -381,7 +381,7 @@ finally:
 
 # START CreateCollectionExample
 import weaviate
-import weaviate.classes as wvc
+import weaviate.classes.config as wvcc
 
 client = weaviate.connect_to_local()
 
@@ -395,12 +395,12 @@ try:
     # START CreateCollectionExample
     collection = client.collections.create(
         name="TestArticle",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
-        generative_config=wvc.config.Configure.Generative.cohere(),
+        vectorizer_config=wvcc.Configure.Vectorizer.text2vec_cohere(),
+        generative_config=wvcc.Configure.Generative.cohere(),
         properties=[
-            wvc.config.Property(
+            wvcc.Property(
                 name="title",
-                data_type=wvc.config.DataType.TEXT
+                data_type=wvcc.DataType.TEXT
             )
         ]
     )
@@ -430,36 +430,36 @@ finally:
 
 # START CreateCollectionWithRefsExample
 import weaviate
-import weaviate.classes as wvc
+import weaviate.classes.config as wvcc
 
 client = weaviate.connect_to_local()
 
 try:
     articles = client.collections.create(
         name="TestArticle",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
-        generative_config=wvc.config.Configure.Generative.cohere(),
+        vectorizer_config=wvcc.Configure.Vectorizer.text2vec_cohere(),
+        generative_config=wvcc.Configure.Generative.cohere(),
         properties=[
-            wvc.config.Property(
+            wvcc.Property(
                 name="title",
-                data_type=wvc.config.DataType.TEXT
+                data_type=wvcc.DataType.TEXT
             )
         ]
     )
 
     authors = client.collections.create(
         name="TestAuthor",
-        vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_cohere(),
-        generative_config=wvc.config.Configure.Generative.cohere(),
+        vectorizer_config=wvcc.Configure.Vectorizer.text2vec_cohere(),
+        generative_config=wvcc.Configure.Generative.cohere(),
         properties=[
-            wvc.config.Property(
+            wvcc.Property(
                 name="name",
-                data_type=wvc.config.DataType.TEXT
+                data_type=wvcc.DataType.TEXT
             )
         ],
         # highlight-start
         references=[
-            wvc.config.ReferenceProperty(
+            wvcc.ReferenceProperty(
                 name="wroteArticle",
                 target_collection="TestArticle"
             )
@@ -482,7 +482,6 @@ finally:
 
 # START GetCollectionExample
 import weaviate
-import weaviate.classes as wvc
 
 client = weaviate.connect_to_local()
 

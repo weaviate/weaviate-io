@@ -11,7 +11,7 @@ The current Python client version is `v||site.python_client_version||`
 :::
 
 :::info `v4` client available
-The Python client is available in two versions: `v3` and `v4`. The `v4` client (currently in beta) is the latest version and is recommended for new projects. The `v3` client is still available for backwards compatibility, but will not be updated with new features. The documentation on this page is for the `v3` client. For the `v4` client, see [this page](../client-libraries/python.md).
+This document relates to the `v3` client. We recommend you upgrade to the [`v4` client](../client-libraries/python/index.md) if possible. The `v3` client is still available for backwards compatibility, and receive with bug fixes and security updates, but it will be updated with new Weaviate features, and may be subset sometime in the second half of 2024.
 :::
 
 ## Installation and setup

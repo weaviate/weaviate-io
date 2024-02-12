@@ -250,7 +250,7 @@ Now, add this list of classes to the schema, which will look like this:
 
 **3. Upload the schema to Weaviate with the Python client.**
 
-import HowtoSchemaCreatePython from '/_includes/code/howto.schema.create.python.mdx';
+import HowtoSchemaCreatePython from '/_includes/code/howto.schema.create.python/index.mdx';
 
 <HowtoSchemaCreatePython/>
 
