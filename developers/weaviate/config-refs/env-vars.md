@@ -51,6 +51,7 @@ This page includes a comprehensive list of environment variables that can be use
 | <code>TRANSFORMERS<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the transformers module if enabled | `string` | `http://t2v-transformers:8080` |
 | <code>CLIP<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the clip module if enabled | `string` | `http://multi2vec-clip:8000` |
 | <code>IMAGE<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
+| <code>USE_SENTENCE<wbr />_TRANSFORMERS<wbr />_VECTORIZER</code> | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `string - true/false` | `true` |
 
 ### Authentication & Authorization
 

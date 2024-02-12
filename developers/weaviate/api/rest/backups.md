@@ -47,9 +47,9 @@ The request takes a json object with the following properties:
 ##### Config object properties
 | name | type | required | default | description |
 | ---- | ---- | ---- | ---- |---- |
-| `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
-| `chunkSize`       | number | no | `128MB` | An optional integer represents the desired size for chunks. Weaviate will attempt to come close the specified size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB.|
-| `compressionLevel`| string | no | `DefaultCompression` | An optional compression level used by compression algorithm from options. `DefaultCompression`, `BestSpeed`, `BestCompression`|
+| `cpuPercentage`   | integer | no | `50%` | Sets the desired CPU core utilization ranging from 1%-80%. |
+| `chunkSize`       | integer | no | `128MB` | Sets the chunk size. Sizes range from 2MB to 512MB The default is 128MB. The actual chunk size may not be exactly `chunkSize`. |
+| `compressionLevel`| string | no | `DefaultCompression` | Sets the compression level. Possible values are: `DefaultCompression`, `BestSpeed`, `BestCompression`|
 
 *Note: Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default.*
 
@@ -126,7 +126,7 @@ The request takes a json object with the following properties:
 ##### Config object properties
 | name | type | required | default | description |
 | ---- | ---- | ---- | ---- |---- |
-| `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
+| cpuPercentage | integer | no | `50%` | Sets CPU core utilization from `1%-80%`. |
 
 For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#restore-backup) page.
 

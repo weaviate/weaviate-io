@@ -17,13 +17,12 @@ client.close()
 # EndToEndExample  # InstantiationExample  # NearTextExample
 import weaviate
 import weaviate.classes as wvc
+import os
 # END EndToEndExample  # END InstantiationExample  # END NearTextExample
-
-# ===== import data =====  # EndToEndExample
+# EndToEndExample  # InstantiationExample
 import requests
 import json
-import os
-# END EndToEndExample  # Test import
+# END EndToEndExample  # END InstantiationExample
 
 # EndToEndExample  # InstantiationExample  # NearTextExample
 

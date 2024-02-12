@@ -15,7 +15,7 @@ export default function HomepageHeader() {
             <h1>最も簡単にAIアプリケーションを構築し拡張する</h1>
             <div className={styles.headerBox}>
               <p className="text-center">
-                Weaviateは、開発者が直感的で信頼性のあるAIアプリケーションを作成するのをサポートするオープンソースのAI
+                Weaviateは、開発者が信頼性のあるAIアプリケーションを作成するのをサポートするオープンソースのAI
                 Nativeのベクトルデータベースです。
               </p>
             </div>
