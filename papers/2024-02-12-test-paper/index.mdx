@@ -1,0 +1,32 @@
+---
+title: Test Paper
+slug: test-paper
+authors: [zain]
+date: 2024-02-12
+tags: []
+image: ./img/hero.jpeg
+---
+![A preview of the paper](./img/hero.jpeg)
+
+<!-- truncate -->
+
+import { DownloadButton } from '/src/theme/Buttons';
+
+Welcome to the test paper.
+
+Here is short description.
+
+[Download here - as a link](./download/2401.09350.pdf)
+
+<p>
+  <DownloadButton link={require('./download/2401.09350.pdf').default}>Download the paper - as a button</DownloadButton>
+</p>
+
+## Conclusions
+
+Some final thoughts
+
+<!-- We could create a specific template for Paper Review's -->
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />
