@@ -423,6 +423,20 @@
   gap: 40px;
   align-items: center;
 
+  .tabRow {
+    display: flex;
+    gap: 27px;
+    flex-direction: column;
+    margin: 73px 0px 0px 0px;
+
+    @media screen and (max-width: 1180px) {
+      display: contents;
+      gap: 0px;
+      flex-direction: unset;
+      margin-top: 0px;
+    }
+  }
+
   @media screen and (max-width: 1180px) {
     flex-direction: column;
     gap: 14px;
@@ -474,7 +488,21 @@
   }
 
   .python::before {
-    background-image: url(/img/site/python-doc-icon.svg);
+    background-image: url(/img/site/Python-Logo.png);
+  }
+
+  .ts::before {
+    background-image: url(/img/site/TS-Logo.png);
+  }
+
+  .go::before {
+    background-image: url(/img/site/Go-Logo.png);
+    margin: 9px 9px 0px 0px;
+    width: 1.5rem;
+  }
+
+  .java::before {
+    background-image: url(/img/site/Java-Logo.png);
   }
 
   .slack::before {
