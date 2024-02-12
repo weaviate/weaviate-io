@@ -5,7 +5,7 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS. 
+Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS.
 
 ## Installation methods
 
@@ -16,8 +16,8 @@ For details on how to run Weaviate, see the following:
 - **[Kubernetes](./kubernetes.md)**: Kubernetes is ideal for scalable, production deployments.
 - **[AWS Marketplace](./aws-marketplace.md)**: Deploy Weaviate directly from the AWS Marketplace.
 - **[Google Cloud Marketplace](./gc-marketplace.md)** Deploy Weaviate directly from the Google Cloud Marketplace.
-- **[Snowpark Container Services](./snowplow-integration.mdx)** Deploy Weaviate in Snowflake's Snowpark environment.
-- **[Embedded Weaviate](./embedded.md)**: Experimental. Embedded Weaviate is a client based tool. 
+- **[Snowpark Container Services](./spcs-integration.mdx)** Deploy Weaviate in Snowflake's Snowpark environment.
+- **[Embedded Weaviate](./embedded.md)**: Experimental. Embedded Weaviate is a client based tool.
 
 
 ## Configuration files
@@ -31,11 +31,11 @@ If you are self-hosting, consider experimenting on a small scale with Docker and
 :::warning Unreleased software
 DISCLAIMER: Release candidate images and other unreleased software are not supported.
 
-Unreleased software and images may contain bugs. APIs may change. Features under development may be withdrawn or modified. Do not use unreleased software in production. 
- 
+Unreleased software and images may contain bugs. APIs may change. Features under development may be withdrawn or modified. Do not use unreleased software in production.
+
 :::
 
-If you want to run an unreleased version of Weaviate, configure your configuration yaml file to build using an unreleased image. 
+If you want to run an unreleased version of Weaviate, configure your configuration yaml file to build using an unreleased image.
 
 For example, to run the image for a release candidate (`rc` version), edit your `docker-config.yaml` to call the release candidate image.
 
@@ -70,7 +70,7 @@ services:
       AUTHENTICATION_APIKEY_USERS: '<YOUR-API-AUTHENTICATION-PASSWORD>'
 volumes:
   weaviate_data:
-  
+
 ```
 
 If you try out new features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
