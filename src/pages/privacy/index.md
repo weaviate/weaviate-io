@@ -371,7 +371,7 @@ We retain your personal data for a period of 5 years or as long as required to r
 
 ### **8. Your rights and how to exercise them **
 
-You may contact finance@weaviate.io to exercise any of the rights you are granted under applicable personal data protection legislation, including the following rights:
+You may contact legal@weaviate.io to exercise any of the rights you are granted under applicable personal data protection legislation, including the following rights:
 
 <br></br>
 
@@ -405,7 +405,7 @@ Please note that we may require you to provide additional information to verify 
 
 ### **9. How to contact us**
 
-You can always contact us if you have any questions, remarks, or complaints in relation to this privacy policy. For any such questions, remarks, or complaints, please contact finance@weaviate.io.
+You can always contact us if you have any questions, remarks, or complaints in relation to this privacy policy. For any such questions, remarks, or complaints, please contact legal@weaviate.io.
 
 <br></br>
 
