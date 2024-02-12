@@ -104,7 +104,7 @@ Embedded Weaviate is currently supported on:
 
 ### Python
 
-[Python client](../client-libraries/python.md) support was added in `v3.15.4` for Linux, and in `v3.21.0` for macOS.
+[Python client](../client-libraries/python/index.md) support was added in `v3.15.4` for Linux, and in `v3.21.0` for macOS.
 
 ### TypeScript
 
