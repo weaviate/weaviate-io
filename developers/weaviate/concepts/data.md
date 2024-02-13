@@ -24,7 +24,7 @@ Each data object in Weaviate belongs to a `collection` and has one or more `prop
 
 Weaviate stores _data objects_ in _class-based collections_. The data objects are represented as JSON-documents. Objects normally include a vector representation that is derived from a machine learning model. The _vector_ is also called an _embedding_ or a _vector embedding_.
 
-Each _class-based collection_ contains objects of the same _class_, which are defined by a common _schema_.
+Each collection contains objects of the same _class_ that are all defined by a common _schema_.
 
 ### JSON documents as objects
 
@@ -82,7 +82,7 @@ Nobel Prize Winner
 "Paul Robin Krugman is an American economist and public intellectual, who is..."
 ] -->
 
-Following on our author example, Weaviate can store multiple authors like this:
+Weaviate stores multiple authors like this:
 
 ```json
 [{
@@ -119,16 +119,16 @@ Following on our author example, Weaviate can store multiple authors like this:
 ```
 
 :::tip
-Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), which guarantees uniqueness across all collections.
+Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). The UUID guarantees uniqueness across all collections.
 :::
 
 ### Cross-references
 
 :::note Cross-references do not affect vectors
-Creating cross-references does not affect object vectors in either direction.
+Cross-references link objects, but they do not change the vectors in either direction.
 :::
 
-Where data objects have relationships with each other, they can be represented in Weaviate with cross-references.
+If data objects have relationships with each other, use cross-references to represent the relationships.
 
 For example, let's say that we want to represent the fact that *"Paul Krugman writes for the New York Times"*. We can do this by establishing a cross-reference relationship that Paul Krugman writes for the New York Times. More specifically, a `Publication` object representing the New York Times can have a cross-reference to an `Author` object representing Paul Krugman.
 
@@ -145,7 +145,9 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-We can identify it with its `UUID`, and specify it in the `writesFor` property for the `Author`. An object containing a cross-reference may look like this:
+To create a reference, use a property from one collection to specify the value of a related property in the other collection.
+
+This example uses the UUID of an object in the `publication` collection to specify the `writesFor` property in an object in the `Author` collection. The `beacon` property in the `Author` collection is the `id` for the New York Times `Publication` object.
 
 ```json
 {
@@ -167,34 +169,32 @@ We can identify it with its `UUID`, and specify it in the `writesFor` property f
 }
 ```
 
-Each cross-reference relationship in Weaviate is directional.
+Cross-reference relationships are directional.
 
-So, in addition to the `Author` class having a `writesFor` property that points to the `Publication` class, you could have a `hasAuthors` property in the `Publication` class that points to the `Author` class.
+The `Author` collection has a `writesFor` property that points to the `Publication` class. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
 
-Cross-references in Weaviate can be best thought of as links to help you retrieve related information. Cross-references do not affect the vector of the `from`, or the `to` object.
+Cross-references in Weaviate are like links that help you retrieve related information. Cross-references do not change the vector of the underlying object.
 
 ## Weaviate Schema
 
-Weaviate requires a data schema to be built before adding data.
+Weaviate requires a data schema before you add data. You do not have to create a data schema manually, however. If you don't provide one, Weaviate generates a schema based on the incoming data.
 
 import SchemaDef from '/_includes/definition-schema.md';
 
 <SchemaDef/>
 
-Designing and adding a data schema does not need to be done manually. In the absence of a data schema specification, Weaviate will generate a schema automatically from the provided data.
-
 :::note Schema vs. Taxonomy
-A Weaviate data schema is slightly different from a taxonomy, which has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in [this blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
+A Weaviate data schema is slightly different from a taxonomy. A taxonomy has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in this [blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
-To learn how to build a schema, [see our schema tutorial](../starter-guides/schema.md), or [how-to on schema configuration](../manage-data/collections.mdx).
+Schemas fulfill several roles:
 
-For now, what's important to know is this:
+1. Collections and properties are defined in schemas.
+1. Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
+1. Schemas define cross-references that link collections, even collections that use different embeddings.
+1. Schemas let you configure mModule behavior, ANN index settings, reverse indexes, and other features per collection.
 
-1. Classes and properties (as explained above) are defined in the schema.
-1. Every class has its own vector space, which means that you can attach vectors from different models to different classes.
-1. You can link classes (even if they use different embeddings) by setting cross-references.
-1. You can configure module behavior, ANN index settings, reverse index types, etc. In the schema as well (more about this in the [schema tutorial](../starter-guides/schema.md)).
+For details on configuring your schema, see the [schema tutorial](../starter-guides/schema.md)) or [schema configuration](../manage-data/collections.mdx).
 
 ## Multi-tenancy
 
