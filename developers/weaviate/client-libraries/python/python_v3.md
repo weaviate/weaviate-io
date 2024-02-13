@@ -11,7 +11,9 @@ The current Python client version is `v||site.python_client_version||`
 :::
 
 :::info `v4` client available
-This document relates to the `v3` client. We recommend you upgrade to the [`v4` client](../client-libraries/python/index.md) if possible. The `v3` client is still available for backwards compatibility, and receive with bug fixes and security updates, but it will be updated with new Weaviate features, and may be subset sometime in the second half of 2024.
+This document relates to the `v3` client. We recommend you upgrade to the [`v4` client](./index.md) if possible. The `v3` client is still available for backwards compatibility, and receive with bug fixes and security updates, but it will be updated with new Weaviate features, and may be subset sometime in the second half of 2024.
+
+We also have a [migration guide for moving from `v3` client to the `v4`](./v3_v4_migration.md).
 :::
 
 ## Installation and setup
@@ -174,7 +176,7 @@ There is a variety of neural search frameworks that use Weaviate under the hood 
 
 # References documentation
 
-On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
+On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
 
 ### Example: client.schema.create(schema)
 Instead of adding classes one by one using the RESTful `v1/schema` endpoint, you can upload a full schema in JSON format at once using the Python client. Use the function `client.schema.create(schema)` as follows:
