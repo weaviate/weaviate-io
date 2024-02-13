@@ -52,7 +52,7 @@ try:
     )
 
     print(response.properties["answer"].top_occurrences)
-
+    # END TextProp Python
 
     # Tests
     assert type(response.properties["answer"].top_occurrences) == list
@@ -70,7 +70,8 @@ try:
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.aggregate.over_all(
         # highlight-start
-        return_metrics=wvc.query.Metrics("points").number(sum_=True, maximum=True, minimum=True),
+        # Use `.number` for floats (`NUMBER` datatype in Weaviate)
+        return_metrics=wvc.query.Metrics("points").integer(sum_=True, maximum=True, minimum=True),
         # highlight-end
     )
 
