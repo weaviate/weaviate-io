@@ -16,6 +16,10 @@ This page broadly covers the Weaviate Python client (`v4` release). For usage in
 
 ## Installation
 
+:::tip Migrating from `v3` to `v4`
+If you are migrating from the `v3` client to the `v4`, please see this [dedicated guide](./v3_v4_migration.md).
+:::
+
 The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
 
 ```bash
@@ -683,6 +687,10 @@ You can choose to provide a generic type to a query or data operation. This can 
 />
 
 ## Migration guides
+
+:::tip Migrating from `v3` to `v4`
+If you are migrating from the `v3` client to the `v4`, please see this [dedicated guide](./v3_v4_migration.md).
+:::
 
 ### Beta releases
 
