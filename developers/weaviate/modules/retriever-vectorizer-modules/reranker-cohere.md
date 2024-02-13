@@ -119,7 +119,7 @@ You can also pass in your fine-tuned reranker `model_id`, such as:
 
 - `500df123-afr3-...`
 
-This is described further in this [blog post](/blog/fine-tuning-cohere-reranker).
+This is described further in this [blog post](/blog/fine-tuning-coheres-reranker).
 
 ## Usage
 
