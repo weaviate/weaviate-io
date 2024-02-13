@@ -1,23 +1,23 @@
 [
   {
-    "type": "CONFERENCE",
-    "title": "NDC {London} 2024",
-    "date": "FEB 1ST 2024 13:40 - 14:40 UTC",
+    "type": "ONLINE WORKSHOP",
+    "title": "Weaviate Python Client (v4) - Intermediate Workshop",
+    "date": "FEB 21ST 2024 15:00 - 16:00 UTC",
     "imageClass": "firstSection",
-    "url": "https://ndclondon.com/speakers/zain-hasan"
+    "url": "https://form.jotform.com/240243316328348"
   },
   {
-    "type": "MEETUP",
-    "title": "AI Meetup San Francisco",
-    "date": "FEB 7TH 2024 05:00 PM PST",
+    "type": "WEBINAR",
+    "title": "Multimodal Product Discovery: The next generation of search for ecommerce",
+    "date": "FEB 27TH 2024 18:00 - 20:00 UTC",
     "imageClass": "secondSection",
-    "url": "https://www.aicamp.ai/event/eventdetails/W2024020717"
+    "url": "https://events.weaviate.io/ecommerce-webinar"
   },
   {
     "type": "ONLINE WORKSHOP",
-    "title": "Multi-tenancy in Weaviate for SaaS (Intermediate)",
-    "date": "FEB 14th 2024 15:00 - 16:00 UTC",
+    "title": "Intro to Weaviate for JavaScript Developers with Daniel #03",
+    "date": "FEB 28TH 2024 16:00 - 17:00 UTC",
     "imageClass": "thirdSection",
-    "url": "https://form.jotform.com/240243316328348"
+    "url": "https://form.jotform.com/240244011820338"
   }
 ]
