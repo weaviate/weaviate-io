@@ -66,7 +66,7 @@ To generate vectors, use one of Weaviate's vectorizer [modules](./modules.md) or
 
 ### Collections
 
-In this example, Weaviate groups Authors together in the `Author` collection.
+In this example, the `Author` collection holds objects that represent different authors.
 
 <!-- [Alice Munro
 Born: July 10, 1931 (age 91)
@@ -82,7 +82,7 @@ Nobel Prize Winner
 "Paul Robin Krugman is an American economist and public intellectual, who is..."
 ] -->
 
-Weaviate stores multiple authors like this:
+The collection looks like this:
 
 ```json
 [{
@@ -128,11 +128,17 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 Cross-references link objects, but they do not change the vectors in either direction.
 :::
 
-If data objects have relationships with each other, use cross-references to represent the relationships.
+If data objects are related, use cross-references to represent the relationships. Cross-references in Weaviate are like links that help you retrieve related information. Cross-references capture relationships, but they do not change the vectors of the underlying objects.
 
-For example, let's say that we want to represent the fact that *"Paul Krugman writes for the New York Times"*. We can do this by establishing a cross-reference relationship that Paul Krugman writes for the New York Times. More specifically, a `Publication` object representing the New York Times can have a cross-reference to an `Author` object representing Paul Krugman.
+To create a reference, use a property from one collection to specify the value of a related property in the other collection.
 
-So, given the following `Publication` object for the New York Times:
+#### Cross-reference example
+
+For example, to represent the fact that *"Paul Krugman writes for the New York Times"*. Create a cross-reference between the author and the publication. More specifically, create a cross-reference between the `Publication` object that represents the New York Times and the `Author` object that represents Paul Krugman.
+
+This example uses the UUID of an object in the `publication` collection to specify the `writesFor` property in an object in the `Author` collection. The `beacon` property in the `Author` collection is the `id` for the New York Times `Publication` object.
+
+The New York Times `Publication` object looks like this:
 
 ```json
 {
@@ -145,9 +151,7 @@ So, given the following `Publication` object for the New York Times:
 }
 ```
 
-To create a reference, use a property from one collection to specify the value of a related property in the other collection.
-
-This example uses the UUID of an object in the `publication` collection to specify the `writesFor` property in an object in the `Author` collection. The `beacon` property in the `Author` collection is the `id` for the New York Times `Publication` object.
+The Paul Krugman `Author` object looks like this:
 
 ```json
 {
@@ -169,11 +173,7 @@ This example uses the UUID of an object in the `publication` collection to speci
 }
 ```
 
-Cross-reference relationships are directional.
-
-The `Author` collection has a `writesFor` property that points to the `Publication` class. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
-
-Cross-references in Weaviate are like links that help you retrieve related information. Cross-references do not change the vector of the underlying object.
+Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
 
 ## Weaviate Schema
 
