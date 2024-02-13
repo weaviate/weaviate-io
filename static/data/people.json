@@ -365,11 +365,11 @@
     "team": "ceo-team"
   },
   {
-    "name": "Peter Schramm",
+    "name": "Paul de Grijp",
     "title": "Head of WCS",
-    "photo": "peter.png",
-    "linkedin": "peter-schramm-cologne",
-    "github": "Glockenbeat",
+    "photo": "paul-de-grijp.jpg",
+    "linkedin": "pauldegrijp",
+    "twitter": "pauldegrijp",
     "team": "wcs"
   },
   {
@@ -379,6 +379,12 @@
     "linkedin": "philipvollet",
     "twitter": "philipvollet",
     "team": "developer-growth"
+  },
+  {
+    "name": "Piaras Hoban",
+    "title": "Client-Focused SRE",
+    "photo": "piaras-hoban.jpg",
+    "team": "cloud"
   },
   {
     "name": "Redouan 'Red' El Rhazouani",
@@ -411,14 +417,6 @@
     "linkedin": "mohdshukrihasan",
     "twitter": "MohdShukriHasa1",
     "team": "sales-engineering"
-  },
-  {
-    "name": "Sila Uygun",
-    "title": "Account Manager",
-    "photo": "sila.png",
-    "linkedin": "silauygun",
-    "twitter": "silauygun",
-    "team": "ceo-team"
   },
   {
     "name": "Stefan Bogdan",

@@ -66,7 +66,7 @@ export default function PlatformHeader() {
           >
             <div className={styles.socialBox}>
               <div className={styles.forum} />
-              <p className={styles.text}>Forum</p>
+              <p className={styles.text}>Community Forum</p>
             </div>
           </Link>
         </div>

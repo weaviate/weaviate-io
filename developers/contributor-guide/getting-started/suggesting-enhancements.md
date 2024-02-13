@@ -20,8 +20,8 @@ Suggestions are tracked as GitHub issues, such as these in [Weaviate core]](http
 * **Explain why this change would be useful** to Weaviate users.
 * Specify which **version of Weaviate** you're using. Check the version in your `docker-compose.yml` file.
 
-## Working on your own suggestion
+## Working on your own ideas
 
-You are welcome to implement your own suggestion and submit it! If you have any questions, feel free to reach out to us and the wider community on the [forum](https://forum.weaviate.io).
+You are welcome to implement your own ideas and contribute code to Weaviate! We love to hear your ideas. Feel free to reach out to us and the wider community on the [forum](https://forum.weaviate.io) to discuss them before you get started.
 
-For this, you will need a local development setup. Please follow the instructions in the [Weaviate development setup](../weaviate-core/setup.md) documentation.
+If you want to implement your ideas, or do some work on the Weaviate code base, follow these [instructions](../weaviate-core/setup.md) to create a local development environment.

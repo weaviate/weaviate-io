@@ -1,5 +1,5 @@
 ---
-title: Python (Client v4)
+title: Python
 sidebar_position: 10
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library', 'experimental']
@@ -12,7 +12,42 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 ## Overview
 
-This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../index.md).
+This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md).
+
+## Installation
+
+The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
+
+```bash
+pip install -U weaviate-client  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+```
+
+### Requirements
+
+#### gRPC
+
+The `v4` client uses remote procedure calls (RPCs) under-the-hood. Accordingly, a port for gRPC must be open to your Weaviate server.
+
+<details>
+  <summary>docker-compose.yml example</summary>
+
+If you are running Weaviate with Docker, you can map the default port (`50051`) by adding the following to your `docker-compose.yml` file:
+
+```yaml
+    ports:
+     - 8080:8080
+     - 50051:50051
+```
+
+</details>
+
+#### WCS compatibility
+
+The free (sandbox) tier of WCS is compatible with the `v4` client as of 31 January, 2024. Sandboxes created before this date will not be compatible with the `v4` client.
+
+#### Weaviate server version
+
+The `v4` client requires Weaviate `1.23.7` or higher. Generally, we encourage you to use the latest version of the Python client *and* the Weaviate server.
 
 ## High-level ideas
 
@@ -42,6 +77,7 @@ For discoverability, the classes are arranged into submodules.
 | `weaviate.classes.config`   | Collection creation / modification  |
 | `weaviate.classes.data`     | CUD operations                      |
 | `weaviate.classes.query`    | query/search operations             |
+| `weaviate.classes.aggregate`| aggregate operations                |
 | `weaviate.classes.generic`  | generics                            |
 | `weaviate.classes.init`     | initialization                      |
 | `weaviate.classes.tenants`  | tenants                             |
@@ -75,48 +111,13 @@ This will close the client connection when you leave the `with` block.
   language="py"
 />
 
-## Installation
-
-The Python client library is developed and tested using Python 3.8+. It is available on [PyPI.org](https://pypi.org/project/weaviate-client/), and can be installed with:
-
-```bash
-pip install -U "weaviate-client==4.*"  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
-```
-
-### Requirements
-
-#### gRPC
-
-The `v4` client uses remote procedure calls (RPCs) under-the-hood. Accordingly, a port for gRPC must be open to your Weaviate server.
-
-<details>
-  <summary>docker-compose.yml example</summary>
-
-If you are running Weaviate with Docker, you can map the default port (`50051`) by adding the following to your `docker-compose.yml` file:
-
-```yaml
-    ports:
-     - 8080:8080
-     - 50051:50051
-```
-
-</details>
-
-#### WCS compatibility
-
-The free (sandbox) tier of WCS is compatible with the `v4` client as of 31 January, 2024. Sandboxes created before this date will not be compatible with the `v4` client.
-
-#### Weaviate server version
-
-The `v4` client requires Weaviate `1.23.7` or higher. Generally, we encourage you to use the latest version of the Python client *and* the Weaviate server.
-
 ## Instantiate a client
 
 There are multiple ways to connect to your Weaviate instance. To instantiate a client, use one of these styles:
 
-- [Python client v4 helper methods](./python.md#python-client-v4-helper-methods)
-- [Python client v4 explicit connection](./python.md#python-client-v4-explicit-connection)
-- [Python client v3 style connection](./python.md#python-client-v3-style-connection)
+- [Python client v4 helper methods](#python-client-v4-helper-methods)
+- [Python client v4 explicit connection](#python-client-v4-explicit-connection)
+- [Python client v3 style connection](#python-client-v3-style-connection)
 
 ### Python client v4 helper functions
 
@@ -170,9 +171,9 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 The `v4` client helper functions provide some optional parameters to customize your client.
 
-- [Specify external API keys](./python.md#external-api-keys)
-- [Specify connection timeout values](./python.md#timeout-values)
-- [Specify authentication details](./python.md#authentication)
+- [Specify external API keys](#external-api-keys)
+- [Specify connection timeout values](#timeout-values)
+- [Specify authentication details](#authentication)
 
 #### External API keys
 
@@ -237,7 +238,7 @@ For OIDC authentication with the Client Credentials flow, use the `AuthClientCre
 
 For OIDC authentication with the Refresh Token flow, use the `AuthBearerToken` class.
 
-If the helper functions do not provide the customization you need, use the [`WeaviateClient`](./python.md#python-client-v4-explicit-connection) class to instantiate the client.
+If the helper functions do not provide the customization you need, use the [`WeaviateClient`](#python-client-v4-explicit-connection) class to instantiate the client.
 
 
 ### Python client v4 explicit connection
@@ -654,12 +655,21 @@ You can also specify which metadata to retrieve. This example fetches the `creat
 
 <FilteredTextBlock
   text={PythonCode}
-  startMarker="# IteratorMetadataOnly"
-  endMarker="# END IteratorMetadataOnly"
+  startMarker="# IteratorWithMetadata"
+  endMarker="# END IteratorWithMetadata"
   language="py"
 />
 
 Since the `cursor` API requires the object UUID for indexing, the `uuid` metadata is always retrieved.
+
+You can also get the size of the collection by using the built-in `len` function.
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START LenCollectonExample"
+    endMarker="# END LenCollectonExample"
+    language="py"
+/>
 
 ### Data model and generics
 
@@ -803,7 +813,7 @@ Updated `client.batch` parameters
 
 Filter syntax is updated in v4.4b7.
 
-**NOTE**: The [filter reference syntax](../client-libraries/python#reference-filters) is simplified in 4.4b8.
+**NOTE**: The [filter reference syntax](../../client-libraries/python#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |

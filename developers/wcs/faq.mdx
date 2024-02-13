@@ -1,73 +1,71 @@
 ---
-title: FAQs
+title: Frequently asked questions
 sidebar_position: 50
 image: og/wcs/tips_faqs.jpg
 ---
 
-## Frequently asked questions
+## Accounts
 
-### Accounts
+### Can I reset or change my account password?
 
-#### Q: Can I reset or change my account password?
+Yes. Go the [WCS login page](https://console.weaviate.cloud/) and click the "Log in" button. Then, click "Forgot Password". Enter your email address on the next screen. WCS sends a reset email to the address you enter.
 
-> Yes, you can do so on the WCS login page by clicking "Forgot Password".
+### Where is my verification email?
 
-### Sandbox
+If you do not receive a verification email, check your spam folder. If you still cannot find it, follow the steps to [reset you password](./faq.mdx#can-i-reset-or-change-my-account-password) to get a new letter.
 
-#### Q: When will my sandbox expire?
+## Sandboxes
 
-> Currently, it will expire in 14 days.
+### When do sandboxes expire?
 
-#### Q: How can I preserve my sandbox data?
+Sandboxes expire in 14 days.
 
-> If you would like to preserve your sandbox data, you can retrieve your data with our [cursor API](/developers/weaviate/api/rest/objects#exhaustive-listing-using-a-cursor-after), or [contact us to upgrade](/pricing#contact-sales) to a production SaaS instance.
+### How can I save my sandbox data?
 
-#### Q: How many objects can I have in a sandbox instance?
+To retrieve a copy of your sandbox data, use the [cursor API](/developers/weaviate/api/rest/objects#exhaustive-listing-using-a-cursor-after).
 
-> There is no hard limit on the sandbox database size, but its performance may be limited for larger workloads (e.g. millions of objects) due to the provisioned resources.
+To preserve your data and upgrade to a paid instance, [contact us](mailto:support@weaviate.io) for help.
 
-### Instance management
+### How many objects can a sandbox hold?
 
-#### Q: Are WCS clusters backed up?
+There is no limit on the number of objects. However, sandbox performance may be limited for larger workloads.
 
-> We do automated daily backups, and additionally whenever a Weaviate version is updated on the cluster.
+## Instance management
 
-#### Q: Can WCS clusters be updated to newer versions of Weaviate?
+### Are WCS clusters backed up?
 
-> Yes. Once a new version is enabled on WCS, you will see a button next to the Weaviate version display on the cluster details to trigger the update.
+Yes. WCS has automated, daily backups. WCS also backs up your data before updating the version of Weaviate running on your cluster.
 
-#### Q: Are WCS clusters' resources automatically scaled?
+### Can WCS clusters be updated to newer versions of Weaviate?
 
-> Not currently. At the moment, we provision each instance for “most common” usage scenarios.
+Yes. Click the "Details" button for your cluster. If a new version is available, click the "Update!" button when you have a suitable maintenance window. The button is only visible when there is a newer version available. 
 
-#### Q: What do I do if I prefer a heavier-load WCS instance?
+### Are cluster resources scaled automatically?
 
-> If you feel that your use case requires a customized hardware provisioning, please reach out to us first. We can then work with you to evaluate and potentially create a managed cluster.
+Not currently. Clusters are provisioned for common usage scenarios. WCS monitors each instance to determine when a cluster needs to be resized.
 
-### Infrastructure
+### Can I request more cluster resources?
 
-#### Q: What infrastructure does WCS run on?
+Possibly. If you want to customize your cluster provisioning, contact our support team at [support@weaviate.io](mailto:support@weaviate.io) to discuss possible solutions.
 
-> Currently it runs on GCP, with plans to add AWS and Azure in the near future.
+## Infrastructure
 
-### Console
+### What infrastructure does WCS run on?
 
-#### Q: Does the WCS console collect data from users?
+WCS runs on Google Cloud Platform (GCP). Amazon Web services (AWS) and Microsoft Azure are on our roadmap.
 
-> The console never collects any data from your Weaviate instance; you can safely connect every instance, also over VPN.
+## WCS Console
 
-#### Q: Can the WCS console connect to non-WCS instances?
+### Does the WCS console collect data from users?
 
-> Yes, the WCS console can connect to a Weaviate instance regardless of whether it is a WCS instance or not.
+The WCS console doesn't collect any data from your Weaviate instance. However, WCS does monitor your instances and collect operational data in order to manage them. 
 
-### Others
+### Can the WCS console connect to non-WCS instances?
 
-#### Q: Why can't I see my old WCS sandbox?
+Yes. The Weaviate GraphQL interface in the WCS console can connect to Weaviate instances outside WCS as well as WCS instances.
 
-> If you created a sandbox on our legacy system at `console.weaviate.io`, it will be visible [through here](https://console.weaviate.io/) but not on the new WCS (at [https://console.weaviate.cloud](https://console.weaviate.cloud)).
+## Support
 
-## More resources
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
 
-import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
-
-<WCSDocsMoreResources />
+<SupportAndTrouble />

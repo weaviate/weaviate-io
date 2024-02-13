@@ -133,6 +133,12 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/console',
         },
 
+        // WCS redirects
+        {
+            to: '/developers/wcs/faq',
+            from: '/developers/wcs/troubleshooting',
+        },
+        
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
@@ -414,7 +420,12 @@ const siteRedirects = {
             from: "/learn/workshops"
 
         },
-     
+        {
+
+        to: "/community/events",
+        from: "/learn/workshops"
+
+        },
         // Partners Off
         {
             to: "/pricing",

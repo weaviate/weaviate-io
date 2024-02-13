@@ -12,9 +12,11 @@ image: og/docs/concepts.jpg
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
 ::: -->
 
+Vector indexing is a core concept in vector databases because it helps to [significantly increase the speed of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy.
+
 ## Overview
 
-This page explains what vector indices are, and what purpose they serve in Weaviate.
+This page explains what vector indices are, and what purpose they serve in the Weaviate [vector database](https://weaviate.io/blog/what-is-a-vector-database).
 
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
@@ -28,9 +30,17 @@ Weaviate's vector-first storage system takes care of all storage operations with
 
 ## Why index data as vectors?
 
-Vectors are a great way to represent data objects' meaning, such as meaning of text or contents of images or video. They also enable determination of [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between data objects.
+Vectors are a great way to represent meaning. Vectors are arrays of elements that can capture meaning from different data types, such as texts, images, videos, and other content. The elements are called dimensions. High dimension vectors capture more information, but they are harder to work with.
 
-To make this concept more tangible, think of vectors as coordinates in a *n*-dimensional space. For example, we can represent *words* in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. In the picture below, you see how this concept looks (simplified). The words `Apple` and `Banana` are close to each other. The distance between those words, given by the distance between the vectors, is small. But these two fruits are further away from the words `Newspaper` and `Magazine`.
+Vector databases make it easier to work with high dimensional vectors. Consider search; Vector databases efficiently measure [semantic similarity](https://en.wikipedia.org/wiki/Semantic_similarity) between data objects. When you run a similarity search, a vector database like Weaviate uses a vectorized version of the query to find objects in the database that have vectors similar to the query vector.
+
+Vectors are like coordinates in a multi-dimensional space. A very simple vector might represent objects, *words* in this case, in a 2-dimensional space. If you use an algorithm that learned the relations of words or co-occurrence statistics between words from a corpus (like [GloVe](https://github.com/stanfordnlp/GloVe)), then single words can be given the coordinates (vectors or [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings)) according to their similarity to other words. These algorithms are powered by Machine Learning and Natural Language Processing concepts. 
+
+In the graph below, the words `Apple` and `Banana` are shown close to each other. `Newspaper` and `Magazine` are also close to each other, but they are far away from `Apple` and `Banana` in the same vector space.
+
+Within each pair, the distance between words is small because the objects have similar vector representations. The distance between the pairs is larger because the difference between the vectors is larger. Intuitively, fruits are similar to each other, but fruits are not similar to reading material.
+
+For more details of this representation, see: ([GloVe](https://github.com/stanfordnlp/GloVe)) and [vector embeddings](https://weaviate.io/blog/vector-embeddings-explained#what-exactly-are-vector-embeddings.
 
 ![2D Vectors visualization](./img/vectors-2d.png "2D Vectors visualization")
 
@@ -40,7 +50,9 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 
 ## Which vector index is right for me?
 
-Weaviate supports `hnsw` (default) and `flat` index types. The `flat` index is a simple, lightweight index that is designed for small datasets. The `hnsw` index is a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
+Weaviate supports two index types:
+* The `flat` index is a simple, lightweight index that is designed for small datasets.
+* The `hnsw` index (default) is a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
 
 A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
 
@@ -52,24 +64,22 @@ To learn more about configuring the collection, see [this how-to page](../manage
 
 ### Distance metrics
 
-All of [the distance metrics](/developers/weaviate/config-refs/distances.md) can be used with any vector index type.
+All of [the distance metrics](/developers/weaviate/config-refs/distances.md), such as cosine similiarity, can be used with any vector index type.
 
 ## Set vector index type
 
 The index type can be specified per data collection via the [collection definition](/developers/weaviate/manage-data/collections.mdx#set-vector-index-type) settings.
 
 
-## Hierarchical Navigable Small World (HNSW)
+## What is Hierarchical Navigable Small World (HNSW)
+
+Hierarchical Navigable Small World (HNSW) is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes enable very fast queries, but rebuilding the index when you add new vectors can be resource intensive.
 
 Weaviate's `hnsw` index is a [custom implementation](../more-resources/faq.md#q-does-weaviate-use-hnswlib) of the Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) algorithm that offers full [CRUD-support](https://db-engines.com/en/blog_post/87).
 
-### What is HNSW?
-
-HNSW stands for Hierarchical Navigable Small World. HNSW is an algorithm that works on multi-layered graphs. It is also an index type, and refers to vector indexes that are created using the HNSW algorithm. HNSW indexes provide benefits of very fast queries, but they are more costly when it comes to the building process (adding data with vectors).
-
 At build time, the HNSW algorithm creates a series of layers. At query time, the HNSW algorithm uses the layers to build a list of approximate nearest neighbors (ANN) quickly and efficiently.
 
-Consider this diagram of a search using HNSW.
+Consider this diagram of a vector search using HNSW.
 
 ![HNSW layers](./img/hnsw-layers.svg "HNSW layers")
 
@@ -95,11 +105,13 @@ The `ef` parameter dictates the size of the dynamic list used by the HNSW algori
 
 In contrast, a lower `ef` makes the search faster but might compromise on accuracy. This balance is crucial in scenarios where either speed or accuracy is a priority. For instance, in applications where rapid responses are critical, a lower `ef` might be preferable, even at the expense of some accuracy. Conversely, in analytical or research contexts where precision is paramount, a higher `ef` would be more suitable, despite the increased query time.
 
-Weaviate allows for `ef` to be configured ef either explicitly or dynamically. If `ef` is set to -1, Weaviate adjusts it dynamically based on the query response limit, enabling a more flexible approach to managing this trade-off. The dynamic `ef` adjustment takes into account the query limit and modifies the size of the ANN (Approximate Nearest Neighbors) list accordingly, bounded by the parameters `dynamicEfMin`, `dynamicEfMax`, and influenced by `dynamicEfFactor`. This feature is particularly beneficial in environments with varying query patterns, as it automatically optimizes the balance between speed and recall based on real-time query requirements.
+`ef` can be configured explicitly or dynamically. This feature is particularly beneficial in environments with varying query patterns. When `ef` is configured dynamically, Weaviate optimizes the balance between speed and recall based on real-time query requirements.
+
+To enable dynamic `ef`, set `ef`: -1. Weaviate adjusts the size of the ANN list based on the query response limit. The calculation also takes into account the values of `dynamicEfMin`, `dynamicEfMax`, and `dynamicEfFactor`.
 
 ### Dynamic ef
 
-The `ef` parameter controls the size of the approximate nearest neighbors (ANN) list at query time. You can configure a specific list size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
+The `ef` parameter controls the size of the ANN list at query time. You can configure a specific list size or else let Weaviate configure the list dynamically. If you choose dynamic `ef`, Weaviate provides several options to control the size of the ANN list.
 
 The length of the list is determined by the query response limit that you set in your query. Weaviate uses the query limit as an anchor and modifies the size of ANN list according to the values you set for the `dynamicEf` parameters.
 
@@ -149,7 +161,7 @@ If you use the [`docker-compose.yml` file from Weavaite](/developers/weaviate/in
 To change the default limit, edit the value for `QUERY_DEFAULTS_LIMIT` when you configure your Weaviate instance.
 
 
-## HNSW with compression
+## HNSW Index with Compression
 
 HNSW uses memory efficiently. However, you can also use compression to reduce memory requirements even more. [Product quantization (PQ)](#what-is-product-quantization) is a technique Weaviate offers that lets you compress a vector so it uses fewer bytes. Since HNSW stores vectors in memory, PQ compression lets you use larger datasets without increasing your system memory.
 
@@ -171,7 +183,7 @@ In PQ, the original vector is represented as a product of smaller vectors that a
 
 After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vectors.
 
-Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory significantly. Imagine a collection where each vector has 768 four byte elements. Before PQ compression, each vector requires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
+Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory consumption significantly. Imagine a collection where each vector has 768 four byte elements. Before PQ compression, each vector requires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
 
 To enable PQ compression, see [Enable PQ compression](/developers/weaviate/configuration/pq-compression#enable-pq-compression)
 
@@ -268,7 +280,7 @@ A drawback of the flat index is that it does not scale well to large collections
 
 Binary quantization (BQ) is a technique that can speed up vector search. BQ is available for the `flat` index type.
 
-BQ works by converting each vector to a binary representation. The binary representation is much smaller than the original vector. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
+BQ works by converting each vector to a binary representation. The binary representation is much smaller than the original vector. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up vector search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
 
 The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector.
 

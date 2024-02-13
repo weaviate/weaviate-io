@@ -40,8 +40,18 @@ The request takes a json object with the following properties:
 | `id` | string (lowercase letters, numbers, underscore, minus) | yes | The id of the backup. This string must be provided on all future requests, such as status checking or restoration. |
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
 | `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+| `config`  | object          | no | An optional object to configure the backup. If not set, it will assign defaults from config table.|
 
 *Note: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
+
+##### Config object properties
+| name | type | required | default | description |
+| ---- | ---- | ---- | ---- |---- |
+| `cpuPercentage`   | integer | no | `50%` | Sets the desired CPU core utilization ranging from 1%-80%. |
+| `chunkSize`       | integer | no | `128MB` | Sets the chunk size. Sizes range from 2MB to 512MB The default is 128MB. The actual chunk size may not be exactly `chunkSize`. |
+| `compressionLevel`| string | no | `DefaultCompression` | Sets the compression level. Possible values are: `DefaultCompression`, `BestSpeed`, `BestCompression`|
+
+*Note: Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default.*
 
 For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#create-backup) page.
 
@@ -107,10 +117,16 @@ The request takes a json object with the following properties:
 | ---- | ---- | ---- | ---- |
 | `include` | list of strings | no | An optional list of class names to be included in the backup. If not set, all classes are included. |
 | `exclude` | list of strings | no | An optional list of class names to be excluded from the backup. If not set, no classes are excluded. |
+| `config`  | object          | no | An optional object to configure the restore. If not set, it will assign defaults from config table.|
 
 *Note 1: You cannot set `include` and `exclude` at the same time. Set none or exactly one of those.*
 
 *Note 2: `include` and `exclude` is relative to the classes contained in the backup. The restore process does not know which classes existed on the source machine if they were not part of the backup.*
+
+##### Config object properties
+| name | type | required | default | description |
+| ---- | ---- | ---- | ---- |---- |
+| cpuPercentage | integer | no | `50%` | Sets CPU core utilization from `1%-80%`. |
 
 For client code examples, see the [How-to: Configure / Backups](../../configuration/backups.md#restore-backup) page.
 

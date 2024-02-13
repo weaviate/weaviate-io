@@ -1,82 +1,56 @@
 ---
-title: WCS Quickstart
+title: Quickstart
 sidebar_position: 10
 image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
 
-import registerImg from './img/register.png';
-import WCSoptions from './img/wcs-options.png';
-import WCScreateButton from './img/wcs-create-button.png';
-import WCScreate from './img/wcs-create.png';
-import WCScreationProgress from './img/wcs-creation-progress.png';
+In just a few steps, this Quickstart guide shows you how to get started with Weaviate Cloud Services (WCS). 
 
-## Overview
+## Create a WCS account
 
-Welcome to the **Quickstart guide** for Weaviate Cloud Services (WCS). Here, you will learn:
-- How to set up a Weaviate instance on WCS, and
-- How to instantiate a Weaviate client to communicate with the WCS instance.
-
-### Agenda
-
-By the end of this tutorial, you will be familiar with the basics of WCS. You will have:
-- Created a WCS account,
-- Created a new free WCS sandbox instance without authentication,
-- Installed a Weaviate client of your choice, and
-- Queried your new WCS sandbox instance with the Weaviate client.
-
-And if you wish, you will be ready to move onto our [Weaviate Quickstart tutorial](../weaviate/quickstart/index.md) next.
-
-## Sign in to WCS
-
-1. First, go to the [WCS Console](https://console.weaviate.cloud), and click on "Sign in with the Weaviate Cloud Services".
-    1. Click <kbd>Sign in with the Weaviate Cloud Services</kbd>.
-    1. If you don't have a WCS account, click on <kbd>Register</kbd>.
-1. Sign in with your WCS username and password.
+1. Go the [WCS homepage](https://console.weaviate.cloud).
+1. Click, "Create an account".
+1. Provide an email address and password. 
+1. After you confirm your email address, return to the login page.
+1. Log in to the WCS console.
 
 ## Create a Weaviate Cluster
 
-To create a new Weaviate Cluster, click the <kbd>Create cluster</kbd> button.
+When you log into the WCS web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account.
 
-Then:
+To create a cluster, follow these steps:
 
-1. Select the <kbd>Free sandbox</kbd> tier.
-1. Provide a *Cluster name*. This will become a part of its URL, with a suffix added to ensure uniqueness.
-1. Set *Enable Authentication?* to <kbd>YES</kbd>.
+1. Click the "Create cluster" button.
+1. Select the "Free sandbox" tab. 
+1. Give your cluster a name. WCS adds a suffix to ensure uniqueness.
+1. Verify that "Enable Authentication?" is set to "Yes".
+1. Click create.
 
-Click <kbd>Create</kbd>. This will take ~2 minutes and you'll see a tick ✔️ when finished.
+It takes a minute or two to create the new cluster. When the cluster is ready, WCS displays a check mark (`✔️`) next to the cluster name.
 
-This will start the process to create a new instance, and you will see a progress indicator.
-
-<img src={WCScreationProgress} width="65%" alt="Creation in progress"/>
-
-Instance creation should take a minute or two, and you will see a tick ✔️ when it's done, indicating that the instance is ready.
-
-#### Your cluster details
-
-To access your cluster, you will need:
-- The Weaviate URL, and
-- Authentication details (Weaviate API key).
-
-Click <kbd>Details</kbd> to see them.
-
-For the Weaviate API key, click on the <kbd>API keys <i class="fa-solid fa-key"></i></kbd> button.
+The process is similar to create a managed cluster. However, you have to add your billing details first.
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <SandBoxExpiry/>
 
-In the meantime, let's start installing a client library.
+## Explore the Details panel
+
+The Details panel lists cluster metrics, authorization details, and other useful information. To access your cluster, you need the cluster URL and authentication details. 
+
+To get the cluster URL and authentication details, follow these steps:
+
+1. Click the `Details` button to open the Details panel.
+1. To get the API key, click the `API keys` button.
+1. Copy the API key for the `Admin` user to a safe place.
+1. The cluster URL begins with the cluster name. Copy it to a safe place.  
 
 ## Install a client library
 
-We suggest using a [Weaviate client](/developers/weaviate/client-libraries/index.md). To install your preferred client <i class="fa-solid fa-down"></i>:
+The WCS console includes a query interface, but most most WCS interactions rely on a [Weaviate client](/developers/weaviate/client-libraries/index.md). Clients are available in several programming languages. Chose one that makes sense for your project. 
 
-import ClientCapabilitiesOverview from '/_includes/client.capabilities.mdx'
-
-<ClientCapabilitiesOverview />
-
-Install your preferred client by following the relevant instructions below:
+To install a client, follow these steps for your language:
 
 import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
@@ -84,43 +58,29 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Connect to your WCS instance
 
-By now, you should have:
-* Set up a sandbox instance of Weaviate on WCS, and
-* Installed a Weaviate client library.
+These code samples demonstrate how to connect use a Weaviate client to your WCS cluster. 
 
-From the <kbd>Details</kbd> tab in WCS, get:
-- The Weaviate **API key**, and
-- The Weaviate **URL**.
+To connect to your cluster, follow these steps for your language:
 
-Replace the endpoint address and API key in the following code with your address and key, then run the code for your preferred client:
+1. Replace the endpoint URL and the API key with the values you got on the Details panel.
+1. Run the client code.
 
-import WCSClientInstantiation from '/_includes/code/wcs.client.instantiation.mdx';
+import WCSClientIsReady from '/_includes/code/wcs.client.is_ready.mdx';
 
-<WCSClientInstantiation/>
+<WCSClientIsReady/>
 
-You should receive a response confirming the server is ready.
+If you are connected, the server returns `True`.
 
-```json
-True
-```
+## Next steps
 
-Congratulations! You have successfully set up a cloud-based vector database with WCS.
+- If you just want to try Weaviate, continue with a sandbox cluster.
+- If you want to work with Weaviate or need a persistent cluster, enter your billing details so you can create managed clusters.
+- To learn how Weaviate can help you build your project, review the [Weaviate documentation](../weaviate/). 
 
-## Next
 
-Now that you are set up with a WCS instance:
-* If you are new to Weaviate at large, we recommend moving to the [Weaviate Quickstart Tutorial](../weaviate/quickstart/index.md).
-* Otherwise, we hope you enjoy your experience with WCS.
 
-## More resources
+## Support
 
-:::info Is something broken?
-We want you to have the best experience possible here. So if you find that something here doesn't work, or doesn't make sense, please let us know! You can:
-- File an [issue on GitHub](https://github.com/weaviate/weaviate-io/issues), or
-- Talk to us on [the community forum](https://forum.weaviate.io/), or
-- Ping us on [Slack](https://weaviate.io/slack)
-:::
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
 
-import WCSDocsMoreResources from '/_includes/wcs-more-resources-docs.md';
-
-<WCSDocsMoreResources />
+<SupportAndTrouble />

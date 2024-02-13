@@ -1,0 +1,35 @@
+---
+title: Cluster status
+sidebar_position: 5
+# image: og/wcs/user_guides.jpg
+---
+
+Weaviate Cloud Services (WCS) provides a web interface and an API endpoint that provide information about your Weaviate instance. 
+
+## Web interface
+
+When you log into the WCS web console, the Dashboard tab lists your clusters. Each cluster has a `Details` button. Click the `Details` button to see the following information:
+
+- Cluster URL
+- Weaviate core version
+- Authentication details
+- Active modules
+- Cluster creation time
+- Hosting provider
+- Storage Metrics
+- Billing information
+
+The `Details` view also has an `Advanced configuration` button. Click on `Advanced configuration` to configure, or to check the status of, these additional settings:
+
+- Auto schema generation
+- Async indexing
+- CORS origins
+
+
+## API Endpoint
+
+To get cluster details programmatically, use the [`nodes`](../../weaviate/api/rest/nodes.md) REST endpoint. 
+
+import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
+
+<APIOutputs />
