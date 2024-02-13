@@ -54,7 +54,7 @@ Migrated from "How to query data" tutorial from Weaviate Docs Classic
 
 **2. Send the query**
 
-   There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](/developers/weaviate/client-libraries/python.md) or [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx) client.
+   There are multiple ways to connect to Weaviate's (GraphQL) API to query data. Raw GraphQL queries can be directly posted in the GraphiQL interface in the Console, but can also be sent via curl, the [Python](/developers/weaviate/client-libraries/python/index.md) or [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx) client.
 
 import HowtoQueryData from '/_includes/code/howto.query.data.mdx';
 

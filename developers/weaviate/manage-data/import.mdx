@@ -188,8 +188,8 @@ Use the `vector` property to specify a vector for each object.
 
 The Python clients have built-in batching methods to help you optimize your import speed. Please see the relevant documentation for more information.
 
-- [Batching: Python client `v4`](../client-libraries/python.md#batching)
-- [Batching: Python client `v3`](../client-libraries/python_v3.md#batching)
+- [Batching: Python client `v4`](../client-libraries/python/index.md#batching)
+- [Batching: Python client `v3`](../client-libraries/python/python_v3.md#batching)
 
 ## Stream data from large files
 
@@ -267,7 +267,7 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
 
 To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) and use gRPC batch imports.
 
-Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
+Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python/index.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
 
 To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration file.
 
