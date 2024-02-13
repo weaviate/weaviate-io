@@ -284,7 +284,6 @@ const DocHomePage = () => {
           </div>
         </div>
       </div>
-
       <div className={styles.secondaryContent}>
         <h3>Can we help?</h3>
         <div className={`${styles.secondaryTabs} ${styles.github}`}>
@@ -295,6 +294,24 @@ const DocHomePage = () => {
         </div>
         <div className={`${styles.secondaryTabs} ${styles.slack}`}>
           <a href="https://weaviate.io/slack">Slack</a>
+        </div>
+      </div>
+      <div className={styles.secondaryContent}>
+        <h3>Client Libraries</h3>
+        <div className={styles.tabRow}>
+          <div className={`${styles.secondaryTabs} ${styles.python}`}>
+            <a href="/developers/weaviate/client-libraries/python">Python</a>
+          </div>
+          <div className={`${styles.secondaryTabs} ${styles.ts}`}>
+            <a href="/developers/weaviate/client-libraries/typescript">TS/JS</a>
+          </div>
+        </div>
+
+        <div className={`${styles.secondaryTabs} ${styles.go}`}>
+          <a href="/developers/weaviate/client-libraries/go">Go</a>
+        </div>
+        <div className={`${styles.secondaryTabs} ${styles.java}`}>
+          <a href="/developers/weaviate/client-libraries/java">Java</a>
         </div>
       </div>
     </div>
