@@ -36,7 +36,7 @@ The Weaviate server spawned from the client can be configured via parameters pas
 | persistence_data_path | string | Directory where the files making up the database are stored. | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
 | binary_path | string | Directory where to download the binary. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
 | version | string | Version takes two types of input:<br/>- **version number** - for example `"1.19.6"` or `"latest"`<br/>- **full URL** pointing to a Linux AMD64 or ARM64 binary | Latest stable version |
-| port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 |
+| port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 8079 |
 | hostname | string | Hostname/IP to bind to. | 127.0.0.1 |
 | additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. |
 
@@ -73,9 +73,9 @@ import EmbeddedInstantiationVerbose from '/_includes/code/embedded.instantiate.v
 
 Here's what happens behind the scenes when the client uses the embedded options in the instantiation call:
 1. The client downloads a Weaviate release from GitHub and caches it
-2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default 6666)
+2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default [8079](http://127.0.0.1:8079))
 3. The server's STDOUT and STDERR are piped to the client
-4. The client connects to this server process (e.g. to `http://127.0.0.1:6666`) and runs the client code
+4. The client connects to this server process (e.g. to `http://127.0.0.1:8079`) and runs the client code
 5. After running the code (when the application terminates), the client shuts down the Weaviate process
 6. The data directory is preserved, so subsequent invocations have access to the data from all previous invocations, across all clients using the embedded option.
 
