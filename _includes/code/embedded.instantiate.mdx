@@ -28,6 +28,9 @@ import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
   }
 
   client.data_object.create(data_obj, "Wine")
+
+  # Optionally, stop the server:
+  # client._connection.embedded_db.stop()
   ```
 
   </TabItem>
@@ -50,8 +53,8 @@ import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
     .do();
 
   console.log(JSON.stringify(response, null, 2));
-
-  client.embedded.stop();
+  // optionally, stop the server
+  //client.embedded.stop();
   ```
 
   </TabItem>

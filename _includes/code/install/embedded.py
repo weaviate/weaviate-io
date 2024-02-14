@@ -10,8 +10,10 @@ client = weaviate.connect_to_embedded(
 )
 
 # DO SOMETHING
-
 client.close()
+
+# Optionally, stop the server:
+# client._connection.embedded_db.stop()
 # END SimpleInstantiationEmbedded
 
 
@@ -30,6 +32,8 @@ client = weaviate.WeaviateClient(
 )
 
 # DO SOMETHING
-
 client.close()
+
+# Optionally, stop the server:
+# client._connection.embedded_db.stop()
 # END VerboseInstantiationEmbedded
