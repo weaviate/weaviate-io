@@ -73,7 +73,7 @@ import EmbeddedInstantiationVerbose from '/_includes/code/embedded.instantiate.v
 
 Here's what happens behind the scenes when the client uses the embedded options in the instantiation call:
 1. The client downloads a Weaviate release from GitHub and caches it
-2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default [8079](http://127.0.0.1:8079))
+2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default 8079)
 3. The server's STDOUT and STDERR are piped to the client
 4. The client connects to this server process (e.g. to `http://127.0.0.1:8079`) and runs the client code
 5. After running the code (when the application terminates), the client shuts down the Weaviate process
