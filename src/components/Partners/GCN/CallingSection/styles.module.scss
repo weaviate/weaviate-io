@@ -1,0 +1,81 @@
+.header {
+  text-align: center;
+
+  @media screen and (max-width: 500px) {
+    text-align: left;
+    margin-bottom: 50px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.benefits {
+  background: #ededed;
+}
+
+.features {
+  padding-top: 8rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: space-between;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 500px) {
+    padding-top: 1rem;
+    flex-direction: column;
+    gap: 79px;
+  }
+
+  .box {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    max-width: 370px;
+
+    .icon1 {
+      background-image: url('/img/site/event-shot-gcn-02.jpg');
+      width: 100%;
+      height: 12rem;
+      background-size: cover;
+      border-radius: 10px 10px 0px 0px;
+    }
+
+    .icon2 {
+      background-image: url('/img/site/event-shot-gcn-03.jpg');
+      width: 100%;
+      height: 12rem;
+      background-size: cover;
+      border-radius: 10px 10px 0px 0px;
+    }
+
+    .title {
+      padding-top: 1rem;
+      text-align: left;
+    }
+    .subTitle {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+}
+
+.featuresDark {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  border-radius: 1.5625rem;
+  background: #130c49;
+  color: white;
+
+  h4 {
+    color: white;
+  }
+}

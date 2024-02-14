@@ -1,0 +1,133 @@
+.header {
+  text-align: left;
+
+  @media screen and (max-width: 500px) {
+    text-align: left;
+    margin-bottom: 50px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.benefits {
+  background: #ededed;
+}
+
+.features {
+  padding: 3rem 2rem;
+  display: flex;
+  flex-flow: wrap;
+  gap: 140px;
+  margin: auto;
+  margin-top: 50px;
+
+  @media screen and (max-width: 500px) {
+    padding-top: 1rem;
+    flex-direction: column;
+    gap: 79px;
+  }
+
+  .box {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .title {
+      padding-top: 0.5rem;
+      text-align: center;
+      line-height: 12px;
+      white-space: nowrap;
+    }
+    .subTitle {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+}
+
+.boxed {
+  background-color: #f5f5f5;
+  display: flex;
+  color: #2c3854;
+  outline: 1px solid #2c3854;
+  border-radius: 5px;
+  margin-top: 16px;
+  width: 100%;
+  height: 3rem;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 19px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  color: #130c49;
+  margin-top: 60px;
+  gap: 53px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    display: flex;
+    align-content: center;
+    gap: 30px;
+  }
+}
+.rightSide {
+  display: flex;
+  gap: 25px;
+  width: 40rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+.leftSide {
+  display: flex;
+  width: 33rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 30px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+    flex-wrap: nowrap;
+  }
+
+  .unlockHeaders {
+    font-size: 1.125rem;
+
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1rem;
+
+    font-weight: 400;
+  }
+}
+
+.teamImage {
+  width: 100%;
+  height: 31.1875rem;
+  background-size: cover;
+  background-image: url('../../../../../static/img/site/event-shot-gcn-01.jpg');
+}

@@ -1,0 +1,156 @@
+[data-theme='light'] {
+  .logo {
+    background-image: url('/img/site/weaviate-logo-light.png');
+    height: 100px;
+  }
+}
+
+.contactBackground {
+  background: #130c49;
+  margin-top: 250px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 250px;
+  }
+}
+
+.contactContainer {
+  display: flex;
+  justify-content: center;
+}
+.contactSection {
+  border-radius: 0.9375rem;
+  border: 1px solid #130c49;
+  background: #fff;
+  width: 800px;
+  height: auto;
+  margin-top: -270px;
+  flex-shrink: 0;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+  padding: 60px;
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%;
+  }
+
+  @media screen and (max-width: 768px) {
+    background: #fff;
+    width: 100%;
+    height: auto;
+    margin-top: -270px;
+    flex-shrink: 0;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+    padding: 14px;
+  }
+
+  @media screen and (max-width: 768px) {
+    iframe {
+      width: 100%;
+    }
+  }
+}
+
+.formContact {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+
+  input {
+    border-bottom: 1px solid #d7deef;
+    border: none;
+    height: 40px;
+    margin-bottom: -18px;
+
+    opacity: 0.800000011920929;
+    color: #6b7c93;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%;
+  }
+
+  label {
+    opacity: 0.800000011920929;
+    color: #6b7c93;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%;
+  }
+
+  span {
+    height: 1px;
+    background: #d7deef;
+  }
+
+  .formMessage {
+    height: 7.0625rem;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+    border: 1px solid #c3c5d8;
+    color: #6b7c93;
+    opacity: 0.8000000119;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%;
+    font-family: 'Inter';
+  }
+
+  button {
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #61bd73;
+    width: 10.0625rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    align-self: center;
+    transition: all 1s ease-out;
+  }
+  button:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.logo {
+  width: 100%;
+  background-position-x: center;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/img/site/weaviate-logo-dark.png');
+}
+
+.title {
+  text-align: center;
+}
+
+.links {
+  text-align: center;
+  .color {
+    color: #01b0db;
+  }
+}
+
+[data-theme='light'] {
+  .links {
+    .color {
+      color: --ifm-link-color;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+}
