@@ -121,21 +121,15 @@ Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Unive
 
 ### Cross-references
 
-:::note Cross-references do not affect vectors
-Cross-references link objects, but they do not change the vectors in either direction.
-:::
-
-If data objects are related, use cross-references to represent the relationships. Cross-references in Weaviate are like links that help you retrieve related information. Cross-references capture relationships, but they do not change the vectors of the underlying objects.
+If data objects are related, use [cross-references](/weaviate/manage-data/cross-references.mdx) to represent the relationships. Cross-references in Weaviate are like links that help you retrieve related information. Cross-references capture relationships, but they do not change the vectors of the underlying objects.
 
 To create a reference, use a property from one collection to specify the value of a related property in the other collection.
 
 #### Cross-reference example
 
-For example, to represent the fact that *"Paul Krugman writes for the New York Times"*. Create a cross-reference between the author and the publication. More specifically, create a cross-reference between the `Publication` object that represents the New York Times and the `Author` object that represents Paul Krugman.
+For example, *"Paul Krugman writes for the New York Times"* describes a relationship between Paul Krugman and the New York Times. To capture that relationship, create a cross-reference between the `Publication` object that represents the New York Times and the `Author` object that represents Paul Krugman.
 
-This example uses the UUID of an object in the `publication` collection to specify the `writesFor` property in an object in the `Author` collection. The `beacon` property in the `Author` collection is the `id` for the New York Times `Publication` object.
-
-The New York Times `Publication` object looks like this:
+The New York Times `Publication` object looks like this. Note the UUID in the `"id"` field:
 
 ```json
 {
@@ -148,7 +142,7 @@ The New York Times `Publication` object looks like this:
 }
 ```
 
-The Paul Krugman `Author` object looks like this:
+The Paul Krugman `Author` object adds a new property, `writesFor`, to capture the relationship.
 
 ```json
 {
@@ -170,11 +164,13 @@ The Paul Krugman `Author` object looks like this:
 }
 ```
 
+The value of the `beacon` sub-property is the `id` value from the New York Times `Publication` object. 
+
 Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
 
 ## Weaviate Schema
 
-Weaviate requires a data schema before you add data. You do not have to create a data schema manually, however. If you don't provide one, Weaviate generates a schema based on the incoming data.
+Weaviate requires a data schema before you add data. However, you don't have to create a data schema manually. If you don't provide one, Weaviate generates a schema based on the incoming data.
 
 import SchemaDef from '/_includes/definition-schema.md';
 
