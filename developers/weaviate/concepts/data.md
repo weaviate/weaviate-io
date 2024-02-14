@@ -17,15 +17,13 @@ image: og/docs/concepts.jpg
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
 
-Weaviate stores _data objects_ in _class-based collections_. The data objects are represented as JSON-documents. Objects normally include a vector representation that is derived from a machine learning model. The _vector_ is also called an _embedding_ or a _vector embedding_.
+Weaviate stores `data objects` in class-based collections. Data objects are represented as JSON-documents. Objects normally include a `vector` that is derived from a machine learning model. The vector is also called an `embedding` or a `vector embedding`.
 
-Each collection contains objects of the same _class_ that are all defined by a common _schema_.
+Each collection contains objects of the same `class`. The objects are defined by a common `schema`.
 
 ### JSON documents as objects
 
-Imagine we need to store information about the following author: Alice Munro.
-
-The data about this author is represented in JSON like this:
+Imagine we need to store information about an author named Alice Munro. In JSON format the data looks like this:
 
 ```json
 {
@@ -39,7 +37,9 @@ The data about this author is represented in JSON like this:
 
 ### Vectors
 
-As mentioned earlier, we can also attach `vector` representations to our data objects. The vector is an array of numbers stored under the `"vector"` property like this:
+You can also attach `vector` representations to your data objects. Vectors are arrays of numbers that are stored under the `"vector"` property. 
+
+In this example, the `Alice Munro` data object has a small vector. The vector is some information about Alice, maybe a story or an image, that a machine learning model has transformed into an array of numerical values.
 
 ```json
 {
@@ -57,9 +57,11 @@ As mentioned earlier, we can also attach `vector` representations to our data ob
 }
 ```
 
-To generate vectors, use one of Weaviate's vectorizer [modules](./modules.md) or use your own vectorizer.
+To generate vectors for your data, use one of Weaviate's vectorizer [modules](./modules.md). You can also use your own vectorizer.
 
 ### Collections
+
+Collections are groups of objects that share a schema definition. 
 
 In this example, the `Author` collection holds objects that represent different authors.
 
@@ -279,8 +281,6 @@ For more information, see the following:
 - [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
 - [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
 - [Configuration: Schema](../manage-data/collections.mdx)
-
-
 
 ## Summary
 
