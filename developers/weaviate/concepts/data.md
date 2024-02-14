@@ -270,11 +270,16 @@ To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your sys
 :::info Added in `v1.21`
 :::
 
-A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active
+Tenants are `HOT` or `COLD`. Tenant status determines if Weaviate can access the shard.
+
+| Status | State | Description |
+| :-- | :-- | :-- |
+|`HOT`| Active | Weaviate can read and write. |
+|`COLD`| Inactive | Weaviate cannot read or write. Access attempts return an error message. |
 
 ### Related pages
 
-For more information on multi-tenancy, see the followig:
+For more information on multi-tenancy, see the following:
 
 - [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
 - [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
@@ -282,16 +287,13 @@ For more information on multi-tenancy, see the followig:
 
 ## Summary
 
-* Weaviate stores data objects that are represented as machine learning vectors.
-* Weaviate represents data objects as JSON documents.
-* Every data object can contain a vector.
-* Cross-references are datatypes that link to other objects.
-* Classes and properties are defined in a schema.
-* Different classes represent different vector spaces.
-* The schema has a class-property data structure.
-* We can query using the GraphQL-interface or -in some cases- the RESTful API.
-* Vectors come from machine learning models that you inference yourself or through a Weaviate module.
-* You can use multi-tenancy to isolate data for each tenant.
+* The schema defines collections and properties.
+* Collections contain data objects that are describe in JSON documents.
+* Data objects can contain a vector and properties.
+* Vectors come from machine learning models.
+* Different collections represent different vector spaces.
+* Cross-references link objects between schemas.
+* Multi-tenancy isolates data for each tenant.
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
