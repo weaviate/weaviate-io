@@ -198,19 +198,12 @@ For details on configuring your schema, see the [schema tutorial](../starter-gui
 
 ## Multi-tenancy
 
-:::info Related pages
-- [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
-:::
-
 :::info Multi-tenancy availability
 - Multi-tenancy added in `v1.20`
-- Tenant activity status setting added in `v1.21`
+- The tenant activity status setting added in `v1.21`
 :::
 
-If you want to use a single Weaviate cluster to store data that is segregated from other data in the cluster, use multi-tenancy. Every class can be configured to isolate data for a `tenant` by providing a tenant key.
-
-When multi-tenancy is enabled, Weaviate uses partition shards to store each tenant's data. Sharding has several benefits:
+To separate data within a cluster, use multi-tenancy. When you configure the collections in the cluster, provide a tenant key for each `tenant`. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant. Sharding has several benefits:
 
 - Data isolation
 - Fast, efficient querying
@@ -224,16 +217,16 @@ Multi-tenancy is especially useful when you want to store data for multiple cust
 
 ### Tenancy and IDs
 
-Each tenancy works like a namespace. So, different tenants could have objects with the same IDs. What makes an object’s ID unique is not just the object ID itself, but the combination of the tenant and the object ID.
+Each tenancy is like a namespace. Different tenants could, in theory, have objects with the same IDs. To avoid naming problems, object IDs in multi-tenant clusters combine the tenant ID and the object ID.
 
 ### Tenancy and cross-references
 
-When using multi-tenancy, cross-references can be made as follows:
+Multi-tenancy supports some cross-references. Cross-references like these are supported:
 
 - From a multi-tenancy object to a non-multi-tenancy object.
 - From a multi-tenancy object to another multi-tenancy object, as long as they belong to the same tenant.
 
-You **cannot** create cross-references:
+You **cannot** create cross-references like these:
 
 - From a non-multi-tenancy object to a multi-tenancy object.
 - From a multi-tenancy object to another multi-tenancy object if they belong to different tenants.
@@ -279,7 +272,15 @@ To enable lazy shard loading, set `DISABLE_LAZY_LOAD_SHARDS = false` in your sys
 
 A tenant status can be `HOT` or `COLD`. If `HOT`, the tenant's shard is active, and if `COLD`, the tenant's shard is inactive. An inactive shard is turned off to save resources, meaning Weaviate can not read from or write to the shard in that state. Any attempt to access it will result in an error, with a message that tenant is not active
 
-## Recap
+### Related pages
+
+For more information on multi-tenancy, see the followig:
+
+- [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
+- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+
+
+## Summary
 
 * Weaviate stores data objects that are represented as machine learning vectors.
 * Weaviate represents data objects as JSON documents.
