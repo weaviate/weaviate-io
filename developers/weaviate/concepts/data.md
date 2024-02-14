@@ -233,26 +233,26 @@ You **cannot** create cross-references like these:
 
 ### Key features
 
-- Each tenant has a dedicated, high-performance vector index. Dedicated indexes mean faster query speeds.  as if the tenant was the only user on the cluster.
-- Each tenant's data is isolated on a dedicated shard. This means deletes are fast and do not affect other tenants.
-- To scale out, add a new node to your cluster. Weaviate automatically schedules new tenants on the node with the least resource usage.
+- Each tenant has a dedicated, high-performance vector index. Dedicated indexes mean faster query speeds. Instead of searching a shared index space, each tenant responds as if it was the only user on the cluster.
+- Each tenant's data is isolated on a dedicated shard. This means that deletes are fast and do not affect other tenants.
+- To scale out, add a new node to your cluster. Weaviate does not redistribute existing tenants, however Weaviate adds new tenants to the node with the least resource usage. 
 
 :::info Related pages
 - [How-to: Manage Data | Multi-tenancy operations](../manage-data/multi-tenancy.md)
 - [Multi-tenancy blog](/blog/multi-tenancy-vector-search)
 :::
 
-### Monitoring metrics with multi-tenancy
+### Monitoring metrics
 
-When using multi-tenancy, we suggest setting the `PROMETHEUS_MONITORING_GROUP` [environment variable](../config-refs/env-vars.md) as `true` so that data across all tenants are grouped together for monitoring.
+To group tenants together for monitoring, set [`PROMETHEUS_MONITORING_GROUP = true`](../config-refs/env-vars.md) in your system configuration file.
 
-### Tenancy size per node
+### Number of tenants per node
 
-Although there is no inherent limit of tenants per node, the current limit is from Linux's open file limit per process. With a class with 6 properties, we could store ~70,000 tenants on a single node before running out of file descriptors.
+The number of tenants per node is limited by operating system constraints. The number of tenants cannot exceed the Linux open file limit per process. 
 
-Concretely, a 9-node cluster using `n1-standard-8` machines in our tests could hold around 170k active tenants, with 18-19k tenants per node.
+For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
-Note that these numbers relate to active tenants only. The size of tenants per node can be increased by [setting unused tenants as inactive](../api/rest/schema.md#update-tenants).
+Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`]((../api/rest/schema.md#update-tenants)), the open file per process limit does not apply.
 
 ### Lazy shard loading
 
