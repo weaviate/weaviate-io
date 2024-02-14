@@ -49,7 +49,7 @@
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  height: 400px;
+  height: 409px;
   overflow-y: hidden;
 
   @media screen and (max-width: 1100px) {
@@ -71,17 +71,17 @@
 }
 
 .firstSection {
-  background-image: url('/img/site/ndc-london-highlight.png');
+  background-image: url('/img/site/workshops-jp-website.png');
   background-size: cover;
 }
 .secondSection {
-  background-image: url('/img/site/sf-meetup-highlight.png');
-  background-size: 125%;
+  background-image: url('/img/site/multimodal-event.png');
+
   background-position: center;
 }
 
 .thirdSection {
-  background-image: url('/img/site/weaviate-workshop-highlight.png');
+  background-image: url('/img/site/workshops-daniel.png');
   background-size: cover;
   background-position-y: center;
 }

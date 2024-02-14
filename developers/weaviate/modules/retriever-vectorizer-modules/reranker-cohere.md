@@ -115,6 +115,13 @@ The `reranker-cohere` module supports the following models:
 - `rerank-english-v2.0`
 - `rerank-multilingual-v2.0`
 
+You can also pass in your fine-tuned reranker `model_id`, such as:
+
+- `500df123-afr3-...`
+
+
+This is described further in this [blog post](/blog/fine-tuning-coheres-reranker).
+
 
 ## Usage
 

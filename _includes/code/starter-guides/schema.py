@@ -47,7 +47,7 @@ try:
                 name="question",
                 data_type=wvc.config.DataType.TEXT,
                 # highlight-start
-                vectorize_property_name=True,  # Skip the property name ("question") when vectorizing
+                vectorize_property_name=True,  # Include the property name ("question") when vectorizing
                 tokenization=wvc.config.Tokenization.LOWERCASE  # Use "lowecase" tokenization
                 # highlight-end
             ),
