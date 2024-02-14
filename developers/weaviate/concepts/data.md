@@ -115,6 +115,8 @@ The collection looks like this:
 }]
 ```
 
+Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
+
 :::tip
 Every object stored in Weaviate has a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). The UUID guarantees uniqueness across all collections.
 :::
@@ -177,15 +179,14 @@ import SchemaDef from '/_includes/definition-schema.md';
 <SchemaDef/>
 
 :::note Schema vs. Taxonomy
-A Weaviate data schema is slightly different from a taxonomy. A taxonomy has a hierarchy. Read more about how taxonomies, ontologies and schemas are related to Weaviate in this [blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
+A Weaviate data schema is slightly different from a taxonomy. A taxonomy has a hierarchy. Read more about how taxonomies, ontologies and schemas are related in this Weaviate [blog post](https://medium.com/semi-technologies/taxonomies-ontologies-and-schemas-how-do-they-relate-to-weaviate-9f76739fc695).
 :::
 
 Schemas fulfill several roles:
 
-1. Collections and properties are defined in schemas.
-1. Every collection has its own vector space. This means that different collections can have different embeddings of the same object.
+1. Schemas define collections and properties.
 1. Schemas define cross-references that link collections, even collections that use different embeddings.
-1. Schemas let you configure mModule behavior, ANN index settings, reverse indexes, and other features per collection.
+1. Schemas let you configure module behavior, ANN index settings, reverse indexes, and other features on a collection level.
 
 For details on configuring your schema, see the [schema tutorial](../starter-guides/schema.md) or [schema configuration](../manage-data/collections.mdx).
 
@@ -196,7 +197,9 @@ For details on configuring your schema, see the [schema tutorial](../starter-gui
 - The tenant activity status setting added in `v1.21`
 :::
 
-To separate data within a cluster, use multi-tenancy. When you configure the collections in the cluster, provide a tenant key for each `tenant`. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant. Sharding has several benefits:
+To separate data within a cluster, use multi-tenancy. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant. 
+
+Sharding has several benefits:
 
 - Data isolation
 - Fast, efficient querying
@@ -210,16 +213,18 @@ Multi-tenancy is especially useful when you want to store data for multiple cust
 
 ### Tenancy and IDs
 
-Each tenancy is like a namespace. Different tenants could, in theory, have objects with the same IDs. To avoid naming problems, object IDs in multi-tenant clusters combine the tenant ID and the object ID.
+Each tenancy is like a namespace, so different tenants could, in theory, have objects with the same IDs. To avoid naming problems, object IDs in multi-tenant clusters combine the tenant ID and the object ID to create an ID that is unique across tenants.
 
 ### Tenancy and cross-references
 
-Multi-tenancy supports some cross-references. Cross-references like these are supported:
+Multi-tenancy supports some cross-references. 
+
+Cross-references like these are supported:
 
 - From a multi-tenancy object to a non-multi-tenancy object.
 - From a multi-tenancy object to another multi-tenancy object, as long as they belong to the same tenant.
 
-You **cannot** create cross-references like these:
+Cross-references like these are not supported:
 
 - From a non-multi-tenancy object to a multi-tenancy object.
 - From a multi-tenancy object to another multi-tenancy object if they belong to different tenants.
