@@ -13,11 +13,6 @@ image: og/docs/concepts.jpg
   - `Console`, `Benchmarks` and `Monitoring` paragraphs removed
 ::: -->
 
-:::info Related pages
-- [Configuration: Schema](../manage-data/collections.mdx)
-:::
-
-
 ## Data object nomenclature
 
 Each data object in Weaviate belongs to a `collection` and has one or more `properties`.
@@ -277,12 +272,14 @@ Tenants are `HOT` or `COLD`. Tenant status determines if Weaviate can access the
 |`HOT`| Active | Weaviate can read and write. |
 |`COLD`| Inactive | Weaviate cannot read or write. Access attempts return an error message. |
 
-### Related pages
+## Related pages
 
-For more information on multi-tenancy, see the following:
+For more information, see the following:
 
 - [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
 - [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [Configuration: Schema](../manage-data/collections.mdx)
+
 
 
 ## Summary
