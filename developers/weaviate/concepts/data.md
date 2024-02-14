@@ -233,7 +233,7 @@ You **cannot** create cross-references like these:
 
 ### Key features
 
-- Each tenant has a dedicated, high-performance vector index.  providing query speeds as if the tenant was the only user on the cluster.
+- Each tenant has a dedicated, high-performance vector index. Dedicated indexes mean faster query speeds.  as if the tenant was the only user on the cluster.
 - Each tenant's data is isolated on a dedicated shard. This means deletes are fast and do not affect other tenants.
 - To scale out, add a new node to your cluster. Weaviate automatically schedules new tenants on the node with the least resource usage.
 
