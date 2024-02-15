@@ -173,10 +173,7 @@ class WriteQuery(dspy.Signature):
 
 command_nightly = dspy.Cohere(model="command-nightly",max_tokens=1000, api_key=cohere_key)
 
-for idx, blog_chunk in enumerate(blogs):
-    if idx > 400:
-        break
-    print(idx)
+for blog_chunk in blogs:
     with dspy.context(lm=command_nightly):
         llm_query = dspy.ChainOfThought(WriteQuery)(document=blog_chunk)
     print(llm_query)
