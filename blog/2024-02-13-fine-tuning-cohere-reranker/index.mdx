@@ -40,9 +40,9 @@ Now you have a third option to pass in your fine-tuned reranker model! In this b
 
 In [May 2023](https://txt.cohere.com/rerank/), Cohere released their rerank endpoint. It enabled users to build search systems that added reranking at the last stage.
 
-Then in [December of 2023](https://txt.cohere.com/rerank-fine-tuning/), Cohere announced the ability to fine-tune their rerank endpoint. Fine-tuning boosts the model’s performance, especially in unique domains. Here is a screenshot of the [pricing page](https://cohere.com/pricing). Both the zero shot and fine-tuned model are priced at $1 per 1,000 queries (at the time of writing this blog post).
+Then in [December of 2023](https://txt.cohere.com/rerank-fine-tuning/), Cohere announced the ability to fine-tune their rerank endpoint. Fine-tuning boosts the model’s performance, especially in unique domains. Here is a screenshot of the [pricing page](https://cohere.com/pricing). Both the zero-shot and fine-tuned models are priced at $1 per 1,000 queries (at the time of writing this blog post).
 
-Fine-tuning a reranker on domain specific data can enhance the precision and relevance of search results. It enables the model to better understand and align with the complexities and phrases of specific terminologoy. 
+Fine-tuning a reranker on domain specific data can enhance the precision and relevance of search results. It enables the model to better understand and align with the complexities and phrases of specific terminology. 
 
 In this demo, we’re fine-tuning the model on the Weaviate blogs dataset. Using the Weaviate blogs to fine-tune the reranker, enables the model to grasp and prioritize the unique terminology. This approach ensures that the reranker becomes skilled at identifying content that is most relevant to queries, like "What is Ref2Vec." This will improve the performance of the search system by narrowing the focus to this particular information.
 
@@ -174,10 +174,7 @@ class WriteQuery(dspy.Signature):
 
 command_nightly = dspy.Cohere(model="command-nightly",max_tokens=1000, api_key=cohere_key)
 
-for idx, blog_chunk in enumerate(blogs):
-    if idx > 400:
-        break
-    print(idx)
+for blog_chunk in blogs:
     with dspy.context(lm=command_nightly):
         llm_query = dspy.ChainOfThought(WriteQuery)(document=blog_chunk)
     print(llm_query)
