@@ -48,7 +48,7 @@ services:
 
 ### Client-side
 
-You can use the gRPC interace through the ([`v4` Weaviate Python client library](/developers/weaviate/client-libraries/python)). gRPC support in the other client libraries will follow.
+You can use the gRPC interface through the ([`v4` Weaviate Python client library](/developers/weaviate/client-libraries/python)). gRPC support in the other client libraries will follow.
 
 Alternatively, you can use other tools, such as the `grpcurl` command-line tool, to interact with the gRPC API. Some options include:
 
