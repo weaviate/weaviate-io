@@ -37,7 +37,7 @@ Imagine we need to store information about an author named Alice Munro. In JSON 
 
 ### Vectors
 
-You can also attach `vector` representations to your data objects. Vectors are arrays of numbers that are stored under the `"vector"` property. 
+You can also attach `vector` representations to your data objects. Vectors are arrays of numbers that are stored under the `"vector"` property.
 
 In this example, the `Alice Munro` data object has a small vector. The vector is some information about Alice, maybe a story or an image, that a machine learning model has transformed into an array of numerical values.
 
@@ -61,7 +61,7 @@ To generate vectors for your data, use one of Weaviate's vectorizer [modules](./
 
 ### Collections
 
-Collections are groups of objects that share a schema definition. 
+Collections are groups of objects that share a schema definition.
 
 In this example, the `Author` collection holds objects that represent different authors.
 
@@ -166,7 +166,7 @@ The Paul Krugman `Author` object adds a new property, `writesFor`, to capture th
 }
 ```
 
-The value of the `beacon` sub-property is the `id` value from the New York Times `Publication` object. 
+The value of the `beacon` sub-property is the `id` value from the New York Times `Publication` object.
 
 Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
 
@@ -197,7 +197,7 @@ For details on configuring your schema, see the [schema tutorial](../starter-gui
 - The tenant activity status setting added in `v1.21`
 :::
 
-To separate data within a cluster, use multi-tenancy. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant. 
+To separate data within a cluster, use multi-tenancy. Weaviate partitions the cluster into shards. Each shard holds data for a single tenant.
 
 Sharding has several benefits:
 
@@ -217,7 +217,7 @@ Each tenancy is like a namespace, so different tenants could, in theory, have ob
 
 ### Tenancy and cross-references
 
-Multi-tenancy supports some cross-references. 
+Multi-tenancy supports some cross-references.
 
 Cross-references like these are supported:
 
@@ -233,7 +233,7 @@ Cross-references like these are not supported:
 
 - Each tenant has a dedicated, high-performance vector index. Dedicated indexes mean faster query speeds. Instead of searching a shared index space, each tenant responds as if it was the only user on the cluster.
 - Each tenant's data is isolated on a dedicated shard. This means that deletes are fast and do not affect other tenants.
-- To scale out, add a new node to your cluster. Weaviate does not redistribute existing tenants, however Weaviate adds new tenants to the node with the least resource usage. 
+- To scale out, add a new node to your cluster. Weaviate does not redistribute existing tenants, however Weaviate adds new tenants to the node with the least resource usage.
 
 :::info Related pages
 - [How-to: Manage Data | Multi-tenancy operations](../manage-data/multi-tenancy.md)
@@ -246,11 +246,11 @@ To group tenants together for monitoring, set [`PROMETHEUS_MONITORING_GROUP = tr
 
 ### Number of tenants per node
 
-The number of tenants per node is limited by operating system constraints. The number of tenants cannot exceed the Linux open file limit per process. 
+The number of tenants per node is limited by operating system constraints. The number of tenants cannot exceed the Linux open file limit per process.
 
 For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
-Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`]((../api/rest/schema.md#update-tenants)), the open file per process limit does not apply.
+Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../api/rest/schema.md#update-tenants), the open file per process limit does not apply.
 
 ### Lazy shard loading
 
