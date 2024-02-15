@@ -9,11 +9,8 @@ client = weaviate.connect_to_embedded(
     }
 )
 
-# DO SOMETHING
 # Add your client code here. 
 
-# Stop the server:
-# client._connection.embedded_db.stop()
 # END SimpleInstantiationEmbedded
 
 
@@ -31,11 +28,11 @@ client = weaviate.WeaviateClient(
     # Add additional options here (see Python client docs for syntax)
 )
 
-# DO SOMETHING
 # Add your client code here.
 
-# Stop the server. The server restarts if you call the client again later.
-# client._connection.embedded_db.stop()
+# Remember to run your client code in a context manager or call client.close()
+# before exiting the client to avoid connection errors. 
+
 # END ModuleInstantiationEmbedded
 
 
@@ -53,10 +50,9 @@ client = weaviate.WeaviateClient(
     # Add additional options here (see Python client docs for syntax)
 )
 
-# DO SOMETHING
-# Add your client code here.
+# Add your client code here. 
 
-# Exit the Embedded Weaviate server.
-client.close()
+# Uncomment the next line to exit the Embedded Weaviate server.
+# client.close()
 
 # END FullInstantiationEmbedded

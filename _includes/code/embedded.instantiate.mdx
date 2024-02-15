@@ -5,14 +5,16 @@ import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
+
+To avoid connection errors, use `client.close()` or a context manager to close your client connections before you exit your script or application.
+
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# START SimpleInstantiationEmbedded"
-  endMarker="# END SimpleInstantiationEmbedded"
+  startMarker="# START FullInstantiationEmbedded"
+  endMarker="# END FullInstantiationEmbedded"
   language="py"
 />
 
-Close your client connections before exiting your script or application. Use `client.close()` or use a context manager to close the client connections.
 </TabItem>
 <TabItem value="py3" label="Python (V3)">
 
@@ -30,9 +32,6 @@ Close your client connections before exiting your script or application. Use `cl
   }
 
   client.data_object.create(data_obj, "Wine")
-
-  # Stop the server.  The server restarts if you call the client again later.
-  # client._connection.embedded_db.stop()
   ```
 
   </TabItem>
@@ -55,9 +54,6 @@ Close your client connections before exiting your script or application. Use `cl
     .do();
 
   console.log(JSON.stringify(response, null, 2));
-  
-  // Stop the server. The server restarts if you call the client again later.
-  //client.embedded.stop();
   ```
 
   </TabItem>

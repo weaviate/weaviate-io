@@ -24,12 +24,6 @@ import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 
 When you exit the client, the Embedded Weaviate instance also exits.
 
-- Scripts. The Embedded Weaviate instance exists when the script finishes.
-- Applications. The Embedded Weaviate instance exists when the application exits.
-- Jupyter Notebooks. The Embedded Weaviate instance exists when the Jupyter notebook is no longer active.
-
-The Python client v3 closes server connections automatically.  
-
 ## Configuration options
 
 To configure Embedded Weaviate, set these variables in your instantiation code or pass them as parameters when you invoke your client. You can also pass them as system environment variables. All parameters are optional.
@@ -59,7 +53,7 @@ The following modules are enabled by default:
 
 To enabled additional modules, add them to your instantiation code. 
 
-For example, to add the `backup-s3` module, instantiate the embedded client like this:
+For example, to add the `backup-s3` module, instantiate your client like this:
 
 import EmbeddedInstantiationModule from '/_includes/code/embedded.instantiate.module.mdx';
 
@@ -67,63 +61,71 @@ import EmbeddedInstantiationModule from '/_includes/code/embedded.instantiate.mo
 
 ## Binary sources
 
-Weaviate core releases include executable Linux binaries. When you instantiate a connection with Embedded Weaviate, the client uses the binary packages to create a temporary Weaviate instance that persists while your client code runs.
+Weaviate core releases include executable Linux binaries. When you instantiate a client with Embedded Weaviate, the client uses the binary packages to create a temporary Weaviate instance that persists while your client code runs.
 
 ### File list
-For a list of files included in a release, see the Assets section for that release on [GitHub](https://github.com/weaviate/weaviate/releases).
+For a list of the files that are included in a release, see the Assets section for that release on [GitHub](https://github.com/weaviate/weaviate/releases).
 
 ### File URL
-To get the URL for a particular binary, follow these steps:
+To get the URL for a particular binary archive file, follow these steps:
 1. Find the Weaviate core release you want on the [Release Notes](/developers/weaviate/release-notes.mdx#weaviate-core) page.
 1. Click to the release notes for that version.
-1. The Assets section includes `linux-and64` and `linux-arm64` binaries in `tar.gz` format.
+1. The Assets section includes `linux-amd64` and `linux-arm64` binaries in `tar.gz` format.
 1. Copy the link to the full URL of the `tar.gz` file for your platform.
 
 For example, the URL for the Weaviate `1.19.6` `AMD64` binary is:
 
 `https://github.com/weaviate/weaviate/releases/download/v1.19.6/weaviate-v1.19.6-linux-amd64.tar.gz`.
 
-## Starting Embedded Weaviate under the hood
+## Functional overview
 
-Here's what happens behind the scenes when the client uses the embedded options in the instantiation call:
-1. The client downloads a Weaviate release from GitHub and caches it
-2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default 8079)
-3. The server's STDOUT and STDERR are piped to the client
-4. The client connects to this server process (e.g. to `http://127.0.0.1:8079`) and runs the client code
-5. After running the code (when the application terminates), the client shuts down the Weaviate process
-6. The data directory is preserved, so subsequent invocations have access to the data from all previous invocations, across all clients using the embedded option.
+Weaviate core server usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs as part of a client script or application. The instance can access a persistent datastore, but it exists when the client exists. 
 
+When your client runs, it checks for a stored Weaviate binary. If it finds one, the client uses that binary to create an Embedded Weaviate instance. If not, teh client downloads the binary.
+
+When the embedded instance starts, it checks for a data store. Other clients can also use the same data store. 
+
+The embedded server pipes `STDOUT` and `STDERR` to the client. To redirect `STDERR` in a command terminal, run your script like this:
+
+```bash
+python3 your_embedded_client_script.py 2>/dev/null 
+```
+
+When you exit the client script or application, the Embedded Weaviate instance also exits: 
+
+- Scripts: The Embedded Weaviate instance exists when the script exits.
+- Applications: The Embedded Weaviate instance exists when the application exits.
+- Jupyter Notebooks: The Embedded Weaviate instance exists when the Jupyter notebook is no longer active.
 
 ## Supported Environments
-
-### Operating Systems
 
 Embedded Weaviate is supported on:
 - Linux
 - macOS
 
+## Client languages
 
-## Language Clients
+Embedded Weaviate is supported for Python and Typescript clients.
 
-### Python
+### Python clients
 
-[Python client](../client-libraries/python/index.md) support is new in `v3.15.4` for Linux and `v3.21.0` for macOS.
+[Python](../client-libraries/python/index.md) v3 client support is new in `v3.15.4` for Linux and `v3.21.0` for macOS. The Python client v4 requires server version v1.23.7 or higher. 
 
-### TypeScript
+### TypeScript clients
 
-Due to use of server-side dependencies which are not available in the browser platform, the embedded TypeScript client has been split out into its own project. Therefore the original non-embedded TypeScript client can remain isomorphic.
+The embedded TypeScript client is no longer a part of the standard Typescript client. 
 
-The TypeScript embedded client simply extends the original TypeScript client, so once instantiated it can be used exactly the same way to interact with Weaviate. It can be installed with the following command:
+The embedded client has additional dependencies that are not included in the standard client. However, the embedded client extends the original TypeScript client. After you instantiate Embedded Weaviate instance, the embedded TypeScript client works the same way as the standard client.
+
+To install the embedded TypeScript client, run this command:
 
 ```
 npm install weaviate-ts-embedded
 ```
 
-macOS support was added in `v1.2.0`.
-
-GitHub repositories:
-* [TypeScript embedded client](https://github.com/weaviate/typescript-embedded)
-* [Original TypeScript client](https://github.com/weaviate/typescript-client)
+The TypeScript clients are in these GitHub repositories:
+- [Embedded TypeScript client](https://github.com/weaviate/typescript-embedded)
+- [Standard TypeScript client](https://github.com/weaviate/typescript-client)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
