@@ -1,6 +1,6 @@
 ---
-title: Standalone Units
-sidebar_position: 101
+title: 000. Standalone units
+sidebar_position: 900
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';

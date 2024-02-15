@@ -1,10 +1,10 @@
 export const courseData = {
   "starter_project": {
-    title: "Just bring data",
+    title: "Text data with Weaviate",
     courseId: "PY_100",
     body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/starter_project",
+    buttonURL: "/developers/academy/text_data_with_weaviate",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -22,7 +22,7 @@ export const courseData = {
     note: "Python client (v4); project-based"
   },
   "starter_project_byov": {
-    title: "Bring data & vectors",
+    title: "Your own vectors with Weaviate",
     courseId: "PY_101",
     body: "Project-based learning where you'll learn how to build with Weaviate and any text data. This version is for those who prefer to use your own vectors built outside of Weaviate.",
     buttonType: "TBD",
@@ -42,29 +42,6 @@ export const courseData = {
       "Use AI (large language models) to augment and transform retrieved data",
     ],
     note: "Python client (v4); project-based"
-  },
-  "zero_to_mvp": {
-    title: "Zero to MVP: The basics",
-    courseId: "P3_100",
-    body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp",
-    badgeType: "course",
-    isCourse: true,
-    units: [
-      "hello_weaviate", "queries_1", "schema_and_import", "queries_2"
-    ],
-    learningGoals: [
-      "How to build a Weaviate instance and populate it with vectorized data, as well as how to construct queries to efficiently retrieve relevant data."
-    ],
-    learningOutcomes: [
-      "Use Weaviate Cloud Services to create an instance of Weaviate",
-      "Use appropriate query types and syntax to retrieve desired objects",
-      "Outline what vector search is and how it works",
-      "Demonstrate how to efficiently populate an Weaviate instance with data",
-      "Differentiate BM25 and hybrid search techniques from vector search techniques",
-    ],
-    note: "Python client (v3)"
   },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with Typescript (or JavaScript)",
@@ -89,29 +66,29 @@ export const courseData = {
     ],
     note: "TS clients; project-based"
   },
-  "building_with_weaviate": {
-    title: "Building with Weaviate",
-    courseId: "PY_200",
-    body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/building_with_weaviate",
-    badgeType: "course",
-    isCourse: true,
-    units: [
-      "which_search",
-      "schema_design",
-      "vectorizer_selection",
-      "indexing",
-    ],
-    learningGoals: [
-      "In-depth material and best practices to help you build with Weaviate, such as vectorization options, which searches to perform and how to work with your indexes."
-    ],
-    learningOutcomes: [
-      "Select a suitable vectorizer for your given goals and situation.",
-      "Understand practical differences between search methods and suggest a suitable technique for a given situation.",
-      "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall.",
-    ]
-  },
+  // "building_with_weaviate": {
+  //   title: "Additional topics",
+  //   courseId: "PY_200",
+  //   body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
+  //   buttonType: "Click here",
+  //   buttonURL: "/developers/academy/building_with_weaviate",
+  //   badgeType: "course",
+  //   isCourse: true,
+  //   units: [
+  //     "which_search",
+  //     "schema_design",
+  //     "vectorizer_selection",
+  //     "indexing",
+  //   ],
+  //   learningGoals: [
+  //     "In-depth material and best practices to help you build with Weaviate, such as vectorization options, which searches to perform and how to work with your indexes."
+  //   ],
+  //   learningOutcomes: [
+  //     "Select a suitable vectorizer for your given goals and situation.",
+  //     "Understand practical differences between search methods and suggest a suitable technique for a given situation.",
+  //     "Compare types of indexes used by Weaviate, and modify parameters to balance speed and recall.",
+  //   ]
+  // },
   // "configuring_weaviate_instance": {
   //   title: "Customization using modules",
   //   courseId: "2",
@@ -159,5 +136,28 @@ export const courseData = {
       "kubernetes_intro",
       "beyond_text"
     ]
+  },
+  "zero_to_mvp": {
+    title: "Zero to MVP: The basics",
+    courseId: "P3_100",
+    body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "hello_weaviate", "queries_1", "schema_and_import", "queries_2"
+    ],
+    learningGoals: [
+      "How to build a Weaviate instance and populate it with vectorized data, as well as how to construct queries to efficiently retrieve relevant data."
+    ],
+    learningOutcomes: [
+      "Use Weaviate Cloud Services to create an instance of Weaviate",
+      "Use appropriate query types and syntax to retrieve desired objects",
+      "Outline what vector search is and how it works",
+      "Demonstrate how to efficiently populate an Weaviate instance with data",
+      "Differentiate BM25 and hybrid search techniques from vector search techniques",
+    ],
+    note: "Python client (v3)"
   }
 };
