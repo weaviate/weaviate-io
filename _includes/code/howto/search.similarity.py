@@ -124,35 +124,35 @@ try:
     # Query with LimitOffset - https://weaviate.io/developers/weaviate/api/graphql/filters#limit-argument
 
     # GetLimitOffsetPython
-    # import weaviate.classes as wvc
+    import weaviate.classes as wvc
 
-    # jeopardy = client.collections.get("JeopardyQuestion")
-    # response = jeopardy.query.near_text(
-    #     query="animals in movies",
-    #     # highlight-start
-    #     # offset=1, # `offset` support is being added to the client
-    #     limit=2,  # return 2 objects
-    #     # highlight-end
-    #     return_metadata=wvc.query.MetadataQuery(distance=True)
-    # )
+    jeopardy = client.collections.get("JeopardyQuestion")
+    response = jeopardy.query.near_text(
+        query="animals in movies",
+        # highlight-start
+        limit=2,  # return 2 objects
+        offset=1,  # With an offset of 1
+        # highlight-end
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
 
-    # for o in response.objects:
-    #     print(o.properties)
-    #     print(o.metadata.distance)
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
     # END GetLimitOffsetPython
 
     # Test results
-    # no_offset_response = jeopardy.query.near_text(
-    #     query="animals in movies",
-    #     limit=3,
-    #     return_metadata=wvc.query.MetadataQuery(distance=True)
-    # )
+    no_offset_response = jeopardy.query.near_text(
+        query="animals in movies",
+        limit=3,
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
 
-    # assert response.objects[0].collection == "JeopardyQuestion"
-    # assert len(response.objects) == 2
-    # assert "question" in response.objects[0].properties.keys()
-    # assert response.objects[0].metadata.distance is not None
-    # assert no_offset_response.objects[1].properties == response.objects[0].properties
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert len(response.objects) == 2
+    assert "question" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    assert no_offset_response.objects[1].properties["question"] == response.objects[0].properties["question"]
     # End test
 
 
