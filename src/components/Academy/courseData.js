@@ -8,7 +8,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "wcs_basics", "movie_collections", "movie_searches", "movie_rag"
+      "wcs_basics", "movies_collections", "movies_searches", "movies_rag"
     ],
     learningGoals: [
       "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."

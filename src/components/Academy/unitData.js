@@ -1,5 +1,20 @@
 export const unitData = {
   "wcs_basics": {
+    title: "Create a cloud Weaviate instance",
+    body: "Create a cloud Weaviate instance through Weaviate Cloud Services (WCS).",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "Install the latest Weaviate Python client.",
+      "Create a Weaviate instance on WCS.",
+      "Connect to the Weaviate instance using the Python client."
+    ]
+  },
+  "movies_collections": {
     title: "Placeholder",
     body: "Something something dark side",
     buttonType: "TBD",
@@ -11,7 +26,7 @@ export const unitData = {
       "TBC"
     ]
   },
-  "movie_collections": {
+  "movies_searches": {
     title: "Placeholder",
     body: "Something something dark side",
     buttonType: "TBD",
@@ -23,7 +38,7 @@ export const unitData = {
       "TBC"
     ]
   },
-  "movie_searches": {
+  "movies_rag": {
     title: "Placeholder",
     body: "Something something dark side",
     buttonType: "TBD",
@@ -35,7 +50,7 @@ export const unitData = {
       "TBC"
     ]
   },
-  "movie_rag": {
+  "movies_collections_byov": {
     title: "Placeholder",
     body: "Something something dark side",
     buttonType: "TBD",
@@ -47,7 +62,7 @@ export const unitData = {
       "TBC"
     ]
   },
-  "movie_collections_byov": {
+  "movies_searches_byov": {
     title: "Placeholder",
     body: "Something something dark side",
     buttonType: "TBD",
@@ -59,19 +74,7 @@ export const unitData = {
       "TBC"
     ]
   },
-  "movie_searches_byov": {
-    title: "Placeholder",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
-    learningGoals: [
-      "TBC"
-    ],
-    learningOutcomes: [
-      "TBC"
-    ]
-  },
-  "movie_rag_byov": {
+  "movies_rag_byov": {
     title: "Placeholder",
     body: "Something something dark side",
     buttonType: "TBD",
