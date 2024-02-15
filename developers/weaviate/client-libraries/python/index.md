@@ -982,6 +982,10 @@ This is the formatted output.
 
 If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion.
 
+### Raw GraphQL queries
+
+To provide raw GraphQL queries, you can use the `client.graphql_raw_query` method (previously `client.query.raw` in the `v3` client). This method takes a string as input.
+
 
 ## Client releases
 
