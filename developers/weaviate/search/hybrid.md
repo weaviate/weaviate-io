@@ -577,6 +577,7 @@ The output is like this:
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).
 - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).

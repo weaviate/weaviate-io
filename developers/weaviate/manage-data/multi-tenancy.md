@@ -444,6 +444,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [How to: Configure a schema](../manage-data/collections.mdx)
 - [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
 - [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)

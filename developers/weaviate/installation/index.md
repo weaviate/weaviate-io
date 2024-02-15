@@ -77,6 +77,7 @@ If you try out new features, please provide [feedback](https://github.com/weavia
 
 
 ## Related pages
+- [Connect to Weaviate](../tutorials/connect.mdx)
 - [Weaviate Quickstart](../quickstart/index.md)
 - [Weaviate Cloud Services Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)

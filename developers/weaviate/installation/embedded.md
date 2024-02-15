@@ -9,17 +9,16 @@ import TabItem from '@theme/TabItem';
 
 ## Overview
 
-Embedded Weaviate is a new deployment model, which allows you to start a Weaviate instance, straight in your application code using a Weaviate Client library.
+Embedded Weaviate is a new deployment model. Embedded Weaviate runs a Weaviate instance from your application code rather than from a Weaviate server installation.
 
 :::caution Experimental
-Embedded Weaviate is still in the **Experimental** phase.
+Embedded Weaviate is still in the **Experimental** phase. APIs and parameters may change.
 
-Some of the APIs and parameters might change over time, as we refine and improve it.
 :::
 
 ### How does it work?
 
-With every Weaviate release we also publish executable Linux binaries (see the **Assets** section on the [releases](https://github.com/weaviate/weaviate/releases) page).
+Weaviate core releases include executable Linux binaries.
 
 This allows launching the Weaviate database server from the client instantiation call, which makes the "installation" step invisible by pushing it to the background:
 
@@ -44,7 +43,7 @@ The Weaviate server spawned from the client can be configured via parameters pas
 It is **not recommended** to modify the `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables from the standard **XDG Base Directory** values, as that might affect many other (non-Weaviate related) applications and services running on the same server.
 :::
 
-:::tip Providing the Weaviate version as a URL
+:::tip Provide the Weaviate version as a URL
 To find the **full URL** for `version`:
 * head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
 * find the **Assets** section for the required Weaviate version
@@ -123,6 +122,10 @@ GitHub repositories:
 * [Original TypeScript client](https://github.com/weaviate/typescript-client)
 
 
+## Related pages
+
+- For a list of files included in a release, see the Assets section on the [GitHub release page](https://github.com/weaviate/weaviate/releases).
+ 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
