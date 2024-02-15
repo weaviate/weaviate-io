@@ -102,7 +102,7 @@ Embedded Weaviate is supported on Linux and macOS.
 
 ## Client languages
 
-Embedded Weaviate is supported for Python and Typescript clients.
+Embedded Weaviate is supported for Python and TypeScript clients.
 
 ### Python clients
 
@@ -110,7 +110,7 @@ Embedded Weaviate is supported for Python and Typescript clients.
 
 ### TypeScript clients
 
-The embedded TypeScript client is no longer a part of the standard Typescript client. 
+The embedded TypeScript client is no longer a part of the standard TypeScript client. 
 
 The embedded client has additional dependencies that are not included in the standard client. However, the embedded client extends the original TypeScript client. After you instantiate Embedded Weaviate instance, the embedded TypeScript client works the same way as the standard client.
 
