@@ -464,6 +464,7 @@ If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [API References: Filters](../api/graphql/filters.md)
 
 
