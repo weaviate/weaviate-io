@@ -25,7 +25,7 @@ client = weaviate.WeaviateClient(
         "ENABLE_MODULES":
         "backup-s3,text2vec-openai,text2vec-cohere,text2vec-huggingface,ref2vec-centroid,generative-openai,qna-openai"}
     )
-    # Add additional options here (see Python client docs for syntax)
+    # Add additional options here. For syntax, see the Python client documentation.
 )
 
 # Add your client code here.

@@ -38,7 +38,7 @@ To configure Embedded Weaviate, set these variables in your instantiation code o
 | `version` | string | Latest stable | Specify the version with one of the following:<br/>-`"latest"`<br/>- The version number as a string: `"1.19.6"`<br/>- The URL of a Weaviate binary ([See below](/developers/weaviate/installation/embedded.md#file-url)) |
 
 :::warning Do not modify `XDG_CACHE_HOME` or `XDG_DATA_HOME`
-The `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables are widely used system variable. If you modify them, you may break other applications.
+The `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables are widely used system variables. If you modify them, you may break other applications.
 :::
 
 ## Default modules
@@ -64,13 +64,12 @@ import EmbeddedInstantiationModule from '/_includes/code/embedded.instantiate.mo
 Weaviate core releases include executable Linux binaries. When you instantiate a client with Embedded Weaviate, the client uses the binary packages to create a temporary Weaviate instance that persists while your client code runs.
 
 ### File list
-For a list of the files that are included in a release, see the Assets section for that release on [GitHub](https://github.com/weaviate/weaviate/releases).
+For a list of the files that are included in a release, see the Assets section of the Release Notes page for that release on [GitHub](https://github.com/weaviate/weaviate/releases).
 
 ### File URL
 To get the URL for a particular binary archive file, follow these steps:
 1. Find the Weaviate core release you want on the [Release Notes](/developers/weaviate/release-notes.mdx#weaviate-core) page.
-1. Click to the release notes for that version.
-1. The Assets section includes `linux-amd64` and `linux-arm64` binaries in `tar.gz` format.
+1. Click to the release notes for that version. The Assets section includes `linux-amd64` and `linux-arm64` binaries in `tar.gz` format.
 1. Copy the link to the full URL of the `tar.gz` file for your platform.
 
 For example, the URL for the Weaviate `1.19.6` `AMD64` binary is:
@@ -79,7 +78,7 @@ For example, the URL for the Weaviate `1.19.6` `AMD64` binary is:
 
 ## Functional overview
 
-Weaviate core server usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs as part of a client script or application. The instance can access a persistent datastore, but it exists when the client exists. 
+Weaviate core usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs as part of a client script or application. The instance can access a persistent datastore, but the instance exits when the client exits. 
 
 When your client runs, it checks for a stored Weaviate binary. If it finds one, the client uses that binary to create an Embedded Weaviate instance. If not, teh client downloads the binary.
 
@@ -93,15 +92,13 @@ python3 your_embedded_client_script.py 2>/dev/null
 
 When you exit the client script or application, the Embedded Weaviate instance also exits: 
 
-- Scripts: The Embedded Weaviate instance exists when the script exits.
-- Applications: The Embedded Weaviate instance exists when the application exits.
-- Jupyter Notebooks: The Embedded Weaviate instance exists when the Jupyter notebook is no longer active.
+- Scripts: The Embedded Weaviate instance exits when the script exits.
+- Applications: The Embedded Weaviate instance exits when the application exits.
+- Jupyter Notebooks: The Embedded Weaviate instance exits when the Jupyter notebook is no longer active.
 
 ## Supported Environments
 
-Embedded Weaviate is supported on:
-- Linux
-- macOS
+Embedded Weaviate is supported on Linux and macOS.
 
 ## Client languages
 
