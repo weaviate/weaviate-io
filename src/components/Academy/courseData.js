@@ -1,7 +1,51 @@
 export const courseData = {
+  "starter_project": {
+    title: "Just bring data",
+    courseId: "PY_100",
+    body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/starter_project",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "wcs_basics", "movie_collections", "movie_searches", "movie_rag"
+    ],
+    learningGoals: [
+      "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
+    ],
+    learningOutcomes: [
+      "Use Weaviate Cloud Services to create a cloud instance of Weaviate",
+      "Produce, store and index semantic (vector) data from source text",
+      "Perform semantic, keyword and hybrid searches",
+      "Use AI (large language models) to augment and transform retrieved data",
+    ],
+    note: "Python client (v4); project-based"
+  },
+  "starter_project_byov": {
+    title: "Bring data & vectors",
+    courseId: "PY_101",
+    body: "Project-based learning where you'll learn how to build with Weaviate and any text data. This version is for those who prefer to use your own vectors built outside of Weaviate.",
+    buttonType: "TBD",
+    // buttonURL: "/developers/academy/starter_project",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "wcs_basics", "movie_collections_byov", "movie_searches_byov", "movie_rag_byov"
+    ],
+    learningGoals: [
+      "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
+    ],
+    learningOutcomes: [
+      "Use Weaviate Cloud Services to create a cloud instance of Weaviate",
+      "Produce, store and index semantic (vector) data from source text",
+      "Perform semantic, keyword and hybrid searches",
+      "Use AI (large language models) to augment and transform retrieved data",
+    ],
+    note: "Python client (v4); project-based"
+  },
   "zero_to_mvp": {
     title: "Zero to MVP: The basics",
-    courseId: "1",
+    courseId: "P3_100",
     body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/zero_to_mvp",
@@ -19,11 +63,12 @@ export const courseData = {
       "Outline what vector search is and how it works",
       "Demonstrate how to efficiently populate an Weaviate instance with data",
       "Differentiate BM25 and hybrid search techniques from vector search techniques",
-    ]
+    ],
+    note: "Python client (v3)"
   },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with Typescript (or JavaScript)",
-    courseId: "TS/JS-1",
+    courseId: "TS_100",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/intro_weaviate_typescript",
@@ -41,11 +86,12 @@ export const courseData = {
       "Define a schema (collection definition) and import data.",
       "Perform queries on your data.",
       "Integrate Weaviate into your TypeScript/JavaScript app.",
-    ]
+    ],
+    note: "TS clients; project-based"
   },
   "building_with_weaviate": {
     title: "Building with Weaviate",
-    courseId: "2",
+    courseId: "PY_200",
     body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/building_with_weaviate",

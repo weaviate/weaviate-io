@@ -1,4 +1,88 @@
 export const unitData = {
+  "wcs_basics": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
+  "movie_collections": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
+  "movie_searches": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
+  "movie_rag": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
+  "movie_collections_byov": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
+  "movie_searches_byov": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
+  "movie_rag_byov": {
+    title: "Placeholder",
+    body: "Something something dark side",
+    buttonType: "TBD",
+    badgeType: "mixed",
+    learningGoals: [
+      "TBC"
+    ],
+    learningOutcomes: [
+      "TBC"
+    ]
+  },
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
