@@ -1,6 +1,6 @@
 export const unitData = {
   "wcs_basics": {
-    title: "Create a cloud Weaviate instance",
+    title: "Get started with WCS",
     body: "Create a cloud Weaviate instance through Weaviate Cloud Services (WCS).",
     buttonType: "Click here",
     buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
@@ -15,19 +15,22 @@ export const unitData = {
     ]
   },
   "movies_collections": {
-    title: "Placeholder",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
+    title: "Populate the database",
+    body: "Create a collection and import data, and have Weaviate create vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Configure and create a collection then import text data using batch imports."
     ],
     learningOutcomes: [
-      "TBC"
+      "Configure a collection with typical settings.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
     ]
   },
   "movies_searches": {
-    title: "Placeholder",
+    title: "Find the right ",
     body: "Something something dark side",
     buttonType: "TBD",
     badgeType: "mixed",
