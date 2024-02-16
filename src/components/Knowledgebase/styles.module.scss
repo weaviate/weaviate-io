@@ -1,87 +1,3 @@
-.valuesSection {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 90px;
-  justify-content: center;
-  align-items: center;
-
-  .valuesBox {
-    width: 20.1875rem;
-    height: 24rem;
-    border-radius: 0.9375rem;
-    border: 1px solid #130c49;
-    background: #fff;
-    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-    padding: 45px 30px 20px 30px;
-
-    .valuesHeader {
-      display: flex;
-      column-gap: 20px;
-      align-items: center;
-      max-height: 40px;
-      margin-bottom: 40px;
-
-      .valuesIcon1 {
-        background-image: url('/img/site/be-kind-icon.svg');
-        width: 3.6rem;
-        height: 3.2rem;
-        background-size: cover;
-      }
-
-      .valuesIcon2 {
-        background-image: url('/img/site/work-together-icon.svg');
-        width: 5rem;
-        height: 3rem;
-        background-size: cover;
-      }
-      .valuesIcon3 {
-        background-image: url('/img/site/excellence-icon.svg');
-        width: 5rem;
-        height: 4rem;
-        background-size: cover;
-      }
-      .valuesIcon4 {
-        background-image: url('/img/site/transparency-icon.svg');
-        width: 5.5rem;
-        height: 4rem;
-        background-size: cover;
-      }
-      .valuesIcon5 {
-        background-image: url('/img/site/trust-icon.svg');
-        width: 5rem;
-        height: 3.6rem;
-        background-size: cover;
-      }
-    }
-
-    p {
-      color: #130c49;
-      font-size: 1rem;
-    }
-
-    h3 {
-      color: #130c49;
-      font-size: 2.25rem;
-      font-weight: 700;
-    }
-
-    h4 {
-      color: #130c49;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 0px;
-    }
-  }
-
-  .clearBox {
-    padding: 60px 20px;
-    border: none;
-    background-color: #ededed;
-    box-shadow: none;
-  }
-}
-
 .bottomBar {
   height: 10rem;
   display: flex;
@@ -196,10 +112,46 @@
   }
 }
 
-p {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.knowledgebase {
+  display: flex;
+  align-items: flex-start;
 }
+
+.filterBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0px 20px 0px 0px;
+
+  .cardFilter {
+    display: flex;
+    gap: 18px;
+    margin: 10px 0px 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-x: scroll;
+    flex-direction: column;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    width: 100%;
+
+    a {
+      color: #130c49;
+      font-style: normal;
+      font-weight: 200;
+      border: none;
+      background: whitesmoke;
+      transition: all 0.2s ease-out;
+    }
+
+    a:hover {
+      font-weight: 500;
+    }
+  }
+}
+
 .box {
   display: flex;
   flex-direction: column;
@@ -228,14 +180,14 @@ p {
     }
   }
 
-  .teamFilter {
+  .cardFilter {
     display: flex;
     gap: 40px;
     margin: 10px 0px 10px;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     overflow-x: scroll;
-    flex-direction: row;
+    flex-direction: column;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
     width: 100%;
@@ -265,12 +217,12 @@ p {
   }
 }
 
-.peopleContainer {
+.cardContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
@@ -279,8 +231,9 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 325px;
-  height: 325px;
+  height: 350px;
   padding: 20px;
   border-radius: 0.4375rem;
   background: #fff;
@@ -301,13 +254,24 @@ p {
     font-weight: 400;
   }
 
+  .cardType {
+    margin: 4px;
+  }
+
   .cardText {
     color: #130c49;
     text-align: center;
     font-size: 0.75rem;
     font-weight: 400;
-    height: 160px;
+    height: 127px;
   }
+
+  .cardLink {
+    margin: 10px;
+    text-decoration: underline;
+    color: #130c49;
+  }
+
   img {
     width: 60%;
     max-width: 140px;
@@ -380,6 +344,16 @@ p {
   align-items: center;
   gap: 30px;
   padding: 20px 0px 10px;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .buttonsContainer {
+    gap: 20px;
+    padding: 20px 10px;
+  }
 }
 
 .applied-research {
@@ -410,4 +384,12 @@ p {
 
 .linkActive {
   font-weight: 500 !important;
+}
+
+.tag {
+  margin: 4px;
+  padding: 2px 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  display: inline-block;
 }

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import { LinkButton, ButtonContainer } from '/src/theme/Buttons';
 
-export default function AboutUsHeader() {
+export default function KnowledgeHeader() {
   return (
     <header>
       <div className="container">
