@@ -3,7 +3,7 @@ export const unitData = {
     title: "Get started with WCS",
     body: "Create a cloud Weaviate instance through Weaviate Cloud Services (WCS).",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
     badgeType: "practical",
     learningGoals: [
       "Set up a cloud Weaviate instance and connect to it with the Python client."
@@ -18,82 +18,99 @@ export const unitData = {
     title: "Populate the database",
     body: "Create a collection and import data, and have Weaviate create vectors for you.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import text data using batch imports."
     ],
     learningOutcomes: [
-      "Configure a collection with typical settings.",
+      "Configure a collection with typical settings and vectorizer set.",
       "Create a collection and work with a collection object.",
       "Import data using batch imports."
     ]
   },
   "movies_searches": {
-    title: "Find the right ",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Perform semantic, keyword and hybrid searches."
     ],
     learningOutcomes: [
-      "TBC"
+      "Describe differences between semantic, keyword and hybrid searches at a high level.",
+      "Perform a semantic search with near text functions.",
+      "Perform a keyword search.",
+      "Perform a hybrid search.",
     ]
   },
   "movies_rag": {
-    title: "Placeholder",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Use AI (large language models) to augment and transform retrieved data."
     ],
     learningOutcomes: [
-      "TBC"
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
     ]
   },
   "movies_collections_byov": {
-    title: "Placeholder",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
+    title: "Populate the database",
+    body: "Create a collection and import data with your own vectors.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Configure and create a collection then import text data with your own vectors using batch imports."
     ],
     learningOutcomes: [
-      "TBC"
+      "Configure a collection with typical settings and vectorizer set as none.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
     ]
   },
   "movies_searches_byov": {
-    title: "Placeholder",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Perform semantic, keyword and hybrid searches."
     ],
     learningOutcomes: [
-      "TBC"
+      "Describe differences between vector, keyword and hybrid searches at a high level.",
+      "Perform a vector search with near vector functions.",
+      "Perform a keyword search.",
+      "Perform a hybrid search.",
     ]
   },
   "movies_rag_byov": {
-    title: "Placeholder",
-    body: "Something something dark side",
-    buttonType: "TBD",
-    badgeType: "mixed",
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Use AI (large language models) to augment and transform retrieved data."
     ],
     learningOutcomes: [
-      "TBC"
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
     ]
   },
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
@@ -116,7 +133,7 @@ export const unitData = {
     body: "Learn how queries work in Weaviate, how to use similarity searches and use filters, as well as how search works under the hood.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/950_zero_to_mvp/queries_1",
+    buttonURL: "/developers/academy/zero_to_mvp/queries_1",
     learningGoals: [
       "How to retrieve objects and properties.",
       "The structure of returned responses from Weaviate.",
@@ -141,7 +158,7 @@ export const unitData = {
     body: "Learn what role the schema plays in Weaviate, and how to define it, before learning how to effectively populate Weaviate with data.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/950_zero_to_mvp/schema_and_imports",
+    buttonURL: "/developers/academy/zero_to_mvp/schema_and_imports",
     learningGoals: [
       "How Weaviate organizes and stores data.",
       "An overview of indexes used in Weaviate.",
@@ -165,7 +182,7 @@ export const unitData = {
     body: "Learn about even more query types, from hybrid searches that combine keyword and vector searches to generative searches that transform your data at retrieval.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/950_zero_to_mvp/queries_2",
+    buttonURL: "/developers/academy/zero_to_mvp/queries_2",
     learningGoals: [
       "How to formulate and perform keyword or BM25 searches.",
       "What Hybrid searches are, how they are ranked and how to use them.",
@@ -532,7 +549,7 @@ export const unitData = {
     title: "Document chunking - why and how?",
     body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/900_standalone/chunking",
+    buttonURL: "/developers/academy/standalone/chunking",
     badgeType: "practical",
     learningGoals: [
       "What chunking is",
@@ -553,7 +570,7 @@ export const unitData = {
     title: "Introduction to multi-tenancy",
     body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
     buttonType: "TBD",
-    // buttonURL: "/developers/academy/900_standalone/multi_tenancy",
+    // buttonURL: "/developers/academy/standalone/multi_tenancy",
     badgeType: "practical",
     learningGoals: [
       "What multi-tenancy is and when to use it",
@@ -620,7 +637,7 @@ export const unitData = {
     title: "Introduction to Weaviate with TS (or JS)",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/500_intro_weaviate_typescript",
+    buttonURL: "/developers/academy/intro_weaviate_typescript",
     badgeType: "practical",
     learningGoals: [
       "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."

@@ -1,0 +1,81 @@
+---
+title: Academy main body example
+---
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+
+Some text
+
+### <i class="fa-solid fa-chalkboard"></i> Theory subhead
+### <i class="fa-solid fa-code"></i> Practical subhead
+
+Some text
+
+### <i class="fa-solid fa-chalkboard"></i> Theory subhead
+### <i class="fa-solid fa-code"></i> Practical subhead
+
+Some text
+
+## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+
+Some text
+
+### <i class="fa-solid fa-chalkboard"></i> Theory subhead
+### <i class="fa-solid fa-code"></i> Practical subhead
+
+Some text
+
+### <i class="fa-solid fa-chalkboard"></i> Theory subhead
+### <i class="fa-solid fa-code"></i> Practical subhead
+
+Some text
+
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<Quiz questions={varName} />
+
+Any quiz questions
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out ...
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+:::info
+Add summary
+:::
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
