@@ -3,7 +3,7 @@ export const unitData = {
     title: "Create a cloud Weaviate instance",
     body: "Create a cloud Weaviate instance through Weaviate Cloud Services (WCS).",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
     badgeType: "practical",
     learningGoals: [
       "Set up a cloud Weaviate instance and connect to it with the Python client."
@@ -90,7 +90,7 @@ export const unitData = {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/950_zero_to_mvp/hello_weaviate",
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
@@ -113,7 +113,7 @@ export const unitData = {
     body: "Learn how queries work in Weaviate, how to use similarity searches and use filters, as well as how search works under the hood.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/zero_to_mvp/queries_1",
+    buttonURL: "/developers/academy/950_zero_to_mvp/queries_1",
     learningGoals: [
       "How to retrieve objects and properties.",
       "The structure of returned responses from Weaviate.",
@@ -138,7 +138,7 @@ export const unitData = {
     body: "Learn what role the schema plays in Weaviate, and how to define it, before learning how to effectively populate Weaviate with data.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/zero_to_mvp/schema_and_imports",
+    buttonURL: "/developers/academy/950_zero_to_mvp/schema_and_imports",
     learningGoals: [
       "How Weaviate organizes and stores data.",
       "An overview of indexes used in Weaviate.",
@@ -162,7 +162,7 @@ export const unitData = {
     body: "Learn about even more query types, from hybrid searches that combine keyword and vector searches to generative searches that transform your data at retrieval.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/zero_to_mvp/queries_2",
+    buttonURL: "/developers/academy/950_zero_to_mvp/queries_2",
     learningGoals: [
       "How to formulate and perform keyword or BM25 searches.",
       "What Hybrid searches are, how they are ranked and how to use them.",
@@ -529,7 +529,7 @@ export const unitData = {
     title: "Document chunking - why and how?",
     body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/standalone/chunking",
+    buttonURL: "/developers/academy/900_standalone/chunking",
     badgeType: "practical",
     learningGoals: [
       "What chunking is",
@@ -550,7 +550,7 @@ export const unitData = {
     title: "Introduction to multi-tenancy",
     body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
     buttonType: "TBD",
-    // buttonURL: "/developers/academy/standalone/multi_tenancy",
+    // buttonURL: "/developers/academy/900_standalone/multi_tenancy",
     badgeType: "practical",
     learningGoals: [
       "What multi-tenancy is and when to use it",
@@ -617,7 +617,7 @@ export const unitData = {
     title: "Introduction to Weaviate with TS (or JS)",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/intro_weaviate_typescript",
+    buttonURL: "/developers/academy/500_intro_weaviate_typescript",
     badgeType: "practical",
     learningGoals: [
       "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."

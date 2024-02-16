@@ -4,7 +4,7 @@ export const courseData = {
     courseId: "PY_100",
     body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/text_data_with_weaviate",
+    buttonURL: "/developers/academy/100_text_data_with_weaviate",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -48,7 +48,7 @@ export const courseData = {
     courseId: "TS_100",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/intro_weaviate_typescript",
+    buttonURL: "/developers/academy/500_intro_weaviate_typescript",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -142,7 +142,7 @@ export const courseData = {
     courseId: "P3_100",
     body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp",
+    buttonURL: "/developers/academy/950_zero_to_mvp",
     badgeType: "course",
     isCourse: true,
     units: [

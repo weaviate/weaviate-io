@@ -1,6 +1,5 @@
 ---
 title: P3_1. Zero to MVP - The Basics
-sidebar_position: 950
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';

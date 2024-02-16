@@ -1,6 +1,5 @@
 ---
 title: PY_1. Text data with Weaviate
-sidebar_position: 101
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';

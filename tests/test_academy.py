@@ -6,11 +6,11 @@ import utils
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./developers/academy/zero_to_mvp/_snippets/setup.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/05_create_instance.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/20_schema.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/30_import.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/40_import_example_1.py",
+        "./developers/academy/950_zero_to_mvp/_snippets/setup.py",
+        "./developers/academy/950_zero_to_mvp/103_schema_and_imports/_snippets/05_create_instance.py",
+        "./developers/academy/950_zero_to_mvp/103_schema_and_imports/_snippets/20_schema.py",
+        "./developers/academy/950_zero_to_mvp/103_schema_and_imports/_snippets/30_import.py",
+        "./developers/academy/950_zero_to_mvp/103_schema_and_imports/_snippets/40_import_example_1.py",
     ],
 )
 def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
@@ -22,10 +22,10 @@ def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
 @pytest.mark.parametrize(
     "script_loc",
     [
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/10_bm25.py",
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/20_hybrid.py",
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/30_generative.py",
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/40_qna.py",
+        "./developers/academy/950_zero_to_mvp/104_queries_2/_snippets/10_bm25.py",
+        "./developers/academy/950_zero_to_mvp/104_queries_2/_snippets/20_hybrid.py",
+        "./developers/academy/950_zero_to_mvp/104_queries_2/_snippets/30_generative.py",
+        "./developers/academy/950_zero_to_mvp/104_queries_2/_snippets/40_qna.py",
     ],
 )
 def test_against_edu_demo_pyv3(empty_weaviates, script_loc):
