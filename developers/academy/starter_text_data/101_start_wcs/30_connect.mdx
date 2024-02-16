@@ -37,10 +37,24 @@ You can retrieve meta information about the Weaviate instance using the `meta` f
 
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# PollLiveness"
-  endMarker="# END PollLiveness"
+  startMarker="# GetMeta"
+  endMarker="# END GetMeta"
   language="py"
 />
+
+This will print the server meta information to the console. The output will look similar to the following:
+
+<details>
+  <summary>Example <code>get_meta</code> output</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# OutputGetMeta"
+  endMarker="# END OutputGetMeta"
+  language="py"
+/>
+</details>
+
 
 ### <i class="fa-solid fa-code"></i> Close the connection
 
@@ -66,3 +80,7 @@ We suggest using a `try`-`finally` block with `client.close()` or a context mana
     />
   </TabItem>
 </Tabs>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
