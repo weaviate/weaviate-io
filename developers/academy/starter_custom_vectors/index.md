@@ -1,5 +1,6 @@
 ---
-title: PY_1. Text data with Weaviate
+title: "PY_1v. Work with: Your own vectors"
+sidebar_position: 101
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';
@@ -16,8 +17,8 @@ You'll also learn about different types of searches, and retrieval augmented gen
 
 ## <i class="fa-solid fa-chalkboard-user"></i>&nbsp;&nbsp;Learning objectives
 
-<LearningGoals courseName="starter_project"/>
+<LearningGoals courseName="starter_custom_vectors"/>
 
 ## <i class="fa-solid fa-book-open-reader"></i>&nbsp;&nbsp;Units
 
-<CourseUnits courseData={courseData} courseName="starter_project" />
+<CourseUnits courseData={courseData} courseName="starter_custom_vectors" />

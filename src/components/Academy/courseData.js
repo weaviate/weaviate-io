@@ -1,14 +1,14 @@
 export const courseData = {
   "starter_text_data": {
     title: "Text data with Weaviate",
-    courseId: "PY_100",
+    courseId: "PY_1v",
     body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/starter_text_data",
     badgeType: "course",
     isCourse: true,
     units: [
-      "wcs_basics", "movies_collections", "movies_searches", "movies_rag"
+      "start_wcs", "text_collections", "text_searches", "text_rag"
     ],
     learningGoals: [
       "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
@@ -23,22 +23,44 @@ export const courseData = {
   },
   "starter_custom_vectors": {
     title: "Your own vectors with Weaviate",
-    courseId: "PY_101",
-    body: "Project-based learning where you'll learn how to build with Weaviate and any text data. This version is for those who prefer to use your own vectors built outside of Weaviate.",
+    courseId: "PY_1v",
+    body: "Project-based learning where you'll learn how to build with Weaviate and your own data and vectors. This version is for those who prefer to use your own vectors built outside of Weaviate.",
     buttonType: "TBD",
     buttonURL: "/developers/academy/starter_custom_vectors",
     badgeType: "course",
     isCourse: true,
     units: [
-      "wcs_basics", "movie_collections_byov", "movie_searches_byov", "movie_rag_byov"
+      "start_wcs", "byov_collections", "byov_searches", "byov_rag"
     ],
     learningGoals: [
       "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
     ],
     learningOutcomes: [
       "Use Weaviate Cloud Services to create a cloud instance of Weaviate",
-      "Produce, store and index semantic (vector) data from source text",
-      "Perform semantic, keyword and hybrid searches",
+      "Produce, store and index data with your own vectors",
+      "Perform vector, keyword and hybrid searches",
+      "Use AI (large language models) to augment and transform retrieved data",
+    ],
+    note: "Python client (v4); project-based"
+  },
+  "starter_multimodal": {
+    title: "Multimodal data with Weaviate",
+    courseId: "PY_1m",
+    body: "Project-based learning where you'll learn how to build with Weaviate and multi-modal data. Weaviate generates the vectors for you.",
+    buttonType: "TBD",
+    buttonURL: "/developers/academy/starter_custom_vectors",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "docker_mm_basics", "mm_collections", "mm_searches", "mm_rag"
+    ],
+    learningGoals: [
+      "How to create a local Weaviate instance, add data to it to enable multi-modal searching, and use AI through retrieval augmented generation."
+    ],
+    learningOutcomes: [
+      "Create a local instance of Weaviate with a multimodal vectorizer module",
+      "Produce, store and index multimodal data",
+      "Perform multimodal searches",
       "Use AI (large language models) to augment and transform retrieved data",
     ],
     note: "Python client (v4); project-based"

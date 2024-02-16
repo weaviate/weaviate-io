@@ -1,6 +1,6 @@
 ---
-title: "PY_1t. Work with: Text data"
-sidebar_position: 100
+title: "PY_1m. Work with: Multimodal data"
+sidebar_position: 102
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';
@@ -17,8 +17,8 @@ You'll also learn about different types of searches, and retrieval augmented gen
 
 ## <i class="fa-solid fa-chalkboard-user"></i>&nbsp;&nbsp;Learning objectives
 
-<LearningGoals courseName="starter_text_data"/>
+<LearningGoals courseName="starter_multimodal"/>
 
 ## <i class="fa-solid fa-book-open-reader"></i>&nbsp;&nbsp;Units
 
-<CourseUnits courseData={courseData} courseName="starter_text_data" />
+<CourseUnits courseData={courseData} courseName="starter_multimodal" />

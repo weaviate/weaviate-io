@@ -1,9 +1,9 @@
 export const unitData = {
-  "wcs_basics": {
+  "start_wcs": {
     title: "Get started with WCS",
     body: "Create a cloud Weaviate instance through Weaviate Cloud Services (WCS).",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/starter_text_data/start_wcs",
     badgeType: "practical",
     learningGoals: [
       "Set up a cloud Weaviate instance and connect to it with the Python client."
@@ -14,11 +14,11 @@ export const unitData = {
       "Connect to the Weaviate instance using the Python client."
     ]
   },
-  "movies_collections": {
+  "text_collections": {
     title: "Populate the database",
     body: "Create a collection and import data, and have Weaviate create vectors for you.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/starter_text_data/text_collections",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import text data using batch imports."
@@ -29,11 +29,11 @@ export const unitData = {
       "Import data using batch imports."
     ]
   },
-  "movies_searches": {
+  "text_searches": {
     title: "Perform searches",
     body: "Learn how to use search functions in Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/starter_text_data/text_searches",
     badgeType: "practical",
     learningGoals: [
       "Perform semantic, keyword and hybrid searches."
@@ -45,11 +45,11 @@ export const unitData = {
       "Perform a hybrid search.",
     ]
   },
-  "movies_rag": {
+  "text_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/starter_text_data/text_rag",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."
@@ -60,11 +60,10 @@ export const unitData = {
       "Perform RAG on the entire set of returned objects.",
     ]
   },
-  "movies_collections_byov": {
+  "byov_collections": {
     title: "Populate the database",
     body: "Create a collection and import data with your own vectors.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonType: "TBD",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import text data with your own vectors using batch imports."
@@ -75,11 +74,10 @@ export const unitData = {
       "Import data using batch imports."
     ]
   },
-  "movies_searches_byov": {
+  "byov_searches": {
     title: "Perform searches",
     body: "Learn how to use search functions in Weaviate.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonType: "TBD",
     badgeType: "practical",
     learningGoals: [
       "Perform semantic, keyword and hybrid searches."
@@ -91,11 +89,10 @@ export const unitData = {
       "Perform a hybrid search.",
     ]
   },
-  "movies_rag_byov": {
+  "byov_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
-    buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonType: "TBD",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."
@@ -106,6 +103,62 @@ export const unitData = {
       "Perform RAG on the entire set of returned objects.",
     ]
   },
+  "docker_mm_basics": {
+    title: "Weaviate for multimodal data",
+    body: "Create a local Weaviate instance for multimodal data.",
+    buttonType: "TBD",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a local Weaviate instance with a multimodal module."
+    ],
+    learningOutcomes: [
+      "Create a local Weaviate instance with a multimodal module using Docker.",
+      "Install the latest Weaviate Python client.",
+      "Connect to the Weaviate instance using the Python client."
+    ]
+  },
+  "mm_collections": {
+    title: "Populate the database",
+    body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
+    buttonType: "TBD",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import multimodal data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "mm_searches": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "TBD",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform multimodal searches."
+    ],
+    learningOutcomes: [
+      "Describe how multimodal search works at a high level.",
+      "Perform searches through multimodal data in different ways.",
+    ]
+  },
+  "mm_rag": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "TBD",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
