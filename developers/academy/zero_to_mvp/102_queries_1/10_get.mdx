@@ -25,14 +25,14 @@ Below, you will see code snippets that do not include client instantiation detai
 </Tabs>
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 import ReactPlayer from 'react-player/lazy'
 
 <ReactPlayer className="react-player" url='https://youtu.be/q2UuBIJVLEM' controls='true'/>
 <br/>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `Get` queries
+## <i class="fa-solid fa-square-chevron-right"></i> About `Get` queries
 
 In many use cases, retrieving objects from a Weaviate instance may be the most common operation.
 
@@ -40,7 +40,7 @@ For example, a user may want to retrieve a list of passages most closely related
 
 In Weaviate, such operations to retrieve objects are performed using the `Get` function.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Get` function syntax
+### <i class="fa-solid fa-chalkboard"></i> `Get` function syntax
 
 A basic `Get` function looks as follows:
 
@@ -54,11 +54,11 @@ import GetSyntax from './_snippets/academy.queries.get.syntax.mdx';
 
 Now let's try out some concrete `Get` queries.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Get` queries
+## <i class="fa-solid fa-square-chevron-right"></i> Standalone `Get` queries
 
 A basic, standalone, `Get` query might look as follows:
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+### <i class="fa-solid fa-code"></i> Example
 
 import GetStandalone from './_snippets/academy.queries.get.standalone.mdx';
 
@@ -111,7 +111,7 @@ Now, try it out yourself. The query should return something like this:
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Response object from Weaviate
+### <i class="fa-solid fa-chalkboard"></i> Response object from Weaviate
 
 As you see above, the response object from Weaviate is in JSON format, where the results are obtained via the `data` field. It is then arranged in a corresponding manner to reflect the query as well as the queried object.
 
@@ -130,7 +130,7 @@ However, this may be a viable method for "sanity" checks, such as checking that 
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Class` and `properties`
+### <i class="fa-solid fa-chalkboard"></i> `Class` and `properties`
 
 In the above example, we specify a `Class` of `JeopardyQuestion` and `properties` of `questions` and `answer`.
 
@@ -175,11 +175,11 @@ This is because each class constitutes a single `vector space`. If you want to s
 We will consider this topic in more detail in a later unit, including what it means for each class to constitute a distinct `vector space`, and how to think about building a schema in Weaviate.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Get` with `additional` properties
+## <i class="fa-solid fa-square-chevron-right"></i> `Get` with `additional` properties
 
 You can retrieve additional properties that are not defined in the schema. These properties may be inherent to the object, or relate to the query performed.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+### <i class="fa-solid fa-code"></i> Example
 
 In this example, we've built on the previous example to add the `.with_additional` method.
 
@@ -223,7 +223,7 @@ Now, try it out yourself. The query should return something like this:
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Response object from Weaviate
+### <i class="fa-solid fa-chalkboard"></i> Response object from Weaviate
 
 In this response, you see that the `_additional` field has been added to the response object, with `distance` and `id` nested under it.
 
@@ -234,7 +234,7 @@ Here, the `distance` and `id` properties contain the object's distance to the qu
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`_additonal` properties
+### <i class="fa-solid fa-chalkboard"></i> `_additonal` properties
 
 As the name suggests, `_additional` properties are separate to those explicitly created as class properties.
 
@@ -254,13 +254,13 @@ Try out the above query again, with these changes.
 - Earlier, providing an empty list as the main properties under the `.get()` method will have caused an error. What happens if you try it again, now that you are requesting additional properties?
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 See in-line exercises.
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - The 'Get' function can be used to retrieve objects in Weaviate.
 - The 'Get' function syntax requires specifying the class, properties, and any additional arguments related to the search criteria.

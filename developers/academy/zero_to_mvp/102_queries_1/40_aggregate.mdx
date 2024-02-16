@@ -2,7 +2,7 @@
 title: Aggregate{} the result set
 ---
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -13,9 +13,9 @@ Now that you have seen how to retrieve individual objects with `Get`, let's take
 
 `Aggregate` is a powerful function that allows you to combine information from multiple objects into a single result to get a quick overview of the results.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `Aggregate` queries
+## <i class="fa-solid fa-square-chevron-right"></i> About `Aggregate` queries
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Aggregate` function syntax
+### <i class="fa-solid fa-chalkboard"></i> `Aggregate` function syntax
 
 While the overall structure of `Aggregate` queries is similar to `Get` queries, there are some important differences as the queries relate to sets of results.
 
@@ -42,9 +42,9 @@ import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
 
 </details>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Standalone `Aggregate` queries
+## <i class="fa-solid fa-square-chevron-right"></i> Standalone `Aggregate` queries
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example 1
+### <i class="fa-solid fa-code"></i> Example 1
 
 Take a look at this query:
 
@@ -79,7 +79,7 @@ Your query should return something like this:
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Response object from Weaviate
+### <i class="fa-solid fa-chalkboard"></i> Response object from Weaviate
 
 This response includes an object to represent the `meta` information requested from `JeopardyQuestion` class. The `meta` object contains a `count` property, which is the total number of objects in the class.
 
@@ -90,7 +90,7 @@ This query aggregates the objects in the `JeopardyQuestion` class to obtain the 
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`meta` property
+### <i class="fa-solid fa-chalkboard"></i> `meta` property
 
 In the above `Aggregate` query we requested a `meta` property, for the count of the objects. Note that this is not an available property of the object class itself. This is a key difference between `Aggregate` and `Get` queries.
 
@@ -101,7 +101,7 @@ An `Aggregate` query, on the other hand, returns an aggregation of the results. 
 The `meta` property is one such property. It is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
 
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example 2
+### <i class="fa-solid fa-code"></i> Example 2
 
 Take a look at this query:
 
@@ -168,11 +168,11 @@ This response includes an object to represent aggregations from the `answer` pro
 The list of available properties can be found on [this page](/developers/weaviate/api/graphql/aggregate.md#aggregate-syntax-and-query-structure) in our documentation.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with a search operator
+## <i class="fa-solid fa-square-chevron-right"></i> `Aggregate` with a search operator
 
 As we did with `Get` queries, we can also use search operators such as `nearText` in an `Aggregate` query. Take a look:
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example (with `nearText`)
+### <i class="fa-solid fa-code"></i> Example (with `nearText`)
 
 For example, let's say that now instead of individual questions, we would like to know something more holistic about the answers. Like how many questions might be related to this query:
 
@@ -216,7 +216,7 @@ This is called "limiting the search space".
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Limit search space
+### <i class="fa-solid fa-chalkboard"></i> Limit search space
 
 In order to produce meaningful aggregations with a vector search, you must limit the search space.
 
@@ -226,11 +226,11 @@ However, a vector search does not inherently exclude any results. This is becaus
 
 **Accordingly, the search space must be limited** so that only relevant results are included in the aggregation. This can be done by setting an explicit `limit` or a threshold (`distance` or `certainty`) in the query.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`Aggregate` with `groupBy`
+## <i class="fa-solid fa-square-chevron-right"></i> `Aggregate` with `groupBy`
 
 So far, we have seen how to use `Aggregate` queries to compile information relating one set of results. This can be extended with the `groupBy` argument to compile information from multiple, subsets of results.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+### <i class="fa-solid fa-code"></i> Example
 
 For example, let's say we want to know how many questions there are for each available `value` property. We can do this by adding the `groupBy` argument to the query:
 
@@ -298,7 +298,7 @@ This query supplies an additional `groupedBy` argument, as a result of which the
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`groupBy` + `groupedBy`
+### <i class="fa-solid fa-chalkboard"></i> `groupBy` + `groupedBy`
 
 Results identified by an `Aggregate` query can be further grouped by using a `groupBy` argument. This argument takes a list of properties as an argument, and will group the results by the values of those properties.
 
@@ -312,14 +312,14 @@ Try out the above query again, with these changes.
 - Instead of `distance`, try adding an `.with_object_limit(9)` in the method chain. Are the results the same?
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 Try out the above `nearText` query again, with these changes.
 - Change the distance to another value - say, to 0.1, 0.19, 0.21 or 0.25 - how do the results change? Are they in line with your expectations?
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - The `Aggregate` function is used to compile information from multiple objects, providing an overview.
 - Search operators, like `nearText`, can be used in `Aggregate` queries.

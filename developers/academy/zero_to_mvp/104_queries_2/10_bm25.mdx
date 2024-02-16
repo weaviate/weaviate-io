@@ -11,19 +11,19 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 [//]: # (<img src={imageUrl} alt="Image alt" width="75%"/>)
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 A BM25 search is one implementation of what is commonly called a 'keyword' search. Broadly speaking, it works by matching the search terms between the query and the data objects in the index.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `bm25` queries
+## <i class="fa-solid fa-square-chevron-right"></i> About `bm25` queries
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How it works
+### <i class="fa-solid fa-chalkboard"></i> How it works
 
 When a user submits a BM25 query, Weaviate will look for objects that contain the search terms in the text properties of the objects. Then, it will rank the results based on how many times the search terms appear in the text properties of the objects.
 
 In this way, a BM25 query is different to keyword-based filtering, which simply includes or excludes objects based on the provided set of conditions.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`bm25` query syntax
+### <i class="fa-solid fa-code"></i> `bm25` query syntax
 
 A BM25 query is shown below. Each BM25 query:
 
@@ -61,9 +61,9 @@ The above query will return the top 3 objects based on its BM25F score, based on
 Try varying the boost factor, and the query string. What happens to the results?
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Tokenization and `bm25` searches
+## <i class="fa-solid fa-square-chevron-right"></i> Tokenization and `bm25` searches
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Why tokenization matters
+### <i class="fa-solid fa-chalkboard"></i> Why tokenization matters
 
 In an earlier unit, we briefly discussed [the inverted index](../103_schema_and_imports/10_data_structure.mdx#inverted-index), and that it stores a "tokenized" index of data.
 
@@ -75,7 +75,7 @@ This is different to any tokenization in the context of, for example, language m
 
 More concretely, let's take a look at some examples.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`word` tokenization
+### <i class="fa-solid fa-code"></i> `word` tokenization
 
 In this example, we search through the `question` property with the query string `Jeopardy`. The `question` property is tokenized with the `word` tokenization option.
 
@@ -106,7 +106,7 @@ The `word` tokenization keeps alpha-numeric characters in lowercase, and splits 
 
 Now, let's take a look at the same query, but with the `field` tokenization option.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`field` tokenization
+### <i class="fa-solid fa-code"></i> `field` tokenization
 
 In this example, the query string remains the same (`Jeopardy`), however we are now searching the `round` property, which is tokenized with the `field` tokenization option.
 
@@ -139,23 +139,23 @@ The `field` tokenization trims whitespace characters and then keeps the entire s
 Try changing the query to `Jeopardy!`. What happens to the results?
 :::
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Rules of thumb
+### <i class="fa-solid fa-chalkboard"></i> Rules of thumb
 
 The [full list of tokenization options](/developers/weaviate/config-refs/schema/index.md#property-tokenization) are `word`, `whitespace`, `lowercase` and `field`. A rule of thumb on when to use each option is to use `word` for long text where you want to retrieve partial matches, and `field` for short text where you only want to retrieve exact matches. The others are somewhere in between, and may be useful in specific situations, where for example you want case to matter (`whitespace`) or special characters to be respected (`lowercase`).
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;BM25F scoring
+## <i class="fa-solid fa-square-chevron-right"></i> BM25F scoring
 
 The exact algorithm used for scoring and ranking the results is called the BM25F algorithm. The details are beyond the scope of this course, but the gist is that the BM25F algorithm is a variant of the BM25 algorithm, where the `F` stands for "field". It is used to score and rank results based on the fields that are searched.
 
 If you would like to delve into the details of the exact algorithm, you can review [this Wikipedia page](https://en.wikipedia.org/wiki/Okapi_BM25#Modifications).
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 <Quiz questions={Bm25Question} />
 
 <Quiz questions={wordTokenizationQuestion} />
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - BM25 search matches search terms between the query and data objects in the index and ranks results based on the frequency of those terms.
 - A BM25 query must include a query string, and can optionally include a list of properties to search, weights for each searched property, and a request for a score for each result.

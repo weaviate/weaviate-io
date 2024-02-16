@@ -2,7 +2,7 @@
 title: A look inside queries
 ---
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -14,9 +14,9 @@ In this unit, we have looked at various ways to construct a vector search.
 We started by learning how to use `Get` and `Aggregate` vector search functions, adding search operators such as `nearVector`, `nearObject` and `nearText`, before wrapping up with various filters such as `where`, `limit` and `offset`.
 
 Now let's stop to take a look at how these searches are actually performed, starting with the vector search process.
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;The vector search process
+## <i class="fa-solid fa-square-chevron-right"></i> The vector search process
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector search, behind the scenes
+### <i class="fa-solid fa-chalkboard"></i> Vector search, behind the scenes
 
 As the name suggests, vector search relies on vectors to perform its operations. When you perform a vector search in Weaviate, regardless of whether `nearVector`, `nearObject` or `nearText` is used, the input is converted to a vector.
 
@@ -160,7 +160,7 @@ In this case, Weaviate vectorizes the input text using the `text2vec-openai` mod
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Filtering
+### <i class="fa-solid fa-chalkboard"></i> Filtering
 
 Filters can be applied during the vector search process to further refine the results.
 
@@ -168,7 +168,7 @@ Under the hood, Weaviate implements "pre-filtering". This means that Weaviate ap
 
 This, combined with efficient filtering methods, allows Weaviate to easily return the right number of results even under challenging conditions, such as when restrictive filters are applied to a large database.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Conceptual diagram (filtering + vector search)
+### <i class="fa-solid fa-chalkboard"></i> Conceptual diagram (filtering + vector search)
 
 The conceptual diagram below shows how the vector search process works. When an input is provided containing filters and search operators, Weaviate first performs a pre-filtering step to obtain an "allow list" of objects.
 
@@ -178,14 +178,14 @@ import SearchConceptualImg from './images/search-conceptual-dark.png';
 
 <img src={SearchConceptualImg} alt="Conceptual diagram of how search works" width="100%"/>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 - Replicate a `nearObject` query with a `nearVector` query.
 - Replicate a `nearText` query with a `nearVector` query.
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - nearObject operator retrieves the associated vector for an object, while nearText converts input text to a vector based on a specified vectorizer.
 - You have seen how to create equivalent `nearVector` queries to `nearObject` or `nearText` queries.

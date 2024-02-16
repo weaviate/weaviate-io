@@ -2,7 +2,7 @@
 title: Data structure in Weaviate
 ---
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -13,7 +13,7 @@ You've seen some of the powerful queries that Weaviate enables. But how does Wea
 
 In this section, we'll take a look at some of the key components that allow Weaviate to perform these queries at speed. In particular, we'll take a look at indexes, which are the backbone of Weaviate's data structure, and the schema, which acts as a blueprint for your data.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Indexes
+## <i class="fa-solid fa-square-chevron-right"></i> Indexes
 
 An index is a data structure that allows for efficient retrieval of data. In Weaviate, there are two main indexes: the inverted index and the vector index.
 
@@ -21,7 +21,7 @@ The **inverted index** is the kind of index that you may be familiar with. You c
 
 The **vector index** allows for efficient retrieval of vectors based on similarity. This is the index that allows Weaviate to perform vector searches fast. Let's dig in a little more.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Inverted index
+### <i class="fa-solid fa-chalkboard"></i> Inverted index
 
 An inverted index deconstructs text into a set of constituent terms and stores them in a data structure, such as a hash table. Take, for example, a data object containing the text "Conference (Chicago, IL)".
 
@@ -33,7 +33,7 @@ So an input text `Conference (Chicago, IL)` is indexed by three tokens: `confere
 
 We will cover more about different available tokenization methods later on.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Vector index
+### <i class="fa-solid fa-chalkboard"></i> Vector index
 
 Each object in Weaviate can be associated with a vector. These vectors are what enables similarity searches that you have seen before. As we mentioned, however, brute-force similarity searches are computationally expensive, as well as growing linearly with the size of the dataset.
 
@@ -45,9 +45,9 @@ import HNSWLayersImg from '/developers/weaviate/concepts/img/hnsw-layers.svg';
 
 Each set of vectors are said to reside in a "vector space", indicating that it is a multi-dimensional "space" in which vectors are placed.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Classes
+## <i class="fa-solid fa-square-chevron-right"></i> Classes
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;What is a `class`?
+### <i class="fa-solid fa-chalkboard"></i> What is a `class`?
 
 A class in Weaviate is a collection of objects of the same type. Each object in Weaviate must belong to a class, and one class only.
 
@@ -59,11 +59,11 @@ So, a good way to represent this data would be through a class called `JeopardyQ
 This is as they refer to individual objects, e.g. a `JeopardyQuestion` object.
 :::
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;What is in a class?
+### <i class="fa-solid fa-chalkboard"></i> What is in a class?
 
 As we mentioned, each Jeopardy! question would contain multiple related, but distinct, attributes such as the question, answer, round, points, and so on. These are reflected in each `class` object in Weaviate as a set of `properties`, such as a `question` property, an `answer` property, and so on.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How many vectors per object?
+### <i class="fa-solid fa-chalkboard"></i> How many vectors per object?
 
 Each object is represented by one vector, and each class has one vector index. This means that all objects in the class will be associated with the same vector index.
 
@@ -73,7 +73,7 @@ Going back to our [color analogy](../101_hello_weaviate/15_overview_vectors.mdx#
 
 So in Weaviate, a vector search can only search one class at a time. As a result, it is important to design your schema such that objects that you want to search together are in the same class.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Schema
+## <i class="fa-solid fa-square-chevron-right"></i> Schema
 
 A `schema` in Weaviate is the blueprint that defines its data structure. It does so for each `class` of objects, which are collections of objects of the same type.
 
@@ -196,9 +196,9 @@ The schema specifies for each class:
 Any missing information required for schema definition will be automatically inferred by Weaviate based on default values and the imported data.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 <Quiz questions={invertedIndex} />
 
@@ -208,7 +208,7 @@ Any missing information required for schema definition will be automatically inf
 
 <Quiz questions={schemaRole} />
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - Weaviate stores data using two main indexes: the inverted index and the vector index.
 - A class in Weaviate represents a collection of objects of the same type, and each object in Weaviate must belong to a single class.

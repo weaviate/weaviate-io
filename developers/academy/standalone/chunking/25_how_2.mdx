@@ -17,17 +17,17 @@ import PreviewUnit from '../../_snippets/preview.mdx'
 
 <PreviewUnit />
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 We continue our discussion of chunking techniques by taking you through **variable-size** chunking techniques, including some example implementations.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Variable-size chunking
+## <i class="fa-solid fa-square-chevron-right"></i> Variable-size chunking
 
 Now let's look at variable-size chunking. Unlike fixed-size chunking, the chunk size here is an *outcome*, rather than an *input parameter*.
 
 In variable-size chunking, some marker is used to split the text. The marker may be syntactic, such as a sentence or paragraph marker, or even structural such as a markdown header.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Implementations
+### <i class="fa-solid fa-chalkboard"></i> Implementations
 
 A pseudocode implementation of variable-size chunking could look like this:
 
@@ -67,7 +67,7 @@ Or, we could use special markers - such as Markdown headers - to split the text.
 
 Again, let's now apply these to concrete examples.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Examples
+### <i class="fa-solid fa-code"></i> Examples
 
 We can apply these splitters to the same text as before.
 
@@ -110,13 +110,13 @@ In reality, you may employ a mixed strategy where very short chunks like this ma
 Let's take a look at such a strategy.
 
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Mixed strategy
+## <i class="fa-solid fa-square-chevron-right"></i> Mixed strategy
 
 You could use a mix of fixed-size chunking and variable-size chunking to get the best of both worlds. For example, you could use a variable-size chunker to split the chunks at paragraph markers, but apply a fixed-size filter.
 
 More specifically, any chunks that are too small could be merged with the next chunk, and/or any chunks that are too large could be split at the middle, or at another marker within the chunk.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Examples
+### <i class="fa-solid fa-code"></i> Examples
 
 One implementation may look as follows:
 
@@ -154,19 +154,19 @@ This strategy will not produce chunks that are too small, while still basing the
 
 Since we've seen chunking strategies in action on a single text, let's now look at how they may work on a larger set of texts. We'll also take a look at what retrieval results may look like, using different chunking strategies.
 
-<!-- ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+<!-- ## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 <Quiz questions={varName} />
 
 Any quiz questions
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 :::note <i class="fa-solid fa-square-terminal"></i> Exercise
 Try out ...
 :::
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 :::info
 Add summary

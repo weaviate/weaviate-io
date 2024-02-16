@@ -2,13 +2,13 @@
 title: Getting hands-on
 ---
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp; Preparation
+### <i class="fa-solid fa-chalkboard"></i>  Preparation
 
 :::note Obtain a free trial OpenAI API key
 This section includes queries using the OpenAI inference endpoint. If you don't already have an OpenAI account, we recommend creating one. At the time of writing, OpenAI provides trial credits which should be sufficient for these exercises.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp; Overview
+## <i class="fa-solid fa-square-chevron-right"></i>  Overview
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -17,7 +17,7 @@ import ReactPlayer from 'react-player/lazy'
 
 Now that you've set up your own Weaviate instance and installed a client, let's get hands-on with Weaviate.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Client instantiation
+### <i class="fa-solid fa-code"></i>  Client instantiation
 
 Create a `client` object for persistent access to your Weaviate instance. You can set the following parameters:
 
@@ -48,7 +48,7 @@ import ClientInstantiationCode from './_snippets/academy.hello.client.instantiat
 
 <ClientInstantiationCode/>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Try it out!
+### <i class="fa-solid fa-code"></i>  Try it out!
 
 Now, connect to your Weaviate instance.
 
@@ -71,9 +71,9 @@ Congratulations! You've made your first request to a Weaviate API! The `meta` RE
 
 The Weaviate API allows you to do quite a bit. We will try out some examples in the next sections. For more details, see the [API documentation](/developers/weaviate/api/index.md).
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp; Weaviate API and the client
+## <i class="fa-solid fa-square-chevron-right"></i>  Weaviate API and the client
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp; Available APIs
+### <i class="fa-solid fa-chalkboard"></i>  Available APIs
 
 Weaviate uses two API types - REST APIs and GraphQL APIs. They work together to provide a rich set of functionality.
 
@@ -113,7 +113,7 @@ GraphQL is a specification for a query language that can be used to request info
 
 </details>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Access the REST API
+### <i class="fa-solid fa-code"></i>  Access the REST API
 
 You can access the REST API and the GraphQL API with the Weaviate client libraries, or with other tools as long as the tool formats the request properly.
 
@@ -133,11 +133,11 @@ import ClientGraphqlGet from './_snippets/academy.clients.graphql.get.mdx';
 
 Now, let's try out more substantive queries.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp; Running queries
+## <i class="fa-solid fa-square-chevron-right"></i>  Running queries
 
 <!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Connect to our demo instance
+### <i class="fa-solid fa-code"></i>  Connect to our demo instance
 
 Now let's try to connect to a Weaviate demo instance and run some queries on the sample data. The instance has these details:
 
@@ -161,7 +161,7 @@ import ClientCheckConnectionEdudemo from './_snippets/academy.hello.check.connec
 
 </details>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Vector searches
+### <i class="fa-solid fa-code"></i>  Vector searches
 
 The next query searches the `WikiCity` objects for the cities that are closest to the specified text, which in this case is simply, "Major European city".
 
@@ -179,7 +179,7 @@ import QueryVectorSearch from './_snippets/academy.hello.query.vector.search.mdx
 Try varying the query concept from "Major European city" to another - what do you see? Is it in line with what you expected?
 :::
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Question answering
+### <i class="fa-solid fa-code"></i>  Question answering
 
 This example searches the `WikiCity` objects to answer the question, "When was the London Olympics?" Update your code from the last example, and try it out yourself.
 
@@ -193,7 +193,7 @@ Try varying the question from, "When was the London Olympics?" to another, city-
 Try to see what types of questions work better than others. Do you notice any patterns?
 :::
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp; Generative search
+### <i class="fa-solid fa-code"></i>  Generative search
 
 This example also searches the `WikiCity` objects, but this one uses the Weaviate `generative-openai` module to transform the results. In this case, the module produces tweets about cities in Southeast Asia.
 
@@ -213,15 +213,15 @@ Try varying the prompt from:
 What happens if you remove {wiki_summary}?
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp; Review
+## <i class="fa-solid fa-square-chevron-right"></i>  Review
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp; Review exercise
+### <i class="fa-solid fa-pen-to-square"></i>  Review exercise
 
 <Quiz questions={apiRecap} />
 
 <Quiz questions={clientLimits} />
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp; Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i>  Key takeaways
 
 - Weaviate uses two API types, REST and GraphQL. REST is used for CRUD operations and metadata, while GraphQL is used for data searches, retrieving data objects, and exploring vector spaces.
 - Client libraries are used to access both REST and GraphQL APIs, providing a convenient way to interact with Weaviate instances.

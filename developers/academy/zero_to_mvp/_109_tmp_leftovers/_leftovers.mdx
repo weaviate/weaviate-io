@@ -7,13 +7,13 @@ sidebar_position: 10
 
 import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Running Weaviate queries
+## <i class="fa-solid fa-square-chevron-right"></i> Running Weaviate queries
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
 In this unit, we will focus on various strategies to query Weaviate to retrieve information.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;With the Python client
+### <i class="fa-solid fa-code"></i> With the Python client
 
 Although Weaviate uses GraphQL under the hood for queries, you will not need to directly enter GraphQL in this unit. Instead, we will be using the Python client to perform and learn about queries.
 
@@ -73,7 +73,7 @@ This tab will show GraphQL code.
 </TabItem>
 </Tabs>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Raw GraphQL queries
+### <i class="fa-solid fa-code"></i> Raw GraphQL queries
 
 Note that you can run raw GraphQL queries directly with the Weaviate Python client, or with the [Weaviate Console](https://console.weaviate.io/).
 
@@ -104,7 +104,7 @@ Or, the Weaviate Console provides a graphical interface that you can connect to 
 
 <!-- TODO - show specific steps to do this when WCS launches -->
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;GraphQL syntax
+### <i class="fa-solid fa-chalkboard"></i> GraphQL syntax
 
 You will see terms such as `Function`, `Class`, `properties` and `Argument` in this units. They come from Weaviate's GraphQL syntax, which takes this form:
 
@@ -128,7 +128,7 @@ So keep these terms in mind.
 
 <Quiz questions={queryMethods} />
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Query functions
+## <i class="fa-solid fa-square-chevron-right"></i> Query functions
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
@@ -138,7 +138,7 @@ These three functions are used to `Get` objects, `Aggregate` information and `Ex
 
 Let's review each one briefly, before we learn about them in detail in the following sections.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Get` objects
+### <i class="fa-solid fa-chalkboard"></i> `Get` objects
 
 The `Get` function is used in Weaviate to retrieve data objects. For many use cases, `Get` will be the most common type of query function used in Weaviate.
 
@@ -243,7 +243,7 @@ response = client.query.aggregate(
 </TabItem>
 </Tabs>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Aggregate` information
+### <i class="fa-solid fa-chalkboard"></i> `Aggregate` information
 
 Whereas `Get` returns objects, `Aggregate` returns summary statistics or aggregates from the result set.
 
@@ -319,7 +319,7 @@ It should produce a response like the following:
 
 Notice that even though the query related to a maximum of 10 objects, the result was *one* set of aggregated values.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;`Explore` vector spaces
+### <i class="fa-solid fa-chalkboard"></i> `Explore` vector spaces
 
 `Explore` allows you to navigate the entire vector space of objects stored in Weaviate.
 
@@ -331,11 +331,11 @@ We will explore the `Explore` function in more detail in a separate, following u
 
 <Quiz questions={functionExplanations} />
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 <img src={imageUrl} alt="Image alt" width="75%"/>
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 Can you describe, in your own sentence, XXX?
 
@@ -346,7 +346,7 @@ Input box for user to put answer in and get back a similarity score & our defini
 
 
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Sub-properties for `Aggregate`
+## <i class="fa-solid fa-square-chevron-right"></i> Sub-properties for `Aggregate`
 
 As we have seen, the `meta` property is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
 
@@ -354,7 +354,7 @@ In addition to this, there are a number of other sub-properties that can be used
 
 Let's take a look at some of these sub-properties, based on the `Question` class.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Example
+### <i class="fa-solid fa-code"></i> Example
 
 Try the following query:
 
@@ -452,7 +452,7 @@ The sub-properties under `round` in the query requests additional aggregations h
 
 </details>
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Available sub-properties
+### <i class="fa-solid fa-chalkboard"></i> Available sub-properties
 
 Sub-properties allow further granular aggregations of data from Weaviate. These properties that can be queried will vary according to the data type that is being aggregated.
 

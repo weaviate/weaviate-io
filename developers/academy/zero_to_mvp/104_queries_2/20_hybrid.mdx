@@ -14,15 +14,15 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 [//]: # (<img src={imageUrl} alt="Image alt" width="75%"/>)
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 A hybrid search combines `bm25` searches that you just learned about with a vector search, producing rankings from a combination of the two results.
 
 This can produce helpful results when a vector search or a keyword search alone is not producing desired results. For example, it may be useful when a vector search alone is producing too many irrelevant results, and you want particular keywords to weight the results a certain way.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About `hybrid` queries
+## <i class="fa-solid fa-square-chevron-right"></i> About `hybrid` queries
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How it works
+### <i class="fa-solid fa-chalkboard"></i> How it works
 
 A hybrid search works by combining the results of a `bm25` search with the results of a vector search. More specifically, it uses a combination of each result's BM25F search ranking and its vector search ranking among the set of results.
 
@@ -40,7 +40,7 @@ In this example, results 1 and 5 end up being the top results, because they scor
 
 So, hybrid search will bring to the top results that score high in at least one of the searches, while middling results will end up in the lower end of the re-ranking.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`hybrid` query syntax
+### <i class="fa-solid fa-code"></i> `hybrid` query syntax
 
 A hybrid query is shown below. Each hybrid query:
 
@@ -75,13 +75,13 @@ The above query will return the top 3 objects based on its BM25F score and `near
 
 </details>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;`hybrid` search parameters
+## <i class="fa-solid fa-square-chevron-right"></i> `hybrid` search parameters
 
 A `hybrid` search includes multiple parameters, some of which you may be familiar with from the earlier `bm25` search discussions.
 
 The `query` parameter and `properties` parameter are the same as in a `bm25` search, with the exception that currently, the boost parameter is not supported in a `hybrid` search. Some of the parameters, however, are unique to a `hybrid` search.
 
-[//]: # (### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`vector`)
+[//]: # (### <i class="fa-solid fa-code"></i> `vector`)
 
 [//]: # ()
 [//]: # (The `vector` parameter is optional. If you do not include a `vector` parameter, the `hybrid` search will generate a vector from the query string. If you do include a `vector` parameter, the `hybrid` search will use the vector you provide.)
@@ -96,7 +96,7 @@ The `query` parameter and `properties` parameter are the same as in a `bm25` sea
 
 [//]: # (:::)
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;`alpha`
+### <i class="fa-solid fa-code"></i> `alpha`
 
 The optional `alpha` parameter determines the weighting of the BM25 search ranking and the vector search ranking. If you do not include an `alpha` parameter, the `hybrid` search will use a default value of `0.5`, which weights each equally.
 
@@ -106,13 +106,13 @@ Otherwise, an `alpha` value of 1 is the same as a pure vector search, whereas an
 Try varying the `alpha` parameter above. What happens to the results?
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 <Quiz questions={hybridRankingQuestion} />
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - A hybrid search combines `bm25` search with vector search, producing rankings from a combination of the two results.
 - Hybrid search is helpful when a vector search or a keyword search alone is not producing desired results.

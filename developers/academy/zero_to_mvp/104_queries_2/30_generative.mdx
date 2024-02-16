@@ -11,15 +11,15 @@ import imageUrl from '../../tmp_images/academy_placeholder.jpg';
 
 [//]: # (<img src={imageUrl} alt="Image alt" width="75%"/>)
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 The core concept behind generative search is that instead of just simply fetching data from the database, Weaviate can transform the data before delivering it to you.
 
 This ability to transform data makes generative search a powerful tool that can transform your relationship with data. Instead of a database simply being a store of information, it can work with your data to deliver outputs based on the data and a set of instructions.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Configuration
+## <i class="fa-solid fa-square-chevron-right"></i> Configuration
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Enable modules
+### <i class="fa-solid fa-code"></i> Enable modules
 
 To use generative search, a `generative-xxx` module must be enabled in the Weaviate instance.
 
@@ -27,7 +27,7 @@ If you are using WCS, generative modules are enabled by default ([see docs](/dev
 
 This is outside the scope of this unit, but you can refer to the [module configuration](/developers/weaviate/modules/reader-generator-modules/index.md) for information on how to configure each module.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Configure classes
+### <i class="fa-solid fa-code"></i> Configure classes
 
 If only one generative module is enabled for the Weaviate instance, Weaviate will automatically use that module for all generative tasks.
 
@@ -48,9 +48,9 @@ On the other hand, if multiple generative modules are configured, you must defin
 }
 ```
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;About generative searches
+## <i class="fa-solid fa-square-chevron-right"></i> About generative searches
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How it works
+### <i class="fa-solid fa-chalkboard"></i> How it works
 
 A generative search can be best thought of as two steps that are conveniently combined to one process. The two steps are to:
 1. Perform a search; and then
@@ -63,7 +63,7 @@ There are two different types of generative searches available, which are `singl
 - A `single prompt` search generates **a response for each result** in the results set, using each corresponding result with the user-provided prompt.
 - A `grouped task` search generates **one response for the whole result set**, by using the entire results set with the user-provided prompt.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Generative search syntax
+### <i class="fa-solid fa-code"></i> Generative search syntax
 
 A generative search adds a step to the search process. Accordingly, the syntax for a generative search requires specifying the prompt type (`single prompt` or `grouped task`) as well as a search query.
 
@@ -133,11 +133,11 @@ Thus, a `grouped task` search will generate only one output for the entire task.
 
 </details>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Object properties
+## <i class="fa-solid fa-square-chevron-right"></i> Object properties
 
 You already saw that `single prompt` generative searches require properties to be specified. You can also specify specific properties to be used with `grouped task` searches.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Why specify properties?
+### <i class="fa-solid fa-chalkboard"></i> Why specify properties?
 
 In `single prompt` examples, each property serves to form the model prompt, replacing placeholder text like (`{summary}`) with the retrieve summary text.
 
@@ -149,7 +149,7 @@ Another reason for specifying the properties is to reduce the chance of exceedin
 
 As a result, only passing the required properties to the generative module may allow you to include results from more objects without exceeding the context window limit.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;How to specify properties
+### <i class="fa-solid fa-code"></i> How to specify properties
 
 :::tip Generative search properties unrelated to returned properties
 In both `single prompt` and `grouped task` searches, the properties to be used in the generative search do not need to be specified in the properties to be returned.
@@ -183,9 +183,9 @@ For `grouped task` searches, the properties to be used must be passed as an addi
 
 </details>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Generative search parameters
+## <i class="fa-solid fa-square-chevron-right"></i> Generative search parameters
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Optional model parameters
+### <i class="fa-solid fa-code"></i> Optional model parameters
 
 Generative modules use what are called "large language models", or LLMs, to produce these outputs from search results and prompts.
 
@@ -225,9 +225,9 @@ This example specifies various parameters for the `generative-openai` module:
 
 As a starting point, we recommend that you try using the default options, including the model, if possible. Then if something is not working to your satisfaction, you could try a different model parameter or approach.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - Generative search transforms data before delivery, turning a database into a more active participant in data processing.
 - To use generative search, a generative module must be enabled in the Weaviate instance; generative modules are enabled by default in WCS.

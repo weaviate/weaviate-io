@@ -15,17 +15,17 @@ import PreviewUnit from '../../_snippets/preview.mdx'
 
 <PreviewUnit />
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 In the preceding sections, you've learned [about chunking](./10_introduction.mdx), and how to do it, using [fixed size chunks](./20_how_1.mdx) or [variable size chunks](./25_how_2.mdx).
 
 In this section and next, we'll show you holistic examples of chunking in action. We'll ingest multiple sections of a book using different chunking methods before comparing how search performs.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Chunking real data
+## <i class="fa-solid fa-square-chevron-right"></i> Chunking real data
 
 You've already seen examples of chunking with a section of the [Pro Git book](https://git-scm.com/book/en/v2)*. In this section, we'll use multiple entire chapters of the book, in total containing 14 sections.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Source data
+### <i class="fa-solid fa-chalkboard"></i> Source data
 
 Here, we retrieve the source data from the Pro Git book, using the `requests` library. We will save each section as a separate object, containing some metadata (chapter title and filename) as well as the text.
 
@@ -59,7 +59,7 @@ This process yields 14 text objects - one for each section. Each one contains a 
 
 </details>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Chunking
+### <i class="fa-solid fa-code"></i> Chunking
 
 Now, let's apply the following chunking methods on each section:
 
@@ -137,7 +137,7 @@ We now have four sets of chunks, according to the four chunking methods we used.
 </TabItem>
 </Tabs>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Import
+### <i class="fa-solid fa-code"></i> Import
 
 We can now import the chunks into Weaviate. To allow for easy comparisons, we'll import each set of chunks into the same collection, while adding a `chunking_method` property to each chunk for easy filtering.
 
@@ -152,7 +152,7 @@ We can now import the chunks into Weaviate. To allow for easy comparisons, we'll
 </TabItem>
 </Tabs>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Inspection
+### <i class="fa-solid fa-code"></i> Inspection
 
 Before we move on, let's check that the chunks were imported correctly. We'll retrieve the total count of objects, as well as object counts according to each chunking strategy.
 
@@ -180,7 +180,7 @@ These counts match the number of chunks we created, so we can be confident that 
 
 In the next section, we'll try out some searches on these chunks.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Notes
+## <i class="fa-solid fa-square-chevron-right"></i> Notes
 
 :::info Pro Git by Scott Chacon and Ben Straub - Book License
 
@@ -188,19 +188,19 @@ In the next section, we'll try out some searches on these chunks.
 
 :::
 
-<!-- ## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+<!-- ## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 <Quiz questions={varName} />
 
 Any quiz questions
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 :::note <i class="fa-solid fa-square-terminal"></i> Exercise
 Try out ...
 :::
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 :::info
 Add summary

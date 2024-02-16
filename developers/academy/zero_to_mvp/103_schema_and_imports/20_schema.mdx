@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCodeExample from '!!raw-loader!./_snippets/20_schema.py';
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -18,7 +18,7 @@ A `schema` in Weaviate is the blueprint that defines its data structure for each
 
 In this section, you will learn how to define a schema and gain insight into some key considerations while doing so.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;How to define a schema
+## <i class="fa-solid fa-square-chevron-right"></i> How to define a schema
 
 As you learned earlier, a schema definition includes a great deal of information. Let's cover a few of those properties in this section, starting with:
 - The metadata such as its name (`class`),
@@ -26,7 +26,7 @@ As you learned earlier, a schema definition includes a great deal of information
 - The `vectorizer`, and
 - Module configurations (`moduleConfig`).
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Metadata definition
+### <i class="fa-solid fa-code"></i> Metadata definition
 
 You can define for each class and property a name and description.
 
@@ -53,7 +53,7 @@ To define a class, you can use this syntax.
 </TabItem>
 </Tabs>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Properties with data types
+### <i class="fa-solid fa-code"></i> Properties with data types
 
 Each `class` definition will include one or more properties, which must have a data type. If you do not specify a data type, Weaviate will automatically assign one based on your data. But for more predictable results, we recommend that you manually specify them in the schema if possible.
 
@@ -97,7 +97,7 @@ If you ran the first class creation command shown, and this command, Weaviate wi
 
 :::
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Setting the vectorizer
+### <i class="fa-solid fa-code"></i> Setting the vectorizer
 
 The `vectorizer` parameter for the class specifies the Weaviate module that will be used to generate vector embeddings for the class.
 
@@ -176,7 +176,7 @@ Note that you can set the vectorizer to `None`, if you would prefer to only deal
 In some cases, you can use a vectorizer while uploading them at import time. In this case, you will need to ensure that the vectorizer (e.g. `text2vec-cohere`) is using the same model as the one you used to generate the vectors, so that the vectors are compatible.
 :::
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Class-level module configurations
+### <i class="fa-solid fa-code"></i> Class-level module configurations
 
 You can set the `moduleConfig` parameter at the class-level to set class-wide settings for module behavior. For example, the vectorizer could be configured to set the model used (`model`), or whether to vectorize the class name (`vectorizeClassName`).
 
@@ -193,7 +193,7 @@ You can set the `moduleConfig` parameter at the class-level to set class-wide se
 </TabItem>
 </Tabs>
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Property-level module configurations
+### <i class="fa-solid fa-code"></i> Property-level module configurations
 
 You can also set the `moduleConfig` parameter at the property level to set module behavior for each property. For example, you could set whether to vectorize the property name (`vectorizePropertyName`), or whether to skip the property from vectorization altogether (`skip`).
 
@@ -216,15 +216,15 @@ In the following example, the `skip` parameter is set to `True` for the `url` pr
 There are other settings that we haven't covered yet - such as the index settings, or cluster settings such as those relating to replication. We'll cover these in other units later on.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Why so many options?
+## <i class="fa-solid fa-square-chevron-right"></i> Why so many options?
 
 This might all seem very complex, especially if you are new to Weaviate or databases. But these options will directly impact how your data is stored and how it will react to various queries.
 
 We'll ingest some data in the next section, and then you'll see how these options impact the results of your queries.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 :::note <i class="fa-solid fa-square-terminal"></i> Exercise
 Do you have a dataset that you are interested in adding to Weaviate?
@@ -232,7 +232,7 @@ Do you have a dataset that you are interested in adding to Weaviate?
 Try to construct a schema for that dataset based on what you've learned here.
 :::
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - A schema in Weaviate serves as a blueprint defining the data structure for each class of objects.
 - A class represents a collection of objects of the same type.

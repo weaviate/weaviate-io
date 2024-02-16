@@ -2,14 +2,14 @@
 title: Filters
 ---
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 import ReactPlayer from 'react-player/lazy'
 
 <ReactPlayer className="react-player" url='https://youtu.be/2ouOpwdbMQg' controls='true'/>
 <br/>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Available operators
+## <i class="fa-solid fa-square-chevron-right"></i> Available operators
 
 So far, you've seen different query functions such as `Get`, and `Aggregate`, and search operators such as `nearVector`, `nearObject` and `nearText`.
 
@@ -17,7 +17,7 @@ Now, let's take a look at filters.
 
 A filter is a way to specify additional criteria to be applied to the results. There are a number of available filters in Weaviate.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Available filters
+### <i class="fa-solid fa-chalkboard"></i> Available filters
 
 There exist many available filters, but we do not need to cover them all at this moment. For now, let's explore a few of the most commonly used filters:
 
@@ -25,11 +25,11 @@ There exist many available filters, but we do not need to cover them all at this
 - `limit`: Restrict the maximum objects to be retrieved.
 - `offset`: For pagination of search results.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Filter data with `where`
+## <i class="fa-solid fa-square-chevron-right"></i> Filter data with `where`
 
 The `where` filter is analogous to the `WHERE` clause in a SQL query. As in the SQL clause, the `where` filter can be used to apply a boolean conditional to the data.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Single operand example
+### <i class="fa-solid fa-code"></i> Single operand example
 
 We ran an example query like this earlier:
 
@@ -176,7 +176,7 @@ Try filtering for `JeopardyQuestion` objects with:
 You can find the list of available operators on [this page](https://weaviate.io/developers/weaviate/api/graphql/filters#filter-structure).
 :::
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Multiple operands example
+### <i class="fa-solid fa-code"></i> Multiple operands example
 
 The query syntax can extend to beyond a single operand to take advantage of multiple conditions:
 
@@ -234,7 +234,7 @@ Try these:
 - adding a `where` filter to an `Aggregation` query, following the above pattern.
 :::
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Result pagination with `offset`
+## <i class="fa-solid fa-square-chevron-right"></i> Result pagination with `offset`
 
 When you query for data, you can use the `offset` operator to skip a number of results. This is useful for pagination, where you want to show a certain number of results per page.
 
@@ -302,13 +302,13 @@ So, the `n` th page would have `offset`: `n*m`, `limit`: `m`, where `m` is the n
 
 The `offset` operator is available with all vector search functions including `Get` and `Aggregate`.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 <Quiz questions={whereUsage} />
 
 <Quiz questions={offsetExample} />
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - Filters are used to apply additional criteria to the results. Some commonly used filters include `where`, `limit` and `offset`.
 - The `where` filter allows you to apply a boolean condition to the data being queried. It can be used with various operators like `Like`, `Greater`, `Equal`, etc.

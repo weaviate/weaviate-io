@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/05_review.py';
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Overview
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
 
 Weaviate offers three primary search types - namely **vector**, **keyword**, and **hybrid** searches. Let's briefly recap what they are, and how they work.
 
-### <i class="fa-solid fa-code"></i>&nbsp;&nbsp;Code examples
+### <i class="fa-solid fa-code"></i> Code examples
 
 These code examples are runnable, with the [`v4` Weaviate Python client](../../../weaviate/client-libraries/python/index.md). Connect to the pre-configured demo instance of Weaviate with the following code, and try the examples below.
 
@@ -28,7 +28,7 @@ These code examples are runnable, with the [`v4` Weaviate Python client](../../.
 
 </Tabs>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector search
+## <i class="fa-solid fa-square-chevron-right"></i> Vector search
 
 A vector search finds objects with the most similar vectors to the query vector.
 
@@ -81,7 +81,7 @@ With an existing Weaviate object:
 
 </Tabs>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Keyword search
+## <i class="fa-solid fa-square-chevron-right"></i> Keyword search
 
 A keyword search finds objects whose keywords (i.e. tokens) are the most relevant to the keywords (i.e. tokens) of the query. The relevance is determined by the [BM25F algorithm](https://en.wikipedia.org/wiki/Okapi_BM25).
 
@@ -100,7 +100,7 @@ Intuitively, the BM25F algorithm determines "relevance" by considering how often
 
 </Tabs>
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Hybrid search
+## <i class="fa-solid fa-square-chevron-right"></i> Hybrid search
 
 A hybrid search combines the results of a vector search and a keyword search. This is done by performing both searches, and them combining the two search results with a "fusion" algorithm.
 

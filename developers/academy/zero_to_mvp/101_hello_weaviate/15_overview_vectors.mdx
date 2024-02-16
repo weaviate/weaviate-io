@@ -2,7 +2,7 @@
 title: Vectors - An overview
 ---
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;What is a vector?
+## <i class="fa-solid fa-square-chevron-right"></i> What is a vector?
 
 import ReactPlayer from 'react-player/lazy'
 
@@ -15,7 +15,7 @@ A vector in this context is just a series of numbers like `[1, 0]` or `[0.513, 0
 
 This might seem like an odd concept. But in fact, you may have already used vectors to capture meaning without realizing it. If you have tried photo editing, or used MS Paint you might have encountered the RGB color system.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;How do numbers represent meaning?
+### <i class="fa-solid fa-chalkboard"></i> How do numbers represent meaning?
 
 The RGB system uses groups of three numbers to represent colors. For example:
 
@@ -26,7 +26,7 @@ In these examples, each number can be thought of as a dial for how red, green or
 
 Now, imagine having hundreds, or even thousands, of these dials. That’s how vectors are used to represent meaning. Modern machine learning models such as GPT-x, or those used with Weaviate, use vectors to represent some "essence", or "meaning" of objects. This can be done for any object type, such as text, code, images, videos and more.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Vector embeddings in Weaviate
+## <i class="fa-solid fa-square-chevron-right"></i> Vector embeddings in Weaviate
 
 <!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
 
@@ -41,7 +41,7 @@ In plain terms, Weaviate processes and organizes your data in such a way that ob
 
 These operations enable Weaviate to do what it does.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Quantifying similarity
+### <i class="fa-solid fa-chalkboard"></i> Quantifying similarity
 
 As we've mentioned, vector searches are similarity-based, but what does that actually mean? How do we determine that two pieces of data are "similar"? What does it mean for two pieces of text, two images, or two objects in general, to be similar?
 
@@ -49,7 +49,7 @@ This is a relatively simple idea that is actually incredibly interesting and int
 
 But for now, you should know that machine learning (ML) models are the key to this whole process. The ML models that power vector searches share similarities with those that generate text responses from prompts. Instead of generating new text, these (vectorizer) models capture the "meaning" of text or other media. We will cover this in more detail later on.
 
-### <i class="fa-solid fa-chalkboard"></i>&nbsp;&nbsp;Indexing (vector) data
+### <i class="fa-solid fa-chalkboard"></i> Indexing (vector) data
 
 Vector searches can be very intensive computationally.
 
@@ -57,11 +57,11 @@ To overcome this problem, Weaviate uses a combination of indexes including an ap
 
 We will get into this in more detail later - but for now, it's enough to know that Weaviate can perform fast vector searches as well as filtering.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Review
+## <i class="fa-solid fa-square-chevron-right"></i> Review
 
 In this section, you learned about what vectors are and how Weaviate utilizes them at a very high level. You have also been introduced to two of Weaviate's key capabilities that help it to enable vector search at speed.
 
-### <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Review exercise
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
 
 :::tip Self-reflection
 Can you describe, in your own words, what vectors are?
@@ -69,7 +69,7 @@ Can you describe, in your own words, what vectors are?
 
 <Quiz questions={howWeaviateWorks} />
 
-### <i class="fa-solid fa-lightbulb-on"></i>&nbsp;&nbsp;Key takeaways
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
 
 - A vector is a series of numbers that capture the meaning or essence of objects.
 - Machine learning models help quantify similarity between different objects, which is essential for vector searches.

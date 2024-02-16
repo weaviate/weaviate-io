@@ -6,11 +6,11 @@ export const unitData = {
     buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
     badgeType: "practical",
     learningGoals: [
-      "TBC"
+      "Set up a cloud Weaviate instance and connect to it with the Python client."
     ],
     learningOutcomes: [
-      "Install the latest Weaviate Python client.",
       "Create a Weaviate instance on WCS.",
+      "Install the latest Weaviate Python client.",
       "Connect to the Weaviate instance using the Python client."
     ]
   },
