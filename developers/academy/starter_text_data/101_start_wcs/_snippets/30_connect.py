@@ -1,7 +1,7 @@
 import os
 
 your_wcs_url = os.getenv("WCS_DEMO_URL")
-your_wcs_key = os.getenv("WCS_DEMO_RO_KEY")
+your_wcs_key = os.getenv("WCS_DEMO_ADMIN_KEY")
 
 # WCSInstantiation
 import weaviate

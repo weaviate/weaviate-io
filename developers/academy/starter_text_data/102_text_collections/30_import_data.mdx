@@ -2,13 +2,23 @@
 title: Import data
 ---
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/30_import_data.py';
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+## <i class="fa-solid fa-square-chevron-right"></i> Collection creation
 
-## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+### <i class="fa-solid fa-code"></i> Code
 
-Some text
+This example imports the movie data into our collection.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BatchImportData"
+  endMarker="# END BatchImportData"
+  language="py"
+/>
 
 ### <i class="fa-solid fa-chalkboard"></i> Theory subhead
 ### <i class="fa-solid fa-code"></i> Practical subhead
