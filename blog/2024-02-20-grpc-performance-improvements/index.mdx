@@ -16,11 +16,9 @@ Let’s face it - we’ve all been frustrated by slow services or apps. So we ap
 
 For most of you, the changes mean just one thing. The latest Weaviate solutions are simply much faster than our pre-gRPC solutions, which were using REST + GraphQL. Take a look at these results:
 
-:::warning TODO
-ADD UPDATED FIG
-:::
+![gRPC vs REST+GraphQL: DBPedia queries](./img/query-improvements-dbpedia.png)
 
-The chart really speaks for itself (although - we’ll expand on that below). And since these changes are under the hood, you won’t even really see which calls use gRPC, vs those that use REST or REST+GraphQL. It will simply be a function of using a client and server pair that relies on gRPC.
+The chart really speaks for itself (although - we’ll expand on that and more below). And since these changes are under the hood, you won’t even really see which calls use gRPC, vs those that use REST or REST+GraphQL. It will simply be a function of using a client and server pair that relies on gRPC.
 
 But many of you are probably curious to dig deeper. You’re probably looking to learn about how it all works, what you need to do to make sure to take advantage of it, and how much benefit you’ll gain from it all. If you are one of those people, read on, and let us tell you why we are so excited about these changes.
 
@@ -76,7 +74,7 @@ We’ve said that the gRPC solution improves speed. But how much faster is it, e
 <details>
   <summary>Test set-up</summary>
 
-The tests were carried out using two pre-vectorized (sift1m and DBPedia) datasets, with Weaviate version `1.23.9` and Weaviate Python Client version `4.4.4` on an M1 MacBook Pro. The `sift1m` dataset includes 128-dimensional vectors and the `DBPedia` dataset includes 1536-dimensional vectors.
+The tests were carried out using two pre-vectorized (sift1m and DBPedia) datasets, with Weaviate version `1.23.9` and Weaviate Python Client version `4.4.4`. The `sift1m` dataset includes 128-dimensional vectors and the `DBPedia` dataset includes 1536-dimensional vectors.
 <br/>
 
 You can find the [test code here](https://github.com/weaviate/weaviate-python-client/blob/e2398593c8346b0e32c4077897583398e2673b73/profiling/test_import_and_query.py) including links to the datasets, and instructions to run the tests yourself.
@@ -85,25 +83,24 @@ You can find the [test code here](https://github.com/weaviate/weaviate-python-cl
 
 ### Data ingestion
 
-Let’s begin with improvements to the data ingestion time. The following chart shows results from total time taken to insert ~1M objects.
+Let’s begin with improvements to the data ingestion time. The following chart shows relative improvements in time taken to insert ~1M objects, using two different datasets.
 
-:::warning TODO
-ADD UPDATED FIG
-:::
+![gRPC vs REST: Import speed](./img/import-improvements.png)
 
-The gRPC-based data imports show significant reductions in time taken over the REST-based alternatives for both datasets. The time taken to ingest 1M DBPedia objects was nearly halved from over 34 minutes to under 19 minutes. The larger improvement likely comes from the larger payload size as the dataset includes 1536-dimensional vectors in comparison.
+The gRPC-based data imports show significant reductions in time taken over the REST-based alternatives for both datasets. The time taken to ingest 1M DBPedia objects was nearly halved from over 42 minutes to around 23 minutes. The larger improvement likely comes from the larger payload size as the dataset includes 1536-dimensional vectors in comparison.
 
-This improvement will scale as the dataset size grows, too. At this rate, inserting a hundred million objects - a relatively common number - would be faster by over a full day!
+This improvement will scale as the dataset size grows, too. At this rate, inserting a hundred million objects - a relatively common number - would be faster by over 32 hours!
+
+That's certainly nothing to sneeze at. And that's not all - the improvements extend to the database in operation too.
 
 ### Queries
 
-gRPC speed improvements will extend to database queries as well. The following chart shows how many queries can be served in given scenarios.
+Query throughput is central to databases' operation. And the improvements here are certainly very meaningful. The following charts show how many queries can be served in the given scenarios using gRPC and REST+GraphQL.
 
-:::warning TODO
-ADD UPDATED FIG
-:::
+![gRPC vs REST+GraphQL: SIFT queries](./img/query-improvements-sift.png)
+![gRPC vs REST+GraphQL: DBPedia queries](./img/query-improvements-dbpedia.png)
 
-Here you can see that each query takes 40-80% less time to return results when using gRPC in comparison to results with REST + GraphQL. This results in a significant, up to 3.3x, improvement in how many queries can be served.
+The charts show that each query takes 40-70% less time to return results when using gRPC in comparison to results with REST + GraphQL. This results in a significant, over 2.6x, improvement in how many queries can be served.
 
 <details>
   <summary>Explain these results</summary>
