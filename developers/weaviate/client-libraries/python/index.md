@@ -12,7 +12,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 ## Overview
 
-This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md).
+This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md). Some frequently used sections are [listed here](#code-examples--resources) for convenience.
 
 ## Installation
 
@@ -986,6 +986,24 @@ If you use a browser to run the Python client with a Jupyter notebook, press `Ta
 
 To provide raw GraphQL queries, you can use the `client.graphql_raw_query` method (previously `client.query.raw` in the `v3` client). This method takes a string as input.
 
+
+## Code examples & resources
+
+Usage information for various operations and features can be found throughout the Weaviate documentation.
+
+Some frequently used sections are the how-to guides for [Managing data](../../manage-data/index.md) and [Queries](../../search/index.md). The how-to guides include concise examples for common operations.
+
+In particular, check out the pages for:
+
+- [Client instantiation](./index.md#instantiate-a-client),
+- [Manage collections](../../manage-data/collections.mdx),
+- [Batch import](../../manage-data/import.mdx)
+- [Cross-reference](../../manage-data/cross-references.mdx)
+- [Basic search](../../search/basics.md)
+- [Similarity search](../../search/similarity.md)
+- [Filters](../../search/filters.md)
+
+The Weaviate API reference pages for [search](../../api/graphql/index.md) and [REST](../../api/rest/index.md) may also be useful starting points.
 
 ## Client releases
 
