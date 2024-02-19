@@ -16,7 +16,7 @@ export default function KnowledgeHeader() {
             </p>
           </div>
         </div>
-
+        {/* 
         <div className={styles.buttons}>
           <Link className={styles.buttonGradient} to="/developers/weaviate">
             Documentation
@@ -27,7 +27,7 @@ export default function KnowledgeHeader() {
           >
             Try Now
           </Link>
-        </div>
+        </div> */}
       </div>
     </header>
   );

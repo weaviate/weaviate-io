@@ -4,8 +4,10 @@ import Link from '@docusaurus/Link';
 
 export default function Card(props) {
   const { details } = props;
+  const typeClass = details.type.toLowerCase();
+
   return (
-    <div className={`${styles.knowledgeCard} ${details.type}`}>
+    <div className={`${styles.knowledgeCard} ${styles[typeClass]}`}>
       <span className={styles.cardType}>{details.type}</span>
 
       <h3>{details.title}</h3>

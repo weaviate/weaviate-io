@@ -115,6 +115,19 @@
 .knowledgebase {
   display: flex;
   align-items: flex-start;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
+}
+
+.highlights {
+  margin: 0px 0px 50px 0px;
+}
+
+.knowledgeHighlights {
+  display: flex;
+  justify-content: center;
 }
 
 .filterBox {
@@ -136,6 +149,16 @@
     scroll-snap-type: x mandatory;
     white-space: nowrap;
     width: 100%;
+
+    @media screen and (max-width: 900px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      h3 {
+        flex: 1 100%;
+      }
+    }
 
     a {
       color: #130c49;
@@ -224,6 +247,10 @@
   gap: 10px;
   justify-content: flex-start;
   align-items: flex-start;
+
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+  }
 }
 
 .knowledgeCard {
@@ -392,4 +419,45 @@
   background-color: #f0f0f0;
   border-radius: 4px;
   display: inline-block;
+}
+
+.searchContainer {
+  width: 100%;
+  display: flex;
+  margin: 40px 0px;
+
+  input {
+    border-radius: 25px;
+    width: 70%;
+    height: 36px;
+    margin: auto;
+  }
+  input[type='text'] {
+    padding-block: 1px;
+    padding-inline: 10px;
+  }
+}
+
+.knowledgeCard.tutorial {
+  background: #130c49;
+
+  span {
+    color: #fff;
+  }
+
+  .tag {
+    color: #130c49;
+  }
+
+  h3 {
+    color: #fff;
+  }
+
+  span {
+    color: #fff;
+  }
+
+  a {
+    color: #61bd73;
+  }
 }
