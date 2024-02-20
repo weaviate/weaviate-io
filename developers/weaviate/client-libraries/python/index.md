@@ -12,7 +12,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 
 ## Overview
 
-This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md).
+This page broadly covers the Weaviate Python client (`v4` release). For usage information not specific to the Python client, such as code examples, see the relevant pages in the [Weaviate documentation](../../index.md). Some frequently used sections are [listed here](#code-examples--resources) for convenience.
 
 ## Installation
 
@@ -307,7 +307,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limitd">
+<TabItem value="ratelimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
@@ -670,8 +670,8 @@ You can also get the size of the collection by using the built-in `len` function
 
 <FilteredTextBlock
     text={PythonCode}
-    startMarker="# START LenCollectonExample"
-    endMarker="# END LenCollectonExample"
+    startMarker="# START LenCollectionExample"
+    endMarker="# END LenCollectionExample"
     language="py"
 />
 
@@ -742,7 +742,7 @@ with client.batch as batch:
 `client.batch.rate_limit() as batch` is a new way to help avoid hitting third-party vectorization API rate limits. By specifying `request_per_minute` in the
 `rate_limit()` method, you can force the batching algorithm to send objects to Weaviate at the speed your third-party API is capable of processing objects.
 
-These methods now return completely localised context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
+These methods now return completely localized context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
 in any subsequent calls.
 
 Finally, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread rather than silently erroring.
@@ -986,6 +986,24 @@ If you use a browser to run the Python client with a Jupyter notebook, press `Ta
 
 To provide raw GraphQL queries, you can use the `client.graphql_raw_query` method (previously `client.query.raw` in the `v3` client). This method takes a string as input.
 
+
+## Code examples & resources
+
+Usage information for various operations and features can be found throughout the Weaviate documentation.
+
+Some frequently used sections are the how-to guides for [Managing data](../../manage-data/index.md) and [Queries](../../search/index.md). The how-to guides include concise examples for common operations.
+
+In particular, check out the pages for:
+
+- [Client instantiation](./index.md#instantiate-a-client),
+- [Manage collections](../../manage-data/collections.mdx),
+- [Batch import](../../manage-data/import.mdx)
+- [Cross-reference](../../manage-data/cross-references.mdx)
+- [Basic search](../../search/basics.md)
+- [Similarity search](../../search/similarity.md)
+- [Filters](../../search/filters.md)
+
+The Weaviate API reference pages for [search](../../api/graphql/index.md) and [REST](../../api/rest/index.md) may also be useful starting points.
 
 ## Client releases
 

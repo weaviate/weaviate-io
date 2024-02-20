@@ -38,7 +38,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoJ} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
               <span className={styles.logoD} />
             </div>
@@ -101,7 +101,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoL} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
               <span className={styles.logoD} />
             </div>
@@ -158,7 +158,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoAI} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
               <span className={styles.logoD} />
             </div>
@@ -217,7 +217,7 @@ export default function HomepageIntegrations() {
               <span className={styles.logoL} />
             </div>
           </Link>
-          <Link to="https://weaviate.io/developers/weaviate/modules/reader-generator-modules/qna-transformers#introduction">
+          <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
             <div className={styles.logoBg}>
               <span className={styles.logoD} />
             </div>
