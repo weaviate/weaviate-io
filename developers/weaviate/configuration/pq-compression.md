@@ -52,7 +52,7 @@ AutoPQ is not currently available in WCS.
 
 ### 2. Configure PQ
 
-To enable PQ for a collection, update your collection definition.
+To enable PQ for a collection, update your collection definition. Once you enable PQ, AutoPQ automates the PQ training step for you.
 
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
