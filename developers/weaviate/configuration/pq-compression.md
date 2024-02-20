@@ -54,11 +54,7 @@ AutoPQ is not currently available in WCS.
 
 To enable PQ for a collection, update your collection definition.
 
-If you use the Python client v4, set `quantizer=wvc.Reconfigure.VectorIndex.Quantizer.pq()`.
-
-If you use one of the other clients, set `pq_enabled=True` in the vector index configuration section, .
-
-For additional configuration options, see the [parameter table](#pq-parameters).
+For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
