@@ -200,10 +200,7 @@ const config = {
                                     to: '/platform',
                                  },
                            
-                           {
-                                label: 'Security',
-                                href: '/security',
-                           },
+                          
                          ],
                     },
                     {
@@ -381,6 +378,10 @@ const config = {
                                 label: 'Partners',
                                 to: '/partners',
                             },
+                            {
+                                label: 'Security',
+                                href: '/security',
+                           },
                             {
                                 label: 'Terms & Policies',
                                 to: 'service',
