@@ -36,7 +36,7 @@ Weaviate has developed and makes available an open-sourced vector database that 
 ---
 ### 2. **Weaviate Product**
 
-   1. Provision of Weaviate Product.  Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Product available to Customer pursuant to this Agreement, the SLA attached in **Exhibit B** and the applicable Order Form, and hereby grants Customer a non-exclusive right to access and use the Weaviate Product for its internal business.
+   1. Provision of Weaviate Product.  Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Product available to Customer pursuant to this Agreement, the SLA attached in **Exhibit A** and the applicable Order Form, and hereby grants Customer a non-exclusive right to access and use the Weaviate Product for its internal business.
 
    2. Data Security.  With respect to the Serverless SaaS Offering, Weaviate will maintain a security program materially in accordance with industry standards that is designed to (i) ensure the security and integrity of Customer data uploaded by or on behalf of Customer to the Weaviate Product (“**_Customer Data_**”); (ii) protect against threats or hazards to the security or integrity of Customer Data; and (iii) prevent unauthorized access to Customer Data.  .
 
