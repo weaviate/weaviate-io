@@ -10,7 +10,7 @@ export default function KnowledgeBasePage() {
   return (
     <div className="custom-page noBG">
       <Layout>
-        <MetaSEO img="og/company/about-us.jpg" />
+        <MetaSEO />
         <KnowledgeHeader />
 
         <KnowledgeBase />
