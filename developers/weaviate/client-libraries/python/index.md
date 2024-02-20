@@ -307,7 +307,7 @@ These methods return completely localized context managers. Accordingly, attribu
   />
 
 </TabItem>
-<TabItem value="ratelimit" label="Rate limitd">
+<TabItem value="ratelimit" label="Rate limited">
 
 <FilteredTextBlock
   text={PythonCode}
@@ -670,8 +670,8 @@ You can also get the size of the collection by using the built-in `len` function
 
 <FilteredTextBlock
     text={PythonCode}
-    startMarker="# START LenCollectonExample"
-    endMarker="# END LenCollectonExample"
+    startMarker="# START LenCollectionExample"
+    endMarker="# END LenCollectionExample"
     language="py"
 />
 
@@ -742,7 +742,7 @@ with client.batch as batch:
 `client.batch.rate_limit() as batch` is a new way to help avoid hitting third-party vectorization API rate limits. By specifying `request_per_minute` in the
 `rate_limit()` method, you can force the batching algorithm to send objects to Weaviate at the speed your third-party API is capable of processing objects.
 
-These methods now return completely localised context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
+These methods now return completely localized context managers. This means that `failed_objects` and `failed_references` of one batch won't be included
 in any subsequent calls.
 
 Finally, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread rather than silently erroring.
