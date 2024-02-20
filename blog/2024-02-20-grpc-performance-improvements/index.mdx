@@ -43,7 +43,7 @@ gRPC uses HTTP/2 and Protocol Buffers under the hood. For Weaviate, these attrib
 
 We at Weaviate love many things about GraphQL. But one big downside of using GraphQL relates to its payloads. One challenge is marshaling data to JSON, and another is transmitting large payloads (for both requests and responses). These challenges are largely reduced by adopting gRPC.
 
-Firstly, gRPC uses Protocol Buffers (protobufs) to [define data structures](https://github.com/weaviate/weaviate/tree/master/grpc/proto/v1s) like the one shown below to produce binary payloads instead of JSON. Because these definitions are used to build the payload, and the payload is in binary, each payload is smaller, and faster to build.
+Firstly, gRPC uses Protocol Buffers (protobufs) to define data structures like the one shown below to produce binary payloads instead of JSON. Because these definitions are used to build the payload, and the payload is in binary, each payload is smaller, and faster to build.
 
 ```protobuf
 message GenerativeSearch {
@@ -55,7 +55,7 @@ message GenerativeSearch {
 
 Additionally, gRPC uses HTTP/2 under the hood, which is faster than the existing REST API’s HTTP/1.1 due to its support for concurrent requests and lower overhead.
 
-These add up to big speed and reliability advantages for the gRPC API in Weaviate in comparison to the current GraphQL + REST solution.
+These add up to big speed and reliability advantages for the [gRPC API in Weaviate](/developers/weaviate/api/grpc) in comparison to the current GraphQL + REST solution.
 
 ### Type safety
 
@@ -130,6 +130,7 @@ First of all, the appropriate port must be open to allow gRPC messages through. 
 
 If you are using Docker to instantiate Weaviate, check that the gRPC traffic is forwarded appropriately, for example as shown below.
 
+```yaml
 ---
 version: '3.4'
 services:
@@ -141,6 +142,7 @@ services:
     # Note the port mapping above for port 50051
     # Remainder of `docker-compose.yml` not shown
 ...
+```
 
 </details>
 
