@@ -888,10 +888,10 @@ try:
     # END IteratorWithMetadata
 
 
-    # START LenCollectonExample
+    # START LenCollectionExample
     articles = client.collections.get("Article")
     print(len(articles))
-    # END LenCollectonExample
+    # END LenCollectionExample
 
 
     # GenericsExample
