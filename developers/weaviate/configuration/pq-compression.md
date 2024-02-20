@@ -42,11 +42,11 @@ If you are using WCS, or cannot enable asynchronous indexing, you can still use 
 :::info Added in v1.23.0
 :::
 
-If you have a new collection, enable AutoPQ so that you don't have to load your data in two phases.
+If you have a new collection, enable AutoPQ. AutoPQ automates the PQ training step so you don't have to load your data in two phases.
 
 ### 1. Set the environment variable
 
-AutoPQ requires asynchronous indexing. To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your instance. You cannot enable AutoPQ without asynchronous indexing.
+AutoPQ requires asynchronous indexing. To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance. You cannot enable AutoPQ without asynchronous indexing.
 
 AutoPQ is not currently available in WCS.
 
