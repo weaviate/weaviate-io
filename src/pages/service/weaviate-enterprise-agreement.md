@@ -115,58 +115,7 @@ Amsterdam, the Netherlands.
 11. Interpretation.  For purposes hereof, “including” means “including without limitation”.
 
 
-
-IN WITNESS WHEREOF, the duly authorized representatives of each of the parties hereto have executed this Agreement as of the Effective Date.
-
-| Weaviate:                 | Customer:                 |
-|---------------------------|---------------------------|
-| By:                       | By:                       |
-| Name:                     | Name:                     |
-| Title:                    | Title:                    |
-|\_\_\_\_\_\_\_\_\_\_\_\_\_ |\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-| Address for notice        | Address for notice        |
-|                           |                           |
-|                           | Weaviate, B.V.            |
-|                           | Attn: Legal               |
-|                           |                           |
-
----
 ### **Exhibit A**
-
-**Weaviate Order Form**
-
-| Your Details            |                                  |
-| ------------------------| ---------------------------------|
-| Customer ("Customer")   | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-| Trade Register Number   | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-| VAT Number / Tax ID     | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-| Address                 | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-| Email                   | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-| Contact Person          | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |
-
-
-| Weaviate Details       |                         |
-|------------------------|-------------------------|
-| Weaviate               | Weaviate B.V.           |
-| Address                | Prinsengracht 769A, 1017JZ, Amsterdam, the Netherlands |
-| Trade Register Number  | 7523182                 |
-| VAT Number             | NL860199162B01          |
-| Email                  | hello@weaviate.io       |
-| Contact Person         |                         |
-
-
-| Fees                   |                                                           |
-|------------------------|-----------------------------------------------------------|
-| License fee            | **REMOVE THE PLANS THAT ARE NOT APPLICABLE FOR THIS ORDER** |
-| Standard               | Price per 1M embeddings: $0.095                           |
-|                        | With a floor price of $25.00, per (prod-cluster), based on the Standard support SLA type. |
-| Enterprise             | Price per 1M embeddings: $0.145                           |
-|                        | With a floor price of $135.00, per (prod-cluster), based on the Enterprise support SLA type. |
-| Business Critical      | Price per 1M embeddings: $0.195                           |
-|                        | With a floor price of $450.00, per (prod-cluster), based on the Business Critical support SLA type. |
-| Additional Payment Terms | At the end of the initial Term set forth in this Order Form, and upon the automatic renewal of this Agreement, Customer’s current fees will increase to Weaviate’s then current pricing available at: [Weaviate Pricing](https://weaviate.io/pricing/) |
----
-### **Exhibit B**
 
 **Weaviate Support Program Terms**
 
