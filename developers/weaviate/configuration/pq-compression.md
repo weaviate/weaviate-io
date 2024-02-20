@@ -182,7 +182,9 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
 
 ### 2. Load some training data
 
-If you are starting with a new collection, you should load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard. If you already have data in your Weaviate instance, you can [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
+If you are starting with a new collection, load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard. 
+
+If you already have data in an existing collection, [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
 
 When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, try to chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
 
@@ -300,8 +302,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
 <PQMakesCodebook />
 
-To enable PQ, update your schema as shown below. For additional configuration options, see the [parameter table](#pq-parameters).
-
+To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
