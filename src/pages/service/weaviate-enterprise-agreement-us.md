@@ -31,12 +31,12 @@ Weaviate has developed and makes available an open-sourced vector database that 
 
 “**_Non-Weaviate Product_**” means a third party or Customer web-based, mobile, offline or other software application that integrates with the Weaviate Product (other than third party data hosting services used by Weaviate).  For clarity, the Weaviate Product excludes Non-Weaviate Products.
 
-“**_Order Form_**” means an order form, quote or other similar document that sets forth the specific Weaviate Product and pricing therefor (including in relation to overages), permitted number of users and subscription term, and that references this Agreement and is mutually executed by the parties.  Order Form #1 is attached hereto in **Exhibit A** and is deemed mutually executed as of the Effective Date.
+“**_Order Form_**” means an order form, quote or other similar document that sets forth the specific Weaviate Product and pricing therefor (including in relation to overages), permitted number of users and subscription term, and that references this Agreement and is mutually executed by the parties.  Order Form #1 is attached hereto in **Exhibit B** and is deemed mutually executed as of the Effective Date.
 
 ---
 ### 2. **Weaviate Product**
 
-   1. Provision of Weaviate Product.  Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Product available to Customer pursuant to this Agreement, the SLA attached in **Exhibit A** and the applicable Order Form, and hereby grants Customer a non-exclusive right to access and use the Weaviate Product for its internal business.
+   1. Provision of Weaviate Product.  Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Product available to Customer pursuant to this Agreement, the SLA attached in **Exhibit B** and the applicable Order Form, and hereby grants Customer a non-exclusive right to access and use the Weaviate Product for its internal business.
 
    2. Data Security.  With respect to the Serverless SaaS Offering, Weaviate will maintain a security program materially in accordance with industry standards that is designed to (i) ensure the security and integrity of Customer data uploaded by or on behalf of Customer to the Weaviate Product (“**_Customer Data_**”); (ii) protect against threats or hazards to the security or integrity of Customer Data; and (iii) prevent unauthorized access to Customer Data.  .
 
@@ -116,6 +116,9 @@ Amsterdam, the Netherlands.
 11. Interpretation.  For purposes hereof, “including” means “including without limitation”.
 
 ### **Exhibit A**
+____
+
+### **Exhibit B**
 
 **Weaviate Support Program Terms**
 
@@ -170,7 +173,7 @@ Weaviate shall provide an update on the investigation, resolution, or escalation
 
 **Scope of Service Inquiries**
 
-Support Requests: These are incidents or problems encountered in the operation of the current Weaviate Product, necessitating immediate attention to maintain or restore the expected service levels. Support Requests will be acknowledged and addressed promptly following the procedures outlined in Exhibit B: "Weaviate Service Level Agreement".
+Support Requests: These are incidents or problems encountered in the operation of the current Weaviate Product, necessitating immediate attention to maintain or restore the expected service levels. Support Requests will be acknowledged and addressed promptly following the procedures outlined in Exhibit C: "Weaviate Service Level Agreement".
 
 
 Service Requests: This term refers to inquiries from the Customer seeking additional services, new clusters, or modifications that extend beyond the existing scope of the Weaviate Product. Service Requests are categorized as non-urgent and project-based, requiring a separate assessment and planning process. The response and implementation timeline for these requests will be mutually determined, subject to resource availability, project complexity, and the terms set forth in the applicable Order Form.
@@ -178,7 +181,7 @@ Service Requests: This term refers to inquiries from the Customer seeking additi
 ---
 
 
-### **Exhibit B**
+### **Exhibit C**
 
 **Weaviate Service Level Agreement**
 
