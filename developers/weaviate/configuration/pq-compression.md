@@ -105,7 +105,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
 
 ### 3. Load your data
 
-Load your data. You do not have to load an initial set of training data. AutoPQ creates the PQ codebook when the object counts reach the training limit. By default, training limit is 100,000 objects per shard.
+Load your data. You do not have to load an initial set of training data. AutoPQ creates the PQ codebook when the object counts reach the training limit. By default, the training limit is 100,000 objects per shard.
 
 ## Manually configure PQ
 
