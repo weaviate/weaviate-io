@@ -30,7 +30,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "start_wcs", "byov_collections", "byov_searches", "byov_rag"
+      "setup_weaviate", "byov_collections", "byov_searches", "byov_rag"
     ],
     learningGoals: [
       "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
