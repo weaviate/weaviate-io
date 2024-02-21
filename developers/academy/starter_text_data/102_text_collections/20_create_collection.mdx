@@ -34,6 +34,10 @@ Properties are the object attributes that you want to store in the collection. E
 
 In our movie database, we have properties like `title`, `release_date` and `genre_ids`, with data types like `TEXT` (string), `DATE` (date), or `INT` (integer). It's also possible to have arrays of integers, like we have with `genre_ids`.
 
+#### Auto-schema
+
+Weaviate can automatically [infer the schema](/developers/weaviate/config-refs/schema/index.md#auto-schema) from the data. However, it's a good practice to define the properties explicitly, for better control and to avoid surprises.
+
 ### <i class="fa-solid fa-chalkboard"></i> Vectorizer configuration
 
 If you do not specify the vector yourself, Weaviate will use a specified vectorizer to generate vector embeddings from your data.
