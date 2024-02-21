@@ -42,7 +42,7 @@ This page includes a comprehensive list of environment variables that can be use
 | <code>PROMETHEUS<wbr />_MONITORING<wbr />_GROUP</code> | If set, Weaviate will group metrics for the same class across all shards. | `string - true/false` | `true` |
 | `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
 | `MODULES_CLIENT_TIMEOUT` | Timeout for requests to Weaviate modules. Default: `50s` | `string - duration` | `5s`, `10m`, `1h` |
-|`DISABLE_TELEMETRY`|Disable [telemetry](/developers/weaviate/config-refs/telemetry.md) data collection|boolean|`false`|
+| `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` |
 
 ### Module-specific
 
