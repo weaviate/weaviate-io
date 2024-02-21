@@ -17,17 +17,10 @@
     },
     {
       "type": "Image",
-      "title": "Vector Index",
+      "title": "Vector Index Image",
       "photo": "knowledge-vector.svg",
       "link": "/developers/weaviate/quickstart",
       "tags": ["JS", "Weaviate", "Image"]
-    },
-    {
-      "type": "Tutorial",
-      "title": "Quickstart",
-      "text": "Vectors are mathematical representations of data objects, which enable similarity-based searches in vector databases like Weaviate...",
-      "link": "/developers/weaviate/quickstart",
-      "tags": ["JS", "Weaviate", "QuickStart"]
     },
     {
       "type": "Introduction",

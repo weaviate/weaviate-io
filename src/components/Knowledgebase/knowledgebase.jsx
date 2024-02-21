@@ -110,7 +110,7 @@ export default function KnowledgeBase() {
             >
               {filteredCards.length > 0 ? (
                 filteredCards.map((card) => (
-                  <Card key={card.name} details={card} />
+                  <Card key={card.title} details={card} />
                 ))
               ) : (
                 <p>No results found.</p>

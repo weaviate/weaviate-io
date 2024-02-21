@@ -26,7 +26,7 @@ export default function Highlights() {
             } ${selectedCard.toLowerCase()}-card`}
           >
             {highlights.map((card) => {
-              return <Card key={card.name} details={card} />;
+              return <Card key={card.title} details={card} />;
             })}
           </div>
         </div>

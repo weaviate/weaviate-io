@@ -461,3 +461,53 @@
     color: #61bd73;
   }
 }
+
+.modals {
+  display: flex;
+  z-index: 240;
+  position: fixed;
+  padding: 25px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modalGrid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 5rem 0rem;
+}
+
+.modalContents {
+  margin: 7% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 29.9375rem;
+  height: 40.5rem;
+  max-width: 75.9375rem;
+  max-height: 90vh;
+  border-radius: 1.5rem;
+  background: #ededed;
+  position: relative;
+}
+
+.closeButtonContainer {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+}
+
+.close {
+  font-size: 2rem;
+  color: #130c49;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
