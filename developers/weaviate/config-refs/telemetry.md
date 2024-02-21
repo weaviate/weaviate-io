@@ -22,7 +22,7 @@ Weaviate does not collect any other telemetry information.
 
 ## Disabling Telemetry Data
 
-To disable telemetry data collection, set `DISABLE_TELEMETRY=true` in your system configuration file.
+To disable telemetry data collection, set `DISABLE_TELEMETRY=true` in your [system configuration](./env-vars.md) file.
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
