@@ -9,9 +9,22 @@ export default function Card(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
+  const structuredData = {
+    '@context': 'http://schema.org',
+    '@type': 'Article',
+    headline: details.title,
+    description: details.text,
+    // Further details as per your `details` object
+  };
   return (
     <>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `<script type="application/ld+json">${JSON.stringify(
+            structuredData
+          )}</script>`,
+        }}
+      />
       <div className={`${styles.knowledgeCard} ${styles[typeClass] || ''}`}>
         <span className={styles.cardType}>{details.type}</span>
 
