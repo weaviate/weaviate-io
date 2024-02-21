@@ -1,15 +1,15 @@
 export const unitData = {
-  "start_wcs": {
-    title: "Get started with WCS",
-    body: "Create a cloud Weaviate instance through Weaviate Cloud Services (WCS).",
+  "setup_weaviate": {
+    title: "Set up Weaviate",
+    body: "Set up a Weaviate instance and connect to it.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/starter_text_data/start_wcs",
+    buttonURL: "/developers/academy/starter_text_data/setup_weaviate",
     badgeType: "practical",
     learningGoals: [
-      "Set up a cloud Weaviate instance and connect to it with the Python client."
+      "Set up a Weaviate instance and connect to it with the Python client."
     ],
     learningOutcomes: [
-      "Create a Weaviate instance on WCS.",
+      "Create a Weaviate instance.",
       "Install the latest Weaviate Python client.",
       "Connect to the Weaviate instance using the Python client."
     ]

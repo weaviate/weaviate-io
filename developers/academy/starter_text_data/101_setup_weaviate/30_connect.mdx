@@ -1,5 +1,5 @@
 ---
-title: Connect to Weaviate
+title: Communicate with Weaviate
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,18 +7,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!./_snippets/30_connect.py';
 
-### <i class="fa-solid fa-code"></i> Connect to your WCS instance
-
-To connect to the Weaviate Cloud Service (WCS) instance, you need to use the cluster URL and the API key. You can find these details in the WCS Console.
-
-Use the `connect_to_wcs` function to connect to your WCS instance.
-
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# WCSInstantiation"
-  endMarker="# END WCSInstantiation"
-  language="py"
-/>
+Here, we'll perform basic operations to communicate with Weaviate using the Python client library.
 
 ### <i class="fa-solid fa-code"></i> Check Weaviate status
 
@@ -55,31 +44,18 @@ This will print the server meta information to the console. The output will look
 />
 </details>
 
-
 ### <i class="fa-solid fa-code"></i> Close the connection
 
 After you have finished using the Weaviate client, you should close the connection. This frees up resources and ensures that the connection is properly closed.
 
-We suggest using a `try`-`finally` block with `client.close()` or a context manager (`with` statement).
+We suggest using a `try`-`finally` block as a best practice.
 
-<Tabs groupId="languages">
-  <TabItem value="try" label="Try/Finally">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# TryFinallyCloseDemo"
-      endMarker="# END TryFinallyCloseDemo"
-      language="py"
-    />
-  </TabItem>
-  <TabItem value="context" label="Context manager">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# ContextManagerCloseDemo"
-      endMarker="# END ContextManagerCloseDemo"
-      language="py"
-    />
-  </TabItem>
-</Tabs>
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TryFinallyCloseDemo"
+  endMarker="# END TryFinallyCloseDemo"
+  language="py"
+/>
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 

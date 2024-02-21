@@ -1,17 +1,48 @@
-import os
-
-your_wcs_url = os.getenv("WCS_DEMO_URL")
-your_wcs_key = os.getenv("WCS_DEMO_ADMIN_KEY")
-
 # WCSInstantiation
 import weaviate
+import os
 
 client = weaviate.connect_to_wcs(
-    cluster_url=your_wcs_url,  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(your_wcs_key)  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY"))  # Replace with your WCS key
 )
 # END WCSInstantiation
 
+client.close()
+
+# WCSAPIKeyInstantiation
+import weaviate
+import os
+
+client = weaviate.connect_to_wcs(
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Replace with your OpenAI API key
+    }
+)
+# END WCSAPIKeyInstantiation
+
+client.close()
+
+# DockerInstantiation
+import weaviate
+
+client = weaviate.connect_to_local()
+# END DockerInstantiation
+
+# DockerAPIKeyInstantiation
+import weaviate
+import os
+
+client = weaviate.connect_to_local(
+    headers={
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Replace with your OpenAI API key
+    }
+)
+# END DockerAPIKeyInstantiation
+
+client.close()
 
 # PollLiveness
 assert client.is_live()  # This will raise an exception if the client is not live
@@ -98,10 +129,15 @@ client.close()
 import weaviate
 import os
 
+# END TryFinallyCloseDemo
 client = weaviate.connect_to_wcs(
-    cluster_url=your_wcs_url,  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(your_wcs_key)  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY"))  # Replace with your WCS key
 )
+# TryFinallyCloseDemo
+# Instantiate your client (not shown). e.g.:
+# client = weaviate.connect_to_wcs(...) or
+# client = weaviate.connect_to_local(...)
 
 try:
     # Work with the client here - e.g.:
@@ -111,20 +147,3 @@ try:
 finally:  # This will always be executed, even if an exception is raised
     client.close()  # Close the connection & release resources
 # END TryFinallyCloseDemo
-
-
-# ContextManagerCloseDemo
-import weaviate
-import os
-
-# Context manager (`with`) will close connection upon exit
-with weaviate.connect_to_wcs(
-    cluster_url=your_wcs_url,  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(your_wcs_key)  # Replace with your WCS key
-) as client:
-
-    # Work with the client here - e.g.:
-    assert client.is_live()
-    pass
-    # The connection is automatically closed at the end of the block
-# END ContextManagerCloseDemo
