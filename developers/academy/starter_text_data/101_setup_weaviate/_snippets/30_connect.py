@@ -14,12 +14,12 @@ client.close()
 import weaviate
 import os
 
+headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
-    headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Replace with your OpenAI API key
-    }
+    headers=headers
 )
 # END WCSAPIKeyInstantiation
 
@@ -35,11 +35,9 @@ client = weaviate.connect_to_local()
 import weaviate
 import os
 
-client = weaviate.connect_to_local(
-    headers={
-        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Replace with your OpenAI API key
-    }
-)
+headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+
+client = weaviate.connect_to_local(headers=headers)
 # END DockerAPIKeyInstantiation
 
 client.close()

@@ -2,80 +2,51 @@
 title: Filters
 ---
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/searches.py';
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+Filters can be used to precisely refine search results. You can filter by properties as well as metadata, and you can combine multiple filters with `and` or `or` conditions to further narrow down the results.
 
-## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+### <i class="fa-solid fa-code"></i> Code
 
-Some text
+This example finds entries in "Movie" whose text best matches the query "dystopian future", only from those released after 2010. It prints out the title and release year of the top 5 matches.
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# FilteredSemanticSearch"
+  endMarker="# END FilteredSemanticSearch"
+  language="py"
+/>
 
-Some text
+#### Explain the code
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+This query is identical to [that shown earlier](./10_semantic.mdx) for semantic search, but with the addition of a filter. The `filters` parameter here takes an instance of the `Filter` class to set the filter conditions. The current query filters the results to only include those with a release year after 2010.
 
-Some text
+<details>
+  <summary>Example results</summary>
 
-## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+```text
+Dune 2021
+Distance to query: 0.199
 
-Some text
+Tenet 2020
+Distance to query: 0.200
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+Mission: Impossible - Dead Reckoning Part One 2023
+Distance to query: 0.207
 
-Some text
+Onward 2020
+Distance to query: 0.214
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+Jurassic World Dominion 2022
+Distance to query: 0.216
+```
 
-Some text
+</details>
 
-
-
-## <i class="fa-solid fa-square-chevron-right"></i> Review
-
-<Quiz questions={varName} />
-
-Any quiz questions
-
-### <i class="fa-solid fa-pen-to-square"></i> Review exercise
-
-:::note <i class="fa-solid fa-square-terminal"></i> Exercise
-Try out ...
-:::
-
-### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
-
-:::info
-Add summary
-:::
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment />
-
-import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
-  answerOptions: [
-    {
-      answerText: 'answerOne',
-      isCorrect: false,
-      feedback: 'feedbackOne',
-    },
-    {
-      answerText: 'answerTwo',
-      isCorrect: false,
-      feedback: 'feedbackTwo',
-    },
-    {
-      answerText: 'answerThree',
-      isCorrect: false,
-      feedback: 'feedbackThree',
-    },
-  ]
-}];

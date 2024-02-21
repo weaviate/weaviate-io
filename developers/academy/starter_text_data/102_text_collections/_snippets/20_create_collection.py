@@ -1,31 +1,25 @@
-import os
-
-your_wcs_url = os.getenv("WCS_DEMO_URL")
-your_wcs_key = os.getenv("WCS_DEMO_ADMIN_KEY")
-
 # CreateMovieCollection
 import weaviate
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
+import os
 # CreateMovieCollection  # END SubmoduleImport
 
 # END CreateMovieCollection
 client = weaviate.connect_to_wcs(
-    cluster_url=your_wcs_url,  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(your_wcs_key)  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY"))  # Replace with your WCS key
 )
 
 # CreateMovieCollection
 # Instantiate your client (not shown). e.g.:
-# client = weaviate.connect_to_wcs(...) or
-# client = weaviate.connect_to_local(...)
+# headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+# client = weaviate.connect_to_wcs(..., headers=headers) or
+# client = weaviate.connect_to_local(..., headers=headers)
 
 # END CreateMovieCollection
 
-client.close()
-
 # Actual instantiation
-client = weaviate.connect_to_local()
 
 client.collections.delete("Movie")
 

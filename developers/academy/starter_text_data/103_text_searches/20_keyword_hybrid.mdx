@@ -1,81 +1,102 @@
 ---
-title: Keyword & hybrid search
+title: Keyword & Hybrid search
 ---
 
-import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/searches.py';
 
-<img src={imageUrl} alt="Image alt" width="75%"/>
+You can also perform keyword (BM25) searches to find items based on their keyword similarity, or hybrid searches that combine BM25 and semantic/vector searches.
 
-## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+## <i class="fa-solid fa-square-chevron-right"></i> Keyword search
 
-Some text
+### <i class="fa-solid fa-code"></i> Code
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+This example finds entries in "Movie" with the highest keyword search scores for the term "history", and prints out the title and release year of the top 5 matches.
 
-Some text
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataBM25Search"
+  endMarker="# END MetadataBM25Search"
+  language="py"
+/>
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+#### Explain the code
 
-Some text
+The results are based on a keyword search score using what's called the [BM25f](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm.
 
-## <i class="fa-solid fa-square-chevron-right"></i> TOP LEVEL HEADING
+The `limit` parameter here sets the maximum number of results to return.
 
-Some text
+The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the BM25 score of the result.
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+<details>
+  <summary>Example results</summary>
 
-Some text
+```text
+American History X 1998
+BM25 score: 2.707
 
-### <i class="fa-solid fa-chalkboard"></i> Theory subhead
-### <i class="fa-solid fa-code"></i> Practical subhead
+A Beautiful Mind 2001
+BM25 score: 1.896
 
-Some text
+Legends of the Fall 1994
+BM25 score: 1.663
+
+Hacksaw Ridge 2016
+BM25 score: 1.554
+
+Night at the Museum 2006
+BM25 score: 1.529
+```
+
+</details>
 
 
+## <i class="fa-solid fa-square-chevron-right"></i> Hybrid search
 
-## <i class="fa-solid fa-square-chevron-right"></i> Review
+### <i class="fa-solid fa-code"></i> Code
 
-<Quiz questions={varName} />
+This example finds entries in "Movie" with the highest hybrid search scores for the term "history", and prints out the title and release year of the top 5 matches.
 
-Any quiz questions
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataHybridSearch"
+  endMarker="# END MetadataHybridSearch"
+  language="py"
+/>
 
-### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+#### Explain the code
 
-:::note <i class="fa-solid fa-square-terminal"></i> Exercise
-Try out ...
-:::
+The results are based on a hybrid search score. A hybrid search blends results of BM25 and semantic/vector searches.
 
-### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+The `limit` parameter here sets the maximum number of results to return.
 
-:::info
-Add summary
-:::
+The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the hybrid score of the result.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+Legends of the Fall 1994
+BM25 score: 0.016
+
+Hacksaw Ridge 2016
+BM25 score: 0.016
+
+A Beautiful Mind 2001
+BM25 score: 0.015
+
+The Butterfly Effect 2004
+BM25 score: 0.015
+
+Night at the Museum 2006
+BM25 score: 0.012
+```
+
+</details>
+
 
 import { GiscusDocComment } from '/src/components/GiscusComment';
 
 <GiscusDocComment />
-
-import Quiz from '/src/components/Academy/quiz.js'
-const varName = [{
-  questionText: 'questionText',
-  answerOptions: [
-    {
-      answerText: 'answerOne',
-      isCorrect: false,
-      feedback: 'feedbackOne',
-    },
-    {
-      answerText: 'answerTwo',
-      isCorrect: false,
-      feedback: 'feedbackTwo',
-    },
-    {
-      answerText: 'answerThree',
-      isCorrect: false,
-      feedback: 'feedbackThree',
-    },
-  ]
-}];
