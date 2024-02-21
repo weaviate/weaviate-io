@@ -9,9 +9,9 @@ export const unitData = {
       "Set up a Weaviate instance and connect to it with the Python client."
     ],
     learningOutcomes: [
-      "Create a Weaviate instance.",
       "Install the latest Weaviate Python client.",
-      "Connect to the Weaviate instance using the Python client."
+      "Create a Weaviate instance.",
+      "Connect to the Weaviate instance using the Python client and communicate with it."
     ]
   },
   "text_collections": {
