@@ -27,37 +27,45 @@ client = weaviate.connect_to_wcs(
 
 # BatchImportData
 data_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json"
-resp = requests.get(data_url)
-df = pd.DataFrame(resp.json())
+data_resp = requests.get(data_url)
+df = pd.DataFrame(data_resp.json())
+
+embs_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_all-MiniLM-L6-v2_embeddings.csv"
+emb_df = pd.read_csv(embs_url)
 
 # Get the collection
 movies = client.collections.get("Movie")
 
 # Enter context manager
-with movies.batch.rate_limit(2400) as batch:
+with movies.batch.dynamic() as batch:
 
     # Loop through the data
-    for i, movie in tqdm(df.iterrows()):
+    for i, movie in enumerate(df.itertuples(index=False)):
         # Convert data types
         # Convert a JSON date to `datetime` and add time zone information
-        release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        release_date = datetime.strptime(movie.release_date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
         # Convert a JSON array to a list of integers
-        genre_ids = json.loads(movie["genre_ids"])
+        genre_ids = json.loads(movie.genre_ids)
 
         # Build the object payload
         movie_obj = {
-            "title": movie["title"],
-            "overview": movie["overview"],
-            "vote_average": movie["vote_average"],
+            "title": movie.title,
+            "overview": movie.overview,
+            "vote_average": movie.vote_average,
             "genre_ids": genre_ids,
             "release_date": release_date,
-            "tmdb_id": movie["id"]
+            "tmdb_id": movie.id
         }
 
-        # Add object to batch queue
+        # Get the vector
+        vector = emb_df.iloc[i].to_list()
+        print(vector)
+
+        # Add object (including vector) to batch queue
         batch.add_object(
             properties=movie_obj,
-            uuid=generate_uuid5(movie["id"])
+            uuid=generate_uuid5(movie.id),
+            vector=vector  # Add the custom vector
             # references=reference_obj  # You can add references here
         )
         # Batcher automatically sends batches

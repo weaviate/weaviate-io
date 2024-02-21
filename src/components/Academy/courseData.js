@@ -36,7 +36,7 @@ export const courseData = {
       "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
     ],
     learningOutcomes: [
-      "Use Weaviate Cloud Services to create a cloud instance of Weaviate",
+      "Create a instance of Weaviate for you to use",
       "Produce, store and index data with your own vectors",
       "Perform vector, keyword and hybrid searches",
       "Use AI (large language models) to augment and transform retrieved data",
