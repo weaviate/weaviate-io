@@ -59,7 +59,6 @@ with movies.batch.dynamic() as batch:
 
         # Get the vector
         vector = emb_df.iloc[i].to_list()
-        print(vector)
 
         # Add object (including vector) to batch queue
         batch.add_object(

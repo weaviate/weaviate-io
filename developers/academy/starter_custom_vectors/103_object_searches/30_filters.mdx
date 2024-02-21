@@ -11,7 +11,7 @@ Filters can be used to precisely refine search results. You can filter by proper
 
 ### <i class="fa-solid fa-code"></i> Code
 
-This example finds entries in "Movie" whose text best matches the query "dystopian future", only from those released after 2010. It prints out the title and release year of the top 5 matches.
+This example finds entries in "Movie" whose text best matches the query vector, only from those released after 2010. It prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
   text={PyCode}
@@ -22,26 +22,26 @@ This example finds entries in "Movie" whose text best matches the query "dystopi
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Explain the code
 
-This query is identical to [that shown earlier](./10_semantic.mdx) for semantic search, but with the addition of a filter. The `filters` parameter here takes an instance of the `Filter` class to set the filter conditions. The current query filters the results to only include those with a release year after 2010.
+This query is identical to [that shown earlier](./10_vector.mdx) for vector search, but with the addition of a filter. The `filters` parameter here takes an instance of the `Filter` class to set the filter conditions. The current query filters the results to only include those with a release year after 2010.
 
 <details>
   <summary>Example results</summary>
 
 ```text
-Dune 2021
-Distance to query: 0.199
+Oppenheimer 2023
+Distance to query: 0.754
 
-Tenet 2020
-Distance to query: 0.200
+Everything Everywhere All at Once 2022
+Distance to query: 0.778
 
-Mission: Impossible - Dead Reckoning Part One 2023
-Distance to query: 0.207
+Meg 2: The Trench 2023
+Distance to query: 0.779
 
-Onward 2020
-Distance to query: 0.214
+Eternals 2021
+Distance to query: 0.787
 
-Jurassic World Dominion 2022
-Distance to query: 0.216
+John Wick: Chapter 4 2023
+Distance to query: 0.790
 ```
 
 </details>

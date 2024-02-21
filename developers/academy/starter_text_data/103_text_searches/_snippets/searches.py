@@ -1,8 +1,3 @@
-import os
-
-your_wcs_url = os.getenv("WCS_DEMO_URL")
-your_wcs_key = os.getenv("WCS_DEMO_ADMIN_KEY")
-
 # START-ANY
 import weaviate
 import weaviate.classes.query as wq
@@ -19,8 +14,8 @@ from datetime import datetime
 
 headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 client = weaviate.connect_to_wcs(
-    cluster_url=your_wcs_url,  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(your_wcs_key),  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
     headers = headers
 )
 
@@ -114,7 +109,7 @@ response = movies.query.hybrid(
 # Inspect the response
 for o in response.objects:
     print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
-    print(f"BM25 score: {o.metadata.score:.3f}\n")  # Print the hybrid search score of the object from the query
+    print(f"Hybrid score: {o.metadata.score:.3f}\n")  # Print the hybrid search score of the object from the query
 
 client.close()
 # END MetadataHybridSearch

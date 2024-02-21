@@ -1,7 +1,26 @@
+# GetQueryVector
+import requests
 import os
+import pandas as pd
 
-your_wcs_url = os.getenv("WCS_DEMO_URL")
-your_wcs_key = os.getenv("WCS_DEMO_ADMIN_KEY")
+# Set parameters
+model_id = "sentence-transformers/all-MiniLM-L6-v2"
+hf_token = os.getenv("HUGGINGFACE_APIKEY")
+
+api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
+headers = {"Authorization": f"Bearer {hf_token}"}
+
+
+# Define a function to call the endpoint and obtain embeddings
+def query(texts):
+    response = requests.post(
+        api_url,
+        headers=headers,
+        json={"inputs": texts, "options": {"wait_for_model": True}},
+    )
+    return response.json()
+# END GetQueryVector
+
 
 # START-ANY
 import weaviate
@@ -19,8 +38,8 @@ from datetime import datetime
 
 headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 client = weaviate.connect_to_wcs(
-    cluster_url=your_wcs_url,  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(your_wcs_key),  # Replace with your WCS key
+    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
     headers = headers
 )
 
@@ -52,29 +71,8 @@ print("\n\n")
 
 client.connect()
 
-# MetadataSemanticSearch
-# Get the collection
-movies = client.collections.get("Movie")
-
-# Perform query
-response = movies.query.near_text(
-    query="dystopian future",
-    limit=5,
-    return_metadata=wq.MetadataQuery(distance=True)
-)
-
-# Inspect the response
-for o in response.objects:
-    print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
-    print(f"Distance to query: {o.metadata.distance:.3f}\n")  # Print the distance of the object from the query
-
-client.close()
-# END MetadataSemanticSearch
-
-
-print("\n\n")
-
-client.connect()
+query_text = "history"
+query_vector = query(query_text)
 
 # MetadataBM25Search
 # Get the collection
@@ -106,7 +104,8 @@ movies = client.collections.get("Movie")
 
 # Perform query
 response = movies.query.hybrid(
-    query="history",
+    query="history",        # For BM25 part of the hybrid search
+    vector=query_vector,    # For vector part of the hybrid search
     limit=5,
     return_metadata=wq.MetadataQuery(score=True)
 )
@@ -114,7 +113,7 @@ response = movies.query.hybrid(
 # Inspect the response
 for o in response.objects:
     print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
-    print(f"BM25 score: {o.metadata.score:.3f}\n")  # Print the hybrid search score of the object from the query
+    print(f"Hybrid score: {o.metadata.score:.3f}\n")  # Print the hybrid search score of the object from the query
 
 client.close()
 # END MetadataHybridSearch
@@ -124,13 +123,16 @@ print("\n\n")
 
 client.connect()
 
+query_text = "history"
+query_vector = query(query_text)
+
 # FilteredSemanticSearch
 # Get the collection
 movies = client.collections.get("Movie")
 
 # Perform query
-response = movies.query.near_text(
-    query="dystopian future",
+response = movies.query.near_vector(
+    near_vector=query_vector,
     limit=5,
     return_metadata=wq.MetadataQuery(distance=True),
     # highlight-start
