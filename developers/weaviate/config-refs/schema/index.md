@@ -1,6 +1,6 @@
 ---
 title: Collection schema
-sidebar_position: 2
+sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
