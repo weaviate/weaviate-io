@@ -72,7 +72,6 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | <code>CLUSTER<wbr />_DATA<wbr />_BIND<wbr />_PORT</code> | Port for exchanging data. | `string - number` | `7103` |
 | <code>CLUSTER<wbr />_JOIN</code> | The service name of the "founding" member node in a cluster setup | `string` | `weaviate-node-1:7100` |
 
-
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
