@@ -247,9 +247,11 @@
   gap: 10px;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 110%;
 
   @media screen and (max-width: 900px) {
     justify-content: center;
+    width: 100%;
   }
 }
 

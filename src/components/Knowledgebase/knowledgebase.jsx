@@ -99,6 +99,17 @@ export default function KnowledgeBase() {
                 />
                 <label htmlFor="filterImage">Images</label>
               </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterDatabases"
+                  name="cardFilter"
+                  value="Databases"
+                  checked={selectedCard === 'Databases'}
+                  onChange={() => handleCardFilter('Databases')}
+                />
+                <label htmlFor="filterDatabases">Databases</label>
+              </div>
             </div>
           </div>
 
