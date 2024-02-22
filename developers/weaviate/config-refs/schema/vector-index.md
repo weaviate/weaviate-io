@@ -1,6 +1,6 @@
 ---
-title: Vector index configuration
-sidebar_position: 13
+title: Vector indexes
+sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
