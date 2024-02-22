@@ -23,7 +23,7 @@ client.collections.delete("MMMovie")
 
 # CreateMovieCollection
 client.collections.create(
-    name="Movie",
+    name="MovieMM",
     properties=[
         wc.Property(name="title", data_type=wc.DataType.TEXT),
         wc.Property(name="overview", data_type=wc.DataType.TEXT),
@@ -31,9 +31,10 @@ client.collections.create(
         wc.Property(name="genre_ids", data_type=wc.DataType.INT_ARRAY),
         wc.Property(name="release_date", data_type=wc.DataType.DATE),
         wc.Property(name="tmdb_id", data_type=wc.DataType.INT),
-        wc.Property(name="poster", data_type=wc.DataType.BLOB)
+        wc.Property(name="poster", data_type=wc.DataType.BLOB),
+        wc.Property(name="media_type", data_type=wc.DataType.TEXT),
     ],
-    # Define the vectorizer module
+    # Define & configure the vectorizer module
     vectorizer_config=wc.Configure.Vectorizer.multi2vec_clip(
         image_fields=wc.Multi2VecField(name="poster", weight=0.8),
         text_fields=wc.Multi2VecField(name="title", weight=0.1),
