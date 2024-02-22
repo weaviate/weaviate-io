@@ -66,6 +66,5 @@ with movies.batch.rate_limit(2400) as batch:
 # Check for failed objects
 if len(movies.batch.failed_objects) > 0:
     print(f"Failed to import {len(movies.batch.failed_objects)} objects")
-    print(movies.batch.failed_objects)
 
 client.close()

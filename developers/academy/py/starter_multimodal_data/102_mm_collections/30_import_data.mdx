@@ -19,16 +19,20 @@ This example imports the movie data into our collection.
 />
 
 The code:
-- Loads the source data & gets the collection
+- Loads the source text and image data
+- Gets the collection
 - Enters a context manager with a batcher (`batch`) object
-- Loops through the data and adds objects to the batcher
+- Loops through the data and:
+    - Finds corresponding image to the text
+    - Converts the image to base64
+    - Adds objects to the batcher
 - Prints out any import errors
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Explain the code
 
 ### <i class="fa-solid fa-chalkboard"></i> Preparation
 
-We use the requests library to load the data from the source, in this case a JSON file. The data is then converted to a Pandas DataFrame for easier manipulation.
+We use the requests library to load the data from the source, in this case a JSON file containing text data and a Zip file containing posters. The text data is then converted to a Pandas DataFrame for easier manipulation and the images are extracted from the Zip file.
 
 Then, we create a collection object (with `client.collections.get`) so we can interact with the collection.
 
@@ -54,6 +58,15 @@ The data is converted from a string to the correct data types for Weaviate. For 
 <FilteredTextBlock
   text={PyCode}
   startMarker="# Convert data types"
+  endMarker="# Convert image to base64"
+  language="py"
+/>
+
+To save the image data as a `BLOB` (binary large object) data type, we convert the image to base64.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Convert image to base64"
   endMarker="# Build the object payload"
   language="py"
 />

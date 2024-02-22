@@ -73,6 +73,5 @@ with movies.batch.dynamic() as batch:
 # Check for failed objects
 if len(movies.batch.failed_objects) > 0:
     print(f"Failed to import {len(movies.batch.failed_objects)} objects")
-    print(movies.batch.failed_objects)
 
 client.close()

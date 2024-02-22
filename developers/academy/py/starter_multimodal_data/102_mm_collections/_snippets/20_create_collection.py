@@ -19,7 +19,7 @@ client = weaviate.connect_to_local()
 
 # Actual instantiation
 
-client.collections.delete("MMMovie")
+client.collections.delete("MovieMM")
 
 # CreateMovieCollection
 client.collections.create(
@@ -32,13 +32,10 @@ client.collections.create(
         wc.Property(name="release_date", data_type=wc.DataType.DATE),
         wc.Property(name="tmdb_id", data_type=wc.DataType.INT),
         wc.Property(name="poster", data_type=wc.DataType.BLOB),
-        wc.Property(name="media_type", data_type=wc.DataType.TEXT),
     ],
     # Define & configure the vectorizer module
     vectorizer_config=wc.Configure.Vectorizer.multi2vec_clip(
-        image_fields=wc.Multi2VecField(name="poster", weight=0.8),
-        text_fields=wc.Multi2VecField(name="title", weight=0.1),
-        text_fields=wc.Multi2VecField(name="overview", weight=0.1),
+        image_fields=["poster"],  # The vector just comes from the image
     ),
     # Define the generative module
     generative_config=wc.Configure.Generative.openai()

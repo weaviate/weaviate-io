@@ -32,6 +32,8 @@ Properties are the object attributes that you want to store in the collection. E
 
 In our movie database, we have properties like `title`, `release_date` and `genre_ids`, with data types like `TEXT` (string), `DATE` (date), or `INT` (integer). It's also possible to have arrays of integers, like we have with `genre_ids`.
 
+As a multimodal object, we also have the `poster` property which is the image data, which is saved as a `BLOB` (binary large object) data type.
+
 #### Auto-schema
 
 Weaviate can automatically [infer the schema](/developers/weaviate/config-refs/schema/index.md#auto-schema) from the data. However, it's a good practice to define the properties explicitly, for better control and to avoid surprises.
@@ -40,11 +42,13 @@ Weaviate can automatically [infer the schema](/developers/weaviate/config-refs/s
 
 If you do not specify the vector yourself, Weaviate will use a specified vectorizer to generate vector embeddings from your data.
 
-In this code example, we specify the `text2vec-openai` module with default options.
+In this code example, we specify the `multi2vec-clip` module. This module uses the CLIP model to generate vector embeddings from the text and image data.
+
+It is possible to specify one or more of text and image properties to be used for vectorization. In this example, we keep it simple and specify that the `poster` property is the source (image) data to be used for vectorization.
 
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# Define the vectorizer module"
+  startMarker="# Define & configure the vectorizer module"
   endMarker="# Define the generative module"
   language="py"
 />
