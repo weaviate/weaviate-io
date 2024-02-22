@@ -16,8 +16,9 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 Single vector collections are valid and continue to use the original collection syntax. If, however, you configure multiple vectors, you must use the new, named vector syntax. 
 
+
 ### JSON
-The legacy single vector syntax is valid for  use with legacy collections:
+The legacy, single vector syntax is valid for use with collections that don't have named vectors:
 
 ```json
 {
@@ -29,7 +30,7 @@ The legacy single vector syntax is valid for  use with legacy collections:
 }
 ```
 
-Collections with multiple, named vectors use the new syntax.
+Collections with multiple, named vectors use the new syntax to specify named vectors.
 
 ```json
 {
@@ -97,7 +98,8 @@ Named vector collections support [hybrid search](/weaviate/search/hybrid.md), bu
 			}
     }
   }
-}``` 
+}
+``` 
 
 ## Related pages
 
