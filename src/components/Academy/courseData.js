@@ -8,7 +8,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "setup_weaviate", "text_collections", "text_searches", "text_rag"
+      "text_setup_weaviate", "text_collections", "text_searches", "text_rag"
     ],
     learningGoals: [
       "How to create a Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
@@ -25,12 +25,12 @@ export const courseData = {
     title: "Your own vectors with Weaviate",
     courseId: "PY_1v",
     body: "Project-based learning where you'll learn how to build with Weaviate and your own data and vectors. This version is for those who prefer to use your own vectors built outside of Weaviate.",
-    buttonType: "TBD",
+    buttonType: "Click here",
     buttonURL: "/developers/academy/starter_custom_vectors",
     badgeType: "course",
     isCourse: true,
     units: [
-      "setup_weaviate", "byov_collections", "byov_searches", "byov_rag"
+      "byov_setup_weaviate", "byov_collections", "byov_searches", "byov_rag"
     ],
     learningGoals: [
       "How to create a cloud Weaviate instance, add data to it to enable semantic searching, and use AI through retrieval augmented generation."
@@ -48,7 +48,6 @@ export const courseData = {
     courseId: "PY_1m",
     body: "Project-based learning where you'll learn how to build with Weaviate and multi-modal data. Weaviate generates the vectors for you.",
     buttonType: "TBD",
-    buttonURL: "/developers/academy/starter_custom_vectors",
     badgeType: "course",
     isCourse: true,
     units: [

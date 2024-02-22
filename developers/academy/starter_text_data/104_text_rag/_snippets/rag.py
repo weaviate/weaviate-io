@@ -1,15 +1,7 @@
 # START-ANY
 import os
 import weaviate
-import weaviate.classes.query as wq
 import os
-# END-ANY
-
-# FilteredSemanticSearch
-from datetime import datetime
-# END FilteredSemanticSearch
-
-# START-ANY
 
 # END-ANY
 

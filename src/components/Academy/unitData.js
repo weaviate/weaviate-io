@@ -1,5 +1,5 @@
 export const unitData = {
-  "setup_weaviate": {
+  "text_setup_weaviate": {
     title: "Set up Weaviate",
     body: "Set up a Weaviate instance and connect to it.",
     buttonType: "Click here",
@@ -60,10 +60,26 @@ export const unitData = {
       "Perform RAG on the entire set of returned objects.",
     ]
   },
+  "byov_setup_weaviate": {
+    title: "Set up Weaviate",
+    body: "Set up a Weaviate instance and connect to it.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/starter_custom_vectors/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a Weaviate instance and connect to it with the Python client."
+    ],
+    learningOutcomes: [
+      "Install the latest Weaviate Python client.",
+      "Create a Weaviate instance.",
+      "Connect to the Weaviate instance using the Python client and communicate with it."
+    ]
+  },
   "byov_collections": {
     title: "Populate the database",
     body: "Create a collection and import data with your own vectors.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/starter_custom_vectors/object_collections",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import text data with your own vectors using batch imports."
@@ -77,7 +93,8 @@ export const unitData = {
   "byov_searches": {
     title: "Perform searches",
     body: "Learn how to use search functions in Weaviate.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/starter_custom_vectors/object_searches",
     badgeType: "practical",
     learningGoals: [
       "Perform semantic, keyword and hybrid searches."
@@ -92,7 +109,8 @@ export const unitData = {
   "byov_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/starter_custom_vectors/object_rag",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."

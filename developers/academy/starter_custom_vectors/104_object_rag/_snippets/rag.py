@@ -1,15 +1,30 @@
+# GetQueryVector
+import requests
+import os
+
+# Set parameters
+model_id = "sentence-transformers/all-MiniLM-L6-v2"
+hf_token = os.getenv("HUGGINGFACE_APIKEY")
+
+api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
+headers = {"Authorization": f"Bearer {hf_token}"}
+
+
+# Define a function to call the endpoint and obtain embeddings
+def query(texts):
+    response = requests.post(
+        api_url,
+        headers=headers,
+        json={"inputs": texts, "options": {"wait_for_model": True}},
+    )
+    return response.json()
+# END GetQueryVector
+
+
 # START-ANY
 import os
 import weaviate
-import weaviate.classes.query as wq
 import os
-# END-ANY
-
-# FilteredSemanticSearch
-from datetime import datetime
-# END FilteredSemanticSearch
-
-# START-ANY
 
 # END-ANY
 
@@ -28,13 +43,16 @@ client = weaviate.connect_to_wcs(
 
 # END-ANY
 
+query_text = "dystopian future"
+query_vector = query(query_text)
+
 # SinglePromptGeneration
 # Get the collection
 movies = client.collections.get("Movie")
 
 # Perform query
-response = movies.generate.near_text(
-    query="dystopian future",
+response = movies.generate.near_vector(
+    near_vector=query_vector,
     limit=5,
     # highlight-start
     single_prompt="Translate this into French: {title}"
@@ -62,8 +80,8 @@ client.connect()
 movies = client.collections.get("Movie")
 
 # Perform query
-response = movies.generate.near_text(
-    query="dystopian future",
+response = movies.generate.near_vector(
+    near_vector=query_vector,
     limit=5,
     # highlight-start
     grouped_task="What do these movies have in common?",

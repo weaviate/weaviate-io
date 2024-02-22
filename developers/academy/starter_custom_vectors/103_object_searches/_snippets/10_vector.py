@@ -21,7 +21,7 @@ def query(texts):
 
 
 query_text = "dystopian future"
-vector = query(query_text)
+query_vector = query(query_text)
 # END GetQueryVector
 
 
@@ -57,7 +57,7 @@ movies = client.collections.get("Movie")
 
 # Perform query
 response = movies.query.near_vector(
-    query=vector,  # A list of floating point numbers
+    query=query_vector,  # A list of floating point numbers
     limit=5,
     return_metadata=wq.MetadataQuery(distance=True)
 )

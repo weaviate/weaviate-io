@@ -11,7 +11,7 @@ A 'single prompt' generation wil perform RAG queries on each retrieved object. T
 
 ### <i class="fa-solid fa-code"></i> Code
 
-This example finds entries in "Movie" whose text best matches the query "dystopian future". Then, instructs the large language model to translate the title of each movie into French.
+This example finds entries in "Movie" whose vector best matches the query vector (for "dystopian future"). Then, instructs the large language model to translate the title of each movie into French.
 
 Each of the results are then printed out to the console.
 
@@ -32,14 +32,14 @@ You must pass on one or more properties to the `single_prompt` parameter through
 ```text
 In Time
 À temps
-Gattaca
-Gattaca
+Looper
+Boucleur
 I, Robot
 Je, Robot
-Mad Max: Fury Road
-Mad Max: Fury Road
-The Maze Runner
-Le Labyrinthe
+The Matrix
+La Matrice
+Children of Men
+Les enfants des hommes
 ```
 
 </details>
