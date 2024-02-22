@@ -152,7 +152,7 @@ import weaviate
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))
+    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))  # Values in seconds
 )
 # END LocalInstantiationWithTimeout
 
@@ -181,7 +181,7 @@ client = weaviate.WeaviateClient(
     },
     additional_config=weaviate.config.AdditionalConfig(
         startup_period=10,
-        timeout=(5, 15)
+        timeout=(5, 15)  # Values in seconds
     ),
 )
 

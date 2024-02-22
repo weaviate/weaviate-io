@@ -39,7 +39,7 @@ import weaviate
 
 client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
 
-client.schema.get()  # Get the schema to test connection
+assert client.is_ready()  # This should return True if the client is connected to the Weaviate instance
 ```
 
 Or, with additional arguments such as those below:
@@ -58,7 +58,7 @@ client = weaviate.Client(
   }
 )
 
-client.schema.get()  # Get the schema to test connection
+assert client.is_ready()  # This should return True if the client is connected to the Weaviate instance
 ```
 
 ## Authentication
