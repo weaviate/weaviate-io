@@ -41,10 +41,6 @@ The POST body requires the following field:
 | ---- | ---- | ---- | ---- |
 | `objects` | array of data objects | yes | Array of [objects](./objects.md#parameters-1) |
 
-### Multi-tenancy
-
-You can use batching in collections with [multi-tenancy](../../concepts/data.md#multi-tenancy) is enabled. For example, batch creation of objects works similarly to [single object creation](./objects.md#create-a-data-object), by passing the `tenant` parameter in the object body.
-
 ### Example request
 
 import BatchObjects from '/_includes/code/batch.objects.mdx';
@@ -193,6 +189,10 @@ Possible values for `output`:
 import BatchDeleteObjects from '/_includes/code/batch.delete.objects.mdx';
 
 <BatchDeleteObjects/>
+
+### Multi-tenancy
+
+You can use batching in collections with [multi-tenancy](../../concepts/data.md#multi-tenancy) is enabled. For example, batch creation of objects works similarly to [single object creation](./objects.md#create-a-data-object), by passing the `tenant` parameter in the object body.
 
 ## Error handling
 
