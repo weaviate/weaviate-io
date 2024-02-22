@@ -5,17 +5,9 @@ image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---
 
-<!-- TODO - create OG image -->
+To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment, set these environment variables
 
-
-
-## Overview
-
-This page includes a comprehensive list of environment variables that can be used to configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kubernetes](../installation/kubernetes.md) deployment.
-
-## List of environment variables
-
-### General
+## General
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
@@ -44,7 +36,7 @@ This page includes a comprehensive list of environment variables that can be use
 | `MODULES_CLIENT_TIMEOUT` | Timeout for requests to Weaviate modules. Default: `50s` | `string - duration` | `5s`, `10m`, `1h` |
 | `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` |
 
-### Module-specific
+## Module-specific
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
@@ -54,7 +46,7 @@ This page includes a comprehensive list of environment variables that can be use
 | <code>IMAGE<wbr />_INFERENCE<wbr />_API</code> | The endpoint where to reach the img2vec-neural module if enabled | `string` | `http://localhost:8000` |
 | <code>USE_SENTENCE<wbr />_TRANSFORMERS<wbr />_VECTORIZER</code> | (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only. | `string - true/false` | `true` |
 
-### Authentication & Authorization
+## Authentication and authorization
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
@@ -71,7 +63,7 @@ This page includes a comprehensive list of environment variables that can be use
 | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_USERS</code> | Users with admin permission| `string - comma-separated list` | <code>jane<wbr />@example.com,<wbr />john<wbr />@example.com</code> |
 | <code>AUTHORIZATION<wbr />_ADMINLIST<wbr />_READONLY<wbr />_USERS</code> | Users with read-only permission| `string - comma-separated list` | <code>alice<wbr />@example.com,<wbr />dave<wbr />@example.com</code> |
 
-### Multi-node setups
+## Multi-node instances
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
