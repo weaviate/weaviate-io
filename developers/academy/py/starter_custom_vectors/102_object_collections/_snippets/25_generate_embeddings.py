@@ -35,7 +35,7 @@ for i, row in enumerate(df.itertuples(index=False)):
     src_text = "Title" + row.title + "; Overview: " + row.overview
     # Add to the buffer
     src_texts.append(src_text)
-    if (len(src_texts) == 50) or (i+1 == len(df)):  # Get embeddings in batches of 50
+    if (len(src_texts) == 50) or (i + 1 == len(df)):  # Get embeddings in batches of 50
         # Get a batch of embeddings
         output = query(src_texts)
         emb_df = pd.DataFrame(output)

@@ -19,6 +19,8 @@ def query(texts):
         json={"inputs": texts, "options": {"wait_for_model": True}},
     )
     return response.json()
+
+
 # END GetQueryVector
 
 
@@ -26,10 +28,12 @@ def query(texts):
 import weaviate
 import weaviate.classes.query as wq
 import os
+
 # END-ANY
 
 # FilteredSemanticSearch
 from datetime import datetime
+
 # END FilteredSemanticSearch
 
 # START-ANY
@@ -39,8 +43,10 @@ from datetime import datetime
 headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
-    headers = headers
+    auth_credentials=weaviate.auth.AuthApiKey(
+        os.getenv("WCS_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCS key
+    headers=headers,
 )
 
 # START-ANY
@@ -60,7 +66,9 @@ response = movies.query.fetch_objects(limit=5)
 
 # Inspect the response
 for o in response.objects:
-    print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
+    print(
+        o.properties["title"], o.properties["release_date"].year
+    )  # Print the title and release year (note the release date is a datetime object)
 
 
 client.close()
@@ -80,15 +88,17 @@ movies = client.collections.get("Movie")
 
 # Perform query
 response = movies.query.bm25(
-    query="history",
-    limit=5,
-    return_metadata=wq.MetadataQuery(score=True)
+    query="history", limit=5, return_metadata=wq.MetadataQuery(score=True)
 )
 
 # Inspect the response
 for o in response.objects:
-    print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
-    print(f"BM25 score: {o.metadata.score:.3f}\n")  # Print the BM25 score of the object from the query
+    print(
+        o.properties["title"], o.properties["release_date"].year
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"BM25 score: {o.metadata.score:.3f}\n"
+    )  # Print the BM25 score of the object from the query
 
 client.close()
 # END MetadataBM25Search
@@ -104,16 +114,20 @@ movies = client.collections.get("Movie")
 
 # Perform query
 response = movies.query.hybrid(
-    query="history",        # For BM25 part of the hybrid search
-    vector=query_vector,    # For vector part of the hybrid search
+    query="history",  # For BM25 part of the hybrid search
+    vector=query_vector,  # For vector part of the hybrid search
     limit=5,
-    return_metadata=wq.MetadataQuery(score=True)
+    return_metadata=wq.MetadataQuery(score=True),
 )
 
 # Inspect the response
 for o in response.objects:
-    print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
-    print(f"Hybrid score: {o.metadata.score:.3f}\n")  # Print the hybrid search score of the object from the query
+    print(
+        o.properties["title"], o.properties["release_date"].year
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"Hybrid score: {o.metadata.score:.3f}\n"
+    )  # Print the hybrid search score of the object from the query
 
 client.close()
 # END MetadataHybridSearch
@@ -142,8 +156,12 @@ response = movies.query.near_vector(
 
 # Inspect the response
 for o in response.objects:
-    print(o.properties["title"], o.properties["release_date"].year)  # Print the title and release year (note the release date is a datetime object)
-    print(f"Distance to query: {o.metadata.distance:.3f}\n")  # Print the distance of the object from the query
+    print(
+        o.properties["title"], o.properties["release_date"].year
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"Distance to query: {o.metadata.distance:.3f}\n"
+    )  # Print the distance of the object from the query
 
 client.close()
 # END FilteredSemanticSearch

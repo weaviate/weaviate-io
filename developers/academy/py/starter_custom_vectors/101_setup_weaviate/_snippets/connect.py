@@ -4,7 +4,9 @@ import os
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY"))  # Replace with your WCS key
+    auth_credentials=weaviate.auth.AuthApiKey(
+        os.getenv("WCS_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCS key
 )
 # END WCSInstantiation
 
@@ -14,12 +16,16 @@ client.close()
 import weaviate
 import os
 
-headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+headers = {
+    "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+}  # Replace with your OpenAI API key
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
-    headers=headers
+    auth_credentials=weaviate.auth.AuthApiKey(
+        os.getenv("WCS_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCS key
+    headers=headers,
 )
 # END WCSAPIKeyInstantiation
 
@@ -35,7 +41,9 @@ client = weaviate.connect_to_local()
 import weaviate
 import os
 
-headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
+headers = {
+    "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
+}  # Replace with your OpenAI API key
 
 client = weaviate.connect_to_local(headers=headers)
 # END DockerAPIKeyInstantiation
@@ -55,7 +63,7 @@ print(json.dumps(metainfo, indent=2))  # Print the meta information in a readabl
 # END GetMeta
 
 
-'''
+"""
 # OutputGetMeta
 {
   "hostname": "http://[::]:8080",
@@ -117,7 +125,7 @@ print(json.dumps(metainfo, indent=2))  # Print the meta information in a readabl
   "version": "1.23.8"
 }
 # END OutputGetMeta
-'''
+"""
 
 
 client.close()
@@ -130,7 +138,9 @@ import os
 # END TryFinallyCloseDemo
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY"))  # Replace with your WCS key
+    auth_credentials=weaviate.auth.AuthApiKey(
+        os.getenv("WCS_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCS key
 )
 # TryFinallyCloseDemo
 # Instantiate your client (not shown). e.g.:

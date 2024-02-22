@@ -1,14 +1,18 @@
 # CreateMovieCollection
 import weaviate
+
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
 import os
+
 # CreateMovieCollection  # END SubmoduleImport
 
 # END CreateMovieCollection
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY"))  # Replace with your WCS key
+    auth_credentials=weaviate.auth.AuthApiKey(
+        os.getenv("WCS_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCS key
 )
 
 # CreateMovieCollection
@@ -43,4 +47,3 @@ client.collections.create(
 
 client.close()
 # END CreateMovieCollection
-

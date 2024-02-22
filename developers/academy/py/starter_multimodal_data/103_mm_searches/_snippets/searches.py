@@ -15,19 +15,12 @@ from datetime import datetime
 # END-ANY
 
 headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
-client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("WCS_DEMO_ADMIN_KEY")
-    ),  # Replace with your WCS key
-    headers=headers,
-)
+client = weaviate.connect_to_local(headers=headers)
 
 # START-ANY
 # Instantiate your client (not shown). e.g.:
 # headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
-# client = weaviate.connect_to_wcs(..., headers=headers) or
-# client = weaviate.connect_to_local(..., headers=headers)
+# client = weaviate.connect_to_local(headers=headers)
 
 # END-ANY
 

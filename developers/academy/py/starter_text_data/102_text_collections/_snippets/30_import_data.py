@@ -9,13 +9,13 @@ from tqdm import tqdm
 import os
 
 # END BatchImportData
-headers={
-    "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
-}
+headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_ADMIN_KEY")),  # Replace with your WCS key
-    headers=headers
+    auth_credentials=weaviate.auth.AuthApiKey(
+        os.getenv("WCS_DEMO_ADMIN_KEY")
+    ),  # Replace with your WCS key
+    headers=headers,
 )
 
 # BatchImportData
@@ -35,12 +35,13 @@ movies = client.collections.get("Movie")
 
 # Enter context manager
 with movies.batch.rate_limit(2400) as batch:
-
     # Loop through the data
     for i, movie in tqdm(df.iterrows()):
         # Convert data types
         # Convert a JSON date to `datetime` and add time zone information
-        release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d").replace(
+            tzinfo=timezone.utc
+        )
         # Convert a JSON array to a list of integers
         genre_ids = json.loads(movie["genre_ids"])
 
@@ -51,7 +52,7 @@ with movies.batch.rate_limit(2400) as batch:
             "vote_average": movie["vote_average"],
             "genre_ids": genre_ids,
             "release_date": release_date,
-            "tmdb_id": movie["id"]
+            "tmdb_id": movie["id"],
         }
 
         # Add object to batch queue
