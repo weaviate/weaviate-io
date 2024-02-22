@@ -143,7 +143,7 @@ To configure vectorization for collections and properties, use the `moduleConfig
 | `vectorizer` | collection | none | The module that vectorizes the data. |
 | `vectorizeClassName`| collection | `true` | When `true`, vectorize the class name. |
 |`skip` | property | `false` | When `true`, does not vectorize the property. |
-| `vectorizePropertyName` | property | When `true`, does not vectorize the property name. |
+| `vectorizePropertyName` | property | `false` | When `true`, does not vectorize the property name. |
 
 #### Example
 
