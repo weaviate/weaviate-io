@@ -207,7 +207,7 @@ To supply parameters at query time, adding them to the HTTP header.
 
 ### Distance metric
 
-You can change the distance metric used for vector searches. In most cases, you can start with `cosine` distances. You can see a list of supported distance metrics [here](../../config-refs/distances.md).
+You can change the distance metric used for vector searches. `cosine` distance is a good starting point. For supported distance metrics, see [Distance metrics](../../config-refs/distances.md).
 
 Consult the documentation of the model you are using to see which distance metrics are appropriate.
 
