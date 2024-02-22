@@ -144,6 +144,13 @@ For example:
   </TabItem>
 </Tabs>
 
+## Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
+
+Similarly, compression must be enabled for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression. 
 
 ## Related pages
 
