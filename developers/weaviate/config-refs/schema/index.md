@@ -131,8 +131,8 @@ It will:
 
 * Create a collection if an object is added to a non-existent collection.
 * Add any missing property from an object being added.
-* Infer array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
-* Infer nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
+* Infer array data types, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
+* Infer nested properties for `object` and `object[]` data types (introduced in `v1.22.0`).
 * Throw an error if an object being added contains a property that conflicts with an existing schema type. (e.g. trying to import text into a field that exists in the schema as `int`).
 
 :::tip Define the collection manually for production use
