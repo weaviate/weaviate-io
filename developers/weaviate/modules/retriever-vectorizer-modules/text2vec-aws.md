@@ -118,7 +118,8 @@ The following example configures the `Document` class to set the following param
 - vectorizer: `text2vec-aws`
 - distance metric: `cosine`
 - service: "sagemaker"
-- AWS region: `us-east-1`.
+- endpoint: AWS provides this value when you configure `sagemaker`
+- AWS region: `us-east-1`
 
 ```json
 {
@@ -133,7 +134,7 @@ The following example configures the `Document` class to set the following param
       },
       "moduleConfig": {
         "text2vec-aws": {
-          "service": "sagemaker"                    // Or "bedrock"  
+          "service": "sagemaker"  
           "endpoint": "YOUR_AWS_ENDPOINT"           // REQUIRED with "sagemaker"
            "region": "us-east-1"                    // REQUIRED
         }
