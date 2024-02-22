@@ -1,10 +1,10 @@
 export const courseData = {
   "starter_text_data": {
     title: "Text data with Weaviate",
-    courseId: "PY_1v",
+    courseId: "PY_101T",
     body: "Project-based learning where you'll learn how to build with Weaviate and any text data. Weaviate generates the vectors for you.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/starter_text_data",
+    buttonURL: "/developers/academy/py/starter_text_data",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -23,10 +23,10 @@ export const courseData = {
   },
   "starter_custom_vectors": {
     title: "Your own vectors with Weaviate",
-    courseId: "PY_1v",
+    courseId: "PY_101V",
     body: "Project-based learning where you'll learn how to build with Weaviate and your own data and vectors. This version is for those who prefer to use your own vectors built outside of Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/starter_custom_vectors",
+    buttonURL: "/developers/academy/py/starter_custom_vectors",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -45,7 +45,7 @@ export const courseData = {
   },
   "starter_multimodal": {
     title: "Multimodal data with Weaviate",
-    courseId: "PY_1m",
+    courseId: "PY_101M",
     body: "Project-based learning where you'll learn how to build with Weaviate and multi-modal data. Weaviate generates the vectors for you.",
     buttonType: "TBD",
     badgeType: "course",
@@ -69,7 +69,7 @@ export const courseData = {
     courseId: "TS_100",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/intro_weaviate_typescript",
+    buttonURL: "/developers/academy/js/intro_weaviate_typescript",
     badgeType: "course",
     isCourse: true,
     units: [
@@ -92,7 +92,7 @@ export const courseData = {
   //   courseId: "PY_200",
   //   body: "Expand on the `Getting to MVP` course for deeper dives into key topics vectorizer selection, multi-modal models, and best practices.",
   //   buttonType: "Click here",
-  //   buttonURL: "/developers/academy/building_with_weaviate",
+  //   buttonURL: "/developers/academy/py/building_with_weaviate",
   //   badgeType: "course",
   //   isCourse: true,
   //   units: [
@@ -160,10 +160,10 @@ export const courseData = {
   },
   "zero_to_mvp": {
     title: "Zero to MVP: The basics",
-    courseId: "P3_100",
+    courseId: "P3_1",
     body: "Start here: Get started with all the core knowledge and essential skills for building with Weaviate. Learn how to build a Weaviate database and effectively perform queries to find the right data.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp",
+    buttonURL: "/developers/academy/py/zero_to_mvp",
     badgeType: "course",
     isCourse: true,
     units: [
