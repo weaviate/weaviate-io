@@ -69,15 +69,17 @@ When there is only one vector, a `nearObject` query looks like this:
 }
 ```
 
-If collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the vector in the query.
+If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the vector in the query.
 
+These examples show GraphQL queries:
+ 
 import GraphQLExamples from '/_includes/code/config/multi-vector-examples.mdx';
 
 <GraphQLExamples />
 
 ## Hybrid search
 
-[Hybrid search](/weaviate/search/hybrid.md) is supported, but only for one vector at a time. To make a hybrid search, specify the vector to use:
+Named vector collections support [hybrid search](/weaviate/search/hybrid.md), but only for one vector at a time. To run a hybrid search, specify the vector to use:
 
 ```json
 {
