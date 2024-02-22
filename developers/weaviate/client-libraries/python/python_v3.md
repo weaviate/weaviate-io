@@ -39,7 +39,7 @@ import weaviate
 
 client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
 
-assert client.is_ready()  # Will return True if the client is connected & the server is ready
+assert client.is_ready()  # Will return True if the client is connected & the server is ready to accept requests
 ```
 
 Or, with additional arguments such as those below:
@@ -58,7 +58,7 @@ client = weaviate.Client(
   }
 )
 
-assert client.is_ready()  # Will return True if the client is connected & the server is ready
+assert client.is_ready()  # Will return True if the client is connected & the server is ready to accept requests
 ```
 
 ## Authentication
