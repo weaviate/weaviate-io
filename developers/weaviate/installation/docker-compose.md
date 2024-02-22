@@ -5,30 +5,32 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 
+Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance. 
 
-## Overview
+## Default Weaviate environment
 
-Weaviate supports deployment with Docker Compose, which allows you to run Weaviate on any OS supported by Docker.
+:::info Added in v1.24.0
 
-To start Weaviate with Docker, you can use a Docker Compose file, typically called `docker-compose.yml`. You can:
-* use the [Starter Docker Compose file](#starter-docker-compose-file),
-* generate one with the [configuration tool](#configurator),
-* pick one of the [examples](#example-configurations) below.
-
-:::note
-If you are new to Docker (Compose) and containerization, check out our [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).
 :::
+
+The default docker image doesn't need any configuration. To run a basic Weaviate instance, run this command from a terminal:
+
+```bash
+ docker run -p 8080:8080 semitechnologies/weaviate:1.24.0
+```
+
+The command sets the following default values:
+
+- `PERSISTENCE_DATA_PATH` defaults to `./data`
+- `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` defaults to `true`.
+- `QUERY_DEFAULTS_LIMIT` defaults to `10`.
 
 ## Starter Docker Compose file
-
-:::info Starter Docker Compose
-If you are new to Weaviate, this is a good place to start.
-:::
 
 We prepared a starter Docker Compose file, which will let you:
 * Run vector searches with `Cohere`, `HuggingFace`, `OpenAI`, and `Google` modules.
 * Search already vectorized data – no vectorizer required.
-* Retrieval augmentated generation (RAG) with `OpenAI` (i.e. `gpt-4`), `Cohere`, `Google` modules.
+* Retrieval augmented generation (RAG) with `OpenAI` (i.e. `gpt-4`), `Cohere`, `Google` modules.
 
 ### Download and run
 
@@ -338,6 +340,9 @@ Alternatively you can run docker compose entirely detached with `docker compose 
 1. Check that all environment variables are also applicable for the kubernetes setup and associated values.yaml config file.
 2. Take this section out and into References; potentially consolidate with others as they are strewn around the docs. (E.g. backup env variables are not included here.) -->
 
+## Related pages
+
+- If you are new to Docker, see [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
