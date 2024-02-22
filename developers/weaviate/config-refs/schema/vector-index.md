@@ -11,6 +11,10 @@ image: og/docs/configuration.jpg
 
 Vector indexes facilitate efficient, vector-first data storage and retrieval.
 
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
+
 ## Index configuration parameters
 
 Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
