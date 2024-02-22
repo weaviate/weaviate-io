@@ -51,10 +51,10 @@ To use `text2vec-aws`, enable it in your Docker Compose file (`docker-compose.ym
 | :-- | :-- | :-- | :-- | :-- |
 |`ENABLE_MODULES` | string | no | none | Set `text2vec-aws` to enable the module.
 | `DEFAULT_VECTORIZER_MODULE` | string | yes | none | The default vectorizer module. To make `text2vec-aws` the default vectorizer, set this parameter to `text2vec-aws`.
-| `AWS_ACCESS_KEY` | string | yes | Your AWS access key. An alternative for `AWS_ACCESS_KEY_ID`.
-| `AWS_ACCESS_KEY_ID` | string | yes | Your AWS access key. An alternative for `AWS_ACCESS_KEY`.
-| `AWS_SECRET_KEY` | string | yes | Your AWS secret access key. An alternative for `AWS_SECRET_ACCESS_KEY`.
-| `AWS_SECRET_ACCESS_KEY`  string | yes | Your AWS secret access key. An alternative for `AWS_SECRET_KEY`.
+| `AWS_ACCESS_KEY` | string | yes | none | Your AWS access key. An alternative for `AWS_ACCESS_KEY_ID`. |
+| `AWS_ACCESS_KEY_ID` | string | yes | none | Your AWS access key. An alternative for `AWS_ACCESS_KEY`. |
+| `AWS_SECRET_KEY` | string | yes | none | Your AWS secret access key. An alternative for `AWS_SECRET_ACCESS_KEY`. |
+| `AWS_SECRET_ACCESS_KEY` | string | yes | none |Your AWS secret access key. An alternative for `AWS_SECRET_KEY`. |
 
 #### Example
 
