@@ -73,6 +73,11 @@ export default function HomepageJoinCommunity() {
                   important: false,
                 }}
               ></iframe>
+              <span className={styles.formFooter}>
+                By submitting, I agree to the{' '}
+                <Link href="/services">Terms of Service </Link>and{' '}
+                <Link href="/services/privacy-policy">Privacy Policy</Link>.
+              </span>
             </div>
           </div>
         </div>
