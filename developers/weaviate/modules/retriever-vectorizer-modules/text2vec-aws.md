@@ -5,27 +5,30 @@ image: og/docs/modules/text2vec-aws.jpg
 # tags: ['text2vec', 'text2vec-aws', 'aws']
 ---
 
-
-## Overview
-
 :::info Added in `v1.22.5`
+Starting in v1.22.5, [AWS Bedrock](https://aws.amazon.com/bedrock/) is supported.
 :::
 
-The `text2vec-aws` module enables Weaviate to obtain vectors using [AWS Bedrock](https://aws.amazon.com/bedrock/).
+:::info Added in `v1.24.0`
+Starting in v1.24.0, [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is supported.
+:::
 
-Key notes:
+The `text2vec-aws` module allows Weaviate to access [AWS Bedrock](https://aws.amazon.com/bedrock/) and [AWS Sagemaker](https://aws.amazon.com/sagemaker/) services.
 
-- As it uses a third-party API, you will need to provide AWS API credentials.
-- You must set an available & supported model.
-    - There is no default model set for this module.
-    - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) to the desired modules from AWS Bedrock so it becomes available in your account.
-    - Then, set an available model in your class configuration.
-    - Not all AWS Bedrock models are supported. See the [Supported models](#supported-models) section for more information.
-- Its usage may incur costs.
-    - Please check the AWS Bedrock [pricing page](https://aws.amazon.com/bedrock/pricing/), especially before vectorizing large amounts of data.
+## Considerations
+
 - This module is available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- Set the appropriate [distance metric](#distance-metric) in your class configuration, depending on the model used.
+- `Bedrock` and `Sagemaker` are third party APIs. You must provide AWS API credentials.
+- `Bedrock` requires a model. 
+    - There is no default `Bedrock` model set for this module. 
+    - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) from AWS Bedrock to make models available in your account.
+    - Not all AWS Bedrock models are supported. See [Supported models](#supported-models).
+    - If you set `"service": "bedrock"``, set a model as well. For example, `"model": "amazon.titan-embed-text-v1"`
+    - Set a [distance metric](#distance-metric) in your class configuration that corresponds to the model you use.
+- These APIs may incur costs. Before vectorizing large amounts of data, check the pricing pages.
+    - [AWS Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
+    - [AWS Sagemaker](https://aws.amazon.com/sagemaker/pricing/)
+- Enabling this module enables the [`nearText`](/developers/weaviate/api/graphql/search-operators.md#neartext) search operator.
 
 import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
 
@@ -38,24 +41,28 @@ You must provide [access key based AWS credentials](https://docs.aws.amazon.com/
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
-:::
-
 ### Docker Compose file
 
-To use `text2vec-aws`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
+To use `text2vec-aws`, enable it in your Docker Compose file (`docker-compose.yml`).
 
 #### Parameters
 
-- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-aws` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-aws` to make it the default for all classes.
-- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (Optional): Your AWS access key. You can also provide the key at query time.
-- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (Optional): Your AWS secret access key. You can also provide the key at query time.
+| Parameter | Type | Optional | Default | Description |
+| :-- | :-- | :-- | :-- | :-- |
+|`ENABLE_MODULES` | string | no | none | Set `text2vec-aws` to enable the module.
+| `DEFAULT_VECTORIZER_MODULE` | string | yes | none | The default vectorizer module. To make `text2vec-aws` the default vectorizer, set this parameter to `text2vec-aws`.
+| `AWS_ACCESS_KEY` | string | yes | Your AWS access key. An alternative for `AWS_ACCESS_KEY_ID`.
+| `AWS_ACCESS_KEY_ID` | string | yes | Your AWS access key. An alternative for `AWS_ACCESS_KEY`.
+| `AWS_SECRET_KEY` | string | yes | Your AWS secret access key. An alternative for `AWS_SECRET_ACCESS_KEY`.
+| `AWS_SECRET_ACCESS_KEY`  string | yes | Your AWS secret access key. An alternative for `AWS_SECRET_KEY`.
 
 #### Example
 
-This configuration enables `text2vec-aws`, sets it as the default vectorizer, and sets the AWS authentication credentials.
+This configuration does the following:
+
+- Enables the `text2vec-aws` vectorizer
+- Sets `text2vec-aws` as the default vectorizer
+- Sets AWS authentication credentials
 
 ```yaml
 ---
@@ -97,7 +104,12 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-aws`, distance metric to `cosine`, model to `amazon.titan-embed-text-v1` and the AWS region to `us-east-1`.
+The following example configures the `Document` class to set the following parameters:
+
+- vectorizer: `text2vec-aws`
+- distance metric: `cosine`
+- service: "sagemaker"
+- AWS region: `us-east-1`.
 
 ```json
 {
@@ -112,8 +124,9 @@ The following example configures the `Document` class by setting the vectorizer 
       },
       "moduleConfig": {
         "text2vec-aws": {
-          "model": "amazon.titan-embed-text-v1",    // REQUIRED
-          "region": "us-east-1"                     // REQUIRED
+          "service": "sagemaker"                    // Or "bedrock"  
+          "endpoint": "YOUR_AWS_ENDPOINT"           // REQUIRED with "sagemaker"
+           "region": "us-east-1"                    // REQUIRED
         }
       },
       // highlight-end
