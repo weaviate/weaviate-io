@@ -1,6 +1,8 @@
 # START-ANY
 import weaviate
 import weaviate.classes.query as wq
+import requests
+import base64
 import os
 
 # END-ANY
@@ -22,37 +24,23 @@ client = weaviate.connect_to_local(headers=headers)
 # headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
 # client = weaviate.connect_to_local(headers=headers)
 
-# END-ANY
+def url_to_base64(url):
+    image_response = requests.get(url)
+    content = image_response.content
+    return base64.b64encode(content).decode("utf-8")
 
-# BasicQuery
-# Get the collection
-movies = client.collections.get("Movie")
-
-# Perform query
-response = movies.query.fetch_objects(limit=5)
-
-# Inspect the response
-for o in response.objects:
-    print(
-        o.properties["title"], o.properties["release_date"].year
-    )  # Print the title and release year (note the release date is a datetime object)
-
-
-client.close()
-# END BasicQuery
-
-
-print("\n\n")
-
-client.connect()
+# END-ANY)
 
 # MetadataSemanticSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieMM")
 
 # Perform query
-response = movies.query.near_text(
-    query="dystopian future", limit=5, return_metadata=wq.MetadataQuery(distance=True)
+src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg"
+query_b64 = url_to_base64(src_img_path)
+
+response = movies.query.near_image(
+    near_image=query_b64, limit=5, return_metadata=wq.MetadataQuery(distance=True)
 )
 
 # Inspect the response
@@ -74,7 +62,7 @@ client.connect()
 
 # MetadataBM25Search
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieMM")
 
 # Perform query
 response = movies.query.bm25(
@@ -100,7 +88,7 @@ client.connect()
 
 # MetadataHybridSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieMM")
 
 # Perform query
 response = movies.query.hybrid(
@@ -126,7 +114,7 @@ client.connect()
 
 # FilteredSemanticSearch
 # Get the collection
-movies = client.collections.get("Movie")
+movies = client.collections.get("MovieMM")
 
 # Perform query
 response = movies.query.near_text(

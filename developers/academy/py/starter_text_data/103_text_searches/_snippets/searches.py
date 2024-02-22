@@ -31,28 +31,6 @@ client = weaviate.connect_to_wcs(
 
 # END-ANY
 
-# BasicQuery
-# Get the collection
-movies = client.collections.get("Movie")
-
-# Perform query
-response = movies.query.fetch_objects(limit=5)
-
-# Inspect the response
-for o in response.objects:
-    print(
-        o.properties["title"], o.properties["release_date"].year
-    )  # Print the title and release year (note the release date is a datetime object)
-
-
-client.close()
-# END BasicQuery
-
-
-print("\n\n")
-
-client.connect()
-
 # MetadataSemanticSearch
 # Get the collection
 movies = client.collections.get("Movie")
