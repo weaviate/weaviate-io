@@ -35,7 +35,8 @@ client.collections.create(
     ],
     # Define & configure the vectorizer module
     vectorizer_config=wc.Configure.Vectorizer.multi2vec_clip(
-        image_fields=["poster"],  # The vector just comes from the image
+        image_fields=[wc.Multi2VecField(name="poster", weight=0.9)],    # 90% of the vector is from the poster
+        text_fields=[wc.Multi2VecField(name="title", weight=0.1)],      # 10% of the vector is from the title
     ),
     # Define the generative module
     generative_config=wc.Configure.Generative.openai()

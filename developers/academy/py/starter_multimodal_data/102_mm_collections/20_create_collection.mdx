@@ -44,7 +44,7 @@ If you do not specify the vector yourself, Weaviate will use a specified vectori
 
 In this code example, we specify the `multi2vec-clip` module. This module uses the CLIP model to generate vector embeddings from the text and image data.
 
-It is possible to specify one or more of text and image properties to be used for vectorization. In this example, we keep it simple and specify that the `poster` property is the source (image) data to be used for vectorization.
+You can specify any number of text and image properties to be used for vectorization, and weight them differently. The weights are used to determine the relative importance of each property in the vector embedding generation process. In this example, we vectorize the `poster` property (an image) with a 90% weight and the `title` property (a string) with a 10% weight.
 
 <FilteredTextBlock
   text={PyCode}
