@@ -213,7 +213,7 @@ Consult the documentation of the model you are using to see which distance metri
 
 ### API rate limits
 
-This module uses your AWS credentials. API limits that restrict your AWS account also apply to the module. When the API returns an rate limited error, Weaviate returns an error message.
+This module uses your AWS credentials. API limits that restrict your AWS account also apply to the module. When the API returns a rate limited error, Weaviate returns an error message.
 
 ### Import throttling
 
