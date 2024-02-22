@@ -5,6 +5,9 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
@@ -68,74 +71,9 @@ When there is only one vector, a `nearObject` query looks like this:
 
 If collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the vector in the query.
 
-A `nearVector` query: 
+import GraphQLExamples from '/_includes/code/config/multi-vector-examples.mdx';
 
-```json
-{
-    Get {
-      Publication(
-        nearVector: {
-          vector: [0.1, -0.15, 0.3]
-          targetVectors: ["title"] # array field
-        }
-      ){
-				content
-        _additional {
-          vectors {
-            title
-          }
-          distance
-        }
-      }
-    }
-}
-```
-
-A `nearObject` query:
-
-```json
-{
-    Get {
-      Publication(
-        nearObject: {
-          id: "uuid"
-          targetVectors: ["title"]
-        }
-      ){
-				content
-        _additional {
-          vectors {
-            title
-          }
-          distance
-        }
-      }
-    }
-}
-```
-
-A `nearText` query:
-
-```json
-{
-    Get {
-      Publication(
-        nearText: {
-          concepts: ["vector databases"]
-          targetVectors: ["title"]
-        }
-      ){
-				content
-        _additional {
-          vectors {
-            title
-          }
-          distance
-        }
-      }
-    }
-}
-```
+<GraphQLExamples />
 
 ## Hybrid search
 
@@ -159,7 +97,6 @@ A `nearText` query:
   }
 }``` 
 
-The GraphQL 
 ## Related pages
 
 - [Create objects](/weaviate/manage-data/create.mdx)
