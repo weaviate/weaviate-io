@@ -88,10 +88,9 @@ services:
 ...
 ```
 
-
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
+To configure module behavior for a collection, set collection level values in the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings
 
@@ -100,7 +99,7 @@ You can configure how the module will behave in each class through the [Weaviate
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
 | `model` | No | NONE | The model to use. You must provide an available & supported model name. |
-| `region` | Yes | NONE | AWS region name, e.g. `us-east-1`. |
+| `region` | Yes | NONE | AWS region name. For example, `us-east-1`. |
 
 #### Example
 
@@ -137,7 +136,7 @@ The following example configures the `Document` class to set the following param
 
 ### Vectorization settings
 
-You can set vectorizer behavior using the `moduleConfig` section under each class and property:
+To configure vectorization for collections and properties, use the `moduleConfig` section in the collection definition. 
 
 #### Class-level
 
