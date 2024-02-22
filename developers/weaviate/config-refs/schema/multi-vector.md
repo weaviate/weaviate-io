@@ -139,7 +139,25 @@ A `nearText` query:
 
 ## Hybrid search
 
-[Hybrid search](/weaviate/search/hybrid.md) is supported, but only for one vector at a time. 
+[Hybrid search](/weaviate/search/hybrid.md) is supported, but only for one vector at a time. To make a hybrid search, specify the vector to use:
+
+```json
+{
+  Get {
+    Article (
+      hybrid: {
+        properties: ["content"]
+        targetVectors: ["title"] # Only one vector is supported
+				query: "foo"
+      })
+     {
+      content
+      _additional {
+				score
+			}
+    }
+  }
+}``` 
 
 The GraphQL 
 ## Related pages
