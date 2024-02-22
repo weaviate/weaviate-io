@@ -40,7 +40,6 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 
 You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to use the API, including an AWS access key and a corresponding AWS secret access key. You can [set them as environment variables](#parameters), or [provide them at query time](#query-time-parameters).
 
-
 ## Weaviate instance configuration
 
 ### Docker Compose file
@@ -51,12 +50,13 @@ To use `text2vec-aws`, enable it in your Docker Compose file (`docker-compose.ym
 
 | Parameter | Type | Optional | Default | Description |
 | :-- | :-- | :-- | :-- | :-- |
-|`ENABLE_MODULES` | string | no | none | Set `text2vec-aws` to enable the module.
-| `DEFAULT_VECTORIZER_MODULE` | string | yes | none | The default vectorizer module. To make `text2vec-aws` the default vectorizer, set this parameter to `text2vec-aws`.
 | `AWS_ACCESS_KEY` | string | yes | none | Your AWS access key. An alternative for `AWS_ACCESS_KEY_ID`. |
 | `AWS_ACCESS_KEY_ID` | string | yes | none | Your AWS access key. An alternative for `AWS_ACCESS_KEY`. |
 | `AWS_SECRET_KEY` | string | yes | none | Your AWS secret access key. An alternative for `AWS_SECRET_ACCESS_KEY`. |
 | `AWS_SECRET_ACCESS_KEY` | string | yes | none |Your AWS secret access key. An alternative for `AWS_SECRET_KEY`. |
+| `DEFAULT_VECTORIZER_MODULE` | string | yes | none | The default vectorizer module. To make `text2vec-aws` the default vectorizer, set this parameter to `text2vec-aws`.
+|`ENABLE_MODULES` | string | no | none | Set `text2vec-aws` to enable the module.
+|`SERVICE` | string | yes | `bedrock` | Must be `bedrock` or `sagemaker`.
 
 #### Example
 
@@ -100,8 +100,16 @@ To configure module behavior for a collection, set collection level values in th
 
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
-| `model` | No | NONE | The model to use. You must provide an available & supported model name. |
+| `model` | No | NONE | The model to use with `Bedrock`. See [supported models](). |
 | `region` | Yes | NONE | AWS region name. For example, `us-east-1`. |
+
+#### Supported models
+
+`Bedrock`` supports these models:
+
+- `amazon.titan-embed-text-v1`
+- `cohere.embed-english-v3`
+- `cohere.embed-multilingual-v3`
 
 #### Example
 
