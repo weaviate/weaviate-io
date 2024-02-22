@@ -190,10 +190,10 @@ To configure vectorization for collections and properties, use the `moduleConfig
 
 To supply parameters at query time, adding them to the HTTP header.
 
-| HTTP Header | Value | Purpose | Note |
-| :- | :- | :- | :- |
-| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. | |
-| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key | |
+| HTTP Header | Value | Purpose |
+| :- | :- | :- |
+| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. |
+| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key |
 
 ## Additional information
 
