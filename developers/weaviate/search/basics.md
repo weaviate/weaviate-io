@@ -536,6 +536,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [API References: GraphQL: Get](../api/graphql/get.md)
 - For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
