@@ -303,7 +303,7 @@ try:
 finally:
     client.close()
 
-source_iterable = range(list(100))  # Dummy iterable
+source_iterable = range(100)  # Dummy iterable
 
 # START BatchErrorHandling
 import weaviate
