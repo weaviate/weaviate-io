@@ -10,6 +10,11 @@ import utils
         "./developers/academy/py/starter_text_data/_snippets/102_collection.py",
         "./developers/academy/py/starter_text_data/_snippets/103_searches.py",
         "./developers/academy/py/starter_text_data/_snippets/104_rag.py",
+        "./developers/academy/py/starter_custom_vectors/_snippets/101_connect.py",
+        "./developers/academy/py/starter_custom_vectors/_snippets/102_collections.py",
+        "./developers/academy/py/starter_custom_vectors/_snippets/103_10_vector.py",
+        "./developers/academy/py/starter_custom_vectors/_snippets/103_20_searches.py",
+        "./developers/academy/py/starter_custom_vectors/_snippets/104_rag.py",
     ],
 )
 def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
