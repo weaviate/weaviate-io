@@ -1,7 +1,6 @@
 # START-ANY
 import weaviate
 import weaviate.classes.query as wq
-import base64
 import os
 
 # END-ANY
@@ -27,16 +26,20 @@ client = weaviate.connect_to_local(
 # headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
 # client = weaviate.connect_to_local(headers=headers)
 
-def url_to_base64(url):
-    import requests
-    image_response = requests.get(url)
-    content = image_response.content
-    return base64.b64encode(content).decode("utf-8")
-
 # END-ANY
 
 
 # MetadataMultimodalSearch
+
+def url_to_base64(url):
+    import requests
+    import base64
+
+    image_response = requests.get(url)
+    content = image_response.content
+    return base64.b64encode(content).decode("utf-8")
+
+
 # Get the collection
 movies = client.collections.get("MovieMM")
 

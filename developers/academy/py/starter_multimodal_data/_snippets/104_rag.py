@@ -17,6 +17,7 @@ client = weaviate.connect_to_local(
 # headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
 # client = weaviate.connect_to_local(headers=headers)
 
+
 def url_to_base64(url):
     import requests
     import base64
@@ -24,6 +25,7 @@ def url_to_base64(url):
     image_response = requests.get(url)
     content = image_response.content
     return base64.b64encode(content).decode("utf-8")
+
 
 # END-ANY
 
