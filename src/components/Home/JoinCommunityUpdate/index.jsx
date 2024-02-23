@@ -76,7 +76,7 @@ export default function HomepageJoinCommunity() {
               <span className={styles.formFooter}>
                 By submitting, I agree to the{' '}
                 <Link href="/service">Terms of Service </Link>and{' '}
-                <Link href="/service/privacy-policy">Privacy Policy</Link>.
+                <Link href="/privacy">Privacy Policy</Link>.
               </span>
             </div>
           </div>
