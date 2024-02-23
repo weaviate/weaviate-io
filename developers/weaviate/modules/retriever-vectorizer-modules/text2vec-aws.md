@@ -100,16 +100,8 @@ To configure module behavior for a collection, set collection level values in th
 
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
-| `model` | No | NONE | The model to use with `Bedrock`. See [supported models](). |
+| `model` | No | NONE | The model to use with `Bedrock`. See [supported models](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-aws.md#supported-models). |
 | `region` | Yes | NONE | AWS region name. For example, `us-east-1`. |
-
-#### Supported models
-
-`Bedrock`` supports these models:
-
-- `amazon.titan-embed-text-v1`
-- `cohere.embed-english-v3`
-- `cohere.embed-multilingual-v3`
 
 #### Example
 
@@ -117,7 +109,7 @@ The following example configures the `Document` class to set the following param
 
 - vectorizer: `text2vec-aws`
 - distance metric: `cosine`
-- service: "sagemaker"
+- service: `"sagemaker"`
 - endpoint: AWS provides this value when you configure `sagemaker`
 - AWS region: `us-east-1`
 
