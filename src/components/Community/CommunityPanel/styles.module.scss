@@ -4,7 +4,7 @@
 }
 
 .title {
-  text-align: left;
+  text-align: center;
   padding: 1rem 0 2rem 0;
   margin: auto;
   width: 83%;
@@ -16,11 +16,24 @@
 
 .box {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-flow: wrap;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   margin-bottom: 20px;
+  gap: 50px;
+}
+
+.heroGraphic {
+  width: 10.44406rem;
+  height: 7.625rem;
+  flex-shrink: 0;
+  margin-top: -520px;
+  right: 140px;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../../../static/img/site/hero-graphic.svg');
 }
 
 .card {
@@ -70,6 +83,16 @@
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 1.62675rem */
+
+  p {
+    color: #fff;
+    font-family: Inter;
+    font-size: 1.162rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 1.62675rem */
+    margin: 10px 0px;
+  }
 }
 
 .cardFooter {
@@ -99,33 +122,6 @@
     align-items: flex-start;
 
     padding: 1rem 0 0 0;
-  }
-}
-
-.img {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  // background-color: red;
-}
-
-.startImg {
-  background-image: url('../../../../static/img/company/careers/star-dark.png');
-  width: 2rem;
-  height: 2rem;
-
-  margin-right: 0.5rem;
-}
-
-.chatImg {
-  background-image: url('../../../../static/img/company/careers/chat-dark.png');
-  width: 5rem;
-  height: 5rem;
-
-  @media screen and (max-width: 600px) {
-    width: 4rem;
-    height: 4rem;
   }
 }
 
