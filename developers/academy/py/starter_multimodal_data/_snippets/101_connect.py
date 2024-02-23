@@ -4,6 +4,8 @@ import weaviate
 client = weaviate.connect_to_local()
 # END DockerInstantiation
 
+client.close()
+
 # DockerAPIKeyInstantiation
 import weaviate
 import os
