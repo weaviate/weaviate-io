@@ -462,10 +462,13 @@ The `ContainsAny` and `ContainsAll` operators take an array of values as input. 
 
 If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations.
 
+## List of filter operators
+
+For a list of filter operators, see [the reference page](../api/graphql/filters.md#filter-structure).
+
 ## Related pages
 
 - [API References: Filters](../api/graphql/filters.md)
-
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

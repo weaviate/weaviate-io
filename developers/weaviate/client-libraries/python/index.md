@@ -323,7 +323,9 @@ In the batching process, if the background thread responsible for sending the ba
 
 ### Error handling
 
-During a batch import, any failed objects or references will be stored for retrieval.
+During a batch import, any failed objects or references will be stored for retrieval. Additionally, a running count of failed objects and references is maintained.
+
+The counter can be accessed through `batch.number_errors` within the context manager.
 
 A list of failed objects can be obtained through `batch.failed_objects` and a list of failed references can be obtained through `batch.failed_references`.
 

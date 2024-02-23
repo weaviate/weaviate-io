@@ -79,6 +79,9 @@ We’ve said that the gRPC solution improves speed. But how much faster is it, e
 The tests were carried out using two pre-vectorized (sift1m and DBPedia) datasets, with Weaviate version `1.23.9` and Weaviate Python Client version `4.4.4`. The `sift1m` dataset includes 128-dimensional vectors and the `DBPedia` dataset includes 1536-dimensional vectors.
 <br/>
 
+We used an Azure virtual machine configured as follows: Standard_D8s_v5, Premium SSD LRS 64, Ubuntu 22.04, docker 25.0.3. The test processes were single-threaded.
+<br/>
+
 You can find the [test code here](https://github.com/weaviate/weaviate-python-client/blob/main/profiling/test_import_and_query.py) including links to the datasets, and instructions to run the tests yourself.
 
 </details>
