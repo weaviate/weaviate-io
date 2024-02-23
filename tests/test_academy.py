@@ -21,7 +21,7 @@ import utils
         "./developers/academy/py/starter_multimodal_data/_snippets/104_rag.py",
     ],
 )
-def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
+def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 
@@ -37,7 +37,7 @@ def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
         "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/40_import_example_1.py",
     ],
 )
-def test_against_empty_weaviate_pyv4(empty_weaviates, script_loc):
+def test_on_blank_instance(empty_weaviates, script_loc):
     proc_script = utils.load_and_prep_script(script_loc)
     exec(proc_script)
 
