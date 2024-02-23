@@ -3,7 +3,6 @@ import weaviate
 
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
-import os
 
 # CreateMovieCollection  # END SubmoduleImport
 
@@ -23,7 +22,7 @@ client.collections.delete("MovieMM")
 
 # CreateMovieCollection
 client.collections.create(
-    name="MovieMM",
+    name="MovieMM",  # The name of the collection ('MM' for multimodal)
     properties=[
         wc.Property(name="title", data_type=wc.DataType.TEXT),
         wc.Property(name="overview", data_type=wc.DataType.TEXT),
