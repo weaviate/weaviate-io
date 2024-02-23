@@ -1,0 +1,309 @@
+---
+title: Data structure in Weaviate
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/9AmMDDGWC74' controls='true' />
+<br/>
+
+You've seen some of the powerful queries that Weaviate enables. But how does Weaviate actually store data such that it can supports these queries?
+
+In this section, we'll take a look at some of the key components that allow Weaviate to perform these queries at speed. In particular, we'll take a look at indexes, which are the backbone of Weaviate's data structure, and the schema, which acts as a blueprint for your data.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Indexes
+
+An index is a data structure that allows for efficient retrieval of data. In Weaviate, there are two main indexes: the inverted index and the vector index.
+
+The **inverted index** is the kind of index that you may be familiar with. You can think of it as a reference table that for example allows you to quickly look up a term and find objects that contain that term.
+
+The **vector index** allows for efficient retrieval of vectors based on similarity. This is the index that allows Weaviate to perform vector searches fast. Let's dig in a little more.
+
+### <i class="fa-solid fa-chalkboard"></i> Inverted index
+
+An inverted index deconstructs text into a set of constituent terms and stores them in a data structure, such as a hash table. Take, for example, a data object containing the text "Conference (Chicago, IL)".
+
+The user might want to search for this object based on any of the contained terms such as "conference", "Chicago", or "IL". The inverted index allows Weaviate to quickly retrieve the ID of the object containing the term.
+
+This is done by mapping the object ID to "tokens", where a token is a term that has been extracted from the text. By default, Weaviate uses a `word` tokenization, where only alpha-numeric characters are kept, converted into lowercase, and then split into tokens based on whitespace.
+
+So an input text `Conference (Chicago, IL)` is indexed by three tokens: `conference`, `chicago`, `il`.
+
+We will cover more about different available tokenization methods later on.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector index
+
+Each object in Weaviate can be associated with a vector. These vectors are what enables similarity searches that you have seen before. As we mentioned, however, brute-force similarity searches are computationally expensive, as well as growing linearly with the size of the dataset.
+
+To tackle this problem Weaviate uses vector indexes that utilize an Approximate Nearest Neighbor (ANN) algorithm. The ANN algorithm enables each vector index to organize a set of vectors, so that similar ones to a query can be retrieved at lightning-fast speeds. Weaviate currently uses an HNSW-based ANN index.
+
+import HNSWLayersImg from '/developers/weaviate/concepts/img/hnsw-layers.svg';
+
+<HNSWLayersImg/>
+
+Each set of vectors are said to reside in a "vector space", indicating that it is a multi-dimensional "space" in which vectors are placed.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Classes
+
+### <i class="fa-solid fa-chalkboard"></i> What is a `class`?
+
+A class in Weaviate is a collection of objects of the same type. Each object in Weaviate must belong to a class, and one class only.
+
+Imagine that you are storing a set of quiz items from the game show *Jeopardy!* in Weaviate. A good way to structure it would be to have an object represent a question including all associated attributes, such as the answer, what round it was from, how many points it was worth, when it aired on TV, and so on.
+
+So, a good way to represent this data would be through a class called `JeopardyQuestion`, which would contain a set of objects, each object representing one such question.
+
+:::note Class names are singular by convention
+This is as they refer to individual objects, e.g. a `JeopardyQuestion` object.
+:::
+
+### <i class="fa-solid fa-chalkboard"></i> What is in a class?
+
+As we mentioned, each Jeopardy! question would contain multiple related, but distinct, attributes such as the question, answer, round, points, and so on. These are reflected in each `class` object in Weaviate as a set of `properties`, such as a `question` property, an `answer` property, and so on.
+
+### <i class="fa-solid fa-chalkboard"></i> How many vectors per object?
+
+Each object is represented by one vector, and each class has one vector index. This means that all objects in the class will be associated with the same vector index.
+
+In other words, all objects in the class will be stored in what is called the same vector space. This is important to keep in mind when designing your data schema in Weaviate. A vector search can only be performed within a single vector space, for reasons that a vector of different lengths, or even those of the same length but with different meanings, cannot be compared.
+
+Going back to our [color analogy](../101_hello_weaviate/15_overview_vectors.mdx#how-do-numbers-represent-meaning) that you saw earlier - you wouldn't be able to compare an RGB value to an CMYK value, right? The same applies to vector embeddings that represent text.
+
+So in Weaviate, a vector search can only search one class at a time. As a result, it is important to design your schema such that objects that you want to search together are in the same class.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Schema
+
+A `schema` in Weaviate is the blueprint that defines its data structure. It does so for each `class` of objects, which are collections of objects of the same type.
+
+Here is an example schema structure:
+
+<details>
+  <summary>Example schema</summary>
+
+```json
+{
+  "classes": [
+    {
+      "class": "Article",
+      "invertedIndexConfig": {
+        "bm25": {
+          "b": 0.75,
+          "k1": 1.2
+        },
+        "cleanupIntervalSeconds": 60,
+        "stopwords": {
+          "additions": null,
+          "preset": "en",
+          "removals": null
+        }
+      },
+      "moduleConfig": {
+        "text2vec-openai": {
+          "model": "ada",
+          "modelVersion": "002",
+          "type": "text",
+          "vectorizeClassName": true
+        }
+      },
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "moduleConfig": {
+            "text2vec-openai": {
+              "skip": false,
+              "vectorizePropertyName": false
+            }
+          },
+          "name": "title",
+          "tokenization": "word"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "moduleConfig": {
+            "text2vec-openai": {
+              "skip": false,
+              "vectorizePropertyName": false
+            }
+          },
+          "name": "body",
+          "tokenization": "word"
+        }
+      ],
+      "replicationConfig": {
+        "factor": 1
+      },
+      "shardingConfig": {
+        "virtualPerPhysical": 128,
+        "desiredCount": 1,
+        "actualCount": 1,
+        "desiredVirtualCount": 128,
+        "actualVirtualCount": 128,
+        "key": "_id",
+        "strategy": "hash",
+        "function": "murmur3"
+      },
+      "vectorIndexConfig": {
+        "skip": false,
+        "cleanupIntervalSeconds": 300,
+        "maxConnections": 64,
+        "efConstruction": 128,
+        "ef": -1,
+        "dynamicEfMin": 100,
+        "dynamicEfMax": 500,
+        "dynamicEfFactor": 8,
+        "vectorCacheMaxObjects": 1000000000000,
+        "flatSearchCutoff": 40000,
+        "distance": "cosine",
+        "pq": {
+          "enabled": false,
+          "bitCompression": false,
+          "segments": 0,
+          "centroids": 256,
+          "encoder": {
+            "type": "kmeans",
+            "distribution": "log-normal"
+          }
+        }
+      },
+      "vectorIndexType": "hnsw",
+      "vectorizer": "text2vec-openai"
+    }
+  ]
+}
+```
+
+</details>
+
+This is a lot of information, and can be quite intimidating. Let's break it down.
+
+First of all, you see that the first level key in the object is `classes`, which contains a list of classes. In this case, there is only one class, `Article`.
+
+The schema specifies for each class:
+- The metadata such as its name (`class`),
+- Its data `properties`,
+- The `vectorizer`,
+- Module configurations (`moduleConfig`),
+- The index configurations (for inverted `invertedIndexConfig` and vector `vectorIndexConfig` indexes),
+- and more.
+
+:::info Auto-schema
+Any missing information required for schema definition will be automatically inferred by Weaviate based on default values and the imported data.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+<Quiz questions={invertedIndex} />
+
+<Quiz questions={vectorIndex} />
+
+<Quiz questions={classDefinition} />
+
+<Quiz questions={schemaRole} />
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Weaviate stores data using two main indexes: the inverted index and the vector index.
+- A class in Weaviate represents a collection of objects of the same type, and each object in Weaviate must belong to a single class.
+- A schema is the blueprint that defines Weaviate's data structure.
+- Vector searches can only be performed within a single vector space.
+    - So, any objects you want to search together should be in the same class.
+- Any missing information required for schema definition will be automatically inferred by Weaviate based on default values and the imported data.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const invertedIndex = [
+{
+questionText: 'What is the function of an inverted index in Weaviate?',
+answerOptions: [
+{
+answerText: 'It allows for efficient retrieval of vectors based on similarity.',
+isCorrect: false,
+feedback: 'That is the function of the vector index.',
+},
+{
+answerText: 'It deconstructs text into a set of constituent terms and stores them for fast retrieval.',
+isCorrect: true,
+feedback: 'This allows objects containing those terms to be retrieved quickly.',
+},
+{
+answerText: 'It acts as a blueprint for your data.',
+isCorrect: false,
+feedback: 'That is the function of the schema.',
+},
+]
+}];
+const vectorIndex = [
+{
+questionText: 'What does the vector index in Weaviate enable?',
+answerOptions: [
+{
+answerText: 'It enables efficient retrieval of data based on a reference table.',
+isCorrect: false,
+feedback: 'That is the function of the inverted index, not the vector index.',
+},
+{
+answerText: 'It enables similarity searches by associating each object with a vector.',
+isCorrect: true,
+feedback: 'Correct! The vector index uses an Approximate Nearest Neighbor (ANN) algorithm to allow fast similarity searches.',
+},
+{
+answerText: 'It defines the data structure of Weaviate.',
+isCorrect: false,
+feedback: 'That is the function of the schema, not the vector index.',
+},
+]
+}];
+const classDefinition = [
+{
+questionText: 'What is a class in Weaviate?',
+answerOptions: [
+{
+answerText: 'It is a type of index used for efficient data retrieval.',
+isCorrect: false,
+feedback: 'A class is not a type of index. It is a collection of objects of the same type in Weaviate.',
+},
+{
+answerText: 'It is a collection of objects of the same type.',
+isCorrect: true,
+feedback: 'Correct! A class in Weaviate is a collection of objects of the same type.',
+},
+{
+answerText: 'It is a specific object within a collection.',
+isCorrect: false,
+feedback: 'A class is not a specific object, but rather a collection of objects of the same type.',
+},
+]
+}];
+const schemaRole = [
+{
+questionText: 'What is the function of the schema in Weaviate?',
+answerOptions: [
+{
+answerText: 'It allows for efficient retrieval of vectors based on similarity.',
+isCorrect: false,
+feedback: 'That is the function of the vector index, not the schema.',
+},
+{
+answerText: 'It deconstructs text into a set of constituent terms and stores them in a data structure.',
+isCorrect: false,
+feedback: 'That is the function of the inverted index, not the schema.',
+},
+{
+answerText: 'It acts as a blueprint that defines the data structure of Weaviate.',
+isCorrect: true,
+feedback: 'The schema defines the data structure for each class of objects in Weaviate.',
+},
+]
+},
+]

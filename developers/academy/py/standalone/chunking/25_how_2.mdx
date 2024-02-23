@@ -1,0 +1,199 @@
+---
+title: Chunking techniques - 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import CodeFixedSizeChunking from '!!raw-loader!./_snippets/20_chunking_methods.1.fixed.size.py';
+import CodeVariableSizeChunking from '!!raw-loader!./_snippets/20_chunking_methods.2.variable.size.py';
+import CodeMixedStrategyChunking from '!!raw-loader!./_snippets/20_chunking_methods.3.mixed.strategy.py';
+
+<!-- import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+import PreviewUnit from '../../../_snippets/preview.mdx'
+
+<PreviewUnit />
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+We continue our discussion of chunking techniques by taking you through **variable-size** chunking techniques, including some example implementations.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Variable-size chunking
+
+Now let's look at variable-size chunking. Unlike fixed-size chunking, the chunk size here is an *outcome*, rather than an *input parameter*.
+
+In variable-size chunking, some marker is used to split the text. The marker may be syntactic, such as a sentence or paragraph marker, or even structural such as a markdown header.
+
+### <i class="fa-solid fa-chalkboard"></i> Implementations
+
+A pseudocode implementation of variable-size chunking could look like this:
+
+```python
+# Given a text of length L
+# Identify a marker (e.g. full-stop, paragraph marker (two newlines), or a Markdown header
+# Split the text into chunks at each marker
+```
+
+Which could be implemented in Python as below:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodeVariableSizeChunking}
+  startMarker="# START Paragraph variable size chunker"
+  endMarker="# END Paragraph variable size chunker"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Or, we could use special markers - such as Markdown headers - to split the text.
+
+(Since the *Pro Git* book is written in [Asciidoc](https://asciidoc.org/), we'll use Asciidoc headers instead - they all start with new lines followed by `==`.)
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodeVariableSizeChunking}
+  startMarker="# START Asciidoc section variable size chunker"
+  endMarker="# END Asciidoc section variable size chunker"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Again, let's now apply these to concrete examples.
+
+### <i class="fa-solid fa-code"></i> Examples
+
+We can apply these splitters to the same text as before.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodeVariableSizeChunking}
+  startMarker="# START Get variable-size chunks examples"
+  endMarker="# END Get variable-size chunks examples"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+And the outputs look like this. Now, what do you observe?
+
+<Tabs groupId="languages">
+<TabItem value="para" label="By paragraph">
+<FilteredTextBlock
+  text={CodeVariableSizeChunking}
+  startMarker="# START Chunking by paragraph - outputs"
+  endMarker="# END Chunking by paragraph - outputs"
+  language="text"
+/>
+</TabItem>
+<TabItem value="header" label="By header">
+<FilteredTextBlock
+  text={CodeVariableSizeChunking}
+  startMarker="# START Chunking by header - outputs"
+  endMarker="# END Chunking by header - outputs"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+One thing that might stand out immediately is that both of our very simple marker-based chunker ends up extracting the heading as one chunk, which may not be desirable.
+
+In reality, you may employ a mixed strategy where very short chunks like this may be appended to the next chunk, assuming that it is likely to be something like a title, or a section heading.
+
+Let's take a look at such a strategy.
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Mixed strategy
+
+You could use a mix of fixed-size chunking and variable-size chunking to get the best of both worlds. For example, you could use a variable-size chunker to split the chunks at paragraph markers, but apply a fixed-size filter.
+
+More specifically, any chunks that are too small could be merged with the next chunk, and/or any chunks that are too large could be split at the middle, or at another marker within the chunk.
+
+### <i class="fa-solid fa-code"></i> Examples
+
+One implementation may look as follows:
+
+```python
+# Given a text of length L
+# Identify a marker (e.g. full-stop, paragraph marker (two newlines), or a Markdown header
+# Split the text into chunks at each marker
+# If any of the chunks are too small, merge them with the next chunk
+# If any of the chunks are too large, split them - e.g. at the middle or using another marker within the chunk
+```
+
+Which could be implemented in Python like this:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodeMixedStrategyChunking}
+  startMarker="# START Asciidoc and size based chunking"
+  endMarker="# END Asciidoc and size based chunking"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Producing these chunks.
+
+<FilteredTextBlock
+  text={CodeMixedStrategyChunking}
+  startMarker="# START Mixed-strategy chunking output"
+  endMarker="# END Mixed-strategy chunking output"
+  language="text"
+/>
+
+This strategy will not produce chunks that are too small, while still basing them based on a syntactic marker, respecting the boundary of a heading.
+
+Since we've seen chunking strategies in action on a single text, let's now look at how they may work on a larger set of texts. We'll also take a look at what retrieval results may look like, using different chunking strategies.
+
+<!-- ## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<Quiz questions={varName} />
+
+Any quiz questions
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out ...
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+:::info
+Add summary
+::: -->
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+<!-- import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}]; -->

@@ -1,11 +1,13 @@
-const url = 'https://search.weaviate.io/v1/graphql';
+// const url = 'https://search.weaviate.io/v1/graphql';
+const url = 'https://jfkcup9ytrkbszarouyjcq.c1-1.europe-west3.gcp.weaviate.cloud/v1/graphql';
+const read = 'MgivtQrUg6J5JHNNoyPjHGgv23MdjrTRiKxT';
 
 export const runQuery = async (searchTerm, limit=10) => {
     const parsedSearchTerm = searchTerm.replace(/"/g,"\\\"")
 
     const query = `{
         Get {
-            PageChunkOpenAI(
+            PageChunk(
                 hybrid: {
                     query: \"${parsedSearchTerm}\"
                     alpha: 0.4
@@ -19,7 +21,8 @@ export const runQuery = async (searchTerm, limit=10) => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${read}`
         },
         body: JSON.stringify({query: query})
     });

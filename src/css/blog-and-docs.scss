@@ -22,23 +22,19 @@
   h5,
   h6 {
     font-family: var(--site-font-base-family);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--docs-header-color);
   }
-  h1,
+
   h2 {
-    padding-top: 35px;
-    padding-bottom: 25px;
+    padding-top: 0.7em;
+    padding-bottom: 0.25em;
   }
-  h3 {
-    padding-top: 25px;
-    padding-bottom: 20px;
+  h3, h4 {
+    padding-top: 0.5em;
+    padding-bottom: 0.15em;
   }
-  h4 {
-    padding-top: 25px;
-    padding-bottom: 15px;
-    font-size: 1.3rem;
-  }
+
   p {
     padding-left: 5px;
     font-weight: 400;
@@ -78,14 +74,6 @@
   }
 }
 
-// .docs-doc-page {
-//   .container {
-//     [data-theme='light'] {
-//       background-color: white;
-//     }
-//   }
-// }
-
 .docs-doc-page .container  {
   background-color: var(--docs-body-bg);
   padding-left: 5%;
@@ -100,69 +88,42 @@
   font-family: var(--site-font-base-family);
   font-size: 15px;
   color: var(--docs-base-color);
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--site-font-base-family);
-    font-weight: 700;
-    color: var(--docs-header-color);
-  }
+
   h1 {
-    line-height: 1.2;
-    font-size: 49px;
+    padding-top: 0.15em;
+    line-height: 1.08;
+    font-size: 36px;
   }
 
   h2 {
-    line-height: 1.2;
-    font-size: 38px;
-  }
-
-  h3 {
-    line-height: 1.2;
+    line-height: 1.08;
     font-size: 32px;
   }
 
+  h3 {
+    line-height: 1.08;
+    font-size: 28px;
+  }
+
   h4 {
-    line-height: 1.5;
-    font-size: 25px;
+    line-height: 1.08;
+    font-size: 24px;
   }
 
   h5 {
-    line-height: 1.45;
+    line-height: 1.08;
     font-size: 20px;
   }
 
   h6 {
-    line-height: 1.6;
+    line-height: 1.08;
     font-size: 18px;
   }
 
-  // h1, h2 {
-  //   padding-top: 35px;
-  //   padding-bottom: 20px;
-  // }
-  // h3 {
-  //   padding-top: 30px;
-  //   padding-bottom: 20px;
-  // }
-  // h4 {
-  //   padding-top: 25px;
-  //   padding-bottom: 15px;
-  //   font-size: 1.3rem;
-  // };
   p {
     padding-left: 5px;
     font-weight: 400;
   }
-  // .theme-doc-sidebar-container, .navbar {
-  //   background: var(--site-background);
-  // }
-  // #__docusaurus {
-  //   background: var(--docs-sidebar-bg);
-  // }
 }
 
 .hidden {

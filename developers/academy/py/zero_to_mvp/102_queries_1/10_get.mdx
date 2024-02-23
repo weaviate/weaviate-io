@@ -1,0 +1,296 @@
+---
+title: Get{} objects
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./_snippets/10_get.py';
+
+:::info Make sure you complete Weaviate Academy Preparation
+Make sure to complete the [Weaviate Academy Preparation](../setup.mdx) mini-unit before starting this unit to make sure that you can run the client library and connect to the demo Weaviate instance without issues.
+<p><br/></p>
+
+Below, you will see code snippets that do not include client instantiation details. Before running these snippets, make sure to instantiate the client as shown below.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Instantiate to edu-demo with OpenAI ====="
+  endMarker="# ===== END Instantiate to edu-demo with OpenAI ====="
+  language="py"
+/>
+</TabItem>
+</Tabs>
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/q2UuBIJVLEM' controls='true'/>
+<br/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> About `Get` queries
+
+In many use cases, retrieving objects from a Weaviate instance may be the most common operation.
+
+For example, a user may want to retrieve a list of passages most closely related to the input query, or they may wish to retrieve a list of images which are most similar to another image. It is even possible to retrieve a set of images that best match a given passage.
+
+In Weaviate, such operations to retrieve objects are performed using the `Get` function.
+
+### <i class="fa-solid fa-chalkboard"></i> `Get` function syntax
+
+A basic `Get` function looks as follows:
+
+import GetSyntax from './_snippets/academy.queries.get.syntax.mdx';
+
+<GetSyntax/>
+
+- The `Class` field specifies the name of the class of objects to be retrieved.
+- The `arguments` argument specifies the search criteria to be used to retrieve the objects.
+- The `properties` argument specifies the properties of the objects to be retrieved, including any `_additional` properties.
+
+Now let's try out some concrete `Get` queries.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Standalone `Get` queries
+
+A basic, standalone, `Get` query might look as follows:
+
+### <i class="fa-solid fa-code"></i> Example
+
+import GetStandalone from './_snippets/academy.queries.get.standalone.mdx';
+
+<GetStandalone/>
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== GET STANDALONE PYTHON ====="
+  endMarker="# ===== END GET STANDALONE PYTHON ====="
+  language="py"
+/>
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== GET STANDALONE GRAPHQL ====="
+  endMarker="# ===== END GET STANDALONE GRAPHQL ====="
+  language="graphql"
+/>
+</TabItem>
+</Tabs>
+
+What results do you expect? See if you can correspond each field to the syntax.
+
+Now, try it out yourself. The query should return something like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Amazon.com",
+          "question": "On July 16, 1995 this company made its first sale, a science textbook"
+        },
+        {
+          "answer": "Parfait",
+          "question": "The French name of this layered ice cream dessert means \"perfect\""
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Response object from Weaviate
+
+As you see above, the response object from Weaviate is in JSON format, where the results are obtained via the `data` field. It is then arranged in a corresponding manner to reflect the query as well as the queried object.
+
+In the above example, the `Get` field reflects the query function, and the `JeopardyQuestion` field reflects the queried object class, containing returned objects. Each object contains `answer` and `question` fields, reflecting the requested properties.
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+In this case, Weaviate will return two objects due to the `.with_limit(2)` argument. Without this limit, Weaviate would return a maximum number according to its configuration.
+
+:::tip Is this query useful?
+As this does not apply any user-specific criteria to the search, the specific results will likely not be very useful.
+
+However, this may be a viable method for "sanity" checks, such as checking that you can connect to a Weaviate instance, or that at least some objects have been imported successfully.
+:::
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> `Class` and `properties`
+
+In the above example, we specify a `Class` of `JeopardyQuestion` and `properties` of `questions` and `answer`.
+
+That is possible because those follow the structure of our data in Weaviate. To see the available data classes and properties, you can take a look at the Weaviate schema, as shown below:
+
+<details>
+  <summary>How do I see the schema?</summary>
+
+You can fetch the schema like this - try it out!
+
+```python
+client.schema.get()
+```
+
+</details>
+
+import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
+
+<ShortSchema/>
+
+The `Class` and `properties` fields must correspond to collections of objects that have been defined in the Weaviate schema.
+
+The `Class` must be the name of a data object collection, and the `properties` a list of properties to be retrieved.
+
+The schema contains the `JeopardyQuestion` class, with properties: `question`, `answer` and `points`.
+
+So, a query retrieving objects from the `Question` class could specify any of its properties such as `question`, `answer`, and `points`.
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you get the `points` property as well?
+- What happens if you don't specify any properties?
+:::
+
+:::info Can I search multiple classes at once?
+No. You can only search one class at a time.
+<p><br/></p>
+
+This is because each class constitutes a single `vector space`. If you want to search multiple collections of objects, you will have to perform multiple searches, or consider putting them into one class and using a filter to distinguish between them as required.
+<p><br/></p>
+
+We will consider this topic in more detail in a later unit, including what it means for each class to constitute a distinct `vector space`, and how to think about building a schema in Weaviate.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> `Get` with `additional` properties
+
+You can retrieve additional properties that are not defined in the schema. These properties may be inherent to the object, or relate to the query performed.
+
+### <i class="fa-solid fa-code"></i> Example
+
+In this example, we've built on the previous example to add the `.with_additional` method.
+
+import GetWithAdditional from './_snippets/academy.queries.get.with.additional.mdx';
+
+<GetWithAdditional/>
+
+Again, consider what the response might look like. What would have changed in the response?
+
+Now, try it out yourself. The query should return something like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.1791926,
+            "id": "b1645a32-0c22-5814-8f35-58f142eadf7e"
+          },
+          "answer": "escaping the Earth's gravity (and go off into outer space, on your way to the moon, for instance)",
+          "question": "It takes approximately 24,840 MPH to achieve this"
+        },
+        {
+          "_additional": {
+            "distance": 0.18123823,
+            "id": "ef263438-b152-5540-97f7-99f4076bd124"
+          },
+          "answer": "the Milky Way",
+          "question": "This is the name of our own galaxy"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Response object from Weaviate
+
+In this response, you see that the `_additional` field has been added to the response object, with `distance` and `id` nested under it.
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+Here, the `distance` and `id` properties contain the object's distance to the query and its unique ID respectively.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> `_additonal` properties
+
+As the name suggests, `_additional` properties are separate to those explicitly created as class properties.
+
+The above query included the `distance` property in the `_additional` field. This represents the degree of similarity (or, in this case, the *dissimilarity*) between the input vector and the vector of the object.
+
+:::info Vectors available through `_additional`
+
+The object vector can also be retrieved through an `_additional` field, by specifying `vector` in its sub-field.
+
+Note that the returned vector in many cases will be a very long list of numbers.
+
+:::
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Can you get the `vector` property as well?
+- Earlier, providing an empty list as the main properties under the `.get()` method will have caused an error. What happens if you try it again, now that you are requesting additional properties?
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+See in-line exercises.
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- The 'Get' function can be used to retrieve objects in Weaviate.
+- The 'Get' function syntax requires specifying the class, properties, and any additional arguments related to the search criteria.
+- Weaviate responses are in JSON format.
+- Class and properties fields must correspond to the objects and properties defined in the Weaviate schema.
+- 'Get' queries can retrieve additional properties not defined in the schema, which can be inherent to the object or related to the query performed.
+- '_additional' properties can include distance, id, and vector information, providing more context and information about the retrieved objects.
+
+import Quiz from '/src/components/Academy/quiz.js'
+const nearText = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

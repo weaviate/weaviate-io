@@ -1,0 +1,168 @@
+---
+title: Considerations & suggestions
+---
+
+<!-- import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+import PreviewUnit from '../../../_snippets/preview.mdx'
+
+<PreviewUnit />
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+We have covered a lot of ground on chunking in this unit already.
+
+You saw what chunking is and learned about different chunking methods, and dived into example implementations so that you can see their impact.
+
+In this section, we will take a step back out from the detailed, micro view to the high level, macro view, while using all that we've learned in context. More specifically, we will take a look at some considerations of what to think about when chunking data, and what it means for your Weaviate implementation.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Considerations
+
+As you have seen, there are many different ways to chunk data. But which one is right for you?
+
+The answer is, as always, "it depends". But here are some things to consider when choosing a chunking method:
+
+#### Text per search result
+
+How much text should each "hit" in your search results contain? Is it a sentence, or a paragraph, or something else?
+
+A natural fit would be to chunk the data into the same size as the desired search result.
+
+#### Input query length
+
+Consider what a typical input query might look like. Will it be short search strings, or longer texts, such as those extracted from a document?
+
+Keep in mind that the vector of the query will be compared to the vector of the chunks. So, it may be helpful to have shorter chunks for shorter queries, and longer chunks for longer queries.
+
+In cases where shorter chunks are used but further context would be beneficial, you could structure your app so that you return the chunk that contains the search term, and the surrounding chunks.
+
+#### Database size
+
+The larger the chunks, the fewer chunks there will be, and the smaller the database will be. This may be important if you are working with a large dataset.
+
+#### Model requirements
+
+You will need to ensure that the chunk size is within the model's maximum allowed size (context window). This goes for generating embeddings, as well as for RAG.
+
+#### RAG workflows
+
+As discussed earlier, shorter chunks will make it easier to include many chunks from a variety of sources, but may not provide enough context. Longer chunks will provide more context, but may not be able to include as many chunks.
+
+### <i class="fa-solid fa-chalkboard"></i> Rule of thumb
+
+Having said all that, it may be helpful to have a rule of thumb to start with. We suggest starting with a chunk size of 100-150 words and going from there.
+
+Then, you can modify the chunk size based on the considerations above, and your observations on your app's performance.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Data modelling
+
+By definition, chunking your source data will mean creating multiple objects out of one source.
+
+Accordingly, you should consider how to model your data to capture the relationships between the chunks and the source data, as well as between chunks. This may help you to efficiently retrieve what you need, such as the metadata relating to the source, or surrounding chunks.
+
+### <i class="fa-solid fa-code"></i> Collection definition examples
+
+Consider a Weaviate database designed to store data from a library of reference books.
+
+Storing each book as a vector may still be too large, so you may want to chunk the books into paragraphs. Having done so, you may want to create a `Book` collection, and a `Paragraph` collection, with the `Paragraph` collection having the cross-reference property `fromBook`. This will allow you to retrieve the book metadata from the `Book` collection, and the surrounding paragraphs from the `Paragraph` collection.
+
+So, for example, you may build a `Book` collection like this:
+
+```json
+{
+    "class": "Book",
+    "properties": [
+        ...  // other class properties
+        // highlight-start
+        {
+            "name": "title",
+            "dataType": ["text"],
+        },
+        {
+            "name": "text",
+            "dataType": ["text"],
+        },
+        // highlight-end
+    ],
+    "vectorIndexConfig": {
+        "skip": true
+    }
+    ...  // other class attributes
+}
+```
+
+And add a `Paragraph` collection like this, that references the `Book` collection:
+
+```json
+{
+    "class": "Paragraph",
+    "properties": [
+        ...  // other class properties
+        // highlight-start
+        {
+            "name": "body",
+            "dataType": ["Text"]
+        },
+        {
+            "name": "chunk_number",
+            "dataType": ["int"]
+        },
+        {
+            "name": "fromBook",
+            "dataType": ["Book"]
+        },
+        // highlight-end
+    ],
+    ...  // other class attributes (e.g. vectorizer)
+}
+```
+
+Note that in this configuration, the `Book` collection is not vectorized, but the `Paragraph` collection is. This will allow the `Book` collection to be used for storage and retrieval of metadata, while the `Paragraph` collection is used for search.
+
+This is just one example of how you could model your data. You may want to experiment with different configurations to see what works best for your use case.
+
+<!-- ## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<Quiz questions={varName} />
+
+Any quiz questions
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out ...
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+:::info
+Add summary
+::: -->
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+<!-- import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}]; -->
