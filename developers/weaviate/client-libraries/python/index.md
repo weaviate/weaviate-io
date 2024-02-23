@@ -276,7 +276,7 @@ There are three ways to configure the batch size. They are `dynamic`, `fixed_siz
 
 | Method | Description | When to use |
 | :-- | :-- | :-- |
-| `dynamic` | The batch size is dynamically calculated by Weaviate. | Recommended starting point. |
+| `dynamic` | The batch size is dynamically calculated by Weaviate and adjusted on-the-fly during import. | Recommended starting point. |
 | `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
 
