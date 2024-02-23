@@ -47,16 +47,16 @@ export default function HomepageJoinCommunity() {
           </div>
           <div className={styles.leftSide}>
             <h2>Join the global community</h2>
-            <p className={styles.rightText}>
+            <span className={styles.rightText}>
               Connect with the Weaviate Team and hundreds of developers and data
               engineers! Our community is here to help you with your projects
               and provide expert advice. Share how you build your apps with
               Weaviate.
-            </p>
+            </span>
 
-            <p className={styles.rightText}>
+            <span className={styles.rightText}>
               Stay updated and subscribe to our newsletter
-            </p>
+            </span>
 
             <div className={styles.communityForm}>
               <iframe
@@ -73,6 +73,11 @@ export default function HomepageJoinCommunity() {
                   important: false,
                 }}
               ></iframe>
+              <span className={styles.formFooter}>
+                By submitting, I agree to the{' '}
+                <Link href="/service">Terms of Service </Link>and{' '}
+                <Link href="/privacy">Privacy Policy</Link>.
+              </span>
             </div>
           </div>
         </div>

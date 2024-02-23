@@ -125,8 +125,9 @@ export default function CommandMenu({open, setOpen}) {
 
     try {
       const queryResult = await runQuery(searchTerm, limit);
+      console.log(queryResult)
 
-      const data = queryResult.data.Get.PageChunkOpenAI;
+      const data = queryResult.data.Get.PageChunk;
 
       const resultFormated = data.map((item, index) => {
         return {

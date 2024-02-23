@@ -30,6 +30,7 @@
 
 .communityForm {
   display: flex;
+  flex-direction: column;
   width: inherit;
 
   @media screen and (max-width: 768px) {
@@ -93,6 +94,7 @@
   row-gap: 50px;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
   color: #ffffff;
   margin-top: 60px;
 
@@ -111,6 +113,7 @@
   display: flex;
   gap: 25px;
   width: 22rem;
+  height: 100%;
   flex-direction: row;
   flex-wrap: wrap;
 
@@ -222,4 +225,12 @@
 .sc-VigVT.dbVBAB {
   background: #61bd73 !important;
   color: #1c1468;
+}
+
+.formFooter {
+  margin-top: -25px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: -85px;
+  }
 }
