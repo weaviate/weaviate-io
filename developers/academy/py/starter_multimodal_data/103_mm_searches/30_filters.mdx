@@ -11,7 +11,7 @@ Filters can be used to precisely refine search results. You can filter by proper
 
 ### <i class="fa-solid fa-code"></i> Code
 
-This example finds entries in "Movie" based on their similarity to the query "dystopian future", only from those released after 2010. It prints out the title and release year of the top 5 matches.
+This example finds entries in "MovieMM" based on their similarity to the query "dystopian future", only from those released after 2010. It prints out the title and release year of the top 5 matches.
 
 <FilteredTextBlock
   text={PyCode}
@@ -20,7 +20,7 @@ This example finds entries in "Movie" based on their similarity to the query "dy
   language="py"
 />
 
-## <i class="fa-solid fa-square-chevron-right"></i> Explain the code
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
 
 This query is identical to [that shown earlier](./10_semantic.mdx) for semantic search, but with the addition of a filter. The `filters` parameter here takes an instance of the `Filter` class to set the filter conditions. The current query filters the results to only include those with a release year after 2010.
 

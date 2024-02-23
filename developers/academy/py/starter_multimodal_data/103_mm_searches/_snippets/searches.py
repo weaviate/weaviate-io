@@ -29,9 +29,37 @@ def url_to_base64(url):
     content = image_response.content
     return base64.b64encode(content).decode("utf-8")
 
-# END-ANY)
+# END-ANY
+
 
 # MetadataSemanticSearch
+# Get the collection
+movies = client.collections.get("MovieMM")
+
+# Perform query
+response = movies.query.near_text(
+    query="dystopian future", limit=5, return_metadata=wq.MetadataQuery(distance=True)
+)
+
+# Inspect the response
+for o in response.objects:
+    print(
+        o.properties["title"], o.properties["release_date"].year
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"Distance to query: {o.metadata.distance:.3f}\n"
+    )  # Print the distance of the object from the query
+
+client.close()
+# END MetadataSemanticSearch
+
+
+print("\n\n")
+
+client.connect()
+
+
+# MetadataMultimodalSearch
 # Get the collection
 movies = client.collections.get("MovieMM")
 
@@ -53,7 +81,7 @@ for o in response.objects:
     )  # Print the distance of the object from the query
 
 client.close()
-# END MetadataSemanticSearch
+# END MetadataMultimodalSearch
 
 
 print("\n\n")
