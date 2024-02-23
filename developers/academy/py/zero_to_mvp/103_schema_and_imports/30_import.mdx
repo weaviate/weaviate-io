@@ -1,0 +1,186 @@
+---
+title: How to import data
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./_snippets/30_import.py';
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/fpmjEN-93Og' controls='true' />
+<br/>
+
+So far, you've learned that data in Weaviate is represented by objects, which belong to a `class`, and have a set of `properties`. In the previous section on the `schema`, you learned how to create a framework for this structure.
+
+In this section, you will learn how to import data into Weaviate, including our recommended best practices, and some key considerations. Once you're done with this section, you will be ready to import a real dataset into Weaviate by putting together what we've learned about the schema and imports.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Imports: A high-level view
+
+### <i class="fa-solid fa-chalkboard"></i> Object creation
+
+To create a Weaviate object, you must:
+
+- Load your source data,
+- Build a data object with any desired properties, and
+- Add it to your desired class in Weaviate.
+
+Optionally, you can manually specify:
+
+- An object ID, and
+- A vector
+
+:::info Optional properties
+
+- An object ID is required. So, if one is not specified, Weaviate will create one.
+- If a vector is not specified, Weaviate will create one if a vectorizer is set for the class.
+
+We'll cover these in more detail later on.
+:::
+
+### <i class="fa-solid fa-chalkboard"></i> Use batch imports
+
+Weaviate offers a "batch import" process to maximize the import speed. Take a look at this diagram that shows the object creation process:
+
+import ImportConceptualImg from './images/academy_103_import_process_conceptual.png';
+
+<img src={ImportConceptualImg} alt="Conceptual diagram of the import process" width="100%"/>
+
+In the figure, a request is made to create an object based on the provided data.
+
+If the vector is not provided and a vectorizer is specified, Weaviate (core) will send a request to the vectorizer module for a vector embedding. If that module is an inference-API based module, such as `text2vec-cohere`, it must then contact the inference API to request the appropriate vector.
+
+You can imagine that in such a configuration, the network latencies may add a significant amount of time for large datasets, or become a bottleneck.
+
+A batch import significantly reduces the impact of network latencies by processing multiple objects per request, and our clients (e.g. the Python client) can parallelize the process as well. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+
+### <i class="fa-solid fa-code"></i> Batch import syntax
+
+The batch syntax is shown below, with some of the parameters:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Batch import example"
+  endMarker="# END Batch import example"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Note that here, each `data_object` would be a Python dictionary whose keys correspond to the class properties.
+
+:::tip Do *not* specify vectors as a part of the `data_object`
+Vectors should be specified separately so that Weaviate knows it to be **the** object vector and it can be indexed. See [below](#example-with-id--vector) for the right syntax on how to specify the vector.
+:::
+
+### <i class="fa-solid fa-chalkboard"></i> Error handling
+
+The batch import process is configured to handle errors at a batch level, and at individual object level.
+
+#### Batch-level errors
+
+Any batch-level errors are indicated via the HTTP response code for the batch request.
+- A 200 response code indicates that batch was successfully sent, connected and processed.
+- A 4xx status code indicates that the request was malformed.
+
+#### Object-level errors
+
+Since a batch contains multiple objects, individual errors may occur during import even when the request was successful.
+
+Accordingly, object-level errors are returned as a part of the response the batch creation requests.
+
+### <i class="fa-solid fa-code"></i> Error handling syntax
+
+If there are any object-level errors during import, they will be visible in the returned responses to `batch.create_objects()` or `batch.create_references()`.
+
+In the response, each object's `result["result"]["errors"]` value can be inspected to see if there were any errors.
+
+A convenient way to do so is to define a callback function and specifying it while initializing the batch:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Example with callback"
+  endMarker="# END Example with callback"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+This pattern would capture and print any object-level errors found during the import process.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Optional parameters
+
+### <i class="fa-solid fa-chalkboard"></i> ID
+
+Each object in Weaviate has a unique identifier. This ID must be a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier), and can be user-provided, but if not, Weaviate will generate a random UUID.
+
+Weaviate does not check if a duplicate object is being created. As a result, using a deterministic uuid may prevent accidental creation of duplicate objects.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector
+
+Each object in Weaviate can have a vector embedding to represent it, although this is not mandatory.
+
+- If a vector is specified at creation time, Weaviate will use that vector to represent the object.
+- If a vector is not specified, Weaviate will check to see if a vectorizer setting applies to the relevant class.
+    - If so, Weaviate will send a request to that vectorizer module for a vector embedding.
+    - If not, the object will not have a vector representation.
+
+:::info How is a vectorizer determined for the class?
+- If a vectorizer was set in the schema for the class, this vectorizer will be used.
+- If not, Weaviate will check for a default vectorizer setting for that Weaviate instance.
+:::
+
+:::note Upload vectors and use a vectorizer
+It is possible to both upload your own vectors and specify a vectorizer for Weaviate. For example, if you are importing a large dataset and have vectorized the data using a vectorizer that is also available through Weaviate, this may be a useful approach. This will allow you to use Weaviate to vectorize any updates to the dataset, as well as to vectorize queries as necessary.
+:::
+
+We will explore these options in more detail in another unit.
+
+### <i class="fa-solid fa-code"></i> Example with id & vector
+
+To manually specify the object ID and vector, the syntax is as follows.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Example with additional properties"
+  endMarker="# END Example with additional properties"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+With these parameters, you have the option of manually specifying the object ID and vector.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+- After studying the batch import process, try to explain it in your own words.
+    - Include in your explanation what the batch import process is, why it is used, and how it improves the speed of data ingestion.
+- Can you recall which parameters were optional in the object creation process?
+    - Can you imagine scenarios in which you might want to, or not want to, specify these parameters?
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- To create a Weaviate object, you need to build a data object with properties, and add it to your desired class.
+- Use batch imports to maximize import speed and minimize network latency. Batch import processes multiple objects per request, and clients can parallelize the process.
+- Error handling during import can be done at the batch level or individual object level.
+- You can manually specify an object ID and vector for each object in Weaviate.
+    - If an ID is not specified, Weaviate will create one.
+    - If a vector is not specified, Weaviate will create one if a vectorizer is specified.
+    - The vectorizer setting can be set in the schema.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

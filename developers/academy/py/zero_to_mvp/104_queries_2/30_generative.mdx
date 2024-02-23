@@ -1,0 +1,241 @@
+---
+title: Generative searches
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./_snippets/30_generative.py';
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+[//]: # (<img src={imageUrl} alt="Image alt" width="75%"/>)
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+The core concept behind generative search is that instead of just simply fetching data from the database, Weaviate can transform the data before delivering it to you.
+
+This ability to transform data makes generative search a powerful tool that can transform your relationship with data. Instead of a database simply being a store of information, it can work with your data to deliver outputs based on the data and a set of instructions.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Configuration
+
+### <i class="fa-solid fa-code"></i> Enable modules
+
+To use generative search, a `generative-xxx` module must be enabled in the Weaviate instance.
+
+If you are using WCS, generative modules are enabled by default ([see docs](/developers/wcs#configuration). Otherwise, you must configure your Weaviate instance to make sure that a generative module is enabled.
+
+This is outside the scope of this unit, but you can refer to the [module configuration](/developers/weaviate/modules/reader-generator-modules/index.md) for information on how to configure each module.
+
+### <i class="fa-solid fa-code"></i> Configure classes
+
+If only one generative module is enabled for the Weaviate instance, Weaviate will automatically use that module for all generative tasks.
+
+On the other hand, if multiple generative modules are configured, you must define for each class which generative model to use, such as shown below.
+
+```json
+{
+  "classes": [
+    {
+      "class": "JeopardyQuestion",
+      "moduleConfig": {
+        "generative-openai": {
+          "model": "gpt-3.5-turbo"
+        }
+      }
+    }
+  ]
+}
+```
+
+## <i class="fa-solid fa-square-chevron-right"></i> About generative searches
+
+### <i class="fa-solid fa-chalkboard"></i> How it works
+
+A generative search can be best thought of as two steps that are conveniently combined to one process. The two steps are to:
+1. Perform a search; and then
+1. Call a generative model using the search results and a user-provided prompt.
+
+All generated outputs are then added to the search results before being returned to the user.
+
+There are two different types of generative searches available, which are `single prompt` and `grouped task`.
+
+- A `single prompt` search generates **a response for each result** in the results set, using each corresponding result with the user-provided prompt.
+- A `grouped task` search generates **one response for the whole result set**, by using the entire results set with the user-provided prompt.
+
+### <i class="fa-solid fa-code"></i> Generative search syntax
+
+A generative search adds a step to the search process. Accordingly, the syntax for a generative search requires specifying the prompt type (`single prompt` or `grouped task`) as well as a search query.
+
+#### Single prompt
+
+To carry out a single prompt search, you must provide a prompt that contains at least one object property. The provided properties will be populated by Weaviate based on the search results.
+
+A single prompt search can be carried out as follows:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# SinglePromptQuery"
+  endMarker="# END SinglePromptQuery"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+The above query searches for top 3 `Article` objects using a `nearText` similarity search. Then, Weaviate sends each result to a generative model with the provided prompt, whose outputs are returned to the user.
+
+A `single prompt` search will generate an output for each object found in search. Accordingly, each object in the response will include the generated output in the `_additional` properties set.
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Expected SinglePromptQuery results"
+  endMarker="# END Expected SinglePromptQuery results"
+  language="py"
+/>
+
+</details>
+
+#### Grouped Task
+
+A grouped task search does not require any properties to be specified. It can be carried out as follows:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# GroupedTaskQuery"
+  endMarker="# END GroupedTaskQuery"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+The above query searches for top 3 `Article` objects using a `nearText` similarity search, just as we did above. In this case, however, the search results are concatenated and sent to the generative model along with the user-provided prompt.
+
+In other words, each `grouped task` search will invoke one generative output per task.
+
+Thus, a `grouped task` search will generate only one output for the entire task. The generated output is returned as a part of the first object in the `_additional` properties set.
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Expected GroupedTaskQuery results"
+  endMarker="# END Expected GroupedTaskQuery results"
+  language="py"
+/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Object properties
+
+You already saw that `single prompt` generative searches require properties to be specified. You can also specify specific properties to be used with `grouped task` searches.
+
+### <i class="fa-solid fa-chalkboard"></i> Why specify properties?
+
+In `single prompt` examples, each property serves to form the model prompt, replacing placeholder text like (`{summary}`) with the retrieve summary text.
+
+You can also specify the properties to be used for each `grouped task`, so that the generative model only receives the data you want to pass to it.
+
+#### Context window length
+
+Another reason for specifying the properties is to reduce the chance of exceeding the model context length. Generative models are typically transformer-based, and many have a limited context window.
+
+As a result, only passing the required properties to the generative module may allow you to include results from more objects without exceeding the context window limit.
+
+### <i class="fa-solid fa-code"></i> How to specify properties
+
+:::tip Generative search properties unrelated to returned properties
+In both `single prompt` and `grouped task` searches, the properties to be used in the generative search do not need to be specified in the properties to be returned.
+:::
+
+You saw earlier that for `single prompt` searches, you can specify in the prompt the specific properties to be used.
+
+For `grouped task` searches, the properties to be used must be passed as an additional parameter. Take a look at the following example, where we ask the generative model to simply repeat the provided prompt:
+
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# GroupedTaskWithProperties"
+  endMarker="# END GroupedTaskWithProperties"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Expected GroupedTaskWithProperties results"
+  endMarker="# END Expected GroupedTaskWithProperties results"
+  language="py"
+/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Generative search parameters
+
+### <i class="fa-solid fa-code"></i> Optional model parameters
+
+Generative modules use what are called "large language models", or LLMs, to produce these outputs from search results and prompts.
+
+Weaviate allows you to tune the behavior of these models through additional, optional parameters made available by their providers.
+
+While we cannot cover every single parameter, some groups of commonly available parameters are described below.
+
+:::tip Parameter names will vary
+Each model will use different parameter names, so you should consult the exact module documentation and the corresponding model documentation.
+:::
+
+- `model`: Determines the actual language model to be used.
+- `temperature`, `k` and `p`: Determine how "random" the model will behave. At one extreme, the model will behave deterministically, whereas at the other extreme, it will produce more unpredictable (potentially incoherent) outputs. Some providers such as OpenAI recommend using only one of these settings.
+- `max_tokens`: Determines the maximum length of a generated output. The longer the value, the more likely you are to potentially exceed the context limit in combination with the input length.
+- `xxx_penalty`: Determines how much to penalise certain aspects such as the same tokens appearing again, or the number of times that the same tokens appear.
+
+This example specifies various parameters for the `generative-openai` module:
+
+```json
+{
+  "classes": [
+    {
+      "class": "JeopardyQuestion",
+      "moduleConfig": {
+        "generative-openai": {
+          "model": "gpt-3.5-turbo",
+          "temperatureProperty": 0.3,
+          "maxTokensProperty": 512,
+          "frequencyPenaltyProperty": 0.1,
+          "presencePenaltyProperty": -0.1
+        }
+      }
+    }
+  ]
+}
+```
+
+As a starting point, we recommend that you try using the default options, including the model, if possible. Then if something is not working to your satisfaction, you could try a different model parameter or approach.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Generative search transforms data before delivery, turning a database into a more active participant in data processing.
+- To use generative search, a generative module must be enabled in the Weaviate instance; generative modules are enabled by default in WCS.
+- A generative search involves performing a search and then calling a generative model using the search results and a user-provided prompt.
+- Single prompt search generates a response for each result, while grouped task search generates one response for the whole result set.
+- Object properties are used in generative searches; they form the model prompt in single prompt examples and can be specified in grouped tasks.
+- Generative modules use large language models (LLMs), and Weaviate exposes optional parameters for tuning their behavior.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
