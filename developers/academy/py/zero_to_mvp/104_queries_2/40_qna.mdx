@@ -1,0 +1,150 @@
+---
+title: Question and Answering (QnA)
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./_snippets/40_qna.py';
+
+import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+[//]: # (<img src={imageUrl} alt="Image alt" width="75%"/>)
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+A question and answering (QnA) module does exactly what its name suggests. It will answer a question from you, based on the data present in the search results.
+
+This is a more specific type of data transformation than one performed by a generative module. A QnA module looks to extract an answer to the question from the search data.
+
+To this end, a QnA module may not provide an answer at all.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Configuration
+
+### <i class="fa-solid fa-code"></i> Enable modules
+
+To use QnA functionality, a `qna-xxx` module must be enabled in the Weaviate instance.
+
+If you are using WCS, a `qna` module is enabled by default ([see the documentation](/developers/wcs#configuration)). Otherwise, you must configure your Weaviate instance to make sure that a `qna-xxx` module is enabled.
+
+This is outside the scope of this unit, but you can refer to the [module configuration](/developers/weaviate/modules/reader-generator-modules/index.md) for information on how to configure each module.
+
+### <i class="fa-solid fa-code"></i> Configure classes
+
+If only one qna module is enabled for the Weaviate instance, Weaviate will automatically use that module for all qna tasks.
+
+On the other hand, if multiple qna modules are configured, you must define for each class which qna model to use, such as shown below.
+
+```json
+{
+  "classes": [
+    {
+      "class": "JeopardyQuestion",
+      "moduleConfig": {
+        "qna-openai": {
+          "model": "text-davinci-002"
+        }
+      }
+    }
+  ]
+}
+```
+
+Use of QnA functionality also requires that the target class be configured with a vectorizer (`text2vec`) module.
+
+## <i class="fa-solid fa-square-chevron-right"></i> About QnA queries
+
+### <i class="fa-solid fa-chalkboard"></i> How it works
+
+Similarly to generative modules, a QnA search involves two steps, which are to:
+1. Perform a search; and then
+1. Attempt to extract an answer using the search results and the question.
+
+Depending on whether a suitable answer was found, the `answer` sub-property under `_additional` properties may contain the answer. Some models will also return the position of the answer in the text.
+
+If an answer is not found, the `answer` sub-property will indicate so.
+
+### <i class="fa-solid fa-code"></i> QnA syntax
+
+In a generative search, the same question text is used to both:
+- Perform the search, and
+- Extract the answer.
+
+So, in the example below, the query `"How many championships does Lewis Hamilton have?"` is used to find the nearest object, from which Weaviate attempts to extract an answer to the question.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# SimpleAskQuery"
+  endMarker="# END SimpleAskQuery"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+In this query, the article includes an answer, and you can see that it has been extracted by the model.
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Expected SimpleAskQuery results"
+  endMarker="# END Expected SimpleAskQuery results"
+  language="py"
+/>
+
+</details>
+
+### <i class="fa-solid fa-code"></i> How to specify properties
+
+You can specify the object properties in which the QnA module is to search through for the answer. Similarly to the case of a generative query, this may be useful if you want to reduce the length of the input, or be very specific about where the information should come from.
+
+:::note `nearText` search unaffected
+Specifying properties to search only affects the answer extraction part of the query, as the underlying object vectors do not change.
+:::
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# AskQueryWithProperties"
+  endMarker="# END AskQueryWithProperties"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+And in this query, Weaviate is not able to answer the question as the required information is not available in the `title` field.
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Expected AskQueryWithProperties results"
+  endMarker="# END Expected AskQueryWithProperties results"
+  language="py"
+/>
+
+</details>
+
+### <i class="fa-solid fa-code"></i> Object limits
+
+As this is also a two-step search, you can specify the number of objects for Weaviate to initially retrieve before attempting to extract the answer.
+
+By setting the number of objects, you may increase the chance of retrieving the object that contains the answer to the specific question.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Question and Answer (QnA) search is another two-step search, which attempts to extract an answer to a specific question from the retrieved data before delivery.
+- To perform a QnA search, a `qna-xxx` module must be enabled in the Weaviate instance. The `qna-openai` module is enabled by default in WCS.
+- The QnA module will look for an answer in each retrieved object, returning the answer as an additional property.
+- If the QnA module does not identify an answer, it will indicate so in the response.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

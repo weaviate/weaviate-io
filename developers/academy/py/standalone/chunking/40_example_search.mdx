@@ -1,0 +1,322 @@
+---
+title: Example part 2 - Search
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import CodePracticalExample from '!!raw-loader!./_snippets/30_example.py';
+
+<!-- import imageUrl from '../../tmp_images/academy_placeholder.jpg';
+
+<img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+import PreviewUnit from '../../../_snippets/preview.mdx'
+
+<PreviewUnit />
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+In the [preceding section](./30_example_chunking.mdx), we imported multiple chapters of a book into Weaviate using different chunking techniques. They were:
+
+- Fixed-length chunks (and 20% overlap)
+    - With 25 words per chunk, and
+    - With 100 words per chunk
+- Variable-length chunks, using paragraph markers, and
+- Mixed-strategy chunks, using paragraph markers and a minimum chunk length of 25 words.
+
+Now, we will use Weaviate to search through the book and evaluate the impact of the chunking techniques.
+
+Since the data comes from the first two chapters of a book about Git, let's search for various git-related concepts and see how the different chunking strategies perform.
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Search / recall
+
+First of all, we'll retrieve information from our Weaviate instance using various search terms. We'll use a semantic search (`nearText`) to aim to retrieve the most relevant chunks.
+
+### <i class="fa-solid fa-code"></i> Search syntax
+
+The search is carried out as follows, looping through each chunking strategy by filtering our dataset. We'll obtain a couple of top results for each search term.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START vector_search"
+  endMarker="# END vector_search"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Using these search terms:
+- `"history of git"`
+- `"how to add the url of a remote repository"`
+
+### <i class="fa-solid fa-chalkboard"></i> Results & discussions
+
+We get the following results:
+
+#### Example 1
+
+:::info Results for a search for `"history of git"`.
+:::
+
+<Tabs groupId="chunking">
+<TabItem value="fixed_size_25" label="25 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_25 vector_search_history"
+  endMarker="# END fixed_size_25 vector_search_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="fixed_size_100" label="100 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_100 vector_search_history"
+  endMarker="# END fixed_size_100 vector_search_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks" label="Paragraph chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks vector_search_history"
+  endMarker="# END para_chunks vector_search_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks_min_25" label="Paragraph chunks with minimum length">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks_min_25 vector_search_history"
+  endMarker="# END para_chunks_min_25 vector_search_history"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+The query in this example is a broad one on the `history of git`. The result is that here, the longer chunks seem to perform better.
+
+Inspecting the result, we see that while the 25-word chunks may be semantically similar to the query `history of git`, they do not contain enough contextual information to enhance the readers' understanding of the topic.
+
+On the other hand, the paragraph chunks retrieved - especially those with a minimum length of 25 words - contain a good amount of holistic information that will teach the reader about the history of git.
+
+#### Example 2
+
+:::info Results for a search for `"how to add the url of a remote repository"`.
+:::
+
+<Tabs groupId="chunking">
+<TabItem value="fixed_size_25" label="25 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_25 vector_search_remote_repo"
+  endMarker="# END fixed_size_25 vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+<TabItem value="fixed_size_100" label="100 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_100 vector_search_remote_repo"
+  endMarker="# END fixed_size_100 vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks" label="Paragraph chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks vector_search_remote_repo"
+  endMarker="# END para_chunks vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks_min_25" label="Paragraph chunks with minimum length">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks_min_25 vector_search_remote_repo"
+  endMarker="# END para_chunks_min_25 vector_search_remote_repo"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+The query in this example was a more specific one, for example one that might be run by a user looking to identify how to add the url of a remote repository.
+
+In contrast to the first scenario, the 25-word chunks are more useful here. Because the question was very specific, Weaviate was able to identify the chunk containing the most suitable passage - how to add a remote repository (`git remote add <shortname> <url>`).
+
+While the other result sets also contain some of this information, it may be worth considering how the result may be used and displayed. The longer the result, the more cognitive effort it may take the user to identify the relevant information.
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Retrieval augmented generation (RAG)
+
+Next, let's take a look at the impact of chunking on RAG.
+
+We [discussed the relationship between chunk size and RAG earlier](./10_introduction.mdx#for-optimal-retrieval-augmented-generation-rag). Using shorter chunks will allow you to include information from a wider range of source objects than longer chunks, but each object will not include as much contextual information. On the other hand, using longer chunks means each chunk will include more contextual information, but you will be limited to fewer source objects.
+
+Let's try a few RAG examples to see how this manifests itself.
+
+### <i class="fa-solid fa-code"></i> Query syntax
+
+The query syntax is shown below. The syntax is largely the same as above, except for two aspects.
+
+One is that to account for varying chunk sizes, we will retrieve more chunks where the chunk size is smaller.
+
+The other is that the query has been modified to perform RAG, rather than a simple retrieval. The query asks the target LLM to summarize the results into point form.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START generative_search"
+  endMarker="# END generative_search"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+### <i class="fa-solid fa-chalkboard"></i> Results & discussions
+
+#### Example 1
+
+:::info Results for a search for `"history of git"`.
+:::
+
+<Tabs groupId="chunking">
+<TabItem value="fixed_size_25" label="25 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_25 generative_search_git_history"
+  endMarker="# END fixed_size_25 generative_search_git_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="fixed_size_100" label="100 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_100 generative_search_git_history"
+  endMarker="# END fixed_size_100 generative_search_git_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks" label="Paragraph chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks generative_search_git_history"
+  endMarker="# END para_chunks generative_search_git_history"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks_min_25" label="Paragraph chunks with minimum length">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks_min_25 generative_search_git_history"
+  endMarker="# END para_chunks_min_25 generative_search_git_history"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+The findings here are similar to the semantic search results. The longer chunks contain more information, and are more useful for a broad topic like the history of git.
+
+#### Example 2
+
+:::info Results for a search for `"available git remote commands"`.
+:::
+
+<Tabs groupId="chunking">
+<TabItem value="fixed_size_25" label="25 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_25 generative_search_git_remote"
+  endMarker="# END fixed_size_25 generative_search_git_remote"
+  language="text"
+/>
+</TabItem>
+<TabItem value="fixed_size_100" label="100 word chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START fixed_size_100 generative_search_git_remote"
+  endMarker="# END fixed_size_100 generative_search_git_remote"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks" label="Paragraph chunks">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks generative_search_git_remote"
+  endMarker="# END para_chunks generative_search_git_remote"
+  language="text"
+/>
+</TabItem>
+<TabItem value="para_chunks_min_25" label="Paragraph chunks with minimum length">
+<FilteredTextBlock
+  text={CodePracticalExample}
+  startMarker="# START para_chunks_min_25 generative_search_git_remote"
+  endMarker="# END para_chunks_min_25 generative_search_git_remote"
+  language="text"
+/>
+</TabItem>
+</Tabs>
+
+The results of the generative search here for `available git remote commands` are perhaps even more illustrative than before.
+
+Here, the shortest chunks were able to retrieve the highest number of `git remote` commands from the book. This is because we were able to retrieve more chunks from various locations throughout the corpus (book).
+
+Contract this result to the one where longer chunks are used. Here, using longer chunks, we were only able to retrieve one `git remote` command, because we retrieved fewer chunks than before.
+
+#### Discussions
+
+You see here the trade-off between using shorter and longer chunks.
+
+Using shorter chunks allows you to retrieve more information from more objects, but each object will contain less contextual information. On the other hand, using longer chunks allows you to retrieve less information from fewer objects, but each object will contain more contextual information.
+
+Even when using LLMs with very large context windows, this is something to keep in mind. Longer input texts means higher fees for the API use, or inference time. In other words, there are costs associated with using longer chunks.
+
+Often, this is *the* trade-off that you will need to consider when deciding on the chunking strategy for a RAG use-case.
+
+<!-- ## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<Quiz questions={varName} />
+
+Any quiz questions
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out ...
+:::
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+:::info
+Add summary
+::: -->
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+<!-- import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}]; -->

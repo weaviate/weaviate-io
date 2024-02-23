@@ -158,6 +158,10 @@ A `Near Image` search can be combined with any other operators (like filter, lim
 
 See the [`similarity search`](./similarity.md) page for more details.
 
+## Related pages
+
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />

@@ -12,11 +12,12 @@ function CourseCardSet(props) {
       cardItems.push(
         <div class="col col--6">
           <AcademyCard
-            title={cardData[k].courseId + ". " + cardData[k].title}
+            title={cardData[k].courseId + ": " + cardData[k].title}
             body={cardData[k].body}
             buttonType={cardData[k].buttonType}
             badgeType={cardData[k].badgeType}
             buttonURL={cardData[k].buttonURL}
+            note={cardData[k].note}
           />
         </div>
       )

@@ -152,7 +152,7 @@ import weaviate
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))
+    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))  # Values in seconds
 )
 # END LocalInstantiationWithTimeout
 
@@ -181,7 +181,7 @@ client = weaviate.WeaviateClient(
     },
     additional_config=weaviate.config.AdditionalConfig(
         startup_period=10,
-        timeout=(5, 15)
+        timeout=(5, 15)  # Values in seconds
     ),
 )
 
@@ -303,6 +303,8 @@ try:
 finally:
     client.close()
 
+source_iterable = range(100)  # Dummy iterable
+
 # START BatchErrorHandling
 import weaviate
 import weaviate.classes as wvc
@@ -312,7 +314,13 @@ client = weaviate.connect_to_local()
 try:
     # ===== First batch import block =====
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
-        pass  # Batch import objects/references
+        # Batch import objects/references
+        # highlight-start
+        for i in source_iterable:  # Some insertion loop
+            if batch.number_errors > 10:  # Monitor errors during insertion
+                # Break or raise an exception
+                # highlight-end
+                pass
     # highlight-start
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the first batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the first batch import
@@ -321,7 +329,13 @@ try:
     # ===== Second batch import block =====
     # This will clear the failed objects/references
     with client.batch.rate_limit(requests_per_minute=600) as batch:  # or <collection>.batch.rate_limit()
-        pass  # Batch import objects/references
+        # Batch import objects/references
+        # highlight-start
+        for i in source_iterable:  # Some insertion loop
+            if batch.number_errors > 10:  # Monitor errors during insertion
+                # Break or raise an exception
+                # highlight-end
+                pass
     # highlight-start
     failed_objs_b = client.batch.failed_objects  # Get failed objects from the second batch import
     failed_refs_b = client.batch.failed_references  # Get failed references from the second batch import

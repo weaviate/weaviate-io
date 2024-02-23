@@ -1,0 +1,354 @@
+---
+title: Aggregate{} the result set
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/wi3DG6XJkmA' controls='true' />
+<br/>
+
+Now that you have seen how to retrieve individual objects with `Get`, let's take a look at how to compile information with `Aggregate`.
+
+`Aggregate` is a powerful function that allows you to combine information from multiple objects into a single result to get a quick overview of the results.
+
+## <i class="fa-solid fa-square-chevron-right"></i> About `Aggregate` queries
+
+### <i class="fa-solid fa-chalkboard"></i> `Aggregate` function syntax
+
+While the overall structure of `Aggregate` queries is similar to `Get` queries, there are some important differences as the queries relate to sets of results.
+
+The basic syntax for `Aggregate` queries is as follows:
+
+import AggregateSyntax from './_snippets/academy.queries.aggregate.syntax.mdx';
+
+<AggregateSyntax/>
+
+Unlike a `Get` query, available properties in `Aggregate` differ according to data types of the property being queried.
+
+These reflect the possible operations that can be performed on different data types. For example, the available properties for a `String` property are different from those for an `Integer` property or a cross-reference.
+
+Let's try out some `Aggregate` queries.
+
+As a reminder, our objects include the following schema:
+
+<details>
+  <summary>See relevant schema</summary>
+
+import ShortSchema from './_snippets/academy.queries.schema.short.mdx';
+
+<ShortSchema/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Standalone `Aggregate` queries
+
+### <i class="fa-solid fa-code"></i> Example 1
+
+Take a look at this query:
+
+import AggregateStandalone from './_snippets/academy.queries.aggregate.standalone.mdx';
+
+<AggregateStandalone/>
+
+What kind of results do you expect to come back?
+
+Now, try it out yourself.
+
+Your query should return something like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "meta": {
+            "count": 10000
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Response object from Weaviate
+
+This response includes an object to represent the `meta` information requested from `JeopardyQuestion` class. The `meta` object contains a `count` property, which is the total number of objects in the class.
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query aggregates the objects in the `JeopardyQuestion` class to obtain the total count. Since there are no restrictions, it returns the total number of objects which is 10,000.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> `meta` property
+
+In the above `Aggregate` query we requested a `meta` property, for the count of the objects. Note that this is not an available property of the object class itself. This is a key difference between `Aggregate` and `Get` queries.
+
+A `Get` query retrieves a set of individual results, so we can select properties (e.g. `id`, or one of the properties unique to the data, such as `answer`) that apply to each of those individual results.
+
+An `Aggregate` query, on the other hand, returns an aggregation of the results. Accordingly, we must specify a sub-property that applies to the entire set of results.
+
+The `meta` property is one such property. It is available for all data types, and can be used with the `count` sub-property to return the number of retrieved objects.
+
+
+### <i class="fa-solid fa-code"></i> Example 2
+
+Take a look at this query:
+
+import AggregateStandalone2 from './_snippets/academy.queries.aggregate.standalone.2.mdx';
+
+<AggregateStandalone2/>
+
+What fields do you expect back in the results?
+
+Now, try it out yourself.
+
+Your query should return something like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "answer": {
+            "count": 10000,
+            "topOccurrences": [
+              {
+                "occurs": 19,
+                "value": "Australia"
+              },
+              {
+                "occurs": 18,
+                "value": "Hawaii"
+              },
+              {
+                "occurs": 16,
+                "value": "Boston"
+              },
+              {
+                "occurs": 15,
+                "value": "French"
+              },
+              {
+                "occurs": 15,
+                "value": "India"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This response includes an object to represent aggregations from the `answer` property requested from `JeopardyQuestion` class. Because the property contains textual information, we can aggregate `topOccurrences` information, such as the `value` property, which is the token, as well as the number of times it `occurs`.
+
+</details>
+
+:::tip Available properties
+The list of available properties can be found on [this page](/developers/weaviate/api/graphql/aggregate.md#aggregate-syntax-and-query-structure) in our documentation.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> `Aggregate` with a search operator
+
+As we did with `Get` queries, we can also use search operators such as `nearText` in an `Aggregate` query. Take a look:
+
+### <i class="fa-solid fa-code"></i> Example (with `nearText`)
+
+For example, let's say that now instead of individual questions, we would like to know something more holistic about the answers. Like how many questions might be related to this query:
+
+import AggregateWithNearText from './_snippets/academy.queries.aggregate.with.neartext.mdx';
+
+<AggregateWithNearText/>
+
+Before looking at the response, or running the query, think about the following:
+- How many results do you expect to be returned?
+- Can you guess how an increase in the `distance` parameter would change the number of results returned?
+
+Now, try it out yourself. The query should return something like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "meta": {
+            "count": 9
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query aggregates the results that were restricted using the `distance` argument. This argument is a threshold that restricts the returned results to those that are relevant to the input. Without it, the search results would potentially include the entire class.
+
+This is called "limiting the search space".
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Limit search space
+
+In order to produce meaningful aggregations with a vector search, you must limit the search space.
+
+This is different from aggregations in, say, a relational database. In a relational database, grouping or aggregating data can be done using `groupby` with functions such as SUM, AVG, MIN, MAX, etc. This allows you to find a result set and then aggregate the results.
+
+However, a vector search does not inherently exclude any results. This is because a vector search retrieves results based on *degrees* of similarity.
+
+**Accordingly, the search space must be limited** so that only relevant results are included in the aggregation. This can be done by setting an explicit `limit` or a threshold (`distance` or `certainty`) in the query.
+
+## <i class="fa-solid fa-square-chevron-right"></i> `Aggregate` with `groupBy`
+
+So far, we have seen how to use `Aggregate` queries to compile information relating one set of results. This can be extended with the `groupBy` argument to compile information from multiple, subsets of results.
+
+### <i class="fa-solid fa-code"></i> Example
+
+For example, let's say we want to know how many questions there are for each available `value` property. We can do this by adding the `groupBy` argument to the query:
+
+import AggregateGroupby from './_snippets/academy.queries.aggregate.groupby.mdx';
+
+<AggregateGroupby/>
+
+What do you expect to see here? How will the results differ, now that we've added the `groupBy` argument? Do you notice what else has changed to the query?
+
+Now, try it out yourself. The query should return something like this:
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Aggregate": {
+      "JeopardyQuestion": [
+        {
+          "groupedBy": {
+            "path": [
+              "round"
+            ],
+            "value": "Double Jeopardy!"
+          },
+          "meta": {
+            "count": 5
+          }
+        },
+        {
+          "groupedBy": {
+            "path": [
+              "round"
+            ],
+            "value": "Jeopardy!"
+          },
+          "meta": {
+            "count": 3
+          }
+        },
+        {
+          "groupedBy": {
+            "path": [
+              "round"
+            ],
+            "value": "Final Jeopardy!"
+          },
+          "meta": {
+            "count": 1
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary><i class="fa-solid fa-lightbulb"></i> Explain this query</summary>
+
+This query supplies an additional `groupedBy` argument, as a result of which the counts are of each `round`. The query also requests `groupedBy` a property so that each count is identifiable by the `value` of each `round` group.
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> `groupBy` + `groupedBy`
+
+Results identified by an `Aggregate` query can be further grouped by using a `groupBy` argument. This argument takes a list of properties as an argument, and will group the results by the values of those properties.
+
+This is a particularly useful query pattern for identifying characteristics for subsets of results of a vector search.
+
+When the `groupBy` argument is used, additional property `groupedBy` is made available. This property and its sub-properties can be used to identify the group that the result belongs to.
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Try out the above query again, with these changes.
+- Instead of `round` try grouping by the `points` property.
+- Instead of `distance`, try adding an `.with_object_limit(9)` in the method chain. Are the results the same?
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+Try out the above `nearText` query again, with these changes.
+- Change the distance to another value - say, to 0.1, 0.19, 0.21 or 0.25 - how do the results change? Are they in line with your expectations?
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- The `Aggregate` function is used to compile information from multiple objects, providing an overview.
+- Search operators, like `nearText`, can be used in `Aggregate` queries.
+    - To produce meaningful aggregations, the search space must be limited by setting an explicit limit or a threshold (distance or certainty) in the query.
+- The `groupBy` argument can be used to compile information from multiple subsets of results, refining the aggregation.
+- When using the groupBy argument, the additional property groupedBy is made available, helping to identify the group that the result belongs to.
+
+import Quiz from '/src/components/Academy/quiz.js'
+const varName = [{
+  questionText: 'questionText',
+  answerOptions: [
+    {
+      answerText: 'answerOne',
+      isCorrect: false,
+      feedback: 'feedbackOne',
+    },
+    {
+      answerText: 'answerTwo',
+      isCorrect: false,
+      feedback: 'feedbackTwo',
+    },
+    {
+      answerText: 'answerThree',
+      isCorrect: false,
+      feedback: 'feedbackThree',
+    },
+  ]
+}];
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
