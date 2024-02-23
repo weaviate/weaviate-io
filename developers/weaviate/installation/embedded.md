@@ -14,7 +14,7 @@ Embedded Weaviate is **experimental** software. APIs and parameters may change.
 
 Embedded Weaviate is a new deployment model that runs a Weaviate instance from your application code rather than from a stand-alone Weaviate server installation.
 
-Embedded Weaviate creates a permanent datastore, but it does not install a permanent Weaviate instance. Even though the Embedded Weaviate instance disappears when your client exits, the data persists in the location set in your `persistence_data_path`.
+When Embedded Weaviate starts for the first time, it creates a permanent datastore in the location set in your `persistence_data_path`. When your client exits, the Embedded Weaviate instance also exits, but the data persists . The next time the client runs, it starts a new instance of Embedded Weaviate. New Embedded Weaviate instances use the data that is saved in the datastore.
 
 ## Start an Embedded Weaviate instance
 
@@ -61,7 +61,9 @@ import EmbeddedInstantiationModule from '/_includes/code/embedded.instantiate.mo
 
 ## Binary sources
 
-Weaviate core releases include executable Linux binaries. When you instantiate a client with Embedded Weaviate, the client uses the binary packages to create a temporary Weaviate instance that persists while your client code runs.
+Weaviate core releases include executable Linux binaries. When you instantiate an Embedded Weaviate client, the client checks for local copies of the binary packages. If the client finds the binary files, it runs them to create a temporary Weaviate instance. If not, the client downloads the binaries and saves them in your `binary_path` directory.
+
+The Embedded Weaviate instance goes away when your client exits. However, the client does not delete the binary files. The next time your client runs, it checks for the binaries and uses the saved binaries if they exist.
 
 ### File list
 For a list of the files that are included in a release, see the Assets section of the Release Notes page for that release on [GitHub](https://github.com/weaviate/weaviate/releases).
@@ -78,23 +80,25 @@ For example, the URL for the Weaviate `1.19.6` `AMD64` binary is:
 
 ## Functional overview
 
-Weaviate core usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs as part of a client script or application. The instance can access a persistent datastore, but the instance exits when the client exits. 
+Weaviate core usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs in conjunction with a client script or application. Embedded Weaviate instances can access a persistent datastore, but the instances exit when the client exits. 
 
-When your client runs, it checks for a stored Weaviate binary. If it finds one, the client uses that binary to create an Embedded Weaviate instance. If not, teh client downloads the binary.
+When your client runs, it checks for a stored Weaviate binary. If it finds one, the client uses that binary to create an Embedded Weaviate instance. If not, the client downloads the binary.
 
-When the embedded instance starts, it checks for a data store. Other clients can also use the same data store. 
-
-The embedded server pipes `STDOUT` and `STDERR` to the client. To redirect `STDERR` in a command terminal, run your script like this:
-
-```bash
-python3 your_embedded_client_script.py 2>/dev/null 
-```
+The instance also checks for an existing data store. Clients reuse the same data store, updates persist between client invocations. 
 
 When you exit the client script or application, the Embedded Weaviate instance also exits: 
 
 - Scripts: The Embedded Weaviate instance exits when the script exits.
 - Applications: The Embedded Weaviate instance exits when the application exits.
 - Jupyter Notebooks: The Embedded Weaviate instance exits when the Jupyter notebook is no longer active.
+
+## Embedded server output
+
+The embedded server pipes `STDOUT` and `STDERR` to the client. To redirect `STDERR` in a command terminal, run your script like this:
+
+```bash
+python3 your_embedded_client_script.py 2>/dev/null 
+```
 
 ## Supported Environments
 
@@ -112,7 +116,7 @@ Embedded Weaviate is supported for Python and TypeScript clients.
 
 The embedded TypeScript client is no longer a part of the standard TypeScript client. 
 
-The embedded client has additional dependencies that are not included in the standard client. However, the embedded client extends the original TypeScript client. After you instantiate Embedded Weaviate instance, the embedded TypeScript client works the same way as the standard client.
+The embedded client has additional dependencies that are not included in the standard client. However, the embedded client extends the original TypeScript client so after you instantiate an Embedded Weaviate instance, the embedded TypeScript client works the same way as the standard client.
 
 To install the embedded TypeScript client, run this command:
 
