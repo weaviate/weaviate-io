@@ -2,13 +2,15 @@
 import os
 import weaviate
 import os
-import requests
-import base64
 
 # END-ANY
 
 headers = {"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
-client = weaviate.connect_to_local(headers=headers)
+client = weaviate.connect_to_local(
+    port=8280,
+    grpc_port=50251,
+    headers=headers
+)
 
 # START-ANY
 # Instantiate your client (not shown). e.g.:
@@ -16,6 +18,9 @@ client = weaviate.connect_to_local(headers=headers)
 # client = weaviate.connect_to_local(headers=headers)
 
 def url_to_base64(url):
+    import requests
+    import base64
+
     image_response = requests.get(url)
     content = image_response.content
     return base64.b64encode(content).decode("utf-8")
