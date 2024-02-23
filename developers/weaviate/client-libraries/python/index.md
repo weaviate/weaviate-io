@@ -272,12 +272,12 @@ We recommend using the collection object to perform batch imports of single coll
 
 ### Batch sizing
 
-There are three ways to configure the batch size. They are `dynamic`, `fixed_size` and `rate_limit`.
+There are three methods to configure the batch sizing and concurrency. They are `dynamic`, `fixed_size` and `rate_limit`.
 
 | Method | Description | When to use |
 | :-- | :-- | :-- |
-| `dynamic` | The batch size is dynamically calculated by Weaviate and adjusted on-the-fly during import. | Recommended starting point. |
-| `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
+| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Recommended starting point. |
+| `fixed_size` | The batch size and concurrency are fixed to sizes specified by the user. | When you want to specify fixed parameters. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
 
 #### Usage
