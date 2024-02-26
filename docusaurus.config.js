@@ -106,6 +106,10 @@ const config = {
         }),
     ],
 
+    clientModules: [
+        require.resolve('./src/components/scriptSwitch/scriptSwitch.js'), 
+      ],
+
     stylesheets: [
         // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
