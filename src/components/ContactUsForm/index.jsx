@@ -25,12 +25,12 @@ export default function ContactUsForm() {
 
   const packageOptions = [
     {
-      value: 'Enterprise',
-      text: 'Enterprise',
+      value: 'EnterpriseDedicated',
+      text: 'Enterprise Dedicated',
     },
     {
-      value: 'Business Critical',
-      text: 'Business Critical',
+      value: 'BYOC',
+      text: 'BYOC',
     },
   ];
 
