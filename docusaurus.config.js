@@ -28,9 +28,6 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
-    clientModules: [
-      './src/components/scriptSwitch/scriptSwitch.js'
-      ],
     plugins: [
 
         [
@@ -84,15 +81,7 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
-                         // Add Scarf
-                         {
-                            tagName: 'img',
-                             attributes: {
-                                src: "https://static.scarf.sh/a.png?x-pxid=a41b0758-a3a9-4874-a880-8b5d5a363d40",
-                                referrerPolicy: "no-referrer-when-downgrade",
-                                style: "display: none;",
-                                 },
-                        },
+                      
                         // Add hotjar
                         {
                             tagName: 'script',
@@ -109,7 +98,9 @@ const config = {
         }),
     ],
 
-   
+    clientModules: [
+        './src/components/scriptSwitch/scriptSwitch.js'
+        ],
 
     stylesheets: [
         // Add Font Awesome stylesheets
