@@ -18,7 +18,6 @@ import HomepageLatestInsights from '/src/components/Home/LatestInsights';
 import HomepageContact from '/src/components/Home/Contact';
 import ContactForm from '/src/components/Home/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
-import CustomScriptLoader from '../components/scriptSwitch';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -40,7 +39,6 @@ export default function Home() {
         </main>
       </Layout>
       <ThemeSwitch />
-      <CustomScriptLoader />
     </div>
   );
 }
