@@ -98,10 +98,7 @@ const config = {
         }),
     ],
 
-    clientModules: [
-        './src/components/scriptSwitch/scriptSwitch.js'
-        ],
-
+ 
     stylesheets: [
         // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
