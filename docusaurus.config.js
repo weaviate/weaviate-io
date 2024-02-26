@@ -29,7 +29,7 @@ const config = {
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
     clientModules: [
-        require.resolve('./src/components/scriptSwitch/scriptSwitch.js'), 
+      './src/components/scriptSwitch/scriptSwitch.js'
       ],
     plugins: [
 
