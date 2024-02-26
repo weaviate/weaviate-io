@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
-import PricingHeader from '../../components/Pricing/Header';
-import PricingPlan from '../../components/Pricing/Plan';
-import PricingCalculator from '../../components/Pricing/Calculator';
-import PricingFAQ from '../../components/Pricing/FAQ';
+import ServiceHeader from '../../components/Service/Header';
+import ServicePlan from '../../components/Service/Plan';
+import ServiceCalculator from '../../components/Service/Calculator';
+import ServiceFAQ from '../../components/Service/FAQ';
 import ContactUsForm from '../../components/ContactUsForm';
-import HybridBusinessCritical from '../../components/Pricing/HybridBusinessCritical';
+import HybridBusinessCritical from '../../components/Service/HybridBusinessCritical';
 import ThemeSwitch from '/src/components/ThemeSwitch';
-import Soc2 from '../../components/Pricing/SOC2/soc2';
-import WCS from '../../components/Pricing/WCS';
+import Soc2 from '../../components/Service/SOC2/soc2';
+import WCS from '../../components/Service/WCS';
 
 export default function ServicePage() {
   const [selectedType, setSelectedType] = useState('serverless');
@@ -26,24 +26,24 @@ export default function ServicePage() {
 
   return (
     <div className="custom-page noBG">
-      <Layout title="Pricing" description="Pricing models">
-        <PricingHeader />
+      <Layout title="Service" description="Service models">
+        <ServiceHeader />
 
         {selectedType === 'serverless' ? (
           // Render Serverless content
           <>
             <WCS socLight="light" />
-            <PricingPlan />
+            <ServicePlan />
             <HybridBusinessCritical />
             <Soc2 socLight="dark" />
-            <PricingFAQ faqType="Serverless" />
+            <ServiceFAQ faqType="Serverless" />
           </>
         ) : (
           // Render BYOC content
           <>
             <HybridBusinessCritical />
             <Soc2 socLight="light" />
-            <PricingFAQ faqType="BYOC" />
+            <ServiceFAQ faqType="BYOC" />
           </>
         )}
 

@@ -1,0 +1,83 @@
+.boxGrid {
+  display: flex;
+  grid-gap: 2rem;
+  flex-direction: column;
+  p {
+    font-size: 1rem;
+  }
+}
+
+.box {
+  width: 60%;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+
+  h2 {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 1.2rem */
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+}
+.intro {
+  padding: 1rem 0rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+  }
+
+  div {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #130c49;
+    transition: all 1s ease-out;
+  }
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+[data-theme='light'] {
+  .buttonOutline {
+    color: rgba(46, 49, 143);
+  }
+}
+
+.faqBG {
+  background: #f5f5f5;
+}
