@@ -28,6 +28,9 @@ const config = {
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
+    clientModules: [
+        require.resolve('./src/components/scriptSwitch/scriptSwitch.js'), 
+      ],
     plugins: [
 
         [
@@ -106,9 +109,7 @@ const config = {
         }),
     ],
 
-    clientModules: [
-        require.resolve('./src/components/scriptSwitch/scriptSwitch.js'), 
-      ],
+   
 
     stylesheets: [
         // Add Font Awesome stylesheets
