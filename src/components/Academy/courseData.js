@@ -47,7 +47,8 @@ export const courseData = {
     title: "Multimodal data with Weaviate",
     courseId: "PY_101M",
     body: "Project-based learning where you'll learn how to build with Weaviate and multi-modal data. Weaviate generates the vectors for you.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data",
     badgeType: "course",
     isCourse: true,
     units: [

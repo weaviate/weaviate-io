@@ -1,5 +1,5 @@
 ---
-title: "101V. Work with: Your own vectors"
+title: "101V Work with: Your own vectors"
 sidebar_position: 101
 ---
 
