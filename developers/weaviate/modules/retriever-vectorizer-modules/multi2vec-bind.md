@@ -35,6 +35,10 @@ Key notes:
 This module is not available on Weaviate Cloud Services.
 :::
 
+### Memory requirements
+
+The `multi2vec-bind` module requires a significant amount of memory to run. You may need to increase the memory limit for the `multi2vec-bind` container to 12 GB or more, such as through Docker Desktop's settings.
+
 ### Docker Compose file
 
 To use `multi2vec-bind`, you must enable it in your Docker Compose file (e.g. `docker-compose.yml`).
