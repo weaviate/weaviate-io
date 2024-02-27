@@ -264,6 +264,25 @@ To create an older, `v3` style `Client` object, use the `weaviate.Client` class.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
+### Initial connection checks
+
+When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
+
+You can set `skip_init_checks` to `True` to skip these checks.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# LocalInstantiationSkipChecks"
+  endMarker="# END LocalInstantiationSkipChecks"
+  language="py"
+/>
+
+You may wish to do this to maximize performance, or as a temporary measure if you are experiencing issues with the checks. However, we recommend leaving `skip_init_checks` as `False` in most cases.
+
+:::note Open GitHub issue for configurable timeout
+There is an [open issue](https://github.com/weaviate/weaviate-python-client/issues/899) to make the initial checks timeout configurable. Please upvote this issue if you would like to see this feature.
+:::
+
 ## Batching
 
 The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.

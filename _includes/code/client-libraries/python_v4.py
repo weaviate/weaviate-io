@@ -44,6 +44,21 @@ try:
 finally:
     client.close()
 
+
+# LocalInstantiationSkipChecks
+import weaviate
+
+client = weaviate.connect_to_local(
+    skip_init_checks=True
+)
+# END LocalInstantiationSkipChecks
+
+try:
+    assert client.is_ready()
+finally:
+    client.close()
+
+
 """
 # EmbeddedInstantiationBasic
 import weaviate

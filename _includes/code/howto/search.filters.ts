@@ -122,6 +122,77 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // ==========================================
+// ===== ContainsAnyFilter =====
+// ==========================================
+
+// ContainsAnyFilter  // ContainsAllFilter
+let token_list
+// END ContainsAnyFilter  // END ContainsAllFilter
+
+
+// ContainsAnyFilter
+// highlight-start
+token_list = ['australia', 'india']
+// highlight-end
+
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  // Find objects where the `answer` property contains any of the strings in `token_list`
+  .withWhere({
+    path: ['answer'],
+    operator: 'ContainsAny',
+    valueTextArray: token_list,
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer round')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END ContainsAnyFilter
+
+// Tests
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.answer.toLowerCase().includes('australia') || question.answer.toLowerCase().includes('india'));
+}
+
+
+// ==========================================
+// ===== ContainsAllFilter =====
+// ==========================================
+
+// ContainsAllFilter
+// highlight-start
+token_list = ['blue', 'red']
+// highlight-end
+
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  // Find objects where the `question` property contains all of the strings in `token_list`
+  .withWhere({
+    path: ['question'],
+    operator: 'ContainsAll',
+    valueTextArray: token_list,
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer round')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END ContainsAllFilter
+
+// Tests
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.question.toLowerCase().includes('red') & question.question.toLowerCase().includes('blue'));
+}
+
+
+// ==========================================
 // ===== Multiple Filters with And =====
 // ==========================================
 
@@ -277,8 +348,62 @@ console.log(JSON.stringify(result, null, 2));
 // END filterById
 
 // Tests
-result.data.Get.JeopardyQuestion[0]._additional.id;
-assert.equal(target_id, result.data.Get.JeopardyQuestion[0]._additional.id);
+assert.equal(target_id, result.data.Get.Article[0]._additional.id);
+
+
+// ===================================================
+// ===== Filters using timestamps =====
+// ===================================================
+
+// FilterByTimestamp
+result = await client.graphql
+  .get()
+  .withClassName('Article')
+  .withFields('title _additional { creationTimeUnix }')
+  .withWhere({
+    operator: 'GreaterThan',
+    path: ['_creationTimeUnix'],
+    valueDate: '2020-01-01T00:00:00+00:00',
+    // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
+    // valueText: '1577836800',
+  })
+  .withLimit(3)
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END FilterByTimestamp
+
+// Tests
+for (const article of result.data.Get.Article) {
+  assert.ok(Number(article._additional.creationTimeUnix) > 1577836800);
+}
+
+
+// ===================================================
+// ===== Filters using property length =====
+// ===================================================
+
+// FilterByPropertyLength
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('answer')
+  .withWhere({
+    operator: 'GreaterThan',
+    path: ['len(answer)'],
+    valueInt: 20,
+  })
+  .withLimit(3)
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END FilterByPropertyLength
+
+// Tests
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.answer.length > 20);
+}
+
 
 
 // ===================================================
