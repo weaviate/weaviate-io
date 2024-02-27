@@ -11,11 +11,10 @@ export default function ServiceHeader() {
           <h1>Weaviate Services</h1>
           <div className={styles.headerBox}>
             <p>
-              Whether you work at a fast-paced startup or at an enterprise with
-              specific deployment needs, we're here to help. Weaviate Cloud
-              Services (WCS) is a fully-managed service that can deploy Weaviate
-              in a dedicated tenant, an isolated tenant, or even in your own
-              cloud environment.
+              Our Services are designed to support organizations of all sizes
+              from prototype to production. Whether you’re a fast-moving startup
+              or a well-established enterprise, we have flexible options to meet
+              your needs.
             </p>
           </div>
           <div className={styles.buttons}>
@@ -23,7 +22,7 @@ export default function ServiceHeader() {
               className={styles.buttonGradient}
               to="https://console.weaviate.cloud/"
             >
-              Start Free
+              Try Free
             </Link>
             <Link className={styles.buttonOutline} to="#contact-sales">
               Contact Sales
