@@ -28,7 +28,7 @@ For details, see [Named vectors](./_core-1-24-include.mdx).
 
 ![HNSW and binary quantization](./img/hnsw-and-bq.png)
 
-Weaviate expands binary quantization (BQ) in 1.24 so we can be faster, more memory efficient, and more cost-effective for our users. Now you can use BQ vector compression with HNSW indexs.
+Weaviate expands binary quantization (BQ) in 1.24 so we can be faster, more memory efficient, and more cost-effective for our users. Now you can use BQ vector compression with HNSW indexes.
 
 BQ compresses vector representations while preserving essential information. Vector directionality is encoded as a single bit per dimension, which significantly reduces storage requirements. Uncompressed, Weaviate uses a `float32` for each dimension. As a result, BQ provides a compression factor of 32x - reducing storage from 32 bits per dimension to 1 bit per dimension.
 
