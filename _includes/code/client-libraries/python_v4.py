@@ -923,6 +923,15 @@ try:
     # END LenCollectionExample
 
 
+    # START BrokenQueryExample
+    try:
+        collection = client.collections.get("NonExistentCollection")
+        collection.query.fetch_objects(limit=2)
+    except weaviate.exceptions.WeaviateBaseError as e:
+        print(f"Caught a Weaviate error: {e.message}")
+    # END BrokenQueryExample
+
+
     # GenericsExample
     from typing import TypedDict
 
