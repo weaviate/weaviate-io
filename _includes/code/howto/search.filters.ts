@@ -122,6 +122,38 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // ==========================================
+// ===== ContainsAnyFilter Filter =====
+// ==========================================
+
+// ContainsAnyFilter
+// highlight-start
+let token_list = ['australia', 'india']
+// highlight-end
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  // Find objects where the `answer` property contains any of the strings in `token_list`
+  .withWhere({
+    path: ['answer'],
+    operator: 'ContainsAny',
+    valueTextArray: token_list,
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer round')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END ContainsAnyFilter
+
+// Tests
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.answer.toLowerCase().includes('australia') || question.answer.toLowerCase().includes('india'));
+}
+
+
+// ==========================================
 // ===== Multiple Filters with And =====
 // ==========================================
 

@@ -253,6 +253,69 @@ The output is like this:
 
 </details>
 
+## `ContainsAny` and `ContainsAll` filters
+
+The `ContainsAny` and `ContainsAll` operators work on text properties and take an array of values as input.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ContainsAnyFilter"
+      endMarker="# END ContainsAnyFilter"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ContainsAnyFilter"
+      endMarker="# END ContainsAnyFilter"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// ContainsAnyFilter"
+      endMarker="// END ContainsAnyFilter"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ContainsAnyFilter"
+      endMarker="# END ContainsAnyFilter"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# Expected ContainsAnyFilter results"
+  endMarker="# END Expected ContainsAnyFilter results"
+  language="json"
+/>
+
+</details>
+
+<details>
+  <summary><code>ContainsAny</code> and <code>ContainsAll</code> with batch delete</summary>
+
+If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations.
+
+</details>
+
 ## Filter text on partial matches
 
 If the object property is a `text`, or `text`-like data type such as object ID, use `Like` to filter on partial text matches.
@@ -420,7 +483,7 @@ Filters also work with metadata properties such as object id, property length, a
 
 For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
 
-### Filter by object `id`
+### Metadata filter - by object `id`
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -457,7 +520,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Filter by object timestamp
+### Metadata filter - by object timestamp
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -494,7 +557,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-### Filter by object property length
+### Metadata filter - by object property length
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -534,12 +597,6 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 ## Improve filter performance
 
 If you encounter slow filter performance, consider adding a `limit` parameter or additional `where` operators to restrict the size of your data set.
-
-## Considerations for `ContainsAny` and `ContainsAll`
-
-The `ContainsAny` and `ContainsAll` operators take an array of values as input. The operators filter objects that contain any, or all, of the values.  To use `ContainsAny` or `ContainsAll`, pass the array of values as `valueText`.
-
-If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations.
 
 ## List of filter operators
 

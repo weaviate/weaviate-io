@@ -201,6 +201,101 @@ assert gqlresponse == response
 
 
 # ==========================================
+# ===== ContainsAny Filter =====
+# ==========================================
+
+# ContainsAnyFilter
+# highlight-start
+token_list = ["australia", "india"]
+# highlight-end
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer", "round", "points"])
+    # highlight-start
+    # Find objects where the `answer` property contains any of the strings in `token_list`
+    .with_where({
+        "path": ["answer"],
+        "operator": "ContainsAny",
+        "valueText": token_list
+    })
+    # highlight-end
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END ContainsAnyFilter
+
+
+expected_response = (
+# Expected ContainsAnyFilter results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "India",
+          "points": 100,
+          "question": "Country that is home to Parsis & Sikhs",
+          "round": "Jeopardy!"
+        },
+        {
+          "answer": "Australia",
+          "points": 400,
+          "question": "The redundant-sounding Townsville, in this country's Queensland state, was named for Robert Towns",
+          "round": "Double Jeopardy!"
+        },
+        {
+          "answer": "Australia",
+          "points": 100,
+          "question": "Broken Hill, this country's largest company, took its name from a small town in New South Wales",
+          "round": "Jeopardy!"
+        }
+      ]
+    }
+  }
+}
+# END Expected ContainsAnyFilter results
+)
+
+# Tests
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert any(i in question["answer"].lower() for i in token_list)
+# End test
+
+
+gql_query = """
+# GraphQLContainsAnyFilter
+{
+  Get {
+    JeopardyQuestion(
+      limit: 3
+# highlight-start
+      where: {
+        path: ["answer"],
+        operator: ContainsAny,
+        valueText: ["australia", "india"]
+      }
+# highlight-end
+    ) {
+      question
+      answer
+      round
+      points
+    }
+  }
+}
+# END GraphQLContainsAnyFilter
+"""
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+assert gqlresponse == response
+# End test
+
+
+# ==========================================
 # ===== Partial Match Filter =====
 # ==========================================
 
