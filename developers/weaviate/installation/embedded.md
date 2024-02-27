@@ -51,7 +51,7 @@ The following modules are enabled by default:
 - `text2vec-huggingface`
 - `text2vec-openai`
 
-To enabled additional modules, add them to your instantiation code. 
+To enabled additional modules, add them to your instantiation code.
 
 For example, to add the `backup-s3` module, instantiate your client like this:
 
@@ -70,7 +70,7 @@ For a list of the files that are included in a release, see the Assets section o
 
 ### File URL
 To get the URL for a particular binary archive file, follow these steps:
-1. Find the Weaviate core release you want on the [Release Notes](/developers/weaviate/release-notes.mdx#weaviate-core) page.
+1. Find the Weaviate core release you want on the [Release Notes](/developers/weaviate/release-notes/index.md#weaviate-core-release-summaries) page.
 1. Click to the release notes for that version. The Assets section includes `linux-amd64` and `linux-arm64` binaries in `tar.gz` format.
 1. Copy the link to the full URL of the `tar.gz` file for your platform.
 
@@ -80,13 +80,13 @@ For example, the URL for the Weaviate `1.19.6` `AMD64` binary is:
 
 ## Functional overview
 
-Weaviate core usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs in conjunction with a client script or application. Embedded Weaviate instances can access a persistent datastore, but the instances exit when the client exits. 
+Weaviate core usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs in conjunction with a client script or application. Embedded Weaviate instances can access a persistent datastore, but the instances exit when the client exits.
 
 When your client runs, it checks for a stored Weaviate binary. If it finds one, the client uses that binary to create an Embedded Weaviate instance. If not, the client downloads the binary.
 
-The instance also checks for an existing data store. Clients reuse the same data store, updates persist between client invocations. 
+The instance also checks for an existing data store. Clients reuse the same data store, updates persist between client invocations.
 
-When you exit the client script or application, the Embedded Weaviate instance also exits: 
+When you exit the client script or application, the Embedded Weaviate instance also exits:
 
 - Scripts: The Embedded Weaviate instance exits when the script exits.
 - Applications: The Embedded Weaviate instance exits when the application exits.
@@ -97,7 +97,7 @@ When you exit the client script or application, the Embedded Weaviate instance a
 The embedded server pipes `STDOUT` and `STDERR` to the client. To redirect `STDERR` in a command terminal, run your script like this:
 
 ```bash
-python3 your_embedded_client_script.py 2>/dev/null 
+python3 your_embedded_client_script.py 2>/dev/null
 ```
 
 ## Supported Environments
@@ -110,11 +110,11 @@ Embedded Weaviate is supported for Python and TypeScript clients.
 
 ### Python clients
 
-[Python](../client-libraries/python/index.md) v3 client support is new in `v3.15.4` for Linux and `v3.21.0` for macOS. The Python client v4 requires server version v1.23.7 or higher. 
+[Python](../client-libraries/python/index.md) v3 client support is new in `v3.15.4` for Linux and `v3.21.0` for macOS. The Python client v4 requires server version v1.23.7 or higher.
 
 ### TypeScript clients
 
-The embedded TypeScript client is no longer a part of the standard TypeScript client. 
+The embedded TypeScript client is no longer a part of the standard TypeScript client.
 
 The embedded client has additional dependencies that are not included in the standard client. However, the embedded client extends the original TypeScript client so after you instantiate an Embedded Weaviate instance, the embedded TypeScript client works the same way as the standard client.
 

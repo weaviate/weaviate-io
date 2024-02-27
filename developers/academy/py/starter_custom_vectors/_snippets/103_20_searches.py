@@ -1,18 +1,15 @@
 # GetQueryVector
-import requests
-import os
-import pandas as pd
-
-# Set parameters
-model_id = "sentence-transformers/all-MiniLM-L6-v2"
-hf_token = os.getenv("HUGGINGFACE_APIKEY")
-
-api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-headers = {"Authorization": f"Bearer {hf_token}"}
-
-
 # Define a function to call the endpoint and obtain embeddings
 def query(texts):
+    import requests
+    import os
+
+    model_id = "sentence-transformers/all-MiniLM-L6-v2"
+    hf_token = os.getenv("HUGGINGFACE_APIKEY")
+
+    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
+    headers = {"Authorization": f"Bearer {hf_token}"}
+
     response = requests.post(
         api_url,
         headers=headers,

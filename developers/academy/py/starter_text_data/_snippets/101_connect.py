@@ -48,8 +48,6 @@ headers = {
 client = weaviate.connect_to_local(headers=headers)
 # END DockerAPIKeyInstantiation
 
-client.close()
-
 # PollLiveness
 assert client.is_live()  # This will raise an exception if the client is not live
 # END PollLiveness

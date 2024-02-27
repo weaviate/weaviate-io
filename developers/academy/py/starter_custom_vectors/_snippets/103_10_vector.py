@@ -1,17 +1,15 @@
 # GetQueryVector
-import requests
-import os
-
-# Set parameters
-model_id = "sentence-transformers/all-MiniLM-L6-v2"
-hf_token = os.getenv("HUGGINGFACE_APIKEY")
-
-api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-headers = {"Authorization": f"Bearer {hf_token}"}
-
-
 # Define a function to call the endpoint and obtain embeddings
 def query(texts):
+    import requests
+    import os
+
+    model_id = "sentence-transformers/all-MiniLM-L6-v2"
+    hf_token = os.getenv("HUGGINGFACE_APIKEY")
+
+    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
+    headers = {"Authorization": f"Bearer {hf_token}"}
+
     response = requests.post(
         api_url,
         headers=headers,
@@ -60,7 +58,7 @@ movies = client.collections.get("Movie")
 
 # Perform query
 response = movies.query.near_vector(
-    query=query_vector,  # A list of floating point numbers
+    near_vector=query_vector,  # A list of floating point numbers
     limit=5,
     return_metadata=wq.MetadataQuery(distance=True),
 )

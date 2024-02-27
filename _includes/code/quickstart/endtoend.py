@@ -52,7 +52,7 @@ client.collections.delete("Question")
 
 # DockerInstantiationExample # EndToEndExample  # InstantiationExample  # NearTextExample
 try:
-    # Wrap in try/finally to ensure client is closed gracefully
+    pass # Replace with your code. Close client gracefully in the finally block.
 # END DockerInstantiationExample  # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 
     # EndToEndExample
