@@ -1,6 +1,6 @@
 ---
 title: Data types
-sidebar_position: 3
+sidebar_position: 20
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---

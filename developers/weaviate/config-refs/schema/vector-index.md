@@ -1,6 +1,6 @@
 ---
-title: Vector index configuration
-sidebar_position: 13
+title: Vector indexes
+sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
@@ -10,6 +10,12 @@ image: og/docs/configuration.jpg
 ::: -->
 
 Vector indexes facilitate efficient, vector-first data storage and retrieval.
+
+## Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
 
 ## Index configuration parameters
 
