@@ -229,7 +229,7 @@ Starting with version `v1.18`, you can use `after` to retrieve objects sequentia
 
 `after` creates a cursor that is compatible with single shard and multi-shard configurations.
 
-The `after` function relies on object ids, it only works with list queries. `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, or similar searches. For those use cases, use pagination with `offset` and `limit`.
+The `after` function relies on object ids, and thus it only works with list queries. `after` is not compatible with `where`, `near<Media>`, `bm25`, `hybrid`, or similar searches, or in combination with filters. For those use cases, use pagination with `offset` and `limit`.
 
 import GraphQLFiltersAfter from '/_includes/code/graphql.filters.after.mdx';
 
