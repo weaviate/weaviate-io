@@ -5,8 +5,9 @@ Here are the release ⭐️*highlights*⭐️!
 ![Weaviate 1.24](./img/hero.png)
 
 1. **Named vectors.** A single object can have multiple vectors. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+1. **HNSW and binary quantization (BQ)** 
 1. **Simplified Docker configuration.** A new Docker image that needs no configuration. 
-1. **Backend Improvements.** 
+1. **Backend Improvements.** Numerous improvements to make updates, imports, and deletions faster.  
 1. **Python client update.**  support and new features.
 
 ## Named vectors
@@ -23,6 +24,26 @@ You do not have to use multiple vectors in your collections, but if you do, you 
 
 For details, see [Named vectors](./_core-1-24-include.mdx).
 
+## HNSW and binary quantization 
+
+![HNSW and binary quantization](./img/hnsw-and-bq.png)
+
+With v1.24 we continue our constant effort to make Weaviate faster, more memory efficient, and cost-effective for our users. To this end, with v1.24 we are expanding binary quantization(BQ) vector compression to now be usable with the HNSW index.
+
+Previously introduced with v1.23 BQ provides the ability to compress vector representations while preserving essential information. BQ works by encoding vector directionality as a single bit per dimension, significantly reducing storage requirements. In Weaviate, floating-point vectors are represented using float32 per dimension and as a result, using BQ provides a compression factor of 32x from 32 bits/dimension to 1 bit/dimension.
+
+For instance, two vectors encoded as [1,1,0,1,0,1,0,1] and [1,1,0,0,1,1,0,1] have a distance of 2, showcasing the method's efficiency. This technique ensures optimal resource utilization without compromising accuracy. 
+
+Additionally, calculating distances between compressed vectors relies on comparing their dimensional agreement(as seen above). This speeds up and simplifies distance calculations significantly as they only require bitwise operations between vector dimensions.
+
+All of these efficiencies when combined with the capabilities of our HNSW index enable some mind dizzyingly fast vector search and throughput!
+
+Let’s talk numbers! You might know from our v1.23 release that using FlatIndex+BQ now enables real-time search capabilities. In the 768d vector case, brute forcing 1 million vectors should only take 23 milliseconds. Even in the worst case (4608d vectors) it would take approximately 90 milliseconds.
+
+If you now consider HNSW+BQ this enables vector search capabilities that reach ~10K QPS! @ 85% Recall
+
+If you want all the nitty-gritty details of how HNSW+BQ compares to all the other index and compression varieties stay tuned, there is a lot more coming!
+
 ## Simplified Docker configuration
 
 Starting in v1.24.0, there is a new Docker image that runs using common default values. This image lets you start development and exploration quickly. Just enter a simple command line:
@@ -37,31 +58,15 @@ For details, see [Docker configuration](./developers/weaviate/installation/docke
 
 ### Backend improvements
 
-Binary quantization (BQ) compression is available for the `flat` index type to speed up vector search.
-
-
-## CCC
-
-
+Weaviate is a robust platform that handles many kinds of workloads. This release brings major improvements for imports, updates, and deletions. You don't have to do anything to enable these fixes, but you may notice improved upload times, especially if you make frequent changes to your collections.
 
 ## Python client beta update
 
 The Weaviate Pyth
 * Read more about the `Python` client `v4` [here](/developers/weaviate/client-libraries/python).
 
-
-## Performance improvements
-
-* fadsf
-
-* dfdasf
-
-## Minor changes
-
-adfd 
-
 ## Summary
 
-That's all from us - we hope you enjoy the new features and improvements in Weaviate `1.23`. This release is already available on [WCS](https://console.weaviate.cloud/). So you can try it out yourself on a free sandbox, or by upgrading!
+Enjoy the new features and improvements in Weaviate `1.24`. This release is available as a docker image and on [WCS](https://console.weaviate.cloud/). Try it out in a free, WCS sandbox, or download a copy and try it out locally.
 
-Thanks for reading, and see you next time 👋!
+Thanks for reading, see you next time 👋!
