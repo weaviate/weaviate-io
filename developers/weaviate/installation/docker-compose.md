@@ -16,7 +16,7 @@ Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image
 The default docker image doesn't need any configuration. To run a basic Weaviate instance, run this command from a terminal:
 
 ```bash
- docker run -p 8080:8080 cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+ docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
 ```
 
 The command sets the following default values:
