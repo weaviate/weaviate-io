@@ -4,37 +4,38 @@ Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.24](./img/hero.png)
 
-<!-- truncate -->
-1. **AutoPQ** - Weaviate now automatically triggers the use of Product Quantization (PQ) for vector indexing. This improves the developer experience for switching on PQ. We've also added auto `segment` size setting.
-1. **Flat vector index + Binary Quantization** - New index type for small collections, such as for multi-tenancy use cases.
-1. **`generative-anyscale`** - Adds open-source large language model integration.
-1. **Performance improvements** - Mean time to recovery (MMTR) is reduced and automatic resource limiting prevents out-of-memory errors.
-1. **Python client beta update** - Adds `1.23` support and new features.
-1. **Minor changes** - The `nodes` endpoint adds a new `minimal` output default.
-
-:::tip Available on WCS
-`1.24` is available on [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/)
-:::
-
+1. **Named vectors.** A single object can have multiple vectors. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+1. **Simplified Docker configuration.** A new Docker image that needs no configuration. 
+1. **Backend Improvements.** 
+1. **Python client update.**  support and new features.
 
 ## Named vectors
 
 ![Named vectors](./img/multi-vector.png)
 
-Your collections are richer and more versatile starting in 1.24.0.
+Named vectors make your collections richer and more versatile.
  
-import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+Starting in 1.24.0, collections can have multiple, named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
-<MultiVectorSupport />
+In earlier versions, objects in you collections were limited to one vector. Now, you can vectorize meta data like titles and descriptions so they are available for vector search. You can group store that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references.mdx) or manage shared metadata, a single object in a collection can have multiple, named vectors.
 
-For details, see [Named vectors](/_includes/multi-vector-support.mdx).
+You do not have to use multiple vectors in your collections, but if you do, you need to adjust your queries to specify which vector you want to use. 
 
-## BBB
+For details, see [Named vectors](./_core-1-24-include.mdx).
 
-index is a single layer of disk-based references to the object vectors. It therefore has a correspondingly small size and minimal memory footprint.
+## Simplified Docker configuration
 
+Starting in v1.24.0, there is a new Docker image that runs using common default values. This image lets you start development and exploration quickly. Just enter a simple command line:
 
-### BB Aa
+```bash
+ docker run -p 8080:8080 semitechnologies/weaviate:1.24.0
+```
+
+ Alternatively, you can always edit the `docker-compose.yml` file to customize your instance.
+
+For details, see [Docker configuration](./developers/weaviate/installation/docker-compose.md)
+
+### Backend improvements
 
 Binary quantization (BQ) compression is available for the `flat` index type to speed up vector search.
 
