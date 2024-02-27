@@ -16,7 +16,7 @@ Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image
 The default docker image doesn't need any configuration. To run a basic Weaviate instance, run this command from a terminal:
 
 ```bash
- docker run -p 8080:8080 semitechnologies/weaviate:1.24.0
+ docker run -p 8080:8080 cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
 ```
 
 The command sets the following default values:
@@ -48,7 +48,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -136,7 +136,7 @@ An example Docker Compose setup for Weaviate without any modules can be found be
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -157,7 +157,7 @@ An example Docker Compose file with the transformers model [`sentence-transforme
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
     - 8080:8080
@@ -238,7 +238,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 6060:6060
@@ -266,7 +266,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8081:8080
     - 6061:6060
@@ -295,7 +295,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8082:8080
     - 6062:6060
