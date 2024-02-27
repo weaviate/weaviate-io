@@ -25,6 +25,9 @@
      "codebook",
      "Configurator",
      "contextionary",
+     "CUDA",
+     "Customizer",
+     "davinci",
      "discoverability",
      "Etienne",
      "Fettucine",
@@ -73,6 +76,7 @@
      "vectorizers",
      "vectorizes",
      "vectorizing",
-     "xlarge"
+     "xlarge",
+     "xsum"
     ]
 }
