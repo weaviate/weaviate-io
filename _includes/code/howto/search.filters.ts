@@ -122,13 +122,19 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // ==========================================
-// ===== ContainsAnyFilter Filter =====
+// ===== ContainsAnyFilter =====
 // ==========================================
+
+// ContainsAnyFilter  // ContainsAllFilter
+let token_list
+// END ContainsAnyFilter  // END ContainsAllFilter
+
 
 // ContainsAnyFilter
 // highlight-start
-let token_list = ['australia', 'india']
+token_list = ['australia', 'india']
 // highlight-end
+
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -150,6 +156,39 @@ console.log(JSON.stringify(result, null, 2));
 // Tests
 for (const question of result.data.Get.JeopardyQuestion) {
   assert.ok(question.answer.toLowerCase().includes('australia') || question.answer.toLowerCase().includes('india'));
+}
+
+
+// ==========================================
+// ===== ContainsAllFilter =====
+// ==========================================
+
+// ContainsAllFilter
+// highlight-start
+token_list = ['blue', 'red']
+// highlight-end
+
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+// highlight-start
+  // Find objects where the `question` property contains all of the strings in `token_list`
+  .withWhere({
+    path: ['question'],
+    operator: 'ContainsAll',
+    valueTextArray: token_list,
+  })
+// highlight-end
+  .withLimit(3)
+  .withFields('question answer round')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END ContainsAllFilter
+
+// Tests
+for (const question of result.data.Get.JeopardyQuestion) {
+  assert.ok(question.question.toLowerCase().includes('red') & question.question.toLowerCase().includes('blue'));
 }
 
 

@@ -208,6 +208,7 @@ assert gqlresponse == response
 # highlight-start
 token_list = ["australia", "india"]
 # highlight-end
+
 response = (
     client.query
     .get("JeopardyQuestion", ["question", "answer", "round", "points"])
@@ -287,6 +288,101 @@ gql_query = """
   }
 }
 # END GraphQLContainsAnyFilter
+"""
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+assert gqlresponse == response
+# End test
+
+
+# ==========================================
+# ===== ContainsAll Filter =====
+# ==========================================
+
+# ContainsAllFilter
+# highlight-start
+token_list = ["blue", "red"]
+# highlight-end
+
+response = (
+    client.query
+    .get("JeopardyQuestion", ["question", "answer", "round", "points"])
+    # highlight-start
+    .with_where({
+        "path": ["question"],
+        "operator": "ContainsAll",
+        "valueText": token_list
+    })
+    # highlight-end
+    .with_limit(3)
+    .do()
+)
+
+print(json.dumps(response, indent=2))
+# END ContainsAllFilter
+
+
+expected_response = (
+# Expected ContainsAllFilter results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "James Patterson",
+          "points": 1000,
+          "question": "His Alex Cross thrillers include \"Roses are Red\" & \"Violets are Blue\"",
+          "round": "Jeopardy!"
+        },
+        {
+          "answer": "a chevron",
+          "points": 800,
+          "question": "Chevron's red & blue logo is this heraldic shape, meant to convey rank & service",
+          "round": "Jeopardy!"
+        },
+        {
+          "answer": "litmus",
+          "points": 400,
+          "question": "Vegetable dye that turns red in acid solutions & blue in alkaline solutions",
+          "round": "Double Jeopardy!"
+        }
+      ]
+    }
+  }
+}
+# END Expected ContainsAllFilter results
+)
+
+# Tests
+assert "JeopardyQuestion" in response["data"]["Get"]
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert all(i in question["question"].lower() for i in token_list)
+# End test
+
+
+gql_query = """
+# GraphQLContainsAllFilter
+{
+  Get {
+    JeopardyQuestion(
+      limit: 3
+# highlight-start
+      where: {
+        path: ["question"],
+        operator: ContainsAll,
+        valueText: ["blue", "red"]
+      }
+# highlight-end
+    ) {
+      question
+      answer
+      round
+      points
+    }
+  }
+}
+# END GraphQLContainsAllFilter
 """
 
 # Tests

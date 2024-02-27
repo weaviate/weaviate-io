@@ -95,6 +95,36 @@ try:
     assert any(i in response.objects[0].properties["answer"].lower() for i in token_list)
     # End test
 
+
+    # ==========================================
+    # ===== ContainsAllFilter =====
+    # ==========================================
+
+    # ContainsAllFilter
+    jeopardy = client.collections.get("JeopardyQuestion")
+
+    # highlight-start
+    token_list = ["blue", "red"]
+    # highlight-end
+
+    response = jeopardy.query.fetch_objects(
+        # highlight-start
+        # Find objects where the `question` property contains all of the strings in `token_list`
+        filters=wvc.query.Filter.by_property("question").contains_all(token_list),
+        # highlight-end
+        limit=3
+    )
+
+    for o in response.objects:
+        print(o.properties)
+    # END ContainsAllFilter
+
+    # Test results
+    assert response.objects[0].collection == "JeopardyQuestion"
+    assert all(i in response.objects[0].properties["question"].lower() for i in token_list)
+    # End test
+
+
     # ==========================================
     # ===== Partial Match Filter =====
     # ==========================================

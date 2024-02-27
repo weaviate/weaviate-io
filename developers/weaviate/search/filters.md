@@ -253,9 +253,9 @@ The output is like this:
 
 </details>
 
-## `ContainsAny` and `ContainsAll` filters
+## `ContainsAny` Filter
 
-The `ContainsAny` and `ContainsAll` operators work on text properties and take an array of values as input.
+The `ContainsAny` operator works on text properties and take an array of values as input. It will match objects where the property **contains any (i.e. one or more)** of the values in the array.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -288,8 +288,8 @@ The `ContainsAny` and `ContainsAll` operators work on text properties and take a
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# ContainsAnyFilter"
-      endMarker="# END ContainsAnyFilter"
+      startMarker="# GraphQLContainsAnyFilter"
+      endMarker="# END GraphQLContainsAnyFilter"
       language="graphql"
     />
   </TabItem>
@@ -309,12 +309,65 @@ The output is like this:
 
 </details>
 
-<details>
-  <summary><code>ContainsAny</code> and <code>ContainsAll</code> with batch delete</summary>
+## `ContainsAll` Filter
 
-If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations.
+The `ContainsAll` operator works on text properties and take an array of values as input. It will match objects where the property **contains all** of the values in the array.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ContainsAllFilter"
+      endMarker="# END ContainsAllFilter"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ContainsAllFilter"
+      endMarker="# END ContainsAllFilter"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// ContainsAllFilter"
+      endMarker="// END ContainsAllFilter"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GraphQLContainsAllFilter"
+      endMarker="# END GraphQLContainsAllFilter"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# Expected ContainsAllFilter results"
+  endMarker="# END Expected ContainsAllFilter results"
+  language="json"
+/>
 
 </details>
+
+## `ContainsAny` and `ContainsAll` with batch delete
+
+If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx#containsany--containsall). `ContainsAny` and `ContainsAll` have different behavior in batch deletion operations than they do in queries.
 
 ## Filter text on partial matches
 
