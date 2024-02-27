@@ -25,6 +25,10 @@ export default function ContactUsForm() {
 
   const packageOptions = [
     {
+      value: 'Serverless',
+      text: 'Serverless',
+    },
+    {
       value: 'EnterpriseDedicated',
       text: 'Enterprise Dedicated',
     },
