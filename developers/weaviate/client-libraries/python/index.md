@@ -949,6 +949,28 @@ Use `ReferenceToMulti` for multi-target references.
 
 ## Best practices and notes
 
+### Exception handling
+
+The client library raises exceptions for various error conditions. These include, for example:
+
+- `weaviate.exceptions.WeaviateConnectionError` for failed connections.
+- `weaviate.exceptions.WeaviateQueryError` for failed queries.
+- `weaviate.exceptions.WeaviateBatchError` for failed batch operations.
+- `weaviate.exceptions.WeaviateClosedClientError` for operations on a closed client.
+
+Each of these exceptions inherit from `weaviate.exceptions.WeaviateBaseError`, and can be caught using this base class, as shown below.
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BrokenQueryExample"
+    endMarker="# END BrokenQueryExample"
+    language="py"
+/>
+
+You can review [this module](https://github.com/weaviate/weaviate-python-client/blob/main/weaviate/exceptions.py) which defines the exceptions that can be raised by the client library.
+
+The client library doc strings also provide information on the exceptions that can be raised by each method. You can view these by using the `help` function in Python, by using the `?` operator in Jupyter notebooks, or by using an IDE, such as hover-over tooltips in VSCode.
+
 ### Thread-safety
 
 While the Python client is fundamentally designed to be thread-safe, it's important to note that due to its dependency on the `requests` library, complete thread safety isn't guaranteed.
