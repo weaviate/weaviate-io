@@ -13,7 +13,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
 
 Filters let you include, or exclude, particular objects from your result set based on provided conditions.<br/>
-For a list of filter operators, see [Filters](../api/graphql/filters.md#filter-structure).
+For a list of filter operators, see the [API reference page](../api/graphql/filters.md#filter-structure).
 
 ## Filter with one condition
 
@@ -313,9 +313,12 @@ The output is like this:
   <summary>
     Additional information
   </summary>
-  <div>
-    The `*` wildcard operator matches zero or more characters. The `?` operator matches exactly one character.
-  </div>
+
+  The `*` wildcard operator matches zero or more characters. The `?` operator matches exactly one character.
+  <br/>
+
+  Currently, the `Like` filter is not able to match wildcard characters (`?` and `*`) as literal characters ([read more](../api/graphql/filters.md#wildcard-literal-matches-with-like)).
+
 </details>
 
 ## Filter using cross-references
@@ -374,9 +377,50 @@ The output is like this:
 
 </details>
 
+## By geo-coordinates
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterbyGeolocation"
+      endMarker="# END FilterbyGeolocation"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FilterbyGeolocation"
+      endMarker="# END FilterbyGeolocation"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterbyGeolocation"
+      endMarker="// END FilterbyGeolocation"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START GQLFilterbyGeolocation"
+      endMarker="# END GQLFilterbyGeolocation"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
 ## Filter by metadata
 
 Filters also work with metadata properties such as object id, property length, and timestamp.
+
+For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
+
+### Filter by object `id`
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -413,40 +457,75 @@ Filters also work with metadata properties such as object id, property length, a
   </TabItem>
 </Tabs>
 
-For the full list, see [API references: Filters](../api/graphql/filters.md#special-cases).
-
-## By geo-coordinates
+### Filter by object timestamp
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FilterbyGeolocation"
-      endMarker="# END FilterbyGeolocation"
+      startMarker="# START FilterByTimestamp"
+      endMarker="# END FilterByTimestamp"
       language="python"
     />
   </TabItem>
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START FilterbyGeolocation"
-      endMarker="# END FilterbyGeolocation"
+      startMarker="# START FilterByTimestamp"
+      endMarker="# END FilterByTimestamp"
       language="python"
     />
   </TabItem>
   <TabItem value="js" label="JavaScript/TypeScript">
     <FilteredTextBlock
       text={JavaScriptCode}
-      startMarker="// FilterbyGeolocation"
-      endMarker="// END FilterbyGeolocation"
+      startMarker="// FilterByTimestamp"
+      endMarker="// END FilterByTimestamp"
       language="js"
     />
   </TabItem>
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START GQLFilterbyGeolocation"
-      endMarker="# END GQLFilterbyGeolocation"
+      startMarker="# GQLFilterByTimestamp"
+      endMarker="# END GQLFilterByTimestamp"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+### Filter by object property length
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FilterByPropertyLength"
+      endMarker="# END FilterByPropertyLength"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START FilterByPropertyLength"
+      endMarker="# END FilterByPropertyLength"
+      language="python"
+    />
+  </TabItem>
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={JavaScriptCode}
+      startMarker="// FilterByPropertyLength"
+      endMarker="// END FilterByPropertyLength"
+      language="js"
+    />
+  </TabItem>
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# GQLFilterByPropertyLength"
+      endMarker="# END GQLFilterByPropertyLength"
       language="graphql"
     />
   </TabItem>

@@ -6,13 +6,14 @@
 
 import weaviate
 import json
+import os
 
 # Instantiate the client with the user/password and OpenAI api key
 client = weaviate.Client(
-    "http://localhost:8080",  # Replace with your Weaviate URL
-    # auth_client_secret=weaviate.auth.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    os.getenv("WCS_DEMO_URL"),  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),  # If authentication is on. Replace w/ your Weaviate instance API key
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # Replace w/ your OPENAI API key
     }
 )
 
@@ -682,10 +683,123 @@ gql_query = """
 # END GQLFilterById
 """
 
-print(gqlresponse)
 
 # Tests
 gqlresponse = client.query.raw(gql_query)
+
+assert gqlresponse == response
+# End test
+
+
+# ========================================
+# FilterByTimestamp
+# ========================================
+
+# START FilterByTimestamp
+timestamp_str = "2020-01-01T00:00:00+00:00"
+
+response = (
+    client.query
+    .get("Article", ["title"])
+    .with_where({
+        "path": ["_creationTimeUnix"],
+        "operator": "GreaterThan",
+        "valueDate": timestamp_str  # Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
+    })
+    .with_additional("creationTimeUnix")
+    .with_limit(3)
+    .do()
+)
+
+print(response)
+# END FilterByTimestamp
+
+from datetime import datetime, timezone
+
+dt = datetime.fromisoformat(timestamp_str)
+query_epoch = dt.replace(tzinfo=timezone.utc).timestamp()
+resp_epoch = int(response["data"]["Get"]["Article"][0]["_additional"]["creationTimeUnix"])
+
+assert resp_epoch > query_epoch
+
+
+gql_query = """
+# GQLFilterByTimestamp
+{
+  Get {
+    Article(
+# highlight-start
+      limit: 3
+      where: {
+        path: ["_creationTimeUnix"],
+        operator: GreaterThan,
+        valueDate: "2020-01-01T00:00:00+00:00"
+      }
+# highlight-end
+    ) {
+      title
+      _additional { creationTimeUnix }
+    }
+  }
+}
+# END GQLFilterByTimestamp
+"""
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+
+assert gqlresponse == response
+# End test
+
+
+# ========================================
+# FilterByPropertyLength
+# ========================================
+
+# START FilterByPropertyLength
+response = (
+    client.query
+    .get("JeopardyQuestion", ["answer"])
+    .with_where({
+        "path": ["len(answer)"],
+        "operator": "GreaterThan",
+        "valueInt": 20
+    })
+    .with_limit(3)
+    .do()
+)
+
+print(response)
+# END FilterByPropertyLength
+
+for question in response["data"]["Get"]["JeopardyQuestion"]:
+    assert len(question["answer"]) > 20
+
+
+gql_query = """
+# GQLFilterByPropertyLength
+{
+  Get {
+    JeopardyQuestion(
+# highlight-start
+      limit: 3
+      where: {
+        path: ["len(answer)"],
+        operator: GreaterThan,
+        valueInt: 20
+      }
+# highlight-end
+    ) {
+      answer
+    }
+  }
+}
+# END GQLFilterByPropertyLength
+"""
+
+# Tests
+gqlresponse = client.query.raw(gql_query)
+
 assert gqlresponse == response
 # End test
 

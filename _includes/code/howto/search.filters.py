@@ -198,6 +198,92 @@ try:
     assert str(response.objects[0].uuid) == target_id
     # End test
 
+    # ========================================
+    # FilterByID
+    # ========================================
+
+    # START FilterById
+    collection = client.collections.get("Article")
+
+    target_id = "00037775-1432-35e5-bc59-443baaef7d80"
+    response = collection.query.fetch_objects(
+        filters=wvc.query.Filter.by_id().equal(target_id)
+    )
+
+    for o in response.objects:
+        print(o.properties)  # Inspect returned objects
+        print(o.uuid)
+    # END FilterById
+
+
+    # Tests
+    assert str(response.objects[0].uuid) == target_id
+    # End test
+
+
+    # ========================================
+    # FilterByTimestamp
+    # ========================================
+
+    # START FilterByTimestamp
+    from datetime import datetime, timezone
+
+    collection = client.collections.get("Article")
+
+    # highlight-start
+    # Set the timezone for avoidance of doubt (otherwise the client will emit a warning)
+    filter_time = datetime(2020, 1, 1).replace(tzinfo=timezone.utc)
+    # highlight-end
+
+    response = collection.query.fetch_objects(
+        limit=3,
+        # highlight-start
+        filters=wvc.query.Filter.by_creation_time().greater_than(filter_time),
+        return_metadata=wvc.query.MetadataQuery(creation_time=True)
+        # highlight-end
+    )
+
+    for o in response.objects:
+        print(o.properties)  # Inspect returned objects
+        print(o.metadata.creation_time)  # Inspect object creation time
+    # END FilterByTimestamp
+
+
+    # Tests
+    for o in response.objects:
+        assert o.metadata.creation_time > filter_time
+    # End test
+
+
+    # ========================================
+    # FilterByPropertyLength
+    # ========================================
+
+    # START FilterByPropertyLength
+    collection = client.collections.get("JeopardyQuestion")
+
+    # highlight-start
+    length_threshold = 20
+    # highlight-end
+
+    response = collection.query.fetch_objects(
+        limit=3,
+        # highlight-start
+        filters=wvc.query.Filter.by_property("answer", length=True).greater_than(length_threshold),
+        # highlight-end
+    )
+
+    for o in response.objects:
+        print(o.properties)  # Inspect returned objects
+        print(len(o.properties["answer"]))  # Inspect property length
+    # END FilterByPropertyLength
+
+
+    # Tests
+    for o in response.objects:
+        assert len(o.properties["answer"]) > length_threshold
+    # End test
+
 
     # ========================================
     # FilterByGeolocation
