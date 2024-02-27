@@ -1,23 +1,23 @@
 [
   {
-    "type": "ONLINE WORKSHOP",
-    "title": "Weaviate Python Client (v4) - Intermediate Workshop",
-    "date": "FEB 21ST 2024 15:00 - 16:00 UTC",
+    "type": "OFFICE HOURS",
+    "title": "Weaviate Office Hour - Multimodality",
+    "date": "MARCH 6TH 2024 18:00 - 19:00 UTC",
     "imageClass": "firstSection",
-    "url": "https://form.jotform.com/240243316328348"
+    "url": "https://form.jotform.com/240512950546353"
   },
   {
     "type": "MEETUP",
-    "title": "AI Meetup New York - Multimodality",
-    "date": "FEB 22ND 2024 17:30 - 21:00 EST",
-    "imageClass": "thirdSection",
-    "url": "https://www.aicamp.ai/event/eventdetails/W2024022214"
+    "title": "AI Meetup - Berlin",
+    "date": "MARCH 6TH 2024 18:00 - 21:00 CET",
+    "imageClass": "secondSection",
+    "url": "https://www.aicamp.ai/event/eventdetails/W2024031309"
   },
   {
-    "type": "WEBINAR",
-    "title": "Multimodal Product Discovery: The next generation of search for ecommerce",
-    "date": "FEB 27TH 2024 18:00 - 20:00 UTC",
-    "imageClass": "secondSection",
-    "url": "https://events.weaviate.io/ecommerce-webinar"
+    "type": "ONLINE WORKSHOP",
+    "title": "AI SaaS applications with Weaviate",
+    "date": "MARCH 15TH 2024 15:00 - 16:00 UTC",
+    "imageClass": "thirdSection",
+    "url": "https://form.jotform.com/240502790207348"
   }
 ]
