@@ -1,3 +1,4 @@
+
 # ==============================
 # =====  CONNECT =====
 # ==============================
@@ -22,7 +23,7 @@ client = weaviate.connect_to_local(
 
 client.collections.delete("YourCollection")
 
-# START NamedVectorExample
+# START SimpleSchemaExample
 import weaviate.classes as wvc
 
 client.collections.create(
@@ -36,7 +37,7 @@ client.collections.create(
         wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
     ]
 )
-# END NamedVectorExample
+# END SimpleSchemaExample
 
 
 # START-ANY

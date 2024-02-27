@@ -7,6 +7,7 @@ image: og/docs/configuration.jpg
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import PyCode from '!!raw-loader!/_includes/code/config/multi-vector-examples.py';
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
@@ -16,8 +17,23 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 Single vector collections are valid and continue to use the original collection syntax. If, however, you configure multiple vectors, you must use the new, named vector syntax. 
 
+### Python client v4
+
+Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python.mdx) supports named vectors. 
+
+#### Create a schema
+
+Weaviate collections require a schema. To create a schema with named vectors, use the methods in `weaviate.classes.config.Configure.NamedVectors` to configure named vectors. 
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START SimpleSchemaExample"
+  endMarker="# END SimpleSchemaExample"
+  language="py"
+/>
 
 ### REST API
+
 The legacy, single vector syntax is valid for use with collections that don't have named vectors:
 
 ```json
@@ -30,7 +46,7 @@ The legacy, single vector syntax is valid for use with collections that don't ha
 }
 ```
 
-Collections with multiple, named vectors use the new syntax to specify named vectors.
+To specify named vectors in collections with multiple, named vectors use the new syntax.
 
 ```json
 {
