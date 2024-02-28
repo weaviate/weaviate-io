@@ -40,8 +40,6 @@ try:
     # ===== Read object with vector =====
     # ===================================
 
-    # TODOv4 -  include_vector
-
     # ReadObjectWithVector START
     jeopardy = client.collections.get("JeopardyQuestion")
 
@@ -57,6 +55,41 @@ try:
 
     # Test
     assert len(data_object.vector["default"]) == 1536
+
+
+    # ===================================
+    # ===== Read object with named vectors =====
+    # ===================================
+
+
+    # ReadObjectNamedVectors START
+    reviews = client.collections.get("WineReviewNV")  # Collection with named vectors
+    # ReadObjectNamedVectors END
+
+    some_obj = reviews.query.fetch_objects(limit=1)
+    obj_uuid = some_obj.objects[0].uuid
+
+    # ReadObjectNamedVectors START
+    # highlight-start
+    vector_names = ["title", "review_body"]
+    # highlight-end
+
+    data_object = reviews.query.fetch_object_by_id(
+        uuid=obj_uuid,  # Object UUID
+        # highlight-start
+        include_vector=vector_names  # Specify names of the vectors to include
+        # highlight-end
+    )
+
+    # The vectors are returned in the `vector` property as a dictionary
+    for n in vector_names:
+        print(f"Vector '{n}': {data_object.vector[n][:5]}...")
+    # ReadObjectNamedVectors END
+
+    # Test
+    for n in vector_names:
+        assert len(data_object.vector[n]) == 1536
+
 
     # ==================================
     # ===== Check object existence =====
