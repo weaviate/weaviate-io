@@ -15,14 +15,14 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 `Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 
 
-## Named vectors
+<!-- ## Named vectors
 
 :::info Added in `v1.24`
 :::
 
-A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector. -->
 
-<Tabs groupId="languages">
+<!-- <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
@@ -72,7 +72,7 @@ The output is like this:
   language="json"
 />
 
-</details>
+</details> -->
 
 ## Basic hybrid search
 
