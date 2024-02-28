@@ -111,7 +111,6 @@ collection = client.collections.create(
     ], 
 )
 
-
 ### CHECK VALUES - uncomment the next two lines to see the schema
 # schema = client.collections.get("Named_Vector_Jeopardy_Collection")
 # print(schema)
@@ -125,17 +124,17 @@ collection = client.collections.create(
 # =======================
 
 # START NamedVectorQueryExample
+nvjc_collection = client.collections.get("Named_Vector_Jeopardy_Collection")
 
-response_openai = multiple_question_vectors.query.near_text(
-    query="what's a crocodile",
+response = nvjc_collection.query.near_text(
+    query="what's a crocodile", 
     include_vector="True",
-    target_vector="questions_openai",
-    return_metadata=wvc.query.MetadataQuery(distance=True),
-    limit=3)
+    target_vector="jeopardy_questions_vector",
+    limit=1
+    )
 
-for r in response_openai.objects:
+for r in response.objects:
     print(r.properties)
-    print(r.metadata.distance)
 
 # START NamedVectorQueryExample   
     

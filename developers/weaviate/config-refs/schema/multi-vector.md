@@ -47,17 +47,14 @@ In this example, each data item has three fields, `question`, `answer`, and `cat
 
 #### Query a named vector
 
-[Keyword searches](/developers/weaviate/search/bm25.mdx) in collections with named vectors use the same syntax as keyword searches in collections without named vectors. However, if you run a [vector search](/developers/weaviate/search/similarity) on a collection with named vectors, specify the vector space to search.
+[Keyword searches](/developers/weaviate/search/bm25.mdx) in collections with named vectors use the same syntax as keyword searches in collections without named vectors. However, if you run a vector search on a collection with named vectors, specify the vector space to search.
 
-<FilteredTextBlock
-  text={PyCode}
-  startMarker="# START NamedVectorQueryExample"
-  endMarker="# END NamedVectorQueryExample"
-  language="py"
-/>
+Use named vectors with [vector similarity searches](/developers/weaviate/search/similarity) (`near_text`, `near_object`, `near_vector`, `near_image`) and [hybrid search](/developers/weaviate/search/hybrid).
+
+To run the example query, first create the sample collection.
 
 <details>
-  <summary>Create sample data set.</summary>
+  <summary>Create sample collection.</summary>
 
 This code creates a sample collection and imports a small amount of data.<br/><br/>To run the code, you must have an OpenAI API key and a Cohere API key defined as local variables on your system.<br/><br/>OpenAi and Cohere are third party services. You may incur a cost if you exceed the limits of their free tiers.
  
@@ -70,6 +67,12 @@ This code creates a sample collection and imports a small amount of data.<br/><b
 
 </details>
 
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START NamedVectorQueryExample"
+  endMarker="# END NamedVectorQueryExample"
+  language="py"
+/>
 
 
 
