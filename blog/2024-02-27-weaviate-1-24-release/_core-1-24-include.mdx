@@ -20,25 +20,41 @@ Starting in 1.24.0, collections can have multiple, named vectors. Each vector is
 
 In earlier versions, objects in you collections were limited to one vector. Now, you can vectorize meta data like titles and descriptions so they are available for vector search. You can group store that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata, a single object in a collection can have multiple, named vectors.
 
-You do not have to use multiple vectors in your collections, but if you do, you need to adjust your queries to specify which vector you want to use. 
+You don't have to use multiple vectors in your collections, but if you do, you need to adjust your queries to specify which vector you want to use. 
 
-For details, see [Named vectors](/developers/weaviate/config-refs/schema/multi-vector).
+For details, see [Multiple vectors](/developers/weaviate/config-refs/schema/multi-vector).
 
 ## HNSW and binary quantization 
 
 ![HNSW and binary quantization](./img/hnsw-and-bq.png)
 
-Weaviate expands binary quantization (BQ) in 1.24 so we can be faster, more memory efficient, and more cost-effective for our users. Now you can use BQ vector compression with HNSW indexes.
+Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Now you can use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#what-is-hierarchical-navigable-small-world-hnsw).
 
-BQ compresses vector representations while preserving essential information. Vector directionality is encoded as a single bit per dimension, which significantly reduces storage requirements. Uncompressed, Weaviate uses a `float32` for each dimension. As a result, BQ provides a compression factor of 32x - reducing storage from 32 bits per dimension to 1 bit per dimension.
+BQ compresses vector representations while preserving essential information. Vector directionality is encoded as a single bit per dimension, which significantly reduces storage requirements. Uncompressed, Weaviate uses a `float32` for each dimension. This means BQ compresses vectors from 32 bits per dimension to 1 bit per dimension - a savings 32 times the space.
 
-Comparing BQ compressed vectors is fast. To calculate the distance between to vectors, compare their dimensional agreement. For instance, two vectors encoded as [1,1,0,1,0,1,0,1] and [1,1,0,0,1,1,0,1] have a distance of 2. The bitwise comparison ensures optimal resource utilization without compromising accuracy. 
+Comparing BQ compressed vectors is fast. To calculate the distance between to vectors, compare their dimensional agreement. For instance, consider two vectors encoded as [1,1,0,1,0,1,0,1] and [1,1,0,0,1,1,0,1]. Their distance is 2. The bitwise comparison ensures optimal resource utilization without compromising accuracy. 
+
+<details>
+  <summary>
+    Bitwise comparison details
+  </summary>
+
+Compare each value in vector one with the corresponding value in vector two. If they are the same, score `0`. If they are different, score `1`. The distance between the vectors is the sum of the bitwise comparisons.
+    
+```
+[1,1,0,1,0,1,0,1]
+[1,1,0,0,1,1,0,1]
+-----------------
+ 0+0+0+1+1+0+0+0 = 2
+ ```
+
+</details>
 
 Efficient BQ processing compliments our HNSW index to enable mind dizzyingly fast vector search and throughput!
 
-Let’s talk numbers! You might know from our v1.23 release that combining a [flat index](/developers/weaviate/concepts/vector-index#flat-index) with BQ enables real-time search capabilities. In the 768d vector case, brute forcing 1 million vectors takes about 23 milliseconds. Even in the worst case (4608d vectors), a brute force search takes approximately 90 milliseconds.
+Let’s talk numbers! You might know from our v1.23 release that combining a [flat index](/developers/weaviate/concepts/vector-index#flat-index) with BQ enables real-time search capabilities. Brute forcing a search on 1 million vectors with 768 dimensions each takes about 23 milliseconds with a flat index. When you use HNSW and BQ, even with vectors six times as big (4608 dimensions), the same brute force search only takes about 90 milliseconds.
 
-A flat index and BQ is fast. But consider a HNSW index and BQ. Together they enable vector search capabilities that reach nearly 10,000 queries per second at 85% recall!
+A flat index and BQ is fast, but compare a HNSW index and BQ. Together they enable vector search capabilities that reach nearly 10,000 queries per second at 85% recall!
 
 For more details, keep an eye out for an upcoming blog post with all the nitty-gritty details of how HNSW+BQ compares to other index and compression algorithms!
 
@@ -47,7 +63,7 @@ For more details, keep an eye out for an upcoming blog post with all the nitty-g
 Starting in v1.24.0, there is a new Docker image that runs using common default values. This image lets you start development and exploration quickly. Just enter a simple command line:
 
 ```bash
- docker run -p 8080:8080 semitechnologies/weaviate:1.24.0
+docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.24.0
 ```
 
 Alternatively, you can edit the `docker-compose.yml` file to customize your instance.
