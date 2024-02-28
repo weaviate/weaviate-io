@@ -26,7 +26,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
   multi2vec-bind:
     mem_limit: 12G
-    image: semitechnologies/multi2vec-bind:imagebind
+    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
 volumes:

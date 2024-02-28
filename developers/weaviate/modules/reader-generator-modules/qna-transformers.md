@@ -55,7 +55,7 @@ services:
       ENABLE_MODULES: 'text2vec-transformers,qna-transformers'
       CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v2
+    image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-msmarco-distilbert-base-v2
     environment:
       ENABLE_CUDA: '1'
       NVIDIA_VISIBLE_DEVICES: all
@@ -65,7 +65,7 @@ services:
           devices:
           - capabilities: [gpu]
   qna-transformers:
-    image: semitechnologies/qna-transformers:bert-large-uncased-whole-word-masking-finetuned-squad
+    image: cr.weaviate.io/semitechnologies/qna-transformers:bert-large-uncased-whole-word-masking-finetuned-squad
     environment:
       ENABLE_CUDA: '1'
       NVIDIA_VISIBLE_DEVICES: all

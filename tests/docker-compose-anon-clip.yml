@@ -25,7 +25,7 @@ services:
       ENABLE_MODULES: 'multi2vec-clip,generative-openai'
       CLUSTER_HOSTNAME: 'node1'
   multi2vec-clip:
-    image: semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32
     environment:
       ENABLE_CUDA: '0'
 volumes:

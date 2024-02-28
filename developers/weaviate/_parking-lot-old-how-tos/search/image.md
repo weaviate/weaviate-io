@@ -30,7 +30,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'img2vec-neural'
       ENABLE_MODULES: 'img2vec-neural'
   i2v-neural:
-    image: semitechnologies/img2vec-pytorch:resnet50
+    image: cr.weaviate.io/semitechnologies/img2vec-pytorch:resnet50
 ```
 
 And an example `multi2vec-clip` configuration is shown below:
@@ -43,7 +43,7 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'multi2vec-clip'
       ENABLE_MODULES: 'multi2vec-clip'
   multi2vec-clip:
-    image: semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
     environment:
       ENABLE_CUDA: '0'
 ```

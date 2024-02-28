@@ -92,7 +92,7 @@ services:
 # highlight-start
   multi2vec-bind:
     mem_limit: 12g
-    image: semitechnologies/multi2vec-bind:imagebind
+    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
 # highlight-end

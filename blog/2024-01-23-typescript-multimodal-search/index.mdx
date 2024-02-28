@@ -89,7 +89,7 @@ services:
         BIND_INFERENCE_API: 'http://multi2vec-bind:8080'
         CLUSTER_HOSTNAME: 'node1'
   multi2vec-bind:
-    image: semitechnologies/multi2vec-bind:imagebind
+    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
 
