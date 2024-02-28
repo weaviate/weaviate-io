@@ -28,6 +28,37 @@ client = weaviate.Client(
 # END NamedVectorHybridPython
 
 
+expected_results = """
+# Expected NamedVectorHybrid results
+TODO
+# END Expected NamedVectorHybrid results
+"""
+
+
+gql_query = """
+# NamedVectorHybridGraphQL
+{
+  Get {
+    WineReviewNV(
+      limit: 2
+# highlight-start
+      hybrid: {
+        targetVectors: ["title_country"]
+        query: "A French Riesling"
+      }
+# highlight-end
+    ) {
+      title
+      review_body
+      country
+    }
+  }
+}
+# END NamedVectorHybridGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+
+
 # ==============================
 # ===== Basic Hybrid Query =====
 # ==============================

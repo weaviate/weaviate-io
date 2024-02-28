@@ -53,8 +53,8 @@ A hybrid on collections with named vectors configured must include a `target` ve
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# NamedVectorHybridGraphql"
-      endMarker="# END NamedVectorHybridGraphql"
+      startMarker="# NamedVectorHybridGraphQL"
+      endMarker="# END NamedVectorHybridGraphQL"
       language="graphql"
     />
   </TabItem>
