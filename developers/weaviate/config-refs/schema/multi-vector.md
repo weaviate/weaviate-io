@@ -7,6 +7,8 @@ image: og/docs/configuration.jpg
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
 import PyCode from '!!raw-loader!/_includes/code/config/multi-vector-examples.py';
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
@@ -23,14 +25,53 @@ Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/pyt
 
 #### Create a schema
 
-Weaviate collections require a schema. To create a schema with named vectors, use the methods in `weaviate.classes.config.Configure.NamedVectors` to configure named vectors. 
+Weaviate collections require a schema. Use the schema definition to configure the vector spaces in each data object.
+
+- To configure named vectors, use `NamedVectors`.
+- To specify which inputs go to which vectorizers, set `source_properties`.
 
 <FilteredTextBlock
   text={PyCode}
-  startMarker="# START SimpleSchemaExample"
-  endMarker="# END SimpleSchemaExample"
+  startMarker="# START SetSourceSchemaExample"
+  endMarker="# END SetSourceSchemaExample"
   language="py"
 />
+
+In this example, each data item has three fields, `question`, `answer`, and `category`. When Weaviate imports the data, the schema specifies how to handle each field:
+
+| Data field | Property | Vectorizer |
+| :-- | :-- | :-- |
+| `category` | yes | none |
+| `question` | yes | `text2vec_cohere` | 
+| `answer` | yes | `text2vec_openai` |
+
+#### Query a named vector
+
+[Keyword searches](/developers/weaviate/search/bm25.mdx) in collections with named vectors use the same syntax as keyword searches in collections without named vectors. However, if you run a [vector search](/developers/weaviate/search/similarity) on a collection with named vectors, specify the vector space to search.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START NamedVectorQueryExample"
+  endMarker="# END NamedVectorQueryExample"
+  language="py"
+/>
+
+<details>
+  <summary>Create sample data set.</summary>
+
+This code creates a sample collection and imports a small amount of data.<br/><br/>To run the code, you must have an OpenAI API key and a Cohere API key defined as local variables on your system.<br/><br/>OpenAi and Cohere are third party services. You may incur a cost if you exceed the limits of their free tiers.
+ 
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START LoadDataNamedVectors"
+  endMarker="# END LoadDataNamedVectors"
+  language="py"
+/>
+
+</details>
+
+
+
 
 ### REST API
 
