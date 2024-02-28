@@ -21,7 +21,7 @@ Single vector collections are valid and continue to use the original collection 
 
 ### Python client v4
 
-Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python.mdx) supports named vectors. 
+Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python) supports named vectors. 
 
 #### Create a schema
 
@@ -47,9 +47,9 @@ In this example, each data item has three fields, `question`, `answer`, and `cat
 
 #### Query a named vector
 
-[Keyword searches](/developers/weaviate/search/bm25.mdx) in collections with named vectors use the same syntax as keyword searches in collections without named vectors. However, if you run a vector search on a collection with named vectors, specify the vector space to search.
+[Keyword searches](/developers/weaviate/search/bm25) in collections with named vectors use the same syntax as keyword searches in collections without named vectors. However, if you run a vector search on a collection with named vectors, specify the vector space to search.
 
-Use named vectors with [vector similarity searches](/developers/weaviate/search/similarity.md) (`near_text`, `near_object`, `near_vector`, `near_image`) and [hybrid search](/developers/weaviate/search/hybrid.md).
+Use named vectors with [vector similarity searches](/developers/weaviate/search/similarity) (`near_text`, `near_object`, `near_vector`, `near_image`) and [hybrid search](/developers/weaviate/search/hybrid).
 
 To run the example query, first create the sample collection.
 
@@ -146,7 +146,7 @@ import GraphQLExamples from '/_includes/code/config/multi-vector-examples.mdx';
 
 ## Hybrid search
 
-Named vector collections support [hybrid search](/weaviate/search/hybrid.md), but only for one vector at a time. To run a hybrid search, specify the vector to use:
+Named vector collections support [hybrid search](/weaviate/search/hybrid), but only for one vector at a time. To run a hybrid search, specify the vector to use:
 
 ```json
 {
@@ -169,9 +169,9 @@ Named vector collections support [hybrid search](/weaviate/search/hybrid.md), bu
 
 ## Related pages
 
-- [Create objects](/weaviate/manage-data/create.mdx)
-- [BQ Compression](/weaviate/configuration/bq-compression.md)
-- [PQ Compression](/weaviate/configuration/pq-compression.md)
+- [Create objects](/weaviate/manage-data/create)
+- [BQ Compression](/weaviate/configuration/bq-compression)
+- [PQ Compression](/weaviate/configuration/pq-compression)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
