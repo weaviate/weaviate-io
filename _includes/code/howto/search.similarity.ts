@@ -47,9 +47,6 @@ console.log(JSON.stringify(result, null, 2));
 // Tests
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
-// GetNearText
-// END GetNearText
-
 
 // =========================
 // ===== With NearText =====
@@ -76,8 +73,6 @@ let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
-// GetNearText
-// END GetNearText
 
 // ================================
 // ===== With NearVector =====

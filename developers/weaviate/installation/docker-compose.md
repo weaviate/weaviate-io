@@ -5,7 +5,7 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 
-Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance. 
+Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance.
 
 ## Default Weaviate environment
 
@@ -171,7 +171,7 @@ services:
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
       CLUSTER_HOSTNAME: 'node1'
   t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
+    image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
       # NVIDIA_VISIBLE_DEVICES: all # enable if running with CUDA

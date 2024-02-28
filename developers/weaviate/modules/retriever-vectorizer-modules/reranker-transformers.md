@@ -56,7 +56,7 @@ services:
       ENABLE_MODULES: 'text2vec-openai,reranker-transformers'
       CLUSTER_HOSTNAME: 'node1'
   reranker-transformers:
-    image: semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
+    image: cr.weaviate.io/semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
     environment:
       ENABLE_CUDA: '0'
 ...

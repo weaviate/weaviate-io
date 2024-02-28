@@ -71,7 +71,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   multi2vec-clip:
-    image: semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
 # highlight-end
