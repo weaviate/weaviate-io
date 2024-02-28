@@ -17,6 +17,17 @@ client = weaviate.Client(
     }
 )
 
+
+# ==============================
+# ===== Named Vector Hybrid Query =====
+# ==============================
+
+# NamedVectorHybridPython
+# Unfortunately, named vectors are not suppored in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# END NamedVectorHybridPython
+
+
 # ==============================
 # ===== Basic Hybrid Query =====
 # ==============================
