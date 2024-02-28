@@ -18,11 +18,11 @@ Named vectors make your collections richer and more versatile.
  
 Starting in 1.24.0, collections can have multiple, named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
-In earlier versions, objects in you collections were limited to one vector. Now, you can vectorize meta data like titles and descriptions so they are available for vector search. You can group store that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references.mdx) or manage shared metadata, a single object in a collection can have multiple, named vectors.
+In earlier versions, objects in you collections were limited to one vector. Now, you can vectorize meta data like titles and descriptions so they are available for vector search. You can group store that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata, a single object in a collection can have multiple, named vectors.
 
 You do not have to use multiple vectors in your collections, but if you do, you need to adjust your queries to specify which vector you want to use. 
 
-For details, see [Named vectors](./_core-1-24-include.mdx).
+For details, see [Named vectors](/developers/weaviate/config-refs/schema/multi-vector).
 
 ## HNSW and binary quantization 
 
@@ -36,7 +36,7 @@ Comparing BQ compressed vectors is fast. To calculate the distance between to ve
 
 Efficient BQ processing compliments our HNSW index to enable mind dizzyingly fast vector search and throughput!
 
-Let’s talk numbers! You might know from our v1.23 release that combining a [flat index](/developers/weaviate/concepts/vector-index.md#flat-index) with BQ enables real-time search capabilities. In the 768d vector case, brute forcing 1 million vectors takes about 23 milliseconds. Even in the worst case (4608d vectors), a brute force search takes approximately 90 milliseconds.
+Let’s talk numbers! You might know from our v1.23 release that combining a [flat index](/developers/weaviate/concepts/vector-index#flat-index) with BQ enables real-time search capabilities. In the 768d vector case, brute forcing 1 million vectors takes about 23 milliseconds. Even in the worst case (4608d vectors), a brute force search takes approximately 90 milliseconds.
 
 A flat index and BQ is fast. But consider a HNSW index and BQ. Together they enable vector search capabilities that reach nearly 10,000 queries per second at 85% recall!
 
@@ -52,7 +52,7 @@ Starting in v1.24.0, there is a new Docker image that runs using common default 
 
  Alternatively, you can always edit the `docker-compose.yml` file to customize your instance.
 
-For details, see [Docker configuration](./developers/weaviate/installation/docker-compose.md)
+For details, see [Docker configuration](/developers/weaviate/installation/docker-compose)
 
 ### Backend improvements
 
@@ -60,7 +60,7 @@ Weaviate is a robust platform that handles many kinds of workloads. This release
 
 ## Python client
 
-The Weaviate [Python client v4](./developers/weaviate/client-libraries/python.mdx) is officially available. The latest release adds support for named vectors and brings numerous other updates. If you have feedback on the new client, please let us know. 
+The Weaviate [Python client v4](/developers/weaviate/client-libraries/python) is officially available. The latest release adds support for named vectors and brings numerous other updates. If you have feedback on the new client, please let us know. 
 
 ## Summary
 
