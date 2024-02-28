@@ -169,6 +169,42 @@ Collection level settings override default values and general configuration para
   </TabItem>
 </Tabs>
 
+## Define multiple (named) vectors
+
+:::info Added in `v1.24`
+:::
+
+You can define multiple named vectors per collection. This allows each object to be represented by multiple vectors, such as a `text` vector and an `image` vector, or a `title` vector and a `body` vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicNamedVectors"
+      endMarker="# END BasicNamedVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START BasicNamedVectors"
+      endMarker="# END BasicNamedVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicNamedVectors"
+      endMarker="// END BasicNamedVectors"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Specify vectorizer settings
 
 To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
@@ -241,10 +277,6 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
 - Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
 
 </details>
-
-## Specify multiple vectors
-
-Starting in v1.24.0, objects can have more than one vector. A
 
 ## Property-level settings
 
