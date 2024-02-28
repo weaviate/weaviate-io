@@ -40,13 +40,69 @@ const classDefinition = {
 
 // Clean slate
 try {
-  await client.schema.classDeleter().withClassName(className).do();
+  await client.schema.classDeleter().withClassName(classDefinition.class).do();
 } catch (e) {
   // ignore error if class doesn't exist
 } finally {
   await client.schema.classCreator().withClass(classDefinition).do();
 }
 
+
+const classDefinitionNV = {
+  class: 'WineReviewNV',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+    {
+      name: 'review_body',
+      dataType: ['text'],
+    },
+    {
+      name: 'country',
+      dataType: ['text'],
+    },
+  ],
+  vectorConfig: {
+    // Set a named vector
+    title: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['title'], // Set the source property(ies)
+        },
+      },
+    },
+    // Set another named vector
+    review_body: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['review_body'], // Set the source property(ies)
+        },
+      },
+    },
+    // Set another named vector
+    title_country: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['title', 'country'], // Set the source property(ies)
+        },
+      },
+    },
+  },
+};
+
+// Clean slate
+try {
+  await client.schema.classDeleter().withClassName(classDefinitionNV.class).do();
+} catch (e) {
+  // ignore error if class doesn't exist
+} finally {
+  await client.schema.classCreator().withClass(classDefinitionNV).do();
+}
 
 // =========================
 // ===== Create object =====
@@ -88,6 +144,34 @@ result = await client.data
 
 console.log(JSON.stringify(result, null, 2));  // the returned value is the object
 // CreateObjectWithVector END
+
+
+// =======================================
+// ===== Create object with named vectors =====
+// =======================================
+
+// CreateObjectNamedVectors START
+result = await client.data
+  .creator()
+  .withClassName('WineReviewNV')
+  .withProperties({
+    title: 'A delicious Riesling',
+    review_body: 'This wine is a delicious Riesling which pairs well with seafood.',
+    country: 'Germany',
+  })
+  // highlight-start
+  // Specify the named vectors, following the collection definition
+  .withVectors({
+    title: Array(1536).fill(0.12345),
+    review_body: Array(1536).fill(0.31313),
+    title_country: Array(1536).fill(0.05050),
+  })
+  // highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+// CreateObjectNamedVectors END
+
 
 // ===============================================
 // ===== Create object with deterministic id =====

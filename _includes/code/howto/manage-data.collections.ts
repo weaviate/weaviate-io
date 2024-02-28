@@ -116,6 +116,7 @@ const classWithNamedVectors = {
   vectorConfig: {
     // Set a named vector
     title: {
+      vectorIndexType: 'hnsw', // Set the index type
       vectorizer: {
         'text2vec-cohere': {
           properties: ['title'], // Set the source property(ies)
@@ -124,6 +125,7 @@ const classWithNamedVectors = {
     },
     // Set another named vector
     body: {
+      vectorIndexType: 'hnsw', // Set the index type
       vectorizer: {
         'text2vec-openai': {
           properties: ['body'], // Set the source property(ies)

@@ -8784,7 +8784,7 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-graphql-request@^5.1.0:
+graphql-request@^5.1.0, graphql-request@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-5.2.0.tgz#a05fb54a517d91bb2d7aefa17ade4523dc5ebdca"
   integrity sha512-pLhKIvnMyBERL0dtFI3medKqWOz/RhHdcgbZ+hMMIb32mEPa5MJSzS4AuXxfI4sRAu6JVVk5tvXuGfCWl9JYWQ==
@@ -15529,6 +15529,11 @@ uuid@^9.0.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
+uuid@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
+  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
+
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz#6336e8d71965cb3d35a1bbb7868445a7c05264bf"
@@ -15624,7 +15629,7 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-ts-client@^1.3.3, weaviate-ts-client@^1.4.0:
+weaviate-ts-client@^1.3.3:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-1.5.0.tgz#85f6ad889b4d39bafa21aff4ea7303236ac2544a"
   integrity sha512-xmaW3eyV6grkZ/nZ8P41+p1bUqEJPBm93SNYTiTXBxggH9gqUPHSVo1LxMArYBuZD06YwgGi4Ujf6WCW/1MRTg==
@@ -15632,6 +15637,14 @@ weaviate-ts-client@^1.3.3, weaviate-ts-client@^1.4.0:
     graphql-request "^5.1.0"
     isomorphic-fetch "^3.0.0"
     uuid "^9.0.0"
+
+weaviate-ts-client@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/weaviate-ts-client/-/weaviate-ts-client-2.1.0.tgz#5232a95224b6218e912f2dd9199375d82a2f43c2"
+  integrity sha512-9gNcH4Dhdr6vxo7zmINi3fmK1KYHh7RQZk6wO+heT8IISMubiuW1RSM2OtgDT0bkzhEuJXlsONKldFHAfl6TxA==
+  dependencies:
+    graphql-request "^5.2.0"
+    uuid "^9.0.1"
 
 weaviate-ts-embedded@^1.2.0:
   version "1.2.0"
