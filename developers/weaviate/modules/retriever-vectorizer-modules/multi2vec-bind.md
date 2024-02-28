@@ -37,7 +37,7 @@ This module is not available on Weaviate Cloud Services.
 
 ### Memory requirements
 
-The `multi2vec-bind` module requires a significant amount of memory to run. You may need to increase the memory limit for the `multi2vec-bind` container to 12 GB or more, such as through Docker Desktop's settings.
+The `multi2vec-bind` module requires a significant amount of memory to run. You may need to increase the memory limit for the `multi2vec-bind` container to 12 GB or more, such as through Docker Desktop's settings. You can additionally set a limit on your Docker Compose file as shown below, however your Docker Desktop memory limit must be equal to or higher than the limit set in the Docker Compose file.
 
 ### Docker Compose file
 
@@ -58,6 +58,7 @@ Weaviate:
 Inference container:
 
 - `image` (Required): The image name of the inference container.
+- `mem_limit` (Optional): The memory limit for the inference container. Suggest setting to `12G` or higher. (Also review the memory limit in Docker Desktop settings.)
 - `ENABLE_CUDA` (Optional): Set to `1` to enable GPU usage. Default is `0` (CPU only).
 
 
@@ -90,6 +91,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   multi2vec-bind:
+    mem_limit: 12g
     image: semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
