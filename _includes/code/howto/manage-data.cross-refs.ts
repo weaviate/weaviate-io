@@ -64,6 +64,43 @@ await client
 
 
 // =================================
+// ===== ObjectWithCrossRef =====
+// =================================
+
+let response;
+const obj_uuid = 'f7344d30-7fe4-54dd-a233-fcccd4379d5c'
+
+// Delete the object if it exists
+try {
+  await client.data.deleter().withId(obj_uuid).do();
+} catch (e) {
+  console.log('Object not found, skipping deletion.');
+}
+
+// ObjectWithCrossRef
+response = await client.data
+  .creator()
+  .withClassName('JeopardyQuestion')
+  .withId('f7344d30-7fe4-54dd-a233-fcccd4379d5c')
+  .withProperties({
+    'question': 'What tooling helps make Weaviate scalable?',
+    'answer': 'Sharding, multi-tenancy, and replication',
+    'hasCategory': [{  // Specify one or more cross-references
+      'beacon': 'weaviate://localhost/583876f3-e293-5b5b-9839-03f455f14575',
+    }],
+  })
+  .do();
+console.log(JSON.stringify(response, null, 2));
+// END ObjectWithCrossRef
+
+// Test
+let q_obj = await client.data.getterById().withClassName('JeopardyQuestion').withId(obj_uuid).do();
+assert.equal(q_obj.class, 'JeopardyQuestion');
+assert((q_obj.properties['hasCategory'] as object[]).find(xref => xref['href'] === `/v1/objects/JeopardyCategory/583876f3-e293-5b5b-9839-03f455f14575`));
+// End test
+
+
+// =================================
 // ===== Add one-way cross-ref =====
 // =================================
 

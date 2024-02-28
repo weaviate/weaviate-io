@@ -73,6 +73,12 @@ try:
     # CreateObject
     # ========================================
 
+    publications = client.collections.get("Publication")
+    publications.data.insert(
+        properties={"title": "TempPub"},
+        uuid="f81bfe5e-16ba-4615-a516-46c2ae2e5a80",
+    )
+
     # START CreateObject
     authors = client.collections.get("Author")
     obj_uuid = "36ddd591-2dee-4e7e-a3cc-eb86d30a4303"
@@ -81,7 +87,8 @@ try:
     authors.data.insert(
         properties={"name": "Jodi Kantor"},
         uuid=obj_uuid,
-        # references=wvc.data.Reference("f81bfe5e-16ba-4615-a516-46c2ae2e5a80"),  # If you want to add a reference (if configured in the collection definition)
+        # If you want to add a reference (and configured in the collection definition)
+        # references={"writesFor": "f81bfe5e-16ba-4615-a516-46c2ae2e5a80"}
     )
 
     for o in response.objects:
