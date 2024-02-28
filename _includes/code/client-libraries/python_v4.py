@@ -44,6 +44,21 @@ try:
 finally:
     client.close()
 
+
+# LocalInstantiationSkipChecks
+import weaviate
+
+client = weaviate.connect_to_local(
+    skip_init_checks=True
+)
+# END LocalInstantiationSkipChecks
+
+try:
+    assert client.is_ready()
+finally:
+    client.close()
+
+
 """
 # EmbeddedInstantiationBasic
 import weaviate
@@ -906,6 +921,15 @@ try:
     articles = client.collections.get("Article")
     print(len(articles))
     # END LenCollectionExample
+
+
+    # START BrokenQueryExample
+    try:
+        collection = client.collections.get("NonExistentCollection")
+        collection.query.fetch_objects(limit=2)
+    except weaviate.exceptions.WeaviateBaseError as e:
+        print(f"Caught a Weaviate error: {e.message}")
+    # END BrokenQueryExample
 
 
     # GenericsExample

@@ -93,6 +93,54 @@ try:
     category_obj_id = categories.query.fetch_objects(limit=1).objects[0].uuid
     category_obj_id_alt = categories.query.fetch_objects(limit=2).objects[1].uuid
 
+
+    # ==========================================
+    # ===== Add an object with a cross-ref =====
+    # ==========================================
+
+    # Prep data
+    from weaviate.util import generate_uuid5
+
+    categories = client.collections.get("JeopardyCategory")
+    category_properties = {"title": "Weaviate"}
+    category_uuid = generate_uuid5(category_properties)
+    categories.data.insert(
+        properties=category_properties,
+        uuid=category_uuid
+    )
+    properties = {
+        "question": "What tooling helps make Weaviate scalable?",
+        "answer": "Sharding, multi-tenancy, and replication"
+    }
+
+    obj_uuid = generate_uuid5(properties)
+
+    # ObjectWithCrossRef
+    import weaviate.classes as wvc
+
+    questions = client.collections.get("JeopardyQuestion")
+
+    questions.data.insert(
+        properties=properties,  # A dictionary with the properties of the object
+        uuid=obj_uuid,  # A UUID for the object
+        references={"hasCategory": category_uuid},  # e.g. {"hasCategory": "583876f3-e293-5b5b-9839-03f455f14575"}
+    )
+
+    # END ObjectWithCrossRef
+
+    # Test results
+    result = questions.query.fetch_object_by_id(
+        obj_uuid,
+        return_references=wvc.query.QueryReference(
+            link_on="hasCategory"
+        )
+    )
+    assert result.collection == "JeopardyQuestion"
+    xref_ids = [o.uuid for o in result.references["hasCategory"].objects]
+    assert category_uuid == str(xref_ids[0])
+    # END Test results
+
+
     # =================================
     # ===== Add one-way cross-ref =====
     # =================================
