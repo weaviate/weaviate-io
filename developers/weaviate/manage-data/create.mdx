@@ -82,7 +82,7 @@ By default, [auto-schema](/developers/weaviate/config-refs/schema#autoschema) cr
 
 </details>
 
-## Create an object with Vector
+## Create an object with a specified vector
 
 When you create an object, you can provide a vector.
 
@@ -133,11 +133,11 @@ When you create an object, you can provide a vector.
   </TabItem>
 </Tabs>
 
-## Create an object with ID
+## Create an object with a specified ID
 
 When you create an object, you can specify an [ID](../api/graphql/additional-properties.md#id).
 
-:::info 
+:::info
 If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 :::
 
@@ -190,7 +190,7 @@ If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedi
 
 ## Generate deterministic IDs
 
-You can generate an ID based on your data object. 
+You can generate an ID based on your data object.
 
 :::info
 Object IDs are not randomly generated. The same value always generates the same ID.<br/>Weaviate throws an error if you provide a duplicate ID. Use deterministic IDs to avoid inserting duplicate objects.
@@ -252,6 +252,47 @@ To generate deterministic IDs, use one of these methods:
 - `generateUuid5` (TypeScript)
 
 </details>
+
+## Create an object with cross-references
+
+import XrefPyCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.py';
+import XrefPyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs-v3.py';
+import XrefTSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
+
+You can create an object with cross-references to other objects.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={XrefPyCode}
+      startMarker="# ObjectWithCrossRef"
+      endMarker="# END ObjectWithCrossRef"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={XrefPyCodeV3}
+      startMarker="# ObjectWithCrossRef"
+      endMarker="# END ObjectWithCrossRef"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={XrefTSCode}
+      startMarker="// ObjectWithCrossRef"
+      endMarker="// END ObjectWithCrossRef"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+:::tip Additional information
+See [How-to: Cross-references](./cross-references.mdx) for more on working with cross-references.
+:::
 
 ## Validate objects before creation
 
