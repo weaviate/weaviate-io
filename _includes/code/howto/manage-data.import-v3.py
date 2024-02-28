@@ -131,6 +131,15 @@ client.schema.delete_class(class_name)
 
 # TODOv4 – maybe this should be removed
 
+# ===========================================
+# ===== Batch import with named vectors =====
+# ===========================================
+
+# BatchImportWithNamedVectors
+# Unfortunately, named vectors are not suppored in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# END BatchImportWithNamedVectors
+
 # ============================
 # ===== Streaming import =====
 # ============================
