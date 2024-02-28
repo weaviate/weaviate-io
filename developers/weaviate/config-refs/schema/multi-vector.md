@@ -49,7 +49,7 @@ In this example, each data item has three fields, `question`, `answer`, and `cat
 
 [Keyword searches](/developers/weaviate/search/bm25.mdx) in collections with named vectors use the same syntax as keyword searches in collections without named vectors. However, if you run a vector search on a collection with named vectors, specify the vector space to search.
 
-Use named vectors with [vector similarity searches](/developers/weaviate/search/similarity) (`near_text`, `near_object`, `near_vector`, `near_image`) and [hybrid search](/developers/weaviate/search/hybrid).
+Use named vectors with [vector similarity searches](/developers/weaviate/search/similarity.md) (`near_text`, `near_object`, `near_vector`, `near_image`) and [hybrid search](/developers/weaviate/search/hybrid.md).
 
 To run the example query, first create the sample collection.
 
