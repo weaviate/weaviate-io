@@ -35,9 +35,9 @@
 
   .buttonOutline {
     outline: 1px solid #ffffff;
-    color: #130c49;
+    color: #ffffff;
     transition: all 1s ease-out;
-    background-color: none;
+    background: #130c49;
   }
 
   .buttonOutline:hover {
@@ -56,18 +56,18 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   text-align: left;
   margin-bottom: 40px;
 
   h1 {
-    color: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: Plus Jakarta Sans;
     font-size: 2.25rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 140%; /* 3.15rem */
+    line-height: 140%;
     margin-bottom: 1rem;
   }
 
@@ -78,7 +78,7 @@ p {
     }
 
     p {
-      color: #130c49;
+      color: #ffffff;
     }
   }
 
@@ -256,7 +256,7 @@ p {
 }
 
 .headerSecurity {
-  background: #f5f5f5;
+  background: #130c49;
   background-image: url('/img/site/home-page-bg-pattern.svg');
   background-size: cover;
 
