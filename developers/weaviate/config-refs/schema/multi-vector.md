@@ -37,7 +37,7 @@ Weaviate collections require a schema. Use the schema definition to configure th
   language="py"
 />
 
-In this example, each data item has three fields, `question`, `answer`, and `category`. When Weaviate imports the data, the schema specifies how to handle each field:
+In this example, each data item has three fields, `question`, `answer`, and `category`. When Weaviate imports the data, the schema specifies how to handle each field. Data values can be stored as properties, vectors or both.
 
 | Data field | Property | Vectorizer |
 | :-- | :-- | :-- |
