@@ -72,7 +72,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   text2vec-gpt4all:
-    image: semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
+    image: cr.weaviate.io/semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
 # highlight-end
 ...
 ```

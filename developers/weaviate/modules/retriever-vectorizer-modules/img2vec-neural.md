@@ -71,7 +71,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   i2v-neural:
-    image: semitechnologies/img2vec-pytorch:resnet50
+    image: cr.weaviate.io/semitechnologies/img2vec-pytorch:resnet50
 # highlight-end
 ...
 ```

@@ -84,7 +84,7 @@ By default, [auto-schema](/developers/weaviate/config-refs/schema#autoschema) cr
 
 ## Create an object with a specified vector
 
-When you create an object, you can provide a vector.
+When you create an object, you can provide a vector. <!-- (For specifying multiple, named vectors, see [below](#create-an-object-with-named-vectors).) -->
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -129,6 +129,42 @@ When you create an object, you can provide a vector.
       startMarker="// CreateObjectWithVector START"
       endMarker="// CreateObjectWithVector END"
       language="go"
+    />
+  </TabItem>
+</Tabs>
+
+## Create an object with named vectors
+
+:::info Added in `v1.24`
+:::
+
+When you create an object, you can specify named vectors (if [configured in your collection](./collections.mdx#define-multiple-named-vectors)).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# CreateObjectNamedVectors START"
+      endMarker="# CreateObjectNamedVectors END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# CreateObjectNamedVectors START"
+      endMarker="# CreateObjectNamedVectors END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// CreateObjectNamedVectors START"
+      endMarker="// CreateObjectNamedVectors END"
+      language="ts"
     />
   </TabItem>
 </Tabs>

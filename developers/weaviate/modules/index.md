@@ -42,12 +42,12 @@ services:
     environment:
       DEFAULT_VECTORIZER_MODULE: text2vec-contextionary
 ```
-
+<!-- 
 ## Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
-<MultiVectorSupport />
+<MultiVectorSupport /> -->
 
 ## Backup Modules
 

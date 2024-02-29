@@ -23,7 +23,7 @@ If you are using the Docker Compose file from the installation configurator, you
 ```yaml
 services:
     enterprise-proxy:
-    image: semitechnologies/weaviate-enterprise-usage-collector:latest
+    image: cr.weaviate.io/semitechnologies/weaviate-enterprise-usage-collector:latest
     environment:
       - weaviate_enterprise_token=[[ WEAVIATE TOKEN ]]
       - weaviate_enterprise_project=[[ PROJECT NAME ]]

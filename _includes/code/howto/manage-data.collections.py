@@ -81,6 +81,45 @@ try:
     config = collection.config.get()
     assert config.vectorizer.value == "text2vec-openai"
 
+
+    # ===============================================
+    # ===== CREATE A COLLECTION WITH NAMED VECTORS =====
+    # ===============================================
+
+    # Clean slate
+    client.collections.delete("ArticleNV")
+
+    # START BasicNamedVectors
+    import weaviate.classes.config as wc
+
+    client.collections.create(
+        "ArticleNV",
+        properties=[  # Define properties
+            wc.Property(name="title", data_type=wc.DataType.TEXT),
+            wc.Property(name="body", data_type=wc.DataType.TEXT),
+        ],
+        # highlight-start
+        vectorizer_config=[
+            # Set a named vector
+            wc.Configure.NamedVectors.text2vec_cohere(  # Use the "text2vec-cohere" vectorizer
+                name="title", source_properties=["title"]       # Set the source property(ies)
+            ),
+            # Set another named vector
+            wc.Configure.NamedVectors.text2vec_openai(  # Use the "text2vec-openai" vectorizer
+                name="body", source_properties=["body"]         # Set the source property(ies)
+            )
+        ],
+        # highlight-end
+    )
+    # END BasicNamedVectors
+
+    # Test
+    collection = client.collections.get("ArticleNV")
+    config = collection.config.get()
+    for k, v in config.vector_config.items():
+        assert v.vectorizer.source_properties == [k]  # Test that the source properties are correctly set
+
+
     # ===========================
     # ===== SET VECTOR INDEX =====
     # ===========================
