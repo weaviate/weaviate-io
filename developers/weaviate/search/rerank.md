@@ -11,6 +11,9 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
+import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
+import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 Reranking modules reorder the search result set according to a different set of criteria or a different (e.g. more expensive) algorithm.
 
@@ -29,6 +32,51 @@ To rerank search results, enable a reranker [module](../configuration/modules.md
 A collection can have multiple rerankers. If multiple `reranker` modules are enabled, specify the module you want to use in the `moduleConfig` section of your schema.
 
 </details>
+
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={SimilarityPyCode}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={SimilarityPyCodeV3}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={SimilarityPyCodeV3}
+      startMarker="# NamedVectorNearTextGraphql"
+      endMarker="# END NamedVectorNearTextGraphql"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
 
 ## Rerank vector search results
 
