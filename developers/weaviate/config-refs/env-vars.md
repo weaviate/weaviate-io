@@ -28,10 +28,10 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | `LOG_FORMAT` | Set the Weaviate logging format <br/><br/>| `string` |  |
 | `MODULES_CLIENT_TIMEOUT` | Timeout for requests to Weaviate modules. Default: `50s` | `string - duration` | `5s`, `10m`, `1h` |
 | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-| `PERSISTENCE_DATA_PATH` | Path to the Weaviate data store | `string - file path` | `/var/lib/weaviate`<!--  <br/> Starting in v1.24, defaults to `./data`| -->
+| `PERSISTENCE_DATA_PATH` | Path to the Weaviate data store | `string - file path` | `/var/lib/weaviate` <!--  <br/> Starting in v1.24, defaults to `./data` -->|
 | `PERSISTENCE_LSM_ACCESS_STRATEGY` | Function used to access disk data in virtual memory | `string` | `mmap` (default) or `pread` |
 | `QUERY_MAXIMUM_RESULTS` | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
-| `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
+| `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <--<br/> Starting in v1.24, defaults to `10` -->|
 | `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
 | `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `boolean` | `false` |
 | `PROMETHEUS_MONITORING_GROUP` | If set, Weaviate will group metrics for the same class across all shards. | `boolean` | `true` |
@@ -50,7 +50,7 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true`<br/> Starting in v1.24, defaults to `true` |
+| `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true` <--<br/> Starting in v1.24, defaults to `true` -->|
 | `AUTHENTICATION_APIKEY_ENABLED` | Enable API key-based authentication | `boolean` | `false` |
 | `AUTHENTICATION_APIKEY_ALLOWED_KEYS` | Allowed API keys. <br/><br/> Each key corresponds to a specific user identity below. | `string - comma-separated list` | `jane-secret-key,ian-secret-key` |
 | `AUTHENTICATION_APIKEY_USERS` | API key-based identities. <br/><br/> Each identity corresponds to a specific key above. | `string - comma-separated list` | `jane@doe.com,ian-smith` |
