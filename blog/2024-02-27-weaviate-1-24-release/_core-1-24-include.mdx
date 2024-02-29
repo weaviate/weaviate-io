@@ -16,7 +16,7 @@ Here are the release ⭐️*highlights*⭐️!
 
 Named vectors make your collections richer and more versatile.
  
-Starting in 1.24.1, collections can have multiple, named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+Starting in 1.24, collections can have multiple, named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
 In earlier versions, objects in you collections were limited to one vector. Now, you can vectorize meta data like titles and descriptions so they are available for vector search. You can group store that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata, a single object in a collection can have multiple, named vectors.
 
@@ -60,7 +60,7 @@ For more details, keep an eye out for an upcoming blog post with all the nitty-g
 
 ## Simplified Docker configuration
 
-Starting in v1.24.1, there is a new Docker image that runs using common default values. This image lets you start development and exploration quickly. Just enter a simple command line:
+Starting in v1.24, there is a new Docker image that runs using common default values. This image lets you start development and exploration quickly. Just enter a simple command line:
 
 ```bash
 docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.24.1
