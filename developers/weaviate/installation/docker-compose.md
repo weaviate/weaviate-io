@@ -5,13 +5,13 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 
-<!-- Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance. -->
+<!-- Weaviate supports deployment with Docker. Starting in v1.24.1, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance. -->
 
 Weaviate supports deployment with Docker. Edit the `docker-compose.yml` file to customize your instance.
 
 ## Default Weaviate environment
 
-<!-- :::info Added in v1.24.0
+<!-- :::info Added in v1.24.1
 
 :::
 

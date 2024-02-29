@@ -9,8 +9,8 @@ image: og/docs/modules/text2vec-aws.jpg
 Starting in v1.22.5, [AWS Bedrock](https://aws.amazon.com/bedrock/) is supported.
 :::
 
-<!-- :::info Added in `v1.24.0`
-Starting in v1.24.0, [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is supported.
+<!-- :::info Added in `v1.24.1`
+Starting in v1.24.1, [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is supported.
 :::
 
 The `text2vec-aws` module allows Weaviate to access [AWS Bedrock](https://aws.amazon.com/bedrock/) and [AWS Sagemaker](https://aws.amazon.com/sagemaker/) services. 
