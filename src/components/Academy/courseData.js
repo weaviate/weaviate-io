@@ -65,6 +65,28 @@ export const courseData = {
     ],
     note: "Python client (v4); project-based"
   },
+  "named_vectors": {
+    title: "Flexible data representation: Named vectors",
+    courseId: "PY_220",
+    body: "Learn how named vectors can provide a flexible way to represent your data in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/named_vectors",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+
+    ],
+    learningGoals: [
+      "What named vectors can be used for, and how to add them to your data collection."
+    ],
+    learningOutcomes: [
+      "Describe use cases for named vectors",
+      "Create a collection with named vectors",
+      "Add objects with multiple vectors per object",
+      "Perform searches on named vectors",
+    ],
+    note: "Python client (v4); project-based"
+  },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with Typescript (or JavaScript)",
     courseId: "TS_100",

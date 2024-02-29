@@ -12,7 +12,7 @@ import os
 
 headers = {
     "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
-}  # Replace with your OpenAI API key
+}  # Replace with your own API keys
 
 client = weaviate.connect_to_local(headers=headers)
 # END DockerAPIKeyInstantiation
@@ -35,6 +35,10 @@ print(json.dumps(metainfo, indent=2))  # Print the meta information in a readabl
 {
   "hostname": "http://[::]:8080",
   "modules": {
+    "generative-openai": {
+      "documentationHref": "https://platform.openai.com/docs/api-reference/completions",
+      "name": "Generative Search - OpenAI"
+    },
     "multi2vec-clip": {
       "clip_model": {
         "_commit_hash": null,
@@ -490,7 +494,11 @@ print(json.dumps(metainfo, indent=2))  # Print the meta information in a readabl
           "use_bfloat16": false
         }
       }
-    }
+    },
+    "text2vec-openai": {
+      "documentationHref": "https://platform.openai.com/docs/guides/embeddings/what-are-embeddings",
+      "name": "OpenAI Module"
+    },
   },
   "version": "1.23.9"
 }
