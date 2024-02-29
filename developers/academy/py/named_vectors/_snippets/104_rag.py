@@ -31,7 +31,7 @@ def url_to_base64(url):
 
 # SinglePromptGeneration
 # Get the collection
-movies = client.collections.get("MovieMM")
+movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg"
@@ -63,7 +63,7 @@ client.connect()
 
 # GroupedTaskGeneration
 # Get the collection
-movies = client.collections.get("MovieMM")
+movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg"

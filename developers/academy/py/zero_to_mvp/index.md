@@ -1,5 +1,5 @@
 ---
-title: P3_1. Zero to MVP - The Basics
+title: (v3) Zero to MVP
 ---
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';
@@ -7,6 +7,13 @@ import CourseUnits from '/src/components/Academy/courseUnits.jsx';
 import { courseData } from '/src/components/Academy/courseData.js'
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Course overview
+
+:::info
+This course was written for the Weaviate Python client library (`v3`). We are in the process of updating the content to the latest version of the client.
+<br/>
+
+If you are new to Weaviate, we recommend you start with one of the 101-level courses, such as those for working with [text data](../starter_text_data/index.md), [your own vectors](../starter_custom_vectors/index.md), or [multimodal data](../starter_multimodal_data/index.md).
+:::
 
 This course is designed to get you started with Weaviate, so that you can go from being new to Weaviate to building an MVP-level product with Weaviate in a short period of time.
 

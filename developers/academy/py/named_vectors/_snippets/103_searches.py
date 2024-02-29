@@ -29,6 +29,105 @@ client = weaviate.connect_to_local(
 # END-ANY
 
 
+# NVTitleSearch
+# Get the collection
+movies = client.collections.get("MovieNVDemo")
+
+# Perform query
+response = movies.query.near_text(
+    query="red",
+    # highlight-start
+    target_vector="title",  # The target vector to search against
+    # highlight-end
+    limit=5,
+    return_metadata=wq.MetadataQuery(distance=True),
+    return_properties=["title", "release_date", "tmdb_id", "poster"]
+)
+
+# Inspect the response
+for o in response.objects:
+    print(
+        o.properties["title"], o.properties["release_date"].year, o.properties["tmdb_id"]
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"Distance to query: {o.metadata.distance:.3f}\n"
+    )  # Print the distance of the object from the query
+
+client.close()
+# END NVTitleSearch
+
+
+print("\n\n")
+
+client.connect()
+
+
+# NVOverviewSearch
+# Get the collection
+movies = client.collections.get("MovieNVDemo")
+
+# Perform query
+response = movies.query.near_text(
+    query="red",
+    # highlight-start
+    target_vector="overview",  # The target vector to search against
+    # highlight-end
+    limit=5,
+    return_metadata=wq.MetadataQuery(distance=True),
+    return_properties=["title", "release_date", "tmdb_id", "poster"]
+)
+
+# Inspect the response
+for o in response.objects:
+    print(
+        o.properties["title"], o.properties["release_date"].year, o.properties["tmdb_id"]
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"Distance to query: {o.metadata.distance:.3f}\n"
+    )  # Print the distance of the object from the query
+
+client.close()
+# END NVOverviewSearch
+
+
+print("\n\n")
+
+client.connect()
+
+
+# NVPosterSearch
+# Get the collection
+movies = client.collections.get("MovieNVDemo")
+
+# Perform query
+response = movies.query.near_text(
+    query="red",
+    # highlight-start
+    target_vector="title_poster",  # The target vector to search against
+    # highlight-end
+    limit=5,
+    return_metadata=wq.MetadataQuery(distance=True),
+    return_properties=["title", "release_date", "tmdb_id", "poster"]
+)
+
+# Inspect the response
+for o in response.objects:
+    print(
+        o.properties["title"], o.properties["release_date"].year, o.properties["tmdb_id"]
+    )  # Print the title and release year (note the release date is a datetime object)
+    print(
+        f"Distance to query: {o.metadata.distance:.3f}\n"
+    )  # Print the distance of the object from the query
+
+client.close()
+# END NVPosterSearch
+
+
+print("\n\n")
+
+client.connect()
+
+
 # MetadataMultimodalSearch
 
 def url_to_base64(url):
@@ -41,7 +140,7 @@ def url_to_base64(url):
 
 
 # Get the collection
-movies = client.collections.get("MovieMM")
+movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg"
@@ -50,6 +149,7 @@ query_b64 = url_to_base64(src_img_path)
 response = movies.query.near_image(
     near_image=query_b64,
     limit=5,
+    target_vector="title_poster",  # The target vector to search against
     return_metadata=wq.MetadataQuery(distance=True),
     return_properties=["title", "release_date", "tmdb_id", "poster"]  # To include the poster property in the response (`blob` properties are not returned by default)
 )
@@ -72,38 +172,9 @@ print("\n\n")
 client.connect()
 
 
-# MetadataSemanticSearch
-# Get the collection
-movies = client.collections.get("MovieMM")
-
-# Perform query
-response = movies.query.near_text(
-    query="red",
-    limit=5,
-    return_metadata=wq.MetadataQuery(distance=True),
-    return_properties=["title", "release_date", "tmdb_id", "poster"]  # To include the poster property in the response (`blob` properties are not returned by default)
-)
-
-# Inspect the response
-for o in response.objects:
-    print(
-        o.properties["title"], o.properties["release_date"].year, o.properties["tmdb_id"]
-    )  # Print the title and release year (note the release date is a datetime object)
-    print(
-        f"Distance to query: {o.metadata.distance:.3f}\n"
-    )  # Print the distance of the object from the query
-
-client.close()
-# END MetadataSemanticSearch
-
-
-print("\n\n")
-
-client.connect()
-
 # MetadataBM25Search
 # Get the collection
-movies = client.collections.get("MovieMM")
+movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 response = movies.query.bm25(
@@ -129,11 +200,16 @@ client.connect()
 
 # MetadataHybridSearch
 # Get the collection
-movies = client.collections.get("MovieMM")
+movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 response = movies.query.hybrid(
-    query="history", limit=5, return_metadata=wq.MetadataQuery(score=True)
+    query="history",
+    # highlight-start
+    target_vector="overview",  # The target vector to search against
+    # highlight-end
+    limit=5,
+    return_metadata=wq.MetadataQuery(score=True)
 )
 
 # Inspect the response
@@ -155,7 +231,7 @@ client.connect()
 
 # FilteredSemanticSearch
 # Get the collection
-movies = client.collections.get("MovieMM")
+movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 response = movies.query.near_text(

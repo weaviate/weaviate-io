@@ -1,0 +1,164 @@
+---
+title: Searches
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+
+As collections with named vectors can include multiple vectors, any vector or similarity search must specify a "target" vector.
+
+This applies for `near_text` and `near_vector` searches, as well as multimodal searches such as `near_image` and so on. Let's explore a few examples here.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Text searches
+
+### <i class="fa-solid fa-code"></i> Code
+
+Here, we look for entries in "MovieNVDemo" based on their similarity to the phrase `"A joyful holiday film"`. Note, however, that we show multiple versions of the same query, each with a different `target_vector` parameter:
+
+<Tabs groupId="targetVector">
+  <TabItem value="title" label="Title">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NVTitleSearch"
+      endMarker="# END NVTitleSearch"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="overview" label="Overview">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NVOverviewSearch"
+      endMarker="# END NVOverviewSearch"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="poster" label="Poster">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NVPosterSearch"
+      endMarker="# END NVPosterSearch"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+Each named vector here is based on a different property of the movie data.
+
+The first search compares the meaning of the movie **title** with the query, the second search compares the **entire summary** (overview) with the query, and the third compares the **poster (and the title)** with the query.
+
+Weaviate also allows each named vector to be set with a different vectorizer. You will recall that the `title_poster` vector is created by the CLIP models, while the `title` and `overview` properties are created by the OpenAI model.
+
+As a result, each named vector can be further specialized by using the right model for the right property.
+
+#### Search results
+
+<Tabs groupId="targetVector">
+  <TabItem value="title" label="Title">
+
+```text
+
+```
+
+  </TabItem>
+  <TabItem value="overview" label="Overview">
+
+```text
+
+```
+
+  </TabItem>
+  <TabItem value="poster" label="Poster">
+
+```text
+
+```
+
+  </TabItem>
+</Tabs>
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Multimodality
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "MovieNVDemo" based on the `title_poster` vector's similarity to the input image.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataMultimodalSearch"
+  endMarker="# END MetadataMultimodalSearch"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+This search is based on the `title_poster` vector, which is a combination of the title and the poster of the movie.
+
+<details>
+  <summary>Example results</summary>
+
+Posters for the top 5 matches:
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/383498_poster.jpg" alt="Deadpool 2" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/338762_poster.jpg" alt="Bloodshot" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/293660_poster.jpg" alt="Deadpool" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/1271_poster.jpg" alt="300" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/1669_poster.jpg" alt="The Hunt for Red October" width="200" />
+
+Weaviate output:
+
+```text
+Deadpool 2 2018 383498
+Distance to query: 0.670
+
+Bloodshot 2020 338762
+Distance to query: 0.677
+
+Deadpool 2016 293660
+Distance to query: 0.678
+
+300 2007 1271
+Distance to query: 0.682
+
+The Hunt for Red October 1990 1669
+Distance to query: 0.683
+```
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Hybrid search
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "MovieNVDemo" with the highest hybrid search scores for the term "history", and prints out the title and release year of the top 5 matches.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataHybridSearch"
+  endMarker="# END MetadataHybridSearch"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+Hybrid search with named vectors work the same way as with other vector searches with named vectors. You must provide a `target_vector` parameter to specify the named vector for the vector search component of the hybrid search.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Keyword search
+
+As named vectors affect the vector representations of objects, they do not affect keyword searches. You can perform keyword searches on named vector collections using the same syntax as you would for any other collections.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Named vectors in search
+
+The use of named vectors enables flexible search options that can be tailored to your needs.
+
+Each object can have as many named vectors as you would like, with any combinations of properties and vectorizers, or even multiple custom vectors provided by your own models.
+
+This flexibility allows you to create databases with vector representations that are tailored to your specific use case, and to search for similar items based on any combination of properties.
+
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
