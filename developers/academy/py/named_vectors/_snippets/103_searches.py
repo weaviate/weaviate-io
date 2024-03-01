@@ -143,7 +143,7 @@ def url_to_base64(url):
 movies = client.collections.get("MovieNVDemo")
 
 # Perform query
-src_img_path = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg"
+src_img_path = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
 query_b64 = url_to_base64(src_img_path)
 
 response = movies.query.near_image(
