@@ -44,7 +44,7 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
 
 ### Add tenant(s)
 
-To add tenants to a class, you must provide the tenant names to the Weaviate class. From `1.21` onwards, you can also optionally specify whether the tenant is to be active (`HOT`, default), or inactive (`COLD`).
+To add tenants to a class, you must provide the tenant names to the Weaviate class. From `1.21` onwards, you can specify if the tenant is active (`HOT`, default), or inactive (`COLD`).
 
 import TenantNameFormat from '/_includes/tenant-names.mdx';
 
