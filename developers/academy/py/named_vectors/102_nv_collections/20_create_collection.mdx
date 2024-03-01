@@ -30,7 +30,7 @@ This code builds on the [multimodal](../../starter_multimodal_data/102_mm_collec
 
 ### <i class="fa-solid fa-chalkboard"></i> Named vector configuration
 
-This definition allows each object to be represented by three vectors, named `title`, `overview` and `title_poster`.
+This definition allows each object to be represented by three vectors, named `title`, `overview` and `poster_title`.
 
 <FilteredTextBlock
   text={PyCode}
@@ -49,7 +49,7 @@ You could use this to search for movies by similarities to their titles.
 
 This vector representation is based on the `overview` property. As such, you could use this to search for movies by similarities to their plot or key ideas.
 
-#### `title_poster`
+#### `poster_title`
 
 This vector representation is generated from a combination of the `title` and `poster` properties. The `multi2vec-clip` module is used for vectorization.
 

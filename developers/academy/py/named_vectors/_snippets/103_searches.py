@@ -35,7 +35,7 @@ movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 response = movies.query.near_text(
-    query="red",
+    query="A joyful holiday film",
     # highlight-start
     target_vector="title",  # The target vector to search against
     # highlight-end
@@ -68,7 +68,7 @@ movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 response = movies.query.near_text(
-    query="red",
+    query="A joyful holiday film",
     # highlight-start
     target_vector="overview",  # The target vector to search against
     # highlight-end
@@ -101,9 +101,9 @@ movies = client.collections.get("MovieNVDemo")
 
 # Perform query
 response = movies.query.near_text(
-    query="red",
+    query="A joyful holiday film",
     # highlight-start
-    target_vector="title_poster",  # The target vector to search against
+    target_vector="poster_title",  # The target vector to search against
     # highlight-end
     limit=5,
     return_metadata=wq.MetadataQuery(distance=True),
@@ -149,7 +149,7 @@ query_b64 = url_to_base64(src_img_path)
 response = movies.query.near_image(
     near_image=query_b64,
     limit=5,
-    target_vector="title_poster",  # The target vector to search against
+    target_vector="poster_title",  # The target vector to search against
     return_metadata=wq.MetadataQuery(distance=True),
     return_properties=["title", "release_date", "tmdb_id", "poster"]  # To include the poster property in the response (`blob` properties are not returned by default)
 )

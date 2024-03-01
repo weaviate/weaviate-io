@@ -181,7 +181,7 @@ export const unitData = {
     ]
   },
 
-  "nv_populate": {
+  "nv_collections": {
     title: "Populate the database",
     body: "Create a collection with multiple named vectors and import data objects.",
     buttonType: "Click here",
@@ -195,7 +195,7 @@ export const unitData = {
       "Import data using batch imports to create objects with multiple named vectors."
     ]
   },
-  "nv_populate": {
+  "nv_queries": {
     title: "Perform queries",
     body: "Learn how to use query functions in Weaviate with named vectors.",
     buttonType: "Click here",
