@@ -17,11 +17,11 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ## Syntax
 
-Single vector collections are valid and continue to use the original collection syntax. If, however, you configure multiple vectors, you must use the new, named vector syntax. 
+Single vector collections are valid and continue to use the original collection syntax. If, however, you configure multiple vectors, you must use the new, named vector syntax.
 
 ### Python client v4
 
-Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python) supports named vectors. 
+Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python) supports named vectors.
 
 #### Create a schema
 
@@ -42,7 +42,7 @@ In this example, each data item has three fields, `question`, `answer`, and `cat
 | Data field | Property | Vectorizer |
 | :-- | :-- | :-- |
 | `category` | yes | none |
-| `question` | yes | `text2vec_cohere` | 
+| `question` | yes | `text2vec_cohere` |
 | `answer` | yes | `text2vec_openai` |
 
 #### Query a named vector
@@ -57,7 +57,7 @@ To run the example query, first create the sample collection.
   <summary>Create sample collection.</summary>
 
 This code creates a sample collection and imports a small amount of data.<br/><br/>To run the code, you must have an OpenAI API key and a Cohere API key defined as local variables on your system.<br/><br/>OpenAi and Cohere are third party services. You may incur a cost if you exceed the limits of their free tiers.
- 
+
 <FilteredTextBlock
   text={PyCode}
   startMarker="# START LoadDataNamedVectors"
@@ -83,7 +83,7 @@ The legacy, single vector syntax is valid for use with collections that don't ha
 ```json
 {
     "class": "Article",
-    "vector": [0.3, -0.012, 0.071, ..., -0.09], 
+    "vector": [0.3, -0.012, 0.071, ..., -0.09],
     "properties": {
         "content": Really cool things",
     }
@@ -105,7 +105,7 @@ To specify named vectors in collections with multiple, named vectors use the new
 }
 ```
 
-To retrieve all vectors at once, use this endpoint: 
+To retrieve all vectors at once, use this endpoint:
 
 ```bash
 GET /v1/objects/<ClassName>/<uuid>?include=vector
@@ -136,10 +136,10 @@ When there is only one vector, a `nearObject` query looks like this:
 }
 ```
 
-If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query.
+<!-- If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query. -->
 
 These examples show GraphQL queries:
- 
+
 import GraphQLExamples from '/_includes/code/config/multi-vector-examples.mdx';
 
 <GraphQLExamples />
@@ -165,7 +165,7 @@ Named vector collections support [hybrid search](/weaviate/search/hybrid), but o
     }
   }
 }
-``` 
+```
 
 ## Related pages
 
