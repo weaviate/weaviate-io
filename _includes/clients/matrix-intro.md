@@ -4,10 +4,10 @@ lists the most recent database version when each client version was released.
 The chart includes point releases for the most recent major and minor versions
 of the client. Earlier client releases have less detailed version information.
 
+<!-- | [1.24.0](https://github.com/weaviate/weaviate/releases/tag/v1.24.0) | 2024-02-27 | 4.5.0 | 1.5.0 | 4.11.0 | 4.5.1 | -->
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.24.0](https://github.com/weaviate/weaviate/releases/tag/v1.24.0) | 2024-02-27 | 4.5.0 | 1.5.0 | 4.11.0 | 4.5.1 |
 | [1.23.0](https://github.com/weaviate/weaviate/releases/tag/v1.23.0) | 2023-12-18 | 3.26.0 | '' | '' |4.4.2 |
 | [1.22.0](https://github.com/weaviate/weaviate/releases/tag/v1.22.0) | 2023-10-27 | 3.25.0 | '' | 4.10.0 | 4.3.0 |
 | [1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0) | 2023-08-17 | 3.22.1 |1.4.0 | 4.9.0 | 4.2.1 |
