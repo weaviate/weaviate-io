@@ -109,7 +109,7 @@ movies = client.collections.get("MovieNVDemo")
 
 # END BatchImportData
 
-df = df[:50]  # Limit to 50 for testing purposes
+# df = df[:50]  # Limit to 50 for testing purposes
 
 # BatchImportData
 # Enter context manager

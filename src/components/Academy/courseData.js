@@ -175,10 +175,9 @@ export const courseData = {
     badgeType: "course",
     isCourse: false,
     units: [
+      "which_search",
       "chunking",
-      "multi_tenancy_intro",
       "kubernetes_intro",
-      "beyond_text"
     ]
   },
   "zero_to_mvp": {

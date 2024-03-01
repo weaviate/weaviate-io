@@ -172,32 +172,6 @@ print("\n\n")
 client.connect()
 
 
-# MetadataBM25Search
-# Get the collection
-movies = client.collections.get("MovieNVDemo")
-
-# Perform query
-response = movies.query.bm25(
-    query="history", limit=5, return_metadata=wq.MetadataQuery(score=True)
-)
-
-# Inspect the response
-for o in response.objects:
-    print(
-        o.properties["title"], o.properties["release_date"].year
-    )  # Print the title and release year (note the release date is a datetime object)
-    print(
-        f"BM25 score: {o.metadata.score:.3f}\n"
-    )  # Print the BM25 score of the object from the query
-
-client.close()
-# END MetadataBM25Search
-
-
-print("\n\n")
-
-client.connect()
-
 # MetadataHybridSearch
 # Get the collection
 movies = client.collections.get("MovieNVDemo")
@@ -228,29 +202,3 @@ client.close()
 print("\n\n")
 
 client.connect()
-
-# FilteredSemanticSearch
-# Get the collection
-movies = client.collections.get("MovieNVDemo")
-
-# Perform query
-response = movies.query.near_text(
-    query="dystopian future",
-    limit=5,
-    return_metadata=wq.MetadataQuery(distance=True),
-    # highlight-start
-    filters=wq.Filter.by_property("release_date").greater_than(datetime(2020, 1, 1))
-    # highlight-end
-)
-
-# Inspect the response
-for o in response.objects:
-    print(
-        o.properties["title"], o.properties["release_date"].year
-    )  # Print the title and release year (note the release date is a datetime object)
-    print(
-        f"Distance to query: {o.metadata.distance:.3f}\n"
-    )  # Print the distance of the object from the query
-
-client.close()
-# END FilteredSemanticSearch
