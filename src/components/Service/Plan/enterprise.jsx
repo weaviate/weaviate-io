@@ -9,53 +9,25 @@ export default function PricingEnterprise() {
         <h3>Enterprise Dedicated</h3>
       </div>
       <div className={styles.price}>
-        <p>
-          We manage everything for you in a single tenant in the Weaviate Cloud.
-        </p>
+        <p>We manage everything for you in the Weaviate Cloud.</p>
       </div>
       <hr></hr>
       <div className={styles.features}>
         <li>
           <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
-          <span>Single tenant SaaS deployment</span>
+          <span>Serverless SaaS deployment</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>Cluster based pricing based upon scope</span>
+          <span>Based on # vectors and objects stored</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>High Availability architecture</span>
-        </li>
-
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>Annual contract</span>
-        </li>
-
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>
-            SLA tiers:
-            <ul>
-              <li>
-                <div className={styles.checkIconWhite}></div>Enterprise
-              </li>
-              <li>
-                <div className={styles.checkIconWhite}></div>Business Critical
-              </li>
-            </ul>
-          </span>
+          <span>Pay-as-you-go, on consumption</span>
         </li>
       </div>
       <br />
       <br />
-      <br />
-      <div className={styles.buttonBox}>
-        <Link className={styles.buttonTryOutline} to="#contact-sales">
-          Contact Sales
-        </Link>
-      </div>
     </div>
   );
 }

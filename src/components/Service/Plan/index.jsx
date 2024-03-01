@@ -11,20 +11,20 @@ export default function PricingPlan() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>WCS Pricing</h2>
+          <h2>Accelerate your Success with Generative AI </h2>
           <p>
-            Our ecosystem is designed to give you the capabilities to build and
-            test your applications for free. When you are ready to move to
-            production, simply pick a plan that best suits your needs.
+            We offer a variety of subscriptions to help our customers and open
+            source community deliver valuable solutions. We can build a tailored
+            plan based on your deployment, training, and support needs.
           </p>
         </div>
         <div className={styles.planContainer}>
-          <PricingSandBox />
           <div className={styles.plan}>
             <PricingStandard />
             <PricingEnterprise />
             <PricingBusinessCritical />
           </div>
+          <PricingSandBox />
         </div>
       </div>
     </div>

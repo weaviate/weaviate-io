@@ -8,7 +8,6 @@ import ContactUsForm from '../../components/ContactUsForm';
 import HybridBusinessCritical from '../../components/Service/HybridBusinessCritical';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 import Soc2 from '../../components/Service/SOC2/soc2';
-import WCS from '../../components/Service/WCS';
 
 export default function ServicePage() {
   const [selectedType, setSelectedType] = useState('serverless');
@@ -32,7 +31,6 @@ export default function ServicePage() {
         {selectedType === 'serverless' ? (
           // Render Serverless content
           <>
-            <WCS socLight="light" />
             <ServicePlan />
             <HybridBusinessCritical />
             <Soc2 socLight="dark" />

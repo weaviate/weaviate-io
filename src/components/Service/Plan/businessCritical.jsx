@@ -9,46 +9,25 @@ export default function PricingBusinessCritical() {
         <h3>Bring Your Own Cloud</h3>
       </div>
       <div className={styles.price}>
-        <p>Choose a fully managed solution or 24/7 support within your VPC.</p>
+        <p>We manage everything for you in the Weaviate Cloud.</p>
       </div>
       <hr></hr>
       <div className={styles.features}>
         <li>
-          <div className={styles.doubleIcon}></div>
-          <span>Customer-managed VPC with Weaviate-managed Data Plane</span>
-        </li>
-        <li>
-          <div className={styles.doubleIcon}></div>
-          <span>Pricing based upon CPU + RAM utilization</span>
+          <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
+          <span>Serverless SaaS deployment</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>Highly secure</span>
+          <span>Based on # vectors and objects stored</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>
-            Weaviate agent for monitoring, support, and troubleshooting
-          </span>
-        </li>
-
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>Annual contract</span>
-        </li>
-
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>Business Critical SLA tier</span>
+          <span>Pay-as-you-go, on consumption</span>
         </li>
       </div>
       <br />
       <br />
-      <div className={styles.buttonBox}>
-        <Link className={styles.buttonTryOutline} to="#contact-sales">
-          Contact Sales
-        </Link>
-      </div>
     </div>
   );
 }
