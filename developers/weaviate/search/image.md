@@ -34,7 +34,7 @@ For details, see the modules reference page:
 
 </details>
 
-## Named vectors
+<!-- ## Named vectors
 
 :::info Added in `v1.24`
 :::
@@ -77,7 +77,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       language="graphql"
     />
   </TabItem>
-</Tabs>
+</Tabs> -->
 
 ## By local image path
 

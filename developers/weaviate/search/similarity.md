@@ -14,7 +14,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 Vector search returns the objects with most similar vectors to that of the query.
 
-## Named vectors
+<!-- ## Named vectors
 
 :::info Added in `v1.24`
 :::
@@ -71,7 +71,7 @@ The output is like this:
   language="json"
 />
 
-</details>
+</details> -->
 
 ## Search with text
 
