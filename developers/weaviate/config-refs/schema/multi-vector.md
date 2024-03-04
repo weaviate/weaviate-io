@@ -17,15 +17,15 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ## Syntax
 
-Single vector collections are valid and continue to use the original collection syntax. If, however, you configure multiple vectors, you must use the new, named vector syntax.
+Single vector collections are valid and continue to use the original collection syntax. However, if you configure multiple vectors, you must use the new, named vector syntax.
 
 ### Python client v4
 
-Staring in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python) supports named vectors.
+Starting in v4.5.0, the [Python client](/developers/weaviate/client-libraries/python) supports named vectors.
 
 #### Create a schema
 
-Weaviate collections require a schema. Use the schema definition to configure the vector spaces in each data object.
+Weaviate collections require a schema. Use the schema definition to configure the vector spaces for each data object.
 
 - To configure named vectors, use `NamedVectors`.
 - To specify which inputs go to which vectorizers, set `source_properties`.
@@ -37,7 +37,7 @@ Weaviate collections require a schema. Use the schema definition to configure th
   language="py"
 />
 
-In this example, each data object has three properties, `question`, `answer`, and `category`. When Weaviate imports the data, the schema specifies how to handle each properties. Data values can be stored as properties, vectors or both.
+Data values can be stored as properties, vectors or both. In this example, each data object has two named vectors, `jeopardy_questions_vector` and `jeopardy_answers_vector`. Each object also has three properties, `question`, `answer`, and `category`. The schema specifies how Weaviate manages your data.
 
 | Data field | Property | Vectorizer |
 | :-- | :-- | :-- |
@@ -56,7 +56,7 @@ To run the example query, first create the sample collection.
 <details>
   <summary>Create sample collection.</summary>
 
-This code creates a sample collection and imports a small amount of data.<br/><br/>To run the code, you must have an OpenAI API key and a Cohere API key defined as local variables on your system.<br/><br/>OpenAi and Cohere are third party services. You may incur a cost if you exceed the limits of their free tiers.
+This code creates a sample collection and imports a small amount of data.<br/><br/>To run the code, you must have an OpenAI API key and a Cohere API key defined as local variables on your system.<br/><br/>OpenAI and Cohere are third party services. You may incur a cost if you exceed the limits of their free tiers.
 
 <FilteredTextBlock
   text={PyCode}
@@ -113,7 +113,7 @@ GET /v1/objects/<ClassName>/<uuid>?include=vector
 
 ### GraphQL
 
-When there is only one vector, a vector (e.g. `nearVector`) query looks like this:
+If a collection has one vector, you don't have to specify a vector name. For example, a `nearVector` query with a single vector looks like this:
 
 ```graphql
 {
@@ -136,7 +136,7 @@ When there is only one vector, a vector (e.g. `nearVector`) query looks like thi
 }
 ```
 
-If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query.
+If a collection has multiple vectors, use the `_additional {vectors {name}}` field in the query to specify the vector that you want to search.
 
 These examples show GraphQL queries:
 
