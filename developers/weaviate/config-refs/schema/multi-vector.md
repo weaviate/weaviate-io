@@ -192,7 +192,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 ## Related pages
 
-- [Weaviate academy: Named vectors](../../../py/named_vectors/index.md)
+- [Weaviate academy: Named vectors](../../../academy/py/named_vectors/index.md)
 - [How-to: manage data](/developers/weaviate/manage-data/index.md): Code examples for *create*, *update* and *delete* operations, including those with named vectors.
 - [How-to: search](/developers/weaviate/search/index.md): Code examples for all types of search operations, including those with named vectors.
 - [BQ Compression](../../configuration/bq-compression.md)
