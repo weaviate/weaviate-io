@@ -28,7 +28,7 @@ try:
     # highlight-start
     response = reviews.query.hybrid(
         query="A French Riesling",
-        target_vector=["title_country"],
+        target_vector="title_country",
         limit=3
     )
     # highlight-end
