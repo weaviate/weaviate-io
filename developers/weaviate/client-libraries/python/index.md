@@ -842,7 +842,7 @@ Updated `client.batch` parameters
 
 Filter syntax is updated in v4.4b7.
 
-**NOTE**: The [filter reference syntax](../../client-libraries/python#reference-filters) is simplified in 4.4b8.
+**NOTE**: The [filter reference syntax](#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |

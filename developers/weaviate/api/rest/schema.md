@@ -8,7 +8,7 @@ image: og/docs/api.jpg
 
 :::info Related pages
 - [How-to - Manage Collections](../../manage-data/collections.mdx)
-- [References - Configuration: Schema](../../config-refs/schema).
+- [References - Configuration: Schema](../../config-refs/schema/index.md).
 :::
 
 ## Overview

@@ -640,7 +640,7 @@ The output is like this:
 - [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).
-- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
+- For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

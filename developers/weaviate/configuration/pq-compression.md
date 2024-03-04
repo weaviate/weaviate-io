@@ -117,13 +117,13 @@ To manually enable PQ compression, follow these steps:
 
 - Phase One: Create a codebook
 
-    - [Configure an initial schema without PQ](./pq-compression#1-configure-an-initial-schema-without-pq)
-    - [Load some training data](./pq-compression#2-load-some-training-data)
-    - [Enable and train PQ](./pq-compression#3-enable-pq-and-create-the-codebook)
+    - [Configure an initial schema without PQ](./pq-compression.md#1-configure-an-initial-schema-without-pq)
+    - [Load some training data](./pq-compression.md#2-load-some-training-data)
+    - [Enable and train PQ](./pq-compression.md#3-enable-pq-and-create-the-codebook)
 
 - Phase Two: Load the rest of your data
 
-    - [Load the rest of your data](./pq-compression#4-load-the-rest-of-your-data)
+    - [Load the rest of your data](./pq-compression.md#4-load-the-rest-of-your-data)
 
 The next few sections work through these steps.
 
@@ -131,7 +131,7 @@ The next few sections work through these steps.
 
 Use one of the Weaviate [client libraries](/developers/weaviate/client-libraries) to connect to your instance.
 
-Every collection in your Weaviate instance is defined by a [schema](/developers/weaviate/tutorials/schema). Weaviate uses the schema during your initial data load.
+Every collection in your Weaviate instance is defined by a [schema](../starter-guides/schema.md). Weaviate uses the schema during your initial data load.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

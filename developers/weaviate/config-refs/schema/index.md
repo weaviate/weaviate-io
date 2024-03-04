@@ -599,7 +599,7 @@ client.schema.create_class(collection_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](/developers/weaviate/tutorials/schema)
+- [Tutorial: Schema](../../starter-guides/schema.md)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
 - [References: REST API: Schema](/developers/weaviate/api/rest/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
