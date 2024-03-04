@@ -136,7 +136,7 @@ When there is only one vector, a `nearObject` query looks like this:
 }
 ```
 
-<!-- If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query. -->
+If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query.
 
 These examples show GraphQL queries:
 

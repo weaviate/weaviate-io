@@ -268,7 +268,7 @@ The output is like this:
 
 </details>
 
-<!-- ## Retrieve the object `vector`
+## Retrieve the object `vector`
 
 You can retrieve the object vector. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
 
@@ -325,7 +325,7 @@ The output is like this:
   language="json"
 />
 
-</details> -->
+</details>
 
 ## Retrieve the object `id`
 

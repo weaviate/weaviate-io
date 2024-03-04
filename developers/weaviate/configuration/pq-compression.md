@@ -182,7 +182,7 @@ Every collection in your Weaviate instance is defined by a [schema](/developers/
 
 ### 2. Load some training data
 
-If you are starting with a new collection, load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard. 
+If you are starting with a new collection, load between 10,000 and 100,000 objects from your data set. If you have multiple shards, you need to load between 10,000 and 100,000 objects on each shard.
 
 If you already have data in an existing collection, [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
 
@@ -447,13 +447,13 @@ To review the current `pq` configuration, you can retrieve it as shown below.
   </TabItem>
 </Tabs>
 
-<!-- ## Multiple vectors
+## Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 <MultiVectorSupport />
 
-Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.  -->
+Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
 
