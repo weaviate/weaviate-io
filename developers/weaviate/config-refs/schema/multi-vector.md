@@ -136,7 +136,7 @@ When there is only one vector, a `nearObject` query looks like this:
 }
 ```
 
-<!-- If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query. -->
+If a collection has multiple vectors, use the `_additional {vectors {name}}` field to specify the search vector in the query.
 
 These examples show GraphQL queries:
 
@@ -146,7 +146,7 @@ import GraphQLExamples from '/_includes/code/config/multi-vector-examples.mdx';
 
 ## Hybrid search
 
-Named vector collections support [hybrid search](/weaviate/search/hybrid), but only for one vector at a time. To run a hybrid search, specify the vector to use:
+Named vector collections support [hybrid search](../../search/hybrid.md), but only for one vector at a time. To run a hybrid search, specify the vector to use:
 
 ```json
 {
@@ -169,9 +169,9 @@ Named vector collections support [hybrid search](/weaviate/search/hybrid), but o
 
 ## Related pages
 
-- [Create objects](/weaviate/manage-data/create)
-- [BQ Compression](/weaviate/configuration/bq-compression)
-- [PQ Compression](/weaviate/configuration/pq-compression)
+- [Create objects](../../manage-data/create.mdx)
+- [BQ Compression](../../configuration/bq-compression.md)
+- [PQ Compression](../../configuration/pq-compression.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

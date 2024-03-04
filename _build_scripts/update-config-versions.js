@@ -24,8 +24,7 @@ const getRepoVersion = async (repoName) => {
 // Build time versions replace values set in versions-config.json
 // versions-config.json values are used for yarn local yarn builds
 const appendVersionsToConfig = async (config) => {
-    // config.weaviate_version = await getRepoVersion('weaviate');
-    config.weaviate_version = "1.23.10";
+    config.weaviate_version = await getRepoVersion('weaviate');
     config.python_client_version = await getRepoVersion('weaviate-python-client');
     config.go_client_version = await getRepoVersion('weaviate-go-client');
     config.java_client_version = await getRepoVersion('weaviate-java-client');

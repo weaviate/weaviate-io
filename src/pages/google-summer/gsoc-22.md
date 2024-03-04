@@ -129,7 +129,7 @@ If you're new to ML and Weaviate, but are already a bit familiar with Python, th
 **Documentation**
 
 * [JavaScript/TypeScript · Weaviate Documentation](/developers/weaviate/client-libraries/typescript)
-* [Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli)
+<!-- * [Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/_cli.md) -->
 
 ---
 
@@ -199,8 +199,8 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
     * Data schema REST calls
     * Data REST calls
 
-**Documentation:**
-[Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli)
+<!-- **Documentation:**
+[Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli) -->
 
 ---
 
@@ -222,7 +222,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 
 **Documentation:**
 [Weaviate schema · Weaviate Documentation](/developers/weaviate/api/rest/schema)
-[Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli)
+<!-- [Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli) -->
 
 ---
 

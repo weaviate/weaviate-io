@@ -6,10 +6,11 @@ of the client. Earlier client releases have less detailed version information.
 
 To see release notes for a particular version, click on the version number.
 
-<!-- | [1.24.0][c1.24.0] | 2024-02-27 | [4.5.0][p4.5.0] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.5.1][j4.5.1] | -->
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-:|
+| [1.24.1][c1.24.1] | 2024-03-01 | '' | '' | '' | '' |
+| [1.24.0][c1.24.0] | 2024-02-27 | [4.5.0][p4.5.0] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.5.1][j4.5.1] |
 | [1.23.0][c1.23.0] | 2023-12-18 | [3.26.0][p3.26.0] | '' | '' | [4.4.2][j4.4.2] |
 | [1.22.0][c1.22.0] | 2023-10-27 | [3.25.0][p3.25.0] | '' | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] |
 | [1.21.0][c1.21.0] | 2023-08-17 | [3.22.1][p3.22.1] | [1.4.0][ts1.4.0] | [4.9.0][g4.9.0] | [4.2.1][j4.2.1] |
@@ -46,6 +47,7 @@ For links to the Weaviate Core releases, expand this section.
 
   | Weaviate Version | Release Date |
   | :- | :- |
+  | [1.24.1][c1.24.1] | 2024-03-01 |
   | [1.24.0][c1.24.0] | 2024-02-27 |
   | [1.23.10][c1.23.10] | 2024-02-20 |
   | [1.23.9][c1.23.9] | 2024-02-13 |
@@ -247,7 +249,7 @@ For links to the Python Client releases, expand this section.
 
 ## Typescript and Javascript Clients
 
-For links to the TypeScript Client releases, expand this section. 
+For links to the TypeScript Client releases, expand this section.
 
 <details>
   <summary>Releases</summary>
@@ -269,9 +271,9 @@ For links to the TypeScript Client releases, expand this section.
 
 </details>
 
-The JavaScript client is no longer maintained. The TypeScript client accepts code written in JavaScript and TypeScript. Migrate your JavaScript client code to the TypeScript client.  
+The JavaScript client is no longer maintained. The TypeScript client accepts code written in JavaScript and TypeScript. Migrate your JavaScript client code to the TypeScript client.
 
-For links to the JavaScript Client releases, expand this section. 
+For links to the JavaScript Client releases, expand this section.
 
 <details>
   <summary>Releases</summary>
@@ -424,6 +426,7 @@ For links to the Java Client releases, expand this section.
 
 
 [comment]: # ( core links )
+[c1.24.1]: https://github.com/weaviate/weaviate/releases/tag/v1.24.1
 [c1.24.0]: https://github.com/weaviate/weaviate/releases/tag/v1.24.0
 [c1.23.10]: https://github.com/weaviate/weaviate/releases/tag/v1.23.10
 [c1.23.9]: https://github.com/weaviate/weaviate/releases/tag/v1.23.9
