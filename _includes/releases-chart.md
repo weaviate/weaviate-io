@@ -47,6 +47,7 @@ For links to the Weaviate Core releases, expand this section.
 
   | Weaviate Version | Release Date |
   | :- | :- |
+  | [1.24.1][c1.24.1] | 2024-03-01 |
   | [1.24.0][c1.24.0] | 2024-02-27 |
   | [1.23.10][c1.23.10] | 2024-02-20 |
   | [1.23.9][c1.23.9] | 2024-02-13 |
