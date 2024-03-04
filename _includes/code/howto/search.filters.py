@@ -92,7 +92,7 @@ try:
 
     # Test results
     assert response.objects[0].collection == "JeopardyQuestion"
-    assert any(i in response.objects[0].properties["answer"].lower() for i in token_list)
+    assert (token_list[0] in response.objects[0].properties["answer"].lower() or token_list[1] in response.objects[0].properties["answer"].lower())
     # End test
 
 
@@ -121,7 +121,7 @@ try:
 
     # Test results
     assert response.objects[0].collection == "JeopardyQuestion"
-    assert all(i in response.objects[0].properties["question"].lower() for i in token_list)
+    assert (token_list[0] in response.objects[0].properties["question"].lower() and token_list[1] in response.objects[0].properties["question"].lower())
     # End test
 
 

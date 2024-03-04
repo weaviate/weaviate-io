@@ -44,6 +44,7 @@ try:
 
     # UpdateProps END
 
+    # Actually get the ID for testing
     jeopardy = client.collections.get("JeopardyQuestion")
 
     uuid = jeopardy.data.insert({
@@ -143,7 +144,9 @@ try:
 
     # Test
     result = jeopardy.query.fetch_object_by_id(uuid)
-    assert result.properties == {"answer": "Replaced"}  # ensure the other props were deleted
+    assert result.properties["answer"] == "Replaced"
+    assert result.properties["points"] == None  # ensure the other props were deleted
+    assert result.properties["question"] == None  # ensure the other props were deleted
 
 
     # =============================
@@ -184,7 +187,7 @@ try:
 
     # Test
     result = jeopardy.query.fetch_object_by_id(uuid)
-    assert result.properties == {}
+    assert result.properties["answer"] == None
 
 finally:
     client.close()
