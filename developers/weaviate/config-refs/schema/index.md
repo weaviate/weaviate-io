@@ -9,7 +9,7 @@ import Badges from '/_includes/badges.mdx';
 
 ## Introduction
 
-A collection describes how a set of data objects are to be stored and indexed in Weaviate. This page includes details related to the collection schema, such as parameters and available configurations.
+A collection schema describes how to store and index a set of data objects in Weaviate. This page discuses the collection schema, collection parameters and collection configuration.
 
 import Terminology from '/_includes/collection-class-terminology.md';
 
@@ -78,14 +78,14 @@ An example of a complete collection object including properties:
 }
 ```
 
-## Collection creation
+## Create a collection
 
 ### Mutability
 
-Please note that only some of the parameters are mutable after creation. Other parameters cannot be changed after collection creation. If you wish to change these parameters, you must delete the collection and create it again.
+Some parameters are mutable after creation, other parameters cannot be changed after collection creation. To change immutable parameters, delete the collection and recreate it.
 
 <details>
-  <summary>List of the mutable parameters</summary>
+  <summary>Mutable parameters</summary>
 
 - `description`
 - `invertedIndexConfig`
@@ -118,7 +118,7 @@ Please note that only some of the parameters are mutable after creation. Other p
 
 </details>
 
-Properties can be added to a collection after creation, but existing properties cannot be modified after creation.
+After you create a collection, you can add new properties. You cannot modify existing properties after you create the collection.
 
 ### Auto-schema
 
@@ -152,11 +152,11 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-<!-- ### Multiple vectors
+### Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
-<MultiVectorSupport /> -->
+<MultiVectorSupport />
 
 ## Available parameters
 
@@ -599,7 +599,7 @@ client.schema.create_class(collection_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](/developers/weaviate/tutorials/schema)
+- [Tutorial: Schema](../../starter-guides/schema.md)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
 - [References: REST API: Schema](/developers/weaviate/api/rest/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)

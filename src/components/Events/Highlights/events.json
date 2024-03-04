@@ -1,20 +1,20 @@
 [
   {
-    "type": "OFFICE HOURS",
-    "title": "Weaviate Office Hour - Multimodality",
-    "date": "MARCH 6TH 2024 18:00 - 19:00 UTC",
-    "imageClass": "firstSection",
-    "url": "https://form.jotform.com/240512950546353"
-  },
-  {
     "type": "MEETUP",
     "title": "AI Meetup - Berlin",
     "date": "MARCH 13TH 2024 18:00 - 21:00 CET",
-    "imageClass": "secondSection",
+    "imageClass": "firstSection",
     "url": "https://www.aicamp.ai/event/eventdetails/W2024031309"
   },
   {
-    "type": "MEETUP",
+    "type": "WEBINAR",
+    "title": "Beyond Vector Search: Taking a hybrid approach for better results",
+    "date": "MARCH 14TH 2024 19:00 - 20:00 CET",
+    "imageClass": "secondSection",
+    "url": "https://events.weaviate.io/hybrid-search-webinar"
+  },
+  {
+    "type": "ROADSHOW",
     "title": "AI in Prod by Weaviate",
     "date": "MARCH 21ST 2024 08:30 - 17:00 PST",
     "imageClass": "thirdSection",

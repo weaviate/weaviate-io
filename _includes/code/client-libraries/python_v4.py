@@ -408,6 +408,43 @@ finally:
 # Collection instantiation
 # =====================================================================================
 
+
+
+# START CreateCollectionFromJSON
+import weaviate
+
+client = weaviate.connect_to_local()
+
+# END CreateCollectionFromJSON
+
+client.collections.delete("TestArticle")
+
+# START CreateCollectionFromJSON
+try:
+    collection_definition = {
+        "class": "TestArticle",
+        "properties": [
+            {
+                "name": "title",
+                "dataType": ["text"],
+            },
+            {
+                "name": "body",
+                "dataType": ["text"],
+            },
+        ],
+    }
+
+    # highlight-start
+    client.collections.create_from_dict(collection_definition)
+    # highlight-end
+
+finally:
+    client.close()
+
+# END CreateCollectionFromJSON
+
+
 # START CreateCollectionExample
 import weaviate
 import weaviate.classes.config as wvcc
@@ -422,6 +459,7 @@ try:
     assert not client.collections.exists("TestArticle")
 
     # START CreateCollectionExample
+    # Note that you can use `client.collections.create_from_dict()` to create a collection from a v3-client-style JSON object
     collection = client.collections.create(
         name="TestArticle",
         vectorizer_config=wvcc.Configure.Vectorizer.text2vec_cohere(),

@@ -124,7 +124,8 @@ export const unitData = {
   "docker_mm_basics": {
     title: "Weaviate for multimodal data",
     body: "Create a local Weaviate instance for multimodal data.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/setup_weaviate",
     badgeType: "practical",
     learningGoals: [
       "Set up a local Weaviate instance with a multimodal module."
@@ -138,7 +139,8 @@ export const unitData = {
   "mm_collections": {
     title: "Populate the database",
     body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/mm_collections",
     badgeType: "practical",
     learningGoals: [
       "Configure and create a collection then import multimodal data using batch imports."
@@ -152,7 +154,8 @@ export const unitData = {
   "mm_searches": {
     title: "Perform searches",
     body: "Learn how to use search functions in Weaviate.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/mm_searches",
     badgeType: "practical",
     learningGoals: [
       "Perform multimodal searches."
@@ -165,7 +168,8 @@ export const unitData = {
   "mm_rag": {
     title: "LLMs and Weaviate (RAG)",
     body: "Use large language models to augment and transform retrieved data.",
-    buttonType: "TBD",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/mm_rag",
     badgeType: "practical",
     learningGoals: [
       "Use AI (large language models) to augment and transform retrieved data."
@@ -176,6 +180,56 @@ export const unitData = {
       "Perform RAG on the entire set of returned objects.",
     ]
   },
+
+  "nv_collections": {
+    title: "Populate the database",
+    body: "Create a collection with multiple named vectors and import data objects.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/named_vectors/nv_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection with multiple named vectors then import data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with named vectors.",
+      "Import data using batch imports to create objects with multiple named vectors."
+    ]
+  },
+  "nv_queries": {
+    title: "Perform queries",
+    body: "Learn how to use query functions in Weaviate with named vectors.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/named_vectors/nv_queries",
+    badgeType: "practical",
+    learningGoals: [
+      "How queries change for collections with named vectors."
+    ],
+    learningOutcomes: [
+      "Describe what query types are affected by named vectors.",
+      "Perform vector/similarity and hybrid searches in collections with named vectors.",
+      "Perform RAG on collections with named vectors.",
+    ]
+  },
+  // multi_tenancy_intro: {
+  //   title: "Introduction to multi-tenancy",
+  //   body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
+  //   buttonType: "TBD",
+  //   // buttonURL: "/developers/academy/py/standalone/multi_tenancy",
+  //   badgeType: "practical",
+  //   learningGoals: [
+  //     "What multi-tenancy is and when to use it",
+  //     "How to enable it and create tenants",
+  //     "Using Weaviate with multi-tenancy",
+  //   ],
+  //   learningOutcomes: [
+  //     "Describe what multi-tenancy is",
+  //     "Appropriately select when to use multi-tenancy",
+  //     "Create tenants and ingest data with multi-tenancy enabled",
+  //     "Perform operations at tenant level",
+  //   ],
+  //   owner: "jp",
+  //   reviewer: "jp"
+  // },
 
   hello_weaviate: {
     title: "Hello, Weaviate",
@@ -598,24 +652,6 @@ export const unitData = {
   //   reviewer: "jp"
   // },
 
-  beyond_text: {
-    title: "Weaviate: Beyond text",
-    body: "How to use Weaviate with non-text media, such as images. What models are available, and how can you use them?",
-    buttonType: "TBD",
-    badgeType: "mixed",
-    learningGoals: [
-      "What media types are currently supported, and how to use Weaviate with each media type and appropriate module."
-    ],
-    learningOutcomes: [
-      "Select an appropriate module for vectorizing non-text data given the data type and use case.",
-      "Construct a schema for non-text data types such as images.",
-      "Use Weaviate to catalog text and non-text data in the same vector space.",
-      "Implement a Weaviate instance with vectorized non-text data.",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-
   chunking: {
     title: "Document chunking - why and how?",
     body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
@@ -633,26 +669,6 @@ export const unitData = {
       "Explain the impact of chunking in vector search and retrieval augmented generation",
       "Implement various chunking methods and know where to explore others",
       "Evaluate chunking strategies based on your needs",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-  multi_tenancy_intro: {
-    title: "Introduction to multi-tenancy",
-    body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
-    buttonType: "TBD",
-    // buttonURL: "/developers/academy/py/standalone/multi_tenancy",
-    badgeType: "practical",
-    learningGoals: [
-      "What multi-tenancy is and when to use it",
-      "How to enable it and create tenants",
-      "Using Weaviate with multi-tenancy",
-    ],
-    learningOutcomes: [
-      "Describe what multi-tenancy is",
-      "Appropriately select when to use multi-tenancy",
-      "Create tenants and ingest data with multi-tenancy enabled",
-      "Perform operations at tenant level",
     ],
     owner: "jp",
     reviewer: "jp"
