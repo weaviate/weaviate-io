@@ -37,7 +37,7 @@ Weaviate collections require a schema. Use the schema definition to configure th
   language="py"
 />
 
-In this example, each data item has three fields, `question`, `answer`, and `category`. When Weaviate imports the data, the schema specifies how to handle each field. Data values can be stored as properties, vectors or both.
+In this example, each data object has three properties, `question`, `answer`, and `category`. When Weaviate imports the data, the schema specifies how to handle each properties. Data values can be stored as properties, vectors or both.
 
 | Data field | Property | Vectorizer |
 | :-- | :-- | :-- |
@@ -113,26 +113,26 @@ GET /v1/objects/<ClassName>/<uuid>?include=vector
 
 ### GraphQL
 
-When there is only one vector, a `nearObject` query looks like this:
+When there is only one vector, a vector (e.g. `nearVector`) query looks like this:
 
-```json
+```graphql
 {
-    Get {
-      Publication(
-        nearVector: {
-          vector: [0.1, -0.15, 0.3]
+  Get {
+    Publication(
+      nearVector: {
+        vector: [0.1, -0.15, 0.3]
+      }
+    ){
+      content
+      _additional {
+        vector # backward compatible if only one vector present
+        vectors {
+          title
         }
-      ){
-				content
-        _additional {
-          vector # backward compatible if only one vector present
-          vectors {
-            title
-          }
-          distance
-        }
+        distance
       }
     }
+  }
 }
 ```
 
@@ -148,28 +148,53 @@ import GraphQLExamples from '/_includes/code/config/multi-vector-examples.mdx';
 
 Named vector collections support [hybrid search](../../search/hybrid.md), but only for one vector at a time. To run a hybrid search, specify the vector to use:
 
-```json
-{
-  Get {
-    Article (
-      hybrid: {
-        properties: ["content"]
-        targetVectors: ["title"] # Only one vector is supported
-				query: "foo"
-      })
-     {
-      content
-      _additional {
-				score
-			}
-    }
-  }
-}
-```
+import HybridPyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
+import HybridPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
+import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={HybridPyCode}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={HybridPyCodeV3}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={HybridTSCode}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={HybridPyCodeV3}
+      startMarker="# NamedVectorHybridGraphQL"
+      endMarker="# END NamedVectorHybridGraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
 
 ## Related pages
 
-- [Create objects](../../manage-data/create.mdx)
+- [Weaviate academy: Named vectors](../../../academy/py/named_vectors/index.md)
+- [How-to: manage data](/developers/weaviate/manage-data/index.md): Code examples for *create*, *update* and *delete* operations, including those with named vectors.
+- [How-to: search](/developers/weaviate/search/index.md): Code examples for all types of search operations, including those with named vectors.
 - [BQ Compression](../../configuration/bq-compression.md)
 - [PQ Compression](../../configuration/pq-compression.md)
 
