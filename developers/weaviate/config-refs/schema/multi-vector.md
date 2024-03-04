@@ -136,7 +136,7 @@ If a collection has one vector, you don't have to specify a vector name. For exa
 }
 ```
 
-If a collection has multiple vectors, use the `_additional {vectors {name}}` field in the query to specify the vector you want to search.
+If a collection has multiple vectors, use the `_additional {vectors {name}}` field in the query to specify the vector that you want to search.
 
 These examples show GraphQL queries:
 
