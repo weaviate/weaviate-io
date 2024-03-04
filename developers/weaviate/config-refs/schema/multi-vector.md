@@ -113,7 +113,7 @@ GET /v1/objects/<ClassName>/<uuid>?include=vector
 
 ### GraphQL
 
-If a collection has one vector, you don't have to specify a vector name. A `nearVector` query with a single vector looks like this:
+If a collection has one vector, you don't have to specify a vector name. For example, a `nearVector` query with a single vector looks like this:
 
 ```graphql
 {
