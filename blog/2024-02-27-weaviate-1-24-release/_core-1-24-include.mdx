@@ -16,11 +16,11 @@ Here are the release ⭐️*highlights*⭐️!
 
 Named vectors make your collections richer and more versatile.
  
-Starting in 1.24, collections can have multiple, named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
+Starting in 1.24, collections can have multiple named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
-In earlier versions, objects in you collections were limited to one vector. Now, you can vectorize meta data like titles and descriptions so they are available for vector search. You can group store that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata, a single object in a collection can have multiple, named vectors.
+In earlier versions, objects in your collections are limited to one vector. Now, you can vectorize meta data like titles and descriptions so that it is available for vector search. You can group things that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata. A single object in a collection can have multiple named vectors.
 
-You don't have to use multiple vectors in your collections, but if you do, you need to adjust your queries to specify which vector you want to use. 
+You don't have to use multiple vectors in your collections, but if you do, adjust your queries to specify which vector you want to use. 
 
 For details, see [Multiple vectors](/developers/weaviate/config-refs/schema/multi-vector).
 
@@ -28,11 +28,11 @@ For details, see [Multiple vectors](/developers/weaviate/config-refs/schema/mult
 
 ![HNSW and binary quantization](./img/hnsw-and-bq.png)
 
-Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Now you can use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#what-is-hierarchical-navigable-small-world-hnsw).
+Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#what-is-hierarchical-navigable-small-world-hnsw) to dramatically improve your query speed.
 
-BQ compresses vector representations while preserving essential information. Vector directionality is encoded as a single bit per dimension, which significantly reduces storage requirements. Uncompressed, Weaviate uses a `float32` for each dimension. This means BQ compresses vectors from 32 bits per dimension to 1 bit per dimension - a savings 32 times the space.
+BQ compresses vector representations while preserving essential information. Uncompressed, Weaviate uses a `float32` to store each dimension. BQ uses one bit per dimension to encode Vector directionality. This means BQ compresses vectors from 32 bits per dimension to 1 bit per dimension - a savings of 32 times the space. This compression significantly reduces storage requirements.
 
-Comparing BQ compressed vectors is fast. To calculate the distance between to vectors, compare their dimensional agreement. For instance, consider two vectors encoded as [1,1,0,1,0,1,0,1] and [1,1,0,0,1,1,0,1]. Their distance is 2. The bitwise comparison ensures optimal resource utilization without compromising accuracy. 
+Comparing BQ compressed vectors is fast. To calculate the distance between to vectors, compare their dimensional agreement. The bitwise comparison ensures optimal resource utilization without compromising accuracy. For instance, consider two vectors encoded as [1,1,0,1,0,1,0,1] and [1,1,0,0,1,1,0,1]. Their distance is 2.
 
 <details>
   <summary>
