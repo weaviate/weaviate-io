@@ -19,6 +19,10 @@ import utils
         "./developers/academy/py/starter_multimodal_data/_snippets/102_collection.py",
         "./developers/academy/py/starter_multimodal_data/_snippets/103_searches.py",
         "./developers/academy/py/starter_multimodal_data/_snippets/104_rag.py",
+        "./developers/academy/py/named_vectors/_snippets/101_connect.py"
+        "./developers/academy/py/named_vectors/_snippets/101_collection.py"
+        "./developers/academy/py/named_vectors/_snippets/101_searches.py"
+        "./developers/academy/py/named_vectors/_snippets/101_usecase.py"
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
