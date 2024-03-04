@@ -5,13 +5,13 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 
-<!-- Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance. -->
+Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance.
 
 Weaviate supports deployment with Docker. Edit the `docker-compose.yml` file to customize your instance.
 
 ## Default Weaviate environment
 
-<!-- :::info Added in v1.24.0
+:::info Added in v1.24.0
 
 :::
 
@@ -25,7 +25,7 @@ The command sets the following default values:
 
 - `PERSISTENCE_DATA_PATH` defaults to `./data`
 - `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` defaults to `true`.
-- `QUERY_DEFAULTS_LIMIT` defaults to `10`. -->
+- `QUERY_DEFAULTS_LIMIT` defaults to `10`.
 
 ## Starter Docker Compose file
 

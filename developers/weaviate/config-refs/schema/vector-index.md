@@ -5,17 +5,13 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
-<!-- :::caution Migrated From:
-- Adds text re: configuration options from `Vector index plugins/HNSW`
-::: -->
-
 Vector indexes facilitate efficient, vector-first data storage and retrieval.
 
-<!-- ## Multiple vectors
+## Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
-<MultiVectorSupport /> -->
+<MultiVectorSupport />
 
 ## Index configuration parameters
 

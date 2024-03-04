@@ -33,7 +33,7 @@ A collection can have multiple rerankers. If multiple `reranker` modules are ena
 
 </details>
 
-<!-- ## Named vectors
+## Named vectors
 
 :::info Added in `v1.24`
 :::
@@ -76,7 +76,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       language="graphql"
     />
   </TabItem>
-</Tabs> -->
+</Tabs>
 
 ## Rerank vector search results
 

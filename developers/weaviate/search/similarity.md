@@ -14,7 +14,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 Vector search returns the objects with most similar vectors to that of the query.
 
-<!-- ## Named vectors
+## Named vectors
 
 :::info Added in `v1.24`
 :::
@@ -71,7 +71,7 @@ The output is like this:
   language="json"
 />
 
-</details> -->
+</details>
 
 ## Search with text
 
@@ -530,7 +530,7 @@ The output is like this:
 
 - [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - For image search, see [Image search](/developers/weaviate/search/image).
-- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
+- For tutorials, see [Queries](/developers/weaviate/tutorials/query.md).
 - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

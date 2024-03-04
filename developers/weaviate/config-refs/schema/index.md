@@ -152,11 +152,11 @@ The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
 
-<!-- ### Multiple vectors
+### Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
-<MultiVectorSupport /> -->
+<MultiVectorSupport />
 
 ## Available parameters
 
@@ -599,7 +599,7 @@ client.schema.create_class(collection_obj)
 ```
 
 ## Related pages
-- [Tutorial: Schema](/developers/weaviate/tutorials/schema)
+- [Tutorial: Schema](../../starter-guides/schema.md)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
 - [References: REST API: Schema](/developers/weaviate/api/rest/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
