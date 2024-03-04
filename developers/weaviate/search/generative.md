@@ -40,7 +40,7 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
 
 </details>
 
-## Named vectors
+<!-- ## Named vectors
 
 :::info Added in `v1.24`
 :::
@@ -83,7 +83,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
       language="graphql"
     />
   </TabItem>
-</Tabs>
+</Tabs> -->
 
 ## Single prompt search
 

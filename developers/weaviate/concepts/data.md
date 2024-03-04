@@ -170,11 +170,11 @@ The value of the `beacon` sub-property is the `id` value from the New York Times
 
 Cross-reference relationships are directional. To make the link bi-directional, update the `Publication` collection to add a ``hasAuthors` property points back to the `Author` collection.
 
-### Multiple vectors
+<!-- ### Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
-<MultiVectorSupport />
+<MultiVectorSupport /> -->
 
 ## Weaviate Schema
 

@@ -105,7 +105,7 @@ import CustomVectorsSchemaCreate from '/_includes/code/howto.customvectors.schem
 
 Now we are ready to import data into Weaviate.
 
-The process to import data is almost the same as in other examples. The main difference is that each object will have a `vector` property where the object's vector is to be provided. Run one of the following code snippets in your favorite client:
+The process to import data is almost the same as in other examples. The main difference is that each object has a `vector` property that provides the object's vector. To import, run one of the following code snippets in your client:
 
 <!-- TODO - Rewrite this code example to use batch imports -->
 import HowToAddData from '/_includes/code/howto.customvectors.adddata.mdx';

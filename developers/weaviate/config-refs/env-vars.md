@@ -16,7 +16,7 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | `BACKUP_*` | Various configuration variables for backup provider modules. They are outlined in detail on the [Backups page](/developers/weaviate/configuration/backups.md). | |
 | `DEFAULT_VECTORIZER_MODULE` | Default vectorizer module - will be overridden by any class-level value defined in the schema | `string` | `text2vec-contextionary` |
 | `DISABLE_LAZY_LOAD_SHARDS` | New in v1.23. When `false`, enable lazy shard loading to improve mean time to recovery in multi-tenant deployments. | `string` | `false` |
-| `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` |
+<!-- | `DISABLE_TELEMETRY` | Disable [telemetry](./telemetry.md) data collection | boolean | `false` | -->
 | `DISK_USE_WARNING_PERCENTAGE` | If disk usage is higher than the given percentage a warning will be logged by all shards on the affected node's disk. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `80` |
 | `DISK_USE_READONLY_PERCENTAGE` | If disk usage is higher than the given percentage all shards on the affected node will be marked as `READONLY`, meaning all future write requests will fail. See [Disk Pressure Warnings and Limits for details](/developers/weaviate/configuration/persistence.md#disk-pressure-warnings-and-limits). | `string - number` | `90` |
 | `ENABLE_MODULES` | Which modules to enable in the setup? | comma-separated list of strings | `text2vec-openai,generative-openai` |
@@ -28,10 +28,10 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | `LOG_FORMAT` | Set the Weaviate logging format <br/><br/>| `string` |  |
 | `MODULES_CLIENT_TIMEOUT` | Timeout for requests to Weaviate modules. Default: `50s` | `string - duration` | `5s`, `10m`, `1h` |
 | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
-| `PERSISTENCE_DATA_PATH` | Path to the Weaviate data store | `string - file path` | `/var/lib/weaviate` <br/> Starting in v1.24, defaults to `./data`|
+| `PERSISTENCE_DATA_PATH` | Path to the Weaviate data store | `string - file path` | `/var/lib/weaviate` <!--  <br/> Starting in v1.24, defaults to `./data` -->|
 | `PERSISTENCE_LSM_ACCESS_STRATEGY` | Function used to access disk data in virtual memory | `string` | `mmap` (default) or `pread` |
 | `QUERY_MAXIMUM_RESULTS` | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
-| `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
+| `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <!--<br/> Starting in v1.24, defaults to `10` -->|
 | `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
 | `PROMETHEUS_MONITORING_ENABLED`  | If set, Weaviate will collect [metrics in a Prometheus-compatible format](/developers/weaviate/configuration/monitoring.md) | `boolean` | `false` |
 | `PROMETHEUS_MONITORING_GROUP` | If set, Weaviate will group metrics for the same class across all shards. | `boolean` | `true` |
@@ -50,7 +50,7 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 
 | Variable | Description | Type | Example Value |
 | --- | --- | --- | --- |
-| `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true`<br/> Starting in v1.24, defaults to `true` |
+| `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` | Allow users to interact with weaviate without auth | `boolean` | `true` <!--<br/> Starting in v1.24, defaults to `true` -->|
 | `AUTHENTICATION_APIKEY_ENABLED` | Enable API key-based authentication | `boolean` | `false` |
 | `AUTHENTICATION_APIKEY_ALLOWED_KEYS` | Allowed API keys. <br/><br/> Each key corresponds to a specific user identity below. | `string - comma-separated list` | `jane-secret-key,ian-secret-key` |
 | `AUTHENTICATION_APIKEY_USERS` | API key-based identities. <br/><br/> Each identity corresponds to a specific key above. | `string - comma-separated list` | `jane@doe.com,ian-smith` |

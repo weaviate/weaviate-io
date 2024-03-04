@@ -11,11 +11,11 @@ image: og/docs/configuration.jpg
 
 Vector indexes facilitate efficient, vector-first data storage and retrieval.
 
-## Multiple vectors
+<!-- ## Multiple vectors
 
 import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
-<MultiVectorSupport />
+<MultiVectorSupport /> -->
 
 ## Index configuration parameters
 
