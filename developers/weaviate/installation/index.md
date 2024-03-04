@@ -12,7 +12,7 @@ Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as 
 For details on how to run Weaviate, see the following:
 
 - **[Weaviate Cloud Services](../../wcs/quickstart.mdx)**: This managed service works well for both development and production environments.
-- **[Docker Compose](./docker-compose.md)**: Docker containers are well suited for development and testing.
+- **[Docker Compose](./docker-compose.md#starter-docker-compose-file)**: Docker containers are well suited for development and testing.
 - **[Kubernetes](./kubernetes.md)**: Kubernetes is ideal for scalable, production deployments.
 - **[AWS Marketplace](./aws-marketplace.md)**: Deploy Weaviate directly from the AWS Marketplace.
 - **[Google Cloud Marketplace](./gc-marketplace.md)** Deploy Weaviate directly from the Google Cloud Marketplace.
@@ -22,7 +22,7 @@ For details on how to run Weaviate, see the following:
 
 ## Configuration files
 
-Docker Compose and Kubernetes use yaml files to configure Weaviate instances. Docker uses the [`docker-compose.yml`](./docker-compose#starter-docker-compose-file) file. Kubernetes relies on [Helm charts](./kubernetes#weaviate-helm-chart) and the `values.yaml` file. The Weaviate documentation also calls these files `configuration yaml files`.
+Docker Compose and Kubernetes use yaml files to configure Weaviate instances. Docker uses the [`docker-compose.yml`](./docker-compose.md#starter-docker-compose-file) file. Kubernetes relies on [Helm charts](./kubernetes.md#weaviate-helm-chart) and the `values.yaml` file. The Weaviate documentation also calls these files `configuration yaml files`.
 
 If you are self-hosting, consider experimenting on a small scale with Docker and then transferring your configuration to Kubernetes Helm charts when you are more familiar with Weaviate.
 
@@ -51,7 +51,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:1.23.0-rc.1
+    image: cr.weaviate.io/semitechnologies/weaviate:1.23.0-rc.1
     ports:
     - 8080:8080
     - 50051:50051
@@ -77,6 +77,7 @@ If you try out new features, please provide [feedback](https://github.com/weavia
 
 
 ## Related pages
+- [Connect to Weaviate](../tutorials/connect.mdx)
 - [Weaviate Quickstart](../quickstart/index.md)
 - [Weaviate Cloud Services Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)

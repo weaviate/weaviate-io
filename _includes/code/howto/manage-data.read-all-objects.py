@@ -36,7 +36,7 @@ try:
 
     for item in collection.iterator(
         # highlight-start
-        include_vector=True
+        include_vector=True  # If using named vectors, you can specify ones to include e.g. ['title', 'body'], or True to include all
         # highlight-end
     ):
         print(item.properties)

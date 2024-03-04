@@ -8,7 +8,9 @@ image: og/docs/api.jpg
 
 :::note Vector spaces and Explore
 
-The `Explore` function is disabled where multiple inference modules are enabled. This includes Weaviate Cloud Services (WCS)
+The `Explore` function is disabled where multiple inference (e.g. `text2vec-xxx`) modules are enabled.
+
+As a result, `Explore` is not available on Weaviate Cloud Services (WCS) as its clusters are pre-configured with multiple inference modules for AWS, Cohere, Google, OpenAI and so on.
 
 :::
 

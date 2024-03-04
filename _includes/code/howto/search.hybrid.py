@@ -18,6 +18,30 @@ client = weaviate.connect_to_wcs(
 
 try:
 
+
+    # ==============================
+    # ===== Named Vector Hybrid Query =====
+    # ==============================
+
+    # NamedVectorHybridPython
+    reviews = client.collections.get("WineReviewNV")
+    # highlight-start
+    response = reviews.query.hybrid(
+        query="A French Riesling",
+        target_vector="title_country",
+        limit=3
+    )
+    # highlight-end
+
+    for o in response.objects:
+        print(o.properties)
+    # END NamedVectorHybridPython
+
+    # Tests
+    assert response.objects[0].collection == "WineReviewNV"
+    # End test
+
+
     # ==============================
     # ===== Basic Hybrid Query =====
     # ==============================

@@ -1,0 +1,57 @@
+---
+title: "'Grouped task' generation"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/104_rag.py';
+
+A 'grouped task' generation wil perform RAG queries on the set of retrieved objects. This is useful when you want to transform the set of objects as a whole, with one prompt.
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "Movie" based on their similarity to the input vector. Then, instructs the large language model to find commonalities between them.
+
+The generated text, and each of the results are then printed out to the console.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GroupedTaskGeneration"
+  endMarker="# END GroupedTaskGeneration"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+For `grouped_task` queries, you simply pass on the prompt to the `grouped_task` parameter. This will instruct Weaviate to pass on the:
+- text properties from all retrieved objects, and
+- the prompt
+
+to the large language model.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+In Time
+Gattaca
+I, Robot
+Mad Max: Fury Road
+The Maze Runner
+These movies all take place in a futuristic or dystopian society where the characters must navigate complex systems and face challenges related to technology, society, and survival. They all explore themes of control, power, and the consequences of scientific advancements on humanity.
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Optional parameters
+
+You can also pass on a list of properties to be used, as the `grouped_properties` parameter. This can be useful to reduce the amount of data passed on to the large language model and omit irrelevant properties.
+
+### <i class="fa-solid fa-chalkboard"></i> Response object
+
+A RAG query with the `grouped_task` parameter will return a response with an additional `generated` attribute. This attribute will contain the generated output for the set of objects.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

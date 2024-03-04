@@ -12,7 +12,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 This service level agreement (‘SLA’) describes the levels of service that [company name] (‘the client) will receive from Weaviate B.V. (‘Vendor’).
 
-This SLA should be read alongside the [terms of use](/service/general-terms) between the client and Vendor. Although the SLA covers key areas of the client’s provided services and support, other contracts may include areas not covered by this SLA.
+This SLA should be read alongside the [terms of use](/service/general-termsOLD) between the client and Vendor. Although the SLA covers key areas of the client’s provided services and support, other contracts may include areas not covered by this SLA.
 
 ### Purpose
 
@@ -43,7 +43,7 @@ This SLA does not apply in circumstances that could be reasonably said to be bey
 
 ##### Services Schedule
 
-The Services offered for the different licences agreements (i.e., Weaviate Professional and Weaviate Enterprise) are described in the <a href="/service/service-schedule">Services Schedule</a>
+The Services offered for the different licences agreements (i.e., Weaviate Professional and Weaviate Enterprise) are described in the <a href="/service/service-scheduleOLD">Services Schedule</a>
 
 ### Responsibilities
 

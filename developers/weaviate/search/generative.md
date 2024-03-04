@@ -11,6 +11,9 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
+import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
+import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 `Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
@@ -37,6 +40,50 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
 
 </details>
 
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={SimilarityPyCode}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={SimilarityPyCodeV3}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={SimilarityPyCodeV3}
+      startMarker="# NamedVectorNearTextGraphql"
+      endMarker="# END NamedVectorNearTextGraphql"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
 
 ## Single prompt search
 
@@ -213,6 +260,7 @@ The output is like this:
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
 - [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
 - [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)

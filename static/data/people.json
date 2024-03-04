@@ -52,7 +52,7 @@
   },
   {
     "name": "Andrzej Liszka",
-    "title": "Core Engineer ",
+    "title": "Core Engineer",
     "photo": "andrzej.png",
     "linkedin": "andrzej-liszka-897ab8234",
     "github": "aliszka",
@@ -73,6 +73,13 @@
     "twitter": "asdine_",
     "github": "asdine",
     "team": "applied-research"
+  },
+  {
+    "name": "Benjamin Sabrin",
+    "title": "Head of Sales",
+    "photo": "benjamin.jpg",
+    "linkedin": "bsabrin",
+    "team": "sales"
   },
   {
     "name": "Bob van Luijt",
@@ -117,7 +124,7 @@
     "team": "applied-research"
   },
   {
-    "name": "Daniel  Phiri",
+    "name": "Daniel Phiri",
     "title": "Developer Advocate",
     "photo": "daniel.png",
     "team": "developer-relations"
@@ -177,7 +184,7 @@
   },
   {
     "name": "Erika Cardenas",
-    "title": "Developer Advocate",
+    "title": "Technology Partner Manager",
     "photo": "erika.png",
     "linkedin": "erikacardenas300",
     "twitter": "ecardenas300",
@@ -256,7 +263,7 @@
   },
   {
     "name": "John Trengrove",
-    "title": "Solution Engineer",
+    "title": "Head of Applied Research",
     "photo": "john.png",
     "linkedin": "trengrj",
     "twitter": "trengrj",
@@ -351,7 +358,7 @@
   },
   {
     "name": "Parker Duckworth",
-    "title": "Core Engineer",
+    "title": "Head of Database",
     "photo": "parker.png",
     "linkedin": "parkerduckworth",
     "github": "parkerduckworth",
@@ -359,7 +366,7 @@
   },
   {
     "name": "Patrick Das",
-    "title": "Executive Business Manager",
+    "title": "Head of Finance",
     "photo": "patrick.jpg",
     "linkedin": "patrickdas",
     "team": "ceo-team"
@@ -420,7 +427,7 @@
   },
   {
     "name": "Stefan Bogdan",
-    "title": "Solution Engineer ",
+    "title": "Solution Engineer",
     "photo": "stefan.png",
     "linkedin": "stefan-bogdan",
     "github": "StefanBogdan",

@@ -9,6 +9,7 @@ function AcademyCard(props) {
   let btnTxt = ""
   let btnURL = ""
   let btnComp = ""
+  let note = ""
 
   if (props.badgeType == "theory") {
     badgeClass = "badge badge--success";
@@ -51,10 +52,10 @@ function AcademyCard(props) {
   return (
     <div class="card __academycard">
       <div class="card__header">
-        <h3>{props.title}</h3>
+        <h4>{props.title}</h4>
       </div>
       <div class="card__body">
-        <span class={badgeClass}>{badgeTxt}</span>
+        <span class={badgeClass}>{badgeTxt}</span> {props.note != null? <span class="badge badge--secondary">{props.note}</span>: null }
         <p>
         {props.body}
         </p>

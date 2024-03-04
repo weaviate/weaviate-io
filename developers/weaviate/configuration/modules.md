@@ -46,7 +46,7 @@ services:
       ENABLE_MODULES: 'text2vec-contextionary'
 ```
 
-If multiple modules are to be used, each of them can be separate by a comma.
+To enable multiple modules, add them in a comma-separated list.
 
 This example code enables the `'text2vec-huggingface`, `generative-cohere`, and `qna-openai` modules.
 

@@ -1,0 +1,68 @@
+---
+title: (Bonus) Generate vectors
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+
+Since we are using custom vectors, we need to generate them ourselves.
+
+This step is optional, as the next section shows you how to download and use the pre-generated vectors. But if you are interested in how to generate vectors, read on.
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example creates embeddings for the movie dataset:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# ManuallyGenerateEmbeddings"
+  endMarker="# END ManuallyGenerateEmbeddings"
+  language="py"
+/>
+
+This will generate a vector for each movie in the dataset, which we can use when adding the movies to Weaviate.
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+### <i class="fa-solid fa-chalkboard"></i> Model
+
+We use the `sentence-transformers/all-MiniLM-L6-v2` model to generate the vectors. We access it here through the Hugging Face API for convenience. You could also use the `transformers` library, if you would like to perform the generation locally.
+
+### <i class="fa-solid fa-code"></i> Source text
+
+We combine the movie title and overview to create a source string for the model. This is the text that the model will "translate" into a vector.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Concatenate text to create a source string"
+  endMarker="# Add to the buffer"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Get embeddings in batches
+
+We use a buffer to store the concatenated strings, and then get the embeddings in batches. This is a good practice to limit the number of requests to the model, and to avoid timeouts.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Get a batch of embeddings"
+  endMarker="# Reset the buffer"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Export the embeddings
+
+The embeddings are then saved to a file so that we can use when adding the movies to Weaviate.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Save the data as a CSV"
+  endMarker="# END ManuallyGenerateEmbeddings"
+  language="py"
+/>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

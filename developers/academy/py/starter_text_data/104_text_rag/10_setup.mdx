@@ -1,0 +1,37 @@
+---
+title: "RAG: Overview"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+
+### <i class="fa-solid fa-chalkboard"></i> Motivation
+
+Retrieval augmented generation (RAG) is a way to combine the best of both worlds: the retrieval capabilities of semantic search and the generation capabilities of AI models such as large language models. This allows you to retrieve objects from a Weaviate instance and then generate outputs based on the retrieved objects.
+
+### <i class="fa-solid fa-chalkboard"></i> Setup
+
+When we created a collection, we specified the `generative_module` parameter as shown here.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Define the generative module"
+  endMarker="# END generativeDefinition"
+  language="py"
+/>
+
+This selects a generative module that will be used to generate outputs based on the retrieved objects. In this case, we're using the `openai` module, and the `GPT` family of large language models.
+
+As we did before with the vectorizer module, you will require an API key from the provider of the generative module. In this case, you will need an API key from OpenAI.
+
+### <i class="fa-solid fa-code"></i> RAG queries
+
+RAG queries are also called 'generative' queries in Weaviate. You can access these functions through the `generate` submodule of the collection object.
+
+Each generative query works in addition to the regular search query, and will perform a RAG query on each retrieved object.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

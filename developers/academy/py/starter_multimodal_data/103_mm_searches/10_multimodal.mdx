@@ -1,0 +1,145 @@
+---
+title: Multimodal search
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+
+With Weaviate, you can perform semantic searches to find similar items based on their meaning. This is done by comparing the vector embeddings of the items in the database.
+
+As we are using a multimodal model, we can search for objects based on their similarity to any of the supported modalities. Meaning that we can search for movies based on their similarity to a text or an image.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Image query
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "MovieMM" based on their similarity to [this image of the International Space Station](https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg), and prints out the title and release year of the top 5 matches.
+
+<details>
+  <summary>Query image</summary>
+
+![International Space Station](https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg)
+
+</details>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataMultimodalSearch"
+  endMarker="# END MetadataMultimodalSearch"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+The results are based on similarity of the vector embeddings between the query and the database object. In this case, the vectorizer module generates an embedding of the input image.
+
+The `limit` parameter here sets the maximum number of results to return.
+
+The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the vector distance to the query.
+
+Note that the results are very similar to the tone of the query image, as the top results are all space-themed movies.
+
+<details>
+  <summary>Example results</summary>
+
+Posters for the top 5 matches:
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/157336_poster.jpg" alt="Interstellar" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/49047_poster.jpg" alt="Gravity" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/329865_poster.jpg" alt="Arrival" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/95_poster.jpg" alt="Armageddon" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/929_poster.jpg" alt="Godzilla" width="200" />
+
+Weaviate output:
+
+```text
+Interstellar 2014 157336
+Distance to query: 0.354
+
+Gravity 2013 49047
+Distance to query: 0.384
+
+Arrival 2016 329865
+Distance to query: 0.386
+
+Armageddon 1998 95
+Distance to query: 0.400
+
+Godzilla 1998 929
+Distance to query: 0.441
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Response object
+
+The returned object is an instance of a custom class. Its `objects` attribute is a list of search results, each object being an instance of another custom class.
+
+Each returned object will:
+- Include all properties and its UUID by default except those with blob data types.
+    - Since the `poster` property is a blob, it is not included by default.
+    - To include the `poster` property, you must specify it and the other properties to fetch in the `return_properties` parameter.
+- Not include any other information (e.g. references, metadata, vectors.) by default.
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Text search
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "MovieMM" based on their similarity to the query "red", and prints out the title and release year of the top 5 matches.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataSemanticSearch"
+  endMarker="# END MetadataSemanticSearch"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+The results are based on similarity of the vector embeddings between the query and the database object. In this case, the vectorizer module generates an embedding of the input text.
+
+The remaining parameters are the same as in the previous example.
+
+Note that the results actually include movies with red color themes in its poster. This is because the CLIP vectorizer encodes the color information of the image in the vectors.
+
+<details>
+  <summary>Example results</summary>
+
+Posters for the top 5 matches:
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/383498_poster.jpg" alt="Deadpool 2" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/338762_poster.jpg" alt="Bloodshot" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/293660_poster.jpg" alt="Deadpool" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/1271_poster.jpg" alt="300" width="200" />
+<img src="https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/posters/1669_poster.jpg" alt="The Hunt for Red October" width="200" />
+
+Weaviate output:
+
+```text
+Deadpool 2 2018 383498
+Distance to query: 0.670
+
+Bloodshot 2020 338762
+Distance to query: 0.677
+
+Deadpool 2016 293660
+Distance to query: 0.678
+
+300 2007 1271
+Distance to query: 0.682
+
+The Hunt for Red October 1990 1669
+Distance to query: 0.683
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Response object
+
+The returned object is in the same format as in the previous example.
+
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

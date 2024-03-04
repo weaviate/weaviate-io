@@ -1,0 +1,34 @@
+---
+title: Preparation
+---
+
+In this section you are going to populate your Weaviate instance with a movie dataset and corresponding vectors which are generated outside of Weaviate.
+
+### <i class="fa-solid fa-chalkboard"></i> Weaviate instance
+
+Make sure to have your Weaviate instance set up. You should have [created an instance](../101_setup_weaviate/20_create_instance/index.mdx) and be able to connect to it.
+
+<!-- TODO: Add notes for users looking to use another vectorizer -->
+
+### <i class="fa-solid fa-code"></i> Source data
+
+We are going to use a movie dataset sourced from [TMDB](https://www.themoviedb.org/). The dataset can be found in this [GitHub repository](https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json), and it contains bibliographic information on ~700 movies released between 1990 and 2024.
+
+<details>
+  <summary>See sample data</summary>
+
+|    | backdrop_path                    | genre_ids       |   id | original_language   | original_title              | overview                                                                                                                                                                                                                                                                                                                                                                                                                        |   popularity | poster_path                      | release_date   | title                       | video   |   vote_average |   vote_count |
+|---:|:---------------------------------|:----------------|-----:|:--------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|:---------------------------------|:---------------|:----------------------------|:--------|---------------:|-------------:|
+|  0 | /3Nn5BOM1EVw1IYrv6MsbOS6N1Ol.jpg | [14, 18, 10749] |  162 | en                  | Edward Scissorhands         | A small suburban town receives a visit from a castaway unfinished science experiment named Edward.                                                                                                                                                                                                                                                                                                                              |       45.694 | /1RFIbuW9Z3eN9Oxw2KaQG5DfLmD.jpg | 1990-12-07     | Edward Scissorhands         | False   |            7.7 |        12305 |
+|  1 | /sw7mordbZxgITU877yTpZCud90M.jpg | [18, 80]        |  769 | en                  | GoodFellas                  | The true story of Henry Hill, a half-Irish, half-Sicilian Brooklyn kid who is adopted by neighbourhood gangsters at an early age and climbs the ranks of a Mafia family under the guidance of Jimmy Conway.                                                                                                                                                                                                                     |       57.228 | /aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg | 1990-09-12     | GoodFellas                  | False   |            8.5 |        12106 |
+|  2 | /6uLhSLXzB1ooJ3522ydrBZ2Hh0W.jpg | [35, 10751]     |  771 | en                  | Home Alone                  | Eight-year-old Kevin McCallister makes the most of the situation after his family unwittingly leaves him behind when they go on Christmas vacation. But when a pair of bungling burglars set their sights on Kevin's house, the plucky kid stands ready to defend his territory. By planting booby traps galore, adorably mischievous Kevin stands his ground as his frantic mother attempts to race home before Christmas Day. |        3.538 | /onTSipZ8R3bliBdKfPtsDuHTdlL.jpg | 1990-11-16     | Home Alone                  | False   |            7.4 |        10599 |
+|  3 | /vKp3NvqBkcjHkCHSGi6EbcP7g4J.jpg | [12, 35, 878]   |  196 | en                  | Back to the Future Part III | The final installment of the Back to the Future trilogy finds Marty digging the trusty DeLorean out of a mineshaft and looking for Doc in the Wild West of 1885. But when their time machine breaks down, the travelers are stranded in a land of spurs. More problems arise when Doc falls for pretty schoolteacher Clara Clayton, and Marty tangles with Buford Tannen.                                                       |       28.896 | /crzoVQnMzIrRfHtQw0tLBirNfVg.jpg | 1990-05-25     | Back to the Future Part III | False   |            7.5 |         9918 |
+|  4 | /3tuWpnCTe14zZZPt6sI1W9ByOXx.jpg | [35, 10749]     |  114 | en                  | Pretty Woman                | When a millionaire wheeler-dealer enters a business contract with a Hollywood hooker Vivian Ward, he loses his heart in the bargain.                                                                                                                                                                                                                                                                                            |       97.953 | /hVHUfT801LQATGd26VPzhorIYza.jpg | 1990-03-23     | Pretty Woman                | False   |            7.5 |         7671 |
+
+</details>
+
+Next, you will create a corresponding object collection and import the data.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

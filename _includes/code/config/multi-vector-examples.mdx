@@ -1,0 +1,79 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+<Tabs groupId="graphqlexamples">
+<TabItem value="vector" label="nearVector">
+
+```graphql
+{
+    Get {
+      Publication(
+        nearVector: {
+          vector: [0.1, -0.15, 0.3]
+          targetVectors: ["title"] # array field
+        }
+      ){
+        content
+        _additional {
+          vectors {
+            title
+          }
+          distance
+        }
+      }
+    }
+}
+```
+
+</TabItem>
+<TabItem value="object" label="nearObject">
+
+```graphql
+{
+    Get {
+      Publication(
+        nearObject: {
+          id: "uuid"
+          targetVectors: ["title"]
+        }
+      ){
+        content
+        _additional {
+          vectors {
+            title
+          }
+          distance
+        }
+      }
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="text" label="nearText">
+
+```graphql
+{
+    Get {
+      Publication(
+        nearText: {
+          concepts: ["vector databases"]
+          targetVectors: ["title"]
+        }
+      ){
+        content
+        _additional {
+          vectors {
+            title
+          }
+          distance
+        }
+      }
+    }
+}
+```
+</TabItem>
+</Tabs>
+

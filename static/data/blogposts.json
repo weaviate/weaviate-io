@@ -33,34 +33,34 @@
   ],
   "blog": [
     {
-      "link": "/blog/py-client-v4-release",
+      "link": "/blog/fine-tuning-coheres-reranker",
       "type": "Blog",
-      "backgroundImage": "/img/site/hero-python-ga.png",
-      "tagline": "Weaviate Python client (v4) goes GA",
-      "photo": "jp.jpg",
-      "name": "Joon-Pil (JP) Hwang",
-      "title": "Educator",
-      "date": "February 1, 2024"
+      "backgroundImage": "/img/site/reranker-head.png",
+      "tagline": "Fine-Tuning Cohere's Reranker",
+      "photo": "erika.jpg",
+      "name": "Erika Cardenas",
+      "title": "Technology Partner Manager",
+      "date": "February 13, 2024"
     },
     {
-      "link": "/blog/weaviate-non-english-languages",
+      "link": "/blog/grpc-performance-improvements",
       "type": "Blog",
-      "backgroundImage": "/img/site/hero-language.png",
-      "tagline": "Using Weaviate with Non-English Languages",
+      "backgroundImage": "/img/site/grpc-head.png",
+      "tagline": "gRPC-Driven Performance Improvements in Weaviate",
       "photo": "leonie.jpg",
       "name": "Leonie Monigatti",
       "title": "Developer Advocate",
-      "date": "January 30, 2024"
+      "date": "February 20, 2024"
     },
     {
       "link": "/community/events",
       "type": "Workshop",
-      "backgroundImage": "/img/site/workshops-zain-website.png",
-      "tagline": "Workshop: Introduction to Weaviate",
-      "photo": "zain.jpg",
-      "name": "Zain Hasan",
-      "title": "Senior Dev Advocate",
-      "date": "February 13, 2024"
+      "backgroundImage": "/img/site/workshops-jp-website.png",
+      "tagline": "AI SaaS applications with Weaviate",
+      "photo": "jp.jpg",
+      "name": "Joon-Pil (JP) Hwang",
+      "title": "Educator",
+      "date": "March 15, 2024"
     }
   ]
 }

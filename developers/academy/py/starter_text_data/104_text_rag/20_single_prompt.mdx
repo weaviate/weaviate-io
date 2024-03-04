@@ -1,0 +1,54 @@
+---
+title: "'Single prompt' generation"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/104_rag.py';
+
+A 'single prompt' generation wil perform RAG queries on each retrieved object. This is useful when you want to transform each object separately, with the same prompt.
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "Movie" whose vector best matches the query vector (for "dystopian future"). Then, instructs the large language model to translate the title of each movie into French.
+
+Each of the results are then printed out to the console.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# SinglePromptGeneration"
+  endMarker="# END SinglePromptGeneration"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+You must pass on one or more properties to the `single_prompt` parameter through braces, as we've done here with `"... {title} ..."`. This will instruct Weaviate to pass on the `title` property from each retrieved object to the large language model.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+In Time
+À temps
+Looper
+Boucleur
+I, Robot
+Je, Robot
+The Matrix
+La Matrice
+Children of Men
+Les enfants des hommes
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Response object
+
+Each response object is similar to that from a regular search query, with an additional `generated` attribute. This attribute will contain the generated output for each object.
+
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

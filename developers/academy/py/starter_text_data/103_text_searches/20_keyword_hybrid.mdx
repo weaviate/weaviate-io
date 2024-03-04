@@ -1,0 +1,102 @@
+---
+title: Keyword & Hybrid search
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/103_searches.py';
+
+You can also perform keyword (BM25) searches to find items based on their keyword similarity, or hybrid searches that combine BM25 and semantic/vector searches.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Keyword search
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "Movie" with the highest keyword search scores for the term "history", and prints out the title and release year of the top 5 matches.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataBM25Search"
+  endMarker="# END MetadataBM25Search"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+The results are based on a keyword search score using what's called the [BM25f](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm.
+
+The `limit` parameter here sets the maximum number of results to return.
+
+The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the BM25 score of the result.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+American History X 1998
+BM25 score: 2.707
+
+A Beautiful Mind 2001
+BM25 score: 1.896
+
+Legends of the Fall 1994
+BM25 score: 1.663
+
+Hacksaw Ridge 2016
+BM25 score: 1.554
+
+Night at the Museum 2006
+BM25 score: 1.529
+```
+
+</details>
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Hybrid search
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "Movie" with the highest hybrid search scores for the term "history", and prints out the title and release year of the top 5 matches.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# MetadataHybridSearch"
+  endMarker="# END MetadataHybridSearch"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+The results are based on a hybrid search score. A hybrid search blends results of BM25 and semantic/vector searches.
+
+The `limit` parameter here sets the maximum number of results to return.
+
+The `return_metadata` parameter takes an instance of the `MetadataQuery` class to set metadata to return in the search results. The current query returns the `score`, which is the hybrid score of the result.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+Legends of the Fall 1994
+Hybrid score: 0.016
+
+Hacksaw Ridge 2016
+Hybrid score: 0.016
+
+A Beautiful Mind 2001
+Hybrid score: 0.015
+
+The Butterfly Effect 2004
+Hybrid score: 0.015
+
+Night at the Museum 2006
+Hybrid score: 0.012
+```
+
+</details>
+
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

@@ -54,7 +54,7 @@ This configuration enables `img2vec-neural`, sets it as the default vectorizer, 
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -71,7 +71,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   i2v-neural:
-    image: semitechnologies/img2vec-pytorch:resnet50
+    image: cr.weaviate.io/semitechnologies/img2vec-pytorch:resnet50
 # highlight-end
 ...
 ```
