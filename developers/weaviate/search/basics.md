@@ -270,7 +270,7 @@ The output is like this:
 
 ## Retrieve the object `vector`
 
-You can retrieve the object vector.
+You can retrieve the object vector. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">

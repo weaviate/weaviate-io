@@ -97,7 +97,7 @@ To use `text2vec-palm`, you must enable it in your Docker Compose file (`docker-
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080

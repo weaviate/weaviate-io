@@ -22,6 +22,32 @@ let result;
 
 // END GetNearText  // END GetNearVector  // END GetNearObject  // END GetLimitOffset  // END GetWithDistance  // END Autocut  // END GetWithGroupBy  // END GetWithFilter
 
+
+// ===============================================
+// ===== QUERY WITH TARGET VECTOR & nearText =====
+// ===============================================
+
+// NamedVectorNearText
+result = await client.graphql
+  .get()
+  .withClassName('WineReviewNV')
+  .withNearText({
+    concepts: ['a sweet German white wine'],
+    // highlight-start
+    targetVectors: ['title_country'],
+    // highlight-end
+  })
+  .withLimit(2)
+  .withFields('title review_body country')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END NamedVectorNearText
+
+// Tests
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+
+
 // =========================
 // ===== With NearText =====
 // =========================
@@ -47,8 +73,6 @@ let questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer', '_additional']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
-// GetNearText
-// END GetNearText
 
 // ================================
 // ===== With NearVector =====

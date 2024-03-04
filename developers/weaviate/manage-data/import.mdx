@@ -184,6 +184,43 @@ Use the `vector` property to specify a vector for each object.
   </TabItem>
 </Tabs>
 
+## Specify named vectors
+
+:::info Added in `v1.24`
+:::
+
+When you create an object, you can specify named vectors (if [configured in your collection](./collections.mdx#define-multiple-named-vectors)).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BatchImportWithNamedVectors"
+      endMarker="# END BatchImportWithNamedVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# BatchImportWithNamedVectors"
+      endMarker="# END BatchImportWithNamedVectors"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// BatchImportWithNamedVectors"
+      endMarker="// END BatchImportWithNamedVectors"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Python-specific batching
 
 The Python clients have built-in batching methods to help you optimize your import speed. Please see the relevant documentation for more information.
@@ -273,7 +310,7 @@ To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable t
 
 ```yaml
 weaviate:
-  image: semitechnologies/weaviate:||site.weaviate_version||
+  image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
   ...
   environment:
     ASYNC_INDEXING: 'true'

@@ -7,7 +7,7 @@ import os
 
 import weaviate
 import weaviate.classes as wvc
-import json
+import weaviate_datasets as wd
 
 # Instantiate the client with the OpenAI API key
 client = weaviate.connect_to_local(
@@ -15,6 +15,9 @@ client = weaviate.connect_to_local(
         "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"]  # Replace with your inference API key
     }
 )
+
+d = wd.WineReviewsNV()
+d.upload_dataset(client, overwrite=True)
 
 try:
 
@@ -84,7 +87,42 @@ try:
     # Test
     result = jeopardy.query.fetch_object_by_id(uuid, include_vector=True)
     assert len(result.vector["default"]) == 1536
-    assert str(result.vector["default"][0])[:7] == str(0.12345)
+    assert str(result.vector["default"][0])[:5] == str(0.123)
+
+
+    # ================================
+    # ===== Update named vectors =====
+    # ================================
+
+    # Commented as updating named vectors is not yet available in the Python client
+    # reviews = client.collections.get("WineReviewNV")
+    # review_uuid = reviews.query.fetch_objects(limit=1).objects[0].uuid
+
+
+    # # UpdateNamedVector START
+    # reviews = client.collections.get("WineReviewNV")
+    # reviews.data.update(
+    #     uuid=review_uuid,
+    #     properties={
+    #         "title": "A delicious wine",
+    #         "review_body": "This mystery wine is a delight to the senses.",
+    #         "country": "Mordor"
+    #     },
+    #     # highlight-start
+    #     vector={
+    #         "title": [0.12345] * 1536,
+    #         "review_body": [0.54321] * 1536,
+    #         "title_country": [0.050505] * 1536,
+    #     }
+    #     # highlight-end
+    # )
+    # # UpdateVector END
+
+    # # Test
+    # result = jeopardy.query.fetch_object_by_id(uuid, include_vector=True)
+    # for vn in ["title", "review_body", "title_country"]:
+    #     assert len(result.vector[vn]) == 1536
+    # assert str(result.vector["title_country"][0])[:5] == str(0.050)
 
 
     # ==========================

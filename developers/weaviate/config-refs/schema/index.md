@@ -1,6 +1,6 @@
 ---
 title: Collection schema
-sidebar_position: 2
+sidebar_position: 10
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
@@ -131,8 +131,8 @@ It will:
 
 * Create a collection if an object is added to a non-existent collection.
 * Add any missing property from an object being added.
-* Infer array datatypes, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
-* Infer nested properties for `object` and `object[]` datatypes (introduced in `v1.22.0`).
+* Infer array data types, such as `int[]`, `text[]`, `number[]`, `boolean[]`, `date[]` and `object[]`.
+* Infer nested properties for `object` and `object[]` data types (introduced in `v1.22.0`).
 * Throw an error if an object being added contains a property that conflicts with an existing schema type. (e.g. trying to import text into a field that exists in the schema as `int`).
 
 :::tip Define the collection manually for production use
@@ -151,6 +151,12 @@ Additional configurations are available to help the auto-schema infer properties
 The following are not allowed:
 * Any map type is forbidden, unless it clearly matches one of the two supported types `phoneNumber` or `geoCoordinates`.
 * Any array type is forbidden, unless it is clearly a reference-type. In this case, Weaviate needs to resolve the beacon and see what collection the resolved beacon is from, since it needs the collection name to be able to alter the schema.
+
+<!-- ### Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport /> -->
 
 ## Available parameters
 

@@ -19,6 +19,37 @@ client = weaviate.connect_to_wcs(
 
 try:
 
+
+    # ===============================================
+    # ===== QUERY WITH TARGET VECTOR & nearText =====
+    # ===============================================
+
+    # NamedVectorNearTextPython
+    import weaviate.classes as wvc
+
+    reviews = client.collections.get("WineReviewNV")
+    response = reviews.query.near_text(
+        query="a sweet German white wine",
+        limit=2,
+        # highlight-start
+        target_vector="title_country",  # Specify the target vector for named vector collections
+        # highlight-end
+        return_metadata=wvc.query.MetadataQuery(distance=True)
+    )
+
+    for o in response.objects:
+        print(o.properties)
+        print(o.metadata.distance)
+    # END NamedVectorNearTextPython
+
+    # Test results
+    assert response.objects[0].collection == "WineReviewNV"
+    assert len(response.objects) == 2
+    assert "title" in response.objects[0].properties.keys()
+    assert response.objects[0].metadata.distance is not None
+    # End test
+
+
     # ===============================
     # ===== QUERY WITH nearText =====
     # ===============================

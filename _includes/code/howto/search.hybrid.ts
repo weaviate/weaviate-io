@@ -27,6 +27,32 @@ let result;
 
 // END searchHybridBasic  // END searchHybridWithScore  // END searchHybridWithAlpha  // END searchHybridWithFusionType  // END searchHybridWithProperties  // END searchHybridWithVector  // END searchHybridWithFilter  // END limit  // END autocut
 
+
+// ===============================================
+// ===== QUERY WITH TARGET VECTOR & Hybrid =====
+// ===============================================
+
+// NamedVectorHybrid
+result = await client.graphql
+  .get()
+  .withClassName('WineReviewNV')
+  .withHybrid({
+    query: 'a sweet German white wine',
+    // highlight-start
+    targetVectors: ['title_country'],
+    // highlight-end
+  })
+  .withLimit(2)
+  .withFields('title review_body country')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// END NamedVectorHybrid
+
+// Tests
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
+
+
 // ==============================
 // ===== Basic Hybrid Query =====
 // ==============================

@@ -7,18 +7,9 @@ of the client. Earlier client releases have less detailed version information.
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.23.10](https://github.com/weaviate/weaviate/releases/tag/v1.23.10) | 2024-02-20 | 4.4.2 | 1.5.0 | 4.11.0 | 4.5.1 |
-| [1.23.9](https://github.com/weaviate/weaviate/releases/tag/v1.23.9) | 2024-02-13 | '' | '' | '' | '' |
-| [1.23.8](https://github.com/weaviate/weaviate/releases/tag/v1.23.8) | 2024-02-08 | '' | '' | '' | '' |
-| [1.23.7](https://github.com/weaviate/weaviate/releases/tag/v1.23.7) | 2024-01-30 | 3.26.2 | '' | '' | ''  |
-| [1.23.6](https://github.com/weaviate/weaviate/releases/tag/v1.23.6) | 2024-01-26 | '' | '' | '' | '' |
-| [1.23.5](https://github.com/weaviate/weaviate/releases/tag/v1.23.5) | 2024-01-25 | '' | '' | '' | '' |
-| [1.23.4](https://github.com/weaviate/weaviate/releases/tag/v1.23.4) | 2024-01-22 | '' | '' | '' | '' |
-| [1.23.3](https://github.com/weaviate/weaviate/releases/tag/v1.23.3) | 2024-01-15 | 3.26.1 | '' | '' | '' |
-| [1.23.2](https://github.com/weaviate/weaviate/releases/tag/v1.23.2) | 2024-01-08 | '' | '' | '' | '' |
-| [1.23.1](https://github.com/weaviate/weaviate/releases/tag/v1.23.1) | 2024-01-05 | 3.26.0 | '' | '' | 4.4.2 |
-| [1.23.0](https://github.com/weaviate/weaviate/releases/tag/v1.23.0) | 2023-12-18 | '' | '' | '' | '' |
-| [1.22.0](https://github.com/weaviate/weaviate/releases/tag/v1.22.0) | 2023-10-27 | '' | '' | 4.10.0 | 4.3.0 |
+| [1.24.0](https://github.com/weaviate/weaviate/releases/tag/v1.24.0) | 2024-02-27 | 4.5.0 | 1.5.0 | 4.11.0 | 4.5.1 |
+| [1.23.0](https://github.com/weaviate/weaviate/releases/tag/v1.23.0) | 2023-12-18 | 3.26.0 | '' | '' |4.4.2 |
+| [1.22.0](https://github.com/weaviate/weaviate/releases/tag/v1.22.0) | 2023-10-27 | 3.25.0 | '' | 4.10.0 | 4.3.0 |
 | [1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0) | 2023-08-17 | 3.22.1 |1.4.0 | 4.9.0 | 4.2.1 |
 | [1.20.0](https://github.com/weaviate/weaviate/releases/tag/v1.20.0) | 2023-07-06 | 3.22.0 | " | " | 4.2.0 |
 | [1.19.0](https://github.com/weaviate/weaviate/releases/tag/v1.19.0) | 2023-05-04 | 3.17.0 | 1.1.0[^1] | 4.7.1 | 4.0.1 |

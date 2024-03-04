@@ -31,7 +31,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -48,7 +48,7 @@ services:
       ENABLE_MODULES: 'multi2vec-clip,generative-openai,generative-cohere'
       CLUSTER_HOSTNAME: 'node1'
   multi2vec-clip:
-    image: semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
     environment:
       ENABLE_CUDA: '0'
 volumes:

@@ -12,7 +12,7 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Overview
 
-Conditional filters may be added to [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries. The operator used for filtering is also called a `where` filter.
+Conditional filters may be added to queries such as [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries, as well as [batch deletion](../rest/batch.md#batch-delete). The operator used for filtering is also called a `where` filter.
 
 A filter may consist of one or more conditions, which are combined using the `And` or `Or` operators. Each condition consists of a property path, an operator, and a value.
 
@@ -231,9 +231,13 @@ import GraphQLFiltersWhereLike from '/_includes/code/graphql.filters.where.like.
 
 </details>
 
-#### `Like` - notes
+#### Performance of `Like`
 
 Each `Like` filter iterates over the entire inverted index for that property. The search time will go up linearly with the dataset size, and may become slow for large datasets.
+
+#### Wildcard literal matches with `Like`
+
+Currently, the `Like` filter is not able to match wildcard characters (`?` and `*`) as literal characters. For example, it is currently not possible to only match the string `car*` and not `car`, `care` or `carpet`. This is a known limitation and may be addressed in future versions of Weaviate.
 
 
 ### `ContainsAny` / `ContainsAll`

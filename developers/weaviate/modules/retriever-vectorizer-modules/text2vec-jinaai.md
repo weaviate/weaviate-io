@@ -55,7 +55,7 @@ This Docker Compose file shows how to use JinaAI as the vectorizer.
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080

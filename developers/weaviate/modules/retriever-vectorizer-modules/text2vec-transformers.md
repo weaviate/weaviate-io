@@ -71,7 +71,7 @@ This configuration enables `text2vec-transformers`, sets it as the default vecto
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -88,7 +88,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   t2v-transformers:
-    image: semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
+    image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
 # highlight-end

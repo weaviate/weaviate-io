@@ -81,8 +81,8 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
-                         // Add Scarf
-                         {
+                          // Add Scarf
+                          {
                             tagName: 'img',
                              attributes: {
                                 src: "https://static.scarf.sh/a.png?x-pxid=a41b0758-a3a9-4874-a880-8b5d5a363d40",
@@ -90,6 +90,7 @@ const config = {
                                 style: "display: none;",
                                  },
                         },
+                      
                         // Add hotjar
                         {
                             tagName: 'script',
@@ -106,6 +107,7 @@ const config = {
         }),
     ],
 
+ 
     stylesheets: [
         // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
@@ -492,6 +494,9 @@ const config = {
                   respectPrefersColorScheme: false,
                 },
               },
+
+
+              
         }),
 
 

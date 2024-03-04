@@ -76,9 +76,9 @@ Use an ID to retrieve an object. If the id doesn't exist, Weaviate returns a 404
 </Tabs>
 
 
-## Retrieve the object's vector 
+## Retrieve the object's vector
 
-To retrieve the object's vector, set the `vector` parameter:
+Object vectors can be retrieved by specifying its return.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -125,6 +125,40 @@ To retrieve the object's vector, set the `vector` parameter:
       language="go"
     />
   </TabItem>
+</Tabs>
+
+## Retrieve named vectors
+
+Where [named vectors](../config-refs/schema/multi-vector.md) are used, you can retrieve one or more of them by specifying their names.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ReadObjectNamedVectors START"
+      endMarker="# ReadObjectNamedVectors END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ReadObjectNamedVectors START"
+      endMarker="# ReadObjectNamedVectors END"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ReadObjectNamedVectors START"
+      endMarker="// ReadObjectNamedVectors END"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 
