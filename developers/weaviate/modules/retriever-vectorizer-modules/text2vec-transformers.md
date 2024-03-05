@@ -174,7 +174,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 }
 ```
 
-## Model selection
+## Select a model
 
 To select a model, please point `text2vec-transformers` to the appropriate Docker container.
 
@@ -182,7 +182,7 @@ You can use one of our pre-built Docker images, or build your own (with just a f
 
 This allows you to use any suitable model from the [Hugging Face model hub](https://huggingface.co/models) or your own custom model.
 
-### Option 1: Pre-built images
+### Use a pre-built image
 
 We have built images from publicly available models that in our opinion are well suited for semantic search. You can use any of the following:
 
@@ -223,12 +223,12 @@ Look for the `-onnx` suffix in the image name.
 |---|---|
 |`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2-onnx`|
 |`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
-|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|[`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
+|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
+|`BAAI/bge-m3` ([Info](https://huggingface.co/BAAI/bge-m3))|`semitechnologies/transformers-inference:baai-bge-m3-onnx`|
 
 #### Is your preferred model missing?
 
-If your preferred model is missing, please [open an issue](https://github.com/weaviate/weaviate/issues) to include it or build
-a custom image as outlined below.
+If your preferred model is missing, please [open an issue](https://github.com/weaviate/weaviate/issues) to ask us to include it. Alternatively, follow the [steps below to build](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transformers#build-a-model) a custom image.
 
 #### How to set the version
 
@@ -236,13 +236,13 @@ You can explicitly set the version through a suffix.
 - Use `-1.0.0` to pin to a specific version. E.g. `semitechnologies/transformers-inference:distilbert-base-uncased-1.0.0` will always use the version with git tag `1.0.0` of the `distilbert-base-uncased` repository.
 - You can explicitly set `-latest` to always use the latest version, however this is the default behavior.
 
-### Option 2: A Hugging Face model
+### Build a model
 
-You can build a Docker image to use any **public** model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base).
+To use a **public** model from the [Hugging Face model hub](https://huggingface.co/models), create a short, two-line Dockerfile to build the image. This example creates a custom image for the [`distilroberta-base` model](https://huggingface.co/distilroberta-base).
 
 #### Step 1: Create a `Dockerfile`
 
-Create a new `Dockerfile`. We will name it `distilroberta.Dockerfile`. Add the following lines to it:
+Create a new `Dockerfile` called `distilroberta.Dockerfile`. Add the following lines to distilroberta.Dockerfile`:
 
 ```
 FROM semitechnologies/transformers-inference:custom
@@ -251,7 +251,7 @@ RUN MODEL_NAME=distilroberta-base ./download.py
 
 #### Step 2: Build and tag your Dockerfile.
 
-We will tag our Dockerfile as `distilroberta-inference`:
+Tag the Dockerfile as `distilroberta-inference`:
 
 ```shell
 docker build -f distilroberta.Dockerfile -t distilroberta-inference .
@@ -259,12 +259,12 @@ docker build -f distilroberta.Dockerfile -t distilroberta-inference .
 
 #### Step 3: Use the image
 
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `distilroberta-inference`.
+Push the image to a Docker registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `distilroberta-inference`.
 
 Note: When using a custom image, you have the option of using the `USE_SENTENCE_TRANSFORMERS_VECTORIZER` environment variable to use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library).
 
 
-### Option 3: A private or local model
+### Use a private or local model
 
 You can build a Docker image which supports any model which is compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
 
@@ -328,7 +328,7 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 
 ## Release notes
 
-The release notes are [here](https://github.com/weaviate/t2v-transformers-models/releases/).
+For details see, [t2v-transformers-model release notes](https://github.com/weaviate/t2v-transformers-models/releases/).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
