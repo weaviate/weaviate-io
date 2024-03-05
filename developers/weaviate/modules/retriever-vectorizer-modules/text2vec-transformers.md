@@ -242,7 +242,7 @@ To use a **public** model from the [Hugging Face model hub](https://huggingface.
 
 #### Step 1: Create a `Dockerfile`
 
-Create a new `Dockerfile` called `distilroberta.Dockerfile`. Add the following lines to distilroberta.Dockerfile`:
+Create a new `Dockerfile` called `distilroberta.Dockerfile`. Add the following lines to `distilroberta.Dockerfile`:
 
 ```
 FROM semitechnologies/transformers-inference:custom
