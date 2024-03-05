@@ -626,6 +626,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( go client links )
 
+[g4.13.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.0
 [g4.12.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.12.0
 [g4.11.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.11.0
 [g4.10.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.10.0
