@@ -1,23 +1,23 @@
 [
   {
-    "type": "ONLINE WORKSHOP",
-    "title": "Weaviate Python Client (v4) - Intermediate Workshop",
-    "date": "FEB 21ST 2024 15:00 - 16:00 UTC",
-    "imageClass": "firstSection",
-    "url": "https://form.jotform.com/240243316328348"
-  },
-  {
     "type": "MEETUP",
-    "title": "AI Meetup New York - Multimodality",
-    "date": "FEB 22ND 2024 17:30 - 21:00 EST",
-    "imageClass": "thirdSection",
-    "url": "https://www.aicamp.ai/event/eventdetails/W2024022214"
+    "title": "AI Meetup - Berlin",
+    "date": "MARCH 13TH 2024 18:00 - 21:00 CET",
+    "imageClass": "firstSection",
+    "url": "https://www.aicamp.ai/event/eventdetails/W2024031309"
   },
   {
     "type": "WEBINAR",
-    "title": "Multimodal Product Discovery: The next generation of search for ecommerce",
-    "date": "FEB 27TH 2024 18:00 - 20:00 UTC",
+    "title": "Beyond Vector Search: Taking a hybrid approach for better results",
+    "date": "MARCH 14TH 2024 19:00 - 20:00 CET",
     "imageClass": "secondSection",
-    "url": "https://events.weaviate.io/ecommerce-webinar"
+    "url": "https://events.weaviate.io/hybrid-search-webinar"
+  },
+  {
+    "type": "ROADSHOW",
+    "title": "AI in Prod by Weaviate",
+    "date": "MARCH 21ST 2024 08:30 - 17:00 PST",
+    "imageClass": "thirdSection",
+    "url": "https://events.weaviate.io/ai-in-prod-sf-24"
   }
 ]

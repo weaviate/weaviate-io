@@ -543,7 +543,7 @@ Read more on SIGQUIT [here](https://en.wikipedia.org/wiki/Signal_(IPC)#SIGQUIT) 
 >       EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
 >       NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
 >       ENABLE_COMPOUND_SPLITTING: 'false'
->     image: semitechnologies/contextionary:en0.16.0-v1.0.2
+>     image: cr.weaviate.io/semitechnologies/contextionary:en0.16.0-v1.0.2
 > ```
 >
 > After the build is complete, you can run this Weaviate build with docker compose:

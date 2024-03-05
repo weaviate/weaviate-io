@@ -64,7 +64,7 @@ assert result["properties"]["newProperty"] == 123
 # ===== Create object with a vector =====
 # ============================================
 
-# CreateObjectWithVector START 
+# CreateObjectWithVector START
 uuid = client.data_object.create(
     class_name="JeopardyQuestion",
     data_object={
@@ -85,6 +85,15 @@ assert result["properties"] == {
     "question": "This vector DB is OSS and supports automatic property type inference on import",
     "answer": "Weaviate"
 }
+
+# =======================================
+# ===== Create object with named vectors =====
+# =======================================
+
+# CreateObjectNamedVectors START
+# Unfortunately, named vectors are not suppored in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# CreateObjectNamedVectors END
 
 # ============================================
 # ===== Create object with deterministic id =====

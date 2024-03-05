@@ -55,7 +55,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -72,7 +72,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   text2vec-gpt4all:
-    image: semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
+    image: cr.weaviate.io/semitechnologies/gpt4all-inference:all-MiniLM-L6-v2
 # highlight-end
 ...
 ```

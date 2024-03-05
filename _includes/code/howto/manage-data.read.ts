@@ -56,6 +56,35 @@ console.log(JSON.stringify(result, null, 2));
 assert.equal(result.vector.length, 1536);
 
 
+// ===================================
+// ===== Read object with vector =====
+// ===================================
+
+// TODO: Attempt not working; Waiting for response from Weaviate
+// ReadObjectNamedVectors START
+// Example coming soon
+// ReadObjectNamedVectors END
+
+let someObj = await client.data.getter().withLimit(1).do();
+let objUUID = someObj[0].uuid;
+
+// ReadObjectNamedVectors END
+result = await client.data
+  .getterById()
+  .withClassName('WineReviewNV')
+  .withId(objUUID)
+  // highlight-start
+  .withVector()
+  // highlight-end
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+// ReadObjectNamedVectors END
+
+// Test
+assert.equal(result.vector.length, 1536);
+
+
 // ==================================
 // ===== Check object existence =====
 // ==================================

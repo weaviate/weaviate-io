@@ -1,0 +1,64 @@
+---
+title: "Option 1: A cloud WCS instance"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../../_snippets/101_connect.py';
+
+Here, you will create a Weaviate Cloud Service (WCS) instance. WCS is a fully managed Weaviate instance that runs in the cloud. It's a great way to get started with Weaviate, as it requires no installation or maintenance.
+
+### <i class="fa-solid fa-chalkboard"></i> Log in to the WCS Console
+
+Go to the [WCS Console](https://console.weaviate.cloud/) and log in with your credentials. If you don't have an account yet, you can sign up by clicking on the <kbd>Register here</kbd> link from the login screen.
+
+### <i class="fa-solid fa-chalkboard"></i> Create a Weaviate instance
+
+From the console, go to the Dashboard and click on the <kbd>Create cluster</kbd> button. From the following screen:
+
+- Select the "Free sandbox" tab
+- Provide a cluster name
+- Set "Enable authentication" to "Yes"
+
+Click on the <kbd>Create</kbd> button to create your Weaviate instance. The process will take a few minutes.
+
+### <i class="fa-solid fa-chalkboard"></i> Retrieve your Weaviate instance details
+
+Once the instance is created, you will be able see its details by clicking on the <kbd>Details</kbd> button. Find the cluster URL and the API key.
+
+You will need these details to connect to your Weaviate instance.
+
+### <i class="fa-solid fa-code"></i> Connect to your WCS instance
+
+To connect to the Weaviate Cloud Service (WCS) instance, you need to use the cluster URL and the API key. You can find these details in the WCS Console.
+
+Use the `connect_to_wcs` function to connect to your WCS instance.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# WCSInstantiation"
+  endMarker="# END WCSInstantiation"
+  language="py"
+/>
+
+#### Provide inference API keys
+
+Some Weaviate modules can use inference APIs for vectorizing data or large language model integration. You can provide the API keys for these services to Weaviate at instantiation.
+
+This course uses OpenAI, so you can provide the OpenAI API key to Weaviate through `headers={"X-OpenAI-Api-Key": <YOUR_KEY>}` as shown below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# WCSAPIKeyInstantiation"
+  endMarker="# END WCSAPIKeyInstantiation"
+  language="py"
+/>
+
+:::note What next?
+If you have completed this, you can skip the next page [Option 2: A local Weaviate instance](./20_create_docker.mdx) and continue with [Communicate with Weaviate](../30_communicate.mdx).
+:::
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

@@ -1,0 +1,130 @@
+---
+title: Use cases
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/104_usecase.py';
+
+RAG, or retrieval augmented generation, is a powerful feature that combines the strengths of both vector search and language generation.Named vectors can be used in RAG queries to improve workflow and results.
+
+In this section, we'll explore a few examples of how named vectors allow different users to search and generate results based on their specific needs, using the same collection.
+
+## <i class="fa-solid fa-chalkboard"></i> Design agency: evaluating a poster design
+
+Imagine a design agency (*Aesthetico*) that is contracted to work on the poster design for a new movie.
+
+Aesthetico's designers have arrived on [this film poster design](https://upload.wikimedia.org/wikipedia/commons/7/78/1927_Boris_Bilinski_%281900-1948%29_Plakat_f%C3%BCr_den_Film_Metropolis%2C_Staatliche_Museen_zu_Berlin.jpg). They would now like to see how their poster compares to other movie posters in existence, and what types of movies these posters are for.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/1927_Boris_Bilinski_%281900-1948%29_Plakat_f%C3%BCr_den_Film_Metropolis%2C_Staatliche_Museen_zu_Berlin.jpg" alt="Metropolis poster" width="75%"/>
+
+Luckily for them, the `MovieNVDemo` collection has `poster_title` named vectors which is primarily based on the poster design. So Aesthetico's designers can search `poster_title` named vector and find movies that are similar to their poster design. And, they can then perform RAG to summarize the movies which are found from them.
+
+### <i class="fa-solid fa-code"></i> Code
+
+This query will find similar movies to the input image, and then provide insights using RAG.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# PosterSearchGeneration"
+  endMarker="# END PosterSearchGeneration"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Output
+
+This is an example output of the RAG query:
+
+> These movies can be categorized as action, science fiction, thriller, and drama. The audience for these movies would likely be fans of action-packed films with elements of suspense, mystery, and fantastical creatures or scenarios. These movies may appeal to a wide range of viewers, including fans of superhero movies, science fiction enthusiasts, and those who enjoy intense and thrilling storylines.
+
+The designers at Aesthetico could use this to understand the types of movies that are similar to their poster design, and further inform their own design choices.
+
+<details>
+  <summary>Search results</summary>
+
+Predator 2<br/>
+Inception<br/>
+Mission: Impossible<br/>
+The Dark Knight<br/>
+Lost in Translation<br/>
+Independence Day<br/>
+Godzilla vs. Kong<br/>
+Fargo<br/>
+The Amazing Spider-Man<br/>
+Godzilla<br/>
+
+</details>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Film writers: evaluating ideas
+
+Now, in another project, a set of writers at *ScriptManiacs* are working on a movie script for a science fiction film. They are working a few ideas for the movie title, and they want to see what kinds of imagery and themes are associated with each title.
+
+They could also use the same collection to do what they want to do. In fact, they could run multiple queries against the same collection, each with a different `target_vector` parameter.
+
+The ScriptManiacs writers can:
+- Search `title` named vector to find movies with *similar titles*;
+- Search `overview` named vector to find movies whose *plots are similar* to their title idea; and
+
+Let's see how they could do it for a title - "Chrono Tides: The Anomaly Rift".
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "MovieNVDemo" based on their similarity to "Chrono Tides: The Anomaly Rift", then, instructs the large language model to find commonalities between them.
+
+But note the presence of a for-loop, which allows the writers to run the same query against different named vectors.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TitleSerachLoop"
+  endMarker="# END TitleSerachLoop"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Output
+
+The two queries produced quite different outputs to each other. When we search for titles most similar to "Chrono Tides: The Anomaly Rift", the results skew towards action/adventure films, while searching for an overview most similar to "Chrono Tides: The Anomaly Rift" include science fiction and adventure films.
+
+Given the different results, the writers at ScriptManiacs could use this to understand the different themes and genres that are associated with their title idea, and further inform their own writing choices.
+
+For example, if "Chrono Tides: The Anomaly Rift" is intended to be a science fiction film with an action/adventure skew, the title may be a good one. On the other hand, if the writers are looking for a more dramatic or romantic theme, they may need to reconsider the title.
+
+The results of the overview search include multiple science-fiction and adventure films, indicating that the writes are on the right path of naming a science fiction movie as such.
+
+#### Similar titles
+
+According to our RAG query, movies with similar titles to "Chrono Tides: The Anomaly Rift" have the following commonalities:
+
+> These movies are **action/adventure films** that are likely aimed at a wide audience, including fans of fantasy, adventure, and romance genres. The Pirates of the Caribbean and Lara Croft movies are targeted towards fans of swashbuckling adventures and treasure hunting, while The Croods appeals to families and fans of animated films. The Twilight Saga targets fans of supernatural romance, and Meg 2: The Trench is aimed at fans of underwater thrillers and action movies. Overall, these movies cater to audiences who enjoy high-stakes adventures, fantastical elements, and dramatic storylines.
+
+<details>
+  <summary>Search results</summary>
+
+Pirates of the Caribbean: On Stranger Tides<br/>
+Lara Croft: Tomb Raider<br/>
+The Croods: A New Age<br/>
+The Twilight Saga: Breaking Dawn - Part 1<br/>
+Meg 2: The Trench<br/>
+
+</details>
+
+#### Similar overviews
+
+While movies with overviews that are most similar to the search "Chrono Tides: The Anomaly Rift" have the following commonalities:
+
+> These movies can be categorized as **science fiction and adventure films**. They are aimed at audiences who enjoy stories about space exploration, ancient civilizations, dinosaurs, natural disasters, and mythical adventures. The target audience may include fans of action-packed and visually stunning movies with elements of fantasy and suspense.
+
+<details>
+  <summary>Search results</summary>
+
+Stargate<br/>
+Interstellar<br/>
+Jurassic Park III<br/>
+2012<br/>
+Moana<br/>
+
+</details>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

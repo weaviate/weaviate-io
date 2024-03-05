@@ -1,0 +1,8 @@
+:::info Added in v1.24.0
+Weaviate collections support multiple, named vectors.
+
+:::
+
+Collections can have multiple, [named vectors](/developers/weaviate/config-refs/schema/multi-vector). Each vector is independent. Each vector space has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to the same object.
+
+You do not have to use multiple vectors in your collections, but if you do, you need to adjust your queries to specify a target vector for vector or hybrid queries.

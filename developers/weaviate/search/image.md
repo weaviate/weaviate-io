@@ -11,6 +11,9 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
+import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
+import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
+import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
 
 `Image` search uses an **image as a search input** to perform vector similarity search.
 
@@ -28,8 +31,53 @@ For details, see the modules reference page:
 - [img2vec-neural](/developers/weaviate/modules/retriever-vectorizer-modules/img2vec-neural.md)
 - [multi2vec-clip](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-clip.md)
 - [multi2vec-bind](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind.md)
- 
+
 </details>
+
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={SimilarityPyCode}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={SimilarityPyCodeV3}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={SimilarityPyCodeV3}
+      startMarker="# NamedVectorNearTextGraphql"
+      endMarker="# END NamedVectorNearTextGraphql"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
 
 ## By local image path
 
@@ -157,6 +205,10 @@ You can create a base64 representation of an online image, and use it as input f
 A `Near Image` search can be combined with any other operators (like filter, limit, etc.), just as other similarity search operators.
 
 See the [`similarity search`](./similarity.md) page for more details.
+
+## Related pages
+
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

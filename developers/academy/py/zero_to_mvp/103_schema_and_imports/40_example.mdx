@@ -1,0 +1,286 @@
+---
+title: Populate your Weaviate instance!
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PythonCodeExample from '!!raw-loader!./_snippets/40_import_example_1.py';
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/ukhCSeuVJGY' controls='true' />
+<br/>
+
+It's time to put what we've learned into action! In this section, we will:
+
+- Download a small dataset,
+- Build a schema corresponding to the dataset, and
+- Import it to our WCS instance.
+
+### <i class="fa-solid fa-chalkboard"></i> Dataset used
+
+We are going to use data from a popular quiz game show called *Jeopardy!*.
+
+The original dataset can be found [here on Kaggle](https://www.kaggle.com/datasets/tunguz/200000-jeopardy-questions), but we'll use a [small subset from it, just containing 100 rows](https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/jeopardy_100.json).
+
+Here's a preview of a few rows of data.
+
+|    | Air Date   | Round            |   Value | Category         | Question                                                                                                             | Answer                                     |
+|---:|:-----------|:-----------------|--------:|:-----------------|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+|  0 | 2006-11-08 | Double Jeopardy! |     800 | AMERICAN HISTORY | Abraham Lincoln died across the street from this theatre on April 15, 1865                                           | Ford's Theatre (the Ford Theatre accepted) |
+|  1 | 2005-11-18 | Jeopardy!        |     200 | RHYME TIME       | Any pigment on the wall so faded you can barely see it                                                               | faint paint                                |
+|  2 | 1987-06-23 | Double Jeopardy! |     600 | AMERICAN HISTORY | After the original 13, this was the 1st state admitted to the union                                                  | Vermont                                    |
+
+For now, let's keep it simple by populating Weaviate with just the `Round`, `Value`, `Question` and `Answer` columns.
+
+:::note <i class="fa-solid fa-square-terminal"></i> Exercise
+Can you remember what the next steps should be?
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Build a schema
+
+The next step is to build a schema, making some decisions about how to represent our data in Weaviate.
+
+### <i class="fa-solid fa-code"></i> Add class names & properties
+
+First of all, we'll need a name. The name refers to each row or item (*note: singular*), so I called it `JeopardyQuestion`. Then, I need to define properties and types.
+
+You saw above that we'll be populating Weaviate with `Round`, `Value`, `Question` and `Answer` columns. We need names for Weaviate `properties` - these names are sensible, but we follow the GraphQL convention of capitalizing classes and leaving properties as lowercases, so the names will be `round`, `value`, `question` and `answer`.
+
+Then, we should select datatypes. All of `round`, `question` and `answer` are text, so we can simply choose `text` as our datatype. `value` is a number, but I know that values in *Jeopardy!* represent dollar amounts, meaning that they are always integers. So we'll use `int`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Class & property definitions"
+  endMarker="# Specify a vectorizer"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+### <i class="fa-solid fa-code"></i> Set & configure the vectorizer
+
+For this example, we will obtain our object vectors using an inference service. So to do that, we must set the `vectorizer` for the class. We'll use `text2vec-openai` in this case, and we can configure the module also at the class-level.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Specify a vectorizer"
+  endMarker="# Module settings"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+### <i class="fa-solid fa-chalkboard"></i> Skipping a property from vectorization
+
+You might have noticed the property-level module configuration here:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Property-level module configuration for `round`"
+  endMarker="# End of property-level module configuration"
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+This configuration will exclude the `round` property from the vectorized text. You might be asking - why might we choose to do this?
+
+Well, the answer is that whether the question belonged to "Jeopardy!", or "Double Jeopardy!" rounds simply do not add much to impact its meaning. You know by now that the vectorizer creates a vector representation of the object. In case of a text object, Weaviate first combines the text data according to an internal set of rules and your configuration.
+
+It is the combined text that is vectorized. So, the difference between vectorizing the `round` property and skipping it would be something like this:
+
+```json
+// If the property is vectorized
+answer {answer_text} question {question_text} category {category_text}
+```
+
+Against:
+
+```json
+// If the property is skipped
+answer {answer_text} question {question_text}
+```
+
+More specifically, something like the difference between:
+
+```json
+// If the property is vectorized
+answer faint paint question any pigment on the wall so faded you can barely see it category double jeopardy!
+```
+
+Against:
+
+```json
+// If the property is skipped
+answer faint paint question any pigment on the wall so faded you can barely see it
+```
+
+The additional information is not particularly significant in capturing the meaning of the quiz item, which is mainly in the question and answer, as well as perhaps the category (not yet used).
+
+:::tip Skipping vectorization has no impact on filtering
+Importantly, excluding the `round` column from vectorization will have no impact on our ability to filter the results based on the `round` value. So if you wanted to only search a set of `Double Jeopardy!` questions, you still can.
+:::
+
+### <i class="fa-solid fa-code"></i> Create the class
+
+We can now add the class to the schema.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Define the class"
+  endMarker='# Finished creating the class'
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+Now, you can check that the class has been created successfully by retrieving its schema:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker='# Retrieve "JeopardyQuestion" class schema'
+  endMarker='# END Retrieve "JeopardyQuestion" class schema'
+  language="py"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the full schema response</summary>
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="// RETRIEVED CLASS SCHEMA"
+  endMarker="// END RETRIEVED CLASS SCHEMA"
+  language="json"
+/>
+
+</details>
+
+:::note The retrieved schema is even longer!
+Although we've defined a lot of details here, the retrieved schema is still longer. The additional details relate to the vector index, the inverted index, sharding and tokenization. We'll cover many of those as we go.
+:::
+
+If you see a schema that is close to the example response - awesome! You're ready to import the data.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Import data
+
+Here, we'll show you how to import the requisite data, including how to configure and use a batch.
+
+### <i class="fa-solid fa-code"></i> Load data
+
+We've made the data available online - so, fetch and load it like so:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Load data"
+  endMarker="# Finished loading data"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Configure batch and import data
+
+And let's set up a batch import process. As mentioned earlier, the batch import process in Weaviate can send data in bulk and in parallel.
+
+In Python, we recommend that you use a context manager like:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Context manager for batch import"
+  endMarker="# Build data objects & add to batch"
+  language="py"
+/>
+
+Note the use of parameters `batch_size` and `num_workers`. They specify the number of objects sent per batch, as well as how many processes are used for parallelization.
+
+Then, the next step is to build data objects & add them to the batch process. We build objects (as Python dictionaries) by passing data from  corresponding columns to the right Weaviate property, and the client will take care of when to send them.
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Import data - simple version"
+  endMarker="# END Import data - simple version"
+  language="py"
+/>
+
+Then, let's check that we've got the right number of objects imported:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Check object count"
+  endMarker="# END Check object count"
+  language="py"
+/>
+
+If this assertion returns `True`, you've successfully populated your Weaviate instance!
+
+### <i class="fa-solid fa-chalkboard"></i> What happens if this runs again?
+
+Before we go on, I have a question. What do you think will happen if you run the above import script again?
+
+<details>
+  <summary><i class="fa-solid fa-face-thinking"></i> The answer is... </summary>
+
+That you will end up with duplicate items!<p><br/></p>
+
+Weaviate does not check if you are uploading items with the same properties as ones that exist already. And since the import script did not provide an ID, Weaviate will simply assign a new, random ID, and create new objects.
+
+</details>
+
+### <i class="fa-solid fa-code"></i> Specify object UUID
+
+You could specify an object UUID at import time to serve as the object identifier. The Weaviate Python client, for example, provides a function to create a deterministic UUID based on an object. So, it could be added to our import script as shown below:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Import data with deterministic UUIDs"
+  endMarker="# END Import data with deterministic UUIDs"
+  language="py"
+/>
+
+What this will do is to create objects whose UUID is based on the object properties. Accordingly, if the object properties remain the same, so will the UUID.
+
+Running the above script multiple times will *not* cause the number of objects to increase.
+
+:::tip What is your desired behavior?
+Because the UUID is based on the object properties, it will still create new objects in case some property has changed. So, when you design your import process, consider what properties might change, and how you would want Weaviate to behave in these scenarios.<p><br/></p>
+
+Then you could, for instance, design your UUID to be created based on a subset of unique properties, to have the objects be overwritten, or alternatively have the UUID be created from the entire set of properties to only prevent duplicates.
+:::
+
+### <i class="fa-solid fa-code"></i> Full import script
+
+Putting it all together, we get the following import script:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# Full code snippet"
+  endMarker="# END Full code snippet"
+  language="py"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+We have:
+- Downloaded a small dataset of Jeopardy! questions and answers.
+- Built a schema and imported our data.
+- Verified the successful import by checking the object count in Weaviate.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

@@ -158,6 +158,96 @@ for (const obj of result.data.Get[className]) {
 await client.schema.classDeleter().withClassName(className).do();
 
 
+// ===========================================
+// ===== Batch import with named vectors =====
+// ===========================================
+
+
+const classDefinitionNV = {
+  class: 'YourCollection',
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+    },
+    {
+      name: 'body',
+      dataType: ['text'],
+    },
+  ],
+  vectorConfig: {
+    // Set a named vector
+    title: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['title'], // Set the source property(ies)
+        },
+      },
+    },
+    // Set another named vector
+    body: {
+      vectorIndexType: 'hnsw', // Set the index type
+      vectorizer: {
+        'text2vec-openai': {
+          properties: ['body'], // Set the source property(ies)
+        },
+      },
+    },
+  },
+};
+
+// Clean slate
+try {
+  await client.schema.classDeleter().withClassName(classDefinitionNV.class).do();
+} catch (e) {
+  // ignore error if class doesn't exist
+} finally {
+  await client.schema.classCreator().withClass(classDefinitionNV).do();
+}
+
+// BatchImportWithNamedVectors
+className = 'YourCollection';  // Replace with your class name
+dataObjs = [];
+const title_vectors = [];
+const body_vectors = [];
+for (let i = 1; i <= 5; i++) {
+  dataObjs.push({ title: `Object ${i}`, body: `Body ${i}` });  // Replace with your actual objects
+  title_vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
+  body_vectors.push(Array(10).fill(0.25 + i / 100));  // Replace with your actual vectors
+}
+
+// highlight-start
+let namedVectors = client.batch.objectsBatcher();
+for (let i = 0; i < 5; i++)
+  namedVectors = namedVectors.withObject({
+    class: className,
+    properties: dataObjs[i],
+    // highlight-start
+    vectors: {
+      title: title_vectors[i],
+      body: body_vectors[i]
+    },
+    // highlight-end
+  });
+
+// Flush
+await namedVectors.do();
+// END BatchImportWithNamedVectors
+
+// Aggregate not working with named vectors as of 2024-02-28
+// result = await client.graphql.aggregate().withClassName(className).withFields('meta { count }').do();
+// assert.equal(result.data['Aggregate'][className][0].meta.count, 5);
+
+result = await client.graphql.get().withClassName(className).withFields('_additional { vectors { title body } }').do();
+for (const obj of result.data.Get[className]) {
+  assert.ok(obj['_additional']['vectors']['title']);
+  assert.ok(obj['_additional']['vectors']['body']);
+}
+
+await client.schema.classDeleter().withClassName(className).do();
+
+
 // ============================
 // ===== Streaming import =====
 // ============================

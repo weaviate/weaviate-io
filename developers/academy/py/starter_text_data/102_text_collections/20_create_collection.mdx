@@ -1,0 +1,80 @@
+---
+title: Create a collection
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+
+Weaviate stores data in "collections". A collection is a set of objects that share the same data structure. In our movie database, we might have a collection of movies, a collection of actors, and a collection of reviews.
+
+Here we will create a collection of movies.
+
+## <i class="fa-solid fa-code"></i> Code
+
+This example creates a collection for the movie data:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# CreateMovieCollection"
+  endMarker="# END CreateMovieCollection"
+  language="py"
+/>
+
+Each collection definition must have a name. Then, you can define additional parameters like we've done in this example.
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+### <i class="fa-solid fa-chalkboard"></i> Properties
+
+Properties are the object attributes that you want to store in the collection. Each property has a name and a data type.
+
+In our movie database, we have properties like `title`, `release_date` and `genre_ids`, with data types like `TEXT` (string), `DATE` (date), or `INT` (integer). It's also possible to have arrays of integers, like we have with `genre_ids`.
+
+#### Auto-schema
+
+Weaviate can automatically [infer the schema](/developers/weaviate/config-refs/schema/index.md#auto-schema) from the data. However, it's a good practice to define the properties explicitly, for better control and to avoid surprises.
+
+### <i class="fa-solid fa-chalkboard"></i> Vectorizer configuration
+
+If you do not specify the vector yourself, Weaviate will use a specified vectorizer to generate vector embeddings from your data.
+
+In this code example, we specify the `text2vec-openai` module with default options.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Define the vectorizer module"
+  endMarker="# Define the generative module"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Generative configuration
+
+If you wish to use your collection with a generative model (e.g. a large language model), you must specify the generative module.
+
+In this code example, we specify the `openai` module (`generative-openai` is the full name) with default options.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Define the generative module"
+  endMarker="# END generativeDefinition"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Python classes
+
+The code example makes use of classes such as `Property`, `DataType` and `Configure`. They are defined in the `weaviate.classes.config` submodule and are used to define the collection.
+
+For convenience, we import the submodule as `wc` and use classes from it.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# SubmoduleImport"
+  endMarker="# END SubmoduleImport"
+  language="py"
+/>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
