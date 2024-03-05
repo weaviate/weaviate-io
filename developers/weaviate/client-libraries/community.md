@@ -27,7 +27,7 @@ Members of the Weaviate community provide client libraries for some additional l
 
 To contribute to these libraries, please contact the maintainers directly.
 
-If you have created a Weaviate client library and would like to be featured here, please let us know on [forum](https://forum.weaviate.io/) or [Slack](https://weaviate.io/slack).
+If you have a Weaviate client library you would like to add here, please let us know in the [forum](https://forum.weaviate.io/) or on [Slack](https://weaviate.io/slack).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
