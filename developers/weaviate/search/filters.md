@@ -647,7 +647,15 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
   </TabItem>
 </Tabs>
 
-## Improve filter performance
+## Filter considerations
+
+### Tokenization
+
+import TokenizationNote from '/_includes/tokenization.mdx'
+
+<TokenizationNote />
+
+### Improve filter performance
 
 If you encounter slow filter performance, consider adding a `limit` parameter or additional `where` operators to restrict the size of your data set.
 

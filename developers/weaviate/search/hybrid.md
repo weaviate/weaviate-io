@@ -635,6 +635,12 @@ The output is like this:
 
 </details>
 
+### Tokenization
+
+import TokenizationNote from '/_includes/tokenization.mdx'
+
+<TokenizationNote />
+
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
