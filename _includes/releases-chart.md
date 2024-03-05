@@ -9,7 +9,7 @@ To see release notes for a particular version, click on the version number.
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-:|
-| [1.24.1][c1.24.1] | 2024-03-01 | [4.5.0][p4.5.0] | [1.5.0][ts1.5.0] | [4.11.0][g4.11.0] | [4.5.1][j4.5.1] |
+| [1.24.1][c1.24.1] | 2024-03-01 | [4.5.0][p4.5.0] | [1.5.0][ts1.5.0] | [4.12.0][g4.12.0] | [4.5.1][j4.5.1] |
 | [1.24.0][c1.24.0] | 2024-02-27 | '' | '' | '' | '' |
 | [1.23.0][c1.23.0] | 2023-12-18 | [3.26.0][p3.26.0] | '' | '' | [4.4.2][j4.4.2] |
 | [1.22.0][c1.22.0] | 2023-10-27 | [3.25.0][p3.25.0] | '' | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] |
@@ -327,6 +327,8 @@ For links to the Go Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.13.0][g4.13.0] | 2024-03-05 |
+  | [4.12.0][g4.12.0] | 2023-12-08 |
   | [4.11.0][g4.11.0] | 2023-11-13 |
   | [4.10.0][g4.10.0] | 2023-08-22 |
   | [4.9.0][g4.9.0] | 2023-07-06 |
@@ -378,6 +380,7 @@ For links to the Java Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
+  | [4.6.0][j4.6.0] | 2024-03-05 |
   | [4.5.1][j4.5.1] | 2024-01-08 |
   | [4.5.0][j4.5.0] | 2023-12-07 |
   | [4.4.2][j4.4.2] | 2023-11-20 |
@@ -623,6 +626,8 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( go client links )
 
+[g4.13.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.13.0
+[g4.12.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.12.0
 [g4.11.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.11.0
 [g4.10.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.10.0
 [g4.9.0]: https://github.com/weaviate/weaviate-go-client/releases/tag/v4.9.0
@@ -705,6 +710,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( java client links )
 
+[j4.6.0]: https://github.com/weaviate/java-client/releases/tag/4.6.0
 [j4.5.1]: https://github.com/weaviate/java-client/releases/tag/4.5.1
 [j4.5.0]: https://github.com/weaviate/java-client/releases/tag/4.5.0
 [j4.4.2]: https://github.com/weaviate/java-client/releases/tag/4.4.2
