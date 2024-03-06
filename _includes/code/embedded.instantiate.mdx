@@ -6,7 +6,16 @@ import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
 
-To avoid connection errors, use `client.close()` or a context manager to close your client connections before you exit your script or application.
+There are two ways to instantiate a Python client. Use the helper method if you don't need to pass custom connection information:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START SimpleInstantiationEmbedded"
+  endMarker="# END FullInstantiationEmbedded"
+  language="py"
+/>
+
+If you need to pass custom connection information, use the `WeaviateClient()` method.
 
 <FilteredTextBlock
   text={PyCode}
@@ -14,6 +23,8 @@ To avoid connection errors, use `client.close()` or a context manager to close y
   endMarker="# END FullInstantiationEmbedded"
   language="py"
 />
+
+To avoid connection errors if you crate a client with `client = weaviate.WeaviateClient()`, use `client.close()` or a context manager to close your client connections before you exit your script or application.
 
 </TabItem>
 <TabItem value="py3" label="Python (V3)">
