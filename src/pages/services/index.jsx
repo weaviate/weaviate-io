@@ -1,50 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
-import ServiceHeader from '../../components/Service/Header';
-import ServicePlan from '../../components/Service/Plan';
-import ServiceCalculator from '../../components/Service/Calculator';
-import ServiceFAQ from '../../components/Service/FAQ';
+import ServiceHeader from '../../components/Service/Index/Header';
+import ServicePlan from '../../components/Service/Index/Plan';
 import ContactUsForm from '../../components/ContactUsForm';
-import HybridBusinessCritical from '../../components/Service/HybridBusinessCritical';
+import HybridBusinessCritical from '../../components/Service/Index/HybridBusinessCritical';
 import ThemeSwitch from '/src/components/ThemeSwitch';
-import Soc2 from '../../components/Service/SOC2/soc2';
+
+import Integrations from '../../components/Service/Index/Integrations';
 
 export default function ServicePage() {
-  const [selectedType, setSelectedType] = useState('serverless');
-  const divStyle = {
-    marginTop: '0px',
-    // width: '440px',
-  };
-
-  useEffect(() => {
-    const hashType = window.location.hash.substring(1); // Removes the '#' symbol
-    if (hashType === 'byoc' || hashType === 'serverless') {
-      setSelectedType(hashType);
-    }
-  }, []);
-
   return (
     <div className="custom-page noBG">
       <Layout title="Service" description="Service models">
         <ServiceHeader />
-
-        {selectedType === 'serverless' ? (
-          // Render Serverless content
-          <>
-            <ServicePlan />
-            <HybridBusinessCritical />
-            <Soc2 socLight="dark" />
-            <ServiceFAQ faqType="Serverless" />
-          </>
-        ) : (
-          // Render BYOC content
-          <>
-            <HybridBusinessCritical />
-            <Soc2 socLight="light" />
-            <ServiceFAQ faqType="BYOC" />
-          </>
-        )}
-
+        <ServicePlan />
+        <HybridBusinessCritical />
+        <Integrations />
         <ContactUsForm />
       </Layout>
       <ThemeSwitch />
