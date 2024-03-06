@@ -35,7 +35,7 @@ You will need to ensure that your Weaviate instance is configured to work with y
 To work with text data, you will most likely want to use a text vectorizer module. These modules make it easier to obtain object vectors (*inference*) from text data.
 
 The specific choice will depend on a number of factors, including:
-- Whether the inference is to be local, or through a third-party inference API.
+- Whether the inference is made locally, or through a third-party inference API.
 - Whether you have a preference for a specific model.
 - Whether you want to use another modality in addition to text, such as images.
 

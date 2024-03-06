@@ -5,13 +5,11 @@ image: og/docs/installation.jpg
 # tags: ['installation', 'Docker']
 ---
 
-<!-- Weaviate supports deployment with Docker. Starting in v1.24.0, there is an image that runs using default values. Alternatively, edit the `docker-compose.yml` file to customize your instance. -->
-
-Weaviate supports deployment with Docker. Edit the `docker-compose.yml` file to customize your instance.
+Weaviate supports deployment with Docker. If you use the default values, you don't need a `docker-compose.yml` file to run the image. To customize your instance, edit the configuration settings in the `docker-compose.yml` file.
 
 ## Default Weaviate environment
 
-<!-- :::info Added in v1.24.0
+:::info Added in v1.24.1
 
 :::
 
@@ -25,9 +23,9 @@ The command sets the following default values:
 
 - `PERSISTENCE_DATA_PATH` defaults to `./data`
 - `AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED` defaults to `true`.
-- `QUERY_DEFAULTS_LIMIT` defaults to `10`. -->
+- `QUERY_DEFAULTS_LIMIT` defaults to `10`.
 
-## Starter Docker Compose file
+## Sample Docker Compose file
 
 We prepared a starter Docker Compose file, which will let you:
 * Run vector searches with `Cohere`, `HuggingFace`, `OpenAI`, and `Google` modules.
@@ -36,7 +34,7 @@ We prepared a starter Docker Compose file, which will let you:
 
 ### Download and run
 
-First, save the text below as `docker-compose.yml`:
+Save the text below as `docker-compose.yml`:
 
 ```yaml
 ---
@@ -69,7 +67,7 @@ volumes:
 ...
 ```
 
-Then, navigate to the directory containing the `docker-compose.yml` file and run this command from your shell:
+Edit the `docker-compose.yml` file to add your local configuration. To start your Weaviate instance, run this command in your shell:
 
 ```bash
 docker compose up -d
@@ -77,9 +75,7 @@ docker compose up -d
 
 ## Configurator
 
-The Configurator can help you generate the Weaviate setup you need.
-
-Use it to select specific Weaviate modules, including vectorizers that run locally (i.e. `text2vec-transformers`, or `multi2vec-clip`)
+The Configurator can generate a `docker-compose.yml` file for you. Use the Configurator to select specific Weaviate modules, including vectorizers that run locally (i.e. `text2vec-transformers`, or `multi2vec-clip`)
 
 <!-- {% include docs-config-gen.html %} -->
 

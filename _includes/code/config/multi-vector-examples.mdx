@@ -5,7 +5,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 <Tabs groupId="graphqlexamples">
 <TabItem value="vector" label="nearVector">
 
-```json
+```graphql
 {
     Get {
       Publication(
@@ -14,7 +14,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
           targetVectors: ["title"] # array field
         }
       ){
-				content
+        content
         _additional {
           vectors {
             title
@@ -29,7 +29,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 </TabItem>
 <TabItem value="object" label="nearObject">
 
-```json
+```graphql
 {
     Get {
       Publication(
@@ -38,7 +38,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
           targetVectors: ["title"]
         }
       ){
-				content
+        content
         _additional {
           vectors {
             title
@@ -54,7 +54,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 
 <TabItem value="text" label="nearText">
 
-```json
+```graphql
 {
     Get {
       Publication(
@@ -63,7 +63,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
           targetVectors: ["title"]
         }
       ){
-				content
+        content
         _additional {
           vectors {
             title

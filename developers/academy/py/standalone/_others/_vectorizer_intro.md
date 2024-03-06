@@ -3,16 +3,16 @@ title: Introduction to vectorizers
 sidebar_position: 40
 ---
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Background (Why this module?)
+## <i class="fa-solid fa-square-chevron-right"></i> Background (Why this module?)
 
-This unit aims to provide you with tools to help you make good vectorizer selections. 
+This unit aims to provide you with tools to help you make good vectorizer selections.
 
-In the earlier unit on vector search essentials [INSERT LINK HERE], you learned that vector databases can store each object with an associated vector. 
+In the earlier unit on vector search essentials [INSERT LINK HERE], you learned that vector databases can store each object with an associated vector.
 But choosing a vectorizer model can be a daunting task for anyone, including for data scientists. Here are some reasons why:
 
 ### Too many models
 
-One problem is that there are just so many models available. 
+One problem is that there are just so many models available.
 
 To give you an idea, the Hugging Face Hub contains over 60,000 models (as of January 2023)!
 
@@ -26,13 +26,13 @@ Each model can only vectorize certain types of asset(s) such as text, image or a
 
 ### Rate of progress
 
-Lastly, new models are being developed and released every day. Such is the rate of development in language models that what was state-of-the-art a year ago, or even a month ago, may be considered "old news" in some circles. 
+Lastly, new models are being developed and released every day. Such is the rate of development in language models that what was state-of-the-art a year ago, or even a month ago, may be considered "old news" in some circles.
 
 All of this can be a recipe for decision paralysis.
 
-## <i class="fa-solid fa-square-chevron-right"></i>&nbsp;&nbsp;Don't panic!
+## <i class="fa-solid fa-square-chevron-right"></i> Don't panic!
 
-The good news, however, is that you do not need to select the "perfect model" for your application to work well. 
+The good news, however, is that you do not need to select the "perfect model" for your application to work well.
 
 Vectorizer models have progressed to a point where many models perform admirably well in a variety of tasks.
 

@@ -15,14 +15,14 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 `Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 
 
-<!-- ## Named vectors
+## Named vectors
 
 :::info Added in `v1.24`
 :::
 
-A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector. -->
+A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
 
-<!-- <Tabs groupId="languages">
+<Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
@@ -72,7 +72,7 @@ The output is like this:
   language="json"
 />
 
-</details> -->
+</details>
 
 ## Basic hybrid search
 
@@ -635,12 +635,18 @@ The output is like this:
 
 </details>
 
+### Tokenization
+
+import TokenizationNote from '/_includes/tokenization.mdx'
+
+<TokenizationNote />
+
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).
-- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
+- For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

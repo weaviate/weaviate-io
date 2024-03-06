@@ -312,8 +312,8 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START StatusCreateBackup"
+      endMarker="# END StatusCreateBackup"
       language="py"
     />
   </TabItem>
@@ -406,8 +406,8 @@ The request takes a json object with the following properties:
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START RestoreBackup"
+      endMarker="# END RestoreBackup"
       language="py"
     />
   </TabItem>
@@ -483,8 +483,8 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START StatusRestoreBackup"
+      endMarker="# END StatusRestoreBackup"
       language="py"
     />
   </TabItem>

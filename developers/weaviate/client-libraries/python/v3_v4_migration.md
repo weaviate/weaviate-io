@@ -169,6 +169,17 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
 
 Note here that the collection object can be re-used throughout the codebase.
 
+### Collection creation from JSON
+
+You can still create a collection from a JSON definition. This may be a useful way to migrate your existing data, for example. You could [fetch an existing definition](../../manage-data/collections.mdx#read-a-single-collection-definition) and then use it to create a new collection.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START CreateCollectionFromJSON"
+  endMarker="# END CreateCollectionFromJSON"
+  language="py"
+/>
+
 ### Removal of builder patterns
 
 The builder patterns for constructing queries as been removed, as they could be confusing and potentially lead to invalid queries.

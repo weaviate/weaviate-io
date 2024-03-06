@@ -9,11 +9,11 @@ image: og/docs/modules/text2vec-aws.jpg
 Starting in v1.22.5, [AWS Bedrock](https://aws.amazon.com/bedrock/) is supported.
 :::
 
-<!-- :::info Added in `v1.24.0`
-Starting in v1.24.0, [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is supported.
+:::info Added in `v1.24`
+Starting in v1.24.1, [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is supported.
 :::
 
-The `text2vec-aws` module allows Weaviate to access [AWS Bedrock](https://aws.amazon.com/bedrock/) and [AWS Sagemaker](https://aws.amazon.com/sagemaker/) services. 
+The `text2vec-aws` module allows Weaviate to access [AWS Bedrock](https://aws.amazon.com/bedrock/) and [AWS Sagemaker](https://aws.amazon.com/sagemaker/) services.
 
 If you need to run your own embedding service, use `Sagemaker`. `Bedrock` uses AWS models.
 
@@ -21,8 +21,8 @@ If you need to run your own embedding service, use `Sagemaker`. `Bedrock` uses A
 
 - This module is available on Weaviate Cloud Services (WCS).
 - `Bedrock` and `Sagemaker` are third party APIs. You must provide AWS API credentials.
-- `Bedrock` requires a model. 
-    - There is no default `Bedrock` model set for this module. 
+- `Bedrock` requires a model.
+    - There is no default `Bedrock` model set for this module.
     - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) from AWS Bedrock to make models available in your account.
     - Not all AWS Bedrock models are supported. See [Supported models](#supported-models).
     - If you set `"service": "bedrock"``, set a model as well. For example, `"model": "amazon.titan-embed-text-v1"`
@@ -30,22 +30,7 @@ If you need to run your own embedding service, use `Sagemaker`. `Bedrock` uses A
 - These APIs may incur costs. Before vectorizing large amounts of data, check the pricing pages.
     - [AWS Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
     - [AWS Sagemaker](https://aws.amazon.com/sagemaker/pricing/)
-- Enabling this module enables the [`nearText`](/developers/weaviate/api/graphql/search-operators.md#neartext) search operator. -->
-
-## Considerations
-
-- This module is available on Weaviate Cloud Services (WCS).
-- `Bedrock` is a third party API. You must provide AWS API credentials.
-- `Bedrock` requires a model. 
-    - There is no default `Bedrock` model set for this module. 
-    - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) from AWS Bedrock to make models available in your account.
-    - Not all AWS Bedrock models are supported. See [Supported models](#supported-models).
-    - Set a [distance metric](#distance-metric) in your class configuration that corresponds to the model you use.
-- This API may incur costs. Before vectorizing large amounts of data, check the pricing pages.
-    - [AWS Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
 - Enabling this module enables the [`nearText`](/developers/weaviate/api/graphql/search-operators.md#neartext) search operator.
-
-
 
 
 import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
@@ -72,7 +57,7 @@ To use `text2vec-aws`, enable it in your Docker Compose file (`docker-compose.ym
 | `AWS_SECRET_ACCESS_KEY` | string | yes | none |Your AWS secret access key. An alternative for `AWS_SECRET_KEY`. |
 | `DEFAULT_VECTORIZER_MODULE` | string | yes | none | The default vectorizer module. To make `text2vec-aws` the default vectorizer, set this parameter to `text2vec-aws`.
 |`ENABLE_MODULES` | string | no | none | Set `text2vec-aws` to enable the module.
-|`SERVICE` | string | yes | `bedrock` | Must be `bedrock` <--or `sagemaker`-->.
+|`SERVICE` | string | yes | `bedrock` | Must be `bedrock` or `sagemaker`.
 
 #### Example
 
@@ -154,7 +139,7 @@ The following example configures the `Document` class to set the following param
 
 ### Vectorizer settings
 
-To configure vectorization for collections and properties, use the `moduleConfig` section in the collection definition. 
+To configure vectorization for collections and properties, use the `moduleConfig` section in the collection definition.
 
 | Setting | Level | Default | Description |
 | :-- | :-- | :-- | :-- |
