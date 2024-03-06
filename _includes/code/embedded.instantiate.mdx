@@ -6,7 +6,13 @@ import PyCode from '!!raw-loader!/_includes/code/install/embedded.py';
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
 
-There are two ways to instantiate a Python client. Use the `connect_to_embedded()` helper method if you don't need to pass custom connection information:
+There are two ways to instantiate a Python client:
+
+- `connect_to_embedded()`. If you don't need to pass custom connection information, use this method.
+- `WeaviateClient()`. If you need to pass custom connection information, use this method.
+
+
+Connect with `connect_to_embedded()`.
 
 <FilteredTextBlock
   text={PyCode}
@@ -15,7 +21,7 @@ There are two ways to instantiate a Python client. Use the `connect_to_embedded(
   language="py"
 />
 
-If you need to pass custom connection information, use the `WeaviateClient()` method.
+Connect with `WeaviateClient()`.
 
 <FilteredTextBlock
   text={PyCode}
