@@ -162,8 +162,9 @@ export default function PricingCalculator({ props }) {
               <p>
                 Our pricing is built around vector dimensions stored and
                 queried, and different SLA-tiers have different prices per
-                dimension. The exact calculation can be found in the FAQ (not
-                inclusive of discounts and taxes).
+                dimension. The exact calculation can be found in the{' '}
+                <Link to="/pricing#faq">FAQ</Link> (not inclusive of discounts
+                and taxes).
               </p>
             </div>
           </div>

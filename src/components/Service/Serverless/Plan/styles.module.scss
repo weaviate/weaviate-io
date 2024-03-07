@@ -156,6 +156,11 @@
   h2 {
     color: #ffffff;
   }
+
+  a {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 }
 
 .plan {
@@ -319,7 +324,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   margin-top: 5rem;
   border-radius: 12px;
   overflow: hidden;
@@ -446,7 +450,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-top: 40px;
+  margin-top: 110px;
 
   @media screen and (max-width: 860px) {
     flex-direction: column;

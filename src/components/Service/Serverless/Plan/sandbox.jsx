@@ -11,6 +11,7 @@ export default function PricingSandBox() {
       <div className={styles.featuresLong}>
         <li>14 days lifetime</li>
         <li>Monitoring</li>
+        <li>Public Slack</li>
       </div>
       <div className={styles.features}>
         <li>Community support</li>

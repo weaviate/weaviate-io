@@ -13,8 +13,8 @@ export default function ServicePlan() {
         <div className={styles.header}>
           <h2>Ready to get started? Choose your plan.</h2>
           <p>
-            The fastest way to build and iterate with our AI-native vector
-            database.
+            The fastest way to build and iterate with our{' '}
+            <Link to="/platform">AI-native vector database</Link>.
           </p>
         </div>
         <div className={styles.planContainer}>
@@ -26,7 +26,10 @@ export default function ServicePlan() {
             <PricingBusinessCritical />
           </div>
           <div className={styles.buttons}>
-            <Link className={styles.buttonOutline} to="/contact-us">
+            <Link
+              className={styles.buttonOutline}
+              to="https://console.weaviate.cloud/"
+            >
               Get started with Serverless
             </Link>
           </div>

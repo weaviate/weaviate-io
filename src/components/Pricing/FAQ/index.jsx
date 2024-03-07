@@ -20,7 +20,7 @@ export default function PricingFAQ(props) {
   };
 
   return (
-    <div className={styles.faqBG}>
+    <div className={styles.faqBG} id="faq">
       <div className="container">
         <div className={styles.intro}>
           <h2>Frequently asked questions</h2>

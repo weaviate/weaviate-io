@@ -11,7 +11,7 @@ export default function PricingPlan() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
-          <h2>Packages to help you be successful with Generative AI</h2>
+          <h2>Accelerate your success</h2>
           <p>
             We offer a variety of cloud services and subscriptions to help our
             customers and open source community deliver valuable solutions. We

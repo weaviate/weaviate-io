@@ -6,7 +6,7 @@ export default function PricingStandard() {
   return (
     <div className={styles.box}>
       <div className={styles.title}>
-        <h3>Serverless</h3>
+        <h3>Standard</h3>
       </div>
       <hr></hr>
 
