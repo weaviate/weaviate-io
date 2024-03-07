@@ -173,7 +173,7 @@ export default function PricingCalculator({ props }) {
                 <label>Vector Dimensions:</label>
               </div>
               <Slider
-                dots={true}
+                dots={false}
                 step={128}
                 min={128}
                 max={4096}
@@ -352,10 +352,6 @@ export default function PricingCalculator({ props }) {
                 )}
               </div>
             </div>
-            <p>
-              Does your use case not fit these parameters?{' '}
-              <Link to="#contact-sales">Contact us for more info</Link>
-            </p>
           </div>
         </div>
       </div>
