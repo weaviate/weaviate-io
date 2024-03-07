@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function PricingStandard() {
   return (
     <div className={styles.boxContainer}>
-      <div className={styles.box}>
+      <Link className={styles.box} to="https://console.weaviate.cloud/">
         <div className={styles.title}>
           <h3>Serverless</h3>
         </div>
@@ -29,7 +29,7 @@ export default function PricingStandard() {
         </div>
         <br />
         <br />
-      </div>
+      </Link>
       <div className={`${styles.box} ${styles.smallBox} `}>
         <div className={styles.title}>
           <h3>Best for</h3>
@@ -40,7 +40,7 @@ export default function PricingStandard() {
             Building and prototyping with seamless scaling and flexible
             pay-as-you-go pricing.
           </p>
-          <Link className={styles.boxLink} to="/docs/quickstart">
+          <Link className={styles.boxLink} to="https://console.weaviate.cloud/">
             Learn More
           </Link>
         </div>

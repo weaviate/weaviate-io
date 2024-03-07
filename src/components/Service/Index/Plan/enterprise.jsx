@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function PricingEnterprise() {
   return (
     <div className={styles.boxContainer}>
-      <div className={styles.box}>
+      <Link className={styles.box} to="#contact-sales">
         <div className={styles.title}>
           <h3>Enterprise Dedicated</h3>
         </div>
@@ -32,7 +32,7 @@ export default function PricingEnterprise() {
         </div>
         <br />
         <br />
-      </div>
+      </Link>
       <div className={`${styles.box} ${styles.smallBox} `}>
         <div className={styles.title}>
           <h3>Best for</h3>
@@ -43,7 +43,7 @@ export default function PricingEnterprise() {
             Deploying large-scale production use cases without the complexities
             of self-management.
           </p>
-          <Link className={styles.boxLink} to="/docs/quickstart">
+          <Link className={styles.boxLink} to="#contact-sales">
             Learn More
           </Link>
         </div>

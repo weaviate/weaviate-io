@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 export default function PricingBusinessCritical() {
   return (
     <div className={styles.boxContainer}>
-      <div className={styles.box}>
+      <Link className={styles.box} to="#contact-sales">
         <div className={styles.title}>
           <h3>Bring Your Own Cloud</h3>
         </div>
@@ -34,7 +34,7 @@ export default function PricingBusinessCritical() {
         </div>
         <br />
         <br />
-      </div>
+      </Link>
       <div className={`${styles.box} ${styles.smallBox} `}>
         <div className={styles.title}>
           <h3>Best of</h3>
@@ -45,7 +45,7 @@ export default function PricingBusinessCritical() {
             Building and prototyping with seamless scaling and flexible
             pay-as-you-go pricing.
           </p>
-          <Link className={styles.boxLink} to="/docs/quickstart">
+          <Link className={styles.boxLink} to="#contact-sales">
             Learn More
           </Link>
         </div>
