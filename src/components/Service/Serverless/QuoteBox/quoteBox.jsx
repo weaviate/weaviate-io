@@ -13,10 +13,9 @@ export default function quoteBox(props) {
           <div className={styles.contentDiv}>
             <div className={styles.cardLogo}></div>
             <h3 className={styles.cTextColor}>
-              “Weaviate facilitates fast development of generative AI
-              applications by our team, removing the need for creating
-              boilerplate code, setting up databases, and managing
-              infrastructure.”
+              “Weaviate's Serverless offering helps our team build Generative AI
+              apps faster by removing the need to create boilerplate code and
+              manage infrastructure.”
             </h3>
             <p>Ben Selleslagh, Co-founder at Vectrix</p>
           </div>
