@@ -1,12 +1,14 @@
 ---
-title: ANN
+title: ANN Benchmark
 sidebar_position: 1
 image: og/docs/benchmarks.jpg
-# tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks']
+# tags: ['Weaviate', 'performance', 'benchmarks', 'ANN benchmarks', 'vector database benchmarks']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-# About this benchmark
+# ANN Benchmark
 
 This benchmark is designed to measure and illustrate Weaviate's ANN performance for a range of real-life use cases.
 
@@ -21,6 +23,10 @@ To make the most of this benchmark, you can look at it from different perspectiv
 - **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case.
 - **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
 
+:::warning TODO
+Add some more info related to our philosophy / [DuckDB blog post](https://motherduck.com/blog/perf-is-not-enough/)
+:::
+
 ## What is being measured?
 
 For each benchmark test, we picked parameters of:
@@ -30,7 +36,15 @@ For each benchmark test, we picked parameters of:
   edges a node can have in the HNSW graph.
 - **ef** - The HNSW query time parameter that controls the quality of the search.
 
-For each set of parameters we've run 10000 requests and we measured:
+:::info HNSW Parameter Configuration Guide
+You can refer to our [HNSW Configuration Tips](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#hnsw-configuration-tips) for good starting points for these parameter values and how to tune them for best performance.
+:::
+
+:::warning TODO
+Add some more knowledge card style visual here
+:::
+
+For each set of parameters we've run 10,000 requests and we measured:
 
 - The **Recall@1**, **Recall@10**, **Recall@100** - by comparing Weaviate's results to the
   ground truths specified in each dataset
@@ -53,6 +67,145 @@ users would also experience. In particular, these means:
 * Each request includes retrieving all the matched objects from disk. This is
   a significant difference from `ann-benchmarks`, where the embedded libraries
   only return the matched IDs.
+
+## Benchmark Results
+
+**Last updated: MM 20YY with Version**
+
+The following results section contains the following datasets modeled after [ANN Benchmarks](github.com/erikbern/ann-benchmarks). To get the most of this benchmark, pick the dataset that is closest to the use case that reflects your data in production based on the following criteria:
+
+
+| **Dataset** | **Number of Objects** | **Vector Dimensions** | **Distance metric** | **Use case** |
+| --- | --- | --- | --- | --- |
+| [SIFT1M](tbd) | 1 M | 128 | L2 | This dataset reflects a common use case with a small number of objects. |
+| [Glove-25](tbd) | 1.28 M | 25 | Cosine | Because of the smaller vectors, Weaviate can achieve the highest throghput on this dataset. |
+| [Deep Image 96](tbd) | 10 M | 96 | Cosine | While this dataset is about 10 times larger than SIFT1M, the throughput is only slightly lower than that of the SIFT1M. This dataset gives you a good indication of expected speeds and throughputs when datasets grow. |
+| [GIST 960](tbd) | 1 M | 960 | Cosine (shouldn't this be euclidean?) | It has the lowest throughput of the datasets outlined. It highlights the cost of vector comparisons with a lot of dimensions. Pick this dataset if you run very high-dimensional loads. |
+
+
+
+<Tabs groupId="datasets">
+<TabItem value="1" label="SIFT1M">
+
+### SIFT1M 
+
+#### QPS vs Recall
+
+![SIFT1M Benchmark results](./img/benchmark_sift_128.png)
+
+import AnnSift128 from '/_includes/ann-sift-128.mdx';
+
+<AnnSift128/>
+
+#### Recommended configuration
+Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
+performance with this dataset. 
+
+| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| 128 | 32 | 64 | 98.83% | 8905 | 3.31ms | 4.49ms |
+
+
+</TabItem>
+<TabItem value="10" label="Glove-25">
+
+### Glove-25 
+
+#### QPS vs Recall
+
+![Glove25 Benchmark results](./img/benchmark_glove_25.png)
+
+import AnnGlove25 from '/_includes/ann-glove-25.mdx';
+
+<AnnGlove25/>
+
+#### Recommended configuration
+Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
+performance with this dataset. 
+
+| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| 64 | 16 | 64 | 95.56% | 15003 | 1.93ms | 2.94ms |
+
+</TabItem>
+<TabItem value="100" label="Deep Image 96">
+
+### Deep Image 96
+
+#### QPS vs Recall
+
+![Deep Image 96 Benchmark results](./img/benchmark_deepimage_96.png)
+
+import AnnDeep96 from '/_includes/ann-deep-96.mdx';
+
+<AnnDeep96/>
+
+#### Recommended configuration
+Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
+performance with this dataset. 
+
+| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| 128 | 32 | 64 | 96.43% | 6112 | 4.7ms | 15.87ms |
+
+</TabItem>
+<TabItem value="1000" label="GIST 960">
+
+
+### GIST 960 
+
+#### QPS vs Recall
+
+![GIST 960 Benchmark results](./img/benchmark_gist_960.png)
+
+import AnnGist960 from '/_includes/ann-gist-960.mdx';
+
+<AnnGist960/>
+
+#### Recommended configuration
+Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
+performance with this dataset. 
+
+| `efConstruction` | `maxConnections` | `ef` | **Recall@10** | **QPS (Limit 10)** | **Mean Latency (Limit 10**) | **p99 Latency (Limit 10)** |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| 512 | 32 | 128 | 94.14% | 1935 | 15.05ms | 19.86ms |
+
+</TabItem>
+</Tabs>
+
+## How to read the results
+* **Choose the desired limit using the tab selector above the table.** <br/>
+    Different use cases require different levels of Queries per Second (QPS)
+    and returned objects per query. For example, at 100 QPS and <code>limit 100</code>
+    10,000 objects will be returned in total. At 1,000 QPS and <code>limit 10</code>, you
+    will also receive 10,000 objects in total as each request contains fewer
+    objects, but you can send more requests in the same timespan. Pick the
+    value that matches your desired limit in production most closely.
+* **Pick the desired configuration** <br/>
+    The first three columns represent the different input parameters to configure the HNSW index. These inputs lead to the results shown in columns four through six.
+* **Recall/Throughput Trade-Off at a glance** <br/>
+    The highlighted columns (Recall, QPS) reflect the Recall/QPS trade-off.
+    Generally, as the Recall improves, the throughput drops. Pick the row
+    that represents a combination that satisfies your requirements. Since
+    the benchmark is multi-threaded and running on a 30-core machine, the
+    QPS/vCore columns shows the throughput per single CPU core. You can use
+    this column to extrapolate what the throughput would be like on a
+    machine of different size. See also this section below
+    <a href="#what-happens-if-i-run-with-fewer-or-more-cpu-cores-than-on-the-example-test-machine">outlining what changes to expect when running on different hardware.</a>
+* **Latencies** <br/>
+    Besides the overall throughput, columns seven and eight show the
+    latencies for individual requests. The Mean Latency columns shows the
+    mean over all 10,000 test queries. The p99 Latency shows the maximum
+    latency for the 99th-percentile of requests. In other words, 9,900 out
+    of 10,000 queries will have a latency equal to or lower than the
+    specified number. The <a href="#what-is-a-p99-latency">difference
+      between mean and p99</a> helps you get an impression how stable the
+    request times are in a highly concurrent setup.
+* **Import times** <br/>
+    Changing the configuration parameters can also have an effect on the
+    time it takes to import the dataset. This is shown in the last column.
+
+
 
 ## Benchmark Setup
 
@@ -91,7 +244,7 @@ The selection of datasets is modeled after
 queries are used to test speed, throughput, and recall. The provided ground
 truths are used to calculate the recall.
 
-The imports were performed using Weaviate's python clients. The concurrent
+The imports were performed using Weaviate's Python clients. The concurrent
 (multi-threaded) queries were measured using Go. Each language may have a
 slightly different performance, and you may experience different results if you
 send your queries using another language. For the maximum throughput, we
@@ -100,140 +253,7 @@ recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 
 The complete import and test scripts are available [here](https://github.com/weaviate/weaviate-benchmarking).
 
-## Results
-
-:::info A guide for picking the right dataset
-   The following results section contains multiple datasets. To get the most of
-   this benchmark, pick the dataset that is closest to the use case that
-   reflects your data in production based on the following criteria:
-
-   <ul>
-     <li><strong>SIFT1M</strong> - A dataset containing 1 million objects of
-     128d and using l2 distance metrics. This dataset reflects a common
-     use case with a small number of objects.</li>
-     <li><strong>Glove-25</strong> - While similar in data size to SIFT1M, each
-     vector only has 25 dimensions in this dataset. Because of the smaller
-     vectors Weaviate can achieve the highest throghput on this dataset. The
-     distance metric used is angular (cosine distance).</li>
-     <li><strong>Deep Image 96</strong> - This dataset contains 10 million objects
-     at 96d, and is therefore about 10 times as large as SIFT1M. The throughput
-     is only slightly lower than that of the SIFT1M. This dataset gives you a
-     good indication of expected speeds and throughputs when datasets
-     grow.</li>
-     <li><strong>GIST 960</strong> - This dataset contains 1 million objects at
-     960d.  It has the lowest throughput of the datasets outlined. It
-     highlights the cost of vector comparisons with a lot of dimensions. Pick
-     this dataset if you run very high-dimensional loads.</li>
-
-   </ul>
-:::
-
-For each dataset, there is a highlighted configuration. The highlighted
-configuration is an opinionated pick about a good recall/latency/throughput
-trade-off. The highlight sections will give you a good overview of Weaviate's
-performance with the respective dataset. Below the highlighted configuration,
-you can find alternative configurations.
-
-### SIFT1M (1M 128d vectors, L2 distance)
-
-#### Highlighted Configuration
-
-<!-- TODO: Add formatting to table if desired -->
-| **1.0M** | **128** | **l2** | **128** | **32** | **64** |
-| --- | --- | --- | --- | --- |
-| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
-
-| **98.83%** | **8905** | **3.31ms** | **4.49ms** |
-| --- | --- | --- | --- |
-| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
-
-#### All Results
-
-#### QPS vs Recall
-
-![SIFT1M Benchmark results](./img/benchmark_sift_128.png)
-
-import AnnSift128 from '/_includes/ann-sift-128.mdx';
-
-<AnnSift128/>
-
-import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
-
-<AnnReadResultsTable/>
-
-### Glove-25 (1.2M 25d vectors, cosine distance)
-
-#### Highlighted Configuration
-
-| **1.28M** | **35** | **cosine** | **64** | **16** | **64** |
-| --- | --- | --- | --- | --- |
-| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
-
-| **95.56%** | **15003** | **1.93ms** | **2.94ms** |
-| --- | --- | --- | --- |
-| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
-
-#### All Results
-
-#### QPS vs Recall
-
-![Glove25 Benchmark results](./img/benchmark_glove_25.png)
-
-import AnnGlove25 from '/_includes/ann-glove-25.mdx';
-
-<AnnGlove25/>
-
-<AnnReadResultsTable/>
-
-### Deep Image 96 (9.99M 96d vectors, cosine distance)
-
-#### Highlighted Configuration
-
-| **9.99M** | **96** | **cosine** | **128** | **32** | **64** |
-| --- | --- | --- | --- | --- |
-| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
-
-| **96.43%** | **6112** | **4.7ms** | **15.87ms** |
-| --- | --- | --- | --- |
-| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
-
-#### All Results
-
-#### QPS vs Recall
-
-![Deep Image 96 Benchmark results](./img/benchmark_deepimage_96.png)
-
-import AnnDeep96 from '/_includes/ann-deep-96.mdx';
-
-<AnnDeep96/>
-
-<AnnReadResultsTable/>
-
-### GIST 960 (1.0M 960d vectors, cosine distance)
-
-#### Highlighted Configuration
-
-| **1.00M** | **960** | **cosine** | **512** | **32** | **128** |
-| --- | --- | --- | --- | --- |
-| Dataset Size | Dimensions | Distance Metric | efConstruction | maxConnections | ef |
-
-| **94.14%** | **1935** | **15.05ms** | **19.86ms** |
-| --- | --- | --- | --- |
-| Recall@10 | QPS (Limit 10) | Mean Latency (Limit 10) | p99 Latency (Limit 10) |
-
-#### All Results
-
-#### QPS vs Recall
-
-![GIST 960 Benchmark results](./img/benchmark_gist_960.png)
-
-import AnnGist960 from '/_includes/ann-gist-960.mdx';
-
-<AnnGist960/>
-
-<AnnReadResultsTable/>
-
-## Learn more & FAQ
+## Learn more & Benchmark FAQ
 
 ### What is the difference between latency and throughput?
 
