@@ -30,9 +30,7 @@ To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vecto
 
 ## Enable PQ compression
 
-AutoPQ is a feature that streamlines PQ configuration for new collections. AutoPQ is not currently available in Weaviate Cloud Services (WCS).
-
-If you are using WCS, or cannot enable asynchronous indexing, you can still use the manual, two phase method to enable PQ.
+You have two options for using PQ. You can enable PQ at collection creation time with AutoPQ, or you can manually enable PQ compression after you have loaded your training data.
 
 - [Use AutoPQ to enable PQ compression](./pq-compression.md#configure-autopq).
 - [Manually enable PQ compression](./pq-compression.md#manually-configure-pq).
@@ -44,15 +42,18 @@ If you are using WCS, or cannot enable asynchronous indexing, you can still use 
 
 If you have a new collection, enable AutoPQ. AutoPQ automates the PQ training step so you don't have to load your data in two phases.
 
-### 1. Set the environment variable
+### 1. Enable asynchronous indexing
 
-AutoPQ requires asynchronous indexing. To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance. You cannot enable AutoPQ without asynchronous indexing.
+AutoPQ requires asynchronous indexing.
 
-AutoPQ is not currently available in WCS.
+- Open-source Weaviate: Set the environment variable e.g. `ASYNC_INDEXING=true`.
+- Weaviate Cloud Services (WCS): Enable asynchronous indexing in the WCS console.
+
+If you have changed this configuration, restart Weaviate.
 
 ### 2. Configure PQ
 
-To enable PQ for a collection, update your collection definition. Once you enable PQ, AutoPQ automates the PQ training step for you.
+Enable PQ by defining it and associated parameters including the `training limit` in the collection definition. AutoPQ uses the training limit to trigger the training process.
 
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
@@ -60,8 +61,8 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
   <TabItem value="py" label="Python (v4)">
      <FilteredTextBlock
        text={PyCode}
-       startMarker="# START UpdateSchema"
-       endMarker="# END UpdateSchema"
+       startMarker="# START CollectionWithAutoPQ"
+       endMarker="# END CollectionWithAutoPQ"
        language="py"
      />
   </TabItem>
@@ -69,8 +70,8 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
   <TabItem value="py3" label="Python (v3)">
      <FilteredTextBlock
        text={PyCodeV3}
-       startMarker="# START UpdateSchema"
-       endMarker="# END UpdateSchema"
+       startMarker="# START CollectionWithAutoPQ"
+       endMarker="# END CollectionWithAutoPQ"
        language="py"
      />
   </TabItem>
@@ -78,34 +79,17 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
   <TabItem value="ts" label="JavaScript/TypeScript">
      <FilteredTextBlock
        text={TSCode}
-       startMarker="// START UpdateSchema"
-       endMarker="// END UpdateSchema"
+       startMarker="// START CollectionWithAutoPQ"
+       endMarker="// END CollectionWithAutoPQ"
        language="ts"
      />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START UpdateSchema"
-      endMarker="// END UpdateSchema"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START UpdateSchema"
-      endMarker="// END UpdateSchema"
-      language="java"
-    />
-  </TabItem>
 </Tabs>
 
 ### 3. Load your data
 
-Load your data. You do not have to load an initial set of training data. AutoPQ creates the PQ codebook when the object counts reach the training limit. By default, the training limit is 100,000 objects per shard.
+Load your data as normal. The compression process will be triggered upon the object counting reaching the training limit. By default, the training limit is 100,000 objects per shard.
 
 ## Manually configure PQ
 
@@ -186,7 +170,7 @@ If you are starting with a new collection, load between 10,000 and 100,000 objec
 
 If you already have data in an existing collection, [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
 
-When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, try to chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, we recommend obtaining a representative sample of the data set so that the codebook includes relevant centroids.
 
 <details>
 
@@ -302,7 +286,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 
 <PQMakesCodebook />
 
-To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
+For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

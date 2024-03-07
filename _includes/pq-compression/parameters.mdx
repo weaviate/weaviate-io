@@ -1,8 +1,8 @@
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
 | `enabled` | boolean | `false` | Enable PQ when `true`. <br/><br/> The Python client v4 does not use the `enabled` parameter. To enable PQ with the v4 client, set a `quantizer` in the collection definition. |
-| `trainingLimit` | integer | 100000 | The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids. Larger values also require more memory. |
-| `segments` | integer | -- |The number of segments to use. The number of vector dimensions must be evenly divisible by the number of segments.<br/><br/> Starting in `v1.23`, Weaviate uses the number of dimensions to optimize the number of segments. |
+| `trainingLimit` | integer | 100000 | The maximum number of objects, per shard, used to fit the centroids. Larger values increase the time it takes to fit the centroids. Larger values also require more memory.  <br/><br/>If using AutoPQ, training is triggered when the object count reaches this number. |
+| `segments` | integer | -- |The number of segments to use. The number of vector dimensions must be evenly divisible by the number of segments.<br/><br/> Starting in `v1.23`, Weaviate can use the number of dimensions to optimize the number of segments if one is not provided. |
 | `centroids` | integer | 256 | The number of centroids to use. Reducing the number of centroids reduces the size of the quantized (PQ compressed) vectors at the price of recall. <br/><br/> If you use the `kmeans` encoder, `centroids` is set to 256 (one byte) by default. |
-| `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`. | 
+| `encoder` | string | `kmeans` | Encoder specification. There are two encoders. You can specify the `type` of encoder as either `kmeans`(default) or `tile`. |
 |`distribution`|string|`log-normal`| Encoder distribution type. Only used with the `tile` encoder. If you use the `tile` encoder, you can specify the `distribution` as `log-normal` (default) or `normal`. |
