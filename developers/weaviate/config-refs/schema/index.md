@@ -545,6 +545,14 @@ So, a `string` property value `Hello, (beautiful) world` with `tokenization` set
 </details>
 :::
 
+### `gse` and `trigram` tokenization methods
+
+:::info Added in `1.24`
+:::
+
+For Japanese and Chinese text, we recommend use of `gse` or `trigram` tokenization methods. These methods work better with these languages than the other methods as these languages are not easily able to be tokenized using whitespaces.
+
+
 ### `indexFilterable` and `indexSearchable`
 
 :::info `indexInverted` is deprecated
