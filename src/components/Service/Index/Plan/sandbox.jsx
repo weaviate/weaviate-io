@@ -45,7 +45,10 @@ export default function PricingSandBox() {
         <li>
           <span>Weekly office hours</span>
         </li>
-        <Link className={styles.supportLink} to="/docs/quickstart">
+        <Link
+          className={styles.supportLink}
+          to="services/education-and-support"
+        >
           Learn More
         </Link>
       </div>
