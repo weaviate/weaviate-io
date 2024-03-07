@@ -36,6 +36,10 @@ export default function ContactUsForm({ theme = 'light' }) {
       value: 'BYOC',
       text: 'BYOC',
     },
+    {
+      value: 'EducationSupport',
+      text: 'Education & Support',
+    },
   ];
 
   const [selected, setSelected] = useState(options[0].value);
