@@ -7,17 +7,28 @@
   flex: 1;
   border-radius: 12px;
   overflow: hidden;
-
   width: 21.875rem;
   height: 24.375rem;
   flex-shrink: 0;
-
   border-radius: 0.9375rem;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   padding: 10px;
-
   transition: all 0.1s ease-in-out;
+
+  @media screen and (max-width: 1170px) {
+    width: 95%;
+    margin: 1rem auto;
+    transition: width 0.2s ease-in-out;
+  }
+
+  @media screen and (max-width: 1140px) {
+    width: 21.875rem;
+  }
+
+  @media screen and (max-width: 840px) {
+    width: 100%;
+  }
 
   .price {
     padding: 1rem;
@@ -105,16 +116,13 @@
     background: #61bd73;
     margin: auto;
   }
-
-  @media screen and (max-width: 640px) {
-    width: 100%;
-  }
 }
 
 .box:hover {
   outline: 2px solid #130c49;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.085);
   height: 25rem;
+  transform: scale(0.98);
 }
 
 .smallBox {
@@ -209,10 +217,17 @@
 .plan {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 25px;
   justify-content: center;
 
+  @media screen and (max-width: 1440px) {
+    justify-content: flex-start;
+  }
+
+  @media screen and (max-width: 1140px) {
+    flex-wrap: wrap;
+  }
   @media screen and (max-width: 860px) {
     flex-direction: column;
   }
@@ -221,6 +236,11 @@
 .planContainer {
   margin: auto;
   width: 90%;
+
+  @media screen and (max-width: 1440px) {
+    margin: 0;
+    width: 100%;
+  }
 }
 
 .buttons {
