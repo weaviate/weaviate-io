@@ -37,7 +37,7 @@ export default function PricingBusinessCritical() {
       </Link>
       <div className={`${styles.box} ${styles.smallBox} `}>
         <div className={styles.title}>
-          <h3>Best of</h3>
+          <h3>Best for</h3>
         </div>
         <hr></hr>
         <div className={styles.benefitsBox}>
