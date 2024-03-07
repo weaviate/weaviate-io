@@ -87,10 +87,14 @@
   }
 
   hr {
-    width: 19.1875rem;
+    width: 85%;
     height: 0.03125rem;
     background: #61bd73;
     margin: 0px 1px 0px 20px;
+
+    @media screen and (max-width: 880px) {
+      width: 95%;
+    }
   }
 }
 

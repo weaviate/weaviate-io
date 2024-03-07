@@ -115,6 +115,10 @@
     height: 0.03125rem;
     background: #61bd73;
     margin: auto;
+
+    @media screen and (max-width: 840px) {
+      width: 95%;
+    }
   }
 }
 
@@ -220,7 +224,7 @@
   flex-wrap: nowrap;
   gap: 25px;
   justify-content: center;
-
+  transition: all 0.2s ease-in-out;
   @media screen and (max-width: 1440px) {
     justify-content: flex-start;
   }
@@ -239,7 +243,7 @@
 
   @media screen and (max-width: 1440px) {
     margin: 0;
-    width: 100%;
+    width: auto;
   }
 }
 
