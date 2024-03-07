@@ -18,7 +18,7 @@ export default function quoteBox(props) {
               boilerplate code, setting up databases, and managing
               infrastructure.”
             </h3>
-            <p>Ben Selleslagh, Vectrix</p>
+            <p>Ben Selleslagh, Co-founder at Vectrix</p>
           </div>
         </div>
       </div>

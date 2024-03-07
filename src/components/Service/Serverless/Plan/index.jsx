@@ -25,6 +25,11 @@ export default function ServicePlan() {
             <PricingEnterprise />
             <PricingBusinessCritical />
           </div>
+          <div className={styles.buttons}>
+            <Link className={styles.buttonOutline} to="/contact-us">
+              Get started with Serverless
+            </Link>
+          </div>
         </div>
       </div>
     </div>

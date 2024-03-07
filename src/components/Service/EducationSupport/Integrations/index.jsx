@@ -17,9 +17,8 @@ export default function Integrations() {
         </div>
         <div className={styles.learningContainer}>
           <div className={styles.learningRow}>
-            <div className={styles.left}>
-              <div className={styles.educationImage}></div>
-            </div>
+            <div className={styles.educationImage}></div>
+
             <div className={styles.right}>
               <h3>Introduction to AI-Native Vector Databases</h3>
               <p>LinkedIn Learning</p>
@@ -58,9 +57,7 @@ export default function Integrations() {
                 </div>
               </div>
             </div>
-            <div className={styles.left}>
-              <div className={`${styles.educationImage} ${styles.seb} `}></div>
-            </div>
+            <div className={`${styles.educationImage} ${styles.seb} `}></div>
           </div>
         </div>
       </div>

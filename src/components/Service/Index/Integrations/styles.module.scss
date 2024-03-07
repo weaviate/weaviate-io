@@ -469,6 +469,10 @@
     font-size: 1.625rem;
     width: 50%;
     font-weight: 500;
+
+    @media screen and (max-width: 840px) {
+      width: 100%;
+    }
   }
 }
 
@@ -484,6 +488,10 @@
   @media screen and (max-width: 840px) {
     width: 100%;
   }
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .imageGrid1 {
@@ -491,7 +499,7 @@
   background-image: url('/img/site/team-grid-01.png');
   background-size: cover;
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 840px) {
     background-position-x: center;
   }
 }
@@ -499,7 +507,7 @@
   grid-area: 1 / 2 / 2 / 3;
   background-image: url('/img/site/team-grid-02.png');
   background-size: cover;
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 840px) {
     background-position-x: center;
   }
 }
@@ -533,5 +541,17 @@
   background-size: cover;
   @media screen and (max-width: 640px) {
     background-position-x: center;
+  }
+}
+
+.mobileImage {
+  display: none;
+  background-image: url('/img/site/services-team-photo.png');
+  background-size: cover;
+  width: 100%;
+  height: 630px;
+
+  @media screen and (max-width: 500px) {
+    display: block;
   }
 }

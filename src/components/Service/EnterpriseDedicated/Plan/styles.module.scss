@@ -51,12 +51,18 @@
 
   .diagram {
     background-image: url('/img/site/enterprise-dedicated-diagram.svg');
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
     width: 42rem;
-    height: 22rem;
+    height: 27rem;
+
+    @media screen and (max-width: 1024px) {
+      width: 34rem;
+    }
 
     @media screen and (max-width: 560px) {
-      width: 460px;
+      width: 300px;
       height: 15rem;
     }
   }

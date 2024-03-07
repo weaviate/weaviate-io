@@ -22,7 +22,7 @@ export default function BYOCPage() {
         <Integrations />
         <Highlights />
         <Availability />
-        <ContactUsForm />
+        <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />
     </div>

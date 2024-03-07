@@ -158,7 +158,7 @@
     font-size: 1rem;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 600px) {
     flex-direction: column;
   }
 }
@@ -195,6 +195,10 @@
   width: 480px;
   gap: 20px;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 }
 
 .iconText {
@@ -225,8 +229,16 @@
 .educationImage {
   background-image: url('/img/site/education-course-zain.png');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 497px;
   height: 294px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 245px;
+    background-size: contain;
+  }
 }
 
 .seb {

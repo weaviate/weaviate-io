@@ -13,7 +13,7 @@ export default function PricingEnterprise() {
       <div className={styles.features}>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>$0.095 per 1M vector dimensions stored per month</span>
+          <span>$0.145 per 1M vector dimensions stored per month</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
@@ -21,17 +21,21 @@ export default function PricingEnterprise() {
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>Monitoring - access to regional status pages</span>
-        </li>
-        <li>
-          <div className={styles.checkIcon}></div>
-          <span>Email support during business hours</span>
+          <span>
+            Monitoring - access to dedicated status<br></br> page
+          </span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
           <span>
-            Severity 1 - 1bd <br></br>Severity 2 - 2bd <br></br>Severity 3 - 3bd{' '}
-            <br></br>Severity 4 - 5bd
+            Email support during business hours,<br></br> phone escalation
+          </span>
+        </li>
+        <li>
+          <div className={styles.checkIcon}></div>
+          <span>
+            Severity 1 - 4h (24/7) <br></br>Severity 2 - 8h (24/7)<br></br>
+            Severity 3 - 1bd <br></br>Severity 4 - 2bd
           </span>
         </li>
         <li>

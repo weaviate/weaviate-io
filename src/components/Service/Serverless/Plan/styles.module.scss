@@ -99,6 +99,10 @@
     background-color: #262262;
     filter: drop-shadow(0px 24px 64px rgba(22, 27, 45, 0.08));
   }
+
+  .sandboxTitle {
+    background-color: #130c49 !important;
+  }
   .title {
     background-color: #262262;
 
@@ -112,9 +116,6 @@
     }
   }
 
-  .sandboxTitle {
-    background-color: #130c49;
-  }
   .big {
     color: #1c1468;
   }
@@ -209,9 +210,15 @@
   }
 
   .buttonOutline {
-    border: 1px solid #130c49;
-    font-weight: bold;
     color: #fff;
+    text-align: center;
+
+    border-radius: 0.3125rem;
+    border: 1px solid #61bd73;
+    width: 21.5rem;
+    height: 2.625rem;
+    transition: all 1s ease-out;
+    flex-shrink: 0;
   }
 }
 
@@ -284,15 +291,7 @@
     font-weight: 400;
   }
 
-  .buttonOutline {
-    color: #130c49;
-    font-size: 1.1rem;
-    font-weight: 400;
-    transition: all 1s ease-out;
-  }
   .buttonOutline:hover {
-    border-radius: 0.3125rem;
-    outline: 1px solid #130c49;
     background: rgb(15, 0, 50);
     color: #fff;
     font-weight: 400;
@@ -425,7 +424,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: #61bd73;
+  background: #ffffff;
   background-size: contain;
   background-repeat: no-repeat;
 }

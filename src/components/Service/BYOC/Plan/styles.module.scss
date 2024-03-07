@@ -43,10 +43,22 @@
 
 .rightContent {
   flex: 1;
+
   .diagram {
     background-image: url('/img/site/byoc-diagram.svg');
-    background-size: cover;
-    width: 38rem;
-    height: 22rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    width: 42rem;
+    height: 27rem;
+
+    @media screen and (max-width: 1024px) {
+      width: 34rem;
+    }
+
+    @media screen and (max-width: 560px) {
+      width: 300px;
+      height: 15rem;
+    }
   }
 }

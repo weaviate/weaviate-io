@@ -19,8 +19,8 @@ export default function quoteBox(props) {
               a safety net."
             </h3>
             <p>
-              Muzz Imam, Senior Product Manager at Snowflake for Snowpark
-              Container Services
+              Muzz Imam, Senior Product Manager<br></br> at Snowflake for
+              Snowpark Container Services
             </p>
           </div>
         </div>

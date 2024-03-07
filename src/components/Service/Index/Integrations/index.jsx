@@ -90,6 +90,7 @@ export default function Integrations() {
             Our team and community are here to support you at every stage of
             your AI journey.
           </h3>
+
           <div className={styles.parentGrid}>
             <div className={styles.imageGrid1}> </div>
             <div className={styles.imageGrid2}> </div>
@@ -98,6 +99,7 @@ export default function Integrations() {
             <div className={styles.imageGrid5}> </div>
             <div className={styles.imageGrid6}> </div>
           </div>
+          <div className={styles.mobileImage}></div>
         </div>
       </div>
     </div>

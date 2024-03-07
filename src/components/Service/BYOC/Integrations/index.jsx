@@ -22,10 +22,10 @@ export default function Integrations() {
               environment.
             </p>
             <div className={styles.iconsContainer}>
-              <div className={`${styles.iconText} ${styles.community}`}>
+              <div className={`${styles.iconText} ${styles.contact}`}>
                 <Link href="#contact-sales">Get in touch</Link>
               </div>
-              <div className={`${styles.iconText} ${styles.docs}`}>
+              <div className={`${styles.iconText} ${styles.services}`}>
                 <Link href="/services">Check our Services</Link>
               </div>
             </div>

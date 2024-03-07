@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import styles from './styles.module.scss';
 
-export default function ContactUsForm() {
+export default function ContactUsForm({ theme = 'light' }) {
   const [thx, setThx] = useState(false);
   const [name, setName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
@@ -71,9 +71,11 @@ export default function ContactUsForm() {
     return xmlHttp.status;
   };
 
+  const headerChange = theme === 'dark' ? styles.bgHeadDark : styles.bgHead;
+
   return (
     <>
-      <div className={styles.bgHead}></div>
+      <div className={headerChange}></div>
       <div className={styles.contactBg}>
         <div className="container">
           <form

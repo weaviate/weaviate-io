@@ -17,6 +17,8 @@
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   padding: 10px;
 
+  transition: all 0.1s ease-in-out;
+
   .price {
     padding: 1rem;
     display: flex;
@@ -109,6 +111,12 @@
   }
 }
 
+.box:hover {
+  outline: 2px solid #130c49;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.085);
+  height: 25rem;
+}
+
 .smallBox {
   width: 21.875rem;
   height: 13.4375rem;
@@ -161,6 +169,16 @@
   }
 }
 
+.smallBox:hover {
+  width: 21.875rem;
+  height: 13.4375rem;
+  flex-shrink: 0;
+  border-radius: 0.9375rem;
+  background: #130c49;
+  padding: 0px;
+  outline: unset;
+}
+
 .checkIcon {
   display: flex;
   width: 0.5rem;
@@ -199,6 +217,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 25px;
+  justify-content: center;
 
   @media screen and (max-width: 860px) {
     flex-direction: column;
@@ -260,8 +279,11 @@
   border-radius: 0.9375rem;
   background: #61bd73;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
-  width: 68.8125rem;
+  width: auto;
+  max-width: 68.8125rem;
   height: 21.5rem;
+  height: 100%;
+
   padding: 10px;
   flex-shrink: 0;
   align-content: center;
@@ -277,13 +299,24 @@
     font-size: 0.9375rem;
     width: 92%;
   }
-
+  @media screen and (max-width: 800px) {
+    /* Intermediate step for better resizing */
+    .supportbox,
+    .title,
+    .features li {
+      font-size: smaller; /* Adjust font size */
+      padding: smaller; /* Adjust padding */
+    }
+    .features li {
+      flex-basis: auto; /* Allow items to grow or shrink */
+    }
+  }
   @media screen and (max-width: 640px) {
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
     width: 100%;
-    height: 50.5rem;
+    height: 100%;
     flex-direction: column;
   }
 

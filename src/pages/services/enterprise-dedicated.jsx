@@ -22,7 +22,7 @@ export default function EDPage() {
         <Integrations />
         <Highlights />
         <Availability />
-        <ContactUsForm />
+        <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />
     </div>

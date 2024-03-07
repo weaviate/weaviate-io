@@ -17,7 +17,7 @@ export default function EducationandSupportPage() {
         <QuoteBox />
         <Integrations />
         <Highlights />
-        <ContactUsForm />
+        <ContactUsForm theme="dark" />
       </Layout>
       <ThemeSwitch />
     </div>

@@ -179,17 +179,13 @@
   flex-wrap: nowrap;
   background: #ededed !important;
   justify-content: center;
-  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-image: url('/img/site/quote-bg.svg') !important;
   background-size: cover !important;
 
   .cTextColor {
     color: #130c49;
     text-align: center;
-    font-family: Plus Jakarta Sans;
     font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 150%; /* 2.25rem */
   }
   @media screen and (max-width: 1000px) {
     height: auto;

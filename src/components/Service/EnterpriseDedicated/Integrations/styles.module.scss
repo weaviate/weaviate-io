@@ -181,11 +181,13 @@
   grid-area: 1 / 2 / 2 / 3;
   background-image: url('/img/site/enterprise-grid-02.png');
   background-size: cover;
+  background-position-y: center;
 }
 .imageGrid3 {
   grid-area: 2 / 2 / 3 / 3;
   background-image: url('/img/site/enterprise-grid-03.png');
   background-size: cover;
+  background-position-x: center;
 }
 
 .right {
@@ -222,5 +224,15 @@
 
 .console::before {
   content: url('/img/site/index-icon.svg');
+  margin-right: 20px;
+}
+
+.contact::before {
+  content: url('/img/site/contact-icon.svg');
+  margin-right: 20px;
+}
+
+.services::before {
+  content: url('/img/site/services-icon.svg');
   margin-right: 20px;
 }

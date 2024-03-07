@@ -172,14 +172,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 400px;
+  height: 280px;
   gap: 20px;
   color: #130c49;
   z-index: 1;
   flex-wrap: nowrap;
   background: #ededed !important;
   justify-content: center;
-  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-image: url('/img/site/quote-bg.svg') !important;
   background-size: cover !important;
 
   .cTextColor {
