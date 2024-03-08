@@ -144,3 +144,8 @@ jon:
   name: Jonathan Tuite
   title: Solutions Engineer
   image_url: /img/people/icon/jon.jpg
+victoria:
+  name: Victoria Slocum
+  title: Machine Learning Engineer
+  url: https://www.linkedin.com/in/victorialslocum/
+  image_url: /img/people/icon/victoria.png

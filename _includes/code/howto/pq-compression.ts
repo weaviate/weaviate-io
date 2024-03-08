@@ -24,7 +24,7 @@ import fetch from 'node-fetch';
 const client: WeaviateClient = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',
-  headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY },  // Replace with your inference API key
+  headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY }, // Replace with your inference API key
 });
 // END DockerInstantiationExample
 
@@ -33,9 +33,45 @@ if (client.schema.exists('Question')) {
   await client.schema.classDeleter().withClassName('Question').do();
 }
 
+// ==============================
+// =====  AUTOPQ =====
+// ==============================
+
+// START CollectionWithAutoPQ
+async function addSchemaAutoPQ() {
+  const classObj = {
+    class: 'Question',
+    vectorizer: 'text2vec-openai',
+    // highlight-start
+    vectorIndexConfig: {
+      pq: {
+        enabled: true,  // Enable PQ
+        trainingLimit: 50000,  // Set the training limit
+      },
+    },
+    // highlight-end
+    properties: [
+      { name: 'question', dataType: ['text'] },
+      { name: 'answer', dataType: ['text'] },
+    ],
+  };
+  const res = await client.schema.classCreator().withClass(classObj).do();
+  console.log(res);
+}
+
+await addSchemaAutoPQ();
+// END CollectionWithAutoPQ
+
+
+
 // ================================
 // ===== END-TO-END EXAMPLE =====
 // ================================
+
+if (client.schema.exists('Question')) {
+  console.log('Deleting Question class');
+  await client.schema.classDeleter().withClassName('Question').do();
+}
 
 // START InitClassDef
 async function addSchema() {
@@ -81,7 +117,7 @@ async function importQuestions() {
     if (counter++ == batchSize) {
       // flush the batch queue
       const res = await batcher.do();
-      console.log(res);  // To view the response
+      console.log(res); // To view the response
 
       // restart the batch queue
       counter = 0;
@@ -91,7 +127,7 @@ async function importQuestions() {
 
   // Flush the remaining objects
   const res = await batcher.do();
-  console.log(res);  // To view the response
+  console.log(res); // To view the response
 }
 
 await importQuestions();
@@ -133,11 +169,7 @@ await updateSchema();
 // END UpdateSchema
 
 // START GetSchema
-const schema = await client
-  .schema
-  .classGetter()
-  .withClassName('Question')
-  .do();
+const schema = await client.schema.classGetter().withClassName('Question').do();
 
 // Inspect the PQ configuration
 console.log(JSON.stringify(schema.vectorIndexConfig.pq, null, 2));
