@@ -5,14 +5,14 @@
   .pricingBox {
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     color: #130c49;
-    text-align: left;
-    margin: auto 5%;
-    width: 68%;
+    text-align: center;
+    margin: auto;
+    width: 61%;
     p {
-      text-align: left;
+      text-align: center;
     }
     h2 {
       color: #130c49;
@@ -21,15 +21,21 @@
     @media screen and (max-width: 680px) {
       top: 55px;
       right: 11px;
+      width: 100%;
     }
   }
 }
 .sliderArea {
-  max-width: 85%;
+  max-width: 60%;
   margin: auto;
   background-color: rgba(46, 49, 143, 0.5);
   border-radius: 0.75rem;
   padding: 3.5rem 6rem;
+  height: 640px;
+
+  @media screen and (max-width: 1440px) {
+    height: auto;
+  }
 
   @media screen and (max-width: 668px) {
     padding: 2rem 1.5rem;

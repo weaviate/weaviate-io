@@ -33,7 +33,6 @@ export default function ProductPage() {
         {selectedType === 'serverless' ? (
           // Render Serverless content
           <>
-            <WCS socLight="light" />
             <PricingPlan />
             <HybridBusinessCritical />
             <Soc2 socLight="dark" />

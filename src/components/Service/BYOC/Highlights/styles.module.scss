@@ -1,0 +1,309 @@
+.title {
+  text-align: left;
+  padding: 1rem 0 2rem 0;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 23rem;
+  height: 19.75rem;
+  margin: 1rem;
+  padding: 1rem;
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+    padding: 0rem;
+    margin: 1rem 0rem;
+  }
+}
+
+.cardHeader {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  .cardHeaderLeft {
+    margin: auto;
+  }
+
+  .cardHeaderRight {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .iconHeader {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .cardTextColor {
+    color: #02fe0c;
+    height: 5rem;
+
+    @media screen and (max-width: 600px) {
+      margin-left: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 1.3rem;
+  }
+}
+
+.contentDiv {
+  height: 100%;
+}
+
+.textCardContent {
+  line-height: 1.6rem;
+  font-size: 17px;
+  color: #130c49;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2rem 0;
+
+  .cardFooterDiv {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    p {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 600px) {
+      margin-bottom: 0.7rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 1rem 0 0 0;
+  }
+}
+
+.img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  // background-color: red;
+}
+
+[data-theme='light'] {
+  .title {
+    p {
+      color: #1c1468;
+      width: 80%;
+    }
+
+    h2 {
+      color: #130c49;
+      font-family: Plus Jakarta Sans;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 157.33%; /* 3.53994rem */
+    }
+  }
+
+  .cardTextColor {
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%;
+  }
+
+  .startImg {
+    background-image: url('/img/company/careers/star-light.png');
+  }
+
+  .clockSmallImg {
+    background-image: url('/img/company/careers/clock-small-light.png');
+  }
+
+  .chatImg {
+    background-image: url('/img/company/careers/chat-light.png');
+  }
+
+  .facesImg {
+    background-image: url('/img/company/careers/faces-light.png');
+  }
+
+  .checkImg {
+    background-image: url('/img/company/careers/check-light.png');
+  }
+
+  .heartImg {
+    background-image: url('/img/company/careers/heart-light.png');
+  }
+}
+
+.longCard {
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  gap: 20px;
+  z-index: 1;
+  flex-wrap: nowrap;
+  background: #ffffff !important;
+  justify-content: center;
+  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-size: cover !important;
+
+  .cTextColor {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 2.25rem */
+  }
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    min-height: 205px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentDiv {
+    height: 100%;
+    width: 50%;
+    margin: 50px;
+    text-align: center;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}
+
+.longHead {
+  grid-template-columns: 1fr;
+}
+
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #ffffff;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+    outline: 1px solid #130c49;
+  }
+}
+
+.safetyTypeBottom {
+  width: 100%;
+  height: 186px;
+  background: #130c49;
+  margin-top: -200px;
+}
+
+.cardIcon {
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  background-image: url('/img/site/platform-feature-01.svg');
+  background-size: 100% 100%;
+}
+
+.icon01 {
+  background-image: url('/img/site/byoc-icon-01.svg');
+}
+.icon02 {
+  background-image: url('/img/site/byoc-icon-02.svg');
+}
+.icon03 {
+  background-image: url('/img/site/byoc-icon-03.svg');
+}
+.icon04 {
+  background-image: url('/img/site/byoc-icon-04.svg');
+}
+.icon05 {
+  background-image: url('/img/site/byoc-icon-05.svg');
+}
+.icon06 {
+  background-image: url('/img/site/byoc-icon-06.svg');
+}
+
+.cardLink {
+  color: #130c49;
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 157.33%; /* 1.37663rem */
+  text-decoration-line: underline;
+  margin: 20px 0px;
+}

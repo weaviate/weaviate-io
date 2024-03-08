@@ -10,14 +10,6 @@ export default function PricingPlan() {
   return (
     <div className={styles.bgColor}>
       <div className="container">
-        <div className={styles.header}>
-          <h2>WCS Pricing</h2>
-          <p>
-            Our ecosystem is designed to give you the capabilities to build and
-            test your applications for free. When you are ready to move to
-            production, simply pick a plan that best suits your needs.
-          </p>
-        </div>
         <div className={styles.planContainer}>
           <PricingSandBox />
           <div className={styles.plan}>
