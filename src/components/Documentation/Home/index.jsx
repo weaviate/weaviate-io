@@ -168,24 +168,29 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.data}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/weaviate/starter-guides/schema">
-                  Schema configuration
-                </a>{' '}
-                to <a href="/developers/weaviate/search">searches</a>{' '}
+                <a href="/developers/academy/py/starter_text_data/">Work with text data
+                </a>
               </span>
 
               <p>
-                You can customize collections' data structures and its
-                vectorization, RAG, multi-tenancy, or replication behavior.
+                Just bring your text data to Weaviate and it will do the rest.
               </p>
               <p>
-                Learn how to{' '}
-                <a href="/developers/weaviate/starter-guides/schema">
-                  configure collections
+                Just{' '}
+                <a href="/developers/academy/py/starter_text_data/text_collections/">
+                  populate Weaviate
                 </a>
-                , and{' '}
-                <a href="/developers/weaviate/search">how to search them</a>,
-                using different search types and filters.
+                {' '}with your text data and start using powerful{' '}
+                <a href="/developers/academy/py/starter_text_data/text_searches/">
+                vector, keyword and hybrid search capabilities
+                </a>.
+              </p>
+              <p>
+                And use our integrations to{' '}
+                <a href="/developers/academy/py/starter_text_data/text_rag/">
+                  build generative AI apps
+                </a>
+                {' '}with your data.
               </p>
             </div>
           </div>
@@ -193,21 +198,30 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.custom}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/weaviate/starter-guides/custom-vectors">
+                <a href="/developers/academy/py/starter_custom_vectors">
                   Bring your own vectors
                 </a>
               </span>
 
               <p>
-                It’s easy to import data with pre-existing vectors into
-                Weaviate.
+                Do you prefer to work with your own vectors? No problem.
               </p>
               <p>
-                Learn how to work with your existing data and your own vectors.
+                You can{' '}
+                <a href="/developers/academy/py/starter_custom_vectors/object_collections/">
+                  add your own vectors to Weaviate
+                </a>
+                {' '}and still benefit from{' '}
+                <a href="/developers/academy/py/starter_custom_vectors/object_searches/">
+                all of its indexing and search capabilities.
+                </a>.
               </p>
               <p>
-                You can perform vector searches, and even work with a vectorizer
-                if a compatible one is available.
+                Our integrations to{' '}
+                <a href="/developers/academy/py/starter_custom_vectors/object_rag/">
+                  build generative AI apps
+                </a>
+                {' '}work just as well with your data and vectors.
               </p>
             </div>
           </div>
@@ -215,20 +229,30 @@ const DocHomePage = () => {
             <div className={`${styles.scenarioLogo} ${styles.semantic}`}></div>
             <div className={styles.scenarioText}>
               <span>
-                <a href="/developers/weaviate/starter-guides/generative">RAG</a>{' '}
-                for AI-powered apps
+                <a href="/developers/academy/py/starter_multimodal_data">
+                  Multimodality
+                </a>
               </span>
 
               <p>
-                Retrieval augmented generation (RAG) is a powerful tool for
-                building AI-powered applications.
+                For many, data comes in multiple forms beyond text.
               </p>
               <p>
-                Read{' '}
-                <a href="/developers/weaviate/starter-guides/generative">
-                  this starter guide for retrieval augmented generation
-                </a>{' '}
-                in Weaviate, which will help you get started on this journey.
+                Weaviate's multimodal modules{' '}
+                <a href="/developers/academy/py/starter_multimodal_data/mm_collections/">
+                  can import text, audio and video and more
+                </a>
+                {' '}as well as{' '}
+                <a href="/developers/academy/py/starter_multimodal_data/mm_searches/">
+                  perform multimodal searches
+                </a>.
+              </p>
+              <p>
+                Use these modules to{' '}
+                <a href="/developers/academy/py/starter_multimodal_data/mm_rag/">
+                  build generative AI apps
+                </a>
+                {' '}from your entire dataset.
               </p>
             </div>
           </div>
