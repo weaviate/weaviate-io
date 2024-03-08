@@ -188,7 +188,7 @@ const DocHomePage = () => {
               <p>
                 And use our integrations to{' '}
                 <a href="/developers/academy/py/starter_text_data/text_rag/">
-                  build generative AI apps
+                  build generative ai tools
                 </a>
                 {' '}with your data.
               </p>
@@ -219,7 +219,7 @@ const DocHomePage = () => {
               <p>
                 Our integrations to{' '}
                 <a href="/developers/academy/py/starter_custom_vectors/object_rag/">
-                  build generative AI apps
+                  build generative ai tools
                 </a>
                 {' '}work just as well with your data and vectors.
               </p>
@@ -250,7 +250,7 @@ const DocHomePage = () => {
               <p>
                 Use these modules to{' '}
                 <a href="/developers/academy/py/starter_multimodal_data/mm_rag/">
-                  build generative AI apps
+                  build generative ai tools
                 </a>
                 {' '}from your entire dataset.
               </p>
