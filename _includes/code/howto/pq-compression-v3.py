@@ -34,13 +34,44 @@ client = weaviate.Client(
     url="http://localhost:8080/",  # Replace with your endpoint
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv(
-            "OPENAI_API_KEY"
+            "OPENAI_APIKEY"
         )  # Replace with your OpenAI API key
     },
 )
 
-print(client.is_ready())
+assert client.is_ready()
 # END ConnectCode
+
+# ==============================
+# =====  AUTOPQ =====
+# ==============================
+
+
+if client.schema.exists("Question"):
+    client.schema.delete_class("Question")
+
+# START CollectionWithAutoPQ
+class_definition = {
+    "class": "Question",
+    "vectorizer": "text2vec-openai",
+    "vectorIndexConfig": {
+        # highlight-start
+        "pq": {
+            "enabled": True,  # Enable PQ
+            "trainingLimit": 50000,  # Set the threshold to begin training
+            # highlight-end
+        }
+    },
+}
+
+client.schema.create_class(class_definition)
+# END CollectionWithAutoPQ
+
+collection_def = client.schema.get("Question")
+
+assert collection_def["vectorIndexConfig"]["pq"]["enabled"] is True
+assert collection_def["vectorIndexConfig"]["pq"]["trainingLimit"] == 50000
+
 
 # ==============================
 # =====  INITIAL SCHEMA =====
@@ -63,6 +94,10 @@ class_definition = {
 client.schema.create_class(class_definition)
 # END InitialSchema
 
+collection_def = client.schema.get("Question")
+assert collection_def["vectorIndexConfig"]["pq"]["enabled"] is False
+
+
 # ==============================
 # =====  LOAD DATA =====
 # ==============================
@@ -78,6 +113,7 @@ with client.batch as batch:
 
         batch.add_data_object(data_object=obj_body, class_name="Question")
 # END LoadData
+
 
 # ==============================
 # =====  UPDATE SCHEMA =====
@@ -99,6 +135,11 @@ client.schema.update_config(
     },
 )
 # END UpdateSchema
+
+collection_def = client.schema.get("Question")
+assert collection_def["vectorIndexConfig"]["pq"]["enabled"] is True
+assert collection_def["vectorIndexConfig"]["pq"]["trainingLimit"] == 100000
+
 
 # ==============================
 # =====  GET THE SCHEMA =====
