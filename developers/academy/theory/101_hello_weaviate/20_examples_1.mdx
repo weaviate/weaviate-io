@@ -46,27 +46,6 @@ The Weaviate query is much more intuitive. See what happens when we run the foll
 animals in movies
 :::
 
-<details>
-  <summary><i class="fa-solid fa-code"></i> See the full query</summary>
-
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      nearText: {
-        concepts: ["animals in movies"]
-      }
-      limit: 3
-    ) {
-      question
-      answer
-    }
-  }
-}
-```
-
-</details>
-
 Weaviate retrieved these as the top answers:
 
 :::note Weaviate retrieved:
@@ -75,122 +54,13 @@ Weaviate retrieved these as the top answers:
 - **The Call of the Wild Thornberrys**: Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals
 :::
 
-<details>
-  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
-
-```json
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "answer": "meerkats",
-          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
-        },
-        {
-          "answer": "dogs",
-          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
-        },
-        {
-          "answer": "The Call of the Wild Thornberrys",
-          "question": "Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals"
-        }
-      ]
-    }
-  }
-}
-```
-
-</details>
-
 Note how relevant the results are, despite none of them including the word "animal" or the word "movie", let alone both!
 
 This is exactly why vector searches are so useful. They can identify related objects without the need to match exact text.
 
-### <i class="fa-solid fa-chalkboard"></i> Vector similarities demo
+### <i class="fa-solid fa-chalkboard"></i> Vector similarities
 
-If we run *this* query, you might expect to see responses like the ones we saw earlier.
-
-```graphql
-{
-  Get {
-    JeopardyQuestion (
-      nearText: {
-        concepts: ["European geography"]
-      }
-      limit: 3
-    ) {
-      question
-      answer
-      _additional {
-        distance
-      }
-    }
-  }
-}
-```
-
-But, take a look at this response. Do you notice any additional information?
-
-```json
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "distance": 0.15916324
-          },
-          "answer": "Bulgaria",
-          "question": "A European republic: Sofia"
-        },
-        ...
-      ]
-    }
-  }
-}
-
-```
-
-<details>
-  <summary><i class="fa-solid fa-radar"></i> See the full JSON response from Weaviate</summary>
-
-```json
-{
-  "data": {
-    "Get": {
-      "JeopardyQuestion": [
-        {
-          "_additional": {
-            "distance": 0.15916324
-          },
-          "answer": "Bulgaria",
-          "question": "A European republic: Sofia"
-        },
-        {
-          "_additional": {
-            "distance": 0.16247147
-          },
-          "answer": "Balkan Peninsula",
-          "question": "The European part of Turkey lies entirely on this peninsula"
-        },
-        {
-          "_additional": {
-            "distance": 0.16832423
-          },
-          "answer": "Mediterranean Sea",
-          "question": "It's the only body of water with shores on the continents of Asia, Africa & Europe"
-        }
-      ]
-    }
-  }
-}
-
-```
-
-</details>
-
-The difference is that the response contains a `distance` value.
+In vector searches, you can retrieve the actual quantified similarity between the query and the returned objects. This is called the `distance`.
 
 A `distance` is indicative of the degree of similarity between the returned object and the query.
 

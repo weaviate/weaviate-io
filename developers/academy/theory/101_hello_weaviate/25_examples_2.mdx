@@ -29,49 +29,12 @@ On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, hav
 
 Weaviate creates [data objects](https://weaviate.io/developers/weaviate/concepts/data) when it processes the Wikipedia entry. The data objects are stored in classes. A class is roughly analogous to a table in a relational database. An object is similar to an entry in that table.
 
-### <i class="fa-solid fa-chalkboard"></i> Question-answering demo
-
-Weaviate can extract knowledge from the text.
-
-```graphql
-{
-  Get {
-    WikiArticle (
-      ask: {
-        question: "When did construction for the Sydney Opera House start?",
-        properties: ["wiki_summary"]
-      },
-      limit: 1
-    ) {
-      title
-      _additional {
-        answer {
-          hasAnswer
-          property
-          result
-          startPosition
-          endPosition
-        }
-      }
-    }
-  }
-}
-```
-
-Given this query, Weaviate doesn't just identify the most relevant data object. Weaviate also answers the question based on the textual information in the Wikipedia article.
-
-<details>
-  <summary>See response</summary>
-
-:::note Weaviate says:
-Construction for the Sydney Opera House started in 1958.
-:::
-
-</details>
 
 ### <i class="fa-solid fa-chalkboard"></i> Generative search
 
 Weaviate can do even more with these entries. You can ask Weaviate to grab an object from its data store and use that object to generate new text. For example, Weaviate can use the object that contains the entry for the Sydney Opera House to derive new text.
+
+Here is a `GraphQL` query example of a generative search.
 
 ```graphql
 {
@@ -119,7 +82,7 @@ You can vary the prompt to generate different results.
 
 ### <i class="fa-solid fa-chalkboard"></i> What next?
 
-Tools like Q&A and generative search really start to bring your information to life. In the next sections, you will set up Weaviate and run your own queries.
+Tools like Q&A and generative search really start to bring your information to life.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Review
 
