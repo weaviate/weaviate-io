@@ -31,12 +31,14 @@ if client.schema.exists("YourCollection"):
 class_definition = {
     "class": "YourCollection",
     "vectorizer": "text2vec-openai",  # Can be any vectorizer
+    # highlight-start
     "vectorIndexType": "flat",
     "vectorIndexConfig": {
         "bq": {
-            "enabled": False,
+            "enabled": True,
         },
     },
+    # highlight-end
     #  Remainder not shown
 }
 
@@ -56,12 +58,14 @@ class_definition = {
     "vectorizer": "text2vec-openai",  # Can be any vectorizer
     "vectorIndexType": "flat",
     "vectorIndexConfig": {
+        # highlight-start
         "bq": {
-            "enabled": False,
+            "enabled": True,
             "rescoreLimit": 200,  # The minimum number of candidates to fetch before rescoring
             "cache": True,  # Default: False
         },
         "vectorCacheMaxObjects": 100000,  # Cache size (used if `cache` enabled)
+        # highlight-end
     },
     # Remainder not shown
 }
