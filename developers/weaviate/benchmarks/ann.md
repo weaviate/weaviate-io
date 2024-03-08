@@ -14,14 +14,14 @@ This benchmark is designed to measure and illustrate Weaviate's ANN performance 
 
 :::note
 This is not a comparative benchmark that runs Weaviate against competing
-solutions.
+solutions. If you’re interested in discussing trade-offs with other solutions, please [contact sales](https://weaviate.io/pricing#contact-sales).
 :::
 
 To make the most of this benchmark, you can look at it from different perspectives:
 
 - **The overall performance** – Review the [benchmark result section below](#results) to draw conclusions about what to expect from Weaviate in a production setting.
 - **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case.
-- **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the config parameters (efConstruction, maxConnections and ef) to achieve the best results for your production configuration.
+- **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the configuration parameters (`efConstruction`, `maxConnections` and `ef`) to achieve the best results for your production configuration. (See [HNSW Configuration Tips](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#hnsw-configuration-tips))
 
 :::warning TODO
 Add some more info related to our philosophy / [DuckDB blog post](https://motherduck.com/blog/perf-is-not-enough/)
@@ -30,11 +30,11 @@ Add some more info related to our philosophy / [DuckDB blog post](https://mother
 ## What is being measured?
 
 For each benchmark test, we picked parameters of:
-- **efConstruction** - The HNSW build parameter that controls the quality of the
+- **`efConstruction`** - The HNSW build parameter that controls the quality of the
   search at build time.
-- **maxConnections**	 - The HNSW build parameter controls how many outgoing
+- **`maxConnections`**	 - The HNSW build parameter controls how many outgoing
   edges a node can have in the HNSW graph.
-- **ef** - The HNSW query time parameter that controls the quality of the search.
+- **`ef`** - The HNSW query time parameter that controls the quality of the search.
 
 :::info HNSW Parameter Configuration Guide
 You can refer to our [HNSW Configuration Tips](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#hnsw-configuration-tips) for good starting points for these parameter values and how to tune them for best performance.
@@ -51,10 +51,15 @@ For each set of parameters we've run 10,000 requests and we measured:
 - **Multi-threaded Queries per Second (QPS)** - The overall throughput you can
   achieve with each configuration
 - **Individual Request Latency (mean)** - The mean latency over all 10,000 requests
-- **P99 Latency** - 99% of all requests (9.900 out of 10.000) have a latency that
+- **P99 Latency** - 99% of all requests (9,900 out of 10,000) have a latency that
   is lower than or equal to this number – this shows how fast
 - **Import time** - Since varying build parameters has an effect on import
   time, the import time is also included
+
+
+:::warning TODO
+Add explanation of Limit 1, 10, 100
+:::
 
 By request, we mean:
 An unfiltered vector search across the entire dataset for the given test. All
@@ -82,6 +87,12 @@ The following results section contains the following datasets modeled after [ANN
 | [Deep Image 96](tbd) | 10 M | 96 | Cosine | While this dataset is about 10 times larger than SIFT1M, the throughput is only slightly lower than that of the SIFT1M. This dataset gives you a good indication of expected speeds and throughputs when datasets grow. |
 | [GIST 960](tbd) | 1 M | 960 | Cosine (shouldn't this be euclidean?) | It has the lowest throughput of the datasets outlined. It highlights the cost of vector comparisons with a lot of dimensions. Pick this dataset if you run very high-dimensional loads. |
 
+:::info
+This benchmark is produced using [open source
+scripts](https://github.com/weaviate/weaviate-benchmarking), so you can reproduce it yourself.
+:::
+
+### Datasets
 
 
 <Tabs groupId="datasets">
@@ -97,7 +108,11 @@ import AnnSift128 from '/_includes/ann-sift-128.mdx';
 
 <AnnSift128/>
 
-#### Recommended configuration
+import AnnReadResultsTable from '/_includes/ann-read-results-table.mdx';
+
+<AnnReadResultsTable/>
+
+#### Recommended configuration for SIFT1M
 Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
 performance with this dataset. 
 
@@ -119,7 +134,9 @@ import AnnGlove25 from '/_includes/ann-glove-25.mdx';
 
 <AnnGlove25/>
 
-#### Recommended configuration
+<AnnReadResultsTable/>
+
+#### Recommended configuration for Glove-25
 Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
 performance with this dataset. 
 
@@ -140,7 +157,9 @@ import AnnDeep96 from '/_includes/ann-deep-96.mdx';
 
 <AnnDeep96/>
 
-#### Recommended configuration
+<AnnReadResultsTable/>
+
+#### Recommended configuration for Deep Image 96
 Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
 performance with this dataset. 
 
@@ -162,7 +181,10 @@ import AnnGist960 from '/_includes/ann-gist-960.mdx';
 
 <AnnGist960/>
 
-#### Recommended configuration
+<AnnReadResultsTable/>
+
+
+#### Recommended configuration for GIST 960 
 Below, you can see the recommended configuration for this dataset, which is an opinionated pick about a good recall/latency/throughput trade-off to give you a good overview of Weaviate's
 performance with this dataset. 
 
@@ -173,37 +195,7 @@ performance with this dataset.
 </TabItem>
 </Tabs>
 
-## How to read the results
-* **Choose the desired limit using the tab selector above the table.** <br/>
-    Different use cases require different levels of Queries per Second (QPS)
-    and returned objects per query. For example, at 100 QPS and <code>limit 100</code>
-    10,000 objects will be returned in total. At 1,000 QPS and <code>limit 10</code>, you
-    will also receive 10,000 objects in total as each request contains fewer
-    objects, but you can send more requests in the same timespan. Pick the
-    value that matches your desired limit in production most closely.
-* **Pick the desired configuration** <br/>
-    The first three columns represent the different input parameters to configure the HNSW index. These inputs lead to the results shown in columns four through six.
-* **Recall/Throughput Trade-Off at a glance** <br/>
-    The highlighted columns (Recall, QPS) reflect the Recall/QPS trade-off.
-    Generally, as the Recall improves, the throughput drops. Pick the row
-    that represents a combination that satisfies your requirements. Since
-    the benchmark is multi-threaded and running on a 30-core machine, the
-    QPS/vCore columns shows the throughput per single CPU core. You can use
-    this column to extrapolate what the throughput would be like on a
-    machine of different size. See also this section below
-    <a href="#what-happens-if-i-run-with-fewer-or-more-cpu-cores-than-on-the-example-test-machine">outlining what changes to expect when running on different hardware.</a>
-* **Latencies** <br/>
-    Besides the overall throughput, columns seven and eight show the
-    latencies for individual requests. The Mean Latency columns shows the
-    mean over all 10,000 test queries. The p99 Latency shows the maximum
-    latency for the 99th-percentile of requests. In other words, 9,900 out
-    of 10,000 queries will have a latency equal to or lower than the
-    specified number. The <a href="#what-is-a-p99-latency">difference
-      between mean and p99</a> helps you get an impression how stable the
-    request times are in a highly concurrent setup.
-* **Import times** <br/>
-    Changing the configuration parameters can also have an effect on the
-    time it takes to import the dataset. This is shown in the last column.
+
 
 
 
@@ -211,7 +203,7 @@ performance with this dataset.
 
 ### Scripts
 
-This benchmark is produced using [open-source
+This benchmark is produced using [open source
 scripts](https://github.com/weaviate/weaviate-benchmarking), so you can reproduce it yourself.
 
 ### Hardware
@@ -254,6 +246,11 @@ recommend using the [Go](/developers/weaviate/client-libraries/go.md) or
 The complete import and test scripts are available [here](https://github.com/weaviate/weaviate-benchmarking).
 
 ## Learn more & Benchmark FAQ
+
+### How can I get the most performance for my use case?
+If your use case is similar to one of the showcased datasets this benchmark, you can start with the recommended configurations for the HNSW parameters.
+
+For more instructions on how to tune your configuration for best performance, you can refer to our [HNSW Configuration Tips](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#hnsw-configuration-tips).
 
 ### What is the difference between latency and throughput?
 
@@ -324,7 +321,7 @@ cores. If you need more throughput, you can run with more CPU cores.
 
 Please note that there is a point of diminishing returns with adding more CPUs because of synchronization mechanisms, disk, and memory bottlenecks. Beyond that point, you can scale horizontally instead of vertically. Horizontal scaling with replication will be [available in Weaviate soon](/developers/weaviate/roadmap/index.md).
 
-### What are ef, efConstruction, and maxConnections?
+### What are `ef`, `efConstruction`, and `maxConnections`?
 
 These parameters refer to the [HNSW build and query
 parameters](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw).
