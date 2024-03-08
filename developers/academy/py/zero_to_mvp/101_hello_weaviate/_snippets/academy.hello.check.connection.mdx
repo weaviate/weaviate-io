@@ -1,0 +1,59 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+import json
+
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate API key
+
+# Instantiate the client
+client = weaviate.Client(
+    url="https://your-endpoint.weaviate.network",  # Replace with your sandbox URL
+    auth_client_secret=auth_config,
+)
+
+meta_info = client.get_meta()
+print(json.dumps(meta_info, indent=2))
+```
+
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Expected output</summary>
+
+```json
+{
+  "hostname": "http://[::]:8080",
+  "modules": {
+    "generative-openai": {
+      "documentationHref": "https://beta.openai.com/docs/api-reference/completions",
+      "name": "Generative Search - OpenAI"
+    },
+    "qna-openai": {
+      "documentationHref": "https://beta.openai.com/docs/api-reference/completions",
+      "name": "OpenAI Question & Answering Module"
+    },
+    "ref2vec-centroid": {},
+    "text2vec-cohere": {
+      "documentationHref": "https://docs.cohere.com/docs/embeddings",
+      "name": "Cohere Module"
+    },
+    "text2vec-huggingface": {
+      "documentationHref": "https://huggingface.co/docs/api-inference/detailed_parameters#feature-extraction-task",
+      "name": "Hugging Face Module"
+    },
+    "text2vec-openai": {
+      "documentationHref": "https://beta.openai.com/docs/guides/embeddings/what-are-embeddings",
+      "name": "OpenAI Module"
+    }
+  },
+  "version": "1.18.2"
+}
+```
+
+</details>
