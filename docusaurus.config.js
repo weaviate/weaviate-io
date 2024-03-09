@@ -174,7 +174,7 @@ const config = {
                     {
                         // Redocusaurus will automatically bundle your spec into a single file during the build
                         spec: 'openapi.json',
-                        route: 'developers/api/rest',
+                        route: 'developers/weaviate/api/rest',
                     },
                 ],
                 // Theme Options for modifying how redoc renders them
