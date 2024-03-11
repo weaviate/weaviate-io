@@ -1,10 +1,17 @@
 @import 'variables.scss';
 @import 'blog-custom-layout.scss';
 
+// For redocusaurus anchor - "smooth" breaks scrolling
+html {
+  scroll-behavior: unset !important;
+}
+
 // Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
 .blog-post-page,
 .docs-doc-page,
+.docs-doc-page,
+.redocusaurus,
 .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
@@ -128,6 +135,14 @@
 
 .hidden {
   display: none !important;
+}
+
+.redocusaurus {
+
+  label {
+    font-family: var(--site-font-base-family);
+    font-size: 12px;
+  }
 }
 
 //Hides light toggle on docs
