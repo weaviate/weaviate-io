@@ -9,20 +9,23 @@ import WCSHeadersAuth from './img/wcs-headers-auth.png';
 
 There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 
-- [Connect a browser to WCS through the WCS Consol.](/developers/wcs/guides/authentication#connect-a-browser-to-wcs)
+- [Connect a browser to WCS through the WCS Console.](/developers/wcs/guides/authentication#connect-a-browser-to-wcs)
 - [Connect a client application to WCS through APIs.] 
 
-Browser authentication relies on a username and password. Client authentication uses API keys. 
+Browser authentication relies on a username and password. Client authentication uses API keys. Enable two-factor authentication to increase the security of browser logins.  
 
 ## Connect a browser to WCS
 
-You have two options for authenticating into a WCS instance.
-- Using an **API key** (recommended method), or
-- Using the account owner's **WCS username and password**.
+The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. To work with your data, use the [GraphQL console](/developers/wcs/guides/console). The console is great for ad hoc queries. If you develop applications, or want additional flexibility, use the Weaviate API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
 
-:::tip Recommendation: Use the API key + a Weaviate client
-Generally, we recommend authenticating with the API key, using a Weaviate client (e.g. Python client).
-:::
+Follow these steps to connect with a browser.
+
+1. If you don't a login account, [register a user](/developers/wcs/create-account) with WCS.
+1. Open the [WCS login page](https://console.weaviate.cloud/) in a browser.
+1. Click `Login to Weaviate Cloud Services`.
+1. Enter your email address and password to authenticate. On subsequent visits, should be redirected to the login page automatically. 
+
+To enable multi-factor authentication (MFA)
 
 ### API key permissions
 
