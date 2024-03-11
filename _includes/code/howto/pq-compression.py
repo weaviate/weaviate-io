@@ -51,6 +51,8 @@ client.collections.delete("Question")
 
 
 # START CollectionWithAutoPQ
+import weaviate.classes.config as wc
+
 client.collections.create(
     name="Question",
     vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
