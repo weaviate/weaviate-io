@@ -1976,7 +1976,8 @@
   "paths": {
     "/": {
       "get": {
-        "description": "Home. Discover the REST API",
+        "description": "Home. Links to other endpoints to help users discover the REST API",
+        "summary": "Root endpoint with links.",
         "operationId": "weaviate.root",
         "responses": {
           "200": {
@@ -3772,7 +3773,7 @@
         }
       },
       "put": {
-        "summary": "Update an existing collection in the schema.",
+        "summary": "Update an existing collection.",
         "description": "Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead use POST /v1/schema/{className}/properties. A typical use case for this endpoint is to update configuration, such as the vectorIndexConfig. Note that even in mutable sections, such as vectorIndexConfig, some fields may be immutable.",
         "operationId": "schema.objects.update",
         "x-serviceIds": ["weaviate.local.manipulate.meta"],
@@ -4112,7 +4113,7 @@
         }
       },
       "delete": {
-        "summary": "delete tenants from a collection",
+        "summary": "Delete tenants from a collection",
         "operationId": "tenants.delete",
         "tags": ["schema"],
         "parameters": [
@@ -4162,7 +4163,7 @@
         }
       },
       "get": {
-        "summary": "Get all tenants from a specific collection.",
+        "summary": "Get all tenants from a collection.",
         "operationId": "tenants.get",
         "tags": ["schema"],
         "parameters": [
@@ -4209,7 +4210,7 @@
     },
     "/schema/{className}/tenants/{tenantName}": {
       "head": {
-        "summary": "Check if a tenant exists for a specific collection",
+        "summary": "Check if a tenant exists in a collection",
         "operationId": "tenant.exists",
         "tags": ["schema"],
         "parameters": [
@@ -4775,11 +4776,11 @@
   "tags": [
     {
       "name": "/",
-      "description": "Root endpoint."
+      "description": "Home."
     },
     {
       "name": "schema",
-      "description": "These operations enable manipulation of the schema in Weaviate."
+      "description": "These operations enable manipulation of the database schema in Weaviate. Note an 'Object class' in Weaviate is being renamed to a 'collection'."
     },
     {
       "name": "objects"
