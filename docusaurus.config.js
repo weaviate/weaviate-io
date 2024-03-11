@@ -203,7 +203,13 @@ const config = {
                         // type: 'dropdown',
                         label: 'Product',
                         position: 'right',
-                        to: '/platform',
+                        items: [
+                            {
+                                type: 'html',
+                                value: '<a href = "/platform"><div class="dropDown"><span class="dropDownLabel">The AI-Native Vector Database</span><div class="dropDownThumbnail"></div><span class="dropDownText">Build powerful, production-ready AI applications that scale.</span></div></a>',
+                               className: 'dropDownContainer',
+                            },
+                        ]
                         
                     },
                     {  type: 'dropdown',
@@ -211,6 +217,11 @@ const config = {
                     position: 'right',
                     items: [
                         {
+                            type: 'html',
+                            value : '<div class="holder"><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Weaviate Services</span><div class="dropDownThumbnail"></div><span class="dropDownText">Packages to help you be successful with Generative AI.</span></div></a></div><div class="holdRight"></div></div>',
+                            className: 'dropDownContainer2',
+                        },
+                         {
                             label: 'Services',
                             to: '/services',
                            
@@ -239,7 +250,7 @@ const config = {
                             label: 'Pricing',
                             to: '/pricing',
                            
-                        },
+                        }, 
                     ]
                 }
                     ,

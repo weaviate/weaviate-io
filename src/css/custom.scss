@@ -756,3 +756,114 @@ Dropdown style removed.
     display: none;
   }
 }
+
+ul.dropdown__menu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: max-content;
+  align-items: flex-start;
+
+  li {
+    flex: none;
+  }
+}
+
+.dropDownContainer {
+  .dropDown {
+    width: 13.75rem;
+    height: auto;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .dropDownLabel {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+  }
+
+  .dropDownThumbnail {
+    width: 12.375rem;
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/press-background-3.png');
+    height: 11.8125rem;
+    flex-shrink: 0;
+  }
+
+  .dropDownText {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+  }
+}
+
+.dropDownContainer2 {
+  flex: 1;
+  margin-right: auto;
+
+  .holder {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 300px;
+  }
+  .dropDown {
+    width: 13.75rem;
+    height: auto;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .dropDownLabel {
+    color: #130c49;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .dropDownThumbnail {
+    width: 12.375rem;
+    height: 9.8125rem;
+    flex-shrink: 0;
+    background-size: 57%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #130c49;
+    background-image: url('/img/site/w-icon-system.svg');
+    height: 11.8125rem;
+  }
+
+  .dropDownText {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+  }
+}
+
+@media screen and (max-width: 1068px) {
+  .dropDownContainer2 {
+    display: none;
+  }
+}
