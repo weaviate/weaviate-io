@@ -131,7 +131,7 @@ assert response.total_count == 1000
 # ==============================
 
 # START UpdateSchema
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 jeopardy = client.collections.get("Question")
 jeopardy.config.update(
