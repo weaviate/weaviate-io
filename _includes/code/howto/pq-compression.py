@@ -51,6 +51,8 @@ client.collections.delete("Question")
 
 
 # START CollectionWithAutoPQ
+import weaviate.classes.config as wc
+
 client.collections.create(
     name="Question",
     vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
@@ -131,7 +133,7 @@ assert response.total_count == 1000
 # ==============================
 
 # START UpdateSchema
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 jeopardy = client.collections.get("Question")
 jeopardy.config.update(
