@@ -4780,7 +4780,7 @@
     },
     {
       "name": "schema",
-      "description": "These operations enable manipulation of the database schema in Weaviate. Note an 'Object class' in Weaviate is being renamed to a 'collection'."
+      "description": "These operations enable manipulation of the database schema in Weaviate. Note an 'Object class' in Weaviate is being renamed to a 'collection'. See <a href='https://weaviate.io/developers/weaviate/manage-data/collections'>this page</a> for client code examples."
     },
     {
       "name": "objects"
