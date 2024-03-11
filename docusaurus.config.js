@@ -221,11 +221,7 @@ const config = {
                             value : '<div class="holder"><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Weaviate Services</span><div class="dropDownThumbnail"></div><span class="dropDownText">Packages to help you be successful with Generative AI.</span></div></a></div><div class="holdRight"></div></div>',
                             className: 'dropDownContainer2',
                         },
-                         {
-                            label: 'Services',
-                            to: '/services',
-                           
-                        },
+                        
                         {
                             label: 'Serverless',
                             href: '/services/serverless',
