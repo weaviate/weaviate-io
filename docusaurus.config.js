@@ -211,7 +211,7 @@ const config = {
                     position: 'right',
                     items: [
                         {
-                            label: 'Services',
+                            label: 'Services Overview',
                             to: '/services',
                            
                         },
