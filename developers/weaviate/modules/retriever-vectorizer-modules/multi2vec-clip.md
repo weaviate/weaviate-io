@@ -115,7 +115,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 - `<media>Fields` - property names to map for different modalities (under `moduleConfig.multi2vec-clip`).
     - i.e. one or more of [`textFields`, `imageFields`]
 - `weights` - optional parameter to weigh the different modalities in producing the final vector.
-- `inferenceUrl` – the URL of the inference container, for when using multiple inference containers (e.g. `http://service-name:8080`). Default: `http://multi2vec-clip:8080`.
+- `inferenceUrl` – the URL of the inference container, for when using [multiple inference containers](#weaviate-instance-configuration) (e.g. `http://service-name:8080`). Default: `http://multi2vec-clip:8080`.
 
 #### Property-level
 

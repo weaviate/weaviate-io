@@ -135,7 +135,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 - `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the collection name. Default: `true`.
 - `poolingStrategy` – the pooling strategy to use. Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
-- `inferenceUrl` – the URL of the inference container, for when using multiple inference containers (e.g. `http://service-name:8080`). Default: `http://t2v-transformers:8080`.
+- `inferenceUrl` – the URL of the inference container, for when using [multiple inference containers](#weaviate-instance-configuration) (e.g. `http://service-name:8080`). Default: `http://t2v-transformers:8080`.
 
 #### Property-level
 
