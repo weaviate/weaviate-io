@@ -43,7 +43,7 @@ export default function Program() {
               of this great experience back to our community!
             </p>
             <div className={styles.buttonContainer}>
-              <Link to="/community/weaviate-hero-program">
+              <Link to="https://forms.gle/FHwhfPYwCVKkzw5h6">
                 <button className={styles.buttonGradient}>Become a Hero</button>
               </Link>
             </div>

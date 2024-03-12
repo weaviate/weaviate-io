@@ -104,8 +104,8 @@ export default function CommunityPanel() {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="#jobs">
-          Join the Community
+        <Link className={styles.buttonGradient} to="/blog">
+          Read the blog
         </Link>
       </div>
     </div>

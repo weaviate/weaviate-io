@@ -19,6 +19,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  row-gap: 40px;
 }
 
 .twitter-tweet.twitter-tweet-rendered {
@@ -28,7 +29,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 20.1875rem;
   height: 19.875rem;
   flex-shrink: 0;
@@ -39,21 +40,17 @@
 
   h2 {
     color: #130c49;
-    font-family: 'Plus Jakarta Sans';
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 120%; /* 1.5rem */
     letter-spacing: -0.0125rem;
   }
 
   p {
     color: #130c49;
-    font-family: Inter;
     font-size: 1rem;
-    font-style: normal;
     font-weight: 400;
-    line-height: 157.33%; /* 1.57331rem */
+    height: 180px;
   }
   @media screen and (max-width: 600px) {
     height: auto;
@@ -115,4 +112,35 @@
   background: rgb(15, 0, 50);
   color: #fff;
   font-weight: 400;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 60px;
+}
+
+.img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.starImg {
+  background-image: url('/img/site/excellence-star.svg');
+  width: 4rem;
+  height: 3rem;
+}
+
+.trustImg {
+  background-image: url('/img/site/trust-star.svg');
+  width: 4rem;
+  height: 4rem;
+}
+
+.friendImg {
+  background-image: url('/img/site/friend-star.svg');
+  width: 4rem;
+  height: 3rem;
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Travis Rehl",
+    "title": "Developer Advocate",
+    "image": "/img/people/heroes/travis-rehl.png",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/travis-rehl",
+      "twitter": "https://twitter.com/travisrehl",
+      "github": "https://github.com/travisrehl"
+    }
+  },
+  {
+    "name": "Patrice Bourgougnon",
+    "title": "Engineer",
+    "image": "/img/people/heroes/patrice-bourgougnon.png",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/patrice-bourgougnon",
+      "twitter": "https://twitter.com/patricebourgougnon",
+      "github": "https://github.com/patricebourgougnon"
+    }
+  },
+  {
+    "name": "Ron Parker",
+    "title": "Engineer",
+    "image": "/img/people/heroes/ron-parker.png",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/ron-parker",
+      "twitter": "https://twitter.com/ronparker",
+      "github": "https://github.com/ronparker"
+    }
+  }
+]

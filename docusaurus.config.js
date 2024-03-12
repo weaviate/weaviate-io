@@ -276,6 +276,10 @@ const config = {
                                 to: 'https://newsletter.weaviate.io/',
                             },
                             {
+                                label: 'Community',
+                                to: '/community',
+                            },
+                            {
                                 label: 'Events & Webinars',
                                 to: '/community/events',
                             },

@@ -24,11 +24,14 @@ export default function PlatformHeader() {
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}
-              to="https://console.weaviate.cloud/"
+              to="https://forms.gle/FHwhfPYwCVKkzw5h6"
             >
               Join us
             </Link>
-            <Link className={styles.buttonOutline} to="/developers/weaviate">
+            <Link
+              className={styles.buttonOutline}
+              to="https://newsletter.weaviate.io/"
+            >
               Subscribe for news
             </Link>
           </div>

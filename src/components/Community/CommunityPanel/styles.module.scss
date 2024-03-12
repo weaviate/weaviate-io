@@ -1,6 +1,10 @@
 .container {
   padding: 3rem;
   background: #f5f5f5;
+
+  @media screen and (max-width: 500px) {
+    padding: 3rem 0rem;
+  }
 }
 
 .title {
@@ -34,6 +38,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-image: url('../../../../static/img/site/hero-graphic.svg');
+
+  @media screen and (max-width: 500px) {
+    margin-top: -425px;
+  }
 }
 
 .card {

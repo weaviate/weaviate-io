@@ -63,6 +63,10 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 500px) {
+    background-size: cover;
+  }
 }
 
 .img2 {
@@ -73,6 +77,10 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 500px) {
+    background-size: cover;
+  }
 }
 
 .img3 {
@@ -83,6 +91,10 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 500px) {
+    background-size: cover;
+  }
 }
 
 .img4 {
@@ -93,6 +105,10 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 1rem;
+
+  @media screen and (max-width: 500px) {
+    background-size: cover;
+  }
 }
 
 .buttonContainer {
