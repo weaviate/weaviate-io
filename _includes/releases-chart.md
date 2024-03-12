@@ -49,6 +49,7 @@ For links to the Weaviate Core releases, expand this section.
   | :- | :- |
   | [1.24.1][c1.24.1] | 2024-03-01 |
   | [1.24.0][c1.24.0] | 2024-02-27 |
+  | [1.23.12][c1.23.12] | 2024-03-11 |
   | [1.23.11][c1.23.11] | 2024-03-04 |
   | [1.23.10][c1.23.10] | 2024-02-20 |
   | [1.23.9][c1.23.9] | 2024-02-13 |
@@ -61,6 +62,7 @@ For links to the Weaviate Core releases, expand this section.
   | [1.23.2][c1.23.2] | 2024-01-08 |
   | [1.23.1][c1.23.1] | 2024-01-05 |
   | [1.23.0][c1.23.0] | 2023-12-18 |
+  | [1.22.13][c1.22.13] | 2024-03-11 |
   | [1.22.12][c1.22.12] | 2024-03-04 |
   | [1.22.11][c1.22.11] | 2024-01-23 |
   | [1.22.10][c1.22.10] | 2024-01-22 |
@@ -437,6 +439,7 @@ For links to the Java Client releases, expand this section.
 [comment]: # ( core links )
 [c1.24.1]: https://github.com/weaviate/weaviate/releases/tag/v1.24.1
 [c1.24.0]: https://github.com/weaviate/weaviate/releases/tag/v1.24.0
+[c1.23.12]: https://github.com/weaviate/weaviate/releases/tag/v1.23.12
 [c1.23.11]: https://github.com/weaviate/weaviate/releases/tag/v1.23.11
 [c1.23.10]: https://github.com/weaviate/weaviate/releases/tag/v1.23.10
 [c1.23.9]: https://github.com/weaviate/weaviate/releases/tag/v1.23.9
@@ -449,6 +452,7 @@ For links to the Java Client releases, expand this section.
 [c1.23.2]: https://github.com/weaviate/weaviate/releases/tag/v1.23.2
 [c1.23.1]: https://github.com/weaviate/weaviate/releases/tag/v1.23.1
 [c1.23.0]: https://github.com/weaviate/weaviate/releases/tag/v1.23.0
+[c1.22.13]: https://github.com/weaviate/weaviate/releases/tag/v1.22.13
 [c1.22.12]: https://github.com/weaviate/weaviate/releases/tag/v1.22.12
 [c1.22.11]: https://github.com/weaviate/weaviate/releases/tag/v1.22.11
 [c1.22.10]: https://github.com/weaviate/weaviate/releases/tag/v1.22.10
