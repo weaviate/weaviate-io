@@ -4,7 +4,7 @@ slug: enterprise-use-cases-weaviate
 authors: [adam]
 date: 2024-03-12
 image: ./img/hero.png
-tags: ['how-to', 'concepts', 'application']
+tags: ['concepts', 'application']
 description: 'Explore enterprise use cases heavily used by our customers adopting generative AI features, search capabilities, and RAG with Weaviate vector database.'
 ---
 # Enterprise Use Cases for Weaviate
@@ -23,7 +23,10 @@ The world was taken by storm by OpenAI ChatGPT in November of 2022. The interest
 
 The debut of ChatGPT kicked off a wave of innovation that has led nearly every industry to consider how they can extract value from this LLMs by integrating Generative AI use cases and features into their business offerings. We’ve had the privilege to be building these AI Native applications, RAG services, search and recommendation systems, and so much more with so many happy customers. 
 
+
+:::note Event
 Event: If you happen to be in San Francisco on March 21st, 2024, you should consider coming to our event called “[AI in Prod](https://events.weaviate.io/ai-in-prod-sf-24?hs_preview=fyTFtKzn-157102494551)”, where Etienne Dilocker, CTO and Co-Founder of Weaviate discusses some of our learnings, but also hear from our customers about how they’re using Weaviate in production.
+:::
 
 In this blog post, we’re going to explore enterprise use cases that you can build into your business offerings today and identify how you can measure the impact of your GenAI features in your business too.
 
@@ -105,13 +108,13 @@ One of the most common tools we’ve seen generative AI applied to are chatbots.
     <source src={verba_overview_video} type="video/mp4" />
     Your browser does not support the video tag.
   </video>
-  <figcaption>Ask questions in the chat interface</figcaption>
+  <figcaption>Asking questions to Verba, the Golden RAGtriever</figcaption>
 </figure>
 
 
 This is [Verba](https://verba.weaviate.io). Our open source first party RAG example which demonstrates some of the best practices around chunking, prompting, and modularity. We released Verba about half a year ago and in just a few short months, it’s gained massive traction and has pulled together nearly 2000 stars on GitHub. Many developers have cloned Verba, running Weaviate locally in their own environments, and loaded their own datasets which range from the entire Lord of the Ring series to enterprise data as well. 
 
-Verba can be an excellent starting point to building and customizing your own RAG application. If you’d like to clone it, you can find it on GitHub: [https://github.com/weaviate/verba](https://github.com/weaviate/verba). Additionally, we have a blog post that goes into detail about [building modular RAG applications](https://weaviate.io/blog/verba-open-source-rag-app), and dives deep into some of the design choices of Verba.
+Verba can be an excellent starting point to building and customizing your own RAG application. If you’d like to clone it, you can find it on [GitHub](https://github.com/weaviate/verba). Additionally, we have a blog post that goes into detail about [building modular RAG applications](https://weaviate.io/blog/verba-open-source-rag-app), and dives deep into some of the design choices of Verba.
 
 Chatbots are an easy tool to help reduce costs on your business operations. By augmenting existing human support, you can tangibly measure a reduction in time spent handling customer support requests. There are many ways to implement this, from putting a chatbot as the first line of response, with human follow up when necessary. In this model, there’s an easy metric to measure success by evaluating the number of customer support queries that are handled entirely by the bot, and the reduction in load placed onto the support team. Over time, this metric should be analyzed, and improvements should be applied to the chatbot to ensure continued reduction in operational costs.
 
