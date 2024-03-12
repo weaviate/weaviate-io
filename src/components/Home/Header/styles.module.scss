@@ -21,7 +21,7 @@
 }
 
 .sliderContainer {
-  padding: 3rem;
+  padding: 0rem 3rem;
 
   @media screen and (max-width: 600px) {
     padding: 2rem 0rem;
@@ -544,7 +544,7 @@
   height: 3rem;
   position: absolute;
   transform: translate(-185px, 15px);
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 1090px) {
     display: none;
   }
 
@@ -783,5 +783,68 @@
     p {
       color: #130c49;
     }
+  }
+}
+
+.awsAIBanner {
+  display: block;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  max-width: 1029px;
+  height: 150px;
+  margin: auto;
+
+  background-image: url('/img/site/ai-in-prod-weaviate.png');
+
+  @media screen and (max-width: 1600px) and (min-width: 800px) {
+    max-width: 1029px;
+    flex-basis: 100%;
+    height: 150px;
+    margin: auto;
+    margin-bottom: -35px;
+  }
+
+  @media screen and (max-width: 1090px) and (min-width: 800px) {
+    width: 88%;
+    height: 150px;
+    margin-bottom: 30px;
+  }
+  @media screen and (max-width: 900px) and (min-width: 800px) {
+    margin-bottom: 15px;
+    width: 88%;
+    height: calc(58px + 3.1vw);
+  }
+
+  @media screen and (max-width: 800px) and (min-width: 700px) {
+    background-size: cover;
+    width: 100%;
+    max-width: 648px;
+    height: calc(53px + 3.1vw);
+    margin: auto auto 15px;
+  }
+  @media screen and (max-width: 700px) and (min-width: 600px) {
+    background-size: cover;
+    width: 100%;
+    max-width: 480px;
+    height: calc(38px + 3.1vw);
+    margin: auto auto 15px;
+  }
+
+  @media screen and (max-width: 600px) and (min-width: 500px) {
+    background-size: cover;
+    width: 100%;
+    height: calc(52px + 1.1vw);
+    margin: auto auto 0px;
+  }
+
+  @media screen and (max-width: 500px) {
+    background-image: url('/img/site/ai-in-prod-weaviate-m.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    width: 100%;
+    margin-bottom: 0;
+    height: calc(94px + 3.1vw);
   }
 }

@@ -30,9 +30,7 @@ To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vecto
 
 ## Enable PQ compression
 
-AutoPQ is a feature that streamlines PQ configuration for new collections. AutoPQ is not currently available in Weaviate Cloud Services (WCS).
-
-If you are using WCS, or cannot enable asynchronous indexing, you can still use the manual, two phase method to enable PQ.
+There are two ways to enable PQ compression:
 
 - [Use AutoPQ to enable PQ compression](./pq-compression.md#configure-autopq).
 - [Manually enable PQ compression](./pq-compression.md#manually-configure-pq).
@@ -46,13 +44,15 @@ If you have a new collection, enable AutoPQ. AutoPQ automates the PQ training st
 
 ### 1. Set the environment variable
 
-AutoPQ requires asynchronous indexing. To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance. You cannot enable AutoPQ without asynchronous indexing.
+AutoPQ requires asynchronous indexing.
 
-AutoPQ is not currently available in WCS.
+Open-source Weaviate users: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
+Weaviate Cloud Services users: Enable async indexing through the WCS console and restart your Weaviate instance.
+
 
 ### 2. Configure PQ
 
-To enable PQ for a collection, update your collection definition. Once you enable PQ, AutoPQ automates the PQ training step for you.
+To enable PQ for a collection, specify it in your collection definition. Once you enable PQ, AutoPQ automates the PQ training step for you.
 
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
@@ -60,8 +60,8 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
   <TabItem value="py" label="Python (v4)">
      <FilteredTextBlock
        text={PyCode}
-       startMarker="# START UpdateSchema"
-       endMarker="# END UpdateSchema"
+       startMarker="# START CollectionWithAutoPQ"
+       endMarker="# END CollectionWithAutoPQ"
        language="py"
      />
   </TabItem>
@@ -69,8 +69,8 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
   <TabItem value="py3" label="Python (v3)">
      <FilteredTextBlock
        text={PyCodeV3}
-       startMarker="# START UpdateSchema"
-       endMarker="# END UpdateSchema"
+       startMarker="# START CollectionWithAutoPQ"
+       endMarker="# END CollectionWithAutoPQ"
        language="py"
      />
   </TabItem>
@@ -78,29 +78,12 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
   <TabItem value="ts" label="JavaScript/TypeScript">
      <FilteredTextBlock
        text={TSCode}
-       startMarker="// START UpdateSchema"
-       endMarker="// END UpdateSchema"
+       startMarker="// START CollectionWithAutoPQ"
+       endMarker="// END CollectionWithAutoPQ"
        language="ts"
      />
   </TabItem>
 
-  <TabItem value="go" label="Go">
-    <FilteredTextBlock
-      text={GoCode}
-      startMarker="// START UpdateSchema"
-      endMarker="// END UpdateSchema"
-      language="go"
-    />
-  </TabItem>
-
-  <TabItem value="java" label="Java">
-    <FilteredTextBlock
-      text={JavaCode}
-      startMarker="// START UpdateSchema"
-      endMarker="// END UpdateSchema"
-      language="java"
-    />
-  </TabItem>
 </Tabs>
 
 ### 3. Load your data

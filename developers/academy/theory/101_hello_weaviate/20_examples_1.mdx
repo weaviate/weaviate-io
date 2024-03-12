@@ -1,0 +1,93 @@
+---
+title: Examples 1 - Queries
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> Vectors in action
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/zC0CpBiLC3g' controls='true' />
+<br/>
+
+Let's take a look at a few more examples of what you can do with Weaviate.
+
+First, we will try vector searches by searching through our demo database. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object.
+
+You will also compare vector search with keyword search to compare and contrast the two techniques, before learning how to combine the two techniques through the use of filters.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector search demo
+
+For our first example, let's search our demo dataset. It contains a small sample of questions from the quiz show *Jeopardy!*.
+
+Imagine that you're running a quiz night, and you want to get some questions about "animals in movies". In a traditional database you could look for word matches, perhaps something like:
+
+```sql
+SELECT question, answer
+FROM jeopardy_questions
+WHERE (
+         question LIKE '%animal%'
+         OR question LIKE '%creature%'
+         OR question LIKE '%beast%'
+      )
+AND (
+       question LIKE '%movie%'
+       OR question LIKE '%film%'
+       OR question LIKE '%picture%'
+       OR question LIKE '%cinema%'
+    )
+
+```
+
+This is a difficult query to write. Even worse, you would probably have to add the names of specific animals to the query as well.
+
+The Weaviate query is much more intuitive. See what happens when we run the following query:
+
+:::note We searched Weaviate for:
+animals in movies
+:::
+
+Weaviate retrieved these as the top answers:
+
+:::note Weaviate retrieved:
+- **meerkats**: Group of mammals seen here like Timon in *The Lion King*
+- **dogs**: Scooby-Doo, Goofy & Pluto are cartoon versions
+- **The Call of the Wild Thornberrys**: Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals
+:::
+
+Note how relevant the results are, despite none of them including the word "animal" or the word "movie", let alone both!
+
+This is exactly why vector searches are so useful. They can identify related objects without the need to match exact text.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector similarities
+
+In vector searches, you can retrieve the actual quantified similarity between the query and the returned objects. This is called the `distance`.
+
+A `distance` is indicative of the degree of similarity between the returned object and the query.
+
+If you're wondering exactly what that means, and who decides how similar any two objects or concepts are, those are great questions! We will cover those in more detail later.
+
+For now, just keep in mind that smaller distances mean two objects are more similar to each other.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+<!-- ### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+::: -->
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Vector searches can identify related objects without the need for exact text matches.
+- In vector searches, distance values indicate the degree of similarity between the returned object and the query.
+- Smaller distances indicate greater similarity.
+- Vector searches can be combined with keyword searches and filtering techniques for more refined search results.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

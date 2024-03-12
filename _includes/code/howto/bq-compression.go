@@ -48,15 +48,19 @@ func main() {
 	// END ConnectCode
 
 	// START EnableBQ
+	// highlight-start
 	simple_bq := map[string]interface{}{
 			"enabled":	true,
 	}
+	// highlight-end
 	class := &models.Class{
 			Class:      "YourCollection",
 			Vectorizer: "text2vec-openai",
+			// highlight-start
 			VectorIndexConfig: map[string]interface{}{
 				"bq": simple_bq,
 			},
+			// highlight-end
 			// Remainder not shown
 	}
 
@@ -69,16 +73,20 @@ func main() {
 	// END EnableBQ
 
 	// START BQWithOptions
+	// highlight-start
 	custom_bq := map[string]interface{}{
 			"enabled":      true,
 			"rescoreLimit": 200,
 			"cache":        true,
 	}
+	// highlight-end
 	class := &models.Class{
 			Class:      "YourCollection",
 			Vectorizer: "text2vec-openai",
 			VectorIndexConfig: map[string]interface{}{
+				// highlight-start
 				"bq": custom_bq,
+				// highlight-end
 				"vectorCacheMaxObjects": 100_000,
 			},
 			// Remainder not shown

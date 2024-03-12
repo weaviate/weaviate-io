@@ -28,7 +28,7 @@ print(json.dumps(data[1], indent=2))
 
 # START ConnectCode
 import weaviate, os, json
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 client = weaviate.connect_to_local(
     headers={
@@ -38,33 +38,73 @@ client = weaviate.connect_to_local(
     }
 )
 
-client.is_ready()
+assert client.is_ready()
 
 # END ConnectCode
+
+
+# ==============================
+# =====  AUTOPQ =====
+# ==============================
+
+client.collections.delete("Question")
+
+
+# START CollectionWithAutoPQ
+import weaviate.classes.config as wc
+
+client.collections.create(
+    name="Question",
+    vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
+    # highlight-start
+    vector_index_config=wc.Configure.VectorIndex.hnsw(
+        quantizer=wc.Configure.VectorIndex.Quantizer.pq(training_limit=50000)  # Set the threshold to begin training
+    ),
+    # highlight-end
+    properties=[
+        wc.Property(name="question", data_type=wc.DataType.TEXT),
+        wc.Property(name="answer", data_type=wc.DataType.TEXT),
+    ],
+)
+
+# END CollectionWithAutoPQ
+
+
+# Confirm that the collection has been created with the right settings
+collection = client.collections.get("Question")
+config = collection.config.get()
+
+from weaviate.collections.classes.config import _PQConfig
+
+assert type(config.vector_index_config.quantizer) == _PQConfig
+# No import test as it would take a long time
+
 
 # ==============================
 # =====  INITIAL SCHEMA =====
 # ==============================
 
-if (client.collections.exists("Question")):
-    client.collections.delete("Question")
+client.collections.delete("Question")
 
 # START InitialSchema
 client.collections.create(
     name="Question",
     description="A Jeopardy! question",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
-    generative_config=wvc.config.Configure.Generative.openai(),
+    vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
+    generative_config=wc.Configure.Generative.openai(),
     properties=[
-        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+        wc.Property(name="question", data_type=wc.DataType.TEXT),
+        wc.Property(name="answer", data_type=wc.DataType.TEXT),
     ],
 )
 
 # END InitialSchema
+assert type(config.vector_index_config.quantizer) is None
 
 # ==============================
 # =====  LOAD DATA =====
 # ==============================
+
 
 # START LoadData
 def parse_data():
@@ -74,39 +114,36 @@ def parse_data():
             {
                 "question": obj["Question"],
                 "answer": obj["Answer"],
-                "round": obj["Round"],
             }
         )
 
     return object_list
 
+
 jeopardy = client.collections.get("Question")
 jeopardy.data.insert_many(parse_data())
-
-# Check upload
-response = jeopardy.aggregate.over_all(total_count=True)
-
-# Should equal the number of objects uploaded
-print(response.total_count)
-
 # END LoadData
+
+
+response = jeopardy.aggregate.over_all(total_count=True)
+assert response.total_count == 1000
 
 # ==============================
 # =====  UPDATE SCHEMA =====
 # ==============================
 
 # START UpdateSchema
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 jeopardy = client.collections.get("Question")
 jeopardy.config.update(
-    vector_index_config=wvc.config.Reconfigure.VectorIndex.hnsw(
-        quantizer=wvc.config.Reconfigure.VectorIndex.Quantizer.pq()
+    vector_index_config=wc.Reconfigure.VectorIndex.hnsw(
+        quantizer=wc.Reconfigure.VectorIndex.Quantizer.pq()
     )
 )
-
-
 # END UpdateSchema
+
+assert type(config.vector_index_config.quantizer) == _PQConfig
 
 # ==============================
 # =====  GET THE SCHEMA =====
@@ -122,7 +159,6 @@ print(f"Enabled: { pq_config.enabled }")
 print(f"Training: { pq_config.training_limit }")
 print(f"Segments: { pq_config.segments }")
 print(f"Centroids: { pq_config.centroids }")
-
 # END GetSchema
 
 # START-ANY

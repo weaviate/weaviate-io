@@ -1,0 +1,107 @@
+---
+title: Vectors - An overview
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> What is a vector?
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/iFUeV3aYynI' controls='true' />
+<br/>
+
+We've covered that Weaviate is a vector database, and that a vector search is similarity-based. But, what is a vector?
+
+A vector in this context is just a series of numbers like `[1, 0]` or `[0.513, 0.155, 0.983, ..., 0.001, 0.932]`. Vectors like these are used to capture meaning.
+
+This might seem like an odd concept. But in fact, you may have already used vectors to capture meaning without realizing it. If you have tried photo editing, or used MS Paint you might have encountered the RGB color system.
+
+### <i class="fa-solid fa-chalkboard"></i> How do numbers represent meaning?
+
+The RGB system uses groups of three numbers to represent colors. For example:
+
+- (255, 0, 0) = red
+- (80, 200, 120) = emerald
+
+In these examples, each number can be thought of as a dial for how red, green or blue a color is.
+
+Now, imagine having hundreds, or even thousands, of these dials. That’s how vectors are used to represent meaning. Modern machine learning models such as GPT-x, or those used with Weaviate, use vectors to represent some "essence", or "meaning" of objects. This can be done for any object type, such as text, code, images, videos and more.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Vector embeddings in Weaviate
+
+<!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+The vector representation of an object's meaning is called a "vector embedding".
+
+Weaviate enables vector searches by indexing and storing data objects and their corresponding vector embeddings. The vector embeddings come from machine learning models.
+
+In plain terms, Weaviate processes and organizes your data in such a way that objects can be retrieved based on their similarity to a query. To perform these tasks at speed, Weaviate does two things that traditional databases do not. Weaviate:
+
+- Quantifies similarity
+- Indexes vector data
+
+These operations enable Weaviate to do what it does.
+
+### <i class="fa-solid fa-chalkboard"></i> Quantifying similarity
+
+As we've mentioned, vector searches are similarity-based, but what does that actually mean? How do we determine that two pieces of data are "similar"? What does it mean for two pieces of text, two images, or two objects in general, to be similar?
+
+This is a relatively simple idea that is actually incredibly interesting and intricate once we start to dive into the details.
+
+But for now, you should know that machine learning (ML) models are the key to this whole process. The ML models that power vector searches share similarities with those that generate text responses from prompts. Instead of generating new text, these (vectorizer) models capture the "meaning" of text or other media. We will cover this in more detail later on.
+
+### <i class="fa-solid fa-chalkboard"></i> Indexing (vector) data
+
+Vector searches can be very intensive computationally.
+
+To overcome this problem, Weaviate uses a combination of indexes including an approximate nearest neighbor (ANN) index and an inverted index. The ANN index lets Weaviate perform extremely fast vector searches. The inverted index lets Weaviate filter data using Boolean criteria.
+
+We will get into this in more detail later - but for now, it's enough to know that Weaviate can perform fast vector searches as well as filtering.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+In this section, you learned about what vectors are and how Weaviate utilizes them at a very high level. You have also been introduced to two of Weaviate's key capabilities that help it to enable vector search at speed.
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+:::tip Self-reflection
+Can you describe, in your own words, what vectors are?
+:::
+
+<Quiz questions={howWeaviateWorks} />
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- A vector is a series of numbers that capture the meaning or essence of objects.
+- Machine learning models help quantify similarity between different objects, which is essential for vector searches.
+- Weaviate uses a combination of approximate nearest neighbor (ANN) index and an inverted index to perform fast vector searches with filtering.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const howWeaviateWorks = [{
+  questionText: 'Which of these statements are true?',
+  answerOptions: [
+    {
+      answerText: 'Weaviate has no way of quantifying similarity between objects.',
+      isCorrect: false,
+      feedback: 'Weaviate performs vector searches, which is similarity-based.',
+    },
+    {
+      answerText: 'The only type of index in Weaviate is the vector index.',
+      isCorrect: false,
+      feedback: 'In addition to the vector index, Weaviate uses an inverted index.',
+    },
+    {
+      answerText: 'Weaviate is a machine learning model.',
+      isCorrect: false,
+      feedback: 'While Weaviate can be used with a variety of different models which help it determine object similarity, it is itself not a machine learning model. Weaviate is a vector database.',
+    },
+    {
+      answerText: 'None of the above',
+      isCorrect: true,
+      feedback: 'All of these are false!',
+    },
+  ]
+}];

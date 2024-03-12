@@ -1,0 +1,557 @@
+[data-theme='light'] {
+  .box {
+    .left {
+      .inside {
+        .logoAI {
+          background-image: url('/img/site/openai-logo.png');
+        }
+        .logoH {
+          background-image: url('/img/site/higgingface-logo.png');
+        }
+        .logoJ {
+          background-image: url('/img/site/jina-logo.png');
+        }
+        .logoD {
+          background-image: url('/img/site/deepset-logo.png');
+        }
+        .logoCo {
+          background-image: url('/img/site/cohere-logo.png');
+        }
+        .logoW {
+          background-image: url('/img/site/wp-solar-logo.png');
+        }
+        .logoG {
+          background-image: url('/img/site/googleAI.png');
+        }
+        .logoL {
+          background-image: url('/img/site/langchain-logo.png');
+        }
+        .logoLa {
+          background-image: url('/img/site/lama-logo.png');
+        }
+      }
+    }
+  }
+}
+
+.integrationsSection {
+  background: #f5f5f5;
+}
+
+.integrationsLogos {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-around;
+  overflow: hidden;
+
+  @media screen and (max-width: 500px) {
+    padding: 9px;
+    height: 140px;
+    overflow: hidden;
+  }
+
+  .logoBg {
+    border-radius: 0.9375rem;
+    border: 1px solid #130c49;
+    width: 14.375rem;
+    display: flex;
+    height: 5.9375rem;
+    flex-shrink: 0;
+    background: #fff;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    align-items: center;
+    scroll-snap-align: center;
+    margin: 0 10px;
+  }
+
+  .inside {
+    display: flex;
+    padding-bottom: 4rem;
+
+    animation: scrollSide 40s linear infinite;
+
+    @keyframes scrollSide {
+      0% {
+        transform: translateX(50%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .integrationsLogos:hover {
+      animation-play-state: paused;
+    }
+
+    .logoAI {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/openai-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoH {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/higgingface-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoJ {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/jina-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoD {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/deepset-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoCo {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/cohere-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoW {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/wp-solar-logo-light.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .logoG {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/googleAI.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoL {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/langchain-logo.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoLa {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/lama-logo.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .logoGoogle {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/google-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .logoHaystack {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/haystack-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    .logoStreamlit {
+      width: 100%;
+      height: 2rem;
+      background-image: url('/img/site/streamlit-logo.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+}
+
+.integrationsLogos:hover {
+  .inside {
+    animation-play-state: paused;
+  }
+}
+.mobileIntegrations {
+  display: none !important;
+
+  @media screen and (max-width: 500px) {
+    display: flex !important;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 4rem;
+
+  @media screen and (max-width: 580px) {
+    flex-direction: column-reverse;
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 30px;
+    justify-content: center;
+
+    .inside {
+      display: flex;
+
+      @media screen and (max-width: 500px) {
+        flex-direction: row;
+        gap: 20px;
+        display: flex;
+      }
+
+      .logoAI {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/openai-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoH {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/higgingface-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoJ {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/jina-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoD {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/deepset-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoCo {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/cohere-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoW {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/wp-solar-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoG {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/googleAI.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoL {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/langchain-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .logoLa {
+        width: 100%;
+        height: 2rem;
+        background-image: url('/img/site/lama-logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    }
+  }
+  .right {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60%;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
+
+.boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 14.3125rem;
+  height: 19.75rem;
+
+  background-color: #141f39;
+  margin: 1rem;
+  padding: 2rem;
+
+  border-radius: 0.4375rem;
+  border-radius: 0.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.longCard {
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  gap: 20px;
+  z-index: 1;
+  flex-wrap: nowrap;
+  background: #ffffff !important;
+  justify-content: center;
+  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-size: cover !important;
+
+  .cTextColor {
+    color: #130c49;
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 2.25rem */
+  }
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    min-height: 205px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentDiv {
+    height: 100%;
+    width: 50%;
+    margin: 50px;
+    text-align: center;
+
+    br {
+      display: none;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      br {
+        display: inherit;
+      }
+    }
+  }
+}
+
+.safetyTypeBottom {
+  width: 100%;
+  height: 186px;
+  background: #130c49;
+  margin-top: -200px;
+}
+
+.longHead {
+  grid-template-columns: 1fr;
+}
+
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 278px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #ffffff;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+    outline: 1px solid #130c49;
+  }
+}
+
+.teamContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  h3 {
+    color: rgb(19, 12, 73);
+    text-align: center;
+    font-size: 1.625rem;
+    width: 50%;
+    font-weight: 500;
+
+    @media screen and (max-width: 840px) {
+      width: 100%;
+    }
+  }
+}
+
+.parentGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  width: 868px;
+  height: 353px;
+
+  @media screen and (max-width: 840px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+}
+
+.imageGrid1 {
+  grid-area: 1 / 1 / 3 / 2;
+  background-image: url('/img/site/team-grid-01.png');
+  background-size: cover;
+
+  @media screen and (max-width: 840px) {
+    background-position-x: center;
+  }
+}
+.imageGrid2 {
+  grid-area: 1 / 2 / 2 / 3;
+  background-image: url('/img/site/team-grid-02.png');
+  background-size: cover;
+  @media screen and (max-width: 840px) {
+    background-position-x: center;
+  }
+}
+.imageGrid3 {
+  grid-area: 2 / 2 / 3 / 3;
+  background-image: url('/img/site/team-grid-03.png');
+  background-size: cover;
+  @media screen and (max-width: 640px) {
+    background-position-x: center;
+  }
+}
+.imageGrid4 {
+  grid-area: 1 / 3 / 2 / 4;
+  background-image: url('/img/site/team-grid-04.png');
+  background-size: cover;
+  @media screen and (max-width: 640px) {
+    background-position-x: center;
+  }
+}
+.imageGrid5 {
+  grid-area: 1 / 4 / 2 / 5;
+  background-image: url('/img/site/team-grid-06.png');
+  background-size: cover;
+  @media screen and (max-width: 640px) {
+    background-position-x: center;
+  }
+}
+.imageGrid6 {
+  grid-area: 2 / 3 / 3 / 5;
+  background-image: url('/img/site/team-grid-05.png');
+  background-size: cover;
+  @media screen and (max-width: 640px) {
+    background-position-x: center;
+  }
+}
+
+.mobileImage {
+  display: none;
+  background-image: url('/img/site/services-team-photo.png');
+  background-size: cover;
+  width: 100%;
+  height: 630px;
+
+  @media screen and (max-width: 500px) {
+    display: block;
+  }
+}
