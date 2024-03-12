@@ -14,7 +14,7 @@ export default function BYOCPage() {
     <div className="custom-page noBG">
       <Layout
         title="BYOC - Bring Your Own Cloud"
-        description="Bring Your Own Cloud Dedicated Model"
+        description="Bring Your Own Cloud Dedicated Service"
       >
         <ServiceHeader />
         <ServicePlan />
