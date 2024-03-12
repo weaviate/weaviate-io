@@ -175,6 +175,12 @@
   }
 }
 
+header {
+  background: #130c49;
+  background-image: url('/img/site/home-page-bg-pattern.svg') !important;
+  background-size: cover;
+}
+
 .box {
   display: flex;
   flex-direction: column;
@@ -183,7 +189,7 @@
   text-align: center;
 
   h1 {
-    color: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: Plus Jakarta Sans;
     font-size: 43px;
@@ -198,6 +204,7 @@
 
   .headerBox {
     width: 50%;
+    color: #ffffff;
     @media screen and (max-width: 900px) {
       width: 100%;
     }
