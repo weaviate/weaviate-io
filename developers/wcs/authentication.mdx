@@ -14,7 +14,7 @@ There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 
 Browser authentication relies on a username and password. Client authentication uses API keys. Enable two-factor authentication to increase the security of browser logins.  
 
-## Connect a browser to WCS
+## Use a browser to connect to WCS
 
 The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. To work with your data, use the [GraphQL console](/developers/wcs/guides/console). The console is great for ad hoc queries. If you develop applications, or want additional flexibility, use the Weaviate API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
 
@@ -25,9 +25,33 @@ Follow these steps to connect with a browser.
 1. Click `Login to Weaviate Cloud Services`.
 1. Enter your email address and password to authenticate. On subsequent visits, should be redirected to the login page automatically. 
 
-To enable multi-factor authentication (MFA)
+### Enable multi-factor authentication (MFA)
 
-### API key permissions
+To enable multi-factor authentication (MFA), follow these steps.
+
+1. Use your browser to connect to the WCS console.
+1. Click the silhouette of a person in the sidebar
+
+![Enable MFA icon](./img/mfa-enable-icon.jpg)
+
+3. Click the 'Manage Two-Factor Authentication' button.
+1. Enter your username and password to authenticate to WCS.
+1. Open your authenticator application and scan the QR code.
+1. Enter the code from your application in WCS to complete the setup.
+
+After you configure MFA, WCS prompts you to supply the one-time authentication code each time you log in.
+
+![Enter MFA code](./img/mfa-one-time-code.jpg)
+
+### MFA and applications
+
+If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that account. There is no way to pass the the one-time authentication code so the application cannot connect to WCS. Use API keys to connect client applications to WCS.
+
+### Disable MFA
+
+If you want to disable MFA, [contact us](mailto:support@weaviate.io).
+
+## Use an API to connect to WCS
 
 All Weaviate instances with authentication will generate API keys with full admin (read and write) access.
 
@@ -74,36 +98,6 @@ Replacing `YOUR-WEAVIATE-API-KEY` with your API key.
 
 </details>
 
-### WCS username and password
-
-To authenticate against Weaviate with your WCS username and password, each request needs to include the an OpenID Connect (OIDC) token in its header. As with the API key-based authentication, the easiest way to do this is with a Weaviate client at instantiation, by providing your WCS username and password as shown below:
-
-import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
-
-<WCSAuthenticationUserPass/>
-
-This way, every request made using the client will include an OIDC token.
-
-<details>
-  <summary>Manually adding the key to the header.</summary>
-
-If using a Weaviate client is not possible, you can manually include an OIDC token in the request header as below.
-
-```json
-Authorization: Bearer TOKEN
-```
-
-Replacing `TOKEN` with your OIDC token.
-
-Please note that OIDC tokens will periodically expire, so new tokens must be obtained and used. This can be done using the "refresh token", however this is outside the scope of the documentation.
-
-To automate this workflow, we strongly recommend that you use your preferred Weaviate client library for username and password-based authentication.
-
-</details>
-
-:::note What OIDC "flow" is this?
-This is the "Resource Owner Password Flow" method.
-:::
 
 ### Weaviate console
 
