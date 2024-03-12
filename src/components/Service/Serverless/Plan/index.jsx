@@ -17,7 +17,7 @@ export default function ServicePlan() {
             <Link to="/platform">AI-native vector database</Link>.
           </p>
         </div>
-        <div className={styles.planContainer}>
+        <div className={styles.planContainer} id="plan">
           <PricingSandBox />
           <h3 className={styles.packageHeader}>Serverless Packages</h3>
           <div className={styles.plan}>
