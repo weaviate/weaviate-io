@@ -14,7 +14,7 @@ export default function EDPage() {
     <div className="custom-page noBG">
       <Layout
         title="Enterprise Dedicated"
-        description="Enterprise Dedicated Model"
+        description="Enterprise Dedicated Service"
       >
         <ServiceHeader />
         <ServicePlan />

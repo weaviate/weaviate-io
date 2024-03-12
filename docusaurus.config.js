@@ -212,7 +212,7 @@ const config = {
                     items: [
                         {
                             label: 'Services Overview',
-                            to: '/services',
+                            href: '/services',
                            
                         },
                         {
@@ -237,7 +237,7 @@ const config = {
                         },
                         {
                             label: 'Pricing',
-                            to: '/pricing',
+                            href: '/pricing',
                            
                         },
                     ]
