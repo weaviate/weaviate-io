@@ -44,7 +44,7 @@ Weaviate:
 Inference container:
 
 :::info Multiple inference container support added in `v1.24.2`
-As of Weaviate `v1.24.2`, you can use multiple inference containers with `text2vec-transformers`. This allows you to use different models for different collections by [setting the `inferenceUrl` in the collection configuration](#collection-configuration).
+As of Weaviate `v1.24.2`, you can use multiple inference containers with `multi2vec-clip`. This allows you to use different models for different collections by [setting the `inferenceUrl` in the collection configuration](#collection-configuration).
 :::
 
 - `image` (Required): The image name of the inference container.

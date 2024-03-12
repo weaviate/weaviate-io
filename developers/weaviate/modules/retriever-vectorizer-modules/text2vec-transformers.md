@@ -112,7 +112,7 @@ As an alternative, you can run the inference container independently from Weavia
 - Enable `text2vec-transformers` in your Docker Compose file,
 - Omit `t2v-transformers` parameters,
 - Run the inference container separately, e.g. using Docker, and
-- Use `CLIP_INFERENCE_API` or [`inferenceUrl`](#collection-level) to set the URL of the inference container.
+- Use `TRANSFORMERS_INFERENCE_API` or [`inferenceUrl`](#collection-level) to set the URL of the inference container.
 
 For example, choose [any of our pre-built transformers models](#option-1-pre-built-images) and spin it up - for example using:
 
@@ -137,6 +137,12 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 - `poolingStrategy` – the pooling strategy to use. Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
 - `inferenceUrl` – the URL of the inference container, for when using [multiple inference containers](#weaviate-instance-configuration) (e.g. `http://service-name:8080`). Default: `http://t2v-transformers:8080`.
 
+:::note For DPR type models
+- `queryInferenceUrl` & `passageInferenceUrl` – the URL of the inference container for query and passage respectively, for when using [multiple inference containers](#weaviate-instance-configuration) with a [`DPR` type model](https://huggingface.co/docs/transformers/en/model_doc/dpr) (e.g. `http://service-name:8080`).
+
+You can only set one of `inferenceUrl` or (`queryInferenceUrl` and `passageInferenceUrl`). If you are running a DPR model, set `queryInferenceUrl` and `passageInferenceUrl` to use different inference containers for queries and passages when using inference containers with a DPR type model.
+:::
+
 #### Property-level
 
 - `skip` – whether to skip vectorizing the property altogether. Default: `false`
@@ -155,7 +161,12 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
       "moduleConfig": {
         "text2vec-transformers": {
           "vectorizeClassName": false,
-          "inferenceUrl": "http://t2v-transformers:8080"  // Optional. Set to use a different inference container when using multiple inference containers.
+          "inferenceUrl": "http://t2v-transformers:8080",  // Optional. Set to use a different inference container when using multiple inference containers.
+          // Note: You can only set one of `inferenceUrl` or (`queryInferenceUrl` and `passageInferenceUrl`).
+          // Set 'inferenceUrl' to use a different inference container when using multiple inference containers with most (i.e. non-DPR type) models.
+          // Set 'queryInferenceUrl' and 'passageInferenceUrl' to use different inference containers for queries and passages when using multiple inference containers with a DPR type model.
+          // "queryInferenceUrl": "http://t2v-transformers-query:8080",  // Optional. Set to use a different inference container for queries when using multiple inference containers with a DPR type model.
+          // "passageInferenceUrl": "http://t2v-transformers-passage:8080"  // Optional. Set to use a different inference container for passages when using multiple inference containers with a DPR type model.
         }
       },
       // highlight-end
