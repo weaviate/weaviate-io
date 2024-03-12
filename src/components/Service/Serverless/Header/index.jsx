@@ -17,8 +17,14 @@ export default function ServiceHeader() {
             </p>
           </div>
           <div className={styles.buttons}>
-            <Link className={styles.buttonGradient} to="#contact-sales">
-              Contact Sales
+            <Link
+              className={styles.buttonGradient}
+              to="https://console.weaviate.cloud/"
+            >
+              Try Free
+            </Link>
+            <Link className={styles.buttonOutline} to="#plan">
+              Compare Packages
             </Link>
           </div>
         </div>
