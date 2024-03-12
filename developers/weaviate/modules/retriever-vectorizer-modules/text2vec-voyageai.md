@@ -17,7 +17,7 @@ Key notes:
     - Please check the Voyage AI [pricing page](https://docs.voyageai.com/docs/pricing), especially before vectorizing large amounts of data.
 - This module is available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- The default model is `voyage-01`.
+- The default model is `voyage-large-2`.
 
 import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
 
@@ -176,10 +176,9 @@ You can supply parameters at query time by adding it to the HTTP header.
 
 You can use any of the following models with `text2vec-voyageai` ([source](https://docs.voyageai.com/docs/embeddings)):
 
-- `voyage-large-2`
+- `voyage-large-2` (default)
 - `voyage-code-2`
-- `voyage-2` (default)
-- `voyage-lite-02-instruct`
+- `voyage-2`
 
 ### Truncation
 
