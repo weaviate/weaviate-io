@@ -11,7 +11,10 @@ import Integrations from '../../components/Service/Index/Integrations';
 export default function ServicePage() {
   return (
     <div className="custom-page noBG">
-      <Layout title="Service" description="Service models">
+      <Layout
+        title="Services Overview"
+        description="Overview of Weaviate Services"
+      >
         <ServiceHeader />
         <ServicePlan />
         <HybridBusinessCritical />

@@ -8,7 +8,7 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Weaviate Services</h1>
+          <h1>Overview of Weaviate Services</h1>
           <div className={styles.headerBox}>
             <p>
               Our Services are designed to support organizations of all sizes
