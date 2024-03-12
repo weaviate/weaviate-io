@@ -101,6 +101,15 @@ client.schema.delete_class(class_name)
 
 
 # ===============================================
+# ===== CREATE A COLLECTION WITH NAMED VECTORS =====
+# ===============================================
+
+# START BasicNamedVectors
+# Unfortunately, named vectors are not suppored in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# END BasicNamedVectors
+
+# ===============================================
 # ===== SetVectorIndex =====
 # ===============================================
 

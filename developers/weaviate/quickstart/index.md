@@ -201,9 +201,6 @@ The results are limited to objects from the `ANIMALS` category.
 Using a Boolean filter allows you to combine the flexibility of vector search with the precision of `where` filters.
 :::
 
-
-<!-- Note: Added the generative search example; but hiding it for now as it makes the workflow quite difficult for new users. 1) They will now need an OpenAI/Cohere key. 2) The schema needs to include a generative module definition. 3) Rate limit on generative API is low; so might be painful. -->
-
 ### Generative search (single prompt)
 
 Next, let's try a generative search. A generative search, also called retrieval augmented generation, prompts a large language model (LLM) with a combination of a user query as well as data retrieved from a database.
@@ -306,7 +303,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051

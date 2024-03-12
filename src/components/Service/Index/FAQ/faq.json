@@ -1,0 +1,46 @@
+[
+  {
+    "question": "What is a 'dimension' in this context?",
+    "answer": "A vector 'dimension' refers to one element in a vector representing an object in a vector database. The total number of these elements is the vector's dimensionality."
+  },
+  {
+    "question": "Why is the pricing based on the total number of dimensions?",
+    "answer": "The total count of vector dimensions is a good indicator of the resources required. Therefore we adopt is as a fair way to balance actual resource usage with costs incurred."
+  },
+  {
+    "question": "How can I determine the total number of dimensions?",
+    "answer": "The total number of dimensions can be determined by multiplying the object count (of those with vectors) with the vector dimensionality."
+  },
+  {
+    "question": "What are the differences between 'Performance' and 'Compression' storage types?",
+    "answer": "This sets whether to use vector compression, using a technique called product quantization. Enabling compression will effectively reduce dimensionality and therefore prices. However, it may reduce performance & recall. <a href=\"https://weaviate.io/developers/weaviate/concepts/vector-index#hnsw-with-product-quantization-pq\" target=\"_blank\">Read more</a>."
+  },
+  {
+    "question": "When Compression is selected, how are the total number of dimensions determined?",
+    "answer": "When a Compression storage type is used, we take the the total number of 'segments' in place of the number of dimensions. <a href=\"https://www.weaviate.io/developers/weaviate/concepts/vector-index#segments\" target=\"_blank\">Read more</a>."
+  },
+  {
+    "question": "Is the open source Weaviate the same as that used on WCS?",
+    "answer": "Yes! Weaviate Cloud Services (WCS) runs the open-source Weaviate library. The differences are in where it runs (i.e. WCS is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
+  },
+  {
+    "question": "Are discounts available for non-profits, startups, or students?",
+    "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
+  },
+  {
+    "question": "Is Weaviate Cloud Services SOC2 compliant?",
+    "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
+  },
+  {
+    "question": "Do I pay for data objects without embeddings?",
+    "answer": "No, storage of data objects without vector embeddings is on us."
+  },
+  {
+    "question": "Which Weaviate modules are available?",
+    "answer": "Weaviate modules based on inference APIs are automatically enabled in the cloud service."
+  },
+  {
+    "question": "Is WCS compatible with models of various embedding sizes?",
+    "answer": "Yes."
+  }
+]

@@ -1,9 +1,241 @@
 export const unitData = {
+  "text_setup_weaviate": {
+    title: "Set up Weaviate",
+    body: "Set up a Weaviate instance and connect to it.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_text_data/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a Weaviate instance and connect to it with the Python client."
+    ],
+    learningOutcomes: [
+      "Install the latest Weaviate Python client.",
+      "Create a Weaviate instance.",
+      "Connect to the Weaviate instance using the Python client and communicate with it."
+    ]
+  },
+  "text_collections": {
+    title: "Populate the database",
+    body: "Create a collection and import data, and have Weaviate create vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_text_data/text_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import text data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "text_searches": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_text_data/text_searches",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform semantic, keyword and hybrid searches."
+    ],
+    learningOutcomes: [
+      "Describe differences between semantic, keyword and hybrid searches at a high level.",
+      "Perform a semantic search with near text functions.",
+      "Perform a keyword search.",
+      "Perform a hybrid search.",
+    ]
+  },
+  "text_rag": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_text_data/text_rag",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+  "byov_setup_weaviate": {
+    title: "Set up Weaviate",
+    body: "Set up a Weaviate instance and connect to it.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_custom_vectors/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a Weaviate instance and connect to it with the Python client."
+    ],
+    learningOutcomes: [
+      "Install the latest Weaviate Python client.",
+      "Create a Weaviate instance.",
+      "Connect to the Weaviate instance using the Python client and communicate with it."
+    ]
+  },
+  "byov_collections": {
+    title: "Populate the database",
+    body: "Create a collection and import data with your own vectors.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_custom_vectors/object_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import text data with your own vectors using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set as none.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "byov_searches": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_custom_vectors/object_searches",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform semantic, keyword and hybrid searches."
+    ],
+    learningOutcomes: [
+      "Describe differences between vector, keyword and hybrid searches at a high level.",
+      "Perform a vector search with near vector functions.",
+      "Perform a keyword search.",
+      "Perform a hybrid search.",
+    ]
+  },
+  "byov_rag": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_custom_vectors/object_rag",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+  "docker_mm_basics": {
+    title: "Weaviate for multimodal data",
+    body: "Create a local Weaviate instance for multimodal data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/setup_weaviate",
+    badgeType: "practical",
+    learningGoals: [
+      "Set up a local Weaviate instance with a multimodal module."
+    ],
+    learningOutcomes: [
+      "Create a local Weaviate instance with a multimodal module using Docker.",
+      "Install the latest Weaviate Python client.",
+      "Connect to the Weaviate instance using the Python client."
+    ]
+  },
+  "mm_collections": {
+    title: "Populate the database",
+    body: "Create a collection and import multimodal data, and have Weaviate create vectors for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/mm_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection then import multimodal data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with typical settings and vectorizer set.",
+      "Create a collection and work with a collection object.",
+      "Import data using batch imports."
+    ]
+  },
+  "mm_searches": {
+    title: "Perform searches",
+    body: "Learn how to use search functions in Weaviate.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/mm_searches",
+    badgeType: "practical",
+    learningGoals: [
+      "Perform multimodal searches."
+    ],
+    learningOutcomes: [
+      "Describe how multimodal search works at a high level.",
+      "Perform searches through multimodal data in different ways.",
+    ]
+  },
+  "mm_rag": {
+    title: "LLMs and Weaviate (RAG)",
+    body: "Use large language models to augment and transform retrieved data.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/starter_multimodal_data/mm_rag",
+    badgeType: "practical",
+    learningGoals: [
+      "Use AI (large language models) to augment and transform retrieved data."
+    ],
+    learningOutcomes: [
+      "Describe what RAG is and how it works at a high level.",
+      "Perform RAG on individual objects.",
+      "Perform RAG on the entire set of returned objects.",
+    ]
+  },
+
+  "nv_collections": {
+    title: "Populate the database",
+    body: "Create a collection with multiple named vectors and import data objects.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/named_vectors/nv_collections",
+    badgeType: "practical",
+    learningGoals: [
+      "Configure and create a collection with multiple named vectors then import data using batch imports."
+    ],
+    learningOutcomes: [
+      "Configure a collection with named vectors.",
+      "Import data using batch imports to create objects with multiple named vectors."
+    ]
+  },
+  "nv_queries": {
+    title: "Perform queries",
+    body: "Learn how to use query functions in Weaviate with named vectors.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/named_vectors/nv_queries",
+    badgeType: "practical",
+    learningGoals: [
+      "How queries change for collections with named vectors."
+    ],
+    learningOutcomes: [
+      "Describe what query types are affected by named vectors.",
+      "Perform vector/similarity and hybrid searches in collections with named vectors.",
+      "Perform RAG on collections with named vectors.",
+    ]
+  },
+  // multi_tenancy_intro: {
+  //   title: "Introduction to multi-tenancy",
+  //   body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
+  //   buttonType: "TBD",
+  //   // buttonURL: "/developers/academy/py/standalone/multi_tenancy",
+  //   badgeType: "practical",
+  //   learningGoals: [
+  //     "What multi-tenancy is and when to use it",
+  //     "How to enable it and create tenants",
+  //     "Using Weaviate with multi-tenancy",
+  //   ],
+  //   learningOutcomes: [
+  //     "Describe what multi-tenancy is",
+  //     "Appropriately select when to use multi-tenancy",
+  //     "Create tenants and ingest data with multi-tenancy enabled",
+  //     "Perform operations at tenant level",
+  //   ],
+  //   owner: "jp",
+  //   reviewer: "jp"
+  // },
+
   hello_weaviate: {
     title: "Hello, Weaviate",
     body: "Start here: Learn what Weaviate is, and about its key capabilities and features, as well as about vectors that power Weaviate.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/zero_to_mvp/hello_weaviate",
+    buttonURL: "/developers/academy/py/zero_to_mvp/hello_weaviate",
     badgeType: "mixed",
     learningGoals: [
       "What Weaviate is, and what it does.",
@@ -26,7 +258,7 @@ export const unitData = {
     body: "Learn how queries work in Weaviate, how to use similarity searches and use filters, as well as how search works under the hood.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/zero_to_mvp/queries_1",
+    buttonURL: "/developers/academy/py/zero_to_mvp/queries_1",
     learningGoals: [
       "How to retrieve objects and properties.",
       "The structure of returned responses from Weaviate.",
@@ -51,7 +283,7 @@ export const unitData = {
     body: "Learn what role the schema plays in Weaviate, and how to define it, before learning how to effectively populate Weaviate with data.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/zero_to_mvp/schema_and_imports",
+    buttonURL: "/developers/academy/py/zero_to_mvp/schema_and_imports",
     learningGoals: [
       "How Weaviate organizes and stores data.",
       "An overview of indexes used in Weaviate.",
@@ -75,7 +307,7 @@ export const unitData = {
     body: "Learn about even more query types, from hybrid searches that combine keyword and vector searches to generative searches that transform your data at retrieval.",
     buttonType: "Click here",
     badgeType: "practical",
-    buttonURL: "/developers/academy/zero_to_mvp/queries_2",
+    buttonURL: "/developers/academy/py/zero_to_mvp/queries_2",
     learningGoals: [
       "How to formulate and perform keyword or BM25 searches.",
       "What Hybrid searches are, how they are ranked and how to use them.",
@@ -97,7 +329,7 @@ export const unitData = {
     body: "Weaviate offers many search types (vector, keyword and hybrid), and options. Let's discuss some good, baseline search strategies.",
     buttonType: "Click here",
     badgeType: "mixed",
-    buttonURL: "/developers/academy/building_with_weaviate/which_search",
+    buttonURL: "/developers/academy/py/building_with_weaviate/which_search",
     learningGoals: [
       "Impact of search type on search quality.",
       "Impact of search type on search performance.",
@@ -119,7 +351,7 @@ export const unitData = {
     body: "How to design your collection data structure. Whether to use classes or multi-tenancy, or cross-references.",
     buttonType: "TBD",
     badgeType: "theory",
-    // buttonURL: "/developers/academy/building_with_weaviate/schema_design",
+    // buttonURL: "/developers/academy/py/building_with_weaviate/schema_design",
     learningGoals: [
       "Starting suggestions for selecting appropriate data structures to have Weaviate work for your needs.",
     ],
@@ -137,7 +369,7 @@ export const unitData = {
     body: "The basics on how to select a good baseline vectorizer for given data and task types.",
     buttonType: "TBD",
     badgeType: "theory",
-    // buttonURL: "/developers/academy/building_with_weaviate/vectorizer_selection",
+    // buttonURL: "/developers/academy/py/building_with_weaviate/vectorizer_selection",
     learningGoals: [
       "Theory and heuristics for selecting appropriate, robust vectorizers for the data type and task at hand and how to set the vectorizer appropriately in Weaviate.",
     ],
@@ -179,7 +411,7 @@ export const unitData = {
   //   body: "Learn about vectors including how to create and use them.",
   //   buttonType: "Click here",
   //   badgeType: "mixed",
-  //   buttonURL: "/developers/academy/units/vectorization_essentials",
+  //   buttonURL: "/developers/academy/py/units/vectorization_essentials",
   //   learningGoals: [
   //     "Various options for providing vector embeddings.",
   //     "Important class and property parameters, including cross-references.",
@@ -206,7 +438,7 @@ export const unitData = {
   //   body: "How to efficiently import data into Weaviate.",
   //   buttonType: "Click here",
   //   badgeType: "practical",
-  //   buttonURL: "/developers/academy/units/data_import",
+  //   buttonURL: "/developers/academy/py/units/data_import",
   //   learningGoals: [
   //     "The ability to populate Weaviate with data, including an understanding of suggested best practices such as batching, error diagnoses and handling.",
   //   ],
@@ -223,7 +455,7 @@ export const unitData = {
   //   title: "Modules",
   //   body: "What roles modules play, and how to enable and use them, including examples.",
   //   buttonType: "TBD",
-  //   buttonURL: "/developers/academy/units/modules",
+  //   buttonURL: "/developers/academy/py/units/modules",
   //   badgeType: "mixed",
   //   learningGoals: [
   //     "Learn that Weaviate is fully modularized",
@@ -420,29 +652,11 @@ export const unitData = {
   //   reviewer: "jp"
   // },
 
-  beyond_text: {
-    title: "Weaviate: Beyond text",
-    body: "How to use Weaviate with non-text media, such as images. What models are available, and how can you use them?",
-    buttonType: "TBD",
-    badgeType: "mixed",
-    learningGoals: [
-      "What media types are currently supported, and how to use Weaviate with each media type and appropriate module."
-    ],
-    learningOutcomes: [
-      "Select an appropriate module for vectorizing non-text data given the data type and use case.",
-      "Construct a schema for non-text data types such as images.",
-      "Use Weaviate to catalog text and non-text data in the same vector space.",
-      "Implement a Weaviate instance with vectorized non-text data.",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-
   chunking: {
     title: "Document chunking - why and how?",
     body: "Chunking is essential for working with longer texts in vector databases. This unit covers how to use it as well as tips and best practices.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/standalone/chunking",
+    buttonURL: "/developers/academy/py/standalone/chunking",
     badgeType: "practical",
     learningGoals: [
       "What chunking is",
@@ -455,26 +669,6 @@ export const unitData = {
       "Explain the impact of chunking in vector search and retrieval augmented generation",
       "Implement various chunking methods and know where to explore others",
       "Evaluate chunking strategies based on your needs",
-    ],
-    owner: "jp",
-    reviewer: "jp"
-  },
-  multi_tenancy_intro: {
-    title: "Introduction to multi-tenancy",
-    body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
-    buttonType: "TBD",
-    // buttonURL: "/developers/academy/standalone/multi_tenancy",
-    badgeType: "practical",
-    learningGoals: [
-      "What multi-tenancy is and when to use it",
-      "How to enable it and create tenants",
-      "Using Weaviate with multi-tenancy",
-    ],
-    learningOutcomes: [
-      "Describe what multi-tenancy is",
-      "Appropriately select when to use multi-tenancy",
-      "Create tenants and ingest data with multi-tenancy enabled",
-      "Perform operations at tenant level",
     ],
     owner: "jp",
     reviewer: "jp"
@@ -530,7 +724,7 @@ export const unitData = {
     title: "Introduction to Weaviate with TS (or JS)",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/intro_weaviate_typescript",
+    buttonURL: "/developers/academy/js/intro_weaviate_typescript",
     badgeType: "practical",
     learningGoals: [
       "The basics of Weaviate, and how to integrate it to a TypeScript (or JavaScript) app."

@@ -1,0 +1,164 @@
+---
+title: Preparation
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/101_connect.py';
+
+:::info Pre-requisites
+This course is self-contained. However, we recommend that you go through one of the 101-level courses, such as that for working with [text](../../starter_text_data/index.md), [your own vectors](../../starter_custom_vectors/index.md), or [multimodal data](../../starter_multimodal_data/index.md).
+:::
+
+This page briefly covers the required resources and setup, including the Weaviate Python client library, and a Weaviate instance with the multi-modal vectorizer.
+
+## <i class="fa-solid fa-code"></i> Weaviate Python client library
+
+Install the latest (`v4`, e.g. `4.5.0`) Weaviate Python client library with:
+
+```bash
+pip install -U weaviate-client
+```
+
+## <i class="fa-solid fa-chalkboard"></i> Set up Weaviate
+
+Install Docker on your machine. We recommend following the [official Docker installation guide](https://docs.docker.com/get-docker/).
+
+Create a new directory and navigate to it in your terminal. Then, create a new file called `docker-compose.yml` and add the following content:
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    - 50051:50051
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
+    environment:
+      CLIP_INFERENCE_API: 'http://multi2vec-clip:8080'
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'multi2vec-clip'
+      ENABLE_MODULES: 'multi2vec-clip,text2vec-openai,generative-openai'
+      CLUSTER_HOSTNAME: 'node1'
+  multi2vec-clip:
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    environment:
+      ENABLE_CUDA: '0'
+volumes:
+  weaviate_data:
+...
+
+```
+
+### <i class="fa-solid fa-chalkboard"></i> Create a Weaviate instance
+
+Run the following command to start Weaviate:
+
+```bash
+docker compose up
+```
+
+### <i class="fa-solid fa-chalkboard"></i> Your Weaviate instance details
+
+Once the instance is created, you can access it at `http://localhost:8080`.
+
+## <i class="fa-solid fa-code"></i> Work with Weaviate
+
+### <i class="fa-solid fa-code"></i> Connect to your Weaviate instance
+
+To connect to the Weaviate instance, use the `connect_to_local` function. We also provide API keys here for any inference APIs (e.g. OpenAI, Cohere, Google, AWS etc.) that Weaviate may use.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# DockerAPIKeyInstantiation"
+  endMarker="# END DockerAPIKeyInstantiation"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Check Weaviate status
+
+You can check whether the Weaviate instance is up using the `is_live` function.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# PollLiveness"
+  endMarker="# END PollLiveness"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Retrieve server meta information
+
+You can retrieve meta information about the Weaviate instance using the `meta` function.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetMeta"
+  endMarker="# END GetMeta"
+  language="py"
+/>
+
+This will print the server meta information to the console. The output will look similar to the following:
+
+<details>
+  <summary>Example <code>get_meta</code> output</summary>
+
+Note that this output is a little longer due to the additional details from the CLIP models.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# OutputGetMeta"
+  endMarker="# END OutputGetMeta"
+  language="py"
+/>
+</details>
+
+### <i class="fa-solid fa-code"></i> Close the connection
+
+After you have finished using the Weaviate client, you should close the connection. This frees up resources and ensures that the connection is properly closed.
+
+We suggest using a `try`-`finally` block as a best practice. For brevity, we will not include the `try`-`finally` blocks in the remaining code snippets.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TryFinallyCloseDemo"
+  endMarker="# END TryFinallyCloseDemo"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Source data
+
+We are going to use a movie dataset sourced from [TMDB](https://www.themoviedb.org/). The dataset can be found in this [GitHub repository](https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json), and it contains bibliographic information on ~700 movies released between 1990 and 2024.
+
+As a multimodal project, we'll also use [corresponding posters for each movie](https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_posters.zip), which are available in the same repository.
+
+<details>
+  <summary>See sample text data</summary>
+
+|    | backdrop_path                    | genre_ids       |   id | original_language   | original_title              | overview                                                                                                                                                                                                                                                                                                                                                                                                                        |   popularity | poster_path                      | release_date   | title                       | video   |   vote_average |   vote_count |
+|---:|:---------------------------------|:----------------|-----:|:--------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|:---------------------------------|:---------------|:----------------------------|:--------|---------------:|-------------:|
+|  0 | /3Nn5BOM1EVw1IYrv6MsbOS6N1Ol.jpg | [14, 18, 10749] |  162 | en                  | Edward Scissorhands         | A small suburban town receives a visit from a castaway unfinished science experiment named Edward.                                                                                                                                                                                                                                                                                                                              |       45.694 | /1RFIbuW9Z3eN9Oxw2KaQG5DfLmD.jpg | 1990-12-07     | Edward Scissorhands         | False   |            7.7 |        12305 |
+|  1 | /sw7mordbZxgITU877yTpZCud90M.jpg | [18, 80]        |  769 | en                  | GoodFellas                  | The true story of Henry Hill, a half-Irish, half-Sicilian Brooklyn kid who is adopted by neighbourhood gangsters at an early age and climbs the ranks of a Mafia family under the guidance of Jimmy Conway.                                                                                                                                                                                                                     |       57.228 | /aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg | 1990-09-12     | GoodFellas                  | False   |            8.5 |        12106 |
+|  2 | /6uLhSLXzB1ooJ3522ydrBZ2Hh0W.jpg | [35, 10751]     |  771 | en                  | Home Alone                  | Eight-year-old Kevin McCallister makes the most of the situation after his family unwittingly leaves him behind when they go on Christmas vacation. But when a pair of bungling burglars set their sights on Kevin's house, the plucky kid stands ready to defend his territory. By planting booby traps galore, adorably mischievous Kevin stands his ground as his frantic mother attempts to race home before Christmas Day. |        3.538 | /onTSipZ8R3bliBdKfPtsDuHTdlL.jpg | 1990-11-16     | Home Alone                  | False   |            7.4 |        10599 |
+|  3 | /vKp3NvqBkcjHkCHSGi6EbcP7g4J.jpg | [12, 35, 878]   |  196 | en                  | Back to the Future Part III | The final installment of the Back to the Future trilogy finds Marty digging the trusty DeLorean out of a mineshaft and looking for Doc in the Wild West of 1885. But when their time machine breaks down, the travelers are stranded in a land of spurs. More problems arise when Doc falls for pretty schoolteacher Clara Clayton, and Marty tangles with Buford Tannen.                                                       |       28.896 | /crzoVQnMzIrRfHtQw0tLBirNfVg.jpg | 1990-05-25     | Back to the Future Part III | False   |            7.5 |         9918 |
+|  4 | /3tuWpnCTe14zZZPt6sI1W9ByOXx.jpg | [35, 10749]     |  114 | en                  | Pretty Woman                | When a millionaire wheeler-dealer enters a business contract with a Hollywood hooker Vivian Ward, he loses his heart in the bargain.                                                                                                                                                                                                                                                                                            |       97.953 | /hVHUfT801LQATGd26VPzhorIYza.jpg | 1990-03-23     | Pretty Woman                | False   |            7.5 |         7671 |
+
+</details>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+

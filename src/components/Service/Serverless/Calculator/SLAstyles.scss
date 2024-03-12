@@ -1,0 +1,461 @@
+.newCalculator {
+  .slaCalculator {
+    .pricingCalculator {
+      background: #130c49;
+    }
+    .pricingSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ffffff;
+      text-align: center;
+      margin: auto;
+      width: 50%;
+      margin-bottom: -40px;
+
+      h2 {
+        color: #ffffff;
+      }
+
+      @media screen and (max-width: 680px) {
+        width: 100%;
+      }
+
+      a {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+    }
+  }
+  .sliderArea {
+    max-width: 65%;
+    margin: auto;
+    background-color: rgba(46, 49, 143, 0.5);
+    border-radius: 0.75rem;
+    padding: 3.5rem 6rem;
+
+    @media screen and (max-width: 668px) {
+      padding: 2rem 1.5rem;
+      max-width: 95%;
+    }
+
+    background-color: #262262;
+    filter: drop-shadow(0px 21.733px 57.954px rgba(22, 27, 45, 0.08));
+
+    label {
+      color: #ffffff;
+    }
+
+    input {
+      color: #ffffff !important;
+    }
+  }
+
+  .slider {
+    display: grid;
+    grid-template-columns: 2fr 4fr 70px;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 668px) {
+      // flex-direction: column;
+      grid-template-columns: 1fr;
+      margin-bottom: 20px;
+    }
+  }
+
+  .selectContainer {
+    display: grid;
+    grid-template-columns: 2fr 4fr 60px;
+    gap: 1rem;
+    margin-bottom: 40px;
+    @media screen and (max-width: 668px) {
+      // flex-direction: column;
+      grid-template-columns: 1fr;
+      margin-bottom: 20px;
+    }
+  }
+
+  .value {
+    margin: auto;
+    input {
+      appearance: none;
+      padding: 1rem;
+      background-color: transparent;
+      border-radius: 12px;
+      padding: 0.8125rem 1.25rem;
+      &:focus-visible {
+        outline: none;
+      }
+      border: 1px solid transparent;
+      width: 150px;
+    }
+  }
+
+  ::placeholder {
+    color: #ffffff;
+    background: transparent;
+  }
+
+  .highAva {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .switchContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .priceBox {
+    display: flex;
+    gap: 1rem;
+
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    @media screen and (max-width: 668px) {
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .price {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        margin-bottom: 10px;
+        color: #ffffff;
+      }
+
+      .priceFormat {
+        display: flex;
+        flex-direction: row;
+        color: #ffffff;
+      }
+
+      .test {
+        font-size: 40px;
+        color: #ffffff;
+        font-family: var(--ifm-heading-font-family);
+        font-weight: var(--ifm-heading-font-weight);
+        line-height: var(--ifm-heading-line-height);
+        margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom)
+          0;
+      }
+    }
+  }
+
+  select {
+    // A reset of styles, including removing the default dropdown arrow
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+
+    // Stack above custom arrow
+    z-index: 1;
+
+    // Remove dropdown arrow in IE10 & IE11
+    // @link https://www.filamentgroup.com/lab/select-css.html
+    &::-ms-expand {
+      display: none;
+    }
+
+    // Remove focus outline, will add on alternate element
+    outline: none;
+  }
+
+  .selectYes {
+    width: 376px;
+
+    @media screen and (max-width: 400px) {
+      width: 100%;
+    }
+  }
+
+  .select {
+    display: grid;
+    grid-template-areas: 'select';
+    align-items: center;
+    position: relative;
+    border: 1px solid #00b7e2;
+
+    select,
+    &::after {
+      grid-area: select;
+      color: #fff;
+    }
+
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid #fff;
+    border-radius: 0.25em;
+    padding: 0.35em 0.5em;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: transparent;
+
+    &::after {
+      content: '';
+      justify-self: end;
+      width: 0.8em;
+      height: 0.5em;
+      background-color: #00b7e2;
+      clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
+  }
+
+  select:focus + .focus {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 2px solid #f9f9f9;
+    border-radius: inherit;
+  }
+  label {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  .labelResult {
+    font-size: 18px;
+  }
+
+  .select + label {
+    margin-top: 2rem;
+  }
+
+  [data-theme='light'] {
+    .slider {
+      .rc-slider-track {
+        background-color: #61bd73;
+      }
+      .rc-slider-dot-active {
+        border-color: #61bd73;
+      }
+      .rc-slider-handle {
+        background-color: #61bd73;
+        border-color: #61bd73;
+        opacity: 1;
+      }
+    }
+
+    .select {
+      border: 1px solid #00b7e2;
+
+      &::after {
+        background-color: #00b7e2 !important;
+      }
+    }
+
+    select,
+    &::after {
+      grid-area: select;
+      color: #ffffff;
+    }
+
+    ::placeholder {
+      color: rgba(46, 49, 143);
+      background: transparent;
+    }
+  }
+
+  select option {
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .slider {
+    .rc-slider-track {
+      background-color: #00b800;
+      height: 7px;
+    }
+
+    .rc-slider-handle {
+      height: 24px;
+      width: 24px;
+      margin-top: -8px;
+      background-color: #00b800;
+
+      border-color: #00b800;
+    }
+
+    .rc-slider-rail {
+      height: 7px;
+      opacity: 0.1;
+    }
+  }
+
+  .buttons {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    @media screen and (max-width: 860px) {
+      flex-direction: column;
+    }
+
+    div {
+      height: 45px;
+      width: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    .buttonOutline {
+      border-radius: 0.3125rem;
+      border: 1px solid #1adb3e;
+      font-size: 20px;
+      transition: all 1s ease-out;
+    }
+    .buttonOutline:hover {
+      border-radius: 0.3125rem;
+      outline: 1px solid #130c49;
+      background: #1adb3e;
+      color: #130c49;
+      font-weight: 400;
+    }
+  }
+
+  [data-theme='light'] {
+    .buttonOutline {
+      color: rgba(255, 255, 255);
+    }
+  }
+
+  .toggleSwitchInner_src-components-ToggleSwitch-styles-module:before {
+    content: attr(data-yes);
+    text-transform: uppercase;
+    background-color: #61bd73;
+    padding-left: 10px;
+    color: #1c1468;
+  }
+
+  .btn-group {
+    display: grid;
+    grid-template-columns: 2fr 4fr 60px;
+    gap: 1rem;
+    margin: 7px 0px;
+
+    .btn-inner {
+      border-radius: 6px;
+      border: 1px solid #02b7e1;
+      width: 210px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      font-size: 15px;
+    }
+
+    @media screen and (max-width: 668px) {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .btn-peformance {
+    background-color: #f9f9f9;
+    color: #130c49;
+    border: none;
+    border-right: 1px solid #02b7e1;
+  }
+
+  .btn-performanceHold {
+    background-color: #130c49;
+    color: #ffffff;
+    height: 34px;
+    border-radius: 5px 0px 0px 5px;
+    width: 111px;
+    border-style: none;
+    transition: color 0.5s ease-in-out;
+  }
+
+  .btn-compression {
+    background-color: #f9f9f9;
+    color: #130c49;
+    border: none;
+    border-left: 1px solid #02b7e1;
+  }
+
+  .btn-compressionHold {
+    background-color: #130c49;
+    color: #ffffff;
+    height: 34px;
+    border-radius: 0px 5px 5px 0px;
+    width: 111px;
+    border-style: none;
+    transition: color 0.5s ease-in-out;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+    width: 200px;
+    text-align: center;
+    padding: 7px;
+
+    a {
+      background-color: none;
+    }
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .customTooltip {
+    background-color: #0c072fd4;
+    color: #fff;
+    left: 39%;
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+
+    z-index: 10;
+    width: calc(49% - 70px);
+    max-width: 676px;
+    box-shadow: 0px 2px 3px 2px rgb(22 27 45 / 19%);
+
+    @media screen and (max-width: 668px) {
+      position: inherit;
+      width: calc(100% - 0px);
+      margin-top: 10px;
+    }
+
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+      width: calc(53% - 84px);
+    }
+  }
+}

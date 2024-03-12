@@ -17,14 +17,14 @@ For a lot of people, Multimodal AI and its derivatives are strong contenders for
 
 
 
-## Modalities 
+## Modalities
 > A modality is a particular mode in which something exists or is experienced or expressed.
 
-### Single Modality 
+### Single Modality
 
 Historically, search has been over text, emphasizing the relevance of [keyword search](https://weaviate.io/developers/weaviate/search/bm25). This type of search was focused on matching text search terms to large datasets of text and returning the most relevant. This was the single modality; text search through data and get back text.
 
-Even with the onset of multimedia; images, videos and audio. We leveraged metadata and attached text to these more complex modalities and essentially ran keyword searches. Still a single-modality search. 
+Even with the onset of multimedia; images, videos and audio. We leveraged metadata and attached text to these more complex modalities and essentially ran keyword searches. Still a single-modality search.
 
 Early versions of large language models followed suit. With most being single modality models, with a single model inference.
 
@@ -34,9 +34,9 @@ Early versions of large language models followed suit. With most being single mo
 
 ### Multi-Modality
 
-In today's world, not only are people optimizing for TikTok searches but the video hosting service is the search engine of choice for a [majority of Gen Z](https://www.campaignasia.com/article/tiktok-trumps-google-as-a-search-engine-research-finds/492905). Multimodality enables search queries with multiple media types over multiple media types. Enabling you to text search over datasets of video or mixed media. 
+In today's world, not only are people optimizing for TikTok searches but the video hosting service is the search engine of choice for a [majority of Gen Z](https://www.campaignasia.com/article/tiktok-trumps-google-as-a-search-engine-research-finds/492905). Multimodality enables search queries with multiple media types over multiple media types. Enabling you to text search over datasets of video or mixed media.
 
-Mostly enabled by [vector](https://weaviate.io/developers/weaviate/search/similarity) and [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid), Vector databases by design are uniquely adapted to storing, indexing and enabling efficient retrieval for multimodal use cases. On the machine learning model side of things, we’re seeing the rise of multimodal models that can infer numerous modalities. 
+Mostly enabled by [vector](https://weaviate.io/developers/weaviate/search/similarity) and [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid), Vector databases by design are uniquely adapted to storing, indexing and enabling efficient retrieval for multimodal use cases. On the machine learning model side of things, we’re seeing the rise of multimodal models that can infer numerous modalities.
 
 This means we can interact with an LLM via chat and have the LLMs generate text, audio or video. By definition, this would enable interaction with similar models via text or even video.
 
@@ -49,34 +49,34 @@ This means we can interact with an LLM via chat and have the LLMs generate text,
 
 Now that we have a better understanding of multi-modal search, let’s build a search application with [Weaviate](https://weaviate.io/) and [Next.js](https://nextjs.org/)
 
-Specwise, we want to be able to run a text search through image, video and audio data without leveraging the file's metadata. 
+Specwise, we want to be able to run a text search through image, video and audio data without leveraging the file's metadata.
 
 
 ### Requirements
 
-You need the following to go through with this tutorial. 
+You need the following to go through with this tutorial.
 
 - An LTS version of [Node.js](https://nodejs.org/en/blog/release/v20.9.0)
 - [Docker](https://www.docker.com/)
 - [Git](https://git-scm.com/)
 
-> The project that this tutorial is based on is [available on Github](https://github.com/malgamves/next-multimodal-search-demo) if you’d like to give it a try before going through with the tutorial. 
+> The project that this tutorial is based on is [available on Github](https://github.com/malgamves/next-multimodal-search-demo) if you’d like to give it a try before going through with the tutorial.
 
 
 Create your Next.js application that comes with TypeScript, Tailwind CSS and the App Router with the following command.
 
 ```bash
-create-next-app <project-name> –ts –tailwind –app 
+create-next-app <project-name> –ts –tailwind –app
 ```
 
 ### Getting Weaviate Running
-In the newly created folder, create a `docker-compose.yml` file and paste the following code into it. 
+In the newly created folder, create a `docker-compose.yml` file and paste the following code into it.
 
 ```yml
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.23.4
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
       - "8080:8080"
@@ -89,27 +89,31 @@ services:
         BIND_INFERENCE_API: 'http://multi2vec-bind:8080'
         CLUSTER_HOSTNAME: 'node1'
   multi2vec-bind:
-    image: semitechnologies/multi2vec-bind:imagebind
+    image: cr.weaviate.io/semitechnologies/multi2vec-bind:imagebind
     environment:
       ENABLE_CUDA: '0'
 
 ```
 
 
-Then run `docker-compose up -d` in your terminal to start an instance of Weaviate with [ImageBind](https://imagebind.metademolab.com/), our Multimodal model. This also enables us to use the [multi2vec-bind](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind) module, the tool that enables us to store vector embeddings of video, text, audio and image data. 
+Then run `docker-compose up -d` in your terminal to start an instance of Weaviate with [ImageBind](https://imagebind.metademolab.com/), our Multimodal model. This also enables us to use the [multi2vec-bind](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-bind) module, the tool that enables us to store vector embeddings of video, text, audio and image data.
+
+:::tip Memory requirements
+Make sure that you have enough memory allocated to Docker. The `multi2vec-bind` module loads a very large model, and you may need to allocate more memory (e.g. 12GB or higher) to Docker to avoid out-of-memory errors.
+:::
 
 ### Importing Data
 
-Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application. 
+Next, we will create a Weavaite collection and import data into it. In your `./public` folder, create three folders called *image*, *audio*, and *video*. These will store media corresponding to their folder names respectively. You can then add your data or [use the data I added](https://github.com/malgamves/next-multimodal-search-demo/tree/main/public) to build out the original application.
 
 We then install the Weaviate [TypeScript client](https://www.npmjs.com/package/weaviate-ts-client) and other project dependencies with the following command.
 ```bash
-yarn add weaviate-ts-client use-debounce rimraf 
+yarn add weaviate-ts-client use-debounce rimraf
 ```
 
-To import our data, we need to create a folder called `src` where our import scripts will go. 
+To import our data, we need to create a folder called `src` where our import scripts will go.
 
-To start, create a file called `client.ts` and paste the following code in it to initialize the Weaviate client. 
+To start, create a file called `client.ts` and paste the following code in it to initialize the Weaviate client.
 
 ```typescript
 import weaviate, { WeaviateClient } from 'weaviate-ts-client';
@@ -123,14 +127,14 @@ export const getWeaviateClient = () => {
       host: 'localhost:8080',
     });
   };
-  
+
   return client;
 }
 
 ```
 
 
-Next, still in `./src` we create a file called `util.ts` and paste the following code in it. 
+Next, still in `./src` we create a file called `util.ts` and paste the following code in it.
 
 ```typescript
 import {readdirSync, readFileSync, } from 'fs'
@@ -174,7 +178,7 @@ export const createBindCollection = async (name: string) => {
     console.log(`The collection [${name}] already exists. No need to create it.`);
     return;
   }
-  
+
   console.log(`Creating collection [${name}].`);
 
   const bindSchema = {
@@ -217,7 +221,7 @@ export const createBindCollection = async (name: string) => {
     vectorIndexType: 'hnsw',
     vectorizer: 'multi2vec-bind'
   }
-  
+
   const res = await client
     .schema.classCreator()
     .withClass(bindSchema)
@@ -277,7 +281,7 @@ const insertImages = async (collectionName: string) => {
             image: getBase64(file.path),
             media: 'image'
         };
-        
+
         console.log(`Adding [${item.media}]: ${item.name}`);
 
         batcher = batcher.withObject({
@@ -291,7 +295,7 @@ const insertImages = async (collectionName: string) => {
 
             // flush the batch queue
             await batcher.do();
-      
+
             // restart the batch queue
             counter = 0;
             batcher = client.batch.objectsBatcher();
@@ -301,7 +305,7 @@ const insertImages = async (collectionName: string) => {
     if (counter > 0) {
         console.log(`Flushing remaining ${counter} item(s).`)
         await batcher.do();
-        
+
     }
 }
 
@@ -322,7 +326,7 @@ const insertAudio = async (collectionName: string) => {
         };
 
         console.log(`Adding [${item.media}]: ${item.name}`);
-        
+
         batcher = batcher.withObject({
             class: collectionName,
             properties: item,
@@ -333,7 +337,7 @@ const insertAudio = async (collectionName: string) => {
             console.log(`Flushing ${counter} items.`)
             // flush the batch queue
             await batcher.do();
-      
+
             // restart the batch queue
             counter = 0;
             batcher = client.batch.objectsBatcher();
@@ -362,7 +366,7 @@ const insertVideo = async (collectionName: string) => {
         };
 
         console.log(`Adding [${item.media}]: ${item.name}`);
-        
+
         batcher = batcher.withObject({
             class: collectionName,
             properties: item,
@@ -373,7 +377,7 @@ const insertVideo = async (collectionName: string) => {
             console.log(`Flushing ${counter} items.`)
             // flush the batch queue
             await batcher.do();
-      
+
             // restart the batch queue
             counter = 0;
             batcher = client.batch.objectsBatcher();
@@ -391,7 +395,7 @@ const insertVideo = async (collectionName: string) => {
 This file reads out images, video and audio directories for media and then encodes them before sending them to Weaviate to be stored.
 
 
-We then create a file called `index.ts` where we run all the files we created above. 
+We then create a file called `index.ts` where we run all the files we created above.
 
 ```typescript
 import { createBindCollection, deleteCollection } from './collection';
@@ -411,7 +415,7 @@ run();
 
 In `index.ts` we can change our collection name to our liking. When this file is run, we delete any existing collection that exists with the name we specify, create a new collection with the same name and then import all the media files in our `.public` folder.
 
-> It's important to note that we need our Weaviate instance running with Docker before going to the next step. 
+> It's important to note that we need our Weaviate instance running with Docker before going to the next step.
 
 
 To run our import process, we need to add the following scripts to our `package.json` file.
@@ -435,7 +439,7 @@ Now we need to create a couple of components that will go in our web application
 
 Create a `./components` folder and add a file called `search.tsx`. Paste the following code in it.
 
-```typescript 
+```typescript
 'use client'
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
@@ -477,10 +481,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
 We have an input tag that takes search terms from users. We then pass these search terms to our URL params and then use the `replace` method from `next/navigation` to update the URL. This will update the URL and trigger a new search when the user stops typing.
 
 
-Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer! 
+Optionally, you can import the [footer](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/footer.tsx) and [navigation](https://github.com/malgamves/next-multimodal-search-demo/blob/main/components/navigation.tsx) components. We don’t really need them to demonstrate Multimodal search but they make the app look nicer!
 
 
-In the `./app` folder, paste the following code in `page.tsx`, 
+In the `./app` folder, paste the following code in `page.tsx`,
 
 ```typescript
 // import Footer from '@/components/footer';
@@ -514,7 +518,7 @@ export default async function Home({
     <html lang="en">
       <body>
         <div className="fixed h-screen w-full bg-gradient-to-br from-lime-100 via-teal-50 to-amber-100" />
-        
+
        {/* <Navigation />  */}
 
         <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
@@ -592,7 +596,7 @@ Here we define a function `searchDB()`, which makes a call to Weaviate to search
 
 
 ### Final Result
-Then you should be able to search like this 
+Then you should be able to search like this
 
 ![the final multimodal search project](./img/mumose-1.gif)
 

@@ -86,6 +86,41 @@ It is also possible to add a cross-reference property to an existing collection 
   </TabItem>
 </Tabs>
 
+
+## Create an object with a cross-reference
+
+Specify a cross-reference when creating an object.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# ObjectWithCrossRef"
+      endMarker="# END ObjectWithCrossRef"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# ObjectWithCrossRef"
+      endMarker="# END ObjectWithCrossRef"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// ObjectWithCrossRef"
+      endMarker="// END ObjectWithCrossRef"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+
 ## Add a one-way cross-reference
 
 Specify the required id and properties for the source and the target.
@@ -447,6 +482,7 @@ The targets of a cross-reference can be updated.
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [References: REST - /v1/objects](../api/rest/objects.md#cross-references)
 - [Retrieve the object](../api/rest/objects.md#get-a-data-object) to retrieve its cross references.
 - [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.

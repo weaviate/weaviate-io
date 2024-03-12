@@ -1,0 +1,287 @@
+---
+title: Introduction to Weaviate
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> What is Weaviate?
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/MQgm126pKkU' controls='true' />
+<br/>
+
+Weaviate is an open-source [vector database](https://weaviate.io/blog/what-is-a-vector-database). But what does that mean? Let's unpack it here.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector database
+
+Weaviate is a fantastic tool for retrieving the information you need, quickly and accurately. It does this by being an amazing **vector database**.
+
+You may be familiar with traditional databases such as relational databases that use SQL. A database can catalog, store and retrieve information. A **vector** database can carry out these tasks also, with the key difference being that they can perform these tasks based on similarity.
+
+#### <i class="fa-solid fa-memo-pad"></i> How traditional searches work
+
+Imagine that you are searching a relational database containing articles on cities, to retrieve a list of "major" European cities. Using SQL, you might construct a query like this:
+
+```sql
+SELECT city_name wiki_summary
+FROM wiki_city
+WHERE (wiki_summary LIKE '%major European city%' OR
+       wiki_summary LIKE '%important European city%' OR
+       wiki_summary LIKE '%prominent European city%' OR
+       wiki_summary LIKE '%leading European city%' OR
+       wiki_summary LIKE '%significant European city%' OR
+       wiki_summary LIKE '%top European city%' OR
+       wiki_summary LIKE '%influential European city%' OR
+       wiki_summary LIKE '%notable European city%')
+    (… and so on)
+```
+
+Which would return cities that contained any of these strings (`major`, `important`, `prominent`, ... etc) in the `wiki_summary` column.
+
+This works well in many circumstances. However, there are two significant limitations with this approach.
+
+#### <i class="fa-solid fa-memo-pad"></i> Limitations of traditional search
+
+Using this type of search requires you to identify terms that *may* have been used to describe the concept, which is no easy feat.
+
+What's more, this doesn't solve the problem of how to rank the list of resulting objects.
+
+With the above search query, an entry merely containing a mention of a different European city (i.e. not very relevant) would be given equal weighting to an entry for Paris, or Rome, which would be highly relevant.
+
+A vector database makes this job simpler by enabling searches based on similarity.
+
+#### <i class="fa-solid fa-memo-pad"></i> Examples of vector search
+
+So, you could perform a query like this in Weaviate:
+
+```graphql
+{
+  Get {
+    WikiCity (
+      nearText: { concepts: ["Major European city"] }
+    ) { city_name wiki_summary }
+  }
+}
+```
+
+And it would return a list of entries that are *ranked by their similarity* to the query - the idea of "Major European city".
+
+What's more, Weaviate "indexes" the data based on their similarity, making this type of data retrieval lightning-fast.
+
+Weaviate can help you to do all this, and actually a lot more. Another way to think about Weaviate is that it supercharges the way you use information.
+
+:::info Vector vs semantic search
+A vector search is also referred to as a "semantic search" because it returns results based on the similarity of meaning (therefore "semantic").
+:::
+
+### <i class="fa-solid fa-chalkboard"></i> Open-source
+
+Weaviate is open-source. In other words, its [codebase is available online](https://github.com/weaviate/weaviate) for anyone to see and use<sup>[(1)](#1)</sup>.
+
+And that is *the* codebase, regardless of how you use it. So whether you run Weaviate on your own computer, on a cloud computing environment, or through our managed service [Weaviate Cloud Services, or WCS](https://console.weaviate.io/), you are using the exact same technology.
+
+So, if you want, you can run Weaviate for free on your own device, or use our managed service for convenience. You can also take comfort in that you can see exactly what you are running, and be a part of the open-source community, as well as to shape its development.
+
+It also means that your knowledge about Weaviate is fungible, between local, cloud, or managed instances of Weaviate. So anything you learn here about Weaviate using WCS will be equally applicable to running it locally, and vice versa. 😉
+
+### <i class="fa-solid fa-chalkboard"></i> Information, made dynamic
+
+We are used to thinking of information as static, like a book. But with Weaviate and modern AI-driven language models, we can do much more than just retrieve static information but easily build on top of it. Take a look at these examples:
+
+#### <i class="fa-solid fa-memo-pad"></i> Question answering
+
+Given a list of Wikipedia entries, you could ask Weaviate:
+
+:::note We asked Weaviate:
+When was Lewis Hamilton born?
+:::
+
+And it would answer with:
+
+:::note Weaviate responded:
+Lewis Hamilton was born on January 7, 1985. ([check for yourself](https://en.wikipedia.org/wiki/Lewis_Hamilton))
+:::
+
+<details>
+  <summary><i class="fa-solid fa-code"></i> See the full query & response</summary>
+
+#### <i class="fa-solid fa-memo-pad"></i> Query
+
+```graphql
+{
+  Get {
+    WikiArticle (
+      ask: {
+        question: "When was Lewis Hamilton born?",
+        properties: ["wiki_summary"]
+      },
+      limit: 1
+    ) {
+      title
+      _additional {
+        answer {
+          result
+        }
+      }
+    }
+  }
+}
+```
+
+#### <i class="fa-solid fa-memo-pad"></i> Response
+
+```json
+{
+  "data": {
+    "Get": {
+      "WikiArticle": [
+        {
+          "_additional": {
+            "answer": {
+              "result": " Lewis Hamilton was born on January 7, 1985."
+            }
+          },
+          "title": "Lewis Hamilton"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+#### <i class="fa-solid fa-memo-pad"></i> Generative search
+
+Or you can synthesize passages using retrieved information with Weaviate:
+
+Here is one, where we searched Weaviate for an entry on a "racing driver", and produce the result in the format of:
+
+:::note We asked Weaviate:
+Write a fun tweet encouraging people to read about this: ## {title} by summarizing highlights from: ## {wiki_summary}
+:::
+
+Which produces:
+
+:::note Weaviate responded:
+Check out the amazing story of Lewis Hamilton, the 7-time Formula One World Drivers' Championship winner! From his humble beginnings to becoming one of the world's most influential people, his journey is an inspiring one. #LewisHamilton #FormulaOne #Motorsport #Racing
+:::
+
+<details>
+  <summary><i class="fa-solid fa-code"></i> See the full query & response</summary>
+
+#### <i class="fa-solid fa-memo-pad"></i> Query
+
+```graphql
+{
+  Get {
+    WikiArticle(
+      nearText: {
+        concepts: ["Racing Driver"]
+      }
+      limit: 1
+    ) {
+      title
+      wiki_summary
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+              Write a fun tweet encouraging people to read about this: ## {title}
+              by summarizing highlights from: ## {wiki_summary}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+```
+
+#### <i class="fa-solid fa-memo-pad"></i> Response
+
+```json
+{
+  "data": {
+    "Get": {
+      "WikiArticle": [
+        {
+          "_additional": {
+            "generate": {
+              "error": null,
+              "singleResult": "Check out the amazing story of Lewis Hamilton, the 7-time Formula One World Drivers' Championship winner! From his humble beginnings to becoming a global icon, his journey is an inspiring one. #LewisHamilton #FormulaOne #Motorsport #Racing #Inspiration"
+            }
+          },
+          "title": "Lewis Hamilton",
+          "wiki_summary": "Sir Lewis Carl Davidson Hamilton   (born 7 January 1985) is a British racing driver currently competing in Formula One, driving for Mercedes-AMG Petronas Formula One Team. In Formula One, Hamilton has won a joint-record seven World Drivers' Championship titles (tied with Michael Schumacher), and holds the records for the most wins (103), pole positions (103), and podium finishes (191), among others.\nBorn and raised in Stevenage, Hertfordshire, Hamilton joined the McLaren young driver programme in 1998 at the age of 13, becoming the youngest racing driver ever to be contracted by a Formula One team. This led to a Formula One drive with McLaren for six years from 2007 to 2012, making Hamilton the first black driver to race in the series. In his inaugural season, Hamilton set numerous records as he finished runner-up to Kimi R\u00e4ikk\u00f6nen by one point. The following season, he won his maiden title in dramatic fashion\u2014making a crucial overtake at the last corner on the last lap of the last race of the season\u2014to become the then-youngest Formula One World Champion in history.  After six years with McLaren, Hamilton signed with Mercedes in 2013.\nChanges to the regulations for 2014 mandating the use of turbo-hybrid engines saw the start of a highly successful period for Hamilton, during which he won six further drivers' titles. Consecutive titles came in 2014 and 2015 during an intense rivalry with teammate Nico Rosberg. Following Rosberg's retirement in 2016, Ferrari's Sebastian Vettel became Hamilton's closest rival in two championship battles, in which Hamilton twice overturned mid-season point deficits to claim consecutive titles again in 2017 and 2018. His third and fourth consecutive titles followed in 2019 and 2020 to equal Schumacher's record of seven drivers' titles. Hamilton achieved his 100th pole position and race win during the 2021 season. \nHamilton has been credited with furthering Formula One's global following by appealing to a broader audience outside the sport, in part due to his high-profile lifestyle, environmental and social activism, and exploits in music and fashion. He has also become a prominent advocate in support of activism to combat racism and push for increased diversity in motorsport. Hamilton was the highest-paid Formula One driver from 2013 to 2021, and was ranked as one of the world's highest-paid athletes by Forbes of twenty-tens decade and 2021. He was also listed in the 2020 issue of Time as one of the 100 most influential people globally, and was knighted in the 2021 New Year Honours. Hamilton was granted honorary Brazilian citizenship in 2022.\n\n"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+
+We will cover these and many more capabilities, such as vectorization, summarization and classification, in our units.
+
+For now, keep in mind that Weaviate is a vector database at its core which can also leverage AI tools to do more with the retrieved information.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+In this section, you learned about what Weaviate is and how it works at a very high level. You have also been introduced to what vector search is at a high level, that it is a similarity-based search method.
+
+### <i class="fa-solid fa-pen-to-square"></i> Review exercises
+
+<Quiz questions={weaviateOpenSource} />
+
+<Quiz questions={vectorSearchDefinition} />
+
+<!-- Can you describe, in your own sentence, what vector search is?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+- What is a vector search
+- What is Weaviate
+::: -->
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Weaviate is an open source vector database.
+- The core Weaviate library is the same whether you run it locally, on the cloud, or with WCS.
+- Vector searches are similarity-based searches.
+- Weaviate can also transform your data after retrieving it before returning it to you.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Notes
+
+<a name="1"></a>(1) Subject to terms of its license, of course.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
+import Quiz from '/src/components/Academy/quiz.js'
+const weaviateOpenSource = [
+  {
+    questionText: 'What is the difference in the Weaviate codebase between local and cloud deployments?',
+    answerOptions: [
+      { answerText: 'Cloud deployments always include additional modules.', isCorrect: false, feedback: 'Cloud deployments of Weaviate do not include any special, or additional, modules.'},
+      { answerText: 'Local deployments are optimized for GPU use.', isCorrect: false, feedback: 'GPU usage can be enabled for inference whether locally or remotely deployed.'},
+      { answerText: 'Cloud deployments are optimized for scalability.', isCorrect: false, feedback: 'We agree that cloud deployments should be optimized for scalability. But the Weaviate codebase is built for scalability regardless of deployment location.'},
+      { answerText: 'None, they are the same.', isCorrect: true, feedback: 'They are the same, open-source codebase available on GitHub.'},
+    ],
+  },
+];
+const vectorSearchDefinition = [
+  {
+    questionText: 'What is the best description of vector search?',
+    answerOptions: [
+      { answerText: 'Vector search is a directional search.', isCorrect: false, feedback: 'The definition of "vector" in this context is not direction-related.'},
+      { answerText: 'Vector search is a similarity-based search.', isCorrect: true, feedback: 'It searches a data collection or database for proximity in its representation of "meaning".'},
+      { answerText: 'Vector search is a number-based search.', isCorrect: false, feedback: 'This is partially true, but not the best answer. While there are numbers involved, that description does not quite capture the key concept of vector searches.'},
+    ],
+  },
+];

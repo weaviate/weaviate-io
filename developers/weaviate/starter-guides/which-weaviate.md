@@ -5,19 +5,12 @@ image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
-
-## Overview
-
 Weaviate can be configured and deployed in many different ways. Generally, the two first decisions to make in using Weaviate involve:
 
 - The choice of [deployment setup](../installation/index.md), and
 - The choice of [vectorizer modules](../modules/retriever-vectorizer-modules/index.md) to enable.
 
 This page helps you to find the right combination for your needs.
-
-:::tip
-In all cases, we recommend using a [Weaviate client library](../client-libraries/index.md) to interact with your Weaviate instance.
-:::
 
 ## Available options
 

@@ -75,6 +75,13 @@
     "team": "applied-research"
   },
   {
+    "name": "Benjamin Sabrin",
+    "title": "Head of Sales",
+    "photo": "benjamin.jpg",
+    "linkedin": "bsabrin",
+    "team": "sales"
+  },
+  {
     "name": "Bob van Luijt",
     "title": "Co-founder and CEO",
     "photo": "bob.png",
@@ -105,6 +112,14 @@
     "photo": "charles.png",
     "linkedin": "ceharr",
     "github": "harrlight00",
+    "team": "wcs"
+  },
+  {
+    "name": "Charles Pierse",
+    "title": "Machine Learning Engineer",
+    "photo": "charles-pierse.png",
+    "linkedin": "charles-pierse",
+    "twitter": "cdpierse",
     "team": "wcs"
   },
   {

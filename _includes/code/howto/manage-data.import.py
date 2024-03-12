@@ -201,6 +201,66 @@ try:
     client.collections.delete(collection.name)
 
 
+    # ===========================================
+    # ===== Batch import with named vectors =====
+    # ===========================================
+
+    # Clean slate
+    client.collections.delete("YourCollection")
+
+    client.collections.create(
+        name="YourCollection",
+        properties=[
+            wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
+        ],
+        vectorizer_config=[
+            wvc.config.Configure.NamedVectors.text2vec_openai(
+                name="title",
+                source_properties=["title"]
+            ),
+            wvc.config.Configure.NamedVectors.text2vec_openai(
+                name="body",
+                source_properties=["body"]
+            ),
+        ]
+    )
+
+    # BatchImportWithNamedVectors
+    data_rows = [{
+        "title": f"Object {i+1}",
+        "body": f"Body {i+1}"
+    } for i in range(5)]
+
+    title_vectors = [[0.12] * 1536 for _ in range(5)]
+    body_vectors = [[0.34] * 1536 for _ in range(5)]
+
+    collection = client.collections.get("YourCollection")
+
+    # highlight-start
+    with collection.batch.dynamic() as batch:
+        for i, data_row in enumerate(data_rows):
+            batch.add_object(
+                properties=data_row,
+                vector={
+                    "title": title_vectors[i],
+                    "body": body_vectors[i],
+                }
+            )
+    # highlight-end
+    # END BatchImportWithNamedVectors
+
+    response = collection.query.fetch_objects(include_vector=True)
+    print(len(response.objects))
+    for i, obj in enumerate(response.objects):
+        print(obj.vector)
+        assert "Object" in obj.properties["title"]
+        assert "Body" in obj.properties["body"]
+        assert set(obj.vector.keys()) == {"title", "body"}
+        assert len(obj.vector["title"]) == 1536
+        assert len(obj.vector["body"]) == 1536
+
+
     # =======================================
     # ===== Batch import with cross-reference =====
     # =======================================

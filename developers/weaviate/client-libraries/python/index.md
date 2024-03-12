@@ -264,6 +264,25 @@ To create an older, `v3` style `Client` object, use the `weaviate.Client` class.
 
 To create a `v3` style client, refer to the [`v3` client documentation](./python_v3.md).
 
+### Initial connection checks
+
+When establishing a connection to the Weaviate server, the client performs a series of checks. These includes checks for the server version, and to make sure that the REST and gRPC ports are available.
+
+You can set `skip_init_checks` to `True` to skip these checks.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# LocalInstantiationSkipChecks"
+  endMarker="# END LocalInstantiationSkipChecks"
+  language="py"
+/>
+
+You may wish to do this to maximize performance, or as a temporary measure if you are experiencing issues with the checks. However, we recommend leaving `skip_init_checks` as `False` in most cases.
+
+:::note Open GitHub issue for configurable timeout
+There is an [open issue](https://github.com/weaviate/weaviate-python-client/issues/899) to make the initial checks timeout configurable. Please upvote this issue if you would like to see this feature.
+:::
+
 ## Batching
 
 The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.
@@ -272,12 +291,12 @@ We recommend using the collection object to perform batch imports of single coll
 
 ### Batch sizing
 
-There are three ways to configure the batch size. They are `dynamic`, `fixed_size` and `rate_limit`.
+There are three methods to configure the batching behavior. They are `dynamic`, `fixed_size` and `rate_limit`.
 
 | Method | Description | When to use |
 | :-- | :-- | :-- |
-| `dynamic` | The batch size is dynamically calculated by Weaviate. | Recommended starting point. |
-| `fixed_size` | The batch size is fixed to a size specified by a user. | When you want to control the batch size. |
+| `dynamic` | The batch size and the number of concurrent requests are dynamically adjusted on-the-fly during import, depending on the server load. | Recommended starting point. |
+| `fixed_size` | The batch size and number of concurrent requests are fixed to sizes specified by the user. | When you want to specify fixed parameters. |
 | `rate_limit` | The number of objects sent to Weaviate is rate limited (specified as n_objects per minute). | When you want to avoid hitting third-party vectorization API rate limits. |
 
 #### Usage
@@ -323,7 +342,9 @@ In the batching process, if the background thread responsible for sending the ba
 
 ### Error handling
 
-During a batch import, any failed objects or references will be stored for retrieval.
+During a batch import, any failed objects or references will be stored for retrieval. Additionally, a running count of failed objects and references is maintained.
+
+The counter can be accessed through `batch.number_errors` within the context manager.
 
 A list of failed objects can be obtained through `batch.failed_objects` and a list of failed references can be obtained through `batch.failed_references`.
 
@@ -821,7 +842,7 @@ Updated `client.batch` parameters
 
 Filter syntax is updated in v4.4b7.
 
-**NOTE**: The [filter reference syntax](../../client-libraries/python#reference-filters) is simplified in 4.4b8.
+**NOTE**: The [filter reference syntax](#reference-filters) is simplified in 4.4b8.
 
 | Old syntax | New syntax in v4.4b7 |
 | :-- | :-- |
@@ -927,6 +948,28 @@ Use `ReferenceToMulti` for multi-target references.
 </details>
 
 ## Best practices and notes
+
+### Exception handling
+
+The client library raises exceptions for various error conditions. These include, for example:
+
+- `weaviate.exceptions.WeaviateConnectionError` for failed connections.
+- `weaviate.exceptions.WeaviateQueryError` for failed queries.
+- `weaviate.exceptions.WeaviateBatchError` for failed batch operations.
+- `weaviate.exceptions.WeaviateClosedClientError` for operations on a closed client.
+
+Each of these exceptions inherit from `weaviate.exceptions.WeaviateBaseError`, and can be caught using this base class, as shown below.
+
+<FilteredTextBlock
+    text={PythonCode}
+    startMarker="# START BrokenQueryExample"
+    endMarker="# END BrokenQueryExample"
+    language="py"
+/>
+
+You can review [this module](https://github.com/weaviate/weaviate-python-client/blob/main/weaviate/exceptions.py) which defines the exceptions that can be raised by the client library.
+
+The client library doc strings also provide information on the exceptions that can be raised by each method. You can view these by using the `help` function in Python, by using the `?` operator in Jupyter notebooks, or by using an IDE, such as hover-over tooltips in VSCode.
 
 ### Thread-safety
 

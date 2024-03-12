@@ -1,0 +1,108 @@
+---
+title: Import data
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+
+## <i class="fa-solid fa-code"></i> Code
+
+This example imports the movie data into our collection.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BatchImportData"
+  endMarker="# END BatchImportData"
+  language="py"
+/>
+
+The code:
+- Loads the source text and image data
+- Gets the collection
+- Enters a context manager with a batcher (`batch`) object
+- Loops through the data and:
+    - Finds corresponding image to the text
+    - Converts the image to base64
+    - Adds objects to the batcher
+- Prints out any import errors
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+### <i class="fa-solid fa-chalkboard"></i> Preparation
+
+We use the requests library to load the data from the source, in this case a JSON file containing text data and a Zip file containing posters. The text data is then converted to a Pandas DataFrame for easier manipulation and the images are extracted from the Zip file.
+
+Then, we create a collection object (with `client.collections.get`) so we can interact with the collection.
+
+### <i class="fa-solid fa-chalkboard"></i> Batch context manager
+
+The `batch` object is a context manager that allows you to add objects to the batcher. This is useful when you have a large amount of data to import, as it abstracts away the complexity of managing the batch size and when to send the batch.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Enter context manager"
+  endMarker="# Loop through the data"
+  language="py"
+/>
+
+This example uses the `.dynamic()` method to create a dynamic batcher, which automatically determines and updates the batch size during the import process. There are also other batcher types, like `.fixed_size()` for specifying the number of objects per batch, and `.rate_limit()` for specifying the number of objects per minute.
+
+### <i class="fa-solid fa-chalkboard"></i> Add data to the batcher
+
+#### Convert data types
+
+The data is converted from a string to the correct data types for Weaviate. For example, the `release_date` is converted to a datetime object, and the `genre_ids` are converted to a list of integers.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Convert data types"
+  endMarker="# Convert image to base64"
+  language="py"
+/>
+
+To save the image data as a `BLOB` (binary large object) data type, we convert the image to base64.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Convert image to base64"
+  endMarker="# Build the object payload"
+  language="py"
+/>
+
+#### Add objects to the batcher
+
+Then we loop through the data and add each object to the batcher. The `batch.add_object` method is used to add the object to the batcher, and the batcher will send the batch according to the specified batcher type.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Build the object payload"
+  endMarker="# Batcher automatically sends batches"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Error handling
+
+Because a batch includes multiple objects, it's possible that some objects will fail to import. The batcher saves these errors.
+
+You can print out the errors to see what went wrong, and then decide how to handle them, such as by raising an exception. In this example, we simply print out the errors.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# Check for failed objects"
+  endMarker="finally"
+  language="py"
+/>
+
+Note that the list of errors is cleared when a new context manager is entered, so you must handle the errors before initializing a new batcher.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Where do the vectors come from?
+
+When the batcher sends the queue to Weaviate, the objects are added to the collection. In our case, the movie collection.
+
+Recall that the collection has a vectorizer module, and we do not specify vectors here. So Weaviate uses the specified vectorizer to generate vector embeddings from the data.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

@@ -158,6 +158,9 @@ export default function HomepageHeader() {
           </div>
         </div>
       </div>
+      <Link to="https://events.weaviate.io/ai-in-prod-sf-24">
+        <div className={styles.awsAIBanner}></div>
+      </Link>
       <div className={styles.sliderContainer}>
         <StyledSlider {...settings}>
           <div>

@@ -1,0 +1,273 @@
+.light {
+  .box {
+    text-align: left;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #130e46;
+  }
+
+  .soc2Box {
+    flex: 1 290px;
+    h2 {
+      color: white;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.dark {
+  .box {
+    text-align: left;
+    color: #130c49;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: center;
+
+    @media screen and (max-width: 680px) {
+      text-align: left;
+      margin: auto;
+      width: auto;
+      color: #130c49;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: flex-end;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .soc2Container {
+    background: #ededed;
+  }
+
+  .soc2Box {
+    flex: 1 290px;
+    h2 {
+      color: #130c49;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #130c49;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+
+  .drataLogo {
+    background: url('/img/site/drata-dark-logo.svg');
+    background-size: 100% 100%;
+    width: 50%;
+    height: 70px;
+    width: 50%;
+    height: 40px;
+    flex: 1;
+    margin-left: 6%;
+
+    @media screen and (max-width: 680px) {
+      flex: none;
+      margin-left: 0%;
+    }
+  }
+
+  .soc2Logo {
+    background: url('/img/site/soc2-logo.svg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 130px;
+    flex: 1;
+    @media screen and (max-width: 680px) {
+      flex: none;
+    }
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  width: 14.3125rem;
+  height: 13.4375rem;
+
+  background-color: #141f39;
+  margin: 1rem;
+  padding: 2rem;
+
+  border-radius: 1.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.longCard {
+  width: 100%;
+  border-radius: unset;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  gap: 20px;
+  color: #130c49;
+  z-index: 1;
+  flex-wrap: nowrap;
+  background: #ededed !important;
+  justify-content: center;
+  background-image: url('/img/site/quote-bg.svg') !important;
+  background-size: cover !important;
+
+  .cTextColor {
+    color: #130c49;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    min-height: 205px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 92%;
+  }
+
+  .contentDiv {
+    height: 100%;
+    width: 50%;
+    margin: 50px;
+    text-align: center;
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}
+
+.cardLogo {
+  background-image: url('/img/site/snowflake-logo-partners.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: auto;
+  width: 11rem;
+  height: 4rem;
+  flex-shrink: 0;
+}
+
+.buttons {
+  margin-top: 30px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    height: 45px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: #61bd73;
+    transition: all 1s ease-out;
+    color: #130c49;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #ffffff;
+    background: rgb(15, 0, 50);
+    color: #fff;
+  }
+
+  .buttonOutline {
+    outline: 1px solid #ffffff;
+    color: #fff;
+    transition: all 1s ease-out;
+    background-color: #130c49;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    outline: 1px solid #130c49;
+    background: rgb(97 189 115);
+    color: #130c49;
+    outline: 1px solid #130c49;
+  }
+}

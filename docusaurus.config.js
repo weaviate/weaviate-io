@@ -81,6 +81,16 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
+                          // Add Scarf
+                          {
+                            tagName: 'img',
+                             attributes: {
+                                src: "https://static.scarf.sh/a.png?x-pxid=a41b0758-a3a9-4874-a880-8b5d5a363d40",
+                                referrerPolicy: "no-referrer-when-downgrade",
+                                style: "display: none;",
+                                 },
+                        },
+                      
                         // Add hotjar
                         {
                             tagName: 'script',
@@ -97,6 +107,7 @@ const config = {
         }),
     ],
 
+ 
     stylesheets: [
         // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
@@ -193,16 +204,45 @@ const config = {
                         label: 'Product',
                         position: 'right',
                         to: '/platform',
-                        items: [
-                          
-                            {
-                                label: 'Vector Database',
-                                    to: '/platform',
-                                 },
-                           
-                          
-                         ],
+                        
                     },
+                    {  type: 'dropdown',
+                    label: 'Services',
+                    position: 'right',
+                    items: [
+                        {
+                            label: 'Services',
+                            to: '/services',
+                           
+                        },
+                        {
+                            label: 'Serverless',
+                            href: '/services/serverless',
+                           
+                        },
+                        {
+                            label: 'Enterprise Dedicated',
+                            href: '/services/enterprise-dedicated',
+                           
+                        },
+                        {
+                            label: 'Bring Your Own Cloud',
+                            href: '/services/byoc',
+                           
+                        },
+                        {
+                            label: 'Education & Support',
+                            href: '/services/education-and-support',
+                           
+                        },
+                        {
+                            label: 'Pricing',
+                            to: '/pricing',
+                           
+                        },
+                    ]
+                }
+                    ,
                     {
                         type: 'dropdown',
                         label: 'Developers',
@@ -225,6 +265,11 @@ const config = {
                                 docId: 'academy/index',
                                 sidebarid: 'academySidebar',
                                 type: 'doc',
+                            },
+                            {
+                                label: 'Blog',
+                                to: '/blog',
+                               
                             },
                             {
                                 label: 'Newsletter',
@@ -254,6 +299,30 @@ const config = {
                             },
                         ],
                     },
+{
+                    type: 'dropdown',
+                    label: 'Partners',
+                    position: 'right',
+                    items: [
+                        {
+                            label: 'AWS',
+                            href: '/partners/aws',
+                        },
+                        {
+                            label: 'Google Cloud',
+                            href: '/partners/gcp',
+                        },
+                        {
+                            label: 'Snowflake',
+                            href: '/partners/snowflake',
+                        },
+                        {
+                            label: 'Become a Partner',
+                            href: '/partners',
+                        },
+                       
+                    ],
+                },
                     {
                         type: 'dropdown',
                         label: 'Company',
@@ -272,10 +341,6 @@ const config = {
                                 to: '/company/careers',
                             },
                             {
-                                label: 'Partners',
-                                to: '/partners',
-                            },
-                            {
                                 label: 'Investors',
                                 to: '/company/investors',
                             },
@@ -285,16 +350,7 @@ const config = {
                             },
                         ],
                     },
-                    {
-                        label: 'Blog',
-                        to: '/blog',
-                        position: 'right',
-                    },
-                    {
-                        label: 'Pricing',
-                        to: '/pricing',
-                        position: 'right',
-                    },
+                   
                     {
                         label: 'Try Now',
                         className: 'tryNow',
@@ -483,6 +539,9 @@ const config = {
                   respectPrefersColorScheme: false,
                 },
               },
+
+
+              
         }),
 
 

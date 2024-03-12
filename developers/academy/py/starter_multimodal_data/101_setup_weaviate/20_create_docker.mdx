@@ -1,0 +1,98 @@
+---
+title: Create a local Docker instance
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/101_connect.py';
+
+:::note Can I use a cloud instance?
+Generating multimodal vectors is currently only possible with local models, and as a result this course uses a local, Docker instance of Weaviate. If you are generating vectors outside of Weaviate, you can use a cloud instance. See the [Work with: your own vectors](../../starter_custom_vectors/index.md) course for more information.
+:::
+
+Here, you will create a Weaviate instance and a multi-modal vectorizer container using Docker.
+
+### <i class="fa-solid fa-chalkboard"></i> Download and run the docker-compose file
+
+Install Docker on your machine. We recommend following the [official Docker installation guide](https://docs.docker.com/get-docker/).
+
+Create a new directory and navigate to it in your terminal. Then, create a new file called `docker-compose.yml` and add the following content:
+
+```yaml
+---
+version: '3.4'
+services:
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8080'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
+    ports:
+    - 8080:8080
+    - 50051:50051
+    volumes:
+    - weaviate_data:/var/lib/weaviate
+    restart: on-failure:0
+    environment:
+      CLIP_INFERENCE_API: 'http://multi2vec-clip:8080'
+      OPENAI_APIKEY: $OPENAI_APIKEY
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      DEFAULT_VECTORIZER_MODULE: 'multi2vec-clip'
+      ENABLE_MODULES: 'multi2vec-clip,generative-openai,generative-cohere'
+      CLUSTER_HOSTNAME: 'node1'
+  multi2vec-clip:
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    environment:
+      ENABLE_CUDA: '0'
+volumes:
+  weaviate_data:
+...
+
+```
+
+### <i class="fa-solid fa-chalkboard"></i> Create a Weaviate instance
+
+Run the following command to start Weaviate:
+
+```bash
+docker compose up
+```
+
+### <i class="fa-solid fa-chalkboard"></i> Your Weaviate instance details
+
+Once the instance is created, you can access it at `http://localhost:8080`.
+
+### <i class="fa-solid fa-code"></i> Connect to your Weaviate instance
+
+To connect to the Weaviate instance, use the `connect_to_local` function.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# DockerInstantiation"
+  endMarker="# END DockerInstantiation"
+  language="py"
+/>
+
+#### Provide inference API keys
+
+Some Weaviate modules can use inference APIs for vectorizing data or large language model integration. You can provide the API keys for these services to Weaviate at instantiation.
+
+This course uses OpenAI (for retrieval augmented generation), so you can provide the OpenAI API key to Weaviate through `headers={"X-OpenAI-Api-Key": <YOUR_KEY>}` as shown below:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# DockerAPIKeyInstantiation"
+  endMarker="# END DockerAPIKeyInstantiation"
+  language="py"
+/>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

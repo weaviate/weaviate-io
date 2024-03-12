@@ -1,6 +1,6 @@
 ---
 title: Distance metrics
-sidebar_position: 4
+sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['HNSW']
 ---

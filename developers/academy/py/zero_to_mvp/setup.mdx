@@ -1,0 +1,185 @@
+---
+title: P3_101A Weaviate Academy Preparation
+sidebar_position: 101.5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PythonCodeExample from '!!raw-loader!./_snippets/setup.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+
+## <i class="fa-solid fa-square-chevron-right"></i> Overview
+
+Follow this short guide to make sure that you are set up to use Weaviate with the Python client.
+
+<!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+## <i class="fa-solid fa-square-chevron-right"></i> Python & Python client
+
+If you have not yet set up Python and the Weaviate Python client, follow the instructions below.
+
+### <i class="fa-solid fa-code"></i> Install Python
+
+You can install Python 3 in a variety of ways. One easy way is to use an appropriate installer for your system as per instructions on [Python.org](https://www.python.org/downloads/).
+
+### <i class="fa-solid fa-code"></i> Install the Weaviate client
+
+:::tip Virtual environments
+It is best practice to use virtual environments to isolate projects.
+
+If you're not familiar with virtual environments, we highly recommend reading up on them - this tutorial on [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) is a good resource, as is this article on [RealPython](https://realpython.com/python-virtual-environments-a-primer/), which goes a little more in-depth.
+:::
+
+You will also need the following libraries:
+
+```
+weaviate-client
+```
+
+Activate your virtual environment, and install the Weaviate client with:
+
+```shell
+pip install weaviate-client
+```
+
+### <i class="fa-solid fa-code"></i> Running your Python code
+
+We recommend running Python code in a Jupyter notebook. You can install the library by running
+
+```shell
+pip install notebook
+```
+
+Then running the shown code in a Jupyter notebook. Of course, you can also run it in any way that you prefer.
+
+:::tip New to Jupyter?
+To learn how to use Jupyter notebooks, [try this tutorial](https://realpython.com/jupyter-notebook-introduction/).
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Weaviate
+
+### <i class="fa-solid fa-code"></i> Instance access
+
+We will be accessing a pre-built instance of Weaviate throughout the course, located at `https://edu-demo.weaviate.network`.
+
+You can connect to the pre-built instance with a read-only Weaviate API key.
+
+Confirm that you can run the following code in your Python environment.
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Basic instantiation ====="
+  endMarker="# ===== END Basic instantiation ====="
+  language="py"
+/>
+
+If everything works, the code returns `True`.
+
+### <i class="fa-solid fa-code"></i> Inference API Key
+
+We will be using OpenAI's API, so you will need an API key.
+
+If you haven't yet, create an OpenAI account, and create a [free API key here](https://platform.openai.com/account/api-keys).
+
+Then, instantiate the client as shown below, replacing `YOUR-OPENAI-API-KEY` with your own API key for OpenAI.
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Instantiate to edu-demo with OpenAI ====="
+  endMarker="# ===== END Instantiate to edu-demo with OpenAI ====="
+  language="py"
+/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Code examples
+
+### <i class="fa-solid fa-code"></i> Client instantiation
+
+For brevity, many code examples in the Weaviate Academy will not show the instantiation of the client. So, where you see examples such as:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Arbitrary code example ====="
+  endMarker="# ===== END Arbitrary code example ====="
+  language="py"
+/>
+
+You will need to instantiate the client as shown in the previous section. So, the above code would become:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Fuller arbitrary code example ====="
+  endMarker="# ===== END Fuller arbitrary code example ====="
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> GraphQL
+
+Weaviate Academy units are written to be used with a client library such as Python. So, you will not need to run GraphQL or REST queries directly.
+
+But note that we also show raw GraphQL/REST queries as well as the Python code where relevant to help you learn the underlying query structures.
+
+So please be aware that when we show a query such as this:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Arbitrary code example ====="
+  endMarker="# ===== END Arbitrary code example ====="
+  language="py"
+/>
+
+This is what happens under the hood:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== Equivalent GraphQL example ====="
+  endMarker="# ===== END Equivalent GraphQL example ====="
+  language="graphql"
+/>
+
+We will show them in separate tabs going forward where applicable, like so:
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python">
+
+```python
+This tab will show Python code.
+```
+
+</TabItem>
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+This tab will show GraphQL code.
+```
+
+</TabItem>
+</Tabs>
+
+### <i class="fa-solid fa-code"></i> Raw GraphQL queries
+
+Note that you can run raw GraphQL queries directly with the Weaviate Python client, or with the [Weaviate Console](https://console.weaviate.io/).
+
+In Python, you can run a GraphQL query directly with:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# ===== GraphQL example with Python execution ====="
+  endMarker="# ===== END GraphQL example with Python execution ====="
+  language="py"
+/>
+
+<!-- Or, the Weaviate Console provides a graphical interface that you can connect to your Weaviate instance and run queries. -->
+
+<!-- TODO - show specific steps to do this when WCS launches -->
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- You have installed the Weaviate client library in your preferred environment.
+- You have an OpenAI inference key.
+- You have some way of running Python code.
+- You know how to instantiate the Weaviate Python client, and run the shown example code.
+- The Academy units will show Python code, but also raw GraphQL or REST snippets where applicable.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

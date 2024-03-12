@@ -270,7 +270,7 @@ The output is like this:
 
 ## Retrieve the object `vector`
 
-You can retrieve the object vector.
+You can retrieve the object vector. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -536,8 +536,9 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
 - [API References: GraphQL: Get](../api/graphql/get.md)
-- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1)
+- For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

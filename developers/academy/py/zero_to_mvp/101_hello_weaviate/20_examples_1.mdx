@@ -1,0 +1,223 @@
+---
+title: Examples 1 - Queries
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> Vectors in action
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/zC0CpBiLC3g' controls='true' />
+<br/>
+
+Let's take a look at a few more examples of what you can do with Weaviate.
+
+First, we will try vector searches by searching through our demo database. You will learn how to use Weaviate to retrieve objects based on their similarity, using various query types such as an input text, vector, or object.
+
+You will also compare vector search with keyword search to compare and contrast the two techniques, before learning how to combine the two techniques through the use of filters.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector search demo
+
+For our first example, let's search our demo dataset. It contains a small sample of questions from the quiz show *Jeopardy!*.
+
+Imagine that you're running a quiz night, and you want to get some questions about "animals in movies". In a traditional database you could look for word matches, perhaps something like:
+
+```sql
+SELECT question, answer
+FROM jeopardy_questions
+WHERE (
+         question LIKE '%animal%'
+         OR question LIKE '%creature%'
+         OR question LIKE '%beast%'
+      )
+AND (
+       question LIKE '%movie%'
+       OR question LIKE '%film%'
+       OR question LIKE '%picture%'
+       OR question LIKE '%cinema%'
+    )
+
+```
+
+This is a difficult query to write. Even worse, you would probably have to add the names of specific animals to the query as well.
+
+The Weaviate query is much more intuitive. See what happens when we run the following query:
+
+:::note We searched Weaviate for:
+animals in movies
+:::
+
+<details>
+  <summary><i class="fa-solid fa-code"></i> See the full query</summary>
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["animals in movies"]
+      }
+      limit: 3
+    ) {
+      question
+      answer
+    }
+  }
+}
+```
+
+</details>
+
+Weaviate retrieved these as the top answers:
+
+:::note Weaviate retrieved:
+- **meerkats**: Group of mammals seen here like Timon in *The Lion King*
+- **dogs**: Scooby-Doo, Goofy & Pluto are cartoon versions
+- **The Call of the Wild Thornberrys**: Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals
+:::
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the JSON response</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "meerkats",
+          "question": "Group of mammals seen <a href=\"http://www.j-archive.com/media/1998-06-01_J_28.jpg\" target=\"_blank\">here</a>:  [like Timon in <i>The Lion King</i>]"
+        },
+        {
+          "answer": "dogs",
+          "question": "Scooby-Doo, Goofy & Pluto are cartoon versions"
+        },
+        {
+          "answer": "The Call of the Wild Thornberrys",
+          "question": "Jack London story about the dog Buck who joins a Nick cartoon about Eliza, who can talk to animals"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+Note how relevant the results are, despite none of them including the word "animal" or the word "movie", let alone both!
+
+This is exactly why vector searches are so useful. They can identify related objects without the need to match exact text.
+
+### <i class="fa-solid fa-chalkboard"></i> Vector similarities demo
+
+If we run *this* query, you might expect to see responses like the ones we saw earlier.
+
+```graphql
+{
+  Get {
+    JeopardyQuestion (
+      nearText: {
+        concepts: ["European geography"]
+      }
+      limit: 3
+    ) {
+      question
+      answer
+      _additional {
+        distance
+      }
+    }
+  }
+}
+```
+
+But, take a look at this response. Do you notice any additional information?
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.15916324
+          },
+          "answer": "Bulgaria",
+          "question": "A European republic: Sofia"
+        },
+        ...
+      ]
+    }
+  }
+}
+
+```
+
+<details>
+  <summary><i class="fa-solid fa-radar"></i> See the full JSON response from Weaviate</summary>
+
+```json
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "_additional": {
+            "distance": 0.15916324
+          },
+          "answer": "Bulgaria",
+          "question": "A European republic: Sofia"
+        },
+        {
+          "_additional": {
+            "distance": 0.16247147
+          },
+          "answer": "Balkan Peninsula",
+          "question": "The European part of Turkey lies entirely on this peninsula"
+        },
+        {
+          "_additional": {
+            "distance": 0.16832423
+          },
+          "answer": "Mediterranean Sea",
+          "question": "It's the only body of water with shores on the continents of Asia, Africa & Europe"
+        }
+      ]
+    }
+  }
+}
+
+```
+
+</details>
+
+The difference is that the response contains a `distance` value.
+
+A `distance` is indicative of the degree of similarity between the returned object and the query.
+
+If you're wondering exactly what that means, and who decides how similar any two objects or concepts are, those are great questions! We will cover those in more detail later.
+
+For now, just keep in mind that smaller distances mean two objects are more similar to each other.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<!-- <img src={imageUrl} alt="Image alt" width="75%"/> -->
+
+<!-- ### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+::: -->
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Vector searches can identify related objects without the need for exact text matches.
+- In vector searches, distance values indicate the degree of similarity between the returned object and the query.
+- Smaller distances indicate greater similarity.
+- Vector searches can be combined with keyword searches and filtering techniques for more refined search results.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

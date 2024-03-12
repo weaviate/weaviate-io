@@ -1,0 +1,62 @@
+---
+title: Create a collection
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/102_collection.py';
+
+To use named vectors, your collection be configured with named vector definitions.
+
+## <i class="fa-solid fa-code"></i> Code
+
+This example creates a collection for the movie data, including multiple named vector definitions:
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# CreateMovieCollection"
+  endMarker="# END CreateMovieCollection"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+The key difference here is the use of `NamedVectors` class to define vectorizer configurations. Let's review the code in further detail:
+
+:::tip Revision
+This code builds on the [multimodal](../../starter_multimodal_data/102_mm_collections/20_create_collection.mdx) example. Review that example for further explanations.
+:::
+
+### <i class="fa-solid fa-chalkboard"></i> Named vector configuration
+
+This definition allows each object to be represented by three vectors, named `title`, `overview` and `poster_title`.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# NamedVectorConfig"
+  endMarker="# END NamedVectorConfig"
+  language="py"
+/>
+
+#### `title`
+
+This vector representation is generated from the `title` property (`source_properties`). The `text2vec-openai` module is used for vectorization.
+
+You could use this to search for movies by similarities to their titles.
+
+#### `overview`
+
+This vector representation is based on the `overview` property. As such, you could use this to search for movies by similarities to their plot or key ideas.
+
+#### `poster_title`
+
+This vector representation is generated from a combination of the `title` and `poster` properties. The `multi2vec-clip` module is used for vectorization.
+
+Note that the majority of the vector weight is given to the `poster` property (90%), and the rest to the `title` property (10%). This means that the vector representation will be more influenced by the poster than the title.
+
+As this uses a multimodal vectorizer, you could use this to search for movies using any image, or text, by their similarity to the title or poster.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

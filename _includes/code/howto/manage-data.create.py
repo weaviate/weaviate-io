@@ -1,5 +1,6 @@
 # How-to: Manage-data -> Create objects - Python examples
 import os
+from weaviate.classes.config import Property, DataType, Configure
 
 # ================================
 # ===== INSTANTIATION-COMMON =====
@@ -21,12 +22,33 @@ try:
     # ============================
 
     # Clean slate
-    if client.collections.exists("JeopardyQuestion"):
-        client.collections.delete("JeopardyQuestion")
+    client.collections.delete(["JeopardyQuestion", "WineReviewNV"])
 
     client.collections.create(
         "JeopardyQuestion",
         vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai()
+    )
+
+    client.collections.create(
+        "WineReviewNV",
+        properties=[
+            Property(
+                name="review_body", data_type=DataType.TEXT, description="Review body"
+            ),
+            Property(
+                name="title", data_type=DataType.TEXT, description="Name of the wine"
+            ),
+            Property(
+                name="country",
+                data_type=DataType.TEXT,
+                description="Originating country",
+            ),
+        ],
+        vectorizer_config=[
+            Configure.NamedVectors.text2vec_openai(name="title", source_properties=["title"]),
+            Configure.NamedVectors.text2vec_openai(name="review_body", source_properties=["review_body"]),
+            Configure.NamedVectors.text2vec_openai(name="title_country", source_properties=["title", "country"]),
+        ]
     )
 
     # =========================
@@ -71,6 +93,37 @@ try:
     print(uuid)  # the return value is the object's UUID
     # CreateObjectWithVector END
 
+
+    # =======================================
+    # ===== Create object with named vectors =====
+    # =======================================
+
+    # CreateObjectNamedVectors START
+    reviews = client.collections.get("WineReviewNV")  # This collection must have named vectors configured
+    uuid = reviews.data.insert(
+        properties={
+            "title": "A delicious Riesling",
+            "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
+            "country": "Germany",
+        },
+        # highlight-start
+        # Specify the named vectors, following the collection definition
+        vector={
+            "title": [0.12345] * 1536,
+            "review_body": [0.31313] * 1536,
+            "title_country": [0.05050] * 1536,
+        }
+        # highlight-end
+    )
+
+    print(uuid)  # the return value is the object's UUID
+    # CreateObjectNamedVectors END
+
+    # Test
+    result = reviews.query.fetch_object_by_id(uuid, include_vector=True)
+    assert set(result.vector.keys()) == {'title', 'review_body', 'title_country'}
+
+
     # ===============================================
     # ===== Create object with deterministic id =====
     # ===============================================
@@ -104,12 +157,13 @@ try:
     # ============================================
 
     # CreateObjectWithId START
+    properties = {
+        "question": "This vector DB is OSS and supports automatic property type inference on import",
+        "answer": "Weaviate",
+    }
     jeopardy = client.collections.get("JeopardyQuestion")
     uuid = jeopardy.data.insert(
-        properties={
-            "question": "This vector DB is OSS and supports automatic property type inference on import",
-            "answer": "Weaviate",
-        },
+        properties=properties,
         # highlight-start
         uuid="12345678-e64f-5d94-90db-c8cfa3fc1234"
         # highlight-end
@@ -120,10 +174,7 @@ try:
 
     # Test
     result = jeopardy.query.fetch_object_by_id(uuid)
-    assert result.properties == {
-        "question": "This vector DB is OSS and supports automatic property type inference on import",
-        "answer": "Weaviate"
-    }
+    assert result.properties["question"] == properties["question"]
 
 
     # ===========================

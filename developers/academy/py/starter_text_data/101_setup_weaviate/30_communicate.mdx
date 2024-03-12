@@ -1,0 +1,62 @@
+---
+title: Communicate with Weaviate
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/101_connect.py';
+
+Here, we'll perform basic operations to communicate with Weaviate using the Python client library.
+
+### <i class="fa-solid fa-code"></i> Check Weaviate status
+
+You can check whether the Weaviate instance is up using the `is_live` function.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# PollLiveness"
+  endMarker="# END PollLiveness"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> Retrieve server meta information
+
+You can retrieve meta information about the Weaviate instance using the `meta` function.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GetMeta"
+  endMarker="# END GetMeta"
+  language="py"
+/>
+
+This will print the server meta information to the console. The output will look similar to the following:
+
+<details>
+  <summary>Example <code>get_meta</code> output</summary>
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# OutputGetMeta"
+  endMarker="# END OutputGetMeta"
+  language="py"
+/>
+</details>
+
+### <i class="fa-solid fa-code"></i> Close the connection
+
+After you have finished using the Weaviate client, you should close the connection. This frees up resources and ensures that the connection is properly closed.
+
+We suggest using a `try`-`finally` block as a best practice. For brevity, we will not include the `try`-`finally` blocks in the remaining code snippets.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# TryFinallyCloseDemo"
+  endMarker="# END TryFinallyCloseDemo"
+  language="py"
+/>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

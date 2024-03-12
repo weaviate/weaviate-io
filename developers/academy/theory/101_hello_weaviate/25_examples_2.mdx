@@ -1,0 +1,106 @@
+---
+title: Examples 2 - More than search
+sidebar_position: 25
+---
+
+## <i class="fa-solid fa-square-chevron-right"></i> Beyond vector searches
+
+import ReactPlayer from 'react-player/lazy'
+
+<ReactPlayer className="react-player" url='https://youtu.be/ezMZKEFteUA' controls='true' />
+<br/>
+
+You can do a lot more with Weaviate than simply retrieve static information.
+
+Let's take a look at a couple of examples where we do more than simply retrieve objects from the database.
+
+We will extract information from this Wikipedia entry.
+
+<details>
+  <summary>"The Sydney Opera House" Wikipedia summary</summary>
+
+The Sydney Opera House is a multi-venue performing arts centre in Sydney. Located on the foreshore of Sydney Harbour, it is widely regarded as one of the world's most famous and distinctive buildings and a masterpiece of 20th-century architecture. Designed by Danish architect Jørn Utzon, but completed by an Australian architectural team headed by Peter Hall, the building was formally opened by Queen Elizabeth II on 20 October 1973 after a gestation beginning with Utzon's 1957 selection as winner of an international design competition. The Government of New South Wales, led by the premier, Joseph Cahill, authorised work to begin in 1958 with Utzon directing construction. The government's decision to build Utzon's design is often overshadowed by circumstances that followed, including cost and scheduling overruns as well as the architect's ultimate resignation. The building and its surrounds occupy the whole of Bennelong Point on Sydney Harbour, between Sydney Cove and Farm Cove, adjacent to the Sydney central business district and the Royal Botanic Gardens, and near to the Sydney Harbour Bridge.
+
+The building comprises multiple performance venues, which together host well over 1,500 performances annually, attended by more than 1.2 million people. Performances are presented by numerous performing artists, including three resident companies: Opera Australia, the Sydney Theatre Company and the Sydney Symphony Orchestra. As one of the most popular visitor attractions in Australia, the site is visited by more than eight million people annually, and approximately 350,000 visitors take a guided tour of the building each year. The building is managed by the Sydney Opera House Trust, an agency of the New South Wales State Government.
+
+On 28 June 2007, the Sydney Opera House became a UNESCO World Heritage Site, having been listed on the (now defunct) Register of the National Estate since 1980, the National Trust of Australia register since 1983, the City of Sydney Heritage Inventory since 2000, the New South Wales State Heritage Register since 2003, and the Australian National Heritage List since 2005. The Opera House was also a finalist in the New7Wonders of the World campaign list.
+
+</details>
+
+Weaviate creates [data objects](https://weaviate.io/developers/weaviate/concepts/data) when it processes the Wikipedia entry. The data objects are stored in classes. A class is roughly analogous to a table in a relational database. An object is similar to an entry in that table.
+
+
+### <i class="fa-solid fa-chalkboard"></i> Generative search
+
+Weaviate can do even more with these entries. You can ask Weaviate to grab an object from its data store and use that object to generate new text. For example, Weaviate can use the object that contains the entry for the Sydney Opera House to derive new text.
+
+Here is a `GraphQL` query example of a generative search.
+
+```graphql
+{
+  Get {
+    WikiArticle(
+      nearText: {
+        concepts: ["Sydney Opera House"]
+      }
+      limit: 1
+    ) {
+      title
+      wiki_summary
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+              Write a fun tweet encouraging people to read about this: ## {title}
+              by summarizing highlights from: ## {wiki_summary}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+```
+
+The sample code generates a Tweet based on the Wikipedia entry!
+
+<details>
+  <summary>See response</summary>
+
+:::note Weaviate says:
+Explore the world-famous Sydney Opera House and its incredible architecture! From the iconic design to the amazing performances, there's something for everyone to enjoy. #SydneyOperaHouse #Explore #Architecture #Performances #Experience
+:::
+
+</details>
+
+This process is an example of `generative search`. In a generative search, Weaviate retrieves information, and then leverages a large language model (LLM) to re-shape it. This is a powerful feature that can transform how you deal with information.
+
+You can vary the prompt to generate different results.
+
+### <i class="fa-solid fa-chalkboard"></i> What next?
+
+Tools like Q&A and generative search really start to bring your information to life.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Review
+
+<!-- ### <i class="fa-solid fa-pen-to-square"></i> Review exercise
+
+Can you describe, in your own sentence, XXX?
+
+:::warning TODO
+Input box for user to put answer in and get back a similarity score & our definition?
+??
+::: -->
+
+### <i class="fa-solid fa-lightbulb-on"></i> Key takeaways
+
+- Weaviate can extract knowledge from text using question-answering capabilities, identifying the most relevant object and the actual answer based on the provided text.
+- Generative search allows you to retrieve information and reshape or repurpose the content, such as generating a tweet based on a Wikipedia entry.
+- These advanced capabilities of Weaviate transform how you interact with and utilize information in your data.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

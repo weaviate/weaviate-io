@@ -1,0 +1,52 @@
+---
+title: Filters
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/103_20_searches.py';
+
+Filters can be used to precisely refine search results. You can filter by properties as well as metadata, and you can combine multiple filters with `and` or `or` conditions to further narrow down the results.
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "Movie" based on their similarity to the query vector, only from those released after 2010. It prints out the title and release year of the top 5 matches.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# FilteredSemanticSearch"
+  endMarker="# END FilteredSemanticSearch"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+This query is identical to [that shown earlier](./10_vector.mdx) for vector search, but with the addition of a filter. The `filters` parameter here takes an instance of the `Filter` class to set the filter conditions. The current query filters the results to only include those with a release year after 2010.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+Oppenheimer 2023
+Distance to query: 0.754
+
+Everything Everywhere All at Once 2022
+Distance to query: 0.778
+
+Meg 2: The Trench 2023
+Distance to query: 0.779
+
+Eternals 2021
+Distance to query: 0.787
+
+John Wick: Chapter 4 2023
+Distance to query: 0.790
+```
+
+</details>
+
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

@@ -1,0 +1,57 @@
+---
+title: "'Grouped task' generation"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/104_rag.py';
+
+A 'grouped task' generation wil perform RAG queries on the set of retrieved objects. This is useful when you want to transform the set of objects as a whole, with one prompt.
+
+### <i class="fa-solid fa-code"></i> Code
+
+This example finds entries in "MovieMM" based on their similarity to [this image of the International Space Station](https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/440px-International_Space_Station_after_undocking_of_STS-132.jpg). Then, instructs the large language model to find commonalities between them.
+
+Each of the results are then printed out to the console.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# GroupedTaskGeneration"
+  endMarker="# END GroupedTaskGeneration"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+For `grouped_task` queries, you simply pass on the prompt to the `grouped_task` parameter. This will instruct Weaviate to pass on the:
+- text properties from all retrieved objects, and
+- the prompt
+
+to the large language model.
+
+<details>
+  <summary>Example results</summary>
+
+```text
+Interstellar
+Gravity
+Arrival
+Armageddon
+Godzilla
+These movies all involve space exploration, extraterrestrial beings, or catastrophic events threatening Earth. They all deal with themes of survival, human ingenuity, and the unknown mysteries of the universe.
+```
+
+</details>
+
+### <i class="fa-solid fa-chalkboard"></i> Optional parameters
+
+You can also pass on a list of properties to be used, as the `grouped_properties` parameter. This can be useful to reduce the amount of data passed on to the large language model and omit irrelevant properties.
+
+### <i class="fa-solid fa-chalkboard"></i> Response object
+
+A RAG query with the `grouped_task` parameter will return a response with an additional `generated` attribute. This attribute will contain the generated output for the set of objects.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

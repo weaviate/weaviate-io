@@ -54,7 +54,7 @@ This configuration enables `multi2vec-clip`, sets it as the default vectorizer, 
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -71,7 +71,7 @@ services:
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
   multi2vec-clip:
-    image: semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
 # highlight-end

@@ -40,7 +40,8 @@ try:
         batch.add_object(
             collection="Author",
             properties=first_object_props,
-            uuid=first_object_uuid
+            uuid=first_object_uuid,
+            # tenant="tenantA"  # Optional; specify the tenant in multi-tenancy collections
         )
     # END BatchCreateObject
 
@@ -58,13 +59,16 @@ try:
             from_collection="Author",
             from_property="writesFor",
             from_uuid=first_object_uuid,
-            to=first_target_uuid
+            to=first_target_uuid,
+            # tenant="tenantA"  # Optional; specify the tenant in multi-tenancy collections
         )
     # END BatchCreateReference
 
 
     # START BatchDeleteObjects
     authors = client.collections.get("Author")
+    # authors = authors.with_tenant("tenantA")  # Optional; specify the tenant in multi-tenancy collections
+    # authors = authors.with_consistency_level(wvc.config.ConsistencyLevel.QUORUM)  # Optional; specify the consistency level
 
     response = authors.data.delete_many(
         where=wvc.query.Filter.by_property("name").equal("Jane Doe"),

@@ -78,6 +78,7 @@
       border: 1px solid #aeacac;
       background-color: transparent;
       border-radius: 0.45em;
+      color: unset;
 
       &:focus-visible {
         outline: none;
@@ -177,18 +178,28 @@
   }
 }
 
+.bgHead {
+  background: transparent;
+  height: 200px;
+}
+
+.bgHeadDark {
+  background: #ededed;
+  height: 200px;
+}
+
 .contactBg {
   background: #130c49;
-  margin-top: 260px;
+
   max-height: 600px;
 
   @media only screen and (device-width: 768px) {
-    margin-top: 260px;
+    margin-top: 160px;
     max-height: 809px;
   }
 
   @media screen and (max-width: 860px) {
-    margin-top: 260px;
+    margin-top: 160px;
     max-height: 700px;
   }
 }
