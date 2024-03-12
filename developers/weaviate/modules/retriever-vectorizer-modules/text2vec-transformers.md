@@ -55,7 +55,7 @@ Weaviate:
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-transformers` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-transformers` to make it the default for all collections.
-- `TRANSFORMERS_INFERENCE_API` (Required): The URL of the inference container.
+- `TRANSFORMERS_INFERENCE_API` (Required): The URL of the default inference container.
 - `USE_SENTENCE_TRANSFORMERS_VECTORIZER` (Optional): (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only.
 
 Inference container:
@@ -112,7 +112,7 @@ As an alternative, you can run the inference container independently from Weavia
 - Enable `text2vec-transformers` in your Docker Compose file,
 - Omit `t2v-transformers` parameters,
 - Run the inference container separately, e.g. using Docker, and
-- Set `TRANSFORMERS_INFERENCE_API` to the URL of the inference container.
+- Use `CLIP_INFERENCE_API` or [`inferenceUrl`](#collection-level) to set the URL of the inference container.
 
 For example, choose [any of our pre-built transformers models](#option-1-pre-built-images) and spin it up - for example using:
 

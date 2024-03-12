@@ -39,7 +39,7 @@ Weaviate:
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `multi2vec-clip` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `multi2vec-clip` to make it the default for all collections.
-- `CLIP_INFERENCE_API` (Required): The URL of the inference container.
+- `CLIP_INFERENCE_API` (Required): The URL of the default inference container.
 
 Inference container:
 
@@ -95,7 +95,7 @@ As an alternative, you can run the inference container independently from Weavia
 - Enable `multi2vec-clip` in your Docker Compose file,
 - Omit `multi2vec-clip` parameters,
 - Run the inference container separately, e.g. using Docker, and
-- Set `CLIP_INFERENCE_API` to the URL of the inference container.
+- Use `CLIP_INFERENCE_API` or [`inferenceUrl`](#collection-level) to set the URL of the inference container.
 
 Then, for example if Weaviate is running outside of Docker, set `CLIP_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `CLIP_INFERENCE_API=http://multi2vec-clip:8080`.
 
