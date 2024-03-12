@@ -48,6 +48,14 @@ The OpenAI generative model integration [supports many models](../modules/reader
 
 ## End-to-end example
 
+The following code example demonstrates the use of OpenAI models in Weaviate.
+
+It creates a collection and:
+- Sets an OpenAI vectorizer (`ada-002`) model as the vectorizer for the collection
+- Sets an OpenAI generative model (`gpt-3.5-turbo`) as the RAG integration for the collection
+
+Thus, the collection can import data, perform searches, and perform retrieval augmented generation using OpenAI models.
+
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
@@ -60,25 +68,40 @@ The OpenAI generative model integration [supports many models](../modules/reader
   </TabItem>
 </Tabs>
 
-## Advanced usage
+Note that the example passes on an OpenAI API key to the Weaviate client. You must replace this with your own OpenAI API key.
 
-### Available models (OpenAI)
+## Custom configurations
 
-The following [embedding models](https://platform.openai.com/docs/models/embeddings) are supported:
-* text-embedding-3
-    * Available dimensions:
-        * `text-embedding-3-large`: `256`, `1024`, `3072` (default)
-        * `text-embedding-3-small`: `512`, `1536` (default)
-* ada
-* babbage
-* davinci
+Many OpenAI models have additional parameters that can be set. Accordingly, the Weaviate integrations provide additional configuration options to set these parameters.
 
-#### Deprecated models
+<Tabs groupId="languages">
 
-[Source](https://platform.openai.com/docs/deprecations)
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ModelProviderCustomConfig"
+      endMarker="# END ModelProviderCustomConfig"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
-* Codex
-* babbage-001
-* davinci-001
-* curie
+## Further resources
 
+### References
+
+The integrations are carried out by the following Weaviate modules. You can refer to their documentation for more details:
+
+- [`text2vec-openai` module](../modules/retriever-vectorizer-modules/text2vec-openai.md)
+- [`generative-openai` module](../modules/reader-generator-modules/generative-openai.md)
+
+### Code examples
+
+Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
+
+For data operations (create, update, delete), refer to the [how-to: manage data](../manage-data/index.md) guides.
+For search operations, refer to the [how-to: search](../search/index.md) guides.
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
