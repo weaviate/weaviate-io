@@ -24,7 +24,7 @@ export default function ServiceHeader() {
               Try Free
             </Link>
             <Link className={styles.buttonOutline} to="#plan">
-              Compare Services
+              Compare Packages
             </Link>
           </div>
         </div>
