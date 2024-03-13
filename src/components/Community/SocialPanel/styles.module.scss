@@ -8,7 +8,10 @@
   padding: 1rem 0 2rem 0;
 
   h2 {
-    color: #1c1468;
+    color: #130c49;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 900;
   }
 }
 
@@ -55,6 +58,12 @@
   @media screen and (max-width: 600px) {
     height: auto;
     width: 100%;
+  }
+
+  a {
+    color: #130c49;
+    font-weight: 400;
+    text-decoration-line: underline;
   }
 }
 

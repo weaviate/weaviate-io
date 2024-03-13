@@ -89,10 +89,10 @@ export default function CommunityPanel() {
           <div className={styles.contentDiv}>
             <div className={styles.textCardContent}>
               <p>
-                In order to stay up to date Weaviate heroes will have access to
-                special educational material, activities and more:
+                We embrace Weaviate Heroes to accelerate and grow their skills
+                and learning journey with dedicated educational material,
+                activities and more :
               </p>
-
               <ul>
                 <li>Special education workshops</li>
                 <li>Internal roundtables with Weaviators</li>
@@ -104,7 +104,10 @@ export default function CommunityPanel() {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Link className={styles.buttonGradient} to="/blog">
+        <Link
+          className={styles.buttonGradient}
+          to="/blog/weaviate-community-hero"
+        >
           Read the blog
         </Link>
       </div>

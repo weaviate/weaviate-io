@@ -8,7 +8,10 @@
   padding: 1rem 0 2rem 0;
 
   h2 {
-    color: #1c1468;
+    color: #130c49;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 900;
   }
 }
 
@@ -35,6 +38,7 @@
   flex-shrink: 0;
   padding: 30px;
   border-radius: 0.9375rem;
+  gap: 8px;
 
   h2 {
     color: #130c49;
@@ -149,4 +153,14 @@
   height: 12rem;
   flex-shrink: 0;
   border-radius: 50%;
+}
+
+.heroName {
+  color: #130c49;
+  text-align: center;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 157.33%; /* 1.57331rem */
 }

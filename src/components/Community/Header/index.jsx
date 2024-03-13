@@ -24,7 +24,7 @@ export default function PlatformHeader() {
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}
-              to="https://forms.gle/FHwhfPYwCVKkzw5h6"
+              to="https://weaviate.io/slack"
             >
               Join us
             </Link>

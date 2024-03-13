@@ -24,16 +24,15 @@
 
   .head {
     color: #fff;
+    font-size: 2.25rem;
+    font-weight: 700;
   }
 
   h2 {
-    margin-bottom: 2rem;
+    margin: 2rem 0rem;
     color: #61bd73;
-    font-family: 'Plus Jakarta Sans';
     font-size: 2rem;
-    font-style: normal;
     font-weight: 700;
-    line-height: 157.33%;
   }
 
   p {
@@ -66,6 +65,7 @@
 
   @media screen and (max-width: 500px) {
     background-size: cover;
+    background-position-y: top;
   }
 }
 
@@ -108,6 +108,7 @@
 
   @media screen and (max-width: 500px) {
     background-size: cover;
+    background-position-y: top;
   }
 }
 

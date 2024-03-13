@@ -7,7 +7,7 @@ export default function CommunityPanel() {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        <h2>Community Highlights</h2>
+        <h2>Heroes are Community Role Models</h2>
       </div>
       <div className={styles.box}>
         <div className={styles.card}>
@@ -18,7 +18,11 @@ export default function CommunityPanel() {
           <p>
             A Weaviate Hero acts like a real hero. They exemplify the best
             behavior, lead by example, and also support people to be their best
-            selves and adhere to Weaviates Community Code of Conduct.
+            selves and adhere to Weaviates{' '}
+            <Link to="/service/code-of-ethics-and-professional-conduct">
+              Community Code of Conduct
+            </Link>
+            .
           </p>
         </div>
 
