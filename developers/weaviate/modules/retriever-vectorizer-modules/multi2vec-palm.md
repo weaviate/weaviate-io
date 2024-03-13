@@ -106,22 +106,25 @@ Set vectorizer behavior in the `moduleConfig` section for each collection and pr
 | :-- | :-- |
 | `vectorizer` | The module to use to vectorize the data. |
 | `vectorizeClassName` | When `true`, vectorize the collection name. Defaults to `true`. |
-| `<media>Fields` | Map property names to modalities (under `moduleConfig.multi2vec-palm`).<br/>One of `textFields`, `imageFields` |
+| `<media>Fields` | Map property names to modalities (under `moduleConfig.multi2vec-palm`).<br/>One of: `textFields`, `imageFields` |
 | `weights` | Change the contribution of the different modalities when calculating the vector. |
 
 
 #### Property-level settings
 
-- `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
-- `dataType` - the data type of the property. For use in the appropriate `<media>Fields`, must be set to `text` or `blob` as appropriate.
+| Parameter | Description |
+| :-- | :-- |
+| `skip` | When true, do not vectorize the property. Defaults to `false` |
+| `vectorizePropertyName` | When `true`, vectorize the property name. Defaults to `true`. |
+| `dataType` | The property's data type. Use in `<media>Fields`. <br/>One of: `text`,`blob` |
 
 #### Example
 
-The following example collection definition sets the `multi2vec-palm` module as the `vectorizer` for the collection `ClipExample`. It also sets:
+This collection definition sets the following:
 
-- `name` property as a `text` datatype and as the text field,
-- `image` property as a `blob` datatype and as the image field,
+- The `multi2vec-palm` module is the `vectorizer` for the collection `ClipExample`.
+- The `name` property is `text` datatype and is a text field.
+- The `image` property is a `blob` datatype and is an image field.
 
 ```json
 {
@@ -135,7 +138,6 @@ The following example collection definition sets the `multi2vec-palm` module as 
         "multi2vec-palm": {
           "textFields": ["name"],
           "imageFields": ["image"],
-          "inferenceUrl": "http://multi2vec-palm:8080"  // Optional. Set to use a different inference container when using multiple inference containers.
         }
       },
       "properties": [
@@ -156,7 +158,12 @@ The following example collection definition sets the `multi2vec-palm` module as 
 
 #### Example with weights
 
-The following example adds weights for various properties, with the `textFields` at 0.4, and the `imageFields`, `audioFields`, and `videoFields` at 0.2 each.
+The following example adds weights:
+
+- `textFields` is 0.4
+- `imageFields` is 0.2
+- `audioFields` is 0.2
+- `videoFields` is 0.2
 
 ```json
 {
@@ -179,13 +186,9 @@ The following example adds weights for various properties, with the `textFields`
 }
 ```
 
-:::note All `blob` properties must be in base64-encoded data.
-:::
+### `blob` data objects
 
-
-### Adding `blob` data objects
-
-Any `blob` property type data must be base64 encoded. To obtain the base64-encoded value of an image for example, you can use the helper methods in the Weaviate clients or run the following command:
+Data that has the `blob` property type must be base64 encoded. To get the base64-encoded value of an image, use the helper methods in the Weaviate clients or run the following command:
 
 ```bash
 cat my_image.png | base64
@@ -193,9 +196,9 @@ cat my_image.png | base64
 
 ## Additional search operators
 
-The `multi2vec-palm` vectorizer module will enable the following `nearText` and `nearImage` search operators.
+The `multi2vec-palm` vectorizer module enables the `nearText` and `nearImage` search operators.
 
-These operators can be used to perform cross-modal search and retrieval.
+These operators can do cross-modal search and retrieval.
 
 This means that when using the `multi2vec-palm` module any query using one modality (e.g. text) will include results in all available modalities, as all objects will be encoded into a single vector space.
 
@@ -212,94 +215,6 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.mdx';
 import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 
 <CodeNearImage />
-
-## Model selection
-
-To select a model, please point `multi2vec-palm` to the appropriate Docker container.
-
-You can use our pre-built Docker image as shown above, or build your own (with just a few lines of code).
-
-This allows you to use any suitable model from the [Hugging Face model hub](https://huggingface.co/models) or your own custom model.
-
-### Using a public Hugging Face model
-
-You can build a Docker image to use any **public SBERT CLIP** model from the [Hugging Face model hub](https://huggingface.co/models) with a two-line Dockerfile. In the following example, we are going to build a custom image for the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32).
-
-:::note This is the same model used in the pre-built image
-:::
-
-#### Step 1: Create a `Dockerfile`
-Create a new `Dockerfile`. We will name it `clip.Dockerfile`. Add the following lines to it:
-
-```
-FROM semitechnologies/multi2vec-palm:custom
-RUN CLIP_MODEL_NAME=clip-ViT-B-32 TEXT_MODEL_NAME=clip-ViT-B-32 ./download.py
-```
-
-#### Step 2: Build and tag your Dockerfile.
-
-We will tag our Dockerfile as `clip-inference`:
-
-```shell
-docker build -f clip.Dockerfile -t clip-inference .
-```
-
-#### Step 3: Use the image
-
-You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the docker tag `clip-inference`.
-
-### Using a private or local model
-
-You can build a Docker image which supports any model which is compatible with Hugging Face's `SentenceTransformers` and `ClIPModel`.
-
-To ensure that text embeddings will output compatible vectors to image embeddings, you should only use models that have been specifically trained for use with CLIP models.
-
-In the following example, we are going to build a custom image for a non-public model which we have locally stored at `./my-clip-model` and `./my-text-model`.
-
-Both models were trained to produce embeddings which are compatible with one another.
-
-Create a new `Dockerfile` (you do not need to clone this repository, any folder on your machine is fine), we will name it `my-models.Dockerfile`. Add the following lines to it:
-
-```
-FROM semitechnologies/transformers-inference:custom
-COPY ./my-text-model /app/models/text
-COPY ./my-clip-model /app/models/clip
-```
-
-The above will make sure that your model ends up in the image at `/app/models/clip` and `/app/models/text` respectively.. This path is important, so that the application can find the model.
-
-Now you just need to build and tag your Dockerfile, we will tag it as `my-models-inference`:
-
-```shell
-docker build -f my-models.Dockerfile -t my-models-inference .
-```
-
-That's it! You can now push your image to your favorite registry or reference it locally in your Weaviate `docker-compose.yml` using the Docker tag `my-models-inference`.
-
-To debug if your inference container is working correctly, you can send queries to the vectorizer module's inference container directly, so you can see exactly what vectors it would produce for which input.
-
-To do so – you need to expose the inference container in your Docker Compose file – add something like this:
-
-```yaml
-ports:
-  - "9090:8080"
-```
-
-to your `multi2vec-palm`.
-
-Then you can send REST requests to it directly, e.g.:
-
-```shell
-localhost:9090/vectorize -d '{"texts": ["foo bar"], "images":[]}'
-```
-
-and it will print the created vector(s) directly.
-
-## Model license(s)
-
-The `multi2vec-palm` module uses the [`clip-ViT-B-32` model](https://huggingface.co/sentence-transformers/clip-ViT-B-32) from the [Hugging Face model hub](https://huggingface.co/models). Please see the [model page](https://huggingface.co/sentence-transformers/clip-ViT-B-32) for the license information.
-
-It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
