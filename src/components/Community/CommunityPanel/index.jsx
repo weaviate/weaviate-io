@@ -18,7 +18,7 @@ export default function CommunityPanel() {
           <div className={styles.contentDiv}>
             <div className={styles.textCardContent}>
               <p>
-                Community Members can contribute and engage across various
+                Weaviate Heroes can contribute and engage across various
                 channels and activities, like:
               </p>
 
@@ -70,7 +70,6 @@ export default function CommunityPanel() {
               </p>
 
               <ul>
-                <li>12 month hero membership</li>
                 <li>Cool Merch, Books & Credits</li>
                 <li>Dedicated channels</li>
                 <li>Participation in Weaviate hosted and sponsored events</li>
