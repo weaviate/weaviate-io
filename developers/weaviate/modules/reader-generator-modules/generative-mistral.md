@@ -14,8 +14,7 @@ image: og/docs/modules/generative-mistral.jpg
 * The Generative Mistral (`generative-mistral`) module performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-<!-- TODO - add default model back when we find out what it is -->
-<!-- * The default model is `meta-llama/Llama-2-70b-chat-hf`. -->
+* The default model is `open-mistral-7b`.
 * The module requires an [API key for Mistral inference endpoints](https://docs.mistral.ai/) to perform the generation task.
 
 ## Introduction
@@ -98,12 +97,11 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-Details coming soon
-
-<!-- | Parameter | Required | Default | Purpose |
+| Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
-| `model` | No | `"meta-llama/Llama-2-70b-chat-hf"` | The model to use. Defaults to Llama-2 70B.
-| `temperature` | No | 0 | Control of LLM stochasticity. | -->
+| `model` | No | `"open-mistral-7b"` | The model to use.
+| `temperature` | No | `0` | Control of LLM stochasticity. |
+| `maxTokens` | No | `2048` | Maximum number of tokens to generate. |
 
 ### Supported models
 
