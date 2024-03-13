@@ -7,9 +7,8 @@ import knowledge from '/data/knowledgecards.json';
 import { ButtonContainer } from '../../theme/Buttons';
 import Highlights from './highlights';
 
-export default function KnowledgeBase() {
+export default function KnowledgeBase({ searchQuery }) {
   const [selectedCard, setSelectedCard] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
 
   const allCards = knowledge.all;
 
@@ -17,12 +16,7 @@ export default function KnowledgeBase() {
     setSelectedCard(card);
   };
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
   const filteredCards = allCards.filter((card) => {
-    // Check if 'selectedCard' matches and if 'searchQuery' is in 'title', 'text', or any 'tag'
     return (
       (selectedCard === 'All' || card.type === selectedCard) &&
       ((card.title &&
@@ -30,9 +24,8 @@ export default function KnowledgeBase() {
         (card.text &&
           card.text.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (card.tags &&
-          card.tags.some(
-            (tag) =>
-              tag && tag.toLowerCase().includes(searchQuery.toLowerCase())
+          card.tags.some((tag) =>
+            tag.toLowerCase().includes(searchQuery.toLowerCase())
           )))
     );
   });
@@ -40,17 +33,7 @@ export default function KnowledgeBase() {
   return (
     <div className={styles.teamBG}>
       <div className="container">
-        <Highlights />
-        <div className={styles.searchContainer}>
-          <input
-            type="text"
-            className={styles.searchInput}
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-        </div>
-
+        <div className={styles.searchContainer}></div>
         <div className={styles.knowledgebase}>
           <div className={styles.filterBox}>
             <div className={styles.cardFilter}>
@@ -114,6 +97,7 @@ export default function KnowledgeBase() {
           </div>
 
           <div className={styles.cardResults}>
+            <Highlights />
             <div
               className={`${
                 styles.cardContainer

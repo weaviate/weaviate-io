@@ -173,6 +173,26 @@
       font-weight: 500;
     }
   }
+
+  input {
+    border: 0.5px solid #130c49;
+    background: #ffffff;
+    width: 0.8125rem;
+    height: 0.8125rem;
+    appearance: none;
+  }
+
+  input :active,
+  :focus {
+    background: #61bd73;
+  }
+
+  label {
+    color: #0c1428;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+  }
 }
 
 header {
@@ -255,6 +275,7 @@ header {
   justify-content: flex-start;
   align-items: flex-start;
   width: 110%;
+  border-left: 0.5px solid #8f99b1;
 
   @media screen and (max-width: 900px) {
     justify-content: center;
@@ -270,42 +291,51 @@ header {
   justify-content: space-between;
   width: 325px;
   height: 350px;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
   border-radius: 0.4375rem;
   background: #fff;
   box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
   margin: 10px 10px;
 
   h3 {
-    color: #130c49;
+    color: #1b1464;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 700;
+    margin: 20px 0px;
   }
 
   span {
     color: #130c49;
     text-align: center;
-    font-size: 0.75rem;
-    font-weight: 400;
+    font-size: 0.5rem;
+    font-weight: 300;
   }
 
   .cardType {
     margin: 4px;
+    color: #fff;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140.5%; /* 0.87813rem */
   }
 
   .cardText {
-    color: #130c49;
+    color: #1b1464;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     font-weight: 400;
-    height: 127px;
   }
 
   .cardLink {
     margin: 10px;
     text-decoration: underline;
-    color: #130c49;
+    color: #1b1464;
+    font-size: 0.75rem;
+    font-weight: 400;
   }
 
   img {
@@ -340,6 +370,16 @@ header {
       margin: 0px 5px;
     }
   }
+}
+
+.cardHeader {
+  background: #00a88b;
+  width: 325px;
+  height: 1.7rem;
+  flex-shrink: 0;
+  border-radius: 0.4375rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .teamBG {
@@ -444,30 +484,37 @@ header {
   input[type='text'] {
     padding-block: 1px;
     padding-inline: 10px;
+    width: 35.75rem;
+    height: 2.625rem;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    border: 0.5px solid #2a97e1;
+    background: #262262;
+  }
+
+  input[type='text']::placeholder {
+    color: #2a97e1;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 300;
   }
 }
 
 .knowledgeCard.tutorial {
-  background: #130c49;
-
-  span {
-    color: #fff;
+  .cardHeader {
+    background: #a38edb;
   }
+}
 
-  .tag {
-    color: #130c49;
+.knowledgeCard.databases {
+  .cardHeader {
+    background: #5b9d0a;
   }
+}
 
-  h3 {
-    color: #fff;
-  }
-
-  span {
-    color: #fff;
-  }
-
-  a {
-    color: #61bd73;
+.knowledgeCard.introduction {
+  .cardHeader {
+    background: #059053;
   }
 }
 

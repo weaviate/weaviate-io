@@ -26,7 +26,9 @@ export default function Card(props) {
         }}
       />
       <div className={`${styles.knowledgeCard} ${styles[typeClass] || ''}`}>
-        <span className={styles.cardType}>{details.type}</span>
+        <div className={styles.cardHeader}>
+          <span className={styles.cardType}>{details.type}</span>
+        </div>
 
         <h3>{details.title}</h3>
         {details.photo && (
@@ -36,7 +38,7 @@ export default function Card(props) {
         <br></br>
 
         <Link onClick={openModal} className={styles.cardLink}>
-          Read more
+          Read more...
         </Link>
         <div className={styles.bottomCard}>
           {details.tags.map((tag, index) => (

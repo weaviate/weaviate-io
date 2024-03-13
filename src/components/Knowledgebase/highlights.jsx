@@ -17,7 +17,7 @@ export default function Highlights() {
 
   return (
     <div className={styles.highlights}>
-      <h3>Highlights</h3>
+      <h3>Just Added</h3>
       <div className={styles.knowledgeHighlights}>
         <div className={styles.cardResults}>
           <div

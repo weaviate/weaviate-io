@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
@@ -7,13 +7,20 @@ import KnowledgeBase from '/src/components/Knowledgebase/knowledgebase';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function KnowledgeBasePage() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (newQuery) => {
+    setSearchQuery(newQuery);
+  };
   return (
     <div className="custom-page noBG">
       <Layout>
         <MetaSEO />
-        <KnowledgeHeader />
-
-        <KnowledgeBase />
+        <KnowledgeHeader
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+        />
+        <KnowledgeBase searchQuery={searchQuery} />
       </Layout>
       <ThemeSwitch />
     </div>
