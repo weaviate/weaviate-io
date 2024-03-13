@@ -1,0 +1,54 @@
+---
+title: Product quantization
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!../_snippets/100_pq.py';
+
+
+Product quantization, or PQ, is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#what-is-hierarchical-navigable-small-world-hnsw), which can improve performance and reduce resource requirements as well as costs.
+
+## <i class="fa-solid fa-chalkboard"></i> What is product quantization?
+
+Product quantization (PQ hereafter) compresses vectors in two ways. One, by dividing them into "segments", and two, quantizing each segment to be represented by one of a "codebook" of centroids.
+
+As an example, a 768-dimensional vector can be compressed into a 128-segment quantized vector of 1-byte integers.
+
+This will reduce the length of the vector by a factor of 6, and also the size of each segment from a floating point number (4 bytes) to a byte, representing one of 256 centroids.
+
+As a result, the size of the vector is reduced by 24 (from 768 * 4 bytes to 128 * 1 byte).
+
+The HNSW index can then be built on the PQ-compressed vectors, which will reduce the size of the index in memory.
+
+## <i class="fa-solid fa-code"></i> Configure PQ
+
+This example creates a collection with product quantization (PQ) enabled, using default settings.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# PQBasicConfig"
+  endMarker="# END PQBasicConfig"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+## <i class="fa-solid fa-code"></i> Customize PQ
+
+Many of the PQ
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# PQBasicConfig"
+  endMarker="# END PQBasicConfig"
+  language="py"
+/>
+
+## <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
