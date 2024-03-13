@@ -1,6 +1,6 @@
 ---
 title: Generative Search - Mistral
-sidebar_position: 10
+sidebar_position: 16
 image: og/docs/modules/generative-mistral.jpg
 # tags: ['generative', 'rag', 'mistral']
 ---
@@ -162,7 +162,83 @@ You can supply parameters at query time by adding them to the HTTP header.
 
 ### Queries
 
-This module enables generative search queries. For usage examples, please see the [how-to search: generative](../../search/generative.md) page.
+This module enables generative search queries.
+
+`generate` takes the following arguments:
+
+| Field | Data Type | Required | Example | Description |
+|- |- |- |- |- |
+| `singleResult {prompt}`  | string | no | `Summarize the following in a tweet: {summary}`  | Generates a response for each individual search result. You need to include at least one result field in the prompt, between braces. |
+| `groupedResult {task}`  | string | no | `Explain why these results are similar to each other`  | Generates a single response for all search results |
+
+#### Example of properties in the prompt
+
+When piping the results to the prompt, at least one field returned by the query must be added to the prompt. If you don't add any fields, Weaviate will throw an error.
+
+For example, assume your schema looks like this:
+
+```graphql
+{
+  Article {
+    title
+    summary
+  }
+}
+```
+
+You can add both `title` and `summary` to the prompt by enclosing them in curly brackets:
+
+```graphql
+{
+  Get {
+    Article {
+      title
+      summary
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+            Summarize the following in a tweet:
+
+            {title} - {summary}
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+```
+
+#### Example - single result
+
+Here is an example of a query where:
+* we get a podcast clip (with limit 1)
+* then we ask the generator module to summarize the content into one sentence.
+  * the query asks for the `speaker` and `content` fields, which are then included in the `prompt` argument of the `generate` operator.
+
+import MistralSingleResult from '/_includes/code/generative.mistral.singleresult.mdx';
+
+<MistralSingleResult/>
+
+#### Example - grouped result
+
+Here is an example of a query where:
+* we run a vector search (with `nearText`) to find podcast clips semantically similar to `"What is ref2vec?"`
+* then we ask the generator module to answer the question: `"What is ref2vec?"` based on the search results.
+
+import MistralGroupedResult from '/_includes/code/generative.mistral.groupedresult.mdx';
+
+<MistralGroupedResult />
+
+#### Further examples
+
+For further usage examples, please see the [how-to search: generative](../../search/generative.md) page.
+
+
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
