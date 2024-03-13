@@ -203,7 +203,7 @@ The `multi2vec-palm` vectorizer module enables the `nearText` and `nearImage` se
 
 These operators can do cross-modal search and retrieval.
 
-This means that when using the `multi2vec-palm` module any query using one modality (e.g. text) will include results in all available modalities, as all objects will be encoded into a single vector space.
+All objects are encoded into a single vector space. This means, a query that use one modality, such as text, returns results from all available modalities. 
 
 ## Usage example
 
