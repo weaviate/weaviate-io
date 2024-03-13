@@ -98,12 +98,17 @@ You can configure how the module will behave in each class through the [Weaviate
 
 #### Parameters
 
-Details coming soon
+| Parameter | Required | Purpose |
+| :- | :- | :- | :- |
+| `model` | No | The model to use.
+| `temperature` | No | Control of LLM stochasticity. |
+| `maxTokens` | No | Maximum number of tokens to generate. |
 
 <!-- | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
 | `model` | No | `"meta-llama/Llama-2-70b-chat-hf"` | The model to use. Defaults to Llama-2 70B.
-| `temperature` | No | 0 | Control of LLM stochasticity. | -->
+| `temperature` | No | 0 | Control of LLM stochasticity. |
+| `maxTokens` | No | None | Maximum number of tokens to generate. | -->
 
 ### Supported models
 
