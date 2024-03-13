@@ -35,9 +35,9 @@ To use the `multi2vec-palm` module, enable it in your [Docker Compose](/develope
 | Parameter | Required | Default | Description |
 |:--|:--|:--|:--|
 | `location` | Yes | `"us-central1"` | Where the model runs. |
-| `projectId` | Yes | `<Your GCP project>` | The name of your GCP project. |
+| `projectId` | Yes | `"<Your GCP project>"` | The name of your GCP project. |
 | `modelId` |  No | `"multimodalembedding@001"` | Current the only model available. |
-| `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`.
+| `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`. |
 
 Specify the API key as a request header or an environment variable.
 
@@ -55,6 +55,7 @@ To enable the Vertex AI API on your Google Cloud project, follow [Google's instr
 The Vertex AI API key is called an `access token` in Google Cloud.
 
 To retrieve your token, install the [Google Cloud CLI tool](https://cloud.google.com/cli) and run this command:
+
 ```shell
 gcloud auth print-access-token
 ```
@@ -193,6 +194,12 @@ Data that has the `blob` property type must be base64 encoded. To get the base64
 ```bash
 cat my_image.png | base64
 ```
+
+## Additional information
+
+### Available models
+
+Currently, the only available model is `multimodalembedding@001`.
 
 ## Additional search operators
 
