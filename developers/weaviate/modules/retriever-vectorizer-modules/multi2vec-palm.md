@@ -1,29 +1,30 @@
 ---
 title: multi2vec-palm
 sidebar_position: 37
-# image: og/docs/modules/multi2vec-palm.jpg
+image: og/docs/modules/multi2vec-palm.jpg
 # tags: ['multi2vec', 'multi2vec-palm']
 ---
 
 :::info Added in `v1.24.3`
 :::
 
-The `multi2vec-palm` module uses a PaLM module to create vectors from text or images
+The `multi2vec-palm` module uses a Google multimodal embedding model to create vectors from text or images
 
 ## Considerations
 
 - This module enables the `nearText` and `nearImage` [search operators](#additional-search-operators).
-- `multi2vec-palm` is hosted by a third party. 
-
+- `multi2vec-palm` uses an external API.
   - Check vendor pricing before you vectorize data.
   - Obtain an API key from the vendor.
 
-- This module is only supported in [Google Vertex AI](https://cloud.google.com/vertex-ai). It is not supported in Google AI Studio.
+- This module is only compatible with [Google Vertex AI](https://cloud.google.com/vertex-ai). It is not compatible with Google AI Studio.
 - The module s not compatible with Auto-schema. [Define](#collection-configuration) your collections manually.
 
 ## Weaviate instance configuration
 
-This module is available on self-hosted Weaviate instances and in Weaviate Cloud Services.
+:::tip Not applicable to WCS
+This module is enabled and pre-configured on Weaviate Cloud Services.
+:::
 
 ### Docker Compose file
 
@@ -31,16 +32,14 @@ To use the `multi2vec-palm` module, enable it in your [Docker Compose](/develope
 
 #### Parameters
 
-All parameters are required. 
+| Parameter | Required | Default | Description |
+|:--|:--|:--|:--|
+| `location` | Yes | `"us-central1"` | Where the model runs. |
+| `projectId` | Yes | `<Your GCP project>` | The name of your GCP project. |
+| `modelId` |  No | `"multimodalembedding@001"` | Current the only model available. |
+| `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`.
 
-| Parameter | Default | Description |
-|:--|:--|:--|
-| `location` | `us-central1` | Where the model runs. |
-| `projectId` | `Your GCP project` | The name of your GCP project. |
-| `modelId` | `multimodalembedding@001` | Current the only model available. |
-| `dimensions` | `1408` | Must be one of: `128`, `256`, `512`, `1408`.
-
-Specify the API key as a request header or an environment variable. 
+Specify the API key as a request header or an environment variable.
 
 - Request header: `X-Palm-Api-Key`
 - Environment variable: `PALM_APIKEY`
@@ -72,7 +71,7 @@ This configuration does the following:
 
 - enables  `multi2vec-palm`
 - sets `multi2vec-palm` as the default vectorizer
-- uses an environment variable to set the PaLM API key 
+- uses an environment variable to set the PaLM API key
 
 ```yaml
 ...
@@ -88,8 +87,8 @@ services:
       QUERY_DEFAULTS_LIMIT: 20
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: "./data"
-      ENABLE_MODULES: text2vec-palm
-      DEFAULT_VECTORIZER_MODULE: text2vec-palm
+      ENABLE_MODULES: multi2vec-palm
+      DEFAULT_VECTORIZER_MODULE: multi2vec-palm
       PALM_APIKEY: sk-replace-with-your-api-key  # Or provide the key at query time.
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -125,7 +124,7 @@ Set vectorizer behavior in the `moduleConfig` section for each collection and pr
 
 This collection definition sets the following:
 
-- The `multi2vec-palm` module is the `vectorizer` for the collection `ClipExample`.
+- The `multi2vec-palm` module is the `vectorizer` for the collection `MultimodalExample`.
 - The `name` property is `text` datatype and is a text field.
 - The `image` property is a `blob` datatype and is an image field.
 
@@ -133,7 +132,7 @@ This collection definition sets the following:
 {
   "classes": [
     {
-      "class": "ClipExample",
+      "class": "MultimodalExample",
       "description": "An example collection for multi2vec-palm",
       // highlight-start
       "vectorizer": "multi2vec-palm",
@@ -163,16 +162,14 @@ This collection definition sets the following:
 
 The following example adds weights:
 
-- `textFields` is 0.4
-- `imageFields` is 0.2
-- `audioFields` is 0.2
-- `videoFields` is 0.2
+- `textFields` is 0.7
+- `imageFields` is 0.3
 
 ```json
 {
   "classes": [
     {
-      "class": "ClipExample",
+      "class": "MultimodalExample",
       "moduleConfig": {
         "multi2vec-palm": {
           ...
@@ -203,7 +200,7 @@ The `multi2vec-palm` vectorizer module enables the `nearText` and `nearImage` se
 
 These operators can do cross-modal search and retrieval.
 
-All objects are encoded into a single vector space. This means, a query that use one modality, such as text, returns results from all available modalities. 
+All objects are encoded into a single vector space. This means, a query that use one modality, such as text, returns results from all available modalities.
 
 ## Usage example
 
