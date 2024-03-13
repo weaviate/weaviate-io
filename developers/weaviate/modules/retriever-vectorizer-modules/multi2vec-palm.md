@@ -5,6 +5,9 @@ sidebar_position: 37
 # tags: ['multi2vec', 'multi2vec-palm']
 ---
 
+:::info Added in `v1.24.3`
+:::
+
 The `multi2vec-palm` module uses a PaLM module to create vectors from text or images
 
 ## Considerations
