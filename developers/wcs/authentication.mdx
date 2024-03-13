@@ -12,13 +12,13 @@ There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 - [Connect a browser to WCS through the WCS Console.](/developers/wcs/guides/authentication#connect-a-browser-to-wcs)
 - [Connect a client application to WCS through APIs.] 
 
-Browser authentication relies on a username and password. Client authentication uses API keys. Enable two-factor authentication to increase the security of browser logins.  
+The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. The built-in [GraphQL console](/developers/wcs/guides/console) is great for ad hoc queries. If you develop applications, or want additional flexibility, use the Weaviate API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
+
+Browser authentication relies on a username and password. Client authentication uses API keys.
 
 ## Use a browser to connect to WCS
 
-The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. To work with your data, use the [GraphQL console](/developers/wcs/guides/console). The console is great for ad hoc queries. If you develop applications, or want additional flexibility, use the Weaviate API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
-
-Follow these steps to connect with a browser.
+The WCS dashboard is an application that provides a browser-based mechanism to monitor and control your Weaviate clusters. It also provides account management tools and a [GraphQL query console](http://localhost:3000/developers/wcs/platform/console). To connect  to WCS with a browser, follow these steps.
 
 1. If you don't a login account, [register a user](/developers/wcs/create-account) with WCS.
 1. Open the [WCS login page](https://console.weaviate.cloud/) in a browser.
@@ -27,7 +27,7 @@ Follow these steps to connect with a browser.
 
 ### Enable multi-factor authentication (MFA)
 
-To enable multi-factor authentication (MFA), follow these steps.
+ Multi-factor authentication increases the security of browser logins. To enable multi-factor authentication (MFA), follow these steps.
 
 1. Use your browser to connect to the WCS console.
 1. Click the silhouette of a person in the sidebar
@@ -45,11 +45,11 @@ After you configure MFA, WCS prompts you to supply the one-time authentication c
 
 ### MFA and applications
 
-If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that account. There is no way to pass the the one-time authentication code so the application cannot connect to WCS. Use API keys to connect client applications to WCS.
+If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that account. There is no way to pass the the one-time authentication code, so the application cannot connect to WCS. Use API keys to connect client applications to WCS.
 
 ### Disable MFA
 
-If you want to disable MFA, [contact us](mailto:support@weaviate.io).
+To disable MFA, [contact support](mailto:support@weaviate.io).
 
 ## Use an API to connect to WCS
 
