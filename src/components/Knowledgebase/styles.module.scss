@@ -476,12 +476,7 @@ header {
   margin: 40px 0px;
 
   input {
-    border-radius: 25px;
-    width: 70%;
-    height: 36px;
     margin: auto;
-  }
-  input[type='text'] {
     padding-block: 1px;
     padding-inline: 10px;
     width: 35.75rem;
@@ -492,7 +487,7 @@ header {
     background: #262262;
   }
 
-  input[type='text']::placeholder {
+  input::placeholder {
     color: #2a97e1;
     font-size: 0.875rem;
     font-style: normal;
