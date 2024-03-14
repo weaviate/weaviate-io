@@ -48,7 +48,7 @@ client.collections.create(
     vector_index_config=Configure.VectorIndex.hnsw(
         quantizer=Configure.VectorIndex.Quantizer.pq(
             segments=512,
-            centroids=512,
+            centroids=256,
             training_limit=50000,
             encoder_distribution=PQEncoderDistribution.NORMAL,
             encoder_type=PQEncoderType.TILE,
