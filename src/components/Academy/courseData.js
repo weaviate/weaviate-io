@@ -87,6 +87,28 @@ export const courseData = {
     ],
     note: "Python client (v4); project-based"
   },
+  "compression": {
+    title: "Compression for improved efficiency",
+    courseId: "PY_250",
+    body: "Vectors can be compressed to reduce memory requirements or improve retrieval speeds. Find out how to get the most out of this feature.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "compression_pq", "compression_bq", "compression_strategy"
+    ],
+    learningGoals: [
+      "What compression algorithms are available, how to use them and when to use them."
+    ],
+    learningOutcomes: [
+      "Name available vector compression algorithms in Weaviate.",
+      "Create collections with vector compression enabled.",
+      "Configure vector compression parameters.",
+      "Select a compression algorithm for a given use case.",
+    ],
+    note: "Python client (v4); project-based"
+  },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with Typescript (or JavaScript)",
     courseId: "TS_100",
