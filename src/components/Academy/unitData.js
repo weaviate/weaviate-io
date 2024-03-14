@@ -213,7 +213,7 @@ export const unitData = {
     title: "Product quantization",
     body: "What is product quantization (PQ), and how do you use it?",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/named_vectors/pq",
+    buttonURL: "/developers/academy/py/compression/pq",
     badgeType: "practical",
     learningGoals: [
       "Learn what PQ is and how to use it."
@@ -227,7 +227,7 @@ export const unitData = {
     title: "Binary quantization",
     body: "What is binary quantization (BQ), and how do you use it?",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/named_vectors/bq",
+    buttonURL: "/developers/academy/py/compression/bq",
     badgeType: "practical",
     learningGoals: [
       "Learn what BQ is and how to use it."
@@ -241,7 +241,7 @@ export const unitData = {
     title: "Compression strategy",
     body: "What compression algorithm and settings are right for me?",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/named_vectors/strategy",
+    buttonURL: "/developers/academy/py/compression/strategy",
     badgeType: "theory",
     learningGoals: [
       "Learn what compression algorithm might work best for your use case."

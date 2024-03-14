@@ -1,59 +1,55 @@
 import weaviate
-# PQBasicConfig  # PQCustomConfig
+# BQBasicConfig  # BQCustomConfig
 from weaviate.classes.config import Configure, DataType, Property
-# END PQBasicConfig  # PQCustomConfig
-from weaviate.collections.classes.config import PQEncoderType, PQEncoderDistribution
-# END PQCustomConfig
+# END BQBasicConfig  # BQCustomConfig
+from weaviate.collections.classes.config import BQEncoderType, BQEncoderDistribution
+# END BQCustomConfig
 
 client = weaviate.connect_to_local()
 
-# PQBasicConfig  # PQCustomConfig
+# BQBasicConfig  # BQCustomConfig
 
 # Client instantiation not shown
-collection_name = "PQExampleCollection"
+collection_name = "BQExampleCollection"
 
-# END PQBasicConfig  # END PQCustomConfig
+# END BQBasicConfig  # END BQCustomConfig
 
-# PQBasicConfig
+# BQBasicConfig
 client.collections.create(
     name=collection_name,
-    # END PQBasicConfig
+    # END BQBasicConfig
     properties=[
         Property(name="title", data_type=DataType.TEXT)
     ],
     vectorizer_config=Configure.Vectorizer.text2vec_openai(),
-    # PQBasicConfig
+    # BQBasicConfig
     # Other configuration not shown
     # highlight-start
     vector_index_config=Configure.VectorIndex.hnsw(
-        quantizer=Configure.VectorIndex.Quantizer.pq()
+        quantizer=Configure.VectorIndex.Quantizer.bq()
     ),
     # highlight-end
 )
-# END PQBasicConfig
+# END BQBasicConfig
 
 
 
-# PQCustomConfig
+# BQCustomConfig
 client.collections.create(
     name=collection_name,
-    # END PQCustomConfig
+    # END BQCustomConfig
     properties=[
         Property(name="title", data_type=DataType.TEXT)
     ],
     vectorizer_config=Configure.Vectorizer.text2vec_openai(),
-    # PQCustomConfig
+    # BQCustomConfig
     # Other configuration not shown
     # highlight-start
     vector_index_config=Configure.VectorIndex.hnsw(
-        quantizer=Configure.VectorIndex.Quantizer.pq(
-            segments=512,
-            centroids=512,
-            training_limit=50000,
-            encoder_distribution=PQEncoderDistribution.NORMAL,
-            encoder_type=PQEncoderType.TILE,
+        quantizer=Configure.VectorIndex.Quantizer.bq(
+            rescore_limit=200
         )
     ),
     # highlight-end
 )
-# END PQCustomConfig
+# END BQCustomConfig
