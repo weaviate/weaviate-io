@@ -139,6 +139,10 @@ p {
   background-position-x: right;
   background-size: contain;
   background-image: url('/img/site/weaviate-hero-header-01.svg');
+
+  @media screen and (max-width: 500px) {
+    margin-right: -24px;
+  }
 }
 
 .headerImage2 {
@@ -148,6 +152,10 @@ p {
   background-size: contain;
   background-position-y: bottom;
   background-image: url('/img/site/weaviate-hero-header-02.svg');
+
+  @media screen and (max-width: 500px) {
+    margin-top: -42px;
+  }
 }
 
 .peopleContainer {
