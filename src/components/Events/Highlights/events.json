@@ -1,17 +1,17 @@
 [
   {
-    "type": "MEETUP",
-    "title": "AI Meetup - Berlin",
-    "date": "MARCH 13TH 2024 18:00 - 21:00 CET",
-    "imageClass": "firstSection",
-    "url": "https://www.aicamp.ai/event/eventdetails/W2024031309"
-  },
-  {
     "type": "WEBINAR",
     "title": "Beyond Vector Search: Taking a hybrid approach for better results",
     "date": "MARCH 14TH 2024 19:00 - 20:00 CET",
-    "imageClass": "secondSection",
+    "imageClass": "firstSection",
     "url": "https://events.weaviate.io/hybrid-search-webinar"
+  },
+  {
+    "type": "ONLINE WORKSHOP",
+    "title": "AI SaaS applications with Weaviate",
+    "date": "MARCH 15TH 2024 16:00 - 17:00 CET",
+    "imageClass": "secondSection",
+    "url": "https://events.weaviate.io/workshop-24-03-15"
   },
   {
     "type": "ROADSHOW",
