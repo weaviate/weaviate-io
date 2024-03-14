@@ -14,6 +14,7 @@ For more information related to one of the documents below, please reach out to 
 
 - Contributors
   - [Code of Conduct](/service/code-of-conduct)
+  - [Weaviate Hero - Code of ethics and professional conduct](/service/code-of-ethics-and-professional-conduct)
   - [Contributor License Agreement](/service/contributor-license-agreement)
 - Customers
 
