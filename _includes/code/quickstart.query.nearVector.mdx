@@ -27,12 +27,25 @@ import ByovAllPy3Code from '!!raw-loader!/_includes/code/quickstart.byov.all_v3.
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS">
 
 import ByovAllTsCode from '!!raw-loader!/_includes/code/quickstart.byov.all.ts';
 
 <FilteredTextBlock
   text={ByovAllTsCode}
+  startMarker="// Query using nearVector"
+  endMarker="END-OF-FILE"
+  language="ts"
+/>
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS (Legacy)">
+
+import ByovAllTsCodeLegacy from '!!raw-loader!/_includes/code/quickstart.byov.all.legacy.ts';
+
+<FilteredTextBlock
+  text={ByovAllTsCodeLegacy}
   startMarker="// Query using nearVector"
   endMarker="END-OF-FILE"
   language="ts"

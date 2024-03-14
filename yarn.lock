@@ -1880,7 +1880,7 @@
     "@docusaurus/theme-search-algolia" "2.4.1"
     "@docusaurus/types" "2.4.1"
 
-"@docusaurus/react-loadable@5.5.2", "react-loadable@npm:@docusaurus/react-loadable@5.5.2":
+"@docusaurus/react-loadable@5.5.2":
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/@docusaurus/react-loadable/-/react-loadable-5.5.2.tgz#81aae0db81ecafbdaee3651f12804580868fa6ce"
   integrity sha512-A3dYjdBGuy0IGT+wyLIGIKLRE+sAk1iNk0f1HjNDysO7u8lhL4N3VEm+FAubmJbAztn94F7MxBTPmnixbiyFdQ==
@@ -2246,7 +2246,7 @@
   dependencies:
     giscus "^1.3.0"
 
-"@graphql-typed-document-node/core@^3.1.1":
+"@graphql-typed-document-node/core@^3.1.1", "@graphql-typed-document-node/core@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.2.0.tgz#5f3d96ec6b2354ad6d8a28bf216a1d97b5426861"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
@@ -2255,6 +2255,14 @@
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.9.2.tgz#151148f6485eab8fb13fe53042d25f4ffa9c7d09"
   integrity sha512-Lf2pUhNTaviEdEaGgjU+29qw3arX7Qd/45q66F3z1EV5hroE6wM9xSHPvjB8EY+b1RmKZgwnLWXQorC6fZ9g5g==
+  dependencies:
+    "@grpc/proto-loader" "^0.7.8"
+    "@types/node" ">=12.12.47"
+
+"@grpc/grpc-js@~1.9.14":
+  version "1.9.14"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.9.14.tgz#236378822876cbf7903f9d61a0330410e8dcc5a1"
+  integrity sha512-nOpuzZ2G3IuMFN+UPPpKrC6NsLmWsTqSsm66IRfnBt1D4pwTqE27lmbpcPM+l2Ua4gE7PfjRHI6uedAy7hoXUw==
   dependencies:
     "@grpc/proto-loader" "^0.7.8"
     "@types/node" ">=12.12.47"
@@ -4644,6 +4652,11 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
+
+abort-controller-x@^0.4.0:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/abort-controller-x/-/abort-controller-x-0.4.3.tgz#ff269788386fabd58a7b6eeaafcb6cf55c2958e0"
+  integrity sha512-VtUwTNU8fpMwvWGn4xE93ywbogTYsuT+AUxAXOeelbXuQVIwNmC5YLeho9sH4vZ4ITW8414TTAOG1nW6uIVHCA==
 
 abort-controller@^3.0.0:
   version "3.0.0"
@@ -8801,6 +8814,14 @@ graphql-request@^5.1.0, graphql-request@^5.2.0:
     extract-files "^9.0.0"
     form-data "^3.0.0"
 
+graphql-request@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-6.1.0.tgz#f4eb2107967af3c7a5907eb3131c671eac89be4f"
+  integrity sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.2.0"
+    cross-fetch "^3.1.5"
+
 graphql@16.5.0:
   version "16.5.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"
@@ -10573,7 +10594,7 @@ long@^2.4.0:
   resolved "https://registry.yarnpkg.com/long/-/long-2.4.0.tgz#9fa180bb1d9500cdc29c4156766a1995e1f4524f"
   integrity sha512-ijUtjmO/n2A5PaosNG9ZGDsQ3vxJg7ZW8vsY8Kp0f2yIZWhSJvjmegV7t+9RPQKxKrvj8yKGehhS+po14hPLGQ==
 
-long@^5.0.0:
+long@^5.0.0, long@^5.2.3:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/long/-/long-5.2.3.tgz#a3ba97f3877cf1d778eccbcb048525ebb77499e1"
   integrity sha512-lcHwpNoggQTObv5apGNCTdJrO69eHOZMi4BNC+rTLER8iHAqGrUVeLh/irVIM7zTw2bOXA8T6uNPeujwOLg/2Q==
@@ -11349,6 +11370,29 @@ netlify@^13.1.10, netlify@^13.1.2:
     omit.js "^2.0.2"
     p-wait-for "^4.0.0"
     qs "^6.9.6"
+
+nice-grpc-client-middleware-deadline@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/nice-grpc-client-middleware-deadline/-/nice-grpc-client-middleware-deadline-2.0.11.tgz#b37e4e7c55b6ef18a023ee78c31e180d4d8193b4"
+  integrity sha512-mwO70/ye7EhbW13HXx3Hjq05QBKR52qyxYzOwBVQvZS/THyT0h5fGbtmQBtlHxAA+lyVJdt51PXu6ic5al/eeg==
+  dependencies:
+    nice-grpc-common "^2.0.2"
+
+nice-grpc-common@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/nice-grpc-common/-/nice-grpc-common-2.0.2.tgz#e6aeebb2bd19d87114b351e291e30d79dd38acf7"
+  integrity sha512-7RNWbls5kAL1QVUOXvBsv1uO0wPQK3lHv+cY1gwkTzirnG1Nop4cBJZubpgziNbaVc/bl9QJcyvsf/NQxa3rjQ==
+  dependencies:
+    ts-error "^1.0.6"
+
+nice-grpc@^2.1.7:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/nice-grpc/-/nice-grpc-2.1.8.tgz#2d26eae2470573d692c5fdded1b5be7a30d48aac"
+  integrity sha512-pTugD3cZ1Vb0Q2OjZZh80wpLY6L7jSADnzY7Dq6mL9EGUJJF5mfQjcHF4gqpQtyTq2YsZgPIArfNcq0k3ApgQg==
+  dependencies:
+    "@grpc/grpc-js" "~1.9.14"
+    abort-controller-x "^0.4.0"
+    nice-grpc-common "^2.0.2"
 
 no-case@^3.0.4:
   version "3.0.4"
@@ -13077,6 +13121,14 @@ react-loadable-ssr-addon-v5-slorber@^1.0.1:
   integrity sha512-lq3Lyw1lGku8zUEJPDxsNm1AfYHBrO9Y1+olAYwpUJ2IGFBskM0DMKok97A6LWUpHm+o7IvQBOWu9MLenp9Z+A==
   dependencies:
     "@babel/runtime" "^7.10.3"
+
+"react-loadable@npm:@docusaurus/react-loadable@5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@docusaurus/react-loadable/-/react-loadable-5.5.2.tgz#81aae0db81ecafbdaee3651f12804580868fa6ce"
+  integrity sha512-A3dYjdBGuy0IGT+wyLIGIKLRE+sAk1iNk0f1HjNDysO7u8lhL4N3VEm+FAubmJbAztn94F7MxBTPmnixbiyFdQ==
+  dependencies:
+    "@types/react" "*"
+    prop-types "^15.6.2"
 
 react-player@^2.11.0:
   version "2.13.0"
@@ -15080,6 +15132,11 @@ trough@^1.0.0:
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
 
+ts-error@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ts-error/-/ts-error-1.0.6.tgz#277496f2a28de6c184cfce8dfd5cdd03a4e6b0fc"
+  integrity sha512-tLJxacIQUM82IR7JO1UUkKlYuUTmoY9HBJAmNWFzheSlDS5SPMcNIepejHJa4BpPQLAcbRhRf3GDJzyj6rbKvA==
+
 ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
@@ -15647,6 +15704,17 @@ wcwidth@^1.0.1:
   integrity sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==
   dependencies:
     defaults "^1.0.3"
+
+weaviate-client@^3.0.0-beta.8:
+  version "3.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.0-beta.10.tgz#9bb58d5164ce2f7cc2fbce42af3dd91c0326e412"
+  integrity sha512-vuLy7qoHj98PfpYF1mNwlkUjSR67UtoAP4DQTELSfCEyLrbg651zMhubxD8sueUxCrRbcO2HUoccx//SmV9NtA==
+  dependencies:
+    graphql-request "^6.1.0"
+    long "^5.2.3"
+    nice-grpc "^2.1.7"
+    nice-grpc-client-middleware-deadline "^2.0.11"
+    uuid "^9.0.1"
 
 weaviate-ts-client@^1.3.3:
   version "1.5.0"
