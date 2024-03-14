@@ -8,7 +8,7 @@ image: og/docs/modules/multi2vec-clip.jpg
 
 ## Overview
 
-The `multi2vec-clip` module enables Weaviate to obtain vectors locally from text or images using a Sentence-BERT CLIP model.
+The `multi2vec-clip` module enables Weaviate to obtain vectors locally from text or images using a CLIP model.
 
 `multi2vec-clip` encapsulates the model in a Docker container, which allows independent scaling on GPU-enabled hardware while keeping Weaviate on CPU-only hardware, as Weaviate is CPU-optimized.
 
@@ -17,7 +17,7 @@ Key notes:
 - This module is not available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` and `nearImage` search operators](#additional-search-operators).
 - Model encapsulated in a Docker container.
-- This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
+- This module is not compatible with Auto-schema. You must define your collections manually as [shown below](#collection-configuration).
 
 ## Weaviate instance configuration
 
@@ -38,10 +38,14 @@ While you can do so manually, we recommend using the [Weaviate configuration too
 Weaviate:
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `multi2vec-clip` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `multi2vec-clip` to make it the default for all classes.
-- `CLIP_INFERENCE_API` (Required): The URL of the inference container.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `multi2vec-clip` to make it the default for all collections.
+- `CLIP_INFERENCE_API` (Required): The URL of the default inference container.
 
 Inference container:
+
+:::info Multiple inference container support added in `v1.24.2`
+As of Weaviate `v1.24.2`, you can use multiple inference containers with `multi2vec-clip`. This allows you to use different models for different collections by [setting the `inferenceUrl` in the collection configuration](#collection-configuration).
+:::
 
 - `image` (Required): The image name of the inference container.
 - `ENABLE_CUDA` (Optional): Set to `1` to enable GPU usage. Default is `0` (CPU only).
@@ -70,10 +74,11 @@ services:
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
-  multi2vec-clip:
+  multi2vec-clip:  # Set the name of the inference container
     image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
+  # Set additional inference containers here if desired
 # highlight-end
 ...
 ```
@@ -90,26 +95,27 @@ As an alternative, you can run the inference container independently from Weavia
 - Enable `multi2vec-clip` in your Docker Compose file,
 - Omit `multi2vec-clip` parameters,
 - Run the inference container separately, e.g. using Docker, and
-- Set `CLIP_INFERENCE_API` to the URL of the inference container.
+- Use `CLIP_INFERENCE_API` or [`inferenceUrl`](#collection-level) to set the URL of the inference container.
 
 Then, for example if Weaviate is running outside of Docker, set `CLIP_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `CLIP_INFERENCE_API=http://multi2vec-clip:8080`.
 
 
-## Class configuration
+## Collection configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
+You can configure how the module will behave in each collection through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Vectorization settings
 
-You can set vectorizer behavior using the `moduleConfig` section under each class and property:
+You can set vectorizer behavior using the `moduleConfig` section under each collection and property:
 
-#### Class-level
+#### Collection-level
 
 - `vectorizer` - what module to use to vectorize the data.
-- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
+- `vectorizeClassName` – whether to vectorize the collection name. Default: `true`.
 - `<media>Fields` - property names to map for different modalities (under `moduleConfig.multi2vec-clip`).
     - i.e. one or more of [`textFields`, `imageFields`]
 - `weights` - optional parameter to weigh the different modalities in producing the final vector.
+- `inferenceUrl` – the URL of the inference container, for when using [multiple inference containers](#weaviate-instance-configuration) (e.g. `http://service-name:8080`). Default: `http://multi2vec-clip:8080`.
 
 #### Property-level
 
@@ -119,7 +125,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 
 #### Example
 
-The following example class definition sets the `multi2vec-clip` module as the `vectorizer` for the class `ClipExample`. It also sets:
+The following example collection definition sets the `multi2vec-clip` module as the `vectorizer` for the collection `ClipExample`. It also sets:
 
 - `name` property as a `text` datatype and as the text field,
 - `image` property as a `blob` datatype and as the image field,
@@ -129,13 +135,14 @@ The following example class definition sets the `multi2vec-clip` module as the `
   "classes": [
     {
       "class": "ClipExample",
-      "description": "An example class for multi2vec-clip",
+      "description": "An example collection for multi2vec-clip",
       // highlight-start
       "vectorizer": "multi2vec-clip",
       "moduleConfig": {
         "multi2vec-clip": {
           "textFields": ["name"],
           "imageFields": ["image"],
+          "inferenceUrl": "http://multi2vec-clip:8080"  // Optional. Set to use a different inference container when using multiple inference containers.
         }
       },
       "properties": [

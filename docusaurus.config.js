@@ -211,8 +211,8 @@ const config = {
                     position: 'right',
                     items: [
                         {
-                            label: 'Services',
-                            to: '/services',
+                            label: 'Services Overview',
+                            href: '/services',
                            
                         },
                         {
@@ -237,7 +237,7 @@ const config = {
                         },
                         {
                             label: 'Pricing',
-                            to: '/pricing',
+                            href: '/pricing',
                            
                         },
                     ]

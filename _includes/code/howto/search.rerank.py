@@ -84,7 +84,7 @@ try:
 
     for o in response.objects:
         print(o.properties)
-        print(o.metadata.score)
+        print(o.metadata.rerank_score)
     # END bm25Rerank Python
 
 
