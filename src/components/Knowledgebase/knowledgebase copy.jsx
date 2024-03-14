@@ -9,7 +9,6 @@ import Highlights from './highlights';
 
 export default function KnowledgeBase({ searchQuery }) {
   const [selectedCard, setSelectedCard] = useState('All');
-  const [showMore, setShowMore] = useState({});
 
   const allCards = knowledge.all;
 
@@ -30,50 +29,6 @@ export default function KnowledgeBase({ searchQuery }) {
           )))
     );
   });
-
-  const handleShowMore = (category) => {
-    setShowMore((prevShowMore) => ({
-      ...prevShowMore,
-      [category]: !prevShowMore[category],
-    }));
-  };
-
-  const renderCards = (category) => {
-    const categoryCards = filteredCards.filter(
-      (card) => card.category === category
-    );
-    const visibleCards = showMore[category]
-      ? categoryCards
-      : categoryCards.slice(0, 3);
-
-    if (categoryCards.length === 0) {
-      return null;
-    }
-
-    return (
-      <>
-        <h3>{category}</h3>
-        <div
-          className={`${styles.cardContainer} ${category.toLowerCase()}-card`}
-        >
-          {visibleCards.map((card) => (
-            <Card key={card.title} details={card} />
-          ))}
-        </div>
-        {categoryCards.length > 3 && (
-          <div className={styles.buttonsContainer}>
-            <button
-              className={styles.buttonOutline}
-              onClick={() => handleShowMore(category)}
-            >
-              {showMore[category] ? 'Show Less' : 'Show More'}
-            </button>
-          </div>
-        )}
-        <hr></hr>
-      </>
-    );
-  };
 
   return (
     <div className={styles.teamBG}>
@@ -99,11 +54,11 @@ export default function KnowledgeBase({ searchQuery }) {
                   type="radio"
                   id="filterTutorial"
                   name="cardFilter"
-                  value="LLM"
-                  checked={selectedCard === 'LLM'}
-                  onChange={() => handleCardFilter('LLM')}
+                  value="Tutorial"
+                  checked={selectedCard === 'Tutorial'}
+                  onChange={() => handleCardFilter('Tutorial')}
                 />
-                <label htmlFor="filterTutorial">Intro to LLMs</label>
+                <label htmlFor="filterTutorial">Tutorial</label>
               </div>
               <div>
                 <input
@@ -114,20 +69,18 @@ export default function KnowledgeBase({ searchQuery }) {
                   checked={selectedCard === 'Introduction'}
                   onChange={() => handleCardFilter('Introduction')}
                 />
-                <label htmlFor="filterIntroduction">
-                  Intro to Vector Databases
-                </label>
+                <label htmlFor="filterIntroduction">Introduction</label>
               </div>
               <div>
                 <input
                   type="radio"
-                  id="filterSearch"
+                  id="filterImage"
                   name="cardFilter"
-                  value="Search"
-                  checked={selectedCard === 'Search'}
-                  onChange={() => handleCardFilter('Search')}
+                  value="Image"
+                  checked={selectedCard === 'Image'}
+                  onChange={() => handleCardFilter('Image')}
                 />
-                <label htmlFor="filterSearch">Search</label>
+                <label htmlFor="filterImage">Images</label>
               </div>
               <div>
                 <input
@@ -144,10 +97,25 @@ export default function KnowledgeBase({ searchQuery }) {
           </div>
 
           <div className={styles.cardResults}>
-            {renderCards('Intro to Vector Databases')}
-            {renderCards('Search')}
-            {renderCards('Databases')}
-            {renderCards('Intro to LLMs')}
+            <Highlights />
+            <div
+              className={`${
+                styles.cardContainer
+              } ${selectedCard.toLowerCase()}-card`}
+            >
+              {filteredCards.length > 0 ? (
+                filteredCards.map((card) => (
+                  <Card key={card.title} details={card} />
+                ))
+              ) : (
+                <p>No results found.</p>
+              )}
+            </div>
+            <div className={styles.buttonsContainer}>
+              <Link className={styles.buttonOutline} to="/developers/weaviate">
+                More information
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -277,7 +277,6 @@ header {
   justify-content: flex-start;
   align-items: flex-start;
   width: 110%;
-  border-left: 0.5px solid #8f99b1;
 
   @media screen and (max-width: 900px) {
     justify-content: center;
@@ -512,6 +511,12 @@ header {
 .knowledgeCard.introduction {
   .cardHeader {
     background: #059053;
+  }
+}
+
+.knowledgeCard.llm {
+  .cardHeader {
+    background: #ab5988;
   }
 }
 

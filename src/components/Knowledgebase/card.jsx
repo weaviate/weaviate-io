@@ -27,7 +27,7 @@ export default function Card(props) {
       />
       <div className={`${styles.knowledgeCard} ${styles[typeClass] || ''}`}>
         <div className={styles.cardHeader}>
-          <span className={styles.cardType}>{details.type}</span>
+          <span className={styles.cardType}>{details.category}</span>
         </div>
 
         <h3>{details.title}</h3>
