@@ -21,7 +21,9 @@
      "autocut",
      "autoplay",
      "AUTOSCHEMA",
+     "chatbots",
      "childname",
+     "Chunker",
      "codebook",
      "Configurator",
      "contextionary",
@@ -38,6 +40,7 @@
      "GOMEMLIMIT",
      "gqlresponse",
      "Groupby",
+     "hackathons",
      "HNSW",
      "huggingface",
      "jina",
@@ -77,6 +80,7 @@
      "vectorizers",
      "vectorizes",
      "vectorizing",
+     "Verba",
      "xlarge",
      "xsum"
     ]
