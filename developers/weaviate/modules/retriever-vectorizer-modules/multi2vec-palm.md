@@ -34,7 +34,7 @@ To use the `multi2vec-palm` module, enable it in your [Docker Compose](/develope
 
 | Parameter | Required | Default | Description |
 |:--|:--|:--|:--|
-| `location` | Yes | `"us-central1"` | Where the model runs. |
+| `location` | Yes | None | Where the model runs (e.g. `"us-central1"`). |
 | `projectId` | Yes | `"<Your GCP project>"` | The name of your GCP project. |
 | `modelId` |  No | `"multimodalembedding@001"` | Current the only model available. |
 | `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`. |
