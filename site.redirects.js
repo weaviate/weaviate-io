@@ -33,7 +33,18 @@ const siteRedirects = {
             to: '/developers/wcs/platform/console',
             from: '/developers/weaviate/current/core-knowledge/console',
         },
-
+        {
+         to: '/developers/wcs/platform/console',
+         from: '/developers/wcs/guides/console',
+        },
+        {
+         to: '/developers/wcs/create-instance',
+         from: '/developers/wcs/guides/create-instance',
+        },
+        {
+         to: '/developers/wcs/authentication',
+         from: '/developers/wcs/guides/authentication',
+        },
         // Client library redirects
         {
             to: '/developers/weaviate/client-libraries/typescript',
