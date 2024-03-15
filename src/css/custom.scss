@@ -766,10 +766,11 @@ Dropdown style removed.
 .lightToggleIcon_pyhR {
   display: none !important;
 }
-[data-theme='light']
+
+[data-theme='dark']
   .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module,
 .darkToggleIcon_wfgR {
-  display: block !important;
+  display: none !important;
 }
 
 [data-theme='dark']
@@ -777,8 +778,9 @@ Dropdown style removed.
 .lightToggleIcon_pyhR {
   display: block !important;
 }
-[data-theme='dark']
+
+[data-theme='light']
   .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module,
 .darkToggleIcon_wfgR {
-  display: none !important;
+  display: block !important;
 }
