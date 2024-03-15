@@ -771,10 +771,12 @@ Dropdown style removed.
 }
 
 [data-theme='dark']
-  .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module,
+.lightToggleIcon_pyhR {
   display: block !important;
 }
 [data-theme='dark']
-  .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module,
+.darkToggleIcon_wfgR {
   display: none;
 }
