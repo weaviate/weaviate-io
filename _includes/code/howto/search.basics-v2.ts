@@ -1,17 +1,13 @@
 import assert from 'assert';
 
 // ===== Instantiation, not shown in snippet
-import weaviate, { WeaviateClient } from 'weaviate-client/node';
+import weaviate from 'weaviate-ts-client';
 
-const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
- {
-   authCredentials: new weaviate.ApiKey('xLNI2ItFMTLIcMZBgf60sMhvaIclJ6LtaOSy'),
-   headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
-   }
- } 
-)
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'edu-demo.weaviate.network',
+  apiKey: new weaviate.ApiKey('learn-weaviate'),
+});
 
 let result;
 
@@ -20,14 +16,14 @@ let result;
 // ==============================
 
 // BasicGetJS
-const myCollection = client.collections.get('JeopardyQuestion');
-
-const result = await myCollection.query.fetchObjects({
-  returnProperties: ['question'],
-})
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('question')
+  .do();
 
 console.log(JSON.stringify(result, null, 2));
-
 // END BasicGetJS
 
 // Test
@@ -42,13 +38,16 @@ assert.deepEqual(questionKeys, new Set(['question']));
 // ===================================
 
 // GetWithLimitJS
-const myCollection = client.collections.get('JeopardyQuestion');
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('question')
+  // highlight-start
+  .withLimit(1)
+  // highlight-end
+  .do();
 
-const result = await myCollection.query.fetchObjects({
-       returnProperties: ['question'],
-       limit: 1,
-     })
-     
 console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitJS
 
@@ -65,13 +64,16 @@ assert.deepEqual(questionKeys, new Set(['question']));
 // ===================================
 
 // GetWithLimitOffsetJS
-const myCollection = client.collections.get('JeopardyQuestion');
-
-const result = await myCollection.query.fetchObjects({
-  returnProperties: ['question'],
-  limit: 1,
-  offset: 1,
-})
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('question')
+  // highlight-start
+  .withLimit(1)
+  .withOffset(1)
+  // highlight-end
+  .do();
 
 console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitOffsetJS
@@ -92,18 +94,17 @@ assert.deepEqual(result.data.Get, {
 // ===================================
 
 // GetPropertiesJS
-const myCollection = client.collections.get('JeopardyQuestion');
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  // highlight-start
+  .withFields('question answer points')
+  // highlight-end
+  .withLimit(1)
+  .do();
 
-const result = await myCollection.query.fetchObjects({
-    // highlight-start
-       returnProperties: ['question', 'answer', 'points'],
-    // highlight-end
-
-       limit: 1,
-       offset: 1,
-     })
-     
-     console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetPropertiesJS
 
 // Test
@@ -127,19 +128,17 @@ assert.deepEqual(result.data.Get, {
 // ======================================
 
 // GetObjectVectorJS
-const myCollection = client.collections.get('JeopardyQuestion');
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  // highlight-start
+  .withFields('_additional {vector}')
+  // highlight-end
+  .withLimit(1)
+  .do();
 
-const result = await myCollection.query.fetchObjects({
-       returnProperties: ['question', 'answer', 'points'],
-       limit: 1,
-       offset: 1,
-       // highlight-start
-       includeVector: true
-       // highlight-end
-
-     })
-     
-     console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectVectorJS
 
 // Test
@@ -155,15 +154,17 @@ assert.deepEqual(additionalKeys, new Set(['vector']));
 // ==================================
 
 // GetObjectIdJS
-const myCollection = client.collections.get('JeopardyQuestion');
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  // highlight-start
+  .withFields('_additional { id }')
+  // highlight-end
+  .withLimit(1)
+  .do();
 
-const result = await myCollection.query.fetchObjects({
-  limit: 1,
-  
-})
-for (let object of result.objects) {
-   console.log(JSON.stringify(object.uuid, null, 2));
-}
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectIdJS
 
 // Test
@@ -179,20 +180,20 @@ assert.deepEqual(additionalKeys, new Set(['id']));
 
 
 // GetWithCrossRefsJS
-const myCollection = client.collections.get('JeopardyQuestion');
-
-const result = await myCollection.query.fetchObjects({
-       limit: 2,
-       // highlight-start
-       returnReferences: [{
-        linkOn: 'hasCategory',
-        returnProperties: ['title'],
-      }]
-      // highlight-end
-     })
-
-        console.log(JSON.stringify(result, null, 2));
-
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  // highlight-start
+  .withFields(`
+  question
+  hasCategory {
+    ... on JeopardyCategory {
+      title
+    }
+  }`)
+  // highlight-end
+  .withLimit(2)
+  .do();
 
 console.log(JSON.stringify(result, null, 2));
 // END GetWithCrossRefsJS
@@ -213,17 +214,17 @@ assert.deepEqual(questionValues, new Set([
 // ===================================
 
 // GetWithMetadataJS
-    const myCollection = client.collections.get('JeopardyQuestion');
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withLimit(1)
+  // highlight-start
+  .withFields('question _additional { creationTimeUnix }')
+  // highlight-end
+  .do();
 
-     const result = await myCollection.query.fetchObjects({
-       limit: 2,
-       returnMetadata: ['creationTime']
-     })
-     for (let object of result.objects) {
-        console.log(JSON.stringify(object.properties, null, 2));
-        console.log(JSON.stringify(object.metadata?.creationTime, null, 2));
-
-     }
+console.log(JSON.stringify(result, null, 2));
 // END GetWithMetadataJS
 
 // Test
@@ -242,15 +243,15 @@ assert('creationTimeUnix' in result.data.Get.JeopardyQuestion[0]._additional);
 // <!-- NEEDS TESTS -->
 
 // MultiTenancy
-const myCollection = client.collections.get('WineReviewMT');
-const collectionTenantA = myCollection.withTenant('tenantA');
+result = await client
+   .graphql
+   .get()
+   .withClassName('MultiTenancyClass')
+   .withFields('property1 property2')
+   .withTenant('TenantA')
+   .do();
 
-const result = await collectionTenantA.query.fetchObjects({
-       limit: 1,
-       returnProperties: ['review_body','title']
-     })
-
-console.log(JSON.stringify(result.objects[0].properties, null, 2));
+console.log(JSON.stringify(result, null, 2));
 // END MultiTenancy
 
 // Test results
