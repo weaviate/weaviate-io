@@ -960,6 +960,10 @@ try:
     print(len(articles))
     # END LenCollectionExample
 
+    # START SkipValidationExample
+    # Configure the `performant_articles` to skip argument validation on its methods
+    performant_articles = client.collections.get("Article", skip_argument_validation=True)
+    # END SkipValidationExample
 
     # START BrokenQueryExample
     try:

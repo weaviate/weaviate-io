@@ -45,7 +45,7 @@ result = await client
   .aggregate()
   .withClassName('JeopardyQuestion')
   // highlight-start
-  .withFields('answer { count type topOccurrences { occurs value } }')
+  .withFields('answer { count type topOccurrences (limit: 5) { occurs value } }')  // `limit` here sets a minimum count threshold
   // highlight-end
   .do();
 

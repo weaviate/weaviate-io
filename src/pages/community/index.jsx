@@ -8,6 +8,7 @@ import CommunityPanel from '../../components/Community/CommunityPanel';
 import WorkshopSection from '../../components/Community/Workshops';
 import EventSection from '../../components/Community/EventMap';
 import SocialPanel from '../../components/Community/SocialPanel';
+import Program from '../../components/Community/Program';
 
 import ThemeSwitch from '../../components/ThemeSwitch';
 
@@ -17,10 +18,9 @@ export default function CommunityPage() {
       <Layout>
         <MetaSEO img="og/company/Community.jpg" />
         <Header />
+        <Program />
         <CommunityPanel />
-        <WorkshopSection />
-        <EventSection />
-        <Intro />
+
         <SocialPanel />
         <Hero />
       </Layout>
