@@ -31,7 +31,7 @@ For most use cases, the API key option offers a balance between security and eas
 
 Weaviate Cloud Services (WCS) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
 
-Refer to the [WCS documentation for instructions](../../wcs/guides/authentication.mdx) on how to authenticate as a user in this setup.
+Refer to the [WCS documentation for instructions](/developers/wcs/authentication.mdx) on how to authenticate as a user in this setup.
 
 ## API key
 
@@ -222,7 +222,7 @@ While it is outside the scope of our documentation to cover every OIDC authentic
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use `resource owner password flow` for trusted applications (e.g. used by [Weaviate Cloud Services](../../wcs/guides/authentication.mdx).
+1. Use `resource owner password flow` for trusted applications (e.g. used by [Weaviate Cloud Services](/developers/wcs/platform/authentication.mdx).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### OIDC support for Weaviate clients
