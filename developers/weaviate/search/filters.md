@@ -11,6 +11,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.filters.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.filters-v3.py';
 import JavaScriptCode from '!!raw-loader!/_includes/code/howto/search.filters.ts';
+import JavaScriptCodeLegacy from '!!raw-loader!/_includes/code/howto/search.filters-v2.ts';
+
 
 Filters let you include, or exclude, particular objects from your result set based on provided conditions.<br/>
 For a list of filter operators, see the [API reference page](../api/graphql/filters.md#filter-structure).

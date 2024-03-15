@@ -11,9 +11,12 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.image-v2.ts';
 import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+
 
 `Image` search uses an **image as a search input** to perform vector similarity search.
 

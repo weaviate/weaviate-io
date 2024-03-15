@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
 import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';

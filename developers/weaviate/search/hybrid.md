@@ -11,6 +11,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
+
 
 `Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 

@@ -69,7 +69,7 @@
     "typescript": "^5.1.6",
     "weaviate-ts-client": "^2.1.0",
     "weaviate-ts-embedded": "^1.2.0",
-    "weaviate-client": "^3.0.0-beta.8"
+    "weaviate-client": "^3.0.0-beta.15"
   },
   "browserslist": {
     "production": [
