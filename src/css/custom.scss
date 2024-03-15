@@ -760,3 +760,21 @@ Dropdown style removed.
     display: none;
   }
 }
+
+[data-theme='light']
+  .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: none;
+}
+[data-theme='light']
+  .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: block !important;
+}
+
+[data-theme='dark']
+  .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: block !important;
+}
+[data-theme='dark']
+  .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  display: none;
+}
