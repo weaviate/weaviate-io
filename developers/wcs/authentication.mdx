@@ -4,7 +4,6 @@ sidebar_position: 40
 image: og/wcs/user_guides.jpg
 ---
 
-import WCSGetKey from './img/wcs-get-key.png';
 import WCSHeadersAuth from './img/wcs-headers-auth.png';
 
 There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
@@ -132,26 +131,17 @@ To delete an API key, follow these steps:
 
 ![Add API key UI](./img/wcs-delete-api-key.jpg)
 
+## Connect via the GraphQL console
 
-### Weaviate console
+The built in [GraphQL console](/developers/wcs/platform/console) connects to clusters in your organization without any additional authentication.
 
-:::info Automatic authentication for your WCS instances
-If you are using the GraphQL console to query WCS instances under the same account, the console will automatically include the relevant credentials for you. In other words, your queries will be automatically authenticated.
-:::
+If you use GraphQL console to connect to a Weaviate instance that is not part of your organization, you have to provide an API key. 
 
-If you are querying an external Weaviate instance through the WCS console, you can pass authentication credentials (e.g. your API key) in this format:
+To pass the API key, add it to the `Headers` at the bottom of the GraphQL console. 
 
-```json title="Headers tab"
-{ "Authorization": "Bearer YOUR_API_KEY" }
-```
+![API key in header](./img/wcs-auth-header.jpg)
 
-Pass the credentials as an additional header via the `Header` tab located towards the bottom of the console:
-
-<img src={WCSHeadersAuth} width="100%" alt="WCS Headers Authorization Bearer example"/>
-
-This will authenticate your requests against the Weaviate instance.
-
-## Reset a password
+## Reset your password
 
 To reset your WCS password, follow these steps:
 
