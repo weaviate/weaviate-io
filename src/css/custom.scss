@@ -763,7 +763,7 @@ Dropdown style removed.
 
 [data-theme='light']
   .lightToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
-  display: none;
+  display: none !important;
 }
 [data-theme='light']
   .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
@@ -778,5 +778,5 @@ Dropdown style removed.
 [data-theme='dark']
   .darkToggleIcon_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module,
 .darkToggleIcon_wfgR {
-  display: none;
+  display: none !important;
 }
