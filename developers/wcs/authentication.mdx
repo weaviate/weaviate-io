@@ -11,24 +11,23 @@ There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 - [Connect a browser to WCS through the WCS Console.](/developers/wcs/authentication#connect-with-a-browser)
 
    - The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. 
-   - The built-in [GraphQL console](/developers/wcs/guides/console) is great for ad hoc queries. 
+   - The built-in [GraphQL console](/developers/wcs/guides/console) is useful to connect without a client application. 
 
 - [Connect a client application to WCS through APIs.](/developers/wcs/authentication#connect-with-an-api)
 
-   - If you develop applications, use the WCS API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
+   - For applications, use the WCS API and one of the [client libraries](/developers/weaviate/client-libraries) to connect to WCS.
 
 Browser authentication uses a username and password for authentication. The Weaviate clients use API keys to authenticate.
 
 ## Connect with a browser
 
-The WCS dashboard is a web application that provides a browser-based mechanism to monitor and control your Weaviate clusters. It also provides account management tools and a [GraphQL query console](http://localhost:3000/developers/wcs/platform/console).
+The WCS dashboard lets you monitor and control your Weaviate clusters from your browser. It also provides account management tools and a [GraphQL query console](http://localhost:3000/developers/wcs/platform/console).
 
 To connect to WCS with a browser, follow these steps:
 
-1. If you don't a login account, [register a user](/developers/wcs/create-account) with WCS.
 1. Open the [WCS login page](https://console.weaviate.cloud/) in a browser.
 1. Click `Login to Weaviate Cloud Services`.
-1. Enter your email address and password to authenticate. On subsequent visits, should be redirected to the login page automatically. 
+1. Enter your email address and password to authenticate.
 
 ### Enable multi-factor authentication
 
@@ -50,7 +49,7 @@ After you configure MFA, WCS prompts you to supply the one-time authentication c
 
 ### MFA and applications
 
-If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that account. There is no way to pass the the one-time authentication code, so the application cannot connect to WCS. Use API keys to connect client applications to WCS.
+If you use a JavaScript or TypeScript client to connect an application to Weaviate, do not enable MFA for that client's account. There is no way to pass the the one-time authentication code, so the application cannot connect to WCS. Use API keys to connect client applications to WCS.
 
 ### Disable MFA
 
@@ -79,9 +78,9 @@ To retrieve your API keys, follow these steps:
 
 The Weaviate server authenticates every request.
 
-If you use a tool like cURL, add your API key to the request header with every request. 
+If you use a tool like cURL, add your API key to the request header. 
 
-If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key with each request.
+If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key when you make requests.
 
 Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique. 
 
@@ -97,8 +96,10 @@ import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.
 
 If you have a managed cluster, you can create and delete API keys. 
 
-There are two types of API key, `ReadOnly` and `Admin`. `Admin` keys are read-write. `ReadOnly` keys do not grant write access to the database. 
+There are two types of API key, `ReadOnly` and `Admin`.
 
+- `Admin` keys are read-write.
+- `ReadOnly` keys do not grant write access to the database. 
 
 ### Create an API key
 
