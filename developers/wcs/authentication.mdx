@@ -69,6 +69,45 @@ To retrieve your API keys, follow these steps:
 3. Click the `API keys` button.
 1. Copy the key and store it in a safe location.
 
+
+## Steps for authentication
+
+### An API key
+
+To authenticate against Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
+
+import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
+
+<WCSAuthenticationApiKey/>
+
+This way, every request made using the client will include the API key.
+
+<details>
+  <summary>Manually adding the key to the header.</summary>
+
+If using a Weaviate client is not possible, you can manually include the API key in the request header as below:
+
+```json
+Authorization: Bearer YOUR-WEAVIATE-API-KEY
+```
+
+Replacing `YOUR-WEAVIATE-API-KEY` with your API key.
+
+</details>
+
+
+
+
+
+
+
+## Manage API keys
+
+If you have a managed cluster, you can create and delete API keys. 
+
+There are two types of API key, `ReadOnly` and `Admin`. `Admin` keys are read-write, the `ReadOnly` key does not grant write access to the database. 
+
+
 ### Create an API key
 
 If you have a managed cluster, you can create new API keys. New API keys are not available in Sandbox clusters.
@@ -100,44 +139,6 @@ To delete an API key, follow these steps:
 
 ![Add API key UI](./img/wcs-delete-api-key.jpg)
 
-4. Choose the key scope, read-only or admin.
-1. Click `Generate` to create the key.
-
-This will show a list of your available keys as a table, as well as their permissions (scope).
-
-- To create a key, click the <kbd>Add key</kbd> button and follow the instructions.
-- To delete a key, click on the trash can icon <kbd><i class="fa-solid fa-trash-can"></i></kbd> next to the relevant key.
-- To copy a key, click on the copy can icon <kbd><i class="fa-solid fa-copy"></i></kbd> next to the relevant key.
-
-:::warning Keep your API key secret
-Please ensure that your API key is kept secret for security. The above image is for demonstration purposes only.
-:::
-
-## Steps for authentication
-
-### An API key
-
-To authenticate against Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
-
-import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
-
-<WCSAuthenticationApiKey/>
-
-This way, every request made using the client will include the API key.
-
-<details>
-  <summary>Manually adding the key to the header.</summary>
-
-If using a Weaviate client is not possible, you can manually include the API key in the request header as below:
-
-```json
-Authorization: Bearer YOUR-WEAVIATE-API-KEY
-```
-
-Replacing `YOUR-WEAVIATE-API-KEY` with your API key.
-
-</details>
-
 
 ### Weaviate console
 
@@ -159,20 +160,13 @@ This will authenticate your requests against the Weaviate instance.
 
 ## Resetting credentials
 
-If you would like to reset your credentials, you can do so as follows:
-
-- To revoke your API key, navigate to the [Details button as described here](#manage-api-keys).
 - To reset your WCS password, you can do so [from WCS](https://console.weaviate.cloud) (click "Sign In" and then "Forgot Password").
 
 ## More resources
 
-If you are interested, you can read more about authentication below:
+To authenticate with a Weaviate client library, see the following:
 
-- Authentication with Weaviate clients:
-    - [Python](/developers/weaviate/client-libraries/python/index.md#authentication)
-    - [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication)
-    - [Go](/developers/weaviate/client-libraries/go.md#authentication)
-    - [Java](/developers/weaviate/client-libraries/java.md#authentication)
-- [About OIDC](https://openid.net/connect/).
-- [About KeyCloak](https://www.keycloak.org/), the OIDC token issuer server used with WCS.
-
+- [Python](/developers/weaviate/client-libraries/python/index.md#authentication)
+- [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication)
+- [Go](/developers/weaviate/client-libraries/go.md#authentication)
+- [Java](/developers/weaviate/client-libraries/java.md#authentication)
