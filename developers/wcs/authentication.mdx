@@ -10,7 +10,7 @@ import WCSHeadersAuth from './img/wcs-headers-auth.png';
 There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 
 - [Connect a browser to WCS through the WCS Console.](/developers/wcs/guides/authentication#connect-a-browser-to-wcs)
-- [Connect a client application to WCS through APIs.] 
+- [Connect a client application to WCS through APIs.](/developers/wcs/authentication#use-an-api-to-connect-to-wcs)
 
 The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. The built-in [GraphQL console](/developers/wcs/guides/console) is great for ad hoc queries. If you develop applications, or want additional flexibility, use the Weaviate API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
 
@@ -69,7 +69,39 @@ To retrieve your API keys, follow these steps:
 3. Click the `API keys` button.
 1. Copy the key and store it in a safe location.
 
+### Create an API key
 
+If you have a managed cluster, you can create new API keys. New API keys are not available in Sandbox clusters.
+
+WCS restarts the cluster when you add a new API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
+
+To create a new API key, follow these steps:
+
+1. Click the `Details` button.
+1. Click the `API keys` button.
+1. Click `Add Key`.
+
+![Add API key UI](./img/wcs-add-key-details.jpg)
+
+4. Choose the key scope, read-only or admin.
+1. Click `Generate` to create the key.
+
+### Delete an API key
+
+If you have a managed cluster, you can delete API keys.
+
+WCS restarts the cluster when you delete an API key. If you have a stand-alone cluster, you will have a short downtime while the cluster restarts. There is no downtime if you have a high availability cluster.
+
+To delete an API key, follow these steps:
+
+1. Click the `Details` button.
+1. Click the `API keys` button.
+1. Click the trash-can icon to delete the API key.
+
+![Add API key UI](./img/wcs-delete-api-key.jpg)
+
+4. Choose the key scope, read-only or admin.
+1. Click `Generate` to create the key.
 
 This will show a list of your available keys as a table, as well as their permissions (scope).
 
