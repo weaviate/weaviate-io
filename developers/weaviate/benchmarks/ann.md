@@ -10,23 +10,24 @@ import TabItem from '@theme/TabItem';
 
 # ANN Benchmark
 
-This benchmark is designed to measure and illustrate Weaviate's Approximate Nearest Neighbor (ANN) performance for a range of real-life use cases.
+This vector database benchmark is designed to measure and illustrate Weaviate's Approximate Nearest Neighbor (ANN) performance for a range of real-life use cases.
 
 :::note
-This is not a comparative benchmark that runs Weaviate against competing
-solutions. <br/><br/>
+This is not a comparative benchmark that runs Weaviate against competing vector database solutions. <br/><br/>
 If you'd like to discuss trade-offs with other solutions, please [contact sales](https://weaviate.io/pricing#contact-sales).
 :::
 
-To make the most of this benchmark, you can look at it from different perspectives:
+To make the most of this vector database benchmark, you can look at it from different perspectives:
 
 - **The overall performance** – Review the [benchmark results](#benchmark-results) to draw conclusions about what to expect from Weaviate in a production setting.
 - **Expectation for your use case** – Find the dataset closest to your production use case, and estimate Weaviate's expected performance for your use case.
 - **Fine Tuning** – If you don't get the results you expect. Find the optimal combinations of the configuration parameters (`efConstruction`, `maxConnections` and `ef`) to achieve the best results for your production configuration. (See [HNSW Configuration Tips](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#hnsw-configuration-tips))
 
+<!---
 :::warning TODO
 Add some more info related to our philosophy / [DuckDB blog post](https://motherduck.com/blog/perf-is-not-enough/)
 :::
+--->
 
 ## Measured Metrics
 
@@ -39,10 +40,11 @@ For each benchmark test, we set these HNSW parameters:
 For good starting point values and performance tuning advice, see [HNSW Configuration Tips](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index#hnsw-configuration-tips).
 :::
 
-
+<!---
 :::warning TODO
 Add a note about how many runs there were. Or, if there's only one run because of cost, let's add a note about that instead.
 :::
+--->
 
 For each set of parameters, we've run 10,000 requests, and we measured the following metrics:
 
@@ -70,11 +72,12 @@ This benchmark is [open source](https://github.com/weaviate/weaviate-benchmarkin
 :::
 
 ## Benchmark Results
-
+<!---
 **Last updated: MM 20YY with Version**
 :::warning TODO
 Update information
 :::
+--->
 
 The following results section contains the following datasets modeled after [ANN Benchmarks](github.com/erikbern/ann-benchmarks). To get the most of this benchmark, pick the dataset that is closest to the use case that reflects your data in production based on the following criteria:
 
