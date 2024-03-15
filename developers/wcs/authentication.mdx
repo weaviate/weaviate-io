@@ -53,15 +53,23 @@ To disable MFA, [contact support](mailto:support@weaviate.io).
 
 ## Use an API to connect to WCS
 
-All Weaviate instances with authentication will generate API keys with full admin (read and write) access.
+By default, API keys are enabled for WCS  clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key. 
 
-Each paid WCS instance will also come with a read-only API key in addition to the full admin API key.
+![API keys](./img/wcs-api-keys.jpg)
 
-### Manage API keys
+### Retrieve your API keys
 
-You can create and delete individual API keys for your (non-sandbox) instances, as well as get their details.
+To retrieve your API keys, follow these steps:
 
-To do so, first click <kbd>Details</kbd> button for your cluster, followed by the <kbd>API keys <i class="fa-solid fa-key"></i></kbd> button.
+1. Open the WCS console and find the panel for your cluster.
+1. Click the `Details` button.
+
+![API key button](./img/wcs-api-keys-panel.jpg)
+
+3. Click the `API keys` button.
+1. Copy the key and store it in a safe location.
+
+
 
 This will show a list of your available keys as a table, as well as their permissions (scope).
 
