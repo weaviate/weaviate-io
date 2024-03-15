@@ -9,25 +9,31 @@ import WCSHeadersAuth from './img/wcs-headers-auth.png';
 
 There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 
-- [Connect a browser to WCS through the WCS Console.](/developers/wcs/guides/authentication#connect-a-browser-to-wcs)
-- [Connect a client application to WCS through APIs.](/developers/wcs/authentication#use-an-api-to-connect-to-wcs)
+- [Connect a browser to WCS through the WCS Console.](/developers/wcs/authentication#connect-with-a-browser)
 
-The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. The built-in [GraphQL console](/developers/wcs/guides/console) is great for ad hoc queries. If you develop applications, or want additional flexibility, use the Weaviate API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
+   - The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. 
+   - The built-in [GraphQL console](/developers/wcs/guides/console) is great for ad hoc queries. 
 
-Browser authentication relies on a username and password. Client authentication uses API keys.
+- [Connect a client application to WCS through APIs.](/developers/wcs/authentication#connect-with-an-api)
 
-## Use a browser to connect to WCS
+   - If you develop applications, use the WCS API and one of the [client libraries](/developers/weaviate/client-libraries) to connect instead.
 
-The WCS dashboard is an application that provides a browser-based mechanism to monitor and control your Weaviate clusters. It also provides account management tools and a [GraphQL query console](http://localhost:3000/developers/wcs/platform/console). To connect  to WCS with a browser, follow these steps.
+Browser authentication uses a username and password for authentication. The Weaviate clients use API keys to authenticate.
+
+## Connect with a browser
+
+The WCS dashboard is a web application that provides a browser-based mechanism to monitor and control your Weaviate clusters. It also provides account management tools and a [GraphQL query console](http://localhost:3000/developers/wcs/platform/console).
+
+To connect to WCS with a browser, follow these steps:
 
 1. If you don't a login account, [register a user](/developers/wcs/create-account) with WCS.
 1. Open the [WCS login page](https://console.weaviate.cloud/) in a browser.
 1. Click `Login to Weaviate Cloud Services`.
 1. Enter your email address and password to authenticate. On subsequent visits, should be redirected to the login page automatically. 
 
-### Enable multi-factor authentication (MFA)
+### Enable multi-factor authentication
 
- Multi-factor authentication increases the security of browser logins. To enable multi-factor authentication (MFA), follow these steps.
+Multi-factor authentication (MFA) increases the security of browser logins. To enable MFA, follow these steps.
 
 1. Use your browser to connect to the WCS console.
 1. Click the silhouette of a person in the sidebar
@@ -51,9 +57,9 @@ If you use a JavaScript or TypeScript client to connect an application to Weavia
 
 To disable MFA, [contact support](mailto:support@weaviate.io).
 
-## Use an API to connect to WCS
+## Connect with an API
 
-By default, API keys are enabled for WCS  clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key. 
+By default, API keys are enabled for all WCS clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key. 
 
 ![API keys](./img/wcs-api-keys.jpg)
 
@@ -70,42 +76,29 @@ To retrieve your API keys, follow these steps:
 1. Copy the key and store it in a safe location.
 
 
-## Steps for authentication
+### Authenticate a client application
 
-### An API key
+The Weaviate server authenticates every request.
 
-To authenticate against Weaviate with an API key, each request needs to include the key in its header. The easiest way to do this is with a Weaviate client at instantiation, as shown in the code examples below:
+If you use a tool like cURL, add your API key to the request header with every request. 
+
+If you use a Weaviate client library, pass the API key when you instantiate the client connection. After the connection is established, you do not have to pass the API key with each request.
+
+Do not hard-code your API key in your client code. Consider passing the API key as an environment variable or using a similar secure coding technique. 
+
+```bash
+export WEAVIATE_API_KEY="replaceThisPartWithYourAPIKey"
+``` 
 
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 
 <WCSAuthenticationApiKey/>
 
-This way, every request made using the client will include the API key.
-
-<details>
-  <summary>Manually adding the key to the header.</summary>
-
-If using a Weaviate client is not possible, you can manually include the API key in the request header as below:
-
-```json
-Authorization: Bearer YOUR-WEAVIATE-API-KEY
-```
-
-Replacing `YOUR-WEAVIATE-API-KEY` with your API key.
-
-</details>
-
-
-
-
-
-
-
 ## Manage API keys
 
 If you have a managed cluster, you can create and delete API keys. 
 
-There are two types of API key, `ReadOnly` and `Admin`. `Admin` keys are read-write, the `ReadOnly` key does not grant write access to the database. 
+There are two types of API key, `ReadOnly` and `Admin`. `Admin` keys are read-write. `ReadOnly` keys do not grant write access to the database. 
 
 
 ### Create an API key
@@ -158,9 +151,16 @@ Pass the credentials as an additional header via the `Header` tab located toward
 
 This will authenticate your requests against the Weaviate instance.
 
-## Resetting credentials
+## Reset a password
 
-- To reset your WCS password, you can do so [from WCS](https://console.weaviate.cloud) (click "Sign In" and then "Forgot Password").
+To reset your WCS password, follow these steps:
+
+1. Go to the WCS [login page](https://console.weaviate.cloud).
+1. Click on click the login button.
+1. Click `Forgot Password`.
+1. Check your email account for a password reset email from WCS.
+1. Click the link and follow the instructions to reset your password. The link is only valid for five minutes.
+ 
 
 ## More resources
 
