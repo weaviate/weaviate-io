@@ -63,9 +63,18 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -106,12 +115,25 @@ If your query image is stored in a file, you can use the client library to searc
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 
   <FilteredTextBlock
     text={TSCode}
+    startMarker="// START ImageFileSearch"
+    endMarker="// END ImageFileSearch"
+    language="ts"
+  />
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+
+  <FilteredTextBlock
+    text={TSCodeLegacy}
     startMarker="// START ImageFileSearch"
     endMarker="// END ImageFileSearch"
     language="ts"
@@ -156,9 +178,18 @@ You can search by a base64 representation of an image:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="ts"
+    />
+  </TabItem>
+
+   <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
       language="ts"
@@ -192,7 +223,7 @@ You can create a base64 representation of an online image, and use it as input f
       language="py"
     />
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START helper base64 functions"
@@ -200,6 +231,7 @@ You can create a base64 representation of an online image, and use it as input f
       language="js"
     />
   </TabItem>
+
 </Tabs>
 
 
