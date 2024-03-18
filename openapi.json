@@ -3,16 +3,6 @@
   "consumes": [
     "application/json"
   ],
-  "info": {
-    "contact": {
-      "email": "hello@weaviate.io",
-      "name": "Weaviate",
-      "url": "https://github.com/weaviate"
-    },
-    "description": "# Introduction\n Weaviate is an open source, AI-native vector database that helps developers create intuitive and reliable AI-powered applications. <br/><br/>This API is documented in **OpenAPI format**",
-    "title": "Weaviate",
-    "version": "1.24.4"
-  },
   "definitions": {
     "Link": {
       "type": "object",
@@ -1976,6 +1966,16 @@
   "externalDocs": {
     "url": "https://github.com/weaviate/weaviate"
   },
+  "info": {
+    "contact": {
+      "email": "hello@weaviate.io",
+      "name": "Weaviate",
+      "url": "https://github.com/weaviate"
+    },
+    "description": "# Introduction\n Weaviate is an open source, AI-native vector database that helps developers create intuitive and reliable AI-powered applications.",
+    "title": "Weaviate",
+    "version": "1.24.4"
+  },
   "parameters": {
     "CommonAfterParameterQuery": {
       "description": "The starting ID of the result window.",
@@ -2081,7 +2081,7 @@
             }
           }
         },
-        "tags": ["/"]
+        "tags": ["root"]
       }
     },
     "/.well-known/live": {
@@ -2094,7 +2094,7 @@
             "description": "The application is able to respond to HTTP requests"
           }
         },
-        "tags": [".well-known"]
+        "tags": ["well-known"]
       }
     },
     "/.well-known/ready": {
@@ -2110,7 +2110,7 @@
             "description": "The application is currently not able to serve traffic. If other horizontal replicas of weaviate are available and they are capable of receiving traffic, all traffic should be redirected there instead."
           }
         },
-        "tags": [".well-known"]
+        "tags": ["well-known"]
       }
     },
     "/.well-known/openid-configuration": {
@@ -2153,7 +2153,7 @@
           }
         },
         "tags": [
-          ".well-known"
+          "well-known"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
@@ -5070,8 +5070,8 @@
   "swagger": "2.0",
   "tags": [
     {
-      "name": "/",
-      "description": "Root. <br/><br/>Note the base path of the Weaviate server is `[YOUR-WEAVIATE-HOST]:[PORT]/v1`. For example, the `schema` endpoint is accessible at `https://your-weaviate-host:rest_port/v1/schema`."
+      "name": "root",
+      "description": "Root Endpoint: Provides access to the core functionalities of the Weaviate server. This serves as the entry point for the API and routes to various other endpoints based on the request path and method. <br/><br/>**Base Path**: The base path for the Weaviate server is structured as `[YOUR-WEAVIATE-HOST]:[PORT]/v1`. As an example, if you wish to access the `schema` endpoint on a local instance, you would navigate to `http://localhost:8080/v1/schema`. Ensure you replace `[YOUR-WEAVIATE-HOST]` and `[PORT]` with your actual server host and port number respectively."
     },
     {
       "name": "schema",
@@ -5083,7 +5083,7 @@
     },
     {
       "name": "references",
-      "description": "Create, update and delete references."
+      "description": "Create, update and delete references. Note that this repeats endpoints from the 'objects' and 'batch' tags, but is included for convenience."
     },
     {
       "name": "batch",
@@ -5102,7 +5102,7 @@
       "description": "Retrieve information about relevant nodes in the cluster. The query can be for the entire cluster, or for a particular collection."
     },
     {
-      "name": ".well-known",
+      "name": "well-known",
       "description": ".well-known endpoints"
     },
     {
