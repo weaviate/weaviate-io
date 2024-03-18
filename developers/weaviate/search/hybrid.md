@@ -43,7 +43,7 @@ A hybrid on collections with named vectors configured must include a `target` ve
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// NamedVectorHybrid"
@@ -51,6 +51,17 @@ A hybrid on collections with named vectors configured must include a `target` ve
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
@@ -99,7 +110,7 @@ Combines results of a vector search and a keyword search based on the query stri
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridBasic"
@@ -107,6 +118,16 @@ Combines results of a vector search and a keyword search based on the query stri
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridBasic"
+  endMarker="// END searchHybridBasic"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -154,7 +175,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithScore"
@@ -162,6 +183,16 @@ Use the metadata properties to understand why an object is selected.
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithScore"
+  endMarker="// END searchHybridWithScore"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -212,7 +243,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithAlpha"
@@ -220,6 +251,16 @@ Use the `alpha` argument to change how much each search affects the results.
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithAlpha"
+  endMarker="// END searchHybridWithAlpha"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -273,7 +314,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithFusionType"
@@ -281,6 +322,16 @@ The output is like this:
   language="ts"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithFusionType"
+  endMarker="// END searchHybridWithFusionType"
+  language="ts"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -340,7 +391,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithProperties"
@@ -348,6 +399,16 @@ The keyword search portion of hybrid search can be directed to only search a sub
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithProperties"
+  endMarker="// END searchHybridWithProperties"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -395,7 +456,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithPropertyWeighting"
@@ -403,6 +464,16 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithPropertyWeighting"
+  endMarker="// END searchHybridWithPropertyWeighting"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -450,7 +521,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithVector"
@@ -458,6 +529,16 @@ To specify a vector instead of using a vector of the query string, pass it in ad
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithVector"
+  endMarker="// END searchHybridWithVector"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
@@ -507,9 +588,18 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START limit"
+      endMarker="// END limit"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START limit"
       endMarker="// END limit"
       language="ts"
@@ -549,9 +639,18 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START autocut"
+      endMarker="// END autocut"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START autocut"
       endMarker="// END autocut"
       language="ts"
@@ -605,7 +704,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithFilter"
@@ -613,6 +712,16 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
   language="js"
 />
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+<FilteredTextBlock
+  text={TSCodeLegacy}
+  startMarker="// searchHybridWithFilter"
+  endMarker="// END searchHybridWithFilter"
+  language="js"
+/>
+</TabItem>
+
 <TabItem value="graphql" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
