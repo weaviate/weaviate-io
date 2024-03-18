@@ -25,7 +25,7 @@ client = weaviate.connect_to_custom(
     grpc_port=50051,
     grpc_secure=False,
     auth_credentials=weaviate.auth.AuthApiKey(
-        os.getenv("YOUR_API_KEY")
+        os.getenv("WEAVIATE_API_KEY")
     ),  # Set this environment variable
 )
 # END WeaviateAPIKeyCustom
