@@ -5,17 +5,15 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-ts-client';
 
-const client = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
- {
-   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
-   headers: {
-     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
-   }
- } 
-)
+const client = weaviate.client({
+  scheme: 'http',
+  host: 'anon-endpoint.weaviate.network',
+  headers: {
+    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
+  },
+});
 
 // START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
 const className = 'Article';
@@ -289,30 +287,38 @@ await client.schema.classDeleter().withClassName(className).do();
 // ====================================
 
 // START PropModuleSettings
-const newCollection = await client.collections.create({
-  name: 'Article',
+const classWithPropModuleSettings = {
+  class: 'Article',
+  vectorizer: 'text2vec-huggingface', // this could be any vectorizer
   properties: [
     {
       name: 'title',
-      dataType: weaviate.configure.dataType.TEXT,
-      vectorizePropertyName: true,
-      tokenization: 'lowercase'
+      dataType: ['text'],
+      // highlight-start
+      moduleConfig: {
+        'text2vec-huggingface': {
+          // this must match the vectorizer used
+          vectorizePropertyName: true,
+          tokenization: 'lowercase', // Use "lowercase" tokenization
+        },
+      },
+      // highlight-end
     },
     {
       name: 'body',
-      dataType: weaviate.configure.dataType.TEXT,
-      skipVectorization: true,
-      tokenization: 'whitespace'
+      dataType: ['text'],
+      // highlight-start
+      moduleConfig: {
+        'text2vec-huggingface': {
+          // this must match the vectorizer used
+          skip: true, // Don't vectorize this property
+          tokenization: 'whitespace', // Use "whitespace" tokenization
+        },
+      },
+      // highlight-end
     },
-    {
-      name: 'Answer',
-      dataType: 'text',
-      description: 'The answer',
-    }
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
-
-})
+};
 
 // Add the class to the schema
 result = await client.schema
