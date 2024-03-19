@@ -178,7 +178,7 @@ To facilitate state management in LLM applications, Weaviate has developed [`gen
 
 Stateful processing is orchestrated in Hurricane as follows:
 
-1. When the submit button is clicked, we send a request to the server and create a new instance of a `Blog` object in Weaviate, returning the UUID to serve as a session id and provide key-value lookups for the intermediate state of Hurricane.
+1. When the submit button is clicked, we send a request to the server and create a new instance of a `Blog` object in Weaviate, returning the UUID to serve as a session id and provide key-value lookups for the intermediate state of Hurricane's processing.
 
 ```javascript
 Const handleClick = async () => {
