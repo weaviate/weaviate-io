@@ -1021,6 +1021,21 @@ This is the formatted output.
   language="bash"
 /> -->
 
+### Input argument validation
+
+The client library performs input argument validation by default to make sure that the input types match the expected types.
+
+You can disable this validation to improve performance. You can do this by setting the `skip_argument_validation` parameter to `True` when you instantiate a collection object, with `collections.get`, or with `collections.create` for example.
+
+<FilteredTextBlock
+  text={PythonCode}
+  startMarker="# START SkipValidationExample"
+  endMarker="# END SkipValidationExample"
+  language="bash"
+/>
+
+This may be useful in cases where you are using the client library in a production environment, where you can be confident that the input arguments are typed correctly.
+
 ### Tab completion in Jupyter notebooks
 
 If you use a browser to run the Python client with a Jupyter notebook, press `Tab` for code completion while you edit. If you use VSCode to run your Jupyter notebook, press  `control` + `space` for code completion.

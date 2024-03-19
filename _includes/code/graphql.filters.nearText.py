@@ -1,7 +1,6 @@
 # START-ANY
 import weaviate
-import weaviate.classes as wvc
-from weaviate.collections.classes.grpc import Move
+from weaviate.classes.query import MetadataQuery, Move
 import os
 
 client = weaviate.connect_to_local(
@@ -26,6 +25,9 @@ client = weaviate.connect_to_local(
         # START NearTextJinaai
         "X-Jinaai-Api-Key": "YOUR_JINAAI_APIKEY",
         # END NearTextJinaai
+        # START NearTextVoyageAI
+        "X-VoyageAI-Api-Key": "YOUR_VOYAGEAI_APIKEY",
+        # END NearTextVoyageAI
         # START-ANY
     }
 )
@@ -51,7 +53,7 @@ response = publications.query.near_text(
     distance=0.6,
     move_to=Move(force=0.85, concepts="haute couture"),
     move_away=Move(force=0.45, concepts="finance"),
-    return_metadata=wvc.query.MetadataQuery(distance=True),
+    return_metadata=MetadataQuery(distance=True),
     limit=2
 )
 

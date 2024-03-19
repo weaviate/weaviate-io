@@ -223,37 +223,43 @@ const config = {
                         position: 'right',
                         to: '/platform',
                     },
-                    {
-                        type: 'dropdown',
-                        label: 'Services',
-                        position: 'right',
-                        items: [
-                            {
-                                label: 'Services',
-                                to: '/services',
-                            },
-                            {
-                                label: 'Serverless',
-                                href: '/services/serverless',
-                            },
-                            {
-                                label: 'Enterprise Dedicated',
-                                href: '/services/enterprise-dedicated',
-                            },
-                            {
-                                label: 'Bring Your Own Cloud',
-                                href: '/services/byoc',
-                            },
-                            {
-                                label: 'Education & Support',
-                                href: '/services/education-and-support',
-                            },
-                            {
-                                label: 'Pricing',
-                                to: '/pricing',
-                            },
-                        ],
-                    },
+                    {  type: 'dropdown',
+                    label: 'Services',
+                    position: 'right',
+                    items: [
+                        {
+                            label: 'Services Overview',
+                            href: '/services',
+
+                        },
+                        {
+                            label: 'Serverless',
+                            href: '/services/serverless',
+
+                        },
+                        {
+                            label: 'Enterprise Dedicated',
+                            href: '/services/enterprise-dedicated',
+
+                        },
+                        {
+                            label: 'Bring Your Own Cloud',
+                            href: '/services/byoc',
+
+                        },
+                        {
+                            label: 'Education & Support',
+                            href: '/services/education-and-support',
+
+                        },
+                        {
+                            label: 'Pricing',
+                            href: '/pricing',
+
+                        },
+                    ]
+                }
+                    ,
                     {
                         type: 'dropdown',
                         label: 'Developers',
@@ -284,6 +290,10 @@ const config = {
                             {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
+                            },
+                            {
+                                label: 'Community',
+                                to: '/community',
                             },
                             {
                                 label: 'Events & Webinars',

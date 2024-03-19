@@ -33,24 +33,24 @@
   ],
   "blog": [
     {
-      "link": "/blog/fine-tuning-coheres-reranker",
+      "link": "/blog/verba-open-source-rag-app",
       "type": "Blog",
-      "backgroundImage": "/img/site/reranker-head.png",
-      "tagline": "Fine-Tuning Cohere's Reranker",
-      "photo": "erika.jpg",
-      "name": "Erika Cardenas",
-      "title": "Technology Partner Manager",
-      "date": "February 13, 2024"
+      "backgroundImage": "/img/site/hero-verba-blog.png",
+      "tagline": "Verba: Building an Open Source, Modular RAG Application",
+      "photo": "victoria.png",
+      "name": "Victoria Slocum",
+      "title": "Machine Learning Engineer",
+      "date": "March 7, 2024"
     },
     {
-      "link": "/blog/grpc-performance-improvements",
+      "link": "/blog/enterprise-use-cases-weaviate",
       "type": "Blog",
-      "backgroundImage": "/img/site/grpc-head.png",
-      "tagline": "gRPC-Driven Performance Improvements in Weaviate",
-      "photo": "leonie.jpg",
-      "name": "Leonie Monigatti",
-      "title": "Developer Advocate",
-      "date": "February 20, 2024"
+      "backgroundImage": "/img/site/hero-enterprise-blog.png",
+      "tagline": "Enterprise Use Cases of Weaviate Vector Database",
+      "photo": "adam.png",
+      "name": "Adam Chan",
+      "title": "Developer Relations Engineer",
+      "date": "March 12, 2024"
     },
     {
       "link": "/community/events",
