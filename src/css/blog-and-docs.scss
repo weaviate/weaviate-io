@@ -141,32 +141,17 @@ html {
 .redocusaurus {
   // Base font settings
   font-family: var(--site-font-base-family);
-  color: #333; // Change as per your color scheme
 
   // Label customization
   label {
     font-family: var(--site-font-base-family);
     font-size: 14px; // Slightly larger for readability
-    color: #555; // Softer color for less emphasis
     font-weight: normal; // Depending on your preference
-    margin-bottom: 0.1em; // Space below labels
   }
 
   // Paragraph customization
   p {
     font-size: 15px; // Larger base font size for readability
-    margin-bottom: 0.2em; // More space between paragraphs
-    line-height: 1.4; // Improved readability for longer texts
-    color: #444; // Slightly darker than label for better readability
-  }
-
-  // Headings customization for clear hierarchy
-  h1, h2, h3, h4 {
-    font-family: var(--site-font-base-family);
-    color: #222; // Darker color for emphasis
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-    line-height: 1.3;
   }
 
   h1 {
@@ -178,8 +163,8 @@ html {
 
   h2 {
     font-size: 1.5rem;
-    padding-top: 0.5em;
-    padding-bottom: 0.25em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
     border-bottom: 1px solid #eaecef; // Lighter separator for sub-headings
   }
 
@@ -190,23 +175,6 @@ html {
   h4 {
     font-size: 1.2rem;
   }
-
-  // Links customization for better visibility
-  a {
-    color: #007bff; // Choose a color that stands out but fits your theme
-    text-decoration: none; // Underlines can be distracting
-    &:hover {
-      text-decoration: underline; // Underline on hover for clarity
-    }
-  }
-
-  // Additional elements such as lists, tables, etc.
-  ul, ol {
-    margin-left: 20px; // Proper indentation for lists
-    margin-bottom: 1em;
-  }
-
-  // You can add more styles for other elements as needed
 }
 
 //Hides light toggle on docs
