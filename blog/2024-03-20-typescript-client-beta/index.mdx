@@ -89,25 +89,27 @@ response.generated  // Get the generated text from a `groupedTask` request
 We think that these changes will reduce errors, increase productivity, and make the code easier to read and understand.
 
 
-### A separated Web and Node Version
+### Separated Node and Web Versions
 
-For a long time, we've used a single client to intereact with Weaviate from both the Web and Node.js. With the new client we've abstracted both environments into two bundles accessible in the same package. 
+For a long time, we've used a single client to intereact with Weaviate from both the Web and Node.js. This made sense in the world of REST and GraphQL, which are both HTTP/1.1 protocols, but with the advent of gRPC into Weaviate since `1.24`, we now have the HTTP/2 protocol to contend with. As it transpires, gRPC and HTTP/2 don't play nicely with browsers so we've chosen to break up the new TypeScript client into Node and Web versions.
 
-- `weaviate-client/node`
-- `weaviate-client/web`
+During this open community-driven beta, you'll only have access to the Node version that can be accessed from `weaviate-client`:
+```typescript
+import weaviate from 'weaviate-client';
+```
+How we incorporate the browser version will be understood better during the open beta as we develop the capability. Until then, you can only use the beta in a Node environment.
 
-The intention s to provide dedicated bundles optimized for each environment. The web bundle focuses on providing an easy to use API for browser/frontend applications. While the Node.js bundle leverages Node.js specific capabilities for building server applications, APIs and CLIs.
+The intention is to provide dedicated bundles optimized for each environment. The web bundle focuses on providing an easy to use API for browser/frontend applications using only REST and GraphQL endpoints. While the Node.js bundle leverages Node.js specific capabilities for building server applications, APIs and CLIs, with the full gRPC functionality available.
 
 This change is to encourage safer access and best practices as people interact with thier Weaviate instances.
 
-
 [Need more details on decison]
 
-:::note What you can do in the Node.js bundle
+:::note What you can do now using the Node bundle
 All CRUD (Create, Read, Update and Delete) operations powered by gRPC and REST.
 :::
 
-:::note What you can do in the Web bundle
+:::note What you will be able to do using the Web bundle
 Only Read operations powered by GraphQL.
 :::
 
@@ -139,11 +141,11 @@ Becomes:
 :::info `Collections` client syntax
 
 ```typescript
-const articles = client.collection.get("Article")
+const articles = client.collection.get("Article");
 const response = articles.query.fetchObjects({
-    limit: 2,
-    returnProperties: ['title','body','url']
-    })
+  limit: 2,
+  returnProperties: ['title','body','url']
+});
 ```
 
 :::
@@ -204,12 +206,12 @@ Becomes:
 const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
 
 const myCollection = client.collections.get('JeopardyQuestion');
-const result = await myCollection.generate.nearText(['World history'],{
-    singlePrompt: generatePrompt,
-   }, {
-    limit: 2,
-    returnProperties: ['round'],
-   })
+const result = await myCollection.generate.nearText(['World history'], {
+  singlePrompt: generatePrompt
+}, {
+  limit: 2,
+  returnProperties: ['round'],
+})
 ```
 
 :::
@@ -218,7 +220,9 @@ const result = await myCollection.generate.nearText(['World history'],{
 
 You might have noticed that above examples do not specify properties to be returned!
 
-We have changed the default behavior to return most properties and metadata such as the object ID, creation time, vector search distance and so on. We think this will make it easier to get started, and for production use-cases where you want to optimize the response size, you can still specify the properties you want to return.
+We have changed the default behavior to return all non-reference properties, e.g. `text` and `object` types, and the IDs of the objects. We think this will make it easier to get started, and for production use-cases where you want to optimize the response size, you can still specify the properties you want to return.
+
+To request additional metadata and any cross-references, you can use the `returnMetadata` and `returnReferences` options to each of the search queries.
 
 ### Batch import typing
 
@@ -226,51 +230,44 @@ Batch object, now called `insertMany()`, also gets a refresh with the introducti
 
 
 ```typescript
-import weaviate, { generateUuid5, DataObject } from 'weaviate-client/node'
+import weaviate, { generateUuid5, DataObject } from 'weaviate-client';
 
-let articleList = [];
-dataSource.forEach((row, i) => {
-    // highlight-start
-
-    let articleObject = new DataObject({
-        properties: {
-            "title": row["title"],
-            "body": row["title"],
-        },
-        vector: vectors[i],
-        uuid: generateUuid5(row["title"]), 
-    });
-    // highlight-end
-    articleList.push(articleObj);
+// highlight-start
+const articlesData: DataObject[] = dataSource.map((row) => {
+  return {
+    properties: {
+      title: row.title,
+      body: row.body,
+    },
+    vector: vectors[i],
+    uuid: generateUuid5(row.title), 
+  }
 });
+// highlight-end
 
 const articles = client.collections.get('Articles');
-const response = await articles.data.insertMany(articleList);
+const response = await articles.data.insertMany(articlesData);
 console.log(response);
 ```
 
-This provides a more intuitive and structured way to define objects, where each object can be validated through the `DataObject` class.
+This allows your imports to be fully type checked by the TS compiler without fear of developer error!
 
 Oh, and if you don't need to manually specify an object ID or a vector, you can just pass in a list of dictionaries!
 
 ```typescript
 import weaviate, { generateUuid5, DataObject } from 'weaviate-client/node'
 
-let articleList = [];
-dataSource.forEach((row, i) => {
-    // highlight-start
-    let articleObject = new DataObject({
-        properties: {
-            "title": row["title"],
-            "body": row["title"],
-        },
-    });
-    // highlight-end
-    articleList.push(articleObj);
+// highlight-start
+const articlesData: DataObject[] = dataSource.map((row) => {
+  return {
+    title: row.title,
+    body: row.body,
+  };
 });
+// highlight-end
 
 const articles = client.collections.get('Articles');
-const response = await articles.data.insertMany(articleList);
+const response = await articles.data.insertMany(articlesData);
 console.log(response);
 ```
 
@@ -295,10 +292,16 @@ The `cursor` API has been a popular tool for iterating through an entire collect
 We've simplified the API here with a more intuitive iterator, so the syntax to extract all objects from a collection is now as simple as:
 
 ```typescript
-allObjects = [article for article in articles.iterator()]
+const articles = client.collections.get("Article")
+const allArticlesIDs = articles.iterator().map((article) => article.id)
 ```
 
-You can also choose what properties/metadata to return.
+You can also choose what properties/metadata to return, although all properties are returned by default!
+
+```typescript
+const articles = client.collections.get("Article")
+const allArticlesTitles = articles.iterator({ returnProperties: ['title'] }).map((article) => article.title)
+```
 
 ## Performance improvements
 
@@ -328,146 +331,71 @@ We won't get into the details of gRPC here, but if you are interested, you can r
 
 ## Object typing in focus
 
-[What example can we give?]
+TypeScript is a fully-featured strongly-typed language that comes with a plethora of features for the manipulation of user-defined types. This has allowed us to design and create an API where your specific types can merge with our general Weaviate types to enhance user experience and developer efficieny. Even when writing some of the tests, the IDE auto-completion and static type checking provided by the API have been immensely helpful!
 
 > **Highlights: Strong typing in queries, retrieval augmented generation, data operations, ...**
 
-We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. Here you can see the new syntax for collection definition, queries and retrieval augmented generation, as well as types for each of thees tasks.
+We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. Here you can see the new syntax for collection definition, queries and retrieval augmented generation, as well as types for each of these tasks.
 
-To get started you can import the set of submodules like shown below, and use them as needed.
-
+All the types of the API are exported from the root file. So, when it comes to using any generic, you can access them all like so:
 ```typescript
-import weaviate.classes as wvc  # <-- import the custom classes
+import weaviate, { Collection } from 'weaviate-client';
+
+const collection: Collection = client.collections.get("MyCollection");
 ```
 
-[whats the equivalent? Default exports?]
+You might think that exporting all the types from a single location is cumbersome. However, due to modern IDE auto-completion, all you need to do is enter the first few letters of the type into the IDE and it will prompt you to import it from where it lives! However, you will also be able to inspect some web-hosted documentation of the typing system soon!
 
-### Collection definition
+### Providing your own generics
 
-For many (including us), the collection definition step required multiples visits to the documentation. This was unsurprising, given that it required writing out a dictionary with many key/value pairs:
+So, let's get into it! Providing your own generics is as simple as this:
+```typescript
+import weaviate from 'weaviate-client';
 
-:::note Classic client syntax
-
-```python
-collection_definition = {
-    "class": "Article",
-    "vectorizer": "text2vec-openai",
-    "vectorIndexConfig": {
-        "distance": "cosine",
-    },
-    "moduleConfig": {
-        "generative-openai": {}
-    },
-    "properties": [
-        {
-            "name": "title",
-            "dataType": ["text"]
-        },
-        # ...
-        {
-            "name": "url",
-            "dataType": ["text"],
-            "tokenization": "field",
-            "moduleConfig": {
-                "text2vec-openai": {
-                    "skip": true
-                },
-            }
-        },
-    ],
+type Article = {
+  title: string;
+  body: string;
+  wordcount: number;
 }
-client.schema.add_class(collection_definition)
+
+const collection = client.collections.get<Article>("Article");
 ```
 
-:::
-
-Well, no more! Now, you can use Python classes all the way through, with your IDE guiding the way:
-
-:::info `Collections` client syntax
-
+Then, when you query for your articles like so:
 ```typescript
-client.collection.create(
-    name="Article",
-    vectorizer_config=wvc.ConfigFactory.Vectorizer.text2vec_openai(),
-    vector_index_config=wvc.ConfigFactory.vector_index(distance_metric=wvc.config.VectorDistances.COSINE),
-    generative_config=wvc.ConfigFactory.Generative.openai(),
-    properties=[
-        wvc.Property(
-            name="title",
-            data_type=wvc.DataType.TEXT,
-        ),
-        # ...
-        wvc.Property(
-            name="url",
-            data_type=wvc.DataType.TEXT,
-            tokenization=wvc.Tokenization.FIELD,
-            skip_vectorization=True,
-        ),
-    ]
-)
+const res = await collection.query.fetchObjects();
 ```
-
-:::
-
-Note that many of the previously complex options such as vectorizer, generative module, index configurations, and so on are now defined through a `configire` submodule:
-
+then you can manipulate the objects and their properties like so:
 ```typescript
-const newCollection = await client.collections.create({
-      name: 'Article',
-      properties: [
-        {
-          name: 'title',
-          dataType: weaviate.configure.dataType.TEXT,
-          vectorizePropertyName: true,
-          tokenization: 'lowercase' as const ,
-        },
-        {
-          name: 'body',
-          dataType: weaviate.configure.dataType.TEXT,
-          tokenization: 'whitespace' as const,
-          skipVectorisation: true
-        },
-      ],
-      vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
-      vectorIndex: weaviate.configure.vectorIndex.hnsw({distanceMetric:'cosine'}),
-      generative: weaviate.configure.generative.cohere()
-      
-    })
+res.objects.forEach((obj) => {
+  const title = obj.title; // has type 'string'
+  const wordcount = obj.wordcount; // has type 'number'
+  const compilerError = title / wordcount // string / number not allowed by TS!
+})
 ```
 
-### Queries
+There's much more the typing system than just this and it will take you much development to discover it all! Stay tuned for a future blogpost where we dive into the generics system in much more depth showing all the areas where it works to improve the Developer Experience!
 
-Because each query is now one method, you can see the available options in your IDE. Furthermore, options like defining filters or metadata that were defined through string parameters in the `Classic` client are now defined through custom Python classes.
-
-import nearTextQueryImgUrl from './img/neartext_query_hints.gif';
-
-<img src={nearTextQueryImgUrl} alt="IDE autocompletion in queries have been added" width="85%"/>
 
 ### Retrieval augmented generation
 
 As you saw briefly earlier, we have a `.generate` submodule for retrieval augmented generation.
 
 The structure of these mirror those of the queries, with additional parameters added for the generation task. For example, this query:
-
 ```typescript
-const response = questions.query.nearText(['the space race'],{
-    limit: 2,
-    }
-)
+const response = questions.query.nearText(['the space race'], {
+  limit: 2,
+})
 ```
-
-Can be converted to a retrieval augmented generation task by switching the submodule to `.generate` and adding the `groupedTask` parameter:
-
+Can be converted to a retrieval augmented generation task by switching the submodule to `.generate` and providing the required `GenerateOptions` as the second parameter to the method:
 ```typescript
 // highlight-start
-const response = questions.generate.nearText(['the space race'],{
-    groupedTask: "Write a haiku about these facts!"
-}, 
+const response = questions.generate.nearText(['the space race'], {
+  groupedTask: "Write a haiku about these facts!" 
+}, {
 // highlight-end
-{
-    limit: 2,
-}
-)
+  limit: 2,
+})
 ```
 
 ### Resources and Links
