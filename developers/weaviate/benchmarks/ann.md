@@ -79,7 +79,7 @@ Update information
 :::
 --->
 
-The following results section contains the following datasets modeled after [ANN Benchmarks](github.com/erikbern/ann-benchmarks). To get the most of this benchmark, pick the dataset that is closest to the use case that reflects your data in production based on the following criteria:
+This section contains datasets modeled after the [ANN Benchmarks](https://github.com/erikbern/ann-benchmarks). Pick a dataset that is closest to your production data workload:
 
 
 | **Dataset** | **Number of Objects** | **Vector Dimensions** | **[Distance metric](https://weaviate.io/blog/distance-metrics-in-vector-search)** | **Use case** |
