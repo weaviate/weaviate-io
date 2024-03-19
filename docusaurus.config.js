@@ -5,6 +5,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
+const path = require('path');
 
 // Math equation plugins
 const math = require('remark-math');
@@ -169,6 +170,7 @@ const config = {
             'redocusaurus',
             {
                 // Plugin Options for loading OpenAPI files
+                config: path.join(__dirname, 'redocly.yaml'),
                 specs: [
                     // Pass it a path to a local OpenAPI YAML file
                     {
