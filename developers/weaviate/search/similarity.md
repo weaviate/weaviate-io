@@ -513,7 +513,7 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetWithGroupBy"
@@ -522,7 +522,7 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS (Beta)">
+  <TabItem value="js2" label="JS/TS">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetWithGroupBy"
