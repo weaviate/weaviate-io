@@ -152,6 +152,7 @@ html {
   // Paragraph customization
   p {
     font-size: 15px; // Larger base font size for readability
+    padding-bottom: 0.85em;
   }
 
   h1 {
@@ -164,11 +165,13 @@ html {
   h2 {
     font-size: 1.5rem;
     padding-top: 0.4em;
-    padding-bottom: 0.4em;
+    padding-bottom: 0.25em;
     border-bottom: 1px solid #eaecef; // Lighter separator for sub-headings
   }
 
   h3 {
+    padding-top: 0.4em;
+    padding-bottom: 0.2em;
     font-size: 1.35rem;
   }
 
