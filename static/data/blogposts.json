@@ -33,16 +33,6 @@
   ],
   "blog": [
     {
-      "link": "/blog/weaviate-community-hero",
-      "type": "Blog",
-      "backgroundImage": "/img/site/hero-weaviate-hero.png",
-      "tagline": "Weaviate Hero",
-      "photo": "marion.jpg",
-      "name": "Marion Nehring",
-      "title": "Community Manager",
-      "date": "March 13, 2024"
-    },
-    {
       "link": "/blog/enterprise-use-cases-weaviate",
       "type": "Blog",
       "backgroundImage": "/img/site/hero-enterprise-blog.png",
@@ -51,6 +41,16 @@
       "name": "Adam Chan",
       "title": "Developer Relations Engineer",
       "date": "March 12, 2024"
+    },
+    {
+      "link": "/blog/weaviate-community-hero",
+      "type": "Blog",
+      "backgroundImage": "/img/site/hero-weaviate-hero.png",
+      "tagline": "Weaviate Hero",
+      "photo": "marion.jpg",
+      "name": "Marion Nehring",
+      "title": "Community Manager",
+      "date": "March 13, 2024"
     },
     {
       "link": "/community/events",
