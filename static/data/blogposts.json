@@ -33,14 +33,14 @@
   ],
   "blog": [
     {
-      "link": "/blog/verba-open-source-rag-app",
+      "link": "/blog/weaviate-community-hero",
       "type": "Blog",
-      "backgroundImage": "/img/site/hero-verba-blog.png",
-      "tagline": "Verba: Building an Open Source, Modular RAG Application",
-      "photo": "victoria.png",
-      "name": "Victoria Slocum",
-      "title": "Machine Learning Engineer",
-      "date": "March 7, 2024"
+      "backgroundImage": "/img/site/hero-weaviate-hero.png",
+      "tagline": "Weaviate Hero",
+      "photo": "marion.jpg",
+      "name": "Marion Nehring",
+      "title": "Community Manager",
+      "date": "March 13, 2024"
     },
     {
       "link": "/blog/enterprise-use-cases-weaviate",
@@ -55,12 +55,12 @@
     {
       "link": "/community/events",
       "type": "Workshop",
-      "backgroundImage": "/img/site/workshops-jp-website.png",
-      "tagline": "AI SaaS applications with Weaviate",
-      "photo": "jp.jpg",
-      "name": "Joon-Pil (JP) Hwang",
-      "title": "Educator",
-      "date": "March 15, 2024"
+      "backgroundImage": "/img/site/workshops-daniel.png",
+      "tagline": "Intro to Weaviate for JavaScript Developers ",
+      "photo": "daniel.jpg",
+      "name": "Daniel Phiri",
+      "title": "Developer Advocate",
+      "date": "March 28, 2024"
     }
   ]
 }
