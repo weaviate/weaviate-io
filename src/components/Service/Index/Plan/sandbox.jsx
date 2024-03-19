@@ -31,9 +31,6 @@ export default function PricingSandBox() {
       </div>
       <div className={styles.features}>
         <li>
-          <span>24/7 monitoring and support</span>
-        </li>
-        <li>
           <span>Curated onboarding program to kickstart development</span>
         </li>
         <li>

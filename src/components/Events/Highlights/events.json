@@ -1,17 +1,10 @@
 [
   {
-    "type": "WEBINAR",
-    "title": "Beyond Vector Search: Taking a hybrid approach for better results",
-    "date": "MARCH 14TH 2024 19:00 - 20:00 CET",
+    "type": "OFFICE HOURS",
+    "title": "Hybrid Search",
+    "date": "MARCH 20TH 2024 15:00 - 16:00 CET",
     "imageClass": "firstSection",
-    "url": "https://events.weaviate.io/hybrid-search-webinar"
-  },
-  {
-    "type": "ONLINE WORKSHOP",
-    "title": "AI SaaS applications with Weaviate",
-    "date": "MARCH 15TH 2024 16:00 - 17:00 CET",
-    "imageClass": "secondSection",
-    "url": "https://events.weaviate.io/workshop-24-03-15"
+    "url": "https://events.weaviate.io/oh-24-03-20"
   },
   {
     "type": "ROADSHOW",
@@ -19,5 +12,12 @@
     "date": "MARCH 21ST 2024 08:30 - 17:00 PST",
     "imageClass": "thirdSection",
     "url": "https://events.weaviate.io/ai-in-prod-sf-24"
+  },
+  {
+    "type": "ONLINE WORKSHOP",
+    "title": "Hack Night at GitHub!",
+    "date": "MARCH 26TH 2024 16:00 - 21:00 PDT",
+    "imageClass": "secondSection",
+    "url": "https://lu.ma/GitHubHackNight-March26"
   }
 ]
