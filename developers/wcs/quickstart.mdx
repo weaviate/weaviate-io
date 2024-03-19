@@ -20,26 +20,36 @@ This Quickstart guide shows you how to get started with Weaviate Cloud Services 
 
 ## Create a Weaviate Cluster
 
-When you log into the WCS web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account.
+When you log into the WCS web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. WCS has short-term, sandbox clusters and permanent, managed clusters.
 
-To create a cluster, follow these steps:
-
-1. Click the "Create cluster" button.
+To create a cluster, click the 'Create cluster' button, then follow the steps to create a [sandbox cluster](#sandbox-clusters) or a [managed cluster](#managed-clusters).
 
 ![Create a cluster](./img/wcs-console-no-clusters.jpg)
 
-2. Select the "Free sandbox" tab.
-1. Give your cluster a name. WCS adds a random suffix to ensure uniqueness.
+### Sandbox clusters
+
+1. Select the "Free sandbox" tab.
+1. Give your cluster a name. WCS adds a random suffix to sandbox clusters to ensure uniqueness.
 1. Verify that "Enable Authentication?" is set to "Yes".
 1. Click create.
 
 It takes a minute or two to create the new cluster. When the cluster is ready, WCS displays a check mark (`✔️`) next to the cluster name.
 
-The process is similar to create a managed cluster. However, you have to add your billing details first.
-
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <SandBoxExpiry/>
+
+### Managed clusters
+
+1. Select the "Managed cluster" tab.
+1. Give your cluster a name.
+1. Select a region.
+1. Accept the terms and conditions.
+1. Click create.
+
+Managed clusters require billing details. WCS prompts you to add billing details if you have not already added them.
+ 
+It takes a minute or two to create the new cluster. When the cluster is ready, WCS displays a check mark (`✔️`) next to the cluster name.
 
 ## Explore the Details panel
 
