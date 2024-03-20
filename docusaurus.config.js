@@ -175,7 +175,8 @@ const config = {
                     // Pass it a path to a local OpenAPI YAML file
                     {
                         // Redocusaurus will automatically bundle your spec into a single file during the build
-                        spec: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_refactor/openapi-specs/schema.json',
+                        // spec: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_refactor/openapi-specs/schema.json',
+                        spec: 'openapi.json',
                         route: 'developers/weaviate/api/rest_openapi',  // Redirect to /api/rest when migration complete
                     },
                 ],
