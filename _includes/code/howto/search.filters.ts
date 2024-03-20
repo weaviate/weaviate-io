@@ -25,20 +25,13 @@ let result;
 // =========================
 
 // searchSingleFilter
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['round'],
-    operator: 'Equal',
-    valueText: 'Double Jeopardy!',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
-
+const myCollection = client.collections.get('JeopardyQuestion');
+     
+const result = await myCollection.query.fetchObjects({
+ returnProperties: ['question','answer','round'],
+ filters: myCollection.filter.byProperty('round').equal('Double Jeopardy!'),
+ limit: 3,
+})
 console.log(JSON.stringify(result, null, 2));
 // END searchSingleFilter
 
@@ -58,22 +51,13 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // =======================================
 
 // searchFilterNearText
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['points'],
-    operator: 'GreaterThan',
-    valueInt: 200,
-  })
-  .withNearText({
-    concepts: ['fashion icons'],
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
+     
+const result = await myCollection.query.nearText(['fashion icons'],{
+ returnProperties: ['question', 'answer','round', 'points'],
+ filters: myCollection.filter.byProperty('points').greaterThan(200),
+ limit: 3,
+})
 
 console.log(JSON.stringify(result, null, 2));
 // END searchFilterNearText
@@ -94,20 +78,13 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ==========================================
 
 // searchLikeFilter
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['answer'],
-    operator: 'Like',
-    valueText: '*inter*',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
-
+const myCollection = client.collections.get('JeopardyQuestion');
+     
+const result = await myCollection.query.fetchObjects({
+ returnProperties: ['question', 'answer','round'],
+ filters: myCollection.filter.byProperty('answer').like('*inter*'),
+ limit: 3,
+})
 console.log(JSON.stringify(result, null, 2));
 // END searchLikeFilter
 
@@ -132,25 +109,17 @@ let token_list
 
 
 // ContainsAnyFilter
-// highlight-start
-token_list = ['australia', 'india']
-// highlight-end
-
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  // Find objects where the `answer` property contains any of the strings in `token_list`
-  .withWhere({
-    path: ['answer'],
-    operator: 'ContainsAny',
-    valueTextArray: token_list,
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
-
+const tokenList = ['australia', 'india']
+const myCollection = client.collections.get('JeopardyQuestion');
+  
+const result = await myCollection.query.fetchObjects({
+ returnProperties: ['question', 'answer','round'],
+ // highlight-start
+     // Find objects where the `answer` property contains any of the strings in `tokenList`
+ filters: myCollection.filter.byProperty('answer').containsAny(tokenList),
+ // highlight-end
+ limit: 3,
+})
 console.log(JSON.stringify(result, null, 2));
 // END ContainsAnyFilter
 
@@ -165,25 +134,17 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ==========================================
 
 // ContainsAllFilter
-// highlight-start
-token_list = ['blue', 'red']
-// highlight-end
-
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  // Find objects where the `question` property contains all of the strings in `token_list`
-  .withWhere({
-    path: ['question'],
-    operator: 'ContainsAll',
-    valueTextArray: token_list,
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round')
-  .do();
-
+const tokenList = ['blue', 'red']
+const myCollection = client.collections.get('JeopardyQuestion');
+  
+const result = await myCollection.query.fetchObjects({
+ returnProperties: ['question', 'answer','round'],
+ // highlight-start
+      // Find objects where the `question` property contains all of the strings in `tokenList`
+ filters: myCollection.filter.byProperty('question').containsAll(tokenList),
+ // highlight-end
+ limit: 3,
+})
 console.log(JSON.stringify(result, null, 2));
 // END ContainsAllFilter
 
@@ -199,30 +160,16 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // searchMultipleFiltersAnd
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    operator: 'And',
-    operands: [
-      {
-        path: ['round'],
-        operator: 'Equal',
-        valueText: 'Double Jeopardy!',
-      },
-      {
-        path: ['points'],
-        operator: 'LessThan',
-        valueInt: 600,
-      },
-    ],
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
 
+const myCollection = client.collections.get('JeopardyQuestion');
+     
+const result = await myCollection.query.fetchObjects({
+ returnProperties: ['question', 'answer','round', 'points'],
+ // highlight-start
+ filters: myCollection.filter.byProperty('round').equal('Double Jeopary!') && myCollection.filter.byProperty('points').lessThan(600),
+ // highlight-end
+ limit: 3,
+})
 console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersAnd
 
@@ -244,40 +191,16 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ==========================================
 
 // searchMultipleFiltersNested
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    operator: 'And',
-    operands: [
-      {
-        path: ['answer'],
-        operator: 'Like',
-        valueText: '*nest*',
-      },
-      {
-        operator: 'Or',
-        operands: [
-          {
-            path: ['points'],
-            operator: 'GreaterThan',
-            valueInt: 700,
-          },
-          {
-            path: ['points'],
-            operator: 'LessThan',
-            valueInt: 300,
-          },
-        ],
-      },
-    ],
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
-
+const myCollection = client.collections.get('JeopardyQuestion');
+     
+const result = await myCollection.query.fetchObjects({
+ // highlight-start
+ filters: myCollection.filter.byProperty('question').like('*nest*') && 
+ (myCollection.filter.byProperty('points').greaterThan(700) || 
+    myCollection.filter.byProperty('points').lessThan(300)),
+ // highlight-end
+ limit: 3
+})
 console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersNested
 
@@ -298,20 +221,18 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ===================================================
 
 // searchCrossReference
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-// highlight-start
-  .withWhere({
-    path: ['hasCategory', 'JeopardyCategory', 'title'],
-    operator: 'Like',
-    valueText: '*Sport*',
-  })
-// highlight-end
-  .withLimit(3)
-  .withFields('question answer round hasCategory {... on JeopardyCategory { title } }')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
 
+const result = await myCollection.query.fetchObjects({
+ limit: 3,
+ // highlight-start
+ filters: myCollection.filter.byRef('hasCategory').byProperty('title').like('*Sport*'),
+ returnReferences: [{
+         linkOn: 'hasCategory',
+         returnProperties: ['title'],
+       }],
+ // highlight-end
+})
 console.log(JSON.stringify(result, null, 2));
 // END searchCrossReference
 
@@ -331,20 +252,14 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ===================================================
 
 // filterById
-let target_id = '00037775-1432-35e5-bc59-443baaef7d80'
-result = await client.graphql
-  .get()
-  .withClassName('Article')
-// highlight-start
-  .withWhere({
-    path: ['id'],
-    operator: 'Equal',
-    valueText: target_id,
-  })
-// highlight-end
-  .withFields('title _additional { id }')
-  .do();
+const myCollection = client.collections.get('Article');
+const targetId = '00037775-1432-35e5-bc59-443baaef7d80'
 
+const result = await myCollection.query.fetchObjects({
+ // highlight-start
+ filters: myCollection.filter.byId().equal(targetId),
+ // highlight-end
+})
 console.log(JSON.stringify(result, null, 2));
 // END filterById
 
@@ -357,20 +272,16 @@ assert.equal(target_id, result.data.Get.Article[0]._additional.id);
 // ===================================================
 
 // FilterByTimestamp
-result = await client.graphql
-  .get()
-  .withClassName('Article')
-  .withFields('title _additional { creationTimeUnix }')
-  .withWhere({
-    operator: 'GreaterThan',
-    path: ['_creationTimeUnix'],
-    valueDate: '2020-01-01T00:00:00+00:00',
-    // Can use either `valueDate` with a `RFC3339` datetime or `valueText` as Unix epoch milliseconds
-    // valueText: '1577836800',
-  })
-  .withLimit(3)
-  .do();
-
+const myCollection = client.collections.get('Article');
+const creationTime = '2020-01-01T00:00:00+00:00'
+  
+const result = await myCollection.query.fetchObjects({
+ returnProperties: ['title'],
+ // highlight-start
+ filters: myCollection.filter.byCreationTime().greaterOrEqual(creationTime),
+ // highlight-end
+ returnMetadata: ['creationTime']
+})
 console.log(JSON.stringify(result, null, 2));
 // END FilterByTimestamp
 
@@ -385,18 +296,15 @@ for (const article of result.data.Get.Article) {
 // ===================================================
 
 // FilterByPropertyLength
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withFields('answer')
-  .withWhere({
-    operator: 'GreaterThan',
-    path: ['len(answer)'],
-    valueInt: 20,
-  })
-  .withLimit(3)
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion');
+const lengthThreshold = 20     
 
+const result = await myCollection.query.fetchObjects({
+ limit: 3,
+ // highlight-start
+ filters: myCollection.filter.byProperty('answer', true).greaterThan(lengthThreshold),
+ // highlight-end
+})
 console.log(JSON.stringify(result, null, 2));
 // END FilterByPropertyLength
 
@@ -412,23 +320,16 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ===================================================
 
 // FilterbyGeolocation
-const response = await client.graphql
-  .get()
-  .withClassName('Publication')
-  .withFields('name headquartersGeoLocation {latitude longitude}')
-  .withWhere({
-    operator: 'WithinGeoRange',
-    path: ['headquartersGeoLocation'],
-    valueGeoRange: {
-      geoCoordinates: {
-        latitude: 52.3932696,
-        longitude: 4.8374263,
-      },
-      distance: {
-        max: 1000,
-      },
-    },
-  })
-  .do();
-console.log(response);
+const myCollection = client.collections.get('Publication');
+     
+const result = await myCollection.query.fetchObjects({
+ // highlight-start
+ filters: myCollection.filter.byProperty('headquartersGeoLocation').withinGeoRange({
+   latitude: 52.39,
+   longitude: 4.84,
+   distance: 1000
+ }),
+ // highlight-end
+})
+console.log(JSON.stringify(result, null, 2));
 // END FilterbyGeolocation
