@@ -13,7 +13,7 @@ The guides cover these topics:
 - [Create objects](./create.mdx): Create individual objects.
 - [Batch import](./import.mdx): Import data in bulk.
 - [Read objects](./read.mdx): Read individual objects.
-- [Read all objects](./read-all-objects.mdx): Read all objects in a collection for back up of export.
+- [Read all objects](./read-all-objects.mdx): Read all objects in a collection for back up or export.
 - [Update objects](./update.mdx): Update objects.
 - [Delete objects](./delete.mdx): Delete individual objects or filtered object groups.
 - [Cross-references](./cross-references.mdx): Manage references between collections.

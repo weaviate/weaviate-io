@@ -4,40 +4,165 @@ sidebar_position: 80
 image: og/wcs/user_guides.jpg
 ---
 
-I am evaluating Weaviate for my company and currently using a sandbox to evaluate it, 
-
-You can use PQ in sandbox. Sandbox is in fact the very same version you have in a paid cluster and the very same you get from docker or binary. It only has limited resources (memory, cpu, storage), so don’t expect too much from it :grimacing: Regarding bit_compression, its no longer used and 
-
-
-The free sandbox will only have a limited amount of allocated memory and disk space, and it will not scale after that. While the paid plans have more resources and will be scaled as needed.
-
-Hi! In WCS you can only use vectorization services, like openAI, cohere and all the ones listed in your cluster dashboard.
-
-
-Hi @Hawajka :wave:, Currently only paid accounts have access to read-only API keys and the ability to add more keys if needed, free sandbox accounts only have one admin key that should be visible in the WCS console.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
+import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
 
-## Sandboxes
+Weaviate Cloud Services (WCS) provides two instance types. There are free, sandbox clusters and paid, managed clusters. This page discusses sandbox clusters.
 
-### When do sandboxes expire?
+## Capabilities
 
-Sandboxes expire in 14 days.
+Sandbox clusters run a full version of the Weaviate core database. When you create a sandbox, it has the latest version of [Weaviate core](/developers/weaviate/release-notes#weaviate-core).
 
-I am evaluating Weaviate for my company and currently using a sandbox to evaluate it, 
+Weaviate core uses modules to connect to vectorizers, rankers, generators, and other services. [Modules](/developers/weaviate/modules) provide programmatic connections to these services. WCS supports more than a dozen services. To see the list of modules that are available for your cluster, check the cluster details panel in the [Weaviate web console](https://console.weaviate.cloud).
 
+## Suggested uses
 
-## Download sandbox data?
+Sandbox clusters are intended for learning, experimenting, and exploring Weaviate. They are fully featured, but sandboxes have a limited lifetime and they run on scaled down infrastructure compared to managed clusters. 
+
+If you are working through a course in [Weaviate Academy](https://weaviate.io/developers/academy), consider using a sandbox to complete the lessons without having to install and configure a local instance.
+
+Proof of concept and experimental projects work well in WCS. You can focus on your code and new concepts rather than operational details.
+
+## Limitations
+
+Sandboxes are not designed for production use. Compared to managed instances, they are limited in size, duration, and operational resilience. Sandboxes have these limits:
+
+- 14 day lifespan
+- No backup
+- Less memory capacity than the smallest managed cluster
+- Less processor capacity than the smallest managed cluster
+- Less storage capacity than the smallest managed cluster
+- Single, fixed instance size
+- One `admin` API key
+- No `read-only` API key
+
+## Export data
 
 To retrieve a copy of your sandbox data, use the [cursor API](/developers/weaviate/api/rest/objects#exhaustive-listing-using-a-cursor-after).
 
 
-### How many objects can a sandbox hold?
+## Switch to a managed cluster
 
-There is no limit on the number of objects. However, sandbox performance may be limited for larger workloads.
+There is no direct path to convert a sandbox cluster to a managed cluster. Follow these steps to move to a managed cluster.
 
-## Switch to paid version
+- [Export your data](#export-your-data).
+- [Export your schema](#export-your-schema).
+- [Configure billing](#configure-billing) in your WCS account.
+- [Create a managed cluster](#create-a-managed-cluster).
+- [Recreate your schema](#recreate-your-schema).
+- [Import your data](#import-your-data).
 
-To preserve your data and upgrade to a paid instance, [contact us](mailto:support@weaviate.io) for help.
+### Export your data
+
+To export your data, iterate through each of your collections. For each collection, iterate through the objects and export them one by one. The process to iterate through collection objects depends on how your objects are configured. For details, see [Read all objects](/developers/weaviate/manage-data/read-all-objects).
+
+### Export your schema
+
+To export your collection definitions, follow these steps.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START ReadAllCollections"
+      endMarker="# END ReadAllCollections"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START ReadAllCollections"
+      endMarker="# END ReadAllCollections"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="java" label="Java">
+    <FilteredTextBlock
+      text={JavaCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="java"
+    />
+  </TabItem>
+
+  <TabItem value="go" label="Go">
+    <FilteredTextBlock
+      text={GoCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="go"
+    />
+  </TabItem>
+</Tabs>
+
+### Configure billing
+
+import ConfigureBilling from '/_includes/wcs/configure-billing.mdx';
+
+<ConfigureBilling/>
+
+### Create a managed cluster
+
+import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
+
+<CreateManagedCluster />
+
+### Recreate your schema
+
+Use the exported sandbox cluster schema to recreate the collection schema in the managed cluster. For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START CreateCollectionWithProperties"
+      endMarker="# END CreateCollectionWithProperties"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JavaScript/TypeScript">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+### Import your data
+
+Use the [batch import API](/developers/weaviate/manage-data/import) to import your data into the managed cluster. If your data file is very large, consider [streaming](/developers/weaviate/manage-data/import#stream-data-from-large-files) your upload.
 
 ## Support
 
