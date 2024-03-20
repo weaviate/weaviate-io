@@ -2,7 +2,7 @@
 title: Announcing the Weaviate Typescript Client Beta
 slug: typescript-client-beta
 authors: [daniel, tommy]
-date: 2024-03-20
+date: 2024-03-21
 tags: ['engineering','release']
 image: ./img/hero.png
 description: "A beta release of our new Typescript client is now available! Help us make it better by trying it out and providing your feedback."
@@ -24,7 +24,7 @@ You can try it here - [Experimental clients](/developers/weaviate/client-librari
 
 With first hand developer experience in mind, we’re committed to making sure that the client libraries we provide are true to the optimum developer experience of each community. We got a lot of feedback on things we could do better in our Typescript client and we’re thrilled to share this beta version with you.
 
-We recently released an update to our Python client. With Typescript being the second most popular language choice for developers we felt it only fair to bring the enhancements from the Python client to the Typescript ecosystem.
+We recently released an update to our [Python client](https://weaviate.io/blog/collections-python-client-preview). With Typescript being the second most popular language choice for developers we felt it only fair to bring the enhancements from the Python client to the Typescript ecosystem.
 
 We shared a few messages and have tested the client internally and we’re finally ready to have the wider community try out the new client and the API it offers. 
 
@@ -40,7 +40,7 @@ Going forward, to bring consistency to all our clients, we will use the term `co
 
 ## Key changes
 
-![Here are the big changes!](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzlkdHAxamlxZDZ6cndkZzVldDI0ZWtzdGltMnhwYXNzeDY5ZzZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WEeCwilDffnwu2fVRK/giphy.gif)
+![lets get into the changes!](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzlkdHAxamlxZDZ6cndkZzVldDI0ZWtzdGltMnhwYXNzeDY5ZzZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WEeCwilDffnwu2fVRK/giphy.gif)
 
 > **Highlights: Strong typing through custom TS types, focus on individual collections for interaction**
 
@@ -55,9 +55,12 @@ Let's look at each of these in more detail.
 
 ### Better Type Support 
 
-As with previous clients, we're enabling both Javascript and Typescript Developers with this client. Written in Typescript you have the beneofts of strong typing out of the box. However, we have methods types available for Javascript developers as well. This makes for a better more intuitive in your IDE and beyond. This means you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a hurdle when you are working with less often-used options, trying new APIs or when you are new to Weaviate.
+As with previous clients, we're enabling both Javascript and Typescript Developers with this client. Written in Typescript you have the benefits of strong typing out of the box. However, we have methods types available for Javascript developers as well. This makes for a better more intuitive experience in your IDE and beyond. This means you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a hurdle when you are working with less often-used options, trying new APIs or when you are new to Weaviate.
 
-[Code completion GIF]
+import codeCompletionImgUrl from './img/code-completion.gif';
+
+<img src={codeCompletionImgUrl} alt="Code completion and type hints are added in the new Python client" width="85%"/>
+
 
 Types are introduced for the data objects as well at creation time, as well as when retrieving them from the database. This means that you can access the properties of the data object directly.
 
@@ -105,8 +108,6 @@ How we incorporate the browser version will be understood better during the open
 The intention is to provide dedicated bundles optimized for each environment. The web bundle focuses on providing an easy to use API for browser/frontend applications using only REST and GraphQL endpoints. While the Node.js bundle leverages Node.js specific capabilities for building server applications, APIs and CLIs, with the full gRPC functionality available.
 
 This change is to encourage safer access and best practices as people interact with thier Weaviate instances.
-
-[Need more details on decison]
 
 :::note What you can do now using the Node bundle
 All CRUD (Create, Read, Update and Delete) operations powered by gRPC and REST.
@@ -170,7 +171,7 @@ We think that these changes will make the code more readable and intuitive.
 
 ## Quality-of-life improvements
 
-![Look how comfortable this guy is in the hammock](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2dsY3gwZTUybWVmeTJ0OG1lanM0czVrb2czdWpkZXpjMW56MTR1ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarqlsEW6F7F14Fq/giphy.gif)
+![As enjoyable as a nice drink at the beach](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2dsY3gwZTUybWVmeTJ0OG1lanM0czVrb2czdWpkZXpjMW56MTR1ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarqlsEW6F7F14Fq/giphy.gif)
 
 > **Highlights: Simplified methods, easier defaults, batch import error handling**
 
@@ -284,8 +285,6 @@ One is the introduction of an `Error` class that will be returned amongst the su
 Error(message="invalid text property 'url' on class 'TestArticle': not a string, but float64", code=None, original_uuid=None)
 ```
 
-[Need some notes here]
-
 The other is that the overall response object will indicate whether there were any errors (`hasErrors` Boolean), and where they occurred (`errors` dictionary).
 
 ### `Collection`-level iterator
@@ -308,7 +307,7 @@ const allArticlesTitles = articles.iterator({ returnProperties: ['title'] }).map
 
 ## Performance improvements
 
-![Top Gun - Tom Cruise feels the need for speed](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExem9jd21oc2EwZnBmMHR5OXB6bHlnc3VoeGN5M3FoM3FyZWZ4NmVuOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kXhXIJRLsMaTlFHYfM/giphy.gif)
+![we just keep getting better and better!](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExem9jd21oc2EwZnBmMHR5OXB6bHlnc3VoeGN5M3FoM3FyZWZ4NmVuOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kXhXIJRLsMaTlFHYfM/giphy.gif)
 
 > **Highlights: Up to 60-80% faster imports, 3-4x faster queries**
 
@@ -349,7 +348,7 @@ const collection: Collection = client.collections.get('MyCollection');
 
 You might think that exporting all the types from a single location is cumbersome. However, due to modern IDE auto-completion, all you need to do is enter the first few letters of the type into the IDE and it will prompt you to import it from where it lives! However, you will also be able to inspect some web-hosted documentation of the typing system soon!
 
-### Providing your own generics
+### Providing your own Generics
 
 So, let's get into it! Providing your own generics is as simple as this:
 ```typescript
@@ -390,7 +389,7 @@ await collection.insert({
 There's much more the typing system than just this and it will take you much development to discover it all! Stay tuned for a future blogpost where we dive into the generics system in much more depth showing all the areas where it works to improve the Developer Experience!
 
 
-### Collection definition
+### Collection Definition
 For many (including us), the collection definition step required multiples visit to the documentation. This was unsurprising, given that it required writing out a complex and deeply nested object that had very little type-hinting owing to the dependence on the auto-generated OpenAPI swagger types, which are not particularly instructive!
 :::note Classic client syntax
 ```python
@@ -428,6 +427,7 @@ client.schema
 ```
 :::
 Well, no more! Now, every field is strongly typed relevant to its allowed values, with your IDE guiding the way, and we are introducing a [factory class](https://en.wikipedia.org/wiki/Factory_method_pattern) so that you don't need to remember specific objects and their schemas.
+
 :::info `Collections` client syntax
 ```typescript
 client.collections.create({
@@ -455,7 +455,7 @@ client.collections.create({
 ```
 :::
 
-### Retrieval augmented generation
+### Retrieval Augmented Generation
 
 As you saw briefly earlier, we have a `.generate` submodule for retrieval augmented generation.
 
@@ -476,7 +476,7 @@ const response = questions.generate.nearText(['the space race'], {
 })
 ```
 
-### Resources and Links
+## Resources and Links
 
 At the moment we have documented the use of the client across these sections of our documentation:
 
@@ -488,14 +488,16 @@ At the moment we have documented the use of the client across these sections of 
 
 If there's a section you'd like added, or see something weird in the documentation, reach out! 
 
+As a bonus, we have a bunch of really useful recipes in our [recipes-ts](https://github.com/weaviate/recipes-ts/tree/main) repository. They're meant to cover most Weaviate usecases. You can use them to see how the new cleint fits into your workflow. 
+
 ## Time to build!
 
 
-![Tell us what you think](https://media1.tenor.com/m/5RQ2N_m5hv8AAAAC/start-working-resident-evil-infinite-darkness.gif)
+![open your laptop and tell us what you think!](https://media1.tenor.com/m/5RQ2N_m5hv8AAAAC/start-working-resident-evil-infinite-darkness.gif)
 
 All these changes are very exciting for us and we’re really eager to have you try them out and see what you build. 
 
-We have a page detailing all the setup and use instructions for the new client. If there’s something missing, let us know by opening an issue on the Weaviate documentation repo. We’d also love any feedback you might have on the client added as issues to the client repo.
+We have our [Experimental clients](/developers/weaviate/client-libraries/typescript) page detailing all the setup and use instructions for the new client. If there’s something missing, let us know by opening an issue on the Weaviate documentation repo. We’d also love any feedback you might have on the client added as issues to the client repo.
 
 Let us know what you think and happy building!
 
