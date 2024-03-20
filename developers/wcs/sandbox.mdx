@@ -4,7 +4,18 @@ sidebar_position: 80
 image: og/wcs/user_guides.jpg
 ---
 
-Weaviate Cloud Services (WCS) provides an interactive console that you can use to create and manage WCS clusters. Follow these steps to create a new WCS account.
+I am evaluating Weaviate for my company and currently using a sandbox to evaluate it, 
+
+You can use PQ in sandbox. Sandbox is in fact the very same version you have in a paid cluster and the very same you get from docker or binary. It only has limited resources (memory, cpu, storage), so don’t expect too much from it :grimacing: Regarding bit_compression, its no longer used and 
+
+
+The free sandbox will only have a limited amount of allocated memory and disk space, and it will not scale after that. While the paid plans have more resources and will be scaled as needed.
+
+Hi! In WCS you can only use vectorization services, like openAI, cohere and all the ones listed in your cluster dashboard.
+
+
+Hi @Hawajka :wave:, Currently only paid accounts have access to read-only API keys and the ability to add more keys if needed, free sandbox accounts only have one admin key that should be visible in the WCS console.
+
 
 ## Sandboxes
 
@@ -12,16 +23,21 @@ Weaviate Cloud Services (WCS) provides an interactive console that you can use t
 
 Sandboxes expire in 14 days.
 
-### How can I save my sandbox data?
+I am evaluating Weaviate for my company and currently using a sandbox to evaluate it, 
+
+
+## Download sandbox data?
 
 To retrieve a copy of your sandbox data, use the [cursor API](/developers/weaviate/api/rest/objects#exhaustive-listing-using-a-cursor-after).
 
-To preserve your data and upgrade to a paid instance, [contact us](mailto:support@weaviate.io) for help.
 
 ### How many objects can a sandbox hold?
 
 There is no limit on the number of objects. However, sandbox performance may be limited for larger workloads.
 
+## Switch to paid version
+
+To preserve your data and upgrade to a paid instance, [contact us](mailto:support@weaviate.io) for help.
 
 ## Support
 
