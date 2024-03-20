@@ -292,11 +292,13 @@ The other is that the overall response object will indicate whether there were a
 
 The `cursor` API has been a popular tool for iterating through an entire collection, for example to create manual backups or retrieving the entire set of IDs.
 
-We've simplified the API here with a more intuitive iterator, so the syntax to extract all objects from a collection is now as simple as:
+We've simplified the API here with a more intuitive iterator, so the syntax to extract all objects from a collection is now achievable with:
 
 ```typescript
 const articles = client.collections.get('Article')
-const allArticlesIDs = articles.iterator().map((article) => article.id)
+for await (const article of articles.iterator()) {
+  // do something with article
+}
 ```
 
 You can also choose what properties/metadata to return, although all properties are returned by default!
