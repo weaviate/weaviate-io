@@ -42,13 +42,13 @@ Going forward, to bring consistency to all our clients, we will use the term `co
 
 ![Here are the big changes!](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzlkdHAxamlxZDZ6cndkZzVldDI0ZWtzdGltMnhwYXNzeDY5ZzZtYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WEeCwilDffnwu2fVRK/giphy.gif)
 
-> **Highlights: Strong typing through custom Python classes, focus on individual collections for interaction**
+> **Highlights: Strong typing through custom TS types, focus on individual collections for interaction**
 
-There are two key changes to the way the `collections` client works in comparison to the existing Python client (let's call this the `Classic` client). They relate to the object typing and the way you interact with the data.
+There are two key changes to the way the `collections` client works in comparison to the existing TS client (let's call this the `Classic` client). They relate to the object typing and the way you interact with the data.
 
 | **Aspect** | **`Classic` Client** | **`Collections` Client** |
 | --- | --- | --- |
-| **Object Typing** | Primarily relied on untyped `dict` / JSONs. | Utilizes strong typing through custom Python classes. |
+| **Object Typing** | Primarily relied on untyped objects and deep data structures. | Utilizes strong typing through custom TS types and user-defined generics. |
 | **Unit of Interaction** | Interacts with the entire database. | Focuses on individual collections for interaction. |
 
 Let's look at each of these in more detail.
@@ -65,23 +65,26 @@ So syntax that is currently like this:
 
 :::note Classic client syntax
 ```typescript
-response['data']['Get']['Article'][0]['title']  // Get the `title` property of the first object
-response['data']['Get']['Article'][0]['_additional']['id']  // Get the ID of the first object
-response['data']['Get']['Article'][0]['_additional']['generate']['singleResult']  // Get the generated text from a `singlePrompt` request
-response['data']['Get']['Article'][0]['_additional']['generate']['groupedResult']  // Get the generated text from a `groupedTask` request
+response.data?.Get?.Article?.[0].title  // Get the `title` property of the first object
+response.data?.Get?.Article?.[0]['_additional']?.id  // Get the ID of the first object
+response.data?.Get?.Article?.[0]['_additional']?.generate?.singleResult  // Get the generated text from a `singlePrompt` request
+response.data?.Get?.Article?.[0]['_additional']?.generate.groupedResult  // Get the generated text from a `groupedTask` request
+response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the timestamp when the object was created
 ```
+Look at all those `?` operators and the necessary `['_additional']` index due to the `_` in the key name!
 
 :::
 
-Become:
+Becomes:
 
 :::info `Collections` client syntax
 
 ```typescript
-response.objects[0].properties['title']  // Get the `title` property of the first object
+response.objects[0].properties.title  // Get the `title` property of the first object
 response.objects[0].uuid  // Get the ID of the first object
 response.objects[0].generated  // Get the generated text from a `singlePrompt` request
 response.generated  // Get the generated text from a `groupedTask` request
+response.metadata?.creationTime // Get the creation time as a native JS Date value
 ```
 
 :::
@@ -141,7 +144,7 @@ Becomes:
 :::info `Collections` client syntax
 
 ```typescript
-const articles = client.collection.get("Article");
+const articles = client.collection.get('Article');
 const response = articles.query.fetchObjects({
   limit: 2,
   returnProperties: ['title','body','url']
@@ -292,14 +295,14 @@ The `cursor` API has been a popular tool for iterating through an entire collect
 We've simplified the API here with a more intuitive iterator, so the syntax to extract all objects from a collection is now as simple as:
 
 ```typescript
-const articles = client.collections.get("Article")
+const articles = client.collections.get('Article')
 const allArticlesIDs = articles.iterator().map((article) => article.id)
 ```
 
 You can also choose what properties/metadata to return, although all properties are returned by default!
 
 ```typescript
-const articles = client.collections.get("Article")
+const articles = client.collections.get('Article')
 const allArticlesTitles = articles.iterator({ returnProperties: ['title'] }).map((article) => article.title)
 ```
 
@@ -333,7 +336,7 @@ We won't get into the details of gRPC here, but if you are interested, you can r
 
 TypeScript is a fully-featured strongly-typed language that comes with a plethora of features for the manipulation of user-defined types. This has allowed us to design and create an API where your specific types can merge with our general Weaviate types to enhance user experience and developer efficieny. Even when writing some of the tests, the IDE auto-completion and static type checking provided by the API have been immensely helpful!
 
-> **Highlights: Strong typing in queries, retrieval augmented generation, data operations, ...**
+> **Highlights: User-defined generics, strong typing in collections API, retrieval augmented generation, ...**
 
 We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. Here you can see the new syntax for collection definition, queries and retrieval augmented generation, as well as types for each of these tasks.
 
@@ -341,7 +344,7 @@ All the types of the API are exported from the root file. So, when it comes to u
 ```typescript
 import weaviate, { Collection } from 'weaviate-client';
 
-const collection: Collection = client.collections.get("MyCollection");
+const collection: Collection = client.collections.get('MyCollection');
 ```
 
 You might think that exporting all the types from a single location is cumbersome. However, due to modern IDE auto-completion, all you need to do is enter the first few letters of the type into the IDE and it will prompt you to import it from where it lives! However, you will also be able to inspect some web-hosted documentation of the typing system soon!
@@ -358,7 +361,7 @@ type Article = {
   wordcount: number;
 }
 
-const collection = client.collections.get<Article>("Article");
+const collection = client.collections.get<Article>('Article');
 ```
 
 Then, when you query for your articles like so:
@@ -374,8 +377,83 @@ res.objects.forEach((obj) => {
 })
 ```
 
+When you insert objects into your collection, you get compile-time checks too!
+```typescript
+await collection.insert({
+  title: 'TS is awesome!',
+  wordcount: 9001
+})
+// compiler error since 'body' field is missing in '.insert'
+// but is not optional in 'Article' type!
+```
+
 There's much more the typing system than just this and it will take you much development to discover it all! Stay tuned for a future blogpost where we dive into the generics system in much more depth showing all the areas where it works to improve the Developer Experience!
 
+
+### Collection definition
+For many (including us), the collection definition step required multiples visit to the documentation. This was unsurprising, given that it required writing out a complex and deeply nested object that had very little type-hinting owing to the dependence on the auto-generated OpenAPI swagger types, which are not particularly instructive!
+:::note Classic client syntax
+```python
+const classObj = {
+  'class': 'Article',
+  vectorizer: 'text2vec-openai',
+  vectorIndexConfig: {
+    distance: 'cosine',
+  },
+  moduleConfig: {
+    'generative-openai': {}
+  },
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text']
+    },
+    # ...
+    {
+      name: 'url',
+      dataType: ['text'],
+      tokenization: 'field',
+      moduleConfig: {
+        'text2vec-openai': {
+          skip: true
+        },
+      }
+    },
+  ],
+};
+client.schema
+  .classCreator()
+  .withClass(classObj)
+  .do();
+```
+:::
+Well, no more! Now, every field is strongly typed relevant to its allowed values, with your IDE guiding the way, and we are introducing a [factory class](https://en.wikipedia.org/wiki/Factory_method_pattern) so that you don't need to remember specific objects and their schemas.
+:::info `Collections` client syntax
+```typescript
+client.collections.create({
+  name: 'Article',
+  vectorizerConfig: weaviate.configure.vectorizer.text2vecOpenai(),
+  vectorIndexConfig: weaviate.configure.vectorIndex.hnsw({
+    distanceMetric: weaviate.configure.vectorDistances.COSINE
+  }),
+  generative_config: weaviate.configure.generative.openai(),
+  properties: [
+    {
+      name: 'title',
+      dataType: weaviate.configure.dataType.TEXT,
+      tokenization: weaviate.configure.tokenization.FIELD
+    },
+    # ...
+    {
+      name: 'url',
+      dataType: 'text',
+      tokenization: 'word',
+      skipVectorization: true,
+    },
+  ]
+})
+```
+:::
 
 ### Retrieval augmented generation
 
@@ -391,7 +469,7 @@ Can be converted to a retrieval augmented generation task by switching the submo
 ```typescript
 // highlight-start
 const response = questions.generate.nearText(['the space race'], {
-  groupedTask: "Write a haiku about these facts!" 
+  groupedTask: 'Write a haiku about these facts!' 
 }, {
 // highlight-end
   limit: 2,
