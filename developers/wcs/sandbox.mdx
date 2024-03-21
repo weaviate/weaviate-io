@@ -12,7 +12,7 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
-
+import ExportData from '/_includes/wcs/export-data.mdx';
 
 Weaviate Cloud Services (WCS) provides two instance types - free, sandbox clusters and paid, managed clusters. This page discusses sandbox clusters.
 
@@ -42,8 +42,6 @@ Sandboxes are not designed for production use. Compared to managed instances, th
 - Less storage capacity than the smallest managed cluster
 
 ## Export data
-
-import ExportData from '/_includes/wcs/export-data.mdx';
 
 <ExportData />
 
@@ -123,6 +121,8 @@ import ConfigureBilling from '/_includes/wcs/configure-billing.mdx';
 
 ### Create a managed cluster
 
+Managed clusters require billing details. WCS prompts you to add billing details if you have not already added them.
+
 To create a managed cluster, follow these steps:
 
 import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
@@ -131,7 +131,7 @@ import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
 
 ### Recreate your schema
 
-Use the exported sandbox cluster schema to recreate the collection schema in the managed cluster. For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
+Use the exported (sandbox cluster) schema to recreate the collection schema in the managed cluster. For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
