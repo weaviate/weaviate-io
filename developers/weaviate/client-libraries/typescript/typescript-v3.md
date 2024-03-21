@@ -25,14 +25,51 @@ The TypeScript client library package can be installed using [npm](https://www.n
 npm install weaviate-client --tag beta
 ```
 
-## Usage and type definitions
+Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`. 
+
+- Compiler options
+
+  - `"target": "esnext"` 
+  - `"module": "esnext"` (requires at least **Node16**)
+  - `"moduleResolution": "Node16"` 
+
+- `"include": ["*.ts"]`  (Or specific files)
+- `"lib": [ "es2018" ]`
+
+Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
+
+
+## References
+
+:::note v2 → v3 client documentation migration
+We are in the process of migrating our v2 client code examples to v3 as necessary. Please be patient as we work on documenting the rest.
+:::
+
+At the moment, we've covered the following pages. 
+
+- [Introduction](https://weaviate.io/developers/weaviate/introduction)
+- [Quickstart](https://weaviate.io/developers/weaviate/quickstart)
+- [Start Guides](https://weaviate.io/developers/weaviate/starter-guides)
+- [How-to: Search](https://weaviate.io/developers/weaviate/search)
+- [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
+
+
+Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
+
+## Design
+
+### A Collection first Approach
+
+With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom Typescript types and user-defined generics.
+
+## Client Connection
 
 Once installed, you can use the client in your TypeScript and JavaScript scripts, as shown in the following examples.
 
-### Usage
+### Connecting to Weaviate
 
 <Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
+<TabItem value="wcs" label="WCS">
 
 ```js
 const { default: weaviate } = require('weaviate-client');
@@ -46,7 +83,7 @@ console.log(client)
 ```
 
 </TabItem>
-<TabItem value="ts" label="TypeScript">
+<TabItem value="local" label="Local">
 
 ```ts
 import weaviate, { WeaviateClient, generateUuid5, DataObject } from 'weaviate-client'
@@ -318,29 +355,6 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 
 These headers will then be included in every request that the client makes.
 
-## References
-
-:::note v2 → v3 client migration
-We are in the process of migrating our v2 client code examples to v3 as necessary. Please be patient as we work on documenting the rest.
-:::
-
-At the moment, we've covered the following pages. 
-
-- [Introduction](https://weaviate.io/developers/weaviate/introduction)
-- [Quickstart](https://weaviate.io/developers/weaviate/quickstart)
-- [Start Guides](https://weaviate.io/developers/weaviate/starter-guides)
-- [How-to: Search](https://weaviate.io/developers/weaviate/search)
-- [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
-
-
-Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
-
-## Design
-
-### A Collection first Approach
-
-With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom Typescript types and user-defined generics.
-
 ### Separated Node and Web Versions
 
 We've chosen to break up the new TypeScript client into Node and Web versions. With the addition of gRPC to Weaviate, we now have the HTTP/2 protocol to contend with and we quickly discovered that gRPC and HTTP/2 don't play nicely with browsers. 
@@ -374,19 +388,7 @@ Install the `typescript` package. Add the `-g` flag if you want the package to b
 ```bash
 npm install typescript
 ```
-
-Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`. 
-
-- Compiler options
-
-  - `"target": "esnext"` 
-  - `"module": "esnext"` (requires at least **Node16**)
-  - `"moduleResolution": "Node16"` 
-
-- `"include": ["*.ts"]`  (Or specific files)
-- `"lib": [ "es2018" ]`
-
-Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
+You can then use this command to transpile the TypeScript file. 
 
 ```bash
 tsc

@@ -39,7 +39,16 @@ client.schema.delete_class("Article")  # Replace with your class name
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+
+<TabItem value="js" label="JS/TS (Beta)">
+
+```ts
+await client.collections.delete('Article')
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS">
 
 ```ts
 const className: string = 'YourClassName';  // Replace with your class name
@@ -51,6 +60,7 @@ await client.schema
 ```
 
 </TabItem>
+
 <TabItem value="go" label="Go">
 
 ```go
