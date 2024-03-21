@@ -4,6 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import EndToEndPyCode from '!!raw-loader!/_includes/code/quickstart/endtoend.py';
 import EndToEndPy3Code from '!!raw-loader!/_includes/code/quickstart/endtoend.py3.py';
 import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts';
+import EndToEndTSCodeLegacy from '!!raw-loader!/_includes/code/quickstart/endtoend-v2.ts';
 
 <Tabs groupId="languages">
 {/* <TabItem value="graphql" label="GraphQL">
@@ -45,7 +46,7 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 />
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
 
 <FilteredTextBlock
   text={EndToEndTSCode}
@@ -55,6 +56,18 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 />
 
 </TabItem>
+
+<TabItem value="js2" label="JS/TS">
+
+<FilteredTextBlock
+  text={EndToEndTSCodeLegacy}
+  startMarker="// GenerativeSearchExample"
+  endMarker="// END GenerativeSearchExample"
+  language="ts"
+/>
+
+</TabItem>
+
 <TabItem value="go" label="Go">
 
 ```go

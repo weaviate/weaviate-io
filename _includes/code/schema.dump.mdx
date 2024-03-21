@@ -26,7 +26,29 @@ print(schema)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+
+<TabItem value="js" label="JS/TS (Beta)">
+
+```ts
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal({
+      httpHost: 'localhost',
+      httpPort: 8080,
+      httpSecure: false,
+
+      grpcHost: 'localhost',
+      grpcPort: 50051,
+      grpcSecure: false,
+    });
+
+console.log(await client.getMeta())
+
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS">
 
 ```ts
 import weaviate from 'weaviate-ts-client';

@@ -217,12 +217,12 @@ curl [WEAVIATE URL]/v1/.well-known/openid-configuration
 
 The OIDC standard allows for many different methods *(flows)* of obtaining tokens. The appropriate method can vary depending on your situation, including configurations at the token issuer, and your requirements.
 
-While it is outside the scope of our documentation to cover every OIDC authentication flow, some possible options are to:
-1. Use `client credentials flow` for machine-to-machine authorization. (Note that this will authorize an app, rather than a particular user.)
+OIDC authentication flows are outside the scope of this documentation, but here are some options to consider:
+1. Use the `client credentials flow` for machine-to-machine authorization. (Note that this authorizes an app, not a user.)
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use `resource owner password flow` for trusted applications (e.g. used by [Weaviate Cloud Services](/developers/wcs/platform/authentication.mdx).
+1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud Services](/developers/wcs/authentication.mdx).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### OIDC support for Weaviate clients

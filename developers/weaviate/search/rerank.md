@@ -11,9 +11,12 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.rerank.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.rerank-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.rerank.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.rerank-v2.ts';
 import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+
 
 Reranking modules reorder the search result set according to a different set of criteria or a different (e.g. more expensive) algorithm.
 
@@ -59,9 +62,18 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -101,9 +113,18 @@ To rerank the results of a vector search, configure the object properties to sor
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START RerankNearText"
+      endMarker="// END RerankNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START RerankNearText"
       endMarker="// END RerankNearText"
       language="ts"
@@ -157,9 +178,18 @@ To rerank the results of a keyword search, configure the object properties to so
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START bm25Rerank"
+      endMarker="// END bm25Rerank"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START bm25Rerank"
       endMarker="// END bm25Rerank"
       language="ts"
