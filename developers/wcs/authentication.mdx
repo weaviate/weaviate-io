@@ -9,7 +9,7 @@ There are two ways to connect to your Weaviate Cloud Services (WCS) instance:
 - [Connect a browser to WCS through the WCS Console.](/developers/wcs/authentication#connect-with-a-browser)
 
    - The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing. 
-   - The built-in [GraphQL console](/developers/wcs/platform/console) is useful to connect without a client application. 
+   - The built-in [Query console](/developers/wcs/platform/console) is useful to connect without a client application. 
 
 - [Connect a client application to WCS through APIs.](/developers/wcs/authentication#connect-with-an-api)
 
@@ -130,13 +130,13 @@ To delete an API key, follow these steps:
 
 ![Add API key UI](./img/wcs-delete-api-key.jpg)
 
-## Connect via the GraphQL console
+## Connect via the query console
 
-The built in [GraphQL console](/developers/wcs/platform/console) connects to clusters in your organization without any additional authentication.
+The built in [GraphQL query console](/developers/wcs/platform/console) connects to clusters in your organization without any additional authentication.
 
-If you use GraphQL console to connect to a Weaviate instance that is not part of your organization, you have to provide an API key. 
+If you use the GraphQL query console to connect to a Weaviate instance that is not part of your organization, provide an API key for the remote instance.
 
-To pass the API key, add it to the `Headers` at the bottom of the GraphQL console. 
+To pass the API key, add it to the `Headers` at the bottom of the GraphQL query console. 
 
 ![API key in header](./img/wcs-auth-header.jpg)
 
