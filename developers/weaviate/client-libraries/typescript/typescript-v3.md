@@ -15,14 +15,14 @@ The current TypeScript client version is `v||site.typescript_client_version||`.
 
 ## Overview
 
-The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the Python client, such as code examples, see the relevant pages in the Weaviate documentation. 
+The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the Typescript client, such as code examples, see the relevant pages in the Weaviate documentation. 
 
 ## Installation and setup
 
 The TypeScript client library package can be installed using [npm](https://www.npmjs.com/).
 
 ```bash
-npm install weaviate-client
+npm install weaviate-client --tag beta
 ```
 
 ## Usage and type definitions
@@ -35,41 +35,29 @@ Once installed, you can use the client in your TypeScript and JavaScript scripts
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-client/node');
+const { default: weaviate } = require('weaviate-client');
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-});
-
-client
-  .schema
-  .getter()
-  .do()
-  .then(res => {
-    console.log(res);
-  })
-  .catch(err => {
-    console.error(err)
-  });
+const client = await weaviate.connectToWCS(
+      'some-endpoint.weaviate.network', {
+       authCredentials: new weaviate.ApiKey('api-key'),
+     } 
+   )
+console.log(client)
 ```
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate from 'weaviate-client/node';
+import weaviate, { WeaviateClient, generateUuid5, DataObject } from 'weaviate-client'
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
-});
-
-const response = await client
-  .schema
-  .getter()
-  .do();
-console.log(response);
+const client: WeaviateClient = await weaviate.connectToWCS(
+    'some-endpoint.weaviate.network', {
+     authCredentials: new weaviate.ApiKey('api-key'),
+   } 
+ )
+ 
+ console.log(client)
 ```
 
 </TabItem>
@@ -81,7 +69,7 @@ If you are having any issues with the import statement in TypeScript (e.g. if `w
 
 ### Type definitions
 
-The type definitions can be found under the `types` subdirectory of the package in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-ts-client?activeTab=code).
+The type definitions can be found under each bundles respective folder; the subdirectory of `node/cjs` and `node/esm` in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-client/v/3.0.0-beta.17?activeTab=code).
 
 ## Authentication
 
@@ -105,14 +93,16 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-client');
 
 // Instantiate the client with the auth config
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',  // Replace with your endpoint
-  apiKey: new weaviate.ApiKey('learn-weaviate'),  // Replace w/ your Weaviate instance API key
-});
+const client = await weaviate.connectToWCS(
+    'some-endpoint.weaviate.network', {
+     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
+   } 
+ )
+ 
+ console.log(client)
 ```
 
 </TabItem>
@@ -122,11 +112,13 @@ const client = weaviate.client({
 import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
 // Instantiate the client with the auth config
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',  // Replace with your endpoint
-  apiKey: new ApiKey('learn-weaviate'),  // Replace w/ your Weaviate instance API key
-});
+const client: WeaviateClient = await weaviate.connectToWCS(
+    'some-endpoint.weaviate.network', {
+     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
+   } 
+ )
+
+console.log(client)
 ```
 
 </TabItem>
@@ -154,36 +146,38 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-client');
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  authClientSecret: new weaviate.AuthUserPasswordCredentials({
-    username: 'user123',
-    password: 'password',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
-  })
-});
+const client = await weaviate.connectToWCS(
+      'some-endpoint.weaviate.network',
+     {
+       authCredentials: new weaviate.AuthUserPasswordCredentials({
+        username: 'username',
+        password: 'password',
+        silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+        scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
+       })
+     } 
+   )
 ```
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  authClientSecret: new AuthUserPasswordCredentials({
-    username: 'user123',
-    password: 'password',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_access']  // optional, depends on the configuration of your identity provider (not required with WCS)
-  })
-});
+const client: WeaviateClient = await weaviate.connectToWCS(
+      'some-endpoint.weaviate.network',
+     {
+       authCredentials: new AuthUserPasswordCredentials({
+        username: 'username',
+        password: 'password',
+        silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+        scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
+       })
+     } 
+   )
 ```
 
 </TabItem>
@@ -199,34 +193,36 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-client');
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  authClientSecret: new weaviate.AuthClientCredentials({
-    clientSecret: 'supersecuresecret',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
-  })
-});
+const client = await weaviate.connectToWCS(
+      'https://some-endpoint.weaviate.network',
+     {
+        authCredentials: new weaviate.AuthClientCredentials({
+         clientSecret: 'supersupersecret',
+         silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+         scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
+        })
+      } 
+   )
 ```
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient, AuthClientCredentials } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  authClientSecret: new AuthClientCredentials({
-    clientSecret: 'supersecuresecret',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
-  })
-});
+const client: WeaviateClient = await weaviate.connectToWCS(
+      'https://some-endpoint.weaviate.network',
+      {
+        authCredentials: new weaviate.AuthClientCredentials({
+         clientSecret: 'supersupersecret',
+         silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+         scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
+        })
+      } 
+)
 ```
 
 </TabItem>
@@ -242,36 +238,38 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-client');
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  authClientSecret: new weaviate.AuthAccessTokenCredentials({
-    accessToken: 'abcd1234',
-    expiresIn: 900,
-    refreshToken: 'efgh5678',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-  })
-});
+const client = await weaviate.connectToWCS(
+      'https://some-endpoint.weaviate.network',
+      {
+        authCredentials: new weaviate.AuthAccessTokenCredentials({
+         accessToken: 'acessToken',
+         expiresIn: 900,
+         refreshToken: 'refreshToken',
+         silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+        })
+      } 
+   )
 ```
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient, AuthAccessTokenCredentials } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  authClientSecret: new AuthAccessTokenCredentials({
-    accessToken: 'abcd1234',
-    expiresIn: 900,
-    refreshToken: 'efgh5678',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-  })
-});
+const client: WeaviateClient = await weaviate.connectToWCS(
+      'https://some-endpoint.weaviate.network',
+      {
+        authCredentials: new weaviate.AuthAccessTokenCredentials({
+         accessToken: 'acessToken',
+         expiresIn: 900,
+         refreshToken: 'refreshToken',
+         silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+        })
+    } 
+)
 ```
 
 </TabItem>
@@ -285,26 +283,34 @@ You can pass custom headers to the client, which are added at initialization:
 <TabItem value="js" label="JavaScript">
 
 ```js
-const { default: weaviate } = require('weaviate-ts-client');
+const { default: weaviate } = require('weaviate-client');
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: { headerName: 'HeaderValue' }
-});
+const client = await weaviate.connectToWCS(
+      'https://some-endpoint.weaviate.network',
+     {
+       authCredentials: new weaviate.ApiKey('some-api-key'),
+       headers: {
+         someHeaderName: 'header-value', 
+       }
+     } 
+   )
 ```
 
 </TabItem>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
-  headers: { headerName: 'HeaderValue' }
-});
+const client: WeaviateClient = await weaviate.connectToWCS(
+      'https://some-endpoint.weaviate.network',
+     {
+       authCredentials: new weaviate.ApiKey('some-api-key'),
+       headers: {
+         someHeaderName: 'header-value', 
+       }
+     } 
+   )
 ```
 
 </TabItem>
@@ -314,19 +320,41 @@ These headers will then be included in every request that the client makes.
 
 ## References
 
-:::note JS → TS migration
-We are in the process of migrating our JavaScript code examples to TypeScript as necessary. Please be patient.
+:::note v2 → v3 client migration
+We are in the process of migrating our v2 client code examples to v3 as necessary. Please be patient as we work on documenting the rest.
 :::
+
+At the moment, we've covered the following pages. 
+
+- [Introduction](https://weaviate.io/developers/weaviate/introduction)
+- [Quickstart](https://weaviate.io/developers/weaviate/quickstart)
+- [Start Guides](https://weaviate.io/developers/weaviate/starter-guides)
+- [How-to: Search](https://weaviate.io/developers/weaviate/search)
+- [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
+
 
 Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
 
 ## Design
 
-### Builder pattern
+### A Collection first Approach
 
-The TypeScript client is designed following the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern). The pattern is used to build complex query objects. This means that calls (for example to retrieve data with a RESTful GET request, or using a more complex GraphQL query) are built with chained objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. Builder examples can be found in the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
+With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom Typescript types and user-defined generics.
 
-The code snippet at the top of this page shows a simple query corresponding to the RESTful request `GET /v1/schema`. The client is initialized by requiring the package and connecting to a local instance. Then, a query is constructed by getting the `.schema` with `.getter()`. The query will be sent with the `.do()` call. `do()` is required for every function you want to build and execute.
+### Separated Node and Web Versions
+
+We've chosen to break up the new TypeScript client into Node and Web versions. With the addition of gRPC to Weaviate, we now have the HTTP/2 protocol to contend with and we quickly discovered that gRPC and HTTP/2 don't play nicely with browsers. 
+
+In this beta, you only have access to the Node version of the client. We will use the beta period to work on the Web version of the client.
+
+:::note What can you do with the Node Bundle?
+All CRUD (Create, Read, Update and Delete) operations powered by gRPC and REST.
+:::
+
+:::note What will you be able to do with the Web bundle?
+Only Read operations powered by GraphQL.
+:::
+
 
 ### General notes
 - All methods use ES6 Promises to deal with asynchronous code, so you need to use `.then()` after function calls, or have `async`/`await` support.
@@ -347,13 +375,13 @@ Install the `typescript` package. Add the `-g` flag if you want the package to b
 npm install typescript
 ```
 
-Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`.
+Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`. 
 
 - Compiler options
 
   - `"target": "esnext"` 
-  - `"module": "esnext"`
-  - `"moduleResolution": "node"` 
+  - `"module": "esnext"` (requires at least **Node16**)
+  - `"moduleResolution": "Node16"` 
 
 - `"include": ["*.ts"]`  (Or specific files)
 - `"lib": [ "es2018" ]`
@@ -388,15 +416,15 @@ Use this code to create `sample.ts`.
   <summary>Sample TypeScript code</summary>
 
 ```ts
-import weaviate from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client'
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
-});
-
-console.log(client.misc)
+const client: WeaviateClient = await weaviate.connectToWCS(
+    'some-endpoint.weaviate.network', {
+     authCredentials: new weaviate.ApiKey('api-key'),
+   } 
+ )
+ 
+console.log(await client.isReady())
 ```
 </details>
 

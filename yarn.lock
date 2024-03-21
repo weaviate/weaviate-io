@@ -15705,10 +15705,10 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.0.0-beta.16:
-  version "3.0.0-beta.16"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.0-beta.16.tgz#cef713dd7cc5296bb9ff5720ba2e56f4f64bb970"
-  integrity sha512-yRG17b5To3wSpSbDCea124nYpy1COk46kDUtvTYUsQpTSk1o81rOMF1Is/VFg3TAmMXZXHRdiLTW+a8XYNCqLA==
+weaviate-client@^3.0.0-beta.17:
+  version "3.0.0-beta.17"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.0-beta.17.tgz#b68d3a2f21df38574aac53be7df302d4479bd266"
+  integrity sha512-BxKPsi1YciukwWmpdb7Xq6b6Yn/Dc2YtrQrvDKSvE0VX6A5vKOfSUwQgpWO3iApzUW0lBintEglgI4Ld3ZbKrA==
   dependencies:
     graphql-request "^6.1.0"
     long "^5.2.3"
