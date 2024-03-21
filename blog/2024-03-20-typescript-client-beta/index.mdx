@@ -65,10 +65,10 @@ In the new Typescript client beta, the `nearText` you've grown to love becomes:
 const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.nearText(['animals in movies'],{
-       limit: 2,
-       returnProperties: ['question', 'answer'],
-       returnMetadata: ['distance']
-     })
+  limit: 2,
+  returnProperties: ['question', 'answer'],
+  returnMetadata: ['distance']
+})
 ```
 
 
@@ -350,7 +350,9 @@ You can also choose what properties/metadata to return, although all properties 
 
 ```typescript
 const articles = client.collections.get('Article')
-const allArticlesTitles = articles.iterator({ returnProperties: ['title'] }).map((article) => article.title)
+for await (const article of articles.iterator({ returnProperties: ['title'] })) {
+  // do something with article
+}
 ```
 
 ## Performance improvements
