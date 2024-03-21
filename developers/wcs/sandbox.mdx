@@ -164,6 +164,13 @@ Use the exported sandbox cluster schema to recreate the collection schema in the
 
 Use the [batch import API](/developers/weaviate/manage-data/import) to import your data into the managed cluster. If your data file is very large, consider [streaming](/developers/weaviate/manage-data/import#stream-data-from-large-files) your upload.
 
+## Duration
+
+Sandboxes expire after 14 days. When the sandbox expires, the data is deleted and cannot be retrieved.
+WCS sends an email notification approximately three days before a sandbox is due to expire. 
+
+Sandboxes can be extended three times. Each extension is for an additional 14 day period. To extend your sandbox, [contact support](mailto:support@weaviate.io).
+
 ## Support
 
 import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
