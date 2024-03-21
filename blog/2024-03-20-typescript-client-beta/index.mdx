@@ -12,7 +12,7 @@ description: "A beta release of our new Typescript client is now available! Help
 
 :::info TL;DR
 
-We've released a beta version of our new Typescript client. It's available for you to try out [on npm](https://www.npmjs.com/package/weaviate-client) under the new name: `weaviate-client`. We’d also love any feedback you can share on the client and your experience using it. Please open an issue on the [clients GitHub repository](https://github.com/weaviate/typescript-client/tree/collections/main). Besides the package name change we’ve made a lot of changes that mirror our client refresh in Python to bring the two closer to each other. We have better Typescript support, a collections-first approach, and performance improvements.
+We've released a beta version of our new Typescript client. It's available for you to try out [on npm](https://www.npmjs.com/package/weaviate-client) under the new name: `weaviate-client`. We’d also love any feedback you can share on the client and your experience using it. Please open an issue on the [client GitHub repository](https://github.com/weaviate/typescript-client/tree/collections/main). Besides the package name change, we’ve made a lot of changes that mirror our client refresh in Python to bring the two closer to each other. We have better Typescript support, a collections-first approach, and performance improvements.
 
 <br/>
 
@@ -22,14 +22,59 @@ You can try it here - [Experimental clients](/developers/weaviate/client-librari
 
 ## Introduction
 
-With first hand developer experience in mind, we’re committed to making sure that the client libraries we provide are true to the optimum developer experience of each community. We got a lot of feedback on things we could do better in our Typescript client and we’re thrilled to share this beta version with you.
+With first-hand developer experience in mind, we’re committed to making sure that the client libraries we provide are true to the optimum developer experience of each community. We got a lot of feedback on things we could do better in our Typescript client and we’re thrilled to share this beta version with you.
 
 We recently released an update to our [Python client](https://weaviate.io/blog/collections-python-client-preview). With Typescript being the second most popular language choice for developers we felt it only fair to bring the enhancements from the Python client to the Typescript ecosystem.
 
 We shared a few messages and have tested the client internally and we’re finally ready to have the wider community try out the new client and the API it offers. 
 
+### Installation
+
+First things first, you probably want to install the new client beta. You can do that in your terminal with the following command.
+```bash
+npm install weaviate-client --tag beta  # Or yarn add weaviate-client@beta
+```
+
+Using the beta tag is the best way to ensure you're using the latest version of the client.
+
+:::info Your tsconfig.json file
+If you’re using Typescript, your tsconfig.json file must be specified with (at least) `"module": "Node16"` and `"moduleResolution": "Node16"`.
+:::
+
+You might be curious to know what a query looks like in the new client, let's answer that for you.
+
+A `nearText` query looks like this in the previous Typescript client.
+
+```typescript
+// nearText in v2 Typescript Client
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withNearText({ concepts: ['animals in movies'] })
+  .withLimit(2)
+  .withFields('question answer _additional { distance }')
+  .do();
+
+```
+
+In the new Typescript client beta, the `nearText` you've grown to love becomes:
+
+
+```typescript
+// nearText in v3 Typescript Client
+const myCollection = client.collections.get('JeopardyQuestion');
+
+const result = await myCollection.query.nearText(['animals in movies'],{
+       limit: 2,
+       returnProperties: ['question', 'answer'],
+       returnMetadata: ['distance']
+     })
+```
+
+
+
 :::info Try the new Typescript client
-If you're keen to try it, please head over to our [Experimental clients](/developers/weaviate/client-libraries/typescript) page. There, you'll find the installation, usage and feedback instructions.
+If you're keen to try it, please head over to our [Experimental clients](/developers/weaviate/client-libraries/typescript) page. There, you'll find the installation, usage, and feedback instructions.
 :::
 
 Let's dive into the inspiration and core concepts behind this innovation.
@@ -55,7 +100,7 @@ Let's look at each of these in more detail.
 
 ### Better Type Support 
 
-As with previous clients, we're enabling both Javascript and Typescript Developers with this client. Written in Typescript you have the benefits of strong typing out of the box. However, we have methods types available for Javascript developers as well. This makes for a better more intuitive experience in your IDE and beyond. This means you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a hurdle when you are working with less often-used options, trying new APIs or when you are new to Weaviate.
+As with previous clients, we're enabling both Javascript and Typescript Developers with this client. Written in Typescript you have the benefits of strong typing out of the box. However, we have method types available for Javascript developers as well. This makes for a better more intuitive experience in your IDE and beyond. This means you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a hurdle when you are working with less often-used options, trying new APIs, or when you are new to Weaviate.
 
 import codeCompletionImgUrl from './img/code-completion.gif';
 
@@ -97,7 +142,7 @@ We think that these changes will reduce errors, increase productivity, and make 
 
 ### Separated Node and Web Versions
 
-For a long time, we've used a single client to intereact with Weaviate from both the Web and Node.js. This made sense in the world of REST and GraphQL, which are both HTTP/1.1 protocols, but with the advent of gRPC into Weaviate since `1.24`, we now have the HTTP/2 protocol to contend with. As it transpires, gRPC and HTTP/2 don't play nicely with browsers so we've chosen to break up the new TypeScript client into Node and Web versions.
+For a long time, we've used a single client to interact with Weaviate from both the Web and Node.js. This made sense in the world of REST and GraphQL, which are both HTTP/1.1 protocols, but with the advent of gRPC into Weaviate since `1.24`, we now have the HTTP/2 protocol to contend with. As it transpires, gRPC and HTTP/2 don't play nicely with browsers so we've chosen to break up the new TypeScript client into Node and Web versions.
 
 During this open community-driven beta, you'll only have access to the Node version that can be accessed from `weaviate-client`:
 ```typescript
@@ -105,12 +150,12 @@ import weaviate from 'weaviate-client';
 ```
 How we incorporate the browser version will be understood better during the open beta as we develop the capability. Until then, you can only use the beta in a Node environment.
 
-The intention is to provide dedicated bundles optimized for each environment. The web bundle focuses on providing an easy to use API for browser/frontend applications using only REST and GraphQL endpoints. While the Node.js bundle leverages Node.js specific capabilities for building server applications, APIs and CLIs, with the full gRPC functionality available.
+The intention is to provide dedicated bundles optimized for each environment. The web bundle focuses on providing an easy-to-use API for browser/frontend applications using only REST and GraphQL endpoints. The Node.js bundle leverages Node.js-specific capabilities for building server applications, APIs, and CLIs, with the full gRPC functionality available.
 
-This change is to encourage safer access and best practices as people interact with thier Weaviate instances.
+This change is to encourage safer access and best practices as people interact with their Weaviate instances.
 
 :::note What you can do now using the Node bundle
-All CRUD (Create, Read, Update and Delete) operations powered by gRPC and REST.
+All CRUD (Create, Read, Update, and Delete) operations. Powered by gRPC and REST.
 :::
 
 :::note What you will be able to do using the Web bundle
@@ -175,7 +220,7 @@ We think that these changes will make the code more readable and intuitive.
 
 > **Highlights: Simplified methods, easier defaults, batch import error handling**
 
-As well as making these big philosophical changes, we've also made a number of quality-of-life improvements to the API.
+As well as making these big philosophical changes, we've also made several quality-of-life improvements to the API.
 
 ### Simplified methods
 
@@ -195,7 +240,7 @@ result = await client.graphql
   .withNearText({
     concepts: ['World history'],
   })
-  .withFields('round')
+  .withFields('round _additional { distance }')
   .withLimit(2)
   .do();
 ```
@@ -214,7 +259,8 @@ const result = await myCollection.generate.nearText(['World history'], {
   singlePrompt: generatePrompt
 }, {
   limit: 2,
-  returnProperties: ['round'],
+  returnMetadata: ['distance']
+
 })
 ```
 
@@ -222,15 +268,15 @@ const result = await myCollection.generate.nearText(['World history'], {
 
 ### Property/metadata return defaults
 
-You might have noticed that above examples do not specify properties to be returned!
+You might have noticed that the above examples do not specify properties to be returned!
 
-We have changed the default behavior to return all non-reference properties, e.g. `text` and `object` types, and the IDs of the objects. We think this will make it easier to get started, and for production use-cases where you want to optimize the response size, you can still specify the properties you want to return.
+We have changed the default behavior to return all non-reference properties, e.g. `text` and `object` types, and the IDs of the objects. We think this will make it easier to get started, and for production use cases where you want to optimize the response size, you can still specify the properties you want to return.
 
-To request additional metadata and any cross-references, you can use the `returnMetadata` and `returnReferences` options to each of the search queries.
+To request additional metadata and any cross-references, you can use the `returnMetadata` and `returnReferences` options for each of the search queries.
 
 ### Batch import typing
 
-Batch object, now called `insertMany()`, also gets a refresh with the introduction of a `DataObject` class. This class is used to define the properties of the object to be inserted, and is then passed to the `insertMany()` method.
+Batch object, now called `insertMany()`, also gets a refresh with the introduction of a `DataObject` class. This class is used to define the properties of the object to be inserted and is then passed to the `insertMany()` method.
 
 
 ```typescript
@@ -254,7 +300,7 @@ const response = await articles.data.insertMany(articlesData);
 console.log(response);
 ```
 
-This allows your imports to be fully type checked by the TS compiler without fear of developer error!
+This allows your imports to be fully type-checked by the TS compiler without fear of developer error!
 
 Oh, and if you don't need to manually specify an object ID or a vector, you can just pass in a list of dictionaries!
 
@@ -277,7 +323,7 @@ console.log(response);
 
 ### Batch import error handling
 
-Another big improvement is how we handle errors during batch data import. Many of you let us know that you would like to get more information around any errors at a macro and micro level. So, we've added a couple of features to help with this.
+Another big improvement is how we handle errors during batch data import. Many of you let us know that you would like to get more information about any errors at a macro and micro level. So, we've added a couple of features to help with this.
 
 One is the introduction of an `Error` class that will be returned amongst the successful ID response. Here's one that we triggered by supplying an incorrect datatype:
 
@@ -289,13 +335,15 @@ The other is that the overall response object will indicate whether there were a
 
 ### `Collection`-level iterator
 
-The `cursor` API has been a popular tool for iterating through an entire collection, for example to create manual backups or retrieving the entire set of IDs.
+The `cursor` API has been a popular tool for iterating through an entire collection, for example, to create manual backups or retrieve the entire set of IDs.
 
 We've simplified the API here with a more intuitive iterator, so the syntax to extract all objects from a collection is now as simple as:
 
 ```typescript
 const articles = client.collections.get('Article')
-const allArticlesIDs = articles.iterator().map((article) => article.id)
+for await (const article of articles.iterator()) {
+  // do something with article
+}
 ```
 
 You can also choose what properties/metadata to return, although all properties are returned by default!
@@ -311,7 +359,7 @@ const allArticlesTitles = articles.iterator({ returnProperties: ['title'] }).map
 
 > **Highlights: Up to 60-80% faster imports, 3-4x faster queries**
 
-While a big part of this `collections` client release has been about improving the developer experience, there has been some significant performance improvements as well.
+While a big part of this `collections` client release has been about improving the developer experience, there have been some significant performance improvements as well.
 
 Under the hood, we expand on Weaviate's gRPC [(what is it?)](https://grpc.io/) capabilities that has been ongoing since [`v1.19` release](/blog/weaviate-1-19-release#grpc-api-support-experimental).
 
@@ -319,7 +367,7 @@ The short story is that your query performance and import performance will be si
 
 ### Import speeds
 
-We've internally seen that batch data import with new client using gRPC achieves a 60-80% speedup compared to the current client. For production use cases involving tens or hundreds of millions of objects, this can mean significant reduction in the hours spent getting your database ready.
+We've internally seen that batch data import with the new client using gRPC achieves a 60-80% speedup compared to the current client. For production use cases involving tens or hundreds of millions of objects, this can mean a significant reduction in the hours spent getting your database ready.
 
 ### Query speeds
 
@@ -327,17 +375,17 @@ But that's not all. Even a query will execute much faster when using gRPC in com
 
 ### How was this achieved?
 
-These speed-ups come from two benefits of using gRPC, which is a binary protocol. This means that one, the data is sent in a compact binary format, rather than as text, which reduces the volume of data to be sent. The other factor is that to send data as text, it needs to be processed into JSON format which is a computationally expensive process. With gRPC, the data is sent in a binary format, which is much faster to process at both the sender and receiver ends.
+These speed-ups come from two benefits of using gRPC, which is a binary protocol. This means that the data is sent in a compact binary format, rather than as text, which reduces the volume of data to be sent. The other factor is that to send data as text, it needs to be processed into JSON format which is a computationally expensive process. With gRPC, the data is sent in a binary format, which is much faster to process at both the sender and receiver ends.
 
 We won't get into the details of gRPC here, but if you are interested, you can read more about it [here](https://grpc.io/docs/what-is-grpc/introduction/). We will also be writing more about it in the future.
 
 ## Object typing in focus
 
-TypeScript is a fully-featured strongly-typed language that comes with a plethora of features for the manipulation of user-defined types. This has allowed us to design and create an API where your specific types can merge with our general Weaviate types to enhance user experience and developer efficieny. Even when writing some of the tests, the IDE auto-completion and static type checking provided by the API have been immensely helpful!
+TypeScript is a fully-featured strongly-typed language that comes with a plethora of features for the manipulation of user-defined types. This has allowed us to design and create an API where your specific types can merge with our general Weaviate types to enhance user experience and developer efficiency. Even when writing some of the tests, the IDE auto-completion and static type-checking provided by the API have been immensely helpful!
 
 > **Highlights: User-defined generics, strong typing in collections API, retrieval augmented generation, ...**
 
-We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. Here you can see the new syntax for collection definition, queries and retrieval augmented generation, as well as types for each of these tasks.
+We've mentioned object typing a few times already, but let's take a closer look at a few more concrete examples. Here you can see the new syntax for collection definition, queries, and retrieval augmented generation, as well as types for each of these tasks.
 
 All the types of the API are exported from the root file. So, when it comes to using any generic, you can access them all like so:
 ```typescript
@@ -386,7 +434,7 @@ await collection.insert({
 // but is not optional in 'Article' type!
 ```
 
-There's much more the typing system than just this and it will take you much development to discover it all! Stay tuned for a future blogpost where we dive into the generics system in much more depth showing all the areas where it works to improve the Developer Experience!
+There's much more to the typing system than just this and it will take you much development to discover it all! Stay tuned for a future blog post where we dive into the generics system in much more depth showing all the areas where it works to improve the Developer Experience!
 
 
 ### Collection Definition
@@ -459,13 +507,13 @@ client.collections.create({
 
 As you saw briefly earlier, we have a `.generate` submodule for retrieval augmented generation.
 
-The structure of these mirror those of the queries, with additional parameters added for the generation task. For example, this query:
+The structure of these mirrors those of the queries, with additional parameters added for the generation task. For example, this query:
 ```typescript
 const response = questions.query.nearText(['the space race'], {
   limit: 2,
 })
 ```
-Can be converted to a retrieval augmented generation task by switching the submodule to `.generate` and providing the required `GenerateOptions` as the second parameter to the method:
+This can be converted to a retrieval augmented generation task by switching the submodule to `.generate` and providing the required `GenerateOptions` as the second parameter to the method:
 ```typescript
 // highlight-start
 const response = questions.generate.nearText(['the space race'], {
@@ -488,7 +536,7 @@ At the moment we have documented the use of the client across these sections of 
 
 If there's a section you'd like added, or see something weird in the documentation, reach out! 
 
-As a bonus, we have a bunch of really useful recipes in our [recipes-ts](https://github.com/weaviate/recipes-ts/tree/main) repository. They're meant to cover most Weaviate usecases. You can use them to see how the new cleint fits into your workflow. 
+As a bonus, we have a bunch of really useful recipes in our [recipes-ts](https://github.com/weaviate/recipes-ts/tree/main) repository. They're meant to cover most Weaviate use cases. You can use them to see how the new client fits into your workflow. 
 
 ## Time to build!
 
@@ -497,7 +545,7 @@ As a bonus, we have a bunch of really useful recipes in our [recipes-ts](https:/
 
 All these changes are very exciting for us and we’re really eager to have you try them out and see what you build. 
 
-We have our [Experimental clients](/developers/weaviate/client-libraries/typescript) page detailing all the setup and use instructions for the new client. If there’s something missing, let us know by opening an issue on the Weaviate documentation repo. We’d also love any feedback you might have on the client added as issues to the client repo.
+We have our [Experimental clients](/developers/weaviate/client-libraries/typescript) page detailing all the setup and use instructions for the new client. If something is missing, let us know by opening an issue on the Weaviate documentation repo. We’d also love any feedback you might have on the client added as issues to the client repo.
 
 Let us know what you think and happy building!
 
