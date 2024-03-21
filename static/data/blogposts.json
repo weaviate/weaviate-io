@@ -33,34 +33,34 @@
   ],
   "blog": [
     {
-      "link": "/blog/fine-tuning-coheres-reranker",
+      "link": "/blog/enterprise-use-cases-weaviate",
       "type": "Blog",
-      "backgroundImage": "/img/site/reranker-head.png",
-      "tagline": "Fine-Tuning Cohere's Reranker",
-      "photo": "erika.jpg",
-      "name": "Erika Cardenas",
-      "title": "Technology Partner Manager",
-      "date": "February 13, 2024"
+      "backgroundImage": "/img/site/hero-enterprise-blog.png",
+      "tagline": "Enterprise Use Cases of Weaviate Vector Database",
+      "photo": "adam.png",
+      "name": "Adam Chan",
+      "title": "Developer Relations Engineer",
+      "date": "March 12, 2024"
     },
     {
-      "link": "/blog/grpc-performance-improvements",
+      "link": "/blog/weaviate-community-hero",
       "type": "Blog",
-      "backgroundImage": "/img/site/grpc-head.png",
-      "tagline": "gRPC-Driven Performance Improvements in Weaviate",
-      "photo": "leonie.jpg",
-      "name": "Leonie Monigatti",
-      "title": "Developer Advocate",
-      "date": "February 20, 2024"
+      "backgroundImage": "/img/site/hero-weaviate-hero.png",
+      "tagline": "Weaviate Hero",
+      "photo": "marion.jpg",
+      "name": "Marion Nehring",
+      "title": "Community Manager",
+      "date": "March 13, 2024"
     },
     {
       "link": "/community/events",
       "type": "Workshop",
-      "backgroundImage": "/img/site/workshops-jp-website.png",
-      "tagline": "AI SaaS applications with Weaviate",
-      "photo": "jp.jpg",
-      "name": "Joon-Pil (JP) Hwang",
-      "title": "Educator",
-      "date": "March 15, 2024"
+      "backgroundImage": "/img/site/workshops-daniel.png",
+      "tagline": "Intro to Weaviate for JavaScript Developers ",
+      "photo": "daniel.jpg",
+      "name": "Daniel Phiri",
+      "title": "Developer Advocate",
+      "date": "March 28, 2024"
     }
   ]
 }

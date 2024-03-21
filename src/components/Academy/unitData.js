@@ -180,7 +180,6 @@ export const unitData = {
       "Perform RAG on the entire set of returned objects.",
     ]
   },
-
   "nv_collections": {
     title: "Populate the database",
     body: "Create a collection with multiple named vectors and import data objects.",
@@ -208,6 +207,48 @@ export const unitData = {
       "Describe what query types are affected by named vectors.",
       "Perform vector/similarity and hybrid searches in collections with named vectors.",
       "Perform RAG on collections with named vectors.",
+    ]
+  },
+  "compression_pq": {
+    title: "Product quantization",
+    body: "What is product quantization (PQ), and how do you use it?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression/pq",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what PQ is and how to use it."
+    ],
+    learningOutcomes: [
+      "Describe how PQ works and its key parameters.",
+      "Configure a collection with PQ.",
+    ]
+  },
+  "compression_bq": {
+    title: "Binary quantization",
+    body: "What is binary quantization (BQ), and how do you use it?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression/bq",
+    badgeType: "practical",
+    learningGoals: [
+      "Learn what BQ is and how to use it."
+    ],
+    learningOutcomes: [
+      "Describe how BQ works and its key parameters.",
+      "Configure a collection with BQ.",
+    ]
+  },
+  "compression_strategy": {
+    title: "Compression strategy",
+    body: "What compression algorithm and settings are right for me?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/compression/strategy",
+    badgeType: "theory",
+    learningGoals: [
+      "Learn what compression algorithm might work best for your use case."
+    ],
+    learningOutcomes: [
+      "Describe the pros and cons of using PQ, BQ, or uncompressed vectors?",
+      "Make an informed choice on which compression algorithm to use for a given use case.",
     ]
   },
   // multi_tenancy_intro: {

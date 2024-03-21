@@ -5,6 +5,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const remarkReplace = require('./src/remark/remark-replace');
 const siteRedirects = require('./site.redirects');
+const path = require('path');
 
 // Math equation plugins
 const math = require('remark-math');
@@ -12,8 +13,6 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-
-
     title: 'Weaviate - Vector Database',
     tagline:
         'Weaviate empowers developers to deliver, scalable vector search-powered apps painlessly',
@@ -29,7 +28,6 @@ const config = {
     organizationName: 'weaviate', // Usually your GitHub org/user name.
     projectName: 'weaviate-io', // Usually your repo name.
     plugins: [
-
         [
             '@docusaurus/plugin-google-gtag',
             {
@@ -81,16 +79,16 @@ const config = {
                                 src: 'https://plausible.io/js/plausible.js',
                             },
                         },
-                          // Add Scarf
-                          {
+                        // Add Scarf
+                        {
                             tagName: 'img',
-                             attributes: {
-                                src: "https://static.scarf.sh/a.png?x-pxid=a41b0758-a3a9-4874-a880-8b5d5a363d40",
-                                referrerPolicy: "no-referrer-when-downgrade",
-                                style: "display: none;",
-                                 },
+                            attributes: {
+                                src: 'https://static.scarf.sh/a.png?x-pxid=a41b0758-a3a9-4874-a880-8b5d5a363d40',
+                                referrerPolicy: 'no-referrer-when-downgrade',
+                                style: 'display: none;',
+                            },
                         },
-                      
+
                         // Add hotjar
                         {
                             tagName: 'script',
@@ -107,14 +105,12 @@ const config = {
         }),
     ],
 
- 
     stylesheets: [
         // Add Font Awesome stylesheets
         '/fonts/font-awesome/fontawesome.css',
         '/fonts/font-awesome/solid.css',
         '/fonts/font-awesome/regular.css',
         '/fonts/font-awesome/brands.css',
-
 
         {
             // styles for math equations
@@ -124,13 +120,12 @@ const config = {
                 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
-
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
     // to replace "en" with "zh-Hans".
-  /*   i18n: {
+    /*   i18n: {
    defaultLocale: 'en',
    locales: ['en','ja'],
     }, */
@@ -147,7 +142,7 @@ const config = {
 
                     // TODO: Update to 'main' for release
                     editUrl:
-                       'https://github.com/weaviate/weaviate-io/tree/main/',
+                        'https://github.com/weaviate/weaviate-io/tree/main/',
                     remarkPlugins: [remarkReplace, math],
                     rehypePlugins: [katex],
                 },
@@ -171,6 +166,31 @@ const config = {
                 },
             }),
         ],
+        [
+            'redocusaurus',
+            {
+                // Plugin Options for loading OpenAPI files
+                config: path.join(__dirname, 'redocly.yaml'),
+                specs: [
+                    // Pass it a path to a local OpenAPI YAML file
+                    {
+                        // Redocusaurus will automatically bundle your spec into a single file during the build
+                        // spec: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_refactor/openapi-specs/schema.json',
+                        spec: 'openapi.json',
+                        route: 'developers/weaviate/api/rest_openapi',  // Redirect to /api/rest when migration complete
+                    },
+                ],
+                // Theme Options for modifying how redoc renders them
+                theme: {
+                    // Change with your site colors
+                    primaryColor: '#1890ff',
+                    customCss: [
+                        require.resolve('./src/css/custom.scss'),
+                        require.resolve('./src/css/blog-and-docs.scss'),
+                    ],
+                },
+            },
+        ],
     ],
 
     themeConfig:
@@ -179,8 +199,7 @@ const config = {
             image: 'og/default.jpg',
             announcementBar: {
                 id: 'announcement-bar-python-client',
-                content:
-                    `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/client-libraries/python">Shape the Future - Try Our New Python Client API</a> to learn more.`,
+                content: `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/client-libraries/python">Shape the Future - Try Our New Python Client API</a> to learn more.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -188,7 +207,7 @@ const config = {
             docs: {
                 sidebar: {
                     hideable: true,
-                    autoCollapseCategories: true
+                    autoCollapseCategories: true,
                 },
             },
             navbar: {
@@ -204,7 +223,6 @@ const config = {
                         label: 'Product',
                         position: 'right',
                         to: '/platform',
-                        
                     },
                     {  type: 'dropdown',
                     label: 'Services',
@@ -213,32 +231,32 @@ const config = {
                         {
                             label: 'Services Overview',
                             href: '/services',
-                           
+
                         },
                         {
                             label: 'Serverless',
                             href: '/services/serverless',
-                           
+
                         },
                         {
                             label: 'Enterprise Dedicated',
                             href: '/services/enterprise-dedicated',
-                           
+
                         },
                         {
                             label: 'Bring Your Own Cloud',
                             href: '/services/byoc',
-                           
+
                         },
                         {
                             label: 'Education & Support',
                             href: '/services/education-and-support',
-                           
+
                         },
                         {
                             label: 'Pricing',
                             href: '/pricing',
-                           
+
                         },
                     ]
                 }
@@ -267,13 +285,12 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Blog',
-                                to: '/blog',
-                               
-                            },
-                            {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
+                            },
+                            {
+                                label: 'Community',
+                                to: '/community',
                             },
                             {
                                 label: 'Events & Webinars',
@@ -299,30 +316,29 @@ const config = {
                             },
                         ],
                     },
-{
-                    type: 'dropdown',
-                    label: 'Partners',
-                    position: 'right',
-                    items: [
-                        {
-                            label: 'AWS',
-                            href: '/partners/aws',
-                        },
-                        {
-                            label: 'Google Cloud',
-                            href: '/partners/gcp',
-                        },
-                        {
-                            label: 'Snowflake',
-                            href: '/partners/snowflake',
-                        },
-                        {
-                            label: 'Become a Partner',
-                            href: '/partners',
-                        },
-                       
-                    ],
-                },
+                    {
+                        type: 'dropdown',
+                        label: 'Partners',
+                        position: 'right',
+                        items: [
+                            {
+                                label: 'AWS',
+                                href: '/partners/aws',
+                            },
+                            {
+                                label: 'Google Cloud',
+                                href: '/partners/gcp',
+                            },
+                            {
+                                label: 'Snowflake',
+                                href: '/partners/snowflake',
+                            },
+                            {
+                                label: 'Become a Partner',
+                                href: '/partners',
+                            },
+                        ],
+                    },
                     {
                         type: 'dropdown',
                         label: 'Company',
@@ -350,15 +366,19 @@ const config = {
                             },
                         ],
                     },
-                   
+                    {
+                        label: 'Blog',
+                        to: '/blog',
+                        position: 'right',
+                    },
+
                     {
                         label: 'Try Now',
                         className: 'tryNow',
                         to: 'https://console.weaviate.cloud',
                         position: 'right',
-
                     },
-                   /*  {
+                    /*  {
                         to: '/developers/academy',
                         label: ' ',
                         position: 'right',
@@ -411,7 +431,7 @@ const config = {
                     {
                         type: 'search',
                         position: 'right',
-                        className: 'hiddenSearch'
+                        className: 'hiddenSearch',
                     },
                 ],
             },
@@ -437,7 +457,7 @@ const config = {
                             {
                                 label: 'Security',
                                 href: '/security',
-                           },
+                            },
                             {
                                 label: 'Terms & Policies',
                                 to: 'service',
@@ -447,7 +467,6 @@ const config = {
                     {
                         title: 'Community',
                         items: [
-
                             {
                                 label: 'Slack',
                                 to: 'https://weaviate.io/slack',
@@ -514,8 +533,6 @@ const config = {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
                             },
-
-
                         ],
                     },
                 ],
@@ -529,22 +546,17 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
-                additionalLanguages: ['java'],
+                additionalLanguages: ['java', 'scala'],
             },
 
             customConfig: {
                 colorMode: {
-                  defaultMode: 'light',
-                  disableSwitch: false,
-                  respectPrefersColorScheme: false,
+                    defaultMode: 'light',
+                    disableSwitch: false,
+                    respectPrefersColorScheme: false,
                 },
-              },
-
-
-              
+            },
         }),
-
-
 };
 
 module.exports = config;

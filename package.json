@@ -46,6 +46,7 @@
     "react-slick": "^0.29.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-twitter-embed": "^4.0.4",
+    "redocusaurus": "^2.0.2",
     "rehype-katex": "5",
     "remark-math": "3",
     "rxjs": "^7.8.0",
@@ -84,7 +85,7 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18"
   },
   "resolutions": {
     "eta": "1.13.0"

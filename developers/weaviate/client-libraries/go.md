@@ -5,21 +5,31 @@ image: og/docs/client-libraries.jpg
 # tags: ['go', 'client library']
 ---
 
-
 :::note Go client version
 The current Go client version is `v||site.go_client_version||`.
 :::
 
-## Installation and setup
+The Weaviate Go client is compatible with Go 1.16+. 
+
+## Installation
+The client doesn't support the old Go modules system. Create a repository for your code before you import the Weaviate client. 
+
+Create a repository:
+
+```bash
+go mod init github.com/weaviate-go-client
+go mod tidy
+```
+
 To get the latest stable version of the Go client library, run the following:
 
 ```bash
 go get github.com/weaviate/weaviate-go-client/v4
 ```
 
-This API client is compatible with Go 1.16+.
+## Example
 
-You can use the client in your Go scripts as follows:
+This example establishes a connection to your Weaviate instance and retrieves the schema.:
 
 ``` go
 package main
@@ -33,7 +43,7 @@ import (
 func GetSchema() {
     cfg := weaviate.Config{
         Host:   "localhost:8080",
-		Scheme: "http",
+		  Scheme: "http",
     }
     client, err := weaviate.NewClient(cfg)
     if err != nil {
@@ -45,6 +55,10 @@ func GetSchema() {
         panic(err)
     }
     fmt.Printf("%v", schema)
+}
+
+func main() {  
+   GetSchema()
 }
 ```
 

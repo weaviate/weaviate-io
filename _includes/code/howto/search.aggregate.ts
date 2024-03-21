@@ -37,7 +37,6 @@ assert.deepEqual(result.data['Aggregate']['JeopardyQuestion'], [{ meta: { count:
 // ==================================
 
 // TextProp TS
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.overAll({

@@ -23,7 +23,7 @@ Here, you can learn how to:
 - [Import data](./import.md)
 - [Query data](./query.md)
 - [Add modules with Weaviate](./modules.md)
-- [Use the Weaviate console](../../wcs/guides/console.mdx)
+- [Use the Weaviate console](/developers/wcs/platform/console.mdx)
 <!-- - [Perform CRUD operations]  (./_crud.md): Perform CRUD operations with Weaviate. -->
 - [Spark Connector](./spark-connector.md): Loading data into Weaviate using Spark.
 <!-- Once you are finished with this section, we suggest moving on to our [Search tutorials]  (../_search/index.md). There we guide you through the powerful yet flexible options Weaviate provides for searching through your data.  -->

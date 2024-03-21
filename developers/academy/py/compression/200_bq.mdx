@@ -1,0 +1,66 @@
+---
+title: Binary quantization
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/200_bq.py';
+
+
+Binary quantization, or BQ, is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#what-is-hierarchical-navigable-small-world-hnsw) or the disk-based [flat index](/developers/weaviate/concepts/vector-index.md#flat-index).
+
+For HNSW, BQ can decrease its memory footprint and thus improve performance and reduce resource requirements as well as costs. For the flat index, BQ can reduce the size of the index on disk, which can improve performance.
+
+## <i class="fa-solid fa-chalkboard"></i> What is binary quantization?
+
+Binary quantization (BQ hereafter) compresses vectors by reducing each dimension to a single bit, either 0 or 1.
+
+In other words, a n-dimensional vector composed of n floating point numbers is compressed to a n-dimensional vector composed of n bits.
+
+This will reduce the size of the vector by a factor of 32 (from 32 bits per float to 1 bit per dimension).
+
+### <i class="fa-solid fa-chalkboard"></i> Model suitability
+
+BQ is a relatively simple algorithm, but can perform well in the right circumstances. It is particularly suitable for high-dimensional vectors, where even with BQ, the vector can retain a high degree of information.
+
+We suggest using BQ for vectors that have been designed for, or been shown to perform well with, binary quantization. Anecdotally, we have seen encouraging recall with Cohere's V3 models (e.g. `embed-multilingual-v3.0` or `embed-english-v3.0`), and OpenAI's `ada-002` and larger `text-embedding-3` models work well with BQ enabled.
+
+### <i class="fa-solid fa-chalkboard"></i> Lossiness
+
+BQ is a lossy compression technique, as the original floating point numbers are quantized a bit.
+
+Weaviate compensates for this by overfetching vectors from the index, and then rescoring the vectors in the uncompressed space. In practice, we find that this compensates quite well for the lossiness of BQ.
+
+## <i class="fa-solid fa-code"></i> Configure BQ
+
+This example creates a collection with binary quantization (BQ) enabled, using default settings.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BQBasicConfig"
+  endMarker="# END BQBasicConfig"
+  language="py"
+/>
+
+### <i class="fa-solid fa-chalkboard"></i> Explain the code
+
+This will create a collection with BQ enabled, using the default settings.
+
+With BQ, the compression begins immediately, as there is no need to wait for a training set to be reached.
+
+## <i class="fa-solid fa-code"></i> Customize BQ
+
+Some BQ parameters are configurable. An important one is `rescore_limit`, which is the minimum number of vectors to be fetched from the index before the rescore phase is triggered.
+
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# BQCustomConfig"
+  endMarker="# END BQCustomConfig"
+  language="py"
+/>
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
+
