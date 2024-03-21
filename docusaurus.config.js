@@ -285,10 +285,6 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Blog',
-                                to: '/blog',
-                            },
-                            {
                                 label: 'Newsletter',
                                 to: 'https://newsletter.weaviate.io/',
                             },
@@ -369,6 +365,11 @@ const config = {
                                 href: 'mailto:hello@weaviate.io',
                             },
                         ],
+                    },
+                    {
+                        label: 'Blog',
+                        to: '/blog',
+                        position: 'right',
                     },
 
                     {

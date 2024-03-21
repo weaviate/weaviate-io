@@ -189,7 +189,7 @@ To explore different queries, such as semantic search with filters or generative
 
 As you saw, you can use the Weaviate vector database for semantic and generative search applications in non-English languages. However, we currently don’t have any official support/policy for non-English languages, which leads to some limitations.
 
-This limitation mainly affects [Weaviate’s keyword-based search functionality BM25](https://weaviate.io/developers/weaviate/search/bm25), as we currently only have the standard English tokenizer. This means the BM25 search will return an error for most non-English languages, especially ones requiring Unicode encoding.
+This limitation mainly affects [Weaviate’s keyword-based search functionality BM25](https://weaviate.io/developers/weaviate/search/bm25), as we currently only have the standard English tokenizer. This means the BM25 search will return an error for most non-alphabetic languages, especially ones requiring Unicode encoding.
 
 This limitation also affects [Weaviate’s hybrid search functionality](https://weaviate.io/developers/weaviate/search/hybrid). While you can conduct hybrid search queries without getting an error, all hybrid search queries with an `alpha != 0` will return the same results as pure semantic search. Hybrid search with an `alpha = 0` (pure keyword-based search) will return an empty result list.
 
