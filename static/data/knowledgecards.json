@@ -27,7 +27,20 @@
     },
     {
       "type": "Search",
-      "category": "Search",
+      "category": "Hybrid Search",
+      "title": "Sparse Vectors",
+      "photo": "hybrid-search-icon.svg",
+      "text": "Sparse embeddings are generated from algorithms like BM25 and SPLADE...",
+      "longText": "Sparse vectors are often high-dimensional with many zeros. Sparse embeddings are generated from algorithms like BM25 and SPLADE. These algorithms are used in keyword-based search to represent text documents.",
+      "link": "/developers/weaviate/quickstart",
+      "bloglink": "https://www.semi.technology/post/understanding-sparse-vectors",
+      "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
+      "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+      "tags": ["JS", "Weaviate", "Image"]
+    },
+    {
+      "type": "Search",
+      "category": "Hybrid Search",
       "title": "Graph-Based Index",
       "photo": "",
       "text": "HNSW is a graph-based indexing technique, meaning that it organizes the data points in a graph structure rather than traditional tree-based or hash-based structures. This graph-based approach is key to its performance in high-dimensional vector space searches.",
@@ -36,7 +49,7 @@
     },
     {
       "type": "Search",
-      "category": "Search",
+      "category": "Hybrid Search",
       "title": "Layered Navigation",
       "photo": "",
       "text": "During a search, HNSW starts at the topmost layer and makes 'big jumps' across the graph to quickly move closer to the target region. As it moves down the layers, the search becomes more refined, with smaller, more local jumps until the nearest neighbors are identified in the bottom layer.",
@@ -45,7 +58,7 @@
     },
     {
       "type": "Search",
-      "category": "Search",
+      "category": "Hybrid Search",
       "title": "Hierarchical Graph Structure",
       "photo": "",
       "text": "HNSW utilizes a multi-layered graph structure where each layer is a graph of the data points. The top layers contain fewer points with long-range connections, and as you go down the layers, the number of points increases, and the connections become more local. This hierarchical structure allows for efficient navigation during search queries.",
@@ -54,7 +67,7 @@
     },
     {
       "type": "Search",
-      "category": "Search",
+      "category": "Hybrid Search",
       "title": "Fusion Algorithm",
       "photo": "",
       "text": "In hybrid search, the fusion algorithm combines results from keyword and vector searches into a final list of ranked search results. A popular fusion algorithm is called reciprocal ranked fusion, which uses the sum of the inverse of the position of the results. There are multiple types of fusion algorithms. Weaviate supports reciprocal rank fusion and relative score fusion.",

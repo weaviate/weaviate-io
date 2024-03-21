@@ -545,15 +545,192 @@ header {
 
 .modalContents {
   margin: 7% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 29.9375rem;
-  height: 40.5rem;
-  max-width: 75.9375rem;
-  max-height: 90vh;
-  border-radius: 1.5rem;
-  background: #ededed;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 460px;
+  height: 650px;
+  padding: 0px 20px 20px 20px;
+  border-radius: 0.4375rem;
+  background: #fff;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+
+  h3 {
+    color: #1b1464;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 20px 0px;
+  }
+
+  span {
+    color: #130c49;
+    text-align: center;
+    font-size: 0.5rem;
+    font-weight: 300;
+  }
+
+  .modalText {
+    text-align: left;
+    width: 264px;
+  }
+
+  .cardContents {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: auto;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .cardType {
+    margin: 4px;
+    color: #fff;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140.5%; /* 0.87813rem */
+  }
+  .cardHeader {
+    background: #00a88b;
+    width: 460px;
+    height: 1.7rem;
+    text-align: center;
+    flex-shrink: 0;
+    border-radius: 0.4375rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .cardText {
+    color: #1b1464;
+    text-align: center;
+    font-size: 0.625rem;
+    font-weight: 400;
+  }
+
+  .cardLink {
+    margin: 10px;
+    text-decoration: underline;
+    color: #1b1464;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  img {
+    width: 60%;
+    max-width: 140px;
+    margin-right: auto;
+  }
+
+  .personLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+
+    svg {
+      margin: 7px 0px 0px 0px;
+      height: 1.3rem;
+
+      path {
+        fill: #fff;
+      }
+    }
+
+    i {
+      margin: 17px 0px 0px 0px;
+    }
+    a {
+      background-color: #130c49;
+      width: 35px;
+      border-radius: 25px;
+      height: 35px;
+      color: white;
+      margin: 0px 5px;
+    }
+  }
+
+  .relatedBox {
+    display: flex;
+    gap: 10px;
+  }
+
+  .relatedBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+
+    span {
+      text-align: left;
+    }
+  }
+
+  .relatedImage {
+    background-image: url('/img/site/related-posts-image.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 7.97881rem;
+    height: 5.24613rem;
+    flex-shrink: 0;
+    border-top-left-radius: 0.71644rem;
+    border-top-right-radius: 0.71644rem;
+  }
+  .relatedBlog {
+    border-radius: 0.71644rem;
+    width: 7.97881rem;
+    height: 7.842rem;
+    flex-shrink: 0;
+    border: 0.764px solid #130c49;
+    background: #fff;
+    box-shadow: 0px 18.341px 48.908px 0px rgba(22, 27, 45, 0.08);
+  }
+
+  .nextContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .nextButton {
+    border-radius: 0.36244rem;
+    background: rgba(217, 217, 217, 0.5);
+    width: 11.47769rem;
+    height: 2.84969rem;
+    text-align: center;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.modalContents.tutorial {
+  .cardHeader {
+    background: #a38edb;
+  }
+}
+
+.modalContents.databases {
+  .cardHeader {
+    background: #5b9d0a;
+  }
+}
+
+.modalContents.introduction {
+  .cardHeader {
+    background: #059053;
+  }
+}
+
+.modalContents.llm {
+  .cardHeader {
+    background: #ab5988;
+  }
 }
 
 .closeButtonContainer {

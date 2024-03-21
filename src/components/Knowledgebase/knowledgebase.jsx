@@ -127,7 +127,7 @@ export default function KnowledgeBase({ searchQuery }) {
                   checked={selectedCard === 'Search'}
                   onChange={() => handleCardFilter('Search')}
                 />
-                <label htmlFor="filterSearch">Search</label>
+                <label htmlFor="filterSearch">Hybrid Search</label>
               </div>
               <div>
                 <input
@@ -145,7 +145,7 @@ export default function KnowledgeBase({ searchQuery }) {
 
           <div className={styles.cardResults}>
             {renderCards('Intro to Vector Databases')}
-            {renderCards('Search')}
+            {renderCards('Hybrid Search')}
             {renderCards('Databases')}
             {renderCards('Intro to LLMs')}
           </div>

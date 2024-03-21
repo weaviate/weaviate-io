@@ -40,13 +40,13 @@ export default function Card(props) {
         <Link onClick={openModal} className={styles.cardLink}>
           Read more...
         </Link>
-        <div className={styles.bottomCard}>
+        {/*  <div className={styles.bottomCard}>
           {details.tags.map((tag, index) => (
             <span key={index} className={styles.tag}>
               {tag}
             </span>
           ))}
-        </div>
+        </div> */}
       </div>
       {isModalOpen && <ModalComponent details={details} onClose={closeModal} />}
     </>
