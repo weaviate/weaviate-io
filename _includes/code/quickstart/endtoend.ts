@@ -18,7 +18,7 @@ const client: WeaviateClient = weaviate.client({
 */
 
 // EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
-import weaviate, { WeaviateClient } from 'weaviate-client/node';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
   'YOUR-WCS-CLUSTER-URL',
@@ -108,10 +108,10 @@ async function generativeSearchQuery() {
   const myCollection = await client.collections.get('Question');
 
   const result = await myCollection.generate.nearText(['biology'],{
-    limit: 2,
     singlePrompt: `Explain {answer} as you might to a five-year-old.`,
+  },{
+    limit: 2,
     returnProperties: ['question', 'answer', 'category'],
-
   })
 
   console.log(JSON.stringify(result.objects, null, 2));
@@ -126,11 +126,12 @@ async function generativeSearchGroupedQuery() {
     const myCollection = await client.collections.get('Question');
 
     const result = await myCollection.generate.nearText(['biology'],{
-      limit: 2,
       groupedTask: `Write a tweet with emojis about these facts.`,
+    },{
       returnProperties: ['question', 'answer', 'category'],
-  
-    })
+      limit: 2,
+    }
+    )
   
     console.log(JSON.stringify(result.generated, null, 2));
     return result;

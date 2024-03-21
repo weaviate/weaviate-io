@@ -7,7 +7,7 @@ import assert from 'assert';
 // ================================
 
 // Instantiation
-import weaviate, { WeaviateClient } from 'weaviate-client/node';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
   'https://some-endpoint.weaviate.network',  // Replace with your endpoint
@@ -39,9 +39,11 @@ assert(dataRetrievalResult.data.Get['GitBookChunk'].length == 2, "Wrong number o
 
 // TransformResultSets
 const groupedTaskResponse = await myCollection.generate.nearText("history of git",{
+  singlePrompt: `translate a summary of {chunk} into french`
+},
+{
   returnProperties: ['chunk', 'chapter_title', 'chunk_index'],
   limit: 2,
-  singlePrompt: `translate a summary of {chunk} into french`
 })
 
 console.log(groupedTaskResponse.generated);
@@ -54,10 +56,12 @@ assert(typeof groupedTaskResponse.data.Get['GitBookChunk'][0]._additional.genera
 const myWineCollection = await client.collections.get('WineReview');
 
 const singlePromptresult = await myWineCollection.generate.nearText("fruity white wine",{
-  returnProperties: ['review_body','title','country','points'],
-  limit: 5,
   singlePrompt: `Translate this review into French, using emojis:
   ===== Country of origin: {country}, Title: {title}, Review body: {review_body}`
+},
+{
+  returnProperties: ['review_body','title','country','points'],
+  limit: 5,
 })
 
 console.log(JSON.stringify(singlePromptresult.objects, null, 2));

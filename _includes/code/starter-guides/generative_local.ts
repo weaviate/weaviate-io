@@ -7,7 +7,7 @@ import assert from 'assert';
 // ================================
 
 // Instantiation
-import weaviate, { WeaviateClient } from 'weaviate-client/node';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
      'https://some-endpoint.weaviate.network',  // Replace with your endpoint
@@ -131,9 +131,10 @@ assert(objectCount.totalCount > 0, "The 'GitBookChunk' class has no data")
 
 // SinglePrompt
 const haikuResponse = await gitCollection.generate.fetchObjects({
+  singlePrompt: `Write the following as a haiku: ===== {chunk}`
+},{
   returnProperties: ['chunk','chunk_index'],
   limit: 2,
-  singlePrompt: `Write the following as a haiku: ===== {chunk}`
 })
 
 if (haikuResponse) {
@@ -151,8 +152,9 @@ for (const r of haikuResponse.data.Get['GitBookChunk']) {
 
 // GroupedTask
 const triviaResponse = await gitCollection.generate.fetchObjects({
-  limit: 2,
   groupedTask: `Write a trivia tweet based on this text. Use emojis and make it succinct and cute.`
+},{
+  limit: 2,
 })
 
 console.log(triviaResponse.generated)
@@ -166,8 +168,9 @@ assert(typeof triviaResponse.generated === 'string', 'The generated object is no
 const searchResponse = await gitCollection.generate.nearText(
   "states of git",
   {
-  limit: 2,
   groupedTask: "Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
+},{
+  limit: 2,
 })
 
 console.log('concept',JSON.stringify(searchResponse.generated, null, 2));
@@ -181,12 +184,12 @@ assert(typeof searchResponse.generated === 'string', 'The generated object is no
 const anotherSearchResponse = await gitCollection.generate.nearText(
   "how git saves data",
   {
-  limit: 2,
   groupedTask: "Write a trivia tweet based on this text. Use emojis and make it succinct and cute."
+},{
+  limit: 2,
 })
 
 console.log('concept',JSON.stringify(anotherSearchResponse.generated, null, 2));
-
 // END SecondNearTextGroupedTask
 
 assert(typeof anotherSearchResponse.generated === 'string', 'The generated object is not a string')
