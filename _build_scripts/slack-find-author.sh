@@ -8,6 +8,7 @@ git_slack_map=(
     ["Bob van Luijt"]="<@U6P955HC4>"
     ["Charlie Harr"]="<@U044XTHRVFA>"
     ["Connor Shorten"]="<@U03FRH53SUT>"
+    ["Daniel Madalitso Phiri"]="<@U060UJ41YBC>"
     ["daveatweaviate"]="<@U05RK4X5AJU>"
     ["Dirk Kulawiak"]="<@U03MWHK4KV3>"
     ["Duda Nogueira"]="<@U05K3K9M82F>"
