@@ -1,5 +1,5 @@
 ---
-title: GraphQL console
+title: Query console
 sidebar_position: 50
 image: og/wcs/user_guides.jpg
 ---
@@ -13,7 +13,7 @@ import WCSManyInferenceApiKeys from './img/wcs-console-many-inference-keys.png';
 
 ## Overview
 
-The WCS GraphQL console is a browser-based GraphQL IDE that allows you to interactively query your Weaviate instance, whether it is a WCS instance or not.
+The WCS GraphQL query console is a browser-based GraphQL IDE that allows you to interactively query your Weaviate instance, whether it is a WCS instance or not.
 
 The console is based on the [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) library, and as such provides many helpful features for using GraphQL, such as:
 
@@ -32,23 +32,23 @@ Note that here, the console handily highlights the query as well as the response
 
 ### Log in
 
-You can find the GraphQL console by navigating to your [WCS Dashboard](https://console.weaviate.cloud), logging in and clicking on the button highlighted below:
+You can find the GraphQL query console by navigating to your [WCS Dashboard](https://console.weaviate.cloud), logging in and clicking on the button highlighted below:
 
 <img src={WCSConsoleButton} width="100%" alt="WCS console button"/>
 
-This will open the GraphQL console, from which you can build a GraphQL query, using context-aware query and variables completion.
+This will open the Query console, where you can build a GraphQL query, using context-aware query and variables completion.
 
 ### Select an instance
 
-The GraphQL console can connect to any Weaviate instance, including external instances, as long as it is connected through the WCS Dashboard.
+The GraphQL query console can connect to any Weaviate instance, including external instances, as long as it is connected through the WCS Dashboard.
 
 In this example, the WCS Dashboard is connected to an external instance as well as the two WCS instances.
 
 <img src={WCSConnectedInstances} width="100%" alt="Connected instances"/>
 
-Here, the GraphQL console can be used to query any of the three instances.
+The GraphQL console can be used to query any of the three instances.
 
-Clicking the `Query` button for any of the associated instances will open a console window for that particular instance.
+Click the `Query` button for a cluster to open a console window connected to that cluster.
 
 Alternatively, the query window includes a drop-down menu at the top of the screen which can be used to choose the desired instance.
 

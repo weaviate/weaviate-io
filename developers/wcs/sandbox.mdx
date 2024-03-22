@@ -14,7 +14,9 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 import ExportData from '/_includes/wcs/export-data.mdx';
 
-Weaviate Cloud Services (WCS) provides two instance types - free, sandbox clusters and paid, managed clusters. This page discusses sandbox clusters.
+import TwoClusterTypes from '/_includes/wcs/two-cluster-types.mdx';
+
+<TwoClusterTypes />
 
 ## Capabilities
 
@@ -129,6 +131,8 @@ import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
 
 <CreateManagedCluster />
 
+The managed cluster has new API keys. Update the API keys in your client code to use the new keys. 
+ 
 ### Recreate your schema
 
 Use the exported (sandbox cluster) schema to recreate the collection schema in the managed cluster. For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
