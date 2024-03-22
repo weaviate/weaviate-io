@@ -550,8 +550,8 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  width: 460px;
-  height: 650px;
+  width: 500px;
+  height: fit-content;
   padding: 0px 20px 20px 20px;
   border-radius: 0.4375rem;
   background: #fff;
@@ -568,13 +568,13 @@ header {
   span {
     color: #130c49;
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     font-weight: 300;
   }
 
   .modalText {
     text-align: left;
-    width: 264px;
+    width: 80%;
   }
 
   .cardContents {
@@ -598,7 +598,7 @@ header {
   }
   .cardHeader {
     background: #00a88b;
-    width: 460px;
+    width: 500px;
     height: 1.7rem;
     text-align: center;
     flex-shrink: 0;
@@ -665,36 +665,61 @@ header {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+    padding: 0px 9px;
 
     span {
       text-align: left;
     }
+
+    .relatedTitle {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    .relatedSubtitle {
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 0.6rem;
+      font-weight: 600;
+    }
+  }
+
+  .relatedBlog {
+    border-radius: 0.71644rem;
+    width: 9rem;
+    display: flex;
+    height: 8.9rem;
+    flex-shrink: 0;
+    border: 0.764px solid rgb(19, 12, 73);
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(22, 27, 45, 0.08) 0px 18.341px 48.908px 0px;
+    flex-direction: column;
   }
 
   .relatedImage {
     background-image: url('/img/site/related-posts-image.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 7.97881rem;
+    width: 9rem;
     height: 5.24613rem;
     flex-shrink: 0;
     border-top-left-radius: 0.71644rem;
     border-top-right-radius: 0.71644rem;
-  }
-  .relatedBlog {
-    border-radius: 0.71644rem;
-    width: 7.97881rem;
-    height: 7.842rem;
-    flex-shrink: 0;
-    border: 0.764px solid #130c49;
-    background: #fff;
-    box-shadow: 0px 18.341px 48.908px 0px rgba(22, 27, 45, 0.08);
   }
 
   .nextContainer {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nextText {
+    text-align: center;
+    margin: auto;
   }
   .nextButton {
     border-radius: 0.36244rem;
