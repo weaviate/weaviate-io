@@ -5,6 +5,8 @@ from weaviate.classes.config import Configure, DataType, Property
 from weaviate.collections.classes.config import PQEncoderType, PQEncoderDistribution
 # END PQCustomConfig
 
+from weaviate.collections.classes.config import PQConfig
+
 client = weaviate.connect_to_local()
 
 # PQBasicConfig  # PQCustomConfig
@@ -13,6 +15,8 @@ client = weaviate.connect_to_local()
 collection_name = "PQExampleCollection"
 
 # END PQBasicConfig  # END PQCustomConfig
+
+client.collections.delete(collection_name)
 
 # PQBasicConfig
 client.collections.create(
@@ -32,7 +36,13 @@ client.collections.create(
 )
 # END PQBasicConfig
 
+# Confirm creation
+c = client.collections.get(collection_name)
+coll_config = c.config.get()
+assert type(coll_config.vector_index_config.quantizer) == PQConfig
 
+
+client.collections.delete(collection_name)
 
 # PQCustomConfig
 client.collections.create(
@@ -57,3 +67,14 @@ client.collections.create(
     # highlight-end
 )
 # END PQCustomConfig
+
+c = client.collections.get(collection_name)
+coll_config = c.config.get()
+assert type(coll_config.vector_index_config.quantizer) == PQConfig
+assert coll_config.vector_index_config.quantizer.segments == 512
+assert coll_config.vector_index_config.quantizer.training_limit == 50000
+
+# START-ANY
+
+client.close()
+# END-ANY
