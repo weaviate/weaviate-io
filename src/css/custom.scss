@@ -284,11 +284,11 @@
   gap: 40px;
   justify-content: flex-start;
 
-  @media screen and (max-width: 1199px) {
-    gap: 30px;
+  @media screen and (max-width: 1223px) {
+    gap: 25px;
   }
 
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 1040px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     flex: 0 0 auto;
     gap: 21px;
     justify-content: flex-start;

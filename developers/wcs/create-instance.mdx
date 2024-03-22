@@ -1,0 +1,44 @@
+---
+title: Create an instance
+sidebar_position: 30
+image: og/wcs/user_guides.jpg
+---
+
+## Overview
+
+This page will show you how to create a Weaviate instance on Weaviate Cloud Services (WCS).
+
+### Preparation
+
+- You will need a WCS account.
+- We offer WCS instances at different service level access (SLA) tiers, including a free "sandbox" tier. Please review their [details and pricing here](/pricing) and select one that suits you best.
+
+import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
+
+<SandBoxExpiry/>
+
+## Instance creation steps
+
+1. Visit the [WCS dashboard](https://console.weaviate.cloud/dashboard) under your WCS account.
+1. Select your preferred SLA tier.
+    1. In order to create a paid-tier (i.e. non-sandbox) instance, you must first add your billing info in WCS. We will contact you separately to arrange billing.
+1. Enter a unique instance name (note: this is **not** the same as your instance URL).
+1. Select (if applicable):
+    1. Whether to enable authentication, and
+    1. The host region.
+1. Lastly, when you are ready - click "Create" to create your cluster.
+
+## Important notes
+
+### Authentication
+
+WCS instances are typically configured with authentication enabled, except for sandboxes, for which authentication is optional.
+
+Please see our [authentication](./authentication.mdx) page for instructions and tips on how to authenticate against a WCS instance.
+
+### Instance version update
+
+As later versions of Weaviate are released, you will have the ability to update your WCS instance to run on a later version.
+
+Please note that due to testing and configuration work required in incorporating a version of Weaviate onto WCS, there may be a small delay between the release of a new Weaviate version and its availability on WCS.
+

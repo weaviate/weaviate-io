@@ -29,7 +29,7 @@ In this article, we explore the variety of distance metrics, the idea behind eac
 
 ## Fundamentals of Vector Search
 
-If you already have a working knowledge of vector search, then you can skip straight to the [Cosine Distance](#cosine-similarity)section.
+If you already have a working knowledge of vector search, then you can skip straight to the [Cosine Distance](#cosine-similarity) section.
 
 ### Vectors in Multi-Dimensional Space
 
@@ -101,7 +101,7 @@ A distance of 0 indicates that the vectors are identical, whereas a distance of 
 
 ### Dot Product
 
-The dot product takes two or more vectors and multiplies them together. It is also known as the scalar product since the output is a single (scalar) value. The dot product shows the direction of two vectors. The dot product will be negative if the vectors are in different directions and positive if the vectors are in the same direction.
+The dot product takes two or more vectors and multiplies them together. It is also known as the scalar product since the output is a single (scalar) value. The dot product shows the alignment of two vectors. The dot product is negative if the vectors are oriented in different directions and positive if the vectors are oriented in the same direction.
 
 <img
   src={require('./img/direction.png').default}
@@ -117,7 +117,7 @@ The dot product formula is:
   style={{ maxWidth: "80%" }}
 />
 
-We will use the same example from above to calculate the dot product of the two vectors.
+Use the dot product to recalculate the distance between the two vectors.
 
 Strawberry → `[4, 0, 1]`
 
@@ -125,7 +125,7 @@ Blueberry → `[3, 0, 1]`
 
 ![Equation 1](img/equation1.png)
 
-The dot product of the two vectors is 13. This indicates that the vectors are similar to one another. To calculate the distance, you need to take the negative dot product. The negative dot product reports the distance between the vectors. It keeps the intuition that a smaller distance value means they are similar.
+The dot product of the two vectors is 13. To calculate the distance, find the negative of the dot product. The negative dot product, -13 in this case, reports the distance between the vectors. The negative dot product maintains the intuition that a shorter distance means the vectors are similar.
 
 ### Squared Euclidean (L2-Squared)
 

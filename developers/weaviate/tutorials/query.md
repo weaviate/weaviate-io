@@ -277,7 +277,7 @@ As you can see, the `Aggregate` function can return handy aggregated, or metadat
 - [Tutorial: Schemas in detail](../starter-guides/schema.md)
 - [Tutorial: Import in detail](./import.md)
 - [Tutorial: Introduction to modules](./modules.md)
-- [Tutorial: Introduction to Weaviate Console](../../wcs/guides/console.mdx)
+- [Tutorial: Introduction to Weaviate Console](/developers/wcs/platform/console.mdx)
 
 ## Notes
 

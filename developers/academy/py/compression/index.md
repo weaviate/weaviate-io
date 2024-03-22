@@ -1,5 +1,5 @@
 ---
-title: "250 Compression"
+title: "250 Vector Compression"
 sidebar_position: 250
 ---
 
