@@ -5,38 +5,30 @@ image: og/wcs/user_guides.jpg
 ---
 
 import WCSConsoleButton from './img/wcs-console-button.png';
-import WCSConsoleExampleQuery from './img/wcs-console-example-query.png';
 import WCSConnectedInstances from './img/wcs-connected-instances.png';
 import WCSQueryDropdown from './img/wcs-query-dropdown.png';
 import WCSInferenceApiKey from './img/wcs-console-inference-key.png';
 import WCSManyInferenceApiKeys from './img/wcs-console-many-inference-keys.png';
 
-## Overview
+The Weaviate Cloud Services (WCS) query console is a browser-based GraphQL IDE. use the console to work interactively with your WCS clusters.
 
-The WCS GraphQL query console is a browser-based GraphQL IDE that allows you to interactively query your Weaviate instance, whether it is a WCS instance or not.
+![WCS query console](./img/wcs-console-example-query.png)
 
-The console is based on the [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) library, and as such provides many helpful features for using GraphQL, such as:
+The query console connects directly to your WCS clusters. The query console can also connect to other Weaviate instances if you have the proper authorization credentials.
 
-* Syntax highlighting
-* Intelligent type ahead of fields, arguments, types, and more
-* Real-time error highlighting and reporting for queries and variables
-* Automatic query and variables completion
+[GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) is built into the query console. GraphiQL provides many features to make GraphQL easier to use:
 
-The image below shows an example `Get` query on a dataset of wine reviews:
+- Syntax highlighting
+- Intelligent type ahead
+- Automatic completion for queries and variables
+- Real-time error highlighting and reporting for queries and variables
 
-<img src={WCSConsoleExampleQuery} width="100%" alt="WCS console example query"/>
 
-Note that here, the console handily highlights the query as well as the response.
+## Open the query console
 
-## Using the console
+To open the query console, connect to your WCS [WCS Dashboard](https://console.weaviate.cloud). In the left-hand menu, click the stacked circle icon.
 
-### Log in
-
-You can find the GraphQL query console by navigating to your [WCS Dashboard](https://console.weaviate.cloud), logging in and clicking on the button highlighted below:
-
-<img src={WCSConsoleButton} width="100%" alt="WCS console button"/>
-
-This will open the Query console, where you can build a GraphQL query, using context-aware query and variables completion.
+![WCS query console location](img/wcs-query-console-location..jpg)
 
 ### Select an instance
 
