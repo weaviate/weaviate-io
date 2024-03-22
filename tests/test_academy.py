@@ -23,6 +23,8 @@ import utils
         "./developers/academy/py/named_vectors/_snippets/102_collection.py",
         "./developers/academy/py/named_vectors/_snippets/103_searches.py",
         "./developers/academy/py/named_vectors/_snippets/104_usecase.py",
+        "./developers/academy/py/compression/_snippets/100_pq.py",
+        "./developers/academy/py/compression/_snippets/200_bq.py",
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
