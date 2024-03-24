@@ -63,7 +63,7 @@ async function importQuestions() {
 
   const data = await getJsonData();
 
-  const result = await myCollection.data.insertMany(myCollection)
+  const result = await myCollection.data.insertMany(data)
   console.log('We just bulk inserted',result);
 
 }
