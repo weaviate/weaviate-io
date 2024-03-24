@@ -201,9 +201,9 @@ await nearTextQuery();
 */
 
 /*
-// NearTextExample
+// NearTextWhereExample
 await nearTextWhereQuery();
-// END NearTextExample
+// END NearTextWhereExample
 */
 
 /*
