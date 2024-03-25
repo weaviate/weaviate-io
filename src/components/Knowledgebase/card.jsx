@@ -25,30 +25,41 @@ export default function Card(props) {
           )}</script>`,
         }}
       />
-      <div className={`${styles.knowledgeCard} ${styles[typeClass] || ''}`}>
-        <div className={styles.cardHeader}>
-          <span className={styles.cardType}>{details.category}</span>
-        </div>
+      <Link onClick={props.onOpenModal}>
+        <div className={`${styles.knowledgeCard} ${styles[typeClass] || ''}`}>
+          <div className={styles.cardHeader}>
+            <span className={styles.cardType}>{details.category}</span>
+          </div>
+          <div className={styles.innerCard}>
+            {details.photo && (
+              <img src={'/img/site/' + details.photo} alt={details.title} />
+            )}
+            <h3>{details.title}</h3>
+            <span className={styles.cardText}>{details.text}</span>
 
-        <h3>{details.title}</h3>
-        {details.photo && (
-          <img src={'/img/site/' + details.photo} alt={details.title} />
-        )}
-        <span className={styles.cardText}>{details.text}</span>
-        <br></br>
-
-        <Link onClick={openModal} className={styles.cardLink}>
+            {/*  <Link onClick={props.onOpenModal} className={styles.cardLink}>
           Read more...
         </Link>
-        {/*  <div className={styles.bottomCard}>
+         <div className={styles.bottomCard}>
           {details.tags.map((tag, index) => (
             <span key={index} className={styles.tag}>
               {tag}
             </span>
           ))}
         </div> */}
-      </div>
-      {isModalOpen && <ModalComponent details={details} onClose={closeModal} />}
+          </div>
+        </div>
+      </Link>
+      {props.isActive && (
+        <ModalComponent
+          details={details}
+          onClose={() => props.setActiveCard(null)}
+          currentIndex={props.currentIndex}
+          totalCards={props.totalCards}
+          onNext={props.onNext}
+          onPrevious={props.onPrevious}
+        />
+      )}
     </>
   );
 }

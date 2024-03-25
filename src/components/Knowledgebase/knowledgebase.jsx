@@ -10,6 +10,7 @@ import Highlights from './highlights';
 export default function KnowledgeBase({ searchQuery }) {
   const [selectedCard, setSelectedCard] = useState('All');
   const [showMore, setShowMore] = useState({});
+  const [activeCard, setActiveCard] = useState(null);
 
   const allCards = knowledge.all;
 
@@ -50,14 +51,40 @@ export default function KnowledgeBase({ searchQuery }) {
       return null;
     }
 
+    const handleNavigation = (category, newIndex) => {
+      const cardsInCategory = filteredCards.filter(
+        (card) => card.category === category
+      );
+      if (newIndex >= 0 && newIndex < cardsInCategory.length) {
+        setActiveCard({ category, index: newIndex });
+      }
+    };
+
+    const totalCards = categoryCards.length;
     return (
       <>
         <h3>{category}</h3>
         <div
           className={`${styles.cardContainer} ${category.toLowerCase()}-card`}
         >
-          {visibleCards.map((card) => (
-            <Card key={card.title} details={card} />
+          {visibleCards.map((card, index) => (
+            <Card
+              key={card.title}
+              details={card}
+              onOpenModal={() =>
+                setActiveCard({ category: card.category, index })
+              }
+              isActive={
+                activeCard &&
+                activeCard.category === card.category &&
+                activeCard.index === index
+              }
+              currentIndex={index + 1}
+              totalCards={categoryCards.length}
+              onNext={() => handleNavigation(card.category, index + 1)}
+              onPrevious={() => handleNavigation(card.category, index - 1)}
+              setActiveCard={setActiveCard}
+            />
           ))}
         </div>
         {categoryCards.length > 3 && (

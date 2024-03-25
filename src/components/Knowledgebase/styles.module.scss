@@ -303,7 +303,7 @@ header {
     text-align: center;
     font-size: 1rem;
     font-weight: 700;
-    margin: 20px 0px;
+    margin: 10px 0px 0px;
   }
 
   span {
@@ -311,6 +311,15 @@ header {
     text-align: center;
     font-size: 0.5rem;
     font-weight: 300;
+  }
+
+  .innerCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    gap: 20px;
+    margin: auto;
   }
 
   .cardType {
@@ -326,7 +335,7 @@ header {
 
   .cardText {
     color: #1b1464;
-    text-align: center;
+    text-align: left;
     font-size: 0.625rem;
     font-weight: 400;
   }
@@ -340,8 +349,9 @@ header {
   }
 
   img {
-    width: 60%;
-    max-width: 140px;
+    width: 100%;
+    max-width: 150px;
+    margin: auto;
   }
 
   .personLinks {
@@ -544,7 +554,7 @@ header {
 }
 
 .modalContents {
-  margin: 7% auto;
+  margin: auto;
   position: relative;
   display: flex;
   flex-direction: column;
