@@ -14,7 +14,7 @@ image: og/docs/modules/generative-cohere.jpg
 * The Generative Cohere (`generative-cohere`) module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-* The default model is `command-xlarge-nightly`, which the Cohere team trains nightly and pushes updates.
+* The default model is `command-r`.
 
 ## Introduction
 
@@ -66,6 +66,8 @@ This module is enabled and pre-configured on Weaviate Cloud Services.
 Your Weaviate instance must be on `1.19.0` or newer.
 
 If your instance is older than `1.19.0` then you need to migrate or upgrade it to a newer version.
+
+To use `command-r`, your Weaviate instance must be on `1.24.6` or newer.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -284,7 +286,8 @@ import CohereGroupedResult from '/_includes/code/generative.cohere.groupedresult
 
 You can use any of
 
-* [`command-xlarge-nightly`](https://docs.cohere.com/docs/command-beta)(default)
+* [`command-r`](https://txt.cohere.com/command-r/)(default)
+* [`command-xlarge-nightly`](https://docs.cohere.com/docs/command-beta)
 * `command-xlarge-beta`
 * `command-xlarge`
 
