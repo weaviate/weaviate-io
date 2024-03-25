@@ -520,13 +520,31 @@ header {
 
 .knowledgeCard.introduction {
   .cardHeader {
-    background: #059053;
+    background: #61bb73;
   }
 }
 
 .knowledgeCard.llm {
   .cardHeader {
     background: #ab5988;
+  }
+}
+
+.knowledgeCard.rag {
+  .cardHeader {
+    background: #0a6b8c;
+  }
+}
+
+.knowledgeCard.hnsw {
+  .cardHeader {
+    background: #a38edb;
+  }
+}
+
+.knowledgeCard.search {
+  .cardHeader {
+    background: #059053;
   }
 }
 
@@ -758,13 +776,31 @@ header {
 
 .modalContents.introduction {
   .cardHeader {
-    background: #059053;
+    background: #61bb73;
   }
 }
 
 .modalContents.llm {
   .cardHeader {
     background: #ab5988;
+  }
+}
+
+.modalContents.rag {
+  .cardHeader {
+    background: #0a6b8c;
+  }
+}
+
+.modalContents.hnsw {
+  .cardHeader {
+    background: #a38edb;
+  }
+}
+
+.modalContents.search {
+  .cardHeader {
+    background: #059053;
   }
 }
 

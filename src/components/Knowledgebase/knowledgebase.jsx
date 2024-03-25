@@ -124,17 +124,6 @@ export default function KnowledgeBase({ searchQuery }) {
               <div>
                 <input
                   type="radio"
-                  id="filterTutorial"
-                  name="cardFilter"
-                  value="LLM"
-                  checked={selectedCard === 'LLM'}
-                  onChange={() => handleCardFilter('LLM')}
-                />
-                <label htmlFor="filterTutorial">Intro to LLMs</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
                   id="filterIntroduction"
                   name="cardFilter"
                   value="Introduction"
@@ -159,13 +148,24 @@ export default function KnowledgeBase({ searchQuery }) {
               <div>
                 <input
                   type="radio"
-                  id="filterDatabases"
+                  id="filterHNSW"
                   name="cardFilter"
-                  value="Databases"
-                  checked={selectedCard === 'Databases'}
-                  onChange={() => handleCardFilter('Databases')}
+                  value="HNSW"
+                  checked={selectedCard === 'HNSW'}
+                  onChange={() => handleCardFilter('HNSW')}
                 />
-                <label htmlFor="filterDatabases">Databases</label>
+                <label htmlFor="filterHNSW">HNSW</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterRAG"
+                  name="cardFilter"
+                  value="RAG"
+                  checked={selectedCard === 'RAG'}
+                  onChange={() => handleCardFilter('RAG')}
+                />
+                <label htmlFor="filterRAG">Multimodal RAG</label>
               </div>
             </div>
           </div>
@@ -173,8 +173,8 @@ export default function KnowledgeBase({ searchQuery }) {
           <div className={styles.cardResults}>
             {renderCards('Intro to Vector Databases')}
             {renderCards('Hybrid Search')}
-            {renderCards('Databases')}
-            {renderCards('Intro to LLMs')}
+            {renderCards('Hierarchical Navigable Small World')}
+            {renderCards('Multimodal RAG')}
           </div>
         </div>
       </div>
