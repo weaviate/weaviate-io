@@ -41,7 +41,7 @@ As you can see, there are many different similarity measures - cosine, dot produ
 
 When a vector database needs to retrieve semantically similar objects it has to calculate one of these distance metrics to assess how close a query point is to candidate points in the database. In fact, this vector distance calculation needs to be conducted when you build the index as well as anytime you perform any CRUD operation.
 
-The runtime complexity for these vector distance operations scales linearly with the dimensionality of the vector. Typically vector dimensionality tends to be anywhere from 256 to 2096 in practice - this number is trending upwards over time - which means that distance calculations are also taking longer to perform.
+The runtime complexity for these vector distance operations scales linearly with the dimensionality of the vector. Typically vector dimensionality tends to be anywhere from 256 to 4096 in practice - this number is trending upwards over time - which means that distance calculations are also taking longer to perform.
 
 This being the case, we need to ensure that this operation is done as fast and efficiently as possible, whether through leveraging hardware or software efficiencies.
 
