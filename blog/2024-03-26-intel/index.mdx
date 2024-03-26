@@ -13,7 +13,7 @@ description: 'Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler O
 **Overview of Key Sections:**
 - [**Vector Distance Calculations**](/blog/intel#vector-distance-calculations) Different vector distance metrics popularly used in Weaviate.
 - [**Implementations of Distance Calculations in Weaviate**](/blog/intel#vector-distance-implementations) Improvements under the hood for implementation of Dot product and L2 distance metrics.
-- [**Intel’s 5th Gen Intel Xeon Processor, Emerald Rapids**](/blog/intel#enter-intel-emerald-rapids) 
+- [**Intel’s 5th Gen Intel Xeon Processor, Emerald Rapids**](/blog/intel#enter-intel-emerald-rapids)  More on Intel's new 5th Gen Xeon processor.
 - [**Benchmarking Performance**](/blog/intel#lets-talk-numbers) Performance numbers on microbenchmarks along with 
 
 
@@ -37,8 +37,9 @@ To calculate the distance between two vectors, you can use several similarity me
 <img
   src={require('./img/vector_distance.png').default}
   alt="Vector Distance Calculations"
-  style={{ maxWidth: "100%", margin: "0 auto", display: "block" }}
+  style={{ maxWidth: "100%", margin: "1 auto", display: "block" }}
 />
+
 
 
 As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/2023-08-15-distance-metrics-in-vector-search/)
