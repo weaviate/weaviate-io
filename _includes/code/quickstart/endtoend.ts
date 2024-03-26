@@ -17,7 +17,7 @@ const client: WeaviateClient = weaviate.client({
 // END DockerInstantiationExample
 */
 
-// EndToEndExample  // InstantiationExample  // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
+// EndToEndExample  // InstantiationExample // NearTextWhereExample   // NearTextExample  // GenerativeSearchExample  // CustomVectorExample
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
@@ -30,7 +30,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
  } 
 )
 
-// END EndToEndExample  // END InstantiationExample  // END NearTextExample  // END GenerativeSearchExample  // END CustomVectorExample
+// END EndToEndExample  // END InstantiationExample // END NearTextWhereExample // END NearTextExample  // END GenerativeSearchExample  // END CustomVectorExample
 
 // ================================
 // ===== END-TO-END EXAMPLE =====
@@ -192,9 +192,9 @@ await nearTextQuery();
 */
 
 /*
-// NearTextExample
+// NearTextWhereExample
 await nearTextWhereQuery();
-// END NearTextExample
+// END NearTextWhereExample
 */
 
 /*
