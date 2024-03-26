@@ -150,7 +150,7 @@ To benchmark the improvements we opted to conduct a performance evaluation of We
     alt="Micro benchmarks"
     style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
   />
-  <figcaption>**Figure 1:** Improvements in vector distance operations performed using 1536 dimensional vectors.</figcaption>
+  <figcaption>Figure 1: Improvements in vector distance operations performed using 1536 dimensional vectors.</figcaption>
 </figure>
 
 
@@ -164,7 +164,7 @@ Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPed
     alt="DBPedia benchmarks"
     style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
   />
-  <figcaption>**Figure 2:** Intel Emerald Rapids 5th Gen Xeon ANN performance on DBPedia ada-002 embeddings.</figcaption>
+  <figcaption>Figure 2: Intel Emerald Rapids 5th Gen Xeon ANN performance on DBPedia ada-002 embeddings.</figcaption>
 </figure>
 
 <figure>
@@ -173,7 +173,7 @@ Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPed
   alt="Sphere benchmarks"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
   />
-  <figcaption>**Figure 3:** Intel Emerald Rapids 5th Gen Xeon ANN performance on Sphere embeddings.</figcaption>
+  <figcaption>Figure 3: Intel Emerald Rapids 5th Gen Xeon ANN performance on Sphere embeddings.</figcaption>
 </figure>
 
 Here on the sphere-1 million dataset when searched using dot products we see a remarkable 42% improvement in Weaviate queries per second(QPS) @ 90% Recall, while on the dbpedia-500k dataset when searched using L2 distance we see a 40% improvement in QPS @ 90% Recall!
