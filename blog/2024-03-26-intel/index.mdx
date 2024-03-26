@@ -4,7 +4,7 @@ slug: intel
 authors: [zain, asdine, john]
 date: 2024-03-26
 image: ./img/hero.png
-tags: ['engineering']
+tags: ['engineering', 'research']
 description: 'Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler Optimizations'
 ---
 
@@ -34,12 +34,7 @@ Vector databases use vector representations generated from machine learning mode
 To calculate the distance between two vectors, you can use several similarity measures, detailed below:
 
 
-<img
-  src={require('./img/vector_distance.png').default}
-  alt="Vector Distance Calculations"
-  style={{ maxWidth: "100%", margin: "1 auto", display: "block" }}
-/>
-
+![Vector Distance Calculations](./img/vector_distance.png)
 
 
 As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/2023-08-15-distance-metrics-in-vector-search/)
@@ -78,11 +73,8 @@ SIMD, which stands for Single Instruction, Multiple Data, is a parallel processi
 
 In the context of vector distance calculations, SIMD instructions can be used to calculate distances between vectors more efficiently. By grouping the dimensions of the vectors into smaller chunks (e.g., 128-bit or 256-bit registers), SIMD instructions can perform the same operation on multiple dimensions in parallel, chunk by chunk. This parallel processing capability can lead to significant performance improvements when dealing with high-dimensional data.
 
-<img
-  src={require('./img/SIMD.png').default}
-  alt="SIMD"
-  style={{ maxWidth: "100%", margin: "0 auto", display: "block" }}
-/>
+
+![SIMD](./img/SIMD.png)
 
 
 Intel CPUs feature support for advanced SIMD instruction sets, with notable examples being AVX-256 and AVX-512. AVX-256 enables the simultaneous processing of 8 32-bit floating-point numbers (8 dimensions), while AVX-512 doubles this capability to 16 dimensions.
@@ -151,13 +143,16 @@ Thanks to the Intel Disruptor Initiative, we recently had the opportunity to pre
 
 To benchmark the improvements we opted to conduct a performance evaluation of Weaviate using Intel’s Emerald Rapids 5th Gen Xeon Processor, simulating real-world usage scenarios. Initially, we devised a Go micro benchmark to compare the performance of the two instruction sets across L2 and dot product distance metrics. The results, depicted in the graphs below, provide valuable insights into the relative efficiencies of AVX-256 and AVX-512 instructions.
 
-<img
-  src={require('./img/micro_bench.png').default}
-  alt="Micro benchmarks"
-  style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
-/>
 
-**Figure1**: Improvements in vector distance operations performed using 1536 dimensional vectors.
+<figure>
+  <img
+    src={require('./img/micro_bench.png').default}
+    alt="Micro benchmarks"
+    style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
+  />
+  <figcaption>Improvements in vector distance operations performed using 1536 dimensional vectors</figcaption>
+</figure>
+
 
 As you can see above we get some pretty remarkable speedups for single distance calculations. For dot product operations at 1536 dimensions, AVX-512 is 28.6 times faster than pure Go and 6 times faster than AVX-256. Whereas for L2 distance measurements at 1536 dimensions, AVX-512 is 19 times faster than pure Go and 5.6 times faster than AVX-256.
 
