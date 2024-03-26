@@ -40,7 +40,8 @@ To calculate the distance between two vectors, you can use several similarity me
   style={{ maxWidth: "100%", margin: "0 auto", display: "block" }}
 />
 
-As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/2023-08-15-distance-metrics-in-vector-search/).
+
+As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/2023-08-15-distance-metrics-in-vector-search/)
 
 When a vector database needs to retrieve semantically similar objects it has to calculate one of these distance metrics to assess how close a query point is to candidate points in the database. In fact, this vector distance calculation needs to be conducted when you build the index as well as anytime you perform any CRUD operation.
 
@@ -81,6 +82,7 @@ In the context of vector distance calculations, SIMD instructions can be used to
   alt="SIMD"
   style={{ maxWidth: "100%", margin: "0 auto", display: "block" }}
 />
+
 
 Intel CPUs feature support for advanced SIMD instruction sets, with notable examples being AVX-256 and AVX-512. AVX-256 enables the simultaneous processing of 8 32-bit floating-point numbers (8 dimensions), while AVX-512 doubles this capability to 16 dimensions.
 
