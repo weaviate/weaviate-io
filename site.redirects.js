@@ -194,8 +194,8 @@ const siteRedirects = {
 
         // Remove BPR page
         {
-            to: '/developers/weaviate/concepts/vector-index.md',
-            from: '/developers/weaviate/concepts/binary-passage-retrieval.md',
+            to: '/developers/weaviate/concepts/vector-index',
+            from: '/developers/weaviate/concepts/binary-passage-retrieval',
         },
 
         // Blog redirects
