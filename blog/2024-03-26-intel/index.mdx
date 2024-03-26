@@ -11,10 +11,10 @@ description: 'Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler O
 ![HERO image](./img/hero.png)
 
 **Overview of Key Sections:**
-- [**Vector Distance Calculations**](/blog/intel#vector-distance-calculations) Different vector distance metrics popularly used in Weaviate.
-- [**Implementations of Distance Calculations in Weaviate**](/blog/intel#vector-distance-implementations) Improvements under the hood for implementation of Dot product and L2 distance metrics.
-- [**Intel’s 5th Gen Intel Xeon Processor, Emerald Rapids**](/blog/intel#enter-intel-emerald-rapids)  More on Intel's new 5th Gen Xeon processor.
-- [**Benchmarking Performance**](/blog/intel#lets-talk-numbers) Performance numbers on microbenchmarks along with 
+- [**Vector Distance Calculations**](#vector-distance-calculations) Different vector distance metrics popularly used in Weaviate.
+- [**Implementations of Distance Calculations in Weaviate**](#vector-distance-implementations) Improvements under the hood for implementation of Dot product and L2 distance metrics.
+- [**Intel’s 5th Gen Intel Xeon Processor, Emerald Rapids**](#enter-intel-emerald-rapids)  More on Intel's new 5th Gen Xeon processor.
+- [**Benchmarking Performance**](#lets-talk-numbers) Performance numbers on microbenchmarks along with simulated real-world usage scenarios. 
 
 
 What’s the most important calculation a vector database needs to do over and over again? What simple operation does it spend the majority of its time performing?
@@ -23,7 +23,7 @@ If you guessed **vector distance calculations** … BINGO! 🎉
 
 While vector databases use many techniques and algorithms to improve performance (including locality graphs, quantization, hash based approaches), at the end of the day, efficient distance calculations between high-dimensional vectors is a requirement for a good vector database. In fact, when profiling Weaviate indexed using HNSW, we find that 40%-60% of the CPU time is spent doing vector distance calculations.
 
-So when someone tells us that they can make this quintessential process *much faster* they have our full undivided attention! If you want to learn how to leverage algorithmic and hardware optimizations to make vector search 40% faster keep reading!
+So when someone tells us that they can make this quintessential process *much faster* they have our full attention! If you want to learn how to leverage algorithmic and hardware optimizations to make vector search 40% faster keep reading!
 
 In this post we’ll do a technical deep dive into different implementations for vector distance calculations and optimizations enabled by Intel’s new 5th Gen Xeon Processor - Emerald Rapids, parallelization techniques using SIMD with the Intel AVX-256 and Intel AVX-512 instruction sets, loop unrolling and compiler optimizations by transpiling C to Go assembly. We explain how we attained a **~40% QPS speed up at 90% Recall** in Weaviate running on Intel’s new Xeon Processor, Emerald Rapids.
 
@@ -156,7 +156,7 @@ To benchmark the improvements we opted to conduct a performance evaluation of We
 
 As you can see above we get some pretty remarkable speedups for single distance calculations. For dot product operations at 1536 dimensions, AVX-512 is 28.6 times faster than pure Go and 6 times faster than AVX-256. Whereas for L2 distance measurements at 1536 dimensions, AVX-512 is 19 times faster than pure Go and 5.6 times faster than AVX-256.
 
-Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPedia embedded using OpenAI `text-embedding-ada-002` model (1536 dimensions), and Meta’s 768 dimension [Sphere dataset](/blog/sphere-dataset-in-weaviate), aiming to gauge the practical implications of these instructions on real-world tasks. As seen in the graphs the benchmark results showed notable performance improvements, further validating the advantages of AVX-512 over AVX-256 in Emerald Rapids.
+Subsequently, we conducted ANN benchmarks utilizing two different [datasets DBPedia](http://dev.dbpedia.org/Download_DBpedia) embedded using OpenAI `text-embedding-ada-002` model (1536 dimensions), and Meta’s 768 dimension [Sphere dataset](/blog/sphere-dataset-in-weaviate), aiming to gauge the practical implications of these instructions on real-world tasks. As seen in the graphs the benchmark results showed notable performance improvements, further validating the advantages of AVX-512 over AVX-256 in Emerald Rapids.
 
 <figure>
   <img
@@ -178,7 +178,7 @@ Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPed
 
 Here on the sphere-1 million dataset when searched using dot products we see a remarkable 42% improvement in Weaviate queries per second(QPS) @ 90% Recall, while on the dbpedia-500k dataset when searched using L2 distance we see a 40% improvement in QPS @ 90% Recall!
 
-Furthermore, our assessment revealed a 16% enhanced AVX-512 performance in Intel’s 4th Gen Xeon Processor, Sapphire Rapids compared to AVX-256. As a result, we made the strategic decision to enable the latest Intel Xeon Gen Processors, both Emerald Rapids and Sapphire Rapids, to leverage AVX-512 instructions starting from Weaviate version 1.24.2. This proactive measure ensures that users can harness the full potential of their hardware, now and in the future.
+Furthermore, our assessment revealed a 16% enhanced AVX-512 performance in Intel’s 4th Gen Xeon Processor, Sapphire Rapids compared to AVX-256. As a result, we made the strategic decision to enable the latest Intel Xeon Gen Processors, both Emerald Rapids and Sapphire Rapids, to leverage AVX-512 instructions starting from Weaviate version `1.24.2`. This proactive measure ensures that users can harness the full potential of their hardware, now and in the future.
 
 import WhatsNext from '/_includes/what-next.mdx';
 
