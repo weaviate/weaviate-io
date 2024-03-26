@@ -1,7 +1,7 @@
 // Howto: Search -> Reranking - TypeScript examples
 
 import assert from 'assert';
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
   'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
