@@ -55,15 +55,34 @@ export default function KnowledgeBase({ searchQuery }) {
       const cardsInCategory = filteredCards.filter(
         (card) => card.category === category
       );
+      if (newIndex >= totalCards) {
+        newIndex = 0;
+      }
+      if (newIndex < 0) {
+        newIndex = totalCards - 1;
+      }
       if (newIndex >= 0 && newIndex < cardsInCategory.length) {
+        setShowMore((prevShowMore) => ({ ...prevShowMore, [category]: true }));
         setActiveCard({ category, index: newIndex });
       }
+    };
+
+    const categoryDescriptions = {
+      'Intro to Vector Databases':
+        'Description for Intro to Vector Databases...',
+      'Hybrid Search': 'Description for Hybrid Search...',
+      'Hierarchical Navigable Small World': 'Description for HNSW...',
+      'Multimodal RAG': 'Description for Multimodal RAG...',
+      // Add other categories as needed
     };
 
     const totalCards = categoryCards.length;
     return (
       <>
         <h3>{category}</h3>
+        <span className={styles.categoryText}>
+          {categoryDescriptions[category]}
+        </span>
         <div
           className={`${styles.cardContainer} ${category.toLowerCase()}-card`}
         >
@@ -71,6 +90,7 @@ export default function KnowledgeBase({ searchQuery }) {
             <Card
               key={card.title}
               details={card}
+              setActiveCard={setActiveCard}
               onOpenModal={() =>
                 setActiveCard({ category: card.category, index })
               }
@@ -80,10 +100,9 @@ export default function KnowledgeBase({ searchQuery }) {
                 activeCard.index === index
               }
               currentIndex={index + 1}
-              totalCards={categoryCards.length}
+              totalCards={totalCards}
               onNext={() => handleNavigation(card.category, index + 1)}
               onPrevious={() => handleNavigation(card.category, index - 1)}
-              setActiveCard={setActiveCard}
             />
           ))}
         </div>

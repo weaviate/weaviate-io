@@ -4,11 +4,15 @@ import Link from '@docusaurus/Link';
 import ModalComponent from './modalpopup';
 
 export default function Card(props) {
-  const { details } = props;
+  const { details, setActiveCard } = props;
+
   const typeClass = details.type.toLowerCase();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setActiveCard(null);
+  };
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',
@@ -25,7 +29,7 @@ export default function Card(props) {
           )}</script>`,
         }}
       />
-      <Link onClick={props.onOpenModal}>
+      <Link className={styles.linkCard} onClick={props.onOpenModal}>
         <div className={`${styles.knowledgeCard} ${styles[typeClass] || ''}`}>
           <div className={styles.cardHeader}>
             <span className={styles.cardType}>{details.category}</span>
@@ -53,7 +57,7 @@ export default function Card(props) {
       {props.isActive && (
         <ModalComponent
           details={details}
-          onClose={() => props.setActiveCard(null)}
+          onClose={closeModal}
           currentIndex={props.currentIndex}
           totalCards={props.totalCards}
           onNext={props.onNext}

@@ -273,7 +273,6 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
   justify-content: flex-start;
   align-items: flex-start;
   width: 110%;
@@ -282,6 +281,16 @@ header {
     justify-content: center;
     width: 100%;
   }
+}
+
+.categoryText {
+  color: #130c49;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.linkCard {
+  cursor: pointer;
 }
 
 .knowledgeCard {
@@ -300,7 +309,7 @@ header {
 
   h3 {
     color: #1b1464;
-    text-align: center;
+    text-align: left;
     font-size: 1rem;
     font-weight: 700;
     margin: 10px 0px 0px;
@@ -317,7 +326,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 80%;
+    width: 90%;
     gap: 20px;
     margin: auto;
   }
@@ -336,8 +345,9 @@ header {
   .cardText {
     color: #1b1464;
     text-align: left;
-    font-size: 0.625rem;
+    font-size: 0.8rem;
     font-weight: 400;
+    height: 100px;
   }
 
   .cardLink {
@@ -351,6 +361,7 @@ header {
   img {
     width: 100%;
     max-width: 150px;
+    height: 100px;
     margin: auto;
   }
 
@@ -488,6 +499,7 @@ header {
 
   input {
     margin: auto;
+    color: #2a97e1;
     padding-block: 1px;
     padding-inline: 10px;
     width: 35.75rem;
@@ -602,7 +614,7 @@ header {
 
   .modalText {
     text-align: left;
-    width: 80%;
+    width: 90%;
   }
 
   .cardContents {
@@ -650,8 +662,9 @@ header {
   }
 
   img {
-    width: 60%;
-    max-width: 140px;
+    width: 100%;
+    height: 100px;
+    max-width: 170px;
     margin-right: auto;
   }
 
