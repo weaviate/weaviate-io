@@ -61,7 +61,7 @@ async function importQuestions() {
   // Get the questions directly from the URL
   const myCollection = client.collections.get('Question');
   const data = await getJsonData();
-  const result = await myCollection.data.insertMany(myCollection)
+  const result = await myCollection.data.insertMany(data)
   console.log('We just bulk inserted',result);
 }
 

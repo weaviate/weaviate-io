@@ -5,15 +5,17 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'anon-endpoint.weaviate.network',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 const className = 'EphemeralObject';
 let result;

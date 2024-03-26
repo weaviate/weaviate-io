@@ -1,13 +1,17 @@
 // How-to: Manage data -> Read all objects - TypeScript examples
 // run with: node --loader=ts-node/esm read-all-objects.ts
 import assert from 'assert';
-import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth enabled. Replace w/ your Weaviate instance API key.
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 // ============================
 // ===== Read all objects =====
