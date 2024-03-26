@@ -192,6 +192,12 @@ const siteRedirects = {
             from: '/developers/weaviate/tutorials/schema',
         },
 
+        // Remove BPR page
+        {
+            to: '/developers/weaviate/concepts/vector-index.md#vector-compression',
+            from: '/developers/weaviate/concepts/binary-passage-retrieval.md'
+        },
+
         // Blog redirects
         {
             to: '/blog/understand-your-unstructured-data',
