@@ -81,7 +81,7 @@ Intel CPUs feature support for advanced SIMD instruction sets, with notable exam
 
 Weaviate uses  Go assembly to generate SIMD instructions. In doing this we give up code readability for performance and so we reserve this technique for distance functions alone where every ounce of performance is needed.
 
-Rather than writing Go assembly directly, we write the code in C and then use the [Go Goat library](https://github.com/gorse-io/goat) which uses Clang/LLVM to generate the final Go assembly. This compiler optimization further improves the performance of the code.
+Rather than writing Go assembly directly, we write the code in C and then use the [Go goat library](https://github.com/gorse-io/goat) which uses Clang/LLVM to generate the final Go assembly. This compiler optimization further improves performance.
 
 Below is an example implementation for dot product operation using SIMD AVX-512 intrinsics carried out for vector dimensions greater than 128:
 
