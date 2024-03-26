@@ -11,17 +11,17 @@ description: 'Boosting Weaviate using SIMD-AVX512, Loop Unrolling and Compiler O
 ![HERO image](./img/hero.png)
 
 **Overview of Key Sections:**
-- [**Vector Distance Calculations**](/blog/2024-03-26-intel#vector-distance-calculations) Different vector distance metrics popularly used in Weaviate.
-- [**Implementations of Distance Calculations in Weaviate**](/blog/2024-03-26-intel#vector-distance-implementations) Improvements under the hood for implementation of Dot product and L2 distance metrics.
-- [**Intel’s 5th Gen Intel Xeon Processor, Emerald Rapids**](/blog/2024-03-26-intel#enter-intel-emerald-rapids) 
-- [**Benchmarking Performance**](/blog/2024-03-26-intel#let’s-talk-numbers!) Perfromance numbers on microbenchmarks along with 
+- [**Vector Distance Calculations**](/blog/intel#vector-distance-calculations) Different vector distance metrics popularly used in Weaviate.
+- [**Implementations of Distance Calculations in Weaviate**](/blog/intel#vector-distance-implementations) Improvements under the hood for implementation of Dot product and L2 distance metrics.
+- [**Intel’s 5th Gen Intel Xeon Processor, Emerald Rapids**](/blog/intel#enter-intel-emerald-rapids) 
+- [**Benchmarking Performance**](/blog/intel#lets-talk-numbers) Performance numbers on microbenchmarks along with 
 
 
 What’s the most important calculation a vector database needs to do over and over again? What simple operation does it spend the majority of its time performing?
 
 If you guessed **vector distance calculations** … BINGO! 🎉
 
-While vector databases use many techniques and algorithms to improve performance (including locality graphs, quantization, hash based approaches), at the end of the day, efficient distance calculations between high-dimensional vectors is a requirement for a good vector database. In fact when profiling Weaviate indexed using HNSW, we find that 40%-60% of the CPU time is spent doing vector distance calculations.
+While vector databases use many techniques and algorithms to improve performance (including locality graphs, quantization, hash based approaches), at the end of the day, efficient distance calculations between high-dimensional vectors is a requirement for a good vector database. In fact, when profiling Weaviate indexed using HNSW, we find that 40%-60% of the CPU time is spent doing vector distance calculations.
 
 So when someone tells us that they can make this quintessential process *much faster* they have our full undivided attention! If you want to learn how to leverage algorithmic and hardware optimizations to make vector search 40% faster keep reading!
 
@@ -37,7 +37,7 @@ To calculate the distance between two vectors, you can use several similarity me
 <img
   src={require('./img/vector_distance.png').default}
   alt="Vector Distance Calculations"
-  style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
+  style={{ maxWidth: "100%", margin: "0 auto", display: "block" }}
 />
 
 As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/2023-08-15-distance-metrics-in-vector-search/).
@@ -79,7 +79,7 @@ In the context of vector distance calculations, SIMD instructions can be used to
 <img
   src={require('./img/SIMD.png').default}
   alt="SIMD"
-  style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
+  style={{ maxWidth: "100%", margin: "0 auto", display: "block" }}
 />
 
 Intel CPUs feature support for advanced SIMD instruction sets, with notable examples being AVX-256 and AVX-512. AVX-256 enables the simultaneous processing of 8 32-bit floating-point numbers (8 dimensions), while AVX-512 doubles this capability to 16 dimensions.
@@ -154,7 +154,7 @@ To benchmark the improvements we opted to conduct a performance evaluation of We
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-* **Figure1**: Improvements in vector distance operations performed using 1536 dimensional vectors*
+**Figure1**: Improvements in vector distance operations performed using 1536 dimensional vectors.
 
 As you can see above we get some pretty remarkable speedups for single distance calculations. For dot product operations at 1536 dimensions, AVX-512 is 28.6 times faster than pure Go and 6 times faster than AVX-256. Whereas for L2 distance measurements at 1536 dimensions, AVX-512 is 19 times faster than pure Go and 5.6 times faster than AVX-256.
 
@@ -166,7 +166,7 @@ Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPed
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-* **Figure 2:** Intel Emerald Rapids 5th Gen Xeon ANN performance on DBPedia ada-002 embeddings *
+**Figure 2:** Intel Emerald Rapids 5th Gen Xeon ANN performance on DBPedia ada-002 embeddings.
 
 <img
   src={require('./img/sphere_bench.png').default}
@@ -174,7 +174,7 @@ Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPed
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-* **Figure 3:** Intel Emerald Rapids 5th Gen Xeon ANN performance on Sphere embeddings *
+**Figure 3:** Intel Emerald Rapids 5th Gen Xeon ANN performance on Sphere embeddings.
 
 Here on the sphere-1 million dataset when searched using dot products we see a remarkable 42% improvement in Weaviate queries per second(QPS) @ 90% Recall, while on the dbpedia-500k dataset when searched using L2 distance we see a 40% improvement in QPS @ 90% Recall!
 
