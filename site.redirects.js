@@ -194,7 +194,7 @@ const siteRedirects = {
 
         // Remove BPR page
         {
-            to: '/developers/weaviate/concepts/vector-index#vector-compression',
+            to: '/developers/weaviate/concepts/vector-index',
             from: '/developers/weaviate/concepts/binary-passage-retrieval',
         },
 
