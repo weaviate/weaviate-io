@@ -301,8 +301,12 @@
 
 .navbar__items.navbar__items--right {
   flex: 0 0 auto;
-  gap: 13px;
+  gap: 0px;
   justify-content: flex-start;
+
+  @media screen and (min-width: 1253px) {
+    gap: 13px;
+  }
 }
 
 .custom-page .navbar__item {
