@@ -25,7 +25,7 @@ While vector databases use many techniques and algorithms to improve performance
 
 So when someone tells us that they can make this quintessential process *much faster* they have our full undivided attention! If you want to learn how to leverage algorithmic and hardware optimizations to make vector search 40% faster keep reading!
 
-In this post we’ll do a technical deep dive into different implementations for vector distance calculations and optimizations enabled by Intel’s new 5th Gen Xeon Processor, Emerald Rapids., parallelization techniques using SIMD with the Intel AVX-256 and Intel AVX-512 instruction sets, loop unrolling and compiler optimizations by transpiling C to Go assembly. We explain how we attained a **~40% QPS speed up at 90% Recall** in Weaviate running on Intel’s new Xeon Processor, Emerald Rapids.
+In this post we’ll do a technical deep dive into different implementations for vector distance calculations and optimizations enabled by Intel’s new 5th Gen Xeon Processor - Emerald Rapids, parallelization techniques using SIMD with the Intel AVX-256 and Intel AVX-512 instruction sets, loop unrolling and compiler optimizations by transpiling C to Go assembly. We explain how we attained a **~40% QPS speed up at 90% Recall** in Weaviate running on Intel’s new Xeon Processor, Emerald Rapids.
 
 ## Vector Distance Calculations
 
@@ -37,7 +37,7 @@ To calculate the distance between two vectors, you can use several similarity me
 ![Vector Distance Calculations](./img/vector_distance.png)
 
 
-As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/2023-08-15-distance-metrics-in-vector-search/)
+As you can see, there are many different similarity measures - cosine, dot product or euclidean (also know as L2) are the most commonly used in practice. To learn more about the different distance metrics, you can continue reading our blog post on [What are Distance Metrics in Vector Search?](/blog/distance-metrics-in-vector-search/)
 
 When a vector database needs to retrieve semantically similar objects it has to calculate one of these distance metrics to assess how close a query point is to candidate points in the database. In fact, this vector distance calculation needs to be conducted when you build the index as well as anytime you perform any CRUD operation.
 
