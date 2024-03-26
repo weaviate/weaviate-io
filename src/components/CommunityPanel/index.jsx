@@ -46,7 +46,9 @@ export default function CommunityPanel() {
             </div>
           </div>
           <div className={styles.leftSide}>
-            <h2>Join the global community</h2>
+            <h2 className={styles.communityHeader}>
+              Join the global community
+            </h2>
             <span className={styles.rightText}>
               Connect with the Weaviate Team and hundreds of developers and data
               engineers! Our community is here to help you with your projects
