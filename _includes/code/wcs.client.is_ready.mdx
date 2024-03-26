@@ -26,7 +26,22 @@ print(client.is_ready())
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
+
+```js
+import weaviate, { WeaviateClient } from 'weaviate-client';
+
+const client: WeaviateClient = await weaviate.connectToWCS(
+  'https://some-endpoint.weaviate.network', {                    // Replace with your endpoint
+  authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'), // Replace w/ your Weaviate instance API key
+});
+
+const response = await client.isReady();
+console.log(response);
+```
+
+</TabItem>
+<TabItem value="js2" label="JS/TS">
 
 ```js
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
