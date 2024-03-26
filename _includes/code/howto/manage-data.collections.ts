@@ -33,9 +33,8 @@ try {
 
 // START BasicCreateCollection
 const newCollection = await client.collections.create({
-      name: 'Article'
-  })
-
+  name: 'Article'
+})
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END BasicCreateCollection
@@ -82,7 +81,6 @@ console.log(JSON.stringify(newCollection, null, 2));
 
 // START ReadOneCollection
 const collectionDefinition = await client.collections.get('Article')
-
 console.log(await collectionDefinition.config.get())  
 // END ReadOneCollection
 
@@ -117,8 +115,6 @@ const newCollection = await client.collections.create({
  })],
   // highlight-end
 })
-
-
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END BasicNamedVectors
@@ -261,7 +257,6 @@ const newCollection = await client.collections.create({
     },],
   vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
 })
-
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END PropModuleSettings
@@ -321,7 +316,6 @@ const newCollection = await client.collections.create({
 })
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END SetGenerative
 
 // Test

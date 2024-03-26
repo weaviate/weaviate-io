@@ -60,25 +60,21 @@ async function getJsonData() {
 async function importQuestions() {
   // Get the questions directly from the URL
   const myCollection = client.collections.get('Question');
-
   const data = await getJsonData();
-
   const result = await myCollection.data.insertMany(myCollection)
   console.log('We just bulk inserted',result);
-
 }
 
 // END EndToEndExample  // END Import data function
 
 // NearTextExample
-async function nearTextQuery() {
-  
-  const myCollection = await client.collections.get('Question');
+async function nearTextQuery() {  
+  const myCollection = client.collections.get('Question');
 
   const result = await myCollection.query.nearText(['biology'],{
-      returnProperties: ['question', 'answer', 'category'],
-      limit:2
-    })
+    returnProperties: ['question', 'answer', 'category'],
+    limit:2
+  });
 
   console.log(JSON.stringify(result.objects, null, 2));
   return result;
@@ -87,15 +83,14 @@ async function nearTextQuery() {
 // END NearTextExample
 
 // NearTextWhereExample
-async function nearTextWhereQuery() {
-  
-    const myCollection = await client.collections.get('Question');
+async function nearTextWhereQuery() {  
+  const myCollection = client.collections.get('Question');
 
-    const result = await myCollection.query.nearText(['biology'],{
-      returnProperties: ['question', 'answer', 'category'],
-      filters: client.collections.get('Question').filter.byProperty('category').equal('ANIMALS'),
-      limit:2
-    })
+  const result = await myCollection.query.nearText(['biology'],{
+    returnProperties: ['question', 'answer', 'category'],
+    filters: client.collections.get('Question').filter.byProperty('category').equal('ANIMALS'),
+    limit:2
+  });
 
   console.log(JSON.stringify(result.objects, null, 2));
   return result;
@@ -112,7 +107,7 @@ async function generativeSearchQuery() {
   },{
     limit: 2,
     returnProperties: ['question', 'answer', 'category'],
-  })
+  });
 
   console.log(JSON.stringify(result.objects, null, 2));
   return result;
@@ -122,19 +117,17 @@ async function generativeSearchQuery() {
 
 // GenerativeSearchGroupedTaskExample
 async function generativeSearchGroupedQuery() {
+  const myCollection = await client.collections.get('Question');
 
-    const myCollection = await client.collections.get('Question');
+  const result = await myCollection.generate.nearText(['biology'],{
+    groupedTask: `Write a tweet with emojis about these facts.`,
+  },{
+    returnProperties: ['question', 'answer', 'category'],
+    limit: 2,
+  });
 
-    const result = await myCollection.generate.nearText(['biology'],{
-      groupedTask: `Write a tweet with emojis about these facts.`,
-    },{
-      returnProperties: ['question', 'answer', 'category'],
-      limit: 2,
-    }
-    )
-  
-    console.log(JSON.stringify(result.generated, null, 2));
-    return result;
+  console.log(JSON.stringify(result.generated, null, 2));
+  return result;
 }
 
 // END GenerativeSearchGroupedTaskExample
@@ -145,9 +138,7 @@ async function generativeSearchGroupedQuery() {
 async function getNumObjects() {
   const myCollection = await client.collections.get('Question');    
   const objectCount =  await myCollection.aggregate.overAll()
-
   console.log(JSON.stringify(objectCount.totalCount));
-
 }
 
 async function cleanup() {

@@ -71,40 +71,39 @@ client.schema.create_class(class_obj)
 import weaviate from 'weaviate-client';
 
  const client = await weaviate.connectToWCS(
-      '<WCS-URL>',
-      {
-        authCredentials: new weaviate.ApiKey('<API-KEY>'),
-      } 
-   )
+  '<WCS-URL>',
+  {
+    authCredentials: new weaviate.ApiKey('<API-KEY>'),
+  } 
+)
 
 // Define the 'Question' class
 const classObj = const schema = {
-    name: 'Question',
-    properties: [
-      {
-        name: 'question',
-        dataType: 'text' as const,
-        description: 'Category of the question' as const,
-        tokenization: 'lowercase' as const,
-        vectorizePropertyName: true,
-        
-      },
-      {
-        name: 'answer',
-        dataType: 'text' as const,
-        description: 'The question' as const,
-        tokenization: 'whitespace' as const,
-        vectorizePropertyName: false,
-      }
-    ],
-    vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
-    generative: weaviate.configure.generative.openAI(),
-    multiTenancy: weaviate.configure.multiTenancy({enabled: true})
-  }
+  name: 'Question',
+  properties: [
+    {
+      name: 'question',
+      dataType: 'text' as const,
+      description: 'Category of the question' as const,
+      tokenization: 'lowercase' as const,
+      vectorizePropertyName: true,
+      
+    },
+    {
+      name: 'answer',
+      dataType: 'text' as const,
+      description: 'The question' as const,
+      tokenization: 'whitespace' as const,
+      vectorizePropertyName: false,
+    }
+  ],
+  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  generative: weaviate.configure.generative.openAI(),
+  multiTenancy: weaviate.configure.multiTenancy({enabled: true})
+}
 
 // Add the class to the schema
 const newCollection = await client.collections.create(schema) 
-
 ```
 
 </TabItem>
