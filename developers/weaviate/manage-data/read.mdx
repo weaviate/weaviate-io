@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.read-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read_test.go';
 
@@ -47,9 +48,18 @@ Use an ID to retrieve an object. If the id doesn't exist, Weaviate returns a 404
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ReadObject START"
       endMarker="// ReadObject END"
       language="ts"
@@ -99,9 +109,18 @@ Object vectors can be retrieved by specifying its return.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ReadObjectWithVector START"
       endMarker="// ReadObjectWithVector END"
       language="ts"
@@ -150,9 +169,18 @@ Where [named vectors](../config-refs/schema/multi-vector.md) are used, you can r
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ReadObjectNamedVectors START"
+      endMarker="// ReadObjectNamedVectors END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ReadObjectNamedVectors START"
       endMarker="// ReadObjectNamedVectors END"
       language="ts"
@@ -177,7 +205,7 @@ To efficiently check if an object with a given [id](../api/graphql/additional-pr
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// CheckObject START"

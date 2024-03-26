@@ -41,9 +41,18 @@ This example creates an object in the `JeopardyQuestion` collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// CreateObject START"
+      endMarker="// CreateObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// CreateObject START"
       endMarker="// CreateObject END"
       language="ts"
@@ -107,9 +116,18 @@ When you create an object, you can provide a vector. (For specifying multiple, n
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// CreateObjectWithVector START"
+      endMarker="// CreateObjectWithVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// CreateObjectWithVector START"
       endMarker="// CreateObjectWithVector END"
       language="ts"
@@ -161,9 +179,18 @@ When you create an object, you can specify named vectors (if [configured in your
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// CreateObjectNamedVectors START"
+      endMarker="// CreateObjectNamedVectors END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// CreateObjectNamedVectors START"
       endMarker="// CreateObjectNamedVectors END"
       language="ts"
@@ -198,9 +225,18 @@ If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedi
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// CreateObjectWithId START"
+      endMarker="// CreateObjectWithId END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// CreateObjectWithId START"
       endMarker="// CreateObjectWithId END"
       language="ts"
@@ -253,9 +289,18 @@ Object IDs are not randomly generated. The same value always generates the same 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// CreateObjectWithDeterministicId START"
+      endMarker="// CreateObjectWithDeterministicId END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// CreateObjectWithDeterministicId START"
       endMarker="// CreateObjectWithDeterministicId END"
       language="ts"
@@ -319,9 +364,18 @@ You can create an object with cross-references to other objects.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={XrefTSCode}
+      startMarker="// ObjectWithCrossRef"
+      endMarker="// END ObjectWithCrossRef"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={XrefTSCodeLegacy}
       startMarker="// ObjectWithCrossRef"
       endMarker="// END ObjectWithCrossRef"
       language="ts"
@@ -356,9 +410,18 @@ Before you create an object, you can [validate](../api/rest/objects.md#validate-
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ValidateObject START"
+      endMarker="// ValidateObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ValidateObject START"
       endMarker="// ValidateObject END"
       language="ts"

@@ -54,7 +54,7 @@ At the moment, we've covered the following pages.
 - [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
 
 
-Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
+Our [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
 
 ## Design
 
