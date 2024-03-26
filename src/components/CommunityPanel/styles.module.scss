@@ -12,6 +12,9 @@
   }
 }
 
+.container {
+  padding: 2rem;
+}
 .rightText {
   margin: 0 0 22px;
 }
@@ -41,10 +44,6 @@
     column-gap: 60px;
     row-gap: 20px;
     width: 100%;
-
-    iframe {
-      height: 200px;
-    }
   }
 }
 
@@ -86,17 +85,15 @@
 }
 .communityWrapper {
   background: #130c49;
+  border-radius: 13px;
 }
 
 .wrapper {
   display: flex;
   flex-direction: row;
-  row-gap: 50px;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
   align-items: center;
   color: #ffffff;
-  margin-top: 60px;
+  gap: 20px;
 
   h2 {
     color: #ffffff;
@@ -125,7 +122,7 @@
 }
 .leftSide {
   display: flex;
-  width: 33rem;
+  width: 31rem;
   flex-wrap: wrap;
 
   @media screen and (max-width: 768px) {
@@ -228,7 +225,7 @@
 }
 
 .formFooter {
-  margin-top: -85px;
+  margin-top: -80px;
 
   @media screen and (max-width: 768px) {
     margin-top: -85px;
