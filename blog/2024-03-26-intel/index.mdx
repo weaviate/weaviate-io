@@ -150,7 +150,7 @@ To benchmark the improvements we opted to conduct a performance evaluation of We
     alt="Micro benchmarks"
     style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
   />
-  <figcaption>Improvements in vector distance operations performed using 1536 dimensional vectors</figcaption>
+  <figcaption>**Figure 1:** Improvements in vector distance operations performed using 1536 dimensional vectors.</figcaption>
 </figure>
 
 
@@ -158,21 +158,23 @@ As you can see above we get some pretty remarkable speedups for single distance 
 
 Subsequently, we conducted ANN benchmarks utilizing two different datasets DBPedia embedded using OpenAI `text-embedding-ada-002` model (1536 dimensions), and Meta’s 768 dimension [Sphere dataset](/blog/sphere-dataset-in-weaviate), aiming to gauge the practical implications of these instructions on real-world tasks. As seen in the graphs the benchmark results showed notable performance improvements, further validating the advantages of AVX-512 over AVX-256 in Emerald Rapids.
 
-<img
-  src={require('./img/dbpedia_bench.png').default}
-  alt="DBPedia benchmarks"
-  style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
-/>
+<figure>
+  <img
+    src={require('./img/dbpedia_bench.png').default}
+    alt="DBPedia benchmarks"
+    style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
+  />
+  <figcaption>**Figure 2:** Intel Emerald Rapids 5th Gen Xeon ANN performance on DBPedia ada-002 embeddings.</figcaption>
+</figure>
 
-**Figure 2:** Intel Emerald Rapids 5th Gen Xeon ANN performance on DBPedia ada-002 embeddings.
-
-<img
+<figure>
+  <img
   src={require('./img/sphere_bench.png').default}
   alt="Sphere benchmarks"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
-/>
-
-**Figure 3:** Intel Emerald Rapids 5th Gen Xeon ANN performance on Sphere embeddings.
+  />
+  <figcaption>**Figure 3:** Intel Emerald Rapids 5th Gen Xeon ANN performance on Sphere embeddings.</figcaption>
+</figure>
 
 Here on the sphere-1 million dataset when searched using dot products we see a remarkable 42% improvement in Weaviate queries per second(QPS) @ 90% Recall, while on the dbpedia-500k dataset when searched using L2 distance we see a 40% improvement in QPS @ 90% Recall!
 
