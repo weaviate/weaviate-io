@@ -158,7 +158,7 @@ const newCollection = await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
+  vectorizer: weaviate.configure.vectorizer.text2VecCohere(),
   // highlight-end
 })
 // The returned value is the full collection definition, showing all defaults
@@ -255,7 +255,7 @@ const newCollection = await client.collections.create({
       skipVectorisation: true,
       tokenization: 'whitespace'
     },],
-  vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
+  vectorizer: weaviate.configure.vectorizer.text2VecCohere(),
 })
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
