@@ -351,10 +351,40 @@
     color 1s ease-out;
 
   @media screen and (max-width: 1160px) {
-    margin: 0px 9px;
+    margin: 0px;
   }
 
   @media screen and (max-width: 1020px) {
+    display: none;
+  }
+
+  &:hover {
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.custom-page .tryNow {
+  border-radius: 0.3125rem;
+  border: 1px solid #1c1468;
+  background: #61bd73;
+  margin: 0 70px;
+  width: 8rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: background-color 1s ease-out, border-color 1s ease-out,
+    color 1s ease-out;
+
+  @media screen and (max-width: 1160px) {
+    margin: 0px;
+  }
+
+  @media screen and (max-width: 999px) {
     display: none;
   }
 
