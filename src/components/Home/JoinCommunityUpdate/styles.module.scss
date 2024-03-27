@@ -5,7 +5,7 @@
 .mobileSocialBox {
   @media screen and (max-width: 768px) {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     gap: 7px;
@@ -97,10 +97,13 @@
   flex-flow: wrap;
   padding: 50px;
 
-  @media screen and (max-width: 400px) {
-    flex-direction: row;
+  @media screen and (max-width: 520px) {
     display: flex;
-    flex-wrap: wrap;
+    width: 26rem;
+    height: 22rem;
+    flex-flow: wrap;
+    gap: 12px;
+    padding: 50px;
   }
 }
 .leftSide {
@@ -137,17 +140,13 @@
     width: 9.38156rem;
     height: 3.875rem;
     flex-shrink: 0;
+    margin-bottom: 90px;
   }
 
   .slack {
     display: flex;
     width: 6.07219rem;
     height: 6.07219rem;
-    @media screen and (max-width: 500px) {
-      width: 2.25rem;
-      height: 2.25rem;
-      flex-shrink: 0;
-    }
 
     background-size: contain;
     background-repeat: no-repeat;
@@ -166,12 +165,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('/img/site/github-circle-icon.svg');
-
-    @media screen and (max-width: 500px) {
-      width: 2.25rem;
-      height: 2.25rem;
-      flex-shrink: 0;
-    }
   }
   .twitter {
     display: flex;
@@ -180,12 +173,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('/img/site/x-circle-icon.svg');
-
-    @media screen and (max-width: 500px) {
-      width: 2.25rem;
-      height: 2.25rem;
-      flex-shrink: 0;
-    }
   }
 
   .forum {
@@ -195,12 +182,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('/img/site/weaviate-circle-icon.svg');
-
-    @media screen and (max-width: 500px) {
-      width: 2.25rem;
-      height: 2.25rem;
-      flex-shrink: 0;
-    }
   }
 }
 
