@@ -353,11 +353,6 @@
       "InvertedIndexConfig": {
         "description": "Configure the inverted index built into Weaviate",
         "properties": {
-          "cleanupIntervalSeconds": {
-            "description": "Asynchronous index clean up happens every n seconds",
-            "format": "int",
-            "type": "number"
-          },
           "bm25": {
             "$ref": "#/definitions/BM25Config"
           },
@@ -365,16 +360,41 @@
             "$ref": "#/definitions/StopwordConfig"
           },
           "indexTimestamps": {
+            "default": false,
             "description": "Index each object by its internal timestamps",
             "type": "boolean"
           },
           "indexNullState": {
+            "default": false,
             "description": "Index each object with the null state",
             "type": "boolean"
           },
           "indexPropertyLength": {
+            "default": false,
             "description": "Index length of properties",
             "type": "boolean"
+          },
+          "cleanupIntervalSeconds": {
+            "default": 60,
+            "description": "Asynchronous index clean up happens every n seconds",
+            "format": "int",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "ShardingConfig": {
+        "description": "Specify how the index should be sharded and distributed in the cluster",
+        "properties": {
+          "desiredCount": {
+            "description": "Controls how many shards should be created for this collection index. The typical setting is that a collection should be distributed across all the nodes in the cluster, but you can explicitly set this value to a lower value. If the `desiredCount` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.",
+            "default": "<number of nodes in the cluster>",
+            "type": "integer"
+          },
+          "virtualPerPhysical": {
+            "description": "Weaviate uses virtual shards. This helps in reducing the amount of data moved when resharding",
+            "default": 128,
+            "type": "integer"
           }
         },
         "type": "object"
@@ -383,6 +403,7 @@
         "description": "Configure how replication is executed in a cluster",
         "properties": {
           "factor": {
+            "default": 1,
             "description": "Number of times a class is replicated",
             "type": "integer"
           }
@@ -393,12 +414,14 @@
         "description": "tuning parameters for the BM25 algorithm",
         "properties": {
           "k1": {
-            "description": "calibrates term-weight scaling based on the term frequency within a document",
+            "default": 1.2,
+            "description": "Calibrates term-weight scaling based on the term frequency within a document",
             "format": "float",
             "type": "number"
           },
           "b": {
-            "description": "calibrates term-weight scaling based on the document length",
+            "default": 0.75,
+            "description": "Calibrates term-weight scaling based on the document length",
             "format": "float",
             "type": "number"
           }
@@ -409,18 +432,22 @@
         "description": "fine-grained control over stopword list usage",
         "properties": {
           "preset": {
+            "default": "en",
+            "enum": ["en", "none"],
             "description": "pre-existing list of common words by language",
             "type": "string"
           },
           "additions": {
-            "description": "stopwords to be considered additionally",
+            "default": [],
+            "description": "Stopwords to be considered additionally. Can be any array of custom strings.",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "removals": {
-            "description": "stopwords to be removed from consideration",
+            "default": [],
+            "description": "stopwords to be removed from consideration. Can be any array of custom strings.",
             "type": "array",
             "items": {
               "type": "string"
@@ -433,6 +460,7 @@
         "description": "Configuration related to multi-tenancy within a class",
         "properties": {
           "enabled": {
+            "default": false,
             "description": "Whether or not multi-tenancy is enabled for this class",
             "type": "boolean",
             "x-omitempty": false
@@ -636,28 +664,43 @@
         "type": "object"
       },
       "Class": {
+        "required": ["class"],
         "properties": {
           "class": {
-            "description": "Name of the class as URI relative to the schema URL.",
+            "description": "Name of the collection (a.k.a. class). Multiple words should be concatenated in CamelCase, e.g. `ArticleAuthor`.",
             "type": "string"
           },
-          "vectorConfig": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/definitions/VectorConfig"
-            }
+          "description": {
+            "description": "Description of the collection for documentation purposes.",
+            "type": "string"
+          },
+          "properties": {
+            "description": "Define properties of the collection.",
+            "items": {
+              "$ref": "#/definitions/Property"
+            },
+            "type": "array"
+          },
+          "vectorizer": {
+            "$ref": "#/definitions/Vectorizer"
           },
           "vectorIndexType": {
-            "description": "Name of the vector index to use, eg. (HNSW)",
-            "type": "string"
+            "$ref": "#/definitions/VectorIndexType"
           },
           "vectorIndexConfig": {
-            "description": "Vector-index config, that is specific to the type of index selected in vectorIndexType",
-            "type": "object"
+            "$ref": "#/definitions/VectorIndexConfig"
+          },
+          "vectorConfig": {
+            "description": "Configure [named vectors](https://weaviate.io/developers/weaviate/config-refs/schema/multi-vector) for this collection. Starting from `v1.24.0`, this allows a collection to have multiple named vectors, each with its own configuration. <br/><br/>Either use this field or `vectorizer`, `vectorIndexType`, and `vectorIndexConfig` fields.",
+            "type": "object",
+            "properties": {
+              "<vector_name>": {
+                "$ref": "#/definitions/VectorConfig"
+              }
+            }
           },
           "shardingConfig": {
-            "description": "Manage how the index should be sharded and distributed in the cluster",
-            "type": "object"
+            "$ref": "#/definitions/ShardingConfig"
           },
           "replicationConfig": {
             "$ref": "#/definitions/ReplicationConfig"
@@ -668,142 +711,193 @@
           "multiTenancyConfig": {
             "$ref": "#/definitions/MultiTenancyConfig"
           },
-          "vectorizer": {
-            "description": "Specify how the vectors for this class should be determined. The options are either 'none' - this means you have to import a vector with each object yourself - or the name of a module that provides vectorization capabilities, such as 'text2vec-contextionary'. If left empty, it will use the globally configured default which can itself either be 'none' or a specific module.",
-            "type": "string"
-          },
           "moduleConfig": {
-            "description": "Configuration specific to modules this Weaviate instance has installed",
-            "type": "object"
-          },
-          "description": {
-            "description": "Description of the class.",
-            "type": "string"
-          },
-          "properties": {
-            "description": "The properties of the class.",
-            "items": {
-              "$ref": "#/definitions/Property"
-            },
-            "type": "array"
+            "description": "Configuration specific to modules in a collection context.",
+            "type": "object",
+            "properties": {
+              "<module_name>": {
+                "$ref": "#/definitions/CollectionModuleConfig"
+              }
+            }
           }
         },
         "type": "object"
       },
       "Property": {
+        "required": ["name", "dataType"],
         "properties": {
+          "name": {
+            "$ref": "#/definitions/PropertyName"
+          },
           "dataType": {
-            "description": "Can be a reference to another type when it starts with a capital (for example Person), otherwise \"string\" or \"int\".",
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
+            "$ref": "#/definitions/DataType"
           },
           "description": {
-            "description": "Description of the property.",
-            "type": "string"
+            "$ref": "#/definitions/PropertyDescription"
           },
           "moduleConfig": {
-            "description": "Configuration specific to modules this Weaviate instance has installed",
-            "type": "object"
-          },
-          "name": {
-            "description": "Name of the property as URI relative to the schema URL.",
-            "type": "string"
-          },
-          "indexInverted": {
-            "description": "Optional. Should this property be indexed in the inverted index. Defaults to true. If you choose false, you will not be able to use this property in where filters, bm25 or hybrid search. This property has no affect on vectorization decisions done by modules (deprecated as of v1.19; use indexFilterable or/and indexSearchable instead)",
-            "type": "boolean",
-            "x-nullable": true
+            "description": "Configuration specific to modules in a property context.",
+            "type": "object",
+            "properties": {
+              "<module_name>": {
+                "$ref": "#/definitions/PropertyModuleConfig"
+              }
+            }
           },
           "indexFilterable": {
-            "description": "Optional. Should this property be indexed in the inverted index. Defaults to true. If you choose false, you will not be able to use this property in where filters. This property has no affect on vectorization decisions done by modules",
-            "type": "boolean",
-            "x-nullable": true
+            "$ref": "#/definitions/IndexFilterable"
           },
           "indexSearchable": {
-            "description": "Optional. Should this property be indexed in the inverted index. Defaults to true. Applicable only to properties of data type text and text[]. If you choose false, you will not be able to use this property in bm25 or hybrid search. This property has no affect on vectorization decisions done by modules",
-            "type": "boolean",
-            "x-nullable": true
+            "$ref": "#/definitions/IndexSearchable"
           },
           "tokenization": {
-            "description": "Determines tokenization of the property as separate words or whole field. Optional. Applies to text and text[] data types. Allowed values are `word` (default; splits on any non-alphanumerical, lowercases), `lowercase` (splits on white spaces, lowercases), `whitespace` (splits on white spaces), `field` (trims). Not supported for remaining data types",
-            "type": "string",
-            "enum": [
-              "word",
-              "lowercase",
-              "whitespace",
-              "field",
-              "trigram",
-              "gse"
-            ]
+            "$ref": "#/definitions/Tokenization"
           },
           "nestedProperties": {
-              "description": "The properties of the nested object(s). Applies to object and object[] data types.",
-              "items": {
-                "$ref": "#/definitions/NestedProperty"
-              },
-              "type": "array",
-              "x-omitempty": true
-            }
-        },
-        "type": "object"
-      },
-      "VectorConfig": {
-        "properties": {
-          "vectorizer": {
-            "description": "Configuration of a specific vectorizer used by this vector",
-            "type": "object"
+            "description": "The properties of the nested object(s). Applies to object and object[] data types.",
+            "items": {
+              "$ref": "#/definitions/NestedProperty"
+            },
+            "type": "array",
+            "x-omitempty": true
           },
-          "vectorIndexType": {
-            "description": "Name of the vector index to use, eg. (HNSW)",
-            "type": "string"
-          },
-          "vectorIndexConfig": {
-            "description": "Vector-index config, that is specific to the type of index selected in vectorIndexType",
-            "type": "object"
+          "indexInverted": {
+            "description": "Whether to include this property in the inverted index. If `false`, this property cannot be used in `where` filters, `bm25` or `hybrid` search. <br/><br/>Unrelated to vectorization behavior (deprecated as of v1.19; use indexFilterable or/and indexSearchable instead)",
+            "type": "boolean",
+            "default": true,
+            "x-nullable": true,
+            "deprecated": true
           }
         },
         "type": "object"
       },
-      "NestedProperty": {
+      "CollectionModuleConfig": {
+        "description": "E.g. `text2vec-transformers`, `text2vec-openai`.",
         "properties": {
+          "vectorizeClassName": {
+            "description": "Whether the name of the collection is used in determining the object vector.",
+            "default": true,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "PropertyModuleConfig": {
+        "description": "E.g. `text2vec-transformers`, `text2vec-openai`.",
+        "properties": {
+          "skip": {
+            "description": "If true, the whole property will NOT be included in vectorization.",
+            "default": false,
+            "type": "boolean"
+          },
+          "vectorizePropertyName": {
+            "description": "Whether the name of the property is used in determining the object vector.",
+            "default": true,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "VectorConfig": {
+        "description": "Configuration of each named vector.",
+        "properties": {
+          "vectorizer": {
+            "$ref": "#/definitions/Vectorizer"
+          },
+          "vectorIndexType": {
+            "$ref": "#/definitions/VectorIndexType"
+          },
+          "vectorIndexConfig": {
+            "$ref": "#/definitions/VectorIndexConfig"
+          }
+        },
+        "type": "object"
+      },
+      "Vectorizer": {
+        "description": "Vectorizer for this collection (e.g. `text2vec-transformers`). This will override any cluster-wide default set by an environment variable. <br/><br/>If `none`, you must import a vector with each object yourself.",
+        "type": "string",
+        "enum": ["none", "<vectorizer_module_name>"]
+      },
+      "VectorIndexType": {
+        "description": "Name of the vector index to use, eg. (HNSW)",
+        "default": "hnsw",
+        "type": "string",
+        "enum": ["hnsw", "flat"]
+      },
+      "VectorIndexConfig": {
+        "description": "Vector index type specific settings. See the [vector index configuration page](https://weaviate.io/developers/weaviate/config-refs/schema/vector-index) for more details",
+        "type": "object"
+      },
+      "Tokenization": {
+        "description": "Set tokenization of the property as separate words or whole field. Applies to text and text[] data types.",
+        "type": "string",
+        "default": "word",
+        "enum": [
+          "word",
+          "lowercase",
+          "whitespace",
+          "field",
+          "trigram",
+          "gse"
+        ]
+      },
+      "IndexFilterable": {
+        "description": "Whether to include this property in the filterable, Roaring Bitmap index. If `false`, this property cannot be used in `where` filters. <br/><br/>Unrelated to vectorization behavior.",
+        "default": true,
+        "type": "boolean",
+        "x-nullable": true
+      },
+      "IndexSearchable": {
+        "description": "Whether to include this property in the searchable, inverted index. If `false`, this property cannot be used in `bm25` or `hybrid` searches. <br/><br/>Unrelated to vectorization behavior.",
+        "default": true,
+        "type": "boolean",
+        "x-nullable": true
+      },
+      "PropertyName": {
+        "description": "The name of the property. Multiple words should be concatenated in camelCase, e.g. `nameOfAuthor`.",
+        "type": "string"
+      },
+      "DataType": {
+        "description": "Data type of the property. If it starts with a capital (for example Person), may be a reference to another type.",
+        "items": {
+          "type": "string",
+          "enum": ["string", "string[]", "object", "object[]", "int", "int[]", "number", "number[]", "date", "date[]", "uuid", "uuid[]", "geoCoordinates", "phoneNumber", "blob", "<cross_reference>"]
+        },
+        "type": "array"
+      },
+      "PropertyDescription": {
+        "description": "Description of the property for documentation purposes.",
+        "type": "string"
+      },
+      "NestedProperty": {
+        "required": ["name", "dataType"],
+        "properties": {
+          "name": {
+            "$ref": "#/definitions/PropertyName"
+          },
           "dataType": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
+            "$ref": "#/definitions/DataType"
           },
           "description": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
+            "$ref": "#/definitions/PropertyDescription"
           },
           "indexFilterable": {
-            "type": "boolean",
-            "x-nullable": true
+            "$ref": "#/definitions/IndexFilterable"
           },
           "indexSearchable": {
-            "type": "boolean",
-            "x-nullable": true
+            "$ref": "#/definitions/IndexSearchable"
           },
           "tokenization": {
-            "type": "string",
-            "enum": [
-              "word",
-              "lowercase",
-              "whitespace",
-              "field"
-            ]
+            "$ref": "#/definitions/Tokenization"
           },
           "nestedProperties": {
-              "items": {
-                "$ref": "#/definitions/NestedProperty"
-              },
-              "type": "array",
-              "x-omitempty": true
-            }
+            "description": "Specify the properties of the nested object(s) as required.",
+            "items": {
+              "$ref": "#/definitions/NestedProperty"
+            },
+            "type": "array",
+            "x-omitempty": true
+          }
         },
         "type": "object"
       },
@@ -1948,6 +2042,7 @@
       },
       "Tenant": {
         "type": "object",
+        "required": ["name"],
         "description": "attributes representing a single tenant within weaviate",
         "properties": {
           "name": {
@@ -1955,7 +2050,7 @@
             "type": "string"
           },
           "activityStatus": {
-            "description": "activity status of the tenant's shard. Optional for creating tenant (implicit `HOT`) and required for updating tenant. Allowed values are `HOT` - tenant is fully active, `WARM` - tenant is active, some restrictions are imposed (TBD; not supported yet), `COLD` - tenant is inactive; no actions can be performed on tenant, tenant's files are stored locally, `FROZEN` - as COLD, but files are stored on cloud storage (not supported yet)",
+            "description": "Activity status of the tenant's shard. Optional for creating tenant (implicit `HOT`) and required for updating tenant. <br/><br/>Allowed values are `HOT` - tenant is fully active, `WARM` - tenant is active, some restrictions are imposed (TBD; not supported yet), `COLD` - tenant is inactive; no actions can be performed on tenant, tenant's files are stored locally, `FROZEN` - as COLD, but files are stored on cloud storage (not supported yet)",
             "type": "string",
             "enum": [
               "HOT",
@@ -1977,7 +2072,7 @@
       },
       "description": "# Introduction\n Weaviate is an open source, AI-native vector database that helps developers create intuitive and reliable AI-powered applications. \n ### Base Path \nThe base path for the Weaviate server is structured as `[YOUR-WEAVIATE-HOST]:[PORT]/v1`. As an example, if you wish to access the `schema` endpoint on a local instance, you would navigate to `http://localhost:8080/v1/schema`. Ensure you replace `[YOUR-WEAVIATE-HOST]` and `[PORT]` with your actual server host and port number respectively. \n ### Questions? \nIf you have any comments or questions, please feel free to reach out to us at the community forum [https://forum.weaviate.io/](https://forum.weaviate.io/). \n### Issues? \nIf you find a bug or want to file a feature request, please open an issue on our GitHub repository for [Weaviate](https://github.com/weaviate/weaviate). \n### Want more documentation? \nFor a quickstart, code examples, concepts and more, please visit our [documentation page](https://weaviate.io/developers/weaviate).",
       "title": "Weaviate",
-      "version": "1.24.4"
+      "version": "1.24.6"
     },
     "parameters": {
       "CommonAfterParameterQuery": {
@@ -3871,6 +3966,7 @@
       "/schema": {
         "get": {
           "summary": "Get the entire schema.",
+          "description": "Fetch an array of all collection definitions from the schema.",
           "operationId": "schema.dump",
           "x-serviceIds": [
             "weaviate.local.query.meta"
@@ -3903,7 +3999,8 @@
           }
         },
         "post": {
-          "summary": "Create a new collection.",
+          "summary": "Create a collection.",
+          "description": "Create a new data object collection. <br/><br/>If [AutoSchema](https://weaviate.io/developers/weaviate/config-refs/schema#auto-schema) is enabled, Weaviate will attempt to infer the schema from the data at import time. However, manual schema definition is recommended for production environments. <br/><br/>For further discussions of parameters, please see the [schema reference page](https://weaviate.io/developers/weaviate/config-refs/schema).",
           "operationId": "schema.objects.create",
           "x-serviceIds": [
             "weaviate.local.add.meta"
@@ -4067,7 +4164,7 @@
         },
         "put": {
           "summary": "Update an existing collection.",
-          "description": "Use this endpoint to alter an existing class in the schema. Note that not all settings are mutable. If an error about immutable fields is returned and you still need to update this particular setting, you will have to delete the class (and the underlying data) and recreate. This endpoint cannot be used to modify properties. Instead use POST /v1/schema/{className}/properties. A typical use case for this endpoint is to update configuration, such as the vectorIndexConfig. Note that even in mutable sections, such as vectorIndexConfig, some fields may be immutable.",
+          "description": "Alter an existing collection definition. <br/><br/>Note that not all settings are mutable ([see this list](https://weaviate.io/developers/weaviate/config-refs/schema#mutability)). To update any other (i.e. immutable) setting, you need to delete the collection, re-create it with the correct setting and then re-import the data. <br/><br/>This endpoint cannot be used to modify properties. Instead use POST /v1/schema/{className}/properties. A typical use case for this endpoint is to update a index configuration, such as `vectorIndexConfig/dynamicEfFactor`. <br/><br/>You should attach a body to this PUT request with the entire new configuration of the collection.",
           "operationId": "schema.objects.update",
           "x-serviceIds": [
             "weaviate.local.manipulate.meta"
@@ -4131,6 +4228,7 @@
       "/schema/{className}/properties": {
         "post": {
           "summary": "Add a property.",
+          "description": "Add a property to an existing collection. <br/><br/>If possible, we encourage you to create all required properties at collection creation time. Adding a property after collection creation can lead to [some indexing limitations](https://weaviate.io/developers/weaviate/config-refs/schema).",
           "operationId": "schema.objects.properties.add",
           "x-serviceIds": [
             "weaviate.local.manipulate.meta"
@@ -4188,7 +4286,7 @@
       "/schema/{className}/shards": {
         "get": {
           "summary": "Get the shard status",
-          "description": "Get the shard status of a collection",
+          "description": "Get the status of every shard in the cluster.",
           "operationId": "schema.objects.shards.get",
           "x-serviceIds": [
             "weaviate.local.get.meta"
@@ -4243,7 +4341,7 @@
       "/schema/{className}/shards/{shardName}": {
         "put": {
           "summary": "Update a shard status.",
-          "description": "Update a shard status for a collection.",
+          "description": "Update a shard status for a collection. For example, a shard may have been marked as `READONLY` because its disk was full. After providing more disk space, use this endpoint to set the shard status to `READY` again. There is also a convenience function in each client to set the status of all shards of a collection.",
           "operationId": "schema.objects.shards.update",
           "x-serviceIds": [
             "weaviate.local.manipulate.meta"
@@ -4313,7 +4411,7 @@
       "/schema/{className}/tenants": {
         "post": {
           "summary": "Create a new tenant",
-          "description": "Create a new tenant for a specific class",
+          "description": "Create a new tenant for a collection. Multi-tenancy must be enabled in the collection definition.",
           "operationId": "tenants.create",
           "tags": [
             "schema"
