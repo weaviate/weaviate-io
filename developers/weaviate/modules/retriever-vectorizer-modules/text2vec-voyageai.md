@@ -76,13 +76,13 @@ You can configure how the module will behave in each class through the [Weaviate
 
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
-| `model` | No | `voyage-01` | The model to use. |
+| `model` | No | `voyage-large-2` | The model to use. |
 | `truncate` | No | true | Sets the Voyage AI API input truncation behavior (true/false). |
 | `baseURL` | No | `https://api.voyageai.com/v1` | Sets a proxy or other URL instead of the default URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
 
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-voyageai`, model to `voyage-01` and explicitly enables input truncation by the Voyage AI API.
+The following example configures the `Document` class by setting the vectorizer to `text2vec-voyageai`, model to `voyage-large-2` and explicitly enables input truncation by the Voyage AI API.
 
 :::info
 Different Voyage AI models use different distance metrics. Make sure to set this accordingly. See the [distance metric](#distance-metric) section for more information.
@@ -98,7 +98,7 @@ Different Voyage AI models use different distance metrics. Make sure to set this
       "vectorizer": "text2vec-voyageai",
       "moduleConfig": {
         "text2vec-voyageai": {
-          "model": "voyage-01", // Defaults to voyage-01 if not set
+          "model": "voyage-large-2", // Defaults to voyage-large-2 if not set
           "truncate": true, // Defaults to true if not set
           "baseURL": "https://proxy.yourcompanydomain.com"  // Optional. Can be overridden by one set in the HTTP header.
         }
@@ -134,7 +134,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-voyageai",
       "moduleConfig": {
         "text2vec-voyageai": {
-          "model": "voyage-01", // Defaults to voyage-01 if not set
+          "model": "voyage-large-2", // Defaults to voyage-large-2 if not set
           "truncate": true, // Defaults to true if not set
           // highlight-start
           "vectorizeClassName": false
