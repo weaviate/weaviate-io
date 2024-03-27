@@ -2,10 +2,10 @@ import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
 
-export default function HomepageJoinCommunity() {
+export default function CommunityPanel() {
   return (
     <div className={styles.communityWrapper}>
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.rightSide}>
             <div className={styles.socialBox}>
@@ -46,7 +46,9 @@ export default function HomepageJoinCommunity() {
             </div>
           </div>
           <div className={styles.leftSide}>
-            <h2>Join the global community</h2>
+            <h2 className={styles.communityHeader}>
+              Join the global community
+            </h2>
             <span className={styles.rightText}>
               Connect with the Weaviate Team and hundreds of developers and data
               engineers! Our community is here to help you with your projects

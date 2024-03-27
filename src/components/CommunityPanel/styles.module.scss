@@ -1,3 +1,6 @@
+.container {
+  padding: 2rem;
+}
 .rightText {
   margin: 0 0 22px;
 }
@@ -68,6 +71,7 @@
 }
 .communityWrapper {
   background: #130c49;
+  border-radius: 13px;
 }
 
 .wrapper {
@@ -75,14 +79,12 @@
   flex-direction: row;
   align-items: center;
   color: #ffffff;
-  margin: auto;
-  justify-content: center;
 
   h2 {
     color: #ffffff;
   }
 
-  @media screen and (max-width: 758px) {
+  @media screen and (max-width: 1358px) {
     flex-direction: column;
     display: flex;
     align-content: center;
