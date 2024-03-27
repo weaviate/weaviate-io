@@ -387,8 +387,7 @@
         "description": "Specify how the index should be sharded and distributed in the cluster",
         "properties": {
           "desiredCount": {
-            "description": "Controls how many shards should be created for this collection index. The typical setting is that a collection should be distributed across all the nodes in the cluster, but you can explicitly set this value to a lower value. If the `desiredCount` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.",
-            "default": "<number of nodes in the cluster>",
+            "description": "(Defaults to the number of nodes in the cluster.) Controls how many shards should be created for this collection index. The typical setting is that a collection should be distributed across all the nodes in the cluster, but you can explicitly set this value to a lower value. If the `desiredCount` is larger than the amount of physical nodes in the cluster, then some nodes will contain multiple shards.",
             "type": "integer"
           },
           "virtualPerPhysical": {
@@ -762,11 +761,10 @@
             "x-omitempty": true
           },
           "indexInverted": {
-            "description": "Whether to include this property in the inverted index. If `false`, this property cannot be used in `where` filters, `bm25` or `hybrid` search. <br/><br/>Unrelated to vectorization behavior (deprecated as of v1.19; use indexFilterable or/and indexSearchable instead)",
+            "description": "(Deprecated) Whether to include this property in the inverted index. If `false`, this property cannot be used in `where` filters, `bm25` or `hybrid` search. <br/><br/>Unrelated to vectorization behavior (deprecated as of v1.19; use indexFilterable or/and indexSearchable instead)",
             "type": "boolean",
             "default": true,
-            "x-nullable": true,
-            "deprecated": true
+            "x-nullable": true
           }
         },
         "type": "object"
