@@ -1,16 +1,16 @@
 [
   {
-    "type": "MEETUP",
-    "title": "Hack Night at GitHub!",
-    "date": "MARCH 26TH 2024 16:00 - 21:00 PDT",
-    "imageClass": "secondSection",
-    "url": "https://lu.ma/GitHubHackNight-March26"
+    "type": "ONLINE WORKSHOP",
+    "title": "Intro to Weaviate for JavaScript Developers with Daniel #05",
+    "date": "MARCH 28TH 2024 15:00 - 16:00 GMT",
+    "imageClass": "thirdSection",
+    "url": "https://lu.ma/weaviate-ts-005"
   },
   {
     "type": "ONLINE WORKSHOP",
-    "title": "Introduction to Weaviate",
+    "title": "Introduction to Weaviate with JP",
     "date": "APRIL 4TH 2024 15:00 - 16:00 CET",
-    "imageClass": "thirdSection",
+    "imageClass": "secondSection",
     "url": "https://events.weaviate.io/workshop-24-04-04"
   },
   {

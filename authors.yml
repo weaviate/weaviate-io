@@ -114,7 +114,7 @@ zain:
   image_url: /img/people/icon/zain.jpg
 john:
   name: John Trengrove
-  title: Solution Engineer
+  title: Head of Applied Research
   url: https://github.com/trengrj
   image_url: /img/people/icon/john.png
 shukri:
@@ -160,3 +160,8 @@ adam:
   title: Developer Relations Engineer
   url: https://www.linkedin.com/in/itsajchan/
   image_url: /img/people/icon/adam.png
+asdine:
+  name: Asdine El Hrychy
+  title: Software Engineer
+  url: https://github.com/asdine
+  image_url: /img/people/icon/asdine.jpg

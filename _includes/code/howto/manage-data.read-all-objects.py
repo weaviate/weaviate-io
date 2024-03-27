@@ -24,7 +24,7 @@ try:
     # highlight-start
     for item in collection.iterator():
     # highlight-end
-        print(print(item.uuid, item.properties))
+        print(item.uuid, item.properties)
     # END ReadAllProps
 
     # =========================================
