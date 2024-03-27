@@ -25,7 +25,6 @@ const client = await weaviate.connectToWCS(
 )
 
 // searchHybridBasic  // searchHybridWithScore  // searchHybridWithAlpha  // searchHybridWithFusionType  // searchHybridWithProperties  // searchHybridWithVector  // searchHybridWithFilter  // START limit  // START autocut
-let result;
 // END searchHybridBasic  // END searchHybridWithScore  // END searchHybridWithAlpha  // END searchHybridWithFusionType  // END searchHybridWithProperties  // END searchHybridWithVector  // END searchHybridWithFilter  // END limit  // END autocut
 
 
