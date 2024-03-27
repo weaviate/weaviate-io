@@ -40,7 +40,7 @@ export default function PricingEnterprise() {
         </li>
         <li>
           <div className={styles.checkIcon}></div>
-          <span>Multiple availability zone</span>
+          <span>Multiple availability zones</span>
         </li>
         <li>
           <div className={styles.checkIcon}></div>
