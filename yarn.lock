@@ -8924,6 +8924,11 @@ graphql@16.5.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"
   integrity sha512-qbHgh8Ix+j/qY+a/ZcJnFQ+j8ezakqPiHwPiZhV/3PgGlgf96QMBB5/f2rkiC9sgLoy/xvT6TSiaf2nTHJh5iA==
 
+graphql@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.1.tgz#1930a965bef1170603702acdb68aedd3f3cf6f07"
+  integrity sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==
+
 gray-matter@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/gray-matter/-/gray-matter-4.0.3.tgz#e893c064825de73ea1f5f7d88c7a9f7274288798"
@@ -16065,11 +16070,12 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-weaviate-client@^3.0.0-beta.17:
-  version "3.0.0-beta.17"
-  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.0-beta.17.tgz#b68d3a2f21df38574aac53be7df302d4479bd266"
-  integrity sha512-BxKPsi1YciukwWmpdb7Xq6b6Yn/Dc2YtrQrvDKSvE0VX6A5vKOfSUwQgpWO3iApzUW0lBintEglgI4Ld3ZbKrA==
+weaviate-client@^3.0.0-beta.22:
+  version "3.0.0-beta.22"
+  resolved "https://registry.yarnpkg.com/weaviate-client/-/weaviate-client-3.0.0-beta.22.tgz#21891be2a38f208cbfbf6eebb09521cd10eac946"
+  integrity sha512-sFLblj2sLlrccqZQs4l5gXDlbLnaqGVzrXajVguFsBofAZSJEv25TxQMxW1Ta1tsI7CPyy0S15f5QcY69Fx/XA==
   dependencies:
+    graphql "^16.8.1"
     graphql-request "^6.1.0"
     long "^5.2.3"
     nice-grpc "^2.1.7"

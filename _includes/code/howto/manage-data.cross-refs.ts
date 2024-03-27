@@ -4,12 +4,17 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'anon-endpoint.weaviate.network',
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 const sfId = '00ff6900-e64f-5d94-90db-c8cfa3fc851b';
 const usCitiesId = '20ffc68d-986b-5e71-a680-228dba18d7ef';
@@ -78,19 +83,24 @@ try {
 }
 
 // ObjectWithCrossRef
-response = await client.data
-  .creator()
-  .withClassName('JeopardyQuestion')
-  .withId('f7344d30-7fe4-54dd-a233-fcccd4379d5c')
-  .withProperties({
-    'question': 'What tooling helps make Weaviate scalable?',
-    'answer': 'Sharding, multi-tenancy, and replication',
-    'hasCategory': [{  // Specify one or more cross-references
-      'beacon': 'weaviate://localhost/583876f3-e293-5b5b-9839-03f455f14575',
-    }],
-  })
-  .do();
-console.log(JSON.stringify(response, null, 2));
+const myCollection = client.collections.get('WineReviewNV')
+const dataObject = {
+  "title": "A delicious Riesling",
+  "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
+  "country": "Germany",
+}
+
+const uuid = await myCollection.data.insert({
+  properties: dataObject,
+  id: '<UUID>', // A UUID for the object
+  // highlight-start
+  references: {
+    'hasCategory': '<CATEGORY UUID>' // e.g. {'hasCategory': '583876f3-e293-5b5b-9839-03f455f14575'}
+   }
+  // highlight-end
+})
+
+console.log('UUID: ', uuid)
 // END ObjectWithCrossRef
 
 // Test

@@ -33,17 +33,15 @@ print(schema)
 import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToLocal({
-      httpHost: 'localhost',
-      httpPort: 8080,
-      httpSecure: false,
-
-      grpcHost: 'localhost',
-      grpcPort: 50051,
-      grpcSecure: false,
-    });
+  httpHost: 'localhost',
+  httpPort: 8080,
+  httpSecure: false,
+  grpcHost: 'localhost',
+  grpcPort: 50051,
+  grpcSecure: false,
+});
 
 console.log(await client.getMeta())
-
 ```
 
 </TabItem>

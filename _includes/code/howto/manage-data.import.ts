@@ -8,7 +8,7 @@ const MAX_ROWS_TO_IMPORT = 50;  // limit vectorization calls
 // ================================
 
 // START JSON streaming  // START CSV streaming
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 import fs from 'fs';
 // END JSON streaming  // END CSV streaming
 

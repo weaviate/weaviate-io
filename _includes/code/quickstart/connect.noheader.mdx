@@ -43,14 +43,14 @@ client = weaviate.Client(
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-     'https://some-endpoint.weaviate.network',  // Replace with your endpoint
-    {
-      authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
-      headers: {
-        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
-      }
-    } 
-  )
+    'https://some-endpoint.weaviate.network',  // Replace with your endpoint
+  {
+    authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+    }
+  } 
+)
 
 ```
 

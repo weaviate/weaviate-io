@@ -64,7 +64,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud Services (WCS).
 
-Go to the [WCS quickstart](developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
+Go to the [WCS quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
 
 :::info To use another deployment method (e.g. Docker Compose)
 If you prefer another method, see [this section](#can-i-use-another-deployment-method).

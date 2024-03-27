@@ -54,7 +54,7 @@ At the moment, we've covered the following pages.
 - [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
 
 
-Our [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
+Our [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
 
 ## Design
 
@@ -75,10 +75,10 @@ Once installed, you can use the client in your TypeScript and JavaScript scripts
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-      'some-endpoint.weaviate.network', {
-       authCredentials: new weaviate.ApiKey('api-key'),
-     } 
-   )
+  'some-endpoint.weaviate.network', {
+    authCredentials: new weaviate.ApiKey('api-key'),
+  } 
+)
 console.log(client)
 ```
 
@@ -89,12 +89,12 @@ console.log(client)
 import weaviate, { WeaviateClient, generateUuid5, DataObject } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-    'some-endpoint.weaviate.network', {
-     authCredentials: new weaviate.ApiKey('api-key'),
-   } 
- )
+  'some-endpoint.weaviate.network', {
+    authCredentials: new weaviate.ApiKey('api-key'),
+  } 
+)
  
- console.log(client)
+console.log(client)
 ```
 
 </TabItem>
@@ -134,12 +134,12 @@ const { default: weaviate } = require('weaviate-client');
 
 // Instantiate the client with the auth config
 const client = await weaviate.connectToWCS(
-    'some-endpoint.weaviate.network', {
-     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
-   } 
- )
+  'some-endpoint.weaviate.network', {
+    authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
+  } 
+)
  
- console.log(client)
+console.log(client)
 ```
 
 </TabItem>
@@ -150,10 +150,10 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
 // Instantiate the client with the auth config
 const client: WeaviateClient = await weaviate.connectToWCS(
-    'some-endpoint.weaviate.network', {
-     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
-   } 
- )
+  'some-endpoint.weaviate.network', {
+    authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
+  } 
+)
 
 console.log(client)
 ```
@@ -186,16 +186,16 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-      'some-endpoint.weaviate.network',
-     {
-       authCredentials: new weaviate.AuthUserPasswordCredentials({
-        username: 'username',
-        password: 'password',
-        silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-        scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
-       })
-     } 
-   )
+  'some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.AuthUserPasswordCredentials({
+    username: 'username',
+    password: 'password',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
+    })
+  } 
+)
 ```
 
 </TabItem>
@@ -205,16 +205,16 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-      'some-endpoint.weaviate.network',
-     {
-       authCredentials: new AuthUserPasswordCredentials({
-        username: 'username',
-        password: 'password',
-        silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-        scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
-       })
-     } 
-   )
+  'some-endpoint.weaviate.network',
+  {
+    authCredentials: new AuthUserPasswordCredentials({
+    username: 'username',
+    password: 'password',
+    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
+    })
+  } 
+)
 ```
 
 </TabItem>
@@ -233,15 +233,15 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-      'https://some-endpoint.weaviate.network',
-     {
-        authCredentials: new weaviate.AuthClientCredentials({
-         clientSecret: 'supersupersecret',
-         silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-         scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
-        })
-      } 
-   )
+  'https://some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.AuthClientCredentials({
+      clientSecret: 'supersupersecret',
+      silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+      scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
+    })
+  } 
+)
 ```
 
 </TabItem>
@@ -251,14 +251,14 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-      'https://some-endpoint.weaviate.network',
-      {
-        authCredentials: new weaviate.AuthClientCredentials({
-         clientSecret: 'supersupersecret',
-         silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-         scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
-        })
-      } 
+  'https://some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.AuthClientCredentials({
+      clientSecret: 'supersupersecret',
+      silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+      scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
+    })
+  } 
 )
 ```
 
@@ -278,16 +278,16 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-      'https://some-endpoint.weaviate.network',
-      {
-        authCredentials: new weaviate.AuthAccessTokenCredentials({
-         accessToken: 'acessToken',
-         expiresIn: 900,
-         refreshToken: 'refreshToken',
-         silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-        })
-      } 
-   )
+  'https://some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.AuthAccessTokenCredentials({
+      accessToken: 'acessToken',
+      expiresIn: 900,
+      refreshToken: 'refreshToken',
+      silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    })
+  } 
+)
 ```
 
 </TabItem>
@@ -297,15 +297,15 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-      'https://some-endpoint.weaviate.network',
-      {
-        authCredentials: new weaviate.AuthAccessTokenCredentials({
-         accessToken: 'acessToken',
-         expiresIn: 900,
-         refreshToken: 'refreshToken',
-         silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-        })
-    } 
+  'https://some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.AuthAccessTokenCredentials({
+      accessToken: 'acessToken',
+      expiresIn: 900,
+      refreshToken: 'refreshToken',
+      silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
+    })
+  } 
 )
 ```
 
@@ -323,14 +323,14 @@ You can pass custom headers to the client, which are added at initialization:
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-      'https://some-endpoint.weaviate.network',
-     {
-       authCredentials: new weaviate.ApiKey('some-api-key'),
-       headers: {
-         someHeaderName: 'header-value', 
-       }
-     } 
-   )
+  'https://some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.ApiKey('some-api-key'),
+    headers: {
+      someHeaderName: 'header-value', 
+    }
+  } 
+)
 ```
 
 </TabItem>
@@ -340,14 +340,14 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-      'https://some-endpoint.weaviate.network',
-     {
-       authCredentials: new weaviate.ApiKey('some-api-key'),
-       headers: {
-         someHeaderName: 'header-value', 
-       }
-     } 
-   )
+  'https://some-endpoint.weaviate.network',
+  {
+    authCredentials: new weaviate.ApiKey('some-api-key'),
+    headers: {
+      someHeaderName: 'header-value', 
+    }
+  } 
+)
 ```
 
 </TabItem>
@@ -421,10 +421,10 @@ Use this code to create `sample.ts`.
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-    'some-endpoint.weaviate.network', {
-     authCredentials: new weaviate.ApiKey('api-key'),
-   } 
- )
+  'some-endpoint.weaviate.network', {
+    authCredentials: new weaviate.ApiKey('api-key'),
+  } 
+)
  
 console.log(await client.isReady())
 ```

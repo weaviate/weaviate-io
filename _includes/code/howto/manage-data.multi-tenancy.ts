@@ -1,16 +1,17 @@
 // Howto: Manage data -> Multi-tenancy operations - TypeScript examples
 
 import assert from 'assert';
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',  // TODO: https
-  host: 'anon-endpoint.weaviate.network', // TODO: edu-demo.weaviate.network
-  // apiKey: new weaviate.ApiKey('learn-weaviate'),
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 const className = 'MultiTenancyCollection';  // aka JeopardyQuestion
 try {
