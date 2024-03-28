@@ -19,14 +19,20 @@ export default function CallingSection() {
         <div className={styles.features}>
           <div className={styles.box}>
             <div className={styles.icon1}></div>
-            <h4 className={styles.title}>Visit booth #1914</h4>
+            <h4 className={styles.title}>
+              Attend our session with GCP on April 11!
+            </h4>
             <p className={styles.subTitle}>
-              Vector databases are an emerging piece of the modern data stack,
-              purpose-built for AI, that empower use cases like semantic search,
-              retrieval augmented generation (RAG), and generative feedback
-              loops. Learn what this means for your organization and how
-              Weaviate on Google Cloud can unlock new possibilities for your
-              customers.
+              Don’t miss our CEO, Bob van Luijt’s joint session with Google
+              Cloud,{' '}
+              <Link
+                className={styles.eventLink}
+                to="https://cloud.withgoogle.com/next?session=OPS209"
+              >
+                From RAG to autonomous apps with Weaviate and Gemini on Google
+                Kubernetes Engine
+              </Link>{' '}
+              on April 11 at 10:15am PT.
             </p>
           </div>
           <div className={styles.box}>
@@ -35,8 +41,10 @@ export default function CallingSection() {
             <p className={styles.subTitle}>
               Book time to meet 1:1 with our team to learn about Weaviate and
               explore our latest offerings.{' '}
-              <a href="#meetingForm">Request a time to meet</a> and we’ll get
-              back to you to confirm your attendance.
+              <a className={styles.requestLink} href="#meetingForm">
+                Request a time to meet
+              </a>{' '}
+              and we’ll get back to you to confirm your attendance.
             </p>
           </div>
         </div>
