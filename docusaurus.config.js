@@ -484,6 +484,11 @@ const config = {
                                 to: 'https://github.com/weaviate/weaviate',
                             },
                             {
+
+                                label: 'Linkedin',
+                                to: 'https://www.linkedin.com/company/weaviate-io',
+                            },
+                            {
                                 label: 'Forum',
                                 to: 'https://forum.weaviate.io',
                             },

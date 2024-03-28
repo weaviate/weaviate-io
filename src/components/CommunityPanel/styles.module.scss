@@ -93,11 +93,11 @@
 }
 .rightSide {
   display: flex;
-  gap: 50px;
-  width: 22rem;
-  height: 100%;
   flex-flow: wrap;
-  padding: 50px;
+  gap: 50px;
+  height: 100%;
+  padding: 69px;
+  width: 25rem;
 
   @media screen and (max-width: 520px) {
     display: flex;
@@ -110,9 +110,12 @@
 }
 .leftSide {
   display: flex;
-  width: 31rem;
-  flex-wrap: wrap;
+  width: 26rem;
+  flex-direction: column;
 
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+  }
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -124,6 +127,7 @@
   .communityHeader {
     color: #ffffff;
     padding: 0;
+    font-size: 24px;
   }
 }
 .socialBox {

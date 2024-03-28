@@ -19,20 +19,20 @@ export default function CommunityPanel() {
             </div>
             <div className={styles.socialBox}>
               <Link
-                to="https://weaviate.io/slack"
-                className={styles.mobileSocialBox}
-              >
-                <div className={styles.slack} />
-                <p className={styles.text}>Slack</p>
-              </Link>
-            </div>
-            <div className={styles.socialBox}>
-              <Link
                 to="https://forum.weaviate.io/"
                 className={styles.mobileSocialBox}
               >
                 <div className={styles.forum} />
                 <p className={styles.text}>Forum</p>
+              </Link>
+            </div>
+            <div className={styles.socialBox}>
+              <Link
+                to="https://weaviate.io/slack"
+                className={styles.mobileSocialBox}
+              >
+                <div className={styles.slack} />
+                <p className={styles.text}>Slack</p>
               </Link>
             </div>
             <div className={styles.socialBox}>
@@ -47,17 +47,11 @@ export default function CommunityPanel() {
           </div>
           <div className={styles.leftSide}>
             <h2 className={styles.communityHeader}>
-              Join the global community
+              Don't want to miss another blog post?
             </h2>
-            <span className={styles.rightText}>
-              Connect with the Weaviate Team and hundreds of developers and data
-              engineers! Our community is here to help you with your projects
-              and provide expert advice. Share how you build your apps with
-              Weaviate.
-            </span>
 
             <span className={styles.rightText}>
-              Stay updated and subscribe to our newsletter
+              Sign up for our bi-weekly newsletter to stay updated!
             </span>
 
             <div className={styles.communityForm}>
@@ -81,6 +75,8 @@ export default function CommunityPanel() {
                 <Link href="/privacy">Privacy Policy</Link>.
               </span>
             </div>
+
+
           </div>
         </div>
       </div>
