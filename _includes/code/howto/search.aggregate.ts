@@ -63,7 +63,7 @@ const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.overAll({
  returnMetrics: myCollection.metrics.aggregate('points').integer(['sum','maximum','minimum'])
- })
+})
 
 console.log(JSON.stringify(result, null, 2));
 // END IntProp TS
@@ -109,8 +109,7 @@ assert.deepEqual(new Set(result.data.Aggregate.JeopardyQuestion), new Set([
 // nearTextWithLimit TS
 const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.nearText(['animals in space'],
-{
+const result = await myCollection.aggregate.nearText(['animals in space'],{
  objectLimit: 10,
  returnMetrics: myCollection.metrics.aggregate('points').number(['sum'])
 })
@@ -139,7 +138,6 @@ const result = await myCollection.aggregate.nearText(['animals in space'],{
 })
 
 console.log(JSON.stringify(result.properties['points'].sum, null, 2));
-
 // END nearTextWithDistance TS
 
 // Test
@@ -160,8 +158,8 @@ const myCollection = client.collections.get('JeopardyQuestion');
 const result = await myCollection.aggregate.overAll({
  filters: myCollection.filter.byProperty('round').equal('Final Jeopardy!')
 })
-console.log(JSON.stringify(result.totalCount, null, 2));
 
+console.log(JSON.stringify(result.totalCount, null, 2));
 // END whereFilter TS
 
 // Test

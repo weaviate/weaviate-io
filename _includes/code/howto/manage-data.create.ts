@@ -5,15 +5,17 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'anon-endpoint.weaviate.network',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 const className = 'JeopardyQuestion';
 let result;
@@ -109,17 +111,15 @@ try {
 // =========================
 
 // CreateObject START
-result = await client.data
-  .creator()
-  .withClassName('JeopardyQuestion')
-  .withProperties({
-    question: 'This vector DB is OSS and supports automatic property type inference on import',
-    // answer: 'Weaviate',  // schema properties can be omitted
-    newProperty: 123,  // will be automatically added as a number property
-  })
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion')
 
-console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+const uuid = await myCollection.data.insert({
+  'question': 'This vector DB is OSS & supports automatic property type inference on import',
+  // 'answer': 'Weaviate',  // properties can be omitted
+  'newProperty': 123,  // will be automatically added as a number property
+})
+
+console.log('UUID: ', uuid)
 // CreateObject END
 
 result = await client.data.getterById().withClassName(className).withId(result.id).do();
@@ -130,19 +130,18 @@ assert.equal(result.properties['newProperty'], 123);
 // =======================================
 
 // CreateObjectWithVector START
-result = await client.data
-  .creator()
-  .withClassName('JeopardyQuestion')
-  .withProperties({
-    question: 'This vector DB is OSS and supports automatic property type inference on import',
-    answer: 'Weaviate',
-  })
-  // highlight-start
-  .withVector(Array(1536).fill(0.12345))
-  // highlight-end
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion')
 
-console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+const uuid = await myCollection.data.insert({
+  properties: {
+  'question': 'This vector DB is OSS & supports automatic property type inference on import',
+  // 'answer': 'Weaviate',  // properties can be omitted
+  'newProperty': 123,  // will be automatically added as a number property
+  },
+  vectors: Array(1536).fill(0.12345)
+})
+
+console.log('UUID: ', uuid)
 // CreateObjectWithVector END
 
 
@@ -151,25 +150,22 @@ console.log(JSON.stringify(result, null, 2));  // the returned value is the obje
 // =======================================
 
 // CreateObjectNamedVectors START
-result = await client.data
-  .creator()
-  .withClassName('WineReviewNV')
-  .withProperties({
-    title: 'A delicious Riesling',
-    review_body: 'This wine is a delicious Riesling which pairs well with seafood.',
-    country: 'Germany',
-  })
-  // highlight-start
-  // Specify the named vectors, following the collection definition
-  .withVectors({
+const myCollection = client.collections.get('WineReviewNV')
+
+const uuid = await myCollection.data.insert({
+  properties: {
+    "title": "A delicious Riesling",
+    "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
+    "country": "Germany",
+  },
+  vectors: {
     title: Array(1536).fill(0.12345),
     review_body: Array(1536).fill(0.31313),
     title_country: Array(1536).fill(0.05050),
-  })
-  // highlight-end
-  .do();
+  }
+})
 
-console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+console.log('UUID: ', uuid)
 // CreateObjectNamedVectors END
 
 
@@ -179,24 +175,24 @@ console.log(JSON.stringify(result, null, 2));  // the returned value is the obje
 
 // CreateObjectWithDeterministicId START
 // highlight-start
-import { generateUuid5 } from 'weaviate-ts-client';  // requires v1.3.2+
+import { generateUuid5 } from 'weaviate-client';  
 // highlight-end
 
-const dataObj = {
-  question: 'This vector DB is OSS and supports automatic property type inference on import',
-  answer: 'Weaviate'
+const myCollection = client.collections.get('WineReviewNV')
+const dataObject = {
+  "title": "A delicious Riesling",
+  "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
+  "country": "Germany",
 }
 
-result = await client.data
-  .creator()
-  .withClassName('JeopardyQuestion')
-  .withProperties(dataObj)
+const uuid = await myCollection.data.insert({
+  properties: dataObject,
   // highlight-start
-  .withId(generateUuid5(JSON.stringify(dataObj)))
+  id: generateUuid5(dataObject.title)
   // highlight-end
-  .do();
+})
 
-console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+console.log('UUID: ', uuid)
 // CreateObjectWithDeterministicId END
 
 result = await client.data.getterById().withClassName(className).withId(result.id).do();
@@ -207,19 +203,20 @@ assert.equal(result.id, generateUuid5(JSON.stringify(dataObj)));
 // ============================================
 
 // CreateObjectWithId START
-result = await client.data
-  .creator()
-  .withClassName('JeopardyQuestion')
-  .withProperties({
-    question: 'This vector DB is OSS and supports automatic property type inference on import',
-    answer: 'Weaviate',
-  })
-  // highlight-start
-  .withId('12345678-e64f-5d94-90db-c8cfa3fc1234')
-  // highlight-end
-  .do();
+const myCollection = client.collections.get('WineReviewNV')
 
-console.log(JSON.stringify(result, null, 2));  // the returned value is the object
+const uuid = await myCollection.data.insert({
+  properties: {
+    "title": "A delicious Riesling",
+    "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
+    "country": "Germany",
+    },
+  // highlight-start
+  id: "12345678-e64f-5d94-90db-c8cfa3fc1234"
+  // highlight-end
+})
+
+console.log('UUID: ', uuid)
 // CreateObjectWithId END
 
 result = await client.data.getterById().withClassName(className).withId('12345678-e64f-5d94-90db-c8cfa3fc1234').do();
@@ -234,24 +231,9 @@ assert.deepEqual(result.properties, {
 // ===========================
 
 // ValidateObject START
-try {
-  await client.data
-    // highlight-start
-    .validator()
-    // highlight-end
-    .withClassName('JeopardyQuestion')
-    .withId('12345678-1234-1234-1234-123456789012')  // placeholder in UUID format (required)
-    .withProperties({
-      question: 'This vector DB is open-source and supports auto-schema',
-      answer: 'Weaviate',
-      thisPropShouldNotEndUpInTheSchema: -1,
-    })
-    .do();
-} catch (e) {
-  // "invalid object: no such prop with name 'thisPropShouldNotEndUpInTheSchema' found..."
-  console.error('Expecting error about thisPropShouldNotEndUpInTheSchema:', e.message);
+// Validate is currently not supported with the Weaviate TypeScript client v3
+
   // ValidateObject END
   assert.ok(e.message.includes('thisPropShouldNotEndUpInTheSchema'));
   // ValidateObject START
-}
 // ValidateObject END

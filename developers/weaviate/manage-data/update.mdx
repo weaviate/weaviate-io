@@ -13,6 +13,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.update.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.update-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.update.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.update-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.update.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.update_test.go';
 
@@ -57,9 +58,18 @@ Update one or more properties by providing the collection name, id and propertie
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// UpdateProps START"
+      endMarker="// UpdateProps END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// UpdateProps START"
       endMarker="// UpdateProps END"
       language="ts"
@@ -108,7 +118,13 @@ The object vector can also be updated similarly to properties. For [named vector
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
+
+  >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
 
   >  Coming soon (vote for the [feature request](https://github.com/weaviate/typescript-client/issues/64))
 
@@ -150,9 +166,18 @@ The entire object can be replaced by providing the collection name, id and the n
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// Replace START"
+      endMarker="// Replace END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// Replace START"
       endMarker="// Replace END"
       language="ts"
@@ -203,9 +228,18 @@ At object level, you can replace the object with a copy that has those propertie
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// DelProps START"
+      endMarker="// DelProps END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// DelProps START"
       endMarker="// DelProps END"
       language="ts"
