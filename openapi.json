@@ -132,7 +132,7 @@
       }
     },
     "C11yVector": {
-      "description": "A Vector in the Contextionary",
+      "description": "A vector representation of the object. If provided at object creation, this wil take precedence over any vectorizer setting.",
       "type": "array",
       "items": {
         "type": "number",
@@ -140,7 +140,7 @@
       }
     },
     "Vector": {
-      "description": "A Vector object",
+      "description": "A vector representation of the object. If provided at object creation, this wil take precedence over any vectorizer setting.",
       "type": "array",
       "items": {
         "type": "number",
@@ -148,7 +148,7 @@
       }
     },
     "Vectors": {
-      "description": "A Multi Vector map of named vectors",
+      "description": "A map of named vectors for multi-vector representations.",
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/Vector"
@@ -599,11 +599,11 @@
       "type": "array"
     },
     "VectorWeights": {
-      "description": "Allow custom overrides of vector weights as math expressions. E.g. \"pancake\": \"7\" will set the weight for the word pancake to 7 in the vectorization, whereas \"w * 3\" would triple the originally calculated word. This is an open object, with OpenAPI Specification 3.0 this will be more detailed. See Weaviate docs for more info. In the future this will become a key/value (string/string) object.",
+      "description": "Allow custom overrides of vector weights as math expressions in word-based vectorization models. E.g. \"pancake\": \"7\" will set the weight for the word pancake to 7 in the vectorization, whereas \"w * 3\" would triple the originally calculated word.",
       "type": "object"
     },
     "PropertySchema": {
-      "description": "This is an open object, with OpenAPI Specification 3.0 this will be more detailed. See Weaviate docs for more info. In the future this will become a key/value OR a SingleRef definition.",
+      "description": "Names and values of an individual property. A returned response may also contain additional metadata, such as from classification or feature projection. [See this page for more detailed information](https://weaviate.io/developers/weaviate/config-refs/objects).",
       "type": "object"
     },
     "SchemaHistory": {
@@ -1348,7 +1348,7 @@
       }
     },
     "AdditionalProperties": {
-      "description": "Additional Meta information about a single object object.",
+      "description": "(Response only) Additional meta information about a single object.",
       "type": "object",
       "additionalProperties": {
         "type": "object"
@@ -1515,7 +1515,7 @@
     "Object": {
       "properties": {
         "class": {
-          "description": "Class of the Object, defined in the schema.",
+          "description": "The object collection name.",
           "type": "string"
         },
         "vectorWeights": {
@@ -1525,17 +1525,17 @@
           "$ref": "#/definitions/PropertySchema"
         },
         "id": {
-          "description": "ID of the Object.",
+          "description": "ID of the object.",
           "format": "uuid",
           "type": "string"
         },
         "creationTimeUnix": {
-          "description": "Timestamp of creation of this Object in milliseconds since epoch UTC.",
+          "description": "(Response only) Timestamp of creation of this object in milliseconds since epoch UTC.",
           "format": "int64",
           "type": "integer"
         },
         "lastUpdateTimeUnix": {
-          "description": "Timestamp of the last Object update in milliseconds since epoch UTC.",
+          "description": "(Response only) Timestamp of the last object update in milliseconds since epoch UTC.",
           "format": "int64",
           "type": "integer"
         },
@@ -1548,7 +1548,7 @@
           "$ref": "#/definitions/Vectors"
         },
         "tenant": {
-          "description": "Name of the Objects tenant.",
+          "description": "Name of the tenant.",
           "type": "string"
         },
         "additional": {
@@ -2074,14 +2074,14 @@
   },
   "parameters": {
     "CommonAfterParameterQuery": {
-      "description": "The starting ID of the result window.",
+      "description": "A threshold UUID of the objects to retrieve after, using an UUID-based ordering. This object is not part of the set. <br/><br/>Must be used with `class`, typically in conjunction with `limit`. <br/><br/>Note `after` cannot be used with `offset` or `sort`. <br/><br/>For a null value similar to offset=0, set an empty string in the request, i.e. `after=` or `after`.",
       "in": "query",
       "name": "after",
       "required": false,
       "type": "string"
     },
     "CommonOffsetParameterQuery": {
-      "description": "The starting index of the result window. Default value is 0.",
+      "description": "The starting index of the result window. Note `offset` will retrieve `offset+limit` results and return `limit` results from the object with index `offset` onwards. Limited by the value of `QUERY_MAXIMUM_RESULTS`. <br/><br/>Should be used in conjunction with `limit`. <br/><br/>Cannot be used with `after`.",
       "format": "int64",
       "in": "query",
       "name": "offset",
@@ -2090,15 +2090,16 @@
       "default": 0
     },
     "CommonLimitParameterQuery": {
-      "description": "The maximum number of items to be returned per page. Default value is set in Weaviate config.",
+      "description": "The maximum number of items to be returned per page. The default is 25 unless set otherwise as an environment variable.",
       "format": "int64",
       "in": "query",
       "name": "limit",
       "required": false,
-      "type": "integer"
+      "type": "integer",
+      "default": 25
     },
     "CommonIncludeParameterQuery": {
-      "description": "Include additional information, such as classification infos. Allowed values include: classification, vector, interpretation",
+      "description": "Include additional information, such as classification infos. Allowed values include: `classification`, `vector`, `interpretation`, `featureProjection` and other module-specific additional properties.",
       "in": "query",
       "name": "include",
       "required": false,
@@ -2109,10 +2110,12 @@
       "in": "query",
       "name": "consistency_level",
       "required": false,
-      "type": "string"
+      "type": "string",
+      "enum": ["ONE", "QUORUM", "ALL"],
+      "default": "QUORUM"
     },
     "CommonTenantParameterQuery": {
-      "description": "Specifies the tenant in a request targeting a multi-tenant class",
+      "description": "Specifies the tenant in a request targeting a multi-tenant collection",
       "in": "query",
       "name": "tenant",
       "required": false,
@@ -2126,21 +2129,22 @@
       "type": "string"
     },
     "CommonSortParameterQuery": {
-      "description": "Sort parameter to pass an information about the names of the sort fields",
+      "description": "Name(s) of the property to sort by - e.g. `city`, or `country,city`.",
       "in": "query",
       "name": "sort",
       "required": false,
       "type": "string"
     },
     "CommonOrderParameterQuery": {
-      "description": "Order parameter to tell how to order (asc or desc) data within given field",
+      "description": "Order parameter to tell how to order (asc or desc) data within given field. Should be used in conjunction with `sort` parameter.",
       "in": "query",
       "name": "order",
       "required": false,
-      "type": "string"
+      "type": "string",
+      "enum": ["asc", "desc"]
     },
     "CommonClassParameterQuery": {
-      "description": "Class parameter specifies the class from which to query objects",
+      "description": "The collection from which to query objects.  <br/><br/>Note that if `class` is not provided, the response will not include any objects.",
       "in": "query",
       "name": "class",
       "required": false,
@@ -2256,7 +2260,7 @@
     },
     "/objects": {
       "get": {
-        "description": "Lists all objects in reverse order of creation, owned by the user that belongs to the used token.",
+        "description": "Lists all objects in reverse order of creation. The data will be returned as an array of objects. <br/><br/>Tip: If you are looking to list all objects in a collection, use the `after` parameter.",
         "operationId": "objects.list",
         "x-serviceIds": [
           "weaviate.local.query"
@@ -2289,7 +2293,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Successful response. <br/><br/>If `class` is not provided, the response will not include any objects.",
             "schema": {
               "$ref": "#/definitions/ObjectsListResponse"
             }
@@ -2333,7 +2337,7 @@
         "x-available-in-websocket": false
       },
       "post": {
-        "description": "Creates a new Object. Provided meta-data and schema values are validated.",
+        "description": "Create a new object. <br/><br/>Meta-data and schema values are validated. <br/><br/>**Note: Use `/batch` for importing many objects**: <br/>If you plan on importing a large number of objects, it's much more efficient to use the `/batch` endpoint. Otherwise, sending multiple single requests sequentially would incur a large performance penalty. <br/><br/>**Note: idempotence of `/objects`**: <br/>POST /objects will fail if an id is provided which already exists in the class. To update an existing object with the objects endpoint, use the PUT or PATCH method.",
         "operationId": "objects.create",
         "x-serviceIds": [
           "weaviate.local.add"
@@ -2396,7 +2400,7 @@
     },
     "/objects/{id}": {
       "delete": {
-        "description": "Deletes an Object from the database based on its UUID.",
+        "description": "Deletes an object from the database based on its UUID.",
         "operationId": "objects.delete",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -2449,7 +2453,7 @@
         "deprecated": true
       },
       "get": {
-        "description": "Get a specific Object based on its UUID and a Object UUID. Also available as Websocket bus.",
+        "description": "Get a specific object based on its UUID. Also available as Websocket bus.",
         "operationId": "objects.get",
         "x-serviceIds": [
           "weaviate.local.query"
@@ -2508,7 +2512,7 @@
         "deprecated": true
       },
       "patch": {
-        "description": "Update an Object based on its UUID (using patch semantics). This method supports json-merge style patch semantics (RFC 7396). Provided meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
+        "description": "Update an object based on its UUID (using patch semantics). This method supports json-merge style patch semantics (RFC 7396). Provided meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
         "operationId": "objects.patch",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -2567,7 +2571,7 @@
             }
           }
         },
-        "summary": "Update an Object (patch).",
+        "summary": "Update an object using patch semantics.",
         "tags": [
           "objects"
         ],
@@ -2576,7 +2580,7 @@
         "deprecated": true
       },
       "put": {
-        "description": "Updates an Object's data based on its UUID. Given meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
+        "description": "Updates an object based on its UUID. Given meta-data and schema values are validated. LastUpdateTime is set to the time this function is called.",
         "operationId": "objects.update",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -2643,7 +2647,7 @@
         "deprecated": true
       },
       "head": {
-        "description": "Checks if an Object exists in the system based on its UUID.",
+        "description": "Checks if an object exists in the system based on its UUID.",
         "operationId": "objects.head",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -2763,7 +2767,7 @@
             }
           }
         },
-        "summary": "Get an object",
+        "summary": "Get an object.",
         "tags": [
           "objects"
         ],
@@ -2841,7 +2845,7 @@
         "x-available-in-websocket": true
       },
       "put": {
-        "description": "Update an object based on its uuid and collection.",
+        "description": "Update an object based on its uuid and collection. This (`put`) method replaces the object with the provided object.",
         "operationId": "objects.class.put",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -2982,7 +2986,7 @@
             }
           }
         },
-        "summary": "Update an object (patch).",
+        "summary": "Update an object using patch semantics.",
         "tags": [
           "objects"
         ],
@@ -2990,7 +2994,7 @@
         "x-available-in-websocket": false
       },
       "head": {
-        "description": "Checks if a data object exists based on its collection and uuid without retrieving it.",
+        "description": "Checks if a data object exists based on its collection and uuid without retrieving it. <br/><br/>Internally it skips reading the object from disk other than checking if it is present. Thus it does not use resources on marshalling, parsing, etc., and is faster. Note the resulting HTTP request has no body; the existence of an object is indicated solely by the status code.",
         "operationId": "objects.class.head",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -3047,7 +3051,7 @@
             }
           }
         },
-        "summary": "Checks if object exists.",
+        "summary": "Check if an object exists.",
         "tags": [
           "objects"
         ],
@@ -3266,7 +3270,7 @@
     },
     "/objects/{className}/{id}/references/{propertyName}": {
       "post": {
-        "description": "Add a single reference to an object.",
+        "description": "Add a single reference to an object. This adds a reference to the array of cross-references of the given property in the source object specified by its collection name and id",
         "operationId": "objects.class.references.create",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -3353,7 +3357,7 @@
         "x-available-in-websocket": false
       },
       "put": {
-        "description": "Replace all references in cross-reference property of an object.",
+        "description": "Replace **all** references in cross-reference property of an object.",
         "operationId": "objects.class.references.put",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -3532,7 +3536,7 @@
     },
     "/objects/validate": {
       "post": {
-        "description": "Validate an Object's schema and meta-data. It has to be based on a schema, which is related to the given Object to be accepted by this validation.",
+        "description": "Validate an object's schema and meta-data without creating it. <br/><br/>If the schema of the object is valid, the request should return nothing with a plain RESTful request. Otherwise, an error object will be returned.",
         "operationId": "objects.validate",
         "x-serviceIds": [
           "weaviate.local.query.meta"
@@ -3583,7 +3587,7 @@
     },
     "/batch/objects": {
       "post": {
-        "description": "Register new Objects in bulk. Provided meta-data and schema values are validated.",
+        "description": "Create new objects in bulk. <br/><br/>Meta-data and schema values are validated. <br/><br/>**Note: idempotence of `/batch/objects`**: <br/>POST /batch/objects is idempotent, and will overwrite any existing object given the same id.",
         "operationId": "batch.objects.create",
         "x-serviceIds": [
           "weaviate.local.add"
@@ -4467,7 +4471,7 @@
         }
       },
       "put": {
-        "summary": "Update a tenant",
+        "summary": "Update a tenant.",
         "description": "Update a tenant for a collection",
         "operationId": "tenants.update",
         "tags": [
@@ -4526,7 +4530,7 @@
         }
       },
       "delete": {
-        "summary": "Delete tenant(s)",
+        "summary": "Delete tenant(s).",
         "description": "Delete tenants from a collection",
         "operationId": "tenants.delete",
         "tags": [
@@ -4629,7 +4633,7 @@
     },
     "/schema/{className}/tenants/{tenantName}": {
       "head": {
-        "summary": "Check if a tenant exists",
+        "summary": "Check if a tenant exists.",
         "description": "Check if a tenant exists in a collection",
         "operationId": "tenant.exists",
         "tags": [
