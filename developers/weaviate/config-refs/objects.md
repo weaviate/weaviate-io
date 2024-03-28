@@ -24,6 +24,32 @@ The idempotence behavior differs between these two endpoints. POST /batch/object
 To update an existing object with the `objects` endpoint, use the `PUT` or `PATCH` method.
 :::
 
+### With a custom vector
+
+When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector.
+
+You can provide a custom vector during object creation either when:
+- you are not using a vectorizer for that class, or
+- you are using a vectorizer, but you wish to bypass it during the object creation stage.
+
+You can create a data object with a custom vector as follows:
+1. Set the `"vectorizer"` in the relevant class in the [data schema](../../manage-data/collections.mdx#specify-a-vectorizer).
+    - If you are not using a vectorizer at all, configure the class accordingly. To do this, you can:
+        - set the default vectorizer module to `"none"` (`DEFAULT_VECTORIZER_MODULE="none"`), or
+        - set the `"vectorizer"` for the class to `"none"` (`"vectorizer": "none"`) (*note: the class `vectorizer` setting will override the `DEFAULT_VECTORIZER_MODULE` parameter*).
+    - If you wish to bypass the vectorizer for object creation:
+      - set the vectorizer to the same vectorizer with identical settings used to generate the custom vector
+    > *Note: There is NO validation of this vector besides checking the vector length.*
+2. Then, attach the vector in a special `"vector"` field during object creation. For example, if adding a single object, you can:
+
+<SemanticKindCreateVector/>
+
+:::note
+You can set custom vectors for batch imports as well as single object creation.
+:::
+
+See also [how to search using custom vectors](../graphql/search-operators.md#nearvector).
+
 ## `classification` - additional object fields
 
 | Field name | Data type | Required `include` or `additional` field | Description |
