@@ -2,7 +2,7 @@
 title: Monitoring
 sidebar_position: 50
 image: og/docs/configuration.jpg
-# tags: ['configuration', 'operations', 'monitoring', 'observability']
+# tags: ['configuration', 'operations', 'monitoring', 'observability', 'metrics']
 ---
 
 
@@ -118,9 +118,9 @@ your uses perfectly:
 | [Startup](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/startup.json) | Visualize the startup process, including recovery operations | ![Startup](./img/weaviate-sample-dashboard-startup.png "Vector Index") |
 | [Usage](https://github.com/weaviate/weaviate/blob/master/tools/dev/grafana/dashboards/usage.json) | Obtain usage metrics, such as number of objects imported, etc.| ![Usage](./img/weaviate-sample-dashboard-usage.png "Usage") |
 
-## `nodes` API Endpoint
+## Available Metrics via `nodes` API Endpoint
 
-To get collection details programmatically, use the [`nodes`](/weaviate/api/rest/nodes.md) REST endpoint. 
+To get collection details and metrics programmatically, use the [`nodes`](/weaviate/api/rest/nodes.md) REST endpoint. 
 
 import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
 
