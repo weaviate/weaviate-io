@@ -603,7 +603,7 @@
       "type": "object"
     },
     "PropertySchema": {
-      "description": "Names and values of an individual property. A returned response may also contain additional metadata, such as from classification or feature projection. [See this page for more detailed information](https://weaviate.io/developers/weaviate/config-refs/objects).",
+      "description": "Names and values of an individual property. A returned response may also contain additional metadata, such as from classification or feature projection.",
       "type": "object"
     },
     "SchemaHistory": {

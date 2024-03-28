@@ -5,6 +5,8 @@ image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
 
+<!-- Leftover data from REST -> OpenAPI refactor -->
+
 ### `objects` vs `batch`
 
 :::tip
