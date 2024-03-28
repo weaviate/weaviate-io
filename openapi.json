@@ -479,11 +479,11 @@
           "type": "string"
         },
         "version": {
-          "description": "Version of weaviate you are currently running",
+          "description": "The Weaviate server version.",
           "type": "string"
         },
         "modules": {
-          "description": "Module-specific meta information",
+          "description": "Module-specific meta information.",
           "type": "object"
         }
       },
@@ -1012,7 +1012,7 @@
           "x-nullable": false
         },
         "ChunkSize": {
-          "description": "Weaviate will attempt to come close the specified size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB",
+          "description": "Aimed chunk size, with a minimum of 2MB, default of 128MB, and a maximum of 512MB. The actual chunk size may vary.",
           "type": "integer",
           "default": 128,
           "minimum": 2,
@@ -1020,7 +1020,7 @@
           "x-nullable": false
         },
         "CompressionLevel": {
-          "description": "compression level used by compression algorithm",
+          "description": "Compression level used by compression algorithm",
           "type": "string",
           "default": "DefaultCompression",
           "x-nullable": false,
@@ -1047,6 +1047,7 @@
       }
     },
     "BackupCreateRequest": {
+      "required": ["id"],
       "description": "Request body for creating a backup of a set of classes",
       "properties": {
         "id": {
@@ -1054,19 +1055,19 @@
           "type": "string"
         },
         "config": {
-          "description": "Custom configuration for the backup creation process",
+          "description": "Custom configuration for the backup creation process.",
           "type": "object",
           "$ref": "#/definitions/BackupConfig"
         },
         "include": {
-          "description": "List of classes to include in the backup creation process",
+          "description": "List of collections to include in the backup creation process. If not set, all collections are included. Cannot be used together with `exclude`.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "exclude": {
-          "description": "List of classes to exclude from the backup creation process",
+          "description": "List of collections to exclude from the backup creation process. If not set, all collections are included. Cannot be used together with `include`.",
           "type": "array",
           "items": {
             "type": "string"
@@ -1123,14 +1124,14 @@
           "$ref": "#/definitions/RestoreConfig"
         },
         "include": {
-          "description": "List of classes to include in the backup restoration process",
+          "description": "List of collections to include in the backup restoration process. If not set, all collections are included. Cannot be used together with `exclude`.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "exclude": {
-          "description": "List of classes to exclude from the backup restoration process",
+          "description": "List of collections to exclude from the backup restoration process. If not set, all collections are included. Cannot be used together with `include`.",
           "type": "array",
           "items": {
             "type": "string"
@@ -1189,7 +1190,7 @@
       "description": "The summary of Weaviate's statistics.",
       "properties": {
         "shardCount": {
-          "description": "The count of Weaviate's shards.",
+          "description": "The count of Weaviate's shards. To see this value, set `output` to `verbose`.",
           "format": "int",
           "type": "number",
           "x-omitempty": false
@@ -1277,7 +1278,8 @@
             "HEALTHY",
             "UNHEALTHY",
             "UNAVAILABLE",
-            "TIMEOUT"
+            "TIMEOUT",
+            "INDEXING"
           ]
         },
         "version": {
@@ -1617,12 +1619,16 @@
           }
         },
         "output": {
-          "description": "Controls the verbosity of the output, possible values are: \"minimal\", \"verbose\". Defaults to \"minimal\".",
+          "description": "Controls the verbosity of the output.",
           "type": "string",
-          "default": "minimal"
+          "default": "minimal",
+          "enum": [
+            "minimal",
+            "verbose"
+          ]
         },
         "dryRun": {
-          "description": "If true, objects will not be deleted yet, but merely listed. Defaults to false.",
+          "description": "If true, the call will show which objects would be matched using the specified filter without deleting any objects. <br/><br/>Depending on the configured verbosity, you will either receive a count of affected objects, or a list of IDs.",
           "type": "boolean",
           "default": false
         }
@@ -1649,9 +1655,13 @@
           }
         },
         "output": {
-          "description": "Controls the verbosity of the output, possible values are: \"minimal\", \"verbose\". Defaults to \"minimal\".",
+          "description": "Controls the verbosity of the output.",
           "type": "string",
-          "default": "minimal"
+          "default": "minimal",
+          "enum": [
+            "minimal",
+            "verbose"
+          ]
         },
         "dryRun": {
           "description": "If true, objects will not be deleted yet, but merely listed. Defaults to false.",
@@ -2151,11 +2161,12 @@
       "type": "string"
     },
     "CommonOutputVerbosityParameterQuery": {
-      "description": "Controls the verbosity of the output, possible values are: \"minimal\", \"verbose\". Defaults to \"minimal\".",
+      "description": "Controls the verbosity of the output.",
       "in": "query",
       "name": "output",
       "required": false,
       "type": "string",
+      "enum": ["minimal", "verbose"],
       "default": "minimal"
     }
   },
@@ -2180,7 +2191,8 @@
               }
             }
           }
-        }
+        },
+        "tags": ["root"]
       }
     },
     "/.well-known/live": {
@@ -3122,8 +3134,7 @@
         },
         "summary": "Add a cross-reference.",
         "tags": [
-          "objects",
-          "references"
+          "objects"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false,
@@ -3191,8 +3202,7 @@
         },
         "summary": "Replace cross-references.",
         "tags": [
-          "objects",
-          "references"
+          "objects"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false,
@@ -3260,8 +3270,7 @@
         },
         "summary": "Delete a cross-reference.",
         "tags": [
-          "objects",
-          "references"
+          "objects"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false,
@@ -3350,8 +3359,7 @@
         },
         "summary": "Add a cross-reference.",
         "tags": [
-          "objects",
-          "references"
+          "objects"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
@@ -3437,8 +3445,7 @@
         },
         "summary": "Replace cross-references.",
         "tags": [
-          "objects",
-          "references"
+          "objects"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
@@ -3527,8 +3534,7 @@
         },
         "summary": "Delete a cross-reference.",
         "tags": [
-          "objects",
-          "references"
+          "objects"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
@@ -3587,7 +3593,7 @@
     },
     "/batch/objects": {
       "post": {
-        "description": "Create new objects in bulk. <br/><br/>Meta-data and schema values are validated. <br/><br/>**Note: idempotence of `/batch/objects`**: <br/>POST /batch/objects is idempotent, and will overwrite any existing object given the same id.",
+        "description": "Create new objects in bulk. <br/><br/>Meta-data and schema values are validated. <br/><br/>**Note: idempotence of `/batch/objects`**: <br/>`POST /batch/objects` is idempotent, and will overwrite any existing object given the same id.",
         "operationId": "batch.objects.create",
         "x-serviceIds": [
           "weaviate.local.add"
@@ -3668,14 +3674,13 @@
         },
         "summary": "Batch create new objects.",
         "tags": [
-          "batch",
-          "objects"
+          "batch"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
       },
       "delete": {
-        "description": "Batch delete objects in bulk based on a certain filter.",
+        "description": "Batch delete objects that match a particular filter. <br/><br/>The request body takes a single `where` filter and will delete all objects matched. <br/><br/>Note that there is a limit to the number of objects to be deleted at once using this filter, in order to protect against unexpected memory surges and very-long-running requests. The default limit is 10,000 and may be configured by setting the `QUERY_MAXIMUM_RESULTS` environment variable. <br/><br/>Objects are deleted in the same order that they would be returned in an equivalent Get query. To delete more objects than the limit, run the same query multiple times.",
         "operationId": "batch.objects.delete",
         "x-serviceIds": [
           "weaviate.local.manipulate"
@@ -3733,8 +3738,7 @@
         },
         "summary": "Batch delete objects.",
         "tags": [
-          "batch",
-          "objects"
+          "batch"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
@@ -3804,8 +3808,7 @@
         },
         "summary": "Batch create cross-references.",
         "tags": [
-          "batch",
-          "references"
+          "batch"
         ],
         "x-available-in-mqtt": false,
         "x-available-in-websocket": false
@@ -4687,7 +4690,7 @@
     "/backups/{backend}": {
       "post": {
         "summary": "Start a backup process",
-        "description": "Start creating a backup for a set of collections",
+        "description": "Start creating a backup for a set of collections. <br/><br/>Notes: <br/>- Weaviate uses gzip compression by default. <br/>- Weaviate stays usable while a backup process is ongoing.",
         "operationId": "backups.create",
         "x-serviceIds": [
           "weaviate.local.backup"
@@ -4701,7 +4704,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "Backup backend name e.g. filesystem, gcs, s3."
+            "description": "Backup backend name e.g. `filesystem`, `gcs`, `s3`, `azure`."
           },
           {
             "in": "body",
@@ -4746,7 +4749,7 @@
     "/backups/{backend}/{id}": {
       "get": {
         "summary": "Get backup process status",
-        "description": "Returns status of backup creation attempt for a set of collections",
+        "description": "Returns status of backup creation attempt for a set of collections. <br/><br/>All client implementations have a `wait for completion` option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully). If you set the `wait for completion` option to false, you can also check the status yourself using this endpoint.",
         "operationId": "backups.create.status",
         "x-serviceIds": [
           "weaviate.local.backup"
@@ -4760,7 +4763,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "Backup backend name e.g. filesystem, gcs, s3."
+            "description": "Backup backend name e.g. `filesystem`, `gcs`, `s3`, `azure`."
           },
           {
             "name": "id",
@@ -4810,7 +4813,7 @@
     "/backups/{backend}/{id}/restore": {
       "post": {
         "summary": "Start a restoration process",
-        "description": "Starts a process of restoring a backup for a set of collections",
+        "description": "Starts a process of restoring a backup for a set of collections. <br/><br/>Any backup can be restored to any machine, as long as the number of nodes between source and target are identical.<br/><br/>Requrements:<br/><br/>- None of the collections to be restored already exist on the target restoration node(s).<br/>- The node names of the backed-up collections' must match those of the target restoration node(s).",
         "operationId": "backups.restore",
         "x-serviceIds": [
           "weaviate.local.backup"
@@ -4824,7 +4827,7 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "Backup backend name e.g. filesystem, gcs, s3."
+            "description": "Backup backend name e.g. `filesystem`, `gcs`, `s3`, `azure`."
           },
           {
             "name": "id",
@@ -4880,7 +4883,7 @@
       },
       "get": {
         "summary": "Get restore process status",
-        "description": "Returns status of a backup restoration attempt for a set of classes",
+        "description": "Returns status of a backup restoration attempt for a set of classes. <br/><br/>All client implementations have a `wait for completion` option which will poll the backup status in the background and only return once the backup has completed (successfully or unsuccessfully). If you set the `wait for completion` option to false, you can also check the status yourself using the this endpoint.",
         "operationId": "backups.restore.status",
         "x-serviceIds": [
           "weaviate.local.backup"
@@ -5172,6 +5175,10 @@
   "swagger": "2.0",
   "tags": [
     {
+      "name": "root",
+      "description": "The root of the API. Note the base url is `/v1`."
+    },
+    {
       "name": "schema",
       "description": "Operate on the database schema. <br/><br/>Note an 'Object class' in Weaviate is being renamed to a 'collection'. <br/><br/>See <a href='https://weaviate.io/developers/weaviate/manage-data/collections'>this page</a> for client code examples."
     },
@@ -5180,16 +5187,12 @@
       "description": "Create, update and delete objects and cross-references."
     },
     {
-      "name": "references",
-      "description": "Create, update and delete references. Note that this repeats endpoints from the 'objects' and 'batch' tags, but is included for convenience."
-    },
-    {
       "name": "batch",
-      "description": "Create, update and delete multiple objects and references at once."
+      "description": "Create, update and delete multiple objects and references at once. <br/><br/>Note that object-level errors may be reported even in a successful batch request. Accordingly, we recommend you check the response body for errors."
     },
     {
       "name": "backups",
-      "description": "Create, restore and check the status of backups."
+      "description": "Create, restore and check the status of backups. <br/><br/>See the [backups page](https://weaviate.io/developers/weaviate/configuration/backups) for a general introduction, configuration, and tech background of backups."
     },
     {
       "name": "meta",
@@ -5201,15 +5204,11 @@
     },
     {
       "name": "well-known",
-      "description": ".well-known endpoints"
+      "description": "`.well-known` endpoints. If OpenID Connect (OIDC) authentication is enabled, this endpoint includes OIDC configuration details."
     },
     {
       "name": "graphql",
-      "description": "Query data using the GraphQL query language."
-    },
-    {
-      "name": "modules",
-      "description": "For working with modules connected to your Weaviate instance. See the <a href='https://weaviate.io/developers/weaviate/modules'>modules pages</a> for more information."
+      "description": "Query data using the GraphQL query language. See the [Weaviate GraphQL documentation](https://weaviate.io/developers/weaviate/api/graphql) for query syntax details."
     },
     {
       "name": "classifications",

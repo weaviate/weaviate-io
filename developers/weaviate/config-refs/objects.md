@@ -24,6 +24,13 @@ The idempotence behavior differs between these two endpoints. POST /batch/object
 To update an existing object with the `objects` endpoint, use the `PUT` or `PATCH` method.
 :::
 
+For best performance, we recommend using batching for insertion and deletion. Also consider that:
+
+1. The vectorization module/tool may be acting as a bottleneck.
+1. Avoid duplicate vectors for multiple data objects.
+1. Object-level errors may occur even if the batch request is successful.
+1. If your import slows down after a particular number of objects (e.g. 2M), check to see if the [`vectorCacheMaxObjects`](./schema/vector-index.md#how-to-configure-hnsw) in your schema is larger than the number of objects. Also, see [this example](https://github.com/weaviate/semantic-search-through-wikipedia-with-weaviate/blob/d4711f2bdc75afd503ff70092c3c5303f9dd1b3b/step-2/import.py#L58-L59).
+
 ### With a custom vector
 
 When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector.
