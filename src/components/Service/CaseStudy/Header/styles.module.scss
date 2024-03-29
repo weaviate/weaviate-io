@@ -27,6 +27,10 @@
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    width: 50%;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
   }
 
   .headerBox {
@@ -37,6 +41,10 @@
 
     p {
       color: #ffffff;
+      width: 80%;
+      @media screen and (max-width: 1000px) {
+        width: 100%;
+      }
     }
   }
 }
