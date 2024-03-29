@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 2.5rem;
+  column-gap: 10px;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
@@ -17,6 +19,7 @@
 
 .leftContainer {
   width: 40%;
+  min-width: 360px;
 
   @media screen and (max-width: 900px) {
     width: 100%;
