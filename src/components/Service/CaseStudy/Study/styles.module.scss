@@ -1,0 +1,138 @@
+.studyContainer {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+}
+
+.bgColor {
+  background: #ededed;
+}
+
+.leftContainer {
+  width: 40%;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+
+  h2 {
+    margin: 20px 0px;
+    color: #130c49;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 2.1rem */
+  }
+
+  p {
+    margin: 20px 0px;
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 1.5rem */
+  }
+
+  .quote {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 157.33%; /* 1.76994rem */
+  }
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  .topSection {
+    width: 28.625rem;
+    height: 47rem;
+    flex-shrink: 0;
+    border-radius: 0.9375rem;
+    background: #130c49;
+    padding: 30px;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      height: auto;
+    }
+
+    h2 {
+      margin: 20px 0px;
+      color: #61bd73;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; /* 1.875rem */
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 20px 0px;
+      color: #fff;
+      font-family: Inter;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%; /* 1.3125rem */
+    }
+  }
+
+  .bottomSection {
+    border-radius: 0.9375rem;
+    background: #f5f5f5;
+    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+    width: 28.625rem;
+    height: 79.4375rem;
+    flex-shrink: 0;
+    padding: 30px;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      height: auto;
+    }
+
+    .logo {
+      background-image: url('/img/site/neople-logo-dark.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 7.09331rem;
+      height: 2.25rem;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      margin: 20px 0px;
+      color: #130c49;
+      font-family: 'Plus Jakarta Sans';
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 157.33%; /* 2.35994rem */
+    }
+
+    p {
+      margin: 20px 0px;
+      color: #130c49;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 1.5rem */
+    }
+  }
+}
