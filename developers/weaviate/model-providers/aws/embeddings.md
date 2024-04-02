@@ -10,10 +10,20 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!../_includes/openai_endtoend.py';
 
-# AWS Embedding models
+# AWS Text embedding models
+
+:::note initial Spec
+- Self-hosted (Huggingface)
+- API (Cohere)
+- API (AWS)
+:::
 
 :::note Bedrock vs Sagemaker
 Evaluate whether they need to be separate pages or can be combined
+:::
+
+:::note Multi modal models
+They should be separate pages where available
 :::
 
 :::tip Have you got your keys
