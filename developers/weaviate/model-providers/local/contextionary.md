@@ -1,5 +1,5 @@
 ---
-title: OpenAI
+title: Multimodal - ImageBIND
 sidebar_position: 50
 image: og/docs/tutorials.jpg
 # tags: ['getting started']
@@ -8,7 +8,9 @@ image: og/docs/tutorials.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!./_includes/openai_endtoend.py';
+import PyCode from '!!raw-loader!../_includes/openai_endtoend.py';
+
+# OpenAI Generative AI models
 
 :::info Azure OpenAI
 If you use OpenAI from with an Azure environment, please [see this page](./azure-openai.md) instead.
