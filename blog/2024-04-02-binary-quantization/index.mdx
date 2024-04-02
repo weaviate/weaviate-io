@@ -253,6 +253,7 @@ Now that you have multiple quantization techniques available in Weaviate the que
   alt="latency PQ v BQ"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *QPS vs Recall for 1000k DBPedia vectors comparing HNSW with and without PQ and BQ compression.*
 
 Notice that the main contribution of BQ is not just that it compresses the vectors. The more efficient bitwise distance calculations also play a significant role. This is why the flat+bq option we discussed above is such a good choice. Not only do we need to read less from disk, but also, the faster distance calculations make brute force faster in Weaviate.
