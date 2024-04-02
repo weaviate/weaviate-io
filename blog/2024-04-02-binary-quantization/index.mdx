@@ -28,7 +28,11 @@ Lets understand how this technique works by way of an analogy. Imagine every vec
 
 The process of binary quantization(BQ) takes all the numbers stored per dimension of a vector and only retains a 1(for positive values) or a 0(for negative values) capturing the sign of the corresponding number. That seems a bit radical, how can you ever locate a vector without information on how far along to move in the direction of an axis? Though BQ might sound like a crazy proposition, it does work particularly well for high-dimensional vectors. Let's see why!
 
-![bq vectors](./img/bq_vecs.png)
+<img
+  src={require('./img/bq_vecs.png').default}
+  alt="bq vectors"
+  style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
+/>
 
 :::info Enabling Binary Quantization in Weaviate
 To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-index#binary-quantization).
@@ -39,15 +43,15 @@ Binarizing is not exclusive to embedding vectors, we can also understand it from
 |Original Image            |  Binarized Image |
 |:-------------------------:|:-------------------------: |
 | ![OriginalImage](./img/image11.png)  |  ![BinaryImage](./img/image9.png) |
-**Fig.**: *An image when binary quantized*
+**Fig. 1**: *An image when binary quantized*
 
 Now, let's consider what the process of binarizing a vector embedding for a sentence looks like. In the figure below we have vectorized the sentence: “All your vector embeddings belong to you!” into a 384-dimensional vector. The first image shows all 384 numbers of the vector, each one being a 32-bit floating point, as color shades on a heatmap. Each vector dimension dictates the colour gradient on the heatmap. The image below shows the same vector, but we threshold the vector such that all positive valued dimensions are turned into 1(white) and negative valued dimensions are turned to 0(black). As a result, we get a black-and-white heatmap that looks kind of like a bar code. This is what the process of binary quantization looks like for vector embeddings! The resulting vectors are much smaller but also less detailed.
 
 |Sentence: *"All your vector embeddings belong to you!"*  |
 |:-------------------------:|
-| ![OriginalVec](./img/image14.png)  | 
+| ![OriginalVec](./img/image14.jpg)  | 
 |  ![BinaryVec](./img/image7.png)    |
-**Fig.**: *Visualization of a sentence vector embedding when binary quantized*
+**Fig. 2**: *Visualization of a sentence vector embedding when binary quantized*
 
 The concept of binary quantization simplifies the encoding of vectors by retaining only their directionality. Each vector dimension is encoded with a single bit, indicating whether it's positive or negative. For instance, a vector like `[12, 1, -100, 0.003, -0.001, 128, -1000, 0.0001]` would be condensed into a single byte, resulting in the binary sequence [1,1,0,1,0,1,0,1]. This massively reduces the amount of space every vector takes by a factor of 32x by converting the number stored at every dimension from a `float32` down to `1-bit`. However, reversing this process is impossible - making this a lossy compression technique.
 
@@ -137,7 +141,7 @@ To address this inquiry, we present brute-force search results using our quantiz
 | Latency uncompressed (microseconds) | 1771.85     | 3703.68            | 16724.41     |
 | Latency compressed (microseconds) | 230.72 (13%) | 353.3 (9%) | 896.37 (5%)|
 | Recall       | 0.745 | 0.744 | 0.757     |
-**Tab. 1**: *Vector search time improvements between uncompressed and BQ.*
+**Table 1**: *Vector search time improvements between uncompressed and BQ.*
 
 
 While the recall isn't exceptionally high, we tackle this concern later through over fetching candidate neighbors and rescoring results. It's worth noting that as the vector dimension gets larger, we observe more significant speedups. For instance, when brute forcing 768-dimensional compressed vectors, we require only 13% of the time compared to using uncompressed vectors. Similarly, for 1536-dimensional compressed vectors, we need just 9% of the time, and for 4608-dimensional ones, only 5% of the time compared to uncompressed vectors.
@@ -159,7 +163,7 @@ Now, let's discuss the performance metrics. All experiments were conducted using
 | Flat index        | 5s     | 7s     |
 | Hnsw index        | 47s    | 1m36s  |
 | Hnsw index+BQ     | 21s    | 25s    |
-**Tab. 2**: *Indexing time improvements between flat, HNSW uncompressed and BQ indices.*
+**Table 2**: *Indexing time improvements between flat, HNSW uncompressed and BQ indices.*
 
 As mentioned previously, the flat index eliminates the need for data indexing. Instead, we simply send the data to the server and store it in the stores. Conversely, the HSNW index necessitates data indexing. It's worth noting that the HNSW index can also benefit significantly from this compression in terms of indexing time.
 
@@ -173,7 +177,7 @@ Now, let's discuss the memory footprint. We'll differentiate between the availab
 | Flat index + BQ + Cache     | 141MB  | 183MB  |
 | Hnsw index                  | 1.02GB | 1.79GB |
 | Hnsw index+BQ               | 214MB  | 297MB  |
-**Tab. 3**: *Memory footprint improvements for the various indices.*
+**Table 3**: *Memory footprint improvements for the various indices.*
 
 ### Latency Analysis
 
@@ -241,14 +245,14 @@ Notice that the main contribution of BQ is not just that it compresses the vecto
 | HNSW+BQ          | 3m43s         | 711.38MB     |
 | FLAT+BQ          | 54s           | 260.16MB     |
 | FLAT+BQ+CACHE    | 53s           | 352.99MB     |
-**Tab. 4**: *Comparing the various indices and compression techniques.*
+**Table 4**: *Comparing the various indices and compression techniques.*
 
 Notice how BQ shortens the indexing time with HNSW enormously.
 
 ## 🧑‍💻Benchmarking BQ with your own data
 
 Here we provide code and instructions that will help you to balance recall, latency, and memory footprint optimally by allowing you to replicate these above experiments yourself on your data.
- 
+
 We have included some very useful tools in this [repository](https://github.com/weaviate). To easily run these tests (or any test using your data) you would need the data to be in `hdf5` format with the same specifications as described in the [ANN Benchmarks](https://ann-benchmarks.com/). You could index your data using the [Go benchmarker](https://github.com/weaviate/weaviate-benchmarking). This benchmarker could give you a better idea of QPS using concurrent queries. It takes several parameters that you could explore but in our runs, we use the following commands:
 
 ```bash
