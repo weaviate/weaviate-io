@@ -33,7 +33,9 @@ The process of binary quantization(BQ) takes all the numbers stored per dimensio
   alt="bq vectors"
   style={{ maxWidth: "80%", margin: "auto auto", display: "block" }}
 />
+
 **Fig**: *Elementwise binary quantization of a vector from float32 to 1 bit.*
+
 
 :::info Enabling Binary Quantization in Weaviate
 To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-index#binary-quantization).
@@ -83,7 +85,9 @@ In the picture below, we plot the only two possible points, in red, for a normal
   alt="1D BQ"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *BQ with 1 dimensional vectors*
+
 
 Let's broaden our perspective to encompass two dimensions. Here, we anticipate all vectors lying within the circle centered at (0,0) with a radius of 1 (normalized vectors). Our focus shifts to understanding how the quantizer divides the data into four distinct regions, leveraging two codes and two dimensions to achieve the power of two.
 
@@ -112,7 +116,9 @@ However, if your data isn't normalized, ensuring balance and logical division of
   alt="BQ distance Calc detailed"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *Displays some counter-intuitive facts about hamming distances between 2d binary vectors*
+
 
 In this scenario, counterintuitively, the quantizer would indicate that yellow points are further from red points and closer to both blue and green points. While this holds in angular-based metrics like `cosine`, it contradicts the interpretation under the `L2` metric where we can see that the yellow and red points are closer in proximity.
 
@@ -127,6 +133,7 @@ However, the upside lies in the exponential growth of regions with additional di
   alt="collision probability"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *Displays the exponentially decreasing probability for collisions in vector representations. In essence, this means that the higher the dimensionality of your data, the more effectively you can expect binary quantization to perform.*
 
 ## 🚀 Performance Improvements with BQ
@@ -189,7 +196,10 @@ Finally, let us take a look at the QPS(queries per second) vs. Recall curves to 
   alt="latency"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *QPS vs Recall for 100k DBPedia vectors*
+
+
 
 Note the low QPS in the scenario of the pure flat index (depicted as the green dot at the bottom right). Here, we're compelled to retrieve all full vectors from the disk and conduct brute-force operations over the uncompressed vectors. While this approach is notably slow, it requires zero memory allocation.
 
@@ -210,7 +220,10 @@ Next, we'll present the corresponding results for cases involving larger dimensi
   alt="latency 100k 2"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *QPS vs Recall for 100k DBPedia vectors comparing various indices.*
+
+
 
 Given these results it's worth considering the following: for a relatively small set of vectors (~100,000), if you're aiming for exceptionally high recall, the performance disparity between the flat-compressed-cached curve and any HNSW solution isn't notably significant. Some may argue that ~100,000 vectors isn't a substantial amount, and that's a valid point. However, let's discuss the implications of combining this feature with Multi-tenancy.
 
@@ -228,6 +241,7 @@ Now, let's scale the numbers up further. What should we anticipate with a larger
   alt="latency 1000k 2"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
 **Fig**: *QPS vs Recall for 1000k DBPedia vectors comparing various indices.*
 
 ## ⚖️Comparing Product and Binary Quantization
