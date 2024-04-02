@@ -1,21 +1,21 @@
 ---
-title: '32x Reduced Memory Requirements Using Binary Quantization!'
+title: '32x Reduced Memory Usage With Binary Quantization'
 slug: binary-quantization
 authors: [abdel, zain]
 date: 2024-04-02
 tags: ['research','engineering']
 image: ./img/hero.png
-description: "Binary quantization in Weaviate"
+description: "In-depth technical breakdown of how binary quantization works and how to use it in Weaviate."
 ---
 ![Binary Quanitzation in Weaviate - How to Reduce Memory Requirements 32x](./img/hero.png)
 
 
-:::info Highlights
-- [What is Binary Quantization?](#what-is-binary-quantization) - how BQ reduces the memory requirements of running Weaviate
-- [Details of Working with Binarized Vectors](#details-of-working-with-binarized-vectors) - What to consider when using binary quantization
-- [Weaviate Performance Improvements with BQ](#-performance-improvements-with-bq) - QPS vs. recall, indexing times, and memory savings
-- [Comparing between Product and Binary Quantization](#%EF%B8%8Fcomparing-product-and-binary-quantization)
-- [Benchmarking BQ](#benchmarking-bq-with-your-own-data) - scripts for benchmarking BQ with your own data
+:::info Overview
+- [What is Binary Quantization?](#what-is-binary-quantization) - How BQ reduces the memory requirements of running Weaviate.
+- [Details of Working with Binarized Vectors](#details-of-working-with-binarized-vectors) - What to consider when using binary quantization.
+- [Weaviate Performance Improvements with BQ](#-performance-improvements-with-bq) - QPS vs. recall, indexing times, and memory savings.
+- [Comparing Product and Binary Quantization](#%EF%B8%8Fcomparing-product-and-binary-quantization) - Experiments comparing PQ and BQ.
+- [Benchmarking BQ](#benchmarking-bq-with-your-own-data) - Scripts for benchmarking BQ with your own data.
 :::
 
 -----
@@ -33,6 +33,8 @@ The process of binary quantization(BQ) takes all the numbers stored per dimensio
   alt="bq vectors"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
+
 
 :::info Enabling Binary Quantization in Weaviate
 To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-index#binary-quantization).
@@ -53,7 +55,7 @@ Now, let's consider what the process of binarizing a vector embedding for a sent
 |  ![BinaryVec](./img/image7.png)    |
 **Fig. 2**: *Visualization of a sentence vector embedding when binary quantized*
 
-The concept of binary quantization simplifies the encoding of vectors by retaining only their directionality. Each vector dimension is encoded with a single bit, indicating whether it's positive or negative. For instance, a vector like `[12, 1, -100, 0.003, -0.001, 128, -1000, 0.0001]` would be condensed into a single byte, resulting in the binary sequence [1,1,0,1,0,1,0,1]. This massively reduces the amount of space every vector takes by a factor of 32x by converting the number stored at every dimension from a `float32` down to `1-bit`. However, reversing this process is impossible - making this a lossy compression technique.
+The concept of binary quantization simplifies the encoding of vectors by retaining only their directionality. Each vector dimension is encoded with a single bit, indicating whether it's positive or negative. For instance, a vector like `[12, 1, -100, 0.003, -0.001, 128, -1000, 0.0001]` would be condensed into a single byte, resulting in the binary sequence `[1,1,0,1,0,1,0,1]`. This massively reduces the amount of space every vector takes by a factor of 32x by converting the number stored at every dimension from a `float32` down to `1-bit`. However, reversing this process is impossible - making this a lossy compression technique.
 
 ## 📐Details of Working with Binarized Vectors
 
@@ -61,7 +63,7 @@ The concept of binary quantization simplifies the encoding of vectors by retaini
 
 First, let’s consider how we compute the distance between two BQ compressed vectors. The solution is straightforward: since we're solely concerned with their directional aspects, we only need to assess the agreement between their dimensions. This requires you to count the differing bits in both compressed representations. Here you can leverage bitwise operations and is significantly faster than computing the distance between non-binarized vectors.
 
-For example, considering the vector `[12, 1, -100, 0.03, -0.01, 128, -100, 0.01]` encoded as `11010101`, and a second vector `[11, 4, -99, -0.01, 0.02, 130, -150, 0.02]` encoded as `11001101`, the distance between them is determined by the count of differing bits, resulting in a distance of 2. This is more popularly known as the hamming distance between the two binary vectors.
+For example, considering the vector `[12, 1, -100, 0.03, -0.01, 128, -100, 0.01]` encoded as `11010101`, and a second vector `[11, 4, -99, -0.01, 0.02, 130, -150, 0.02]` encoded as `11001101`, the distance between them is determined by the count of differing bits, resulting in a distance of 2. This is more popularly known as the `hamming distance` between the two binary vectors.
 
 <img
   src={require('./img/image24.png').default}
@@ -83,7 +85,7 @@ In the picture below, we plot the only two possible points, in red, for a normal
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-**BQ with 2 Dimensional Vectors**
+*BQ with 2 Dimensional Vectors*
 
 Let's broaden our perspective to encompass two dimensions. Here, we anticipate all vectors lying within the circle centered at (0,0) with a radius of 1 (normalized vectors). Our focus shifts to understanding how the quantizer divides the data into four distinct regions, leveraging two codes and two dimensions to achieve the power of two.
 
@@ -112,6 +114,8 @@ However, if your data isn't normalized, ensuring balance and logical division of
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
+
+
 In this scenario, counterintuitively, the quantizer would indicate that yellow points are distant from red points and closer to both blue and green points. While this holds in angular-based metrics like `cosine`, it contradicts the interpretation under the `L2` metric where we can see that the yellow and red points are closer in proximity.
 
 **BQ with N-Dimensional Vectors**
@@ -126,6 +130,8 @@ However, the upside lies in the exponential growth of regions with additional di
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
+
+
 **In essence, the higher the dimensionality of your data, the more effectively you can expect binary quantization to perform.**
 
 ## 🚀 Performance Improvements with BQ
@@ -136,7 +142,7 @@ However, there's a significant secondary benefit: bitwise operations now suffice
 
 To address this inquiry, we present brute-force search results using our quantizer and the original vectors. We conduct searches across 10,000 vectors with 100 queries, across dimensions ranging from 768, 1536, to 4608.
 
-| Dimensions  | 768d | 1536d | 4608d |
+| **Dimensions**  | **768d** | **1536d** | **4608d** |
 |-------------|------|-------|-------|
 | Latency uncompressed (microseconds) | 1771.85     | 3703.68            | 16724.41     |
 | Latency compressed (microseconds) | 230.72 (13%) | 353.3 (9%) | 896.37 (5%)|
@@ -158,7 +164,7 @@ Weaviate recently introduced the [flat index](/developers/weaviate/concepts/vect
 
 Now, let's discuss the performance metrics. All experiments were conducted using the Go benchmark. Towards the end of this blog, we'll provide information for those interested in replicating these experiments with their data. To kick things off, we'll start with a modest dataset of 100,000 vectors from DBPedia, utilizing ADA002 (1536 dimensions) and Cohere v2 (4096 dimensions) embeddings, beginning with looking at indexing time.
 
-| Dimensions        | 1536   | 4096   |
+| **Dimensions**        | **1536**   | **4096**   |
 |-------------------|--------|--------|
 | Flat index        | 5s     | 7s     |
 | Hnsw index        | 47s    | 1m36s  |
@@ -171,7 +177,7 @@ As mentioned previously, the flat index eliminates the need for data indexing. I
 
 Now, let's discuss the memory footprint. We'll differentiate between the available options for the flat index as they exhibit varying footprints. When using the flat index with or without BQ, all data is retrieved from disk, independent of data size. If we opt to cache the compressed data, it's stored in memory. As observed, the footprint remains lower than that produced by HNSW+BQ, as no proximity graph resulting from the indexing process is required. Additionally, we'll showcase the footprint for the HNSW cases. In both cases, you can anticipate the memory footprint to grow more or less linearly with both dimensions and vectors.
 
-| Dimensions                  | 1536   | 4096   |
+| **Dimensions**                  | **1536**   | **4096**   |
 |-----------------------------|--------|--------|
 | Flat index                  | 77MB   | 77MB   |
 | Flat index + BQ + Cache     | 141MB  | 183MB  |
@@ -220,6 +226,9 @@ Now, let's scale the numbers up further. What should we anticipate with a larger
   alt="latency 1000k"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+
+
+
 <img
   src={require('./img/image20.png').default}
   alt="latency 1000k 2"
@@ -236,9 +245,9 @@ Now that you have multiple quantization techniques available in Weaviate the que
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
 
-Notice that the main contribution of BQ is not just that it compresses the vectors. The more efficient bitwise distance calculations also play a significant role. This is why the flat+bq option we discussed above is such a good choice. Not only do we need to read less from disk, but also, the faster distance calculations make the brute force faster in Weaviate.
+Notice that the main contribution of BQ is not just that it compresses the vectors. The more efficient bitwise distance calculations also play a significant role. This is why the flat+bq option we discussed above is such a good choice. Not only do we need to read less from disk, but also, the faster distance calculations make brute force faster in Weaviate.
 
-| Index            | Indexing Time | Memory Usage |
+| **Index**           | **Indexing Time** | **Memory Usage** |
 |------------------|---------------|--------------|
 | HNSW             | 8m42s         | 6437.05MB    |
 | HNSW+PQ          | 21m25s        | 930.36MB     |
