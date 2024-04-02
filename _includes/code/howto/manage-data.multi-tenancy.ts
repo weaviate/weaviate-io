@@ -25,14 +25,13 @@ try {
 // =====================
 
 // START EnableMultiTenancy
-await client.schema
-  .classCreator().withClass({
-    class: 'MultiTenancyCollection',
-    // highlight-start
-    multiTenancyConfig: { enabled: true },
-    // highlight-end
-  })
-  .do();
+const result = await client.collections.create({
+  name: 'MultiTenancyCollection',
+  // highlight-start
+  multiTenancy: weaviate.configure.multiTenancy({enabled: true})
+  // highlight-end
+  }
+)
 // END EnableMultiTenancy
 
 // ================================
@@ -40,14 +39,14 @@ await client.schema
 // ================================
 
 // START AddTenantsToClass
-let tenants = await client.schema
+const multiCollection =  client.collections.get('MultiTenancyCollection');
+
   // highlight-start
-  .tenantsCreator(
-    'MultiTenancyCollection',
-    [{ name: 'tenantA' }, { name: 'tenantB' }]
-  )
+await multiCollection.tenants.create([
+  { name: 'tenantA'}, 
+  { name: 'tenantB'}
+])
   // highlight-end
-  .do();
 // END AddTenantsToClass
 
 // Tests
@@ -62,11 +61,13 @@ assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
 // ===================================
 
 // START ListTenants
-tenants = await client.schema
-  // highlight-start
-  .tenantsGetter('MultiTenancyCollection')
-  // highlight-end
-  .do();
+const multiCollection = client.collections.get('MultiTenancyCollection');
+
+// highlight-start
+const tenants = await multiCollection.tenants.get()
+// highlight-end
+
+console.log(tenants)
 // END ListTenants
 
 // Test - tenants are returned in nondeterministic order
@@ -79,11 +80,14 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 // =======================================
 
 // START RemoveTenants
-await client.schema
-  // highlight-start
-  .tenantsDeleter('MultiTenancyCollection', ['tenantB', 'tenantX'])  // tenantX will be ignored
-  // highlight-end
-  .do();
+const multiCollection = client.collections.get('MultiTenancyCollection');
+
+// highlight-start
+await multiCollection.tenants.remove([
+    { name: 'tenantB'},
+    { name: 'tenantX'}  // tenantX will be ignored
+])
+// highlight-end 
 // END RemoveTenants
 
 // Test
@@ -96,15 +100,15 @@ assert.deepEqual(tenants.length, 1);
 // ============================
 
 // START CreateMtObject
-let object = await client.data.creator()
-  .withClassName('MultiTenancyCollection')  // The class to which the object will be added
-  .withProperties({
-    question: 'This vector DB is OSS & supports automatic property type inference on import',
-  })
-  // highlight-start
-  .withTenant('tenantA')  // The tenant to which the object will be added
-  // highlight-end
-  .do();
+const multiCollection = client.collections.get('MultiTenancyCollection');
+
+// highlight-start
+const multiTenantA = multiCollection.withTenant('tenantA')
+
+await multiTenantA.data.insert({
+  question: 'This vector DB is OSS & supports automatic property type inference on import'
+})
+// highlight-end 
 // END CreateMtObject
 
 // Test
@@ -116,14 +120,17 @@ assert.equal(object['tenant'], 'tenantA');
 // =====================
 
 // START Search
-const result = await client.graphql
-  .get()
-  .withClassName('MultiTenancyCollection')
-  .withFields('question')
-  // highlight-start
-  .withTenant('tenantA')
-  // highlight-end
-  .do();
+const multiCollection = await client.collections.get('MultiTenancyCollection');
+
+// highlight-start
+const multiTenantA = multiCollection.withTenant('tenantA')
+
+const objectA = await multiTenantA.query.fetchObjects({
+  limit: 2
+})
+// highlight-end 
+
+console.log(objectA.objects)
 // END Search
 
 // Test
@@ -142,31 +149,26 @@ const category = await client.data.creator()
 
 // START AddCrossRef
 // Add the cross-reference property to the multi-tenancy class
-await client.schema.propertyCreator()
-  .withClassName('MultiTenancyCollection')
-  .withProperty({
-    'name': 'hasCategory',
-    'dataType': ['JeopardyCategory'],
-  })
-  .do();
+const multiCollection = await client.collections.get('MultiTenancyCollection');
+const categoryId = '...'
+const objectId = '...'
 
-// Create the cross-reference from MultiTenancyCollection object to the JeopardyCategory object
-await client.data
-  .referenceCreator()
-  .withClassName('MultiTenancyCollection')
-  // highlight-start
-  .withTenant('tenantA')
+// highlight-start
+await multiCollection.config.addReference({
+  name: 'hasCategory',
+  targetCollection: 'JeopardyCategory'
+})
+// highlight-end
+
+const multiTenantA = multiCollection.withTenant('tenantA')
+
+// highlight-start
+await multiTenantA.data.referenceAdd({
   // highlight-end
-  .withId(object.id)  // MultiTenancyCollection object id (a Jeopardy question)
-  .withReferenceProperty('hasCategory')
-  .withReference(
-    client.data
-      .referencePayloadBuilder()
-      .withClassName('JeopardyCategory')
-      .withId(category.id)
-      .payload()
-  )
-  .do();
+  fromUuid: objectId,
+  fromProperty: 'hasCategory',
+  to: categoryId 
+})
 // END AddCrossRef
 
 // Test

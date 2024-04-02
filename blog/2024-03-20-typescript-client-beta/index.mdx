@@ -305,7 +305,7 @@ This allows your imports to be fully type-checked by the TS compiler without fea
 Oh, and if you don't need to manually specify an object ID or a vector, you can just pass in a list of dictionaries!
 
 ```typescript
-import weaviate, { generateUuid5, DataObject } from 'weaviate-client/node'
+import weaviate, { generateUuid5, DataObject } from 'weaviate-client'
 
 // highlight-start
 const articlesData: DataObject[] = dataSource.map((row) => {

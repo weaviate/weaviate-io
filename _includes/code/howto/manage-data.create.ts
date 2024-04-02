@@ -158,11 +158,13 @@ const uuid = await myCollection.data.insert({
     "review_body": "This wine is a delicious Riesling which pairs well with seafood.",
     "country": "Germany",
   },
+  // highlight-start
   vectors: {
     title: Array(1536).fill(0.12345),
     review_body: Array(1536).fill(0.31313),
     title_country: Array(1536).fill(0.05050),
   }
+  // highlight-end
 })
 
 console.log('UUID: ', uuid)

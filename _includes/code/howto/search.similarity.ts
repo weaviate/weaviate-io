@@ -18,10 +18,10 @@ const client: WeaviateClient = await weaviate.connectToWCS(
  } 
 )
 
-// GetNearText  // GetNearVector  // GetNearObject  // GetLimitOffset  // GetWithDistance  // START Autocut  // GetWithGroupBy  // GetWithFilter
-let result;
-
-// END GetNearText  // END GetNearVector  // END GetNearObject  // END GetLimitOffset  // END GetWithDistance  // END Autocut  // END GetWithGroupBy  // END GetWithFilter
+// add let result later
+// GetNearText  // GetNearVector  // GetNearObject  // GetLimitOffset  // GetWithDistance  // START Autocut  // GetWithGroupBy  // GetWithFilter // NamedVectorNearText
+let result 
+// END GetNearText  // END GetNearVector  // END GetNearObject  // END GetLimitOffset  // END GetWithDistance  // END Autocut  // END GetWithGroupBy  // END GetWithFilter // END NamedVectorNearText
 
 
 // ===============================================
@@ -55,7 +55,7 @@ assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 // GetNearText
 const myCollection = client.collections.get('JeopardyQuestion');
 
-const result = await myCollection.query.nearText(['animals in movies'],{
+result = await myCollection.query.nearText(['animals in movies'],{
   limit: 2,
   returnProperties: ['question', 'answer'],
   returnMetadata: ['distance']
@@ -152,6 +152,7 @@ const myCollection = client.collections.get('JeopardyQuestion');
 // highlight-start
 const maxDistance = 0.18;
 // highlight-end
+
 result = await myCollection.query.nearText(['animals in movies'],{
   returnProperties: ['question', 'answer'],
   limit: 1,
