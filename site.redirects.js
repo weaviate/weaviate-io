@@ -186,10 +186,14 @@ const siteRedirects = {
             from: '/developers/weaviate/manage-data/exhaustive-retrieval',
         },
 
-        // Tutorial refresh Jan 2024
+        // Tutorial refresh 2024
         {
             to: '/developers/weaviate/starter-guides/schema',
             from: '/developers/weaviate/tutorials/schema',
+        },
+        {
+            to: '/developers/weaviate/starter-guides/connect',
+            from: '/developers/weaviate/tutorials/connect',
         },
 
         // Remove BPR page
