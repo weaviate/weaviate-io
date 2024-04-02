@@ -56,11 +56,11 @@
       "link": "/community/events",
       "type": "Workshop",
       "backgroundImage": "/img/site/workshops-daniel.png",
-      "tagline": "Intro to Weaviate for JavaScript Developers ",
+      "tagline": "Getting Started with the New Weaviate TypeScript Client",
       "photo": "daniel.jpg",
       "name": "Daniel Phiri",
       "title": "Developer Advocate",
-      "date": "March 28, 2024"
+      "date": "April 17, 2024"
     }
   ]
 }
