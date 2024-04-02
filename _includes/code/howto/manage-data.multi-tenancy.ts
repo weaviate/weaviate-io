@@ -39,10 +39,10 @@ const result = await client.collections.create({
 // ================================
 
 // START AddTenantsToClass
-const myCollection = await client.collections.get('MultiTenancyCollection');
+const multiCollection =  client.collections.get('MultiTenancyCollection');
 
   // highlight-start
-await myCollection.tenants.create([
+await multiCollection.tenants.create([
   { name: 'tenantA'}, 
   { name: 'tenantB'}
 ])
@@ -61,10 +61,10 @@ assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
 // ===================================
 
 // START ListTenants
-const myCollection = await client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
-const tenants = myCollection.tenants.get()
+const tenants = multiCollection.tenants.get()
 // highlight-end
 
 console.log(tenants)
@@ -80,10 +80,10 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 // =======================================
 
 // START RemoveTenants
-const myCollection = await client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
-await myCollection.tenants.remove([
+await multiCollection.tenants.remove([
     { name: 'tenantB'},
     { name: 'tenantX'}  // tenantX will be ignored
 ])
@@ -100,7 +100,7 @@ assert.deepEqual(tenants.length, 1);
 // ============================
 
 // START CreateMtObject
-const multiCollection = await client.collections.get('MultiTenancyCollection');
+const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
 const multiTenantA = multiCollection.withTenant('TenantA')
