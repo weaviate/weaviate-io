@@ -456,6 +456,11 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+            // Case Study Changes
+            {
+                to: "/case-studies/neople",
+                from: "/services/case-study-neople"
+            },
 
 
     ],
