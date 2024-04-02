@@ -33,8 +33,7 @@ The process of binary quantization(BQ) takes all the numbers stored per dimensio
   alt="bq vectors"
   style={{ maxWidth: "80%", margin: "auto auto", display: "block" }}
 />
-
-
+**Fig**: *Elementwise binary quantization of a vector from float32 to 1 bit.*
 
 :::info Enabling Binary Quantization in Weaviate
 To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-index#binary-quantization).
@@ -45,7 +44,7 @@ Binarizing is not exclusive to embedding vectors, we can also understand it from
 |Original Image            |  Binarized Image |
 |:-------------------------:|:-------------------------: |
 | ![OriginalImage](./img/image11.png)  |  ![BinaryImage](./img/image9.png) |
-**Fig. 1**: *An image when binary quantized*
+**Fig**: *An image when binary quantized*
 
 Now, let's consider what the process of binarizing a vector embedding for a sentence looks like. In the figure below we have vectorized the sentence: “All your vector embeddings belong to you!” into a 384-dimensional vector. The first image shows all 384 numbers of the vector, each one being a 32-bit floating point, as color shades on a heatmap. Each vector dimension dictates the colour gradient on the heatmap. The image below shows the same vector, but we threshold the vector such that all positive valued dimensions are turned into 1(white) and negative valued dimensions are turned to 0(black). As a result, we get a black-and-white heatmap that looks kind of like a bar code. This is what the process of binary quantization looks like for vector embeddings! The resulting vectors are much smaller but also less detailed.
 
@@ -53,7 +52,7 @@ Now, let's consider what the process of binarizing a vector embedding for a sent
 |:-------------------------:|
 | ![OriginalVec](./img/image14.jpg)  | 
 |  ![BinaryVec](./img/image7.png)    |
-**Fig. 2**: *Visualization of a sentence vector embedding when binary quantized*
+**Fig**: *Visualization of a sentence vector embedding when binary quantized*
 
 The concept of binary quantization simplifies the encoding of vectors by retaining only their directionality. Each vector dimension is encoded with a single bit, indicating whether it's positive or negative. For instance, a vector like `[12, 1, -100, 0.003, -0.001, 128, -1000, 0.0001]` would be condensed into a single byte, resulting in the binary sequence `[1,1,0,1,0,1,0,1]`. This massively reduces the amount of space every vector takes by a factor of 32x by converting the number stored at every dimension from a `float32` down to `1-bit`. However, reversing this process is impossible - making this a lossy compression technique.
 
@@ -84,14 +83,14 @@ In the picture below, we plot the only two possible points, in red, for a normal
   alt="1D BQ"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
-
-*BQ with 2 Dimensional Vectors*
+**Fig**: *BQ with 1 dimensional vectors*
 
 Let's broaden our perspective to encompass two dimensions. Here, we anticipate all vectors lying within the circle centered at (0,0) with a radius of 1 (normalized vectors). Our focus shifts to understanding how the quantizer divides the data into four distinct regions, leveraging two codes and two dimensions to achieve the power of two.
 
 |Original Vectors            |  BQ Vectors |
 |:-------------------------:|:-------------------------: |
 | ![OriginalVectors](./img/image18.png)  |  ![BinaryVectors](./img/image8.png) |
+**Fig**: *BQ with 2 dimensional vectors*
 
 In this context, the green region (coded as 11) aggregates points where both dimensions are positive, while the blue region (coded as 00) encompasses points where both dimensions are negative. The red region (coded as 10) represents scenarios where the first dimension is positive and the second is negative, while the yellow region (coded as 01) signifies instances where the first dimension is negative while the second is positive.
 
@@ -113,10 +112,9 @@ However, if your data isn't normalized, ensuring balance and logical division of
   alt="BQ distance Calc detailed"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+**Fig**: *Displays some counter-intuitive facts about hamming distances between 2d binary vectors*
 
-
-
-In this scenario, counterintuitively, the quantizer would indicate that yellow points are distant from red points and closer to both blue and green points. While this holds in angular-based metrics like `cosine`, it contradicts the interpretation under the `L2` metric where we can see that the yellow and red points are closer in proximity.
+In this scenario, counterintuitively, the quantizer would indicate that yellow points are further from red points and closer to both blue and green points. While this holds in angular-based metrics like `cosine`, it contradicts the interpretation under the `L2` metric where we can see that the yellow and red points are closer in proximity.
 
 **BQ with N-Dimensional Vectors**
 
@@ -129,10 +127,7 @@ However, the upside lies in the exponential growth of regions with additional di
   alt="collision probability"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
-
-
-
-**In essence, the higher the dimensionality of your data, the more effectively you can expect binary quantization to perform.**
+**Fig**: *Displays the exponentially decreasing probability for collisions in vector representations. In essence, this means that the higher the dimensionality of your data, the more effectively you can expect binary quantization to perform.*
 
 ## 🚀 Performance Improvements with BQ
 
@@ -194,6 +189,7 @@ Finally, let us take a look at the QPS(queries per second) vs. Recall curves to 
   alt="latency"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+**Fig**: *QPS vs Recall for 100k DBPedia vectors*
 
 Note the low QPS in the scenario of the pure flat index (depicted as the green dot at the bottom right). Here, we're compelled to retrieve all full vectors from the disk and conduct brute-force operations over the uncompressed vectors. While this approach is notably slow, it requires zero memory allocation.
 
@@ -214,6 +210,7 @@ Next, we'll present the corresponding results for cases involving larger dimensi
   alt="latency 100k 2"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+**Fig**: *QPS vs Recall for 100k DBPedia vectors comparing various indices.*
 
 Given these results it's worth considering the following: for a relatively small set of vectors (~100,000), if you're aiming for exceptionally high recall, the performance disparity between the flat-compressed-cached curve and any HNSW solution isn't notably significant. Some may argue that ~100,000 vectors isn't a substantial amount, and that's a valid point. However, let's discuss the implications of combining this feature with Multi-tenancy.
 
@@ -226,14 +223,12 @@ Now, let's scale the numbers up further. What should we anticipate with a larger
   alt="latency 1000k"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
-
-
-
 <img
   src={require('./img/image20.png').default}
   alt="latency 1000k 2"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+**Fig**: *QPS vs Recall for 1000k DBPedia vectors comparing various indices.*
 
 ## ⚖️Comparing Product and Binary Quantization
 
@@ -244,6 +239,7 @@ Now that you have multiple quantization techniques available in Weaviate the que
   alt="latency PQ v BQ"
   style={{ maxWidth: "80%", margin: "0 auto", display: "block" }}
 />
+**Fig**: *QPS vs Recall for 1000k DBPedia vectors comparing HNSW with and without PQ and BQ compression.*
 
 Notice that the main contribution of BQ is not just that it compresses the vectors. The more efficient bitwise distance calculations also play a significant role. This is why the flat+bq option we discussed above is such a good choice. Not only do we need to read less from disk, but also, the faster distance calculations make brute force faster in Weaviate.
 
