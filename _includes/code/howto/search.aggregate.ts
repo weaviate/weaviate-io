@@ -1,12 +1,12 @@
 import assert from 'assert';
 
 // ===== Instantiation, not shown in snippet
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+  'some-endpoint.weaviate.network',
  {
-   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
@@ -129,7 +129,6 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 460
 // ============================
 
 // nearTextWithDistance TS
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.nearText(['animals in space'],{
@@ -152,7 +151,6 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 300
 // =================================
 
 // whereFilter TS
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.overAll({

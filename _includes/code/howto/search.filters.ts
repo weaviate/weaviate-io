@@ -6,12 +6,12 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+  'some-endpoint.weaviate.network',
  {
-   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
@@ -163,7 +163,6 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // searchMultipleFiltersAnd
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.query.fetchObjects({
