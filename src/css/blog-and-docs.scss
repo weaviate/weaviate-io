@@ -11,7 +11,7 @@ html {
 .blog-post-page,
 .docs-doc-page,
 .docs-doc-page,
-.redocusaurus,
+.plugin-\@scalar\/docusaurus,
 .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
@@ -138,7 +138,15 @@ html {
   display: none !important;
 }
 
-.redocusaurus {
+a.navbar__item.navbar__link.navbar__link--active[href="/weaviate/developers/api/rest_openapi"][aria-current="page"] {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus .scalar-icon {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus {
   // Base font settings
   font-family: var(--site-font-base-family);
 
