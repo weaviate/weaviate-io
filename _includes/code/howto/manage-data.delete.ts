@@ -116,7 +116,7 @@ const myCollection = client.collections.get('EphemeralObject')
 
 // highlight-start
 await myCollection.data.deleteMany(
-  myCollection.filter.byProperty('name').like('EphemeralObject')
+  myCollection.filter.byProperty('name').like('Movie')
 )
 // highlight-end
 // END DeleteBatch
@@ -160,11 +160,11 @@ const response = await myCollection.query.fetchObjects({
   limit: 2
 })
 
-for (let objectId in response.objects) {
-  idList.push(objectId)
+for (let objectId of response.objects) {
+  idList.push(objectId.uuid)
 }
 
-await myCollection.data.deleteMany(
-  myCollection.filter.byId().containsAny(idList)
+await collection.data.deleteMany(
+  collection.filter.byId().containsAny(idList)
 )
 // END DeleteByIDBatch

@@ -64,7 +64,7 @@ assert.deepEqual(theClass['multiTenancyConfig'], { enabled: true });
 const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
-const tenants = multiCollection.tenants.get()
+const tenants = await multiCollection.tenants.get()
 // highlight-end
 
 console.log(tenants)
@@ -103,9 +103,9 @@ assert.deepEqual(tenants.length, 1);
 const multiCollection = client.collections.get('MultiTenancyCollection');
 
 // highlight-start
-const multiTenantA = multiCollection.withTenant('TenantA')
+const multiTenantA = multiCollection.withTenant('tenantA')
 
-const objectA = multiTenantA.data.insert({
+await multiTenantA.data.insert({
   question: 'This vector DB is OSS & supports automatic property type inference on import'
 })
 // highlight-end 
@@ -123,7 +123,7 @@ assert.equal(object['tenant'], 'tenantA');
 const multiCollection = await client.collections.get('MultiTenancyCollection');
 
 // highlight-start
-const multiTenantA = multiCollection.withTenant('TenantA')
+const multiTenantA = multiCollection.withTenant('tenantA')
 
 const objectA = await multiTenantA.query.fetchObjects({
   limit: 2
@@ -160,7 +160,7 @@ await multiCollection.config.addReference({
 })
 // highlight-end
 
-const multiTenantA = multiCollection.withTenant('TenantA')
+const multiTenantA = multiCollection.withTenant('tenantA')
 
 // highlight-start
 await multiTenantA.data.referenceAdd({

@@ -129,7 +129,6 @@ for (let i = 1; i <= 10; i++) {
     // highlight-start
     vectors: Array(100).fill(0.25136 + i / 100) 
     // highlight-end
-
   })
 }
 
@@ -213,7 +212,7 @@ for (let i = 1; i <= 10; i++) {
   })
 }
 
-questions.data.insertMany(dataObject)
+await questions.data.insertMany(dataObject)
 // END BatchImportWithNamedVectors
 
 // Aggregate not working with named vectors as of 2024-02-28
