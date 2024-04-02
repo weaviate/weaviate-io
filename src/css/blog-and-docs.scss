@@ -150,6 +150,10 @@ a.navbar__item.navbar__link[href="/weaviate/developers/api/rest_openapi"] {
   // Base font settings
   font-family: var(--site-font-base-family);
 
+  .sidebar-heading {
+    line-height: 1;
+  }
+
   // Label customization
   label {
     font-family: var(--site-font-base-family);
@@ -158,6 +162,7 @@ a.navbar__item.navbar__link[href="/weaviate/developers/api/rest_openapi"] {
   // Paragraph customization
   p {
     font-size: 14px;
+    margin-top: 4px;
   }
 
   h1 {
