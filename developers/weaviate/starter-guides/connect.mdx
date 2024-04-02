@@ -1,15 +1,21 @@
 ---
 title: Connect to Weaviate
-sidebar_position: 5
-image: og/docs/quickstart-tutorial.jpg
-# tags: ['getting started']
+sidebar_position: 15
+image: og/docs/tutorial.jpg
+# tags: ['getting started', 'connect']
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import Badges from '/_includes/badges.mdx';
 import WCSWithoutAuthentication from '/_includes/code/wcs.without.authentication.mdx';
 import WCSAuthenticationApiKey from '/_includes/code/wcs.authentication.api.key.mdx';
 import WCSAuthenticationUserPass from '/_includes/code/wcs.authentication.user.pass.mdx';
 import WCSAuthenticationApiKeyWithInferenceKey from '/_includes/code/wcs.authentication.api.key.with.inference.key.mdx';
 import EmbeddedInstantiationSimple from '/_includes/code/embedded.instantiate.simple.mdx';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 
 Learn how to connect to Weaviate.
 
@@ -32,14 +38,95 @@ To configure a connection, you need the following information:
  - API keys, if enabled
  - Module details
 
-**Docker and Kubernetes** If you are using Docker or Kubernetes, your container configuration files have the connection details.
+**Docker and Kubernetes** If you are using Docker or Kubernetes, your URL will depend on how the container is configured to provide access.
 
 - For Docker Compose, see `docker-compose.yml`.
 - For Kubernetes, see `values.yaml` in the Helm chart.
 
-Docker instances often use the `http://localhost:8080` address.
+Docker instances by default use the `http://localhost:8080` address.
 
 **Embedded Weaviate** If you are using Embedded Weaviate, you do not need to specify a URL when you create the client. Embedded instances usually don't need authentication credentials. For details, see the [Embedded Weaviate documentation](../installation/embedded.md).
+
+### Environment variables
+
+These examples use environment variables to store connection details and sensitive information such as API keys.
+
+To set environment variables, use the following syntax, where `WEAVIATE_URL` is the environment variable name and `http://localhost:8080` is the value:
+
+<Tabs groupId="languages">
+<TabItem value="bash" label="Bash/Zsh">
+
+```bash
+export WEAVIATE_URL="http://localhost:8080"
+```
+
+</TabItem>
+<TabItem value="powershell" label="Windows PowerShell">
+
+```shell
+$Env:WEAVIATE_URL="http://localhost:8080"
+```
+
+</TabItem>
+<TabItem value="cmd" label="Windows Command Prompt">
+
+```shell
+set WEAVIATE_URL=http://localhost:8080
+```
+
+</TabItem>
+</Tabs>
+
+Then, they can be accessed as follows.
+
+This method is more secure than hardcoding sensitive information in your code, which is shown the commented-out examples below as what not to do.
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python">
+    <FilteredTextBlock
+        text={PyCode}
+        startMarker="# APIKeys"
+        endMarker="# END APIKeys"
+        language="py"
+    />
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+```js
+const weaviateUrl = process.env.WEAVIATE_URL;
+const weaviateKey = process.env.WEAVIATE_API_KEY;
+
+// Uncomment and use these lines if you want to hardcode (not recommended for production)
+// const weaviateUrl = "<your-weaviate-url>";
+// const weaviateKey = "<your-weaviate-apikey>";
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+weaviateUrl := os.Getenv("WEAVIATE_URL")
+weaviateKey := os.Getenv("WEAVIATE_API_KEY")
+
+// Uncomment and use these lines if you want to hardcode (not recommended for production)
+// weaviateUrl = "<your-weaviate-url>"
+// weaviateKey = "<your-weaviate-apikey>"
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+String weaviateUrl = System.getenv("WEAVIATE_URL");
+String weaviateKey = System.getenv("WEAVIATE_API_KEY");
+
+// Uncomment and use these lines if you want to hardcode (not recommended for production)
+// weaviateUrl = "<your-weaviate-url>";
+// weaviateKey = "<your-weaviate-apikey>";
+```
+
+</TabItem>
+</Tabs>
 
 ## Connecting to Weaviate
 
@@ -55,11 +142,11 @@ To connect to Weaviate without authentication, follow these examples:
 
 ### With authentication
 
-If authentication is enabled, use a Weaviate API key or OIDC to connect. For details, see [Authentication](../configuration/authentication.md).
+If authentication is enabled, use a Weaviate API key or OIDC credentials to connect. For details, see [Authentication](../configuration/authentication.md).
 
 #### Weaviate API keys
 
-To authenticate with a Weaviate API key, follow these examples.
+To authenticate with a Weaviate API key, follow these examples. Note they use [environment variables](#environment-variables) to store the API key.
 
 Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate API key and not the API key for a third-party service like Cohere, Hugging Face, or OpenAI.
 
