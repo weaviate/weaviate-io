@@ -75,7 +75,7 @@
   color: #130c49;
   margin-top: 60px;
   gap: 53px;
-  align-items: center;
+  align-items: stretch;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -103,7 +103,7 @@
   width: 33rem;
   flex-wrap: wrap;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 20px;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -115,8 +115,8 @@
 
   .unlockHeaders {
     font-size: 1.125rem;
-
     font-weight: 700;
+    margin: 0;
   }
 
   p {
