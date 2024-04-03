@@ -15,12 +15,32 @@ export default function UnlockSection() {
           </div>
           <div className={styles.leftSide}>
             <h4 className={styles.unlockHeaders}>
-              Accelerate multimodal discovery
+              Attend our session with GCP on April 11!
             </h4>
             <p>
-              Learn how to build multimodal search and generative applications
-              that are reliable, secure, and scalable— in less time.
+              Don’t miss our CEO, Bob van Luijt’s joint session with Google
+              Cloud,{' '}
+              <Link
+                className={styles.eventLink}
+                to="https://cloud.withgoogle.com/next?session=OPS209"
+              >
+                From RAG to autonomous apps with Weaviate and Gemini on Google
+                Kubernetes Engine
+              </Link>{' '}
+              on April 11 at 10:15am PT.
             </p>
+            <p>
+              We look forward to seeing you at the session! You can find the
+              demo repository{' '}
+              <Link
+                className={styles.eventLink}
+                to="https://github.com/GoogleCloudPlatform/ai-on-gke"
+              >
+                here
+              </Link>
+              .
+            </p>
+
             <h4 className={styles.unlockHeaders}>See it in action</h4>
             <p>
               Get a hands-on demo from the Weaviate technical team at booth

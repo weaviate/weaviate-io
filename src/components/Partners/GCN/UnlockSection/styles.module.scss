@@ -75,6 +75,7 @@
   color: #130c49;
   margin-top: 60px;
   gap: 53px;
+  align-items: center;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -130,4 +131,10 @@
   height: 31.1875rem;
   background-size: cover;
   background-image: url('../../../../../static/img/site/event-shot-gcn-01.jpg');
+}
+
+.eventLink {
+  color: #130c49;
+  font-weight: 700;
+  font-style: italic;
 }
