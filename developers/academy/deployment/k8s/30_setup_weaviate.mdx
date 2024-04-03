@@ -55,7 +55,7 @@ Open the `values.yaml` file in a text editor, and update the following sections:
 
 #### Enable the gRPC service
 
-Set the `enabled` field to `true` and the `type` field to `LoadBalancer`. This will expose the gRPC service as a LoadBalancer service, which will allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/2024-02-20-grpc-performance-improvements/index.mdx).
+Set the `enabled` field to `true` and the `type` field to `LoadBalancer`. This will expose the gRPC service as a LoadBalancer service, which will allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/grpc-performance-improvements).
 
 ```yaml
 grpcService:
