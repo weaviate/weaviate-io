@@ -8,7 +8,11 @@ To do this, we will need a Kubernetes cluster with multiple nodes. Then, we can 
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Add nodes to your Weaviate cluster
 
-We'll stop the current Weaviate deployment and then deploy a new one with multiple nodes.
+We'll stop the current Weaviate deployment and then deploy a new one with [multiple nodes with Minikube](https://minikube.sigs.k8s.io/docs/tutorials/multi_node/).
+
+:::note Minikube limitations
+Keep in mind that this runs multiple containers on the same host device for learning. In a production environment, you would typically have a managed Kubernetes cluster with multiple physical or virtual nodes.
+:::
 
 ### <i class="fa-solid fa-code"></i> Stop the current Weaviate deployment
 

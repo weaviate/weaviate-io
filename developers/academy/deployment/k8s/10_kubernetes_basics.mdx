@@ -8,7 +8,11 @@ In production, Kubernetes is used to manage a cluster of nodes, such as those lo
 
 Here, you learn how to do this using **Minikube**, a handy tool that allows you to run a Kubernetes cluster on your local machine for development and testing purposes.
 
-But if you are looking to deploy Weaviate on a production Kubernetes cluster, the steps are similar. You will just need to replace Minikube with your production Kubernetes cluster.
+:::info What if I have a production Kubernetes cluster?
+If you are looking to deploy Weaviate on a production Kubernetes cluster, the steps are similar. You will just need to replace Minikube with your production Kubernetes cluster.
+
+As there are many variations in Kubernetes deployments, we recommend you follow the deployment instructions provided by your cloud provider or Kubernetes distribution for this purpose.
+:::
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Prerequisites
 
@@ -16,7 +20,7 @@ For this tutorial, you will need the following tools:
 
 - **Minikube**: a tool that runs a Kubernetes cluster on your local machine. It is used to test Kubernetes deployments locally.
 - **kubectl**: the Kubernetes command-line tool. It is used to interact with the Kubernetes cluster.
-- **Docker**: a platform that allows you to develop, ship, and run applications in containers. We will use Docker as the Minikube [*driver*](https://minikube.sigs.k8s.io/docs/drivers/) to virtualize the Kubernetes cluster on your local machine.
+- **Docker**: a platform that allows you to develop, ship, and run applications in containers. We install Docker as the Minikube [*driver*](https://minikube.sigs.k8s.io/docs/drivers/) to virtualize the Kubernetes cluster on your local machine. Your Minikube may use a different driver, but Docker is the most common one.
 - **Helm**: a package manager for Kubernetes. It is used to install and manage applications on Kubernetes.
 
 ### <i class="fa-solid fa-code"></i> Installation
@@ -49,6 +53,8 @@ version.BuildInfo{Version:"v3.12.2", GitCommit:"1e210a2c8cc5117d1055bfaa5d40f51b
 ```
 
 If you see similar output, you are ready to proceed.
+
+Note that the versions may differ from the ones shown above. Please make sure you have the latest versions installed.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Run Minikube
 

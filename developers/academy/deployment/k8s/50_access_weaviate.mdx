@@ -2,33 +2,23 @@
 title: Access & Configure Weaviate
 ---
 
-We have now spun up a Weaviate instance in our Kubernetes cluster. Let's access it.
+We have now spun up a Weaviate instance in our Kubernetes cluster. So what's next? In this section, we will look at how to access the Weaviate service, and how to configure it to suit your needs.
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Access Weaviate
 
+Although our Weaviate service is happily running, it is not yet accessible from the outside world. This is because we have not exposed the service to the outside world. Let's do that now.
+
 ### <i class="fa-solid fa-code"></i> Expose the services
 
-Since our Kubernetes configuration specifies:
-
-```yaml
-service:
-  name: weaviate
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
-type: LoadBalancer
-```
-
-Let's navigate to `http://localhost:80` in our browser. But this will sadly not work.
-
-The reason is that we have not exposed the service to the outside world. With Minikube, we can do this by running:
+Run the following command:
 
 ```bash
 minikube tunnel
 ```
 
-This command will expose the service to the outside world. You will see a message like:
+You will recall that we configured the `weaviate` service as a `LoadBalancer` type in our Helm chart. So, when we run `minikube tunnel`, it will expose the service to the outside world - or at least, to our local machine.
+
+You will see a message like:
 
 ```bash
 ✅  Tunnel successfully started
@@ -41,7 +31,7 @@ This command will expose the service to the outside world. You will see a messag
 🏃  Starting tunnel for service weaviate-grpc.
 ```
 
-At this point you will be asked for your password. Enter it and the tunnel will be established.
+At this point you will be asked for your password. Enter it and the tunnel will be established. Note that closing the terminal or stopping the process will close the tunnel, making the services inaccessible again.
 
 :::info About `minikube tunnel`
 [`minikube tunnel`](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel) creates a route between your local machine and the Minikube cluster. This allows services within your Minikube cluster that are exposed as LoadBalancer to be accessible on your local machine for development.
@@ -64,7 +54,7 @@ NAME       TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 weaviate   LoadBalancer   10.110.44.231   127.0.0.1     80:31230/TCP   61m
 ```
 
-Navigate to `http://<external-ip>:80/v1` in your browser. You should see the Weaviate REST root endpoint, with links to the various endpoints available in Weaviate.
+Navigate to `http://<external-ip>:80/v1` in your browser (typically `http://127.0.0.1:80/v1`). You should see the Weaviate REST root endpoint, with links to the various endpoints available in Weaviate.
 
 Now, you might also recall that we've opened up the gRPC service in our Kubernetes configuration. This service is available on port 50051. You can confirm this by running:
 
@@ -79,9 +69,14 @@ NAME            TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)           A
 weaviate-grpc   LoadBalancer   10.109.237.21   127.0.0.1     50051:32150/TCP   90m
 ```
 
+<details>
+  <summary>
+    Another way to confirm access to the gRPC service
+  </summary>
+
 If you have netcat installed, you can also try:
 
-```bach
+```bash
 nc -zv 127.0.0.1 50051
 ```
 
@@ -90,6 +85,11 @@ Which will show:
 ```bash
 Connection to 127.0.0.1 port 50051 [tcp/*] succeeded!
 ```
+
+Note that not all systems have `nc` installed by default. It's okay if you don't have it - the `kubectl get svc` command output is sufficient to confirm access to the gRPC service.
+
+</details>
+
 
 ## <i class="fa-solid fa-square-chevron-right"></i> Configure Weaviate
 
