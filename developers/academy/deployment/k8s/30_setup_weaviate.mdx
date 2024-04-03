@@ -1,0 +1,134 @@
+---
+title: Run Weaviate on Kubernetes
+---
+
+Now that you have a Kubernetes cluster, you can deploy Weaviate on it. This section will show you how to deploy Weaviate on Kubernetes using Helm.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Helm chart
+
+As mentioned earlier, **Helm** is a package manager for Kubernetes. It uses a packaging format called **charts**.
+
+A **Helm chart** is a collection of files that describe a set of Kubernetes resources. It is the equivalent of a **package** in other package managers, such as pip or npm.
+
+Weaviate provides a [Helm chart](https://github.com/weaviate/weaviate-helm) that you can use to deploy Weaviate on Kubernetes. So, we will use this Helm chart to deploy Weaviate on your Kubernetes cluster.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Deployment
+
+First, add the [Weaviate Helm repository](https://weaviate.github.io/weaviate-helm) to your Helm installation. This will make the Weaviate Helm chart available to you.
+
+```bash
+helm repo add weaviate https://weaviate.github.io/weaviate-helm
+```
+
+:::tip Tip: Update the Helm repositories
+
+If you have previously added the `weaviate` Helm repository, run this to update it to the latest version.
+
+```bash
+helm repo update weaviate
+```
+
+You should periodically [update the Helm repositories](https://helm.sh/docs/helm/helm_repo_update/) to ensure that you have the latest information about available charts.
+
+:::
+
+Next, generate a configuration file (`values.yaml`) for the Weaviate Helm chart.
+
+```bash
+helm show values weaviate/weaviate > values.yaml
+```
+
+This command fetches the default values for the Weaviate Helm chart and saves them to a file named `values.yaml`. You can now edit this file to customize the deployment configuration.
+
+Let's configure a couple of important settings, before deploying Weaviate.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Configuration
+
+Before we go further, let's update the configuration file to:
+
+- Enable the gRPC service
+- Enable Cohere integrations
+
+Open the `values.yaml` file in a text editor, and update the following sections:
+
+#### Enable the gRPC service
+
+Set the `enabled` field to `true` and the `type` field to `LoadBalancer`. This will expose the gRPC service as a LoadBalancer service, which will allow you to access it from outside the Kubernetes cluster, which in turn enables use of the [fast gRPC API](/blog/2024-02-20-grpc-performance-improvements/).
+
+```yaml
+grpcService:
+  enabled: true  # ⬅️ Make sure this is set to true
+  name: weaviate-grpc
+  ports:
+    - name: grpc
+      protocol: TCP
+      port: 50051
+  type: LoadBalancer  # ⬅️ Set this to LoadBalancer (from NodePort) for this example
+```
+
+#### Enable Cohere integrations
+
+```yaml
+  text2vec-cohere:
+
+    enabled: true  # ⬅️ Make sure this is set to true
+
+  # ... settings not shown ...
+  generative-cohere:
+
+    enabled: true  # ⬅️ Make sure this is set to true
+```
+
+Save the file after making these changes. You are now ready to deploy Weaviate on your Kubernetes cluster.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Run Weaviate
+
+Make sure your Kubernetes cluster is up and running (e.g. with `minikube start`), and you have configured `kubectl` to access it.
+
+Let's first create a namespace for Weaviate:
+
+```bash
+kubectl create namespace weaviate
+```
+
+This will let us deploy Weaviate in a [separate namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#when-to-use-multiple-namespaces). This is not mandatory, but we will do it here as it is good practice to allow better organization of resources.
+
+Then, run the following command:
+
+```bash
+helm upgrade --install \
+  "weaviate" \
+  weaviate/weaviate \
+  --namespace "weaviate" \
+  --values ./values.yaml
+```
+
+This command will deploy Weaviate in the `weaviate` namespace of your Kubernetes cluster using the configuration specified in the `values.yaml` file.
+
+Now, if you run this:
+
+```bash
+kubectl get pods -n weaviate
+```
+
+You should see the Weaviate pods running in the `weaviate` namespace.
+
+Note that it may take a little bit of time for the pods to start up. You can check the status of the pods by running the `kubectl get pods -n weaviate` command multiple times.
+
+```bash
+❯ kubectl get pods -n weaviate
+NAME         READY   STATUS    RESTARTS   AGE
+weaviate-0   0/1     Pending   0          15s
+
+❯ kubectl get pods -n weaviate
+NAME         READY   STATUS    RESTARTS   AGE
+weaviate-0   1/1     Running   0          59s
+```
+
+Note how here, the `weaviate-0` pod went from `Pending` to `Running`.
+
+Congratulations! You have successfully deployed Weaviate on your local Kubernetes cluster. Next, let's confirm some basic interactions with Weaviate.
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />

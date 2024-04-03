@@ -189,6 +189,18 @@ export const courseData = {
   //     "TBC"
   //   ]
   // },
+  "kubernetes_intro": {
+    title: "Run Weaviate on Kubernetes",
+    courseId: "D100",
+    body: "Learn how to run Weaviate on a local kubernetes cluster with Minikube.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/deployment/k8s",
+    badgeType: "course",
+    isCourse: false,
+    units: [
+      "kubernetes_intro"
+    ]
+  },
   "standalone": {
     title: "Standalone units",
     courseId: "0",
@@ -198,8 +210,7 @@ export const courseData = {
     isCourse: false,
     units: [
       "which_search",
-      "chunking",
-      "kubernetes_intro",
+      "chunking"
     ]
   },
   "zero_to_mvp": {
