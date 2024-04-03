@@ -62,8 +62,8 @@ client = weaviate.connect_to_wcs(
 # START ConnectWithOIDC
 import weaviate
 
-wcs_username = os.getenv("YOUR_WCS_USER_NAME")      # Recommended: save to an environment variable
-wcs_password = os.getenv("YOUR_WCS_PASSWORD")       # Recommended: save to an environment variable
+wcs_username = os.getenv("WCS_USERNAME")    # Recommended: save to an environment variable
+wcs_password = os.getenv("WCS_PASSWORD")    # Recommended: save to an environment variable
 
 client = weaviate.connect_to_wcs(
     cluster_url="https://your-wcs-endpoint.weaviate.network",
