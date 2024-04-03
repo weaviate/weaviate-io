@@ -717,12 +717,12 @@ export const unitData = {
   kubernetes_intro: {
     title: "Weaviate with Kubernetes - An introduction",
     body: "What is Kubernetes, and how do you configure and run Weaviate on it?.",
-    buttonType: "TBD",
+    buttonType: "Click here",
     badgeType: "practical",
     learningGoals: [
       "What Kubernetes is, and why it is used.",
       "How to set up a local Kubernetes cluster.",
-      "Run a multi-node Weaviate instance on the local Kubernetes cluster.",
+      "Run a Weaviate instance on the local Kubernetes cluster.",
       "How to configure Weaviate running on Kubernetes."
     ],
     learningOutcomes: [

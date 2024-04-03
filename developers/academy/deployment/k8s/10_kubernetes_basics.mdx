@@ -1,0 +1,120 @@
+---
+title: Create a Kubernetes cluster
+---
+
+**Kubernetes** is an open-source *container orchestration* platform. It means that you can use Kubernetes to deploy, scale, and manage [containerized](https://www.docker.com/resources/what-container/) applications.
+
+In production, Kubernetes is used to manage a cluster of nodes, such as those located on cloud providers like AWS, Google Cloud, or Azure, or on your own on-premises infrastructure.
+
+Here, you learn how to do this using **Minikube**, a handy tool that allows you to run a Kubernetes cluster on your local machine for development and testing purposes.
+
+:::info What if I have a production Kubernetes cluster?
+If you are looking to deploy Weaviate on a production Kubernetes cluster, the steps are similar. You will just need to replace Minikube with your production Kubernetes cluster.
+
+As there are many variations in Kubernetes deployments, we recommend you follow the deployment instructions provided by your cloud provider or Kubernetes distribution for this purpose.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Prerequisites
+
+For this tutorial, you will need the following tools:
+
+- **Minikube**: a tool that runs a Kubernetes cluster on your local machine. It is used to test Kubernetes deployments locally.
+- **kubectl**: the Kubernetes command-line tool. It is used to interact with the Kubernetes cluster.
+- **Docker**: a platform that allows you to develop, ship, and run applications in containers. We install Docker as the Minikube [*driver*](https://minikube.sigs.k8s.io/docs/drivers/) to virtualize the Kubernetes cluster on your local machine. Your Minikube may use a different driver, but Docker is the most common one.
+- **Helm**: a package manager for Kubernetes. It is used to install and manage applications on Kubernetes.
+
+### <i class="fa-solid fa-code"></i> Installation
+
+If you don't have any of these tools installed, you can follow the installation instructions for each, by following the links below:
+
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [Docker](https://docs.docker.com/get-docker/)
+- [helm](https://helm.sh/docs/intro/install/)
+
+Once you've done so, confirm installation by running the following commands:
+
+```bash
+minikube version
+kubectl version --client
+docker --version
+helm version
+```
+
+You should see an output like:
+
+```bash
+minikube version: v1.32.0
+commit: 8220a6eb95f0a4d75f7f2d7b14cef975f050512d
+Client Version: v1.28.2
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+Docker version 24.0.7, build afdd53b
+version.BuildInfo{Version:"v3.12.2", GitCommit:"1e210a2c8cc5117d1055bfaa5d40f51bbc2e345e", GitTreeState:"clean", GoVersion:"go1.20.6"}
+```
+
+If you see similar output, you are ready to proceed.
+
+Note that the versions may differ from the ones shown above. Please make sure you have the latest versions installed.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Run Minikube
+
+You are now ready to start Minikube. Run the following command:
+
+```bash
+minikube start
+```
+
+Then, you might see an output like this:
+
+```bash
+😄  minikube v1.32.0 on Darwin 14.4.1 (arm64)
+✨  Automatically selected the docker driver. Other choices: vmware, ssh
+📌  Using Docker Desktop driver with root privileges
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+💾  Downloading Kubernetes v1.28.3 preload ...
+    > preloaded-images-k8s-v18-v1...:  341.16 MiB / 341.16 MiB  100.00% 42.00 M
+    > gcr.io/k8s-minikube/kicbase...:  410.56 MiB / 410.58 MiB  100.00% 42.28 M
+🔥  Creating docker container (CPUs=2, Memory=8100MB) ...
+🐳  Preparing Kubernetes v1.28.3 on Docker 24.0.7 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+```
+
+Great! You have started a Kubernetes cluster using Minikube. Note the last comment that says `kubectl is now configured to use "minikube" cluster and "default" namespace by default`. So, you can now use `kubectl` to interact with the Kubernetes cluster.
+
+### <i class="fa-solid fa-code"></i> Verify the cluster
+
+If you run the following command:
+
+```bash
+kubectl get pods -A
+```
+
+This will show you the pods running in the cluster. You should see something like this:
+
+```bash
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+kube-system   coredns-5dd5756b68-qhfch           1/1     Running   0          26s
+kube-system   etcd-minikube                      1/1     Running   0          42s
+kube-system   kube-apiserver-minikube            1/1     Running   0          40s
+kube-system   kube-controller-manager-minikube   1/1     Running   0          42s
+kube-system   kube-proxy-xwdgf                   1/1     Running   0          26s
+kube-system   kube-scheduler-minikube            1/1     Running   0          40s
+kube-system   storage-provisioner                1/1     Running   0          39s
+```
+
+If your output is similar to the one above, then congratulations! You have successfully spun up a Kubernetes cluster on your local machine using Minikube.
+
+Next, you will learn how to deploy Weaviate to the Kubernetes cluster using Helm.
+
+
+import { GiscusDocComment } from '/src/components/GiscusComment';
+
+<GiscusDocComment />
