@@ -61,7 +61,7 @@ A hybrid on collections with named vectors configured must include a `target` ve
     />
   </TabItem>
 
-  
+
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
@@ -754,7 +754,7 @@ import TokenizationNote from '/_includes/tokenization.mdx'
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
