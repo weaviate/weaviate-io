@@ -38,7 +38,7 @@ The process of binary quantization(BQ) takes all the numbers stored per dimensio
 
 
 :::info Enabling Binary Quantization in Weaviate
-To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-index#binary-quantization).
+To learn how to enable and configure Weaviate to use BQ refer to the docs [here](/developers/weaviate/configuration/bq-compression). You can read more about HNSW+BQ in the documentation [here](/developers/weaviate/concepts/vector-quantization#binary-quantization).
 :::
 
 Binarizing is not exclusive to embedding vectors, we can also understand it from the other domains in which it is used - for example in computer vision. Imagine you have an image. The process of binarizing that image entails looking at every pixel. If that pixel is larger than a certain threshold value, we will replace it with 1; otherwise, we will replace it with 0. The resulting image is a black-and-white binary image. This process loses image details but significantly compresses the image size.
