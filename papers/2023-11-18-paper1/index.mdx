@@ -14,8 +14,6 @@ description: "Comparing LLM performance using retreival vs longer context length
 
 import { DownloadButton } from '/src/theme/Buttons';
 
-## Paper Review
-
 Fine-tuned larger language models and longer context lengths eliminate the need for retrieval from external knowledge/vector databases, right? ... Not quite!!
 
 NVIDIA asked the same question last month! 
@@ -27,19 +25,19 @@ They published a [new paper](https://arxiv.org/abs/2310.03025) examining how wel
 
 In short, they found:
 
-1. RAG outperforms long context alone
+1. RAG outperforms long context alone.
 2. Yes they perform better together. RAG works better with longer context than with shorter context.
 
 The main finding presented in the paper was that "retrieval can significantly improve the performance of LLMs regardless of their extended context window sizes". 
 
 Some more details: 
-1. RAG is more important than context windows: a LLM with 4K context window using simple retrieval-augmentation at generation can achieve comparable performance to finetuned LLM with 16K context window
+1. RAG is more important than context windows: a LLM with 4K context window using simple retrieval-augmentation at generation can achieve comparable performance to finetuned LLM with 16K context window.
 
-2. RAG is also faster: Augmenting generation with retrieval not only performs better by requiring significantly less computation and is much faster at generation
+2. RAG is also faster: Augmenting generation with retrieval not only performs better by requiring significantly less computation and is much faster at generation.
 
-3. RAG works even better as parameter count increases because smaller 6-7B LLMs have relatively worse zero-shot capability to incorporate the retrieved chunked context: Perhaps counter intuitively the benefits of RAG on performance are more pronounced the larger the language model gets, experiments were done for LLMs with 43B and 70B params
+3. RAG works even better as parameter count increases because smaller 6-7B LLMs have relatively worse zero-shot capability to incorporate the retrieved chunked context: Perhaps counter intuitively the benefits of RAG on performance are more pronounced the larger the language model gets, experiments were done for LLMs with 43B and 70B params.
 
-4. RAG works even better as context length increases: Retrieval-augmented long context LLM (e.g., 16K and 32K) can obtain better results than retrieval-augmented 4K context LLM, even when fed with the same top 5 chunks of evidence
+4. RAG works even better as context length increases: Retrieval-augmented long context LLM (e.g., 16K and 32K) can obtain better results than retrieval-augmented 4K context LLM, even when fed with the same top 5 chunks of evidence.
 
 5. Retrieval-augmented LLaMA2-70B with 32K context window, outperforms GPT-3.5-turbo-16k and Davinci003 and non-retrieval LLaMA2-70B-32k baseline for question answering and query-based summarization.
 
