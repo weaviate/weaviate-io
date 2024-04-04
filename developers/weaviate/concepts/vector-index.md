@@ -174,6 +174,10 @@ Vectors that aren't currently in cache are added to the cache if there is still 
 
 ## Vector indexing FAQ
 
+### Can I use vector indexing with vector quantization?
+
+Yes, you can read more about it in [vector quantization (compression)](./vector-quantization.md).
+
 ### Which vector index is right for me?
 
 A simple heuristic is that for use cases such as SaaS products where each end user (i.e. tenant) has their own, isolated, dataset, the `flat` index is a good choice. For use cases with large collections, the `hnsw` index may be a better choice.
@@ -204,6 +208,7 @@ To avoid indexing a collection, set `"skip"` to `"true"`. By default, collection
 
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
+- [Concepts: Vector quantization (compression)](./vector-quantization.md)
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
 :::
