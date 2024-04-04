@@ -6,8 +6,8 @@ Here are the release ⭐️*highlights*⭐️!
 
 - [**Named vectors.**](/blog/weaviate-1-24-release#named-vectors) A single object can have multiple vectors. Create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 - [**HNSW and binary quantization (BQ)**](/blog/weaviate-1-24-release#hnsw-and-binary-quantization) HNSW indexes and BQ combine for serious compression and blazing speed.
-- [**Simplified Docker configuration.**](/blog/weaviate-1-24-release#simplified-docker-configuration) A new Docker image that needs no configuration. 
-- [**Backend improvements.**](/blog/weaviate-1-24-release#backend-improvements) Numerous improvements to make updates, imports, and deletions faster.  
+- [**Simplified Docker configuration.**](/blog/weaviate-1-24-release#simplified-docker-configuration) A new Docker image that needs no configuration.
+- [**Backend improvements.**](/blog/weaviate-1-24-release#backend-improvements) Numerous improvements to make updates, imports, and deletions faster.
 - [**Python client update.**](/blog/weaviate-1-24-release#python-client)  General availability, support for all the latest features.
 
 ## Named vectors
@@ -15,20 +15,20 @@ Here are the release ⭐️*highlights*⭐️!
 ![Named vectors](./img/multi-vector.png)
 
 Named vectors make your collections richer and more versatile.
- 
+
 Starting in 1.24, collections can have multiple named vectors. Each vector is independent. Each vector has its own index, its own compression, and its own vectorizer. This means you can create vectors for properties, use different vectorization models, and apply different metrics to fine tune interactions with your data.
 
 In earlier versions, objects in your collections are limited to one vector. Now, you can vectorize meta data like titles and descriptions so that it is available for vector search. You can group things that are logically related, like a music video and a lyric sheet, in the same object. You don't have to create [cross-references](/developers/weaviate/manage-data/cross-references) or manage shared metadata. A single object in a collection can have multiple named vectors.
 
-You don't have to use multiple vectors in your collections, but if you do, adjust your queries to specify which vector you want to use. 
+You don't have to use multiple vectors in your collections, but if you do, adjust your queries to specify which vector you want to use.
 
 For details, see [Multiple vectors](/developers/weaviate/config-refs/schema/multi-vector).
 
-## HNSW and binary quantization 
+## HNSW and binary quantization
 
 ![HNSW and binary quantization](./img/hnsw-and-bq.png)
 
-Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index) to dramatically improve your query speed.
+Weaviate improves [binary quantization (BQ)](/developers/weaviate/configuration/bq-compression) in 1.24 to be faster, more memory efficient, and more cost-effective. Use BQ vector compression with [HNSW indexes](/developers/weaviate/concepts/vector-index#hierarchical-navigable-small-world-hnsw-index) to dramatically improve your query speed.
 
 BQ compresses vector representations while preserving essential information. Uncompressed, Weaviate uses a `float32` to store each dimension. BQ uses one bit per dimension to encode Vector directionality. This means BQ compresses vectors from 32 bits per dimension to 1 bit per dimension - a savings of 32 times the space. This compression significantly reduces storage requirements.
 
@@ -40,7 +40,7 @@ Comparing BQ compressed vectors is fast. To calculate the distance between to ve
   </summary>
 
 Compare each value in the first vector one with the corresponding value in the second vector. If they are the same, score `0`. If they are different, score `1`. The distance between the vectors is the sum of the bitwise comparisons.
-    
+
 ```
 [1,1,0,1,0,1,0,1]
 [1,1,0,0,1,1,0,1]
@@ -76,9 +76,9 @@ Weaviate is a robust platform that handles many kinds of workloads. This release
 
 ## Python client
 
-The new Weaviate [Python client v4](/developers/weaviate/client-libraries/python) is available. The latest release adds support for named vectors and brings numerous other updates. If you have feedback on the new client, please let us know. 
+The new Weaviate [Python client v4](/developers/weaviate/client-libraries/python) is available. The latest release adds support for named vectors and brings numerous other updates. If you have feedback on the new client, please let us know.
 
-- To learn more about the new client, read the [client release blog post](/blog/py-client-v4-release). 
+- To learn more about the new client, read the [client release blog post](/blog/py-client-v4-release).
 - To learn how to upgrade your code, see the [v3 to v4 migration guide](/developers/weaviate/client-libraries/python/v3_v4_migration).
 
 ## Summary
