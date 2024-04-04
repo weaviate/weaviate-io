@@ -5,6 +5,7 @@ authors: [zain]
 date: 2023-11-18
 tags: []
 image: ./img/hero.jpeg
+description: "Comparing LLM performance using retreival vs longer context lengths."
 ---
 
 ![A preview of the paper](./img/hero.jpeg)
@@ -12,6 +13,8 @@ image: ./img/hero.jpeg
 <!-- truncate -->
 
 import { DownloadButton } from '/src/theme/Buttons';
+
+## Paper Review
 
 Fine-tuned larger language models and longer context lengths eliminate the need for retrieval from external knowledge/vector databases, right? ... Not quite!!
 
@@ -40,11 +43,10 @@ Some more details:
 
 5. Retrieval-augmented LLaMA2-70B with 32K context window, outperforms GPT-3.5-turbo-16k and Davinci003 and non-retrieval LLaMA2-70B-32k baseline for question answering and query-based summarization.
 
-[Download here - as a link](./download/2310.03025.pdf)
-
 <p>
   <DownloadButton link={require('./download/2310.03025.pdf').default}>Download the paper</DownloadButton>
 </p>
+
 
 <!-- We could create a specific template for Paper Review's -->
 import WhatNext from '/_includes/what-next.mdx'
