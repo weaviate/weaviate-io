@@ -1,5 +1,5 @@
 ---
-title: Vector Quantization
+title: Vector Quantization (compression)
 sidebar_position: 24
 image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
@@ -120,6 +120,7 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 - [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
 - [How to configure: Binary quantization (compression)](../configuration/bq-compression.md)
 - [How to configure: Product quantization (compression)](../configuration/pq-compression.md)
+- [Weaviate Academy: 250 Vector Compression](../../academy/py/compression/index.md)
 :::
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
