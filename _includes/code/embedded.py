@@ -9,8 +9,9 @@ client = weaviate.Client(
     additional_headers={
         'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY'  # Replace w/ your OPENAI API key
     }
-    # START 10lines  # END TestExample
+    # START 10lines  # START TestExample
 )
+# END TestExample
 
 uuid = client.data_object.create({
     'hello': 'World!'
