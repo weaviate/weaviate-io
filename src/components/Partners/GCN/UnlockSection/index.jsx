@@ -34,7 +34,7 @@ export default function UnlockSection() {
               demo repository{' '}
               <Link
                 className={styles.eventLink}
-                to="https://github.com/GoogleCloudPlatform/ai-on-gke"
+                to="https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tutorials-and-examples/vector-databases/NEXT-2024-Weaviate-Demo"
               >
                 here
               </Link>
