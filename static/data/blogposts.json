@@ -33,34 +33,34 @@
   ],
   "blog": [
     {
-      "link": "/blog/fine-tuning-coheres-reranker",
+      "link": "/blog/typescript-client-beta",
       "type": "Blog",
-      "backgroundImage": "/img/site/reranker-head.png",
-      "tagline": "Fine-Tuning Cohere's Reranker",
-      "photo": "erika.jpg",
-      "name": "Erika Cardenas",
-      "title": "Technology Partner Manager",
-      "date": "February 13, 2024"
+      "backgroundImage": "/img/site/typescript-hero.png",
+      "tagline": "Announcing the Weaviate Typescript Client Beta",
+      "photo": "daniel.jpg",
+      "name": "Daniel Phiri",
+      "title": "Developer Advocate",
+      "date": "March 21, 2024"
     },
     {
-      "link": "/blog/grpc-performance-improvements",
+      "link": "/blog/hurricane-generative-feedback-loops",
       "type": "Blog",
-      "backgroundImage": "/img/site/grpc-head.png",
-      "tagline": "gRPC-Driven Performance Improvements in Weaviate",
-      "photo": "leonie.jpg",
-      "name": "Leonie Monigatti",
-      "title": "Developer Advocate",
-      "date": "February 20, 2024"
+      "backgroundImage": "/img/site/hurricane-hero.png",
+      "tagline": "Hurricane: Writing Blog Posts with Generative Feedback Loops",
+      "photo": "connor.jpg",
+      "name": "Connor Shorten",
+      "title": "Product Researcher",
+      "date": "March 19, 2024"
     },
     {
       "link": "/community/events",
       "type": "Workshop",
-      "backgroundImage": "/img/site/workshops-jp-website.png",
-      "tagline": "AI SaaS applications with Weaviate",
-      "photo": "jp.jpg",
-      "name": "Joon-Pil (JP) Hwang",
-      "title": "Educator",
-      "date": "March 15, 2024"
+      "backgroundImage": "/img/site/workshops-daniel.png",
+      "tagline": "Getting Started with the New Weaviate TypeScript Client",
+      "photo": "daniel.jpg",
+      "name": "Daniel Phiri",
+      "title": "Developer Advocate",
+      "date": "April 17, 2024"
     }
   ]
 }

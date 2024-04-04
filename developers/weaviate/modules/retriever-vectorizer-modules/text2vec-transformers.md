@@ -54,11 +54,15 @@ While you can do so manually, we recommend using the [Weaviate configuration too
 Weaviate:
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-transformers` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-transformers` to make it the default for all classes.
-- `TRANSFORMERS_INFERENCE_API` (Required): The URL of the inference container.
+- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-transformers` to make it the default for all collections.
+- `TRANSFORMERS_INFERENCE_API` (Required): The URL of the default inference container.
 - `USE_SENTENCE_TRANSFORMERS_VECTORIZER` (Optional): (EXPERIMENTAL) Use the `sentence-transformer` vectorizer instead of the default vectorizer (from the `transformers` library). Applies to custom images only.
 
 Inference container:
+
+:::info Multiple inference container support added in `v1.24.2`
+As of Weaviate `v1.24.2`, you can use multiple inference containers with `text2vec-transformers`. This allows you to use different models for different collections by [setting the `inferenceUrl` in the collection configuration](#collection-configuration).
+:::
 
 - `image` (Required): The image name of the inference container.
 - `ENABLE_CUDA` (Optional): Set to `1` to enable GPU usage. Default is `0` (CPU only).
@@ -87,10 +91,11 @@ services:
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 # highlight-start
-  t2v-transformers:
+  t2v-transformers:  # Set the name of the inference container
     image: cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
     environment:
       ENABLE_CUDA: 0 # set to 1 to enable
+  # Set additional inference containers here if desired
 # highlight-end
 ...
 ```
@@ -107,7 +112,7 @@ As an alternative, you can run the inference container independently from Weavia
 - Enable `text2vec-transformers` in your Docker Compose file,
 - Omit `t2v-transformers` parameters,
 - Run the inference container separately, e.g. using Docker, and
-- Set `TRANSFORMERS_INFERENCE_API` to the URL of the inference container.
+- Use `TRANSFORMERS_INFERENCE_API` or [`inferenceUrl`](#collection-level) to set the URL of the inference container.
 
 For example, choose [any of our pre-built transformers models](#option-1-pre-built-images) and spin it up - for example using:
 
@@ -117,19 +122,26 @@ docker run -itp "8000:8080" semitechnologies/transformers-inference:sentence-tra
 
 Then, for example if Weaviate is running outside of Docker, set `TRANSFORMERS_INFERENCE_API="http://localhost:8000"`. Alternatively if Weaviate is part of the same Docker network, e.g. because they are part of the same `docker-compose.yml` file, you can use Docker networking/DNS, such as `TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080`.
 
-## Class configuration
+## Collection configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
+You can configure how the module will behave in each collection through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### Vectorization settings
 
-You can set vectorizer behavior using the `moduleConfig` section under each class and property:
+You can set vectorizer behavior using the `moduleConfig` section under each collection and property:
 
-#### Class-level
+#### Collection-level
 
 - `vectorizer` - what module to use to vectorize the data.
-- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
+- `vectorizeClassName` – whether to vectorize the collection name. Default: `true`.
 - `poolingStrategy` – the pooling strategy to use. Default: `masked_mean`. Allowed values: `masked_mean` or `cls`. ([Read more on this topic.](https://arxiv.org/abs/1908.10084))
+- `inferenceUrl` – the URL of the inference container, for when using [multiple inference containers](#weaviate-instance-configuration) (e.g. `http://service-name:8080`). Default: `http://t2v-transformers:8080`.
+
+:::note For DPR type models
+- `queryInferenceUrl` & `passageInferenceUrl` – the URL of the inference container for query and passage respectively, for when using [multiple inference containers](#weaviate-instance-configuration) with a [`DPR` type model](https://huggingface.co/docs/transformers/en/model_doc/dpr) (e.g. `http://service-name:8080`).
+
+You can only set one of `inferenceUrl` or (`queryInferenceUrl` and `passageInferenceUrl`). If you are running a DPR model, set `queryInferenceUrl` and `passageInferenceUrl` to use different inference containers for queries and passages when using inference containers with a DPR type model.
+:::
 
 #### Property-level
 
@@ -143,12 +155,18 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
   "classes": [
     {
       "class": "Document",
-      "description": "A class called document",
+      "description": "A collection called document",
       // highlight-start
       "vectorizer": "text2vec-transformers",
       "moduleConfig": {
         "text2vec-transformers": {
-          "vectorizeClassName": false
+          "vectorizeClassName": false,
+          "inferenceUrl": "http://t2v-transformers:8080",  // Optional. Set to use a different inference container when using multiple inference containers.
+          // Note: You can only set one of `inferenceUrl` or (`queryInferenceUrl` and `passageInferenceUrl`).
+          // Set 'inferenceUrl' to use a different inference container when using multiple inference containers with most (i.e. non-DPR type) models.
+          // Set 'queryInferenceUrl' and 'passageInferenceUrl' to use different inference containers for queries and passages when using multiple inference containers with a DPR type model.
+          // "queryInferenceUrl": "http://t2v-transformers-query:8080",  // Optional. Set to use a different inference container for queries when using multiple inference containers with a DPR type model.
+          // "passageInferenceUrl": "http://t2v-transformers-passage:8080"  // Optional. Set to use a different inference container for passages when using multiple inference containers with a DPR type model.
         }
       },
       // highlight-end
@@ -186,6 +204,9 @@ This allows you to use any suitable model from the [Hugging Face model hub](http
 
 We have built images from publicly available models that in our opinion are well suited for semantic search. You can use any of the following:
 
+<details>
+  <summary>List of pre-built images</summary>
+
 |Model Name|Image Name|
 |---|---|
 |`distilbert-base-uncased` ([Info](https://huggingface.co/distilbert-base-uncased))|`semitechnologies/transformers-inference:distilbert-base-uncased`|
@@ -196,7 +217,6 @@ We have built images from publicly available models that in our opinion are well
 |`sentence-transformers/all-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L12-v2`|
 |`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2`|
 |`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2`|
-|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2-onnx`|
 |`sentence-transformers/multi-qa-distilbert-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-distilbert-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-distilbert-cos-v1`|
 |`sentence-transformers/gtr-t5-base` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
 |`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
@@ -213,11 +233,16 @@ We have built images from publicly available models that in our opinion are well
 |`biu-nlp/abstract-sim-sentence` ([Info](https://huggingface.co/biu-nlp/abstract-sim-sentence))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-sentence`|
 |`biu-nlp/abstract-sim-query` ([Info](https://huggingface.co/biu-nlp/abstract-sim-query))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-query`|
 
+</details>
+
 #### ONNX-enabled images (CPU only)
 
 We also provide ONNX-enabled images for some models. These images use ONNX Runtime for faster inference on CPUs. They are quantized for ARM64 and AMD64 (AVX2) hardware.
 
 Look for the `-onnx` suffix in the image name.
+
+<details>
+  <summary>List of pre-built images</summary>
 
 |Model Name|Image Name|
 |---|---|
@@ -225,6 +250,8 @@ Look for the `-onnx` suffix in the image name.
 |`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
 |`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
 |`BAAI/bge-m3` ([Info](https://huggingface.co/BAAI/bge-m3))|`semitechnologies/transformers-inference:baai-bge-m3-onnx`|
+
+</details>
 
 #### Is your preferred model missing?
 

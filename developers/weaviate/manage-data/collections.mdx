@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.classes.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.classes_test.go';
 
@@ -43,9 +44,18 @@ To create a collection, specify at least the collection name. If you don't speci
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START BasicCreateCollection"
+      endMarker="// END BasicCreateCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START BasicCreateCollection"
       endMarker="// END BasicCreateCollection"
       language="ts"
@@ -109,9 +119,18 @@ For details, see:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START CreateCollectionWithProperties"
+      endMarker="// END CreateCollectionWithProperties"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START CreateCollectionWithProperties"
       endMarker="// END CreateCollectionWithProperties"
       language="ts"
@@ -159,7 +178,7 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Vectorizer"
@@ -167,6 +186,16 @@ Collection level settings override default values and general configuration para
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 
@@ -196,7 +225,7 @@ You can define multiple named vectors per collection. This allows each object to
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START BasicNamedVectors"
@@ -204,6 +233,16 @@ You can define multiple named vectors per collection. This allows each object to
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START BasicNamedVectors"
+      endMarker="// END BasicNamedVectors"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Specify vectorizer settings
@@ -229,7 +268,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START ModuleSettings"
@@ -237,6 +276,16 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ModuleSettings"
+      endMarker="// END ModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 ## Set vector index type
@@ -262,9 +311,18 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START SetVectorIndex"
+      endMarker="// END SetVectorIndex"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START SetVectorIndex"
       endMarker="// END SetVectorIndex"
       language="ts"
@@ -302,9 +360,18 @@ Configure each property to choose whether to vectorize property name, include pr
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START PropModuleSettings"
+      endMarker="// END PropModuleSettings"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START PropModuleSettings"
       endMarker="// END PropModuleSettings"
       language="ts"
@@ -335,9 +402,18 @@ If you choose to bring your own vectors, you should specify the `distance metric
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START DistanceMetric"
+      endMarker="// END DistanceMetric"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START DistanceMetric"
       endMarker="// END DistanceMetric"
       language="ts"
@@ -387,9 +463,18 @@ Specify a `generative` module for a collection (for RAG).
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START SetGenerative"
+      endMarker="// END SetGenerative"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START SetGenerative"
       endMarker="// END SetGenerative"
       language="ts"
@@ -420,7 +505,7 @@ Configure replication per collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START ReplicationSettings"
@@ -428,6 +513,16 @@ Configure replication per collection.
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START ReplicationSettings"
+      endMarker="// END ReplicationSettings"
+      language="ts"
+    />
+  </TabItem>
+
 </Tabs>
 
 <details>
@@ -467,9 +562,18 @@ Configure sharding per collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ShardingSettings"
+      endMarker="// END ShardingSettings"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ShardingSettings"
       endMarker="// END ShardingSettings"
       language="ts"
@@ -514,9 +618,18 @@ Create a collection with multi-tenancy enabled.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Multi-tenancy"
+      endMarker="// END Multi-tenancy"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Multi-tenancy"
       endMarker="// END Multi-tenancy"
       language="ts"
@@ -546,9 +659,18 @@ Retrieve a collection definition from the schema.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadOneCollection"
+      endMarker="// END ReadOneCollection"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadOneCollection"
       endMarker="// END ReadOneCollection"
       language="ts"
@@ -762,9 +884,18 @@ Fetch the database schema to retrieve all of the collection definitions.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadAllCollections"
+      endMarker="// END ReadAllCollections"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadAllCollections"
       endMarker="// END ReadAllCollections"
       language="ts"
@@ -813,7 +944,7 @@ Some definitions cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
 
 ```ts
 // This feature is under development
@@ -861,7 +992,7 @@ Some parameters cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
 
   ([Vote for the feature request.](https://github.com/weaviate/typescript-client/issues/72))
 
@@ -876,7 +1007,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: REST: Schema](../api/rest/schema.md)
 - [References: Schema](/developers/weaviate/config-refs/schema)
 - [Tutorial: Schema](../starter-guides/schema.md)

@@ -61,7 +61,51 @@ client.schema.create_class(class_obj)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+
+<TabItem value="js" label="JS/TS (Beta)">
+
+```js
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToWCS(
+  '<WCS-URL>',
+  {
+    authCredentials: new weaviate.ApiKey('<API-KEY>'),
+  } 
+)
+
+// Define the 'Question' class
+const classObj = const schema = {
+  name: 'Question',
+  properties: [
+    {
+      name: 'question',
+      dataType: 'text' as const,
+      description: 'Category of the question' as const,
+      tokenization: 'lowercase' as const,
+      vectorizePropertyName: true,
+      
+    },
+    {
+      name: 'answer',
+      dataType: 'text' as const,
+      description: 'The question' as const,
+      tokenization: 'whitespace' as const,
+      vectorizePropertyName: false,
+    }
+  ],
+  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  generative: weaviate.configure.generative.openAI()
+}
+
+// Add the class to the schema
+const newCollection = await client.collections.create(schema) 
+
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS">
 
 ```js
 import weaviate from 'weaviate-ts-client';

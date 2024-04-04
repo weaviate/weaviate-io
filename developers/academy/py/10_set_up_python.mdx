@@ -1,0 +1,141 @@
+---
+title: 10 Set up Python for Weaviate
+sidebar_position: 10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PythonCodeExample from '!!raw-loader!./_snippets/10_setup_python.py';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import WeaviatePythonImgUrl from '/blog/2023-10-31-weaviate-1-22-release/img/Weaviate-release-1-22-python.png';
+
+Follow this short guide to make sure that you are set up to use Weaviate with the Python client.
+
+<img src={WeaviatePythonImgUrl} alt="Image alt" width="75%"/>
+
+## <i class="fa-solid fa-square-chevron-right"></i> Install Python
+
+### <i class="fa-solid fa-code"></i> Is Python installed?
+
+Open a terminal window (e.g. bash, zsh, Windows PowerShell, Windows Terminal), and run:
+
+```shell
+python --version
+```
+
+If that did not work, you may need to use `python3` instead of `python`:
+
+```shell
+python3 --version
+```
+
+If you have Python installed, you should see a response like `Python 3.11.8`. If you Python 3.8 or higher installed, you can skip the remainder of this section.
+
+### <i class="fa-solid fa-code"></i> Install Python
+
+To install, follow the instructions for your system on [Python.org](https://www.python.org/downloads/).
+
+Once you have Python installed, check the version again to confirm that you have a recommended version installed.
+
+:::tip Advanced option: `pyenv`
+Another good way to install Python is to install `pyenv`. This will allow you to manage multiple versions of Python on your system. You can find instructions on how to install `pyenv` [here](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation).
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Set up a virtual environment
+
+A virtual environment allows you to isolate various Python projects from each other. This is useful because it allows you to install dependencies for each project without affecting the others.
+
+### <i class="fa-solid fa-code"></i> Create a virtual environment
+
+We recommend using `venv` to create a virtual environment. Navigate to your project directory (e.g. `cd PATH/TO/PROJECT`), and run:
+
+```shell
+python -m venv .venv
+```
+
+Or, if `python3` is your Python command:
+
+```shell
+python3 -m venv .venv
+```
+
+This will create a virtual environment in a directory called `.venv` in your project directory.
+
+### <i class="fa-solid fa-code"></i> Activate the virtual environment
+
+Each virtual environment can be 'activated' and 'deactivated'. When activated, the Python commands you run will use the Python version and libraries installed in the virtual environment.
+
+To activate the virtual environment, go to your project directory and run:
+
+```shell
+source .venv/bin/activate
+```
+
+Or, if you are using Windows:
+
+<Tabs groupId="languages">
+<TabItem value="command" label="Command Prompt">
+
+```shell
+.venv\Scripts\activate.bat
+```
+
+</TabItem>
+<TabItem value="powershell" label="PowerShell">
+
+```shell
+.venv\Scripts\Activate.ps1
+```
+
+</TabItem>
+</Tabs>
+
+You can check if the virtual environment is activated by running:
+
+```shell
+which python
+```
+
+Or, if you are using Windows, run `Get-Command python` (PowerShell) or `where python` (Command Prompt).
+
+If the virtual environment is activated, you should see a path that points to the `.venv` directory.
+
+:::tip Virtual environments
+Virtual environments are very useful. If you would like to learn more, try this tutorial on [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/) or this article on [RealPython](https://realpython.com/python-virtual-environments-a-primer/), which goes a little more in-depth.
+<br/>
+
+Additionally, there are many other environment management tools available, such as `conda`, `pipenv`, and `poetry`. If you are already using one of these tools, you can use them instead of `venv`.
+:::
+
+## <i class="fa-solid fa-square-chevron-right"></i> Install the Weaviate client
+
+Now, you can install the [Weaviate client library](../../weaviate/client-libraries/index.md), which will make it much easier to interact with Weaviate using Python.
+
+[Activate your virtual environment](#activate-the-virtual-environment), then install the Weaviate client with:
+
+```shell
+pip install weaviate-client
+```
+
+### <i class="fa-solid fa-code"></i> Confirm the installation
+
+To confirm that the Weaviate client is installed, run the following Python code:
+
+<FilteredTextBlock
+  text={PythonCodeExample}
+  startMarker="# CheckClientLibInstall"
+  endMarker="# END CheckClientLibInstall"
+  language="py"
+/>
+
+You should see an output like:
+
+```text
+Your Weaviate client library version is: 4.5.4.
+```
+
+Congratulations, you are now set up to use Weaviate with Python and the Weaviate Python client library!
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

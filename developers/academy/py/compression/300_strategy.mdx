@@ -1,0 +1,41 @@
+---
+title: Compression strategy
+---
+
+Given the choice of PQ, BQ, or no compression, which should you choose? The answer is, it depends.
+
+PQ and BQ are both lossy compression techniques, and the choice between them depends on your circumstances, your model and the use case.
+
+## <i class="fa-solid fa-chalkboard"></i> The index type
+
+PQ is currently only supported for the HNSW index, while BQ is supported for both the HNSW and flat indexes. If you are using HNSW, you will need to use PQ.
+
+## <i class="fa-solid fa-chalkboard"></i> Model suitability
+
+PQ is generally a more robust compression technique, as it is fitted on your specific data during the training step. This means that you don't need to worry as much about whether your model is suitable for PQ.
+
+On the other hand, BQ can be more sensitive to the model, such as its length and whether it is designed for binary quantization.
+
+If you do not know whether your model is suitable for BQ, we recommend using PQ.
+
+## <i class="fa-solid fa-chalkboard"></i> Tunability
+
+As you've seen, PQ parameters are tunable whereas BQ is not. This means that you can adjust PQ to be more or less aggressive on performance parameters, such as recall and QPS targets, while still benefiting from some compression.
+
+## <i class="fa-solid fa-chalkboard"></i> Complexity
+
+If you are looking for the easiest solution to implement, BQ is the way to go. It is a simple configuration that can be enabled immediately, without the need to wait for a training set to be reached.
+
+## <i class="fa-solid fa-chalkboard"></i> Conclusion
+
+In summary, your choice of compression technique depends on your circumstances, your model and the use case.
+
+But as a general rule of thumb, if you are not sure which to choose, we recommend using PQ. It is more robust, tunable, and generally more suitable for a wider range of models and use cases.
+
+And if resource constraints are not a concern, you can always choose to use no compression at all. This will give you the best performance, but at the cost of increased resource requirements.
+
+But do note that you will likely not be able to switch on compression later, as it requires a reindexing of the data. (With an exception of PQ, which [may be enabled later](../../../weaviate/configuration/pq-compression.md#3-enable-pq-and-create-the-codebook) unless your dataset is too large.)
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

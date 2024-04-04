@@ -114,7 +114,7 @@ zain:
   image_url: /img/people/icon/zain.jpg
 john:
   name: John Trengrove
-  title: Solution Engineer
+  title: Head of Applied Research
   url: https://github.com/trengrj
   image_url: /img/people/icon/john.png
 shukri:
@@ -144,6 +144,7 @@ femke:
 daniel:
   name: Daniel Phiri
   title: Developer Advocate
+  url: https://www.linkedin.com/in/malgamves
   image_url: /img/people/icon/daniel.jpg
 jon:
   name: Jonathan Tuite
@@ -154,3 +155,13 @@ victoria:
   title: Machine Learning Engineer
   url: https://www.linkedin.com/in/victorialslocum/
   image_url: /img/people/icon/victoria.png
+adam:
+  name: Adam Chan
+  title: Developer Relations Engineer
+  url: https://www.linkedin.com/in/itsajchan/
+  image_url: /img/people/icon/adam.png
+asdine:
+  name: Asdine El Hrychy
+  title: Software Engineer
+  url: https://github.com/asdine
+  image_url: /img/people/icon/asdine.jpg

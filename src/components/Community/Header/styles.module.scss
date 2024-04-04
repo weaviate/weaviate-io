@@ -123,10 +123,39 @@ p {
 }
 
 .headerImage {
-  width: 280px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+.headerImage1 {
+  width: 190px;
+  margin-right: -30px;
   height: 130px;
-  background-size: cover;
-  background-image: url('/img/site/weaviate-community-logo.svg');
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-size: contain;
+  background-image: url('/img/site/weaviate-hero-header-01.svg');
+
+  @media screen and (max-width: 500px) {
+    margin-right: -24px;
+  }
+}
+
+.headerImage2 {
+  width: 298px;
+  height: 130px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: bottom;
+  background-image: url('/img/site/weaviate-hero-header-02.svg');
+
+  @media screen and (max-width: 500px) {
+    margin-top: -42px;
+  }
 }
 
 .peopleContainer {

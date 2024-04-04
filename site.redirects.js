@@ -30,10 +30,21 @@ const siteRedirects = {
             from: '/developers/weaviate/current/core-knowledge/clients',
         },
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/current/core-knowledge/console',
         },
-
+        {
+         to: '/developers/wcs/console',
+         from: '/developers/wcs/guides/console',
+        },
+        {
+         to: '/developers/wcs/create-instance',
+         from: '/developers/wcs/guides/create-instance',
+        },
+        {
+         to: '/developers/wcs/authentication',
+         from: '/developers/wcs/guides/authentication',
+        },
         // Client library redirects
         {
             to: '/developers/weaviate/client-libraries/typescript',
@@ -107,7 +118,7 @@ const siteRedirects = {
             from: '/developers/weaviate/quickstart/modules',
         },
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/quickstart/console',
         },
 
@@ -129,7 +140,7 @@ const siteRedirects = {
             from: '/developers/weaviate/current/quickstart/modules',
         },
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/current/quickstart/console',
         },
 
@@ -138,7 +149,10 @@ const siteRedirects = {
             to: '/developers/wcs/faq',
             from: '/developers/wcs/troubleshooting',
         },
-        
+        {
+         to: '/developers/wcs/console',
+         from: '/developers/wcs/platform/ssconsole',
+        },
         // Tutorial redirects
         {
             to: '/developers/weaviate/starter-guides/schema',
@@ -172,10 +186,20 @@ const siteRedirects = {
             from: '/developers/weaviate/manage-data/exhaustive-retrieval',
         },
 
-        // Tutorial refresh Jan 2024
+        // Tutorial refresh 2024
         {
             to: '/developers/weaviate/starter-guides/schema',
             from: '/developers/weaviate/tutorials/schema',
+        },
+        {
+            to: '/developers/weaviate/starter-guides/connect',
+            from: '/developers/weaviate/tutorials/connect',
+        },
+
+        // Remove BPR page
+        {
+            to: '/developers/weaviate/concepts/vector-index',
+            from: '/developers/weaviate/concepts/binary-passage-retrieval',
         },
 
         // Blog redirects
@@ -363,7 +387,7 @@ const siteRedirects = {
         },
 
         {
-            to: '/developers/wcs/guides/console',
+            to: '/developers/wcs/console',
             from: '/developers/weaviate/tutorials/console',
         },
 
@@ -436,6 +460,11 @@ const siteRedirects = {
             to: "/service",
             from: "/service/service-schedule"
         },
+            // Case Study Changes
+            {
+                to: "/case-studies/neople",
+                from: "/services/case-study-neople"
+            },
 
 
     ],

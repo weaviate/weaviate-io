@@ -50,10 +50,12 @@ helm show values weaviate/weaviate > values.yaml
 
 ### Modify values.yaml (as necessary)
 
-:::note You do not *need* to modify values.yaml
-You can skip this step and run with all default values.
+:::note May not be needed
+The default values in `values.yaml` may be sufficient. However, we recommend reviewing:
 
-But, if you do not modify the defaults in `values.yaml`, make sure to set the appropriate Weaviate version at the deployment step.
+- The Weaviate version
+- Modules to enable
+- gRPC service configuration
 :::
 
 In the [`values.yaml`](https://github.com/weaviate/weaviate-helm/blob/master/weaviate/values.yaml)
@@ -69,6 +71,8 @@ Out of the box, the configuration file is setup for:
 - Other modules, such as `text2vec-transformers`, `qna-transformers` or
   `img2vec-neural` are disabled by default. They can be enabled by setting the
   respective `enabled` flag to `true`.
+- `grpcService` is disabled by default. If you want to use the gRPC API, set the
+  `enabled` flag to `true` and the `type` to the required type, such as `LoadBalancer`. This decision to disable the gRPC service by default is made for backward compatibility, and as different setups might require different configurations.
 
 See the resource requests and limits in the example `values.yaml`. You can
 adjust them based on your expected load and the resources available on the

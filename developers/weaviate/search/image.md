@@ -11,9 +11,12 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.image-v2.ts';
 import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+
 
 `Image` search uses an **image as a search input** to perform vector similarity search.
 
@@ -60,9 +63,18 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -103,12 +115,25 @@ If your query image is stored in a file, you can use the client library to searc
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 
   <FilteredTextBlock
     text={TSCode}
+    startMarker="// START ImageFileSearch"
+    endMarker="// END ImageFileSearch"
+    language="ts"
+  />
+
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+
+  > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
+
+  <FilteredTextBlock
+    text={TSCodeLegacy}
     startMarker="// START ImageFileSearch"
     endMarker="// END ImageFileSearch"
     language="ts"
@@ -153,9 +178,18 @@ You can search by a base64 representation of an image:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="ts"
+    />
+  </TabItem>
+
+   <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
       language="ts"
@@ -189,7 +223,7 @@ You can create a base64 representation of an online image, and use it as input f
       language="py"
     />
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START helper base64 functions"
@@ -197,6 +231,7 @@ You can create a base64 representation of an online image, and use it as input f
       language="js"
     />
   </TabItem>
+
 </Tabs>
 
 
@@ -208,7 +243,7 @@ See the [`similarity search`](./similarity.md) page for more details.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

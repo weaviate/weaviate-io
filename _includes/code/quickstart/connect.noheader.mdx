@@ -37,7 +37,26 @@ client = weaviate.Client(
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (Beta)">
+
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-client'
+
+const client: WeaviateClient = await weaviate.connectToWCS(
+    'https://some-endpoint.weaviate.network',  // Replace with your endpoint
+  {
+    authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+    }
+  } 
+)
+
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS">
 
 ```ts
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';

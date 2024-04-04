@@ -20,26 +20,38 @@ This Quickstart guide shows you how to get started with Weaviate Cloud Services 
 
 ## Create a Weaviate Cluster
 
-When you log into the WCS web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account.
+When you log into the WCS web console, the Dashboard tab lists your clusters. There are no clusters when you log in to a new account. WCS has short-term, sandbox clusters and permanent, managed clusters.
 
-To create a cluster, follow these steps:
-
-1. Click the "Create cluster" button.
+To create a cluster, click the 'Create cluster' button on the WCS Dashboard page.
 
 ![Create a cluster](./img/wcs-console-no-clusters.jpg)
 
-2. Select the "Free sandbox" tab.
-1. Give your cluster a name. WCS adds a random suffix to ensure uniqueness.
-1. Verify that "Enable Authentication?" is set to "Yes".
-1. Click create.
+Follow the steps to create a cluster:
 
-It takes a minute or two to create the new cluster. When the cluster is ready, WCS displays a check mark (`✔️`) next to the cluster name.
+- [Sandbox clusters](#sandbox-clusters)
+- [Managed clusters](#managed-clusters).
 
-The process is similar to create a managed cluster. However, you have to add your billing details first.
+### Sandbox clusters
+
+To create a sandbox cluster, follow these steps:
+
+import CreateSandboxCluster from '/_includes/wcs/create-cluster-sandbox.mdx'
+
+<CreateSandboxCluster />
 
 import SandBoxExpiry from '/_includes/sandbox.expiry.mdx';
 
 <SandBoxExpiry/>
+
+### Managed clusters
+
+Managed clusters require billing details. WCS prompts you to add billing details if you have not already added them.
+
+To create a managed cluster, follow these steps:
+
+import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
+
+<CreateManagedCluster />
 
 ## Explore the Details panel
 
@@ -51,7 +63,7 @@ To get the cluster URL and authentication details, follow these steps:
 
 ![Details button](./img/wcs-console-details-button.jpg)
 
-2. To get the API key, click the `API keys` button.
+2. To get the API keys, click the `API keys` button.
 
 ![Details expanded](./img/wcs-console-details-api-key.jpg)
 
@@ -93,8 +105,6 @@ If you are connected, the server returns `True`.
 - If you just want to try Weaviate, continue with a sandbox cluster.
 - If you want to work with Weaviate or need a persistent cluster, enter your billing details so you can create managed clusters.
 - To learn how Weaviate can help you build your project, review the [Weaviate documentation](../weaviate/index.md).
-
-
 
 ## Support
 

@@ -8,6 +8,7 @@ import Resources from '/src/components/Partners/GCN/Resources/resources';
 import Footer from '/src/components/Partners/GCN/awsFooter';
 import ContactForm from '../../../components/Partners/GCN/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
+import HubSpotTracking from '../../../components/Tracking';
 
 export default function GCNPage() {
   return (
@@ -16,6 +17,7 @@ export default function GCNPage() {
         title="Google Cloud Next 2024"
         description="Weaviate -  Google Cloud Next 2024"
       >
+        <HubSpotTracking />
         <Header />
         <UnlockSection />
         <CallingSection />

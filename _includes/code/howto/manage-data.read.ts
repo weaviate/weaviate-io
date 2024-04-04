@@ -6,14 +6,18 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
 // ===== Instantiation, not shown in snippet
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 let result;
 
@@ -22,13 +26,10 @@ let result;
 // =======================
 
 // ReadObject START
-result = await client.data
-  .getterById()
-  .withClassName('JeopardyQuestion')
-  .withId('00ff6900-e64f-5d94-90db-c8cfa3fc851b')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion')
+const response = await myCollection.query.fetchObjectById('ed89d9e7-4c9d-4a6a-8d20-095cb0026f54')
 
-console.log(JSON.stringify(result, null, 2));
+console.log(response?.properties)
 // ReadObject END
 
 // Test
@@ -40,16 +41,14 @@ assert.equal(result.properties['answer'], 'San Francisco');
 // ===================================
 
 // ReadObjectWithVector START
-result = await client.data
-  .getterById()
-  .withClassName('JeopardyQuestion')
-  .withId('00ff6900-e64f-5d94-90db-c8cfa3fc851b')
+const myCollection = client.collections.get('JeopardyQuestion')
+const response = await myCollection.query.fetchObjectById('ed89d9e7-4c9d-4a6a-8d20-095cb0026f54',{
   // highlight-start
-  .withVector()
+  includeVector: true
   // highlight-end
-  .do();
+})
 
-console.log(JSON.stringify(result, null, 2));
+console.log(response?.properties)
 // ReadObjectWithVector END
 
 // Test
@@ -57,7 +56,7 @@ assert.equal(result.vector.length, 1536);
 
 
 // ===================================
-// ===== Read object with vector =====
+// ===== Read object with name vector =====
 // ===================================
 
 // TODO: Attempt not working; Waiting for response from Weaviate
@@ -69,16 +68,17 @@ let someObj = await client.data.getter().withLimit(1).do();
 let objUUID = someObj[0].uuid;
 
 // ReadObjectNamedVectors END
-result = await client.data
-  .getterById()
-  .withClassName('WineReviewNV')
-  .withId(objUUID)
-  // highlight-start
-  .withVector()
-  // highlight-end
-  .do();
+const myCollection = client.collections.get('WineReviewNV') // Collection with named vectors
+const vectorNames = ['title', 'review_body']
+const objectUuid = '' // Object UUID
 
-console.log(JSON.stringify(result, null, 2));
+const response = await myCollection.query.fetchObjectById(objectUuid,{
+  // highlight-start
+  includeVector: vectorNames
+  // highlight-end
+})
+
+console.log(response?.properties)
 // ReadObjectNamedVectors END
 
 // Test

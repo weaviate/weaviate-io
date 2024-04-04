@@ -11,9 +11,12 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
 import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
+
 
 `Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
@@ -66,9 +69,18 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={SimilarityTSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -110,9 +122,18 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// SingleGenerativeProperties TS"
+      endMarker="// END SingleGenerativeProperties TS"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// SingleGenerativeProperties TS"
       endMarker="// END SingleGenerativeProperties TS"
       language="js"
@@ -166,9 +187,18 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GroupedGenerative TS"
+      endMarker="// END GroupedGenerative TS"
+      language="js"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GroupedGenerative TS"
       endMarker="// END GroupedGenerative TS"
       language="js"
@@ -225,9 +255,18 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GroupedGenerativeProperties"
+      endMarker="// END GroupedGenerativeProperties"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GroupedGenerativeProperties"
       endMarker="// END GroupedGenerativeProperties"
       language="ts"
@@ -260,7 +299,7 @@ The output is like this:
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [References: Modules: generative-openai](../modules/reader-generator-modules/generative-openai.md)
 - [References: Modules: generative-cohere](../modules/reader-generator-modules/generative-cohere.md)
 - [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
