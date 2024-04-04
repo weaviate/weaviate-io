@@ -41,6 +41,10 @@ If you are after a practical guide, try the [quickstart tutorial](/developers/we
 
 - Read more about Weaviate's vector indexing architecture, such as the HNSW algorithm, distance metrics, and configurable settings.
 
+**[Vector quantization](./vector-quantization.md)**
+
+- Read more about Weaviate's vector quantization options.
+
 ## Weaviate Architecture
 
 The figure below gives a 30,000 feet view of Weaviate's architecture.
