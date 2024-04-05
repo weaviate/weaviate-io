@@ -16,6 +16,17 @@ const ModalComponent = ({
   const typeClass = details.type ? details.type.toLowerCase() : '';
   const displayText = details.longText || details.text;
 
+  const shareUrl = `${window.location.origin}${window.location.pathname}#card=${details.id}`;
+
+  const copyShareUrlToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      alert('URL copied to clipboard!');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
   return (
     <div className={styles.modals} onClick={onClose}>
       <div
@@ -35,6 +46,12 @@ const ModalComponent = ({
           )}
           <h3 className={styles.cardTitle}>{details.title}</h3>{' '}
           <span className={styles.modalText}>{displayText}</span>
+          <button
+            className={styles.shareButton}
+            onClick={copyShareUrlToClipboard}
+          >
+            Share
+          </button>
           <div className={styles.bottomCard}>
             {/* {details.tags.map((tag, index) => (
               <span key={index} className={styles.tag}>

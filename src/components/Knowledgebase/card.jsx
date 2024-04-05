@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import ModalComponent from './modalpopup';
@@ -12,7 +12,17 @@ export default function Card(props) {
   const closeModal = () => {
     setIsModalOpen(false);
     setActiveCard(null);
+    window.history.pushState(
+      '',
+      document.title,
+      window.location.pathname + window.location.search
+    );
   };
+
+  useEffect(() => {
+    setIsModalOpen(props.isActive);
+  }, [props.isActive]);
+
   const structuredData = {
     '@context': 'http://schema.org',
     '@type': 'Article',

@@ -1,6 +1,7 @@
 {
   "all": [
     {
+      "id": "vector-databases-1",
       "type": "Introduction",
       "category": "Intro to Vector Databases",
       "categoryText": "One sentence about the category",
@@ -15,6 +16,7 @@
       "tags": ["Vector Databases", "Weaviate", "Image"]
     },
     {
+      "id": "vector-databases-2",
       "type": "Introduction",
       "category": "Intro to Vector Databases",
       "title": "Vector",
@@ -28,6 +30,7 @@
       "tags": ["Vector Databases", "Weaviate", "Image"]
     },
     {
+      "id": "vector-databases-3",
       "type": "Introduction",
       "category": "Intro to Vector Databases",
       "title": "Vector Embedding",
@@ -41,6 +44,7 @@
       "tags": ["Vector Databases", "Weaviate", "Image"]
     },
     {
+      "id": "vector-databases-4",
       "type": "Introduction",
       "category": "Intro to Vector Databases",
       "title": "Embeddings Model",
@@ -54,6 +58,7 @@
       "tags": ["Vector Databases", "Weaviate", "Image"]
     },
     {
+      "id": "search-1",
       "type": "Search",
       "category": "Hybrid Search",
       "title": "Sparse Vectors",
@@ -67,6 +72,7 @@
       "tags": ["Hybrid Search", "Weaviate", "Image"]
     },
     {
+      "id": "search-2",
       "type": "Search",
       "category": "Hybrid Search",
       "title": "Dense Vectors",
@@ -80,6 +86,7 @@
       "tags": ["Hybrid Search", "Weaviate", "Image"]
     },
     {
+      "id": "search-3",
       "type": "Search",
       "category": "Hybrid Search",
       "title": "BM25/BM25F",
@@ -93,6 +100,7 @@
       "tags": ["Hybrid Search", "Weaviate", "Image"]
     },
     {
+      "id": "search-4",
       "type": "Search",
       "category": "Hybrid Search",
       "title": "Alpha Parameter",
@@ -106,6 +114,7 @@
       "tags": ["Hybrid Search", "Weaviate", "Image"]
     },
     {
+      "id": "search-5",
       "type": "Search",
       "category": "Hybrid Search",
       "title": "Fusion Algorithm",
@@ -119,6 +128,7 @@
       "tags": ["Hybrid Search", "Weaviate", "Image"]
     },
     {
+      "id": "hnsw-1",
       "type": "HNSW",
       "category": "Hierarchical Navigable Small World",
       "title": "Hierarchical Graph Structure",
@@ -132,6 +142,7 @@
       "tags": ["HNSW", "Weaviate", "Image"]
     },
     {
+      "id": "hnsw-2",
       "type": "HNSW",
       "category": "Hierarchical Navigable Small World",
       "title": "ANN - Approximate Nearest Neighbor",
@@ -145,6 +156,7 @@
       "tags": ["HNSW", "Weaviate", "Image"]
     },
     {
+      "id": "hnsw-3",
       "type": "HNSW",
       "category": "Hierarchical Navigable Small World",
       "title": "Layered Navigation",
@@ -158,6 +170,7 @@
       "tags": ["HNSW", "Weaviate", "Image"]
     },
     {
+      "id": "hnsw-4",
       "type": "HNSW",
       "category": "Hierarchical Navigable Small World",
       "title": "Graph-Based Index",
@@ -171,6 +184,7 @@
       "tags": ["HNSW", "Weaviate", "Image"]
     },
     {
+      "id": "hnsw-5",
       "type": "HNSW",
       "category": "Hierarchical Navigable Small World",
       "title": "Graph-Based Index",
@@ -184,6 +198,7 @@
       "tags": ["HNSW", "Weaviate", "Image"]
     },
     {
+      "id": "rag-1",
       "type": "RAG",
       "category": "Multimodal RAG",
       "title": "Cross Modal Reasoning",
@@ -197,6 +212,7 @@
       "tags": ["RAG", "Weaviate", "Image"]
     },
     {
+      "id": "rag-2",
       "type": "RAG",
       "category": "Multimodal RAG",
       "title": "Multimodal Embeddings Models",
@@ -210,6 +226,7 @@
       "tags": ["RAG", "Weaviate", "Image"]
     },
     {
+      "id": "rag-3",
       "type": "RAG",
       "category": "Multimodal RAG",
       "title": "Multimodal Contrastive Finetuning",
@@ -223,6 +240,7 @@
       "tags": ["RAG", "Weaviate", "Image"]
     },
     {
+      "id": "rag-4",
       "type": "RAG",
       "category": "Multimodal RAG",
       "title": "Any-to-any Search",
@@ -236,6 +254,7 @@
       "tags": ["RAG", "Weaviate", "Image"]
     },
     {
+      "id": "rag-5",
       "type": "RAG",
       "category": "Multimodal RAG",
       "title": "Multimodal RAG",
@@ -247,24 +266,6 @@
       "doclink": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
       "videolink": "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
       "tags": ["RAG", "Weaviate", "Image"]
-    },
-    {
-      "type": "Databases",
-      "category": "Databases",
-      "title": "Inverted Indexes",
-      "photo": "",
-      "text": "An inverted index is a database indexing structure that maps keywords to their locations in documents, enabling fast full-text searches by listing all documents containing a given word, optimizing retrieval times. In Weaviate, it's used for keyword searches and fast filtering.",
-      "link": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "tags": ["Index", "Databases"]
-    },
-    {
-      "type": "LLM",
-      "category": "Intro to LLMs",
-      "title": "Transformer",
-      "photo": "",
-      "text": "A transformer model is a type of neural network architecture designed to handle sequential data, like text, for tasks such as translation and question-answering. It's efficient and scalable, using attention mechanisms to weigh the importance of different parts of the input data.",
-      "link": "https://weaviate.io/developers/weaviate/api/graphql/additional-properties#score",
-      "tags": ["Index", "LLMS"]
     }
   ],
   "highlights": [

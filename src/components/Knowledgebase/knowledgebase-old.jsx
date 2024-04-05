@@ -42,18 +42,20 @@ export default function KnowledgeBase({ searchQuery }) {
   useEffect(() => {
     const hash = window.location.hash;
     if (hash.startsWith('#card=')) {
-      const cardId = hash.substring(6); // Get the card ID from the hash
-      const matchedCard = allCards.find((card) => card.id === cardId);
+      const [, cardIdentifier] = hash.split('=');
+      const [type, indexStr] = cardIdentifier.split('-');
+      const index = parseInt(indexStr, 10);
 
-      if (matchedCard) {
-        setActiveCard(matchedCard);
-        setShowMore((prev) => ({ ...prev, [matchedCard.category]: true })); // Ensure the card's category is expanded
-      } else {
-        console.error('No matching card found for ID:', cardId);
-        setActiveCard(null);
+      // Assuming you want to open a card based on its type and index
+      const card = allCards.find(
+        (card, cardIndex) => card.type === type && cardIndex === index
+      );
+
+      if (card) {
+        setActiveCard({ type: card.type, index });
       }
     }
-  }, [allCards]);
+  }, [allCards]); // Note: [allCards] is the dependency array, ensuring useEffect reruns if allCards changes.
 
   const renderCards = (category) => {
     const categoryCards = filteredCards.filter(
@@ -67,41 +69,21 @@ export default function KnowledgeBase({ searchQuery }) {
       return null;
     }
 
-    const updateUrlHash = (cardId) => {
-      window.location.hash = `card=${cardId}`;
+    const updateUrlHash = (type, index) => {
+      window.location.hash = `card=${type}-${index}`;
     };
 
-    const handleCardOpen = (card) => {
-      setActiveCard(card);
-      updateUrlHash(card.id);
-      // Automatically expand the category of the opened card
-      setShowMore((prev) => ({ ...prev, [card.category]: true }));
-    };
-
-    const handleNavigation = (direction) => {
-      if (!activeCard) return;
-
-      // Filter cards to those in the same category as the active card
-      const cardsInSameCategory = allCards.filter(
-        (card) => card.category === activeCard.category
-      );
-
-      // Determine the new index based on navigation direction
-      let newIndex = cardsInSameCategory.findIndex(
-        (card) => card.id === activeCard.id
-      );
-      if (direction === 'next') {
-        newIndex = (newIndex + 1) % cardsInSameCategory.length;
-      } else if (direction === 'previous') {
-        newIndex =
-          newIndex - 1 < 0 ? cardsInSameCategory.length - 1 : newIndex - 1;
+    const handleNavigation = (type, newIndex) => {
+      const cardsOfType = allCards.filter((card) => card.type === type);
+      if (newIndex >= cardsOfType.length) {
+        newIndex = 0; // Loop to the start
+      } else if (newIndex < 0) {
+        newIndex = cardsOfType.length - 1; // Loop to the end
       }
 
-      // Set the new active card based on the newIndex
-      const newActiveCard = cardsInSameCategory[newIndex];
-      if (newActiveCard) {
-        handleCardOpen(newActiveCard);
-      }
+      const newActiveCard = cardsOfType[newIndex];
+      setActiveCard({ category: newActiveCard.category, index: newIndex });
+      updateUrlHash(newActiveCard.type, newIndex);
     };
 
     const categoryDescriptions = {
@@ -131,13 +113,16 @@ export default function KnowledgeBase({ searchQuery }) {
               onOpenModal={() => {
                 setActiveCard({ category: card.category, index });
                 updateUrlHash(card.type, index);
-                handleCardOpen(card);
               }}
-              isActive={activeCard && activeCard.id === card.id}
+              isActive={
+                activeCard &&
+                activeCard.category === card.category &&
+                activeCard.index === index
+              }
               currentIndex={index + 1}
               totalCards={categoryCards.length}
-              onNext={() => handleNavigation('next')}
-              onPrevious={() => handleNavigation('previous')}
+              onNext={() => handleNavigation(card.type, index + 1)}
+              onPrevious={() => handleNavigation(card.type, index - 1)}
             />
           ))}
         </div>
