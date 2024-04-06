@@ -5,6 +5,8 @@
   justify-content: space-around;
   padding: 2.5rem;
   column-gap: 10px;
+  max-width: 1500px;
+  margin: auto;
 
   @media screen and (max-width: 900px) {
     flex-direction: column;

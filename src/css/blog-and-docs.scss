@@ -56,7 +56,6 @@ html {
   article ul:not(.tabs),
   article li:not(.tabs) {
     font-family: var(--site-font-base-family);
-    font-size: 1.2rem;
   }
 }
 
@@ -94,7 +93,7 @@ html {
 // Set Fonts
 .docs-doc-page {
   font-family: var(--site-font-base-family);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--docs-base-color);
 
   h1 {

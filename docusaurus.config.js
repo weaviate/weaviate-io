@@ -114,6 +114,27 @@ const config = {
                             tagName: 'script',
                             innerHTML: `(function (n) { if (typeof n !== "undefined" && n.webdriver) return; var script = document.createElement("script"); script.type = "text/javascript"; script.async = 1; script.src = "https://www.emailpig.com/_functions/myF/823adf31-4fd9-4a44-8491-9de559b8c428?q=" + encodeURIComponent(window.location.href) + "&r=" + document.referrer; document.head.appendChild(script); })(navigator);`,
                         },
+                         // Add LinkedIn Insight Tag
+                         {
+                            tagName: 'script',
+                            attributes: {
+                                src: '/js/linkedin.js',
+                                async: true,
+                                type: 'text/javascript',
+                            },
+                        },
+                        // LinkedIn Insight Tag noscript fallback
+                        {
+                            tagName: 'img',
+                            attributes: {
+                                src: 'https://px.ads.linkedin.com/collect/?pid=6758089&fmt=gif',
+                                alt: '',
+                                height: '1',
+                                width: '1',
+                                style: 'display:none;',
+                            },
+                        },
+
                     ],
                 };
             },
@@ -472,6 +493,11 @@ const config = {
                             {
                                 label: 'GitHub',
                                 to: 'https://github.com/weaviate/weaviate',
+                            },
+                            {
+
+                                label: 'Linkedin',
+                                to: 'https://www.linkedin.com/company/weaviate-io',
                             },
                             {
                                 label: 'Forum',

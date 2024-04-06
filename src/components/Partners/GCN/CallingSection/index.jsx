@@ -19,20 +19,10 @@ export default function CallingSection() {
         <div className={styles.features}>
           <div className={styles.box}>
             <div className={styles.icon1}></div>
-            <h4 className={styles.title}>
-              Attend our session with GCP on April 11!
-            </h4>
+            <h4 className={styles.title}>Accelerate multimodal discovery</h4>
             <p className={styles.subTitle}>
-              Don’t miss our CEO, Bob van Luijt’s joint session with Google
-              Cloud,{' '}
-              <Link
-                className={styles.eventLink}
-                to="https://cloud.withgoogle.com/next?session=OPS209"
-              >
-                From RAG to autonomous apps with Weaviate and Gemini on Google
-                Kubernetes Engine
-              </Link>{' '}
-              on April 11 at 10:15am PT.
+              Learn how to build multimodal search and generative applications
+              that are reliable, secure, and scalable— in less time.
             </p>
           </div>
           <div className={styles.box}>

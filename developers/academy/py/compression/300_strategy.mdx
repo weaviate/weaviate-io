@@ -8,7 +8,7 @@ PQ and BQ are both lossy compression techniques, and the choice between them dep
 
 ## <i class="fa-solid fa-chalkboard"></i> The index type
 
-PQ is currently only supported for the HNSW index, while BQ is supported for both the HNSW and flat indexes. If you are using HNSW, you will need to use PQ.
+PQ is currently only supported for the HNSW index, while BQ is supported for both the HNSW and flat indexes. If you are using the flat index, you will need to use BQ.
 
 ## <i class="fa-solid fa-chalkboard"></i> Model suitability
 
@@ -36,6 +36,6 @@ And if resource constraints are not a concern, you can always choose to use no c
 
 But do note that you will likely not be able to switch on compression later, as it requires a reindexing of the data. (With an exception of PQ, which [may be enabled later](../../../weaviate/configuration/pq-compression.md#3-enable-pq-and-create-the-codebook) unless your dataset is too large.)
 
-import { GiscusDocComment } from '/src/components/GiscusComment';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<GiscusDocComment />
+<DocsFeedback/>
