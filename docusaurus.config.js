@@ -73,6 +73,8 @@ const config = {
                 spec: {
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
                 },
+                // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
+                // hiddenClients: [...],
               },
             },
         ],
