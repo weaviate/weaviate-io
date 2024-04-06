@@ -145,6 +145,10 @@ a.navbar__item.navbar__link[href="/weaviate/developers/api/rest_openapi"] {
   display: none;
 }
 
+.scalar-card-content.scalar-card--contrast.request-card-footer {
+  display: none;
+}
+
 .plugin-\@scalar\/docusaurus {
   // Base font settings
   font-family: var(--site-font-base-family);
