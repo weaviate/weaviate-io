@@ -15,7 +15,7 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 import GoCode from '!!raw-loader!/_includes/code/howto/bq-compression.go';
 
 :::info Added in `v1.23`
-BQ is available for the [`flat` index](./vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](./vector-index.md#hnsw-index)  type from `v1.24`.
+BQ is available for the [`flat` index](../concepts/vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](../concepts/vector-index.md#hnsw-index)  type from `v1.24`.
 :::
 
 Binary quantization (BQ) is a vector compression technique that can reduce the size of a vector.
