@@ -5,11 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 
-
-:::info Prerequisites
-- [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)
-:::
-
 Weaviate instances can be replicated to increase availability and read throughput, and to enable zero-downtime upgrades. On this page, you will learn how to set replication for your Weaviate instance.
 
 For more about how replication is designed and built in Weaviate, see the [Replication Architecture](../concepts/replication-architecture/index.md) pages.
@@ -72,7 +67,8 @@ import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
 
 <QueryReplication/>
 
-
+## Related pages
+- [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

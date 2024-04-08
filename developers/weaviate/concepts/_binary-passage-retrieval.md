@@ -5,16 +5,13 @@ image: og/docs/concepts.jpg
 # tags: ['architecture', 'binary-passage-retrieval', 'memory consumption', 'learning-to-hash', 'resource optimization']
 ---
 
+Binary Passage Retrieval (BPR), or learning-to-hash, is the idea of producing a lightweight encoding (or hash) of each vector and using the hash instead of the vector. The term Binary Passage Retrieval originates from a [2021 research paper by Yamada et al](https://arxiv.org/abs/2106.00882). It is also called learning-to-hash as the models used for BPR are trained with a combined loss function that looks at both cosine/dot distance between the regular vectors, as well as the Hamming distance between the binary hash representations of the vectors.
+
+Since vectors are typically held in memory for optimal performance, reducing the size of a large vector can greatly reduce the overall memory requirements for running Weaviate with larger datasets.
 
 :::note
 BPR support in Weaviate is under development.
 :::
-
-## Overview
-
-Binary Passage Retrieval, or learning-to-hash, is the idea of producing a lightweight encoding (or hash) of each vector and using the hash instead of the vector. The term Binary Passage Retrieval (or short BPR) originates from a [2021 research paper by Yamada et al](https://arxiv.org/abs/2106.00882). It is also called learning-to-hash as the models used for BPR are trained with a combined loss function that looks at both cosine/dot distance between the regular vectors, as well as the Hamming distance between the binary hash representations of the vectors.
-
-Since vectors are typically held in memory for optimal performance, reducing the size of a large vector can greatly reduce the overall memory requirements for running Weaviate with larger datasets.
 
 ### Up to 32x memory reduction
 
