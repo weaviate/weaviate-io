@@ -5,9 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'operations', 'monitoring', 'observability']
 ---
 
-
-## Overview
-
 Weaviate can expose Prometheus-compatible metrics for monitoring. A standard
 Prometheus/Grafana setup can be used to visualize metrics on various
 dashboards.
