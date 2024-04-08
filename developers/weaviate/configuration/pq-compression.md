@@ -439,7 +439,6 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
-
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Concepts: Vector index](../concepts/vector-index.md)
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)

@@ -15,8 +15,6 @@ image: og/docs/configuration.jpg
 - `Vector index` adds text re: configuration options from `Vector index plugins/HNSW`
 ::: -->
 
-## Overview
-
 This section shows you how to configure Weaviate to suit your specific needs.
 
 For example, you can read about how to:

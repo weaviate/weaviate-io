@@ -5,13 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
 
-
-## Overview
-
-:::info Using Kubernetes?
-See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
-:::
-
 Weaviate offers an optional authentication scheme using API keys and OpenID Connect (OIDC), which can enable various [authorizations](authorization.md) levels.
 
 When authentication is disabled, all anonymous requests will be granted access.
@@ -25,6 +18,10 @@ Note that API key and OIDC authentication can be both enabled at the same time.
 
 :::tip We recommend starting with the API key
 For most use cases, the API key option offers a balance between security and ease of use. Give it a try first, unless you have specific requirements that necessitate a different approach.
+:::
+
+:::info Using Kubernetes?
+See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
 :::
 
 ## WCS authentication
