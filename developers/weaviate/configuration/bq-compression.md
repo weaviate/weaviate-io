@@ -34,7 +34,7 @@ To use BQ, enable it as shown below and add data to the collection.
 
 Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it.
 
-This can be done by setting the `vector_index_config` of the collection to enable BQ compression.
+This can be done by setting the `vector index config` of the collection to enable BQ compression.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
