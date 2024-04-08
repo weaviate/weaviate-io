@@ -457,6 +457,10 @@ For links to the Java Client releases, expand this section.
 
 
 [comment]: # ( core links )
+[c1.24.8]: https://github.com/weaviate/weaviate/releases/tag/v1.24.8
+[c1.24.7]: https://github.com/weaviate/weaviate/releases/tag/v1.24.7
+[c1.24.6]: https://github.com/weaviate/weaviate/releases/tag/v1.24.6
+[c1.24.5]: https://github.com/weaviate/weaviate/releases/tag/v1.24.5
 [c1.24.4]: https://github.com/weaviate/weaviate/releases/tag/v1.24.4
 [c1.24.3]: https://github.com/weaviate/weaviate/releases/tag/v1.24.3
 [c1.24.2]: https://github.com/weaviate/weaviate/releases/tag/v1.24.2
@@ -582,6 +586,10 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( python client links )
 
+[p4.5.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.5
+[p4.5.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.4
+[p4.5.3]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.3
+[p4.5.2]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.2
 [p4.5.1]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.1
 [p4.5.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.0
 [p4.4.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.4.4
