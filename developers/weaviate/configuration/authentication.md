@@ -26,7 +26,7 @@ See [this page](../installation/kubernetes.md#authentication-and-authorization) 
 
 ## WCS authentication
 
-Weaviate Cloud Services (WCS) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
+[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
 
 Refer to the [WCS documentation for instructions](/developers/wcs/authentication.mdx) on how to authenticate as a user in this setup.
 

@@ -44,7 +44,7 @@ As a starting point, we recommend the following setups for different use cases.
 If you are evaluating Weaviate, we recommend the following easy and convenient setup:
 
 - An easy-to-use Weaviate instance, with
-    - A Weaviate Cloud Services (WCS) sandbox, or
+    - A [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) sandbox, or
     - Embedded Weaviate
 - An inference-API based text vectorizer
     - (e.g. `text2vec-cohere`, `text2vec-huggingface`, `text2vec-openai`, or  `text2vec-palm`).
@@ -55,7 +55,7 @@ This will allow you to quickly get started with Weaviate, and evaluate its capab
 
 For development, we recommend using
 
-- Docker-Compose or Weaviate Cloud Services (WCS), with
+- Docker-Compose or [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/), with
 - A vectorization strategy that at least approximates your production needs.
 
 #### Docker-Compose vs. Weaviate Cloud Services (WCS)
@@ -84,7 +84,7 @@ Keep in mind two other factors, which are cost, and their footprint.
 
 For use in production, generally we recommend
 
-- Weaviate Cloud Services (WCS),
+- [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/),
 - Self-managed Kubernetes, or
 - Hybrid SaaS.
 
