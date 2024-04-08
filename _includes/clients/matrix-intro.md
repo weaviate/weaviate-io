@@ -7,10 +7,10 @@ of the client. Earlier client releases have less detailed version information.
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.24.8](https://github.com/weaviate/weaviate/releases/tag/v1.24.4) | 2024-04-08 | 4.5.5 | 1.6.0 | 4.13.1 | 4.6.0 |
-| [1.24.7](https://github.com/weaviate/weaviate/releases/tag/v1.24.4) | 2024-04-05 | '' | '' | '' | '' |
-| [1.24.6](https://github.com/weaviate/weaviate/releases/tag/v1.24.4) | 2024-03-26 | 4.5.4 | '' | '' | '' |
-| [1.24.5](https://github.com/weaviate/weaviate/releases/tag/v1.24.4) | 2024-03-21 | '' | '' | '' | '' |
+| [1.24.8](https://github.com/weaviate/weaviate/releases/tag/v1.24.8) | 2024-04-08 | 4.5.5 | 1.6.0 | 4.13.1 | 4.6.0 |
+| [1.24.7](https://github.com/weaviate/weaviate/releases/tag/v1.24.7) | 2024-04-05 | '' | '' | '' | '' |
+| [1.24.6](https://github.com/weaviate/weaviate/releases/tag/v1.24.6) | 2024-03-26 | 4.5.4 | '' | '' | '' |
+| [1.24.5](https://github.com/weaviate/weaviate/releases/tag/v1.24.5) | 2024-03-21 | '' | '' | '' | '' |
 | [1.24.4](https://github.com/weaviate/weaviate/releases/tag/v1.24.4) | 2024-03-15 | 4.5.1 | '' | '' | '' |
 | [1.24.3](https://github.com/weaviate/weaviate/releases/tag/v1.24.3) | 2024-03-14 | '' | '' | '' | '' |
 | [1.24.2](https://github.com/weaviate/weaviate/releases/tag/v1.24.2) | 2024-03-13 | '' | '' | '' | '' |
