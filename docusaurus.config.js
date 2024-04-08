@@ -64,6 +64,21 @@ const config = {
                 showReadingTime: true,
             },
         ],
+        [
+            '@scalar/docusaurus',
+            {
+              label: '.',
+              route: '/developers/weaviate/api/rest_openapi',
+              configuration: {
+                spec: {
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
+                },
+                // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
+                // hiddenClients: [...],
+              },
+            },
+        ],
+
         // Add HTML Header tags
         () => ({
             name: 'inject-tag',
@@ -186,31 +201,6 @@ const config = {
                     ],
                 },
             }),
-        ],
-        [
-            'redocusaurus',
-            {
-                // Plugin Options for loading OpenAPI files
-                config: path.join(__dirname, 'redocly.yaml'),
-                specs: [
-                    // Pass it a path to a local OpenAPI YAML file
-                    {
-                        // Redocusaurus will automatically bundle your spec into a single file during the build
-                        // spec: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
-                        spec: 'openapi.json',
-                        route: 'developers/weaviate/api/rest_openapi',  // Redirect to /api/rest when migration complete
-                    },
-                ],
-                // Theme Options for modifying how redoc renders them
-                theme: {
-                    // Change with your site colors
-                    primaryColor: '#1890ff',
-                    customCss: [
-                        require.resolve('./src/css/custom.scss'),
-                        require.resolve('./src/css/blog-and-docs.scss'),
-                    ],
-                },
-            },
         ],
     ],
 
