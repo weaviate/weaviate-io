@@ -47,7 +47,7 @@ If you have a new collection, enable AutoPQ. AutoPQ automates the PQ training st
 AutoPQ requires asynchronous indexing.
 
 Open-source Weaviate users: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
-Weaviate Cloud Services users: Enable async indexing through the WCS console and restart your Weaviate instance.
+[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) users: Enable async indexing through the WCS console and restart your Weaviate instance.
 
 
 ### 2. Configure PQ
@@ -439,7 +439,6 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
-
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Concepts: Vector index](../concepts/vector-index.md)
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)

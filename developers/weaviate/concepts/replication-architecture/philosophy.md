@@ -5,7 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-
 ## A design modeled after how our users use Weaviate
 
 The architecture that guides the principles for Weaviate’s replication systems is modeled after how users typically use Weaviate. Weaviate powers site search, recommendation, knowledge extraction, and other information retrieval cases. These cases all have a few things in common:

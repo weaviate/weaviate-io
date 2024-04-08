@@ -5,11 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-
-:::info Related pages
-- [Configuration: Replication](../../configuration/replication.md)
-:::
-
 :::info Added in `v1.17`
 :::
 
@@ -133,6 +128,9 @@ See the [Replication Usage page](/developers/weaviate/configuration/replication.
 * Not scheduled yet
   * Multi-Datacenter replication (you can upvote this feature [here](https://github.com/weaviate/weaviate/issues/2436))
 
+
+## Related pages
+- [Configuration: Replication](../../configuration/replication.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

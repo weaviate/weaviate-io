@@ -11,7 +11,7 @@ html {
 .blog-post-page,
 .docs-doc-page,
 .docs-doc-page,
-.redocusaurus,
+.plugin-\@scalar\/docusaurus,
 .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
@@ -137,45 +137,52 @@ html {
   display: none !important;
 }
 
-.redocusaurus {
+a.navbar__item.navbar__link[href="/weaviate/developers/api/rest_openapi"] {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus .sidebar-pages .scalar-icon {
+  display: none;
+}
+
+.scalar-card-content.scalar-card--contrast.request-card-footer {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus {
   // Base font settings
   font-family: var(--site-font-base-family);
+
+  .sidebar-heading {
+    line-height: 1.05;
+  }
 
   // Label customization
   label {
     font-family: var(--site-font-base-family);
-    font-size: 14px; // Slightly larger for readability
-    font-weight: normal; // Depending on your preference
   }
 
   // Paragraph customization
   p {
-    font-size: 15px; // Larger base font size for readability
-    padding-bottom: 0.85em;
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 1.05;
   }
 
   h1 {
-    font-size: 1.75rem; // Larger size for primary headings
-    padding-top: 0.5em;
-    padding-bottom: 0.25em;
-    border-bottom: 2px solid #eaecef; // Subtle separator
+    font-size: 40px;
   }
 
   h2 {
-    font-size: 1.5rem;
-    padding-top: 0.4em;
-    padding-bottom: 0.25em;
-    border-bottom: 1px solid #eaecef; // Lighter separator for sub-headings
+    font-size: 24px;
   }
 
   h3 {
-    padding-top: 0.4em;
-    padding-bottom: 0.2em;
-    font-size: 1.35rem;
+    font-size: 20px;
   }
 
   h4 {
-    font-size: 1.2rem;
+    font-size: 16px;
   }
 }
 
