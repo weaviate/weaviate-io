@@ -5,7 +5,7 @@ image: og/docs/installation.jpg
 # tags: ['installation']
 ---
 
-Weaviate is available as a hosted service, Weaviate Cloud Services (WCS), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS.
+Weaviate is available as a hosted service, [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/), or as a self managed instance. If you manage your own instance, you can host it locally or with a cloud provider. Self-managed instances use the same Weaviate core database as WCS.
 
 ## Installation methods
 
@@ -77,7 +77,7 @@ If you try out new features, please provide [feedback](https://github.com/weavia
 
 
 ## Related pages
-- [Connect to Weaviate](../tutorials/connect.mdx)
+- [Connect to Weaviate](../starter-guides/connect.mdx)
 - [Weaviate Quickstart](../quickstart/index.md)
 - [Weaviate Cloud Services Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)

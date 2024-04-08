@@ -6,12 +6,12 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+  'some-endpoint.weaviate.network',
  {
-   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
@@ -85,6 +85,7 @@ const result = await myCollection.query.fetchObjects({
  filters: myCollection.filter.byProperty('answer').like('*inter*'),
  limit: 3,
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END searchLikeFilter
 
@@ -120,6 +121,7 @@ const result = await myCollection.query.fetchObjects({
  // highlight-end
  limit: 3,
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END ContainsAnyFilter
 
@@ -145,6 +147,7 @@ const result = await myCollection.query.fetchObjects({
  // highlight-end
  limit: 3,
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END ContainsAllFilter
 
@@ -160,7 +163,6 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // searchMultipleFiltersAnd
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.query.fetchObjects({
@@ -170,6 +172,7 @@ const result = await myCollection.query.fetchObjects({
  // highlight-end
  limit: 3,
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersAnd
 
@@ -201,6 +204,7 @@ const result = await myCollection.query.fetchObjects({
  // highlight-end
  limit: 3
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersNested
 
@@ -233,6 +237,7 @@ const result = await myCollection.query.fetchObjects({
        }],
  // highlight-end
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END searchCrossReference
 
@@ -260,6 +265,7 @@ const result = await myCollection.query.fetchObjects({
  filters: myCollection.filter.byId().equal(targetId),
  // highlight-end
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END filterById
 
@@ -282,6 +288,7 @@ const result = await myCollection.query.fetchObjects({
  // highlight-end
  returnMetadata: ['creationTime']
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END FilterByTimestamp
 
@@ -305,6 +312,7 @@ const result = await myCollection.query.fetchObjects({
  filters: myCollection.filter.byProperty('answer', true).greaterThan(lengthThreshold),
  // highlight-end
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END FilterByPropertyLength
 
@@ -331,5 +339,6 @@ const result = await myCollection.query.fetchObjects({
  }),
  // highlight-end
 })
+
 console.log(JSON.stringify(result, null, 2));
 // END FilterbyGeolocation

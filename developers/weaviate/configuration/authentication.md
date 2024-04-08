@@ -5,13 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['authentication']
 ---
 
-
-## Overview
-
-:::info Using Kubernetes?
-See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
-:::
-
 Weaviate offers an optional authentication scheme using API keys and OpenID Connect (OIDC), which can enable various [authorizations](authorization.md) levels.
 
 When authentication is disabled, all anonymous requests will be granted access.
@@ -27,9 +20,13 @@ Note that API key and OIDC authentication can be both enabled at the same time.
 For most use cases, the API key option offers a balance between security and ease of use. Give it a try first, unless you have specific requirements that necessitate a different approach.
 :::
 
+:::info Using Kubernetes?
+See [this page](../installation/kubernetes.md#authentication-and-authorization) for how to set up `values.yaml` for authentication & authorization.
+:::
+
 ## WCS authentication
 
-Weaviate Cloud Services (WCS) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
+[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
 
 Refer to the [WCS documentation for instructions](/developers/wcs/authentication.mdx) on how to authenticate as a user in this setup.
 
@@ -98,7 +95,7 @@ For example, you can use a CURL command as shown below:
 curl https://some-endpoint.weaviate.network/v1/meta -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" | jq
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python/index.md#api-key-authentication), [TypeScript](../client-libraries/typescript.mdx#api-key-authentication), [Java](../client-libraries/java.md#api-key-authentication) or [Go](../client-libraries/go.md#api-key-authentication) to see client-specific instructions.
+If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python/index.md#api-key-authentication), [TypeScript](../client-libraries/typescript/index.mdx#api-key-authentication), [Java](../client-libraries/java.md#api-key-authentication) or [Go](../client-libraries/go.md#api-key-authentication) to see client-specific instructions.
 
 ## OIDC - A systems perspective
 
@@ -348,7 +345,7 @@ For example, you can use a CURL command as shown below:
 curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python/index.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
+If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python/index.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript/index.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
 
 ## Anonymous access
 By default, Weaviate is configured to accept requests without any

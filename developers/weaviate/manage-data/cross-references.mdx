@@ -12,7 +12,8 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.cross-refs-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.cross-refs.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.cross-refs_test.go';
 
@@ -76,9 +77,18 @@ It is also possible to add a cross-reference property to an existing collection 
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Collections TwoWay Category2"
+      endMarker="// END Collections TwoWay Category2"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Collections TwoWay Category2"
       endMarker="// END Collections TwoWay Category2"
       language="ts"
@@ -110,9 +120,18 @@ Specify a cross-reference when creating an object.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ObjectWithCrossRef"
+      endMarker="// END ObjectWithCrossRef"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ObjectWithCrossRef"
       endMarker="// END ObjectWithCrossRef"
       language="ts"
@@ -144,9 +163,18 @@ Specify the required id and properties for the source and the target.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// OneWay TS"
+      endMarker="// END OneWay TS"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// OneWay TS"
       endMarker="// END OneWay TS"
       language="ts"
@@ -196,9 +224,18 @@ Create the `JeopardyCategory` collection:
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Collections TwoWay Category1"
+      endMarker="// END Collections TwoWay Category1"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Collections TwoWay Category1"
       endMarker="// END Collections TwoWay Category1"
       language="ts"
@@ -225,9 +262,18 @@ Create the `JeopardyQuestion` collection including the reference property to `Je
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Collections TwoWay Question"
+      endMarker="// END Collections TwoWay Question"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Collections TwoWay Question"
       endMarker="// END Collections TwoWay Question"
       language="ts"
@@ -254,9 +300,18 @@ Modify `JeopardyCategory` to add the reference to `JeopardyQuestion`:
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Collections TwoWay Category2"
+      endMarker="// END Collections TwoWay Category2"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Collections TwoWay Category2"
       endMarker="// END Collections TwoWay Category2"
       language="ts"
@@ -285,9 +340,18 @@ And add the cross-references:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">>
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// TwoWay TS"
+      endMarker="// END TwoWay TS"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// TwoWay TS"
       endMarker="// END TwoWay TS"
       language="ts"
@@ -337,9 +401,18 @@ Weaviate allows creation of multiple cross-references from one source object.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// Multiple TS"
+      endMarker="// END Multiple TS"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// Multiple TS"
       endMarker="// END Multiple TS"
       language="ts"
@@ -389,9 +462,18 @@ Deleting a cross-reference with the same parameters used to define the cross-ref
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// Delete TS"
+      endMarker="// END Delete TS"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// Delete TS"
       endMarker="// END Delete TS"
       language="ts"
@@ -451,9 +533,18 @@ The targets of a cross-reference can be updated.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// Update TS"
+      endMarker="// END Update TS"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// Update TS"
       endMarker="// END Update TS"
       language="ts"
@@ -482,7 +573,7 @@ The targets of a cross-reference can be updated.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [References: REST - /v1/objects](../api/rest/objects.md#cross-references)
 - [Retrieve the object](../api/rest/objects.md#get-a-data-object) to retrieve its cross references.
 - [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.

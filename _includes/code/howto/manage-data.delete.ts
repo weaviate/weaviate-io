@@ -5,15 +5,17 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'anon-endpoint.weaviate.network',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network',
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 const className = 'EphemeralObject';
 let result;
@@ -39,11 +41,9 @@ idToDelete = result.id;
 
 // START DeleteObject
 
-await client.data
-  .deleter()
-  .withClassName('EphemeralObject')  // Class of the object to be deleted
-  .withId(idToDelete)
-  .do();
+const myCollection = client.collections.get('EphemeralObject')
+    
+await myCollection.data.deleteById(idToDelete)
 // END DeleteObject
 
 // Test
@@ -93,20 +93,15 @@ for (let i = 1; i <= N; i++)
     .do();
 
 // START DryRun
-let response = await client.batch
-  .objectsBatchDeleter()
-  .withClassName('EphemeralObject')
-  // Same `where` filter as in the GraphQL API
-  .withWhere({
-    path: ['name'],
-    operator: 'Like',
-    valueText: 'EphemeralObject*',
-  })
-  // highlight-start
-  .withDryRun(true)
-  .withOutput('verbose')
-  // highlight-end
-  .do();
+const myCollection = client.collections.get('EphemeralObject')
+
+const response = await myCollection.data.deleteMany(
+  myCollection.filter.byProperty('name').like('EphemeralObject'),
+  {
+    dryRun: true,
+    verbose: true
+  }
+)
 
 console.log(response);
 // END DryRun
@@ -116,19 +111,14 @@ console.log(response);
 // ===== Batch delete =====
 // ========================
 
-response =
 // START DeleteBatch
-await client.batch
-  .objectsBatchDeleter()
-  .withClassName('EphemeralObject')
-  // highlight-start
-  .withWhere({
-    path: ['name'],
-    operator: 'Like',
-    valueText: 'EphemeralObject*',
-  })
-  // highlight-end
-  .do();
+const myCollection = client.collections.get('EphemeralObject')
+
+// highlight-start
+await myCollection.data.deleteMany(
+  myCollection.filter.byProperty('name').like('Movie')
+)
+// highlight-end
 // END DeleteBatch
 
 // Test
@@ -142,3 +132,39 @@ const leftovers = await client.graphql.get()
     valueText: 'EphemeralObject*',
   }).do();
 assert.equal(leftovers.data['Get'][className].length, 0);
+
+// =====================================
+// ===== Batch delete with Contain =====
+// =====================================
+
+
+// START DeleteContain
+const myCollection = client.collections.get('EphemeralObject')
+
+// highlight-start
+await myCollection.data.deleteMany(
+  myCollection.filter.byProperty('name').containsAny(['europe', 'asia'])
+)
+// highlight-end
+// END DeleteContain
+
+// ==============================
+// ===== Batch delete by ID =====
+// ==============================
+
+// START DeleteByIDBatch
+const myCollection = client.collections.get('EphemeralObject')
+const idList = new Array
+
+const response = await myCollection.query.fetchObjects({
+  limit: 2
+})
+
+for (let objectId of response.objects) {
+  idList.push(objectId.uuid)
+}
+
+await collection.data.deleteMany(
+  collection.filter.byId().containsAny(idList)
+)
+// END DeleteByIDBatch

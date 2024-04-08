@@ -9,6 +9,6 @@ For additional information, try these sources.
 
 #
 
-import { GiscusDocComment } from '/src/components/GiscusComment';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<GiscusDocComment />
+<DocsFeedback/>

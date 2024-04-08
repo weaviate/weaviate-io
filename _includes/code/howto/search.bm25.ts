@@ -53,8 +53,6 @@ const result = await myCollection.query.bm25('food',{
  // highlight-start
  returnMetadata: ['score']
  // highlight-end
-
-
 })
 
 console.log(JSON.stringify(result.objects, null, 2));
@@ -81,7 +79,6 @@ const result = await myCollection.query.bm25('safety',{
  queryProperties: ['question^2', 'answer'],
   // highlight-end
  returnMetadata: ['score']
-
 })
 
 console.log(JSON.stringify(result.objects, null, 2));
@@ -111,8 +108,6 @@ const result = await myCollection.query.bm25('food',{
   // highlight-start
  queryProperties: ['question^2', 'answer']
   // highlight-end
-
-
 })
 
 console.log(JSON.stringify(result.objects, null, 2));
@@ -172,7 +167,6 @@ const result = await myCollection.query.bm25('food',{
  filters: myCollection.filter.byProperty('round').equal('Double Jeopardy!'),
      // highlight-end
  returnProperties: ['question', 'answer', 'round'],
-
 })
 
 console.log(JSON.stringify(result.objects, null, 2));

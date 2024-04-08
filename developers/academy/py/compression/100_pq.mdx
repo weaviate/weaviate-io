@@ -8,11 +8,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!./_snippets/100_pq.py';
 
 
-Product quantization, or PQ, is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#what-is-hierarchical-navigable-small-world-hnsw), which can improve performance and reduce resource requirements as well as costs.
+[Product quantization](/developers/weaviate/concepts/vector-quantization#product-quantization) (PQ), is a technique used to compress vectors. In Weaviate, it can be used to reduce the size of the in-memory [HNSW index](/developers/weaviate/concepts/vector-index.md#hierarchical-navigable-small-world-hnsw-index), which can improve performance and reduce resource requirements as well as costs.
 
 ## <i class="fa-solid fa-chalkboard"></i> What is product quantization?
 
-Product quantization (PQ hereafter) compresses vectors in two ways. One, by dividing them into "segments", and two, quantizing each segment to be represented by one of a "codebook" of centroids.
+Product quantization compresses vectors in two ways. One, by dividing them into "segments", and two, quantizing each segment to be represented by one of a "codebook" of centroids.
 
 In the diagram below, we show a vector of L dimensions, where each dimension is a floating point number. The vector is divided into L/x segments, and each segment is quantized to be represented by one of N centroids.
 
@@ -75,7 +75,7 @@ The example below shows how to configure PQ with custom settings, such as with a
 
 Please refer to the [PQ configuration documentation](/developers/weaviate/configuration/pq-compression.md#pq-parameters) for more information on the available settings.
 
-import { GiscusDocComment } from '/src/components/GiscusComment';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<GiscusDocComment />
+<DocsFeedback/>
 

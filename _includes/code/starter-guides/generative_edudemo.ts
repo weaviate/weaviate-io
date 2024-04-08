@@ -28,10 +28,10 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 const myCollection = client.collections.get('GitBookChunk');
 
 const dataRetrievalResult = await myCollection.query.nearText(['states in git'], {
-    returnProperties: ['chunk', 'chapter_title', 'chunk_index'],
-      limit: 2, })
+  returnProperties: ['chunk', 'chapter_title', 'chunk_index'],
+  limit: 2, })
 
-  console.log(JSON.stringify(dataRetrievalResult, null, 2));
+console.log(JSON.stringify(dataRetrievalResult, null, 2));
 // END DataRetrieval
 
 assert(dataRetrievalResult.data.Get['GitBookChunk'].length == 2, "Wrong number of objects returned.")
@@ -58,8 +58,7 @@ const myWineCollection = await client.collections.get('WineReview');
 const singlePromptresult = await myWineCollection.generate.nearText("fruity white wine",{
   singlePrompt: `Translate this review into French, using emojis:
   ===== Country of origin: {country}, Title: {title}, Review body: {review_body}`
-},
-{
+},{
   returnProperties: ['review_body','title','country','points'],
   limit: 5,
 })

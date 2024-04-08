@@ -45,9 +45,9 @@ assert.deepEqual(questionKeys, new Set(['question']));
 const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects({
-       returnProperties: ['question'],
-       limit: 1,
-     })
+  returnProperties: ['question'],
+  limit: 1,
+})
      
 console.log(JSON.stringify(result, null, 2));
 // END GetWithLimitJS
@@ -95,15 +95,15 @@ assert.deepEqual(result.data.Get, {
 const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects({
-    // highlight-start
-       returnProperties: ['question', 'answer', 'points'],
-    // highlight-end
+// highlight-start
+  returnProperties: ['question', 'answer', 'points'],
+// highlight-end
 
-       limit: 1,
-       offset: 1,
-     })
-     
-     console.log(JSON.stringify(result, null, 2));
+  limit: 1,
+  offset: 1,
+})
+
+console.log(JSON.stringify(result, null, 2));
 // END GetPropertiesJS
 
 // Test
@@ -130,16 +130,16 @@ assert.deepEqual(result.data.Get, {
 const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects({
-       returnProperties: ['question', 'answer', 'points'],
-       limit: 1,
-       offset: 1,
-       // highlight-start
-       includeVector: true
-       // highlight-end
+  returnProperties: ['question', 'answer', 'points'],
+  limit: 1,
+  offset: 1,
+  // highlight-start
+  includeVector: true
+  // highlight-end
 
-     })
-     
-     console.log(JSON.stringify(result, null, 2));
+})
+
+console.log(JSON.stringify(result, null, 2));
 // END GetObjectVectorJS
 
 // Test
@@ -159,8 +159,8 @@ const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects({
   limit: 1,
-  
 })
+
 for (let object of result.objects) {
    console.log(JSON.stringify(object.uuid, null, 2));
 }
@@ -182,17 +182,14 @@ assert.deepEqual(additionalKeys, new Set(['id']));
 const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.fetchObjects({
-       limit: 2,
-       // highlight-start
-       returnReferences: [{
-        linkOn: 'hasCategory',
-        returnProperties: ['title'],
-      }]
-      // highlight-end
-     })
-
-        console.log(JSON.stringify(result, null, 2));
-
+  limit: 2,
+  // highlight-start
+  returnReferences: [{
+  linkOn: 'hasCategory',
+  returnProperties: ['title'],
+}]
+// highlight-end
+})
 
 console.log(JSON.stringify(result, null, 2));
 // END GetWithCrossRefsJS
@@ -213,17 +210,17 @@ assert.deepEqual(questionValues, new Set([
 // ===================================
 
 // GetWithMetadataJS
-    const myCollection = client.collections.get('JeopardyQuestion');
+const myCollection = client.collections.get('JeopardyQuestion');
 
-     const result = await myCollection.query.fetchObjects({
-       limit: 2,
-       returnMetadata: ['creationTime']
-     })
-     for (let object of result.objects) {
-        console.log(JSON.stringify(object.properties, null, 2));
-        console.log(JSON.stringify(object.metadata?.creationTime, null, 2));
+const result = await myCollection.query.fetchObjects({
+  limit: 2,
+  returnMetadata: ['creationTime']
+})
 
-     }
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+  console.log(JSON.stringify(object.metadata?.creationTime, null, 2));
+}
 // END GetWithMetadataJS
 
 // Test
@@ -246,9 +243,9 @@ const myCollection = client.collections.get('WineReviewMT');
 const collectionTenantA = myCollection.withTenant('tenantA');
 
 const result = await collectionTenantA.query.fetchObjects({
-       limit: 1,
-       returnProperties: ['review_body','title']
-     })
+  limit: 1,
+  returnProperties: ['review_body','title']
+})
 
 console.log(JSON.stringify(result.objects[0].properties, null, 2));
 // END MultiTenancy

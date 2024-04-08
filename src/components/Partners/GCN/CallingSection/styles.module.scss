@@ -62,6 +62,17 @@
     .subTitle {
       font-size: 1rem;
       text-align: left;
+
+      .requestLink {
+        color: #130c49;
+
+        text-decoration-line: underline;
+      }
+      .eventLink {
+        color: #130c49;
+        font-weight: 700;
+        font-style: italic;
+      }
     }
   }
 }

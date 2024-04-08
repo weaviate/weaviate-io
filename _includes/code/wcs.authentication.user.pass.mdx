@@ -22,8 +22,8 @@ import weaviate
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
     auth_client_secret=weaviate.AuthClientPassword(
-        username = "WCS_USERNAME",  # Replace w/ your WCS username
-        password = "WCS_PASSWORD",  # Replace w/ your WCS password
+        username = wcs_username,  # Replace w/ your WCS username
+        password = wcs_password,  # Replace w/ your WCS password
     ),
 )
 ```
@@ -38,8 +38,8 @@ const client = weaviate.client({
   scheme: "https",
   host: "some-endpoint.weaviate.network",  // Replace w/ your endpoint
   authClientSecret: new AuthUserPasswordCredentials({
-    username: "WCS_USERNAME",  // Replace w/ your WCS username
-    password: "WCS_PASSWORD",  // Replace w/ your WCS password
+    username: wcsUsername,  // Replace w/ your WCS username
+    password: wcsPassword,  // Replace w/ your WCS password
   })
 });
 ```
@@ -60,8 +60,8 @@ cfg := weaviate.Config{
   Host:"some-endpoint.weaviat}e.network",  // Replace w/ your endpoint
   Scheme: "https",
   AuthConfig: auth.ResourceOwnerPasswordFlow{
-    Username: "WCS_USERNAME",  // Replace w/ your WCS username
-    Password: "WCS_PASSWORD",  // Replace w/ your WCS password
+    Username: wcsUsername,  // Replace w/ your WCS username
+    Password: wcsPassword,  // Replace w/ your WCS password
   }
 }
 
@@ -81,8 +81,8 @@ import io.weaviate.client.WeaviateAuthClient;
 Config config = new Config("https", "some-endpoint.weaviate.network");  // Replace w/ your endpoint
 WeaviateAuthClient.clientPassword(
     config,
-    "WCS_USERNAME",  // Replace w/ your WCS username
-    "WCS_PASSWORD",  // Replace w/ your WCS password
+    wcsUsername,  // Replace w/ your WCS username
+    wcsPassword,  // Replace w/ your WCS password
 );
 ```
 

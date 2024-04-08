@@ -1,12 +1,12 @@
 import assert from 'assert';
 
 // ===== Instantiation, not shown in snippet
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+  'some-endpoint.weaviate.network',
  {
-   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
@@ -63,7 +63,7 @@ const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.overAll({
  returnMetrics: myCollection.metrics.aggregate('points').integer(['sum','maximum','minimum'])
- })
+})
 
 console.log(JSON.stringify(result, null, 2));
 // END IntProp TS
@@ -109,8 +109,7 @@ assert.deepEqual(new Set(result.data.Aggregate.JeopardyQuestion), new Set([
 // nearTextWithLimit TS
 const myCollection = client.collections.get('JeopardyQuestion');
      
-const result = await myCollection.aggregate.nearText(['animals in space'],
-{
+const result = await myCollection.aggregate.nearText(['animals in space'],{
  objectLimit: 10,
  returnMetrics: myCollection.metrics.aggregate('points').number(['sum'])
 })
@@ -130,7 +129,6 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 460
 // ============================
 
 // nearTextWithDistance TS
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.nearText(['animals in space'],{
@@ -139,7 +137,6 @@ const result = await myCollection.aggregate.nearText(['animals in space'],{
 })
 
 console.log(JSON.stringify(result.properties['points'].sum, null, 2));
-
 // END nearTextWithDistance TS
 
 // Test
@@ -154,14 +151,13 @@ assert.deepEqual(result.data.Aggregate.JeopardyQuestion[0], { points: { sum: 300
 // =================================
 
 // whereFilter TS
-
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.aggregate.overAll({
  filters: myCollection.filter.byProperty('round').equal('Final Jeopardy!')
 })
-console.log(JSON.stringify(result.totalCount, null, 2));
 
+console.log(JSON.stringify(result.totalCount, null, 2));
 // END whereFilter TS
 
 // Test

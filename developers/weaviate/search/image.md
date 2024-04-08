@@ -243,7 +243,7 @@ See the [`similarity search`](./similarity.md) page for more details.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
