@@ -37,7 +37,8 @@ html {
     padding-top: 0.7em;
     padding-bottom: 0.25em;
   }
-  h3, h4 {
+  h3,
+  h4 {
     padding-top: 0.5em;
     padding-bottom: 0.15em;
   }
@@ -81,7 +82,7 @@ html {
   }
 }
 
-.docs-doc-page .container  {
+.docs-doc-page .container {
   background-color: var(--docs-body-bg);
   padding-left: 5%;
   padding-right: 5%;
@@ -137,7 +138,7 @@ html {
   display: none !important;
 }
 
-a.navbar__item.navbar__link[href="/weaviate/developers/api/rest_openapi"] {
+a.navbar__item.navbar__link[href='/weaviate/developers/api/rest_openapi'] {
   display: none;
 }
 
@@ -185,5 +186,3 @@ a.navbar__item.navbar__link[href="/weaviate/developers/api/rest_openapi"] {
     font-size: 16px;
   }
 }
-
-//Hides light toggle on docs
