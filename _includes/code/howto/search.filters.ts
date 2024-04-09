@@ -200,7 +200,7 @@ const myCollection = client.collections.get('JeopardyQuestion');
 const result = await myCollection.query.fetchObjects({
  // highlight-start
  filters: Filters.and(
-  myCollection.filter.byProperty('question').like('*state*'), 
+  myCollection.filter.byProperty('answer').like('*bird*'), 
   Filters.or(
     myCollection.filter.byProperty('points').greaterThan(700)), 
     myCollection.filter.byProperty('points').lessThan(300) 
@@ -217,7 +217,7 @@ questionKeys = new Set(Object.keys(result.data.Get.JeopardyQuestion[0]));
 assert.deepEqual(questionKeys, new Set(['question', 'answer', 'round', 'points']));
 assert.deepEqual(result.data.Get.JeopardyQuestion.length, 3);
 for (const question of result.data.Get.JeopardyQuestion) {
-  assert.ok(question.answer.toLowerCase().includes('nest'));
+  assert.ok(question.answer.toLowerCase().includes('bird'));
   assert.ok(question.points < 300 || question.points > 700);
 }
 // searchMultipleFiltersNested
