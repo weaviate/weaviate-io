@@ -12,7 +12,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
 import FeaturedBlogTags from '../FeaturedBlogTags';
 import { MetaSEO } from '/src/theme/MetaSEO';
-import ThemeSwitch from '/src/components/ThemeSwitch';
+
 
 
 function BlogListPageMetadata(props) {

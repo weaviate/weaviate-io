@@ -12,7 +12,7 @@ import BlogLayout from '@theme/BlogLayout';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import BlogPostItems from '@theme/BlogPostItems';
-import ThemeSwitch from '/src/components/ThemeSwitch';
+
 
 
 // import BlogPostItems from '../BlogPostItems';

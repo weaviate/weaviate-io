@@ -2,7 +2,7 @@ import React from 'react';
 import {BlogPostProvider} from '@docusaurus/theme-common/internal';
 import BlogPostItem from '@theme/BlogPostItem';
 import styles from './styles.module.scss';
-import ThemeSwitch from '../../components/ThemeSwitch';
+
 
 
 export default function BlogPostItems({
