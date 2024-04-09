@@ -221,7 +221,7 @@ To create a nested filter, follow these steps.
 
 - Set the outer `operator` equal to `And` or `Or`.
 - Add `operands`.
-- Inside an `operand`, set `operator` equal to `And` or `Or` to add the nested group.
+- Inside an `operand` expression, set `operator` equal to `And` or `Or` to add the nested group.
 - Add `operands` to the nested group as needed.
 
 </details>
