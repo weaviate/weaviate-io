@@ -5,12 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-
-:::info Related pages
-- [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
-- [API References | REST | Objects](../../api/rest/objects.md)
-:::
-
 Data consistency is a property of a database that refers to whether data in different nodes do or do not match. In Weaviate, availability is generally preferred over strong consistency. This doesn't mean that we don't pay attention to consistency at all. Schema and data consistency are as important as possible. As captured by the [CAP Theorem](./index.md#cap-theorem), consistency and availability are a trade-off. In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
 Schema consistency is not tunable, but set to a strong consistency protocol.
@@ -135,6 +129,11 @@ Consider a scenario in which a request to delete objects was only handled by a s
 An object that never existed will be propagated to the other nodes only if the object was queried with a _high enough_ consistency level, vs. the write consistency that was used to write the object:
 * if write was `QUORUM`, the read consistency level can be >= `QUORUM`
 * if the write was `ONE`, the object must be read with `ALL` to guarantee repair. This is because if only `ONE` node received the write request, then a `QUORUM` read request might only hit nodes that don't have the object, while an `ALL` request will reach that node as well.
+
+
+## Related pages
+- [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
+- [API References | REST | Objects](../../api/rest/objects.md)
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

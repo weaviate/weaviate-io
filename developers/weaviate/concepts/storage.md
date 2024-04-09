@@ -5,9 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture', 'storage']
 ---
 
-
-## Introduction
-
 Weaviate is a persistent and fault-tolerant database. This page gives you an overview of how objects and vectors are stored within Weaviate and how an inverted index is created at import time.
 
 The components mentioned on this page aid Weaviate in creating some of its unique features:

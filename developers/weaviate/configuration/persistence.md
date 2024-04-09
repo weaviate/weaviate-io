@@ -5,13 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---
 
-
-:::info Related pages
-- [Configuration: Backups](./backups.md)
-:::
-
-## Overview
-
 When running Weaviate with Docker or Kubernetes, you can persist its data by mounting a volume to store the data outside of the containers. Doing so will cause the Weaviate instance to also load the data from the mounted volume when it is restarted.
 
 Note that Weaviate now offers native backup modules starting with `v1.15` for single-node instances, and `v1.16` for multi-node instances. For older versions of Weaviate, persisting data as described here will allow you to back up Weaviate.
@@ -109,6 +102,9 @@ The two functions reflect different under-the-hood memory management behaviors. 
 
 In general, `mmap` may be a preferred option with memory management benefits. However, if you experience stalling situations under heavy memory load, we suggest trying `pread` instead.
 
+
+## Related pages
+- [Configuration: Backups](./backups.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

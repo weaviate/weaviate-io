@@ -8,7 +8,7 @@ image: og/docs/concepts.jpg
 **Vector quantization** reduces the memory footprint of the [vector index](./vector-index.md) by compressing the vector embeddings, and thus reduces deployment costs and improves the speed of the vector similarity search process.
 
 Weaviate currently offers two vector quantization techniques:
-- [Product quantization (PQ)](#product-quantization) 
+- [Product quantization (PQ)](#product-quantization)
 - [Binary quantization (BQ)](#binary-quantization)
 
 ## What is quantization?
@@ -64,7 +64,7 @@ Alternatively, there is also the `tile` encoder. This encoder is currently exper
 
 With product quantization, distances are then calculated asymmetrically with a query vector with the goal being to keep all the original information in the query vector when calculating distances.
 
-:::tip 
+:::tip
 Learn more about [how to configure product quantization in Weaviate](../configuration/pq-compression.md).<br/><br/>
 You might be also interested in our blog post [How to Reduce Memory Requirements by up to 90%+ using Product Quantization](https://weaviate.io/blog/pq-rescoring).
 :::
@@ -85,7 +85,7 @@ When using BQ, Weaviate will conditionally over-fetch and then re-score the resu
 
 This is done by fetching the higher of the specified query limit, or the rescore limit objects, and then re-score them using the full vector embedding. As a concrete example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate will fetch `max(10, 500) = 200` objects, and then re-score the top 10 objects using the full vector. This works to offset some of the loss in search quality (recall) caused by compression.
 
-:::tip 
+:::tip
 Learn more about [how to configure binary quantization in Weaviate](../configuration/bq-compression.md).<br/><br/>
 You might be also interested in our blog post [32x Reduced Memory Usage With Binary Quantization](https://weaviate.io/blog/binary-quantization).
 :::
@@ -96,7 +96,7 @@ You might be also interested in our blog post [32x Reduced Memory Usage With Bin
 
 An [HNSW index](#hnsw-index) can be configured using [PQ](#product-quantization) or [BQ](#binary-quantization). Since HNSW is in memory, compression can reduce your memory footprint or allow you to store more data in the same amount of memory.
 
-:::tip 
+:::tip
 You might be also interested in our blog post [HNSW+PQ - Exploring ANN algorithms Part 2.1](https://weaviate.io/blog/ann-algorithms-hnsw-pq).
 :::
 

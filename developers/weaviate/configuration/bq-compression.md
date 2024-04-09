@@ -34,7 +34,7 @@ To use BQ, enable it as shown below and add data to the collection.
 
 Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it.
 
-This can be done by setting the `vector index config` of the collection to enable BQ compression.
+This can be done by setting the `vector_index_config` of the collection to enable BQ compression.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -154,7 +154,6 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
-
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Concepts: Vector index](../concepts/vector-index.md)
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)
