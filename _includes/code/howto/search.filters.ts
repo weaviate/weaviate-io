@@ -6,7 +6,9 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-client';
+// searchMultipleFiltersAnd // searchMultipleFiltersNested
+import weaviate, { Filters } from 'weaviate-client';
+// END searchMultipleFiltersAnd // END searchMultipleFiltersNested
 
 const client = await weaviate.connectToWCS(
   'some-endpoint.weaviate.network',
@@ -104,10 +106,6 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ===== ContainsAnyFilter =====
 // ==========================================
 
-// ContainsAnyFilter  // ContainsAllFilter
-let token_list
-// END ContainsAnyFilter  // END ContainsAllFilter
-
 
 // ContainsAnyFilter
 const tokenList = ['australia', 'india']
@@ -116,7 +114,7 @@ const myCollection = client.collections.get('JeopardyQuestion');
 const result = await myCollection.query.fetchObjects({
  returnProperties: ['question', 'answer','round'],
  // highlight-start
-     // Find objects where the `answer` property contains any of the strings in `tokenList`
+ // Find objects where the `answer` property contains any of the strings in `tokenList`
  filters: myCollection.filter.byProperty('answer').containsAny(tokenList),
  // highlight-end
  limit: 3,
@@ -142,7 +140,7 @@ const myCollection = client.collections.get('JeopardyQuestion');
 const result = await myCollection.query.fetchObjects({
  returnProperties: ['question', 'answer','round'],
  // highlight-start
-      // Find objects where the `question` property contains all of the strings in `tokenList`
+ // Find objects where the `question` property contains all of the strings in `tokenList`
  filters: myCollection.filter.byProperty('question').containsAll(tokenList),
  // highlight-end
  limit: 3,
@@ -166,12 +164,15 @@ for (const question of result.data.Get.JeopardyQuestion) {
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.query.fetchObjects({
- returnProperties: ['question', 'answer','round', 'points'],
- // highlight-start
- filters: myCollection.filter.byProperty('round').equal('Double Jeopary!') && myCollection.filter.byProperty('points').lessThan(600),
- // highlight-end
- limit: 3,
-})
+  returnProperties: ['question', 'answer','round', 'points'],
+  // highlight-start
+  filters: Filters.and(
+     myCollection.filter.byProperty('round').equal('Double Jeopardy!'),
+     myCollection.filter.byProperty('points').lessThan(600)
+    ),
+  // highlight-end
+  limit: 3,
+ })
 
 console.log(JSON.stringify(result, null, 2));
 // END searchMultipleFiltersAnd
@@ -198,9 +199,12 @@ const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.query.fetchObjects({
  // highlight-start
- filters: myCollection.filter.byProperty('question').like('*nest*') && 
- (myCollection.filter.byProperty('points').greaterThan(700) || 
-    myCollection.filter.byProperty('points').lessThan(300)),
+ filters: Filters.and(
+  myCollection.filter.byProperty('question').like('*state*'), 
+  Filters.or(
+    myCollection.filter.byProperty('points').greaterThan(700)), 
+    myCollection.filter.byProperty('points').lessThan(300) 
+ ),
  // highlight-end
  limit: 3
 })
@@ -232,9 +236,9 @@ const result = await myCollection.query.fetchObjects({
  // highlight-start
  filters: myCollection.filter.byRef('hasCategory').byProperty('title').like('*Sport*'),
  returnReferences: [{
-         linkOn: 'hasCategory',
-         returnProperties: ['title'],
-       }],
+    linkOn: 'hasCategory',
+    returnProperties: ['title'],
+  }],
  // highlight-end
 })
 
