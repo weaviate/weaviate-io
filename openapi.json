@@ -2146,7 +2146,7 @@
       "type": "string"
     },
     "CommonOrderParameterQuery": {
-      "description": "Order parameter to tell how to order (asc or desc) data within given field. Should be used in conjunction with `sort` parameter.",
+      "description": "Order parameter to tell how to order (asc or desc) data within given field. Should be used in conjunction with `sort` parameter. If providing multipl `sort` values, provide multiple `order` values in corresponding order, e.g.: `sort=author_name,title&order=desc,asc`.",
       "in": "query",
       "name": "order",
       "required": false,
@@ -2787,7 +2787,7 @@
         "x-available-in-websocket": false
       },
       "delete": {
-        "description": "Delete an object based on its collection and UUID.",
+        "description": "Delete an object based on its collection and UUID. <br/><br/>Note: For backward compatibility, beacons also support an older, deprecated format without the collection name. As a result, when deleting a reference, the beacon specified has to match the beacon to be deleted exactly. In other words, if a beacon is present using the old format (without collection name) you also need to specify it the same way. <br/><br/>In the beacon format, you need to always use `localhost` as the host, rather than the actual hostname. `localhost` here refers to the fact that the beacon's target is on the same Weaviate instance, as opposed to a foreign instance.",
         "operationId": "objects.class.delete",
         "x-serviceIds": [
           "weaviate.local.manipulate"

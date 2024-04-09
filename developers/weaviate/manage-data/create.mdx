@@ -387,6 +387,14 @@ You can create an object with cross-references to other objects.
 See [How-to: Cross-references](./cross-references.mdx) for more on working with cross-references.
 :::
 
+## Create an object with `geoCoordinates`
+
+If you want to supply a [`geoCoordinates`](/developers/weaviate/config-refs/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
+
+import CreateWithGeo from '/_includes/code/howto/manage-data.create.with.geo.mdx';
+
+<CreateWithGeo/>
+
 ## Validate objects before creation
 
 Before you create an object, you can [validate](../api/rest/objects.md#validate-a-data-object) it against the collection definition.
