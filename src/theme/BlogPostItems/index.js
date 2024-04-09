@@ -53,7 +53,7 @@ export default function BlogPostItems({
               </div>
             </div>
 
-<ThemeSwitch/>
+
           </BlogPostItemComponent>
         </BlogPostProvider>
 

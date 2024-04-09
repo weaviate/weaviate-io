@@ -60,7 +60,7 @@ export default function BlogListPage(props) {
       <BlogListPageMetadata {...props} />
       <BlogListPageContent {...props} />
     </HtmlClassNameProvider>
-    <ThemeSwitch />
+    
 
     </div>
   );

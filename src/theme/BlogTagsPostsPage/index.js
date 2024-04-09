@@ -86,7 +86,7 @@ export default function BlogTagsPostsPage(props) {
       <BlogTagsPostsPageMetadata {...props} />
       <BlogTagsPostsPageContent {...props} />
     </HtmlClassNameProvider>
-    <ThemeSwitch />
+    
 
     </div>
   );
