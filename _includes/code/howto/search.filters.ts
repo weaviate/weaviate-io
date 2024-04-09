@@ -6,7 +6,9 @@ import assert from 'assert';
 // ===== INSTANTIATION-COMMON =====
 // ================================
 
-import weaviate from 'weaviate-client';
+// searchMultipleFiltersAnd // searchMultipleFiltersNested
+import weaviate, { Filters } from 'weaviate-client';
+// END searchMultipleFiltersAnd // END searchMultipleFiltersNested
 
 const client = await weaviate.connectToWCS(
   'some-endpoint.weaviate.network',
@@ -159,7 +161,6 @@ for (const question of result.data.Get.JeopardyQuestion) {
 
 
 // searchMultipleFiltersAnd
-import weaviate, { Filters } from 'weaviate-client'
 const myCollection = client.collections.get('JeopardyQuestion');
      
 const result = await myCollection.query.fetchObjects({
