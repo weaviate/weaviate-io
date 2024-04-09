@@ -17,12 +17,12 @@ This tutorial is built with Next.js and Weaviate. It uses a beta version of the 
 :::
 
 
-When the question of search arises, two techniques tend to take up a lot of the conversations. You would most likely ask if you need Keyword Search or Vector Search. Sometimes, the answer is both, which luckily for us happens to be Hybrid Search; the best of both worlds! 
+When the question of search arises, there are two popular techniques that take up most of the conversation: vector search and keyword search. But which should you use? Sometimes, the answer is both, which luckily for us happens to be hybrid search - the best of both worlds! 
 In this article, we’ll get into the technology that powers Hybrid Search, learn how to use it Weaviate, and build a Next.js Application powered by Hybrid Search in Weaviate. 
 
-## Getting into Hybrid Search? 
+## How does Hybrid Search work?
 
-To understand Hybrid Search, we need to understand the two technologies that power it. Vector Search and Keyword Search.
+To understand Hybrid Search, we first need to understand the two technologies that power it - vector search and keyword search.
 
 ### Vector Search
 
@@ -34,7 +34,7 @@ Vector search, also known as Semantic Search, uses machine learning to grasp tex
 ### Keyword Search
 
 
-Keyword search finds objects with an exact match between the terms in the query and the documents. Weaviate uses the BM25/F function to calculate the relevancy of a document to a query, which uses both the term frequency and inverse document frequency.
+Keyword search finds objects with an exact match between the terms in the query and the documents. Weaviate uses the BM25/F function to calculate the relevancy of a document to a query, which uses both the term frequency, how often a word appears in a document, and inverse document frequency, how many documents that word occurs in.
 
 ![Keyword Search Illustrated](./img/keyword-search.png)
 
@@ -42,7 +42,7 @@ Keyword search finds objects with an exact match between the terms in the query 
 ### The Best of Both Worlds
 
 
-Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage both exact term matching and semantic context. With either rankedFusion or relativeScoreFusion algorithms, we merge query results. Merging results in this way helps us have a better balance between precision querying in keyword search and the semantic understanding of Vector Search. 
+Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage both exact term matching and semantic context. With either the `rankedFusion` or `relativeScoreFusion` fusion algorithms, we merge the results from both keyword search and the vector search.
 
 A code snippet of Hybrid Search in Javascript will look something like this. 
 
@@ -77,12 +77,12 @@ In a nutshell, rankedFusion (the original Hybrid search algorithm in Weaviate) a
 ![Ranked Fusion Algorithm](./img/reciprocal-rank.png)
 
 
-Relative Score Fusion on the other hand normalizes the output of the vector and keyword searches so that the highest value becomes 1 and the lowest 0 and everything in between is scaled to match. The total score is then the sum of the normalized individual search scores. Letting us maintain the relevance given by the original keyword/vector search algorithms, while still being able to compare the results and fuse them. As relativeScoreFusion is the newer algorithm, it would most likely be the better choice for most use cases.
+Relative Score Fusion on the other hand normalizes the output of the vector and keyword searches so that the highest value becomes 1 and the lowest 0 and everything in between is scaled to match. The total score is then the sum of the normalized individual search scores. This lets us maintain the relevance given by the original keyword/vector search algorithms, while still being able to compare the results and fuse them. As relativeScoreFusion is the newer algorithm, it might be the better choice for most use cases.
 
 ![Reciprocal Score Fusion Algorithm](./img/relative-score.png)
 
 
-Dirk and Joon-Pil on our team wrote an [in-depth blog post](https://weaviate.io/blog/hybrid-search-fusion-algorithms) on Hybrid Search in Weaviate. I would recommend looking at it for an in-depth look. 
+Dirk and Joon-Pil on our team wrote an [in-depth blog post](https://weaviate.io/blog/hybrid-search-fusion-algorithms) on the different hybrid search fusion algorithms in Weaviate. If you're interested in a more detailed explanation, I would definitely recommend it.
 
 
 
@@ -90,7 +90,7 @@ Dirk and Joon-Pil on our team wrote an [in-depth blog post](https://weaviate.io/
 
 So with all that you know about Hybrid Search, when should you use it? 
 
-The way we see it, if you have a model fine-tuned for your data, pure vector search should be enough to give you accurate search results. If you’re mostly matching patterns that rely on keyword matching, keyword search should be good enough. 
+The way we see it, if you have a model fine-tuned for your data, pure vector search might be good enough to give you accurate search results. If you’re mostly matching patterns that rely purely on exact keyword matching, keyword search will probably be good enough. 
 
 If your use cases don't fall into any of the two scenarios mentioned, you might benefit from implementing hybrid search. It isn’t a silver bullet as you would have to optimize it for your data with the customization options we have available. It’s worth noting that because you’re running two searches in the background and computing your results from them, there is a performance cost associated with each search for high-throughput applications.
 
@@ -98,7 +98,7 @@ If your use cases don't fall into any of the two scenarios mentioned, you might 
 
 ## Building an Application that leverages Hybrid Search
 
-To get some hands-on experience with the new client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you ever wanted to strengthen your point by quoting someone famous, this is the project for you!
+To get some hands-on experience with the new client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
 
 ### Setting up WCS (Weaviate Cloud Services)
 
