@@ -441,6 +441,8 @@ Similarly, compression must be enabled independently for each vector. The proced
 ## Related pages
 
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
+- [Concepts: Vector index](../concepts/vector-index.md)
+- [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
