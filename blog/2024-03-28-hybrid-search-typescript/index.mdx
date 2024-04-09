@@ -17,8 +17,8 @@ This tutorial is built with Next.js and Weaviate. It uses a beta version of the 
 :::
 
 
-When the question of search arises, there are two popular techniques that take up most of the conversation: vector search and keyword search. But which should you use? Sometimes, the answer is both, which luckily for us happens to be hybrid search - the best of both worlds! 
-In this article, we’ll get into the technology that powers hybrid search, learn how to use it Weaviate, and build a Next.js Application powered by hybrid search in Weaviate. 
+When the question of search arises, two popular techniques take up most of the conversation: vector search and keyword search. But which should you use? Sometimes, the answer is both, which luckily for us happens to be hybrid search - the best of both worlds! 
+In this article, we’ll get into the technology that powers hybrid search, learn how to use it in Weaviate and build a Next.js Application powered by hybrid search in Weaviate. 
 
 ## How does Hybrid Search work?
 
@@ -26,7 +26,7 @@ To understand hybrid search, we first need to understand the two technologies th
 
 ### Vector Search
 
-Vector search, also known as semantic search, uses machine learning to grasp text context, not just keywords. It converts text to numerical vectors, finding matches based on conceptual similarity for accurate, relevant search results. Behind the scenes, its uses approximate nearest neighbors (ANN) algorithms to calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors.
+Vector search, also known as semantic search, uses machine learning to grasp text context, not just keywords. It converts text to numerical vectors, finding matches based on conceptual similarity for accurate, relevant search results. Behind the scenes, it uses approximate nearest neighbors (ANN) algorithms to calculate the approximate nearest neighbors to a query, as opposed to kNN algorithms, which calculate the true nearest neighbors.
 
 ![Semantic Search Vector Space](./img/semantic-search.png)
 
@@ -110,7 +110,7 @@ const result = await myCollection.query.hybrid('food',{
 console.log(JSON.stringify(result, null, 2));
 ```
 
-Dirk and Joon-Pil on our team wrote an [in-depth blog post](https://weaviate.io/blog/hybrid-search-fusion-algorithms) on the different hybrid search fusion algorithms in Weaviate. If you're interested in a more detailed explanation, I would definitely recommend it.
+Dirk and Joon-Pil on our team wrote an [in-depth blog post](https://weaviate.io/blog/hybrid-search-fusion-algorithms) on the different hybrid search fusion algorithms in Weaviate. If you're interested in a more detailed explanation, I would recommend it.
 
 
 
@@ -120,7 +120,7 @@ So with all that you know about hybrid search, when should you use it?
 
 The way we see it, if you have a model fine-tuned for your data, pure vector search might be good enough to give you accurate search results. If you’re mostly matching patterns that rely purely on exact keyword matching, keyword search will probably be good enough. 
 
-If your use cases don't fall into any of the two scenarios mentioned, you might benefit from implementing hybrid search. As we've covered, hybrdi search comes with a number of paramters that we can adjust to get better more relevant results that match the data we're working with. It’s worth noting that because you’re running two searches in the background and computing your results from them, there is a performance cost associated with each search for high-throughput applications.
+If your use cases don't fall into any of the two scenarios mentioned, you might benefit from implementing hybrid search. As we've covered, hybrid search comes with several parameters that we can adjust to get better more relevant results that match the data we're working with. It’s worth noting that because you’re running two searches in the background and computing your results from them, there is a performance cost associated with each search for high-throughput applications.
 
 
 
@@ -136,7 +136,7 @@ First, we need to set up our own Weaviate database. The easiest way to do this i
 
 The first step is to insert our quotes into the Weaviate database. For our dataset, we're using the [Quotes-500k](https://www.kaggle.com/datasets/manann/quotes-500k) dataset from Kaggle. Download the csv file and place it on your project folder.
 
-The import only needs to be done once, so we'll put together a script in a seperate file, e.g. `import.ts`.
+The import only needs to be done once, so we'll put together a script in a separate file, e.g. `import.ts`.
 
 Install the Weaviate client by running `npm install weaviate-client --tag beta`, and then add the following code in your `import.ts` file. 
 
@@ -153,7 +153,7 @@ const client = await weaviate.connectToWCS(process.env.WCS_URL!!, {
 });
 ```
 
-The code above helps us connect to our WCS database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCS. As we use [text2vec-openai](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) to vecctorize our data, you will need to add your Open AI API key as well. 
+The code above helps us connect to our WCS database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCS. As we use [text2vec-openai](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) to vectorize our data, you will need to add your Open AI API key as well. 
 
 ```bash
 WCS_URL=<YOUR_WCS_URL>
