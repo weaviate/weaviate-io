@@ -177,6 +177,76 @@ try:
     assert result.properties["question"] == properties["question"]
 
 
+    # ========================================
+    # WithGeoCoordinates
+    # ========================================
+
+    # START WithGeoCoordinates
+    publications = client.collections.get("Publication")
+
+    publications.data.insert(
+        properties={
+            "headquartersGeoLocation": {
+                "latitude": 52.3932696,
+                "longitude": 4.8374263
+            }
+        },
+    )
+    # END WithGeoCoordinates
+
+    # TEST - Confirm insert & delete object
+    response = publications.query.fetch_objects(
+        filters=(
+            wvc.query.Filter
+            .by_property("headquartersGeoLocation")
+            .within_geo_range(
+                coordinate=wvc.data.GeoCoordinate(
+                    latitude=52.39,
+                    longitude=4.84
+                ),
+                distance=1000  # In meters
+            )
+        )
+    )
+
+    assert len(response.objects) == 1
+    obj_uuid = response.objects[0].uuid
+    publications.data.delete_by_id(obj_uuid)
+
+
+    # ========================================
+    # GetAnObject
+    # ========================================
+
+    # START CheckForAnObject
+    object_uuid = generate_uuid5("SomeUUIDSeed")
+
+    # END CheckForAnObject
+
+    authors = client.collections.get("Author")
+    authors.data.insert(
+        properties={"name": "Author to fetch"},
+        vector=[0.3] * 1536,  # If you want to specify a vector
+        uuid=object_uuid,  # Custom UUID for testing
+    )
+
+    # START CheckForAnObject
+    authors = client.collections.get("Author")
+    # authors = authors.with_consistency_level(wvc.config.ConsistencyLevel.ALL)  # If you want to set the consistency level
+
+    fetched_obj = authors.query.fetch_object_by_id(uuid=object_uuid)  # If it does not exist, it will return None
+
+    if fetched_obj is None:
+        print("Object does not exist")
+    else:
+        print(fetched_obj.properties)
+    # END CheckForAnObject
+
+    assert fetched_obj.properties["name"] == "Author to fetch"
+    authors.data.delete_by_id(object_uuid)
+    assert authors.query.fetch_object_by_id(object_uuid) is None
+
+
     # ===========================
     # ===== Validate object =====
     # ===========================

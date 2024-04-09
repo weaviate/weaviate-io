@@ -1,9 +1,10 @@
 {
   "servers": [
       {
-        "url": "http(s)://{weaviate_url}:{port}/v1"
+        "url": "http://localhost:8080/v1"
       }
   ],
+  "basePath": "/v1",
   "consumes": [
     "application/json"
   ],
@@ -670,7 +671,7 @@
           "type": "string"
         },
         "vectorConfig": {
-          "description": "Configure [named vectors](https://weaviate.io/developers/weaviate/config-refs/schema/multi-vector) for this collection. Starting from `v1.24.0`, this allows a collection to have multiple named vectors, each with its own configuration. <br/><br/>Either use this field or `vectorizer`, `vectorIndexType`, and `vectorIndexConfig` fields.",
+          "description": "Configure named vectors (https://weaviate.io/developers/weaviate/config-refs/schema/multi-vector). Either use this field or `vectorizer`, `vectorIndexType`, and `vectorIndexConfig` fields. Available from `v1.24.0`.",
           "type": "object",
           "properties": {
             "<vector_name>": {
@@ -2080,7 +2081,7 @@
     },
     "description": "# Introduction\n Weaviate is an open source, AI-native vector database that helps developers create intuitive and reliable AI-powered applications. \n ### Base Path \nThe base path for the Weaviate server is structured as `[YOUR-WEAVIATE-HOST]:[PORT]/v1`. As an example, if you wish to access the `schema` endpoint on a local instance, you would navigate to `http://localhost:8080/v1/schema`. Ensure you replace `[YOUR-WEAVIATE-HOST]` and `[PORT]` with your actual server host and port number respectively. \n ### Questions? \nIf you have any comments or questions, please feel free to reach out to us at the community forum [https://forum.weaviate.io/](https://forum.weaviate.io/). \n### Issues? \nIf you find a bug or want to file a feature request, please open an issue on our GitHub repository for [Weaviate](https://github.com/weaviate/weaviate). \n### Want more documentation? \nFor a quickstart, code examples, concepts and more, please visit our [documentation page](https://weaviate.io/developers/weaviate).",
     "title": "Weaviate",
-    "version": "1.24.6"
+    "version": "1.24.8"
   },
   "parameters": {
     "CommonAfterParameterQuery": {
@@ -2146,7 +2147,7 @@
       "type": "string"
     },
     "CommonOrderParameterQuery": {
-      "description": "Order parameter to tell how to order (asc or desc) data within given field. Should be used in conjunction with `sort` parameter.",
+      "description": "Order parameter to tell how to order (asc or desc) data within given field. Should be used in conjunction with `sort` parameter. If providing multiple `sort` values, provide multiple `order` values in corresponding order, e.g.: `sort=author_name,title&order=desc,asc`.",
       "in": "query",
       "name": "order",
       "required": false,
@@ -2787,7 +2788,7 @@
         "x-available-in-websocket": false
       },
       "delete": {
-        "description": "Delete an object based on its collection and UUID.",
+        "description": "Delete an object based on its collection and UUID. <br/><br/>Note: For backward compatibility, beacons also support an older, deprecated format without the collection name. As a result, when deleting a reference, the beacon specified has to match the beacon to be deleted exactly. In other words, if a beacon is present using the old format (without collection name) you also need to specify it the same way. <br/><br/>In the beacon format, you need to always use `localhost` as the host, rather than the actual hostname. `localhost` here refers to the fact that the beacon's target is on the same Weaviate instance, as opposed to a foreign instance.",
         "operationId": "objects.class.delete",
         "x-serviceIds": [
           "weaviate.local.manipulate"

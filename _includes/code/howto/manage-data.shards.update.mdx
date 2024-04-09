@@ -8,8 +8,8 @@ import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.p
 <TabItem value="py" label="Python (v4)">
   <FilteredTextBlock
     text={PyCode}
-    startMarker="START AddProperty"
-    endMarker="END AddProperty"
+    startMarker="START InspectCollectionShards"
+    endMarker="END InspectCollectionShards"
     language="py"
   />
 </TabItem>
@@ -21,14 +21,8 @@ import weaviate
 
 client = weaviate.Client("http://localhost:8080")
 
-add_prop = {
-  "dataType": [
-      "boolean"
-  ],
-  "name": "onHomepage"
-}
-
-client.schema.property.create("Article", add_prop)
+article_shards = client.schema.get_class_shards("Article")
+print(article_shards)
 ```
 
 </TabItem>
@@ -42,16 +36,9 @@ const client = weaviate.client({
   host: 'localhost:8080',
 });
 
-const className = 'Article';
-const prop = {
-  dataType: ['boolean'],
-  name: 'onHomepage',
-};
-
 const response = await client.schema
-  .propertyCreator()
-  .withClassName(className)
-  .withProperty(prop)
+  .shardsGetter()
+  .withClassName('Article')
   .do();
 console.log(JSON.stringify(response, null, 2));
 ```
@@ -64,9 +51,9 @@ package main
 
 import (
   "context"
+  "fmt"
 
   "github.com/weaviate/weaviate-go-client/v4/weaviate"
-  "github.com/weaviate/weaviate/entities/models"
 )
 
 func main() {
@@ -78,20 +65,14 @@ func main() {
   if err != nil {
     panic(err)
   }
-
-  prop := &models.Property{
-    DataType: []string{"boolean"},
-    Name:     "onHomepage",
-  }
-
-  err := client.Schema().PropertyCreator().
+  shards, err := client.Schema().
+    ShardsGetter().
     WithClassName("Article").
-    WithProperty(prop).
     Do(context.Background())
-
   if err != nil {
     panic(err)
   }
+  fmt.Printf("%v", shards)
 }
 ```
 
@@ -101,28 +82,20 @@ func main() {
 ```java
 package io.weaviate;
 
-import java.util.Arrays;
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateClient;
 import io.weaviate.client.base.Result;
-import io.weaviate.client.v1.schema.model.DataType;
-import io.weaviate.client.v1.schema.model.Property;
+import io.weaviate.client.v1.schema.model.Shard;
 
 public class App {
   public static void main(String[] args) {
     Config config = new Config("http", "localhost:8080");
     WeaviateClient client = new WeaviateClient(config);
 
-    Property property = Property.builder()
-      .dataType(Arrays.asList(DataType.BOOLEAN))
-      .name("onHomepage")
-      .build();
-
-    Result<Boolean> result = client.schema().propertyCreator()
+    Result<Shard[]> result = client.schema()
+      .shardsGetter()
       .withClassName("Article")
-      .withProperty(property)
-      .run();
-
+      .run()
     if (result.hasErrors()) {
       System.out.println(result.getError());
       return;

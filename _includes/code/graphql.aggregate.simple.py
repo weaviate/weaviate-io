@@ -6,9 +6,10 @@
 import weaviate
 import weaviate.classes as wvc
 import os
-# START GraphQLSimpleAggregateGroupby
+# END-ANY # START GraphQLSimpleAggregateGroupby
 from weaviate.classes.aggregate import GroupByAggregate
 # END GraphQLSimpleAggregateGroupby
+# START-ANY
 
 client = weaviate.connect_to_local()
 

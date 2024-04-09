@@ -189,32 +189,13 @@ Where [named vectors](../config-refs/schema/multi-vector.md) are used, you can r
 
 </Tabs>
 
-
-<!-- Hidden until https://weaviate-org.slack.com/archives/C03KGRATUDD/p1685746400315799 / https://github.com/weaviate/typescript-client/issues/63 is fixed
 ## Check object existence
 
-To efficiently check if an object with a given [id](../api/graphql/additional-properties.md#id) exists without retrieving it, make a `HEAD` request to the [`/v1/objects/` REST endpoint](../api/rest/objects.md#check-if-a-data-object-exists), or use the following client code:
+To efficiently check if an object with a given [id](../api/graphql/additional-properties.md#id) exists without retrieving it, make a `HEAD` request to the [`/v1/objects/` REST endpoint](/developers/weaviate/api/rest_openapi#tag/objects/head/objects/{className}/{id}), or use the following client code:
 
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# CheckObject START"
-      endMarker="# CheckObject END"
-      language="py"
-    />
-  </TabItem>
+import CheckObjectExistence from '/_includes/code/howto/manage-data.read.check.existence.mdx';
 
-  <TabItem value="js" label="JS/TS">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// CheckObject START"
-      endMarker="// CheckObject END"
-      language="ts"
-    />
-  </TabItem>
-</Tabs>
--->
+<CheckObjectExistence/>
 
 ## Related pages
 

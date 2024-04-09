@@ -289,6 +289,17 @@ This feature was added in Weaviate `v1.21`.
 
 To delete multiple objects by their id values, use a filter (e.g. `ContainsAny`) with `id` based criteria.
 
+<details>
+  <summary>Limitations</summary>
+
+There is an upper limit (`QUERY_MAXIMUM_RESULTS`) to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions.
+
+Objects are deleted in the same order that they would be fetched, by order of UUID. To delete more objects than the limit, run the same query multiple times until no objects are matched anymore.
+
+The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e.g. in [the environment variables](../config-refs/env-vars.md).
+
+</details>
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
