@@ -285,7 +285,7 @@
   justify-content: flex-start;
 
   @media screen and (max-width: 1223px) {
-    gap: 18px;
+    gap: 8px;
   }
 
   @media only screen and (min-device-width: 1040px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -304,8 +304,14 @@
   gap: 0px;
   justify-content: flex-start;
 
-  @media screen and (min-width: 1300px) {
-    gap: 13px;
+  @media screen and (max-width: 1100px) {
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar__item {
+    padding: 0.2rem 0.4rem;
   }
 }
 
