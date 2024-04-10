@@ -78,6 +78,7 @@ client.collections.create(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
+
 assert config.vectorizer.value == "text2vec-openai"
 
 
@@ -177,8 +178,7 @@ client.collections.create(
 # Test
 collection = client.collections.get("Article")
 config = collection.config.get()
-assert config.vectorizer.value == "text2vec-openai"
-assert config.vector_index_type.name == "HNSW"
+assert config.vector_index_type.name == "FLAT"
 
 
 # ===================================================================
@@ -585,6 +585,10 @@ client.collections.delete("Article")  # Replace with your collection name
 # ========================================
 # AddProperty
 # ========================================
+
+client.collections.create(
+    name="Article"
+)
 
 # START AddProperty
 from weaviate.classes.config import Property, DataType

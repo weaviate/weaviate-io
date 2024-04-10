@@ -200,7 +200,7 @@ try:
     # Test results
     assert response.objects[0].collection == "JeopardyQuestion"
     assert (
-        ("bird" in response.objects[0].properties["question"].lower())
+        ("bird" in response.objects[0].properties["answer"].lower())
         and (
             (response.objects[0].properties["points"] > 700)
             or (response.objects[0].properties["points"] < 300)
