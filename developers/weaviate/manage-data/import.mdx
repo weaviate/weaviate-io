@@ -258,6 +258,37 @@ When you create an object, you can specify named vectors (if [configured in your
 
 </Tabs>
 
+## Import with references
+
+You can batch create links from an object to another other object through cross-references.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BatchImportWithRefExample"
+      endMarker="# END BatchImportWithRefExample"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# BatchImportWithRefExample"
+      endMarker="# END BatchImportWithRefExample"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// BatchImportWithRefExample"
+      endMarker="// END BatchImportWithRefExample"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
 ## Python-specific batching
 
 The Python clients have built-in batching methods to help you optimize your import speed. Please see the relevant documentation for more information.

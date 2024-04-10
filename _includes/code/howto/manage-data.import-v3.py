@@ -140,6 +140,22 @@ client.schema.delete_class(class_name)
 # Please upgrade to the v4 API / Python client to use named vectors.
 # END BatchImportWithNamedVectors
 
+# ===========================================
+# ===== Batch import with references =====
+# ===========================================
+
+# BatchImportWithRefExample
+with client.batch as batch:
+    batch.add_reference(
+        from_object_uuid="36ddd591-2dee-4e7e-a3cc-eb86d30a4303",
+        from_object_class_name="Author",
+        from_property_name="wroteArticles",
+        to_object_uuid="6bb06a43-e7f0-393e-9ecf-3c0f4e129064",
+        to_object_class_name="Article",
+        # tenant="tenantA",  # Optional; specify the tenant in multi-tenancy collections
+    )
+# END BatchImportWithRefExample
+
 # ============================
 # ===== Streaming import =====
 # ============================

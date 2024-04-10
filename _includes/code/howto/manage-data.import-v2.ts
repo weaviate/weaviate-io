@@ -247,6 +247,40 @@ for (const obj of result.data.Get[className]) {
 
 await client.schema.classDeleter().withClassName(className).do();
 
+// ============================
+// ===== Streaming import =====
+// ============================
+
+// BatchImportWithRefExample
+const response = await client.batch
+  .referencesBatcher()
+  .withReference(
+    client.batch
+      .referencePayloadBuilder()
+      .withFromClassName('Author')
+      .withFromRefProp('wroteArticles')
+      .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+      .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+      .withToId('6bb06a43-e7f0-393e-9ecf-3c0f4e129064')
+      .payload()
+  )
+  // You can add multiple references
+  // .withReference(
+  //   client.batch
+  //     .referencePayloadBuilder()
+  //     .withFromClassName('Author')
+  //     .withFromRefProp('wroteArticles')
+  //     .withFromId('36ddd591-2dee-4e7e-a3cc-eb86d30a4303')
+  //     .withToClassName('Article') // prior to v1.14 omit .withToClassName()
+  //     .withToId('b72912b9-e5d7-304e-a654-66dc63c55b32')
+  //     .payload()
+  // )
+  .withConsistencyLevel('ALL')  // default QUORUM
+  // .withTenant('tenantA')  // Optional; specify the tenant in multi-tenancy collections
+  .do();
+
+console.log(JSON.stringify(response, null, 2));
+// END BatchImportWithRefExample
 
 // ============================
 // ===== Streaming import =====
