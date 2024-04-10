@@ -339,7 +339,7 @@
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
   background: #61bd73;
-  margin: 0 40px;
+  margin: 0 20px;
   width: 8rem;
   height: 2.625rem;
   flex-shrink: 0;
@@ -369,7 +369,7 @@
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
   background: #61bd73;
-  margin: 0 70px;
+  margin: 0px 70px 0px 0px;
   width: 8rem;
   height: 2.625rem;
   flex-shrink: 0;
@@ -814,4 +814,12 @@ Dropdown style removed.
 }
 [data-theme='dark'] .lightToggleIcon_pyhR {
   display: block !important;
+}
+
+.githubStars {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 60px;
 }
