@@ -15,8 +15,6 @@ image: og/docs/concepts.jpg
   - Note: Configuration options from `HNSW` are now in `References: Configuration/Vector index#How to configure HNSW`
 ::: -->
 
-## Overview
-
 The **Concepts** section explains various aspects related to Weaviate and its architecture to help you get the most out of it. You can read these sections in any order.
 
 :::info

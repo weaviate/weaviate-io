@@ -607,7 +607,7 @@ response = (
             {
                 "path": ["answer"],
                 "operator": "Like",
-                "valueText": "*nest*",
+                "valueText": "*bird*",
             },
             {
                 "operator": "Or",
@@ -642,22 +642,16 @@ expected_response = (
     "Get": {
       "JeopardyQuestion": [
         {
-          "answer": "rhinestones",
-          "points": 100,
-          "question": "Imitation diamonds, they were originally gems obtained from a certain German river",
-          "round": "Jeopardy!"
-        },
-        {
-          "answer": "Clytemnestra",
+          "answer": "The Firebird",
           "points": 1000,
-          "question": "In \"Absalom! Absalom!\", it's the \"mythological\" name of Thomas Stupen's daughter, known as Clytie for short",
+          "question": "This title character has the face & arms of a woman & a body of feathers that tapers off in flames",
           "round": "Double Jeopardy!"
         },
         {
-          "answer": "Ernest Hemingway",
-          "points": 200,
-          "question": "His 1926 novel \"The Sun Also Rises\" has been published in England as \"Fiesta\"",
-          "round": "Jeopardy!"
+          "answer": "the Firebird",
+          "points": 800,
+          "question": "This Stravinsky character first played by Tamara Karsavina has the face & arms of a girl & a body of feathers",
+          "round": "Double Jeopardy!"
         }
       ]
     }
@@ -669,7 +663,7 @@ expected_response = (
 # Tests
 assert "JeopardyQuestion" in response["data"]["Get"]
 for question in response["data"]["Get"]["JeopardyQuestion"]:
-    assert "nest" in question["answer"].lower()
+    assert "bird" in question["answer"].lower()
     assert question["points"] < 300 or question["points"] > 700
 # End test
 
@@ -687,7 +681,7 @@ gql_query = """
           {
             path: ["answer"],
             operator: Like,
-            valueText: "*nest*",
+            valueText: "*bird*",
           },
           {
             operator: Or,

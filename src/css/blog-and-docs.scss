@@ -9,9 +9,6 @@ html {
 // Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
 .blog-post-page,
-.docs-doc-page,
-.docs-doc-page,
-.redocusaurus,
 .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
@@ -37,13 +34,13 @@ html {
     padding-top: 0.7em;
     padding-bottom: 0.25em;
   }
-  h3, h4 {
+  h3,
+  h4 {
     padding-top: 0.5em;
     padding-bottom: 0.15em;
   }
 
   p {
-    padding-left: 5px;
     font-weight: 400;
     font-size: 1.05rem;
   }
@@ -81,7 +78,7 @@ html {
   }
 }
 
-.docs-doc-page .container  {
+.docs-doc-page .container {
   background-color: var(--docs-body-bg);
   padding-left: 5%;
   padding-right: 5%;
@@ -91,45 +88,58 @@ html {
 }
 
 // Set Fonts
+.plugin-\@scalar\/docusaurus,
 .docs-doc-page {
   font-family: var(--site-font-base-family);
   font-size: 15px;
   color: var(--docs-base-color);
 
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.05;
+    font-family: var(--site-font-base-family);
+    font-weight: 500;
+    color: var(--docs-header-color);
+  }
+
   h1 {
-    padding-top: 0.15em;
-    line-height: 1.08;
-    font-size: 32px;
+    padding-top: 0.25em;
+    font-size: 30px;
   }
 
   h2 {
-    line-height: 1.08;
-    font-size: 28px;
+    padding-top: 0.25em;
+    padding-bottom: 0.2em;
+  }
+  h3,
+  h4 {
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
+  }
+
+  h2 {
+    font-size: 26px;
   }
 
   h3 {
-    line-height: 1.08;
     font-size: 23px;
   }
 
   h4 {
-    line-height: 1.08;
     font-size: 20px;
   }
 
   h5 {
-    line-height: 1.08;
     font-size: 20px;
   }
 
   h6 {
-    line-height: 1.08;
     font-size: 18px;
   }
 
   p {
-    padding-left: 5px;
+    padding-left: 0px;
     font-weight: 400;
+    font-size: 15px;
   }
 }
 
@@ -137,46 +147,51 @@ html {
   display: none !important;
 }
 
-.redocusaurus {
+a.navbar__item.navbar__link[href='/weaviate/developers/api/rest_openapi'] {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus .sidebar-pages .scalar-icon {
+  display: none;
+}
+
+.scalar-card-content.scalar-card--contrast.request-card-footer {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus {
   // Base font settings
   font-family: var(--site-font-base-family);
+
+  .sidebar-heading {
+    line-height: 1.05;
+  }
 
   // Label customization
   label {
     font-family: var(--site-font-base-family);
-    font-size: 14px; // Slightly larger for readability
-    font-weight: normal; // Depending on your preference
   }
 
   // Paragraph customization
   p {
-    font-size: 15px; // Larger base font size for readability
-    padding-bottom: 0.85em;
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 1.05;
   }
 
   h1 {
-    font-size: 1.75rem; // Larger size for primary headings
-    padding-top: 0.5em;
-    padding-bottom: 0.25em;
-    border-bottom: 2px solid #eaecef; // Subtle separator
+    font-size: 40px;
   }
 
   h2 {
-    font-size: 1.5rem;
-    padding-top: 0.4em;
-    padding-bottom: 0.25em;
-    border-bottom: 1px solid #eaecef; // Lighter separator for sub-headings
+    font-size: 24px;
   }
 
   h3 {
-    padding-top: 0.4em;
-    padding-bottom: 0.2em;
-    font-size: 1.35rem;
+    font-size: 20px;
   }
 
   h4 {
-    font-size: 1.2rem;
+    font-size: 16px;
   }
 }
-
-//Hides light toggle on docs

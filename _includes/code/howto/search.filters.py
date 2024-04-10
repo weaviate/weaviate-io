@@ -186,7 +186,7 @@ try:
     jeopardy = client.collections.get("JeopardyQuestion")
     response = jeopardy.query.fetch_objects(
         # highlight-start
-        filters=wvc.query.Filter.by_property("question").like("*nest*") &
+        filters=wvc.query.Filter.by_property("answer").like("*bird*") &
                 (wvc.query.Filter.by_property("points").greater_than(700) | wvc.query.Filter.by_property("points").less_than(300)),
         # highlight-end
         limit=3
@@ -200,7 +200,7 @@ try:
     # Test results
     assert response.objects[0].collection == "JeopardyQuestion"
     assert (
-        ("nest" in response.objects[0].properties["question"].lower())
+        ("bird" in response.objects[0].properties["question"].lower())
         and (
             (response.objects[0].properties["points"] > 700)
             or (response.objects[0].properties["points"] < 300)

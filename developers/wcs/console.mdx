@@ -1,46 +1,39 @@
 ---
-title: Query console
+title: Query app
 sidebar_position: 50
 image: og/wcs/user_guides.jpg
 ---
 
 import WCSConsoleButton from './img/wcs-console-button.png';
-import WCSConsoleExampleQuery from './img/wcs-console-example-query.png';
 import WCSConnectedInstances from './img/wcs-connected-instances.png';
 import WCSQueryDropdown from './img/wcs-query-dropdown.png';
 import WCSInferenceApiKey from './img/wcs-console-inference-key.png';
 import WCSManyInferenceApiKeys from './img/wcs-console-many-inference-keys.png';
 
-## Overview
+The Weaviate Cloud Services (WCS) query application (query app) is a browser-based GraphQL IDE. Use the query app to work interactively with your WCS clusters.
 
-The WCS GraphQL query console is a browser-based GraphQL IDE that allows you to interactively query your Weaviate instance, whether it is a WCS instance or not.
+![WCS query app](./img/wcs-console-example-query.png)
 
-The console is based on the [GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) library, and as such provides many helpful features for using GraphQL, such as:
+[GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) is built into the query app. GraphiQL provides many features that make GraphQL easier to use interactively:
 
-* Syntax highlighting
-* Intelligent type ahead of fields, arguments, types, and more
-* Real-time error highlighting and reporting for queries and variables
-* Automatic query and variables completion
+- Syntax highlighting
+- Intelligent type ahead
+- Automatic completion for queries and variables
+- Real-time error highlighting and reporting for queries and variables
 
-The image below shows an example `Get` query on a dataset of wine reviews:
 
-<img src={WCSConsoleExampleQuery} width="100%" alt="WCS console example query"/>
+## Open the query app
 
-Note that here, the console handily highlights the query as well as the response.
+To open the query app, connect to your WCS [WCS Dashboard](https://console.weaviate.cloud). In the left-hand menu, click the stacked circle icon.
 
-## Using the console
+![WCS query app location](img/wcs-query-console-location.jpg)
 
-### Log in
+## Select a Weaviate instance
 
-You can find the GraphQL query console by navigating to your [WCS Dashboard](https://console.weaviate.cloud), logging in and clicking on the button highlighted below:
+The query app connects directly to your WCS clusters. The query app can also connect to other Weaviate instances if you have the proper authorization credentials.
 
-<img src={WCSConsoleButton} width="100%" alt="WCS console button"/>
+### Connect to a WCS cluster
 
-This will open the Query console, where you can build a GraphQL query, using context-aware query and variables completion.
-
-### Select an instance
-
-The GraphQL query console can connect to any Weaviate instance, including external instances, as long as it is connected through the WCS Dashboard.
 
 In this example, the WCS Dashboard is connected to an external instance as well as the two WCS instances.
 
@@ -57,27 +50,21 @@ Alternatively, the query window includes a drop-down menu at the top of the scre
 
 ### Authentication
 
-If you are querying a WCS instance that you own through the WCS console, your queries will automatically include the appropriate authentication information in the header.
+The query app connects to WCS instances, sandboxes and managed clusters,without any additional authentication details.
 
-This is the case for both WCS sandboxes as well as managed clusters.
+### Pass inference keys
 
-### Inference key(s)
+To pass API keys for inference modules such as `text2vec-cohere`, `text2vec-cohere`, or `text2vec-openai`, use request headers. The `Header` tab is at bottom of the query screen. Add the service inference key to the query headers. 
 
-If you need to provide any inference service API keys for modules such as `text2vec-cohere`, `text2vec-cohere`, or `text2vec-openai`, you can do so through the "Header" tab located towards the bottom of the query screen. An example is shown below, where the `X-OpenAI-Api-Key` header has been set with the OpenAI API key (actual value hidden).
+In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key.
 
 <img src={WCSInferenceApiKey} width="100%" alt="How to add an API inference key to a WCS console query"/>
 
-The header can contain multiple keys if needed (e.g. if `text2vec-cohere` is used with `generative-openai`).
-
-The image below shows the syntax to do so (you must provide the actual values).
+The header can pass multiple keys.
 
 <img src={WCSManyInferenceApiKeys} width="80%" alt="How to add multiple API inference keys to a WCS console query"/>
-
-:::tip Check your Weaviate version
-If you are having any issues providing additional headers on a WCS instance, check that your Weaviate server version is `1.18.3` or higher. We added a [fix in v1.18.3](https://github.com/weaviate/weaviate/pull/2840) which might affect this capability.
-:::
 
 ## More resources
 
 - [GraphiQL library](https://github.com/graphql/graphiql/tree/main/packages/graphiql)
-- [Vectorizer modules](/developers/weaviate/modules/retriever-vectorizer-modules/) (e.g. Cohere / HuggingFace / OpenAI)
+- [Vectorizer modules](/developers/weaviate/modules/retriever-vectorizer-modules/) 

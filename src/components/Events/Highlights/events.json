@@ -1,12 +1,5 @@
 [
   {
-    "type": "ONLINE WORKSHOP",
-    "title": "Introduction to Weaviate with JP",
-    "date": "APRIL 4TH 2024 15:00 - 16:00 CET",
-    "imageClass": "secondSection",
-    "url": "https://events.weaviate.io/workshop-24-04-04"
-  },
-  {
     "type": "OFFICE HOURS",
     "title": "Chunking",
     "date": "APRIL 10TH 2024 15:00 - 16:00 CET",
@@ -19,5 +12,12 @@
     "date": "APRIL 17TH 2024 17:00 - 18:00 CET",
     "imageClass": "thirdSection",
     "url": "https://events.weaviate.io/intro-ts-24-04-17"
+  },
+  {
+    "type": "ONLINE WORKSHOP",
+    "title": "Introduction to Weaviate with JP",
+    "date": "APRIL 18TH 2024 15:00 - 16:00 CET",
+    "imageClass": "secondSection",
+    "url": "https://events.weaviate.io/workshop-24-04-18"
   }
 ]

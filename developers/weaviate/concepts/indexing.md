@@ -5,14 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['basics']
 ---
 
-
-:::info Related pages
-- [Concepts: Vector Indexing](./vector-index.md)
-- [Configuration: Vector index](../config-refs/schema/vector-index.md)
-:::
-
-## Introduction
-
 Weaviate supports two types of indices.
 
 1. An **approximate nearest neighbor index (ANN)** - the ANN index is used to serve all vector-search queries.
@@ -240,6 +232,14 @@ To create a collection without any indexes, skip indexing on the collection and 
 * The ANN index needs to be set for your use case (especially if you have a large dataset)
 * You can enable or disable the index based on your use case
 * You can configure Weaviate modules in the schema
+
+## Further resources
+
+:::info Related pages
+- [Concepts: Vector Indexing](./vector-index.md)
+- [Configuration: Vector index](../config-refs/schema/vector-index.md)
+:::
+
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

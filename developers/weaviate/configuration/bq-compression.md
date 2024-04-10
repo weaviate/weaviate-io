@@ -15,9 +15,10 @@ import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/w
 import GoCode from '!!raw-loader!/_includes/code/howto/bq-compression.go';
 
 :::info Added in `v1.23`
+BQ is available for the [`flat` index](../concepts/vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](../concepts/vector-index.md#hnsw-index)  type from `v1.24`.
 :::
 
-Binary quantization (BQ) is a vector compression technique that can reduce the size of a vector. BQ is available for the `flat` index type from `v1.23` onwards and for the `hnsw` index type from `v1.24`.
+Binary quantization (BQ) is a vector compression technique that can reduce the size of a vector.
 
 To use BQ, enable it as shown below and add data to the collection.
 
@@ -33,7 +34,7 @@ To use BQ, enable it as shown below and add data to the collection.
 
 Each collection can be configured to use BQ compression. BQ must be enabled at collection creation time, before data is added to it.
 
-This can be done by setting the `vector index config` of the collection to enable BQ compression.
+This can be done by setting the `vector_index_config` of the collection to enable BQ compression.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -153,9 +154,9 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 Similarly, compression must be enabled independently for each vector. The procedure varies slightly by client language, but in each case the idea is the same. Each vector is independent and can use [PQ](/weaviate/configuration/pq-compression.md), [BQ](/weaviate/configuration/bq-compression.md), or no compression.
 
 ## Related pages
-
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Concepts: Vector index](../concepts/vector-index.md)
+- [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

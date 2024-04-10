@@ -33,24 +33,24 @@
   ],
   "blog": [
     {
-      "link": "/blog/typescript-client-beta",
+      "link": "/blog/binary-quantization",
       "type": "Blog",
-      "backgroundImage": "/img/site/typescript-hero.png",
-      "tagline": "Announcing the Weaviate Typescript Client Beta",
-      "photo": "daniel.jpg",
-      "name": "Daniel Phiri",
-      "title": "Developer Advocate",
-      "date": "March 21, 2024"
+      "backgroundImage": "/img/site/binary-hero.png",
+      "tagline": "32x Reduced Memory Usage With Binary Quantization",
+      "photo": "abdel.jpg",
+      "name": "Abdel Rodriguez",
+      "title": "Vector Index Researcher",
+      "date": "April 2, 2024"
     },
     {
-      "link": "/blog/hurricane-generative-feedback-loops",
+      "link": "/blog/intel",
       "type": "Blog",
-      "backgroundImage": "/img/site/hurricane-hero.png",
-      "tagline": "Hurricane: Writing Blog Posts with Generative Feedback Loops",
-      "photo": "connor.jpg",
-      "name": "Connor Shorten",
-      "title": "Product Researcher",
-      "date": "March 19, 2024"
+      "backgroundImage": "/img/site/intel-hero.png",
+      "tagline": "Accelerating Vector Search up to +40% with Intel",
+      "photo": "zain.jpg",
+      "name": "Zain Hasan",
+      "title": "Developer Advocate",
+      "date": "March 26, 2024"
     },
     {
       "link": "/community/events",

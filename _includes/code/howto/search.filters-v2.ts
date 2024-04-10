@@ -253,7 +253,7 @@ result = await client.graphql
       {
         path: ['answer'],
         operator: 'Like',
-        valueText: '*nest*',
+        valueText: '*bird*',
       },
       {
         operator: 'Or',

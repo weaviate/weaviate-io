@@ -5,20 +5,20 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-**Vector quantization or vector compression** can reduce the memory footprint of the index, or to improve the speed of the search process.
+**Vector quantization** reduces the memory footprint of the [vector index](./vector-index.md) by compressing the vector embeddings, and thus reduces deployment costs and improves the speed of the vector similarity search process.
 
-Weaviate offers two vector quantization techniques:
-- [Product quantization (PQ)](#product-quantization) 
+Weaviate currently offers two vector quantization techniques:
+- [Product quantization (PQ)](#product-quantization)
 - [Binary quantization (BQ)](#binary-quantization)
 
 ## What is quantization?
-Quantization techniques represent numbers with lower precision numbers, like rounding a number to the nearest integer. In neural networks, quantization may reduce a 32-bit floating-point number to a lower precision number, such as an 8-bit integer.
+In general, quantization techniques reduce the memory footprint by representing numbers with lower precision numbers, like rounding a number to the nearest integer. In neural networks, quantization reduces the values of the weights or activations of the model stored as a 32-bit floating-point number (4 bytes) to a lower precision number, such as an 8-bit integer (1 byte).
 
 ## Product quantization
 
-[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a multi-step quantization technique that is available for use with `hnsw` indexes.
+[Product quantization](https://ieeexplore.ieee.org/document/5432202) is a multi-step quantization technique that is available for use with `hnsw` indexes in Weaivate.
 
-PQ reduces the size of each vector embedding in two ways. It reduces the number of vector dimensions to a smaller number of "segments", and each segment is quantized to a smaller number of bits from the original number of bits (typically a 32-bit float).
+PQ reduces the size of each vector embedding in two steps. First, it reduces the number of vector dimensions to a smaller number of "segments", and then each segment is quantized to a smaller number of bits from the original number of bits (typically a 32-bit float).
 
 import PQTradeoffs from '/_includes/pq-compression/tradeoffs.mdx' ;
 
@@ -28,7 +28,7 @@ In PQ, the original vector embedding is represented as a product of smaller vect
 
 ![PQ illustrated](./img/pq-illustrated.png "PQ illustrated")
 
-After the segments are created, there is a training step to calculate 'centroids' for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vector embeddings.
+After the segments are created, there is a training step to calculate `centroids` for each segment. By default, Weaviate clusters each segment into 256 centroids. The centroids make up a codebook that Weaviate uses in later steps to compress the vector embeddings.
 
 Once the codebook is ready, Weaviate uses the id of the closest centroid to compress each vector segment. The new vector representation reduces memory consumption significantly. Imagine a collection where each vector embedding has 768 four byte elements. Before PQ compression, each vector embeddingrequires `768 x 4 = 3072` bytes of storage. After PQ compression, each vector requires `128 x 1 = 128` bytes of storage. The original representation is almost 24 times as large as the PQ compressed version. (It is not exactly 24x because there is a small amount of overhead for the codebook.)
 
@@ -64,16 +64,14 @@ Alternatively, there is also the `tile` encoder. This encoder is currently exper
 
 With product quantization, distances are then calculated asymmetrically with a query vector with the goal being to keep all the original information in the query vector when calculating distances.
 
-:::tip 
+:::tip
 Learn more about [how to configure product quantization in Weaviate](../configuration/pq-compression.md).<br/><br/>
 You might be also interested in our blog post [How to Reduce Memory Requirements by up to 90%+ using Product Quantization](https://weaviate.io/blog/pq-rescoring).
 :::
 
 ## Binary quantization
 
-Binary quantization (BQ) is a technique that can speed up vector search. BQ is available for the `flat` index type.
-
-BQ works by converting each vector embedding to a binary representation. The binary representation is much smaller than the original vector embedding. For example, each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up vector search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
+**Binary quantization (BQ)** is a quantization technique that converts each vector embedding to a binary representation. The binary representation is much smaller than the original vector embedding. Usually each vector dimension requires 4 bytes, but the binary representation only requires 1 bit, representing a 32x reduction in storage requirements. This works to speed up vector search by reducing the amount of data that needs to be read from disk, and simplifying the distance calculation.
 
 The tradeoff is that BQ is lossy. The binary representation by nature omits a significant amount of information, and as a result the distance calculation is not as accurate as the original vector embedding.
 
@@ -87,7 +85,7 @@ When using BQ, Weaviate will conditionally over-fetch and then re-score the resu
 
 This is done by fetching the higher of the specified query limit, or the rescore limit objects, and then re-score them using the full vector embedding. As a concrete example, if a query is made with a limit of 10, and a rescore limit of 200, Weaviate will fetch `max(10, 500) = 200` objects, and then re-score the top 10 objects using the full vector. This works to offset some of the loss in search quality (recall) caused by compression.
 
-:::tip 
+:::tip
 Learn more about [how to configure binary quantization in Weaviate](../configuration/bq-compression.md).<br/><br/>
 You might be also interested in our blog post [32x Reduced Memory Usage With Binary Quantization](https://weaviate.io/blog/binary-quantization).
 :::
@@ -98,7 +96,7 @@ You might be also interested in our blog post [32x Reduced Memory Usage With Bin
 
 An [HNSW index](#hnsw-index) can be configured using [PQ](#product-quantization) or [BQ](#binary-quantization). Since HNSW is in memory, compression can reduce your memory footprint or allow you to store more data in the same amount of memory.
 
-:::tip 
+:::tip
 You might be also interested in our blog post [HNSW+PQ - Exploring ANN algorithms Part 2.1](https://weaviate.io/blog/ann-algorithms-hnsw-pq).
 :::
 
@@ -116,6 +114,7 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 
 :::info Related pages
 - [Concepts: Indexing](./indexing.md)
+- [Concepts: Vector Indexing](./vector-index.md)
 - [Configuration: Vector index](../config-refs/schema/vector-index.md)
 - [Configuration: Schema (Configure semantic indexing)](../config-refs/schema/index.md#configure-semantic-indexing)
 - [How to configure: Binary quantization (compression)](../configuration/bq-compression.md)
