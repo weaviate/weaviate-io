@@ -19,6 +19,11 @@ The TypeScript client can be used for both JavaScript and TypeScript scripts. Th
 
 ## Installation and setup
 
+- Add web cleint initialisation 
+- link to other TS packages and resoruces? like embedded
+- add example queries
+- link to weaviate recipes and example apps
+
 The TypeScript client library package can be installed using [npm](https://www.npmjs.com/).
 
 ```bash
@@ -27,14 +32,26 @@ npm install weaviate-client --tag beta
 
 Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`. 
 
-- Compiler options
+<details>
+    <summary> tsconfig.json file</summary>
+    To properly use the client, add the following to your tsconfig.json file:
 
-  - `"target": "esnext"` 
-  - `"module": "esnext"` (requires at least **Node16**)
-  - `"moduleResolution": "Node16"` 
-
-- `"include": ["*.ts"]`  (Or specific files)
-- `"lib": [ "es2018" ]`
+    ```json
+       {
+            "compilerOptions": {
+              ...
+              "target": "esnext",
+              "module": "esnext", 
+              "moduleResolution": "Node16",
+              "include": ["*.ts"], 
+              "esModuleInterop": true,
+              "lib": [ "es2018" ],
+              ...
+          }
+        }
+    ```
+    
+</details>
 
 Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
 
@@ -62,6 +79,11 @@ Our [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../a
 
 With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom Typescript types and user-defined generics.
 
+// show query 
+// change order 
+// pick common js or esm for format 
+
+
 ## Client Connection
 
 Once installed, you can use the client in your TypeScript and JavaScript scripts, as shown in the following examples.
@@ -71,14 +93,15 @@ Once installed, you can use the client in your TypeScript and JavaScript scripts
 <Tabs groupId="languages">
 <TabItem value="wcs" label="WCS">
 
-```js
-const { default: weaviate } = require('weaviate-client');
+```ts
+import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client = await weaviate.connectToWCS(
   'some-endpoint.weaviate.network', {
     authCredentials: new weaviate.ApiKey('api-key'),
   } 
 )
+
 console.log(client)
 ```
 
@@ -86,13 +109,17 @@ console.log(client)
 <TabItem value="local" label="Local">
 
 ```ts
-import weaviate, { WeaviateClient, generateUuid5, DataObject } from 'weaviate-client'
+import weaviate, { WeaviateClient } from 'weaviate-client'
 
-const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-    authCredentials: new weaviate.ApiKey('api-key'),
-  } 
-)
+const client: WeaviateClient = await weaviate.connectToLocal({
+    httpHost: 'localhost',
+    httpPort: 8080,
+    grpcHost: 'localhost',
+    grpcPort: 50051,
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
+    }
+  })
  
 console.log(client)
 ```
@@ -107,6 +134,8 @@ If you are having any issues with the import statement in TypeScript (e.g. if `w
 ### Type definitions
 
 The type definitions can be found under each bundles respective folder; the subdirectory of `node/cjs` and `node/esm` in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-client/v/3.0.0-beta.17?activeTab=code).
+
+// add code example 
 
 ## Authentication
 
