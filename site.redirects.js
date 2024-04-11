@@ -414,17 +414,10 @@ const siteRedirects = {
             to: "/community/events",
             from: "/learn/workshop"
         },
-
+        // learn - temporary redirect while we publish the paper reviews - to be removed when /learn page gets added
         {
-            to: "/community/events",
-            from: "/learn/workshops"
-
-        },
-        {
-
-        to: "/community/events",
-        from: "/learn/workshops"
-
+            to: "/learn/papers",
+            from: "/learn"
         },
         // Partners Off
         {
