@@ -9,7 +9,7 @@ Weaviate is available as a hosted service, [Weaviate Cloud Services (WCS)](https
 
 ## Installation methods
 
-For details on how to run Weaviate, see the following:
+To install and configure Weaviate, see the following:
 
 - **[Weaviate Cloud Services](../../wcs/quickstart.mdx)**: This managed service works well for both development and production environments.
 - **[Docker Compose](./docker-compose.md#starter-docker-compose-file)**: Docker containers are well suited for development and testing.
@@ -35,46 +35,15 @@ Unreleased software and images may contain bugs. APIs may change. Features under
 
 :::
 
-If you want to run an unreleased version of Weaviate, configure your configuration yaml file to build using an unreleased image.
+To run an unreleased version of Weaviate, configure your configuration yaml file to build using an unreleased image. The [GitHub releases page](https://github.com/weaviate/weaviate/releases/) lists generally available and release candidate builds.
 
-For example, to run the image for a release candidate (`rc` version), edit your `docker-config.yaml` to call the release candidate image.
+For example, to run a Docker image for a release candidate, edit your `docker-config.yaml` to import the release candidate image. 
 
 ```yml
-version: '3.4'
-name: "weaviate-v1-23-0-release-candidate"
-services:
-  weaviate:
-    command:
-    - --host
-    - 0.0.0.0
-    - --port
-    - '8080'
-    - --scheme
-    - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.23.0-rc.1
-    ports:
-    - 8080:8080
-    - 50051:50051
-    volumes:
-    - weaviate_data:/var/lib/weaviate
-    restart: on-failure:0
-    environment:
-      QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'text2vec-cohere,text2vec-huggingface,text2vec-palm,text2vec-openai,generative-openai,generative-cohere,generative-palm,ref2vec-centroid,reranker-cohere,qna-openai'
-      CLUSTER_HOSTNAME: 'node1'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
-      AUTHENTICATION_APIKEY_ALLOWED_KEYS: '<YOUR-API-AUTHENTICATION-KEY>'
-      AUTHENTICATION_APIKEY_USERS: '<YOUR-API-AUTHENTICATION-PASSWORD>'
-volumes:
-  weaviate_data:
-
+image: cr.weaviate.io/semitechnologies/weaviate:1.23.0-rc.1
 ```
 
-If you try out new features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
-
+When try out upcoming features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
 
 ## Related pages
 - [Connect to Weaviate](../starter-guides/connect.mdx)
