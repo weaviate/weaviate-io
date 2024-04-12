@@ -221,7 +221,7 @@ You'll be guided and supported by Etienne and Marcin who are Go-gurus, so you ca
 **Expected outcome:** A CLI tool (or extension of the Weaviate CLI too) that allows converting SQL schemas into Weaviate schemas.
 
 **Documentation:**
-[Weaviate schema · Weaviate Documentation](/developers/weaviate/api/rest/schema)
+[Weaviate schema · Weaviate Documentation](/developers/weaviate/api/rest#tags/schema)
 <!-- [Weaviate CLI · Weaviate Documentation](/developers/weaviate/client-libraries/cli) -->
 
 ---

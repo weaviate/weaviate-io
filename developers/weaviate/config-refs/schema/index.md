@@ -265,7 +265,7 @@ This configuration allows stopwords to be configured by collection. If not set, 
 
 As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
 
-Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed.
+Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest#tag/schema/put/schema/%7BclassName%7D) the list of stopwords after your data has been indexed.
 
 Below is an example request on how to update the list of stopwords:
 
@@ -626,7 +626,7 @@ client.schema.create_class(collection_obj)
 ## Related pages
 - [Tutorial: Schema](../../starter-guides/schema.md)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
-- [References: REST API: Schema](/developers/weaviate/api/rest/schema)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tags/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

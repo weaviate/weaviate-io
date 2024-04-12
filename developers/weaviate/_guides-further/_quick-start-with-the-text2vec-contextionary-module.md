@@ -955,7 +955,7 @@ In this tutorial you learned about how to quickly set up a Weaviate with a demo 
 - Check out how to [spin up a Weaviate](/developers/weaviate/installation/index.md) with your own [schema](../starter-guides/schema.md) and [import](../tutorials/how-to-import-data.md).
 - Learn more about [authentication](/developers/weaviate/configuration/authentication.md) and [authorization](/developers/weaviate/configuration/authorization.md).
 - Install one of the [client libraries](/developers/weaviate/client-libraries/index.md) for smooth interaction with the Weaviate APIs.
-- Consult the [RESTful API references](/developers/weaviate/api/rest/index.md) and the [GraphQL references](../api/graphql/index.md) to learn about all interaction possibilities with Weaviate.
+- Consult the [RESTful API references](/developers/weaviate/api/rest) and the [GraphQL references](../api/graphql/index.md) to learn about all interaction possibilities with Weaviate.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
