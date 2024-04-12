@@ -436,8 +436,8 @@ const siteRedirects = {
             from: '/developers/weaviate/api/rest/backups',
         },
         {
-            to:   '/developers/weaviate/api/rest_legacy/classifications',
-            from: '/developers/weaviate/api/rest/classifications',
+            to:   '/developers/weaviate/api/rest_legacy/classification',
+            from: '/developers/weaviate/api/rest/classification',
         },
         {
             to:   '/developers/weaviate/api/rest_legacy/nodes',
