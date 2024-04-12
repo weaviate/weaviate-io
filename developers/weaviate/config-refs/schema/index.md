@@ -481,7 +481,10 @@ This feature was introduced in `v1.12.0`.
 
 You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../../api/graphql/search-operators.md#bm25) and [`hybrid`](../../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../../api/graphql/filters.md).
 
-The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
+Tokenization is a property-level configuration for `text` properties. [See how to set the tokenization option using a client library](../../manage-data/collections.mdx#property-level-settings)
+
+<details>
+  <summary>Example property configuration</summary>
 
 ```json
 {
@@ -503,6 +506,8 @@ The tokenization of `text` properties can be customized via the `tokenization` f
   ]
 }
 ```
+
+</details>
 
 Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
 
