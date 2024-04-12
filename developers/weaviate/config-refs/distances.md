@@ -8,14 +8,14 @@ image: og/docs/configuration.jpg
 
 :::info Related pages
 - [Configuration: Schema](../manage-data/collections.mdx)
-- [References: REST API: Schema](../api/rest/schema.md)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 
 ## Available distance metrics
 
 If not specified explicitly, the default distance metric in Weaviate is
-`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) field as part of the  schema (here's an [example adding a class to the schema](../api/rest/schema.md#create-a-class)) to any of the following types:
+`cosine`. It can be [set in the vectorIndexConfig](/developers/weaviate/config-refs/schema/vector-index.md#how-to-configure-hnsw) field as part of the schema ([example](../manage-data/collections.mdx#specify-a-distance-metric)) to any of the following types:
 
 :::tip Comparing distances
 In all cases, larger distance values indicate lower similarity. Conversely, smaller distance values indicate higher similarity.

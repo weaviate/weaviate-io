@@ -477,7 +477,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 <details>
   <summary>See answer</summary>
 
-If you are not sure whether the class has been created, you can confirm it by visiting the [`schema` endpoint](../api/rest/schema.md) here (replace the URL with your actual endpoint):
+If you are not sure whether the class has been created, you can confirm it by visiting the [`schema` endpoint](/developers/weaviate/api/rest#tag/schema) here (replace the URL with your actual endpoint):
 
 ```
 https://some-endpoint.weaviate.network/v1/schema
@@ -510,7 +510,7 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 <details>
   <summary>See answer</summary>
 
-To confirm successful data import, navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
+To confirm successful data import, navigate to the [`objects` endpoint](/developers/weaviate/api/rest#tag/objects) to check that all objects have been imported (replace with your actual endpoint):
 
 ```
 https://some-endpoint.weaviate.network/v1/objects

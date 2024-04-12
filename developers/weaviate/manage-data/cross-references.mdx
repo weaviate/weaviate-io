@@ -545,7 +545,7 @@ Deleting a cross-reference with the same parameters used to define the cross-ref
   </summary>
 
 What happens if the `to` object is deleted?
-If an object is deleted, cross-references to it will be left intact. A [Get query using the inline fragment syntax](../search/basics.md#retrieve-cross-referenced-properties) will correctly retrieve only fields in the existing cross-references objects, but [getting the object by ID](../api/rest/objects.md#get-a-data-object) will show all cross-references, whether the objects they point to exist or not.
+If an object is deleted, cross-references to it will be left intact. A [Get query using the inline fragment syntax](../search/basics.md#retrieve-cross-referenced-properties) will correctly retrieve only fields in the existing cross-references objects, but [getting the object by ID](../manage-data/read.mdx#get-an-object-by-id) will show all cross-references, whether the objects they point to exist or not.
 
 </details>
 
@@ -614,8 +614,7 @@ The targets of a cross-reference can be updated.
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#cross-references)
-- [Retrieve the object](../api/rest/objects.md#get-a-data-object) to retrieve its cross references.
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
 - [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

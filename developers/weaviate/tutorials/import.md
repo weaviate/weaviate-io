@@ -48,7 +48,7 @@ Each Weaviate data object is structured as follows:
 
 Most commonly, Weaviate users import data through a Weaviate client library.
 
-It is worth noting, however, that data is ultimately added through the RESTful API, either through the [`objects` endpoint](../api/rest/objects.md) or the [`batch` endpoint](../api/rest/batch.md).
+It is worth noting, however, that data is ultimately added through the RESTful API, either through the [`objects` endpoint](/developers/weaviate/api/rest#tag/objects) or the [`batch` endpoint](/developers/weaviate/api/rest#tag/batch).
 
 As the names suggest, the use of these endpoints depend on whether objects are being imported as batches or individually.
 
@@ -56,7 +56,7 @@ As the names suggest, the use of these endpoints depend on whether objects are b
 
 For importing data, we **strongly suggest that you use batch imports** unless you have a specific reason not to. Batch imports can greatly improve performance by sending multiple objects in a single request.
 
-We note that batch imports are carried out through the [`batch` REST endpoint](../api/rest/batch.md).
+We note that batch imports are carried out through the [`batch` REST endpoint](../manage-data/import.mdx).
 
 ### Batch import process
 

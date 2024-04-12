@@ -281,7 +281,7 @@ If you need a higher search quality for a given limit you can consider the follo
 
 > Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
 >
-> To iterate through all objects, you can use the `after` operator with both [REST](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after) and [GraphQL](../api/graphql/additional-operators.md#cursor-with-after).
+> To iterate through all objects, you can use the [`after` operator](../manage-data/read-all-objects.mdx).
 >
 > For pagination through a result set, you can use the `offset` and `limit` operators for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these operators, including tips on performance and limitations.
 
