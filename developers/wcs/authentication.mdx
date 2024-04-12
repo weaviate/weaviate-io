@@ -1,5 +1,5 @@
 ---
-title: Authentication
+title: Connect to WCS
 sidebar_position: 10
 image: og/wcs/user_guides.jpg
 ---
@@ -150,6 +150,18 @@ To reset your WCS password, follow these steps:
 1. Check your email account for a password reset email from WCS.
 1. Click the link and follow the instructions to reset your password. The link is only valid for five minutes.
 
+## Connection timeouts
+
+The new Python and TypeScript clients use the gRPC protocol to connect to WCS. The protocol is very sensitive to network speeds. If you run into timeout errors, increase the connection timeout value or set `skip_init_checks=False` in your connection code.
+
+import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slow_connection.py';
+
+<FilteredTextBlock
+  text={PyCodeSupp}
+  startMarker="# START WeaviateAPIKeyWCS"
+  endMarker="# END WeaviateAPIKeyWCS"
+  language="py"
+/>
 
 ## More resources
 
