@@ -152,16 +152,40 @@ To reset your WCS password, follow these steps:
 
 ## Connection timeouts
 
-The new Python and TypeScript clients use the gRPC protocol to connect to WCS. The protocol is very sensitive to network speeds. If you run into timeout errors, increase the connection timeout value or set `skip_init_checks=False` in your connection code.
+The new Python client uses the gRPC protocol to connect to WCS. The gRPC protocol improves query performance, but the protocol is sensitive to network speeds. If you run into timeout errors, increase the connection timeout value in your connection code.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slow_connection.py';
 
-<FilteredTextBlock
-  text={PyCodeSupp}
-  startMarker="# START WeaviateAPIKeyWCS"
-  endMarker="# END WeaviateAPIKeyWCS"
-  language="py"
-/>
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python (v4)">
+
+   <FilteredTextBlock
+     text={PyCodeSupp}
+     startMarker="# START ConnectWithLongTimeOut"
+     endMarker="# END ConnectWithLongTimeOut"
+     language="py"
+   />
+
+</TabItem>
+</Tabs>
+
+Alternatively, leave the default timeout values, but skip the initial connection checks. 
+
+<Tabs groupId="languages">
+<TabItem value="py4" label="Python (v4)">
+
+   <FilteredTextBlock
+     text={PyCodeSupp}
+     startMarker="# START ConnectWithSkipChecks"
+     endMarker="# END ConnectWithSkipChecks"
+     language="py"
+   />
+
+</TabItem>
+</Tabs>
 
 ## More resources
 
