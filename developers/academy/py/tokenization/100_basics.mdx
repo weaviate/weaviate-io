@@ -1,0 +1,47 @@
+---
+title: Overview of tokenization
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCode from '!!raw-loader!./_snippets/100_pq.py';
+
+
+When you are using a database, or an AI model to deal with text data, a decision is required on how to break down that text into smaller pieces.
+
+These pieces are also called *tokens*, and this process is called *tokenization*.
+
+In a vector database like Weaviate, tokenization occurs in two different contexts:
+
+1. **Vectorization**: When a piece of text is converted into a vector, the text is tokenized into smaller pieces by the vectorizer. This helps to create a vector that represents the text.
+2. **Keyword search and filtering**: When performing keyword searches of filtering, you need to tokenize the search query or filter. This helps to determine what constitutes a match.
+
+Additionally, tokenization is also used by large language models, in the context of retrieval augmented generation, for instance.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tokenization explained
+
+Take a piece of text like `"Why, hello there!"`. This could be tokenized into smaller pieces, or tokens, like:
+
+```js
+["Why", ",", "hello", "there", "!"]
+```
+
+Each token comes from a part of the original text, and can be used to represent the text in a more manageable way.
+
+But - why tokenize at all? Why not just use the original text? The answer is that tokenization improves performance of vectorization and search, but in different ways.
+
+### <i class="fa-solid fa-chalkboard"></i> Lossiness
+
+### <i class="fa-solid fa-code"></i> Lossiness
+
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Configure PQ
+
+
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
+

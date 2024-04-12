@@ -251,6 +251,49 @@ export const unitData = {
       "Make an informed choice on which compression algorithm to use for a given use case.",
     ]
   },
+  "tokenization_basics": {
+    title: "Overview of tokenization",
+    body: "What is tokenization, and why is it important?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/basics",
+    badgeType: "theory",
+    learningGoals: [
+      "What tokenization is and its impact."
+    ],
+    learningOutcomes: [
+      "Describe what tokenization is.",
+      "Differentiate the tokenizer's role in vectorization and keyword-based operations.",
+    ]
+  },
+  "tokenization_options": {
+    title: "Available tokenization options",
+    body: "What tokenization options are available in Weaviate?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/options",
+    badgeType: "practical",
+    learningGoals: [
+      "Review the available tokenization options in Weaviate."
+    ],
+    learningOutcomes: [
+      "Describe different tokenization options available in Weaviate.",
+      "Identify the best tokenization option for a given use case.",
+      "Identify languages for which specific tokenization options are available.",
+    ]
+  },
+  "tokenization_impact": {
+    title: "The impact of tokenization",
+    body: "How does tokenization impact search?",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/impact",
+    badgeType: "practical",
+    learningGoals: [
+      "The impact of tokenization on search quality."
+    ],
+    learningOutcomes: [
+      "Describe the ways in which tokenization can affect search results.",
+      "Implement an appropriate tokenization option in Weaviate for a given use case.",
+    ]
+  },
   // multi_tenancy_intro: {
   //   title: "Introduction to multi-tenancy",
   //   body: "Multi-tenancy allows you to scale Weaviate for efficient production use with many end users.",
