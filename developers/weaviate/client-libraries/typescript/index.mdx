@@ -316,13 +316,13 @@ These headers will then be included in every request that the client makes.
 We are in the process of migrating our JavaScript code examples to TypeScript as necessary. Please be patient.
 :::
 
-Our [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
+Our [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
 
 ## Design
 
 ### Builder pattern
 
-The TypeScript client is designed following the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern). The pattern is used to build complex query objects. This means that calls (for example to retrieve data with a RESTful GET request, or using a more complex GraphQL query) are built with chained objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. Builder examples can be found in the [RESTful API reference pages](../../api/rest/index.md) and the [GraphQL reference pages](../../api/graphql/index.md).
+The TypeScript client is designed following the [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern). The pattern is used to build complex query objects. This means that calls (for example to retrieve data with a RESTful GET request, or using a more complex GraphQL query) are built with chained objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. Builder examples can be found in the [RESTful API reference pages](/developers/weaviate/api/rest) and the [GraphQL reference pages](../../api/graphql/index.md).
 
 The code snippet at the top of this page shows a simple query corresponding to the RESTful request `GET /v1/schema`. The client is initialized by requiring the package and connecting to a local instance. Then, a query is constructed by getting the `.schema` with `.getter()`. The query will be sent with the `.do()` call. `do()` is required for every function you want to build and execute.
 
@@ -337,7 +337,7 @@ TypeScript is a superset of JavaScript. There are, however, some differences tha
 
 ### Run a TypeScript file
 
-To run a TypeScript file, first convert it to JavaScript. The `typescript` package from `npm` includes the `tsc` utility. Use `tsc` to convert (transpile) the TypeScript file. 
+To run a TypeScript file, first convert it to JavaScript. The `typescript` package from `npm` includes the `tsc` utility. Use `tsc` to convert (transpile) the TypeScript file.
 
 Install the `typescript` package. Add the `-g` flag if you want the package to be available globally.
 
@@ -349,9 +349,9 @@ Some packages, like the Weaviate TypeScript client, require extra configuration.
 
 - Compiler options
 
-  - `"target": "esnext"` 
+  - `"target": "esnext"`
   - `"module": "esnext"`
-  - `"moduleResolution": "node"` 
+  - `"moduleResolution": "node"`
 
 - `"include": ["*.ts"]`  (Or specific files)
 - `"lib": [ "es2018" ]`
@@ -365,16 +365,16 @@ tsc
 `node` only allows the `import` statement in modules. To allow the `import` statement, add the following to your `package.json` file.
 
 ```json
-{ 
+{
    "type": "module"
 }
 ```
 
 ### Example
 
-To run this example, complete these steps. 
+To run this example, complete these steps.
 
-- Install the `typescript` package. 
+- Install the `typescript` package.
 - Update the `tsconfig.json` and `package.json` files as described above.
 - Copy the sample code.
 - Save the code as `sample.ts` in the same directory as `tsconfig.json` and `package.json`.
@@ -401,13 +401,13 @@ console.log(client.misc)
 Convert `sample.ts`.
 
 ```bash
-tsc 
+tsc
 ```
 
 Run the converted file.
 
 ```bash
-node sample.js  
+node sample.js
 ```
 
 The output looks like this.

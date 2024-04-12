@@ -68,7 +68,7 @@ const config = {
             '@scalar/docusaurus',
             {
               label: '.',
-              route: '/developers/weaviate/api/rest_openapi',
+              route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',

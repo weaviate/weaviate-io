@@ -1,1 +1,0 @@
-Placeholder directory for old how-to pages. Pages can be collected here for review and refactoring.

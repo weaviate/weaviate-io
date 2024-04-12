@@ -418,6 +418,40 @@ const siteRedirects = {
             from: '/developers/weaviate/configuration/schema-configuration',
         },
 
+        // Legacy REST API redirects
+        {
+            to:   '/developers/weaviate/api/rest_legacy/schema',
+            from: '/developers/weaviate/api/rest/schema',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/objects',
+            from: '/developers/weaviate/api/rest/objects',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/batch',
+            from: '/developers/weaviate/api/rest/batch',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/backups',
+            from: '/developers/weaviate/api/rest/backups',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/classification',
+            from: '/developers/weaviate/api/rest/classification',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/nodes',
+            from: '/developers/weaviate/api/rest/nodes',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/well-known',
+            from: '/developers/weaviate/api/rest/well-known',
+        },
+        {
+            to:   '/developers/weaviate/api/rest_legacy/modules',
+            from: '/developers/weaviate/api/rest/modules',
+        },
+
      // Products to Pricing redirects
 
         {

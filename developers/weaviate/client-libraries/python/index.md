@@ -1061,7 +1061,7 @@ In particular, check out the pages for:
 - [Similarity search](../../search/similarity.md)
 - [Filters](../../search/filters.md)
 
-The Weaviate API reference pages for [search](../../api/graphql/index.md) and [REST](../../api/rest/index.md) may also be useful starting points.
+The Weaviate API reference pages for [search](../../api/graphql/index.md) and [REST](/developers/weaviate/api/rest) may also be useful starting points.
 
 ## Client releases
 

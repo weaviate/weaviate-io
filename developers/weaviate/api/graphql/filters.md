@@ -12,7 +12,7 @@ import TryEduDemo from '/_includes/try-on-edu-demo.mdx';
 
 ## Overview
 
-Conditional filters may be added to queries such as [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries, as well as [batch deletion](../rest/batch.md#batch-delete). The operator used for filtering is also called a `where` filter.
+Conditional filters may be added to queries such as [`Object-level`](./get.md) and [`Aggregate`](./aggregate.md) queries, as well as [batch deletion](../../manage-data/delete.mdx#delete-multiple-objects). The operator used for filtering is also called a `where` filter.
 
 A filter may consist of one or more conditions, which are combined using the `And` or `Or` operators. Each condition consists of a property path, an operator, and a value.
 
@@ -248,7 +248,7 @@ Both operators expect an array of values and return objects that match based on 
 
 :::note `ContainsAny` and `ContainsAll` notes:
 - The `ContainsAny` and `ContainsAll` operators treat texts as an array. The text is split into an array of tokens based on the chosen tokenization scheme, and the search is performed on that array.
-- When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../rest/batch.md#batch-delete), the text array must be specified with the `valueTextArray` argument. This is different from the usage in search, where the `valueText` argument that can be used.
+- When using `ContainsAny` or `ContainsAll` with the REST api for [batch deletion](../../manage-data/delete.mdx#delete-multiple-objects), the text array must be specified with the `valueTextArray` argument. This is different from the usage in search, where the `valueText` argument that can be used.
 :::
 
 
