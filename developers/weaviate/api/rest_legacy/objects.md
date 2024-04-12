@@ -7,6 +7,12 @@ image: og/docs/api.jpg
 
 import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 import BeaconsBackCompatOmitClassname from '/_includes/beacons-backcompat-omit-class.md'
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/objects"
+  client_examples="/developers/weaviate/manage-data/"
+/>
 
 ## List data objects
 

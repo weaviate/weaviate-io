@@ -5,8 +5,15 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'discovery', 'oidc', 'well-known']
 ---
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/well-known"
+  client_examples="/developers/weaviate/config-refs/status"
+/>
 
 ## OpenID Configuration
+
 If [OpenID Connect (OIDC)](/developers/weaviate/configuration/authentication.md) authentication is enabled, the endpoint returns configuration details.
 
 If a token is configured, the endpoint redirects to it.

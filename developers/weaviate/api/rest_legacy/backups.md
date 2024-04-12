@@ -5,6 +5,12 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'batching']
 ---
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/backups"
+  client_examples="/developers/weaviate/configuration/backups"
+/>
 
 ## Introduction
 

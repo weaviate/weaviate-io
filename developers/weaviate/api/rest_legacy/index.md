@@ -5,6 +5,9 @@ image: og/docs/api.jpg
 # tags: ['RESTful API references']
 ---
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote tagname="#"/>
 
 ## RESTful API
 

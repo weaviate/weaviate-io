@@ -5,6 +5,12 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'schema']
 ---
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/schema"
+  client_examples="/developers/weaviate/manage-data/collections"
+/>
 
 :::info Related pages
 - [How-to - Manage Collections](../../manage-data/collections.mdx)

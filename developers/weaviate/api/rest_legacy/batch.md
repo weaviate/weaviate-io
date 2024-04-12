@@ -8,6 +8,13 @@ image: og/docs/api.jpg
 import BeaconsRequireLocalhost from '/_includes/beacon-localhost.md';
 import PythonV4BatchAPI from '/_includes/client-python-v4-batching-api.md';
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/batch"
+  client_examples="/developers/weaviate/manage-data/import"
+/>
+
 ## Batch create objects
 
 For sending data objects to Weaviate in bulk.

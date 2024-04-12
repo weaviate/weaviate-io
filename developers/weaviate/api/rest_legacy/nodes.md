@@ -5,6 +5,12 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'nodes']
 ---
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/nodes"
+  client_examples="/developers/weaviate/config-refs/nodes"
+/>
 
 ## Usage
 

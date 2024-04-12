@@ -5,6 +5,11 @@ image: og/docs/api.jpg
 # tags: ['RESTful API', 'references', 'classification']
 ---
 
+import DocDeprecationNote from './_deprecated.mdx';
+
+<DocDeprecationNote
+  tagname="tag/classification"
+/>
 
 ## Start a classification
 
