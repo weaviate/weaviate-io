@@ -1,13 +1,13 @@
 ---
 title: reranker-cohere
 sidebar_position: 50
-image: og/docs/modules/text2vec-cohere.jpg
+image: og/docs/modules/reranker-cohere.jpg
 # tags: ['rerank', 'cohere']
 ---
 
 ## Introduction
 
-- The `reranker-cohere` module enables reranking search results using [Cohere reranking](https://txt.cohere.com/rerank/).
+- The `reranker-cohere` module enables reranking search results using a [Cohere reranker API](https://txt.cohere.com/rerank/).
 - This module uses a third-party API and may incur costs. Make sure to check the Cohere [pricing page](https://cohere.com/pricing) before applying reranking to large amounts of data.
 - You will need a Cohere API key. You can request one [here](https://dashboard.cohere.com/welcome/login).
 
@@ -62,9 +62,9 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 ## Schema configuration
 
-The `reranker-cohere` module can be configured for any class in the schema. You can also specify options such as the `model` to use.
+The `reranker-cohere` module can be configured for any collection in the schema. You can also specify options such as the `model` to use.
 
-This example configures the `Document` class to use the `reranker-cohere` module, with the `rerank-multilingual-v2.0` model, and to return the documents in the response.
+This example configures the `Document` collection to use the `reranker-cohere` module, with the `rerank-multilingual-v2.0` model, and to return the documents in the response.
 
 ```json
 {
@@ -87,10 +87,10 @@ This example configures the `Document` class to use the `reranker-cohere` module
 
 If there is only one `reranker` module enabled, you don't need to do anything. The `reranker` module will be used by default.
 
-Where multiple `reranker` modules are enabled, you must specify the reranker module to be used for each class. You can do this by adding the desired reranker in the `moduleConfig` section of the schema, even without any further settings.
+Where multiple `reranker` modules are enabled, you must specify the reranker module to be used for each collection. You can do this by adding the desired reranker in the `moduleConfig` section of the schema, even without any further settings.
 
 <details>
-  <summary>Set reranker for a class</summary>
+  <summary>Set reranker for a collection</summary>
 
 ```json
 {
@@ -99,7 +99,7 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
       "class": "Document",
       ...,
       "moduleConfig": {
-        "reranker-cohere": {},  // This will configure the 'Document' class to use the 'reranker-cohere' module
+        "reranker-cohere": {},  // This will configure the 'Document' collection to use the 'reranker-cohere' module
       }
     }
   ]
