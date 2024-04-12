@@ -28,20 +28,9 @@ If you are self-hosting, consider experimenting on a small scale with Docker and
 
 ## Unreleased versions
 
-:::warning Unreleased software
-DISCLAIMER: Release candidate images and other unreleased software are not supported.
+import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
 
-Unreleased software and images may contain bugs. APIs may change. Features under development may be withdrawn or modified. Do not use unreleased software in production.
-
-:::
-
-To run an unreleased version of Weaviate, configure your configuration yaml file to build using an unreleased image. The [GitHub releases page](https://github.com/weaviate/weaviate/releases/) lists generally available and release candidate builds.
-
-For example, to run a Docker image for a release candidate, edit your `docker-config.yaml` to import the release candidate image. 
-
-```yml
-image: cr.weaviate.io/semitechnologies/weaviate:1.23.0-rc.1
-```
+<RunUnreleasedImages />
 
 When try out upcoming features, please provide [feedback](https://github.com/weaviate/weaviate/issues/new/choose). Your comments are appreciated and help us to make Weaviate more useful for you.
 

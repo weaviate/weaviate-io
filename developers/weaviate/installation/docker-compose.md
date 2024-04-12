@@ -186,6 +186,11 @@ page](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transfo
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
+### Unreleased versions
+
+import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
+
+<RunUnreleasedImages />
 
 ## Multi-node setup
 
