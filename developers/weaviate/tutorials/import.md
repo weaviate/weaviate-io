@@ -90,7 +90,7 @@ You may have noticed that we do not provide a vector. As a `vectorizer` is speci
 
 ### Bring your own vectors
 
-If you wish to upload your own vectors, you can do so with Weaviate. Refer to the [`batch` data object API documentation](../api/rest/batch.md#batch-create-objects). The object fields correspond to those of the [individual objects](../api/rest/objects.md#parameters-1).
+If you wish to upload your own vectors, you can do so with Weaviate. Refer to the [this page](../manage-data/import.mdx#specify-a-vector).
 
 You can also manually upload existing vectors and use a vectorizer module for vectorizing queries.
 
@@ -140,7 +140,7 @@ Our rules of thumb are:
 
 ### Error handling
 
-We recommend that you implement error handling at an object level, such as in [this example](../api/rest/batch.md#error-handling).
+We recommend that you implement error handling at an object level, such as in [this example](../client-libraries/python/index.md#error-handling).
 
 :::tip `200` status code != 100% batch success
 It is important to note that an HTTP `200` status code only indicates that the **request** has been successfully sent to Weaviate. In other words, there were no issues with the connection or processing of the batch and no malformed request.
@@ -163,7 +163,7 @@ A request with a `200` response may still include object-level errors, which is 
 
 ### Other object operations
 
-All other CRUD object operations are available in the [objects RESTful API documentation](../api/rest/index.md) and the [batch RESTful API documentation](../api/rest/batch.md).
+All other CRUD object operations are available in the [manage-data](../manage-data/index.md) section.
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
