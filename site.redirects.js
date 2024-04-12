@@ -541,10 +541,10 @@ const siteRedirects = {
                 ),
             ];
         }
-        if (existingPath.includes('/weaviate/api/rest_legacy')) {
+        if (existingPath.includes('/weaviate/api/rest')) {
             return [
                 existingPath.replace(
-                    '/weaviate/api/rest_legacy',
+                    '/weaviate/api/rest',
                     '/weaviate/current/restful-api-references'
                 ),
             ];
