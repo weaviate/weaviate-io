@@ -179,6 +179,8 @@ You can use any of the following models with `text2vec-voyageai` ([source](https
 - `voyage-large-2` (default)
 - `voyage-code-2`
 - `voyage-2`
+- `voyage-law-2`
+- `voyage-lite-02-instruct`
 
 ### Truncation
 
