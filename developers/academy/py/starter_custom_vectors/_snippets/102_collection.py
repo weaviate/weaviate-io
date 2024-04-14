@@ -99,6 +99,7 @@ for i, row in enumerate(df.itertuples(index=False)):
 emb_df = pd.concat(emb_dfs)  # Create a combined dataset
 
 # Save the data as a CSV
+os.makedirs("scratch", exist_ok=True)  # Create a folder if it doesn't exist
 emb_df.to_csv(
     f"scratch/movies_data_1990_2024_embeddings.csv",
     index=False,
@@ -138,8 +139,12 @@ data_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/ma
 data_resp = requests.get(data_url)
 df = pd.DataFrame(data_resp.json())
 
-embs_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
-emb_df = pd.read_csv(embs_url)
+# Load the embeddings (embeddings from the previous step)
+embs_path = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
+# Or load embeddings from a local file (if you generated them locally)
+# embs_path = "scratch/movies_data_1990_2024_embeddings.csv"
+
+emb_df = pd.read_csv(embs_path)
 
 # Get the collection
 movies = client.collections.get("Movie")
