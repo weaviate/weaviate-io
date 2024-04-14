@@ -2,7 +2,6 @@
 # Define a function to call the endpoint and obtain embeddings
 def query(texts):
     import requests
-    import os
 
     model_id = "sentence-transformers/all-MiniLM-L6-v2"
     hf_token = os.getenv("HUGGINGFACE_APIKEY")

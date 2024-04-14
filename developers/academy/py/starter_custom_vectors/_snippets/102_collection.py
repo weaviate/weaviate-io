@@ -3,7 +3,6 @@ import weaviate
 
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
-import os
 
 # CreateMovieCollection  # END SubmoduleImport
 
@@ -52,12 +51,12 @@ client.close()
 # ManuallyGenerateEmbeddings
 import requests
 import pandas as pd
+import os
 
 
 # Define a function to call the endpoint and obtain embeddings
 def query(texts):
     import requests
-    import os
 
     model_id = "sentence-transformers/all-MiniLM-L6-v2"
     hf_token = os.getenv("HUGGINGFACE_APIKEY")
@@ -141,7 +140,7 @@ df = pd.DataFrame(data_resp.json())
 
 # Load the embeddings (embeddings from the previous step)
 embs_path = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
-# Or load embeddings from a local file (if you generated them locally)
+# Or load embeddings from a local file (if you generated them earlier)
 # embs_path = "scratch/movies_data_1990_2024_embeddings.csv"
 
 emb_df = pd.read_csv(embs_path)
