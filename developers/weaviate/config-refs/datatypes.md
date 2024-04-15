@@ -1,6 +1,6 @@
 ---
 title: Data types
-sidebar_position: 3
+sidebar_position: 20
 image: og/docs/configuration.jpg
 # tags: ['Data types']
 ---
@@ -8,7 +8,7 @@ image: og/docs/configuration.jpg
 
 :::info Related pages
 - [Configuration: Schema](../manage-data/collections.mdx)
-- [References: REST API: Schema](../api/rest/schema.md)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 
@@ -183,7 +183,9 @@ It is currently not possible to aggregate or sort by `uuid` or `uuid[]` types.
 
 ## DataType: `geoCoordinates`
 
-Weaviate allows you to store geo coordinates related to a thing or action. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
+Weaviate allows you to store geo coordinates. When querying Weaviate, you can use this type to find items in a radius around this area. A geo coordinate value is a float, and is processed as [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) according to the [ISO standard](https://www.iso.org/standard/39242.html#:~:text=For%20computer%20data%20interchange%20of,minutes%2C%20seconds%20and%20decimal%20seconds).
+
+To supply a `geoCoordinates` property, specify the `latitude` and `longitude` as floating point decimal degrees.
 
 An example of how geo coordinates are used in a data object:
 

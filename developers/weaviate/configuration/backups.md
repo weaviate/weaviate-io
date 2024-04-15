@@ -15,13 +15,6 @@ import GoCode from '!!raw-loader!/_includes/code/howto/configure.backups.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/configure.backups.java';
 import CurlCode from '!!raw-loader!/_includes/code/howto/configure.backups.sh';
 
-
-:::info Related pages
-- [References: REST API: Backups](../api/rest/backups.md)
-:::
-
-## Introduction
-
 Weaviate's Backup feature is designed to feel very easy to use and work natively with cloud technology. Most notably, it allows:
 
 * Seamless integration with widely-used cloud blob storage, such as AWS S3, GCS or Azure
@@ -312,8 +305,8 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START StatusCreateBackup"
+      endMarker="# END StatusCreateBackup"
       language="py"
     />
   </TabItem>
@@ -406,8 +399,8 @@ The request takes a json object with the following properties:
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START RestoreBackup"
+      endMarker="# END RestoreBackup"
       language="py"
     />
   </TabItem>
@@ -483,8 +476,8 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START CreateBackup"
-      endMarker="# END CreateBackup"
+      startMarker="# START StatusRestoreBackup"
+      endMarker="# END StatusRestoreBackup"
       language="py"
     />
   </TabItem>
@@ -571,6 +564,8 @@ The flexibility around backup providers opens up new use cases. Besides using th
 
 For example, consider the following situation: You would like to do a load test on production data. If you would do the load test in production it might affect users. An easy way to get meaningful results without affecting uses it to duplicate your entire environment. Once the new production-like "loadtest" environment is up, create a backup from your production environment and restore it into your "loadtest" environment. This even works if the production environment is running on a completely different cloud provider than the new environment.
 
+## Related pages
+- [References: REST API: Backups](/developers/weaviate/api/rest#tag/backups)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

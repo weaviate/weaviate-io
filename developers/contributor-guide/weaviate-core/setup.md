@@ -11,7 +11,7 @@ You can find the source code at the [Weaviate repo](https://github.com/weaviate/
 :::
 
 Prerequisites:
-* [Go](https://go.dev/dl/) v1.20 or higher
+* [Go](https://go.dev/dl/) v1.21 or higher
 * (optional) [Docker](https://docs.docker.com/desktop/)
 
 ## Running from source

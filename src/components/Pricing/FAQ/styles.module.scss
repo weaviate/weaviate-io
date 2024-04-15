@@ -1,6 +1,6 @@
 .boxGrid {
   display: flex;
-  grid-gap: 2rem;
+  grid-gap: 0.75rem;
   flex-direction: column;
   p {
     font-size: 1rem;
@@ -8,7 +8,7 @@
 }
 
 .box {
-  width: 60%;
+  width: 75%;
 
   @media screen and (max-width: 500px) {
     width: 100%;
@@ -30,6 +30,18 @@
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%; /* 1.57331rem */
+  }
+}
+
+.priceHr {
+  height: 1px;
+  transition: all 0.1s ease-in-out;
+}
+
+.box:hover,
+:focus {
+  .priceHr {
+    height: 2px;
   }
 }
 .intro {
@@ -80,4 +92,19 @@
 
 .faqBG {
   background: #f5f5f5;
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.expanded {
+  transform: rotate(180deg);
 }

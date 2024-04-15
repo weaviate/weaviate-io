@@ -1,11 +1,11 @@
 # Instantiation
 import weaviate
-import weaviate.classes as wvc
+from weaviate.auth import AuthApiKey
 import os
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),
-    auth_credentials=weaviate.auth.AuthApiKey(api_key=os.getenv("WCS_DEMO_RO_KEY")),
+    auth_credentials=AuthApiKey(api_key=os.getenv("WCS_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")  # <-- Replace with your API key
     }

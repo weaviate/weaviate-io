@@ -1,34 +1,12 @@
 # THIS FILE NEEDS TESTS
 
 # ==============================
-# =====  DOWNLOAD DATA =====
-# ==============================
-
-# START DownloadData
-import requests
-import json
-
-# Download the data
-resp = requests.get(
-    "https://raw.githubusercontent.com/weaviate-tutorials/intro-workshop/main/data/jeopardy_1k.json"
-)
-
-# Load the data so you can see what it is
-data = json.loads(resp.text)
-
-# Parse the JSON and preview it
-print(type(data), len(data))
-print(json.dumps(data[1], indent=2))
-
-# END DownloadData
-
-# ==============================
 # =====  CONNECT =====
 # ==============================
 
 # START ConnectCode
 import weaviate, os, json
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 client = weaviate.connect_to_local(
     headers={
@@ -49,18 +27,16 @@ client.is_ready()
 client.collections.delete("YourCollection")
 
 # START EnableBQ
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 client.collections.create(
     name="YourCollection",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
+    vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
     # highlight-start
-    vector_index_config=wvc.config.Configure.VectorIndex.flat(),
+    vector_index_config=wc.Configure.VectorIndex.flat(
+        quantizer=wc.Configure.VectorIndex.Quantizer.bq()
+    ),
     # highlight-end
-    properties=[
-        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
-        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
-    ]
 )
 # END EnableBQ
 
@@ -71,22 +47,21 @@ client.collections.create(
 client.collections.delete("YourCollection")
 
 # START BQWithOptions
-import weaviate.classes as wvc
+import weaviate.classes.config as wc
 
 client.collections.create(
     name="YourCollection",
-    vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(),
-    # highlight-start
-    vector_index_config=wvc.config.Configure.VectorIndex.flat(
-        distance_metric=wvc.config.VectorDistances.COSINE,
-        vector_cache_max_objects=1000000,
-        quantizer=wvc.config.Configure.VectorIndex.Quantizer.bq()
+    vectorizer_config=wc.Configure.Vectorizer.text2vec_openai(),
+    vector_index_config=wc.Configure.VectorIndex.flat(
+        distance_metric=wc.VectorDistances.COSINE,
+        vector_cache_max_objects=100000,
+        # highlight-start
+        quantizer=wc.Configure.VectorIndex.Quantizer.bq(
+            rescore_limit=200,
+            cache=True
+        )
+        # highlight-end
     ),
-    # highlight-end
-    properties=[
-        wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
-        wvc.config.Property(name="body", data_type=wvc.config.DataType.TEXT),
-    ]
 )
 # END BQWithOptions
 

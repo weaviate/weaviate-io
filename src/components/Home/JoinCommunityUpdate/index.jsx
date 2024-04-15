@@ -10,15 +10,6 @@ export default function HomepageJoinCommunity() {
           <div className={styles.rightSide}>
             <div className={styles.socialBox}>
               <Link
-                to="https://weaviate.io/slack"
-                className={styles.mobileSocialBox}
-              >
-                <div className={styles.slack} />
-                <p className={styles.text}>Slack</p>
-              </Link>
-            </div>
-            <div className={styles.socialBox}>
-              <Link
                 to="https://github.com/weaviate/weaviate"
                 className={styles.mobileSocialBox}
               >
@@ -28,11 +19,11 @@ export default function HomepageJoinCommunity() {
             </div>
             <div className={styles.socialBox}>
               <Link
-                to="https://twitter.com/weaviate_io"
+                to="https://weaviate.io/slack"
                 className={styles.mobileSocialBox}
               >
-                <div className={styles.twitter} />
-                <p className={styles.text}>Twitter</p>
+                <div className={styles.slack} />
+                <p className={styles.text}>Slack</p>
               </Link>
             </div>
             <div className={styles.socialBox}>
@@ -44,19 +35,28 @@ export default function HomepageJoinCommunity() {
                 <p className={styles.text}>Forum</p>
               </Link>
             </div>
+            <div className={styles.socialBox}>
+              <Link
+                to="https://twitter.com/weaviate_io"
+                className={styles.mobileSocialBox}
+              >
+                <div className={styles.twitter} />
+                <p className={styles.text}>X (Twitter)</p>
+              </Link>
+            </div>
           </div>
           <div className={styles.leftSide}>
             <h2>Join the global community</h2>
-            <p className={styles.rightText}>
+            <span className={styles.rightText}>
               Connect with the Weaviate Team and hundreds of developers and data
               engineers! Our community is here to help you with your projects
               and provide expert advice. Share how you build your apps with
               Weaviate.
-            </p>
+            </span>
 
-            <p className={styles.rightText}>
+            <span className={styles.rightText}>
               Stay updated and subscribe to our newsletter
-            </p>
+            </span>
 
             <div className={styles.communityForm}>
               <iframe
@@ -73,6 +73,11 @@ export default function HomepageJoinCommunity() {
                   important: false,
                 }}
               ></iframe>
+              <span className={styles.formFooter}>
+                By submitting, I agree to the{' '}
+                <Link href="/service">Terms of Service </Link>and{' '}
+                <Link href="/privacy">Privacy Policy</Link>.
+              </span>
             </div>
           </div>
         </div>

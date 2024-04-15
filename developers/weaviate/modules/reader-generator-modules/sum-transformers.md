@@ -56,7 +56,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -77,12 +77,12 @@ services:
       EXTENSIONS_STORAGE_ORIGIN: http://weaviate:8080
       NEIGHBOR_OCCURRENCE_IGNORE_PERCENTILE: 5
       ENABLE_COMPOUND_SPLITTING: 'false'
-    image: semitechnologies/contextionary:en0.16.0-v1.0.2
+    image: cr.weaviate.io/semitechnologies/contextionary:en0.16.0-v1.0.2
     ports:
     - 9999:9999
   sum-transformers:
-    image: semitechnologies/sum-transformers:facebook-bart-large-cnn-1.2.0
-    # image: semitechnologies/sum-transformers:google-pegasus-xsum-1.2.0  # Could be used instead
+    image: cr.weaviate.io/semitechnologies/sum-transformers:facebook-bart-large-cnn-1.2.0
+    # image: cr.weaviate.io/semitechnologies/sum-transformers:google-pegasus-xsum-1.2.0  # Could be used instead
 ...
 ```
 

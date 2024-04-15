@@ -1,7 +1,7 @@
 ---
 title: reranker-transformers
 sidebar_position: 55
-image: og/docs/modules/text2vec-transformers.jpg
+image: og/docs/modules/reranker-transformers.jpg
 # tags: ['rerank', 'transformers']
 ---
 
@@ -41,7 +41,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -56,7 +56,7 @@ services:
       ENABLE_MODULES: 'text2vec-openai,reranker-transformers'
       CLUSTER_HOSTNAME: 'node1'
   reranker-transformers:
-    image: semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
+    image: cr.weaviate.io/semitechnologies/reranker-transformers:cross-encoder-ms-marco-MiniLM-L-6-v2
     environment:
       ENABLE_CUDA: '0'
 ...
@@ -64,17 +64,17 @@ services:
 
 ## Configuration
 
-The `reranker-transformers` module can be configured for any class in the schema.
+The `reranker-transformers` module can be configured for any collection in the schema.
 
 
 ### Reranker selection
 
 If there is only one `reranker` module enabled, you don't need to do anything. The `reranker` module will be used by default.
 
-Where multiple `reranker` modules are enabled, you must specify the reranker module to be used for each class. You can do this by adding the desired reranker in the `moduleConfig` section of the schema, even without any further settings.
+Where multiple `reranker` modules are enabled, you must specify the reranker module to be used for each collection. You can do this by adding the desired reranker in the `moduleConfig` section of the schema, even without any further settings.
 
 <details>
-  <summary>Set reranker for a class</summary>
+  <summary>Set reranker for a collection</summary>
 
 ```json
 {
@@ -83,7 +83,7 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
       "class": "Document",
       ...,
       "moduleConfig": {
-        "reranker-transformers": {},  // This will configure the 'Document' class to use the 'reranker-transformers' module
+        "reranker-transformers": {},  // This will configure the 'Document' collection to use the 'reranker-transformers' module
       }
     }
   ]

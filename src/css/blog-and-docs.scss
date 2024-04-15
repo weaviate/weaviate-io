@@ -1,10 +1,14 @@
 @import 'variables.scss';
 @import 'blog-custom-layout.scss';
 
+// For redocusaurus anchor - "smooth" breaks scrolling
+html {
+  scroll-behavior: unset !important;
+}
+
 // Set Fonts
 // .blog-post-page, .blog-list-page, .docs-doc-page {
 .blog-post-page,
-.docs-doc-page,
 .podcast-page {
   // Set Fonts for Blogs and Docs - content
   // #docusaurus_skipToContent_fallback – is for the page content, which excludes the navbar
@@ -22,26 +26,23 @@
   h5,
   h6 {
     font-family: var(--site-font-base-family);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--docs-header-color);
   }
-  h1,
+
   h2 {
-    padding-top: 35px;
-    padding-bottom: 25px;
+    padding-top: 0.7em;
+    padding-bottom: 0.25em;
   }
-  h3 {
-    padding-top: 25px;
-    padding-bottom: 20px;
-  }
+  h3,
   h4 {
-    padding-top: 25px;
-    padding-bottom: 15px;
-    font-size: 1.3rem;
+    padding-top: 0.5em;
+    padding-bottom: 0.15em;
   }
+
   p {
-    padding-left: 5px;
     font-weight: 400;
+    font-size: 1.05rem;
   }
 
   pre code {
@@ -52,7 +53,6 @@
   article ul:not(.tabs),
   article li:not(.tabs) {
     font-family: var(--site-font-base-family);
-    font-size: 1.2rem;
   }
 }
 
@@ -78,15 +78,7 @@
   }
 }
 
-// .docs-doc-page {
-//   .container {
-//     [data-theme='light'] {
-//       background-color: white;
-//     }
-//   }
-// }
-
-.docs-doc-page .container  {
+.docs-doc-page .container {
   background-color: var(--docs-body-bg);
   padding-left: 5%;
   padding-right: 5%;
@@ -96,77 +88,110 @@
 }
 
 // Set Fonts
+.plugin-\@scalar\/docusaurus,
 .docs-doc-page {
   font-family: var(--site-font-base-family);
   font-size: 15px;
   color: var(--docs-base-color);
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.05;
     font-family: var(--site-font-base-family);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--docs-header-color);
   }
+
   h1 {
-    line-height: 1.2;
-    font-size: 49px;
+    padding-top: 0.25em;
+    font-size: 30px;
   }
 
   h2 {
-    line-height: 1.2;
-    font-size: 38px;
+    padding-top: 0.25em;
+    padding-bottom: 0.2em;
+  }
+  h3,
+  h4 {
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
+  }
+
+  h2 {
+    font-size: 26px;
   }
 
   h3 {
-    line-height: 1.2;
-    font-size: 32px;
+    font-size: 23px;
   }
 
   h4 {
-    line-height: 1.5;
-    font-size: 25px;
+    font-size: 20px;
   }
 
   h5 {
-    line-height: 1.45;
     font-size: 20px;
   }
 
   h6 {
-    line-height: 1.6;
     font-size: 18px;
   }
 
-  // h1, h2 {
-  //   padding-top: 35px;
-  //   padding-bottom: 20px;
-  // }
-  // h3 {
-  //   padding-top: 30px;
-  //   padding-bottom: 20px;
-  // }
-  // h4 {
-  //   padding-top: 25px;
-  //   padding-bottom: 15px;
-  //   font-size: 1.3rem;
-  // };
   p {
-    padding-left: 5px;
+    padding-left: 0px;
     font-weight: 400;
+    font-size: 15px;
   }
-  // .theme-doc-sidebar-container, .navbar {
-  //   background: var(--site-background);
-  // }
-  // #__docusaurus {
-  //   background: var(--docs-sidebar-bg);
-  // }
 }
 
 .hidden {
   display: none !important;
 }
 
-//Hides light toggle on docs
+a.navbar__item.navbar__link[href='/developers/weaviate/api/rest'] {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus .sidebar-pages .scalar-icon {
+  display: none;
+}
+
+.scalar-card-content.scalar-card--contrast.request-card-footer {
+  display: none;
+}
+
+.plugin-\@scalar\/docusaurus {
+  // Base font settings
+  font-family: var(--site-font-base-family);
+
+  .sidebar-heading {
+    line-height: 1.05;
+  }
+
+  // Label customization
+  label {
+    font-family: var(--site-font-base-family);
+  }
+
+  // Paragraph customization
+  p {
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 1.05;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+}

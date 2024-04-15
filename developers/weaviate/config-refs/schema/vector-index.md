@@ -1,15 +1,17 @@
 ---
-title: Vector index configuration
-sidebar_position: 13
+title: Vector indexes
+sidebar_position: 30
 image: og/docs/configuration.jpg
 # tags: ['configuration', 'vector index']
 ---
 
-<!-- :::caution Migrated From:
-- Adds text re: configuration options from `Vector index plugins/HNSW`
-::: -->
-
 Vector indexes facilitate efficient, vector-first data storage and retrieval.
+
+## Multiple vectors
+
+import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
+
+<MultiVectorSupport />
 
 ## Index configuration parameters
 
@@ -130,7 +132,7 @@ Flat indexes are recommended for use cases where the number of objects per index
 | Parameter | Type | Default | Changeable | Details |
 | :-- | :-- | :-- | :-- | :-- |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
-| `bq` | object | -- | No | Enable and configure [binary quantization (BQ)](../../concepts/vector-index.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
+| `bq` | object | -- | No | Enable and configure [binary quantization (BQ)](../../concepts/vector-quantization.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
 
 ### BQ configuration parameters
 
@@ -168,7 +170,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -188,7 +190,7 @@ services:
 
 </details>
 
-To get the index status, call the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint.
+To get the index status, check the [node status](/developers/weaviate/config-refs/nodes) endpoint.
 
 <details>
   <summary><code>Node status</code> example usage</summary>

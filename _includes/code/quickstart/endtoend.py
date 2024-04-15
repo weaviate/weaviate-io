@@ -27,7 +27,7 @@ import json
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_CLUSTER_URL"),
+    cluster_url=os.getenv("WCS_URL"),
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_API_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
@@ -52,7 +52,7 @@ client.collections.delete("Question")
 
 # DockerInstantiationExample # EndToEndExample  # InstantiationExample  # NearTextExample
 try:
-    # Wrap in try/finally to ensure client is closed gracefully
+    pass # Replace with your code. Close client gracefully in the finally block.
 # END DockerInstantiationExample  # END EndToEndExample  # END InstantiationExample  # END NearTextExample
 
     # EndToEndExample

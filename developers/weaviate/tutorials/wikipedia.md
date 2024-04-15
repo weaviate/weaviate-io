@@ -111,7 +111,7 @@ The [`jq`](https://stedolan.github.io/jq/) command used after `curl` is a handy 
 
 ## Import the articles
 
-We're now ready to import the articles. For maximum performance, we'll load the articles into Weaviate via [batch import](../api/rest/batch.md).
+We're now ready to import the articles. For maximum performance, we'll load the articles into Weaviate via [batch import](../manage-data/import.mdx).
 
 import ImportArticles from '/_includes/code/tutorials.wikipedia.import.mdx';
 

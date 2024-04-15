@@ -5,7 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-
 ## A design modeled after how our users use Weaviate
 
 The architecture that guides the principles for Weaviate’s replication systems is modeled after how users typically use Weaviate. Weaviate powers site search, recommendation, knowledge extraction, and other information retrieval cases. These cases all have a few things in common:
@@ -25,7 +24,7 @@ Weaviate’s replication architecture is inspired by other modern, Internet-scal
 
 ## Gradual rollout
 
-As with many other Weaviate features, Replication is being rolled out in multiple phases. This does not mean that the first release with replication is to be considered incomplete. Instead it means that Replication is an umbrella term that accompanies many features that work together to achieve the various goals of replication. The most significant of those are contained in the first release (v1.17), but some may only follow in subsequent releases, such as v1.18 and v1.19.
+As with many other Weaviate features, replication is being rolled out in multiple phases. This does not mean that the first release with replication is incomplete. Instead, think of "replication" as a group of features that work together. The most significant features are in the first release (v1.17). Additional features are planned for subsequent releases.
 
 The motivation behind this phased roll-out is two-fold. First, not everyone has the same requirements, and the feature set included in the first release is sufficient for many use cases. You can use the [Replication Roadmap](./index.md#roadmap) section to make an informed decision. Second, your feedback and learning about your needs are extremely valuable to guide the future releases of features. By releasing early and often, we can reduce the time to get valuable feedback.
 

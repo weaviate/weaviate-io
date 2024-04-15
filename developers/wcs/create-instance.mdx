@@ -1,0 +1,57 @@
+---
+title: Create a cluster
+sidebar_position: 30
+image: og/wcs/user_guides.jpg
+---
+
+import TwoClusterTypes from '/_includes/wcs/two-cluster-types.mdx';
+
+<TwoClusterTypes />
+
+## Create a cluster
+
+To create a cluster, click the 'Create cluster' button on the WCS Dashboard page.
+
+![Create a cluster](./img/wcs-console-no-clusters.jpg)
+
+Follow the steps to create a cluster:
+
+- [Sandbox clusters](#sandbox-clusters)
+- [Managed clusters](#managed-clusters).
+
+### Sandbox clusters
+
+To create a sandbox cluster, follow these steps:
+
+import CreateSandboxCluster from '/_includes/wcs/create-cluster-sandbox.mdx'
+
+<CreateSandboxCluster />
+
+### Managed clusters
+
+Managed clusters require billing details. WCS prompts you to add billing details if you have not already added them.
+
+To create a managed cluster, follow these steps:
+
+import CreateManagedCluster from '/_includes/wcs/create-cluster-managed.mdx'
+
+<CreateManagedCluster />
+
+## Authentication
+
+By default, API keys are enabled for all WCS clusters. Managed clusters have an administrator key and a read-only key. Sandbox clusters only have an administrator key.
+
+When you develop your client application, use an API key to connect your client to the cluster. For more details, see [authentication](./authentication.mdx).
+
+To get API keys, click the `API keys` button.
+
+![Details expanded](./img/wcs-console-details-api-key.jpg)
+
+
+## Weaviate core version
+
+When you provision a new cluster, WCS uses the current version of Weaviate core to set up the new cluster. There may be a short delay between the release of a new Weaviate core version and its availability in WCS.  
+
+WCS does not automatically update existing clusters when a new version of Weaviate core is released. 
+
+For more details on WCS versioning, see [Cluster server version](/developers/wcs/platform/version).

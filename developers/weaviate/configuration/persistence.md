@@ -5,13 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'persistence']
 ---
 
-
-:::info Related pages
-- [Configuration: Backups](./backups.md)
-:::
-
-## Overview
-
 When running Weaviate with Docker or Kubernetes, you can persist its data by mounting a volume to store the data outside of the containers. Doing so will cause the Weaviate instance to also load the data from the mounted volume when it is restarted.
 
 Note that Weaviate now offers native backup modules starting with `v1.15` for single-node instances, and `v1.16` for multi-node instances. For older versions of Weaviate, persisting data as described here will allow you to back up Weaviate.
@@ -60,7 +53,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -96,7 +89,7 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
-changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspect-the-shards-of-a-class) to do so.
+changed the thresholds) you can use the [Shards API](/developers/weaviate/api/rest#tag/schema/get/schema/%7BclassName%7D/shards) to do so.
 
 ## Virtual memory access method
 
@@ -109,6 +102,9 @@ The two functions reflect different under-the-hood memory management behaviors. 
 
 In general, `mmap` may be a preferred option with memory management benefits. However, if you experience stalling situations under heavy memory load, we suggest trying `pread` instead.
 
+
+## Related pages
+- [Configuration: Backups](./backups.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

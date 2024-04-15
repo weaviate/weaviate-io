@@ -49,7 +49,7 @@ edward:
   image_url: /img/people/icon/edward.jpg
 erika:
   name: Erika Cardenas
-  title: Developer Advocate
+  title: Technology Partner Manager
   url: https://github.com/erika-cardenas
   image_url: /img/people/icon/erika.jpg
 etienne:
@@ -82,6 +82,11 @@ leonie:
   title: Developer Advocate
   url: https://www.linkedin.com/in/804250ab/
   image_url: /img/people/icon/leonie.jpg
+marion:
+  name: Marion Nehring
+  title: Community Manager
+  url: https://www.linkedin.com/in/marionnehring/
+  image_url: /img/people/icon/marion.jpg
 pete:
   name: Peter Schramm
   title: WCS Tech Lead
@@ -109,7 +114,7 @@ zain:
   image_url: /img/people/icon/zain.jpg
 john:
   name: John Trengrove
-  title: Solution Engineer
+  title: Head of Applied Research
   url: https://github.com/trengrj
   image_url: /img/people/icon/john.png
 shukri:
@@ -139,8 +144,29 @@ femke:
 daniel:
   name: Daniel Phiri
   title: Developer Advocate
+  url: https://www.linkedin.com/in/malgamves
   image_url: /img/people/icon/daniel.jpg
 jon:
   name: Jonathan Tuite
   title: Solutions Engineer
   image_url: /img/people/icon/jon.jpg
+victoria:
+  name: Victoria Slocum
+  title: Machine Learning Engineer
+  url: https://www.linkedin.com/in/victorialslocum/
+  image_url: /img/people/icon/victoria.png
+adam:
+  name: Adam Chan
+  title: Developer Relations Engineer
+  url: https://www.linkedin.com/in/itsajchan/
+  image_url: /img/people/icon/adam.png
+asdine:
+  name: Asdine El Hrychy
+  title: Software Engineer
+  url: https://github.com/asdine
+  image_url: /img/people/icon/asdine.jpg
+ajit:
+  name: Ajit Mistry
+  title: Developer Growth Intern
+  url: https://github.com/ajit283
+  image_url: /img/people/icon/ajit.png

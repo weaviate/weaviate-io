@@ -26,7 +26,7 @@ The module works in two steps:
 2. (Anyscale Inference API) Use a Large Language Model to generate a response based on the results (from the previous step) and the provided prompt or task.
 
 :::note
-You can use the Generative Anyscale module with any other upstream modules. For example, you could use `text2vec-cohere`, `text2vec-huggingface` or `text2vec-openai` to vectorize and query your data, but then rely on the `generative-aws` module to generate a response.
+You can use the Generative Anyscale module with any other upstream modules. For example, you could use `text2vec-cohere`, `text2vec-huggingface` or `text2vec-openai` to vectorize and query your data, but then rely on the `generative-anyscale` module to generate a response.
 :::
 
 The generative module can perform RAG for:
@@ -53,7 +53,7 @@ To use `generative-anyscale`, you must enable it in your Docker Compose file (`d
 
 #### Example
 
-This configuration enables `generative-anyscale` and sets the AWS authentication credentials.
+This configuration enables `generative-anyscale` and sets the Anyscale authentication credentials.
 
 ```yaml
 ---
@@ -67,7 +67,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     ports:
     - 8080:8080
     - 50051:50051
@@ -301,10 +301,6 @@ import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedre
   }
 }
 ```
-
-
-<!-- TODO - ADD THE BELOW TO THE RELEASE BLOG -->
-<!-- Weaviate 1.23 introduces the `generative-anyscale` module, bringing open-source LLM heavyweights such as the Llama 70B, 13B, and 7B series, as well as CodeLlama 34B and Mistral 7B. Stay tuned for further integrations with Anyscale's Fine-tuning APIs and adding custom model paths to Weaviate's Generative Search modules. -->
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

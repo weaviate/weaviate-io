@@ -158,6 +158,7 @@ export default function HomepageHeader() {
           </div>
         </div>
       </div>
+
       <div className={styles.sliderContainer}>
         <StyledSlider {...settings}>
           <div>

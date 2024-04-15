@@ -5,8 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture', 'horizontal scaling', 'cluster', 'replication', 'sharding']
 ---
 
-
-## Introduction
 Weaviate can be scaled horizontally by being run on a set of multiple nodes in a cluster. This section lays out various ways in which Weaviate can be scaled, as well as factors to consider while scaling, and Weaviate's architecture in relation to horizontal scaling.
 
 ## Motivation to scale Weaviate

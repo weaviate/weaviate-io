@@ -5,27 +5,33 @@ image: og/docs/modules/text2vec-aws.jpg
 # tags: ['text2vec', 'text2vec-aws', 'aws']
 ---
 
-
-## Overview
-
 :::info Added in `v1.22.5`
+Starting in v1.22.5, [AWS Bedrock](https://aws.amazon.com/bedrock/) is supported.
 :::
 
-The `text2vec-aws` module enables Weaviate to obtain vectors using [AWS Bedrock](https://aws.amazon.com/bedrock/).
+:::info Added in `v1.24`
+Starting in v1.24.1, [AWS Sagemaker](https://aws.amazon.com/sagemaker/) is supported.
+:::
 
-Key notes:
+The `text2vec-aws` module allows Weaviate to access [AWS Bedrock](https://aws.amazon.com/bedrock/) and [AWS Sagemaker](https://aws.amazon.com/sagemaker/) services.
 
-- As it uses a third-party API, you will need to provide AWS API credentials.
-- You must set an available & supported model.
-    - There is no default model set for this module.
-    - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) to the desired modules from AWS Bedrock so it becomes available in your account.
-    - Then, set an available model in your class configuration.
-    - Not all AWS Bedrock models are supported. See the [Supported models](#supported-models) section for more information.
-- Its usage may incur costs.
-    - Please check the AWS Bedrock [pricing page](https://aws.amazon.com/bedrock/pricing/), especially before vectorizing large amounts of data.
+If you need to run your own embedding service, use `Sagemaker`. `Bedrock` uses AWS models.
+
+## Considerations
+
 - This module is available on Weaviate Cloud Services (WCS).
-- Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
-- Set the appropriate [distance metric](#distance-metric) in your class configuration, depending on the model used.
+- `Bedrock` and `Sagemaker` are third party APIs. You must provide AWS API credentials.
+- `Bedrock` requires a model.
+    - There is no default `Bedrock` model set for this module.
+    - You must [request access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) from AWS Bedrock to make models available in your account.
+    - Not all AWS Bedrock models are supported. See [Supported models](#supported-models).
+    - If you set `"service": "bedrock"``, set a model as well. For example, `"model": "amazon.titan-embed-text-v1"`
+    - Set a [distance metric](#distance-metric) in your class configuration that corresponds to the model you use.
+- These APIs may incur costs. Before vectorizing large amounts of data, check the pricing pages.
+    - [AWS Bedrock pricing](https://aws.amazon.com/bedrock/pricing/)
+    - [AWS Sagemaker](https://aws.amazon.com/sagemaker/pricing/)
+- Enabling this module enables the [`nearText`](/developers/weaviate/api/graphql/search-operators.md#neartext) search operator.
+
 
 import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedence-note.mdx';
 
@@ -35,34 +41,38 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 
 You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to use the API, including an AWS access key and a corresponding AWS secret access key. You can [set them as environment variables](#parameters), or [provide them at query time](#query-time-parameters).
 
-
 ## Weaviate instance configuration
-
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
-:::
 
 ### Docker Compose file
 
-To use `text2vec-aws`, you must enable it in your Docker Compose file (`docker-compose.yml`). You can do so manually, or create one using the [Weaviate configuration tool](/developers/weaviate/installation/docker-compose.md#configurator).
+To use `text2vec-aws`, enable it in your Docker Compose file (`docker-compose.yml`).
 
 #### Parameters
 
-- `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-aws` to enable the module.
-- `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-aws` to make it the default for all classes.
-- `AWS_ACCESS_KEY` or `AWS_ACCESS_KEY_ID` (Optional): Your AWS access key. You can also provide the key at query time.
-- `AWS_SECRET_KEY` or `AWS_SECRET_ACCESS_KEY` (Optional): Your AWS secret access key. You can also provide the key at query time.
+| Parameter | Type | Optional | Default | Description |
+| :-- | :-- | :-- | :-- | :-- |
+| `AWS_ACCESS_KEY` | string | yes | none | Your AWS access key. An alternative for `AWS_ACCESS_KEY_ID`. |
+| `AWS_ACCESS_KEY_ID` | string | yes | none | Your AWS access key. An alternative for `AWS_ACCESS_KEY`. |
+| `AWS_SECRET_KEY` | string | yes | none | Your AWS secret access key. An alternative for `AWS_SECRET_ACCESS_KEY`. |
+| `AWS_SECRET_ACCESS_KEY` | string | yes | none |Your AWS secret access key. An alternative for `AWS_SECRET_KEY`. |
+| `DEFAULT_VECTORIZER_MODULE` | string | yes | none | The default vectorizer module. To make `text2vec-aws` the default vectorizer, set this parameter to `text2vec-aws`.
+|`ENABLE_MODULES` | string | no | none | Set `text2vec-aws` to enable the module.
+|`SERVICE` | string | yes | `bedrock` | Must be `bedrock` or `sagemaker`.
 
 #### Example
 
-This configuration enables `text2vec-aws`, sets it as the default vectorizer, and sets the AWS authentication credentials.
+This configuration does the following:
+
+- Enables the `text2vec-aws` vectorizer
+- Sets `text2vec-aws` as the default vectorizer
+- Sets AWS authentication credentials
 
 ```yaml
 ---
 version: '3.4'
 services:
   weaviate:
-    image: semitechnologies/weaviate:||site.weaviate_version||
+    image: cr.weaviate.io/semitechnologies/weaviate:||site.weaviate_version||
     restart: on-failure:0
     ports:
      - 8080:8080
@@ -81,10 +91,9 @@ services:
 ...
 ```
 
-
 ## Class configuration
 
-You can configure how the module will behave in each class through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
+To configure module behavior for a collection, set collection level values in the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
 ### API settings
 
@@ -92,12 +101,18 @@ You can configure how the module will behave in each class through the [Weaviate
 
 | Parameter | Required | Default | Purpose |
 | :- | :- | :- | :- |
-| `model` | No | NONE | The model to use. You must provide an available & supported model name. |
-| `region` | Yes | NONE | AWS region name, e.g. `us-east-1`. |
+| `model` | No | NONE | The model to use with `Bedrock`. See [supported models](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-aws.md#supported-models). |
+| `region` | Yes | NONE | AWS region name. For example, `us-east-1`. |
 
 #### Example
 
-The following example configures the `Document` class by setting the vectorizer to `text2vec-aws`, distance metric to `cosine`, model to `amazon.titan-embed-text-v1` and the AWS region to `us-east-1`.
+The following example configures the `Document` class to set the following parameters:
+
+- vectorizer: `text2vec-aws`
+- distance metric: `cosine`
+- service: `"sagemaker"`
+- endpoint: AWS provides this value when you configure `sagemaker`
+- AWS region: `us-east-1`
 
 ```json
 {
@@ -112,8 +127,8 @@ The following example configures the `Document` class by setting the vectorizer 
       },
       "moduleConfig": {
         "text2vec-aws": {
-          "model": "amazon.titan-embed-text-v1",    // REQUIRED
-          "region": "us-east-1"                     // REQUIRED
+          "model": "amazon.titan-embed-text-v1",   // REQUIRED
+          "region": "us-east-1"                    // REQUIRED
         }
       },
       // highlight-end
@@ -122,19 +137,16 @@ The following example configures the `Document` class by setting the vectorizer 
 }
 ```
 
-### Vectorization settings
+### Vectorizer settings
 
-You can set vectorizer behavior using the `moduleConfig` section under each class and property:
+To configure vectorization for collections and properties, use the `moduleConfig` section in the collection definition.
 
-#### Class-level
-
-- `vectorizer` - what module to use to vectorize the data.
-- `vectorizeClassName` – whether to vectorize the class name. Default: `true`.
-
-#### Property-level
-
-- `skip` – whether to skip vectorizing the property altogether. Default: `false`
-- `vectorizePropertyName` – whether to vectorize the property name. Default: `false`
+| Setting | Level | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `vectorizer` | collection | none | The module that vectorizes the data. |
+| `vectorizeClassName`| collection | `true` | When `true`, vectorize the class name. |
+|`skip` | property | `false` | When `true`, does not vectorize the property. |
+| `vectorizePropertyName` | property | `false` | When `true`, does not vectorize the property name. |
 
 #### Example
 
@@ -177,22 +189,20 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 }
 ```
 
-
 ## Query-time parameters
 
-You can supply parameters at query time by adding it to the HTTP header.
+To supply parameters at query time, adding them to the HTTP header.
 
-| HTTP Header | Value | Purpose | Note |
-| :- | :- | :- | :- |
-| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. | |
-| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key | |
-
+| HTTP Header | Value | Purpose |
+| :- | :- | :- |
+| `"X-AWS-Access-Key"` | `"YOUR-AWS-API-ACCESS-KEY"` | Your AWS access key. |
+| `"X-AWS-Secret-Key"` | `"YOUR-AWS-API-SECRET-KEY"` | Your AWS secret access key |
 
 ## Additional information
 
 ### Supported models
 
-You can use any of the following models with `text2vec-aws`:
+`text2vec-aws` supports these models:
 
 - `amazon.titan-embed-text-v1`
 - `cohere.embed-english-v3`
@@ -200,17 +210,17 @@ You can use any of the following models with `text2vec-aws`:
 
 ### Distance metric
 
-You can change the distance metric used for vector searches. In most cases, you can start with `cosine` distances. You can see a list of supported distance metrics [here](../../config-refs/distances.md).
+You can change the distance metric used for vector searches. `cosine` distance is a good starting point. For supported distance metrics, see [Distance metrics](../../config-refs/distances.md).
 
 Consult the documentation of the model you are using to see which distance metrics are appropriate.
 
 ### API rate limits
 
-Since this module uses your credentials, any API limits relevant to your account will also apply to the module. Weaviate will output any rate-limit related error messages generated by the API.
+This module uses your AWS credentials. API limits that restrict your AWS account also apply to the module. When the API returns a rate limited error, Weaviate returns an error message.
 
 ### Import throttling
 
-One potential solution to rate limiting would be to throttle the import within your application. We include an example below.
+If your API access is rate limited, consider throttling imports within your application.
 
 import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.example.mdx';
 
@@ -220,7 +230,6 @@ import CodeThrottlingExample from '/_includes/code/text2vec-api.throttling.examp
 <CodeThrottlingExample />
 
 </details>
-
 
 ## Usage example
 

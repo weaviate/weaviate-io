@@ -1,17 +1,18 @@
 // Howto: Search -> Reranking - TypeScript examples
 
 import assert from 'assert';
-import weaviate from 'weaviate-ts-client';
+import weaviate from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'https',
-  host: 'edu-demo.weaviate.network',
-  apiKey: new weaviate.ApiKey('learn-weaviate'),
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-    'X-Cohere-Api-Key': process.env['COHERE_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+ {
+   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+     'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '', // Replace with your Cohere API key
+   }
+ } 
+)
 
 let result;
 
@@ -20,17 +21,14 @@ let result;
 // ==================================
 
 // START nearText
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withNearText({
-    concepts: ['flying'],
-  })
-  .withLimit(10)
-  .withFields('question answer _additional { distance }')
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion')
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.nearText(['flying'], {
+  limit: 10,
+  returnMetadata: ['score']
+})
+
+console.log(result.objects)
 // END nearText
 
 // Tests
@@ -46,19 +44,20 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // =================================
 
 // START RerankNearText
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withNearText({
-    concepts: ['flying'],
-  })
-  // highlight-start
-  .withFields('question answer _additional { distance rerank(property: "answer" query: "floating") { score } }')
-  // highlight-end
-  .withLimit(10)
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion')
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.nearText(['flying'], {
+  limit: 10,
+  // highlight-start
+  rerank: {
+    property: 'question',
+    query: 'publication',
+  },
+  // highlight-end
+  returnMetadata: ['score']
+})
+
+console.log(result.objects)
 // END RerankNearText
 
 // Tests
@@ -76,19 +75,20 @@ for (const question of result.data.Get.JeopardyQuestion) {
 // ============================
 
 // START bm25Rerank
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withBm25({
-    query: 'paper',
-  })
-  // highlight-start
-  .withFields('question answer _additional { distance rerank(property: "question" query: "publication") { score } }')
-  // highlight-end
-  .withLimit(10)
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion')
 
-console.log(JSON.stringify(result, null, 2));
+const result = await myCollection.query.bm25(['paper'], {
+  limit: 10,
+  // highlight-start
+  rerank: {
+    property: 'question',
+    query: 'publication',
+  },
+  // highlight-end
+  returnMetadata: ['score']
+})
+
+console.log(result.objects)
 // END bm25Rerank
 
 // Tests

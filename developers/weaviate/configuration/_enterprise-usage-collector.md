@@ -7,8 +7,6 @@ image: og/docs/configuration.jpg
 
 
 <!-- Hidden for now as no longer used; to be removed in the future. -->
-## Introduction
-
 When using Weaviate Enterprise, a proxy service is placed in between the user (or load balancer) and Weaviate. The service measures how Weaviate is used without sending through any sensitive information (e.g., function, durations, payload sizes). Below you can find an outline on how to add the proxy service to your setup.
 
 ## 1. Collect a Weaviate Enterprise Token
@@ -23,7 +21,7 @@ If you are using the Docker Compose file from the installation configurator, you
 ```yaml
 services:
     enterprise-proxy:
-    image: semitechnologies/weaviate-enterprise-usage-collector:latest
+    image: cr.weaviate.io/semitechnologies/weaviate-enterprise-usage-collector:latest
     environment:
       - weaviate_enterprise_token=[[ WEAVIATE TOKEN ]]
       - weaviate_enterprise_project=[[ PROJECT NAME ]]

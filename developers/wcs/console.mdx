@@ -1,0 +1,70 @@
+---
+title: Query app
+sidebar_position: 50
+image: og/wcs/user_guides.jpg
+---
+
+import WCSConsoleButton from './img/wcs-console-button.png';
+import WCSConnectedInstances from './img/wcs-connected-instances.png';
+import WCSQueryDropdown from './img/wcs-query-dropdown.png';
+import WCSInferenceApiKey from './img/wcs-console-inference-key.png';
+import WCSManyInferenceApiKeys from './img/wcs-console-many-inference-keys.png';
+
+The Weaviate Cloud Services (WCS) query application (query app) is a browser-based GraphQL IDE. Use the query app to work interactively with your WCS clusters.
+
+![WCS query app](./img/wcs-console-example-query.png)
+
+[GraphiQL](https://github.com/graphql/graphiql/tree/main/packages/graphiql) is built into the query app. GraphiQL provides many features that make GraphQL easier to use interactively:
+
+- Syntax highlighting
+- Intelligent type ahead
+- Automatic completion for queries and variables
+- Real-time error highlighting and reporting for queries and variables
+
+
+## Open the query app
+
+To open the query app, connect to your WCS [WCS Dashboard](https://console.weaviate.cloud). In the left-hand menu, click the stacked circle icon.
+
+![WCS query app location](img/wcs-query-console-location.jpg)
+
+## Select a Weaviate instance
+
+The query app connects directly to your WCS clusters. The query app can also connect to other Weaviate instances if you have the proper authorization credentials.
+
+### Connect to a WCS cluster
+
+
+In this example, the WCS Dashboard is connected to an external instance as well as the two WCS instances.
+
+<img src={WCSConnectedInstances} width="100%" alt="Connected instances"/>
+
+The GraphQL console can be used to query any of the three instances.
+
+Click the `Query` button for a cluster to open a console window connected to that cluster.
+
+Alternatively, the query window includes a drop-down menu at the top of the screen which can be used to choose the desired instance.
+
+<img src={WCSQueryDropdown} width="100%" alt="Instance selection dropdown"/>
+<br/><br/>
+
+### Authentication
+
+The query app connects to WCS instances, sandboxes and managed clusters,without any additional authentication details.
+
+### Pass inference keys
+
+To pass API keys for inference modules such as `text2vec-cohere`, `text2vec-cohere`, or `text2vec-openai`, use request headers. The `Header` tab is at bottom of the query screen. Add the service inference key to the query headers. 
+
+In this example, the `X-OpenAI-Api-Key` header sets the OpenAI API key.
+
+<img src={WCSInferenceApiKey} width="100%" alt="How to add an API inference key to a WCS console query"/>
+
+The header can pass multiple keys.
+
+<img src={WCSManyInferenceApiKeys} width="80%" alt="How to add multiple API inference keys to a WCS console query"/>
+
+## More resources
+
+- [GraphiQL library](https://github.com/graphql/graphiql/tree/main/packages/graphiql)
+- [Vectorizer modules](/developers/weaviate/modules/retriever-vectorizer-modules/) 

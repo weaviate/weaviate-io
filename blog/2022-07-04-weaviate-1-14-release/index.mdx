@@ -195,7 +195,7 @@ This ensures that the operations are performed on the correct objects.
 ### Background
 One of Weaviate's features is full CRUD support. CRUD operations enable the mutability of data objects and their vectors, which is a key difference between a vector database and an ANN library. In Weaviate, every data object has an ID (UUID). This ID is stored with the data object in a key-value store. IDs don't have to be globally unique, because in Weaviate [classes](/developers/weaviate/manage-data/collections) act as namespaces. While each class has a different [HNSW index](/developers/weaviate/concepts/vector-index#hnsw), including the store around it, which is isolated on disk.
 
-There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/api/rest/objects) REST endpoints.
+There was however one point in the API where reusing IDs between classes was causing serious issues. Most noticeable this was for the [v1/objects/{id}](/developers/weaviate/api/rest#tag/objects) REST endpoints.
 If you wanted to retrieve, modify or delete a data object by its ID, you would just need to specify the ID, without specifying the class name. So if the same ID exists for objects in multiple classes (which is fine because of the namespaces per class), Weaviate would not know which object to address and would address all objects with that ID instead. I.e. if you tried to delete an object by ID, this would result in the deletion of all objects with that ID.
 
 ### Endpoint changes
@@ -251,7 +251,6 @@ Here is a little guide on [how to write great bug reports](/developers/weaviate/
 ## Enjoy
 We hope you enjoy the most reliable and observable Weaviate release yet!
 
-import ShareFeedback from '/_includes/share-feedback.md';
+import WhatsNext from '/_includes/what-next.mdx';
 
-<ShareFeedback />
-
+<WhatsNext />

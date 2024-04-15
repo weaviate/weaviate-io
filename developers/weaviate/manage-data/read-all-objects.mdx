@@ -12,6 +12,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.read-all-objects-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read-all-objects.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read-all-objects_test.go';
 
@@ -47,9 +48,18 @@ The following code iterates through all objects, providing the properties and id
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadAllProps"
+      endMarker="// END ReadAllProps"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadAllProps"
       endMarker="// END ReadAllProps"
       language="ts"
@@ -77,7 +87,7 @@ The following code iterates through all objects, providing the properties and id
 
 ## Read all objects including vectors
 
-Read through all data including `vector embeddings`.
+Read through all data including the vectors. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
 
 <Tabs groupId="languages">
 
@@ -99,9 +109,18 @@ Read through all data including `vector embeddings`.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadAllVectors"
+      endMarker="// END ReadAllVectors"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadAllVectors"
       endMarker="// END ReadAllVectors"
       language="ts"
@@ -111,7 +130,7 @@ Read through all data including `vector embeddings`.
 
 ## Read all objects - Multi-tenant collections
 
-Iterate through all tenenats and read data for each.
+Iterate through all tenants and read data for each.
 
 :::tip Multi-tenancy
 For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, you need to specify the tenant name when reading or creating objects. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details.
@@ -137,9 +156,18 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ReadAllTenants"
+      endMarker="// END ReadAllTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ReadAllTenants"
       endMarker="// END ReadAllTenants"
       language="ts"
@@ -148,6 +176,8 @@ For classes where [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled,
 </Tabs>
 
 ## Related pages
+
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [How-to: Read objects](./read.mdx)
 - [References: GraphQL - Additional Operators](../api/graphql/additional-operators.md#cursor-with-after)
 - [Manage data: multi-tenancy operations](./multi-tenancy.md)

@@ -71,6 +71,50 @@ client.schema.create({"classes": class_definitions})
 dataset = weaviate_datasets.JeopardyQuestions1k()  # instantiate dataset
 dataset.upload_objects(client, 100)  # batch-upload objects
 
+
+# ==========================================
+# ===== Add an object with a cross-ref =====
+# ==========================================
+
+
+import weaviate
+from weaviate.util import generate_uuid5
+
+client = weaviate.Client("http://localhost:8080")
+
+category_properties = {"title": "Weaviate"}
+category_uuid = generate_uuid5(category_properties)
+obj_uuid = generate_uuid5({
+    "question": "What tooling helps make Weaviate scalable?",
+    "answer": "Sharding, multi-tenancy, and replication"
+})
+
+data_obj = {
+    "question": "What tooling helps make Weaviate scalable?",
+    "answer": "Sharding, multi-tenancy, and replication"
+}
+
+# ObjectWithCrossRef
+# data_obj is a dictionary with the object's properties
+data_obj["hasCategory"] = [  # Add one or more cross-references through the "hasCategory" property
+    {"beacon": f"weaviate://localhost/JeopardyCategory/{category_uuid}"}
+]
+
+data_uuid = client.data_object.create(
+    data_obj,
+    "JeopardyQuestion",
+    uuid=obj_uuid,  # optional; if not provided, one will be generated
+)
+# END ObjectWithCrossRef
+
+
+# Test results
+q_obj = client.data_object.get(uuid=obj_uuid, class_name="JeopardyQuestion")
+xrefs = [category["href"] for category in q_obj["properties"]["hasCategory"]]
+assert f"/v1/objects/JeopardyCategory/{category_uuid}" in xrefs
+# END Test results
+
+
 # =================================
 # ===== Add one-way cross-ref =====
 # =================================
@@ -213,6 +257,25 @@ assert f"/v1/objects/JeopardyCategory/{us_cities_id}" in xrefs
 assert f"/v1/objects/JeopardyCategory/{museums_id}" in xrefs
 # END Test results
 
+
+# ============================
+# ===== Read object with cross-ref =====
+# ============================
+
+some_uuid = sf_id
+
+# ReadCrossRef
+response = (
+    client.query
+    # highlight-start
+    .get(
+        "JeopardyQuestion",
+        ["question", "hasCategory { ... on JeopardyCategory { title } }"],
+    )
+    # highlight-end
+    .with_limit(2).do()
+)
+# END ReadCrossRef
 
 # ============================
 # ===== Delete cross-ref =====

@@ -7,53 +7,41 @@ image: og/docs/installation.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
-
-Embedded Weaviate is a new deployment model, which allows you to start a Weaviate instance, straight in your application code using a Weaviate Client library.
-
 :::caution Experimental
-Embedded Weaviate is still in the **Experimental** phase.
+Embedded Weaviate is **experimental** software. APIs and parameters may change.
 
-Some of the APIs and parameters might change over time, as we refine and improve it.
 :::
 
-### How does it work?
+Embedded Weaviate is a new deployment model that runs a Weaviate instance from your application code rather than from a stand-alone Weaviate server installation.
 
-With every Weaviate release we also publish executable Linux binaries (see the **Assets** section on the [releases](https://github.com/weaviate/weaviate/releases) page).
+When Embedded Weaviate starts for the first time, it creates a permanent datastore in the location set in your `persistence_data_path`. When your client exits, the Embedded Weaviate instance also exits, but the data persists . The next time the client runs, it starts a new instance of Embedded Weaviate. New Embedded Weaviate instances use the data that is saved in the datastore.
 
-This allows launching the Weaviate database server from the client instantiation call, which makes the "installation" step invisible by pushing it to the background:
+## Start an Embedded Weaviate instance
 
 import EmbeddedInstantiation from '/_includes/code/embedded.instantiate.mdx';
 
 <EmbeddedInstantiation />
 
-## Embedded options
+When you exit the client, the Embedded Weaviate instance also exits.
 
-The Weaviate server spawned from the client can be configured via parameters passed at instantiation time, and via environment variables. All parameters are optional.
+## Configuration options
 
-| Parameter | Type | Description | Default value |
-| --------- | ---- | ----------- | ------------- |
-| persistence_data_path | string | Directory where the files making up the database are stored. | When the `XDG_DATA_HOME` env variable is set, the default value is:<br/>`XDG_DATA_HOME/weaviate/`<br/><br/>Otherwise it is:<br/>`~/.local/share/weaviate` |
-| binary_path | string | Directory where to download the binary. If deleted, the client will download the binary again. | When the `XDG_CACHE_HOME` env variable is set, the default value is:<br/>`XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>Otherwise it is:<br/>`~/.cache/weaviate-embedded` |
-| version | string | Version takes two types of input:<br/>- **version number** - for example `"1.19.6"` or `"latest"`<br/>- **full URL** pointing to a Linux AMD64 or ARM64 binary | Latest stable version |
-| port | integer | Which port the Weaviate server will listen to. Useful when running multiple instances in parallel. | 6666 |
-| hostname | string | Hostname/IP to bind to. | 127.0.0.1 |
-| additional_env_vars | key: value | Useful to pass additional environment variables to the server, such as API keys. |
+To configure Embedded Weaviate, set these variables in your instantiation code or pass them as parameters when you invoke your client. You can also pass them as system environment variables. All parameters are optional.
 
-:::danger XDG Base Directory standard values
-It is **not recommended** to modify the `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables from the standard **XDG Base Directory** values, as that might affect many other (non-Weaviate related) applications and services running on the same server.
+| Parameter | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `additional_env_vars` | string | None. | Pass additional environment variables, such as API keys, to the server. |
+| `binary_path` | string | varies | Binary download directory. If the binary is not present, the client downloads the binary. <br/><br/> If `XDG_CACHE_HOME` is set, the default is: `XDG_CACHE_HOME/weaviate-embedded/`<br/><br/>If `XDG_CACHE_HOME` is not set, the default is: `~/.cache/weaviate-embedded` |
+| `hostname` | string | 127.0.0.1 | Hostname or IP address  |
+| `persistence_data_path` | string | varies | Data storage directory.<br/><br/> If `XDG_DATA_HOME` is set, the default is: `XDG_DATA_HOME/weaviate/`<br/><br/>If `XDG_DATA_HOME` is not set, the default is: `~/.local/share/weaviate` |
+| `port` | integer | 8079 | The Weaviate server request port. |
+| `version` | string | Latest stable | Specify the version with one of the following:<br/>-`"latest"`<br/>- The version number as a string: `"1.19.6"`<br/>- The URL of a Weaviate binary ([See below](/developers/weaviate/installation/embedded.md#file-url)) |
+
+:::warning Do not modify `XDG_CACHE_HOME` or `XDG_DATA_HOME`
+The `XDG_DATA_HOME` and `XDG_CACHE_HOME` environment variables are widely used system variables. If you modify them, you may break other applications.
 :::
 
-:::tip Providing the Weaviate version as a URL
-To find the **full URL** for `version`:
-* head to [Weaviate releases](https://github.com/weaviate/weaviate/releases),
-* find the **Assets** section for the required Weaviate version
-* and copy the link to the `(name).tar.gz` file for the desired architecture.
-
-For example, here is the URL of the Weaviate `1.19.6` `AMD64` binary: `https://github.com/weaviate/weaviate/releases/download/v1.19.6/weaviate-v1.19.6-linux-amd64.tar.gz`.
-:::
-
-### Default modules
+## Default modules
 
 The following modules are enabled by default:
 - `generative-openai`
@@ -63,66 +51,82 @@ The following modules are enabled by default:
 - `text2vec-huggingface`
 - `text2vec-openai`
 
-Additional modules can be enabled by setting additional environment variables as [laid out above](#embedded-options). For instance, to add a module called `backup-s3` to the set, you would pass it at instantiation as follows:
+To enabled additional modules, add them to your instantiation code.
 
-import EmbeddedInstantiationVerbose from '/_includes/code/embedded.instantiate.verbose.mdx';
+For example, to add the `backup-s3` module, instantiate your client like this:
 
-<EmbeddedInstantiationVerbose />
+import EmbeddedInstantiationModule from '/_includes/code/embedded.instantiate.module.mdx';
 
-## Starting Embedded Weaviate under the hood
+<EmbeddedInstantiationModule />
 
-Here's what happens behind the scenes when the client uses the embedded options in the instantiation call:
-1. The client downloads a Weaviate release from GitHub and caches it
-2. It then spawns a Weaviate process with a data directory configured to a specific location, and listening to the specified port (by default 6666)
-3. The server's STDOUT and STDERR are piped to the client
-4. The client connects to this server process (e.g. to `http://127.0.0.1:6666`) and runs the client code
-5. After running the code (when the application terminates), the client shuts down the Weaviate process
-6. The data directory is preserved, so subsequent invocations have access to the data from all previous invocations, across all clients using the embedded option.
+## Binary sources
 
-### Lifecycle
+Weaviate core releases include executable Linux binaries. When you instantiate an Embedded Weaviate client, the client checks for local copies of the binary packages. If the client finds the binary files, it runs them to create a temporary Weaviate instance. If not, the client downloads the binaries and saves them in your `binary_path` directory.
 
-The embedded instance will stay alive for as long as the parent application is running.
+The Embedded Weaviate instance goes away when your client exits. However, the client does not delete the binary files. The next time your client runs, it checks for the binaries and uses the saved binaries if they exist.
 
-When the application exits (e.g. due to an exception or by reaching the end of the script), Weaviate will shut down the embedded instance, but the data will persist.
+### File list
+For a list of the files that are included in a release, see the Assets section of the Release Notes page for that release on [GitHub](https://github.com/weaviate/weaviate/releases).
 
-:::note Embedded with Jupyter Notebooks
-An Embedded instance will stay alive for as long as the Jupyter notebook is active.
+### File URL
+To get the URL for a particular binary archive file, follow these steps:
+1. Find the Weaviate core release you want on the [Release Notes](/developers/weaviate/release-notes/index.md#weaviate-core-release-summaries) page.
+1. Click to the release notes for that version. The Assets section includes `linux-amd64` and `linux-arm64` binaries in `tar.gz` format.
+1. Copy the link to the full URL of the `tar.gz` file for your platform.
 
-This is really useful, as it will let you experiment and work with your Weaviate projects and examples.
-:::
+For example, the URL for the Weaviate `1.19.6` `AMD64` binary is:
+
+`https://github.com/weaviate/weaviate/releases/download/v1.19.6/weaviate-v1.19.6-linux-amd64.tar.gz`.
+
+## Functional overview
+
+Weaviate core usually runs as a stand-alone server that clients connect to in order to access data. An Embedded Weaviate instance is a process that runs in conjunction with a client script or application. Embedded Weaviate instances can access a persistent datastore, but the instances exit when the client exits.
+
+When your client runs, it checks for a stored Weaviate binary. If it finds one, the client uses that binary to create an Embedded Weaviate instance. If not, the client downloads the binary.
+
+The instance also checks for an existing data store. Clients reuse the same data store, updates persist between client invocations.
+
+When you exit the client script or application, the Embedded Weaviate instance also exits:
+
+- Scripts: The Embedded Weaviate instance exits when the script exits.
+- Applications: The Embedded Weaviate instance exits when the application exits.
+- Jupyter Notebooks: The Embedded Weaviate instance exits when the Jupyter notebook is no longer active.
+
+## Embedded server output
+
+The embedded server pipes `STDOUT` and `STDERR` to the client. To redirect `STDERR` in a command terminal, run your script like this:
+
+```bash
+python3 your_embedded_client_script.py 2>/dev/null
+```
 
 ## Supported Environments
 
-### Operating Systems
+Embedded Weaviate is supported on Linux and macOS.
 
-Embedded Weaviate is currently supported on:
-- Linux
-- macOS
+## Client languages
 
+Embedded Weaviate is supported for Python and TypeScript clients.
 
-## Language Clients
+### Python clients
 
-### Python
+[Python](../client-libraries/python/index.md) v3 client support is new in `v3.15.4` for Linux and `v3.21.0` for macOS. The Python client v4 requires server version v1.23.7 or higher.
 
-[Python client](../client-libraries/python.md) support was added in `v3.15.4` for Linux, and in `v3.21.0` for macOS.
+### TypeScript clients
 
-### TypeScript
+The embedded TypeScript client is no longer a part of the standard TypeScript client.
 
-Due to use of server-side dependencies which are not available in the browser platform, the embedded TypeScript client has been split out into its own project. Therefore the original non-embedded TypeScript client can remain isomorphic.
+The embedded client has additional dependencies that are not included in the standard client. However, the embedded client extends the original TypeScript client so after you instantiate an Embedded Weaviate instance, the embedded TypeScript client works the same way as the standard client.
 
-The TypeScript embedded client simply extends the original TypeScript client, so once instantiated it can be used exactly the same way to interact with Weaviate. It can be installed with the following command:
+To install the embedded TypeScript client, run this command:
 
 ```
 npm install weaviate-ts-embedded
 ```
 
-macOS support was added in `v1.2.0`.
-
-GitHub repositories:
-* [TypeScript embedded client](https://github.com/weaviate/typescript-embedded)
-* [Original TypeScript client](https://github.com/weaviate/typescript-client)
-
-
+The TypeScript clients are in these GitHub repositories:
+- [Embedded TypeScript client](https://github.com/weaviate/typescript-embedded)
+- [Standard TypeScript client](https://github.com/weaviate/typescript-client)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

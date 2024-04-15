@@ -11,8 +11,77 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
 
 Vector search returns the objects with most similar vectors to that of the query.
+
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorNearTextPython"
+      endMarker="# END NamedVectorNearTextPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// NamedVectorNearText"
+      endMarker="// END NamedVectorNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorNearTextGraphql"
+      endMarker="# END NamedVectorNearTextGraphql"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# START Expected NamedVectorNearText results"
+  endMarker="# END Expected NamedVectorNearText results"
+  language="json"
+/>
+
+</details>
 
 ## Search with text
 
@@ -37,9 +106,18 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GetNearText"
+      endMarker="// END GetNearText"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GetNearText"
       endMarker="// END GetNearText"
       language="ts"
@@ -75,6 +153,8 @@ The output is like this:
 import ImgSrchPyCode from '!!raw-loader!/_includes/code/howto/search.image.py';
 import ImgSrchPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.image-v3.py';
 import ImgSrchTSCode from '!!raw-loader!/_includes/code/howto/search.image.ts';
+import ImgSrchTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.image-v2.ts';
+
 
 Use the [`Near Image`](../api/graphql/search-operators.md#nearimage) operator to find objects with the nearest vector to an image.<br/>
 This example uses a base64 representation of an image.
@@ -98,9 +178,18 @@ This example uses a base64 representation of an image.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={ImgSrchTSCode}
+      startMarker="// START search with base64"
+      endMarker="// END search with base64"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={ImgSrchTSCodeLegacy}
       startMarker="// START search with base64"
       endMarker="// END search with base64"
       language="ts"
@@ -134,7 +223,16 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// GetNearObject"
+      endMarker="// END GetNearObject"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetNearObject"
@@ -186,9 +284,18 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GetNearVector"
+      endMarker="// END GetNearVector"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GetNearVector"
       endMarker="// END GetNearVector"
       language="ts"
@@ -228,9 +335,18 @@ To set a similarity threshold between the search and target vectors, define a ma
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GetWithDistance"
+      endMarker="// END GetWithDistance"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GetWithDistance"
       endMarker="// END GetWithDistance"
       language="ts"
@@ -281,9 +397,18 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GetLimitOffset"
+      endMarker="// END GetLimitOffset"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GetLimitOffset"
       endMarker="// END GetLimitOffset"
       language="ts"
@@ -323,9 +448,18 @@ To limit results to groups of similar distances to the query, use the [`autocut`
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Autocut"
+      endMarker="// END Autocut"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Autocut"
       endMarker="// END Autocut"
       language="ts"
@@ -379,7 +513,7 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetWithGroupBy"
@@ -387,6 +521,16 @@ Use a property or a cross-reference to group results. To group returned objects,
       language="ts"
     />
   </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// GetWithGroupBy"
+      endMarker="// END GetWithGroupBy"
+      language="ts"
+    />
+  </TabItem>
+
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -434,9 +578,18 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// GetWithFilter"
+      endMarker="// END GetWithFilter"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// GetWithFilter"
       endMarker="// END GetWithFilter"
       language="ts"
@@ -469,8 +622,9 @@ The output is like this:
 
 ## Related pages
 
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - For image search, see [Image search](/developers/weaviate/search/image).
-- For tutorials, see [Queries](/developers/academy/zero_to_mvp/queries_1).
+- For tutorials, see [Queries](/developers/weaviate/tutorials/query.md).
 - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
