@@ -20,6 +20,9 @@ import weaviate
 client = weaviate.Client(
     url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    additional_headers={
+        'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")  # Replace with your third party API key and identifying header
+    }
 )
 
 print(client.is_ready())
