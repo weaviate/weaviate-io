@@ -100,6 +100,23 @@ import WCSClientIsReady from '/_includes/code/wcs.client.is_ready.mdx';
 
 If you are connected, the server returns `True`.
 
+## Define a collection
+
+Weaviate stores objects in collections. Collection [schemas](/developers/weaviate/config-refs/schema) are highly configurable, but some properties cannot be changed after you create the collection. For best results, define a collection schema before you import your data. Alternatively, let the [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) feature infer a schema based on your data. 
+
+To create a schema for the `Question` collection, run this code:
+
+import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
+
+<CodeAutoschemaMinimumSchema />
+
+The collection has these properties: 
+
+  - Name `Question`
+  - Vectorizer module `text2vec-openai`
+  - Generative module `generative-openai`
+
+
 ## Next steps
 
 - If you just want to try Weaviate, continue with a sandbox cluster.
