@@ -76,7 +76,7 @@ try:
         })
 
     questions = client.collections.get("Question")
-    questions.data.insert_many(question_objs)  # This uses batching under the hood
+    questions.data.insert_many(question_objs)
 
     # END EndToEndExample    # Test import
     questions_definition = questions.config.get()

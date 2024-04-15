@@ -126,13 +126,11 @@ The collection has these properties:
 
 ## Load data
 
-Weaviate uses [batch](/developers/weaviate/manage-data/import) processing to import data efficiently.
-
-This example code downloads a sample data set and uploads it to your WCS instance.
+This example code downloads a sample data set and uploads it to your WCS instance. The example assumes your collection [has a schema](#define-a-collection) already.
 
 To upload the data, follow these steps.
 
-1. Create a [client connection](#connect-to-your-wcs-instance). 
+1. Create a [client connection](#connect-to-your-wcs-instance).
 1. Add the batch import code after the client creation code.
 1. Run the code.
 
@@ -140,10 +138,26 @@ import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
 <CodeAutoschemaImport />
 
+## Query your data
+
+Weaviate supports a variety of [search methods](/developers/weaviate/search). A `near_text` search vectorizes the search string and returns objects that have vectors that are most similar to it. This example performs a `nearText` search on the `Question` [data collection](#load-data).
+
+To search for objects in the `Question` collection that have vectors that are similar to the vector for `biology`, run this example code:
+
+import CodeAutoschemaNeartext from '/_includes/code/quickstart/neartext.mdx'
+
+<CodeAutoschemaNeartext />
+
+The results are similar to this:
+
+import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx'
+
+<BiologyQuestionsJson />
+
 ## Next steps
 
-- If you want to try Weaviate, continue with a sandbox cluster.
-- If you want to work with Weaviate or need a persistent cluster, enter your billing details so you can create managed clusters.
+- If you want to try out Weaviate and don't need to save your work, continue with a sandbox cluster.
+- If you want to build with Weaviate or if you need a persistent cluster, enter your billing details and create a managed cluster.
 - To learn how Weaviate can help you build your project, review the [Weaviate documentation](../weaviate/index.md).
 
 ## Support
