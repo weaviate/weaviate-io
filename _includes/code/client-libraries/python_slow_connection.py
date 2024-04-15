@@ -7,21 +7,25 @@ import weaviate.classes as wvc
 # =================================
 
 # START ConnectWithLongTimeOut
+from weaviate.classes.init import AdditionalConfig, Timeout
+from weaviate.auth import AuthApiKey
+import weaviate
+
 # Set these environment variables
-URL = os.getenv("YOUR_WCS_URL")
-APIKEY = os.getenv("YOUR_WCS_API_KEY")
+URL = os.getenv("WCS_URL")
+APIKEY = os.getenv("WCS_API_KEY")
 
 # Connect to a WCS instance
 client = weaviate.connect_to_wcs(
     cluster_url=URL,
-    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
-    additional_config=wvc.init.AdditionalConfig(timeout=wvc.init.Timeout(init=10)),
+    auth_credentials=AuthApiKey(APIKEY),
+    additional_config=AdditionalConfig(timeout=Timeout(init=10)),
 )
 
 # Check connection
 client.is_ready()
-
 # END ConnectWithLongTimeOut
+
 client.close()
 
 # =================================
@@ -29,20 +33,22 @@ client.close()
 # =================================
 
 # START ConnectWithSkipChecks
+import weaviate
+from weaviate.auth import AuthApiKey
 
 # Set these environment variables
-URL = os.getenv("YOUR_WCS_URL")
-APIKEY = os.getenv("YOUR_WCS_API_KEY")
+URL = os.getenv("WCS_URL")
+APIKEY = os.getenv("WCS_API_KEY")
 
 # Connect to a WCS instance
 client = weaviate.connect_to_wcs(
     cluster_url=URL,
-    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
+    auth_credentials=AuthApiKey(APIKEY),
     skip_init_checks=True,
 )
 
 # Check connection
 client.is_ready()
-
 # END ConnectWithSkipChecks
+
 client.close()

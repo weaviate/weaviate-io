@@ -192,9 +192,7 @@ To add API keys for services such as Cohere or OpenAI, use the `headers` paramet
 
 #### Timeout values
 
-Set timeout values, in seconds, for the client.
-
-The syntax is: `timeout=(<connection timeout>, <read timeout>)`
+You can set timeout values, in seconds, for the client. Use the `Timeout` class to configure the timeout values for initialization checks as well as query and insert operations.
 
 <FilteredTextBlock
   text={PythonCode}
@@ -205,7 +203,7 @@ The syntax is: `timeout=(<connection timeout>, <read timeout>)`
 
 :::tip Timeouts on `generate` (RAG) queries
 
-If you are seeing errors while using the `generate` submodule, try increasing the timeout values (e.g. to `(60, 120)`). The `generate` submodule uses a large language model to generate text.
+If you are seeing errors while using the `generate` submodule, try increasing the timeout values (e.g. to `Timeout(query=60)`). The `generate` submodule uses a large language model to generate text.
 <br/>
 
 Accordingly, the speed of the `generate` submodule is dependent on the speed of the language model (and any API that is serving the language model). Increasing the timeout values will allow the client to wait longer for the language model to respond.

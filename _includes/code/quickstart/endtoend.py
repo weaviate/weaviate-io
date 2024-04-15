@@ -27,7 +27,7 @@ import json
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
 client = weaviate.connect_to_wcs(
-    cluster_url=os.getenv("WCS_CLUSTER_URL"),
+    cluster_url=os.getenv("WCS_URL"),
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_API_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"]  # Replace with your inference API key
