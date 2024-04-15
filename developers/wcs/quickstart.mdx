@@ -87,11 +87,13 @@ import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
 
 ## Connect to your WCS instance
 
-These code samples demonstrate how to connect use a Weaviate client to your WCS cluster.
+These code samples demonstrate how to connect a Weaviate client to your WCS cluster.
 
 To connect to your cluster, follow these steps for your language:
 
-1. Replace the endpoint URL and the API key with the values you got on the Details panel.
+1. Copy the sample client code to a file.
+1. Find your WCS cluster URL and API key in the WCS Console.
+1. Create environment variables, or edit the sample code, to pass the URL and API key to your client.
 1. Run the client code.
 
 import WCSClientIsReady from '/_includes/code/wcs.client.is_ready.mdx';
@@ -102,9 +104,15 @@ If you are connected, the server returns `True`.
 
 ## Define a collection
 
-Weaviate stores objects in collections. Collection [schemas](/developers/weaviate/config-refs/schema) are highly configurable, but some properties cannot be changed after you create the collection. For best results, define a collection schema before you import your data. Alternatively, let the [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) feature infer a schema based on your data. 
+Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schema are highly configurable, but some properties cannot be changed after you create the collection.
 
-To create a schema for the `Question` collection, run this code:
+For best results, define a collection schema before you import your data. Alternatively, let the [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) feature infer a schema based on your data. 
+
+To create a schema for the `Question` collection, follow these steps:
+
+1. Create a [client connection](#connect-to-your-wcs-instance). 
+1. Add the collection definition code after the client creation code.
+1. Run the code.
 
 import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.definition.mdx'
 
@@ -112,9 +120,26 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.d
 
 The collection has these properties: 
 
-  - Name `Question`
-  - Vectorizer module `text2vec-openai`
-  - Generative module `generative-openai`
+  - Collection name: `Question`
+  - Vectorizer module: `text2vec-openai`
+  - Generative module: `generative-openai`
+
+## Load data
+
+Weaviate uses [batch](/developers/weaviate/manage-data/import) processing to import data efficiently.
+
+This example code downloads a small, sample data set and uploads it to your WCS instance.
+
+To upload data follow these steps.
+
+1. Create a [client connection](#connect-to-your-wcs-instance). 
+1. Add the batch import code after the client creation code.
+1. Run the code.
+
+import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
+
+<CodeAutoschemaImport />
+
 
 
 ## Next steps
