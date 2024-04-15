@@ -104,9 +104,9 @@ If you are connected, the server returns `True`.
 
 ## Define a collection
 
-Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schema are highly configurable, but some properties cannot be changed after you create the collection.
+Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schemas are highly configurable, but some properties cannot be changed after you create the collection.
 
-For best results, define a collection schema before you import your data. Alternatively, let the [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) feature infer a schema based on your data. 
+For best results, define a collection schema before you import your data. Alternatively, let the [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) feature infer a collection schema based on your data. 
 
 To create a schema for the `Question` collection, follow these steps:
 
@@ -128,9 +128,9 @@ The collection has these properties:
 
 Weaviate uses [batch](/developers/weaviate/manage-data/import) processing to import data efficiently.
 
-This example code downloads a small, sample data set and uploads it to your WCS instance.
+This example code downloads a sample data set and uploads it to your WCS instance.
 
-To upload data follow these steps.
+To upload the data, follow these steps.
 
 1. Create a [client connection](#connect-to-your-wcs-instance). 
 1. Add the batch import code after the client creation code.
@@ -140,11 +140,9 @@ import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
 <CodeAutoschemaImport />
 
-
-
 ## Next steps
 
-- If you just want to try Weaviate, continue with a sandbox cluster.
+- If you want to try Weaviate, continue with a sandbox cluster.
 - If you want to work with Weaviate or need a persistent cluster, enter your billing details so you can create managed clusters.
 - To learn how Weaviate can help you build your project, review the [Weaviate documentation](../weaviate/index.md).
 
