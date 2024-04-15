@@ -340,6 +340,7 @@ try:
                 # highlight-end
                 pass
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the first batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the first batch import
     # highlight-end
@@ -355,6 +356,7 @@ try:
                 # highlight-end
                 pass
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_b = client.batch.failed_objects  # Get failed objects from the second batch import
     failed_refs_b = client.batch.failed_references  # Get failed references from the second batch import
     # highlight-end
@@ -398,6 +400,7 @@ try:
         pass  # Batch import objects/references
 
     # highlight-start
+    # Note these are outside the `with` block - they are populated after the context manager exits
     failed_objs_a = client.batch.failed_objects  # Get failed objects from the batch import
     failed_refs_a = client.batch.failed_references  # Get failed references from the batch import
     # highlight-end
