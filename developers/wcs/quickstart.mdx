@@ -104,11 +104,9 @@ If you are connected, the server returns `True`.
 
 ## Define a collection
 
-Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schemas are highly configurable, but some properties cannot be changed after you create the collection.
+Weaviate stores objects in collections. Every collection has a [schema](/developers/weaviate/config-refs/schema). Collection schemas are highly configurable, but some properties cannot be changed after you create the collection. For best results, define a collection schema before you import your data.
 
-For best results, define a collection schema before you import your data. Alternatively, let the [auto-schema](/developers/weaviate/config-refs/schema#auto-schema) feature infer a collection schema based on your data. 
-
-To create a schema for the `Question` collection, follow these steps:
+To create a schema for the `Question` collection, follow these steps in your client code:
 
 1. Create a [client connection](#connect-to-your-wcs-instance). 
 1. Add the collection definition code after the client creation code.
@@ -126,9 +124,9 @@ The collection has these properties:
 
 ## Load data
 
-This example code downloads a sample data set and uploads it to your WCS instance. The example assumes your collection [has a schema](#define-a-collection) already.
+This example code downloads a small data set and uploads it to your WCS instance. The example assumes your collection [has a schema](#define-a-collection) already defined.
 
-To upload the data, follow these steps.
+To upload the data, follow these steps in your client code:
 
 1. Create a [client connection](#connect-to-your-wcs-instance).
 1. Add the batch import code after the client creation code.
