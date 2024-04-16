@@ -83,7 +83,8 @@ import os
 
 client = weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_DEMO_URL"),  # Replace with your WCS URL
-    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY"))  # Replace with your WCS key
+    auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),  # Replace with your WCS key
+    headers={'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")}  # Replace with your OpenAI API key
 )
 # END WCSInstantiation
 
@@ -163,11 +164,14 @@ finally:
 
 # LocalInstantiationWithTimeout
 import weaviate
+from weaviate.classes.init import AdditionalConfig, Timeout
 
 client = weaviate.connect_to_local(
     port=8080,
     grpc_port=50051,
-    additional_config=weaviate.config.AdditionalConfig(timeout=(5, 15))  # Values in seconds
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=2, query=45, insert=120)  # Values in seconds
+    )
 )
 # END LocalInstantiationWithTimeout
 
@@ -179,6 +183,7 @@ finally:
 # DirectInstantiationFull
 import weaviate
 from weaviate.connect import ConnectionParams
+from weaviate.classes.init import AdditionalConfig, Timeout
 import os
 
 client = weaviate.WeaviateClient(
@@ -194,9 +199,8 @@ client = weaviate.WeaviateClient(
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")
     },
-    additional_config=weaviate.config.AdditionalConfig(
-        startup_period=10,
-        timeout=(5, 15)  # Values in seconds
+    additional_config=AdditionalConfig(
+        timeout=Timeout(init=2, query=45, insert=120),  # Values in seconds
     ),
 )
 

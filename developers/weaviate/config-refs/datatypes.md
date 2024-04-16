@@ -8,7 +8,7 @@ image: og/docs/configuration.jpg
 
 :::info Related pages
 - [Configuration: Schema](../manage-data/collections.mdx)
-- [References: REST API: Schema](../api/rest/schema.md)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](../concepts/data.md)
 :::
 

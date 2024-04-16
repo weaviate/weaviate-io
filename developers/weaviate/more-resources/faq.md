@@ -281,7 +281,7 @@ If you need a higher search quality for a given limit you can consider the follo
 
 > Yes, Weaviate supports cursor-based iteration as well as pagination through a result set.
 >
-> To iterate through all objects, you can use the `after` operator with both [REST](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after) and [GraphQL](../api/graphql/additional-operators.md#cursor-with-after).
+> To iterate through all objects, you can use the [`after` operator](../manage-data/read-all-objects.mdx).
 >
 > For pagination through a result set, you can use the `offset` and `limit` operators for GraphQL API calls. Take a look at [this page](../api/graphql/filters.md#pagination-with-offset) which describes how to use these operators, including tips on performance and limitations.
 
@@ -293,9 +293,9 @@ If you need a higher search quality for a given limit you can consider the follo
   <summary>Answer</summary>
 
 > Here are top 3 best practices for updating data:
-> 1. Use the [batch API](../api/rest/batch.md)
+> 1. Use the [batch API](../manage-data/import.mdx)
 > 2. Start with a small-ish batch size e.g. 100 per batch. Adjust up if it is very fast, adjust down if you run into timeouts
-> 3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then use the [`/v1/batch/references API`](../api/rest/batch.md) to set links between classes in arbitrary directions.
+> 3. If you have unidirectional relationships (e.g. `Foo -> Bar`.) it's easiest to first import all `Bar` objects, then import all `Foo` objects with the refs already set. If you have more complex relationships, you can also import the objects without references, then [add references](../manage-data/import.mdx#import-with-references) to set links between classes in arbitrary directions.
 
 </details>
 

@@ -68,7 +68,7 @@ const config = {
             '@scalar/docusaurus',
             {
               label: '.',
-              route: '/developers/weaviate/api/rest_openapi',
+              route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
                   url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
@@ -382,6 +382,12 @@ const config = {
                         to: '/blog',
                         position: 'right',
                     },
+                    {
+                        html: `<img class="githubStars" src="https://img.shields.io/github/stars/weaviate/weaviate?style=social&logo=github&logoColor=%23120c46&label=%20&color=%23ffffff&link=https%3A%2F%2Fgithub.com%2Fweaviate%2Fweaviate" alt="GitHub stars" />`,
+
+                        to: 'https://github.com/weaviate/weaviate',
+                        position: 'right',
+                      },
 
                     {
                         label: 'Try Now',

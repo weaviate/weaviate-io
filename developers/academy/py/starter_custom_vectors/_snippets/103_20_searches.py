@@ -1,26 +1,3 @@
-# GetQueryVector
-# Define a function to call the endpoint and obtain embeddings
-def query(texts):
-    import requests
-    import os
-
-    model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    hf_token = os.getenv("HUGGINGFACE_APIKEY")
-
-    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
-    headers = {"Authorization": f"Bearer {hf_token}"}
-
-    response = requests.post(
-        api_url,
-        headers=headers,
-        json={"inputs": texts, "options": {"wait_for_model": True}},
-    )
-    return response.json()
-
-
-# END GetQueryVector
-
-
 # START-ANY
 import weaviate
 import weaviate.classes.query as wq
@@ -53,6 +30,29 @@ client = weaviate.connect_to_wcs(
 # client = weaviate.connect_to_local(..., headers=headers)
 
 # END-ANY
+
+
+# START-ANY
+# Define a function to call the endpoint and obtain embeddings
+def query(texts):
+    import requests
+
+    model_id = "sentence-transformers/all-MiniLM-L6-v2"
+    hf_token = os.getenv("HUGGINGFACE_APIKEY")
+
+    api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_id}"
+    headers = {"Authorization": f"Bearer {hf_token}"}
+
+    response = requests.post(
+        api_url,
+        headers=headers,
+        json={"inputs": texts, "options": {"wait_for_model": True}},
+    )
+    return response.json()
+
+
+# END-ANY
+
 
 query_text = "history"
 query_vector = query(query_text)

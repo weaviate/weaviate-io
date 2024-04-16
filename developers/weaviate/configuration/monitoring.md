@@ -117,7 +117,7 @@ your uses perfectly:
 
 ## `nodes` API Endpoint
 
-To get collection details programmatically, use the [`nodes`](/weaviate/api/rest/nodes.md) REST endpoint. 
+To get collection details programmatically, use the [`nodes`](../config-refs/nodes.md) REST endpoint.
 
 import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
 
