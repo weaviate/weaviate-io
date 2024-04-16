@@ -125,7 +125,7 @@ Now you are ready to add objects to Weaviate.
 
 You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
 
-The guide covers using the `vectorizer` defined for the class to create a vector embedding for each object.
+The guide covers using the `vectorizer` defined for the class to create a vector embedding for each object. You may have to add the API key for your vectorizer.
 
 import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
