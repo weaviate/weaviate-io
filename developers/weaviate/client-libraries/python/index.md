@@ -203,10 +203,7 @@ You can set timeout values, in seconds, for the client. Use the `Timeout` class 
 
 :::tip Timeouts on `generate` (RAG) queries
 
-If you see errors while using the `generate` submodule, try increasing the query timeout values (`Timeout(query=60)`). The `generate` submodule uses a large language model to generate text.
-<br/>
-
-The `generate` submodule is dependent on the speed of the language model and any API that serves the language model. Increase the timeout values to allow the client to wait longer for the language model to respond.
+If you see errors while using the `generate` submodule, try increasing the query timeout values (`Timeout(query=60)`). <br/><br/>The `generate` submodule uses a large language model to generate text. The submodule is dependent on the speed of the language model and any API that serves the language model. <br/><br/>Increase the timeout values to allow the client to wait longer for the language model to respond.
 :::
 
 #### Authentication
