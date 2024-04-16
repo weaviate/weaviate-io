@@ -227,8 +227,8 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar-python-client',
-                content: `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/client-libraries/python">Shape the Future - Try Our New Python Client API</a> to learn more.`,
+                id: 'announcement-bar-online-workshops',
+                content: `<b>Learn from the experts</b> at our weekly <a target="_blank" rel="noopener noreferrer" href="/community/events">Online Workshops</a>.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,

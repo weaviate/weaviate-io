@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 import Hero from '../../components/Community/Heroes';
 import Header from '../../components/Community/Header';
-import Intro from '../../components/Community/Intro';
 import CommunityPanel from '../../components/Community/CommunityPanel';
-import WorkshopSection from '../../components/Community/Workshops';
-import EventSection from '../../components/Community/EventMap';
 import SocialPanel from '../../components/Community/SocialPanel';
 import Program from '../../components/Community/Program';
 
