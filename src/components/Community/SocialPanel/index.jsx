@@ -1,9 +1,8 @@
 import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
-import { TwitterTweetEmbed } from 'react-twitter-embed';
 
-export default function CommunityPanel() {
+export default function SocialPanel() {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
