@@ -2,44 +2,58 @@
 title: Overview of tokenization
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!./_snippets/100_pq.py';
+When you are using a database, or a language model to deal with text data, a decision is required on how to break down that text into smaller pieces, called *tokens*.
 
+Creating these tokens appropriately is an important part of the process, which will affect the performance of the database or language model. This process is called *tokenization*.
 
-When you are using a database, or an AI model to deal with text data, a decision is required on how to break down that text into smaller pieces.
+Consider text like:
 
-These pieces are also called *tokens*, and this process is called *tokenization*.
-
-In a vector database like Weaviate, tokenization occurs in two different contexts:
-
-1. **Vectorization**: When a piece of text is converted into a vector, the text is tokenized into smaller pieces by the vectorizer. This helps to create a vector that represents the text.
-2. **Keyword search and filtering**: When performing keyword searches of filtering, you need to tokenize the search query or filter. This helps to determine what constitutes a match.
-
-Additionally, tokenization is also used by large language models, in the context of retrieval augmented generation, for instance.
-
-## <i class="fa-solid fa-square-chevron-right"></i> Tokenization explained
-
-Take a piece of text like `"Why, hello there!"`. This could be tokenized into smaller pieces, or tokens, like:
-
-```js
-["Why", ",", "hello", "there", "!"]
+```text
+Ankh-Morpork's police captain
 ```
 
-Each token comes from a part of the original text, and can be used to represent the text in a more manageable way.
+How might we get a computer to treat this text?
 
-But - why tokenize at all? Why not just use the original text? The answer is that tokenization improves performance of vectorization and search, but in different ways.
+- In a *keyword search*, you might want the search to respect partial matches, as well as full matches.
+- But in a *language model context*, the most important thing is the overall meaning of the text.
 
-### <i class="fa-solid fa-chalkboard"></i> Lossiness
+Because these two contexts have different requirements, tokenization is done in different ways for each context.
 
-### <i class="fa-solid fa-code"></i> Lossiness
+## <i class="fa-solid fa-square-chevron-right"></i> Tokenization methods
 
+Here are some ways to tokenize the sentence `Ankh-Morpork's police captain`:
 
+- `["Ankh-Morpork's", "police", "captain"]`
+- `["ankh", "morpork", "police", "captain"]`
+- `['An', '##kh', '-', 'Mo', '##rp', '##or', '##k', "'", 's', 'police', 'captain']`
 
-## <i class="fa-solid fa-square-chevron-right"></i> Configure PQ
+Methods 1 and 2 are examples of *word tokenization*, while method 3 is an example of *subword tokenization*.
 
+The choice of tokenization method will depend on the context in which the text is being used.
 
+### <i class="fa-solid fa-chalkboard"></i> For language models
+
+Language models deal with the overall meaning of the text. So, each token in this context represents the smallest unit of some meaning. This could be a character, a subword, or a word. It might even be a multiple words.
+
+To balance the need for a manageable vocabulary size with the need to capture the meaning of the text, subword tokenization is often used, as in method 3 above. This is a key part of the architecture of language models.
+
+For a user of language models, however, the tokenization method is fixed.
+
+So as you use Weaviate to vectorize text, or perform retrieval augmented generation (RAG) tasks, you don't need to worry about the tokenization method. The chosen model will simply take care of this for you.
+
+As a result, we won't go into detail on tokenization in the context of language models in this course.
+
+But this is a rich area of study. So if you would like to read more about tokenization in the context of language models, this [Hugging Face conceptual guide on the topic](https://huggingface.co/transformers/tokenizer_summary.html) is a great resource. Hugging Face also provides this guide on [using tokenizers](https://huggingface.co/learn/nlp-course/en/chapter2/4) in its `transformers` library.
+
+### <i class="fa-solid fa-chalkboard"></i> For keyword search & filtering
+
+The choice of tokenization method will also impact the performance of keyword search and filtering. However, this occurs in a different way than in language models.
+
+In a search or filtering context, a token is a unit of search, and the choice of tokenization method will affect the search results.
+
+Depending on tokenization, a search for text matching "morpork", or "ankh-morpork" may include "Ankh-Morpork's police captain", or it may not.
+
+Weaviate offers a variety of tokenization methods, which you can use to customize the search and filtering behavior to your needs. So let's dive into different tokenization methods, before considering their impact.
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

@@ -238,7 +238,7 @@ This feature was introduced in `v1.12.0`.
 
 `text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
-The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language. If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
+The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language (e.g. [`"en"` preset](https://github.com/weaviate/weaviate/blob/main/adapters/repos/db/inverted/stopwords/presets.go)). If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
 
 ```json
   "invertedIndexConfig": {
