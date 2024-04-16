@@ -64,24 +64,6 @@ const config = {
                 showReadingTime: true,
             },
         ],
-        // Paper Reviews configuration
-        [
-            '@docusaurus/plugin-content-blog',
-            {
-                blogTitle: 'Paper Reviews',
-                blogDescription: '<todo>',
-                blogSidebarCount: 0,
-                postsPerPage: 6,
-                blogSidebarTitle: 'Weaviate Paper Reviews',
-
-                id: 'papers-blog',
-                routeBasePath: '/papers',
-                // path to data on filesystem relative to site dir.
-                path: 'papers',
-                authorsMapPath: '../authors.yml',
-                showReadingTime: true,
-            },
-        ],
         [
             '@scalar/docusaurus',
             {
@@ -322,12 +304,8 @@ const config = {
                                 to: '/community',
                             },
                             {
-                                label: 'Online Workshops & Events',
+                                label: 'Events & Webinars',
                                 to: '/community/events',
-                            },
-                            {
-                                label: 'Paper Reviews',
-                                to: '/papers',
                             },
                             {
                                 label: 'Contributor Guide',
