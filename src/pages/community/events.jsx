@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
-import Hero from '../../components/Events/Heroes';
 import Header from '../../components/Events/Header';
-import Intro from '../../components/Events/Intro';
-import HighlightPanel from '../../components/Events/Highlights';
+// import HighlightPanel from '../../components/Events/Highlights'; // TODO: delete HighlightPanel
 import WorkshopSection from '../../components/Events/Workshops';
 import ContactForm from '/src/components/Events/ContactForm/contactForm';
 import ThemeSwitch from '../../components/ThemeSwitch';
@@ -14,12 +12,12 @@ export default function EventsPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Events & Webinars"
-        description="Join us at conferences, meetups, webinars or workshops"
+        title="Online Workshops & Events"
+        description="-Join us at conferences, meetups, webinars or workshops"
       >
         <MetaSEO img="og/company/Community.jpg" />
         <Header />
-        <HighlightPanel />
+        {/* <HighlightPanel /> */}
         <WorkshopSection />
         <LearnMore />
         <ContactForm />

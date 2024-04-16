@@ -1,4 +1,3 @@
-import Link from '@docusaurus/Link';
 import React from 'react';
 import styles from './styles.module.scss';
 import EventBox from './eventItem';
