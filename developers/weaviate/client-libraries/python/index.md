@@ -203,10 +203,10 @@ You can set timeout values, in seconds, for the client. Use the `Timeout` class 
 
 :::tip Timeouts on `generate` (RAG) queries
 
-If you are seeing errors while using the `generate` submodule, try increasing the timeout values (e.g. to `Timeout(query=60)`). The `generate` submodule uses a large language model to generate text.
+If you see errors while using the `generate` submodule, try increasing the query timeout values (`Timeout(query=60)`). The `generate` submodule uses a large language model to generate text.
 <br/>
 
-Accordingly, the speed of the `generate` submodule is dependent on the speed of the language model (and any API that is serving the language model). Increasing the timeout values will allow the client to wait longer for the language model to respond.
+The `generate` submodule is dependent on the speed of the language model and any API that serves the language model. Increase the timeout values to allow the client to wait longer for the language model to respond.
 :::
 
 #### Authentication
@@ -275,11 +275,9 @@ You can set `skip_init_checks` to `True` to skip these checks.
   language="py"
 />
 
-You may wish to do this to maximize performance, or as a temporary measure if you are experiencing issues with the checks. However, we recommend leaving `skip_init_checks` as `False` in most cases.
+In most cases, you should use the default `False` setting for `skip_init_checks`. However, setting `skip_init_checks=True` may be a useful temporary measure if you have connection issues.  
 
-:::note Open GitHub issue for configurable timeout
-There is an [open issue](https://github.com/weaviate/weaviate-python-client/issues/899) to make the initial checks timeout configurable. Please upvote this issue if you would like to see this feature.
-:::
+For additional connection configuration, see [Timeout values](#timeout-values).
 
 ## Batching
 
@@ -720,7 +718,7 @@ If you are migrating from the `v3` client to the `v4`, please see this [dedicate
 
 ##### `weaviate.connect_to_x` methods
 
-The `timeout` argument has been moved into the `additional_config` argument that takes the class `weaviate.config.AdditionalConfig` as input.
+The `timeout` argument in now a part of the `additional_config` argument. It takes the class `weaviate.config.AdditionalConfig` as input.
 
 ##### Queries
 
