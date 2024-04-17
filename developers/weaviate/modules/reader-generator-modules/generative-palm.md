@@ -122,7 +122,7 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 
 ## Module configuration
 
-:::tip Not applicable to WCS
+:::tip
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 

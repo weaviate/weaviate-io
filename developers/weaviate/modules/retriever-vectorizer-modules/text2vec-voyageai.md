@@ -25,7 +25,7 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
+:::tip
 This module is enabled and pre-configured on Weaviate Cloud Services.
 :::
 
