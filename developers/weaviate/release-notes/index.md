@@ -8,7 +8,7 @@ image: og/docs/more-resources.jpg
 
 This page has links to the [developer release notes](https://github.com/weaviate/weaviate/releases) for the Weaviate core database and the client libraries. To see release notes for a particular version, click on the version number.
 
-For descriptive notes on recent major releases, follow the links in the table of contents at left. For descriptive notes on older release notes, see the [blog pages at Weaviate.io](https://weaviate.io/blog/tags/release).
+For descriptive notes on recent major releases, follow the links in the table of contents at the left of this page. For descriptive notes on older releases, see the [blog pages at Weaviate.io](https://weaviate.io/blog/tags/release).
 
 ### Current minor releases
 
