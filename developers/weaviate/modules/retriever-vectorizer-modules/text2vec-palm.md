@@ -78,8 +78,8 @@ In the Weaviate [class configuration](#class-configuration), set the `apiEndpoin
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+This module is enabled and pre-configured in Weaviate Cloud Services.
 :::
 
 ### Docker Compose file
