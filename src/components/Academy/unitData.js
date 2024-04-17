@@ -280,14 +280,14 @@ export const unitData = {
       "Identify languages for which specific tokenization options are available.",
     ]
   },
-  "tokenization_impact": {
-    title: "The impact of tokenization",
-    body: "How does tokenization impact search?",
+  "tokenization_practice": {
+    title: "Tokenization in practice",
+    body: "See how tokenization impacts search & filtering.",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/tokenization/impact",
     badgeType: "practical",
     learningGoals: [
-      "The impact of tokenization on search quality."
+      "The impact of tokenization on query results."
     ],
     learningOutcomes: [
       "Describe the ways in which tokenization can affect search results.",
