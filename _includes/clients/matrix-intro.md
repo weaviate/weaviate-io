@@ -5,7 +5,8 @@ lists the most recent database version available when each client version is rel
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.24.8](https://github.com/weaviate/weaviate/releases/tag/v1.24.8) | 2024-04-08 | 4.5.5 | 1.6.0 | 4.13.1 | 4.6.0 |
+| [1.24.9](https://github.com/weaviate/weaviate/releases/tag/v1.24.9) | 2024-04-17 | 4.5.5 | 1.6.0 | 4.13.1 | 4.6.0 |
+| [1.24.8](https://github.com/weaviate/weaviate/releases/tag/v1.24.8) | 2024-04-08 | '' | '' | '' | ''  |
 | [1.24.7](https://github.com/weaviate/weaviate/releases/tag/v1.24.7) | 2024-04-05 | '' | '' | '' | '' |
 | [1.24.6](https://github.com/weaviate/weaviate/releases/tag/v1.24.6) | 2024-03-26 | 4.5.4 | '' | '' | '' |
 | [1.24.5](https://github.com/weaviate/weaviate/releases/tag/v1.24.5) | 2024-03-21 | '' | '' | '' | '' |
