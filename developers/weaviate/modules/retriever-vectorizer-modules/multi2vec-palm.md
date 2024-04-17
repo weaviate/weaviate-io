@@ -23,7 +23,7 @@ The `multi2vec-palm` module uses a Google multimodal embedding model to create v
 ## Weaviate instance configuration
 
 :::tip
-This module is enabled and pre-configured in Weaviate Cloud Services.
+This module is enabled and pre-configured in Weaviate Cloud Services. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file

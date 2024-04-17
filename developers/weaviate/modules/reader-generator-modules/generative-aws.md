@@ -41,7 +41,7 @@ You need to input both a query and a prompt (for individual responses) or a task
 ## Weaviate instance configuration
 
 :::tip
-This module is enabled and pre-configured in Weaviate Cloud Services.
+This module is enabled and pre-configured in Weaviate Cloud Services. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
