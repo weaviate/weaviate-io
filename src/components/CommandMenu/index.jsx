@@ -25,36 +25,29 @@ const defaultMenuPages = {
   items: [
     {
       id: 1001,
-      children: 'Weaviate Cloud console',
+      children: 'Documentation',
       icon: 'BookmarkIcon',
-
-      onKeyDown: (event) => {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          console.log('Entered');
-        } else if (event instanceof MouseEvent) {
-          window.location.href = 'https://console.weaviate.cloud/';
-          console.log('clicked');
-        }
-      },
+      href: window.location.pathname.startsWith('/developers/weaviate')
+        ? null
+        : '/developers/weaviate',
     },
     {
       id: 1002,
-      children: 'Weaviate Cloud Services - Pricing',
+      children: 'Blog',
       icon: 'BookmarkIcon',
-      href: '/pricing',
+      href: window.location.pathname.startsWith('/blog') ? null : '/blog',
     },
     {
       id: 1003,
-      children: 'Blog',
+      children: 'Weaviate Cloud console',
       icon: 'BookmarkIcon',
-      href: '/blog',
+      href: 'https://console.weaviate.cloud/',
     },
     {
       id: 1004,
-      children: 'Documentation',
+      children: 'Weaviate Cloud Services - Pricing',
       icon: 'BookmarkIcon',
-      href: '/developers/weaviate',
+      href: '/pricing',
     },
   ],
 };
