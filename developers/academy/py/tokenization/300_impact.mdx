@@ -2,39 +2,51 @@
 title: The impact of tokenization
 ---
 
-Given the choice of PQ, BQ, or no compression, which should you choose? The answer is, it depends.
+Now that you've learned about different tokenization methods, let's put them into practice. In this section, you'll see how tokenization impacts search results in Weaviate.
 
-PQ and BQ are both lossy compression techniques, and the choice between them depends on your circumstances, your model and the use case.
+## <i class="fa-solid fa-square-chevron-right"></i> Preparation
 
-## <i class="fa-solid fa-chalkboard"></i> The index type
+For this section, we'll work with an actual Weaviate instance to see how different tokenization methods impact search results.
 
-PQ is currently only supported for the HNSW index, while BQ is supported for both the HNSW and flat indexes. If you are using the flat index, you will need to use BQ.
+We are only going to use a very small dataset for demonstration purposes. You can use the following Python code to add this data to your Weaviate instance. But alternatively, you could access the data in the pre-populated Weaviate instance.
 
-## <i class="fa-solid fa-chalkboard"></i> Model suitability
+## <i class="fa-solid fa-code"></i> Add collection
 
-PQ is generally a more robust compression technique, as it is fitted on your specific data during the training step. This means that you don't need to worry as much about whether your model is suitable for PQ.
+We will add a very simple collection, with each object containing multiple properties. Each properties will contain the same text, but with different tokenization methods applied.
 
-On the other hand, BQ can be more sensitive to the model, such as its length and whether it is designed for binary quantization.
+Note that we do not add object vectors in this case, as we are only interested in the impact of tokenization on keyword search results.
 
-If you do not know whether your model is suitable for BQ, we recommend using PQ.
+:::warning TODO
+Add the Python code to add the collection to Weaviate.
+:::
 
-## <i class="fa-solid fa-chalkboard"></i> Tunability
+## <i class="fa-solid fa-code"></i> Add objects
 
-As you've seen, PQ parameters are tunable whereas BQ is not. This means that you can adjust PQ to be more or less aggressive on performance parameters, such as recall and QPS targets, while still benefiting from some compression.
+Now, we add objects to the collection, repeating text objects as properties.
 
-## <i class="fa-solid fa-chalkboard"></i> Complexity
+:::warning TODO
+Add the Python code to add the collection to Weaviate.
+:::
 
-If you are looking for the easiest solution to implement, BQ is the way to go. It is a simple configuration that can be enabled immediately, without the need to wait for a training set to be reached.
+## <i class="fa-solid fa-square-chevron-right"></i> Tokenization & search
 
-## <i class="fa-solid fa-chalkboard"></i> Conclusion
 
-In summary, your choice of compression technique depends on your circumstances, your model and the use case.
+### <i class="fa-solid fa-code"></i> Search
 
-But as a general rule of thumb, if you are not sure which to choose, we recommend using PQ. It is more robust, tunable, and generally more suitable for a wider range of models and use cases.
 
-And if resource constraints are not a concern, you can always choose to use no compression at all. This will give you the best performance, but at the cost of increased resource requirements.
+### <i class="fa-solid fa-chalkboard"></i> Discussions
 
-But do note that you will likely not be able to switch on compression later, as it requires a reindexing of the data. (With an exception of PQ, which [may be enabled later](../../../weaviate/configuration/pq-compression.md#3-enable-pq-and-create-the-codebook) unless your dataset is too large.)
+
+## <i class="fa-solid fa-square-chevron-right"></i> Tokenization & filtering
+
+
+### <i class="fa-solid fa-code"></i> Filters
+
+
+### <i class="fa-solid fa-chalkboard"></i> Discussions
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Conclusion
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
