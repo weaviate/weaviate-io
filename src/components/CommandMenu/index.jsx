@@ -27,15 +27,20 @@ const defaultMenuPages = {
       id: 1001,
       children: 'Documentation',
       icon: 'BookmarkIcon',
-      href: window.location.pathname.startsWith('/developers/weaviate')
-        ? null
-        : '/developers/weaviate',
+      href:
+        typeof window !== 'undefined' &&
+        window.location.pathname.startsWith('/developers/weaviate')
+          ? null
+          : '/developers/weaviate',
     },
     {
       id: 1002,
       children: 'Blog',
       icon: 'BookmarkIcon',
-      href: window.location.pathname.startsWith('/blog') ? null : '/blog',
+      href:
+        typeof window !== 'undefined' && window.location.pathname === '/blog'
+          ? null
+          : '/blog',
     },
     {
       id: 1003,
