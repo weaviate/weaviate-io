@@ -1,9 +1,7 @@
-This chart matches Weaviate database releases with Weaviate client releases. It
-lists the most recent database version when each client version was released.
+This chart matches Weaviate core database releases with Weaviate client releases. It
+lists the most recent database version available when each client version is released.
 
-The chart includes point releases for the most recent major and minor versions
-of the client. Earlier client releases have less detailed version information.
-
+### Current minor releases
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
@@ -15,7 +13,12 @@ of the client. Earlier client releases have less detailed version information.
 | [1.24.3](https://github.com/weaviate/weaviate/releases/tag/v1.24.3) | 2024-03-14 | '' | '' | '' | '' |
 | [1.24.2](https://github.com/weaviate/weaviate/releases/tag/v1.24.2) | 2024-03-13 | '' | '' | '' | '' |
 | [1.24.1](https://github.com/weaviate/weaviate/releases/tag/v1.24.1) | 2024-03-01 | 4.5.0 | '' | 4.12.0 | 4.5.1 |
-| [1.24.0](https://github.com/weaviate/weaviate/releases/tag/v1.24.0) | 2024-02-27 |  '' | '' | '' | '' |
+
+### Major releases
+
+|Weaviate Version|Release Date|Python|TypeScript|Go|Java|
+|:-|:-|:-:|:-:|:-:|:-:|
+| [1.24.0](https://github.com/weaviate/weaviate/releases/tag/v1.24.0) | 2024-02-27 |  4.5.0 | 1.6.0 | 4.12.0 | 4.5.1 |
 | [1.23.0](https://github.com/weaviate/weaviate/releases/tag/v1.23.0) | 2023-12-18 | 3.26.0 | '' | '' |4.4.2 |
 | [1.22.0](https://github.com/weaviate/weaviate/releases/tag/v1.22.0) | 2023-10-27 | 3.25.0 | '' | 4.10.0 | 4.3.0 |
 | [1.21.0](https://github.com/weaviate/weaviate/releases/tag/v1.21.0) | 2023-08-17 | 3.22.1 |1.4.0 | 4.9.0 | 4.2.1 |
