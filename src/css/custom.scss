@@ -811,8 +811,9 @@ ul.dropdown__menu {
 }
 
 .dropDownContainer2 {
-  flex: 1;
-  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 10px;
 
   .holder {
     display: flex;
@@ -822,7 +823,11 @@ ul.dropdown__menu {
     gap: 10px;
     height: 300px;
     margin-top: -16px;
-    margin-bottom: 12px;
+  }
+
+  .holdRight {
+    border-right: 1px solid #c3c5d8;
+    margin: 0px 8px 0px -8px;
   }
   .dropDown {
     width: 13.75rem;
@@ -854,6 +859,18 @@ ul.dropdown__menu {
     height: 11.8125rem;
   }
 
+  .dropDownPromo {
+    width: 12.375rem;
+    height: 9.8125rem;
+    flex-shrink: 0;
+    background-size: 57%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #130c49;
+    background-image: url('/img/site/w-icon-release.svg');
+    height: 11.8125rem;
+  }
+
   .dropDownText {
     color: #130c49;
     font-family: Inter;
@@ -861,6 +878,17 @@ ul.dropdown__menu {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+  }
+
+  .headerText {
+    color: #00998b;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
   }
 }
 

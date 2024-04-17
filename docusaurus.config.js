@@ -218,11 +218,11 @@ const config = {
                     items: [
                         {
                             type: 'html',
-                            value : '<div class="holder"><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Weaviate Services</span><div class="dropDownThumbnail"></div><span class="dropDownText">Packages to help you be successful with Generative AI.</span></div></a></div><div class="holdRight"></div></div>',
+                            value : '<div class="holder"><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Weaviate Services</span><div class="dropDownThumbnail"></div><span class="dropDownText">Packages to help you be successful with Generative AI.</span></div></a></div><div class="holdRightnoBorder"><li><a class="dropdown__link" href="/services/serverless">Serverless</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Dedicated</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div></div>',
                             className: 'dropDownContainer2',
                         },
                         
-                        {
+                       /*  {
                             label: 'Serverless',
                             href: '/services/serverless',
                            
@@ -246,16 +246,21 @@ const config = {
                             label: 'Pricing',
                             to: '/pricing',
                            
-                        }, 
+                        },  */
                     ]
                 }
                     ,
                     {
                         type: 'dropdown',
-                        label: 'Developers',
+                        label: 'Resources',
                         position: 'right',
                         items: [
                             {
+                                type: 'html',
+                                value : '<div class="holder"><div class="holdRight"><li><span class="headerText">Learn</span></li><li><a class="dropdown__link" href="/developers/weaviate">Weaviate Docs</a></li><li><a class="dropdown__link" href="/developers/weaviate/quickstart">Quickstart</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div><div class="holdRight"><li><span class="headerText">Connect</span></li><li><a class="dropdown__link" href="/services/serverless">Serverless</a></li><li><a class="dropdown__link" href="/services/enterprise-dedicated">Enterprise Dedicated</a></li><li><a class="dropdown__link" href="/services/byoc">Bring Your Own Cloud</a></li><li><a class="dropdown__link" href="/services/education-and-support">Education &amp; Support</a></li><li><a class="dropdown__link" href="/pricing">Pricing</a></li></div><div class="holdLeft"><a href = "/services"><div class="dropDown"><span class="dropDownLabel">Whats New</span><div class="dropDownPromo"></div><span class="dropDownText">Weaviate 1.24 - New Release Highlights</span></div></a></div></div></div>',
+                                className: 'dropDownContainer2',
+                            },
+                           /*  {
                                 label: 'Weaviate Docs',
                                 docId: 'weaviate/index',
                                 sidebarid: 'docsSidebar',
@@ -303,7 +308,7 @@ const config = {
                             {
                                 label: 'Forum',
                                 href: 'https://forum.weaviate.io',
-                            },
+                            }, */
                         ],
                     },
 {
