@@ -1,5 +1,5 @@
-This chart matches Weaviate database releases with Weaviate client releases. It
-lists the most recent database version when each client version was released.
+This chart matches Weaviate core database releases with Weaviate client releases. It
+lists the most recent database version available when each client version is released.
 
 ### Current minor releases
 
