@@ -59,7 +59,7 @@ import ClientKey from '/_includes/code/core.client.cohere.apikey.mdx';
 ## Module configuration
 
 :::tip
-This module is enabled and pre-configured on Weaviate Cloud Services.
+This module is enabled and pre-configured in Weaviate Cloud Services.
 :::
 
 :::caution

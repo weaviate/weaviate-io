@@ -75,7 +75,7 @@ For requests that require the OpenAI organization name, you can provide it at qu
 ## Module configuration
 
 :::tip
-This module is enabled and pre-configured on Weaviate Cloud Services.
+This module is enabled and pre-configured in Weaviate Cloud Services.
 :::
 
 ### Docker Compose file (Weaviate open source only)

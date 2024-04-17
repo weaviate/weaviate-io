@@ -25,7 +25,7 @@ Key notes:
 ## Weaviate instance configuration
 
 <!-- :::tip
-This module is enabled and pre-configured on Weaviate Cloud Services.
+This module is enabled and pre-configured in Weaviate Cloud Services.
 ::: -->
 
 <!-- Note: Will be added to WCS soon. Un-comment the above and delete this line when it is enabled. -->

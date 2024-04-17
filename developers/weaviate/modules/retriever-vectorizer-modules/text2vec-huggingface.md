@@ -23,7 +23,7 @@ Key notes:
 ## Weaviate instance configuration
 
 :::tip
-This module is enabled and pre-configured on Weaviate Cloud Services.
+This module is enabled and pre-configured in Weaviate Cloud Services.
 :::
 
 ### Docker Compose file
