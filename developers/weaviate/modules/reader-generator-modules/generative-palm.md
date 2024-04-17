@@ -123,7 +123,7 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 ## Module configuration
 
 :::tip
-This module is enabled and pre-configured in Weaviate Cloud Services. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)

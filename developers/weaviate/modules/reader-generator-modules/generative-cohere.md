@@ -59,7 +59,7 @@ import ClientKey from '/_includes/code/core.client.cohere.apikey.mdx';
 ## Module configuration
 
 :::tip
-This module is enabled and pre-configured in Weaviate Cloud Services. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 :::caution
