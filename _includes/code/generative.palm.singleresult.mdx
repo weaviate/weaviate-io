@@ -52,7 +52,7 @@ import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
   headers: { 'X-PaLM-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your GOOGLE API key
 });

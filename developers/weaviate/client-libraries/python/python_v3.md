@@ -89,7 +89,7 @@ auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Repla
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
-    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
     auth_client_secret=auth_config
 )
 ```

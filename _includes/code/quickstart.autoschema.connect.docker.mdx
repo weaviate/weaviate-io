@@ -39,7 +39,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:   "localhost:8080",  // Replace with your endpoint
+    Host:   "localhost:8080",  // Replace with your Weaviate endpoint
     Scheme: "http",
     Headers: map[string]string{
       "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // Replace with your inference API key
@@ -70,7 +70,7 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "/");  // Replace with your endpoint
+    Config config = new Config("https", "/");  // Replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
 

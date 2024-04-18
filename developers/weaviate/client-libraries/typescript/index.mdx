@@ -42,7 +42,7 @@ const { default: weaviate } = require('weaviate-ts-client');
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 
 client
@@ -65,7 +65,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 
 const response = await client
@@ -108,7 +108,7 @@ const { default: weaviate } = require('weaviate-ts-client');
 // Instantiate the client with the auth config
 const client = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',  // Replace with your endpoint
+  host: 'edu-demo.weaviate.network',  // Replace with your Weaviate endpoint
   apiKey: new weaviate.ApiKey('learn-weaviate'),  // Replace with your Weaviate instance API key
 });
 ```
@@ -122,7 +122,7 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 // Instantiate the client with the auth config
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'edu-demo.weaviate.network',  // Replace with your endpoint
+  host: 'edu-demo.weaviate.network',  // Replace with your Weaviate endpoint
   apiKey: new ApiKey('learn-weaviate'),  // Replace with your Weaviate instance API key
 });
 ```

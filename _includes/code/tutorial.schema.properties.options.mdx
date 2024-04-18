@@ -20,7 +20,7 @@ import PyCode from '!!raw-loader!/_includes/code/starter-guides/schema.py';
 import weaviate
 import json
 
-client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your endpoint
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your Weaviate endpoint
 
 # we will create the class "Question"
 class_obj = {
@@ -112,7 +112,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 
 // Define the 'Question' class

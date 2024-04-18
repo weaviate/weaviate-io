@@ -18,7 +18,7 @@ import PyClientCode from '!!raw-loader!/_includes/code/client-libraries/python_v
 import weaviate
 
 client = weaviate.Client(
-    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your endpoint
+    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
 )
 
@@ -33,7 +33,7 @@ import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-cl
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
 });
 
@@ -58,7 +58,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your endpoint
+        Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your Weaviate endpoint
         Scheme: "https",
         AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
     }
@@ -89,7 +89,7 @@ import io.weaviate.client.v1.misc.model.Meta;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your endpoint
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your Weaviate endpoint
     WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace with your Weaviate instance API key
 
     // get the schema

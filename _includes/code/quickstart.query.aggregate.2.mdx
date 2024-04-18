@@ -30,7 +30,7 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your endpoint
+    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
@@ -61,7 +61,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
 

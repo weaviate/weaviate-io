@@ -18,7 +18,7 @@ import PyCode from '!!raw-loader!/_includes/code/tutorials/connect.py';
 import weaviate
 
 client = weaviate.Client(
-    url="https://",  # Replace with your endpoint
+    url="https://",  # Replace with your Weaviate endpoint
 )
 ```
 
@@ -30,7 +30,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 ```
 
@@ -48,7 +48,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "",  // Replace with your endpoint
+        Host:   "WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
         Scheme: "https",
     }
 
@@ -70,7 +70,7 @@ import io.weaviate.client.WeaviateClient;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "");  // Replace with your endpoint
+    Config config = new Config("https", "");  // Replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
   }

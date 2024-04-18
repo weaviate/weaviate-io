@@ -70,7 +70,7 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 
 		targetClient, err := weaviate.NewClient(weaviate.Config{
 			Scheme: "https",
-			Host:   "", // Replace with your Weaviate URL
+			Host:   "WEAVIATE_INSTANCE_URL", // Replace with your Weaviate URL
 		})
 		if err != nil {
 			// handle error

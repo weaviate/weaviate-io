@@ -2,7 +2,7 @@ import weaviate
 
 # Instantiate the client
 client = weaviate.Client(
-    url="https://",  # Replace with your endpoint
+    url="https://",  # Replace with your Weaviate endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # If auth enabled. Replace with your Weaviate instance API key
 )
 

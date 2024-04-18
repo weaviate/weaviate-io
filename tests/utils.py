@@ -57,7 +57,7 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
 
         replacement = '''
         scheme: 'http',
-        host: 'localhost:8099',  // Replace with your endpoint
+        host: 'localhost:8099',  // Replace with your Weaviate endpoint
         '''
 
         proc_codeblock = re.sub(pattern, replacement, proc_codeblock, flags=re.DOTALL)

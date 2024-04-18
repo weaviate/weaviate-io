@@ -65,7 +65,7 @@ import (
 
 func main() {
 	cfg := weaviate.Config{
-		Host:   "/",  // Replace with your endpoint
+		Host:   "/",  // Replace with your Weaviate endpoint
 		Scheme: "https",
 		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
 		Headers: map[string]string{
