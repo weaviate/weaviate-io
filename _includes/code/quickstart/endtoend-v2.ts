@@ -23,7 +23,7 @@ import fetch from 'node-fetch';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: '',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
   headers: { 'X-OpenAI-Api-Key': 'YOUR-OPENAI-API-KEY' },  // Replace with your inference API key
 });

@@ -18,7 +18,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import weaviate
 
 client = weaviate.Client(
-  url="https:///",  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
+  url="https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
   additional_headers={
         "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
         "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
@@ -268,7 +268,7 @@ echo '{
     -H "X-AWS-Access-Key: $YOUR_ACCESS_KEY" \
     -H "X-AWS-Secret-Key: $YOUR_SECRET_KEY" \
     -d @- \
-    https:///v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 ```
 
 </TabItem>

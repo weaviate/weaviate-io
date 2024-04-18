@@ -31,7 +31,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: '',  // Replace with your Weaviate URL
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate URL
 });
 
 const response = await client.graphql

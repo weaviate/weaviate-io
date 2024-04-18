@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https:///")  # Replace with your endpoint
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your endpoint
 some_objects = client.data_object.get()
 print(json.dumps(some_objects))
 ```
@@ -21,7 +21,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: '',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
 });
 
 const response = await client
@@ -100,7 +100,7 @@ public class App {
 {/* <TabItem value="curl" label="Curl">
 
 ```bash
-curl https://some-endpoint.weaviate.network/v1/objects
+curl https://WEAVIATE_INSTANCE_URL/v1/objects  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 ```
 
 </TabItem> */}
