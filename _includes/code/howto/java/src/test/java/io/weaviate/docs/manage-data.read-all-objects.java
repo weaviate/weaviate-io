@@ -41,7 +41,7 @@ class ManageDataReadAllObjectsTest {
 
     String scheme = "https";
     String host = ""; // Replace with your Weaviate URL
-    String apiKey = "YOUR-WEAVIATE-API-KEY"; // If auth enabled. Replace w/ your Weaviate instance API key.
+    String apiKey = "YOUR-WEAVIATE-API-KEY"; // If auth enabled. Replace with your Weaviate instance API key.
 
     try {
       WeaviateClient sourceClient = WeaviateAuthClient.apiKey(new Config(scheme, host), apiKey);

@@ -19,7 +19,7 @@ import weaviate
 
 client = weaviate.Client(
     url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
 )
 
 client.schema.get()
@@ -34,7 +34,7 @@ import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-cl
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
 });
 
 const response = await client
@@ -60,7 +60,7 @@ func main() {
     cfg := weaviate.Config{
         Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your endpoint
         Scheme: "https",
-        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
     }
 
     client, err := weaviate.NewClient(cfg)
@@ -90,7 +90,7 @@ import io.weaviate.client.v1.misc.model.Meta;
 public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // Replace with your endpoint
-    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your Weaviate instance API key
+    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace with your Weaviate instance API key
 
     // get the schema
     Result<Schema> result = client.schema().getter().run();

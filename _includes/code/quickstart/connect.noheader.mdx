@@ -32,7 +32,7 @@ import json
 
 client = weaviate.Client(
     url = "https://",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
 )
 ```
 
@@ -65,7 +65,7 @@ import fetch from 'node-fetch';
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
 });
 ```
 
@@ -87,7 +87,7 @@ func main() {
   cfg := weaviate.Config{
     Host:   "/",  // Replace with your endpoint
     Scheme: "https",
-    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+    AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
   }
 
   client, err := weaviate.NewClient(cfg)

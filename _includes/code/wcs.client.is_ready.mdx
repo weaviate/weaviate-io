@@ -19,7 +19,7 @@ import weaviate
 
 client = weaviate.Client(
     url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
     additional_headers={
         'X-OpenAI-Api-key': os.getenv("OPENAI_APIKEY")  # Replace with your third party API key and identifying header
     }
@@ -36,7 +36,7 @@ import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
   'https://', {                    // Replace with your endpoint
-  authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'), // Replace w/ your Weaviate instance API key
+  authCredentials: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'), // Replace with your Weaviate instance API key
 });
 
 const response = await client.isReady();
@@ -52,7 +52,7 @@ import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-cl
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
   host: 'WEAVIATE_INSTANCE_URL',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
 });
 
 const response = await client.misc
@@ -77,7 +77,7 @@ func main() {
     cfg := weaviate.Config{
         Host:   "/",  // Replace with your endpoint
         Scheme: "https",
-        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
+        AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace with your Weaviate instance API key
     }
 
     client, err := weaviate.NewClient(cfg)
@@ -107,7 +107,7 @@ import io.weaviate.client.v1.misc.model.Meta;
 public class App {
   public static void main(String[] args) {
     Config config = new Config("https", "/");  // Replace with your endpoint
-    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace w/ your Weaviate instance API key
+    WeaviateClient client = WeaviateAuthClient.apiKey(config, "YOUR-WEAVIATE-API-KEY");  // Replace with your Weaviate instance API key
 
     Result<Boolean> result = client.misc().readyChecker().run();
 

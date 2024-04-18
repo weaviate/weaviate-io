@@ -10,7 +10,7 @@ client = weaviate.Client(
     "https://",  # Replace with your Weaviate URL
     auth_client_secret=weaviate.auth.AuthApiKey(
         "YOUR-WEAVIATE-API-KEY"
-    ),  # If authentication is on. Replace w/ your Weaviate instance API key
+    ),  # If authentication is on. Replace with your Weaviate instance API key
 )
 
 # ==============================

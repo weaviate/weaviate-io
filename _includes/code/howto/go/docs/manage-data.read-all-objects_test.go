@@ -26,7 +26,7 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 			Scheme: "https",
 			Host:   "te URL
 			AuthConfig: auth.ApiKey{
-				Value: "YOUR-WEAVIATE-API-KEY", // If auth enabled. Replace w/ your Weaviate instance API key.
+				Value: "YOUR-WEAVIATE-API-KEY", // If auth enabled. Replace with your Weaviate instance API key.
 			},
 		})
 		if err != nil {
