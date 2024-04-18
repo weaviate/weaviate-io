@@ -40,7 +40,7 @@ class ManageDataReadAllObjectsTest {
     // CursorExample  // Retrieve data
 
     String scheme = "https";
-    String host = "some-endpoint.weaviate.network"; // Replace with your Weaviate URL
+    String host = ""; // Replace with your Weaviate URL
     String apiKey = "YOUR-WEAVIATE-API-KEY"; // If auth enabled. Replace w/ your Weaviate instance API key.
 
     try {
@@ -134,7 +134,7 @@ class ManageDataReadAllObjectsTest {
 
     // Restore to a new (target) instance
     WeaviateClient targetClient = new WeaviateClient(
-      new Config("https", "some-endpoint.weaviate.network") // Replace with your Weaviate URL
+      new Config("https", "") // Replace with your Weaviate URL
     );
 
     // Finished restoring to the target instance  // END CursorExample

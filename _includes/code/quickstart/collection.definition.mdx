@@ -65,7 +65,7 @@ import (
 
 func main() {
 	cfg := weaviate.Config{
-		Host:   "some-endpoint.weaviate.network/",  // Replace with your endpoint
+		Host:   "/",  // Replace with your endpoint
 		Scheme: "https",
 		AuthConfig: auth.ApiKey{Value: "YOUR-WEAVIATE-API-KEY"}, // Replace w/ your Weaviate instance API key
 		Headers: map[string]string{
@@ -112,7 +112,8 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    Config config = new Config("https", "/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -148,7 +149,7 @@ echo '{
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $WEAVIATE_API_KEY" \
   -d @- \
-  https://some-endpoint.weaviate.network/v1/schema
+  https:///v1/schema  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem>

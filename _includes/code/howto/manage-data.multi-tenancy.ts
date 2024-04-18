@@ -4,7 +4,7 @@ import assert from 'assert';
 import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
+  '',  
  {
    authCredentials: new weaviate.ApiKey('api-key'),
    headers: {

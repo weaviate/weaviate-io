@@ -23,7 +23,7 @@ import csv from 'csv-parser';
 
 // ===== Instantiation, not shown in snippet
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
+  '',  
  {
    authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
