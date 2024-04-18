@@ -6,6 +6,7 @@ import WorkshopSection from '../../components/Events/Workshops';
 import ContactForm from '/src/components/Events/ContactForm/contactForm';
 import ThemeSwitch from '../../components/ThemeSwitch';
 import LearnMore from '../../components/Events/LearnMore';
+import OnDemand from '../../components/Events/OnDemand';
 
 export default function EventsPage() {
   return (
@@ -17,6 +18,7 @@ export default function EventsPage() {
         <MetaSEO img="og/company/Community.jpg" />
         <Header />
         <WorkshopSection />
+        <OnDemand />
         <LearnMore />
         <ContactForm />
       </Layout>
