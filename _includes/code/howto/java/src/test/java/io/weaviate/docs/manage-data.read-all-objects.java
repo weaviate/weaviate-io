@@ -40,7 +40,7 @@ class ManageDataReadAllObjectsTest {
     // CursorExample  // Retrieve data
 
     String scheme = "https";
-    String host = ""; // Replace with your Weaviate URL
+    String host = "WEAVIATE_INSTANCE_URL"; // Replace with your Weaviate URL
     String apiKey = "YOUR-WEAVIATE-API-KEY"; // If auth enabled. Replace with your Weaviate instance API key.
 
     try {

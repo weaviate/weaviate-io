@@ -24,7 +24,7 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 
 		sourceClient, err := weaviate.NewClient(weaviate.Config{
 			Scheme: "https",
-			Host:   "te URL
+			Host:   "WEAVIATE_INSTANCE_URL" // Replace WEAVIATE_INSTANCE_URL with your instance URL
 			AuthConfig: auth.ApiKey{
 				Value: "YOUR-WEAVIATE-API-KEY", // If auth enabled. Replace with your Weaviate instance API key.
 			},
