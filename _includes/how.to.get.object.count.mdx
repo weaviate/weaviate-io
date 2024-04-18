@@ -18,7 +18,7 @@ import PyCode from '!!raw-loader!/_includes/code/graphql.aggregate.simple.py';
 ```python
 import weaviate
 
-client = weaviate.Client("https://some-endpoint.weaviate.network")
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL")  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 
 client.query.aggregate(<ClassName>).with_meta_count().do()
 ```
@@ -31,7 +31,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
 });
 
 const response = await client.graphql
@@ -58,7 +58,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:   "some-endpoint.weaviate.network",
+    Host:   "WEAVIATE_INSTANCE_URL",  // Replace with your instance URL
     Scheme: "https",
   }
   client := weaviate.New(cfg)
@@ -94,7 +94,8 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");
+    // Replace with your instance URL
     WeaviateClient client = new WeaviateClient(config);
     Field meta = Field.builder()
       .name("meta")
@@ -132,7 +133,7 @@ echo '{
   -X POST \
   -H 'Content-Type: application/json' \
   -d @- \
-  https://some-endpoint.weaviate.network/v1/graphql
+  https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 ```
 
 </TabItem>
