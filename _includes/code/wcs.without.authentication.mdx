@@ -70,7 +70,7 @@ import io.weaviate.client.WeaviateClient;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "");  // Replace with your Weaviate endpoint
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");  // Replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
   }

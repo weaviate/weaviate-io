@@ -96,7 +96,7 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "");  // Replace with your Weaviate URL
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL");  // Replace with your Weaviate URL
     WeaviateClient client = new WeaviateClient(config);
 
     Field title = Field.builder().name("question").build();

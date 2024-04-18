@@ -78,7 +78,7 @@ if err != nil {
 import io.weaviate.client.Config;
 import io.weaviate.client.WeaviateAuthClient;
 
-Config config = new Config("https", "");  // Replace with your Weaviate endpoint
+Config config = new Config("https", "WEAVIATE_INSTANCE_URL");  // Replace with your Weaviate endpoint
 WeaviateAuthClient.clientPassword(
     config,
     wcsUsername,  // Replace with your WCS username

@@ -134,7 +134,7 @@ class ManageDataReadAllObjectsTest {
 
     // Restore to a new (target) instance
     WeaviateClient targetClient = new WeaviateClient(
-      new Config("https", "") // Replace with your Weaviate URL
+      new Config("https", "WEAVIATE_INSTANCE_URL") // Replace with your Weaviate URL
     );
 
     // Finished restoring to the target instance  // END CursorExample
