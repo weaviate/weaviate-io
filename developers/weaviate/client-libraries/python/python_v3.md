@@ -85,11 +85,11 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 ```python
 import weaviate
 
-auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace with your Weaviate instance API key
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
-    url="https://WEAVIATE_INSTANCE_URL",  # Replace w/ your endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your endpoint
     auth_client_secret=auth_config
 )
 ```

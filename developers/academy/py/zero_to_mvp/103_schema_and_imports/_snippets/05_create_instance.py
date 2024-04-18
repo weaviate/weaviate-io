@@ -2,8 +2,8 @@
 import weaviate
 
 client = weaviate.Client(
-    url="https://WEAVIATE_INSTANCE_URL",  # Replace w/ your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your API Key for the Weaviate instance. Delete if authentication is disabled.
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your API Key for the Weaviate instance. Delete if authentication is disabled.
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",
     },
@@ -17,7 +17,7 @@ assert client.is_ready()  # This should return `True`
 import weaviate
 
 client = weaviate.Client(
-    url="https://anon-endpoint.weaviate.network",  # Replace w/ your endpoint
+    url="https://anon-endpoint.weaviate.network",  # Replace with your endpoint
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",
     },
