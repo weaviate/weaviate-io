@@ -118,7 +118,7 @@ export const courseData = {
     badgeType: "course",
     isCourse: true,
     units: [
-      "tokenization_basics", "tokenization_options", "tokenization_impact"
+      "tokenization_basics", "tokenization_options", "tokenization_filters", "tokenization_searches"
     ],
     learningGoals: [
       "What tokenization is, and why it is required."

@@ -280,17 +280,31 @@ export const unitData = {
       "Identify languages for which specific tokenization options are available.",
     ]
   },
-  "tokenization_practice": {
-    title: "Tokenization in practice",
-    body: "See how tokenization impacts search & filtering.",
+  "tokenization_filters": {
+    title: "Tokenization and filters",
+    body: "See how tokenization impacts filters.",
     buttonType: "Click here",
-    buttonURL: "/developers/academy/py/tokenization/impact",
+    buttonURL: "/developers/academy/py/tokenization/filters",
+    badgeType: "practical",
+    learningGoals: [
+      "The impact of tokenization on filters."
+    ],
+    learningOutcomes: [
+      "Describe the ways in which tokenization can affect filters.",
+      "Implement an appropriate tokenization option in Weaviate for a given use case.",
+    ]
+  },
+  "tokenization_searches": {
+    title: "Tokenization and searches",
+    body: "See how tokenization impacts searches.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization/searches",
     badgeType: "practical",
     learningGoals: [
       "The impact of tokenization on query results."
     ],
     learningOutcomes: [
-      "Describe the ways in which tokenization can affect search results.",
+      "Describe the ways in which tokenization can affect keyword search results.",
       "Implement an appropriate tokenization option in Weaviate for a given use case.",
     ]
   },
