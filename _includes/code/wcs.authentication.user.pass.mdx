@@ -20,7 +20,7 @@ import weaviate
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
-    url="https://",  # Replace with your Weaviate endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
     auth_client_secret=weaviate.AuthClientPassword(
         username = wcs_username,  # Replace with your WCS username
         password = wcs_password,  # Replace with your WCS password
