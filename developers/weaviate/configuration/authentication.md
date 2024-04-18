@@ -32,7 +32,7 @@ See [this page](../installation/kubernetes.md#authentication-and-authorization) 
 
 To configure Weaviate for API key-based authentication, add the following environment variables to your configuration file. 
 
-A `docker-compose.yml` file looks like this:
+An example `docker-compose.yml` file looks like this:
 
 ```yaml
 services:
@@ -50,10 +50,12 @@ services:
       AUTHENTICATION_APIKEY_USERS: 'jane@doe.com,ian-smith'
 ```
 
-With this configuration, the following API key-based authentication rules apply:
+The example associates API keys and users. 
 
-The API key `jane-secret-key` is associated with the `jane@doe.com` identity.
-The API key `ian-secret-key` is associated with the `ian-smith` identity.
+| API key | User| 
+| :- | :- |
+| `jane-secret-key` | `jane@doe.com` |
+| `ian-secret-key` | `ian-smith` |
 
 :::info `n` APIKEY_ALLOWED_KEYS vs `n` APIKEY_USERS
 There are two options for configuring the number of keys and users:
@@ -74,9 +76,16 @@ services:
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'ian-smith,roberta@doe.com'
 ```
 
-This configuration designates `jane@doe.com` and `john@doe.com` as admin users with read and write permissions, while `ian-smith` and `roberta@doe.com` have read-only access.
+The example associates permission with users. 
 
-In this scenario, `jane-secret-key` is an admin (read & write) key, and `ian-secret-key` is a read-only key.
+| User| User type | Permission | 
+| :- | :- | :- |
+| `jane-secret-key` | Admin | Read, write |
+| `john@doe.com` | Admin | Read, write |
+| `ian-smith` | Read Only | Read |
+| `roberta@doe.com` | Read Only | Read |
+
+In the example, `jane-secret-key` is an `admin` key, and `ian-secret-key` is a `read-only` key.
 
 :::note What about the other identities?
 You might notice that the authorization list includes `john@doe.com` and `roberta@doe.com`. Weaviate supports a combination of API key and OIDC-based authentication. Thus, the additional users might be OIDC users.
@@ -205,11 +214,13 @@ services:
 
 #### Weaviate OpenID endpoint
 
-If you have authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
+If you have OIDC authentication enabled, you can obtain Weaviate's OIDC configuration from the following endpoint:
 
 ```bash
-curl [WEAVIATE URL]/v1/.well-known/openid-configuration
+curl ${WEAVIATE_INSTANCE_URL}/v1/.well-known/openid-configuration
 ```
+
+Edit ${WEAVIATE_INSTANCE_URL} to provide your instance URL.
 
 ## OIDC - A client-side perspective
 
@@ -225,9 +236,9 @@ OIDC authentication flows are outside the scope of this documentation, but here 
 
 ### OIDC support for Weaviate clients
 
-The latest versions (from mid-December 2022 and onwards) of Python, JavaScript, Go and Java Weaviate clients support OIDC authentication. If Weaviate is set up to use the `client credentials grant` flow as or `resource owner password flow`, the respective Weaviate client can instantiate a connection to Weaviate that incorporates the authentication flow.
+If Weaviate core is configured to use the `client credentials grant` flow or the `resource owner password flow`, a Weaviate client can instantiate a connection to Weaviate core that incorporates the authentication flow.
 
-Please refer to the [client libraries documentation](../client-libraries/index.md) for each client for code examples.
+<ClientLibraryUsage />
 
 ### Manually obtaining and passing tokens
 
@@ -240,20 +251,19 @@ For cases or workflows where you may wish to manually obtain a token, we outline
 
 #### Resource owner password flow
 
-1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
-1. Parse the `clientId` and `href` from `wv_oidc_config`
-1. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
+1. Send a GET request to `WEAVIATE_INSTANCE_URL/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`). Replace WEAVIATE_INSTANCE_URL with your instance URL.
+1. Parse the `clientId` and `href` from `wv_oidc_config`.
+1. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`).
 1. If `token_oidc_config` includes the optional `grant_types_supported` key, check that `password` is in the list of values.
     - If `password` is not in the list of values, the token issuer is likely not configured for `resource owner password flow`. You may need to reconfigure the token issuer or use another method.
     - If the `grant_types_supported` key is not available, you may need to contact the token issuer to see if `resource owner password flow` is supported.
 1. Send a POST request to the `token_endpoint` of `token_oidc_config` with the body:
-    - `{"grant_type": "password", "client_id": client_id, "username": [USERNAME], "password": [PASSWORD]}`.
-    - Where `[USERNAME]` and `[PASSWORD]` are replaced with the actual values for each.
+    - `{"grant_type": "password", "client_id": client_id, "username": USERNAME, "password": PASSWORD`. Replace `USERNAME` and `PASSWORD` with the actual values.
 1. Parse the response (`token_resp`), and look for `access_token` in `token_resp`. This is your Bearer token.
 
 #### Hybrid flow
 
-1. Send a GET request to `[WEAVIATE_URL]/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`)
+1. Send a GET request to `WEAVIATE_INSTANCE_URL/v1/.well-known/openid-configuration` to fetch Weaviate's OIDC configuration (`wv_oidc_config`). Replace WEAVIATE_INSTANCE_URL with your instance URL.
 2. Parse the `clientId` and `href` from `wv_oidc_config`
 3. Send a GET request to `href` to fetch the token issuer's OIDC configuration (`token_oidc_config`)
 4. Construct a URL (`auth_url`) with the following parameters, based on `authorization_endpoint` from `token_oidc_config`. This will look like the following:
@@ -350,14 +360,11 @@ curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_
 <ClientLibraryUsage />
 
 ## Anonymous access
-By default, Weaviate is configured to accept requests without any
-authentication headers or parameters. Users sending such requests will be
-authenticated as `user: anonymous`.
+By default, Weaviate is configured to accept requests without any authentication headers or parameters. Users that send requests without explicit authentication are authenticated as `user: anonymous`.
 
 You can use the authorization plugin to specify which
-permissions to apply to anonymous users. When anonymous access is disabled altogether,
-any request without an allowed authentication scheme will return `401
-Unauthorized`.
+permissions to apply to anonymous users. If anonymous access is disabled altogether,
+any request without an allowed authentication scheme returns `401 Unauthorized`.
 
 ### Configuration
 Anonymous access can be enabled or disabled in the configuration yaml using the environment variable shown below:
