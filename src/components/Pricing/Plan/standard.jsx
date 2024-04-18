@@ -37,15 +37,12 @@ export default function PricingStandard() {
         </div>
         <div className={styles.price}>
           <p>We manage everything for you in the Weaviate Cloud.</p>
-          <p>
-            Starting at <span className={styles.big}>$25 /mo</span>
-          </p>
         </div>
         <hr></hr>
         <div className={styles.features}>
           <li>
             <div className={`${styles.checkIcon} ${styles.doubleIcon}`}></div>
-            <span>Serverless SaaS deployment</span>
+            <span>Starting at $25 /mo</span>
           </li>
           <li>
             <div className={styles.checkIcon}></div>
