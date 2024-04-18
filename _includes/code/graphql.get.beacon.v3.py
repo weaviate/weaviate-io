@@ -2,7 +2,7 @@
 import weaviate
 
 client = weaviate.Client(
-    "https://",  # Replace with your Weaviate URL
+    "https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate URL
 )
 
 # ===== END PYTHON EXAMPLE =====
