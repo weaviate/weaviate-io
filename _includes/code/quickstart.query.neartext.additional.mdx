@@ -85,7 +85,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "/",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    Host:    "WEAVIATE_INSTANCE_URL/",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
     Scheme:  "https",
     Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},
   }
