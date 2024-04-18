@@ -96,7 +96,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network",
+    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
     Scheme:  "https",
     Headers: map[string]string{
       "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
@@ -158,7 +158,9 @@ public class App {
       put("X-AWS-Access-Key", "YOUR_ACCESS_KEY");
       put("X-AWS-Secret-Key", "YOUR_SECRET_KEY");
     } };
-    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace with your instance URL
+
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start

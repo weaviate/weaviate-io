@@ -114,7 +114,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network",
+    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
     Scheme:  "https",
     Headers: map[string]string{"X-Mistral-Api-Key": "YOUR-MISTRAL-API-KEY"},
   }
@@ -172,7 +172,9 @@ public class App {
     Map<String, String> headers = new HashMap<String, String>() { {
       put("X-Mistral-Api-Key", "YOUR-MISTRAL-API-KEY");
     } };
-    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
+        Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace with your instance URL
+
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start
