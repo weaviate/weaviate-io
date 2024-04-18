@@ -165,7 +165,7 @@ const config = {
             type: "module",
             src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha80/dist/run-llm-search-widget.es.js",
             "runllm-server-address": "https://api.runllm.com",
-            "runllm-assistant-id": "29",
+            "runllm-assistant-id": "51",
             "runllm-position": "BOTTOM_RIGHT",
             "runllm-keyboard-shortcut": "Mod+j",
             "version": "0.0.1-alpha80",
