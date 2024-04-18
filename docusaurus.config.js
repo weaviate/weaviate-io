@@ -163,12 +163,12 @@ const config = {
         {
             id: "runllm-widget-script",
             type: "module",
-            src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha81/dist/run-llm-search-widget.es.js",
+            src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha86/dist/run-llm-search-widget.es.js",
             "runllm-server-address": "https://api.runllm.com",
             "runllm-assistant-id": "51",
             "runllm-position": "BOTTOM_RIGHT",
             "runllm-keyboard-shortcut": "Mod+j",
-            "version": "0.0.1-alpha81",
+            "version": "0.0.1-alpha86",
             "runllm-slack-community-url": "https://weaviate.slack.com/join/shared_invite/zt-2giu0vur8-9PRqMeueYTb~ysf8nzedow#/shared-invite/email",
             "runllm-name": "Weaviate", 
             async: true,
@@ -189,7 +189,7 @@ const config = {
                 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
-        "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha80/dist/main.css"
+        "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha86/dist/main.css"
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
