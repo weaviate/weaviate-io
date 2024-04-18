@@ -31,7 +31,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
+  host: '',  // Replace with your Weaviate URL
 });
 
 const response = await client.graphql
@@ -58,7 +58,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:   "some-endpoint.weaviate.network",  // Replace with your Weaviate URL
+    Host:   "",  // Replace with your Weaviate URL
     Scheme: "https",
   }
   client, err := weaviate.NewClient(cfg)
@@ -96,7 +96,7 @@ import io.weaviate.client.v1.graphql.query.fields.Field;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network");  // Replace with your Weaviate URL
+    Config config = new Config("https", "");  // Replace with your Weaviate URL
     WeaviateClient client = new WeaviateClient(config);
 
     Field title = Field.builder().name("question").build();

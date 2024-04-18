@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
+client = weaviate.Client("https:///")  # Replace with your endpoint
 some_objects = client.data_object.get()
 print(json.dumps(some_objects))
 ```
@@ -21,7 +21,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: '',  // Replace with your endpoint
 });
 
 const response = await client
@@ -45,7 +45,7 @@ import (
 
 func GetSchema() {
     cfg := weaviate.Config{
-      Host:   "some-endpoint.weaviate.network/",
+      Host:   "/",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
       Scheme: "https",
     }
 
@@ -79,7 +79,8 @@ import io.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    Config config = new Config("https", "/");
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
 
     WeaviateClient client = new WeaviateClient(config);
 

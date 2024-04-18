@@ -3,7 +3,7 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
+    url = "https://",  # Replace with your endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
 )
 
