@@ -280,6 +280,8 @@ public class App {
 {/* <TabItem value="curl" label="Curl">
 
 ```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
 curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -299,9 +301,9 @@ curl \
         }
     ]
 }' \
-https://some-endpoint.weaviate.network/v1/schema
+https://${WEAVIATE_INSTANCE_URL}/v1/schema
 
-curl https://some-endpoint.weaviate.network/v1/schema
+curl https://${WEAVIATE_INSTANCE_URL}/v1/schema
 ```
 
 </TabItem> */}
