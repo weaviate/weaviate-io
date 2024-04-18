@@ -155,7 +155,7 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "/");  // replace with your Weaviate endpoint
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");  // replace with your Weaviate endpoint
 
     WeaviateClient client = new WeaviateClient(config);
 

@@ -79,7 +79,7 @@ import io.weaviate.client.v1.data.model.WeaviateObject;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "/");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
     // Replace WEAVIATE_INSTANCE_URL with your instance URL
 
     WeaviateClient client = new WeaviateClient(config);
