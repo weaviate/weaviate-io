@@ -6,7 +6,7 @@ import requests
 import json
 
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace w/ your endpoint
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key. Delete if authentication is disabled.
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",
