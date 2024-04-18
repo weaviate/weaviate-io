@@ -265,7 +265,7 @@ Then, take a look at the how-to guides for [Managing data](../../manage-data/ind
 
 In particular, check out the pages for:
 
-- [Client instantiation](./index.md#instantiate-a-client),
+- [Client instantiation](./index.mdx#installation-and-setup),
 - [Manage collections](../../manage-data/collections.mdx),
 - [Batch import](../../manage-data/import.mdx)
 - [Cross-reference](../../manage-data/cross-references.mdx)
