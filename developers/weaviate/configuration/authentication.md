@@ -26,16 +26,13 @@ See [this page](../installation/kubernetes.md#authentication-and-authorization) 
 
 ## WCS authentication
 
-[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured with both API key and OIDC authentication options, providing you with a seamless experience right out of the box.
-
-Refer to the [WCS documentation for instructions](/developers/wcs/authentication.mdx) on how to authenticate as a user in this setup.
+[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/authentication.mdx).
 
 ## API key
 
-:::info Added in `1.18`
-:::
+To configure Weaviate for API key-based authentication, add the following environment variables to your configuration file. 
 
-To set up Weaviate for API key-based authentication, add the following environment variables to the appropriate Docker Compose file (e.g., `docker-compose.yml`):
+A `docker-compose.yml` file looks like this:
 
 ```yaml
 services:
@@ -87,15 +84,19 @@ You might notice that the authorization list includes `john@doe.com` and `robert
 
 ### API key: Client-side usage
 
-To authenticate against Weaviate with the API key, each request must include it in the header like: `Authorization: Bearer API_KEY`, where `API_KEY` is the specific API key for the Weaviate instance.
+import APIKeyUsage from '/_includes/clients/api-token-usage.mdx';
 
-For example, you can use a CURL command as shown below:
+<APIKeyUsage />
+
+A CURL command looks like this:
 
 ```bash
-curl https://some-endpoint.weaviate.network/v1/meta -H "Authorization: Bearer YOUR-WEAVIATE-API-KEY" | jq
+curl https://${WEAVIATE_INSTANCE_URL}/v1/meta -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python/index.md#api-key-authentication), [TypeScript](../client-libraries/typescript/index.mdx#api-key-authentication), [Java](../client-libraries/java.md#api-key-authentication) or [Go](../client-libraries/go.md#api-key-authentication) to see client-specific instructions.
+import ClientLibraryUsage from '/_includes/clients/client-library-usage.mdx';
+
+<ClientLibraryUsage />
 
 ## OIDC - A systems perspective
 
@@ -336,16 +337,17 @@ The token has a configurable expiry time that is set by the token issuer. We sug
 
 ### Add a Bearer to a Request
 
-Once you have obtained a token, attach it to all requests to Weaviate in the header like so: `Authorization: Bearer TOKEN`, where `TOKEN` is your actual token.
+<APIKeyUsage />
 
 For example, you can use a CURL command as shown below:
 
+A CURL command looks like this:
+
 ```bash
-# List objects using a Bearer token
-curl http://localhost:8080/v1/objects -H "Authorization: Bearer TOKEN"
+curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
 ```
 
-If using a Weaviate client library, click on the relevant link for [Python](../client-libraries/python/index.md#authentication), [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript/index.mdx#authentication), [Java](../client-libraries/java.md#authentication) or [Go](../client-libraries/go.md#authentication) to find instructions on how to attach a token with that client.
+<ClientLibraryUsage />
 
 ## Anonymous access
 By default, Weaviate is configured to accept requests without any
