@@ -18,7 +18,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import weaviate
 
 client  = weaviate.Client(
-  url = "https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
+  url = "https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL
   additional_headers={
       "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY"
   }
@@ -259,7 +259,7 @@ echo '{
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
     -H "X-Cohere-Api-Key: $COHERE_API_KEY" \
     -d @- \
-    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem>
