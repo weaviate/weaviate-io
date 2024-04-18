@@ -10,7 +10,7 @@ import weaviate from 'weaviate-client';
 
 // ===== Instantiation, not shown in snippet
 const client = await weaviate.connectToWCS(
-  '',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
    authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
