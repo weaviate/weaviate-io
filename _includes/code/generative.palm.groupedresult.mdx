@@ -18,7 +18,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import weaviate
 
 client  = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+  url = "https:///",  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
   additional_headers={
       "X-PaLM-Api-Key": "YOUR-PALM-API-KEY"
   }
@@ -52,7 +52,7 @@ import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: '',  // Replace with your endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
   headers: { 'X-PaLM-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your GOOGLE API key
 });
@@ -250,7 +250,7 @@ echo '{
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
     -H "X-PaLM-Api-Key: $PALM_API_KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https:///v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 ```
 
 </TabItem>
