@@ -43,6 +43,8 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
         ["http://localhost:8080", "http://localhost:8099"],  # Specify different port from usual to avoid confusion
 
         # For examples with auth
+        ["https://WEAVIATE_INSTANCE_URL", "http://localhost:8099"],
+        ["WEAVIATE_INSTANCE_URL", "http://localhost:8099"],
         ["https://some-endpoint.weaviate.network", "http://localhost:8099"],
         ["some-endpoint.weaviate.network", "localhost:8099"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
