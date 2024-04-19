@@ -37,6 +37,7 @@ Prior to `v1.19`, Weaviate supported an additional datatype `string`, which was 
 
 Please use `text` instead, which now supports all tokenizations options previously available through `string`.
 :::
+
 ## DataType: `cross-reference`
 
 The [`cross-reference`](../more-resources/glossary.md) type is the graph element of Weaviate: you can create a link from one object to another. In the schema you can define multiple classes to which a property can point, in a list of strings. The strings in the `dataType` list are names of classes defined elsewhere in the schema. For example:
