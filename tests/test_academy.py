@@ -25,6 +25,10 @@ import utils
         "./developers/academy/py/named_vectors/_snippets/104_usecase.py",
         "./developers/academy/py/compression/_snippets/100_pq.py",
         "./developers/academy/py/compression/_snippets/200_bq.py",
+        ".developers/academy/py/tokenization/_snippets/310_create_collection.py",
+        ".developers/academy/py/tokenization/_snippets/315_add_objects.py",
+        ".developers/academy/py/tokenization/_snippets/320_filters.py",
+        ".developers/academy/py/tokenization/_snippets/400_searches.py",
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
