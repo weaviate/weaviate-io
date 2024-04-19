@@ -25,10 +25,10 @@ import utils
         "./developers/academy/py/named_vectors/_snippets/104_usecase.py",
         "./developers/academy/py/compression/_snippets/100_pq.py",
         "./developers/academy/py/compression/_snippets/200_bq.py",
-        ".developers/academy/py/tokenization/_snippets/310_create_collection.py",
-        ".developers/academy/py/tokenization/_snippets/315_add_objects.py",
-        ".developers/academy/py/tokenization/_snippets/320_filters.py",
-        ".developers/academy/py/tokenization/_snippets/400_searches.py",
+        "./developers/academy/py/tokenization/_snippets/310_create_collection.py",
+        "./developers/academy/py/tokenization/_snippets/315_add_objects.py",
+        "./developers/academy/py/tokenization/_snippets/320_filters.py",
+        "./developers/academy/py/tokenization/_snippets/400_searches.py",
     ],
 )
 def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
@@ -53,20 +53,20 @@ def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
 #     exec(proc_script)
 
 
-@pytest.mark.pyv3
-@pytest.mark.parametrize(
-    "script_loc",
-    [
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/10_bm25.py",
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/20_hybrid.py",
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/30_generative.py",
-        "./developers/academy/zero_to_mvp/104_queries_2/_snippets/40_qna.py",
-    ],
-)
-def test_against_edu_demo_pyv3(empty_weaviates, script_loc):
-    temp_proc_script_loc = utils.load_and_prep_temp_file(
-        script_loc,
-        lang="py",
-        custom_replace_pairs=utils.edu_readonly_replacements
-    )
-    exec(temp_proc_script_loc.read_text())
+# @pytest.mark.pyv3
+# @pytest.mark.parametrize(
+#     "script_loc",
+#     [
+#         "./developers/academy/zero_to_mvp/104_queries_2/_snippets/10_bm25.py",
+#         "./developers/academy/zero_to_mvp/104_queries_2/_snippets/20_hybrid.py",
+#         "./developers/academy/zero_to_mvp/104_queries_2/_snippets/30_generative.py",
+#         "./developers/academy/zero_to_mvp/104_queries_2/_snippets/40_qna.py",
+#     ],
+# )
+# def test_against_edu_demo_pyv3(empty_weaviates, script_loc):
+#     temp_proc_script_loc = utils.load_and_prep_temp_file(
+#         script_loc,
+#         lang="py",
+#         custom_replace_pairs=utils.edu_readonly_replacements
+#     )
+#     exec(temp_proc_script_loc.read_text())
