@@ -76,7 +76,7 @@ services:
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'ian-smith,roberta@doe.com'
 ```
 
-The example associates permission with users. 
+The example associates permissions with users. 
 
 | User| User type | Permission | 
 | :- | :- | :- |
@@ -349,9 +349,7 @@ The token has a configurable expiry time that is set by the token issuer. We sug
 
 <APIKeyUsage />
 
-For example, you can use a CURL command as shown below:
-
-A CURL command looks like this:
+For example, the cURL command looks like this:
 
 ```bash
 curl https://localhost:8080/v1/objects -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq

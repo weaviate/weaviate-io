@@ -36,7 +36,7 @@ import weaviate, { AuthUserPasswordCredentials } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: "https",
-  host: "",  // Replace with your Weaviate endpoint
+  host: "WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
   authClientSecret: new AuthUserPasswordCredentials({
     username: wcsUsername,  // Replace with your WCS username
     password: wcsPassword,  // Replace with your WCS password
@@ -57,7 +57,7 @@ import (
 )
 
 cfg := weaviate.Config{
-  Host:"some-endpoint.weaviat}e.network",  // Replace with your Weaviate endpoint
+  Host:"WEAVIATE_INSTANCE_URL",  // Replace with your Weaviate endpoint
   Scheme: "https",
   AuthConfig: auth.ResourceOwnerPasswordFlow{
     Username: wcsUsername,  // Replace with your WCS username
