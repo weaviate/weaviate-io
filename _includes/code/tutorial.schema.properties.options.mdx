@@ -20,7 +20,7 @@ import PyCode from '!!raw-loader!/_includes/code/starter-guides/schema.py';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your Weaviate endpoint
 
 # we will create the class "Question"
 class_obj = {
@@ -112,7 +112,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 
 // Define the 'Question' class
@@ -173,7 +173,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
+        Host:   "WEAVIATE_INSTANCE_URL/",  // Replace with your URL
         Scheme: "https",
     }
 
@@ -233,7 +233,8 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace with your URL
 
     WeaviateClient client = new WeaviateClient(config);
 
@@ -279,6 +280,8 @@ public class App {
 {/* <TabItem value="curl" label="Curl">
 
 ```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
 curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -298,9 +301,9 @@ curl \
         }
     ]
 }' \
-https://some-endpoint.weaviate.network/v1/schema
+https://${WEAVIATE_INSTANCE_URL}/v1/schema
 
-curl https://some-endpoint.weaviate.network/v1/schema
+curl https://${WEAVIATE_INSTANCE_URL}/v1/schema
 ```
 
 </TabItem> */}

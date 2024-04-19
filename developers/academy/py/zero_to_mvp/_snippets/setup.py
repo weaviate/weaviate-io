@@ -18,7 +18,7 @@ client = weaviate.Client(
     url="https://edu-demo.weaviate.network",
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your OPENAI API key
     }
 )
 # ===== END Instantiate to edu-demo with OpenAI =====
@@ -46,7 +46,7 @@ client = weaviate.Client(
     url="https://edu-demo.weaviate.network",
     auth_client_secret=weaviate.auth.AuthApiKey(api_key="learn-weaviate"),  # A read-only API Key for the Weaviate instance
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your OPENAI API key
     }
 )
 

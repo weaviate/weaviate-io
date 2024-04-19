@@ -43,8 +43,8 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
         ["http://localhost:8080", "http://localhost:8099"],  # Specify different port from usual to avoid confusion
 
         # For examples with auth
-        ["https://some-endpoint.weaviate.network", "http://localhost:8099"],
-        ["some-endpoint.weaviate.network", "localhost:8099"],
+        ["https://WEAVIATE_INSTANCE_URL", "http://localhost:8099"],
+        ["WEAVIATE_INSTANCE_URL", "http://localhost:8099"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
 
         # For anonoymous examples
@@ -53,11 +53,11 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
     ]
 
     if lang == "js" or lang == "ts":
-        pattern = r"\s*  scheme: 'https',\n?\s*  host: 'some-endpoint.weaviate.network',"
+        pattern = r"\s*  scheme: 'https',\n?\s*  host: 'WEAVIATE_INSTANCE_URL',"
 
         replacement = '''
         scheme: 'http',
-        host: 'localhost:8099',  // Replace with your endpoint
+        host: 'localhost:8099',  // Replace with your Weaviate endpoint
         '''
 
         proc_codeblock = re.sub(pattern, replacement, proc_codeblock, flags=re.DOTALL)
@@ -97,6 +97,6 @@ def load_and_prep_temp_file(script_path: str, lang: str = "js", custom_replace_p
 
 
 edu_readonly_replacements = [
-    ("some-endpoint.weaviate.network", "edu-demo.weaviate.network"),
+    ("WEAVIATE_INSTANCE_URL", "edu-demo.weaviate.network"),
     ("YOUR-WEAVIATE-API-KEY", "learn-weaviate")
 ]

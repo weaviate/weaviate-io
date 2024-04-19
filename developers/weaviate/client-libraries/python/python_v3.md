@@ -37,7 +37,7 @@ Now you can use the client in your Python scripts as follows:
 ```python
 import weaviate
 
-client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL")  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 
 assert client.is_ready()  # Will return True if the client is connected & the server is ready to accept requests
 ```
@@ -48,7 +48,7 @@ Or, with additional arguments such as those below:
 import weaviate
 
 client = weaviate.Client(
-  url="https://some-endpoint.weaviate.network",  # URL of your Weaviate instance
+  url="https://WEAVIATE_INSTANCE_URL",  # URL of your Weaviate instance
   auth_client_secret=auth_config,  # (Optional) If the Weaviate instance requires authentication
   timeout_config=(5, 15),  # (Optional) Set connection timeout & read timeout time in seconds
   additional_headers={  # (Optional) Any additional headers; e.g. keys for API inference services
@@ -85,11 +85,11 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 ```python
 import weaviate
 
-auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace with your Weaviate instance API key
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
     auth_client_secret=auth_config
 )
 ```
