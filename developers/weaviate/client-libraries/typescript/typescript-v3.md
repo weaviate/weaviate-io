@@ -75,7 +75,7 @@ Once installed, you can use the client in your TypeScript and JavaScript scripts
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'),
   }
 )
@@ -89,7 +89,7 @@ console.log(client)
 import weaviate, { WeaviateClient, generateUuid5, DataObject } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'),
   }
 )
@@ -134,7 +134,7 @@ const { default: weaviate } = require('weaviate-client');
 
 // Instantiate the client with the auth config
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
   }
 )
@@ -150,7 +150,7 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
 // Instantiate the client with the auth config
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
   }
 )
@@ -186,7 +186,7 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
+  'WEAVIATE_INSTANCE_URL', // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthUserPasswordCredentials({
     username: 'username',
@@ -205,7 +205,7 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
+  'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new AuthUserPasswordCredentials({
     username: 'username',
@@ -233,7 +233,7 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthClientCredentials({
       clientSecret: 'supersupersecret',
@@ -251,7 +251,7 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthClientCredentials({
       clientSecret: 'supersupersecret',
@@ -278,7 +278,7 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthAccessTokenCredentials({
       accessToken: 'acessToken',
@@ -297,7 +297,7 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthAccessTokenCredentials({
       accessToken: 'acessToken',
@@ -323,7 +323,7 @@ You can pass custom headers to the client, which are added at initialization:
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('some-api-key'),
     headers: {
@@ -340,7 +340,7 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('some-api-key'),
     headers: {
@@ -421,7 +421,8 @@ Use this code to create `sample.ts`.
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
+  {
     authCredentials: new weaviate.ApiKey('api-key'),
   }
 )

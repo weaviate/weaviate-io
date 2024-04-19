@@ -64,6 +64,24 @@ const config = {
                 showReadingTime: true,
             },
         ],
+        // Paper Reviews configuration
+        [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Paper Reviews',
+                blogDescription: '<todo>',
+                blogSidebarCount: 0,
+                postsPerPage: 6,
+                blogSidebarTitle: 'Weaviate Paper Reviews',
+
+                id: 'papers-blog',
+                routeBasePath: '/papers',
+                // path to data on filesystem relative to site dir.
+                path: 'papers',
+                authorsMapPath: '../authors.yml',
+                showReadingTime: true,
+            },
+        ],
         [
             '@scalar/docusaurus',
             {
@@ -71,7 +89,7 @@ const config = {
               route: '/developers/weaviate/api/rest',
               configuration: {
                 spec: {
-                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs/openapi-specs/schema.json',
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_from_tag/openapi-specs/schema.json',
                 },
                 // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
                 // hiddenClients: [...],
@@ -209,8 +227,8 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar-python-client',
-                content: `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/client-libraries/python">Shape the Future - Try Our New Python Client API</a> to learn more.`,
+                id: 'announcement-bar-online-workshops',
+                content: `<b>Learn from the experts</b> at our weekly <a target="_blank" rel="noopener noreferrer" href="/community/events">Online Workshops</a>.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -304,8 +322,12 @@ const config = {
                                 to: '/community',
                             },
                             {
-                                label: 'Events & Webinars',
+                                label: 'Online Workshops & Events',
                                 to: '/community/events',
+                            },
+                            {
+                                label: 'Paper Reviews',
+                                to: '/papers',
                             },
                             {
                                 label: 'Contributor Guide',

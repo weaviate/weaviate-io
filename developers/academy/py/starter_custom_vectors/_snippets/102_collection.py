@@ -1,5 +1,6 @@
 # CreateMovieCollection
 import weaviate
+import os
 
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
@@ -56,6 +57,7 @@ import os
 
 # Define a function to call the endpoint and obtain embeddings
 def query(texts):
+    import os
     import requests
 
     model_id = "sentence-transformers/all-MiniLM-L6-v2"

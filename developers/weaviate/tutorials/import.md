@@ -96,7 +96,7 @@ You can also manually upload existing vectors and use a vectorizer module for ve
 
 ## Confirm data import
 
-You can quickly check the imported object by opening `<weaviate-endpoint>/v1/objects` in a browser, like this (replace with your endpoint):
+You can quickly check the imported object by opening `<weaviate-endpoint>/v1/objects` in a browser, like this (replace with your Weaviate endpoint):
 
 ```
 https://some-endpoint.semi.network/v1/objects

@@ -62,6 +62,8 @@ You can directly instantiate the client, but in most cases you can use helper fu
   language="py"
 />
 
+To configure connection timeout values, see [Timeout values](/developers/weaviate/client-libraries/python#timeout-values).
+
 </TabItem>
 <TabItem value="local" label="Local">
 
@@ -95,11 +97,9 @@ You can directly instantiate the client, but in most cases you can use helper fu
 </TabItem>
 </Tabs>
 
-Once it has been instantiated, you will notice that the client API is different from `v3`.
-
 ## Major changes
 
-From a user's perspective, major changes with the `v4` client include:
+The `v4` client API is very different from the `v3` API. Major user-facing changes in the `v4` client include:
 
 - Extensive use of helper classes
 - Interaction with collections

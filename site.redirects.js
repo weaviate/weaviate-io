@@ -440,6 +440,10 @@ const siteRedirects = {
             from: '/developers/weaviate/api/rest/classification',
         },
         {
+            to:   '/developers/weaviate/api/rest_legacy/meta',
+            from: '/developers/weaviate/api/rest/meta',
+        },
+        {
             to:   '/developers/weaviate/api/rest_legacy/nodes',
             from: '/developers/weaviate/api/rest/nodes',
         },
