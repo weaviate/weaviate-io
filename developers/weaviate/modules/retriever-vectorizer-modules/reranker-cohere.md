@@ -113,8 +113,8 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
 
 The `reranker-cohere` module supports the following models:
 
-- `rerank-english-v3.0`
-- `rerank-multilingual-v3.0` (default)
+- `rerank-english-v3.0` (from Weaviate `v1.24.9`)
+- `rerank-multilingual-v3.0` (from Weaviate `v1.24.9`) (default)
 - `rerank-english-v2.0`
 - `rerank-multilingual-v2.0`
 
