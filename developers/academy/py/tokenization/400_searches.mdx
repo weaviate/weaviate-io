@@ -131,11 +131,15 @@ Now, take a look at the results.
 
 The results here are similar to the filter example, but more nuanced and quite interesting!
 
-The results indicate that adding the word "a" or "the" to the query does not impact the search results for all methods except `field`. This is because at every tokenization method, the word "a" or "the" is considered a stop word and is ignored.
+Under `word` tokenization, the search for `computer mouse` produces identical results to the search for `a computer mouse`. This is because the stop word `a` is not considered in the search.
 
-With the `field` method, the difference is that stop word tokens like "a" or "the" are never produced. An input "a computer mouse" is tokenized to `["a computer mouse"]`, containing one token.
+But note that the scores are different for returned objects where the only differences are stopwords, such as `"computer mouse"` and `"a computer mouse"`. This is because the BM25f algorithm does [index stopwords](../../../weaviate/config-refs/schema/index.md#invertedindexconfig--stopwords-stopword-lists), and they do impact the score.
 
-Adding another word, such as "blue", that is not a stop word, causes the query to not match any objects.
+As a user, you should keep this in mind, and you can configure the stop words in the collection definition to suit your desired behavior.
+
+Another interesting note is that the `lowercase` and `whitespace` tokenization methods do not remove stop words in the query.
+
+This behavior allows users who want to include stop words in their search queries to do so.
 
 #### "**variable_name**" vs "**variable name**" - symbols
 
