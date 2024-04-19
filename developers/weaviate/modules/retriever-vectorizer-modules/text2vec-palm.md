@@ -27,7 +27,7 @@ Key notes:
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - Model names differ between Vertex AI and AI Studio.
     - The default model for Vertex AI is `textembedding-gecko@001`.
-    - The default model for AI Studio `embedding-gecko-001`.
+    - The default model for AI Studio `embedding-001`.
 
 
 <!-- TODO - UNHIDE WHEN MODULE NAME CHANGE IS LIVE -->
@@ -125,7 +125,7 @@ You can configure how the module will behave in each class through the [Weaviate
 
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-gecko-001` (AI Studio)
+- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
 - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title.
 
 #### Example
@@ -232,7 +232,13 @@ The available models for Vertex AI are:
 The available models for AI Studio are:
 - `embedding-001` (default)
 - `text-embedding-004`
-- Note: `embedding-gecko-001` is still available, but it has been deprecated by Google.
+
+<details>
+  <summary>For legacy `embedding-gecko-001` model users</summary>
+
+The `embedding-gecko-001` has been deprecated by Google, and will not be available for new users. However, Google may deprecate the endpoint for existing users in the future.
+
+</details>
 
 
 #### Task type
