@@ -10,6 +10,7 @@ image: og/docs/modules/reranker-cohere.jpg
 - The `reranker-cohere` module enables reranking search results using a [Cohere reranker API](https://txt.cohere.com/rerank/).
 - This module uses a third-party API and may incur costs. Make sure to check the Cohere [pricing page](https://cohere.com/pricing) before applying reranking to large amounts of data.
 - You will need a Cohere API key. You can request one [here](https://dashboard.cohere.com/welcome/login).
+- The default model is `rerank-multilingual-v3.0`
 
 :::info Related pages
 - [How-to search: Rerank](../../search/rerank.md)
@@ -64,7 +65,7 @@ import T2VInferenceYamlNotes from './_components/text2vec.inference.yaml.notes.m
 
 The `reranker-cohere` module can be configured for any collection in the schema. You can also specify options such as the `model` to use.
 
-This example configures the `Document` collection to use the `reranker-cohere` module, with the `rerank-multilingual-v2.0` model, and to return the documents in the response.
+This example configures the `Document` collection to use the `reranker-cohere` module, with the `rerank-multilingual-v3.0` model, and to return the documents in the response.
 
 ```json
 {
@@ -74,7 +75,7 @@ This example configures the `Document` collection to use the `reranker-cohere` m
       ...,
       "moduleConfig": {
         "reranker-cohere": {
-            "model": "rerank-multilingual-v2.0",
+            "model": "rerank-multilingual-v3.0",
         },
       }
     }
@@ -112,6 +113,8 @@ Where multiple `reranker` modules are enabled, you must specify the reranker mod
 
 The `reranker-cohere` module supports the following models:
 
+- `rerank-english-v3.0`
+- `rerank-multilingual-v3.0` (default)
 - `rerank-english-v2.0`
 - `rerank-multilingual-v2.0`
 

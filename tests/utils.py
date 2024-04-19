@@ -44,7 +44,7 @@ def preprocess_codeblock(raw_codeblock: str, lang: str="py", custom_replace_pair
 
         # For examples with auth
         ["https://WEAVIATE_INSTANCE_URL", "http://localhost:8099"],
-        ["WEAVIATE_INSTANCE_URL", "http://localhost:8099"],
+        ["WEAVIATE_INSTANCE_URL", "localhost:8099"],
         ["YOUR-WEAVIATE-API-KEY", "secr3tk3y"],
 
         # For anonoymous examples

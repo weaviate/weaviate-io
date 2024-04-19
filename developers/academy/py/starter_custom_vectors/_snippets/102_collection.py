@@ -1,5 +1,6 @@
 # CreateMovieCollection
 import weaviate
+import os
 
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
