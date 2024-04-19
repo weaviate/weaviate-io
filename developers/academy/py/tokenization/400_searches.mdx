@@ -5,69 +5,33 @@ title: Tokenization and searches
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCreateCollection from '!!raw-loader!./_snippets/310_create_collection.py';
-import PyAddObjects from '!!raw-loader!./_snippets/315_add_objects.py';
 import PySearches from '!!raw-loader!./_snippets/400_searches.py';
 
-Now that you've learned about different tokenization methods, let's put them into practice. In this section, you'll see how tokenization impacts search results in Weaviate.
+You saw how [tokenization affects filters](./300_filters.mdx). They impact keyword searches in a similar, but not identical, way. In this section, we'll see how different tokenization methods impact search results.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Preparation
+:::info What about hybrid searches?
+A hybrid search combines results from a keyword search and a vector search. Accordingly, tokenization impacts the keyword search part of a hybrid search, while the vector search part is not impacted by tokenization.
 
-For this section, we'll work with an actual Weaviate instance to see how different tokenization methods impact search results.
+We will not separately discuss hybrid searches in this course. However, the impact on keyword searches discussed here will apply to the keyword search part of a hybrid search.
+:::
 
-We are going to use a very small, custom dataset for demonstration purposes.
+## <i class="fa-solid fa-square-chevron-right"></i> Impact on keyword searches
 
-<FilteredTextBlock
-  text={PyAddObjects}
-  startMarker="# StringsToAdd"
-  endMarker="# END StringsToAdd"
-  language="py"
-/>
+### <i class="fa-solid fa-chalkboard"></i> How tokenization impacts keyword searches
 
-You can use the following Python code to add this data to your Weaviate instance.
+We will use a similar method as in the previous section, with a difference being that we will now perform a keyword search instead of a filter.
 
-Note: Importing the data yourself is optional. You can also perform queries against a pre-populated demo Weaviate instance.
+A keyword search ranks results using the [BM25f algorithm](https://en.wikipedia.org/wiki/Okapi_BM25). As a result, the impact of tokenization on keyword searches is twofold.
 
-<details>
-  <summary>Steps to create a collection</summary>
+Firstly, tokenization will determine whether a result is included in the search results at all. If none of the tokens in the search query match any tokens in the object, the object will not be included in the search results.
 
-We will create a simple object collection, with each object containing multiple properties. Each properties will contain the same text, but with different tokenization methods applied.
+Secondly, tokenization will impact the ranking of the search results. The BM25f algorithm takes into account the number of matching tokens, and the tokenization method will determine which tokens are considered matching.
 
-<FilteredTextBlock
-  text={PyCreateCollection}
-  startMarker="# CreateDemoCollection"
-  endMarker="# END CreateDemoCollection"
-  language="py"
-/>
+### <i class="fa-solid fa-code"></i> Search setup
 
-Note that we do not add object vectors in this case, as we are only interested in the impact of tokenization on keyword search results.
+Each keyword query will look something like this.
 
-</details>
-
-<details>
-  <summary>Steps to add objects</summary>
-
-Now, we add objects to the collection, repeating text objects as properties.
-
-<FilteredTextBlock
-  text={PyAddObjects}
-  startMarker="# AddObjects"
-  endMarker="# END AddObjects"
-  language="py"
-/>
-
-</details>
-
-
-## <i class="fa-solid fa-square-chevron-right"></i> Impact on filtering
-
-Now that we have added a set of objects to Weaviate, let's see how different tokenization methods impact search results.
-
-Each filtered query will look something like this, wherein we filter the objects for a set of query strings.
-
-We'll set up a reusable function to filter objects based on a set of query strings. Remember that a filter is binary: it either matches or it doesn't.
-
-The function will return a list of matched objects, and print the matched objects for us to see.
+We'll set up a reusable function to perform keyword searches, and display the top results along with their scores.
 
 <FilteredTextBlock
   text={PySearches}
@@ -80,18 +44,20 @@ The function will return a list of matched objects, and print the matched object
 
 #### "**Clark:** "vs "**clark**" - messy text
 
-Typical text is often messy, with punctuations, mixed cases and other irregularities. Take a look at this example, where we search for various combinations of substrings from the TV show title `"Lois & Clark: The New Adventures of Superman"`.
+Keyword searches are similarly impacted by tokenization as filters. However, there are subtle differences.
 
-The table shows whether the query matched the title:
+Take a look at this example, where we search for various combinations of substrings from the TV show title `"Lois & Clark: The New Adventures of Superman"`.
+
+The table shows whether the query matched the title, and the score:
 
 |               | `word` | `lowercase` | `whitespace` | `field` |
 |---------------|--------|-------------|--------------|---------|
-| `"clark"`       | ✅     | ❌         | ❌          | ❌     |
-| `"Clark"`       | ✅     | ❌         | ❌          | ❌     |
-| `"clark:" `     | ✅     | ✅         | ❌          | ❌     |
-| `"Clark:" `     | ✅     | ✅         | ✅          | ❌     |
-| `"lois clark"`  | ✅     | ❌         | ❌          | ❌     |
-| `"clark lois"`  | ✅     | ❌         | ❌          | ❌     |
+| `"clark"`       | 0.613     | ❌           | ❌          | ❌     |
+| `"Clark"`       | 0.613     | ❌           | ❌          | ❌     |
+| `"clark:" `     | 0.613     | 0.48         | ❌          | ❌     |
+| `"Clark:" `     | 0.613     | 0.48         | 0.48        | ❌     |
+| `"lois clark"`  | 1.226     | 0.48         | ❌          | ❌     |
+| `"clark lois"`  | 1.226     | 0.48         | ❌          | ❌     |
 
 <details>
   <summary>Python query & output</summary>
@@ -112,9 +78,13 @@ The table shows whether the query matched the title:
 
 </details>
 
-Note how the `word` tokenization was the only that consistently returned the matching title, unless the colon (`:`) was included in the query. This is because the `word` tokenization method treats the colon as a separator.
+Here, the same results are returned as in the filter example. However, note differences in the scores.
 
-Users may not be expected to include any punctuation in their queries, nor the exact capitalization. As a result, for a typical text search, the `word` tokenization method is a good starting point.
+For example, a search for `"lois clark"` returns a higher score than a search for `"clark"`. This is because the BM25f algorithm considers the number of matching tokens. So, it would be beneficial to include as many matching tokens as possible in the search query.
+
+Another difference is that a keyword search will return objects that match any of the tokens in the query. This is different from a filter, which is sensitive to the filtering operator. Depending on the desired result, you could use an `"Equal"` operator, `"ContainsAny"`, or `"ContainsAll"`, for example.
+
+The next section will demonstrate this, as well as how stop words are treated.
 
 #### "**A mouse**" vs "**mouse**" - stop words
 
@@ -126,19 +96,19 @@ Now, take a look at the results.
 
 |                              | `word`    | `lowercase` | `whitespace` | `field` |
 |------------------------------|-----------|-------------|--------------|---------|
-| `"computer mouse"`           | ✅        | ✅           | ✅           | ✅     |
-| `"a computer mouse"`         | ✅        | ✅           | ✅           | ❌     |
-| `"the computer mouse:" `     | ✅        | ✅           | ✅           | ❌     |
-| `"blue computer mouse" `     | ❌        | ❌           | ❌           | ❌     |
+| `"computer mouse"`           | 0.889     | 0.819       | 1.01         | 0.982   |
+| `"Computer Mouse"`           | 0.889     | 0.819       | ❌            | ❌      |
+| `"a computer mouse"`         | 0.764     | 0.764       | 0.849        | ❌      |
+| `"computer mouse pad" `      | 0.764     | 0.764       | 0.849        | ❌      |
 
 **Matches for `"a computer mouse"`**
 
 |                              | `word`    | `lowercase` | `whitespace` | `field` |
 |------------------------------|-----------|-------------|--------------|---------|
-| `"computer mouse"`           | ✅        | ✅           | ✅           | ❌     |
-| `"a computer mouse"`         | ✅        | ✅           | ✅           | ✅     |
-| `"the computer mouse:" `     | ✅        | ✅           | ✅           | ❌     |
-| `"blue computer mouse" `     | ❌        | ❌           | ❌           | ❌     |
+| `"computer mouse"`           | 0.889     | 0.819       | 1.01         | ❌      |
+| `"Computer Mouse"`           | 0.889     | 0.819       | ❌           | ❌      |
+| `"a computer mouse"`         | 0.764     | 1.552       | 1.712        | 0.982   |
+| `"computer mouse pad" `      | 0.764     | 0.688       | 0.849        | ❌      |
 
 <details>
   <summary>Python query & output</summary>
@@ -158,6 +128,8 @@ Now, take a look at the results.
 />
 
 </details>
+
+The results here are similar to the filter example, but more nuanced and quite interesting!
 
 The results indicate that adding the word "a" or "the" to the query does not impact the search results for all methods except `field`. This is because at every tokenization method, the word "a" or "the" is considered a stop word and is ignored.
 
