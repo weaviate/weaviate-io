@@ -143,15 +143,16 @@ This behavior allows users who want to include stop words in their search querie
 
 #### "**variable_name**" vs "**variable name**" - symbols
 
+The table below shows keyword search results using the string `"variable_name"` and the resulting scores.
 
 |                              | `word`    | `lowercase` | `whitespace` | `field` |
 |------------------------------|-----------|-------------|--------------|---------|
-| `"variable_name"`            | ✅        | ✅           | ✅           | ✅     |
-| `"Variable_Name:" `          | ✅        | ✅           | ❌           | ❌     |
-| `"Variable Name:" `          | ✅        | ❌           | ❌           | ❌     |
-| `"a_variable_name"`          | ✅        | ❌           | ❌           | ❌     |
-| `"the_variable_name"`        | ✅        | ❌           | ❌           | ❌     |
-| `"variable_new_name" `       | ✅        | ❌           | ❌           | ❌     |
+| `"variable_name"`            | 0.716     | 0.97        | 1.27         | 0.982   |
+| `"Variable_Name:" `          | 0.716     | 0.97        | ❌            | ❌      |
+| `"Variable Name:" `          | 0.716     | ❌           | ❌            | ❌      |
+| `"a_variable_name"`          | 0.615     | ❌           | ❌           | ❌      |
+| `"the_variable_name"`        | 0.615     | ❌           | ❌           | ❌      |
+| `"variable_new_name" `       | 0.615     | ❌           | ❌           | ❌      |
 
 <details>
   <summary>Python query & output</summary>
@@ -172,20 +173,20 @@ This behavior allows users who want to include stop words in their search querie
 
 </details>
 
+These results are once again similar to the filter example. If your data contains symbols that are important to your search, you should consider using a tokenization method that preserves symbols, such as `lowercase` or `whitespace`.
 
 ### <i class="fa-solid fa-chalkboard"></i> Discussions
 
+That's it for keyword searches and tokenization. Similarly to filters, the choice of tokenization method is a big part of your overall search strategy.
 
-## <i class="fa-solid fa-square-chevron-right"></i> Impact on search
+Our generally advice for tokenization in keyword searching is similar to [our advice for filtering](./300_filters.mdx#discussions). Start with `word`, and consider others such as `lowercase` or `whitespace` if symbols, or cases encode important information in your data.
 
+Using `field` tokenization may be too strict for keyword searches, as it will not match any
+objects that do not contain the exact string in the exact order.
 
-### <i class="fa-solid fa-code"></i> Search
+Lastly, keep in mind that keyword searches produce ranked results. Therefore, tokenization will not only affect the results set but also their ranking within the set.
 
-
-### <i class="fa-solid fa-chalkboard"></i> Discussions
-
-
-## <i class="fa-solid fa-square-chevron-right"></i> Conclusion
+With these considerations in mind, you can configure your tokenization strategy to best suit your data and your users' needs.
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
