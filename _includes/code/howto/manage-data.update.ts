@@ -5,15 +5,17 @@ import assert from 'assert';
 // ================================
 // ===== INSTANTIATION-COMMON =====
 // ================================
-import weaviate from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client = weaviate.client({
-  scheme: 'http',
-  host: 'anon-endpoint.weaviate.network',
-  headers: {
-    'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'],
-  },
-});
+const client = await weaviate.connectToWCS(
+  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 const className = 'JeopardyQuestion';
 let result;
@@ -53,19 +55,17 @@ result = await client.data
   .do();
 
 // UpdateProps START
-let id = '...';  // replace with the id of the object you want to update
-// UpdateProps END
-id = result.id;
-// UpdateProps START
-await client.data
-  // highlight-start
-  .merger()  // merges properties into the object
-  // highlight-end
-  .withId(id).withClassName('JeopardyQuestion')
-  .withProperties({
-    points: 100,
-  })
-  .do();
+const myCollection = client.collections.get('JeopardyQuestion') 
+let id = '...'
+
+const response = await myCollection.data.update({
+  id: id,
+  properties: {
+    'points': 100,
+  },
+})
+
+console.log(response)
 // UpdateProps END
 
 // Test
@@ -87,20 +87,18 @@ assert.equal(result.properties['question'], 'Test question');  // make sure we d
 // ==========================
 
 // Replace START
-id = '...';  // the id of the object you want to replace
-// Replace END
-id = result.id;
-// Replace START
-await client.data
-  // highlight-start
-  .updater()  // replaces the entire object
-  // highlight-end
-  .withId(id).withClassName('JeopardyQuestion')
-  .withProperties({
-    answer: 'Replaced',
+const myCollection = client.collections.get('JeopardyQuestion') 
+let id = '...'
+
+const response = await myCollection.data.replace({
+  id: id,
+  properties: {
+    'answer': 'Replaced',
     // The other properties will be deleted
-  })
-  .do();
+  },
+})
+
+console.log(response)
 // Replace END
 
 // Test
@@ -113,24 +111,27 @@ assert.deepEqual(result.properties, { answer: 'Replaced' });  // ensure the othe
 // =============================
 
 // DelProps START
-async function delProps(uuid: string, className: string, propNames: string[]) {
-  const objectData = await client.data.getterById().withId(uuid).withClassName(className).do();
-  for (const propName of propNames)
-    if (propName in objectData.properties)
-      delete objectData.properties[propName];
-  // Replace the object
-  return await client.data
-    .updater()
-    .withId(uuid).withClassName(className)
-    .withProperties(objectData.properties)
-    .do();
+async function deleteProperties(client: WeaviateClient, uuidToUpdate: string, collectionName: string, propNames: string[]) {
+  const collection = client.collections.get(collectionName);
+  const objectData = await collection.query.fetchObjectById(uuidToUpdate);
+  const propertiesToUpdate = objectData?.properties;
+  
+  if (propertiesToUpdate) {
+    for (let propName of propNames) {
+        if (propName in propertiesToUpdate) {
+          delete propertiesToUpdate[propName];
+        }
+    }
+  
+    const response = await collection.data.replace({
+      id: uuidToUpdate,
+      properties: propertiesToUpdate
+    })
+  }
 }
-
-id = '...';  // replace with the id of the object you want to delete properties from
-// DelProps END
-id = result.id;
-// DelProps START
-await delProps(id, 'JeopardyQuestion', ['answer']);
+  
+let id = '...'
+deleteProperties(client, id, 'JeopardyQuestion', ['answer'])
 // DelProps END
 
 // Test

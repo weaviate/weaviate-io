@@ -281,11 +281,11 @@
 
 .custom-page .navbar__items.navbar__items--right {
   flex: 0 0 auto;
-  gap: 40px;
+  gap: 20px;
   justify-content: flex-start;
 
   @media screen and (max-width: 1223px) {
-    gap: 25px;
+    gap: 8px;
   }
 
   @media only screen and (min-device-width: 1040px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -301,8 +301,18 @@
 
 .navbar__items.navbar__items--right {
   flex: 0 0 auto;
-  gap: 13px;
+  gap: 0px;
   justify-content: flex-start;
+
+  @media screen and (max-width: 1100px) {
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar__item {
+    padding: 0.2rem 0.4rem;
+  }
 }
 
 .custom-page .navbar__item {
@@ -335,7 +345,37 @@
   border-radius: 0.3125rem;
   border: 1px solid #1c1468;
   background: #61bd73;
-  margin: 0 70px;
+  margin: 0 20px;
+  width: 8rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: background-color 1s ease-out, border-color 1s ease-out,
+    color 1s ease-out;
+
+  @media screen and (max-width: 1190px) {
+    margin: 0px;
+  }
+
+  @media screen and (max-width: 1020px) {
+    display: none;
+  }
+
+  &:hover {
+    background: #130c49;
+    color: #fff;
+    font-weight: 400;
+  }
+}
+
+.custom-page .tryNow {
+  border-radius: 0.3125rem;
+  border: 1px solid #1c1468;
+  background: #61bd73;
+  margin: 0px 70px 0px 0px;
   width: 8rem;
   height: 2.625rem;
   flex-shrink: 0;
@@ -347,10 +387,10 @@
     color 1s ease-out;
 
   @media screen and (max-width: 1160px) {
-    margin: 0px 9px;
+    margin: 0px;
   }
 
-  @media screen and (max-width: 1020px) {
+  @media screen and (max-width: 999px) {
     display: none;
   }
 
@@ -742,19 +782,6 @@ Dropdown style removed.
   }
 }
 
-[data-theme='light'] {
-  .docHome,
-  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module
-    .container {
-    background-color: #ededed !important;
-  }
-
-  .docHome,
-  .docMainContainer_gTbr .container {
-    background-color: #ededed !important;
-  }
-}
-
 .privacyPolicy {
   thead {
     display: none;
@@ -793,4 +820,13 @@ Dropdown style removed.
 }
 [data-theme='dark'] .lightToggleIcon_pyhR {
   display: block !important;
+}
+
+.githubStars {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 68px;
+  height: auto;
 }

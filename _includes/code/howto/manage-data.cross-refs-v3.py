@@ -259,6 +259,25 @@ assert f"/v1/objects/JeopardyCategory/{museums_id}" in xrefs
 
 
 # ============================
+# ===== Read object with cross-ref =====
+# ============================
+
+some_uuid = sf_id
+
+# ReadCrossRef
+response = (
+    client.query
+    # highlight-start
+    .get(
+        "JeopardyQuestion",
+        ["question", "hasCategory { ... on JeopardyCategory { title } }"],
+    )
+    # highlight-end
+    .with_limit(2).do()
+)
+# END ReadCrossRef
+
+# ============================
 # ===== Delete cross-ref =====
 # ============================
 

@@ -13,6 +13,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
 
@@ -54,9 +55,18 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START EnableMultiTenancy"
+      endMarker="// END EnableMultiTenancy"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START EnableMultiTenancy"
       endMarker="// END EnableMultiTenancy"
       language="ts"
@@ -121,9 +131,18 @@ Tenant status is available from Weaviate `1.21` onwards.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START AddTenantsToClass"
+      endMarker="// END AddTenantsToClass"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START AddTenantsToClass"
       endMarker="// END AddTenantsToClass"
       language="ts"
@@ -172,9 +191,18 @@ List existing tenants in a collection (e.g.`MultiTenancyCollection`):
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START ListTenants"
+      endMarker="// END ListTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START ListTenants"
       endMarker="// END ListTenants"
       language="ts"
@@ -226,9 +254,18 @@ Non-existing tenants are ignored.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START RemoveTenants"
+      endMarker="// END RemoveTenants"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START RemoveTenants"
       endMarker="// END RemoveTenants"
       language="ts"
@@ -277,7 +314,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
 - This feature was added in `v1.21`
 - Other client code examples coming soon
-- For now, please send a [PUT request through the REST API endpoint](../api/rest/schema.md#update-tenants) to update the tenant activity status.
+- For now, please send a [PUT request through the REST API endpoint](/developers/weaviate/api/rest#tag/schema) to update the tenant activity status.
 
 </details>
 
@@ -305,9 +342,18 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START CreateMtObject"
+      endMarker="// END CreateMtObject"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START CreateMtObject"
       endMarker="// END CreateMtObject"
       language="ts"
@@ -357,9 +403,18 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START Search"
+      endMarker="// END Search"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START Search"
       endMarker="// END Search"
       language="ts"
@@ -413,9 +468,18 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START AddCrossRef"
+      endMarker="// END AddCrossRef"
+      language="ts"
+    />
+  </TabItem>
+
+ <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START AddCrossRef"
       endMarker="// END AddCrossRef"
       language="ts"
@@ -444,9 +508,9 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [How to: Configure a schema](../manage-data/collections.mdx)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

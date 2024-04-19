@@ -13,6 +13,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.delete-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.delete.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.delete-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.delete.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.delete_test.go';
 
@@ -56,9 +57,18 @@ To delete by id, specify the collection name and the object id.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START DeleteObject"
+      endMarker="// END DeleteObject"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START DeleteObject"
       endMarker="// END DeleteObject"
       language="ts"
@@ -101,7 +111,7 @@ You can handle errors as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteError"
@@ -135,9 +145,18 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START DeleteBatch"
+      endMarker="// END DeleteBatch"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START DeleteBatch"
       endMarker="// END DeleteBatch"
       language="ts"
@@ -168,7 +187,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     Additional information
   </summary>
 
-- There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
+- There is a configurable [maximum limit (QUERY_MAXIMUM_RESULTS)](../config-refs/env-vars.md#general) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
 
 </details>
 
@@ -196,7 +215,16 @@ The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a
     />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="ts" label="JS/TS (Beta)">
+    <FilteredTextBlock
+        text={TSCode}
+        startMarker="// START DeleteContain"
+        endMarker="// END DeleteContain"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="ts2" label="JS/TS">
 
 ```js
 await client.batch
@@ -214,6 +242,7 @@ await client.batch
 ```
 
   </TabItem>
+
   <TabItem value="java" label="Java">
 
 ```java
@@ -260,6 +289,17 @@ This feature was added in Weaviate `v1.21`.
 
 To delete multiple objects by their id values, use a filter (e.g. `ContainsAny`) with `id` based criteria.
 
+<details>
+  <summary>Limitations</summary>
+
+There is an upper limit (`QUERY_MAXIMUM_RESULTS`) to how many objects can be deleted using a single query. This protects against unexpected memory surges and very-long-running requests which would be prone to client-side timeouts or network interruptions.
+
+Objects are deleted in the same order that they would be fetched, by order of UUID. To delete more objects than the limit, run the same query multiple times until no objects are matched anymore.
+
+The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e.g. in [the environment variables](../config-refs/env-vars.md).
+
+</details>
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
@@ -279,7 +319,16 @@ To delete multiple objects by their id values, use a filter (e.g. `ContainsAny`)
     />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="ts" label="JS/TS (Beta)">
+    <FilteredTextBlock
+          text={TSCode}
+          startMarker="// START DeleteByIDBatch"
+          endMarker="// END DeleteByIDBatch"
+          language="ts"
+        />
+  </TabItem>
+
+  <TabItem value="ts2" label="JS/TS">
 
 ```js
 await client.batch
@@ -297,6 +346,7 @@ await client.batch
 ```
 
   </TabItem>
+
   <TabItem value="java" label="Java">
 
 ```java
@@ -334,7 +384,7 @@ client.batch().objectsBatchDeleter()
 
 ## Optional parameters
 
-- Enable [`dryRun`](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
+- You can use `dryRun` to check how many objects would be deleted, without actually performing the deletion.
 - Set `output` to `'verbose'` to see more details (ID and deletion status) for each deletion.
 
 <Tabs groupId="languages">
@@ -356,9 +406,18 @@ client.batch().objectsBatchDeleter()
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// START DryRun"
+      endMarker="// END DryRun"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START DryRun"
       endMarker="// END DryRun"
       language="ts"
@@ -402,8 +461,8 @@ It should produce a response like the one below:
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#delete-a-data-object)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

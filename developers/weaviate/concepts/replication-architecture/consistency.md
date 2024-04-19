@@ -5,12 +5,6 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-
-:::info Related pages
-- [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
-- [API References | REST | Objects](../../api/rest/objects.md)
-:::
-
 Data consistency is a property of a database that refers to whether data in different nodes do or do not match. In Weaviate, availability is generally preferred over strong consistency. This doesn't mean that we don't pay attention to consistency at all. Schema and data consistency are as important as possible. As captured by the [CAP Theorem](./index.md#cap-theorem), consistency and availability are a trade-off. In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
 Schema consistency is not tunable, but set to a strong consistency protocol.
@@ -83,7 +77,7 @@ The main reason for introducing configurable write consistency in v1.18 is becau
 Read operations are GET requests to data objects in Weaviate. Like write, read consistency is tunable, to `ONE`, `QUORUM` (default) or `ALL`.
 
 :::note
-Prior to `v1.18`, read consistency was tunable only for requests that [obtained an object by id](../../api/rest/objects.md#get-a-data-object), and all other read requests had a consistency of `ALL`.
+Prior to `v1.18`, read consistency was tunable only for [requests that obtained an object by id](../../manage-data/read.mdx#get-an-object-by-id), and all other read requests had a consistency of `ALL`.
 :::
 
 The following consistency levels are applicable to most read operations:
@@ -135,6 +129,11 @@ Consider a scenario in which a request to delete objects was only handled by a s
 An object that never existed will be propagated to the other nodes only if the object was queried with a _high enough_ consistency level, vs. the write consistency that was used to write the object:
 * if write was `QUORUM`, the read consistency level can be >= `QUORUM`
 * if the write was `ONE`, the object must be read with `ALL` to guarantee repair. This is because if only `ONE` node received the write request, then a `QUORUM` read request might only hit nodes that don't have the object, while an `ALL` request will reach that node as well.
+
+
+## Related pages
+- [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
+- [API References | REST | Objects](/developers/weaviate/api/rest#tag/objects)
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

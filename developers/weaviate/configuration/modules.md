@@ -11,13 +11,6 @@ image: og/docs/configuration.jpg
 - Previous `Configuration/Modules` content has been migrated to `References:Modules/index`
 ::: -->
 
-:::info Related pages
-- [Concepts: Modules](../concepts/modules.md)
-- [References: Modules](../modules/index.md)
-- [References: REST API: Modules](../api/rest/modules.md)
-:::
-
-## Introduction
 
 Weaviate's functionality can be customized by using [modules](../concepts/modules.md). This page explains how to enable and configure modules.
 
@@ -123,6 +116,9 @@ Your choice of the `text2vec` module does not restrict your choice of `generativ
 ## Custom modules
 See [here](../modules/other-modules/custom-modules.md) how you can create and use your own modules.
 
+## Related pages
+- [Concepts: Modules](../concepts/modules.md)
+- [References: Modules](../modules/index.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

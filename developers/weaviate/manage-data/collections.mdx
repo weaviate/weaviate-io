@@ -95,7 +95,7 @@ Use properties to configure additional parameters such as data type, index chara
 For details, see:
 
 - [References: Configuration: Schema](/developers/weaviate/config-refs/schema)
-- [API References: REST: Schema](../api/rest/schema.md#create-a-class)
+- [API References: REST: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Available data types](../config-refs/datatypes.md)
 
 </details>
@@ -290,14 +290,14 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
 
 ## Set vector index type
 
-The vector index type can be set for each collection between `hnsw` and `flat` index types. Compression (`pq` for `hnsw` indexes and `bq` for `flat` indexes) settings are also available.
+The vector index type can be set for each collection between `hnsw` and `flat` index types.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START SetVectorIndex"
-      endMarker="# END SetVectorIndex"
+      startMarker="# START SetVectorIndexType"
+      endMarker="# END SetVectorIndexType"
       language="py"
     />
   </TabItem>
@@ -305,8 +305,8 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
       text={PyCodeV3}
-      startMarker="# START SetVectorIndex"
-      endMarker="# END SetVectorIndex"
+      startMarker="# START SetVectorIndexType"
+      endMarker="# END SetVectorIndexType"
       language="py"
     />
   </TabItem>
@@ -314,8 +314,8 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START SetVectorIndex"
-      endMarker="// END SetVectorIndex"
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
       language="ts"
     />
   </TabItem>
@@ -323,8 +323,57 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
   <TabItem value="js2" label="JS/TS">
     <FilteredTextBlock
       text={TSCodeLegacy}
-      startMarker="// START SetVectorIndex"
-      endMarker="// END SetVectorIndex"
+      startMarker="// START SetVectorIndexType"
+      endMarker="// END SetVectorIndexType"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Additional information</summary>
+
+- Read more about index types & compression in [Concepts: Vector index](../concepts/vector-index.md).
+
+</details>
+
+## Set vector index parameters
+
+Various vector index parameters are configurable at collection creation time, including compression.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetVectorIndexParams"
+      endMarker="# END SetVectorIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetVectorIndexParams"
+      endMarker="# END SetVectorIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetVectorIndexParams"
+      endMarker="// END SetVectorIndexParams"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetVectorIndexParams"
+      endMarker="// END SetVectorIndexParams"
       language="ts"
     />
   </TabItem>
@@ -432,6 +481,48 @@ For details on the configuration parameters, see the following:
 - [Vector indexes](../config-refs/schema/vector-index.md)
 
 </details>
+
+## Set inverted index parameters
+
+Various [inverted index parameters](../config-refs/schema/index.md#invertedindexconfig) are configurable for each collection. Some parameters are set at the collection level, while others are set at the property level.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START SetInvertedIndexParams"
+      endMarker="# END SetInvertedIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# START SetInvertedIndexParams"
+      endMarker="# END SetInvertedIndexParams"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START SetInvertedIndexParams"
+      endMarker="// END SetInvertedIndexParams"
+      language="ts"
+    />
+  </TabItem>
+</Tabs>
 
 ## Specify a generative module
 
@@ -1005,13 +1096,61 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 
 <CautionSchemaDeleteClass />
 
-## Related pages
+## Add a property
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
-- [API References: REST: Schema](../api/rest/schema.md)
-- [References: Schema](/developers/weaviate/config-refs/schema)
-- [Tutorial: Schema](../starter-guides/schema.md)
+<details>
+  <summary>
+    Limitations when adding a property after importing objects
+  </summary>
+
+Adding a property after importing objects can lead to limitations in inverted-index related behavior.
+
+<br/>
+
+This is caused by the inverted index being built at import time. If you add a property after importing objects, the inverted index will not be updated. This means that the new property will not be indexed for existing objects. This can lead to unexpected behavior when querying.
+
+<br/>
+
+To avoid this, you can either:
+- Add the property before importing objects.
+- Delete the collection, re-create it with the new property and then re-import the data.
+
+We are working on a re-indexing API to allow you to re-index the data after adding a property. This will be available in a future release.
+
+</details>
+
+import CodeSchemaAddProperties from '/_includes/code/schema.things.properties.add.mdx';
+
+<CodeSchemaAddProperties />
+
+## Inspect shards (for a collection)
+
+An index itself can be comprised of multiple shards.
+
+import CodeSchemaShardsGet from '/_includes/code/howto/manage-data.shards.inspect.mdx';
+
+<CodeSchemaShardsGet />
+
+## Update shard status
+
+You can manually a shard to `READY` from `READONLY`, for example after disk pressure has been lowered.
+
+import CodeSchemaShardsUpdate from '/_includes/code/howto/manage-data.shards.update.mdx';
+
+<CodeSchemaShardsUpdate />
+
+## Further resources
+
+### References
+
+- [API References: REST: Schema](/developers/weaviate/api/rest#tag/schema/post/schema)
+- [References: Configuration: Schema](/developers/weaviate/config-refs/schema)
 - [Concepts: Data structure](../concepts/data.md)
+
+### Background knowledge
+
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Tutorial: Schema](../starter-guides/schema.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

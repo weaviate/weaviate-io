@@ -13,15 +13,12 @@ export default function quoteBox(props) {
           <div className={styles.contentDiv}>
             <div className={styles.cardLogo}></div>
             <h3 className={styles.cTextColor}>
-              "Vector databases play a crucial role in developing modern search
-              and LLM-based applications. We're proud to partner with Weaviate
-              to offer Snowflake customers these cutting-edge capabilities with
-              a safety net."
+              "Keeping our workflows within our own environment was a
+              requirement for us. We chose Weaviate’s BYOC offering because it
+              gave us the control we needed while still abstracting the burden
+              of self-managing"
             </h3>
-            <p>
-              Muzz Imam, Senior Product Manager<br></br> at Snowflake for
-              Snowpark Container Services
-            </p>
+            <p>Lior Harel, CTO & Co-Founder, Staircase.ai</p>
           </div>
         </div>
       </div>

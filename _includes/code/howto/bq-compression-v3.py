@@ -9,7 +9,7 @@ import weaviate
 import os
 
 client = weaviate.Client(
-    url="http://localhost:8080/",  # Replace with your endpoint
+    url="http://localhost:8080/",  # Replace with your Weaviate endpoint
     additional_headers={
         "X-OpenAI-Api-Key": os.getenv(
             "OPENAI_API_KEY"

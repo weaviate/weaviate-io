@@ -8,7 +8,7 @@ image: og/docs/modules/text2vec-palm.jpg
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using PaLM embeddings. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
 
 :::info Releases and versions
 
@@ -78,8 +78,8 @@ In the Weaviate [class configuration](#class-configuration), set the `apiEndpoin
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -220,15 +220,20 @@ You can supply the API key at query time by adding it to the HTTP header:
 You can specify the model as a part of the schema as shown earlier. Model names differ between Vertex AI and AI Studio.
 
 The available models for Vertex AI are:
-- `textembedding-gecko@001` (stable) (default)
-- `textembedding-gecko@002` (stable)
-- `textembedding-gecko@003` (stable)
-- `textembedding-gecko@latest` (public preview: an embeddings model with enhanced AI quality)
-- `textembedding-gecko-multilingual@001` (stable)
-- `textembedding-gecko-multilingual@latest` (public preview: an embeddings model designed to use a wide range of non-English languages.)
+- `textembedding-gecko@001` (default)
+- `textembedding-gecko@002`
+- `textembedding-gecko@003`
+- `textembedding-gecko@latest`
+- `textembedding-gecko-multilingual@001`
+- `textembedding-gecko-multilingual@latest`
+- `text-embedding-preview-0409`
+- `text-multilingual-embedding-preview-0409`
 
-The available model for AI Studio is:
-- `embedding-gecko-001` (stable) (default)
+The available models for AI Studio are:
+- `embedding-001` (default)
+- `text-embedding-004`
+- Note: `embedding-gecko-001` is still available, but it has been deprecated by Google.
+
 
 #### Task type
 

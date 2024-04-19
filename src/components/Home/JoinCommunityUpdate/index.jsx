@@ -10,15 +10,6 @@ export default function HomepageJoinCommunity() {
           <div className={styles.rightSide}>
             <div className={styles.socialBox}>
               <Link
-                to="https://weaviate.io/slack"
-                className={styles.mobileSocialBox}
-              >
-                <div className={styles.slack} />
-                <p className={styles.text}>Slack</p>
-              </Link>
-            </div>
-            <div className={styles.socialBox}>
-              <Link
                 to="https://github.com/weaviate/weaviate"
                 className={styles.mobileSocialBox}
               >
@@ -28,11 +19,11 @@ export default function HomepageJoinCommunity() {
             </div>
             <div className={styles.socialBox}>
               <Link
-                to="https://twitter.com/weaviate_io"
+                to="https://weaviate.io/slack"
                 className={styles.mobileSocialBox}
               >
-                <div className={styles.twitter} />
-                <p className={styles.text}>Twitter</p>
+                <div className={styles.slack} />
+                <p className={styles.text}>Slack</p>
               </Link>
             </div>
             <div className={styles.socialBox}>
@@ -42,6 +33,15 @@ export default function HomepageJoinCommunity() {
               >
                 <div className={styles.forum} />
                 <p className={styles.text}>Forum</p>
+              </Link>
+            </div>
+            <div className={styles.socialBox}>
+              <Link
+                to="https://twitter.com/weaviate_io"
+                className={styles.mobileSocialBox}
+              >
+                <div className={styles.twitter} />
+                <p className={styles.text}>X (Twitter)</p>
               </Link>
             </div>
           </div>

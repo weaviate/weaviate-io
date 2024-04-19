@@ -196,10 +196,10 @@ assert.equal(result['properties'].length, 1); // no 'body' from the previous exa
 await client.schema.classDeleter().withClassName(className).do();
 
 // ===========================
-// ===== SetVectorIndex =====
+// ===== SetVectorIndexType =====
 // ===========================
 
-// START SetVectorIndex
+// START SetVectorIndexType
 const classWithIndexType = {
   class: 'Article',
   properties: [
@@ -227,7 +227,7 @@ result = await client.schema.classCreator().withClass(classWithIndexType).do();
 
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(result, null, 2));
-// END SetVectorIndex
+// END SetVectorIndexType
 
 // Test
 assert.equal(result['vectorizer'], 'text2vec-openai');
@@ -236,6 +236,44 @@ assert.equal(result['properties'].length, 1); // no 'body' from the previous exa
 
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();
+
+
+// ===========================
+// ===== SetVectorIndexParams =====
+// ===========================
+
+// START SetVectorIndexParams
+const classWithIndexParams = {
+  class: 'Article',
+  // Additional configuration not shown
+  vectorIndexType: 'flat', // or `hnsw`
+  // highlight-start
+  vectorIndexConfig: {
+    bq: {
+      enabled: true, // Enable BQ compression. Default: False
+      rescoreLimit: 200, // The minimum number of candidates to fetch before rescoring. Default: -1 (No limit)
+      cache: true, // Enable use of vector cache. Default: False
+    },
+    vectorCacheMaxObjects: 100000, // Cache size if `cache` enabled. Default: 1000000000000
+  },
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client.schema.classCreator().withClass(classWithIndexType).do();
+
+// The returned value is the full class definition, showing all defaults
+console.log(JSON.stringify(result, null, 2));
+// END SetVectorIndexParams
+
+// Test
+assert.equal(result['vectorizer'], 'text2vec-openai');
+assert.equal(result['vectorIndexType'], 'flat');
+assert.equal(result['properties'].length, 1); // no 'body' from the previous example
+
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
 
 // ===========================
 // ===== MODULE SETTINGS =====
@@ -365,6 +403,64 @@ console.log(JSON.stringify(result, null, 2));
 
 // Test
 assert.equal(result.vectorIndexConfig.distance, 'cosine');
+
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
+// ====================================
+// ===== CUSTOM INVERTED INDEX SETTINGS =====
+// ====================================
+
+// START SetInvertedIndexParams
+const classWithInvIndexSettings = {
+  class: 'Article',
+  vectorizer: 'text2vec-huggingface', // this could be any vectorizer
+  properties: [
+    {
+      name: 'title',
+      dataType: ['text'],
+      moduleConfig: {
+        'text2vec-huggingface': {
+          // highlight-start
+          indexFilterable: true,
+          indexSearchable: true,
+          // highlight-end
+        },
+      },
+    },
+  ],
+  // highlight-start
+  invertedIndexConfig: {
+    bm25: {
+        b: 0.7,
+        k1: 1.25
+    },
+    indexTimestamps: true,
+    indexNullState: true,
+    indexPropertyLength: true
+  }
+  // highlight-end
+};
+
+// Add the class to the schema
+result = await client.schema
+  .classCreator()
+  .withClass(classWithPropModuleSettings)
+  .do();
+
+// The returned value is the full class definition, showing all defaults
+console.log(JSON.stringify(result, null, 2));
+// END SetInvertedIndexParams
+
+// Test
+assert.equal(
+  result.properties[0].invertedIndexConfig.bm25.b,
+  0.7
+);
+assert.equal(
+  result.properties[0].invertedIndexConfig.bm25.k1,
+  1.25
+);
 
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();

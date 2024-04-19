@@ -132,7 +132,7 @@ Flat indexes are recommended for use cases where the number of objects per index
 | Parameter | Type | Default | Changeable | Details |
 | :-- | :-- | :-- | :-- | :-- |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
-| `bq` | object | -- | No | Enable and configure [binary quantization (BQ)](../../concepts/vector-index.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
+| `bq` | object | -- | No | Enable and configure [binary quantization (BQ)](../../concepts/vector-quantization.md#binary-quantization) compression. <br/><br/> For BQ configuration details, see [BQ configuration parameters](#bq-configuration-parameters). |
 
 ### BQ configuration parameters
 
@@ -190,7 +190,7 @@ services:
 
 </details>
 
-To get the index status, call the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint.
+To get the index status, check the [node status](/developers/weaviate/config-refs/nodes) endpoint.
 
 <details>
   <summary><code>Node status</code> example usage</summary>

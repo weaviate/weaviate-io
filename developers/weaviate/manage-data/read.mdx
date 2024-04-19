@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.read.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.read-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.read.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.read_test.go';
 
@@ -47,9 +48,18 @@ Use an ID to retrieve an object. If the id doesn't exist, Weaviate returns a 404
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ReadObject START"
+      endMarker="// ReadObject END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ReadObject START"
       endMarker="// ReadObject END"
       language="ts"
@@ -99,9 +109,18 @@ Object vectors can be retrieved by specifying its return.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// ReadObjectWithVector START"
+      endMarker="// ReadObjectWithVector END"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// ReadObjectWithVector START"
       endMarker="// ReadObjectWithVector END"
       language="ts"
@@ -150,7 +169,7 @@ Where [named vectors](../config-refs/schema/multi-vector.md) are used, you can r
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// ReadObjectNamedVectors START"
@@ -159,41 +178,31 @@ Where [named vectors](../config-refs/schema/multi-vector.md) are used, you can r
     />
   </TabItem>
 
-</Tabs>
-
-
-<!-- Hidden until https://weaviate-org.slack.com/archives/C03KGRATUDD/p1685746400315799 / https://github.com/weaviate/typescript-client/issues/63 is fixed
-## Check object existence
-
-To efficiently check if an object with a given [id](../api/graphql/additional-properties.md#id) exists without retrieving it, make a `HEAD` request to the [`/v1/objects/` REST endpoint](../api/rest/objects.md#check-if-a-data-object-exists), or use the following client code:
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python">
+  <TabItem value="js2" label="JS/TS">
     <FilteredTextBlock
-      text={PyCode}
-      startMarker="# CheckObject START"
-      endMarker="# CheckObject END"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JavaScript/TypeScript">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// CheckObject START"
-      endMarker="// CheckObject END"
+      text={TSCodeLegacy}
+      startMarker="// ReadObjectNamedVectors START"
+      endMarker="// ReadObjectNamedVectors END"
       language="ts"
     />
   </TabItem>
+
 </Tabs>
--->
+
+## Check object existence
+
+To efficiently check if an object with a given [id](../api/graphql/additional-properties.md#id) exists without retrieving it, make a `HEAD` request to the [`/v1/objects/` REST endpoint](/developers/weaviate/api/rest#tag/objects/head/objects/{className}/{id}), or use the following client code:
+
+import CheckObjectExistence from '/_includes/code/howto/manage-data.read.check.existence.mdx';
+
+<CheckObjectExistence/>
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [How-to: Search](../search/index.md)
 - [How-to: Read all objects](./read-all-objects.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#get-a-data-object)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

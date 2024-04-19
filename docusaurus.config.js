@@ -64,6 +64,39 @@ const config = {
                 showReadingTime: true,
             },
         ],
+        // Paper Reviews configuration
+        [
+            '@docusaurus/plugin-content-blog',
+            {
+                blogTitle: 'Paper Reviews',
+                blogDescription: '<todo>',
+                blogSidebarCount: 0,
+                postsPerPage: 6,
+                blogSidebarTitle: 'Weaviate Paper Reviews',
+
+                id: 'papers-blog',
+                routeBasePath: '/papers',
+                // path to data on filesystem relative to site dir.
+                path: 'papers',
+                authorsMapPath: '../authors.yml',
+                showReadingTime: true,
+            },
+        ],
+        [
+            '@scalar/docusaurus',
+            {
+              label: '.',
+              route: '/developers/weaviate/api/rest',
+              configuration: {
+                spec: {
+                  url: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_docs_from_tag/openapi-specs/schema.json',
+                },
+                // This feature currently broken - being fixed in: https://github.com/scalar/scalar/pull/1387
+                // hiddenClients: [...],
+              },
+            },
+        ],
+
         // Add HTML Header tags
         () => ({
             name: 'inject-tag',
@@ -99,6 +132,27 @@ const config = {
                             tagName: 'script',
                             innerHTML: `(function (n) { if (typeof n !== "undefined" && n.webdriver) return; var script = document.createElement("script"); script.type = "text/javascript"; script.async = 1; script.src = "https://www.emailpig.com/_functions/myF/823adf31-4fd9-4a44-8491-9de559b8c428?q=" + encodeURIComponent(window.location.href) + "&r=" + document.referrer; document.head.appendChild(script); })(navigator);`,
                         },
+                         // Add LinkedIn Insight Tag
+                         {
+                            tagName: 'script',
+                            attributes: {
+                                src: '/js/linkedin.js',
+                                async: true,
+                                type: 'text/javascript',
+                            },
+                        },
+                        // LinkedIn Insight Tag noscript fallback
+                        {
+                            tagName: 'img',
+                            attributes: {
+                                src: 'https://px.ads.linkedin.com/collect/?pid=6758089&fmt=gif',
+                                alt: '',
+                                height: '1',
+                                width: '1',
+                                style: 'display:none;',
+                            },
+                        },
+
                     ],
                 };
             },
@@ -166,31 +220,6 @@ const config = {
                 },
             }),
         ],
-        [
-            'redocusaurus',
-            {
-                // Plugin Options for loading OpenAPI files
-                config: path.join(__dirname, 'redocly.yaml'),
-                specs: [
-                    // Pass it a path to a local OpenAPI YAML file
-                    {
-                        // Redocusaurus will automatically bundle your spec into a single file during the build
-                        // spec: 'https://raw.githubusercontent.com/weaviate/weaviate/openapi_refactor/openapi-specs/schema.json',
-                        spec: 'openapi.json',
-                        route: 'developers/weaviate/api/rest_openapi',  // Redirect to /api/rest when migration complete
-                    },
-                ],
-                // Theme Options for modifying how redoc renders them
-                theme: {
-                    // Change with your site colors
-                    primaryColor: '#1890ff',
-                    customCss: [
-                        require.resolve('./src/css/custom.scss'),
-                        require.resolve('./src/css/blog-and-docs.scss'),
-                    ],
-                },
-            },
-        ],
     ],
 
     themeConfig:
@@ -198,8 +227,8 @@ const config = {
         ({
             image: 'og/default.jpg',
             announcementBar: {
-                id: 'announcement-bar-python-client',
-                content: `We've updated the Python Client - introduced typing, faster imports, intuitive code, and more. Read <a target="_blank" rel="noopener noreferrer" href="/developers/weaviate/client-libraries/python">Shape the Future - Try Our New Python Client API</a> to learn more.`,
+                id: 'announcement-bar-online-workshops',
+                content: `<b>Learn from the experts</b> at our weekly <a target="_blank" rel="noopener noreferrer" href="/community/events">Online Workshops</a>.`,
                 backgroundColor: '#1C1468',
                 textColor: '#F5F5F5',
                 isCloseable: true,
@@ -293,8 +322,12 @@ const config = {
                                 to: '/community',
                             },
                             {
-                                label: 'Events & Webinars',
+                                label: 'Online Workshops & Events',
                                 to: '/community/events',
+                            },
+                            {
+                                label: 'Paper Reviews',
+                                to: '/papers',
                             },
                             {
                                 label: 'Contributor Guide',
@@ -371,6 +404,12 @@ const config = {
                         to: '/blog',
                         position: 'right',
                     },
+                    {
+                        html: `<img class="githubStars" src="https://img.shields.io/github/stars/weaviate/weaviate?style=social&logo=github&logoColor=%23120c46&label=%20&color=%23ffffff&link=https%3A%2F%2Fgithub.com%2Fweaviate%2Fweaviate" alt="GitHub stars" />`,
+
+                        to: 'https://github.com/weaviate/weaviate',
+                        position: 'right',
+                      },
 
                     {
                         label: 'Try Now',
@@ -482,6 +521,11 @@ const config = {
                             {
                                 label: 'GitHub',
                                 to: 'https://github.com/weaviate/weaviate',
+                            },
+                            {
+
+                                label: 'Linkedin',
+                                to: 'https://www.linkedin.com/company/weaviate-io',
                             },
                             {
                                 label: 'Forum',

@@ -256,7 +256,7 @@ The number of tenants per node is limited by operating system constraints. The n
 
 For example, a 9-node test cluster built on `n1-standard-8` machines holds around 170k active tenants. There are 18,000 to 19,000 tenants per node.
 
-Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../api/rest/schema.md#update-tenants), the open file per process limit does not apply.
+Note that these numbers relate to active tenants only. If you [set unused tenants as `inactive`](../manage-data/multi-tenancy.md#update-tenant-activity-status), the open file per process limit does not apply.
 
 ### Lazy shard loading
 
@@ -286,7 +286,7 @@ Tenants are `HOT` or `COLD`. Tenant status determines if Weaviate can access the
 For more information, see the following:
 
 - [How-to manage data: Multi-tenancy operations](../manage-data/multi-tenancy.md)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Configuration: Schema](../manage-data/collections.mdx)
 
 ## Summary

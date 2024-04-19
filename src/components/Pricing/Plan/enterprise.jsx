@@ -51,7 +51,7 @@ export default function PricingEnterprise() {
       <br />
       <br />
       <br />
-      <div className={styles.buttonBox}>
+      <div className={`${styles.buttonBox} ${styles.enterpriseButton}`}>
         <Link className={styles.buttonTryOutline} to="#contact-sales">
           Contact Sales
         </Link>

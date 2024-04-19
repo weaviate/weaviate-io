@@ -64,7 +64,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud Services (WCS).
 
-Go to the [WCS quickstart](developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
+Go to the [WCS quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
 
 :::info To use another deployment method (e.g. Docker Compose)
 If you prefer another method, see [this section](#can-i-use-another-deployment-method).
@@ -125,7 +125,7 @@ Now you are ready to add objects to Weaviate.
 
 You can now add objects to Weaviate. You will be using a batch import ([read more](../manage-data/import.mdx)) process for maximum efficiency.
 
-The guide covers using the `vectorizer` defined for the class to create a vector embedding for each object.
+The guide covers using the `vectorizer` defined for the class to create a vector embedding for each object. You may have to add the API key for your vectorizer.
 
 import CodeAutoschemaImport from '/_includes/code/quickstart/import.mdx'
 
@@ -477,10 +477,12 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 <details>
   <summary>See answer</summary>
 
-If you are not sure whether the class has been created, you can confirm it by visiting the [`schema` endpoint](../api/rest/schema.md) here (replace the URL with your actual endpoint):
+If you are not sure whether the class has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint. 
+
+Replace WEAVIATE_INSTANCE_URL with your instance URL.:
 
 ```
-https://some-endpoint.weaviate.network/v1/schema
+https://WEAVIATE_INSTANCE_URL/v1/schema
 ```
 
 You should see:
@@ -510,10 +512,12 @@ Weaviate uses a combination of RESTful and GraphQL APIs. In Weaviate, RESTful AP
 <details>
   <summary>See answer</summary>
 
-To confirm successful data import, navigate to the [`objects` endpoint](../api/rest/objects.md) to check that all objects have been imported (replace with your actual endpoint):
+To confirm successful data import, check the [`objects`](/developers/weaviate/api/rest#tag/objects) endpoint to verify that all objects are imported.
+
+Replace WEAVIATE_INSTANCE_URL with your instance URL:
 
 ```
-https://some-endpoint.weaviate.network/v1/objects
+https://WEAVIATE_INSTANCE_URL/v1/objects
 ```
 
 You should see:

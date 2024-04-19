@@ -20,7 +20,7 @@ import PyCode from '!!raw-loader!/_includes/code/starter-guides/schema.py';
 import weaviate
 import json
 
-client = weaviate.Client("https://some-endpoint.weaviate.network/")  # Replace with your endpoint
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL/")  # Replace with your Weaviate endpoint
 
 # we will create the class "Question"
 class_obj = {
@@ -82,49 +82,48 @@ client.schema.create_class(class_obj)
 ```js
 import weaviate from 'weaviate-client';
 
- const client = await weaviate.connectToWCS(
-      '<WCS-URL>',
-      {
-        authCredentials: new weaviate.ApiKey('<API-KEY>'),
-      } 
-   )
+const client = await weaviate.connectToWCS(
+    '<WCS-URL>',
+    {
+      authCredentials: new weaviate.ApiKey('<API-KEY>'),
+    } 
+  )
 
 // Define the 'Question' class
 const classObj = const schema = {
-    name: 'Question',
-    properties: [
-      {
-        name: 'question',
-        dataType: 'text' as const,
-        description: 'Category of the question' as const,
-        tokenization: 'lowercase' as const,
-        vectorizePropertyName: true,
-        
-      },
-      {
-        name: 'answer',
-        dataType: 'text' as const,
-        description: 'The question' as const,
-        tokenization: 'whitespace' as const,
-        vectorizePropertyName: false,
-      }
-    ],
-    vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
-    generative: weaviate.configure.generative.openAI(),
-    invertedIndex: weaviate.configure.invertedIndex({
-      indexNullState: true,
-      indexPropertyLength: true,
-      indexTimestamps: true,
-    }),
-    vectorIndex: weaviate.configure.vectorIndex.hnsw({
-      distanceMetric: 'cosine',
-      quantizer: weaviate.configure.vectorIndex.quantizer.pq({segments:192}),
-    })
-  }
+  name: 'Question',
+  properties: [
+    {
+      name: 'question',
+      dataType: 'text' as const,
+      description: 'Category of the question' as const,
+      tokenization: 'lowercase' as const,
+      vectorizePropertyName: true,
+      
+    },
+    {
+      name: 'answer',
+      dataType: 'text' as const,
+      description: 'The question' as const,
+      tokenization: 'whitespace' as const,
+      vectorizePropertyName: false,
+    }
+  ],
+  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  generative: weaviate.configure.generative.openAI(),
+  invertedIndex: weaviate.configure.invertedIndex({
+    indexNullState: true,
+    indexPropertyLength: true,
+    indexTimestamps: true,
+  }),
+  vectorIndex: weaviate.configure.vectorIndex.hnsw({
+    distanceMetric: 'cosine',
+    quantizer: weaviate.configure.vectorIndex.quantizer.pq({segments:192}),
+  })
+}
 
 // Add the class to the schema
 const newCollection = await client.collections.create(schema) 
-
 ```
 
 </TabItem>
@@ -136,7 +135,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
 });
 
 // Define the 'Question' class
@@ -212,7 +211,7 @@ import (
 
 func main() {
     cfg := weaviate.Config{
-        Host:   "some-endpoint.weaviate.network/",
+        Host:   "WEAVIATE_INSTANCE_URL/", // Replace with the URL
         Scheme: "https",
     }
 
@@ -272,8 +271,9 @@ import io.weaviate.client.v1.schema.model.WeaviateClass;
 
 public class App {
   public static void main(String[] args) {
-    Config config = new Config("https", "some-endpoint.weaviate.network/");
-
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/");
+    // Replace with the URL
+    
     WeaviateClient client = new WeaviateClient(config);
 
     // we will create the class "Question"
@@ -318,6 +318,8 @@ public class App {
 {/* <TabItem value="curl" label="Curl">
 
 ```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
 curl \
 -X POST \
 -H "Content-Type: application/json" \
@@ -337,9 +339,9 @@ curl \
         }
     ]
 }' \
-https://some-endpoint.weaviate.network/v1/schema
+https://${WEAVIATE_INSTANCE_URL}/v1/schema
 
-curl https://some-endpoint.weaviate.network/v1/schema
+curl https://${WEAVIATE_INSTANCE_URL}/v1/schema
 ```
 
 </TabItem> */}

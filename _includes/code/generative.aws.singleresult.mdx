@@ -18,7 +18,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import weaviate
 
 client = weaviate.Client(
-  url="https://some-endpoint.weaviate.network/",
+  url="https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL
   additional_headers={
         "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
         "X-AWS-Secret-Key": "YOUR_SECRET_KEY",
@@ -96,7 +96,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network",
+    Host:    "WEAVIATE_INSTANCE_URL",   // Replace with your instance URL
     Scheme:  "https",
     Headers: map[string]string{
       "X-AWS-Access-Key": "YOUR_ACCESS_KEY",
@@ -158,7 +158,9 @@ public class App {
       put("X-AWS-Access-Key", "YOUR_ACCESS_KEY");
       put("X-AWS-Secret-Key", "YOUR_SECRET_KEY");
     } };
-    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace with your instance URL
+
     WeaviateClient client = new WeaviateClient(config);
 
     // highlight-start
@@ -266,7 +268,7 @@ echo '{
     -H "X-AWS-Access-Key: $YOUR_ACCESS_KEY" \
     -H "X-AWS-Secret-Key: $YOUR_SECRET_KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https://WEAVIATE_INSTANCE_URL/v1/graphql  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 ```
 
 </TabItem>

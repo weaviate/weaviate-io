@@ -38,7 +38,7 @@ console.log(fileToBase64('./your-image-here.jpg'))
 // ===== Search by base64 representation =====
 // ===========================================
 
-import weaviate from 'weaviate-client/node';
+import weaviate from 'weaviate-client';
 import fetch from 'node-fetch';
 import fs from 'fs';
 
@@ -68,11 +68,10 @@ const base64String = 'SOME_BASE_64_REPRESENTATION';
 // Perform query
 const myCollection = client.collections.get('Dog');
 
-const result = await myCollection.query.nearImage(base64String, 
-     {
-       returnProperties: ['breed'],
-       limit: 1,
-     })
+const result = await myCollection.query.nearImage(base64String,{
+  returnProperties: ['breed'],
+  limit: 1,
+})
 
 console.log(JSON.stringify(result.objects, null, 2));
 // END search with base64
@@ -84,23 +83,19 @@ assert.deepEqual(result.data['Get']['Dog'], [{ 'breed': 'Corgi' }]);
 // ====================================
 // ===== Search by image filename =====
 // ====================================
-
 fs.writeFileSync('image.jpg', content);
 // START ImageFileSearch
-
 // highlight-start
 // Read the file into a base-64 encoded string
 const contentsBase64 = await fs.promises.readFile('image.jpg', { encoding: 'base64' });
 // highlight-end
-
 // Query based on base64-encoded image
 const myCollection = client.collections.get('Dog');
 
-const result = await myCollection.query.nearImage(contentsBase64, 
-     {
-       returnProperties: ['breed'],
-       limit: 1,
-     })
+const result = await myCollection.query.nearImage(contentsBase64,{
+  returnProperties: ['breed'],
+  limit: 1,
+})
 
 console.log(JSON.stringify(result.objects, null, 2));
 // END ImageFileSearch

@@ -1,69 +1,27 @@
 // How-to: Manage data -> Read all objects - TypeScript examples
 // run with: node --loader=ts-node/esm read-all-objects.ts
 import assert from 'assert';
-import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
-const client: WeaviateClient = weaviate.client({
-  scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth enabled. Replace w/ your Weaviate instance API key.
-});
+const client = await weaviate.connectToWCS(
+  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
+ {
+   authCredentials: new weaviate.ApiKey('api-key'),
+   headers: {
+     'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+   }
+ } 
+)
 
 // ============================
 // ===== Read all objects =====
 // ============================
 {
 // START ReadAllProps
-// STEP 1 - Prepare a helper function to iterate through data in batches
-async function getBatchWithCursor(
-  collectionName: string,
-  batchSize: number,
-  cursor: string
-): Promise<any[]> {
-  // First prepare the query to run through data
-  const query = client.graphql.get()
-    .withClassName(collectionName)
-    // highlight-start
-    .withFields('title description _additional { id }')
-    // highlight-end
-    .withLimit(batchSize);
+const myCollection = client.collections.get("WineReview");
 
-    if (cursor) {
-    // Fetch the next set of results
-    // highlight-start
-    let result = await query.withAfter(cursor).do();
-    return result.data.Get[collectionName];
-    // highlight-end
-  } else {
-    // Fetch the first set of results
-    // highlight-start
-    let result = await query.do();
-    return result.data.Get[collectionName];
-    // highlight-end
-  }
-}
-
-// STEP 2 - Iterate through the data
-let cursor = null;
-
-// Batch import all objects to the target instance
-while (true) {
-  // Get Request next batch of objects
-  // highlight-start
-  let nextBatch = await getBatchWithCursor('CollectionName', 100, cursor);
-  // highlight-end
-
-  // Break the loop if empty – we are done
-  if (nextBatch.length === 0)
-    break;
-
-  // highlight-start
-  // Here is your next batch of objects
-  console.log(JSON.stringify(nextBatch));
-  // highlight-end
-
-  // Move the cursor to the last returned uuid
-  cursor = nextBatch.at(-1)['_additional']['id'];
+for await (let item of myCollection.iterator()) {
+  console.log(item.uuid, item.properties);
 }
 // END ReadAllProps
 }
@@ -72,44 +30,12 @@ while (true) {
 // =========================================
 {
 // START ReadAllVectors
-// STEP 1 - Prepare a helper function to iterate through data in batches
-async function getBatchWithCursor(
-  collectionName: string,
-  batchSize: number,
-  cursor: string
-): Promise<any[]> {
-  const query = client.graphql.get()
-    .withClassName(collectionName)
-    // highlight-start
-    .withFields('title description _additional { id vector }')
-    // highlight-end
-    .withLimit(batchSize);
+const myCollection = client.collections.get("WineReview");
 
-  if (cursor) {
-    let result = await query.withAfter(cursor).do();
-    return result.data.Get[collectionName];
-  } else {
-    let result = await query.do();
-    return result.data.Get[collectionName];
-  }
-}
-
-// STEP 2 - Iterate through the data
-let cursor = null;
-
-while (true) {
-  // Request the next batch of objects
-  let nextBatch = await getBatchWithCursor('CollectionName', 100, cursor);
-
-  // Break the loop if empty – we are done
-  if (nextBatch.length === 0)
-    break;
-
-  // Here is your next batch of objects
-  console.log(JSON.stringify(nextBatch));
-
-  // Move the cursor to the last returned uuid
-  cursor = nextBatch.at(-1)['_additional']['id'];
+for await (let item of myCollection.iterator({
+    includeVector: true
+  })) {
+    console.log(item.uuid, item.properties);
 }
 // END ReadAllVectors
 
@@ -119,53 +45,13 @@ while (true) {
 // =========================================
 {
 // START ReadAllTenants
-// STEP 1 - Prepare a helper function to iterate through data in batches
-async function getBatchWithCursor(
-  collectionName: string,
-  tenantName: string,
-  batchSize: number,
-  cursor: string,
-): Promise<any[]> {
-  const query = client.graphql.get()
-    .withClassName(collectionName)
-    // highlight-start
-    .withTenant(tenantName)
-    // highlight-end
-    .withFields('title description _additional { id }')
-    .withLimit(batchSize);
+const multiCollection = client.collections.get("WineReviewMT");
 
-  if (cursor) {
-    let result = await query.withAfter(cursor).do();
-    return result.data.Get[collectionName];
-  } else {
-    let result = await query.do();
-    return result.data.Get[collectionName];
-  }
-}
+const tenants = await multiCollection.tenants.get()
 
-// Get Tenants
-let tenants = await client.schema
-.tenantsGetter('MultiTenancyClass')
-.do();
-
-// STEP 2 - Iterate through Tenants
-for await (const tenant of tenants) {
-  // For each tenant, reset the cursor to the beginning
-  let cursor = null;
-  
-  while (true) {
-    // Request the next batch of objects
-    let nextBatch = await getBatchWithCursor('MultiTenancyClass', tenant.name, 100, cursor);
-    
-    // Break the loop if empty – we are done
-    if (nextBatch.length === 0)
-    break;
-  
-    // Here is your next batch of objects
-    console.log(JSON.stringify(nextBatch));
-    
-    // Move the cursor to the last returned uuid
-    cursor = nextBatch.at(-1)['_additional']['id'];
+for (let tenantName in tenants) {
+  for await (let item of multiCollection.withTenant(tenantName).iterator()) {
+    console.log(`${tenantName}:`, item.properties);
   }
 }
 // END ReadAllTenants

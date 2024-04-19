@@ -1,0 +1,205 @@
+.container {
+  padding: 2rem;
+}
+.rightText {
+  margin: 0 0 22px;
+}
+
+.mobileSocialBox {
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    align-content: center;
+    justify-content: space-around;
+  }
+}
+
+.communityForm {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 60px;
+    row-gap: 20px;
+    width: 100%;
+  }
+}
+
+.communityButton {
+  border-radius: 0.3125rem;
+  background: #61bd73;
+  width: 10.0625rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-style: none;
+  margin-left: -158px;
+
+  @media screen and (max-width: 768px) {
+    margin-left: unset;
+  }
+}
+
+.subscribeInput {
+  width: 31.25rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #1c1468;
+  border-style: none;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.subscribeInput::placeholder {
+  color: #c3c5d8 !important;
+
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 144.9%; /* 1.449rem */
+  letter-spacing: -0.01rem;
+}
+.communityWrapper {
+  background: #130c49;
+  border-radius: 13px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #ffffff;
+
+  h2 {
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 1440px) {
+    flex-direction: column;
+    display: flex;
+    align-content: center;
+    gap: 30px;
+  }
+}
+.rightSide {
+  display: flex;
+  flex-flow: wrap;
+  gap: 50px;
+  height: 100%;
+  padding: 69px;
+  width: 25rem;
+
+  @media screen and (max-width: 520px) {
+    display: flex;
+    width: 26rem;
+    height: 22rem;
+    flex-flow: wrap;
+    gap: 12px;
+    padding: 50px;
+  }
+}
+.leftSide {
+  display: flex;
+  width: 26rem;
+  flex-direction: column;
+
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+    flex-wrap: nowrap;
+  }
+
+  .communityHeader {
+    color: #ffffff;
+    padding: 0;
+    font-size: 24px;
+  }
+}
+.socialBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #130c49;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
+  width: 6.07219rem;
+  height: 6.07219rem;
+  margin: auto;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 500px) {
+    width: 9.38156rem;
+    height: 3.875rem;
+    flex-shrink: 0;
+    margin-bottom: 90px;
+  }
+
+  .slack {
+    display: flex;
+    width: 6.07219rem;
+    height: 6.07219rem;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/slack-circle-icon.svg');
+  }
+  .text {
+    text-align: center;
+    color: white;
+    padding-left: 0px;
+  }
+
+  .github {
+    display: flex;
+    width: 6.07219rem;
+    height: 6.07219rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/github-circle-icon.svg');
+  }
+  .twitter {
+    display: flex;
+    width: 6.07219rem;
+    height: 6.07219rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/x-circle-icon.svg');
+  }
+
+  .forum {
+    display: flex;
+    width: 6.07219rem;
+    height: 6.07219rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/site/weaviate-circle-icon.svg');
+  }
+}
+
+.sc-VigVT.dbVBAB {
+  background: #61bd73 !important;
+  color: #1c1468;
+}
+
+.formFooter {
+  margin-top: -80px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: -85px;
+  }
+}

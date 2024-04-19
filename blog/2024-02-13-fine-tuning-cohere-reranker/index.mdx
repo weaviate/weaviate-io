@@ -77,7 +77,7 @@ import json
 
 client = weaviate.Client(
     url = "WEAVIATE_URL",  # Replace with your cluster url
-    auth_client_secret=weaviate.AuthApiKey(api_key="WEAVIATE_AUTH_KEY"),  # Replace w/ your Weaviate instance API key
+    auth_client_secret=weaviate.AuthApiKey(api_key="WEAVIATE_AUTH_KEY"),  # Replace with your Weaviate instance API key
     additional_headers = {
         "X-Cohere-Api-Key": "API_KEY" # Replace with your inference API key
     }

@@ -33,34 +33,34 @@
   ],
   "blog": [
     {
-      "link": "/blog/enterprise-use-cases-weaviate",
+      "link": "/blog/forbes-ai-50-2024",
       "type": "Blog",
-      "backgroundImage": "/img/site/hero-enterprise-blog.png",
-      "tagline": "Enterprise Use Cases of Weaviate Vector Database",
-      "photo": "adam.png",
-      "name": "Adam Chan",
-      "title": "Developer Relations Engineer",
-      "date": "March 12, 2024"
+      "backgroundImage": "/img/site/forbes-ai-hero.png",
+      "tagline": "Forbes AI 50 List: The most promising AI startups in 2024",
+      "photo": "bob.jpg",
+      "name": "Bob van Luijt",
+      "title": "CEO",
+      "date": "April 11, 2024"
     },
     {
-      "link": "/blog/weaviate-community-hero",
+      "link": "/blog/binary-quantization",
       "type": "Blog",
-      "backgroundImage": "/img/site/hero-weaviate-hero.png",
-      "tagline": "Weaviate Hero",
-      "photo": "marion.jpg",
-      "name": "Marion Nehring",
-      "title": "Community Manager",
-      "date": "March 13, 2024"
+      "backgroundImage": "/img/site/binary-hero.png",
+      "tagline": "32x Reduced Memory Usage With Binary Quantization",
+      "photo": "abdel.jpg",
+      "name": "Abdel Rodriguez",
+      "title": "Vector Index Researcher",
+      "date": "April 2, 2024"
     },
     {
       "link": "/community/events",
       "type": "Workshop",
       "backgroundImage": "/img/site/workshops-daniel.png",
-      "tagline": "Intro to Weaviate for JavaScript Developers ",
+      "tagline": "Getting Started with the New Weaviate TypeScript Client",
       "photo": "daniel.jpg",
       "name": "Daniel Phiri",
       "title": "Developer Advocate",
-      "date": "March 28, 2024"
+      "date": "May 2, 2024"
     }
   ]
 }

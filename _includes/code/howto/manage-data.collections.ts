@@ -8,13 +8,13 @@ import assert from 'assert';
 import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToWCS(
-  'https://hha2nvjsruetknc5vxwrwa.c0.europe-west2.gcp.weaviate.cloud/',
+  'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
  {
-   authCredentials: new weaviate.ApiKey('nMZuw1z1zVtnjkXXOMGx9Ows7YWGsakItdus'),
+   authCredentials: new weaviate.ApiKey('api-key'),
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
- } 
+ }
 )
 
 // START BasicCreateCollection  // START ReadOneCollection  // START UpdateCollection
@@ -33,9 +33,8 @@ try {
 
 // START BasicCreateCollection
 const newCollection = await client.collections.create({
-      name: 'Article'
-  })
-
+  name: 'Article'
+})
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END BasicCreateCollection
@@ -70,7 +69,7 @@ const newCollection = await client.collections.create({
       tokenization: 'whitespace',
       skipVectorisation: true
     },
-  ],  
+  ],
 })
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
@@ -82,8 +81,7 @@ console.log(JSON.stringify(newCollection, null, 2));
 
 // START ReadOneCollection
 const collectionDefinition = await client.collections.get('Article')
-
-console.log(await collectionDefinition.config.get())  
+console.log(await collectionDefinition.config.get())
 // END ReadOneCollection
 
 // ==================================================
@@ -117,8 +115,6 @@ const newCollection = await client.collections.create({
  })],
   // highlight-end
 })
-
-
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END BasicNamedVectors
@@ -162,7 +158,7 @@ const newCollection = await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
+  vectorizer: weaviate.configure.vectorizer.text2VecCohere(),
   // highlight-end
 })
 // The returned value is the full collection definition, showing all defaults
@@ -177,10 +173,10 @@ assert.equal(result['properties'].length, 1); // no 'body' from the previous exa
 await client.collections.delete('Article')
 
 // ===========================
-// ===== SetVectorIndex =====
+// ===== SetVectorIndexType =====
 // ===========================
 
-// START SetVectorIndex
+// START SetVectorIndexType
 const newCollection = await client.collections.create({
   name: 'Article',
   properties: [
@@ -201,7 +197,7 @@ const newCollection = await client.collections.create({
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(await newCollection.config.get(), null, 2));
 
-// END SetVectorIndex
+// END SetVectorIndexType
 
 // Test
 assert.equal(result['vectorizer'], 'text2vec-openai');
@@ -210,6 +206,38 @@ assert.equal(result['properties'].length, 1); // no 'body' from the previous exa
 
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();
+
+// ===========================
+// ===== SetVectorIndexParams =====
+// ===========================
+
+// START SetVectorIndexParams
+const newCollection = await client.collections.create({
+  name: 'Article',
+  // Additional configuration not shown
+  // highlight-start
+  vectorIndex: weaviate.configure.vectorIndex.flat({
+    quantizer: weaviate.configure.vectorIndex.quantizer.bq({
+      rescoreLimit: 200,
+      cache: true
+    }),
+    vectorCacheMaxObjects: 100000
+  })
+  // highlight-end
+})
+// The returned value is the full collection definition, showing all defaults
+console.log(JSON.stringify(await newCollection.config.get(), null, 2));
+
+// END SetVectorIndexParams
+
+// Test
+assert.equal(result['vectorizer'], 'text2vec-openai');
+assert.equal(result['vectorIndexType'], 'flat');
+assert.equal(result['properties'].length, 1); // no 'body' from the previous example
+
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
 
 // ===========================
 // ===== MODULE SETTINGS =====
@@ -259,9 +287,8 @@ const newCollection = await client.collections.create({
       skipVectorisation: true,
       tokenization: 'whitespace'
     },],
-  vectorizer: weaviate.configure.vectorizer.text2VecHuggingFace(),
+  vectorizer: weaviate.configure.vectorizer.text2VecCohere(),
 })
-
 // The returned value is the full class definition, showing all defaults
 console.log(JSON.stringify(newCollection, null, 2));
 // END PropModuleSettings
@@ -302,6 +329,52 @@ assert.equal(result.vectorIndexConfig.distance, 'cosine');
 // Delete the class to recreate it
 await client.schema.classDeleter().withClassName(className).do();
 
+// ===================================================================
+// ===== CREATE A COLLECTION WITH CUSTOM INVERTED INDEX SETTINGS =====
+// ===================================================================
+
+// START SetInvertedIndexParams
+const newCollection = await client.collections.create({
+  name: 'Article',
+  properties: [
+    {
+      name: 'body',
+      dataType: weaviate.configure.dataType.TEXT,
+      // highlight-start
+      indexFilterable: true,
+      indexSearchable: true,
+      // highlight-end
+    },
+  ],
+  // highlight-start
+  invertedIndex: {
+    bm25: {
+      b: 0.7,
+      k1: 1.25
+    },
+    indexNullState: true,
+    indexPropertyLength: true,
+    indexTimestamps: true
+  }
+  // highlight-end
+})
+
+console.log(JSON.stringify(newCollection, null, 2));
+// END SetInvertedIndexParams
+
+// Test
+assert.equal(result.vectorizer, 'text2vec-huggingface');
+assert.equal(
+  result.properties[0].moduleConfig['text2vec-huggingface'][
+    'vectorizePropertyName'
+  ],
+  false
+);
+
+// Delete the class to recreate it
+await client.schema.classDeleter().withClassName(className).do();
+
+
 // ===============================================
 // ===== CREATE A COLLECTION WITH A GENERATIVE MODULE =====
 // ===============================================
@@ -321,7 +394,6 @@ const newCollection = await client.collections.create({
 })
 // The returned value is the full collection definition, showing all defaults
 console.log(JSON.stringify(await newCollection.config.get(), null, 2));
-
 // END SetGenerative
 
 // Test

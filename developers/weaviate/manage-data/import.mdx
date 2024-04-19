@@ -11,10 +11,11 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.import-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.import.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.import-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.import.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.import_test.go';
 
-[Batch imports](../tutorials/import.md#to-batch-or-not-to-batch) are an [efficient](../api/rest/objects.md#objects-vs-batch) way to add multiple data objects and cross-references.
+[Batch imports](../tutorials/import.md#to-batch-or-not-to-batch) are an efficient way to add multiple data objects and cross-references.
 
 
 <details>
@@ -51,9 +52,18 @@ The following example adds objects to the `YourName` collection.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// BasicBatchImportExample"
+      endMarker="// END BasicBatchImportExample"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// BasicBatchImportExample"
       endMarker="// END BasicBatchImportExample"
       language="ts"
@@ -105,9 +115,18 @@ Weaviate generates an UUID for each object. Object IDs must be unique. If you se
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// BatchImportWithIDExample"
+      endMarker="// END BatchImportWithIDExample"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// BatchImportWithIDExample"
       endMarker="// END BatchImportWithIDExample"
       language="ts"
@@ -156,9 +175,18 @@ Use the `vector` property to specify a vector for each object.
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
+      startMarker="// BatchImportWithVectorExample"
+      endMarker="// END BatchImportWithVectorExample"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// BatchImportWithVectorExample"
       endMarker="// END BatchImportWithVectorExample"
       language="ts"
@@ -210,7 +238,7 @@ When you create an object, you can specify named vectors (if [configured in your
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// BatchImportWithNamedVectors"
@@ -219,6 +247,46 @@ When you create an object, you can specify named vectors (if [configured in your
     />
   </TabItem>
 
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// BatchImportWithNamedVectors"
+      endMarker="// END BatchImportWithNamedVectors"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Import with references
+
+You can batch create links from an object to another other object through cross-references.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BatchImportWithRefExample"
+      endMarker="# END BatchImportWithRefExample"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# BatchImportWithRefExample"
+      endMarker="# END BatchImportWithRefExample"
+      language="py"
+    />
+  </TabItem>
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// BatchImportWithRefExample"
+      endMarker="// END BatchImportWithRefExample"
+      language="ts"
+    />
+  </TabItem>
 </Tabs>
 
 ## Python-specific batching
@@ -319,9 +387,9 @@ weaviate:
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [How-to: Create objects](./create.mdx)
-- [References: REST - /v1/batch](../api/rest/batch.md)
+- [References: REST - /v1/batch](/developers/weaviate/api/rest#tag/batch)
 - [Configuration: Indexes](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

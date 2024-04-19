@@ -147,7 +147,7 @@ The output is like this:
 
 </details>
 
-## Nest filters
+## Nested filters
 
 You can group and nest filters.
 
@@ -221,8 +221,8 @@ To create a nested filter, follow these steps.
 
 - Set the outer `operator` equal to `And` or `Or`.
 - Add `operands`.
-- Within an `operand`, set `operator` equal to `And` or `Or` to nest a group.
-- Add `operands` to the nested group.
+- Inside an `operand` expression, set `operator` equal to `And` or `Or` to add the nested group.
+- Add `operands` to the nested group as needed.
 
 </details>
 
@@ -569,6 +569,10 @@ The output is like this:
 
 ## By geo-coordinates
 
+import GeoLimitations from '/_includes/geo-limitations.mdx';
+
+<GeoLimitations/>
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
@@ -779,7 +783,7 @@ For a list of filter operators, see [the reference page](../api/graphql/filters.
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/tutorials/connect.mdx)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: Filters](../api/graphql/filters.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

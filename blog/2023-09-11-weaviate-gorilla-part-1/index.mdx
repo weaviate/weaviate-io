@@ -31,7 +31,7 @@ Although this article has a research focus on how we developed the model, we are
 }
 ```
 
-The `Auto` API allows you to simply tell Weaviate what kind of search you want and `WeaviateGraphQLGorilla` formats the request under the hood. This lets you execute your search, while also returning the `generatedQuery` lookup for learning purposes! To step a little more into how this works, we retrieve the Weaviate user’s custom schema from a running Weaviate instance with the [/v1/schema REST API](https://weaviate.io/developers/weaviate/api/rest/schema), feed that to a Weaviate RAG API serving the WeaviateGraphQLGorilla model with `generate`, and then generate away!
+The `Auto` API allows you to simply tell Weaviate what kind of search you want and `WeaviateGraphQLGorilla` formats the request under the hood. This lets you execute your search, while also returning the `generatedQuery` lookup for learning purposes! To step a little more into how this works, we retrieve the Weaviate user’s custom schema from a running Weaviate instance with the [/v1/schema REST API](https://weaviate.io/developers/weaviate/api/rest#tag/schema), feed that to a Weaviate RAG API serving the WeaviateGraphQLGorilla model with `generate`, and then generate away!
 
 For example, the above query `Show me the full name and email of contacts that contain John in their full name` would get translated into the following GraphQL. Please note, this is an actual example of our Weaviate GraphQL Gorilla generating from a novel natural command, novel schema pair as input.
 
@@ -331,10 +331,6 @@ Huge thanks to Sam Stoelinga for the collaboration on this project, please check
 
 There are tons of directions to explore in the future of Gorilla! If you are interested in learning more or sharing your journey with building Gorillas for your software, please feel free to reach out to me @CShorten30 on X, as well as how to connect with the broader Weaviate team from the links below!
 
-## Connect with us!
+import WhatsNext from '/_includes/what-next.mdx';
 
-Check out Getting Started with Weaviate, and begin building amazing apps with Weaviate.
-
-You can reach out to us on Slack or Twitter, or join the community forum.
-
-Weaviate is open source, and you can follow the project on GitHub. Don’t forget to give us a ⭐while you are there!
+<WhatsNext />

@@ -27,16 +27,15 @@ let result, generatePrompt, genResults;
 // SingleGenerative TS
 const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
 
-   const myCollection = client.collections.get('JeopardyQuestion');
-   const result = await myCollection.generate.nearText(['World history'],{
+const myCollection = client.collections.get('JeopardyQuestion');
+const result = await myCollection.generate.nearText(['World history'],{
     singlePrompt: generatePrompt,
-   },
-   {
+  },{
     limit: 2,
     returnProperties: ['round'],
-   })
+})
 
-   console.log(JSON.stringify(result.objects, null, 2));
+console.log(JSON.stringify(result.objects, null, 2));
 // END SingleGenerative TS
 
 // Tests
@@ -55,16 +54,15 @@ for (const g of genResults) {
 // SingleGenerativeProperties TS
 const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
 
-   const myCollection = client.collections.get('JeopardyQuestion');
-   const result = await myCollection.generate.nearText(['World history'],{
+const myCollection = client.collections.get('JeopardyQuestion');
+const result = await myCollection.generate.nearText(['World history'],{
     singlePrompt: generatePrompt,
-   },
-   {
+  },{
     limit: 2,
     returnProperties: ['round'],
-   })
+})
 
-   console.log(JSON.stringify(result.objects, null, 2));
+console.log(JSON.stringify(result.objects, null, 2));
 // END SingleGenerativeProperties TS
 
 // Tests
@@ -85,10 +83,9 @@ const generatePrompt = `What do these animals have in common, if anything?`;
 const myCollection = client.collections.get('JeopardyQuestion');
 const result = await myCollection.generate.nearText(['Cute animals'],{
  groupedTask: generatePrompt,
-},
-{
- limit: 3,
- returnProperties: ['points'],
+  },{
+  limit: 3,
+  returnProperties: ['points'],
 })
 
 console.log(JSON.stringify(result.generated, null, 2));
@@ -114,12 +111,11 @@ const generatePrompt = `What do these animals have in common, if anything?`;
 
 const myCollection = client.collections.get('JeopardyQuestion');
 const result = await myCollection.generate.nearText(['Australian animals'],{
- groupedTask: generatePrompt,
- groupedProperties: ['answer', 'question'],
-},
-{
- limit: 3,
- returnProperties: ['points', 'question'],
+  groupedTask: generatePrompt,
+  groupedProperties: ['answer', 'question'],
+    },{
+  limit: 3,
+  returnProperties: ['points', 'question'],
 })
 
 console.log(JSON.stringify(result, null, 2));
