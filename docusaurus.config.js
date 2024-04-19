@@ -189,7 +189,7 @@ const config = {
                 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
             crossorigin: 'anonymous',
         },
-        "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha86/dist/main.css"
+        "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha87/dist/main.css"
     ],
 
     // Even if you don't use internalization, you can use this field to set useful
