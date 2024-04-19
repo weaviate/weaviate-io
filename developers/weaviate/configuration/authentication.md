@@ -97,7 +97,7 @@ import APIKeyUsage from '/_includes/clients/api-token-usage.mdx';
 
 <APIKeyUsage />
 
-A CURL command looks like this:
+The cURL command looks like this:
 
 ```bash
 curl https://${WEAVIATE_INSTANCE_URL}/v1/meta -H "Authorization: Bearer ${WEAVIATE_API_KEY}" | jq
