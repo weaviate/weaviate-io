@@ -142,7 +142,7 @@ To pass the API key, add it to the `Headers` at the bottom of the GraphQL query 
 
 ## Troubleshooting 
 
-This section has solutions for some commonly reported problems. 
+This section has solutions for some commonly reported problems. For other problems, [contact support](#support).
  
 ### Reset your password
 
@@ -207,7 +207,10 @@ To check the URLs, open the WCS Console and check the details panel for your clu
 
 ![Compare URLs](./img/wcs-console-url-check.jpg)
 
-Compare the Cluster URL with the connection URL in your application. If they are different, update the application to use the new Cluster URL.   
+Compare the Cluster URL with the connection URL in your application. The old URL and the new URL are similar, but the new one may have an extra subdomain such as `.c0.region`. 
+
+If the URLs are different, update your application's connection code to use the new Cluster URL.
+  
 ## More resources
 
 To authenticate with a Weaviate client library, see the following:
@@ -216,3 +219,9 @@ To authenticate with a Weaviate client library, see the following:
 - [TypeScript/JavaScript](/developers/weaviate/client-libraries/typescript#authentication)
 - [Go](/developers/weaviate/client-libraries/go.md#authentication)
 - [Java](/developers/weaviate/client-libraries/java.md#authentication)
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
