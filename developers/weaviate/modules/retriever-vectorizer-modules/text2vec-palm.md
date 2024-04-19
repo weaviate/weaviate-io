@@ -234,7 +234,7 @@ The available models for AI Studio are:
 - `text-embedding-004`
 
 <details>
-  <summary>For legacy `embedding-gecko-001` model users</summary>
+  <summary>For legacy <code>embedding-gecko-001</code> model users</summary>
 
 The `embedding-gecko-001` has been deprecated by Google, and will not be available for new users. However, Google may deprecate the endpoint for existing users in the future.
 
