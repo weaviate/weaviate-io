@@ -371,6 +371,10 @@ Vertex AI:
 - `chat-bison` (default)
 - `gemini-pro`
 - `gemini-pro-vision` (from Weaviate `v1.24.2`)
+- `chat-bison-32k` (from Weaviate `v1.24.9`)
+- `chat-bison@002` (from Weaviate `v1.24.9`)
+- `chat-bison-32k@002` (from Weaviate `v1.24.9`)
+- `chat-bison@001` (from Weaviate `v1.24.9`)
 
 AI Studio:
 - `chat-bison-001` (default)
