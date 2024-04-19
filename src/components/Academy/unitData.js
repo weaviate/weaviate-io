@@ -270,7 +270,7 @@ export const unitData = {
     body: "What tokenization options are available in Weaviate?",
     buttonType: "Click here",
     buttonURL: "/developers/academy/py/tokenization/options",
-    badgeType: "practical",
+    badgeType: "theory",
     learningGoals: [
       "Review the available tokenization options in Weaviate."
     ],

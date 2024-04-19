@@ -5,7 +5,7 @@ sidebar_position: 275
 
 import LearningGoals from '/src/components/Academy/learningGoals.jsx';
 import CourseUnits from '/src/components/Academy/courseUnits.jsx';
-import { courseData } from '/src/components/Academy/courseData.js'
+import { courseData } from '/src/components/Academy/courseData.js';
 
 ## <i class="fa-solid fa-chalkboard-user"></i> Course overview
 
