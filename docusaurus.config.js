@@ -308,10 +308,14 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Academy',
+                                label: 'Learn with Academy',
                                 docId: 'academy/index',
                                 sidebarid: 'academySidebar',
                                 type: 'doc',
+                            },
+                            {
+                                label: 'Online Workshops & Events',
+                                to: '/community/events',
                             },
                             {
                                 label: 'Newsletter',
@@ -320,10 +324,6 @@ const config = {
                             {
                                 label: 'Community',
                                 to: '/community',
-                            },
-                            {
-                                label: 'Online Workshops & Events',
-                                to: '/community/events',
                             },
                             {
                                 label: 'Paper Reviews',
