@@ -256,6 +256,10 @@ import SemanticKindCreateCoords from '/_includes/code/semantic-kind.create.geoco
 
 <SemanticKindCreateCoords/>
 
+import GeoLimitations from '/_includes/geo-limitations.mdx';
+
+<GeoLimitations/>
+
 ### With a custom vector
 
 When creating a data object, you can configure Weaviate to generate a vector with a vectorizer module, or you can provide the vector yourself. We sometimes refer to this as a "custom" vector.

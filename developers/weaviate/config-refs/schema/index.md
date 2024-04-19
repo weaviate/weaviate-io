@@ -267,6 +267,8 @@ As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopword
 
 Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest#tag/schema/put/schema/%7BclassName%7D) the list of stopwords after your data has been indexed.
 
+Note that stopwords are only removed when [tokenization](#tokenization) is set to `word`.
+
 Below is an example request on how to update the list of stopwords:
 
 ```python
