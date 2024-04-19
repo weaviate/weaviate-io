@@ -200,6 +200,10 @@ An example of how geo coordinates are used in a data object:
 }
 ```
 
+import GeoLimitations from '/_includes/geo-limitations.mdx';
+
+<GeoLimitations/>
+
 ## DataType: `phoneNumber`
 
 There is a special, primitive data type `phoneNumber`. When a phone number is added to this field, the input will be normalized and validated, unlike the single fields as `number` and `string`. The data field is an object, as opposed to a flat type similar to `geoCoordinates`. The object has multiple fields:
