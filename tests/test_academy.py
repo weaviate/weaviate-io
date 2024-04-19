@@ -32,20 +32,21 @@ def test_on_blank_instance_pyv4(empty_weaviates, script_loc):
     exec(proc_script)
 
 
-@pytest.mark.pyv3
-@pytest.mark.parametrize(
-    "script_loc",
-    [
-        "./developers/academy/zero_to_mvp/_snippets/setup.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/05_create_instance.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/20_schema.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/30_import.py",
-        "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/40_import_example_1.py",
-    ],
-)
-def test_on_blank_instance(empty_weaviates, script_loc):
-    proc_script = utils.load_and_prep_script(script_loc)
-    exec(proc_script)
+# Deprecated tests for deprecated modules (pyv3; also directories have moved)
+# @pytest.mark.pyv3
+# @pytest.mark.parametrize(
+#     "script_loc",
+#     [
+#         "./developers/academy/zero_to_mvp/_snippets/setup.py",
+#         "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/05_create_instance.py",
+#         "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/20_schema.py",
+#         "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/30_import.py",
+#         "./developers/academy/zero_to_mvp/103_schema_and_imports/_snippets/40_import_example_1.py",
+#     ],
+# )
+# def test_on_blank_instance(empty_weaviates, script_loc):
+#     proc_script = utils.load_and_prep_script(script_loc)
+#     exec(proc_script)
 
 
 @pytest.mark.pyv3
