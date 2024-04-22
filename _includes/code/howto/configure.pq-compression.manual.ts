@@ -11,9 +11,9 @@ const collectionName = 'YourCollection';
 // Prep
 await client.collections.delete(collectionName);
 
-// START InitClassDef  // START UpdateSchema
+// START InitClassDef  // START UpdateSchema  // START ViewConfig
 let collection;
-// START InitClassDef  // END UpdateSchema
+// START InitClassDef  // END UpdateSchema  // END ViewConfig
 collection = await client.collections.create({
   name: collectionName,
   vectorizer: [
@@ -34,8 +34,9 @@ console.log(JSON.stringify(collectionConfig))
 
 assert.equal(collectionConfig.vectorizer.default.indexConfig.quantizer, undefined)
 
-// START UpdateSchema
+// START UpdateSchema  // START ViewConfig
 collection = client.collections.get(collectionName);
+// START UpdateSchema  // END ViewConfig
 
 await collection.config.update({
   vectorizer: [
@@ -53,9 +54,16 @@ await collection.config.update({
 })
 // END UpdateSchema
 
+// START ViewConfig
 collectionConfig = await collection.config.get();
+// END ViewConfig
 
 console.log(JSON.stringify(collectionConfig))
+
+// START ViewConfig
+
+console.log(collectionConfig.vectorizer['default'].indexConfig.quantizer)
+// END ViewConfig
 
 assert.equal(collectionConfig.vectorizer.default.indexConfig.quantizer.type, "pq")
 assert.equal(collectionConfig.vectorizer.default.indexConfig.quantizer.trainingLimit, 50000)
