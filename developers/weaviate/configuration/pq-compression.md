@@ -197,6 +197,7 @@ The next few sections work through these steps.
 
 We recommend loading a representative sample such that the trained centroids are representative of the entire dataset.
 
+<!-- TODO (Note added Apr 2024) - Remove the commented out code below on/after June 2024 if no complaints -->
 <!-- <details>
 
   <summary>
