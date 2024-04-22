@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/pq-compression.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/pq-compression-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/pq-compression.ts';
+import TSCodeAutoPQ from '!!raw-loader!/_includes/code/howto/pq-compression.autopq.ts';
+import TSCodeManualPQ from '!!raw-loader!/_includes/code/howto/pq-compression.manual.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/pq-compression-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/pq-compression.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/pq-compression.go';
 
@@ -30,7 +32,7 @@ To configure HNSW, see [Configuration: Vector index](../config-refs/schema/vecto
 
 ## Enable PQ compression
 
-There are two ways to enable PQ compression:
+PQ is configured at a collection level. There are two ways to enable PQ compression:
 
 - [Use AutoPQ to enable PQ compression](./pq-compression.md#configure-autopq).
 - [Manually enable PQ compression](./pq-compression.md#manually-configure-pq).
@@ -40,7 +42,7 @@ There are two ways to enable PQ compression:
 :::info Added in v1.23.0
 :::
 
-If you have a new collection, enable AutoPQ. AutoPQ automates the PQ training step so you don't have to load your data in two phases.
+For new collections, use AutoPQ. AutoPQ automates triggering of the PQ training step at a threshold.
 
 ### 1. Set the environment variable
 
@@ -52,7 +54,7 @@ Open-source Weaviate users: To enable AutoPQ, set the environment variable `ASYN
 
 ### 2. Configure PQ
 
-To enable PQ for a collection, specify it in your collection definition. Once you enable PQ, AutoPQ automates the PQ training step for you.
+Specify PQ settings for each collection for which it is to be enabled.
 
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
@@ -75,9 +77,18 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="ts" label="JS/TS (Beta)">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeAutoPQ}
+       startMarker="// START CollectionWithAutoPQ"
+       endMarker="// END CollectionWithAutoPQ"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="ts2" label="JS/TS">
+     <FilteredTextBlock
+       text={TSCodeLegacy}
        startMarker="// START CollectionWithAutoPQ"
        endMarker="// END CollectionWithAutoPQ"
        language="ts"
@@ -135,9 +146,18 @@ Every collection in your Weaviate instance is defined by a [schema](../starter-g
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="ts" label="TS/TS (Beta)">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeManualPQ}
+       startMarker="// START InitClassDef"
+       endMarker="// END InitClassDef"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="ts2" label="JS/TS">
+     <FilteredTextBlock
+       text={TSCodeLegacy}
        startMarker="// START InitClassDef"
        endMarker="// END InitClassDef"
        language="ts"
@@ -169,9 +189,9 @@ If you are starting with a new collection, load between 10,000 and 100,000 objec
 
 If you already have data in an existing collection, [move to the next step](/developers/weaviate/configuration/pq-compression#enable-pq-and-create-the-codebook).
 
-When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, try to chose the objects at random so that they are [independent and identically distributed](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables).
+When you load data for this training phase, you can use any of the objects in your data set to create the codebook. However, we recommend a sampling method which will result in a representative sample of the final dataset.
 
-<details>
+<!-- <details>
 
   <summary>
     Download sample data
@@ -202,7 +222,7 @@ When you load data for this training phase, you can use any of the objects in yo
 
   <TabItem value="ts" label="JavaScript/TypeScript">
       <FilteredTextBlock
-        text={TSCode}
+        text={TSCodeLegacy}
         startMarker="// START FetchData"
         endMarker="// END FetchData"
         language="ts"
@@ -230,6 +250,12 @@ When you load data for this training phase, you can use any of the objects in yo
 
 </details>
 
+<details>
+
+  <summary>
+    Add data
+  </summary>
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
      <FilteredTextBlock
@@ -251,7 +277,7 @@ When you load data for this training phase, you can use any of the objects in yo
 
   <TabItem value="ts" label="JavaScript/TypeScript">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeLegacy}
        startMarker="// START LoadData"
        endMarker="// END LoadData"
        language="ts"
@@ -276,6 +302,8 @@ When you load data for this training phase, you can use any of the objects in yo
     />
   </TabItem>
 </Tabs>
+
+</details> -->
 
 ### 3. Enable PQ and create the codebook
 
@@ -306,9 +334,18 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="ts" label="JS/TS (Beta)">
      <FilteredTextBlock
-       text={TSCode}
+       text={TSCodeManualPQ}
+       startMarker="// START UpdateSchema"
+       endMarker="// END UpdateSchema"
+       language="ts"
+     />
+  </TabItem>
+
+  <TabItem value="ts2" label="JS/TS">
+     <FilteredTextBlock
+       text={TSCodeLegacy}
        startMarker="// START UpdateSchema"
        endMarker="// END UpdateSchema"
        language="ts"
@@ -404,7 +441,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
 
   <TabItem value="ts" label="JavaScript/TypeScript">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeLegacy}
       startMarker="// START GetSchema"
       endMarker="// END GetSchema"
       language="ts"
