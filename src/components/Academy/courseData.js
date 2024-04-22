@@ -109,6 +109,28 @@ export const courseData = {
     ],
     note: "Python client (v4); project-based"
   },
+  "tokenization": {
+    title: "Text tokenization",
+    courseId: "PY_275",
+    body: "What happens when text is indexed, and searched, or converted into a vector? They are 'tokenized'. Learn what this is, and how you can make it work for you.",
+    buttonType: "Click here",
+    buttonURL: "/developers/academy/py/tokenization",
+    badgeType: "course",
+    isCourse: true,
+    units: [
+      "tokenization_basics", "tokenization_options", "tokenization_filters", "tokenization_searches"
+    ],
+    learningGoals: [
+      "What tokenization is, and why it is required."
+    ],
+    learningOutcomes: [
+      "Identify tokenized text from raw text.",
+      "Name different tokenization options in Weaviate.",
+      "Select an appropriate tokenization option for a given use case.",
+      "Name languages for which specific tokenization options are available.",
+    ],
+    note: "Python client (v4); project-based"
+  },
   "intro_weaviate_typescript": {
     title: "Intro to Weaviate with Typescript (or JavaScript)",
     courseId: "TS_100",

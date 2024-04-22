@@ -1,0 +1,5 @@
+:::note Limitations
+Currently, geo-coordinate filtering is limited to the nearest 800 results from the source location, which will be further reduced by any other filter conditions and search parameters.
+
+If you plan on a densely populated dataset, consider using another strategy such as geo-hashing into a `text` datatype, and filtering further, such as with a `ContainsAny` filter.
+:::

@@ -9,10 +9,10 @@ image: og/docs/client-libraries.jpg
 The current Go client version is `v||site.go_client_version||`.
 :::
 
-The Weaviate Go client is compatible with Go 1.16+. 
+The Weaviate Go client is compatible with Go 1.16+.
 
 ## Installation
-The client doesn't support the old Go modules system. Create a repository for your code before you import the Weaviate client. 
+The client doesn't support the old Go modules system. Create a repository for your code before you import the Weaviate client.
 
 Create a repository:
 
@@ -57,7 +57,7 @@ func GetSchema() {
     fmt.Printf("%v", schema)
 }
 
-func main() {  
+func main() {
    GetSchema()
 }
 ```
@@ -193,13 +193,13 @@ if err != nil{
 
 ## References
 
-All [RESTful endpoints](../api/rest/index.md) and [GraphQL functions](../api/graphql/index.md) references covered by the Go client, and explained on those reference pages in the code blocks.
+All [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](../api/graphql/index.md) references covered by the Go client, and explained on those reference pages in the code blocks.
 
 ## Design
 
 ### Builder pattern
 
-The Go client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](../api/rest/index.md) and the [GraphQL reference pages](../api/graphql/index.md).
+The Go client functions are designed with a 'Builder pattern'. A pattern is used to build complex query objects. This means that a function (for example to retrieve data from Weaviate with a request similar to a RESTful GET request, or a more complex GraphQL query) is built with single objects to reduce complexity. Some builder objects are optional, others are required to perform specific functions. All is documented on the [RESTful API reference pages](/developers/weaviate/api/rest) and the [GraphQL reference pages](../api/graphql/index.md).
 
 The code snippet above shows a simple query similar to `RESTful GET /v1/schema`. The client is initiated by requiring the package and connecting to the running instance. Then, a query is constructed by getting the `.Schema` with `.Getter()`. The query will be sent with the `.Go()` function, this object is thus required for every function you want to build and execute.
 

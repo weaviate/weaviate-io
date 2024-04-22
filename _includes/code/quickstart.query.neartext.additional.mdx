@@ -27,7 +27,7 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network/",  # Replace with your endpoint
+    url="https://WEAVIATE_INSTANCE_URL/",  # Replace with your Weaviate endpoint
     additional_headers={
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Or "X-Cohere-Api-Key" or "X-HuggingFace-Api-Key"
     }
@@ -55,7 +55,7 @@ import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   headers: { 'X-OpenAI-Api-Key': process.env['OPENAI_API_KEY'] },  // Replace with your API key
 });
 
@@ -85,7 +85,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network/",
+    Host:    "WEAVIATE_INSTANCE_URL/",  // Replace WEAVIATE_INSTANCE_URL with your instance URL
     Scheme:  "https",
     Headers: map[string]string{"X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"},
   }
@@ -141,7 +141,9 @@ public class App {
     Map<String, String> headers = new HashMap<String, String>() { {
       put("X-OpenAI-Api-Key", "YOUR-OPENAI-API-KEY");
     } };
-    Config config = new Config("https", "some-endpoint.weaviate.network/", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL/", headers);
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
+
     WeaviateClient client = new WeaviateClient(config);
 
     NearTextMoveParameters moveTo = NearTextMoveParameters.builder()

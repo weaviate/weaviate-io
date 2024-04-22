@@ -6,10 +6,14 @@ image: og/docs/installation.jpg
 ---
 
 
-:::tip <b>Important</b> Set the correct Weaviate version
+:::note Important: Set the correct Weaviate version
 Make sure to set your desired Weaviate version.
 
 This can be done through either explicitly setting it as part of the `values.yaml` or through overwriting the default as outlined in the [deployment step](#deploy-install-the-helm-chart) below.
+:::
+
+:::tip End-to-end guide
+If you are looking for a complete end-to-end tutorial on the topic, please the [Weaviate Academy course on Weaviate on Kubernetes](../../academy/deployment/k8s/index.md). The tutorial covers an end-to-end scenario of deploying Weaviate on Kubernetes with Minikube.
 :::
 
 ## Requirements

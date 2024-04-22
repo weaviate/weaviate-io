@@ -89,7 +89,7 @@ Starting with `v1.12.0` there are two levels of disk usage notifications and act
 
 If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
-changed the thresholds) you can use the [Shards API](../api/rest/schema.md#inspect-the-shards-of-a-class) to do so.
+changed the thresholds) you can use the [Shards API](/developers/weaviate/api/rest#tag/schema/get/schema/%7BclassName%7D/shards) to do so.
 
 ## Virtual memory access method
 

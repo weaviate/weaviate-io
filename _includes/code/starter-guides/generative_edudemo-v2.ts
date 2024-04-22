@@ -11,7 +11,7 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace WEAVIATE_INSTANCE_URL with your instance URL
   apiKey: new ApiKey('api-key'),
   headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY },  // Replace with your inference API key
 });

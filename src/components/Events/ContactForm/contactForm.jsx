@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import styles from './styles.module.scss';
-import Link from '@docusaurus/Link';
 
 export default function ContactForm() {
   useEffect(() => {

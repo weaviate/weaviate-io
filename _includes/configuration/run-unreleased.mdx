@@ -1,0 +1,14 @@
+:::warning Unreleased software
+DISCLAIMER: Release candidate images and other unreleased software are not supported.
+
+Unreleased software and images may contain bugs. APIs may change. Features under development may be withdrawn or modified. Do not use unreleased software in production.
+
+:::
+
+To run an unreleased version of Weaviate, edit your configuration file to use the unreleased image instead of a generally available image. The [GitHub releases page](https://github.com/weaviate/weaviate/releases/) lists generally available and release candidate builds.
+
+For example, to run a Docker image for a release candidate, edit your `docker-config.yaml` to import the release candidate image. 
+
+```yml
+image: cr.weaviate.io/semitechnologies/weaviate:1.23.0-rc.1
+```

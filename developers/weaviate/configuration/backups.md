@@ -565,7 +565,7 @@ The flexibility around backup providers opens up new use cases. Besides using th
 For example, consider the following situation: You would like to do a load test on production data. If you would do the load test in production it might affect users. An easy way to get meaningful results without affecting uses it to duplicate your entire environment. Once the new production-like "loadtest" environment is up, create a backup from your production environment and restore it into your "loadtest" environment. This even works if the production environment is running on a completely different cloud provider than the new environment.
 
 ## Related pages
-- [References: REST API: Backups](../api/rest/backups.md)
+- [References: REST API: Backups](/developers/weaviate/api/rest#tag/backups)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

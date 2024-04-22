@@ -190,7 +190,7 @@ services:
 
 </details>
 
-To get the index status, call the [node status](/developers/weaviate/api/rest/nodes.md#usage) endpoint.
+To get the index status, check the [node status](/developers/weaviate/config-refs/nodes) endpoint.
 
 <details>
   <summary><code>Node status</code> example usage</summary>
