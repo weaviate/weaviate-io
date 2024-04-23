@@ -76,8 +76,18 @@
   }
 }
 
+.calculatorHolder {
+  display: flex;
+}
+
+.info {
+  width: 20.9375rem;
+  height: 40rem;
+  border-radius: 0.625rem;
+  border: 3px solid #262262;
+}
 .buttons {
-  margin-top: 70px;
+  margin: 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -101,6 +111,18 @@
     background-image: linear-gradient(45deg, #20e220 60%, #ffff00);
     color: rgba(46, 49, 143);
     font-weight: bold;
+  }
+
+  .buttonOutline {
+    border-radius: 0.3125rem;
+    border: 1px solid #61bd73;
+    color: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
   }
 }
 
@@ -284,7 +306,7 @@
 }
 
 .bgColor {
-  background: #ededed;
+  background: #130c49;
 }
 
 .featuresLine {
@@ -293,4 +315,100 @@
   @media screen and (max-width: 668px) {
     display: none;
   }
+}
+
+.productPlan {
+  width: 80%;
+  margin: 20px auto;
+  height: 25.4rem;
+  border-radius: 0.625rem;
+  border: 3px solid #262262;
+  display: flex;
+  padding: 2rem;
+
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.plans {
+  width: 270px;
+  color: #ffffff;
+  z-index: 1;
+
+  h2 {
+    color: #fff;
+    text-align: right;
+    font-family: Inter;
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    margin: 0px 0px 55px;
+  }
+
+  p {
+    color: #61bb73;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 10px 0px;
+
+    span {
+      color: #ffffff;
+    }
+  }
+}
+
+.standard,
+.enterprise,
+.businessCritical {
+  width: 200px;
+  h2 {
+    color: #61bb73;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+    margin: 10px 0px;
+  }
+  p {
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .pricing {
+    color: #fff;
+    margin: 20px 0px;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+
+    span {
+      color: #fff;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+}
+
+.lines {
+  margin: 38px 0px;
+  width: 80%;
+  height: 2.25rem;
+  flex-shrink: 0;
+  background: #262262;
+  position: absolute;
+  z-index: 0;
+  margin-left: -35px;
+  transform: translateY(73px);
+}
+
+.line1 {
+  transform: translateY(107px);
+}
+.line2 {
+  transform: translateY(184px);
+}
+.line3 {
+  transform: translateY(256px);
 }

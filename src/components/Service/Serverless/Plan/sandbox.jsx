@@ -8,7 +8,13 @@ export default function PricingSandBox() {
       <div className={`${styles.title} ${styles.sandboxTitle}`}>
         <h3 className={styles.color}>Free Sandbox</h3>
       </div>
-      <div className={styles.featuresLong}>
+      <div className={`${styles.features} ${styles.featuresTitle}`}>
+        <span>
+          Get free access for learning and prototyping. Only pay when you go
+          into production.
+        </span>
+      </div>
+      <div className={styles.features}>
         <li>14 days lifetime</li>
         <li>Monitoring</li>
         <li>Public Slack</li>
