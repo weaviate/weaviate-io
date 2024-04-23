@@ -10,7 +10,6 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-
 :::note TypeScript client version
 The current TypeScript client version is `v||site.typescript_client_version||`
 :::
@@ -263,24 +262,10 @@ This makes it easier to understand and use. Additionally, some parameters typed 
 
 ## How to migrate your code
 
-The migration will likely involve significant changes to your codebase. Review the [TypeScript client library documentation](./index.mdx) to get started, including instantiation details and various submodules.
+To get started, review the TypeScript client [documentation](/developers/weaviate/client-libraries/typescript/typescript-v3). For code examples, review these pages:
 
-Then, take a look at the how-to guides for [Managing data](../../manage-data/index.md) and [Queries](../../search/index.md).
-
-In particular, check out the pages for:
-
-- [Client instantiation](./index.md#instantiate-a-client),
-- [Manage collections](../../manage-data/collections.mdx),
-- [Batch import](../../manage-data/import.mdx)
-- [Cross-reference](../../manage-data/cross-references.mdx)
-- [Basic search](../../search/basics.md)
-- [Similarity search](../../search/similarity.md)
-- [Filters](../../search/filters.md)
-
-## Can we help?
-
-If you have any questions, please don't hesitate to reach out to us on the [Weaviate Community Forum](https://forum.weaviate.io/c/support/6).
-
+- [Search](/developers/weaviate/search)
+- [Data management](/developers/weaviate/manage-data)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

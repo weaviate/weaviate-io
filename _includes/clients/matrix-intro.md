@@ -1,7 +1,6 @@
-This chart matches Weaviate core database releases with Weaviate client releases. It
-lists the most recent database version available when each client version is released.
+These charts show the Weaviate client releases associated with Weaviate core releases. 
 
-### Current minor releases
+### Current Weaviate core minor releases
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
@@ -16,7 +15,7 @@ lists the most recent database version available when each client version is rel
 | [1.24.2](https://github.com/weaviate/weaviate/releases/tag/v1.24.2) | 2024-03-13 | '' | '' | '' | '' |
 | [1.24.1](https://github.com/weaviate/weaviate/releases/tag/v1.24.1) | 2024-03-01 | 4.5.0 | '' | 4.12.0 | 4.5.1 |
 
-### Major releases
+### Weaviate core major releases
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
