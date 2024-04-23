@@ -15,10 +15,39 @@ const client = await weaviate.connectToWCS(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
- } 
+ }
 )
 
 let result, generatePrompt, genResults;
+
+// ===============================================
+// ===== QUERY WITH TARGET VECTOR & nearText =====
+// ===============================================
+
+// NamedVectorNearText
+const myCollection = client.collections.get('WineReviewNV');
+
+result = await myCollection.generate.nearText(
+  ['a sweet German white wine'],
+  {
+    singlePrompt: 'Translate this into German: {review_body}',
+    groupedTask: 'Summarize these review',
+  },
+  {
+    limit: 2,
+    targetVector: 'title_country',
+  }
+);
+
+console.log(result.generated);
+for (let object of result.objects) {
+  console.log(JSON.stringify(object.properties, null, 2));
+  console.log(object.generated);
+}
+// END NamedVectorNearText
+
+// Tests
+assert.deepEqual(result.data.Get.JeopardyQuestion.length, 2);
 
 // =====================================
 // ===== SINGLE GENERATIVE EXAMPLE =====
