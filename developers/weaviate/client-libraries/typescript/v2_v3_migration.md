@@ -22,16 +22,16 @@ This guide highlights the major changes in the new client. The guide also makes 
 To go from `v2` to `v3`, you must
 
 1. Install the new client package
-    - Depending on your usecase, i.e. web or node, the cleint name changes. 
+    - Depending on your use case, i.e. web or node, the client name changes. 
 
-    For Web, the new Typscript client is usable under the `weavaite-client-web` package. 
+    For Web, the new TypeScript client is usable under the `weaviate-client-web` package. 
 
-    For Node.js, new Typscript client is usable under the `weavaite-client` package. 
+    For Node.js, new TypeScript client is usable under the `weaviate-client` package. 
 
     The previous client had a single package for both use cases.
 
     ```bash
-     npm install weavaite-ts-client
+     npm install weaviate-ts-client
     ```
 
 2. Upgrade Weaviate to a compatible version
@@ -239,7 +239,7 @@ import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.si
 
 This makes it easier to understand and use. Additionally, some parameters typed (e.g. `MetadataQuery`) which makes it easier to use and reduces errors.
 
-### Seperate packages for Web and Node platforms
+### Separate packages for Web and Node platforms
 
   - talk a bit more about this and package specifics 
   - Introduction of gRPC?

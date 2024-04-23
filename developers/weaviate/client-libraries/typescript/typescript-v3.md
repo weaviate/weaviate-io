@@ -19,8 +19,8 @@ The TypeScript client can be used for both JavaScript and TypeScript scripts. Th
 
 ## Installation and setup
 
-- Add web cleint initialisation 
-- link to other TS packages and resoruces? like embedded
+- Add web client initialization 
+- link to other TS packages and resources? like embedded
 - add example queries
 - link to weaviate recipes and example apps
 
@@ -217,7 +217,7 @@ const client = await weaviate.connectToWCS(
     username: 'username',
     password: 'password',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
+    scopes: ['offline_access'] // optional, depends on the configuration of your identity provider (not required with WCS)
     })
   }
 )
@@ -236,7 +236,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
     username: 'username',
     password: 'password',
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
+    scopes: ['offline_access'] // optional, depends on the configuration of your identity provider (not required with WCS)
     })
   }
 )
@@ -306,7 +306,7 @@ const client = await weaviate.connectToWCS(
   'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthAccessTokenCredentials({
-      accessToken: 'acessToken',
+      accessToken: 'accessToken',
       expiresIn: 900,
       refreshToken: 'refreshToken',
       silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
@@ -325,7 +325,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
   'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthAccessTokenCredentials({
-      accessToken: 'acessToken',
+      accessToken: 'accessToken',
       expiresIn: 900,
       refreshToken: 'refreshToken',
       silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
