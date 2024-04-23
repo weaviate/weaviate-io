@@ -33,7 +33,7 @@ Current contributors to Weaviate include developers and data scientists, who hav
 
 We have a [Weaviate documentation](/developers/weaviate/) site that is itself maintained as an open-source project ([GitHub](https://github.com/weaviate/weaviate-io)).
 
-Our documentation includes extensive code examples in many languages (`Python`, `Javascript`, `Java`, `Go`, `shell` and `GraphQL`).
+Our documentation includes extensive code examples in many languages (`Python`, `JavaScript`, `Java`, `Go`, `shell` and `GraphQL`).
 
 One key challenge for us is keeping our documentation up-to-date with the fast-paced development of the codebase, especially as these code examples are in multiple languages. The result has been that unfortunately in some cases our users work with either outdated, or worse - broken code examples.
 

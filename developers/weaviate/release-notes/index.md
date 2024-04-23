@@ -288,7 +288,7 @@ For links to the Python Client releases, expand this section.
 
 </details>
 
-## Typescript and Javascript Clients
+## TypeScript and JavaScript Clients
 
 For links to the TypeScript Client releases, expand this section.
 
