@@ -24,9 +24,9 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 
 		sourceClient, err := weaviate.NewClient(weaviate.Config{
 			Scheme: "https",
-			Host:   "some-endpoint.weaviate.network", // Replace with your Weaviate URL
+			Host:   "WEAVIATE_INSTANCE_URL" // Replace WEAVIATE_INSTANCE_URL with your instance URL
 			AuthConfig: auth.ApiKey{
-				Value: "YOUR-WEAVIATE-API-KEY", // If auth enabled. Replace w/ your Weaviate instance API key.
+				Value: "YOUR-WEAVIATE-API-KEY", // If auth enabled. Replace with your Weaviate instance API key.
 			},
 		})
 		if err != nil {
@@ -70,7 +70,7 @@ func Test_ManageDataReadAllObjects(t *testing.T) {
 
 		targetClient, err := weaviate.NewClient(weaviate.Config{
 			Scheme: "https",
-			Host:   "some-endpoint.weaviate.network", // Replace with your Weaviate URL
+			Host:   "WEAVIATE_INSTANCE_URL", // Replace with your Weaviate URL
 		})
 		if err != nil {
 			// handle error

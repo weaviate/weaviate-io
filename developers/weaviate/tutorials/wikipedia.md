@@ -111,7 +111,7 @@ The [`jq`](https://stedolan.github.io/jq/) command used after `curl` is a handy 
 
 ## Import the articles
 
-We're now ready to import the articles. For maximum performance, we'll load the articles into Weaviate via [batch import](../api/rest/batch.md).
+We're now ready to import the articles. For maximum performance, we'll load the articles into Weaviate via [batch import](../manage-data/import.mdx).
 
 import ImportArticles from '/_includes/code/tutorials.wikipedia.import.mdx';
 
@@ -125,7 +125,9 @@ Two quick sanity checks that the import went as expected:
 1. Get the number of articles
 2. Get 5 articles
 
-Go to the [Weaviate GraphQL console](https://console.weaviate.io), connect to your Weaviate endpoint (e.g. `http://localhost:8080` or `https://some-endpoint.weaviate.network`), then run the GraphQL query below:
+- Go to the [Weaviate GraphQL console](https://console.weaviate.io)
+- Connect to your Weaviate endpoint, either `http://localhost:8080` or `https://WEAVIATE_INSTANCE_URL`. (Replace WEAVIATE_INSTANCE_URL with your instance URL.) 
+- Run this GraphQL query:
 
 ```graphql
 query {

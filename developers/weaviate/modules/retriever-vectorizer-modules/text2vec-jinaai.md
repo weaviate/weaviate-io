@@ -24,8 +24,8 @@ Key notes:
 
 ## Weaviate instance configuration
 
-<!-- :::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+<!-- :::tip
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 ::: -->
 
 <!-- Note: Will be added to WCS soon. Un-comment the above and delete this line when it is enabled. -->

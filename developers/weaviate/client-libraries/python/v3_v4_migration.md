@@ -1,5 +1,5 @@
 ---
-title: v3 to v4 migration guide
+title: Migrate from v3 to v4
 sidebar_position: 12
 image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
@@ -15,7 +15,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 The current Python client version is `v||site.python_client_version||`
 :::
 
-The `v4` Weaviate Python client API is very different to the `v3` API. This guide will help you understand the major changes and how to migrate your code at a high level.
+The `v4` Weaviate Python client API is very different from the `v3` API. This guide will help you understand the major changes and how to migrate your code at a high level.
 
 ## Installation
 
@@ -62,6 +62,8 @@ You can directly instantiate the client, but in most cases you can use helper fu
   language="py"
 />
 
+To configure connection timeout values, see [Timeout values](/developers/weaviate/client-libraries/python#timeout-values).
+
 </TabItem>
 <TabItem value="local" label="Local">
 
@@ -95,11 +97,9 @@ You can directly instantiate the client, but in most cases you can use helper fu
 </TabItem>
 </Tabs>
 
-Once it has been instantiated, you will notice that the client API is different from `v3`.
-
 ## Major changes
 
-From a user's perspective, major changes with the `v4` client include:
+The `v4` client API is very different from the `v3` API. Major user-facing changes in the `v4` client include:
 
 - Extensive use of helper classes
 - Interaction with collections
@@ -182,7 +182,7 @@ You can still create a collection from a JSON definition. This may be a useful w
 
 ### Removal of builder patterns
 
-The builder patterns for constructing queries as been removed, as they could be confusing and potentially lead to invalid queries.
+The builder patterns for constructing queries have been removed, as they could be confusing and potentially lead to invalid queries.
 
 In `v4`, queries are constructed using specific methods and its parameters.
 
@@ -226,11 +226,6 @@ In particular, check out the pages for:
 - [Basic search](../../search/basics.md)
 - [Similarity search](../../search/similarity.md)
 - [Filters](../../search/filters.md)
-
-## Can we help?
-
-If you have any questions, please don't hesitate to reach out to us on the [Weaviate Community Forum](https://forum.weaviate.io/c/support/6).
-
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -389,6 +389,10 @@ See [How-to: Cross-references](./cross-references.mdx) for more on working with 
 
 ## Create an object with `geoCoordinates`
 
+import GeoLimitations from '/_includes/geo-limitations.mdx';
+
+<GeoLimitations/>
+
 If you want to supply a [`geoCoordinates`](/developers/weaviate/config-refs/datatypes.md#datatype-geocoordinates) property, you need to specify the `latitude` and `longitude` as floating point decimal degrees:
 
 import CreateWithGeo from '/_includes/code/howto/manage-data.create.with.geo.mdx';
@@ -397,7 +401,7 @@ import CreateWithGeo from '/_includes/code/howto/manage-data.create.with.geo.mdx
 
 ## Validate objects before creation
 
-Before you create an object, you can [validate](../api/rest/objects.md#validate-a-data-object) it against the collection definition.
+Before you create an object, you can [validate](/developers/weaviate/api/rest#tag/objects/post/objects/validate) it against the collection definition.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -465,7 +469,7 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [How-to: (Batch) Import items](./import.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

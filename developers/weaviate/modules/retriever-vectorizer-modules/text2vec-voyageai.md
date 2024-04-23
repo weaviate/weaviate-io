@@ -25,8 +25,8 @@ import ModuleParameterPrecedenceNote from '/_includes/module-parameter-precedenc
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -179,6 +179,8 @@ You can use any of the following models with `text2vec-voyageai` ([source](https
 - `voyage-large-2` (default)
 - `voyage-code-2`
 - `voyage-2`
+- `voyage-law-2`
+- `voyage-lite-02-instruct`
 
 ### Truncation
 

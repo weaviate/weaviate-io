@@ -122,8 +122,8 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 
 ## Module configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -371,6 +371,10 @@ Vertex AI:
 - `chat-bison` (default)
 - `gemini-pro`
 - `gemini-pro-vision` (from Weaviate `v1.24.2`)
+- `chat-bison-32k` (from Weaviate `v1.24.9`)
+- `chat-bison@002` (from Weaviate `v1.24.9`)
+- `chat-bison-32k@002` (from Weaviate `v1.24.9`)
+- `chat-bison@001` (from Weaviate `v1.24.9`)
 
 AI Studio:
 - `chat-bison-001` (default)

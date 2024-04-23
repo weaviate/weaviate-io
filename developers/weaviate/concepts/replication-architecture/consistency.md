@@ -77,7 +77,7 @@ The main reason for introducing configurable write consistency in v1.18 is becau
 Read operations are GET requests to data objects in Weaviate. Like write, read consistency is tunable, to `ONE`, `QUORUM` (default) or `ALL`.
 
 :::note
-Prior to `v1.18`, read consistency was tunable only for requests that [obtained an object by id](../../api/rest/objects.md#get-a-data-object), and all other read requests had a consistency of `ALL`.
+Prior to `v1.18`, read consistency was tunable only for [requests that obtained an object by id](../../manage-data/read.mdx#get-an-object-by-id), and all other read requests had a consistency of `ALL`.
 :::
 
 The following consistency levels are applicable to most read operations:
@@ -133,7 +133,7 @@ An object that never existed will be propagated to the other nodes only if the o
 
 ## Related pages
 - [API References | GraphQL | Get | Consistency Levels](../../api/graphql/get.md#consistency-levels)
-- [API References | REST | Objects](../../api/rest/objects.md)
+- [API References | REST | Objects](/developers/weaviate/api/rest#tag/objects)
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

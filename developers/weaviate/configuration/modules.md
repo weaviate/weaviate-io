@@ -119,7 +119,6 @@ See [here](../modules/other-modules/custom-modules.md) how you can create and us
 ## Related pages
 - [Concepts: Modules](../concepts/modules.md)
 - [References: Modules](../modules/index.md)
-- [References: REST API: Modules](../api/rest/modules.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

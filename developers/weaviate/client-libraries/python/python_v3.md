@@ -37,7 +37,7 @@ Now you can use the client in your Python scripts as follows:
 ```python
 import weaviate
 
-client = weaviate.Client("https://some-endpoint.weaviate.network")  # Replace the URL with that of your Weaviate instance
+client = weaviate.Client("https://WEAVIATE_INSTANCE_URL")  # Replace WEAVIATE_INSTANCE_URL with your instance URL.
 
 assert client.is_ready()  # Will return True if the client is connected & the server is ready to accept requests
 ```
@@ -48,7 +48,7 @@ Or, with additional arguments such as those below:
 import weaviate
 
 client = weaviate.Client(
-  url="https://some-endpoint.weaviate.network",  # URL of your Weaviate instance
+  url="https://WEAVIATE_INSTANCE_URL",  # URL of your Weaviate instance
   auth_client_secret=auth_config,  # (Optional) If the Weaviate instance requires authentication
   timeout_config=(5, 15),  # (Optional) Set connection timeout & read timeout time in seconds
   additional_headers={  # (Optional) Any additional headers; e.g. keys for API inference services
@@ -85,11 +85,11 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 ```python
 import weaviate
 
-auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace w/ your Weaviate instance API key
+auth_config = weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY")  # Replace with your Weaviate instance API key
 
 # Instantiate the client with the auth config
 client = weaviate.Client(
-    url="https://some-endpoint.weaviate.network",  # Replace w/ your endpoint
+    url="https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
     auth_client_secret=auth_config
 )
 ```
@@ -176,7 +176,7 @@ There is a variety of neural search frameworks that use Weaviate under the hood 
 
 # References documentation
 
-On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
+On this Weaviate documentation website, you will find how to use the Python client for all [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](../../api/graphql/index.md). For each reference, a code block is included with an example of how to use the function with the Python (and other) clients. The Python client, however, has additional functionalities, which are covered in the full client documentation on [weaviate-python-client.readthedocs.io](https://weaviate-python-client.readthedocs.io/en/stable/). Some of these additional functions are highlighted here below.
 
 ### Example: client.schema.create(schema)
 Instead of adding classes one by one using the RESTful `v1/schema` endpoint, you can upload a full schema in JSON format at once using the Python client. Use the function `client.schema.create(schema)` as follows:

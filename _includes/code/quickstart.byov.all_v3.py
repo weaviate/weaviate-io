@@ -3,8 +3,8 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    url = "https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
 )
 
 # ===== Create schema =====

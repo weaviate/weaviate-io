@@ -1,0 +1,218 @@
+---
+title: Tokenization and filters
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyCreateCollection from '!!raw-loader!./_snippets/310_create_collection.py';
+import PyAddObjects from '!!raw-loader!./_snippets/315_add_objects.py';
+import PyFilters from '!!raw-loader!./_snippets/320_filters.py';
+
+Now that you've learned about different tokenization methods, let's put them into practice. In this section, you'll see how tokenization impacts filters.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Preparation
+
+For this section, we'll work with an actual Weaviate instance to see how different tokenization methods impact filtering results.
+
+We are going to use a very small, custom dataset for demonstration purposes.
+
+<FilteredTextBlock
+  text={PyAddObjects}
+  startMarker="# StringsToAdd"
+  endMarker="# END StringsToAdd"
+  language="py"
+/>
+
+To follow along, you can use the following Python code to add this data to your Weaviate instance.
+
+<details>
+  <summary>Steps to create a collection</summary>
+
+We will create a simple object collection, with each object containing multiple properties. Each properties will contain the same text, but with different tokenization methods applied.
+
+<FilteredTextBlock
+  text={PyCreateCollection}
+  startMarker="# CreateDemoCollection"
+  endMarker="# END CreateDemoCollection"
+  language="py"
+/>
+
+Note that we do not add object vectors in this case, as we are only interested in the impact of tokenization on filters (and keyword searches).
+
+</details>
+
+<details>
+  <summary>Steps to add objects</summary>
+
+Now, we add objects to the collection, repeating text objects as properties.
+
+<FilteredTextBlock
+  text={PyAddObjects}
+  startMarker="# AddObjects"
+  endMarker="# END AddObjects"
+  language="py"
+/>
+
+</details>
+
+
+## <i class="fa-solid fa-square-chevron-right"></i> Impact on filters
+
+Now that we have added a set of objects to Weaviate, let's see how different tokenization methods impact filtered retrieval.
+
+Each filtered query will look something like this, wherein we filter the objects for a set of query strings.
+
+We'll set up a reusable function to filter objects based on a set of query strings. Remember that a filter is binary: it either matches or it doesn't.
+
+The function will return a list of matched objects, and print the matched objects for us to see.
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# FilterExampleBasic"
+  endMarker="# END FilterExampleBasic"
+  language="py"
+/>
+
+### <i class="fa-solid fa-code"></i> "**Clark:** "vs "**clark**" - messy text
+
+Typical text is often messy, with punctuations, mixed cases and other irregularities. Take a look at this example, where we filter for various combinations of substrings from the TV show title `"Lois & Clark: The New Adventures of Superman"`.
+
+The table shows whether the query matched the title:
+
+|               | `word` | `lowercase` | `whitespace` | `field` |
+|---------------|--------|-------------|--------------|---------|
+| `"clark"`       | ✅     | ❌         | ❌          | ❌     |
+| `"Clark"`       | ✅     | ❌         | ❌          | ❌     |
+| `"clark:" `     | ✅     | ✅         | ❌          | ❌     |
+| `"Clark:" `     | ✅     | ✅         | ✅          | ❌     |
+| `"lois clark"`  | ✅     | ❌         | ❌          | ❌     |
+| `"clark lois"`  | ✅     | ❌         | ❌          | ❌     |
+
+<details>
+  <summary>Python query & output</summary>
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# ClarkExample"
+  endMarker="# END ClarkExample"
+  language="py"
+/>
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# ClarkResults"
+  endMarker="# END ClarkResults"
+  language="text"
+/>
+
+</details>
+
+Note how the `word` tokenization was the only that consistently returned the matching title, unless the colon (`:`) was included in the query. This is because the `word` tokenization method treats the colon as a separator.
+
+Users may not be expected to include any punctuation in their queries, nor the exact capitalization. As a result, for a typical text filter usage, the `word` tokenization method is a good starting point.
+
+### <i class="fa-solid fa-code"></i> "**A mouse**" vs "**mouse**" - stop words
+
+Here, we filter for variants of the phrase "computer mouse", where some queries include additional words.
+
+Now, take a look at the results.
+
+**Matches for `"computer mouse"`**
+
+|                              | `word`    | `lowercase` | `whitespace` | `field` |
+|------------------------------|-----------|-------------|--------------|---------|
+| `"computer mouse"`           | ✅        | ✅           | ✅           | ✅     |
+| `"a computer mouse"`         | ✅        | ✅           | ✅           | ❌     |
+| `"the computer mouse:" `     | ✅        | ✅           | ✅           | ❌     |
+| `"blue computer mouse" `     | ❌        | ❌           | ❌           | ❌     |
+
+**Matches for `"a computer mouse"`**
+
+|                              | `word`    | `lowercase` | `whitespace` | `field` |
+|------------------------------|-----------|-------------|--------------|---------|
+| `"computer mouse"`           | ✅        | ✅           | ✅           | ❌     |
+| `"a computer mouse"`         | ✅        | ✅           | ✅           | ✅     |
+| `"the computer mouse:" `     | ✅        | ✅           | ✅           | ❌     |
+| `"blue computer mouse" `     | ❌        | ❌           | ❌           | ❌     |
+
+<details>
+  <summary>Python query & output</summary>
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# MouseExample"
+  endMarker="# END MouseExample"
+  language="py"
+/>
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# MouseResults"
+  endMarker="# END MouseResults"
+  language="text"
+/>
+
+</details>
+
+The results indicate that adding the word "a" or "the" to the query does not impact the filter results for all methods except `field`. This is because at every tokenization method, the word "a" or "the" is considered a stop word and is ignored.
+
+With the `field` method, the difference is that stop word tokens like "a" or "the" are never produced. An input "a computer mouse" is tokenized to `["a computer mouse"]`, containing one token.
+
+Adding another word, such as "blue", that is not a stop word, causes the query to not match any objects.
+
+### <i class="fa-solid fa-code"></i> "**variable_name**" vs "**variable name**" - symbols
+
+The `word` tokenization is a good default. However, it may not always be the best choice. Take a look at this example where we filter for different variants of `"variable_name"`, to see if they match the object with the exact string (`"variable_name"`).
+
+|                              | `word`    | `lowercase` | `whitespace` | `field` |
+|------------------------------|-----------|-------------|--------------|---------|
+| `"variable_name"`            | ✅        | ✅           | ✅           | ✅     |
+| `"Variable_Name:" `          | ✅        | ✅           | ❌           | ❌     |
+| `"Variable Name:" `          | ✅        | ❌           | ❌           | ❌     |
+| `"a_variable_name"`          | ✅        | ❌           | ❌           | ❌     |
+| `"the_variable_name"`        | ✅        | ❌           | ❌           | ❌     |
+| `"variable_new_name" `       | ✅        | ❌           | ❌           | ❌     |
+
+<details>
+  <summary>Python query & output</summary>
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# UnderscoreExample"
+  endMarker="# END UnderscoreExample"
+  language="py"
+/>
+
+<FilteredTextBlock
+  text={PyFilters}
+  startMarker="# UnderscoreResults"
+  endMarker="# END UnderscoreResults"
+  language="text"
+/>
+
+</details>
+
+What is the desired behavior here? Should a filter for `"variable name"` match the object with the property `"variable_name"`?
+
+What about a filter for `"variable_new_name"`? If the goal is to look through, say, a code base, the user might not expect a filter for `"variable_new_name"` to match `"variable_name"`.
+
+In cases such as these, where symbols are important to your data, you should consider using a tokenization method that preserves symbols, such as `lowercase` or `whitespace`.
+
+## <i class="fa-solid fa-square-chevron-right"></i> Discussions
+
+We've discussed how different tokenization methods impact filters.
+
+For most filtering use, the `word` tokenization method is a good starting point. It is case-insensitive, and treats most symbols as separators.
+
+However, if symbols are important to your data, or if you need to distinguish between different cases, you may want to consider using a different tokenization method.
+
+And what about `field` tokenization? This method is most useful when you have text that should be treated as a single token. This is useful for properties like email addresses, URLs, or identifiers.
+
+A typical filtering strategy with a `field` tokenization method might involve exact matches, or partial matches with wildcards. Do note, however, that wildcard-based filters can be computationally expensive (slow) - so use them judiciously.
+
+Next, we'll discuss how tokenization impacts keyword searches.
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

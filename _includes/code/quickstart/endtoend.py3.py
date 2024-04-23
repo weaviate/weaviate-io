@@ -3,7 +3,7 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    url = "http://localhost:8080",  # Replace with your endpoint
+    url = "http://localhost:8080",  # Replace with your Weaviate endpoint
     additional_headers = {
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your inference API key
     }
@@ -21,8 +21,8 @@ import json
 # EndToEndExample  # InstantiationExample  # NearTextExample
 
 client = weaviate.Client(
-    url = "https://some-endpoint.weaviate.network",  # Replace with your endpoint
-    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace w/ your Weaviate instance API key
+    url = "https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate endpoint
+    auth_client_secret=weaviate.auth.AuthApiKey(api_key="YOUR-WEAVIATE-API-KEY"),  # Replace with your Weaviate instance API key
     additional_headers = {
         "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your inference API key
     }
