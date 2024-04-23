@@ -20,9 +20,238 @@ The v3 client supports Node.js server based development. It does not support web
 
 To develop a web client based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2) or the v3 web client when it is available.
 
-## Installation
+## Install 
 
-To go from `v2` to `v3`, you must
+To install the TypeScript client `v3`, follow these steps: 
+
+1. Update your version of Node.js.
+    - The minimum version of Node supported by the `v3` client is Node 18. 
+
+2. Install the new client package.
+    
+  ```bash
+  npm install weaviate-client --tag beta
+  ```
+
+3. Upgrade Weaviate to a compatible version
+    - Weaviate `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
+
+4. Open a gRPC port for Weaviate.
+    - The default port is 50051.
+	
+## Instantiate a client
+ 
+The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object.
+
+You can instantiate the client directly, but in most cases you should use one of the helper functions:
+
+- [`connectToLocal`](#NEEDS_LINK)
+- [`connectToWCS`](#NEEDS_LINK)
+- [`connectToCustom`](#NEEDS_LINK)
+
+<Tabs groupId="languages">
+<TabItem value="wcs" label="WCS">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToWCS(
+  'some-endpoint.weaviate.network', {
+	@@ -106,9 +78,9 @@ console.log(client)
+<TabItem value="local" label="Local">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.connectToLocal({
+    httpHost: 'localhost',
+    httpPort: 8080,
+    grpcHost: 'localhost',
+    grpcPort: 50051,
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
+    }
+  })
+ 
+console.log(client)
+```
+</TabItem>
+</Tabs>
+Once it has been instantiated, you will notice that the client API is different from `v2`.
+## Major changes
+
+From a user's perspective, major changes with the `v3` client include:
+
+### Better Typescript Support
+
+The v3 client has better Typescript support. The user-facing benefits include better IDE intellisense, improved type-safety, and user-defined generics.
+
+<Tabs groupId="languages">
+<TabItem value="generics" label="Define Generics">
+
+```ts
+import weaviate from 'weaviate-client';
+
+type Article = {
+  title: string;
+  body: string;
+  wordcount: number;
+}
+
+const collection = client.collections.get<Article>('Article');
+```
+
+</TabItem>
+<TabItem value="query" label="Insert Data">
+
+```ts
+const collection = client.collections.get<Article>('Article');
+
+await collection.insert({ // compiler error since 'body' field is missing in '.insert'
+  title: 'TS is awesome!',
+  wordcount: 9001
+})
+```
+
+</TabItem>
+</Tabs>
+
+The example uses generics to create type-safe operations. Use generics to write type-safe methods for other operations such as collection creation, querying, and deletion 
+
+### Interaction with collections
+
+Interacting with the `client` object for CRUD and search operations have been replaced with the use of collection objects.
+
+This conveniently removes the need to specify the collection for each operation, and reduces potential for errors.
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+const myCollection = client.collections.get('JeopardyQuestion');
+
+const result = await myCollection.query.fetchObjects({
+  returnProperties: ['question'],
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
+```
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+result = await client
+  .graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withFields('question')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+</TabItem>
+</Tabs>
+
+Note here that the collection object can be re-used throughout the codebase.
+
+
+### Removal of Builder Pattern
+
+The builder patterns for constructing queries can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+let result 
+const myCollection = client.collections.get('JeopardyQuestion');
+
+result = await myCollection.query.nearText(['animals in movies'],{
+  limit: 2,
+  returnProperties: ['question', 'answer'],
+  returnMetadata: ['distance']
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
+```
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+let result;
+
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withNearText({ concepts: ['animals in movies'] })
+  .withLimit(2)
+  .withFields('question answer _additional { distance }')
+  .do();
+
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+</TabItem>
+</Tabs>
+
+Types make code safer and easier to understand. Typed method parameters also make the client library easier to use and reduce errors.
+
+The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
+
+The v3 client supports Node.js, server based development. It does not support web client development.
+
+To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1. Install the new client package
     - Depending on your use case, i.e. web or node, the client name changes. 
@@ -258,7 +487,6 @@ This makes it easier to understand and use. Additionally, some parameters typed 
 #### Named vectors? 
 #### cleaner return object 
 #### Error handling 
-
 
 ## How to migrate your code
 
