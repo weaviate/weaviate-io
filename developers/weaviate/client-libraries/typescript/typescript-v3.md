@@ -333,4 +333,3 @@ See the client [change logs on GitHub](https://github.com/weaviate/typescript-cl
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
-
