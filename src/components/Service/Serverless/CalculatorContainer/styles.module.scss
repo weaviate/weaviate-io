@@ -381,6 +381,9 @@
 
     @media screen and (max-width: 668px) {
       text-align: left;
+      font-size: 0.9rem;
+      width: 196px;
+      margin: 13px 0px;
     }
 
     span {
@@ -408,6 +411,13 @@
   p {
     text-align: center;
     color: #ffffff;
+
+    @media screen and (max-width: 668px) {
+      text-align: left;
+      font-size: 1rem;
+      width: unset;
+      margin: 10px 0px;
+    }
   }
 
   .pricing {
