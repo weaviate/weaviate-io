@@ -1,5 +1,5 @@
 ---
-title: Typescript / JavaScript (v3 Beta)
+title: TypeScript / JavaScript (v3 Beta)
 sidebar_position: 20
 image: og/docs/client-libraries.jpg
 # tags: ['typescript', 'javascript', 'client library', 'experimental']
@@ -15,7 +15,7 @@ The current TypeScript client version is `v||site.typescript_client_version||`.
 
 ## Overview
 
-The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the Typescript client, such as code examples, see the relevant pages in the Weaviate documentation.
+The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the TypeScript client, such as code examples, see the relevant pages in the Weaviate documentation.
 
 ## Installation and setup
 
@@ -36,7 +36,6 @@ Some packages, like the Weaviate TypeScript client, require extra configuration.
     <summary> tsconfig.json file</summary>
     To properly use the client, add the following to your tsconfig.json file:
 
-<<<<<<< HEAD
     ```json
        {
             "compilerOptions": {
@@ -53,14 +52,6 @@ Some packages, like the Weaviate TypeScript client, require extra configuration.
     ```
     
 </details>
-=======
-  - `"target": "esnext"`
-  - `"module": "esnext"` (requires at least **Node16**)
-  - `"moduleResolution": "Node16"`
-
-- `"include": ["*.ts"]`  (Or specific files)
-- `"lib": [ "es2018" ]`
->>>>>>> 70f44bbd8b199798392e1a84d0dae9db541ab528
 
 Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
 
@@ -86,7 +77,7 @@ Our [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](.
 
 ### A Collection first Approach
 
-With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom Typescript types and user-defined generics.
+With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom TypeScript types and user-defined generics.
 
 // show query 
 // change order 
@@ -120,25 +111,12 @@ console.log(client)
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
-<<<<<<< HEAD
-const client: WeaviateClient = await weaviate.connectToLocal({
-    httpHost: 'localhost',
-    httpPort: 8080,
-    grpcHost: 'localhost',
-    grpcPort: 50051,
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
-    }
-  })
- 
-=======
 const client: WeaviateClient = await weaviate.connectToWCS(
   'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'),
   }
 )
 
->>>>>>> 70f44bbd8b199798392e1a84d0dae9db541ab528
 console.log(client)
 ```
 

@@ -132,7 +132,7 @@ export const courseData = {
     note: "Python client (v4); project-based"
   },
   "intro_weaviate_typescript": {
-    title: "Intro to Weaviate with Typescript (or JavaScript)",
+    title: "Intro to Weaviate with TypeScript (or JavaScript)",
     courseId: "TS_100",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",

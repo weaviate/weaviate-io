@@ -11,8 +11,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 
-:::note Typescript client version
-The current Typescript client version is `v||site.typescript_client_version||`
+:::note TypeScript client version
+The current TypeScript client version is `v||site.typescript_client_version||`
 :::
 
 The `v3` Weaviate typescript client API is very different to the `v2` API. This guide will help you understand the major changes and how to migrate your code at a high level.
@@ -37,7 +37,7 @@ To go from `v2` to `v3`, you must
 2. Upgrade Weaviate to a compatible version
     - Weaviate `1.23.7` is required for `v4.4.1`. Generally, we recommend you use the latest versions of Weaviate and the client.
 
-3. Make sure you have the correct Typescript configuration if you're using Typescript
+3. Make sure you have the correct TypeScript configuration if you're using TypeScript
     - 
 
 <details>
@@ -131,7 +131,7 @@ Once it has been instantiated, you will notice that the client API is different 
 From a user's perspective, major changes with the `v3` client include:
  
 
-### Better Typescript Support
+### Better TypeScript Support
 
   - generics, functions and methods
 
@@ -259,7 +259,7 @@ This makes it easier to understand and use. Additionally, some parameters typed 
 
 ## How to migrate your code
 
-The migration will likely involve significant changes to your codebase. Review the [Typescript client library documentation](./index.mdx) to get started, including instantiation details and various submodules.
+The migration will likely involve significant changes to your codebase. Review the [TypeScript client library documentation](./index.mdx) to get started, including instantiation details and various submodules.
 
 Then, take a look at the how-to guides for [Managing data](../../manage-data/index.md) and [Queries](../../search/index.md).
 
