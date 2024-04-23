@@ -23,23 +23,28 @@ import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 To install the TypeScript client v3, follow these steps: 
 
 1. Update your version of Node.js.
-    - The minimum version of Node supported by the v3 client is Node 18. 
 
-2. Install the new client package.
+   - The minimum version of Node supported by the v3 client is Node 18. 
+
+1. Install the new client package.
     
   ```bash
   npm install weaviate-client --tag beta
   ```
 
-3. Upgrade Weaviate to a compatible version
-    - Weaviate `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
+1. Upgrade Weaviate to a compatible version
 
-4. Open a gRPC port for Weaviate.
+    - Weaviate core `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
+
+1. Open a gRPC port for Weaviate.
+
     - The default port is 50051.
 
     <details>
-      <summary>docker-compose.yml example</summary>
-    If you are running Weaviate with Docker, you can map the default port (`50051`) by adding the following to your `docker-compose.yml` file:
+      <summary>docker-compose.yml</summary>
+
+    To map the Weaviate gRPC port in your Docker container to a local port, add this code to your `docker-compose.yml` file:
+
     ```yaml
         ports:
         - 8080:8080
@@ -85,52 +90,12 @@ console.log(client)
 ```
 </TabItem>
 </Tabs>
-Once it has been instantiated, you will notice that the client API is different from v2.
-## Major changes
 
-From a user's perspective, major changes with the v3 client include:
+## Interact with collections
 
-### Better Typescript Support
+The v2 client uses the `client` object for CRUD and search operations. In the v3 client, the `collection` object replaces the `client` object.
 
-The v3 client has better Typescript support. The user-facing benefits include better IDE intellisense, improved type-safety, and user-defined generics.
-
-<Tabs groupId="languages">
-<TabItem value="generics" label="Define Generics">
-
-```ts
-import weaviate from 'weaviate-client';
-
-type Article = {
-  title: string;
-  body: string;
-  wordcount: number;
-}
-
-const collection = client.collections.get<Article>('Article');
-```
-
-</TabItem>
-<TabItem value="query" label="Insert Data">
-
-```ts
-const collection = client.collections.get<Article>('Article');
-
-await collection.insert({ // compiler error since 'body' field is missing in '.insert'
-  title: 'TS is awesome!',
-  wordcount: 9001
-})
-```
-
-</TabItem>
-</Tabs>
-
-The example uses generics to create type-safe operations. Use generics to write type-safe methods for other operations such as collection creation, querying, and deletion 
-
-### Interaction with collections
-
-Interacting with the `client` object for CRUD and search operations have been replaced with the use of collection objects.
-
-This conveniently removes the need to specify the collection for each operation, and reduces potential for errors.
+After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -165,9 +130,9 @@ console.log(JSON.stringify(result, null, 2));
 Note here that the collection object can be re-used throughout the codebase.
 
 
-### Removal of Builder Pattern
+## Builder Pattern is removed
 
-The builder patterns for constructing queries can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
+The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
