@@ -1,5 +1,5 @@
 ---
-title: v2 to v3 migration guide
+title: Migrate from v2 to v3
 sidebar_position: 12
 image: og/docs/client-libraries.jpg
 # tags: ['typescript', 'client library']
@@ -15,7 +15,7 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 The current TypeScript client version is `v||site.typescript_client_version||`
 :::
 
-The `v3` Weaviate typescript client API is very different to the `v2` API. This guide will help you understand the major changes and how to migrate your code at a high level.
+This guide highlights the major changes in the new client. The guide also makes suggestions about how to migrate your v2 code to v3.
 
 ## Installation
 
