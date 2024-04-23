@@ -569,6 +569,10 @@ The output is like this:
 
 ## By geo-coordinates
 
+import GeoLimitations from '/_includes/geo-limitations.mdx';
+
+<GeoLimitations/>
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock

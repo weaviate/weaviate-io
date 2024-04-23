@@ -238,7 +238,7 @@ This feature was introduced in `v1.12.0`.
 
 `text` properties may contain words that are very common and don't contribute to search results. Ignoring them speeds up queries that contain stopwords, as they can be automatically removed from queries as well. This speed up is very notable on scored searches, such as `BM25`.
 
-The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language. If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
+The stopword configuration uses a preset system. You can select a preset to use the most common stopwords for a particular language (e.g. [`"en"` preset](https://github.com/weaviate/weaviate/blob/main/adapters/repos/db/inverted/stopwords/presets.go)). If you need more fine-grained control, you can add additional stopwords or remove stopwords that you believe should not be part of the list. Alternatively, you can create your custom stopword list by starting with an empty (`"none"`) preset and adding all your desired stopwords as additions.
 
 ```json
   "invertedIndexConfig": {
@@ -263,9 +263,11 @@ This configuration allows stopwords to be configured by collection. If not set, 
 - If the same item is included in both `additions` and `removals`, Weaviate returns an error.
 :::
 
-As of `v1.18`, stopwords are indexed, but are skipped in BM25. Meaning, stopwords are included in the inverted index, but when the BM25 algorithm is applied, they are not considered for relevance ranking.
+As of `v1.18`, stopwords are indexed. Thus stopwords are included in the inverted index, but not in the tokenized query. As a result, when the BM25 algorithm is applied, stopwords are ignored in the input for relevance ranking but will affect the score.
 
-Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest/schema#parameters-2) the list of stopwords after your data has been indexed.
+Stopwords can now be configured at runtime. You can use the RESTful API to [update](/developers/weaviate/api/rest#tag/schema/put/schema/%7BclassName%7D) the list of stopwords after your data has been indexed.
+
+Note that stopwords are only removed when [tokenization](#tokenization) is set to `word`.
 
 Below is an example request on how to update the list of stopwords:
 
@@ -342,7 +344,7 @@ Using these features requires more resources. The additional inverted indices mu
 
 The vectorizer (`"vectorizer": "..."`) can be specified per collection in the schema object. Check the [modules page](../../modules/index.md) for available vectorizer modules.
 
-You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../api/rest/objects.md#with-a-custom-vector)), or if you want to create a collection without any vectors.
+You can use Weaviate without a vectorizer by setting `"vectorizer": "none"`. This is useful if you want to upload your own vectors from a custom model ([see how here](../../manage-data/import.mdx#specify-a-vector)), or if you want to create a collection without any vectors.
 
 ### `vectorIndexType`
 
@@ -481,7 +483,10 @@ This feature was introduced in `v1.12.0`.
 
 You can customize how `text` data is tokenized and indexed in the inverted index. Tokenization influences the results returned by the [`bm25`](../../api/graphql/search-operators.md#bm25) and [`hybrid`](../../api/graphql/search-operators.md#hybrid) operators, and [`where` filters](../../api/graphql/filters.md).
 
-The tokenization of `text` properties can be customized via the `tokenization` field in the property definition:
+Tokenization is a property-level configuration for `text` properties. [See how to set the tokenization option using a client library](../../manage-data/collections.mdx#property-level-settings)
+
+<details>
+  <summary>Example property configuration</summary>
 
 ```json
 {
@@ -503,6 +508,8 @@ The tokenization of `text` properties can be customized via the `tokenization` f
   ]
 }
 ```
+
+</details>
 
 Each token will be indexed separately in the inverted index. For example, if you have a `text` property with the value `Hello, (beautiful) world`, the following table shows how the tokens would be indexed for each tokenization method:
 
@@ -621,7 +628,7 @@ client.schema.create_class(collection_obj)
 ## Related pages
 - [Tutorial: Schema](../../starter-guides/schema.md)
 - [How to: Configure a schema](/developers/weaviate/manage-data/collections)
-- [References: REST API: Schema](/developers/weaviate/api/rest/schema)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

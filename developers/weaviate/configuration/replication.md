@@ -60,7 +60,7 @@ curl "http://localhost:8080/v1/objects/{ClassName}/{id}?consistency_level=ONE"
 ```
 
 :::note
-In v1.17, only [read queries that get data by ID](../api/rest/objects.md#get-a-data-object) had a tunable consistency level. All other object-specific REST endpoints (read or write) used the consistency level `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` (default) or `ALL`. GraphQL endpoints use the consistency level `ONE` (in both versions).
+In v1.17, only [read queries that get data by ID](../manage-data/read.mdx#get-an-object-by-id) had a tunable consistency level. All other object-specific REST endpoints (read or write) used the consistency level `ALL`. Starting with v1.18, all write and read queries are tunable to either `ONE`, `QUORUM` (default) or `ALL`. GraphQL endpoints use the consistency level `ONE` (in both versions).
 :::
 
 import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';

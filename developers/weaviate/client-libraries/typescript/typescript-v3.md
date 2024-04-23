@@ -15,7 +15,7 @@ The current TypeScript client version is `v||site.typescript_client_version||`.
 
 ## Overview
 
-The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the Typescript client, such as code examples, see the relevant pages in the Weaviate documentation. 
+The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the Typescript client, such as code examples, see the relevant pages in the Weaviate documentation.
 
 ## Installation and setup
 
@@ -30,12 +30,13 @@ The TypeScript client library package can be installed using [npm](https://www.n
 npm install weaviate-client --tag beta
 ```
 
-Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`. 
+Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`.
 
 <details>
     <summary> tsconfig.json file</summary>
     To properly use the client, add the following to your tsconfig.json file:
 
+<<<<<<< HEAD
     ```json
        {
             "compilerOptions": {
@@ -52,6 +53,14 @@ Some packages, like the Weaviate TypeScript client, require extra configuration.
     ```
     
 </details>
+=======
+  - `"target": "esnext"`
+  - `"module": "esnext"` (requires at least **Node16**)
+  - `"moduleResolution": "Node16"`
+
+- `"include": ["*.ts"]`  (Or specific files)
+- `"lib": [ "es2018" ]`
+>>>>>>> 70f44bbd8b199798392e1a84d0dae9db541ab528
 
 Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
 
@@ -62,7 +71,7 @@ Don't specify filenames on the command line when you use `tsconfig.json`. Specif
 We are in the process of migrating our v2 client code examples to v3 as necessary. Please be patient as we work on documenting the rest.
 :::
 
-At the moment, we've covered the following pages. 
+At the moment, we've covered the following pages.
 
 - [Introduction](https://weaviate.io/developers/weaviate/introduction)
 - [Quickstart](https://weaviate.io/developers/weaviate/quickstart)
@@ -71,7 +80,7 @@ At the moment, we've covered the following pages.
 - [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
 
 
-Our [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
+Our [RESTful endpoints](/developers/weaviate/api/rest) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
 
 ## Design
 
@@ -97,9 +106,9 @@ Once installed, you can use the client in your TypeScript and JavaScript scripts
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'),
-  } 
+  }
 )
 
 console.log(client)
@@ -111,6 +120,7 @@ console.log(client)
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
+<<<<<<< HEAD
 const client: WeaviateClient = await weaviate.connectToLocal({
     httpHost: 'localhost',
     httpPort: 8080,
@@ -121,6 +131,14 @@ const client: WeaviateClient = await weaviate.connectToLocal({
     }
   })
  
+=======
+const client: WeaviateClient = await weaviate.connectToWCS(
+  'WEAVIATE_INSTANCE_URL', {
+    authCredentials: new weaviate.ApiKey('api-key'),
+  }
+)
+
+>>>>>>> 70f44bbd8b199798392e1a84d0dae9db541ab528
 console.log(client)
 ```
 
@@ -163,11 +181,11 @@ const { default: weaviate } = require('weaviate-client');
 
 // Instantiate the client with the auth config
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
-  } 
+  }
 )
- 
+
 console.log(client)
 ```
 
@@ -179,9 +197,9 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
 // Instantiate the client with the auth config
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL', {
     authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
-  } 
+  }
 )
 
 console.log(client)
@@ -215,7 +233,7 @@ import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-lib
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
+  'WEAVIATE_INSTANCE_URL', // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthUserPasswordCredentials({
     username: 'username',
@@ -223,7 +241,7 @@ const client = await weaviate.connectToWCS(
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
     scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
     })
-  } 
+  }
 )
 ```
 
@@ -234,7 +252,7 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
+  'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new AuthUserPasswordCredentials({
     username: 'username',
@@ -242,7 +260,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
     silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
     scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
     })
-  } 
+  }
 )
 ```
 
@@ -262,14 +280,14 @@ import ClientAuthFlowClientCredentials from '/developers/weaviate/client-librari
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthClientCredentials({
       clientSecret: 'supersupersecret',
       silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
       scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
     })
-  } 
+  }
 )
 ```
 
@@ -280,14 +298,14 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthClientCredentials({
       clientSecret: 'supersupersecret',
       silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
       scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
     })
-  } 
+  }
 )
 ```
 
@@ -307,7 +325,7 @@ import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_compon
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthAccessTokenCredentials({
       accessToken: 'acessToken',
@@ -315,7 +333,7 @@ const client = await weaviate.connectToWCS(
       refreshToken: 'refreshToken',
       silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
     })
-  } 
+  }
 )
 ```
 
@@ -326,7 +344,7 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.AuthAccessTokenCredentials({
       accessToken: 'acessToken',
@@ -334,7 +352,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
       refreshToken: 'refreshToken',
       silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
     })
-  } 
+  }
 )
 ```
 
@@ -352,13 +370,13 @@ You can pass custom headers to the client, which are added at initialization:
 const { default: weaviate } = require('weaviate-client');
 
 const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('some-api-key'),
     headers: {
-      someHeaderName: 'header-value', 
+      someHeaderName: 'header-value',
     }
-  } 
+  }
 )
 ```
 
@@ -369,13 +387,13 @@ const client = await weaviate.connectToWCS(
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'https://WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
     authCredentials: new weaviate.ApiKey('some-api-key'),
     headers: {
-      someHeaderName: 'header-value', 
+      someHeaderName: 'header-value',
     }
-  } 
+  }
 )
 ```
 
@@ -386,7 +404,7 @@ These headers will then be included in every request that the client makes.
 
 ### Separated Node and Web Versions
 
-We've chosen to break up the new TypeScript client into Node and Web versions. With the addition of gRPC to Weaviate, we now have the HTTP/2 protocol to contend with and we quickly discovered that gRPC and HTTP/2 don't play nicely with browsers. 
+We've chosen to break up the new TypeScript client into Node and Web versions. With the addition of gRPC to Weaviate, we now have the HTTP/2 protocol to contend with and we quickly discovered that gRPC and HTTP/2 don't play nicely with browsers.
 
 In this beta, you only have access to the Node version of the client. We will use the beta period to work on the Web version of the client.
 
@@ -410,14 +428,14 @@ TypeScript is a superset of JavaScript. There are, however, some differences tha
 
 ### Run a TypeScript file
 
-To run a TypeScript file, first convert it to JavaScript. The `typescript` package from `npm` includes the `tsc` utility. Use `tsc` to convert (transpile) the TypeScript file. 
+To run a TypeScript file, first convert it to JavaScript. The `typescript` package from `npm` includes the `tsc` utility. Use `tsc` to convert (transpile) the TypeScript file.
 
 Install the `typescript` package. Add the `-g` flag if you want the package to be available globally.
 
 ```bash
 npm install typescript
 ```
-You can then use this command to transpile the TypeScript file. 
+You can then use this command to transpile the TypeScript file.
 
 ```bash
 tsc
@@ -426,16 +444,16 @@ tsc
 `node` only allows the `import` statement in modules. To allow the `import` statement, add the following to your `package.json` file.
 
 ```json
-{ 
+{
    "type": "module"
 }
 ```
 
 ### Example
 
-To run this example, complete these steps. 
+To run this example, complete these steps.
 
-- Install the `typescript` package. 
+- Install the `typescript` package.
 - Update the `tsconfig.json` and `package.json` files as described above.
 - Copy the sample code.
 - Save the code as `sample.ts` in the same directory as `tsconfig.json` and `package.json`.
@@ -450,11 +468,12 @@ Use this code to create `sample.ts`.
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
+  'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
+  {
     authCredentials: new weaviate.ApiKey('api-key'),
-  } 
+  }
 )
- 
+
 console.log(await client.isReady())
 ```
 </details>
@@ -462,13 +481,13 @@ console.log(await client.isReady())
 Convert `sample.ts`.
 
 ```bash
-tsc 
+tsc
 ```
 
 Run the converted file.
 
 ```bash
-node sample.js  
+node sample.js
 ```
 
 The output looks like this.

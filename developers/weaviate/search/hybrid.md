@@ -756,6 +756,7 @@ import TokenizationNote from '/_includes/tokenization.mdx'
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: Search operators # Hybrid](../api/graphql/search-operators.md#hybrid)
+- [Weaviate Academy: Tokenization](../../academy/py/tokenization/index.md)
 - About [hybrid fusion algorithms](/blog/hybrid-search-fusion-algorithms).
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md).

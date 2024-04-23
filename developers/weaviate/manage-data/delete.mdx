@@ -187,7 +187,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     Additional information
   </summary>
 
-- There is a configurable [maximum limit](../api/rest/batch.md#maximum-number-of-deletes-per-query) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
+- There is a configurable [maximum limit (QUERY_MAXIMUM_RESULTS)](../config-refs/env-vars.md#general) on the number of objects that can be deleted in a single query (default 10,000). To delete more objects than the limit, re-run the query.
 
 </details>
 
@@ -215,7 +215,7 @@ The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a
     />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
         text={TSCode}
         startMarker="// START DeleteContain"
@@ -224,7 +224,7 @@ The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a
       />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
 
 ```js
 await client.batch
@@ -319,7 +319,7 @@ The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e
     />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
           text={TSCode}
           startMarker="// START DeleteByIDBatch"
@@ -328,7 +328,7 @@ The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e
         />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
 
 ```js
 await client.batch
@@ -384,7 +384,7 @@ client.batch().objectsBatchDeleter()
 
 ## Optional parameters
 
-- Enable [`dryRun`](../api/rest/batch.md#dry-run-before-deletion) to check how many objects would be deleted, without actually performing the deletion.
+- You can use `dryRun` to check how many objects would be deleted, without actually performing the deletion.
 - Set `output` to `'verbose'` to see more details (ID and deletion status) for each deletion.
 
 <Tabs groupId="languages">
@@ -462,7 +462,7 @@ It should produce a response like the one below:
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#delete-a-data-object)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

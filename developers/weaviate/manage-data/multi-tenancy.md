@@ -314,7 +314,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
 - This feature was added in `v1.21`
 - Other client code examples coming soon
-- For now, please send a [PUT request through the REST API endpoint](../api/rest/schema.md#update-tenants) to update the tenant activity status.
+- For now, please send a [PUT request through the REST API endpoint](/developers/weaviate/api/rest#tag/schema) to update the tenant activity status.
 
 </details>
 
@@ -510,7 +510,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [How to: Configure a schema](../manage-data/collections.mdx)
-- [References: REST API: Schema: Multi-tenancy](../api/rest/schema.md#multi-tenancy)
+- [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
