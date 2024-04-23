@@ -304,7 +304,6 @@ When there is an asynchronous code error, a promise returns the specific error m
 
 We've also utilized strong typing through custom TypeScript types and user-defined generics. The type definitions can be found under each bundles respective folder; the subdirectory of `node/cjs` and `node/esm` in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-client/v/3.0.0-beta.17?activeTab=code).
 
-
 The v3 client also has a few new features that make JavaScript development more type-safe.
 
 ## What's next
@@ -321,3 +320,18 @@ There are demo applications written in TypeScript and JavaScript here:
 
 - [QuoteFinder](https://github.com/weaviate/quote-finder/tree/main)
 - [NuxtVectorSearch](https://github.com/malgamves/nuxt-typescript-vector-search)
+
+## Client releases
+
+import MatrixIntro from '/_includes/clients/matrix-intro.md';
+
+<MatrixIntro />
+
+## Client change logs
+
+See the client [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
+

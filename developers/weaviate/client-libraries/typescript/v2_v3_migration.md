@@ -406,6 +406,10 @@ For code examples, see these pages:
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
 
+## Client change logs
+
+See the client [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
+
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
 <DocsMoreResources />
