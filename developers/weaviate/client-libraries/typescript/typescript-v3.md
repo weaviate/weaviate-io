@@ -157,8 +157,9 @@ console.log(client)
 
 ### Close client method 
 
+import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
 
-The `v3` client uses a keep-alive header to maintain long-lived connections to Weaviate and speed up subsequent calls with the same client instance. To free up server resources, we recommend killing the connection with the `client.close()` method as opposed to waiting for the server to kill the connection.
+<TSClientClose />
 
 ### Authentication
 

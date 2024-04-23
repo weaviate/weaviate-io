@@ -38,7 +38,17 @@ To install the TypeScript client `v3`, follow these steps:
 
 4. Open a gRPC port for Weaviate.
     - The default port is 50051.
-	
+
+    <details>
+      <summary>docker-compose.yml example</summary>
+    If you are running Weaviate with Docker, you can map the default port (`50051`) by adding the following to your `docker-compose.yml` file:
+    ```yaml
+        ports:
+        - 8080:8080
+        - 50051:50051
+    ```
+    </details>
+
 ## Instantiate a client
  
 The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object.
@@ -206,291 +216,192 @@ The v3 client supports Node.js, server based development. It does not support we
 
 To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1. Install the new client package
-    - Depending on your use case, i.e. web or node, the client name changes. 
-
-    For Web, the new TypeScript client is usable under the `weaviate-client-web` package. 
-
-    For Node.js, new TypeScript client is usable under the `weaviate-client` package. 
-
-    The previous client had a single package for both use cases.
-
-    ```bash
-     npm install weaviate-ts-client
-    ```
-
-2. Upgrade Weaviate to a compatible version
-    - Weaviate `1.23.7` is required for `v4.4.1`. Generally, we recommend you use the latest versions of Weaviate and the client.
-
-3. Make sure you have the correct TypeScript configuration if you're using TypeScript
-    - 
-
-<details>
-      <summary> tsconfig.json file</summary>
-
-    To properly use the client, add the following to your `tsconfig.json` file:
-
-    ```json
-  {
-      "compilerOptions": {
-        ...
-        "target": "esnext",
-        "module": "esnext", 
-        "moduleResolution": "Node16",
-        "include": ["*.ts"], 
-        "esModuleInterop": true,
-        "lib": [ "es2018" ],
-        ...
-     }
-  }
-    ```
-</details>
-
-4. Update your version on Node.
-
-    - The minimum version of Node supported by the client is 16. 
-
-3. Make sure a port for gRPC is open to Weaviate.
-    - The default port is 50051.
-
-    <details>
-      <summary>docker-compose.yml example</summary>
-
-    If you are running Weaviate with Docker, you can map the default port (`50051`) by adding the following to your `docker-compose.yml` file:
-
-    ```yaml
-        ports:
-        - 8080:8080
-        - 50051:50051
-    ```
-
-    </details>
-
-## Instantiation
-
-The `v3` client is instantiated through the `WeaviateClient` object, which is the main entry point for all API operations.
-
-You can directly instantiate the client, but in most cases you can use helper functions starting with `connectTo`, such as `connectToLocal`, `connectToWCS`. 
-
-<Tabs groupId="languages">
-<TabItem value="wcs" label="WCS">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-client'
-
-const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-    authCredentials: new weaviate.ApiKey('api-key'),
-  } 
-)
-
-console.log(client)
-```
-
-</TabItem>
-<TabItem value="local" label="Local">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-client'
-
-const client: WeaviateClient = await weaviate.connectToLocal({
-    httpHost: 'localhost',
-    httpPort: 8080,
-    grpcHost: 'localhost',
-    grpcPort: 50051,
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
-    }
-  })
- 
-console.log(client)
-```
-
-</TabItem>
-</Tabs>
-
-Once it has been instantiated, you will notice that the client API is different from `v2`.
-
-## Major changes
-
-From a user's perspective, major changes with the `v3` client include:
- 
-
-### Better TypeScript Support
-
-  - generics, functions and methods
-
-The `v3` client introduces an extensive set of helper classes to interact with Weaviate. These classes are used to provide strong typing, and to make the client more user-friendly such as through IDE autocompletion.
-
-Take a look at the examples below.
-
-import QuickStartCode from '!!raw-loader!/_includes/code/graphql.filters.nearText.generic.py';
-
-<Tabs groupId="languages">
-<TabItem value="create" label="Create a collection">
-
-  <FilteredTextBlock
-    text={PythonCode}
-    startMarker="# START CreateCollectionExample"
-    endMarker="# END CreateCollectionExample"
-    language="py"
-  />
-
-</TabItem>
-<TabItem value="query" label="NearText query">
-
-  <FilteredTextBlock
-    text={QuickStartCode}
-    startMarker="# NearTextExample"
-    endMarker="# END NearTextExample"
-    language="py"
-  />
-
-</TabItem>
-</Tabs>
-
-In both of these examples, you can see how the helper classes and methods abstract away the need for manual JSONs or strings.
-
-### Interaction with collections
-
-Interacting with the `client` object for CRUD and search operations have been replaced with the use of collection objects.
-
-This conveniently removes the need to specify the collection for each operation, and reduces potential for errors.
-
-import ManageDataCode from '!!raw-loader!/_includes/code/howto/manage-data.read.py';
-import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={ManageDataCode}
-      startMarker="# ReadObject START"
-      endMarker="# ReadObject END"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={ManageDataCodeV3}
-      startMarker="# ReadObject START"
-      endMarker="# ReadObject END"
-      language="py"
-    />
-  </TabItem>
-</Tabs>
-
-Note here that the collection object can be re-used throughout the codebase.
-
-### Collection creation from JSON
-
-You can still create a collection from a JSON definition. This may be a useful way to migrate your existing data, for example. You could [fetch an existing definition](../../manage-data/collections.mdx#read-a-single-collection-definition) and then use it to create a new collection.
-
-<FilteredTextBlock
-  text={PythonCode}
-  startMarker="# START CreateCollectionFromJSON"
-  endMarker="# END CreateCollectionFromJSON"
-  language="py"
-/>
-
-### Removal of builder patterns
-
-The builder patterns for constructing queries as been removed, as they could be confusing and potentially lead to invalid queries.
-
-In `v4`, queries are constructed using specific methods and its parameters.
-
-import SearchSimilarityCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
-import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={SearchSimilarityCode}
-      startMarker="# GetNearTextPython"
-      endMarker="# END GetNearTextPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={SearchSimilarityCodeV3}
-      startMarker="# GetNearTextPython"
-      endMarker="# END GetNearTextPython"
-      language="python"
-    />
-  </TabItem>
-</Tabs>
-
-This makes it easier to understand and use. Additionally, some parameters typed (e.g. `MetadataQuery`) which makes it easier to use and reduces errors.
-
-### Separate packages for Web and Node platforms
-
-  - talk a bit more about this and package specifics 
-  - Introduction of gRPC?
-
 ### Improved Functionality
 
-(with examples)
+The TypeScript client v3 has additional improved functionality. 
 
-#### InsertMany
-#### Migration?
-#### Client.close()
-#### Filters
-#### Named vectors? 
-#### cleaner return object 
-#### Error handling 
+#### Bulk Inserts
+
+The insertMany() method replaces objectBatcher() to make batch insertions easier.
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+const questions = client.collections.get("CollectionName")
+const dataObject = [...]; // your data
+
+await questions.data.insertMany(dataBatch);
+```
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+let className = 'CollectionName';  // Replace with your collection name
+let dataObjs = [...];
+
+let batcher5 = client.batch.objectsBatcher();
+for (const dataObj of dataObjs)
+  batcher5 = batcher5.withObject({
+    class: className,
+    properties: dataObj,
+  });
+
+// Flush
+await batcher5.do();
+```
+
+</TabItem>
+</Tabs>
+
+For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
+
+#### Client Close Method
+
+import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
+
+<TSClientClose />
+
+#### Filter data
+
+The Filter helper class makes it easier to use filters with conditions. The v3 client streamlines how you use Filter so your code is cleaner and more concise.
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+import weaviate, { Filters } from 'weaviate-client';
+const myCollection = client.collections.get('JeopardyQuestion');
+
+const result = await myCollection.query.fetchObjects({
+  returnProperties: ['question', 'answer','round', 'points'],
+  filters: Filters.and(
+     myCollection.filter.byProperty('round').equal('Double Jeopardy!'),
+     myCollection.filter.byProperty('points').lessThan(600)
+    ),
+  limit: 3,
+ })
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withWhere({
+    operator: 'And',
+    operands: [
+      {
+        path: ['round'],
+        operator: 'Equal',
+        valueText: 'Double Jeopardy!',
+      },
+      {
+        path: ['points'],
+        operator: 'LessThan',
+        valueInt: 600,
+      },
+    ],
+  })
+  .withLimit(3)
+  .withFields('question answer round points')
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+</TabItem>
+</Tabs>
+
+#### Generate Namespace
+
+The v3 client adds a new namespace, generate. Use the generate like the query namespace to make queries.
+
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
+
+const myCollection = client.collections.get('JeopardyQuestion');
+const result = await myCollection.generate.nearText(['World history'],{
+    singlePrompt: generatePrompt,
+  },{
+    limit: 2,
+    returnProperties: ['round'],
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
+```
+
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+generatePrompt = 'Convert this quiz question: {question} and answer: {answer} into a trivia tweet.';
+
+result = await client.graphql
+  .get()
+  .withClassName('JeopardyQuestion')
+  .withGenerate({
+    singlePrompt: generatePrompt,
+  })
+  .withNearText({
+    concepts: ['World history'],
+  })
+  .withFields('round')
+  .withLimit(2)
+  .do();
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+</TabItem>
+</Tabs>
+
+#### Return object 
+
+The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
+
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+response.objects[0].properties.title  // Get the `title` property of the first object
+response.objects[0].uuid  // Get the ID of the first object
+response.objects[0].generated  // Get the generated text from a `singlePrompt` request
+response.generated  // Get the generated text from a `groupedTask` request
+response.metadata?.creationTime // Get the creation time as a native JS Date value
+```
+
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+response.data?.Get?.Article?.[0].title  // Get the `title` property of the first object
+response.data?.Get?.Article?.[0]['_additional']?.id  // Get the ID of the first object
+response.data?.Get?.Article?.[0]['_additional']?.generate?.singleResult  // Get the generated text from a `singlePrompt` request
+response.data?.Get?.Article?.[0]['_additional']?.generate.groupedResult  // Get the generated text from a `groupedTask` request
+response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the timestamp when the object was created
+```
+
+</TabItem>
+</Tabs>
 
 ## How to migrate your code
 
-To get started, review the TypeScript client [documentation](/developers/weaviate/client-libraries/typescript/typescript-v3). For code examples, review these pages:
+To get started, see the TypeScript client [documentation](/developers/weaviate/client-libraries/typescript/typescript-v3).
+
+For code examples, see these pages:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
