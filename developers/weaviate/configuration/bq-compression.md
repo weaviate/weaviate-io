@@ -57,7 +57,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
       <FilteredTextBlock
         text={TSCode}
         startMarker="// START EnableBQ"
@@ -66,7 +66,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START EnableBQ"
@@ -128,7 +128,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
       <FilteredTextBlock
         text={TSCodeBQOptions}
         startMarker="// START BQWithOptions"
@@ -137,7 +137,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START BQWithOptions"

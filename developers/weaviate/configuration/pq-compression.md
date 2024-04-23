@@ -77,7 +77,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
      <FilteredTextBlock
        text={TSCodeAutoPQ}
        startMarker="// START CollectionWithAutoPQ"
@@ -86,7 +86,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START CollectionWithAutoPQ"
@@ -163,7 +163,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START InitClassDef"
@@ -346,7 +346,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START UpdateSchema"
@@ -355,7 +355,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START UpdateSchema"
@@ -451,7 +451,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS (beta)">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCodeManualPQ}
       startMarker="// START ViewConfig"
@@ -460,7 +460,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="ts2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START GetSchema"
