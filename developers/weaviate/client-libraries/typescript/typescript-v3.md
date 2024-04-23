@@ -12,15 +12,15 @@ import TabItem from '@theme/TabItem';
 The current TypeScript client version is `v||site.typescript_client_version||`.
 :::
 
-The Weaviate TypeScript client supports JavaScript and TypeScript. The TypeScript client v3 is currently in beta. This page covers the Weaviate TypeScript client; `weaviate-client` on the npm registry.
+The Weaviate TypeScript client supports JavaScript and TypeScript. The TypeScript client v3 is currently in beta.
 
 The upcoming v3 client currently supports server side development (Node.js hosted). See [v3 packages](#node-support-only) for details. If your application is browser based, consider using the TypeScript client v2.
 
-If you are migrating a project from the Weaviate TypeScript client `v2` to the `v3` client, see the [migration page](/developers.weaviate.client-libraries/typescript/v2_v3_migration) for additional details.
+If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers.weaviate.client-libraries/typescript/v2_v3_migration) for additional details.
 
 ## Client Setup
 
-This section details how to set up the `v3` TypeScript client.
+This section details how to set up the v3 TypeScript client.
 
 ### Install
 
@@ -32,7 +32,7 @@ npm install weaviate-client --tag beta
 
 ### Import the Client
 
-The `v3` client uses `ES Modules`. Most of the sample code follows `ES Module` style. If your code requires `CommonJS` compatibility, use the `CommonJS` import style:
+The v3 client uses `ES Modules`. Most of the sample code follows `ES Module` style. If your code requires `CommonJS` compatibility, use the `CommonJS` import style:
 
 <Tabs groupId="languages">
 <TabItem value="esm" label="ES Modules">
@@ -208,11 +208,11 @@ The client includes these headers in every request that it makes.
 
 ## Working with data
 
-This section details the functioning of different data operations available in the `v3` TypeScript client.
+This section details the functioning of different data operations available in the v3 TypeScript client.
 
 ### Design philosophy
 
-The `v3` client interacts with collections as the primary way to work with objects in your Weaviate database.
+The v3 client interacts with collections as the primary way to work with objects in your Weaviate database.
 
 Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it. This example returns objects from the JeopardyQuestion collection.
 
@@ -270,7 +270,7 @@ for await (const article of articles.iterator()) {
 
 ## Best practices
 
-This section details best practices working with the  `v3` TypeScript client.
+This section details best practices working with the  v3 TypeScript client.
 
 ### Generics
 

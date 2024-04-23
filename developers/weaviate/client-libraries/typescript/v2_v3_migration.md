@@ -22,10 +22,10 @@ To develop a web client based application, use the [v2 client](/developers/weavi
 
 ## Install 
 
-To install the TypeScript client `v3`, follow these steps: 
+To install the TypeScript client v3, follow these steps: 
 
 1. Update your version of Node.js.
-    - The minimum version of Node supported by the `v3` client is Node 18. 
+    - The minimum version of Node supported by the v3 client is Node 18. 
 
 2. Install the new client package.
     
@@ -87,10 +87,10 @@ console.log(client)
 ```
 </TabItem>
 </Tabs>
-Once it has been instantiated, you will notice that the client API is different from `v2`.
+Once it has been instantiated, you will notice that the client API is different from v2.
 ## Major changes
 
-From a user's perspective, major changes with the `v3` client include:
+From a user's perspective, major changes with the v3 client include:
 
 ### Better Typescript Support
 
