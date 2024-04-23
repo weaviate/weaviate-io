@@ -12,11 +12,6 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
-import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
-import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
-import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
-import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
-
 
 `Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
@@ -53,7 +48,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
-      text={SimilarityPyCode}
+      text={PyCode}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
       language="python"
@@ -62,7 +57,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 
   <TabItem value="py3" label="Python (v3)">
     <FilteredTextBlock
-      text={SimilarityPyCodeV3}
+      text={PyCodeV3}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
       language="python"
@@ -71,7 +66,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
-      text={SimilarityTSCode}
+      text={TSCode}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -80,7 +75,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 
   <TabItem value="js2" label="JS/TS">
     <FilteredTextBlock
-      text={SimilarityTSCodeLegacy}
+      text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -89,7 +84,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={SimilarityPyCodeV3}
+      text={PyCodeV3}
       startMarker="# NamedVectorNearTextGraphql"
       endMarker="# END NamedVectorNearTextGraphql"
       language="graphql"
