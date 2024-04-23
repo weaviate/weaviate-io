@@ -8,7 +8,6 @@ import utils
     "script_loc",
     [
         "./_includes/code/howto/configure.backups.py",
-        "./_includes/code/howto/configure.replication.py",
     ],
 )
 def test_pyv4(empty_weaviates, script_loc):

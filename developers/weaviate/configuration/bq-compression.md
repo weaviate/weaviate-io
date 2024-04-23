@@ -8,11 +8,13 @@ image: og/docs/configuration.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!/_includes/code/howto/bq-compression.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/bq-compression-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/bq-compression.ts';
+import PyCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.bq-compression-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.ts';
+import TSCodeBQOptions from '!!raw-loader!/_includes/code/howto/configure.bq-compression.options.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.bq-compression-v2.ts';
+import GoCode from '!!raw-loader!/_includes/code/howto/configure.bq-compression.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/bq-compression.java';
-import GoCode from '!!raw-loader!/_includes/code/howto/bq-compression.go';
 
 :::info Added in `v1.23`
 BQ is available for the [`flat` index](../concepts/vector-index.md#flat-index) type from `v1.23` onwards and for the [`hnsw` index](../concepts/vector-index.md#hnsw-index)  type from `v1.24`.
@@ -55,9 +57,18 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
       <FilteredTextBlock
         text={TSCode}
+        startMarker="// START EnableBQ"
+        endMarker="// END EnableBQ"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+      <FilteredTextBlock
+        text={TSCodeLegacy}
         startMarker="// START EnableBQ"
         endMarker="// END EnableBQ"
         language="ts"
@@ -117,9 +128,18 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="ts" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
       <FilteredTextBlock
-        text={TSCode}
+        text={TSCodeBQOptions}
+        startMarker="// START BQWithOptions"
+        endMarker="// END BQWithOptions"
+        language="ts"
+      />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+      <FilteredTextBlock
+        text={TSCodeLegacy}
         startMarker="// START BQWithOptions"
         endMarker="// END BQWithOptions"
         language="ts"
