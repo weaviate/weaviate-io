@@ -14,7 +14,7 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
-| [1.24.10][c1.24.10] | 2024-04-19 | [4.5.5][p4.5.5] | [1.6.0][ts1.6.0] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] |
+| [1.24.10][c1.24.10] | 2024-04-19 | [4.5.5][p4.5.5] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] |
 | [1.24.9][c1.24.9] | 2024-04-17 | '' | '' | '' | '' |
 | [1.24.8][c1.24.8] | 2024-04-08 | '' | '' | '' | '' |
 | [1.24.7][c1.24.7] | 2024-04-05 | '' | '' | '' | ''  |
@@ -23,15 +23,15 @@ For descriptive notes on recent major releases, follow the links in the table of
 | [1.24.4][c1.24.4] | 2024-03-15 | [4.5.1][p4.5.1] | '' | '' | ''  |
 | [1.24.3][c1.24.3] | 2024-03-14 | '' | '' | '' | '' |
 | [1.24.2][c1.24.2] | 2024-03-13 | '' | '' | '' | '' |
-| [1.24.1][c1.24.1] | 2024-03-01 | '' | '' | '' | '' |
+| [1.24.1][c1.24.1] | 2024-03-01 | '' |[2.1.0][ts2.1.0] | '' | '' |
 
 ### Major releases
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java | Up voted issues |
 | :- | :- | :-: | :-: | :-: | :-: | :-: |
-| [1.24.0][c1.24.0] | 2024-02-27 | [4.5.1][p4.5.1] | [1.6.0][ts1.6.0] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] | [Votes 1.24][v1.24] |
+| [1.24.0][c1.24.0] | 2024-02-27 | [4.5.1][p4.5.1] | [2.0.0][ts2.0.0] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] | [Votes 1.24][v1.24] |
 | [1.23.0][c1.23.0] | 2023-12-18 | [3.26.0][p3.26.0] | '' | '' | [4.4.2][j4.4.2] | [Votes 1.23][v1.23] |
-| [1.22.0][c1.22.0] | 2023-10-27 | [3.25.0][p3.25.0] | '' | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] | [ Votes 1.22][v1.22] |
+| [1.22.0][c1.22.0] | 2023-10-27 | [3.25.0][p3.25.0] | [1.5.0][ts1.5.0] | [4.10.0][g4.10.0] | [4.3.0][j4.3.0] | [ Votes 1.22][v1.22] |
 | [1.21.0][c1.21.0] | 2023-08-17 | [3.22.1][p3.22.1] | [1.4.0][ts1.4.0] | [4.9.0][g4.9.0] | [4.2.1][j4.2.1] | [Votes 1.21][v1.21] |
 | [1.20.0][c1.20.0] | 2023-07-06 | [3.22.0][p3.22.0] | '' | '' | [4.2.0][j4.2.0] | [Votes 1.20][v1.20] |
 | [1.19.0][c1.19.0] | 2023-05-04 | [3.17.0][p3.17.0] | [1.1.0][ts1.1.0][<sup>1</sup>](#typescriptChange)| [4.7.1][g4.7.1] | [4.0.1][j4.0.1] | [Votes 1.19][v1.19] |
@@ -299,7 +299,10 @@ For links to the TypeScript Client releases, expand this section.
 
   | Client Version | Release Date |
   | :- | :- |
-  | [1.65.0][ts1.6.0] | 2023-10-31 |
+  | [2.1.1][ts2.1.1] | 2024-03-08 |
+  | [2.1.0][ts2.1.0] | 2024-02-28 |
+  | [2.0.0][ts2.0.0] | 2023-11-22 |
+  | [1.6.0][ts1.6.0] | 2023-10-31 |
   | [1.5.0][ts1.5.0] | 2023-08-22 |
   | [1.4.0][ts1.4.0] | 2023-07-06 |
   | [1.3.3][ts1.3.3] | 2023-06-14 |
@@ -612,6 +615,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( python client links )
 
+[p4.5.6]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.6
 [p4.5.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.5
 [p4.5.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.4
 [p4.5.3]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.3
@@ -734,6 +738,9 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( javascript typescript client links )
 
+ [ts2.1.1]: https://github.com/weaviate/typescript-client/releases/tag/v2.1.1
+ [ts2.1.0]: https://github.com/weaviate/typescript-client/releases/tag/v2.1.0
+ [ts2.0.0]: https://github.com/weaviate/typescript-client/releases/tag/v2.0.0
  [ts1.6.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.6.0
  [ts1.5.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.5.0
  [ts1.4.0]: https://github.com/weaviate/typescript-client/releases/tag/v1.4.0
