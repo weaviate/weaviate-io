@@ -9,10 +9,7 @@ export default function PricingSandBox() {
         <h3 className={styles.color}>Free Sandbox</h3>
       </div>
       <div className={`${styles.features} ${styles.featuresTitle}`}>
-        <span>
-          Get free access for learning and prototyping. Only pay when you go
-          into production.
-        </span>
+        <span>Get free access for learning and prototyping.</span>
       </div>
       <div className={styles.features}>
         <li>14 days lifetime</li>
@@ -21,7 +18,7 @@ export default function PricingSandBox() {
       </div>
       <div className={styles.features}>
         <li>Community support</li>
-        <li>Single AZ</li>
+        <li>Single availability zone</li>
       </div>
       <div className={styles.features}>
         <div className={styles.buttonsSales}>
@@ -29,7 +26,7 @@ export default function PricingSandBox() {
             className={styles.buttonOutlineSales}
             to="https://console.weaviate.cloud/"
           >
-            Start Now
+            Start Free
           </Link>
         </div>
       </div>

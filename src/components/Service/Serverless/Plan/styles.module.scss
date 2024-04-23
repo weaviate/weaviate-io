@@ -175,6 +175,10 @@
 
   .subHeader {
     width: 75%;
+
+    @media screen and (max-width: 688px) {
+      width: 100%;
+    }
   }
   .faqLink {
     color: #ffffff;
@@ -185,6 +189,11 @@
   display: flex;
   gap: 200px;
   margin: 50px 0px;
+
+  @media screen and (max-width: 668px) {
+    gap: 0px;
+    flex-direction: column;
+  }
 }
 
 .highlights {
@@ -196,6 +205,19 @@
   display: flex;
   gap: 10px;
   margin: 10px 0px;
+
+  a {
+    color: #ffffff;
+  }
+
+  p {
+    font-size: 1rem;
+    width: 70%;
+
+    @media screen and (max-width: 860px) {
+      width: 100%;
+    }
+  }
 }
 .hlPoint::before {
   content: url('/img/site/serverless-icon-docs.svg');
@@ -374,6 +396,11 @@
 
   filter: drop-shadow(0px 24px 64px rgba(22, 27, 45, 0.08));
 
+  @media screen and (max-width: 1040px) {
+    height: auto;
+    align-items: center;
+  }
+
   @media screen and (max-width: 640px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -409,6 +436,11 @@
 
   .featuresTitle {
     flex: 2 140px;
+
+    @media screen and (max-width: 640px) {
+      flex: 2;
+      margin: 10px 0px;
+    }
   }
   .featuresLong {
     font-size: 15px;
@@ -435,7 +467,7 @@
   .title {
     display: flex;
     padding: 1rem 2rem;
-    flex: 1 20%;
+    flex: 1 13%;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -495,7 +527,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-top: 0px;
+  margin-top: 65px;
   width: 213px;
 
   @media screen and (max-width: 860px) {
@@ -504,8 +536,9 @@
   }
 
   @media screen and (max-width: 640px) {
-    float: right;
+    float: left;
     margin: 0% -190% 10% 0%;
+    align-items: flex-start;
   }
 
   a {

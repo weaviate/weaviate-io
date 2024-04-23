@@ -18,11 +18,19 @@ export default function ServicePlan() {
           </span>
           <div className={styles.highlightSection}>
             <div className={styles.highlights}>
-              <div className={styles.hlPoint}>Async indexing</div>
-              <div className={styles.hlPoint}>Auto-schema enhancement</div>
               <div className={styles.hlPoint}>Choose from 5 cloud regions</div>
               <div className={styles.hlPoint}>
                 Link your external Weaviate clusters
+              </div>
+              <div className={styles.hlPoint}>
+                <p>
+                  <Link to="/blog/pq-rescoring">Product Quantization</Link> (PQ)
+                  and{' '}
+                  <Link to="/blog/binary-quantization">
+                    Binary Quantization
+                  </Link>{' '}
+                  (BQ) optional
+                </p>
               </div>
             </div>
             <div className={styles.highlights}>

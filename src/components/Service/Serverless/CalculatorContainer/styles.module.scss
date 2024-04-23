@@ -325,15 +325,38 @@
   border: 3px solid #262262;
   display: flex;
   padding: 2rem;
-
   flex-direction: row;
-  justify-content: space-between;
+  gap: 70px;
+
+  @media screen and (max-width: 668px) {
+    width: 95%;
+    margin: 20px auto;
+    height: 25.4rem;
+    border-radius: 0.625rem;
+    border: 3px solid #262262;
+    display: flex;
+    padding: 2rem;
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+.plansTrack {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  overflow-x: scroll;
+  overflow-y: unset;
 }
 
 .plans {
   width: 270px;
   color: #ffffff;
   z-index: 1;
+
+  @media screen and (max-width: 668px) {
+    width: 810px;
+  }
 
   h2 {
     color: #fff;
@@ -343,6 +366,10 @@
     font-style: normal;
     font-weight: 700;
     margin: 0px 0px 55px;
+
+    @media screen and (max-width: 668px) {
+      text-align: left;
+    }
   }
 
   p {
@@ -351,6 +378,10 @@
     font-size: 1rem;
     font-weight: 400;
     margin: 10px 0px;
+
+    @media screen and (max-width: 668px) {
+      text-align: left;
+    }
 
     span {
       color: #ffffff;
@@ -362,6 +393,10 @@
 .enterprise,
 .businessCritical {
   width: 200px;
+
+  @media screen and (max-width: 668px) {
+    width: 140px;
+  }
   h2 {
     color: #61bb73;
     font-size: 1.25rem;
@@ -388,6 +423,23 @@
       font-style: normal;
       font-weight: 700;
     }
+
+    @media screen and (max-width: 668px) {
+      margin: 0px;
+    }
+  }
+
+  .desktop {
+    @media screen and (max-width: 668px) {
+      display: none;
+    }
+  }
+
+  .mobile {
+    display: none;
+    @media screen and (max-width: 668px) {
+      display: block;
+    }
   }
 }
 
@@ -401,6 +453,10 @@
   z-index: 0;
   margin-left: -35px;
   transform: translateY(73px);
+
+  @media screen and (max-width: 668px) {
+    width: 95%;
+  }
 }
 
 .line1 {
