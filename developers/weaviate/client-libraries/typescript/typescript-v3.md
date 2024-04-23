@@ -1,5 +1,5 @@
 ---
-title: TypeScript / JavaScript (v3 Beta)
+title: Client (v3 Beta)
 sidebar_position: 20
 image: og/docs/client-libraries.jpg
 # tags: ['typescript', 'javascript', 'client library', 'experimental']
