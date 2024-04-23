@@ -176,7 +176,7 @@ console.log(client)
 
 ### Close client method 
 
-The v3 client uses gRPC to communicate with your Weaviate instance. As a result, the client may keep its connection with Weaviate open longer that you're used to. To save on resources, use the `client.close()` method to explicitly close the connection when an operation finishes.
+The `v3` client uses a keep-alive header to maintain long-lived connections to Weaviate and speed up subsequent calls with the same client instance. To free up server resources, we recommend killing the connection with the `client.close()` method as opposed to waiting for the server to kill the connection.
 
 ### Authentication
 
@@ -196,25 +196,6 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 
 <ClientAuthApiKey />
 
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-// Instantiate the client with the auth config
-const client = await weaviate.connectToWCS(
-  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
-  { 
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
-  } 
-)
- 
-console.log(client)
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
@@ -229,32 +210,9 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 
 console.log(client)
 ```
-
-</TabItem>
-</Tabs>
 
 You can pass custom headers to the client that are added at initialization:
 
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-const client = await weaviate.connectToWCS(
-  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
-  {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
-    headers: {
-      someHeaderName: 'header-value', 
-    }
-  } 
-)
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
@@ -268,9 +226,6 @@ const client: WeaviateClient = await weaviate.connectToWCS(
   } 
 )
 ```
-
-</TabItem>
-</Tabs>
 
 These headers will then be included in every request that the client makes.
 
