@@ -18,11 +18,11 @@ The upcoming v3 client currently supports server side development (Node.js hoste
 
 If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers.weaviate.client-libraries/typescript/v2_v3_migration) for additional details.
 
-## Client Setup
+## Client configuration
 
-This section details how to set up the v3 TypeScript client.
+This section details how install and configure the v3 TypeScript client.
 
-### Install
+### Install the package
 
 Use [npm](https://www.npmjs.com/) to install the TypeScript client library package:
 
@@ -51,17 +51,12 @@ const weaviate = require('weaviate-client').default;
 </TabItem>
 </Tabs>
 
-### Node support only 
-
-The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
-
-The v3 client supports Node.js, server based development. It does not support web client development.
-
-To develop a web client based application, use the v2 client or use the v3 web client when it is available.
-
 ### TypeScript configuration
 
-Add `"type": "module"` to your `package.json` file and add the following code to your [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file. 
+Update your configuration files. 
+
+- Add `"type": "module"` to `package.json` 
+- Add the following code to [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
 <details>
     <summary>tsconfig.json file</summary>
@@ -79,7 +74,6 @@ Add `"type": "module"` to your `package.json` file and add the following code to
 ```
 
 </details>
-
 
 ## Connect a client
 
@@ -163,13 +157,6 @@ import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 ### Authentication
 
-import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
-
-<ClientAuthIntro clientName="TypeScript"/>
-### WCS authentication
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
-<ClientAuthWCS />
-### API key authentication
 import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
 
 <ClientAuthApiKey />
@@ -188,7 +175,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 console.log(client)
 ```
 
-You can pass custom headers to the client that are added at initialization:
+To pass custom headers to the client, use the `headers` field.
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
@@ -204,17 +191,19 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 )
 ```
 
-The client includes these headers in every request that it makes.
+The client adds the custom headers to every request.
 
-## Working with data
+## Changes in v3
 
-This section details the functioning of different data operations available in the v3 TypeScript client.
+This section highlights some features of the v3 TypeScript client.
 
 ### Design philosophy
 
 The v3 client interacts with collections as the primary way to work with objects in your Weaviate database.
 
-Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it. This example returns objects from the JeopardyQuestion collection.
+Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it.
+
+This example returns objects from the JeopardyQuestion collection.
 
 ```js
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -225,10 +214,20 @@ const result = await myCollection.query.fetchObjects()
 console.log(JSON.stringify(result, null, 2));
 ```
 
+### Node support only 
+
+The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
+
+The v3 client supports Node.js, server based development. It does not support browser-based web client development.
+
+To develop a browser-based application, use the v2 client.
+
 
 ### Batch Inserts
 
-The `insertMany()` method makes it easier to bulk insert a large number of objects without having to batch them. For inserts over 5000 objects, use a batching mechanism in conjunction with `insertMany()` like this:
+The `insertMany()` method makes it easier to bulk insert a large number of objects.
+
+For inserts of over 5000 objects, use `insertMany()` as part of a batch process:
 
 ```js
 const questions = client.collections.get("CollectionName")
@@ -268,13 +267,9 @@ for await (const article of articles.iterator()) {
 }
 ```
 
-## Best practices
-
-This section details best practices working with the  v3 TypeScript client.
-
 ### Generics
 
-TypeScript users can define custom Generics.
+TypeScript users can define custom Generics. Generics make it easier to manipulate objects and their properties. Compile time type checks help to ensure that operations like `insert()` and `create()` are safe and error free.
 
 ```js
 import weaviate from 'weaviate-client';
@@ -290,23 +285,27 @@ await collection.insert({ // compiler error since 'body' field is missing in '.i
   title: 'TS is awesome!',
   wordcount: 9001
 })
-```
-
-Generics make it easier to manipulate objects and their properties. Compile time type checks help to ensure that operations like `insert()` and `create()` are safe and error free.  
+```  
 
 ### Async operations
 
-All methods with the exception of `collection.use()` use ES6 Promises to deal with asynchronous code, so you need to use `.then()` after function calls, or have `async`/`await` support.
+All client v3 methods, with the exception of `collection.use()`, use ES6 Promises with asynchronous code. This means you have to use `.then()` after function calls, or wrap your code `async/await` blocks.
 
 When there is an asynchronous code error, a promise returns the specific error message. If you use `async` and `await`, a rejected promises acts like a thrown exception
 
 ### Type Safety
 
-We've also utilized strong typing through custom TypeScript types and user-defined generics. The type definitions can be found under each bundles respective folder; the subdirectory of `node/cjs` and `node/esm` in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-client/v/3.0.0-beta.17?activeTab=code).
+The v3 client enables strong typing with custom TypeScript types and user-defined generics. You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle. 
 
-The v3 client also has a few new features that make JavaScript development more type-safe.
+For example, the `index.d.ts` file stores type definitions for the `cjs` bundle:
 
-## What's next
+```bash 
+node/cjs/index.d.ts
+```
+
+The v3 client also adds internal features that make JavaScript development more type-safe.
+
+## Example code
 
 Here are some resources to help you get started using the client.
 
