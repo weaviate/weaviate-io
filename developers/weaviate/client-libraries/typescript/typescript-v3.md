@@ -12,9 +12,9 @@ import TabItem from '@theme/TabItem';
 The current TypeScript client version is `v||site.typescript_client_version||`.
 :::
 
-The Weaviate TypeScript client supports JavaScript and TypeScript. The TypeScript client v3 is currently in beta.
+import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
-The upcoming v3 client currently supports server side development (Node.js hosted). See [v3 packages](#node-support-only) for details. If your application is browser based, consider using the TypeScript client v2.
+<TSClientIntro />
 
 If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers.weaviate.client-libraries/typescript/v2_v3_migration) for additional details.
 

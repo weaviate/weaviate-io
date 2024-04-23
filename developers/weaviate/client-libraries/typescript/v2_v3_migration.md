@@ -14,11 +14,9 @@ import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.
 The current TypeScript client version is `v||site.typescript_client_version||`
 :::
 
-This guide highlights the major changes in the new client. The guide also makes suggestions about how to migrate your v2 code to v3.
+import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
-The v3 client supports Node.js server based development. It does not support web client development.
-
-To develop a web client based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2) or the v3 web client when it is available.
+<TSClientIntro />
 
 ## Install 
 
