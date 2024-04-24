@@ -366,7 +366,6 @@ console.log(JSON.stringify(result, null, 2));
 
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
 
-
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
 
@@ -377,7 +376,6 @@ response.objects[0].generated  // Get the generated text from a `singlePrompt` r
 response.generated  // Get the generated text from a `groupedTask` request
 response.metadata?.creationTime // Get the creation time as a native JS Date value
 ```
-
 
 </TabItem>
 <TabItem value="jsv2" label="JS/TS (v2)">
@@ -395,17 +393,7 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## How to migrate your code
 
-To get started, see the TypeScript client [documentation](/developers/weaviate/client-libraries/typescript/typescript-v3).
-
-- [Client instantiation](./index.mdx#installation-and-setup),
-- [Manage collections](../../manage-data/collections.mdx),
-- [Batch import](../../manage-data/import.mdx)
-- [Cross-reference](../../manage-data/cross-references.mdx)
-- [Basic search](../../search/basics.md)
-- [Similarity search](../../search/similarity.md)
-- [Filters](../../search/filters.md)
-                         
-For code examples, see these pages:
+For code examples, see the pages here:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
