@@ -131,7 +131,19 @@ console.log(client)
 </TabItem>
 </Tabs>
 
-## Work with collections
+## Changes in v3
+
+The v3 client introduces a new way to work with your data. Here are some of the important changes:
+
+- [Collection object replaces client object](#work-with-collections)
+- [Builder pattern is removed](#builder-pattern-is-removed)
+- [Bulk inserts](#bulk-inserts)
+- [Close clients explicitly](#client-close-method)
+- [Data filtering](#filter-data)
+- [Namespace for generative models](#generate-namespace)
+- [Update return object](#return-object)
+
+### Work with collections
 
 The v2 client uses the `client` object for CRUD and search operations. In the v3 client, the `collection` object replaces the `client` object.
 
@@ -169,7 +181,7 @@ console.log(JSON.stringify(result, null, 2));
 
 Note here that the collection object can be re-used throughout the codebase.
 
-## Builder Pattern is removed
+### Builder Pattern is removed
 
 The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
 
@@ -217,7 +229,7 @@ The v3 client supports Node.js, server based development. It does not support we
 
 To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
 
-## Bulk Inserts
+### Bulk Inserts
 
 The insertMany() method replaces objectBatcher() to make batch insertions easier.
 
@@ -254,13 +266,13 @@ await batcher5.do();
 
 For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
 
-## Client Close Method
+### Client Close Method
 
 import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
 
 <TSClientClose />
 
-## Filter data
+### Filter data
 
 The Filter helper class makes it easier to use filters with conditions. The v3 client streamlines how you use Filter so your code is cleaner and more concise.
 
@@ -315,7 +327,7 @@ console.log(JSON.stringify(result, null, 2));
 </TabItem>
 </Tabs>
 
-## Generate Namespace
+### Generate Namespace
 
 The v3 client adds a new namespace, generate. Use the generate namespace like the query namespace to make queries.
 
@@ -362,7 +374,7 @@ console.log(JSON.stringify(result, null, 2));
 </TabItem>
 </Tabs>
 
-## Return object 
+### Return object 
 
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
 
