@@ -15,7 +15,7 @@ import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
 
-If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers.weaviate.client-libraries/typescript/v2_v3_migration) for additional details.
+If you are migrating a project from the Weaviate TypeScript client v2 to the v3 client, see the [migration page](/developers/weaviate/client-libraries/typescript/v2_v3_migration) for additional details.
 
 ## Client configuration
 
@@ -54,7 +54,7 @@ const weaviate = require('weaviate-client').default;
 
 ### TypeScript setup
 
-Add the following lines to your project's configuration files:
+Edit your project's configuration files to make these changes:
 
 - Add `"type": "module"` to `package.json` 
 - Add the following code to [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
@@ -180,7 +180,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 console.log(client)
 ```
 
-To include custom headers, such as APIs for third party services, add them to the `headers` section when you initialize the client:
+To include custom headers, such as API keys for third party services, add the custom headers to the `headers` section when you initialize the client:
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
@@ -196,7 +196,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 )
 ```
 
-These headers will then be included in every request that the client makes.
+The client sends the headers every it makes a request to the Weaviate instance.
 
 ## Changes in v3
 
@@ -208,7 +208,7 @@ The v3 client interacts with collections as the primary way to work with objects
 
 Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it.
 
-This example returns objects from the JeopardyQuestion collection.
+This example returns objects from the `JeopardyQuestion` collection.
 
 ```js
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -220,9 +220,9 @@ console.log(JSON.stringify(result, null, 2));
 
 ### Node support only 
 
-The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
+The gRPC protocol is fast and provides other internal benefits. Unfortunately, gRPC does not support browser-based client development.
 
-The v3 client supports Node.js, server based development. It does not support browser-based web client development.
+The v3 client uses gRPC to connect to your Weaviate instance. The client supports Node.js, server-based development. It does not support browser-based web client development.
 
 To develop a browser-based application, use the v2 client.
 

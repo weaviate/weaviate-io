@@ -1,3 +1,5 @@
-The client uses a keep-alive header to maintain long-lived connections to Weaviate. This means, after you establish the connection, subsequent calls are faster. When you finish your client operations, close the connection free up server resources.
+The client uses a keep-alive header to maintain long-lived connections to Weaviate.
 
-Use the `client.close()` method to close the connection instead of waiting for the it to time out.
+After you establish the connection to your Weaviate instance, subsequent calls are faster. When you finish your client operations, close the connection free server resources.
+
+Use the `client.close()` method to close the connection instead of waiting for the connection to time out.
