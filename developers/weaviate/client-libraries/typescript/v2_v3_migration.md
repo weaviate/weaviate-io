@@ -8,15 +8,16 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
 :::note TypeScript client version
 The current TypeScript client version is `v||site.typescript_client_version||`
 :::
 
+
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
+
 
 ## Install 
 
@@ -26,17 +27,18 @@ To install the TypeScript client v3, follow these steps:
 
    - The minimum version of Node supported by the v3 client is Node 18. 
 
-1. Install the new client package.
+2. Install the new client package.
     
   ```bash
   npm install weaviate-client --tag beta
   ```
 
-1. Upgrade Weaviate to a compatible version
+
+3. Upgrade Weaviate to a compatible version
 
     - Weaviate core `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
 
-1. Open a gRPC port for Weaviate.
+4. Open a gRPC port for Weaviate.
 
     - The default port is 50051.
 
@@ -60,17 +62,26 @@ You can instantiate the client directly, but in most cases you should use one of
 
 - [`connectToLocal`](#NEEDS_LINK)
 - [`connectToWCS`](#NEEDS_LINK)
-- [`connectToCustom`](#NEEDS_LINK)
 
-<Tabs groupId="languages">
+<Tabs groupId="platforms">
 <TabItem value="wcs" label="WCS">
 
 ```ts
 import weaviate from 'weaviate-client'
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-	@@ -106,9 +78,9 @@ console.log(client)
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+    }
+  } 
+)
+
+console.log(client)
+```
+
+</TabItem>
 <TabItem value="local" label="Local">
 
 ```ts
@@ -84,16 +95,48 @@ const client = await weaviate.connectToLocal({
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
     }
-  })
+  }
+)
  
 console.log(client)
 ```
+
+</TabItem>
+<TabItem value="custom" label="Custom">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.client({
+    rest: {
+      host: 'WEAVIATE_INSTANCE_HOST_NAME',
+      port: 8080,
+      secure: true
+    },
+    grpc: {
+      host: 'WEAVIATE_INSTANCE_HOST_NAME',
+      port: 50051,
+      secure: true
+    },
+    auth: {
+      apiKey: process.env.WEAVIATE_API_KEY || ''
+    },
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
+    }
+  }
+)
+ 
+console.log(client)
+```
+
 </TabItem>
 </Tabs>
 
 ## Work with collections
 
 The v2 client uses the `client` object for CRUD and search operations. In the v3 client, the `collection` object replaces the `client` object.
+
 
 After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
 
@@ -170,6 +213,7 @@ console.log(JSON.stringify(result, null, 2));
 </TabItem>
 </Tabs>
 
+
 Types make code safer and easier to understand. Typed method parameters also make the client library easier to use and reduce errors.
 
 The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
@@ -179,6 +223,7 @@ The v3 client supports Node.js, server based development. It does not support we
 To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
 
 ## Bulk Inserts
+
 
 The insertMany() method replaces objectBatcher() to make batch insertions easier.
 
@@ -218,6 +263,7 @@ For more information on batch processing, see [Batch Inserts](/developers/weavia
 ## Client Close Method
 
 import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
+
 
 <TSClientClose />
 
@@ -301,6 +347,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 <TabItem value="jsv2" label="JS/TS (v2)">
 
 ```ts
+let result;
 generatePrompt = 'Convert this quiz question: {question} and answer: {answer} into a trivia tweet.';
 
 result = await client.graphql
@@ -323,6 +370,7 @@ console.log(JSON.stringify(result, null, 2));
 </Tabs>
 
 ## Return object 
+
 
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
 
