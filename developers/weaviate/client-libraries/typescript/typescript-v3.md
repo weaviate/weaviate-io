@@ -13,92 +13,109 @@ import TabItem from '@theme/TabItem';
 The current TypeScript client version is `v||site.typescript_client_version||`.
 :::
 
-## Overview
 
-The TypeScript client can be used for both JavaScript and TypeScript scripts. This page covers the Weaviate TypeScript client; `weaviate-client` on npm. This version is currently in beta. For usage information not specific to the Typescript client, such as code examples, see the relevant pages in the Weaviate documentation. 
+The Weaviate TypeScript client supports JavaScript and TypeScript. The TypeScript client v3 is currently in beta. This page covers the Weaviate TypeScript client; `weaviate-client` on the npm registry. 
 
-## Installation and setup
+The v3 client currently supports server side development (Node.js hosted). See [v3 packages](#node-support-only) for details.
 
-- Add web cleint initialisation 
-- link to other TS packages and resoruces? like embedded
-- add example queries
-- link to weaviate recipes and example apps
+If your application is browser based, consider using the TypeScript client v2.
 
-The TypeScript client library package can be installed using [npm](https://www.npmjs.com/).
+:::note Client Migration
+If you are migrating from the Weaviate TypeScript client `v2` to the `v3` client, see the [migration page](../../client-libraries/typescript/v2_v3_migration.md) for additional details.
+:::
+
+For usage information not specific to the TypeScript client, such as code examples, see the relevant pages in the Weaviate documentation.
+
+## Client Setup
+
+This section details how to set up the `v3` TypeScript client.
+
+### Install
+
+Use [npm](https://www.npmjs.com/) to install the TypeScript client library package:
 
 ```bash
 npm install weaviate-client --tag beta
 ```
 
-Some packages, like the Weaviate TypeScript client, require extra configuration. The root directory of a TypeScript project has a `tsconfig.json` file. Add the following to your `tsconfig.json`. 
+### Import the Client
 
-<details>
-    <summary> tsconfig.json file</summary>
-    To properly use the client, add the following to your tsconfig.json file:
+The `v3` client uses `ES Modules`. Most of the sample code follows `ES Module` style.
 
-    ```json
-       {
-            "compilerOptions": {
-              ...
-              "target": "esnext",
-              "module": "esnext", 
-              "moduleResolution": "Node16",
-              "include": ["*.ts"], 
-              "esModuleInterop": true,
-              "lib": [ "es2018" ],
-              ...
-          }
-        }
-    ```
-    
-</details>
-
-Don't specify filenames on the command line when you use `tsconfig.json`. Specify the TypeScript files in `tsconfig.json` instead. `tsc` only reads `tsconfig.json` when you run it by itself.
-
-
-## References
-
-:::note v2 → v3 client documentation migration
-We are in the process of migrating our v2 client code examples to v3 as necessary. Please be patient as we work on documenting the rest.
-:::
-
-At the moment, we've covered the following pages. 
-
-- [Introduction](https://weaviate.io/developers/weaviate/introduction)
-- [Quickstart](https://weaviate.io/developers/weaviate/quickstart)
-- [Start Guides](https://weaviate.io/developers/weaviate/starter-guides)
-- [How-to: Search](https://weaviate.io/developers/weaviate/search)
-- [How-to: Manage Data](https://weaviate.io/developers/weaviate/manage-data)
-
-
-Our [RESTful endpoints](../../api/rest/index.md) and [GraphQL functions](../../api/graphql/index.md) covered by the TypeScript client currently have JavaScript examples in the code blocks.
-
-## Design
-
-### A Collection first Approach
-
-With the new v3 client, we've opted focus on collections as primary method of interaction with your Weaviate database. We've also utilized strong typing through custom Typescript types and user-defined generics.
-
-// show query 
-// change order 
-// pick common js or esm for format 
-
-
-## Client Connection
-
-Once installed, you can use the client in your TypeScript and JavaScript scripts, as shown in the following examples.
-
-### Connecting to Weaviate
+If your code requires `CommonJS` compatibility, use the `CommonJS` import style:
 
 <Tabs groupId="languages">
+<TabItem value="esm" label="ES Modules">
+
+```ts
+import weaviate from 'weaviate-client'
+```
+
+</TabItem>
+<TabItem value="cjs" label="CommonJS">
+
+```ts
+const weaviate = require('weaviate-client').default;
+```
+
+</TabItem>
+</Tabs>
+
+### Node support only 
+
+We've chosen to break up the new TypeScript client into Node and Web versions. With the addition of gRPC to Weaviate, we now have the HTTP/2 protocol to contend with and we quickly discovered that gRPC and HTTP/2 don't play nicely with browsers. 
+
+In this beta, you only have access to the Node version of the client. We will use the beta period to work on the Web version of the client.
+
+:::note What can you do with the Node Bundle?
+All CRUD (Create, Read, Update and Delete) operations powered by gRPC and REST.
+:::
+
+:::note What will you be able to do with the Web bundle?
+Only Read operations powered by GraphQL.
+:::
+
+### TypeScript setup
+
+Add `"type": "module"` to your `package.json` file and add the following code to your [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file. 
+
+<details>
+    <summary>tsconfig.json file</summary>
+
+```json
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext", 
+      "moduleResolution": "Node16",
+      "esModuleInterop": true,
+      "lib": [ "es2018" ],
+  }
+}
+```
+   
+</details>
+
+
+
+## Connect a client
+
+The v3 client provides helper functions to connect your application to your Weaviate instance.
+
+### Connect to Weaviate
+
+<Tabs groupId="platforms">
 <TabItem value="wcs" label="WCS">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-client'
+import weaviate from 'weaviate-client'
 
 const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-    authCredentials: new weaviate.ApiKey('api-key'),
+  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
+    }
   } 
 )
 
@@ -109,9 +126,9 @@ console.log(client)
 <TabItem value="local" label="Local">
 
 ```ts
-import weaviate, { WeaviateClient } from 'weaviate-client'
+import weaviate from 'weaviate-client'
 
-const client: WeaviateClient = await weaviate.connectToLocal({
+const client = await weaviate.connectToLocal({
     httpHost: 'localhost',
     httpPort: 8080,
     grpcHost: 'localhost',
@@ -119,7 +136,37 @@ const client: WeaviateClient = await weaviate.connectToLocal({
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
     }
-  })
+  }
+)
+ 
+console.log(client)
+```
+
+</TabItem>
+<TabItem value="custom" label="Custom">
+
+```ts
+import weaviate from 'weaviate-client'
+
+const client = await weaviate.client({
+    rest: {
+      host: 'WEAVIATE_INSTANCE_HOST_NAME',
+      port: 8080,
+      secure: true
+    },
+    grpc: {
+      host: 'WEAVIATE_INSTANCE_HOST_NAME',
+      port: 50051,
+      secure: true
+    },
+    auth: {
+      apiKey: process.env.WEAVIATE_API_KEY || ''
+    },
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
+    }
+  }
+)
  
 console.log(client)
 ```
@@ -127,17 +174,13 @@ console.log(client)
 </TabItem>
 </Tabs>
 
-:::tip Troubleshooting imports with TypeScript
-If you are having any issues with the import statement in TypeScript (e.g. if `weaviate` is `undefined`), try adding `"esModuleInterop": true` to your `"compilerOptions"` in `tsconfig.json`.
-:::
+### Close client method 
 
-### Type definitions
+import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
 
-The type definitions can be found under each bundles respective folder; the subdirectory of `node/cjs` and `node/esm` in the `*.d.ts` files, for example as shown on the [npm package page](https://www.npmjs.com/package/weaviate-client/v/3.0.0-beta.17?activeTab=code).
+<TSClientClose />
 
-// add code example 
-
-## Authentication
+### Authentication
 
 import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
 
@@ -155,331 +198,168 @@ import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/
 
 <ClientAuthApiKey />
 
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-// Instantiate the client with the auth config
-const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-    authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
-  } 
-)
- 
-console.log(client)
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
 
 ```ts
-import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
+import weaviate, { WeaviateClient } from 'weaviate-client';
 
 // Instantiate the client with the auth config
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-    authCredentials: new weaviate.ApiKey('api-key'), // Add your WCS API KEK here
+  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
+  {
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
   } 
 )
 
 console.log(client)
 ```
 
-</TabItem>
-</Tabs>
-
-### OIDC authentication
-
-import ClientAuthOIDCIntro from '/developers/weaviate/client-libraries/_components/client.auth.oidc.introduction.mdx'
-
-<ClientAuthOIDCIntro />
-
-:::info Background refresh processes with TS
-When using OIDC with the TypeScript client, its background token refresh process can block a script from exiting. If this behavior is not desired, you can:
-1. Set the `silentRefresh` parameter as `false` in the OIDC configuration. Or,
-1. Stop the process via `client.oidcAuth?.stopTokenRefresh()`, e.g. when a script is expected to exit, or token refresh is no longer needed.
-:::
-
-#### <i class="fa-solid fa-key"></i> Resource Owner Password Flow
-
-import ClientAuthFlowResourceOwnerPassword from '/developers/weaviate/client-libraries/_components/client.auth.flow.resource.owner.password.mdx'
-
-<ClientAuthFlowResourceOwnerPassword />
-
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-const client = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
-  {
-    authCredentials: new weaviate.AuthUserPasswordCredentials({
-    username: 'username',
-    password: 'password',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
-    })
-  } 
-)
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient, AuthUserPasswordCredentials } from 'weaviate-client';
-
-const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network',
-  {
-    authCredentials: new AuthUserPasswordCredentials({
-    username: 'username',
-    password: 'password',
-    silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    scopes: ['offline_acess'] // optional, depends on the configuration of your identity provider (not required with WCS)
-    })
-  } 
-)
-```
-
-</TabItem>
-</Tabs>
-
-#### <i class="fa-solid fa-key"></i> Client Credentials flow
-
-import ClientAuthFlowClientCredentials from '/developers/weaviate/client-libraries/_components/client.auth.flow.client.credentials.mdx'
-
-<ClientAuthFlowClientCredentials />
-
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
-  {
-    authCredentials: new weaviate.AuthClientCredentials({
-      clientSecret: 'supersupersecret',
-      silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-      scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
-    })
-  } 
-)
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
+You can pass custom headers to the client that are added at initialization:
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
 const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
+  'WEAVIATE_INSTANCE_URL', // Replace WEAVIATE_INSTANCE_URL with your instance URL
   {
-    authCredentials: new weaviate.AuthClientCredentials({
-      clientSecret: 'supersupersecret',
-      silentRefresh: true, // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-      scopes: ['scope1', 'scope2']  // optional, depends on the configuration of your identity provider
-    })
-  } 
-)
-```
-
-</TabItem>
-</Tabs>
-
-#### <i class="fa-solid fa-key"></i> Refresh Token flow
-
-import ClientAuthBearerToken from '/developers/weaviate/client-libraries/_components/client.auth.bearer.token.mdx'
-
-<ClientAuthBearerToken />
-
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
-  {
-    authCredentials: new weaviate.AuthAccessTokenCredentials({
-      accessToken: 'acessToken',
-      expiresIn: 900,
-      refreshToken: 'refreshToken',
-      silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    })
-  } 
-)
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-client';
-
-const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
-  {
-    authCredentials: new weaviate.AuthAccessTokenCredentials({
-      accessToken: 'acessToken',
-      expiresIn: 900,
-      refreshToken: 'refreshToken',
-      silentRefresh: true // Default: true - if false, you must refresh the token manually; if true, this background process will prevent a script from exiting.
-    })
-  } 
-)
-```
-
-</TabItem>
-</Tabs>
-
-## Custom headers
-
-You can pass custom headers to the client, which are added at initialization:
-
-<Tabs groupId="languages">
-<TabItem value="js" label="JavaScript">
-
-```js
-const { default: weaviate } = require('weaviate-client');
-
-const client = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
-  {
-    authCredentials: new weaviate.ApiKey('some-api-key'),
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), // Add your WCS API KEY here
     headers: {
       someHeaderName: 'header-value', 
     }
   } 
 )
 ```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-client';
-
-const client: WeaviateClient = await weaviate.connectToWCS(
-  'https://some-endpoint.weaviate.network',
-  {
-    authCredentials: new weaviate.ApiKey('some-api-key'),
-    headers: {
-      someHeaderName: 'header-value', 
-    }
-  } 
-)
-```
-
-</TabItem>
-</Tabs>
 
 These headers will then be included in every request that the client makes.
 
-### Separated Node and Web Versions
-
-We've chosen to break up the new TypeScript client into Node and Web versions. With the addition of gRPC to Weaviate, we now have the HTTP/2 protocol to contend with and we quickly discovered that gRPC and HTTP/2 don't play nicely with browsers. 
-
-In this beta, you only have access to the Node version of the client. We will use the beta period to work on the Web version of the client.
-
-:::note What can you do with the Node Bundle?
-All CRUD (Create, Read, Update and Delete) operations powered by gRPC and REST.
-:::
-
-:::note What will you be able to do with the Web bundle?
-Only Read operations powered by GraphQL.
-:::
 
 
-### General notes
-- All methods use ES6 Promises to deal with asynchronous code, so you need to use `.then()` after function calls, or have `async`/`await` support.
-- In the case of an error, the Promise rejects with the specific error message. (If using `async`/`await`, a rejected promises acts like a thrown exception).
-- Internally the client uses `isomorphic-fetch` to make the REST calls, so it should work from both the browser and NodeJS applications without any required changes.
+## Working with data
 
-## TypeScript for JavaScript users
+This section details the functioning of different data operations available in the `v3` TypeScript client.
 
-TypeScript is a superset of JavaScript. There are, however, some differences that you should be aware of. This section offers some suggestions for JavaScript users who are new to TypeScript.
+### Design philosophy
 
-### Run a TypeScript file
+The `v3` client interacts with collections as the primary way to work with objects in your Weaviate database.
 
-To run a TypeScript file, first convert it to JavaScript. The `typescript` package from `npm` includes the `tsc` utility. Use `tsc` to convert (transpile) the TypeScript file. 
+Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it. This example returns objects from the JeopardyQuestion collection.
 
-Install the `typescript` package. Add the `-g` flag if you want the package to be available globally.
+```js
+const myCollection = client.collections.get('JeopardyQuestion');
 
-```bash
-npm install typescript
-```
-You can then use this command to transpile the TypeScript file. 
+const result = await myCollection.query.fetchObjects()
 
-```bash
-tsc
+console.log(JSON.stringify(result, null, 2));
 ```
 
-`node` only allows the `import` statement in modules. To allow the `import` statement, add the following to your `package.json` file.
 
-```json
-{ 
-   "type": "module"
+### Batch Inserts
+
+The `insertMany()` method makes it easier to bulk insert a large number of objects without having to batch them. For inserts over 5000 objects, use a batching mechanism in conjunction with `insertMany()` like this:
+
+```js
+const questions = client.collections.get("CollectionName")
+
+const batchSize = 1000; // define your batch size
+
+async function insertBatch() {
+  try {
+    await questions.data.insertMany(dataBatch);
+    console.log('Batch inserted successfully');
+  } catch (error) {
+    console.error('Error inserting batch:', error);
+  }
+}
+
+async function batchInsert() {
+  for (let i = 0; i < dataArray.length; i += batchSize) {
+    const batch = dataArray.slice(i, i + batchSize);
+    await insertBatch(batch);
+  }
+}
+
+const dataObject = [...]; // your data
+await batchInsert(dataObject);
+```
+
+### Iterator Method
+
+The cursor API has a new iterator method. To repeat an action over an entire collection, use `iterator()`.
+
+```js
+const articles = client.collections.get('Article')
+
+for await (const article of articles.iterator()) {
+  // do something with article. 
+  console.log(article) // we print each object in the collection
 }
 ```
 
-### Example
+## Best practices
 
-To run this example, complete these steps. 
+This section details best practices working with the  `v3` TypeScript client.
 
-- Install the `typescript` package. 
-- Update the `tsconfig.json` and `package.json` files as described above.
-- Copy the sample code.
-- Save the code as `sample.ts` in the same directory as `tsconfig.json` and `package.json`.
-- Convert and run the code.
+### Generics
 
-Use this code to create `sample.ts`.
+TypeScript users can define custom Generics.
 
-<details>
-  <summary>Sample TypeScript code</summary>
+```js
+import weaviate from 'weaviate-client';
 
-```ts
-import weaviate, { WeaviateClient } from 'weaviate-client'
-
-const client: WeaviateClient = await weaviate.connectToWCS(
-  'some-endpoint.weaviate.network', {
-    authCredentials: new weaviate.ApiKey('api-key'),
-  } 
-)
- 
-console.log(await client.isReady())
-```
-</details>
-
-Convert `sample.ts`.
-
-```bash
-tsc 
-```
-
-Run the converted file.
-
-```bash
-node sample.js  
-```
-
-The output looks like this.
-
-<details>
-  <summary>Sample output</summary>
-
-```json
-{
-  "clientId": "wcs",
-  "href": "https://auth.wcs.api.weaviate.io/auth/realms/SeMI/.well-known/openid-configuration"
+type Article = {
+  title: string;
+  body: string;
+  wordcount: number;
 }
+
+const collection = client.collections.get<Article>('Article');
+await collection.insert({ // compiler error since 'body' field is missing in '.insert'
+  title: 'TS is awesome!',
+  wordcount: 9001
+})
 ```
-</details>
+
+Generics make it easier to manipulate objects and their properties. Compile time type checks help to ensure that operations like `insert()` and `create()` are safe and error free.  
+
+### Async operations
+
+All methods with the exception of `collection.use()` use ES6 Promises to deal with asynchronous code, so you need to use `.then()` after function calls, or have `async`/`await` support.
+
+When there is an asynchronous code error, a promise returns the specific error message. If you use `async` and `await`, a rejected promises acts like a thrown exception
+
+### Type Safety
+
+The v3 client enables strong typing with custom TypeScript types and user-defined generics. You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle. 
+
+For example, the `cjs/index.d.ts` file stores type definitions for the `cjs` bundle:
+
+
+The v3 client also adds internal features that make JavaScript development more type-safe.
+
+## Example code
+
+Here are some resources to help you get started using the client.
+
+### Recipes
+
+The [recipes repository](https://github.com/weaviate/recipes-ts) on Github has sample code for common use cases.
+
+### Demo applications
+
+There are demo applications written in TypeScript and JavaScript here:
+
+- [QuoteFinder](https://github.com/weaviate/quote-finder/tree/main)
+- [NuxtVectorSearch](https://github.com/malgamves/nuxt-typescript-vector-search)
+
+## Client releases
+
+import MatrixIntro from '/_includes/clients/matrix-intro.md';
+
+<MatrixIntro />
+
+## Client change logs
+
+See the client [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />

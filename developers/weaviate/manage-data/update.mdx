@@ -24,8 +24,8 @@ Weaviate allows partial or complete object updates.
 <details>
   <summary>Additional information</summary>
 
-  - Partial updates use [`PATCH` requests to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object) under the hood.
-  - Complete updates use [`PUT` requests to the `/v1/objects` REST API endpoint](../api/rest/objects.md#update-a-data-object) under the hood.
+  - Partial updates use [`PATCH` requests to the `/v1/objects` REST API endpoint](/developers/weaviate/api/rest#tag/objects/patch/objects/%7BclassName%7D/%7Bid%7D) under the hood.
+  - Complete updates use [`PUT` requests to the `/v1/objects` REST API endpoint](/developers/weaviate/api/rest#tag/objects/put/objects/%7BclassName%7D/%7Bid%7D) under the hood.
   - Updates that include a `vector` property will recalculate the vector embedding (unless all updated `text` properties are [skipped](../manage-data/collections.mdx#property-level-module-settings)).
   - To update objects, you must provide the collection name, id and properties to update.
   - For [multi-tenancy](../concepts/data.md#multi-tenancy) collections, you will also need to specify the tenant name. See [Manage data: multi-tenancy operations](./multi-tenancy.md) for details on how.
@@ -269,7 +269,7 @@ At object level, you can replace the object with a copy that has those propertie
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
-- [References: REST - /v1/objects](../api/rest/objects.md#update-a-data-object)
+- [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects/put/objects/%7BclassName%7D/%7Bid%7D)
 
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

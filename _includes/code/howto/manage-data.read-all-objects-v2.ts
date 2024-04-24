@@ -5,8 +5,8 @@ import weaviate, { WeaviateClient, ApiKey } from 'weaviate-ts-client';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your Weaviate URL
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth enabled. Replace w/ your Weaviate instance API key.
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate URL
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // If auth enabled. Replace with your Weaviate instance API key.
 });
 
 // ============================

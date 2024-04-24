@@ -3,22 +3,21 @@ title: A Web Developers Guide to Hybrid Search
 slug: hybrid-search-for-web-developers
 authors: [daniel, ajit]
 date: 2024-04-09
-tags: ['concepts','how-to','search', 'javascript']
+tags: ['concepts', 'how-to', 'search', 'javascript']
 image: ./img/hero.png
-description: "Hybrid Search for curious Web Developers with the new Weaviate Typescript client and Next.js"
+description: 'Hybrid Search for curious Web Developers with the new Weaviate TypeScript client and Next.js'
 ---
 
 ![A Web Developers Guide to Hybrid Search Cover](./img/hero.png)
 
-:::info 
+:::info
 
-This tutorial is built with Next.js and Weaviate. It uses a beta version of the v3 Typescript Client. Find out more about the new client here - [Experimental clients](/developers/weaviate/client-libraries/typescript/typescript-v3.md).
+This tutorial is built with Next.js and Weaviate. It uses a beta version of the v3 TypeScript Client. Find out more about the new client here - [Experimental clients](/developers/weaviate/client-libraries/typescript/typescript-v3).
 
 :::
 
-
-When the question of search arises, two popular techniques take up most of the conversation: vector search and keyword search. But which should you use? Sometimes, the answer is both, which luckily for us happens to be hybrid search - the best of both worlds! 
-In this article, we’ll get into the technology that powers hybrid search, learn how to use it in Weaviate and build a Next.js Application powered by hybrid search in Weaviate. 
+When the question of search arises, two popular techniques take up most of the conversation: vector search and keyword search. But which should you use? Sometimes, the answer is both, which luckily for us happens to be hybrid search - the best of both worlds!
+In this article, we’ll get into the technology that powers hybrid search, learn how to use it in Weaviate and build a Next.js Application powered by hybrid search in Weaviate.
 
 ## How does Hybrid Search work?
 
@@ -30,33 +29,28 @@ Vector search, also known as semantic search, uses machine learning to grasp tex
 
 ![Semantic Search Vector Space](./img/semantic-search.png)
 
-
 ### Keyword Search
-
 
 Keyword search finds objects with an exact match between the terms in the query and the documents. Weaviate uses the BM25/F function to calculate the relevancy of a document to a query, which uses both the term frequency, how often a word appears in a document, and inverse document frequency, how many documents that word occurs in.
 
 ![Keyword Search Illustrated](./img/keyword-search.png)
 
-
 ### The Best of Both Worlds
-
 
 Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage both exact term matching and semantic context. With either the `rankedFusion` or `relativeScoreFusion` fusion algorithms, we merge the results from both keyword search and the vector search.
 
-A code snippet of hybrid search in Javascript will look something like this. 
+A code snippet of hybrid search in JavaScript will look something like this.
 
 ```typescript
 const myCollection = client.collections.get('JeopardyQuestion');
 
-const result = await myCollection.query.hybrid('food',{
- limit: 2,
- returnProperties: ['question', 'answer'],
-})
+const result = await myCollection.query.hybrid('food', {
+  limit: 2,
+  returnProperties: ['question', 'answer'],
+});
 
 console.log(JSON.stringify(result.objects, null, 2));
 ```
-
 
 ## Optimizing your Hybrid Search
 
@@ -64,29 +58,29 @@ With Weaviates hybrid search, we have two ways to adjust the hybrid search algor
 
 ### Changing alpha
 
-Think of alpha as a measure of how much your hybrid search should lean towards either vector search or keyword search where an alpha of 1 is a pure vector search, and an alpha of 0 is a pure keyword search. It is 0.75 by default. 
+Think of alpha as a measure of how much your hybrid search should lean towards either vector search or keyword search where an alpha of 1 is a pure vector search, and an alpha of 0 is a pure keyword search. It is 0.75 by default.
 
-The code snippet below demonstrates how to change the alpha of your hybrid search in Javascript. 
+The code snippet below demonstrates how to change the alpha of your hybrid search in JavaScript.
 
 ```typescript
 const myCollection = client.collections.get('JeopardyQuestion');
-    
-const result = await myCollection.query.hybrid('food',{
+
+const result = await myCollection.query.hybrid('food', {
   // highlight-start
   alpha: 0.75,
   // highlight-end
-  })
+});
 
 console.log(JSON.stringify(result, null, 2));
 ```
 
-### Changing ranking algorithm 
+### Changing ranking algorithm
 
-Here is where it gets fun! Weaviate supports two fusion algorithms as of Weaviate v1.20 i.e. `rankedFusion` and `relativeScoreFusion`. 
+Here is where it gets fun! Weaviate supports two fusion algorithms as of Weaviate v1.20 i.e. `rankedFusion` and `relativeScoreFusion`.
 
 **Ranked Fusion**
 
-In a nutshell, **Ranked Fusion** (the original hybrid search algorithm in Weaviate) assigns each object a score based on its position in the search results (in descending order), with the total score derived from the sum of these rank-based scores across both vector and keyword searches. 
+In a nutshell, **Ranked Fusion** (the original hybrid search algorithm in Weaviate) assigns each object a score based on its position in the search results (in descending order), with the total score derived from the sum of these rank-based scores across both vector and keyword searches.
 
 ![Ranked Fusion Algorithm](./img/reciprocal-rank.png)
 
@@ -96,37 +90,33 @@ In a nutshell, **Ranked Fusion** (the original hybrid search algorithm in Weavia
 
 ![Reciprocal Score Fusion Algorithm](./img/relative-score.png)
 
-The code snippet below demonstrates how to change the ranking algorithm of your hybrid search in Javascript. 
+The code snippet below demonstrates how to change the ranking algorithm of your hybrid search in JavaScript.
 
 ```typescript
 const myCollection = client.collections.get('JeopardyQuestion');
-    
-const result = await myCollection.query.hybrid('food',{
+
+const result = await myCollection.query.hybrid('food', {
   // highlight-start
   fusionType: 'RelativeScore', // can also be 'Ranked'
   // highlight-end
-  })
+});
 
 console.log(JSON.stringify(result, null, 2));
 ```
 
 Dirk and Joon-Pil on our team wrote an [in-depth blog post](https://weaviate.io/blog/hybrid-search-fusion-algorithms) on the different hybrid search fusion algorithms in Weaviate. If you're interested in a more detailed explanation, I would recommend it.
 
-
-
 ## When to use Hybrid Search
 
-So with all that you know about hybrid search, when should you use it? 
+So with all that you know about hybrid search, when should you use it?
 
-The way we see it, if you have a model fine-tuned for your data, pure vector search might be good enough to give you accurate search results. If you’re mostly matching patterns that rely purely on exact keyword matching, keyword search will probably be good enough. 
+The way we see it, if you have a model fine-tuned for your data, pure vector search might be good enough to give you accurate search results. If you’re mostly matching patterns that rely purely on exact keyword matching, keyword search will probably be good enough.
 
 If your use cases don't fall into any of the two scenarios mentioned, you might benefit from implementing hybrid search. As we've covered, hybrid search comes with several parameters that we can adjust to get better more relevant results that match the data we're working with. It’s worth noting that because you’re running two searches in the background and computing your results from them, there is a performance cost associated with each search for high-throughput applications.
 
-
-
 ## Building an Application that leverages Hybrid Search
 
-To get some hands-on experience with the new Typescript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
+To get some hands-on experience with the new TypeScript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
 
 ### Setting up WCS (Weaviate Cloud Services)
 
@@ -138,22 +128,22 @@ The first step is to insert our quotes into the Weaviate database. For our datas
 
 The import only needs to be done once, so we'll put together a script in a separate file, e.g. `import.ts`.
 
-Install the Weaviate client by running `npm install weaviate-client --tag beta`, and then add the following code in your `import.ts` file. 
+Install the Weaviate client by running `npm install weaviate-client --tag beta`, and then add the following code in your `import.ts` file.
 
 ```typescript
-import weaviate from "weaviate-client";
-import { parse } from "csv-parse/sync";
-import fs from "fs";
+import weaviate from 'weaviate-client';
+import { parse } from 'csv-parse/sync';
+import fs from 'fs';
 
 const client = await weaviate.connectToWCS(process.env.WCS_URL!!, {
   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY!!),
   headers: {
-    "X-OpenAI-Api-Key": process.env.OPENAI_APIKEY!!,
+    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
   },
 });
 ```
 
-The code above helps us connect to our WCS database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCS. As we use [text2vec-openai](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) to vectorize our data, you will need to add your Open AI API key as well. 
+The code above helps us connect to our WCS database instance. The variables prefixed with `process.env` are called environment variables. These are usually values that should not be public and therefore should not be specified directly in the code itself. To supply these values, create a file named `.env.local` at the root of your project. Specify your values like this, replacing the values in angle brackets with the values from WCS. As we use [text2vec-openai](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-openai) to vectorize our data, you will need to add your Open AI API key as well.
 
 ```bash
 WCS_URL=<YOUR_WCS_URL>
@@ -161,19 +151,19 @@ WCS_API_KEY=<YOUR_WCS_API_KEY>
 OPENAI_APIKEY=<YOUR_OPENAI_APIKEY>
 ```
 
-Now, we can create a collection by pasting the following code in our `import.ts` file. 
+Now, we can create a collection by pasting the following code in our `import.ts` file.
 
 ```typescript
 const quotesCollection = await client.collections.create({
-  name: "Quotes",
+  name: 'Quotes',
   properties: [
     {
-      name: "quote",
-      dataType: "text",
+      name: 'quote',
+      dataType: 'text',
     },
     {
-      name: "author",
-      dataType: "text",
+      name: 'author',
+      dataType: 'text',
       skipVectorisation: true,
     },
   ],
@@ -186,7 +176,7 @@ Notice the attribute `skipVectorization: true` for the `author` property - this 
 Now, we can insert the quotes into our collection. We don't need to worry about vectorization, as this is done by the database itself.
 
 ```typescript
-const quotesDataset = parse(fs.readFileSync("quotes.csv", "utf8"));
+const quotesDataset = parse(fs.readFileSync('quotes.csv', 'utf8'));
 
 await quotesCollection.data.insertMany(quotesDataset.slice(0, 1000));
 ```
@@ -199,7 +189,7 @@ With our script ready and `quotes.csv` file downloaded, run the script with [tsx
 npx tsx ./import.ts
 ```
 
-Now you should have your quotes added to your Weaviate instance. 
+Now you should have your quotes added to your Weaviate instance.
 
 ### The Next.js Backend
 
@@ -213,25 +203,25 @@ We first define a type for our Quote, as this makes our code less error-prone on
 
 ```typescript
 export type QuoteType = {
-  quote: string,
-  author: string,
-  score: number
-}
+  quote: string;
+  author: string;
+  score: number;
+};
 ```
 
 Now, create one endpoint for hybrid search on our quotes. After creating a file such as `actions.ts`, we first define all necessary imports and connect to Weaviate:
 
 ```typescript
-"use server";
+'use server';
 
-import weaviate from "weaviate-client";
+import weaviate from 'weaviate-client';
 
-import { QuoteType } from "./types";
+import { QuoteType } from './types';
 
 const client = await weaviate.connectToWCS(process.env.WCS_URL!!, {
   authCredentials: new weaviate.ApiKey(process.env.WCS_API_KEY!!),
   headers: {
-    "X-OpenAI-Api-Key": process.env.OPENAI_APIKEY!!,
+    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY!!,
   },
 });
 ```
@@ -241,17 +231,19 @@ In the Next.js project, specify your environment variables again in the same way
 Our endpoint accepts the search term itself and the alpha value. Add this below the previous code.
 
 ```typescript
-export async function findQuotesBySearchTerm(searchTerm: string, alpha: number) {
-
-  const collection = await client.collections.get<Omit<QuoteType, "distance">>(
-    "Quotes"
+export async function findQuotesBySearchTerm(
+  searchTerm: string,
+  alpha: number
+) {
+  const collection = await client.collections.get<Omit<QuoteType, 'distance'>>(
+    'Quotes'
   );
 
   const { objects } = await collection.query.hybrid(searchTerm, {
     limit: 20,
     alpha: alpha,
-    returnMetadata: ["score"],
-    returnProperties: ["quote", "author"],
+    returnMetadata: ['score'],
+    returnProperties: ['quote', 'author'],
   });
 
   const quotes: QuoteType[] = objects.map((quote) => ({
@@ -270,14 +262,14 @@ Creating the frontend is fairly involved and is quite dependent on your choice o
 Replace the contents of `app/page.tsx` with the code below.
 
 ```typescript
-"use client";
+'use client';
 
-import { findQuotesByArgument } from "@/actions";
-import { useState } from "react";
-import { QuoteType } from "@/types";
+import { findQuotesByArgument } from '@/actions';
+import { useState } from 'react';
+import { QuoteType } from '@/types';
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [quotes, setQuotes] = useState<QuoteType[]>([]);
   const [alpha, setAlpha] = useState(0.5);
 
@@ -326,17 +318,15 @@ This creates a very basic UI, allowing the user to search and display quotes. Fe
 
 To view your application, run `npm run dev` in the root directory of your project. A browser window should open and your hybrid search application is built and ready to use.
 
-We've got a deployed version of this project that you can find at [quote-finder-phi](https://quote-finder-phi.vercel.app). If you'd like to dive into the code, you can take a look at the projects [GitHub repository](https://github.com/weaviate/quote-finder). 
+We've got a deployed version of this project that you can find at [quotefinder.weaviate.io](https://quotefinder.weaviate.io). If you'd like to dive into the code, you can take a look at the projects [GitHub repository](https://github.com/weaviate/quote-finder).
 
 The project on Github should look like this once cloned and started.
 
 ![A screenshot of the QuoteFinder](./img/quote-finder-screenshot.png)
 
-
 ## Conclusion
 
-That's everything that's needed for creating a full-stack app using Weaviate and the new Typescript client! The best way to get even more familiar with the involved tooling is to extend your QuoteFinder. Whether you'd like to add pure vector search, improve the frontend, or even implement the functionality to search through your quotes using images, the possibilities are endless!
-
+That's everything that's needed for creating a full-stack app using Weaviate and the new TypeScript client! The best way to get even more familiar with the involved tooling is to extend your QuoteFinder. Whether you'd like to add pure vector search, improve the frontend, or even implement the functionality to search through your quotes using images, the possibilities are endless!
 
 import WhatsNext from '/_includes/what-next.mdx';
 

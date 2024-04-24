@@ -3,8 +3,8 @@
 echo "Downloading the data file..."
 curl -O -L "https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json" --no-progress-meter
 
-# Replace with your endpoint and Weaviate Admin API key
-WEAVIATE_URL=https://some-endpoint.weaviate.network
+# Replace with your Weaviate endpoint and Weaviate Admin API key
+WEAVIATE_URL=https://WEAVIATE_INSTANCE_URL  # Replace WEAVIATE_INSTANCE_URL with your instance URL
 WEAVIATE_API_KEY=YOUR_WEAVIATE_API_KEY
 
 SCHEMA_API_URL="$WEAVIATE_URL/v1/schema"

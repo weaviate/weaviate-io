@@ -1,0 +1,51 @@
+---
+title: "Fine-grained Hallucination Detection and Editing for Language Models"
+slug: paper18
+authors: [zain]
+date: 2024-01-19
+tags: []
+image: ./img/hero.jpeg
+description: "Provides a taxonomy of different types of hallucinations."
+---
+![A preview of the paper](./img/hero.jpeg)
+
+<!-- truncate -->
+
+import { DownloadButton } from '/src/theme/Buttons';
+
+### A breakdown of the different types of hallucinations from AI2:🍄
+
+1. Verifiably Factually Wrong ❌
+
+  - Entity: an entity in a statement is incorrect (eg. Christmas falls on Nov. 25th)
+
+  - Relation: semantic relationship in a statement is incorrect (eg. The mouse ate the cat.)
+
+  - Contradictory: statements that entirely contradict relevant evidence from the web (eg. Raptors are yet to win an NBA final.)
+
+2. Unverifiable Types of Hallucinations ⁉️
+
+  - Invented: statements of concepts that do not exist in world knowledge (eg. MJ created the sideways somersault)
+
+  - Subjective: Statement that lacks universal validity - basically an opinion (eg. The Raptors are the best NBA team)
+
+  - Unverifiable: potentially factual statement but cannot be grounded in world evidence(eg. Jensen sleeps in a leather jacket.)
+
+### 🔍Word vs. Sentence Level:
+  > Entity and Relation are usually word level, and so can be fixed with small edits if you know where they occur.
+
+  > Contradictory, Invented, Subjective, and Unverifiable are often sentence level and thus need to be removed completely to fix the issue.
+
+[💻Code](https://fine-grained-hallucination.github.io)
+
+<p>
+  <DownloadButton link='https://arxiv.org/abs/2401.06855'>🔗 arXiv Link</DownloadButton>
+</p>
+<p>
+  <DownloadButton link='https://arxiv.org/pdf/2401.06855'>📜 Download paper</DownloadButton>
+</p>
+
+<!-- We could create a specific template for Paper Review's -->
+import WhatNext from '/_includes/what-next.mdx'
+
+<WhatNext />

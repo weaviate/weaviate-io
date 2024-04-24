@@ -25,9 +25,7 @@ Follow these examples to migrate data manually when using a backup is not possib
 
   The examples use two different Weaviate instances, exposed through different ports. The same process can be used for two different instances as well.
 
-  Cross-references in Weaviate are properties. As such, you can retrieve cross-reference in one of two ways:
-  1. [Retrieve the object](../api/rest/objects.md#get-a-data-object) that it belongs to.
-  1. [Retrieve the cross-reference](../search/basics.md#retrieve-cross-referenced-properties) as a part of a query.
+  Cross-references in Weaviate are properties. As such, you can [retrieve cross-reference](./cross-references.mdx#read-cross-references) as a part of the object.
 
 </details>
 
@@ -307,7 +305,7 @@ Migrate:
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
-- [Cursor API](../api/rest/objects.md#exhaustive-listing-using-a-cursor-after)
+- [Cursor API](./read-all-objects.mdx)
 - [Multi-tenancy operations](./multi-tenancy.md)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';

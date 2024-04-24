@@ -123,7 +123,7 @@ class_obj = {
 client.schema.update_config("Article", class_obj)
 ```
 
-For more information on how to update a class using the RESTful API, check out the [documentation](/developers/weaviate/api/rest/schema#update-a-class).
+For more information on how to update a class using the RESTful API, check out the [documentation](/developers/weaviate/api/rest#tag/schema).
 
 ### Ongoing Fixes and Improvements
 Although [BM25](/developers/weaviate/api/graphql/search-operators#bm25) and [Hybrid Search](/developers/weaviate/api/graphql/search-operators#hybrid) were released in Weaviate `1.17`, we continued to make fixes and improvements. Here are a list of the patch releases related to BM25/Hybrid:
@@ -164,7 +164,7 @@ Depending on the desired tradeoff between consistency and speed, below are three
 
 Read operations with the consistency level set to `QUORUM` or `ALL` return the most recent objects out of those returned by the majority of nodes, based on timestamps.
 
-Version `1.17` supported tunable consistency for [fetching by id](/developers/weaviate/api/rest/objects#get-a-data-object). Weaviate `1.18` adds tunable consistency support for all read and write REST operations, including [batching](/developers/weaviate/api/rest/batch) and [cross-references](/developers/weaviate/api/rest/objects#cross-references). GraphQL queries do not support tunable consistency yet.
+Version `1.17` supported tunable consistency for [fetching by id](developers/weaviate/api/rest#tag/objects/get/objects/%7BclassName%7D/%7Bid%7D). Weaviate `1.18` adds tunable consistency support for all read and write REST operations, including [batching](/developers/weaviate/api/rest#tag/batch) and [cross-references](developers/weaviate/api/rest#tag/objects/post/objects/%7BclassName%7D/%7Bid%7D/references/%7BpropertyName%7D). GraphQL queries do not support tunable consistency yet.
 
 This version also ships with an optimization for fetching multiple objects: the coordinator node only waits to receive a full result set from one of the nodes, and verifies it has the correct objects using digest responses sent by the other nodes. Since Weaviate uses a leaderless setup, the coordinator itself sends a response, which most often will arrive before the full responses sent by the other nodes, but the digests will confirm it is the correct result set.
 
