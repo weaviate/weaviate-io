@@ -37,7 +37,7 @@ To use `text2vec-voyageai`, you must enable it in your Docker Compose file (`doc
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-voyageai` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-voyageai` to make it the default for all classes.
-- `VOYAGEAI_APIKEY AI` (Optional): Your Voyage AI API key. You can also provide the key at query time.
+- `VOYAGEAI_APIKEY` (Optional): Your Voyage AI API key. You can also provide the key at query time.
 
 #### Example
 
@@ -98,7 +98,7 @@ Different Voyage AI models use different distance metrics. Make sure to set this
       "vectorizer": "text2vec-voyageai",
       "moduleConfig": {
         "text2vec-voyageai": {
-          "model": "voyage-large-2", // Defaults to voyage-large-2 if not set
+          "model": "voyage-law-2", // Defaults to voyage-large-2 if not set, available models: https://docs.voyageai.com/docs/embeddings
           "truncate": true, // Defaults to true if not set
           "baseURL": "https://proxy.yourcompanydomain.com"  // Optional. Can be overridden by one set in the HTTP header.
         }
@@ -134,7 +134,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
       "vectorizer": "text2vec-voyageai",
       "moduleConfig": {
         "text2vec-voyageai": {
-          "model": "voyage-large-2", // Defaults to voyage-large-2 if not set
+          "model": "voyage-law-2", // Defaults to voyage-large-2 if not set, available models: https://docs.voyageai.com/docs/embeddings
           "truncate": true, // Defaults to true if not set
           // highlight-start
           "vectorizeClassName": false

@@ -10,7 +10,10 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!/_includes/code/howto/configure.backups.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/configure.backups-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/configure.backups.ts';
+import TSCodeBackup from '!!raw-loader!/_includes/code/howto/configure.backups.backup.ts';
+import TSCodeRestore from '!!raw-loader!/_includes/code/howto/configure.backups.restore.ts';
+import TSCodeStatus from '!!raw-loader!/_includes/code/howto/configure.backups.status.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/configure.backups-v2.ts';
 import GoCode from '!!raw-loader!/_includes/code/howto/configure.backups.go';
 import JavaCode from '!!raw-loader!/_includes/code/howto/configure.backups.java';
 import CurlCode from '!!raw-loader!/_includes/code/howto/configure.backups.sh';
@@ -239,9 +242,18 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeBackup}
+      startMarker="// START CreateBackup"
+      endMarker="// END CreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START CreateBackup"
       endMarker="// END CreateBackup"
       language="ts"
@@ -319,9 +331,18 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeStatus}
+      startMarker="// START StatusCreateBackup"
+      endMarker="// END StatusCreateBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START StatusCreateBackup"
       endMarker="// END StatusCreateBackup"
       language="ts"
@@ -413,9 +434,18 @@ The request takes a json object with the following properties:
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeRestore}
+      startMarker="// START RestoreBackup"
+      endMarker="// END RestoreBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START RestoreBackup"
       endMarker="// END RestoreBackup"
       language="ts"
@@ -490,9 +520,18 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
-      text={TSCode}
+      text={TSCodeStatus}
+      startMarker="// START StatusRestoreBackup"
+      endMarker="// END StatusRestoreBackup"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
       startMarker="// START StatusRestoreBackup"
       endMarker="// END StatusRestoreBackup"
       language="ts"
