@@ -357,6 +357,14 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 To get started, see the TypeScript client [documentation](/developers/weaviate/client-libraries/typescript/typescript-v3).
 
+- [Client instantiation](./index.mdx#installation-and-setup),
+- [Manage collections](../../manage-data/collections.mdx),
+- [Batch import](../../manage-data/import.mdx)
+- [Cross-reference](../../manage-data/cross-references.mdx)
+- [Basic search](../../search/basics.md)
+- [Similarity search](../../search/similarity.md)
+- [Filters](../../search/filters.md)
+                         
 For code examples, see these pages:
 
 - [Search](/developers/weaviate/search)
