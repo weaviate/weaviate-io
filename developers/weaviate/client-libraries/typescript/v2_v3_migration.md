@@ -54,12 +54,14 @@ To install the TypeScript client v3, follow these steps:
 
 ## Instantiate a client
  
-The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object.
+The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object and [creates a connection](/developers/weaviate/starter-guides/connect) to your Weaviate instance.
 
-You can instantiate the client directly, but in most cases you should use one of the helper functions:
+In most cases, you should use one of the connection helper functions to connect to your Weaviate instance: 
 
-- [`connectToLocal`](#NEEDS_LINK)
-- [`connectToWCS`](#NEEDS_LINK)
+- `connectToLocal`
+- `connectToWCS`
+
+You can also use a custom configuration to instantiate the client directly:
 
 <Tabs groupId="platforms">
 <TabItem value="wcs" label="WCS">
@@ -409,6 +411,7 @@ For code examples, see the pages here:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect)
 
 ## Client change logs
 
