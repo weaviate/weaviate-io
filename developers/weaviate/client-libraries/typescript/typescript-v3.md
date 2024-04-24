@@ -298,10 +298,15 @@ When there is an asynchronous code error, a promise returns the specific error m
 
 ### Type Safety
 
-The v3 client enables strong typing with custom TypeScript types and user-defined generics. You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle. 
+The v3 client enables strong typing with custom TypeScript types and user-defined generics.
 
-For example, the `cjs/index.d.ts` file stores type definitions for the `cjs` bundle:
+You can find the type definitions in the folder that stores your Weaviate client package. The package is stored in a folder under the `node/` directory. Custom type definitions are stored in sub-folder for each bundle. 
 
+For example, the `index.d.ts` file stores type definitions for the `cjs` bundle:
+
+```bash 
+node/cjs/index.d.ts
+```
 
 The v3 client also adds internal features that make JavaScript development more type-safe.
 
