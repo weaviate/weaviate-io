@@ -76,11 +76,11 @@ Add the following lines to your project's configuration files:
    
 </details>
 
-
-
 ## Connect a client
 
 The v3 client provides helper functions to connect your application to your Weaviate instance.
+
+[Embedded Weaviate](/developers/weaviate/installation/embedded) is not supported in the v3 client. The v2 client supports embedded Weaviate.
 
 ### Connect to Weaviate
 
@@ -162,22 +162,9 @@ import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 ### Authentication
 
-import ClientAuthIntro from '/developers/weaviate/client-libraries/_components/client.auth.introduction.mdx'
-
-<ClientAuthIntro clientName="TypeScript"/>
-
-### WCS authentication
-
-import ClientAuthWCS from '/developers/weaviate/client-libraries/_components/client.auth.wcs.mdx'
-
-<ClientAuthWCS />
-
-### API key authentication
-
 import ClientAuthApiKey from '/developers/weaviate/client-libraries/_components/client.auth.api.key.mdx'
 
 <ClientAuthApiKey />
-
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
@@ -193,7 +180,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 console.log(client)
 ```
 
-You can pass custom headers to the client that are added at initialization:
+To include custom headers, such as APIs for third party services, add them to the `headers` section when you initialize the client:
 
 ```ts
 import weaviate, { WeaviateClient } from 'weaviate-client';
@@ -211,17 +198,17 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 
 These headers will then be included in every request that the client makes.
 
+## Changes in v3
 
-
-## Working with data
-
-This section details the functioning of different data operations available in the `v3` TypeScript client.
+This section highlights some features of the v3 TypeScript client.
 
 ### Design philosophy
 
-The `v3` client interacts with collections as the primary way to work with objects in your Weaviate database.
+The v3 client interacts with collections as the primary way to work with objects in your Weaviate database.
 
-Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it. This example returns objects from the JeopardyQuestion collection.
+Your application code creates an object that represents a collection. This object enables search and CRUD operations to be performed against it.
+
+This example returns objects from the JeopardyQuestion collection.
 
 ```js
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -231,6 +218,13 @@ const result = await myCollection.query.fetchObjects()
 console.log(JSON.stringify(result, null, 2));
 ```
 
+### Node support only 
+
+The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
+
+The v3 client supports Node.js, server based development. It does not support browser-based web client development.
+
+To develop a browser-based application, use the v2 client.
 
 ### Batch Inserts
 
