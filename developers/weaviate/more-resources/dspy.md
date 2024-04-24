@@ -3,11 +3,11 @@ title: DSPy Integration
 sidebar_position: 5
 image: og/docs/more-resources.jpg
 ---
-[DSPy](https://github.com/stanfordnlp/dspy) is a framework for programming language models created by Stanford NLP. DSPy introduces two key concepts: a programming model and optimizers.
+[DSPy](https://github.com/stanfordnlp/dspy) is a framework for programming language models created by Stanford NLP. DSPy introduces two key concepts: **programming model** and **optimizers**.
 
-- **Programing model**. The programming model lets you define a series of components that make a language model request. Components include input and output fields, task descriptions, and calls to a vector database like Weaviate.
+- **Programing model**: The programming model lets you define a series of components that make a language model request. Components include input and output fields, task descriptions, and calls to a vector database like Weaviate.
 
-- **Optimizers**: Optimizers compile your DSPy program to tune the language model prompt and the weights.
+- **Optimizers**: Optimizers compile your DSPy program to tune the language model prompt and/or the weights.
 
 ## DSPy and Weaviate
 
@@ -51,6 +51,7 @@ The resources are broken into two categories:
 | --- | --- |
 | **DSPy and ColBERT with Omar Khattab! - Weaviate Podcast #85** | Omar Khattab joins the Weaviate podcast to discuss DSPy and ColBERT. [Video](https://www.youtube.com/watch?v=CDung1LnLbY) |
 | **DSPy Explained**| The core concepts of DSPy and walks through the introduction notebooks showing how to compile a simple retrieve-then-read RAG program and Multi-Hop RAG Program. [Video](https://youtu.be/41EfOY0Ldkc?si=sFieUeHc9rXRn6uk)|
+| **XMC.dspy with Karel D'Oosterlinck - Weaviate Podcast #87** | Karel D'Oosterlinck joins the Weaviate podcast to discuss IReRa (Infer-Retrieve-Rank). [Video](https://youtu.be/_ye26_8XPcs?si=ZBodgHbOcaq2Kwky)
 | **Intro to DSPy: Goodbye Prompting, Hello Programming** | Overview of DSPy and how it solves the fragility problem in LLM-based applications. [Blog](https://towardsdatascience.com/intro-to-dspy-goodbye-prompting-hello-programming-4ca1c6ce3eb9)|
 | **Fine-Tuning Cohere’s Reranker** | Generate synthetic data with DSPy to fine-tune Cohere’s reranker model. [Blog](/blog/fine-tuning-coheres-reranker)|
 | **Your Language Model Deserves Better Prompting** | Overview of the DSPy optimizers for prompt tuning. [Blog](/blog/dspy-optimizers)|
