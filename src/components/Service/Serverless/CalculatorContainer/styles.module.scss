@@ -341,6 +341,26 @@
   }
 }
 
+.mobilePlans {
+  justify-content: space-between;
+}
+
+.desktopPlan {
+  display: block;
+
+  @media screen and (max-width: 1230px) {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media screen and (max-width: 1230px) {
+    display: block;
+  }
+}
+
 .plansTrack {
   display: flex;
   flex-direction: row;
@@ -439,16 +459,9 @@
     }
   }
 
-  .desktop {
+  .mobileHeader {
     @media screen and (max-width: 668px) {
-      display: none;
-    }
-  }
-
-  .mobile {
-    display: none;
-    @media screen and (max-width: 668px) {
-      display: block;
+      margin-top: -17px;
     }
   }
 }
