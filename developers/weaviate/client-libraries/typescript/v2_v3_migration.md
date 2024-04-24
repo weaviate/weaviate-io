@@ -13,11 +13,9 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 The current TypeScript client version is `v||site.typescript_client_version||`
 :::
 
-
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
-
 
 ## Install 
 
@@ -27,18 +25,18 @@ To install the TypeScript client v3, follow these steps:
 
    - The minimum version of Node supported by the v3 client is Node 18. 
 
-2. Install the new client package.
+1. Install the new client package.
     
   ```bash
   npm install weaviate-client --tag beta
   ```
 
 
-3. Upgrade Weaviate to a compatible version
+1. Upgrade Weaviate to a compatible version
 
     - Weaviate core `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
 
-4. Open a gRPC port for Weaviate.
+1. Open a gRPC port for Weaviate.
 
     - The default port is 50051.
 
@@ -137,7 +135,6 @@ console.log(client)
 
 The v2 client uses the `client` object for CRUD and search operations. In the v3 client, the `collection` object replaces the `client` object.
 
-
 After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
 
 <Tabs groupId="languages">
@@ -206,13 +203,11 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-
 console.log(JSON.stringify(result, null, 2));
 ```
 
 </TabItem>
 </Tabs>
-
 
 Types make code safer and easier to understand. Typed method parameters also make the client library easier to use and reduce errors.
 
@@ -223,7 +218,6 @@ The v3 client supports Node.js, server based development. It does not support we
 To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
 
 ## Bulk Inserts
-
 
 The insertMany() method replaces objectBatcher() to make batch insertions easier.
 
@@ -263,7 +257,6 @@ For more information on batch processing, see [Batch Inserts](/developers/weavia
 ## Client Close Method
 
 import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
-
 
 <TSClientClose />
 
@@ -370,7 +363,6 @@ console.log(JSON.stringify(result, null, 2));
 </Tabs>
 
 ## Return object 
-
 
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
 
