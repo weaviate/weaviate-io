@@ -21,24 +21,23 @@ import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 To install the TypeScript client v3, follow these steps: 
 
-1. Update your version of Node.js.
+1. **Update Node.js**
 
-   - The minimum version of Node supported by the v3 client is Node 18. 
+   The v3 client requires `Node v18` or higher. 
 
-1. Install the new client package.
+1. **Install the new client package**
     
   ```bash
   npm install weaviate-client --tag beta
   ```
 
+1. **Upgrade Weaviate**
 
-1. Upgrade Weaviate to a compatible version
+   The v3 client requires Weaviate core `1.23.7` or higher. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
 
-    - Weaviate core `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
+1. **Open a gRPC port**
 
-1. Open a gRPC port for Weaviate.
-
-    - The default port is 50051.
+   The default gRPC port is 50051.
 
     <details>
       <summary>docker-compose.yml</summary>
@@ -58,8 +57,8 @@ The weaviate object is the main entry point for all API operations. The v3 clien
 
 In most cases, you should use one of the connection helper functions to connect to your Weaviate instance: 
 
-- `connectToLocal`
 - `connectToWCS`
+- `connectToLocal`
 
 You can also use a custom configuration to instantiate the client directly:
 
@@ -223,17 +222,11 @@ console.log(JSON.stringify(result, null, 2));
 </TabItem>
 </Tabs>
 
-Types make code safer and easier to understand. Typed method parameters also make the client library easier to use and reduce errors.
-
-The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
-
-The v3 client supports Node.js, server based development. It does not support web client development.
-
-To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
-
 ### Bulk Inserts
 
-The insertMany() method replaces objectBatcher() to make batch insertions easier.
+The `insertMany()` method replaces `objectBatcher()` to make batch insertions easier.
+
+For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -266,8 +259,6 @@ await batcher5.do();
 </TabItem>
 </Tabs>
 
-For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
-
 ### Client Close Method
 
 import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
@@ -276,7 +267,7 @@ import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 ### Filter data
 
-The Filter helper class makes it easier to use filters with conditions. The v3 client streamlines how you use Filter so your code is cleaner and more concise.
+The `Filter` helper class makes it easier to use filters with conditions. The v3 client streamlines how you use `Filter` so your code is cleaner and more concise.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -331,7 +322,7 @@ console.log(JSON.stringify(result, null, 2));
 
 ### Generate Namespace
 
-The v3 client adds a new namespace, generate. Use the generate namespace like the query namespace to make queries.
+The v3 client adds a new namespace, `generate`. Use the generate namespace like the query namespace to make queries.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
