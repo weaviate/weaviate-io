@@ -20,6 +20,7 @@ image: og/docs/api.jpg
 This section includes references for the RESTful and GraphQL APIs. RESTful API end-points can be used to add data or obtain information about the Weaviate instance, and the GraphQL interface to retrieve data.
 
 ### References - Search
+
 - [Get](./graphql/get.md)
 - [Aggregate](./graphql/aggregate.md)
 - [Search operators](./graphql/search-operators.md)
@@ -29,17 +30,8 @@ This section includes references for the RESTful and GraphQL APIs. RESTful API e
 - [Explore](./graphql/explore.md)
 
 ### References - RESTful API
-- [Overview](./rest/index.md)
-- [/v1/schema](./rest/schema.md)
-- [/v1/objects](./rest/objects.md)
-- [/v1/batch](./rest/batch.md)
-- [/v1/backups](./rest/backups.md)
-- [/v1/classification](./rest/classification.md)
-- [/v1/meta](./rest/meta.md)
-- [/v1/nodes](./rest/nodes.md)
-- [/v1/.well-known](./rest/well-known.md)
-- [/v1/modules](./rest/modules.md)
 
+- [OpenAPI specs](/developers/weaviate/api/rest)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

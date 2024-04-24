@@ -7,12 +7,71 @@ import weaviate
 import json
 
 client = weaviate.Client(
-    "https://some-endpoint.weaviate.network",  # Replace with your Weaviate URL
-    auth_client_secret=weaviate.auth.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace w/ your Weaviate instance API key
+    "https://WEAVIATE_INSTANCE_URL",  # Replace with your Weaviate URL
+    auth_client_secret=weaviate.auth.AuthApiKey("YOUR-WEAVIATE-API-KEY"),  # If authentication is on. Replace with your Weaviate instance API key
     additional_headers={
-        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace w/ your OPENAI API key
+        "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY"  # Replace with your OPENAI API key
     }
 )
+
+# ===============================================
+# ===== QUERY WITH TARGET VECTOR & nearText =====
+# ===============================================
+
+# NamedVectorNearTextPython
+# Unfortunately, named vectors are not suppored in the v3 API / Python client.
+# Please upgrade to the v4 API / Python client to use named vectors.
+# END NamedVectorNearTextPython
+
+
+gql_query = '''
+# NamedVectorNearTextGraphql
+{
+  Get {
+    JeopardyQuestion(
+      limit: 2
+      nearText: {
+        concepts: ["animals in movies"]
+      }
+      # highlight-start
+      where: {
+        path: ["round"]
+        operator: Equal
+        valueText: "Double Jeopardy!"
+      }
+      # highlight-end
+    ) {
+      question
+      answer
+      _additional {
+        generate(
+          singleResult: {
+            prompt: """
+              Translate this into German: {review_body}
+            """
+          }
+          groupedResult: {
+            task: """
+              Summarize these reviews
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
+      }
+    }
+  }
+}
+# END NamedVectorNearTextGraphql
+'''
+
+gqlresponse = client.query.raw(gql_query)
+# Test results
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0].keys() == {"question", "_additional"}
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["singleResult"] is not None
+assert gqlresponse["data"]["Get"]["JeopardyQuestion"][0]["_additional"]["generate"]["groupedResult"] is not None
+# End test
 
 # =====================================
 # ===== SINGLE GENERATIVE EXAMPLE =====

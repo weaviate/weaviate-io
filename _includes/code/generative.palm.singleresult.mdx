@@ -18,7 +18,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import weaviate
 
 client  = weaviate.Client(
-  url = "https://some-endpoint.weaviate.network/",
+  url = "https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
   additional_headers={
       "X-PaLM-Api-Key": "YOUR-PALM-API-KEY"
   }
@@ -52,7 +52,7 @@ import weaviate, { ApiKey } from 'weaviate-ts-client';
 
 const client = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.network',  // Replace with your endpoint
+  host: 'WEAVIATE_INSTANCE_URL',  // Replace with your Weaviate endpoint
   apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate API key
   headers: { 'X-PaLM-Api-Key': process.env['PALM_API_KEY'] },  // Replace with your GOOGLE API key
 });
@@ -92,7 +92,7 @@ import (
 
 func main() {
   cfg := weaviate.Config{
-    Host:    "some-endpoint.weaviate.network",
+    Host:    "WEAVIATE_INSTANCE_URL",
     Scheme:  "https",
     Headers: map[string]string{"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"},
   }
@@ -150,8 +150,9 @@ public class App {
     Map<String, String> headers = new HashMap<String, String>() {
       {put("X-PaLM-Api-Key", "YOUR-PALM-API-KEY");}
     };
-    Config config = new Config("https", "some-endpoint.weaviate.network", headers);
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
     WeaviateClient client = new WeaviateClient(config);
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL.
 
     // highlight-start
     // instruction for the generative module
@@ -222,6 +223,8 @@ public class App {
 <TabItem value="curl" label="Curl">
 
 ```bash
+# Replace ${WEAVIATE_INSTANCE_URL} with your instance URL.
+
 echo '{
   "query": "{
     Get {
@@ -257,7 +260,7 @@ echo '{
     -H "Authorization: Bearer $WEAVIATE_API_KEY" \
     -H "X-PaLM-Api-Key: $PALM_API_KEY" \
     -d @- \
-    https://some-endpoint.weaviate.network/v1/graphql
+    https://${WEAVIATE_INSTANCE_URL}/v1/graphql
 ```
 
 </TabItem>

@@ -634,6 +634,14 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 </TabItem>
 </Tabs>
 
+## Replication
+
+For collections with replication enabled, you can specify the consistency level in your queries. This applies to CRUD queries as well as searches.
+
+import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
+
+<QueryReplication/>
+
 ## Related pages
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)

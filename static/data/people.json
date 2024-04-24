@@ -4,7 +4,7 @@
     "title": "QA Engineer",
     "photo": "aarthi.jpeg",
     "linkedin": "aarthiiyer",
-    "team": "cloud"
+    "team": "qa-sre"
   },
   {
     "name": "Abdel Rodriquez",
@@ -38,7 +38,7 @@
   },
   {
     "name": "André Duis",
-    "title": "Head of Cloud Strategy",
+    "title": "Technical Executive",
     "photo": "andre.png",
     "linkedin": "andre-duis",
     "team": "cto"
@@ -197,7 +197,7 @@
     "linkedin": "erikacardenas300",
     "twitter": "ecardenas300",
     "github": "erika-cardenas",
-    "team": "developer-growth"
+    "team": "partnerships"
   },
   {
     "name": "Etienne Dilocker",
@@ -291,7 +291,7 @@
     "name": "Jose Luis Franco",
     "title": "QA Engineer",
     "photo": "Jose-Luis-Franco.jpeg",
-    "team": "cloud"
+    "team": "qa-sre"
   },
   {
     "name": "Laura Stoye",
@@ -312,7 +312,7 @@
     "title": "Software Engineer",
     "photo": "loic.png",
     "linkedin": "loic-reyreaud",
-    "team": "database"
+    "team": "cloud"
   },
   {
     "name": "Marcin Antas",
@@ -331,10 +331,17 @@
     "team": "developer-relations"
   },
   {
+    "name": "Mariska Tunc",
+    "title": "Finance Operations Specialist",
+    "photo": "mariska.jpg",
+    "linkedin": "mariska-tunc-538168103",
+    "team": "ceo-team"
+  },
+  {
     "name": "Mike Hoppe",
     "title": "Client-Focused SRE",
     "photo": "Mike-Hoppe.jpeg",
-    "team": "cloud"
+    "team": "qa-sre"
   },
   {
     "name": "Mike Wyer",
@@ -402,12 +409,6 @@
     "team": "developer-growth"
   },
   {
-    "name": "Piaras Hoban",
-    "title": "Client-Focused SRE",
-    "photo": "piaras-hoban.jpg",
-    "team": "cloud"
-  },
-  {
     "name": "Redouan 'Red' El Rhazouani",
     "title": "Core Engineer",
     "photo": "redo.png",
@@ -445,7 +446,7 @@
     "photo": "stefan.png",
     "linkedin": "stefan-bogdan",
     "github": "StefanBogdan",
-    "team": "customer-success"
+    "team": "qa-sre"
   },
   {
     "name": "Svitlana Smolianova",

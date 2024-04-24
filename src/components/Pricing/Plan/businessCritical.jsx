@@ -15,7 +15,7 @@ export default function PricingBusinessCritical() {
       <div className={styles.features}>
         <li>
           <div className={styles.doubleIcon}></div>
-          <span>Customer-managed VPC with Weaviate-managed Data Plane</span>
+          <span>We manage Weaviate in your VPC</span>
         </li>
         <li>
           <div className={styles.doubleIcon}></div>
@@ -44,7 +44,7 @@ export default function PricingBusinessCritical() {
       </div>
       <br />
       <br />
-      <div className={styles.buttonBox}>
+      <div className={`${styles.buttonBox} ${styles.byocButton}`}>
         <Link className={styles.buttonTryOutline} to="#contact-sales">
           Contact Sales
         </Link>
