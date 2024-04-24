@@ -19,12 +19,9 @@ export default function ServiceHeader() {
           <div className={styles.buttons}>
             <Link
               className={styles.buttonGradient}
-              to="https://console.weaviate.cloud/"
+              to="https://console.weaviate.cloud/signin?callbackUrl=https%3A%2F%2Fconsole.weaviate.cloud%2F"
             >
-              Try Free
-            </Link>
-            <Link className={styles.buttonOutline} to="#plan">
-              Compare Packages
+              Sign Up
             </Link>
           </div>
         </div>
