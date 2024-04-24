@@ -228,7 +228,9 @@ To develop a browser-based application, use the v2 client.
 
 ### Batch Inserts
 
-The `insertMany()` method makes it easier to bulk insert a large number of objects without having to batch them. For inserts over 5000 objects, use a batching mechanism in conjunction with `insertMany()` like this:
+The `insertMany()` method makes it easier to bulk insert a large number of objects.
+
+For inserts of over 5000 objects, use `insertMany()` as part of a batch process:
 
 ```js
 const questions = client.collections.get("CollectionName")
@@ -268,13 +270,9 @@ for await (const article of articles.iterator()) {
 }
 ```
 
-## Best practices
-
-This section details best practices working with the  `v3` TypeScript client.
-
 ### Generics
 
-TypeScript users can define custom Generics.
+TypeScript users can define custom Generics. Generics make it easier to manipulate objects and their properties. Compile time type checks help to ensure that operations like `insert()` and `create()` are safe and error free.
 
 ```js
 import weaviate from 'weaviate-client';
@@ -292,11 +290,9 @@ await collection.insert({ // compiler error since 'body' field is missing in '.i
 })
 ```
 
-Generics make it easier to manipulate objects and their properties. Compile time type checks help to ensure that operations like `insert()` and `create()` are safe and error free.  
-
 ### Async operations
 
-All methods with the exception of `collection.use()` use ES6 Promises to deal with asynchronous code, so you need to use `.then()` after function calls, or have `async`/`await` support.
+All client v3 methods, with the exception of `collection.use()`, use ES6 Promises with asynchronous code. This means you have to use `.then()` after function calls, or wrap your code `async/await` blocks.
 
 When there is an asynchronous code error, a promise returns the specific error message. If you use `async` and `await`, a rejected promises acts like a thrown exception
 
