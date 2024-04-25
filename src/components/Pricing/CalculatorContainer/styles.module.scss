@@ -526,13 +526,13 @@
 }
 
 .lineA {
-  transform: translateY(105px);
+  transform: translateY(105px) !important;
 }
 .lineB {
-  transform: translateY(181px);
+  transform: translateY(181px) !important;
 }
 .lineC {
-  transform: translateY(254px);
+  transform: translateY(254px) !important;
 }
 
 .sandbox {
