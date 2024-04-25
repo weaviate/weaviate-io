@@ -1,5 +1,5 @@
 ---
-title: Support levels
+title: WCS support levels
 sidebar_position: 50
 # image: og/wcs/user_guides.jpg
 ---
@@ -15,11 +15,11 @@ Support is available for Serverless, Enterprise Dedicated, and Bring your Own Cl
 
 ### Standard
 
-Standard support is email based and is available during business hours. 
+- Standard support is email based and is available during business hours. 
 
-Monitoring includes access to regional status pages. 
+- Monitoring includes access to regional status pages. 
 
-Severity determines incident response time:
+- Severity determines incident response time:
 
 | Severity | Criteria | Response Time |
 | :- | :- | :- |
@@ -28,17 +28,17 @@ Severity determines incident response time:
 | 3 - Medium | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 business day |
 | 4 - Low | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 business day |
 
-Standard support is not available for Enterprise Dedicated or Bring your Own Cloud clusters.
+- Standard support is not available for Enterprise Dedicated or Bring your Own Cloud clusters.
 
 ### Enterprise
 
-Enterprise support is email based and is available 24 hours a day, seven days a week.
+- Enterprise support is email based and is available 24 hours a day, seven days a week.
 
-Severity 1 and Severity 2 incident response includes a  follow up phone call.
+- Severity 1 and Severity 2 incident response includes a  follow up phone call.
 
-Monitoring includes access to a dedicated status page. 
+- Monitoring includes access to a dedicated status page. 
 
-Severity determines incident response time:
+- Severity determines incident response time:
 
 | Severity | Criteria | Response Time |
 | :- | :- | :- |
@@ -49,19 +49,19 @@ Severity determines incident response time:
 
 For details, refer to your support agreement.
 
-Enterprise support is not available for Bring your Own Cloud clusters.
+- Enterprise support is not available for Bring your Own Cloud clusters.
 
 ### Business critical
 
-Business critical support is available 24 hours a day, seven days a week. Support is email based. 
+- Business critical support is available 24 hours a day, seven days a week. Support is email based. 
 
-Telephone hotline available 24 hours a day, seven days a week for escalations.
+- Telephone hotline available 24 hours a day, seven days a week for escalations.
 
-Severity 1, Severity 2, and Severity 3 incident response includes a follow up phone call.
+- Severity 1, Severity 2, and Severity 3 incident response includes a follow up phone call.
 
-Monitoring includes access to a dedicated status page and cluster metrics. 
+- Monitoring includes access to a dedicated status page and cluster metrics. 
 
-Severity determines incident response time:
+- Severity determines incident response time:
 
 | Severity | Criteria | Response Time |
 | :- | :- | :- |
@@ -81,17 +81,17 @@ Sandboxes are not eligible for paid support. For help with a sandbox instance, t
 
 ## Pricing
 
-Support costs are billed monthly. There is a minimum price for each support level, but the actual cost per month depends on the size of your database. 
+Support costs are billed monthly. There is a minimum price for each support level. The actual cost per month depends on your data. 
 
-Costs are based on resource usage. Each day, WCS counts the objects in your cluster and determines how many dimensions they have. This value is called the `vector dimension`. The vector dimension is the basis of the price calculation.
+Support costs are based on resource usage. Each day, WCS counts the objects in your cluster and multiples the number of objects by the number of dimensions per object. This value is called the `vector dimension`. The vector dimension is the basis of the price calculation.
 
 Compression saves resources and lowers the vector dimension number. If you enable compression, the cost savings are significant.
 
-Each SLA has a rate per one million vector dimensions. After WCS determines the number of vector dimensions in your cluster, it multiples that number by the SLA rate. The result is your usage charge. 
+Each support level (SLA) has a billing rate per one million vector dimensions. After WCS determines the number of vector dimensions in your cluster, WCS multiples that number by the SLA rate. The result is your usage charge. 
 
 If you have a high availability cluster (HA), WCS multiples the usage charge by three to account for the additional resources. 
 
-If your usage charge is less than the minimum monthly charge for your SLA, you are charged the monthly minimum. If your usage charge is higher than the minimum value, you ar charged for your usage. 
+If your usage charge is less than the minimum monthly charge for your SLA, you are charged the monthly minimum. If your usage charge is higher than the minimum value, you are charged for your usage. 
 
 To estimate costs at different usage levels, see the [pricing calculator](https://weaviate.io/services/serverless).
 
