@@ -124,9 +124,9 @@ export default function CalculatorContainer() {
               <p>1bd</p>
             </div>
           </div>
-          <div className={`${styles.lines} ${styles.line1}`}></div>
-          <div className={`${styles.lines} ${styles.line2}`}></div>
-          <div className={`${styles.lines} ${styles.line3}`}></div>
+          <div className={`${styles.lines} ${styles.lineA}`}></div>
+          <div className={`${styles.lines} ${styles.lineB}`}></div>
+          <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
       </div>
 
@@ -178,9 +178,9 @@ export default function CalculatorContainer() {
             <p>5bd</p>
           </div>
 
-          <div className={`${styles.lines} ${styles.line1}`}></div>
-          <div className={`${styles.lines} ${styles.line2}`}></div>
-          <div className={`${styles.lines} ${styles.line3}`}></div>
+          <div className={`${styles.lines} ${styles.lineA}`}></div>
+          <div className={`${styles.lines} ${styles.lineB}`}></div>
+          <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
 
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
@@ -225,9 +225,9 @@ export default function CalculatorContainer() {
             <p>2bd</p>
           </div>
 
-          <div className={`${styles.lines} ${styles.line1}`}></div>
-          <div className={`${styles.lines} ${styles.line2}`}></div>
-          <div className={`${styles.lines} ${styles.line3}`}></div>
+          <div className={`${styles.lines} ${styles.lineA}`}></div>
+          <div className={`${styles.lines} ${styles.lineB}`}></div>
+          <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
 
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
@@ -272,9 +272,9 @@ export default function CalculatorContainer() {
             <p>1bd</p>
           </div>
 
-          <div className={`${styles.lines} ${styles.line1}`}></div>
-          <div className={`${styles.lines} ${styles.line2}`}></div>
-          <div className={`${styles.lines} ${styles.line3}`}></div>
+          <div className={`${styles.lines} ${styles.lineA}`}></div>
+          <div className={`${styles.lines} ${styles.lineB}`}></div>
+          <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
       </div>
 

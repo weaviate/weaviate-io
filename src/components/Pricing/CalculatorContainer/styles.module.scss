@@ -517,7 +517,7 @@
   background: #f5f5f5;
   position: absolute;
   z-index: 0;
-  margin-left: -35px;
+  margin-left: -32px;
   transform: translateY(73px);
 
   @media screen and (max-width: 668px) {
@@ -525,13 +525,13 @@
   }
 }
 
-.line1 {
+.lineA {
   transform: translateY(105px);
 }
-.line2 {
+.lineB {
   transform: translateY(181px);
 }
-.line3 {
+.lineC {
   transform: translateY(254px);
 }
 
