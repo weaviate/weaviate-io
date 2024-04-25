@@ -61,6 +61,25 @@ export default function PricingTable() {
                 </div>
                 {/* Table Content */}
                 <div className={styles.tableContent}>
+                  <div
+                    className={`${styles.tablePoints} ${styles.mobilePoints}`}
+                  >
+                    <div className={styles.longCell}></div>
+                    <hr></hr>
+                    <div className={styles.smallCell}>
+                      <span className={styles.cellSpan}>Best for</span>
+                    </div>
+                    <hr></hr>
+                    <div className={styles.smallCell}>
+                      <span className={styles.cellSpan}>
+                        Deployment Options
+                      </span>
+                    </div>
+                    <hr></hr>
+                    <div className={styles.longCell}>
+                      <span className={styles.cellSpan}>Pricing type</span>
+                    </div>
+                  </div>
                   {/* Serverless Table */}
                   <div className={styles.serverlessTable}>
                     <div className={styles.longCell}>

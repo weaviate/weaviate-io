@@ -90,6 +90,15 @@
 .tablePoints {
   @media screen and (max-width: 1300px) {
     box-shadow: inset -7px 0px 0px 0px #0000002e;
+    display: none;
+  }
+}
+
+.mobilePoints {
+  display: none;
+  @media screen and (max-width: 1300px) {
+    box-shadow: inset -7px 0px 0px 0px #0000002e;
+    display: block;
   }
 }
 
@@ -279,6 +288,16 @@
     padding: 20px;
   }
 
+  @media screen and (max-width: 1200px) {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  @media screen and (max-width: 645px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .iconSection {
     display: flex;
     justify-content: center;
@@ -291,6 +310,16 @@
       gap: 40px;
     }
 
+    @media screen and (max-width: 1200px) {
+      align-items: flex-start;
+      margin: 30px 0px;
+    }
+
+    @media screen and (max-width: 645px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
     a {
       color: #130c49;
       font-family: Inter;
@@ -299,6 +328,10 @@
       font-weight: 400;
       line-height: 140%; /* 1.3125rem */
       text-decoration-line: underline;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -320,6 +353,11 @@
   }
 }
 
+.tableFooterText {
+  @media screen and (max-width: 1200px) {
+    font-size: 22px;
+  }
+}
 .longCard {
   width: 82%;
   margin: auto;
