@@ -11,6 +11,7 @@ import Soc2 from '../components/Pricing/SOC2/soc2';
 import WCS from '../components/Pricing/WCS';
 import CustomScriptLoader from '../components/scriptSwitch/index.jsx';
 import PricingTable from '../components/Pricing/Table/index.jsx';
+import CalculatorContainer from '../components/Pricing/CalculatorContainer/index.jsx';
 
 export default function ProductPage() {
   const [selectedType, setSelectedType] = useState('serverless');
@@ -35,6 +36,7 @@ export default function ProductPage() {
           // Render Serverless content
           <>
             <PricingTable />
+            <CalculatorContainer />
             {/*  <PricingPlan />
             <HybridBusinessCritical /> */}
             <Soc2 socLight="dark" />

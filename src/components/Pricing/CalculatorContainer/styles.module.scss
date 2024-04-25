@@ -1,7 +1,35 @@
 .header {
-  text-align: center;
-  margin: auto;
+  text-align: left;
+  color: #130c49;
   width: 85%;
+  margin: 40px auto;
+
+  h2 {
+    color: #130c49;
+  }
+
+  a {
+    color: #61bb73;
+    text-decoration: underline;
+  }
+
+  span {
+    color: #61bb73;
+    font-size: 1.25rem;
+    font-weight: 700;
+    width: 430px;
+  }
+
+  .subHeader {
+    width: 75%;
+
+    @media screen and (max-width: 688px) {
+      width: 100%;
+    }
+  }
+  .faqLink {
+    color: #ffffff;
+  }
 }
 
 .box {
@@ -115,8 +143,24 @@
 
   .buttonOutline {
     border-radius: 0.3125rem;
-    border: 1px solid #61bd73;
-    color: #fff;
+    border: 1px solid #130c49;
+    background: #61bb73;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+    transition: background-color 1s ease-out, border-color 1s ease-out,
+      color 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #130c49;
+    color: #ffffff;
     text-align: center;
     font-family: Inter;
     font-size: 1rem;
@@ -135,10 +179,8 @@
   }
 
   .title {
-    background: #130c49;
-    box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.08);
     h3 {
-      color: #ffffff;
+      color: #130c49;
     }
   }
 
@@ -306,7 +348,7 @@
 }
 
 .bgColor {
-  background: #130c49;
+  background: #f5f5f5;
 }
 
 .featuresLine {
@@ -322,7 +364,9 @@
   margin: 20px auto;
   height: 25.4rem;
   border-radius: 0.625rem;
-  border: 3px solid #262262;
+  border-radius: 0.84894rem;
+  background: #fff;
+  box-shadow: 0px 21.733px 57.954px 0px rgba(22, 27, 45, 0.08);
   display: flex;
   padding: 2rem;
   flex-direction: row;
@@ -332,8 +376,7 @@
     width: 95%;
     margin: 20px auto;
     height: 25.4rem;
-    border-radius: 0.625rem;
-    border: 3px solid #262262;
+
     display: flex;
     padding: 2rem;
     flex-direction: row;
@@ -379,7 +422,7 @@
   }
 
   h2 {
-    color: #fff;
+    color: #130c49;
     text-align: right;
     font-family: Inter;
     font-size: 1.625rem;
@@ -393,7 +436,7 @@
   }
 
   p {
-    color: #61bb73;
+    color: #130c49;
     text-align: right;
     font-size: 1rem;
     font-weight: 400;
@@ -407,7 +450,7 @@
     }
 
     span {
-      color: #ffffff;
+      color: #130c49;
     }
   }
 }
@@ -421,7 +464,7 @@
     width: 140px;
   }
   h2 {
-    color: #61bb73;
+    color: #130c49;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 700;
@@ -430,7 +473,7 @@
   }
   p {
     text-align: center;
-    color: #ffffff;
+    color: #130c49;
 
     @media screen and (max-width: 668px) {
       text-align: left;
@@ -441,14 +484,14 @@
   }
 
   .pricing {
-    color: #fff;
+    color: #130c49;
     margin: 20px 0px;
     font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
 
     span {
-      color: #fff;
+      color: #130c49;
       font-size: 1.5rem;
       font-style: normal;
       font-weight: 700;
@@ -471,7 +514,7 @@
   width: 80%;
   height: 2.25rem;
   flex-shrink: 0;
-  background: #262262;
+  background: #f5f5f5;
   position: absolute;
   z-index: 0;
   margin-left: -35px;
@@ -493,19 +536,19 @@
 }
 
 .sandbox {
-  border: 1px solid #61bd73;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   height: 8.18rem;
-  margin-top: 5rem;
+  width: 81%;
+  margin: 50px auto;
   border-radius: 12px;
   overflow: hidden;
-  background-color: #130c49;
-  color: #fff;
-  align-items: flex-start;
 
+  color: #130c49;
+  align-items: flex-start;
+  background-color: #fff;
   filter: drop-shadow(0px 24px 64px rgba(22, 27, 45, 0.08));
 
   @media screen and (max-width: 1040px) {
@@ -597,5 +640,47 @@
     font-size: 36px;
     content: '•';
     margin-top: -20px;
+  }
+}
+
+.buttonsSales {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 65px;
+  width: 213px;
+
+  @media screen and (max-width: 860px) {
+    flex-direction: column;
+    margin-top: 0px;
+  }
+
+  @media screen and (max-width: 640px) {
+    float: left;
+    margin: 0% -190% 10% 0%;
+    align-items: flex-start;
+  }
+
+  a {
+    height: 45px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonOutlineSales {
+    color: #130c49;
+    text-align: center;
+    font-size: 1rem;
+    text-decoration-line: underline;
+
+    @media screen and (max-width: 640px) {
+      width: 8rem;
+    }
   }
 }
