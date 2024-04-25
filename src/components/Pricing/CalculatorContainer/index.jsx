@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import Calculator from '../Calculator';
-import Sandbox from './Sandbox';
+import Sandbox from './sandbox.jsx';
 
 export default function CalculatorContainer() {
   return (
