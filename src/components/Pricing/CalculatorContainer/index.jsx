@@ -75,21 +75,7 @@ export default function CalculatorContainer() {
                 </p>
                 <p>$0.145</p>
                 <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="13"
-                    viewBox="0 0 18 13"
-                    fill="none"
-                  >
-                    <path
-                      d="M2 6.2711L6.82222 11L16 2"
-                      stroke="#130C49"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  <div className={styles.tick}></div>
                 </p>
                 <p>4h (24/7)</p>
                 <p>8h (24/7)</p>
@@ -103,21 +89,7 @@ export default function CalculatorContainer() {
                 </p>
                 <p>$0.175</p>
                 <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="13"
-                    viewBox="0 0 18 13"
-                    fill="none"
-                  >
-                    <path
-                      d="M2 6.2711L6.82222 11L16 2"
-                      stroke="#130C49"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  <div className={styles.tick}></div>
                 </p>
                 <p>1h (24/7)</p>
                 <p>4h (24/7)</p>
@@ -210,21 +182,7 @@ export default function CalculatorContainer() {
               </p>
               <p>$0.145</p>
               <p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="13"
-                  viewBox="0 0 18 13"
-                  fill="none"
-                >
-                  <path
-                    d="M2 6.2711L6.82222 11L16 2"
-                    stroke="#130C49"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <div className={styles.tick}></div>
               </p>
               <p>4h (24/7)</p>
               <p>8h (24/7)</p>
@@ -260,21 +218,7 @@ export default function CalculatorContainer() {
               </p>
               <p>$0.175</p>
               <p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="13"
-                  viewBox="0 0 18 13"
-                  fill="none"
-                >
-                  <path
-                    d="M2 6.2711L6.82222 11L16 2"
-                    stroke="#130C49"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <div className={styles.tick}></div>
               </p>
               <p>1h (24/7)</p>
               <p>4h (24/7)</p>

@@ -513,6 +513,16 @@
   }
 }
 
+.tick {
+  background-image: url('/img/site/tick-vector.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 21px;
+  margin: 17px auto;
+  height: 15px;
+}
+
 .lines {
   margin: 38px 0px;
   width: 80%;

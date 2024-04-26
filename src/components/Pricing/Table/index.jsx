@@ -118,8 +118,8 @@ export default function PricingTable() {
                       </span>
                       <div className={styles.buttons}>
                         <Link
+                          to="https://console.weaviate.cloud/signin?callbackUrl=https%3A%2F%2Fconsole.weaviate.cloud%2F"
                           className={styles.buttonGradient}
-                          onClick={openModal}
                         >
                           Sign up
                         </Link>
