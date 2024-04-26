@@ -17,10 +17,10 @@ Key notes:
 - This module is not available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module is only compatible with models encapsulated in a Docker container.
-- [Pre-built images](#option-1-pre-built-images) are available with popular models.
+- [Pre-built images](#use-a-pre-built-image) are available with popular models.
 - You can also use other models, such as:
-    - By [building an image](#option-2-a-hugging-face-model) for any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
-    - By [building an image](#option-3-a-private-or-local-model) for any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
+    - By [building an image](#build-a-model) for any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
+    - By [building an image](#use-a-private-or-local-model) for any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
 
 :::tip Do you have GPU acceleration?
 
