@@ -2,11 +2,24 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import Calculator from '../Calculator';
+import Sandbox from './sandbox.jsx';
 
 export default function CalculatorContainer() {
   return (
     <div className={styles.bgColor}>
       <div className={styles.container}>
+        <div className={styles.header}>
+          <h2>Serverless Pricing</h2>
+          <p className={styles.subHeader}>
+            Our pricing is based on dimensions stored and chosen SLA tier. The
+            exact calculation can be found in the{' '}
+            <Link className={styles.faqLink} to="#faq">
+              FAQ
+            </Link>{' '}
+            (not inclusive of discounts and taxes).
+          </p>
+        </div>
+        <Sandbox />
         <Calculator />
         <div className={styles.desktopPlan}>
           <div className={styles.productPlan}>
@@ -38,13 +51,13 @@ export default function CalculatorContainer() {
                   >
                     <path
                       d="M2.0625 2L12.125 11.9395"
-                      stroke="white"
+                      stroke="#130C49"
                       stroke-width="3"
                       stroke-linecap="round"
                     />
                     <path
                       d="M12.0625 2L2 11.9395"
-                      stroke="white"
+                      stroke="#130C49"
                       stroke-width="3"
                       stroke-linecap="round"
                     />
@@ -62,21 +75,7 @@ export default function CalculatorContainer() {
                 </p>
                 <p>$0.145</p>
                 <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="13"
-                    viewBox="0 0 18 13"
-                    fill="none"
-                  >
-                    <path
-                      d="M2 6.2711L6.82222 11L16 2"
-                      stroke="white"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  <div className={styles.tick}></div>
                 </p>
                 <p>4h (24/7)</p>
                 <p>8h (24/7)</p>
@@ -90,21 +89,7 @@ export default function CalculatorContainer() {
                 </p>
                 <p>$0.175</p>
                 <p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="13"
-                    viewBox="0 0 18 13"
-                    fill="none"
-                  >
-                    <path
-                      d="M2 6.2711L6.82222 11L16 2"
-                      stroke="white"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  <div className={styles.tick}></div>
                 </p>
                 <p>1h (24/7)</p>
                 <p>4h (24/7)</p>
@@ -112,10 +97,9 @@ export default function CalculatorContainer() {
                 <p>1bd</p>
               </div>
             </div>
-
-            <div className={`${styles.lines} ${styles.line1}`}></div>
-            <div className={`${styles.lines} ${styles.line2}`}></div>
-            <div className={`${styles.lines} ${styles.line3}`}></div>
+            <div className={`${styles.lines} ${styles.lineA}`}></div>
+            <div className={`${styles.lines} ${styles.lineB}`}></div>
+            <div className={`${styles.lines} ${styles.lineC}`}></div>
           </div>
         </div>
         <div className={styles.explanation}>
@@ -152,13 +136,13 @@ export default function CalculatorContainer() {
                 >
                   <path
                     d="M2.0625 2L12.125 11.9395"
-                    stroke="white"
+                    stroke="#130C49"
                     stroke-width="3"
                     stroke-linecap="round"
                   />
                   <path
                     d="M12.0625 2L2 11.9395"
-                    stroke="white"
+                    stroke="#130C49"
                     stroke-width="3"
                     stroke-linecap="round"
                   />
@@ -170,9 +154,9 @@ export default function CalculatorContainer() {
               <p>5bd</p>
             </div>
 
-            <div className={`${styles.lines} ${styles.line1}`}></div>
-            <div className={`${styles.lines} ${styles.line2}`}></div>
-            <div className={`${styles.lines} ${styles.line3}`}></div>
+            <div className={`${styles.lines} ${styles.lineA}`}></div>
+            <div className={`${styles.lines} ${styles.lineB}`}></div>
+            <div className={`${styles.lines} ${styles.lineC}`}></div>
           </div>
           <div className={`${styles.explanation} ${styles.mob}`}>
             <span>*bd = Business Day</span>
@@ -198,21 +182,7 @@ export default function CalculatorContainer() {
               </p>
               <p>$0.145</p>
               <p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="13"
-                  viewBox="0 0 18 13"
-                  fill="none"
-                >
-                  <path
-                    d="M2 6.2711L6.82222 11L16 2"
-                    stroke="white"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <div className={styles.tick}></div>
               </p>
               <p>4h (24/7)</p>
               <p>8h (24/7)</p>
@@ -220,9 +190,9 @@ export default function CalculatorContainer() {
               <p>2bd</p>
             </div>
 
-            <div className={`${styles.lines} ${styles.line1}`}></div>
-            <div className={`${styles.lines} ${styles.line2}`}></div>
-            <div className={`${styles.lines} ${styles.line3}`}></div>
+            <div className={`${styles.lines} ${styles.lineA}`}></div>
+            <div className={`${styles.lines} ${styles.lineB}`}></div>
+            <div className={`${styles.lines} ${styles.lineC}`}></div>
           </div>
           <div className={`${styles.explanation} ${styles.mob}`}>
             <span>*bd = Business Day</span>
@@ -248,21 +218,7 @@ export default function CalculatorContainer() {
               </p>
               <p>$0.175</p>
               <p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="13"
-                  viewBox="0 0 18 13"
-                  fill="none"
-                >
-                  <path
-                    d="M2 6.2711L6.82222 11L16 2"
-                    stroke="white"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <div className={styles.tick}></div>
               </p>
               <p>1h (24/7)</p>
               <p>4h (24/7)</p>
@@ -270,13 +226,13 @@ export default function CalculatorContainer() {
               <p>1bd</p>
             </div>
 
-            <div className={`${styles.lines} ${styles.line1}`}></div>
-            <div className={`${styles.lines} ${styles.line2}`}></div>
-            <div className={`${styles.lines} ${styles.line3}`}></div>
+            <div className={`${styles.lines} ${styles.lineA}`}></div>
+            <div className={`${styles.lines} ${styles.lineB}`}></div>
+            <div className={`${styles.lines} ${styles.lineC}`}></div>
           </div>
-          <div className={`${styles.explanation} ${styles.mob}`}>
-            <span>*bd = Business Day</span>
-          </div>
+        </div>
+        <div className={`${styles.explanation} ${styles.mob}`}>
+          <span>*bd = Business Day</span>
         </div>
 
         <div className={styles.buttons}>
