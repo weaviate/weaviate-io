@@ -11,28 +11,54 @@ export default function ServicePlan() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.header}>
+          <h2>Highlights</h2>
+          <span>
+            All the features of our{' '}
+            <Link to="/platform">AI-native vector database</Link>, plus:
+          </span>
+          <div className={styles.highlightSection}>
+            <div className={styles.highlights}>
+              <div className={styles.hlPoint}>Choose from 5 cloud regions</div>
+              <div className={styles.hlPoint}>
+                Link your external Weaviate clusters
+              </div>
+              <div className={styles.hlPoint}>
+                <p>
+                  <Link to="/blog/pq-rescoring">Product Quantization</Link> (PQ)
+                  and{' '}
+                  <Link to="/blog/binary-quantization">
+                    Binary Quantization
+                  </Link>{' '}
+                  (BQ) optional
+                </p>
+              </div>
+              <div className={styles.hlPoint}>
+                Built-in API key-based authentication
+              </div>
+            </div>
+            <div className={styles.highlights}>
+              <div className={styles.hlPoint}>High-availability optional</div>
+              <div className={styles.hlPoint}>GUI for GraphQL queries</div>
+              <div className={styles.hlPoint}>
+                Collections definition and management (coming soon)
+              </div>
+              <div className={styles.hlPoint}>
+                Access to support from our experts for all clusters
+              </div>
+            </div>
+          </div>
           <h2>Ready to get started? Choose your plan.</h2>
-          <p>
-            The fastest way to build and iterate with our{' '}
-            <Link to="/platform">AI-native vector database</Link>.
+          <p className={styles.subHeader}>
+            Our pricing is based on dimensions stored and chosen SLA tier. The
+            exact calculation can be found in the{' '}
+            <Link className={styles.faqLink} to="/pricing#faq">
+              FAQ
+            </Link>{' '}
+            (not inclusive of discounts and taxes).
           </p>
         </div>
         <div className={styles.planContainer} id="plan">
           <PricingSandBox />
-          <h3 className={styles.packageHeader}>Serverless Packages</h3>
-          <div className={styles.plan}>
-            <PricingStandard />
-            <PricingEnterprise />
-            <PricingBusinessCritical />
-          </div>
-          <div className={styles.buttons}>
-            <Link
-              className={styles.buttonOutline}
-              to="https://console.weaviate.cloud/"
-            >
-              Get started with Serverless
-            </Link>
-          </div>
         </div>
       </div>
     </div>
