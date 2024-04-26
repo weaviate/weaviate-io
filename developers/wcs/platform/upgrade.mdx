@@ -4,9 +4,11 @@ sidebar_position: 30
 # image: og/wcs/user_guides.jpg
 ---
 
-import WCSUpdateIntro from '/_includes/wcs/update-intro.mdx';
+WCS does not automatically upgrade existing clusters when a new version of Weaviate core is released. 
 
-<WCSUpdateIntro />
+The WCS console shows an "Update!" button on the details panel when a newer version is available. 
+
+If you have a stand-alone cluster, an upgrade requires system downtime. Consider your business needs, and upgrade your cluster when you have a suitable maintenance window. There is no downtime if you have a high availability (HA) cluster.
 
 ## Check the server version
 
@@ -36,11 +38,11 @@ Click to expand the notification. The notification displays a list of clusters t
 
 ![WCS Upgrade notification details](../img/wcs-upgrade-notification-details.jpg)
 
-## Update the server version
+## Upgrade the server version
 
- WCS restarts your cluster during an upgrade. To avoid downtime, consider using high availability (HA) clusters for production workloads. A standard cluster is unavailable during upgrade. An HA cluster upgrades one node at a time so the cluster is available during the update.
+ WCS restarts your cluster during an upgrade. To avoid downtime, consider using high availability (HA) clusters for production workloads. A standard cluster is unavailable during upgrade. An HA cluster upgrades one node at a time so the cluster is available during the upgrade.
 
- To update a cluster, follow these steps:
+ To upgrade a cluster, follow these steps:
  
  1. Click the "Upgrade!" button on the cluster details tile.
  1. Enter your cluster name in the text entry box.
@@ -48,7 +50,7 @@ Click to expand the notification. The notification displays a list of clusters t
  
 ![WCS Upgrade confirmation](../img/wcs-upgrade-confirmation.jpg)
 
-During the update, the console displays a status indicator.
+During the upgrade, the console displays a status indicator.
 
 ![WCS update status indicator](../img/wcs-upgrade-status-indicator.jpg)
 
