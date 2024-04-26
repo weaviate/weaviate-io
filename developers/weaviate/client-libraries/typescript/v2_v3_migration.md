@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 
 :::note TypeScript client version
-The current TypeScript client version is `v||site.typescript_client_version||`
+The current TypeScript client version is `v||site.typescript_client_version||`.
+
+The TypeScript client v3 is in beta release. To comment on the beta client, contact us in the [Community forum](https://forum.weaviate.io).
 :::
 
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
