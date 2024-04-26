@@ -6,13 +6,21 @@ sidebar_position: 30
 
 WCS does not automatically upgrade existing clusters when a new version of Weaviate core is released. 
 
-The WCS console shows an "Update!" button on the details panel when a newer version is available. 
-
 If you have a stand-alone cluster, an upgrade requires system downtime. Consider your business needs, and upgrade your cluster when you have a suitable maintenance window. There is no downtime if you have a high availability (HA) cluster.
 
 ## Check the server version
 
 Check for a Weaviate server update.
+
+### Console message
+
+The console displays a notification message in the console when a new version is available.
+
+![WCS Upgrade notification message](../img/wcs-upgrade-banner.jpg)
+
+Click to expand the notification. The notification displays a list of clusters that can be upgraded.
+
+![WCS Upgrade notification details](../img/wcs-upgrade-notification-details.jpg)
 
 ### Details panel
 
@@ -27,16 +35,6 @@ The tile has an "Update!" button when a newer version is available.
 <WCSUpdateIntro />
 
 ![WCS Upgrade available indicator](../img/wcs-upgrade-details.jpg)
-
-### Console message
-
-The console displays a notification message in the console when a new version is available.
-
-![WCS Upgrade notification message](../img/wcs-upgrade-banner.jpg)
-
-Click to expand the notification. The notification displays a list of clusters that can be upgraded.
-
-![WCS Upgrade notification details](../img/wcs-upgrade-notification-details.jpg)
 
 ## Upgrade the server version
 
