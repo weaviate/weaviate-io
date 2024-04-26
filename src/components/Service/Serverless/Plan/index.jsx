@@ -32,12 +32,18 @@ export default function ServicePlan() {
                   (BQ) optional
                 </p>
               </div>
+              <div className={styles.hlPoint}>
+                Built-in API key-based authentication
+              </div>
             </div>
             <div className={styles.highlights}>
               <div className={styles.hlPoint}>High-availability optional</div>
               <div className={styles.hlPoint}>GUI for GraphQL queries</div>
               <div className={styles.hlPoint}>
-                Collections definition and management
+                Collections definition and management (coming soon)
+              </div>
+              <div className={styles.hlPoint}>
+                Access to support from our experts for all clusters
               </div>
             </div>
           </div>
@@ -45,7 +51,7 @@ export default function ServicePlan() {
           <p className={styles.subHeader}>
             Our pricing is based on dimensions stored and chosen SLA tier. The
             exact calculation can be found in the{' '}
-            <Link className={styles.faqLink} to="/platform">
+            <Link className={styles.faqLink} to="/pricing#faq">
               FAQ
             </Link>{' '}
             (not inclusive of discounts and taxes).

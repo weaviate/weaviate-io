@@ -12,7 +12,7 @@ export default function CalculatorContainer() {
         <p className={styles.subHeader}>
           Our pricing is based on dimensions stored and chosen SLA tier. The
           exact calculation can be found in the{' '}
-          <Link className={styles.faqLink} to="/platform">
+          <Link className={styles.faqLink} to="#faq">
             FAQ
           </Link>{' '}
           (not inclusive of discounts and taxes).
@@ -129,6 +129,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
       </div>
+      <div className={styles.explanation}>
+        <span>*bd = Business Day</span>
+      </div>
 
       <div className={styles.mobile}>
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
@@ -182,6 +185,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.lineB}`}></div>
           <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
+        <div className={`${styles.explanation} ${styles.mob}`}>
+          <span>*bd = Business Day</span>
+        </div>
 
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
           <div className={styles.plans}>
@@ -228,6 +234,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.lineA}`}></div>
           <div className={`${styles.lines} ${styles.lineB}`}></div>
           <div className={`${styles.lines} ${styles.lineC}`}></div>
+        </div>
+        <div className={`${styles.explanation} ${styles.mob}`}>
+          <span>*bd = Business Day</span>
         </div>
 
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
@@ -276,6 +285,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.lineB}`}></div>
           <div className={`${styles.lines} ${styles.lineC}`}></div>
         </div>
+      </div>
+      <div className={`${styles.explanation} ${styles.mob}`}>
+        <span>*bd = Business Day</span>
       </div>
 
       <div className={styles.buttons}>

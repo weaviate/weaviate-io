@@ -111,10 +111,14 @@ export default function CalculatorContainer() {
               <p>1bd</p>
             </div>
           </div>
+
           <div className={`${styles.lines} ${styles.line1}`}></div>
           <div className={`${styles.lines} ${styles.line2}`}></div>
           <div className={`${styles.lines} ${styles.line3}`}></div>
         </div>
+      </div>
+      <div className={styles.explanation}>
+        <span>*bd = Business Day</span>
       </div>
 
       <div className={styles.mobile}>
@@ -169,6 +173,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.line2}`}></div>
           <div className={`${styles.lines} ${styles.line3}`}></div>
         </div>
+        <div className={`${styles.explanation} ${styles.mob}`}>
+          <span>*bd = Business Day</span>
+        </div>
 
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
           <div className={styles.plans}>
@@ -216,6 +223,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.line2}`}></div>
           <div className={`${styles.lines} ${styles.line3}`}></div>
         </div>
+        <div className={`${styles.explanation} ${styles.mob}`}>
+          <span>*bd = Business Day</span>
+        </div>
 
         <div className={`${styles.productPlan} ${styles.mobilePlans}`}>
           <div className={styles.plans}>
@@ -262,6 +272,9 @@ export default function CalculatorContainer() {
           <div className={`${styles.lines} ${styles.line1}`}></div>
           <div className={`${styles.lines} ${styles.line2}`}></div>
           <div className={`${styles.lines} ${styles.line3}`}></div>
+        </div>
+        <div className={`${styles.explanation} ${styles.mob}`}>
+          <span>*bd = Business Day</span>
         </div>
       </div>
 
