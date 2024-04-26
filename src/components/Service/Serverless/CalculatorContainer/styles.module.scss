@@ -322,8 +322,15 @@
 
 .bgColor {
   background: #130c49;
+  margin-top: -2px;
 }
 
+.container {
+  @media (min-width: 1440px) {
+    max-width: var(--ifm-container-width-xl);
+    margin: auto;
+  }
+}
 .featuresLine {
   width: 150%;
 
@@ -437,7 +444,7 @@
   }
   h2 {
     color: #61bb73;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
     text-align: center;
@@ -491,6 +498,7 @@
   z-index: 0;
   margin-left: -35px;
   transform: translateY(73px);
+  max-width: 1056px;
 
   @media screen and (max-width: 668px) {
     width: 95%;
@@ -516,9 +524,8 @@
   font-style: normal;
   font-weight: 300;
   margin-top: -57px;
-  display: block;
 
-  @media screen and (max-width: 668px) {
+  @media screen and (max-width: 1230px) {
     display: none;
   }
 }
@@ -526,7 +533,7 @@
 .mob {
   display: none;
 
-  @media screen and (max-width: 668px) {
+  @media screen and (max-width: 1230px) {
     display: block;
   }
 }
