@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::note TypeScript client version
 The current TypeScript client version is `v||site.typescript_client_version||`.
-
+<br />
 The TypeScript client v3 is in beta release. To comment on the beta client, contact us in the [Community forum](https://forum.weaviate.io).
 :::
 
