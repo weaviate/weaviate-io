@@ -2,7 +2,7 @@
 title: Telemetry
 sidebar_position: 80
 image: og/docs/configuration.jpg
-# tags: ['HNSW']
+# tags: ['telemetry', 'reference', 'configuration']
 ---
 
 In order to better understand community needs, Weaviate collects some telemetry data. This data helps Weaviate to identify usage trends and improve our software for our users. Weaviate collects this information by default, but you can disable telemetry at any time.

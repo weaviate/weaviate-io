@@ -45,7 +45,7 @@ import fs from 'fs';
 const client = weaviate.client({
   scheme: 'http',
   host: 'localhost:8080',  // Replace with your Weaviate URL
-  // Uncomment if authentication is on, and replace w/ your Weaviate instance API key.
+  // Uncomment if authentication is on, and replace with your Weaviate instance API key.
   // apiKey: new weaviate.ApiKey('YOUR-WEAVIATE-API-KEY'),
 });
 

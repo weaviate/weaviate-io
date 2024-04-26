@@ -17,10 +17,10 @@ Key notes:
 - This module is not available on Weaviate Cloud Services (WCS).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module is only compatible with models encapsulated in a Docker container.
-- [Pre-built images](#option-1-pre-built-images) are available with popular models.
+- [Pre-built images](#use-a-pre-built-image) are available with popular models.
 - You can also use other models, such as:
-    - By [building an image](#option-2-a-hugging-face-model) for any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
-    - By [building an image](#option-3-a-private-or-local-model) for any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
+    - By [building an image](#build-a-model) for any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
+    - By [building an image](#use-a-private-or-local-model) for any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
 
 :::tip Do you have GPU acceleration?
 
@@ -232,6 +232,11 @@ We have built images from publicly available models that in our opinion are well
 |Bar-Ilan University NLP Lab Models|
 |`biu-nlp/abstract-sim-sentence` ([Info](https://huggingface.co/biu-nlp/abstract-sim-sentence))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-sentence`|
 |`biu-nlp/abstract-sim-query` ([Info](https://huggingface.co/biu-nlp/abstract-sim-query))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-query`|
+|Snowflake models|
+|`Snowflake/snowflake-arctic-embed-xs` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-xs))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-xs`|
+|`Snowflake/snowflake-arctic-embed-s` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-s))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-s`|
+|`Snowflake/snowflake-arctic-embed-m` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-m))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-m`|
+|`Snowflake/snowflake-arctic-embed-l` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-l))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-l`|
 
 </details>
 
@@ -250,6 +255,10 @@ Look for the `-onnx` suffix in the image name.
 |`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
 |`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
 |`BAAI/bge-m3` ([Info](https://huggingface.co/BAAI/bge-m3))|`semitechnologies/transformers-inference:baai-bge-m3-onnx`|
+|`Snowflake/snowflake-arctic-embed-xs` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-xs))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-xs-onnx`|
+|`Snowflake/snowflake-arctic-embed-s` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-s))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-s-onnx`|
+|`Snowflake/snowflake-arctic-embed-m` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-m))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-m-onnx`|
+|`Snowflake/snowflake-arctic-embed-l` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-l))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-l-onnx`|
 
 </details>
 

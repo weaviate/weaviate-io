@@ -1,9 +1,9 @@
 # CreateMovieCollection
 import weaviate
+import os
 
 # CreateMovieCollection  # SubmoduleImport
 import weaviate.classes.config as wc
-import os
 
 # CreateMovieCollection  # END SubmoduleImport
 
@@ -52,12 +52,13 @@ client.close()
 # ManuallyGenerateEmbeddings
 import requests
 import pandas as pd
+import os
 
 
 # Define a function to call the endpoint and obtain embeddings
 def query(texts):
-    import requests
     import os
+    import requests
 
     model_id = "sentence-transformers/all-MiniLM-L6-v2"
     hf_token = os.getenv("HUGGINGFACE_APIKEY")
@@ -99,6 +100,7 @@ for i, row in enumerate(df.itertuples(index=False)):
 emb_df = pd.concat(emb_dfs)  # Create a combined dataset
 
 # Save the data as a CSV
+os.makedirs("scratch", exist_ok=True)  # Create a folder if it doesn't exist
 emb_df.to_csv(
     f"scratch/movies_data_1990_2024_embeddings.csv",
     index=False,
@@ -138,8 +140,12 @@ data_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/ma
 data_resp = requests.get(data_url)
 df = pd.DataFrame(data_resp.json())
 
-embs_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
-emb_df = pd.read_csv(embs_url)
+# Load the embeddings (embeddings from the previous step)
+embs_path = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024_embeddings.csv"
+# Or load embeddings from a local file (if you generated them earlier)
+# embs_path = "scratch/movies_data_1990_2024_embeddings.csv"
+
+emb_df = pd.read_csv(embs_path)
 
 # Get the collection
 movies = client.collections.get("Movie")

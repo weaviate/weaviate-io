@@ -186,13 +186,21 @@ page](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-transfo
 
 The `text2vec-transformers` module requires at least Weaviate version `v1.2.0`.
 
+### Unreleased versions
 
-## Multi-node setup
+import RunUnreleasedImages from '/_includes/configuration/run-unreleased.mdx'
 
-You can create a multi-node setup with Weaviate using docker compose. To do so, you need to:
-- Set up one node as a "founding" member, and configure the other nodes in the cluster to join it using the `CLUSTER_JOIN` variable.
-- Configure `CLUSTER_GOSSIP_BIND_PORT` and `CLUSTER_DATA_BIND_PORT` for each node.
-- Optionally, you can set the hostname for each node using `CLUSTER_HOSTNAME`.
+<RunUnreleasedImages />
+
+## Multi-node configuration
+
+To configure Weaviate to use multiple host nodes, follow these steps: 
+
+- Configure one node as a "founding" member
+- Set the `CLUSTER_JOIN` variable for the other nodes in the cluster.
+- Set the `CLUSTER_GOSSIP_BIND_PORT` for each node.
+- Set the `CLUSTER_DATA_BIND_PORT` for each node.
+- Optionally, set the hostname for each node using `CLUSTER_HOSTNAME`.
 
 (Read more about [horizontal replication in Weaviate](../concepts/cluster.md).)
 

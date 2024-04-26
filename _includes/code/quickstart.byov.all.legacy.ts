@@ -4,8 +4,8 @@ import fetch from 'node-fetch';
 
 const client: WeaviateClient = weaviate.client({
   scheme: 'https',
-  host: 'some-endpoint.weaviate.cloud',  // Replace with your endpoint
-  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace w/ your Weaviate instance API key
+  host: 'WEAVIATE_INSTANCE_URL,  // Replace with your Weaviate endpoint
+  apiKey: new ApiKey('YOUR-WEAVIATE-API-KEY'),  // Replace with your Weaviate instance API key
 });
 
 // Class definition object. Weaviate's autoschema feature will infer properties when importing.

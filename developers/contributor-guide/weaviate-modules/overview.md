@@ -84,8 +84,8 @@ Modules can be "vectorizers" (defines how the numbers in the vectors are chosen 
   - Other modules: `<functionality>-<name>-<optional>`.
   - A module name must be url-safe, meaning it must not contain any characters which would require url-encoding.
   - A module name is not case-sensitive. `text2vec-bert` would be the same module as `text2vec-BERT`.
-- Module information is accessible through the [`v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint](/developers/weaviate/api/rest/modules.md).
-- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](/developers/weaviate/api/rest/meta.md).
+- Module information is accessible through the `v1/modules/<module-name>/<module-specific-endpoint>` RESTful endpoint.
+- General module information (which modules are attached, version, etc.) is accessible through Weaviate's [`v1/meta` endpoint](developers/weaviate/api/rest#tag/meta).
 - Modules can add `additional` properties in the RESTful API and [`_additional` properties in the GraphQL API](/developers/weaviate/api/graphql/additional-properties.md).
 - A module can add [filters](/developers/weaviate/api/graphql/filters.md) in GraphQL queries.
 - Which vectorizer and other modules are applied to which data classes is configured in the [schema](/developers/weaviate/manage-data/collections.mdx#specify-a-vectorizer).

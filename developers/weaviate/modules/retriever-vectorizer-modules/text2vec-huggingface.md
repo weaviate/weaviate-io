@@ -22,8 +22,8 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::tip Not applicable to WCS
-This module is enabled and pre-configured on Weaviate Cloud Services.
+:::tip
+If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
