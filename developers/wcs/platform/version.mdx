@@ -12,11 +12,11 @@ When you provision a new cluster, WCS uses the current version of Weaviate core 
 
 ## Upgrade
 
-WCS does not automatically update existing clusters when a new version of Weaviate core is released. 
+import WCSUpdateIntro from '/_includes/wcs/update-intro.mdx';
 
-An "Update!" button is visible on the details panel when a newer version is available. Consider your business needs, and [upgrade your cluster](/developers/wcs/platform/version) when you have a suitable maintenance window.  
+<WCSUpdateIntro />
 
-![WCS Upgrade available indicator](img/wcs-upgrade-details.jpg)
+![WCS Upgrade available indicator](../img/wcs-upgrade-details.jpg)
 
 ## Security upgrades
 
@@ -30,3 +30,9 @@ An "Update!" button is visible on the details panel when a newer version is avai
 - **Data integrity**. If your cluster's Weaviate core version has a known risk of data loss or corruption, WCS upgrades the cluster when a fix is released.
 - **Downgrade**. You cannot downgrade your WCS cluster to an earlier version of Weaviate core.
 - **Enterprise customers**. If you are an enterprise customer and you require a specific version of Weaviate core, contact your support representative. In some circumstances, WCS can install a specific Weaviate core version.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />
