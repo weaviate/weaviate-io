@@ -13,34 +13,31 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 The current TypeScript client version is `v||site.typescript_client_version||`
 :::
 
-
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
 <TSClientIntro />
-
 
 ## Install 
 
 To install the TypeScript client v3, follow these steps: 
 
-1. Update your version of Node.js.
+1. **Update Node.js**
 
-   - The minimum version of Node supported by the v3 client is Node 18. 
+   The v3 client requires `Node v18` or higher. 
 
-2. Install the new client package.
+1. **Install the new client package**
     
   ```bash
   npm install weaviate-client --tag beta
   ```
 
+1. **Upgrade Weaviate**
 
-3. Upgrade Weaviate to a compatible version
+   The v3 client requires Weaviate core `1.23.7` or higher. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
 
-    - Weaviate core `1.23.7` is required for `v3.0` of the client. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
+1. **Open a gRPC port**
 
-4. Open a gRPC port for Weaviate.
-
-    - The default port is 50051.
+   The default gRPC port is 50051.
 
     <details>
       <summary>docker-compose.yml</summary>
@@ -56,12 +53,14 @@ To install the TypeScript client v3, follow these steps:
 
 ## Instantiate a client
  
-The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object.
+The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object and [creates a connection](/developers/weaviate/starter-guides/connect) to your Weaviate instance.
 
-You can instantiate the client directly, but in most cases you should use one of the helper functions:
+In most cases, you should use one of the connection helper functions to connect to your Weaviate instance: 
 
-- [`connectToLocal`](#NEEDS_LINK)
-- [`connectToWCS`](#NEEDS_LINK)
+- `connectToWCS`
+- `connectToLocal`
+
+You can also use a custom configuration to instantiate the client directly:
 
 <Tabs groupId="platforms">
 <TabItem value="wcs" label="WCS">
@@ -133,10 +132,21 @@ console.log(client)
 </TabItem>
 </Tabs>
 
-## Work with collections
+## Changes in v3
+
+The v3 client introduces a new way to work with your data. Here are some of the important changes:
+
+- [Collection object replaces client object](#work-with-collections)
+- [Builder pattern is removed](#builder-pattern-is-removed)
+- [Bulk inserts](#bulk-inserts)
+- [Close clients explicitly](#client-close-method)
+- [Data filtering](#filter-data)
+- [Namespace for generative models](#generate-namespace)
+- [Update return object](#return-object)
+
+### Work with collections
 
 The v2 client uses the `client` object for CRUD and search operations. In the v3 client, the `collection` object replaces the `client` object.
-
 
 After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
 
@@ -172,7 +182,7 @@ console.log(JSON.stringify(result, null, 2));
 
 Note here that the collection object can be re-used throughout the codebase.
 
-## Builder Pattern is removed
+### Builder Pattern is removed
 
 The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
 
@@ -206,26 +216,17 @@ result = await client.graphql
   .withFields('question answer _additional { distance }')
   .do();
 
-
 console.log(JSON.stringify(result, null, 2));
 ```
 
 </TabItem>
 </Tabs>
 
+### Bulk Inserts
 
-Types make code safer and easier to understand. Typed method parameters also make the client library easier to use and reduce errors.
+The `insertMany()` method replaces `objectBatcher()` to make batch insertions easier.
 
-The gRPC protocol is fast and provides other internal benefits. Unfortunately, it does not support web client based development.
-
-The v3 client supports Node.js, server based development. It does not support web client development.
-
-To develop a browser based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
-
-## Bulk Inserts
-
-
-The insertMany() method replaces objectBatcher() to make batch insertions easier.
+For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -258,18 +259,15 @@ await batcher5.do();
 </TabItem>
 </Tabs>
 
-For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
-
-## Client Close Method
+### Client Close Method
 
 import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
 
-
 <TSClientClose />
 
-## Filter data
+### Filter data
 
-The Filter helper class makes it easier to use filters with conditions. The v3 client streamlines how you use Filter so your code is cleaner and more concise.
+The `Filter` helper class makes it easier to use filters with conditions. The v3 client streamlines how you use `Filter` so your code is cleaner and more concise.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -322,9 +320,9 @@ console.log(JSON.stringify(result, null, 2));
 </TabItem>
 </Tabs>
 
-## Generate Namespace
+### Generate Namespace
 
-The v3 client adds a new namespace, generate. Use the generate namespace like the query namespace to make queries.
+The v3 client adds a new namespace, `generate`. Use the generate namespace like the query namespace to make queries.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -369,11 +367,9 @@ console.log(JSON.stringify(result, null, 2));
 </TabItem>
 </Tabs>
 
-## Return object 
-
+### Return object 
 
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
-
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -385,7 +381,6 @@ response.objects[0].generated  // Get the generated text from a `singlePrompt` r
 response.generated  // Get the generated text from a `groupedTask` request
 response.metadata?.creationTime // Get the creation time as a native JS Date value
 ```
-
 
 </TabItem>
 <TabItem value="jsv2" label="JS/TS (v2)">
@@ -403,20 +398,11 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## How to migrate your code
 
-To get started, see the TypeScript client [documentation](/developers/weaviate/client-libraries/typescript/typescript-v3).
-
-- [Client instantiation](./index.mdx#installation-and-setup),
-- [Manage collections](../../manage-data/collections.mdx),
-- [Batch import](../../manage-data/import.mdx)
-- [Cross-reference](../../manage-data/cross-references.mdx)
-- [Basic search](../../search/basics.md)
-- [Similarity search](../../search/similarity.md)
-- [Filters](../../search/filters.md)
-                         
-For code examples, see these pages:
+For code examples, see the pages here:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect)
 
 ## Client change logs
 
