@@ -224,7 +224,7 @@ The gRPC protocol is fast and provides other internal benefits. Unfortunately, g
 
 The v3 client uses gRPC to connect to your Weaviate instance. The client supports Node.js, server-based development. It does not support browser-based web client development.
 
-To develop a browser-based application, use the v2 client.
+To develop a browser-based application, use the [v2 client](/developers/weaviate/client-libraries/typescript/typescript-v2).
 
 ### Batch Inserts
 
