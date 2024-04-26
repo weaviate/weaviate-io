@@ -12,7 +12,7 @@ Sandboxes are not eligible for paid support.
 
 Paid support is available for Serverless, Enterprise Dedicated, and Bring your Own Cloud clusters.
 
-- For Serverless instances, the default support level is Standard support. To switch to another level, contact our [sales team](https://weaviate.io/pricing#contact-sales)
+- For Serverless instances, the default support level is Standard support. You are enrolled for Standard support when you create a Serverless cluster. To switch to another level, contact our [sales team](https://weaviate.io/pricing#contact-sales)
 
 - For Enterprise Dedicated and Bring your Own Cloud clusters, contact our [sales team](https://weaviate.io/pricing#contact-sales) to discuss which level of support is right for you.
 
@@ -20,7 +20,7 @@ Paid support is available for Serverless, Enterprise Dedicated, and Bring your O
 
 - Standard support is email based and is available during business hours. 
 
-- Monitoring includes access to regional status pages. 
+- Monitoring. The WCS team monitors your cluster. 
 
 - Severity determines incident response time:
 
@@ -30,8 +30,6 @@ Paid support is available for Serverless, Enterprise Dedicated, and Bring your O
 | 2 - High | High-priority problems that can impact service functionality or performance for a subset of users. | 2 business day |
 | 3 - Medium | Medium-priority concerns that affect service functionality or performance for a limited number of users or use cases. | 3 business day |
 | 4 - Low | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 5 business day |
-
-- Standard support is not available for Enterprise Dedicated or Bring your Own Cloud clusters.
 
 ### Enterprise
 
@@ -51,8 +49,6 @@ Paid support is available for Serverless, Enterprise Dedicated, and Bring your O
 | 4 - Low | Lower urgency and impact, causing minor inconveniences or issues for individual users. | 2 business days |
 
 For details, refer to your support agreement.
-
-- Enterprise support is not available for Bring your Own Cloud clusters.
 
 ### Business critical
 
@@ -84,19 +80,15 @@ Sandboxes are not eligible for paid support. For help with a sandbox instance, t
 
 ## Pricing
 
-Support costs are billed monthly. There is a minimum price for each support level. The actual cost per month depends on your data. 
+Serverless clusters are billed monthly. The monthly charge for an cluster depends on resource usage. Your support level is a factor in the monthly cost, but you are not charged per support incident.
 
-Support costs are based on resource usage. Each day, WCS counts the objects in your cluster and multiples the number of objects by the number of dimensions per object. This value is called the `vector dimension`. The vector dimension is the basis of the price calculation.
+Each support level (SLA) has a billing rate. WCS counts the objects in your cluster and multiples that number by the rate for your SLA level. WCS adjusts the number if compression is enabled. The result is your usage charge. 
 
-Compression saves resources and lowers the vector dimension number. If you enable compression, the cost savings are significant.
+If you have a high availability cluster (HA), WCS multiples the usage charge by three to account for the additional resources.
 
-Each support level (SLA) has a billing rate per one million vector dimensions. After WCS determines the number of vector dimensions in your cluster, WCS multiples that number by the SLA rate. The result is your usage charge. 
+There is a minimum monthly charge at each SLA level. If your usage charge is less than the monthly minimum, Weaviate charges you the monthly minimum cost. If your usage charge is higher than the minimum value for your SLA, Weaviate charges you for your cluster usage.
 
-If you have a high availability cluster (HA), WCS multiples the usage charge by three to account for the additional resources. 
-
-If your usage charge is less than the minimum monthly charge for your SLA, you are charged the monthly minimum. If your usage charge is higher than the minimum value, you are charged for your usage. 
-
-To estimate costs at different usage levels, see the [pricing calculator](https://weaviate.io/services/serverless).
+To estimate costs for different combinations of usage levels and SLAs, see the [pricing calculator](https://weaviate.io/services/serverless).
 
 ## Support
 
