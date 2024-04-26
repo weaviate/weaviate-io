@@ -8,55 +8,110 @@ image: og/docs/tutorials.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_includes/openai_endtoend.py';
+import PyCode from '!!raw-loader!../_includes/collection_config_vectorizer.py';
+import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
+import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
+import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
 
-# OpenAI Embedding models
+# Cohere Embeddings with Weaviate
 
-:::info Azure OpenAI
-If you use OpenAI from with an Azure environment, please [see this page](./azure-openai.md) instead.
+Weaviate integrates with Cohere's embeddings API to provide convenient access to their models for Weaviate users.
+
+See the [Cohere integrations page](./index.md#requirements) for a list of requirements to use Cohere with Weaviate.
+
+## Configuration
+
+You can configure Weaviate to use Cohere embeddings for each index in a collection.
+
+This will configure Weaviate to generate embeddings for text objects at import time, and convert text queries into embeddings for search operations, with the specified Cohere model.
+
+![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
+
+### Example
+
+:::warning TODO
+Fix TS code examples
 :::
 
-Weaviate provides convenient integrations with many of OpenAI's models.
+To configure a collection to use Cohere embeddings, set it as follows:
 
-## Model integrations
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START VectorizerCohere"
+      endMarker="# END VectorizerCohere"
+      language="py"
+    />
+  </TabItem>
 
-### Vectorization / Embeddings
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
 
-The Weaviate OpenAI vectorizer ([`text2vec-openai`](../modules/retriever-vectorizer-modules/text2vec-openai.md)) automates data vectorization using OpenAI's embedding models.
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// START Vectorizer"
+      endMarker="// END Vectorizer"
+      language="ts"
+    />
+  </TabItem>
 
-The vectorizer [supports multiple models](../modules/retriever-vectorizer-modules/text2vec-openai.md#available-models-openai) such as `ada-002` (default), `text-embedding-3-small` and `text-embedding-3-large`.
+</Tabs>
 
-### Generative AI models
+### Available models
 
-Weaviate also integrates with OpenAI's generative models to [perform retrieval augmented generation (RAG)](../modules/reader-generator-modules/generative-openai.md).
+The following Cohere models are available for use with Weaviate:
 
-<!-- , or to [perform question answering](../modules/reader-generator-modules/qna-openai.md) -->
-
-The OpenAI generative model integration [supports many models](../modules/reader-generator-modules/generative-openai.md#supported-models-openai) such as `gpt-3.5-turbo` (default), `gpt-4` and `gpt-4-1106-preview`.
-
-## Integration availability
-
-| | OpenAI<br/>Vectorizer | OpenAI<br/>Generative |
-| ----- | ----- | ----- |
-| Weaviate Cloud Services | ✅ | ✅ |
-| Docker | ✅ | ✅ |
-| Kubernetes | ✅ | ✅ |
-| Embedded | ✅ | ✅ |
+- `embed-multilingual-v3.0` (Default)
+- `embed-multilingual-light-v3.0`
+- `embed-multilingual-v2.0` (previously `embed-multilingual-22-12`)
+- `embed-english-v3.0`
+- `embed-english-light-v3.0`
+- `embed-english-v2.0`
+- `embed-english-light-v2.0`
 
 <details>
-  <summary>How to enable - Weaviate open source</summary>
+  <summary>
+    Deprecated models
+  </summary>
+
+The following models are available, but deprecated:
+- `multilingual-22-12`
+- `large`
+- `medium`
+- `small`
 
 </details>
 
-## End-to-end example
+## API key
 
-The following code example demonstrates the use of OpenAI models in Weaviate.
+As with any external API, you will need to provide your Cohere API key to Weaviate to use the Cohere embeddings. You can provide the API key to Weaviate in one of two ways:
 
-It creates a collection and:
-- Sets an OpenAI vectorizer (`ada-002`) model as the vectorizer for the collection
-- Sets an OpenAI generative model (`gpt-3.5-turbo`) as the RAG integration for the collection
+- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
 
-Thus, the collection can import data, perform searches, and perform retrieval augmented generation using OpenAI models.
+:::warning
+Show the same example on the parent page
+:::
+
+:::warning TODO
+Fix code examples
+:::
+
+## Data import
+
+Where the index is configured with Cohere embeddings, Weaviate will generate embeddings for text objects with the Cohere API. Note: if a vector is manually provided, it will be used instead.
+
+:::warning TODO
+Fix code examples
+:::
 
 <Tabs groupId="languages">
 
@@ -70,32 +125,15 @@ Thus, the collection can import data, perform searches, and perform retrieval au
   </TabItem>
 </Tabs>
 
-Note that the example passes on an OpenAI API key to the Weaviate client. You must replace this with your own OpenAI API key.
+## Searches
 
-## Custom configurations
+On these indexes, any text queries will be converted into embeddings using the configured Cohere model. This applies to `near text` searches, as well as hybrid searches.
 
-Many OpenAI models have additional parameters that can be set. Accordingly, the Weaviate integrations provide additional configuration options to set these parameters.
-
-<Tabs groupId="languages">
-
- <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START ModelProviderCustomConfig"
-      endMarker="# END ModelProviderCustomConfig"
-      language="py"
-    />
-  </TabItem>
-</Tabs>
+:::warning TODO
+Fix code examples
+:::
 
 ## Further resources
-
-### References
-
-The integrations are carried out by the following Weaviate modules. You can refer to their documentation for more details:
-
-- [`text2vec-openai` module](../modules/retriever-vectorizer-modules/text2vec-openai.md)
-- [`generative-openai` module](../modules/reader-generator-modules/generative-openai.md)
 
 ### Code examples
 
@@ -103,6 +141,10 @@ Once the integrations are configured at the collection, the data management and 
 
 For data operations (create, update, delete), refer to the [how-to: manage data](../manage-data/index.md) guides.
 For search operations, refer to the [how-to: search](../search/index.md) guides.
+
+### References
+
+- Cohere [Embed API documentation](https://docs.cohere.com/reference/embed)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
