@@ -25,12 +25,12 @@ nvm install node
 ```
 
 By default, `nvm` installs the most recent version of Node.js. Install Node.js
-19.9.0 as well. Version 19.9.0 is more compatible with the current
+20.12.2 as well. Version 20.12.2 is more compatible with the current
 `weaviate.io` project dependencies.
 
 ```
-nvm install node 19.9.0
-nvm use 19.9.0
+nvm install 20.12.2
+nvm use 20.12.2
 ```
 
 ### yarn Installation
@@ -131,7 +131,7 @@ second terminal, be sure to set the correct Node.js version before running
 additional `yarn` commands.
 
 ```
-nvm use node 19.9.0
+nvm use node 20.12.2
 ```
 
 ### Build the Web Site
