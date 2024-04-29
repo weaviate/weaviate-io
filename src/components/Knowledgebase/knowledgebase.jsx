@@ -47,6 +47,38 @@ export default function KnowledgeBase({ searchQuery }) {
     );
   });
 
+  const handleNavigation = (direction) => {
+    if (!activeCard) return;
+
+    // Filter cards to those in the same category as the active card
+    const cardsInSameCategory = cards.filter(
+      (card) => card.category === activeCard.category
+    );
+
+    // Determine the new index based on navigation direction
+    let newIndex = cardsInSameCategory.findIndex(
+      (card) => card.id === activeCard.id
+    );
+    if (direction === 'next') {
+      newIndex = (newIndex + 1) % cardsInSameCategory.length;
+    } else if (direction === 'previous') {
+      newIndex =
+        newIndex - 1 < 0 ? cardsInSameCategory.length - 1 : newIndex - 1;
+    }
+
+    // Set the new active card based on the newIndex
+    const newActiveCard = cardsInSameCategory[newIndex];
+    if (newActiveCard) {
+      handleCardOpen(newActiveCard);
+    }
+  };
+
+  const handleCardOpen = (card) => {
+    setActiveCard(card);
+    window.location.hash = `card=${card.id}`;
+    setShowMore((prev) => ({ ...prev, [card.category]: true }));
+  };
+
   const handleShowMore = (category) => {
     setShowMore((prevShowMore) => ({
       ...prevShowMore,
@@ -71,19 +103,28 @@ export default function KnowledgeBase({ searchQuery }) {
               key={card.id}
               details={card}
               setActiveCard={setActiveCard}
+              currentIndex={index + 1}
+              totalCards={categoryCards.length}
               onOpenModal={() => {
                 setActiveCard(card);
                 window.location.hash = `card=${card.id}`;
                 handleShowMore(card.category);
               }}
               isActive={activeCard && activeCard.id === card.id}
+              onNext={() => handleNavigation('next')}
+              onPrevious={() => handleNavigation('previous')}
             />
           ))}
         </div>
         {categoryCards.length > 3 && (
-          <button onClick={() => handleShowMore(category)}>
-            {showMore[category] ? 'Show Less' : 'Show More'}
-          </button>
+          <div className={styles.buttonsContainer}>
+            <button
+              className={styles.buttonOutline}
+              onClick={() => handleShowMore(category)}
+            >
+              {showMore[category] ? 'Show Less' : 'Show More'}
+            </button>
+          </div>
         )}
       </>
     );
@@ -156,12 +197,14 @@ export default function KnowledgeBase({ searchQuery }) {
               </div>
             </div>
           </div>
-          {Object.keys(
-            cards.reduce((acc, card) => {
-              acc[card.category] = true;
-              return acc;
-            }, {})
-          ).map((category) => renderCards(category))}
+          <div className={styles.cardResults}>
+            {Object.keys(
+              cards.reduce((acc, card) => {
+                acc[card.category] = true;
+                return acc;
+              }, {})
+            ).map((category) => renderCards(category))}
+          </div>
         </div>
       </div>
     </div>
