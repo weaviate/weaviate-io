@@ -245,10 +245,10 @@ await questions.data.insertMany(dataBatch);
 
 ```ts
 let className = 'CollectionName';  // Replace with your collection name
-let dataObjs = [...];
+let dataObject = [...];
 
 let batcher5 = client.batch.objectsBatcher();
-for (const dataObj of dataObjs)
+for (const dataObj of dataObject)
   batcher5 = batcher5.withObject({
     class: className,
     properties: dataObj,
@@ -324,7 +324,7 @@ console.log(JSON.stringify(result, null, 2));
 
 ### Generate Namespace
 
-The v3 client adds a new namespace, `generate`. Use the generate namespace like the query namespace to make queries.
+The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish generative queries and a base vector searches. 
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -400,7 +400,158 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## How to migrate your code
 
-For code examples, see the pages here:
+
+This workflow describes the process one would follow to migrate their codebase to the v3 client. 
+
+1. Install the v3 client package. Update the client package from the v2 to v3 client. 
+
+2. Connect to Weaviate. Make sure your client instantiation respects the new clients syntax. Our documentation on instantiation covers use cases from local, custom to WCS.
+
+3. Migrate your code snippets. The v3 client is collection first which means we do not have to duplicate mentions of the collection you are interacting with.
+
+Below is an example of a basic script in both the v2 and v3 clients. In this script, we define a collection, insert then query objects from the collection, and finally delete the collection. This is to give you an idea of what the migration would entail.
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+import weaviate from 'weaviate-client'
+require('dotenv').config();
+
+async function main() {
+
+  const collectionName = 'Recipes'
+
+  const client = await weaviate.connectToWCS(
+    process.env.WEAVIATE_URL || '',
+    {
+      authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
+      headers: {
+        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
+      }
+    }
+  )
+
+  await client.collections.create({
+    name: collectionName,
+    vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  })
+
+  const recipeList = [
+    {"Name": "Christmas pie", "Description": "Combine a few key Christmas flavours here to make a pie that both children and adults will adore", "Author": "Mary Cadogan", "Ingredients": ["2 tbsp olive oil", "knob butter", "1 onion, finely chopped", "500g sausagemeat or skinned sausages", "grated zest of 1 lemon", "100g fresh white breadcrumbs", "85g ready-to-eat dried apricots, chopped", "50g chestnut, canned or vacuum-packed, chopped", "2 tsp chopped fresh or 1tsp dried thyme", "100g cranberries, fresh or frozen", "500g boneless, skinless chicken breasts", "500g pack ready-made shortcrust pastry", "beaten egg, to glaze"]},
+    {"Name": "Simmer-&-stir Christmas cake",  "Description": "An easy-to-make alternative to traditional Christmas cakes which requires no beating", "Author": "Mary Cadogan", "Ingredients": ["175g butter, chopped", "200g dark muscovado sugar", "750g luxury mixed dried fruit (one that includes mixed peel and glac\u00e9 cherries)", "finely grated zest and juice of 1 orange", "finely grated zest of 1 lemon", "100ml/3\u00bd fl oz cherry brandy or brandy plus 4tbsp more", "85g macadamia nut", "3 large eggs, lightly beaten", "85g ground almond", "200g plain flour", "\u00bd tsp baking powder", "1 tsp ground mixed spice", "1 tsp ground cinnamon", "\u00bc tsp ground allspice"]},
+    {"Name": "Christmas cupcakes",  "Description": "These beautiful and classy little cakes make lovely gifts, and kids will enjoy decorating them too", "Author": "Sara Buenfeld", "Ingredients": ["200g dark muscovado sugar", "175g butter, chopped", "700g luxury mixed dried fruit", "50g glac\u00e9 cherries", "2 tsp grated fresh root ginger", "zest and juice 1 orange", "100ml dark rum, brandy or orange juice", "85g/3oz pecannuts, roughly chopped", "3 large eggs, beaten", "85g ground almond", "200g plain flour", "\u00bd tsp baking powder", "1 tsp mixed spice", "1 tsp cinnamon", "400g pack ready-rolled marzipan(we used Dr Oetker)", "4 tbsp warm apricotjam or shredless marmalade", "500g pack fondant icingsugar", "icing sugar, for dusting", "6 gold and 6 silver muffincases", "6 gold and 6 silver sugared almonds", "snowflake sprinkles"]},
+    {"Name": "Christmas buns",  "Description": "Paul Hollywood's fruit rolls can be made ahead then heated up before adding a glossy glaze and citrus icing", "Author": "Paul Hollywood", "Ingredients": ["500g strong white flour, plus extra for dusting", "7g sachet fast-action dried yeast", "300ml milk", "40g unsalted butter, softened at room temperature", "1 egg", "vegetable oil, for greasing", "25g unsalted butter, melted", "75g soft brown sugar", "2 tsp ground cinnamon", "100g dried cranberries", "100g chopped dried apricot", "50g caster sugar", "zest 1 lemon", "200g icing sugar"]},
+    {"Name": "Christmas cupcakes",  "Description": "Made these for the second time today, and I have to say they turned out great! I've got large muffin tins and the mixture made 15 muffins, will definetely make these again at christmas time and decorate festively.", "Author": "Barney Desmazery", "Ingredients": ["280g self-raising flour", "175g golden caster sugar", "175g unsalted butter, very soft", "150g pot fat-free natural yogurt", "1 tsp vanilla extract", "3 eggs", "85g unsalted butter, softened", "1 tsp vanilla extract", "200g icing sugar, sifted", "natural green food colouring(for Christmas trees), sweets, sprinkles and white chocolate stars", "milk and white chocolatebuttons and natural colouring icing pens, available at Asda"]},
+    {"Name": "Christmas slaw",  "Description": "A nutty winter salad which is superhealthy, quick to prepare and finished with a light maple syrup dressing", "Author": "Good Food", "Ingredients": ["2 carrots, halved", "\u00bd white cabbage, shredded", "100g pecans, roughly chopped", "bunch spring onions, sliced", "2 red peppers, deseeded and sliced", "2 tbsp maple syrup", "2 tsp Dijon mustard", "8 tbsp olive oil", "4 tbsp cider vinegar"]},
+    {"Name": "Christmas mess", "Description": "Delicious and a synch to make! Have made this a couple of times as a dinner party dessert, very pretty as a winter alternative to Eton mess. The fact you use frozen fruits is great, I just used a bog standard pack of frozen mixed berries and added some home made blackberry liqueur. Like other people, I added more cinnamon. Thumbs up!", "Author": "Caroline Hire", "Ingredients": ["600ml double cream", "400g Greek yoghurt", "4 tbsp lemon curd", "1 x 500g bag frozen mixed berries(we used Sainsbury's Black Forest fruits)", "4 tbsp icing sugar", "2 tbsp cassis(optional)", "1 pinch cinnamon", "8 meringuenests"]},
+    {"Name": "Christmas brownies", "Description": "Can be made these the day before", "Author": "Miriam Nice", "Ingredients": ["200g unsalted buttercut into cubes, plus extra for greasing", "100g dark chocolate, chopped", "100g milk chocolate, chopped", "3 large eggs", "300g golden caster sugar", "100g plain flour", "50g cocoa powder", "\u00bd tsp mixed spice", "9 sprigs rosemary", "9 glac\u00e9 cherries", "1 egg white", "2 tbsp caster sugar", "4 amaretti biscuits, crushed", "9 chocolate truffles(we used Lindt lindor)", "edible gold lustre spray", "1-2 tsp icing sugarfor dusting", "few chocolate buttons", "edible silver balls"]}
+  ]
+
+  const myCollection = client.collections.get(collectionName)
+
+  await myCollection.data.insertMany(recipeList)
+
+  const response = await myCollection.query.nearText('vegetarian food',{
+    limit: 2,
+    returnMetadata: ['distance']
+  })
+
+  console.log('Here is vegetarian recipes', response.objects)
+
+  await client.collections.delete(collectionName)
+
+  console.log('Collection Exists:', await client.collections.exists(collectionName))
+
+}
+
+main()
+```
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+import weaviate, { ApiKey, ConnectionParams, WeaviateClient } from 'weaviate-ts-client';
+require('dotenv').config();
+
+async function main() {
+
+  const collectionName = 'Recipes'
+
+  const client: WeaviateClient = weaviate.client({
+    scheme: process.env.WEAVIATE_SCHEME_URL || 'http', // Replace with https if using WCS
+    host: process.env.WEAVIATE_URL || 'localhost:8080', // Replace with your Weaviate URL
+    apiKey: new ApiKey(process.env.WEAVIATE_API_KEY || 'YOUR-WEAVIATE-API-KEY'), // Replace with your Weaviate API key
+    headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '' },  // Replace with your inference API key
+  });
+
+  const schemaDefinition = {
+    class: collectionName,
+    vectorizer: 'text2vec-openai',
+  }
+  
+  await client.schema.classCreator().withClass(schemaDefinition).do();
+
+  const recipeList = [
+    {"Name": "Christmas pie", "Description": "Combine a few key Christmas flavours here to make a pie that both children and adults will adore", "Author": "Mary Cadogan", "Ingredients": ["2 tbsp olive oil", "knob butter", "1 onion, finely chopped", "500g sausagemeat or skinned sausages", "grated zest of 1 lemon", "100g fresh white breadcrumbs", "85g ready-to-eat dried apricots, chopped", "50g chestnut, canned or vacuum-packed, chopped", "2 tsp chopped fresh or 1tsp dried thyme", "100g cranberries, fresh or frozen", "500g boneless, skinless chicken breasts", "500g pack ready-made shortcrust pastry", "beaten egg, to glaze"]},
+    {"Name": "Simmer-&-stir Christmas cake",  "Description": "An easy-to-make alternative to traditional Christmas cakes which requires no beating", "Author": "Mary Cadogan", "Ingredients": ["175g butter, chopped", "200g dark muscovado sugar", "750g luxury mixed dried fruit (one that includes mixed peel and glac\u00e9 cherries)", "finely grated zest and juice of 1 orange", "finely grated zest of 1 lemon", "100ml/3\u00bd fl oz cherry brandy or brandy plus 4tbsp more", "85g macadamia nut", "3 large eggs, lightly beaten", "85g ground almond", "200g plain flour", "\u00bd tsp baking powder", "1 tsp ground mixed spice", "1 tsp ground cinnamon", "\u00bc tsp ground allspice"]},
+    {"Name": "Christmas cupcakes",  "Description": "These beautiful and classy little cakes make lovely gifts, and kids will enjoy decorating them too", "Author": "Sara Buenfeld", "Ingredients": ["200g dark muscovado sugar", "175g butter, chopped", "700g luxury mixed dried fruit", "50g glac\u00e9 cherries", "2 tsp grated fresh root ginger", "zest and juice 1 orange", "100ml dark rum, brandy or orange juice", "85g/3oz pecannuts, roughly chopped", "3 large eggs, beaten", "85g ground almond", "200g plain flour", "\u00bd tsp baking powder", "1 tsp mixed spice", "1 tsp cinnamon", "400g pack ready-rolled marzipan(we used Dr Oetker)", "4 tbsp warm apricotjam or shredless marmalade", "500g pack fondant icingsugar", "icing sugar, for dusting", "6 gold and 6 silver muffincases", "6 gold and 6 silver sugared almonds", "snowflake sprinkles"]},
+    {"Name": "Christmas buns",  "Description": "Paul Hollywood's fruit rolls can be made ahead then heated up before adding a glossy glaze and citrus icing", "Author": "Paul Hollywood", "Ingredients": ["500g strong white flour, plus extra for dusting", "7g sachet fast-action dried yeast", "300ml milk", "40g unsalted butter, softened at room temperature", "1 egg", "vegetable oil, for greasing", "25g unsalted butter, melted", "75g soft brown sugar", "2 tsp ground cinnamon", "100g dried cranberries", "100g chopped dried apricot", "50g caster sugar", "zest 1 lemon", "200g icing sugar"]},
+    {"Name": "Christmas cupcakes",  "Description": "Made these for the second time today, and I have to say they turned out great! I've got large muffin tins and the mixture made 15 muffins, will definetely make these again at christmas time and decorate festively.", "Author": "Barney Desmazery", "Ingredients": ["280g self-raising flour", "175g golden caster sugar", "175g unsalted butter, very soft", "150g pot fat-free natural yogurt", "1 tsp vanilla extract", "3 eggs", "85g unsalted butter, softened", "1 tsp vanilla extract", "200g icing sugar, sifted", "natural green food colouring(for Christmas trees), sweets, sprinkles and white chocolate stars", "milk and white chocolatebuttons and natural colouring icing pens, available at Asda"]},
+    {"Name": "Christmas slaw",  "Description": "A nutty winter salad which is superhealthy, quick to prepare and finished with a light maple syrup dressing", "Author": "Good Food", "Ingredients": ["2 carrots, halved", "\u00bd white cabbage, shredded", "100g pecans, roughly chopped", "bunch spring onions, sliced", "2 red peppers, deseeded and sliced", "2 tbsp maple syrup", "2 tsp Dijon mustard", "8 tbsp olive oil", "4 tbsp cider vinegar"]},
+    {"Name": "Christmas mess", "Description": "Delicious and a synch to make! Have made this a couple of times as a dinner party dessert, very pretty as a winter alternative to Eton mess. The fact you use frozen fruits is great, I just used a bog standard pack of frozen mixed berries and added some home made blackberry liqueur. Like other people, I added more cinnamon. Thumbs up!", "Author": "Caroline Hire", "Ingredients": ["600ml double cream", "400g Greek yoghurt", "4 tbsp lemon curd", "1 x 500g bag frozen mixed berries(we used Sainsbury's Black Forest fruits)", "4 tbsp icing sugar", "2 tbsp cassis(optional)", "1 pinch cinnamon", "8 meringuenests"]},
+    {"Name": "Christmas brownies", "Description": "Can be made these the day before", "Author": "Miriam Nice", "Ingredients": ["200g unsalted buttercut into cubes, plus extra for greasing", "100g dark chocolate, chopped", "100g milk chocolate, chopped", "3 large eggs", "300g golden caster sugar", "100g plain flour", "50g cocoa powder", "\u00bd tsp mixed spice", "9 sprigs rosemary", "9 glac\u00e9 cherries", "1 egg white", "2 tbsp caster sugar", "4 amaretti biscuits, crushed", "9 chocolate truffles(we used Lindt lindor)", "edible gold lustre spray", "1-2 tsp icing sugarfor dusting", "few chocolate buttons", "edible silver balls"]}
+  ]
+
+  let counter = 0;
+  let batcher = client.batch.objectsBatcher();
+
+  for (const dataObjects of recipeList) {
+    batcher = batcher.withObject({
+      class: collectionName,
+      properties: dataObjects,
+    });
+
+    // push a batch of 5 objects
+    if (++counter > 4) {
+      await batcher.do();
+      batcher = client.batch.objectsBatcher();
+      counter = 0;
+    }
+  }
+
+  // push the remaining batch of objects
+  if (counter > 0) {
+    await batcher.do();
+  }
+
+  const response = await client
+  .graphql
+  .get()
+  .withClassName(collectionName)
+  .withFields("name description ingredients _additional { distance id }")
+  .withNearText({
+    "concepts": ['vegetarian food']
+  })
+  .withLimit(2)
+  .do();
+
+  console.log('Here is vegetarian recipes', response.data.Get.Recipes)
+
+  await client.schema.classDeleter().withClassName(collectionName).do();
+
+  console.log('Collection Exists:', await client.schema.exists(collectionName))
+}
+
+main()
+```
+
+</TabItem>
+</Tabs>
+
+In a similar vain, you would go on replacing the v2 code during your migration with the v3 equivalent.
+For more code examples, see the pages here:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
