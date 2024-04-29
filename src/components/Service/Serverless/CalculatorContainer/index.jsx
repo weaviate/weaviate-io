@@ -56,7 +56,7 @@ export default function CalculatorContainer() {
                 <p>5bd</p>
               </div>
               <div className={`${styles.plans} ${styles.enterprise}`}>
-                <h2>Enterprise</h2>
+                <h2>Pro</h2>
                 <p className={styles.pricing}>
                   from <span>$135</span>/mo
                 </p>
@@ -192,7 +192,7 @@ export default function CalculatorContainer() {
             </div>
 
             <div className={`${styles.plans} ${styles.enterprise}`}>
-              <h2>Enterprise</h2>
+              <h2>Pro</h2>
               <p className={styles.pricing}>
                 from <span>$135</span>/mo
               </p>
