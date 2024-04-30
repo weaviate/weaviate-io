@@ -1,16 +1,15 @@
 ---
 title: Embeddings
 sidebar_position: 50
-image: og/docs/tutorials.jpg
-# tags: ['getting started']
+image: og/docs/integrations/provider_integrations_cohere.jpg
+# tags: ['model providers', 'cohere', 'embeddings']
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_includes/provider.collection.config.vectorizer.py';
-import TSCode from '!!raw-loader!../_includes/provider.collection.config.vectorizer.ts';
-
+import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
+import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 # Cohere Embeddings with Weaviate
 
@@ -20,7 +19,7 @@ See the [Cohere integrations page](./index.md#requirements) for a list of requir
 
 ## Configuration
 
-You can configure Weaviate to use Cohere embeddings for each index in a collection.
+You can configure a Weaviate vector index to use a Cohere embedding model.
 
 Weaviate will then generate embeddings for various operations with the specified Cohere model. More specifically, Weaviate will generate text objects at import time to save them into the index, and convert text queries into embeddings for vector and hybrid search operations.
 
@@ -50,6 +49,8 @@ To configure a collection to use Cohere embeddings, set it as follows:
   </TabItem>
 
 </Tabs>
+
+For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/embed).
 
 ### Available models
 
@@ -150,8 +151,6 @@ When you perform a [hybrid search](../../search/hybrid.md), Weaviate will conver
 </Tabs>
 
 ## Further resources
-
-### Generative model integration
 
 To learn how Cohere's generative models integrate with Weaviate, see [this page](./generative.md).
 

@@ -1,8 +1,8 @@
 ---
 title: Cohere + Weaviate
 sidebar_position: 50
-image: og/docs/tutorials.jpg
-# tags: ['getting started']
+image: og/docs/integrations/provider_integrations_cohere.jpg
+# tags: ['model providers', 'cohere']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,6 +11,8 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!../_includes/provider.connect.py';
 
 Cohere provides a range of models through their API. Weaviate integrates with Cohere's APIs to provide convenient access to their models from within Weaviate.
+
+![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
 
 ## Requirements
 

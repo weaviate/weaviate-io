@@ -1,5 +1,5 @@
 ---
-title: Generative
+title: Reranker
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'generative', 'rag']
@@ -8,10 +8,10 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_includes/provider.generative.py';
-import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
+import PyCode from '!!raw-loader!../_includes/provider.reranker.py';
+import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
 
-# Cohere Generative AI models with Weaviate
+# Cohere reranker models with Weaviate
 
 Weaviate integrates with Cohere's APIs to provide convenient access to their models from within Weaviate.
 
@@ -19,11 +19,11 @@ See the [Cohere integrations page](./index.md#requirements) for a list of requir
 
 ## Configuration
 
-You can configure a Weaviate collection to use a Cohere generative model.
+You can configure a Weaviate collection to use a Cohere reranker model.
 
-Weaviate will then perform retrieval augmented generation (RAG) operations with the specified Cohere model. More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Cohere generative model to generate outputs.
+This integration allows Weaviate to perform an initial search, then rerank the retrieved results using the specified Cohere model.
 
-![RAG integration illustration](../_includes/integration_cohere_rag.png)
+![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
 
 ### Example
 
@@ -33,8 +33,8 @@ To configure a collection to use Cohere generative models, set it as follows:
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START GenerativeCohere"
-      endMarker="# END GenerativeCohere"
+      startMarker="# START RerankerCohere"
+      endMarker="# END RerankerCohere"
       language="py"
     />
   </TabItem>
@@ -42,26 +42,33 @@ To configure a collection to use Cohere generative models, set it as follows:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START GenerativeCohere"
-      endMarker="// END GenerativeCohere"
+      startMarker="// START RerankerCohere"
+      endMarker="// END RerankerCohere"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/chat).
+For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
 
 ### Available models
 
-The `command-xlarge-nightly` language model is set as the default model. You can also specify one of the available models manually.
+The `rerank-multilingual-v3.0` model is set as the default model. You can also specify one of the available models manually.
 
 <details>
   <summary>Available models</summary>
 
-* `command-xlarge-nightly`
-* `command-xlarge-beta`
-* `command-xlarge`
+- rerank-english-v3.0
+- rerank-multilingual-v3.0
+- rerank-english-v2.0
+- rerank-multilingual-v2.0
+
+You can also select a fine-tuned reranker model_id, such as:
+
+- `500df123-afr3-...`
+
+Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
 
 </details>
 
@@ -74,13 +81,11 @@ For the integration to work, you must provide a valid Cohere API key so that Wea
 
 Please see [this section for more details](./index.md#api-key).
 
-## Retrieval augmented generation examples
+## Reranker query example
 
-Any search in Weaviate can be combined with a generative model to perform retrieval augmented generation (RAG) operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
+Any search in Weaviate can be combined with a reranker to perform reranking operations.
 
-### Single prompt
-
-![RAG integration illustration](../_includes/integration_cohere_rag_single.png)
+![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
 
 The single prompt method uses the generative model to generate text for each object in the search results. In other words, for `n` search results, the generative model will generate `n` outputs.
 
@@ -91,8 +96,8 @@ Note that the single prompt query must indicate the object properties for Weavia
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START SinglePromptExample"
-      endMarker="# END SinglePromptExample"
+      startMarker="# START RerankerQueryExample"
+      endMarker="# END RerankerQueryExample"
       language="py"
     />
   </TabItem>
@@ -100,36 +105,8 @@ Note that the single prompt query must indicate the object properties for Weavia
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START SinglePromptExample"
-      endMarker="// END SinglePromptExample"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-### Grouped task
-
-![RAG integration illustration](../_includes/integration_cohere_rag_grouped.png)
-
-The grouped task method uses the generative model to generate text for a group of objects in the search results. In other words, for `n` search results, the generative model will generate a single output.
-
-<Tabs groupId="languages">
-
- <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START GroupedTaskExample"
-      endMarker="# END GroupedTaskExample"
-      language="py"
-    />
-  </TabItem>
-
- <TabItem value="js" label="JS/TS (Beta)">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START GroupedTaskExample"
-      endMarker="// END GroupedTaskExample"
+      startMarker="// START RerankerQueryExample"
+      endMarker="// END RerankerQueryExample"
       language="ts"
     />
   </TabItem>
@@ -139,6 +116,7 @@ The grouped task method uses the generative model to generate text for a group o
 ## Further resources
 
 To learn how Cohere's embedding models integrate with Weaviate, see [this page](./embeddings.md).
+To learn how Cohere's generative models integrate with Weaviate, see [this page](./generative.md).
 
 ### Code examples
 

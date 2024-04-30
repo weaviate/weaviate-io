@@ -3,18 +3,17 @@ import weaviate
 from weaviate.auth import AuthApiKey
 import os
 
-# Recommended: save sensitive data as environment variables
+# END-ANY
 weaviate_url = os.getenv("WEAVIATE_URL")
 weaviate_key = os.getenv("WEAVIATE_API_KEY")
-# END-ANY
 
 # START CohereInstantiation
+# Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_API_KEY")
 # END CohereInstantiation
 
 
 # START-ANY
-
 headers = {
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key

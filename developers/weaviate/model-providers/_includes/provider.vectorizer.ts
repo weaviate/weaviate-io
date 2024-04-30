@@ -28,5 +28,8 @@ await client.collections.create({
     }),
   ],
   // highlight-end
+  // Additional parameters not shown
 });
 // START VectorizerCohere
+
+client.close();
