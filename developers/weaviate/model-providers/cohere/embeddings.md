@@ -8,14 +8,13 @@ image: og/docs/tutorials.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_includes/collection_config_vectorizer.py';
-import PyCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.collections-v3.py';
-import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.collections.ts';
-import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.collections-v2.ts';
+import PyCode from '!!raw-loader!../_includes/provider.collection.config.vectorizer.py';
+import TSCode from '!!raw-loader!../_includes/provider.collection.config.vectorizer.ts';
+
 
 # Cohere Embeddings with Weaviate
 
-Weaviate integrates with Cohere's embeddings API to provide convenient access to their models for Weaviate users.
+Weaviate integrates with Cohere's APIs to provide convenient access to their models from within Weaviate.
 
 See the [Cohere integrations page](./index.md#requirements) for a list of requirements to use Cohere with Weaviate.
 
@@ -23,15 +22,11 @@ See the [Cohere integrations page](./index.md#requirements) for a list of requir
 
 You can configure Weaviate to use Cohere embeddings for each index in a collection.
 
-This will configure Weaviate to generate embeddings for text objects at import time, and convert text queries into embeddings for search operations, with the specified Cohere model.
+Weaviate will then generate embeddings for various operations with the specified Cohere model. More specifically, Weaviate will generate text objects at import time to save them into the index, and convert text queries into embeddings for vector and hybrid search operations.
 
 ![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
 
 ### Example
-
-:::warning TODO
-Fix TS code examples
-:::
 
 To configure a collection to use Cohere embeddings, set it as follows:
 
@@ -48,17 +43,8 @@ To configure a collection to use Cohere embeddings, set it as follows:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START Vectorizer"
-      endMarker="// END Vectorizer"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// START Vectorizer"
-      endMarker="// END Vectorizer"
+      startMarker="// START VectorizerCohere"
+      endMarker="// END VectorizerCohere"
       language="ts"
     />
   </TabItem>
@@ -67,7 +53,10 @@ To configure a collection to use Cohere embeddings, set it as follows:
 
 ### Available models
 
-The following Cohere models are available for use with Weaviate:
+The `embed-multilingual-v3.0` embedding model is set as the default model. You can also specify one of the available models manually.
+
+<details>
+  <summary>Available models</summary>
 
 - `embed-multilingual-v3.0` (Default)
 - `embed-multilingual-light-v3.0`
@@ -77,10 +66,10 @@ The following Cohere models are available for use with Weaviate:
 - `embed-english-v2.0`
 - `embed-english-light-v2.0`
 
+</details>
+
 <details>
-  <summary>
-    Deprecated models
-  </summary>
+  <summary>Deprecated models</summary>
 
 The following models are available, but deprecated:
 - `multilingual-22-12`
@@ -92,55 +81,86 @@ The following models are available, but deprecated:
 
 ## API key
 
-As with any external API, you will need to provide your Cohere API key to Weaviate to use the Cohere embeddings. You can provide the API key to Weaviate in one of two ways:
+For the integration to work, you must provide a valid Cohere API key so that Weaviate can work with the Cohere API. You can provide the API key to Weaviate in one of two ways:
 
 - Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+- Provide the API key at runtime.
 
-:::warning
-Show the same example on the parent page
-:::
-
-:::warning TODO
-Fix code examples
-:::
+Please see [this section for more details](./index.md#api-key).
 
 ## Data import
 
-Where the index is configured with Cohere embeddings, Weaviate will generate embeddings for text objects with the Cohere API. Note: if a vector is manually provided, it will be used instead.
-
-:::warning TODO
-Fix code examples
-:::
+Where the index is configured with an embedding model, Weaviate will generate embeddings for text objects using the specified model from the model provider.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START ModelProviderEndToEnd"
-      endMarker="# END ModelProviderEndToEnd"
+      startMarker="# START BatchImportExample"
+      endMarker="# END BatchImportExample"
       language="py"
     />
   </TabItem>
+
 </Tabs>
+
+:::tip Re-use existing vectors
+If you already have a compatible Cohere vector available, you can provide it directly to Weaviate. This can be useful if you have already generated embeddings using Cohere and want to use them in Weaviate, such as when migrating data from another system.
+:::
 
 ## Searches
 
-On these indexes, any text queries will be converted into embeddings using the configured Cohere model. This applies to `near text` searches, as well as hybrid searches.
+On these indexes, any text queries will be converted into embeddings using the specified Cohere model.
 
-:::warning TODO
-Fix code examples
-:::
+![Embedding integration at search illustration](../_includes/integration_cohere_embedding_search.png)
+
+### Vector (near text) search example
+
+When you perform a [vector search](../../search/similarity.md#search-with-text), Weaviate will convert the text query into an embedding using the specified Cohere model. Then, it performs a vector search against the index and returns the most similar objects from the database.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START NearTextExample"
+      endMarker="# END NearTextExample"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
+### Hybrid search example
+
+When you perform a [hybrid search](../../search/hybrid.md), Weaviate will convert the text query into an embedding using the specified Cohere model. Then, it performs a vector search and a keyword (BM25) search against the indexes, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the most similar objects from the database.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START HybridExample"
+      endMarker="# END HybridExample"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Further resources
+
+### Generative model integration
+
+To learn how Cohere's generative models integrate with Weaviate, see [this page](./generative.md).
 
 ### Code examples
 
 Once the integrations are configured at the collection, the data management and search operations in Weaviate work identically to any other collection. Accordingly, please refer to the following examples, which are model-agnostic:
 
-For data operations (create, update, delete), refer to the [how-to: manage data](../manage-data/index.md) guides.
-For search operations, refer to the [how-to: search](../search/index.md) guides.
+- The [how-to: manage data](../manage-data/index.md) guides show how to perform data operations (i.e. create, update, delete).
+- The [how-to: search](../search/index.md) guides show how to perform search operations (i.e. vector, keyword, hybrid) as well as retrieval augmented generation.
 
 ### References
 

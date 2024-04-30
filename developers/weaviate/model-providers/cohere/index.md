@@ -8,27 +8,38 @@ image: og/docs/tutorials.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_includes/openai_endtoend.py';
+import PyCode from '!!raw-loader!../_includes/provider.connect.py';
 
-Cohere ia an AI platform which provides a range of models through an API, including embeddings and generative AI models.
-
-Weaviate integrates with Cohere's APIs to provide convenient access to their models for Weaviate users.
+Cohere provides a range of models through their API. Weaviate integrates with Cohere's APIs to provide convenient access to their models from within Weaviate.
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured to use the Cohere module. For instructions on how to enable the Cohere module in Weaviate, see the [how-to configure modules](../../configuration/modules.md) guide.
+Your Weaviate instance must be configured with the Cohere module.
 
-### Cohere API key
+- To check if the Cohere module is enabled in your Weaviate instance, review the [cluster metadata](../../config-refs/meta.md).
+- For instructions on how to enable the Cohere module in Weaviate, see the [how-to configure modules](../../configuration/modules.md) guide.
 
-You can obtain an API key by signing up for [a Cohere account](https://cohere.com/) and following their instructions.
+### API key
 
-To use the API key with Weaviate, provide it to Weaviate at runtime as shown in the examples below.
+For the integration to work, you must provide a valid Cohere API key so that Weaviate can work with the Cohere API. You can obtain an API key by signing up for [a Cohere account](https://cohere.com/) and following their instructions.
 
-:::warning TODO
-Add code example of providing the API key to Weaviate.
-:::
+You can provide the API key to Weaviate in one of two ways:
+
+- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
+
+<Tabs groupId="languages">
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START CohereInstantiation"
+      endMarker="# END CohereInstantiation"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Available model groups
 
