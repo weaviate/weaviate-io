@@ -5,14 +5,14 @@ authors: [daniel, ajit]
 date: 2024-04-09
 tags: ['concepts', 'how-to', 'search', 'javascript']
 image: ./img/hero.png
-description: 'Hybrid Search for curious Web Developers with the new Weaviate Typescript client and Next.js'
+description: 'Hybrid Search for curious Web Developers with the new Weaviate TypeScript client and Next.js'
 ---
 
 ![A Web Developers Guide to Hybrid Search Cover](./img/hero.png)
 
 :::info
 
-This tutorial is built with Next.js and Weaviate. It uses a beta version of the v3 Typescript Client. Find out more about the new client here - [Experimental clients](/developers/weaviate/client-libraries/typescript/typescript-v3).
+This tutorial is built with Next.js and Weaviate. It uses a beta version of the v3 TypeScript Client. Find out more about the new client here - [Experimental clients](/developers/weaviate/client-libraries/typescript/typescript-v3).
 
 :::
 
@@ -39,7 +39,7 @@ Keyword search finds objects with an exact match between the terms in the query 
 
 Hybrid search in Weaviate combines keyword (BM25) and vector search to leverage both exact term matching and semantic context. With either the `rankedFusion` or `relativeScoreFusion` fusion algorithms, we merge the results from both keyword search and the vector search.
 
-A code snippet of hybrid search in Javascript will look something like this.
+A code snippet of hybrid search in JavaScript will look something like this.
 
 ```typescript
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -60,7 +60,7 @@ With Weaviates hybrid search, we have two ways to adjust the hybrid search algor
 
 Think of alpha as a measure of how much your hybrid search should lean towards either vector search or keyword search where an alpha of 1 is a pure vector search, and an alpha of 0 is a pure keyword search. It is 0.75 by default.
 
-The code snippet below demonstrates how to change the alpha of your hybrid search in Javascript.
+The code snippet below demonstrates how to change the alpha of your hybrid search in JavaScript.
 
 ```typescript
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -90,7 +90,7 @@ In a nutshell, **Ranked Fusion** (the original hybrid search algorithm in Weavia
 
 ![Reciprocal Score Fusion Algorithm](./img/relative-score.png)
 
-The code snippet below demonstrates how to change the ranking algorithm of your hybrid search in Javascript.
+The code snippet below demonstrates how to change the ranking algorithm of your hybrid search in JavaScript.
 
 ```typescript
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -116,7 +116,7 @@ If your use cases don't fall into any of the two scenarios mentioned, you might 
 
 ## Building an Application that leverages Hybrid Search
 
-To get some hands-on experience with the new Typescript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
+To get some hands-on experience with the new TypeScript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
 
 ### Setting up WCS (Weaviate Cloud Services)
 
@@ -326,7 +326,7 @@ The project on Github should look like this once cloned and started.
 
 ## Conclusion
 
-That's everything that's needed for creating a full-stack app using Weaviate and the new Typescript client! The best way to get even more familiar with the involved tooling is to extend your QuoteFinder. Whether you'd like to add pure vector search, improve the frontend, or even implement the functionality to search through your quotes using images, the possibilities are endless!
+That's everything that's needed for creating a full-stack app using Weaviate and the new TypeScript client! The best way to get even more familiar with the involved tooling is to extend your QuoteFinder. Whether you'd like to add pure vector search, improve the frontend, or even implement the functionality to search through your quotes using images, the possibilities are endless!
 
 import WhatsNext from '/_includes/what-next.mdx';
 

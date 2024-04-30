@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 
-export default function PricingSandBox() {
+export default function Sandbox() {
   return (
     <div className={styles.sandbox}>
       <div className={`${styles.title} ${styles.sandboxTitle}`}>
