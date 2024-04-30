@@ -6,15 +6,13 @@ image: og/docs/integrations/self-hosted.jpg
 
 Weaviate provides numerous integrations with popular self-hosted models for producing text and multi-modal vector embeddings, question answering, and reranking.
 
-## Overview
+![Embedding integration illustration](../_includes/integration_selfhosted_embedding.png)
 
-### How it works
+### Architecture & resource requirements
 
 When you use a self-hosted model, Weaviate creates an "inference container" that runs the model. This container is separate from the Weaviate server, and Weaviate communicates with it to get the desired embeddings or predictions.
 
-:::note TODO
-ADD DIAGRAM
-:::
+The inference container requires resources such as CPU, memory, and disk space. The resource requirements depend on the model you use. For example, a large model such as ImageBind requires more resources than a smaller model like a text embedding model.
 
 ## Model types
 
