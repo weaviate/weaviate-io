@@ -57,6 +57,57 @@ await client.collections.create({
 });
 // END FullVectorizerCohere
 
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecOpenAI(),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerOpenAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecOpenAI({
+          // // Further options
+          // model='text-embedding-3-large',
+          // model_version="002",   // Parameter only applicable for `ada` model family and older
+          // dimensions=1024,       //Parameter only applicable for `v3` model family and newer
+          // type='text',
+          // base_url='<custom_openai_url>',
+          // vectorize_collection_name=False,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerOpenAI
+
+
 let srcObjects = [
   {"title": "The Shawshank Redemption", "description": ""},
   {"title": "The Godfather", "description": ""},

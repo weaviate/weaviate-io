@@ -30,6 +30,9 @@ client.collections.create(
 )
 # END BasicVectorizerCohere
 
+# clean up
+client.collections.delete("DemoCollection")
+
 # START FullVectorizerCohere
 from weaviate.classes.config import Configure
 
@@ -39,7 +42,7 @@ client.collections.create(
     vectorizer_config=[
         Configure.NamedVectors.text2vec_cohere(
             name="title_vector",
-            source_properties=["title"]
+            source_properties=["title"],
             # Further options
             # model="embed-multilingual-v3.0",
             # truncate="END",  # "NONE", "START" or "END"
@@ -51,6 +54,54 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullVectorizerCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_openai(
+            name="title_vector",
+            source_properties=["title"],
+            # # Further options
+            # model="text-embedding-3-large",
+            # model_version="002",  # Parameter only applicable for `ada` model family and older
+            # dimensions=1024,      # Parameter only applicable for `v3` model family and newer
+            # type="text",
+            # base_url="<custom_openai_url>",
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerOpenAI
+
 
 source_objects = [
     {"title": "The Shawshank Redemption", "description": ""},

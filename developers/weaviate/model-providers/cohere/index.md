@@ -5,10 +5,6 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere']
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-
 Cohere offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Cohere's APIs, allowing users to leverage Cohere's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.

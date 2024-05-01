@@ -48,6 +48,45 @@ client.collections.create(
 )
 # END FullGenerativeCohere
 
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.openai()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.openai(
+        # # These parameters are optional
+        # model="gpt-4",
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+        # base_url="<custom_openai_url>"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeOpenAI
+
 source_objects = [
     {"title": "The Shawshank Redemption"},
     {"title": "The Godfather"},

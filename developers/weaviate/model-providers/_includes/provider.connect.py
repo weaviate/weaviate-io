@@ -13,6 +13,10 @@ weaviate_key = os.getenv("WEAVIATE_API_KEY")
 # Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_API_KEY")
 # END CohereInstantiation
+# START OpenAIInstantiation
+# Recommended: save sensitive data as environment variables
+openai_key = os.getenv("OPENAI_API_KEY")
+# END OpenAIInstantiation
 
 
 # START-ANY
@@ -20,8 +24,11 @@ cohere_key = os.getenv("COHERE_API_KEY")
 headers = {
 # END-ANY
 # START CohereInstantiation
-    "X-Cohere-Api-Key": cohere_key
+    "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
+# START OpenAIInstantiation
+    "X-OpenAI-Api-Key": openai_key,
+# END OpenAIInstantiation
 # START-ANY
 }
 # highlight-end

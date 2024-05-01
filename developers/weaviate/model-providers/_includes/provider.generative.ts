@@ -31,17 +31,52 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.cohere({
     // // These parameters are optional
-    // model: "command-xlarge-nightly",
+    // model: 'command-xlarge-nightly',
     // temperatureProperty: 0.7,
     // maxTokensProperty: 500,
     // kProperty: 5,
-    // stopSequencesProperty: ["\n\n"],
-    // returnLikelihoodsProperty: "GENERATION"
+    // stopSequencesProperty: ['\n\n'],
+    // returnLikelihoodsProperty: 'GENERATION'
   }),
   // highlight-end
   // Additional parameters not shown
 });
 // END FullGenerativeCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.openai(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeOpenAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.openai({
+    // // These parameters are optional
+    // model='gpt-4',
+    // frequency_penalty=0,
+    // max_tokens=500,
+    // presence_penalty=0,
+    // temperature=0.7,
+    // top_p=0.7,
+    // base_url='<custom_openai_url>'
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeOpenAI
 
 // START SinglePromptExample  // START GroupedTaskExample
 let myCollection = client.collections.get('DemoCollection');
