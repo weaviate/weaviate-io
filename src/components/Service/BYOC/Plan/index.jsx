@@ -18,7 +18,7 @@ export default function ServicePlan() {
                 Our BYOC architecture capitalizes on managed Kubernetes,
                 ensuring scalability and resilience.
               </p>
-              <span>Shared reponsibility</span>
+              <span>Shared responsibility</span>
               <p>
                 Weaviate manages application-level security, provisioning,
                 configuration, upgrades and patches with 24/7 monitoring and
