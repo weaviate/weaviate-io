@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PyCode from '!!raw-loader!../_includes/provider.connect.py';
 
-Cohere provides a range of models through their API. Weaviate integrates with Cohere's APIs to provide convenient access to their models from within Weaviate.
+Cohere provides a range of models through their API. Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
 ![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
 
