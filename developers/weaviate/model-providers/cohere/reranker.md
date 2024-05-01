@@ -8,6 +8,8 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.reranker.py';
 import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
 
@@ -15,19 +17,67 @@ import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
-See the [Cohere integrations page](./index.md#requirements) for a list of requirements to use Cohere with Weaviate.
+[Configure a Weaviate collection](#configure-the-reranker) to use a Cohere reranker model, and Weaviate will use the specified model and your Cohere API key to rerank search results.
 
-## Configuration
-
-You can configure a Weaviate collection to use a Cohere reranker model.
-
-This integration allows Weaviate to perform an initial search, then rerank the retrieved results using the specified Cohere model.
+In this two-step process, Weaviate first performs a search and then reranks the results using the specified model.
 
 ![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
 
-### Example
+## Requirements
 
-To configure a collection to use Cohere generative models, set it as follows:
+### Weaviate configuration
+
+Your Weaviate instance must be configured with the Cohere reranker integration (`reranker-cohere`) module.
+
+<details>
+  <summary>For WCS (serverless) users</summary>
+
+This module is enabled by default in Weaviate Cloud Services (WCS) instances.
+
+</details>
+
+<details>
+  <summary>For self-hosted users</summary>
+
+- Check the [cluster metadata](../../config-refs/meta.md) to verify if the module is enabled.
+- Follow the [how-to configure modules](../../configuration/modules.md) guide to enable the module in Weaviate.
+
+</details>
+
+### API key
+
+You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+
+Provide the API key to Weaviate using one of the following methods:
+
+- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyConnect}
+      startMarker="# START CohereInstantiation"
+      endMarker="# END CohereInstantiation"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="ts" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START CohereInstantiation"
+      endMarker="// END CohereInstantiation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Configure the reranker
+
+Configure a Weaviate collection to use a Cohere reranker model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -50,46 +100,17 @@ To configure a collection to use Cohere generative models, set it as follows:
 
 </Tabs>
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+You can specify one of the [available models](#available-models) for the reranker to use. The default model (`rerank-multilingual-v3.0`) is used if no model is specified.
 
-### Available models
+## Reranking query
 
-The `rerank-multilingual-v3.0` model is set as the default model. You can also specify one of the available models manually.
+Once the reranker is configured, Weaviate performs [reranking operations](../../search/rerank.md) using the specified Cohere model.
 
-<details>
-  <summary>Available models</summary>
-
-- rerank-english-v3.0
-- rerank-multilingual-v3.0
-- rerank-english-v2.0
-- rerank-multilingual-v2.0
-
-You can also select a fine-tuned reranker model_id, such as:
-
-- `500df123-afr3-...`
-
-Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
-
-</details>
-
-## API key
-
-For the integration to work, you must provide a valid Cohere API key so that Weaviate can work with the Cohere API. You can provide the API key to Weaviate in one of two ways:
-
-- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime.
-
-Please see [this section for more details](./index.md#api-key).
-
-## Reranker query example
+More specifically, Weaviate performs an initial search, then reranks the results using the specified model.
 
 Any search in Weaviate can be combined with a reranker to perform reranking operations.
 
 ![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
-
-The single prompt method uses the generative model to generate text for each object in the search results. In other words, for `n` search results, the generative model will generate `n` outputs.
-
-Note that the single prompt query must indicate the object properties for Weaviate to pass on to the language model, using braces `{}`. For example, if the object's `title` property is to be passed on, the query should include `{title}`.
 
 <Tabs groupId="languages">
 
@@ -113,10 +134,36 @@ Note that the single prompt query must indicate the object properties for Weavia
 
 </Tabs>
 
+## References
+
+### Available models
+
+The `rerank-multilingual-v3.0` model is set as the default model. You can also specify one of the available models manually.
+
+<details>
+  <summary>Available models</summary>
+
+- rerank-english-v3.0
+- rerank-multilingual-v3.0 (default)
+- rerank-english-v2.0
+- rerank-multilingual-v2.0
+
+You can also select a fine-tuned reranker model_id, such as:
+
+- `500df123-afr3-...`
+
+Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
+
+</details>
+
+For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+
 ## Further resources
 
-To learn how Cohere's embedding models integrate with Weaviate, see [this page](./embeddings.md).
-To learn how Cohere's generative models integrate with Weaviate, see [this page](./generative.md).
+### Other integrations
+
+- [Cohere embedding models + Weaviate](./embeddings.md).
+- [Cohere generative models + Weaviate](./generative.md).
 
 ### Code examples
 

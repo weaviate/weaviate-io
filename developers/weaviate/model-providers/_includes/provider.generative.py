@@ -13,7 +13,22 @@ client = weaviate.connect_to_local(
     }
 )
 
-# START GenerativeCohere
+# START BasicGenerativeCohere
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.cohere()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeCohere
 from weaviate.classes.config import Configure
 
 client.collections.create(
@@ -27,12 +42,11 @@ client.collections.create(
         # k=5,
         # stop_sequences=["\n\n"],
         # return_likelihoods="GENERATION"
-
     )
     # highlight-end
     # Additional parameters not shown
 )
-# END GenerativeCohere
+# END FullGenerativeCohere
 
 source_objects = [
     {"title": "The Shawshank Redemption"},

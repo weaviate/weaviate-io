@@ -8,33 +8,83 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
+import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-# Cohere Generative AI models with Weaviate
+# Cohere Generative AI with Weaviate
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
-See the [Cohere integrations page](./index.md#requirements) for a list of requirements to use Cohere with Weaviate.
+[Configure a Weaviate collection](#configure-collection) to use a Cohere generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Cohere API key.
 
-## Configuration
-
-You can configure a Weaviate collection to use a Cohere generative model.
-
-Weaviate will then perform retrieval augmented generation (RAG) operations with the specified Cohere model. More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Cohere generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Cohere generative model to generate outputs.
 
 ![RAG integration illustration](../_includes/integration_cohere_rag.png)
 
-### Example
+## Requirements
 
-To configure a collection to use Cohere generative models, set it as follows:
+### Weaviate configuration
+
+Your Weaviate instance must be configured with the Cohere generative AI integration (`generative-cohere`) module.
+
+<details>
+  <summary>For WCS (serverless) users</summary>
+
+This module is enabled by default in Weaviate Cloud Services (WCS) instances.
+
+</details>
+
+<details>
+  <summary>For self-hosted users</summary>
+
+- Check the [cluster metadata](../../config-refs/meta.md) to verify if the module is enabled.
+- Follow the [how-to configure modules](../../configuration/modules.md) guide to enable the module in Weaviate.
+
+</details>
+
+### API key
+
+You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+
+Provide the API key to Weaviate using one of the following methods:
+
+- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyConnect}
+      startMarker="# START CohereInstantiation"
+      endMarker="# END CohereInstantiation"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="ts" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSConnect}
+      startMarker="// START CohereInstantiation"
+      endMarker="// END CohereInstantiation"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Configure collection
+
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a Cohere generative AI model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START GenerativeCohere"
-      endMarker="# END GenerativeCohere"
+      startMarker="# START BasicGenerativeCohere"
+      endMarker="# END BasicGenerativeCohere"
       language="py"
     />
   </TabItem>
@@ -42,49 +92,29 @@ To configure a collection to use Cohere generative models, set it as follows:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START GenerativeCohere"
-      endMarker="// END GenerativeCohere"
+      startMarker="// START BasicGenerativeCohere"
+      endMarker="// END BasicGenerativeCohere"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/chat).
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`command-xlarge-nightly`) is used if no model is specified.
 
-### Available models
+## Retrieval augmented generation
 
-The `command-xlarge-nightly` language model is set as the default model. You can also specify one of the available models manually.
-
-<details>
-  <summary>Available models</summary>
-
-* `command-xlarge-nightly`
-* `command-xlarge-beta`
-* `command-xlarge`
-
-</details>
-
-## API key
-
-For the integration to work, you must provide a valid Cohere API key so that Weaviate can work with the Cohere API. You can provide the API key to Weaviate in one of two ways:
-
-- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime.
-
-Please see [this section for more details](./index.md#api-key).
-
-## Retrieval augmented generation examples
-
-Any search in Weaviate can be combined with a generative model to perform retrieval augmented generation (RAG) operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
+After configuring the generative AI integration, perform RAG operations, either with the [single prompt](#single-prompt) or [grouped task](#grouped-task) method.
 
 ### Single prompt
 
-![RAG integration illustration](../_includes/integration_cohere_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_cohere_rag_single.png)
 
-The single prompt method uses the generative model to generate text for each object in the search results. In other words, for `n` search results, the generative model will generate `n` outputs.
+To generate text for each object in the search results, use the single prompt method.
 
-Note that the single prompt query must indicate the object properties for Weaviate to pass on to the language model, using braces `{}`. For example, if the object's `title` property is to be passed on, the query should include `{title}`.
+The example below generates outputs for each object in the `n` search results, specified by the `limit` parameter.
+
+When creating a single prompt query, use braces `{}` to interpolate the object properties you want Weaviate to pass on to the language model. For example, to pass on the object's `title` property, include `{title}` in the query.
 
 <Tabs groupId="languages">
 
@@ -110,9 +140,9 @@ Note that the single prompt query must indicate the object properties for Weavia
 
 ### Grouped task
 
-![RAG integration illustration](../_includes/integration_cohere_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_cohere_rag_grouped.png)
 
-The grouped task method uses the generative model to generate text for a group of objects in the search results. In other words, for `n` search results, the generative model will generate a single output.
+Use the grouped task method to generate a single text output for a group of objects in the search results. In other words, when you have `n` search results, the generative model generates one output for the entire group.
 
 <Tabs groupId="languages">
 
@@ -136,9 +166,47 @@ The grouped task method uses the generative model to generate text for a group o
 
 </Tabs>
 
+## References
+
+### Generative parameters
+
+Configure the following generative parameters to customize the model behavior.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START FullGenerativeCohere"
+      endMarker="# END FullGenerativeCohere"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START FullGenerativeCohere"
+      endMarker="// END FullGenerativeCohere"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/chat).
+
+### Available models
+
+* `command-xlarge-nightly` (default)
+* `command-xlarge-beta`
+* `command-xlarge`
+
 ## Further resources
 
-To learn how Cohere's embedding models integrate with Weaviate, see [this page](./embeddings.md).
+### Other integrations
+
+- [Cohere embedding models + Weaviate](./embeddings.md.md).
+- [Cohere reranker models + Weaviate](./reranker.md).
 
 ### Code examples
 

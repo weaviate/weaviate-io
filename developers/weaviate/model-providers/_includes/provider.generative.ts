@@ -12,7 +12,20 @@ const client = await weaviate.connectToLocal({
   },
 });
 
-// START GenerativeCohere
+// START BasicGenerativeCohere
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.cohere(),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeCohere
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
@@ -28,8 +41,7 @@ await client.collections.create({
   // highlight-end
   // Additional parameters not shown
 });
-// END GenerativeCohere
-
+// END FullGenerativeCohere
 
 // START SinglePromptExample  // START GroupedTaskExample
 let myCollection = client.collections.get('DemoCollection');

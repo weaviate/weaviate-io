@@ -19,7 +19,7 @@ Weaviate's integration with Cohere's APIs allows you to access their models' cap
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use a Cohere embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Cohere API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search-example) and [hybrid](#hybrid-search-example) search operations, Weaviate converts text queries into embeddings.
+At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
 ![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
 
@@ -138,7 +138,7 @@ Once the vectorizer is configured, Weaviate will perform vector and hybrid searc
 
 ![Embedding integration at search illustration](../_includes/integration_cohere_embedding_search.png)
 
-### Vector (near text) search example
+### Vector (near text) search
 
 When you perform a [vector search](../../search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and performs a vector search to return the most similar objects from the database.
 
@@ -166,7 +166,7 @@ The query below returns the `n` most similar objects from the database, set by `
 
 </Tabs>
 
-### Hybrid search example
+### Hybrid search
 
 When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and performs a hybrid search to return the best scoring objects from the database.
 
@@ -200,27 +200,6 @@ A hybrid search performs a vector search and a keyword (BM25) search, before [co
 
 ## References
 
-### Available models
-
-- `embed-multilingual-v3.0` (Default)
-- `embed-multilingual-light-v3.0`
-- `embed-multilingual-v2.0` (previously `embed-multilingual-22-12`)
-- `embed-english-v3.0`
-- `embed-english-light-v3.0`
-- `embed-english-v2.0`
-- `embed-english-light-v2.0`
-
-<details>
-  <summary>Deprecated models</summary>
-
-The following models are available, but deprecated:
-- `multilingual-22-12`
-- `large`
-- `medium`
-- `small`
-
-</details>
-
 ### Vectorizer parameters
 
 Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Cohere-specific options.
@@ -247,6 +226,27 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
 </Tabs>
 
 For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/embed).
+
+### Available models
+
+- `embed-multilingual-v3.0` (Default)
+- `embed-multilingual-light-v3.0`
+- `embed-multilingual-v2.0` (previously `embed-multilingual-22-12`)
+- `embed-english-v3.0`
+- `embed-english-light-v3.0`
+- `embed-english-v2.0`
+- `embed-english-light-v2.0`
+
+<details>
+  <summary>Deprecated models</summary>
+
+The following models are available, but deprecated:
+- `multilingual-22-12`
+- `large`
+- `medium`
+- `small`
+
+</details>
 
 ## Further resources
 
