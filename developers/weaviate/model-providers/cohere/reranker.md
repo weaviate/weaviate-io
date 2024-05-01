@@ -2,7 +2,7 @@
 title: Reranker
 sidebar_position: 50
 image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere', 'generative', 'rag']
+# tags: ['model providers', 'cohere', 'reranking']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,7 +19,7 @@ Weaviate's integration with Cohere's APIs allows you to access their models' cap
 
 [Configure a Weaviate collection](#configure-the-reranker) to use a Cohere reranker model, and Weaviate will use the specified model and your Cohere API key to rerank search results.
 
-In this two-step process, Weaviate first performs a search and then reranks the results using the specified model.
+This two-step process involves Weaviate first performing a search and then reranking the results using the specified model.
 
 ![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
 
@@ -174,7 +174,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- Cohere [Chat API documentation](https://docs.cohere.com/reference/chat)
+- Cohere [Rerank API documentation](https://docs.cohere.com/reference/rerank)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

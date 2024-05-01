@@ -140,7 +140,7 @@ Once the vectorizer is configured, Weaviate will perform vector and hybrid searc
 
 ### Vector (near text) search
 
-When you perform a [vector search](../../search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and performs a vector search to return the most similar objects from the database.
+When you perform a [vector search](../../search/similarity.md#search-with-text), Weaviate converts the text query into an embedding using the specified model and returns the most similar objects from the database.
 
 The query below returns the `n` most similar objects from the database, set by `limit`.
 
@@ -168,13 +168,13 @@ The query below returns the `n` most similar objects from the database, set by `
 
 ### Hybrid search
 
-When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and performs a hybrid search to return the best scoring objects from the database.
-
-The query below returns the `n` best scoring objects from the database, set by `limit`.
-
 :::info What is a hybrid search?
 A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
 :::
+
+When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model returns the best scoring objects from the database.
+
+The query below returns the `n` best scoring objects from the database, set by `limit`.
 
 <Tabs groupId="languages">
 

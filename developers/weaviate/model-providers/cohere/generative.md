@@ -112,7 +112,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 To generate text for each object in the search results, use the single prompt method.
 
-The example below generates outputs for each object in the `n` search results, specified by the `limit` parameter.
+The example below generates outputs for each of the `n` search results, where `n` is specified by the `limit` parameter.
 
 When creating a single prompt query, use braces `{}` to interpolate the object properties you want Weaviate to pass on to the language model. For example, to pass on the object's `title` property, include `{title}` in the query.
 
@@ -142,7 +142,9 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_cohere_rag_grouped.png)
 
-Use the grouped task method to generate a single text output for a group of objects in the search results. In other words, when you have `n` search results, the generative model generates one output for the entire group.
+To generate one text for the entire set of search results, use the grouped task method.
+
+In other words, when you have `n` search results, the generative model generates one output for the entire group.
 
 <Tabs groupId="languages">
 
@@ -205,7 +207,7 @@ For further details on model parameters, please consult the [Cohere API document
 
 ### Other integrations
 
-- [Cohere embedding models + Weaviate](./embeddings.md.md).
+- [Cohere embedding models + Weaviate](./embeddings.md).
 - [Cohere reranker models + Weaviate](./reranker.md).
 
 ### Code examples
