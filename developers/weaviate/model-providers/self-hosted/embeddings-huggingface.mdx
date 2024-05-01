@@ -1,0 +1,26 @@
+---
+title: Embeddings - Hugging Face
+sidebar_position: 10
+image: og/docs/integrations/self-hosted.jpg
+# tags: ['model integration, hugging face, self-hosted']
+---
+
+# Hugging Face Hub embeddings with Weaviate (self-hosted)
+
+Weaviate integrates with models from the Hugging Face Hub to provide convenient access to their vectorization capabilities from within Weaviate.
+
+## System configuration
+
+This is done through a separate containerized service that will run the embedding model and provide the embeddings to Weaviate.
+
+Accordingly, you require:
+
+- A Weaviate instance that is configured with the `text2vec-transformers` module
+
+## Collection configuration
+
+
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
