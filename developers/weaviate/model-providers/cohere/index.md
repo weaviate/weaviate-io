@@ -8,42 +8,54 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
-import PyCode from '!!raw-loader!../_includes/provider.connect.py';
 
-Cohere provides a range of models through their API. Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
+Cohere offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Cohere's APIs, allowing users to leverage Cohere's models directly within the Weaviate database.
+
+These integrations empower developers to build sophisticated AI-driven applications with ease.
+
+## Integrations with Cohere
+
+### Embedding models for semantic search
 
 ![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
 
-## Requirements
+Cohere's embedding models transform text data into high-dimensional vector representations, capturing semantic meaning and context.
 
-### Weaviate configuration
+[Weaviate integrates with Cohere's embedding models](./embeddings.md) to enable seamless vectorization of data. This integration allows users to perform semantic and hybrid search operations without the need for additional preprocessing or data transformation steps.
 
-Your Weaviate instance must be configured with the Cohere module.
+[Cohere embedding integration page](./embeddings.md)
 
-- To check if the Cohere module is enabled in your Weaviate instance, review the [cluster metadata](../../config-refs/meta.md).
-- For instructions on how to enable the Cohere module in Weaviate, see the [how-to configure modules](../../configuration/modules.md) guide.
+### Generative AI models for RAG
 
-### API key
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_cohere_rag_single.png)
 
-For the integration to work, you must provide a valid Cohere API key so that Weaviate can work with the Cohere API. You can obtain an API key by signing up for [a Cohere account](https://cohere.com/) and following their instructions.
+Cohere's generative AI models can generate human-like text based on given prompts and contexts.
 
-You can provide the API key to Weaviate in one of two ways:
+[Weaviate's generative AI integration](./generative.md) enables users to perform retrieval augmented generation (RAG) directly within the Weaviate database. This combines Weaviate's efficient storage and fast retrieval capabilities with Cohere's generative AI models to generate personalized and context-aware responses.
 
-- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+[Cohere generative AI integration page](./generative.md)
 
-<Tabs groupId="languages">
- <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START CohereInstantiation"
-      endMarker="# END CohereInstantiation"
-      language="py"
-    />
-  </TabItem>
-</Tabs>
+### Reranker models
 
-## Available model groups
+![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
+
+Cohere's reranker models are designed to improve the relevance and ranking of search results.
+
+[The Weaviate reranker integration](./reranker.md) allows users to easily refine their search results by leveraging Cohere's reranker models.
+
+[Cohere reranker integration page](./reranker.md)
+
+## Summary
+
+These integrations enable developers to leverage Cohere's powerful models directly within Weaviate.
+
+In turn, they simplify the process of building AI-driven applications to speed up your development process, so that you can focus on creating innovative solutions.
+
+## Get started
+
+You must provide a valid Cohere API key to Weaviate for these integrations. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+
+Then, go to the relevant integration page to learn how to configure Weaviate with the Cohere models and start using them in your applications.
 
 - [Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
