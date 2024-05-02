@@ -10,7 +10,7 @@ weaviate_key = os.getenv("WEAVIATE_API_KEY")
 
 # START AnyscaleInstantiation
 # Recommended: save sensitive data as environment variables
-anyscale_key = os.getenv("ANYSCALE_API_KEY")
+anyscale_key = os.getenv("ANYSCALE_APIKEY")
 # END AnyscaleInstantiation
 # START AWSInstantiation
 # Recommended: save sensitive data as environment variables
@@ -19,27 +19,31 @@ aws_secret_key = os.getenv("AWS_SECRET_KEY")
 # END AWSInstantiation
 # START CohereInstantiation
 # Recommended: save sensitive data as environment variables
-cohere_key = os.getenv("COHERE_API_KEY")
+cohere_key = os.getenv("COHERE_APIKEY")
 # END CohereInstantiation
+# START GoogleInstantiation
+# Recommended: save sensitive data as environment variables
+google_key = os.getenv("GOOGLE_APIKEY")
+# END GoogleInstantiation
 # START HuggingFaceInstantiation
 # Recommended: save sensitive data as environment variables
-huggingface_key = os.getenv("HUGGINGFACE_API_KEY")
+huggingface_key = os.getenv("HUGGINGFACE_APIKEY")
 # END HuggingFaceInstantiation
 # START JinaAIInstantiation
 # Recommended: save sensitive data as environment variables
-jinaai_key = os.getenv("JINAAI_API_KEY")
+jinaai_key = os.getenv("JINAAI_APIKEY")
 # END JinaAIInstantiation
 # START MistralInstantiation
 # Recommended: save sensitive data as environment variables
-mistral_key = os.getenv("MISTRAL_API_KEY")
+mistral_key = os.getenv("MISTRAL_APIKEY")
 # END MistralInstantiation
 # START OpenAIInstantiation
 # Recommended: save sensitive data as environment variables
-openai_key = os.getenv("OPENAI_API_KEY")
+openai_key = os.getenv("OPENAI_APIKEY")
 # END OpenAIInstantiation
 # START VoyageAIInstantiation
 # Recommended: save sensitive data as environment variables
-voyageai_key = os.getenv("VOYAGEAI_API_KEY")
+voyageai_key = os.getenv("VOYAGEAI_APIKEY")
 # END VoyageAIInstantiation
 
 
@@ -57,6 +61,9 @@ headers = {
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
+# START GoogleInstantiation
+    "X-Google-Api-Key": google_key,
+# END GoogleInstantiation
 # START HuggingFaceInstantiation
     "X-HuggingFace-Api-Key": huggingface_key,
 # END HuggingFaceInstantiation

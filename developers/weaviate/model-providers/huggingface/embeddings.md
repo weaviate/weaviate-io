@@ -50,7 +50,7 @@ You must provide a valid Hugging Face API key to Weaviate for this integration. 
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `HUGGINGFACE_API_KEY` environment variable that is available to Weaviate.
+- Set the `HUGGINGFACE_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">

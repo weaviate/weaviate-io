@@ -50,7 +50,7 @@ You must provide a valid Anyscale API key to Weaviate for this integration. Go t
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `ANYSCALE_API_KEY` environment variable that is available to Weaviate.
+- Set the `ANYSCALE_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">

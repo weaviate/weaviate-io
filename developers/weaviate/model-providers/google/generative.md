@@ -1,8 +1,8 @@
 ---
 title: Generative
 sidebar_position: 50
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai', 'generative', 'rag']
+image: og/docs/integrations/provider_integrations_google.jpg
+# tags: ['model providers', 'google', 'generative', 'rag']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,25 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-# OpenAI Generative AI with Weaviate
+# Google AI Generative AI with Weaviate
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with [Google AI Studio](https://ai.google/build) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use an OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use an Google AI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Google AI API key.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Google AI generative model to generate outputs.
 
-![RAG integration illustration](../_includes/integration_openai_rag.png)
+![RAG integration illustration](../_includes/integration_google_rag.png)
+
+:::info AI Studio availability
+At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/gemini-api/docs/available-regions) for the latest information.
+:::
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the OpenAI generative AI integration (`generative-openai`) module.
+Your Weaviate instance must be configured with the Google AI generative AI integration (`generative-palm`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -46,11 +50,11 @@ This integration is enabled by default on Weaviate Cloud Services (WCS) serverle
 
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide a valid API credentials to Weaviate for the appropriate integration. Go to [Google AI Studio](https://ai.google/build) or [Google Vertex AI](https://cloud.google.com/vertex-ai) to sign up and obtain API credentials.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `OPENAI_API_KEY` environment variable that is available to Weaviate.
+- Set the `PALM_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -58,8 +62,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START OpenAIInstantiation"
-      endMarker="# END OpenAIInstantiation"
+      startMarker="# START GoogleInstantiation"
+      endMarker="# END GoogleInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,8 +71,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START OpenAIInstantiation"
-      endMarker="// END OpenAIInstantiation"
+      startMarker="// START GoogleInstantiation"
+      endMarker="// END GoogleInstantiation"
       language="ts"
     />
   </TabItem>
@@ -77,14 +81,14 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an OpenAI generative AI model as follows:
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Google AI generative AI model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeOpenAI"
-      endMarker="# END BasicGenerativeOpenAI"
+      startMarker="# START BasicGenerativeGoogle"
+      endMarker="# END BasicGenerativeGoogle"
       language="py"
     />
   </TabItem>
@@ -92,8 +96,8 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeOpenAI"
-      endMarker="// END BasicGenerativeOpenAI"
+      startMarker="// START BasicGenerativeGoogle"
+      endMarker="// END BasicGenerativeGoogle"
       language="ts"
     />
   </TabItem>
@@ -108,7 +112,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_openai_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_google_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -140,7 +144,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_openai_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_google_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -178,8 +182,8 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullGenerativeOpenAI"
-      endMarker="# END FullGenerativeOpenAI"
+      startMarker="# START FullGenerativeGoogle"
+      endMarker="# END FullGenerativeGoogle"
       language="py"
     />
   </TabItem>
@@ -187,40 +191,35 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullGenerativeOpenAI"
-      endMarker="// END FullGenerativeOpenAI"
+      startMarker="// START FullGenerativeGoogle"
+      endMarker="// END FullGenerativeGoogle"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
-
 ### Available models
 
-* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
-* [gpt-3.5-turbo-16k](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-3.5-turbo-1106](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+Vertex AI:
+- `chat-bison` (default)
+- `gemini-pro`
+- `gemini-pro-vision` (from Weaviate `v1.24.2`)
+- `chat-bison-32k` (from Weaviate `v1.24.9`)
+- `chat-bison@002` (from Weaviate `v1.24.9`)
+- `chat-bison-32k@002` (from Weaviate `v1.24.9`)
+- `chat-bison@001` (from Weaviate `v1.24.9`)
 
-<details>
-  <summary>Older models</summary>
-
-The following models are available, but not recommended:
-
-* [davinci 002](https://platform.openai.com/docs/models/overview)
-* [davinci 003](https://platform.openai.com/docs/models/overview)
-
-</details>
+AI Studio:
+- `chat-bison-001` (default)
+- `gemini-pro`
+- `gemini-pro-vision` (from Weaviate `v1.24.2`)
 
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI embedding models + Weaviate](./embeddings.md).
+- [Google AI embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 
@@ -231,7 +230,8 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- OpenAI [Chat API documentation](https://platform.openai.com/docs/api-reference/chat)
+- [Google Vertex AI](https://cloud.google.com/vertex-ai)
+- [Google AI Studio](https://ai.google/build)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

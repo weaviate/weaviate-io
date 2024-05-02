@@ -8,8 +8,8 @@ import weaviate
 
 client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
-        "X-Cohere-Api-Key": os.environ["COHERE_API_KEY"],
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"],
+        "X-Cohere-Api-Key": os.environ["COHERE_APIKEY"],
     }
 )
 
@@ -125,6 +125,52 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullVectorizerCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerGoogle
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_palm(
+            name="title_vector",
+            source_properties=["title"],
+            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerGoogle
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerGoogle
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_palm(
+            name="title_vector",
+            source_properties=["title"],
+            # project_id="<google-cloud-project-id>",  # Required for Vertex AI
+            # # Further options
+            # model_id="<google-model-id>",
+            # api_endpoint="<google-api-endpoint>",
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerGoogle
 
 # clean up
 client.collections.delete("DemoCollection")

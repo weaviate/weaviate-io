@@ -8,8 +8,8 @@ import weaviate
 
 client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
-        "X-Cohere-Api-Key": os.environ["COHERE_API_KEY"],
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"],
+        "X-Cohere-Api-Key": os.environ["COHERE_APIKEY"],
     }
 )
 

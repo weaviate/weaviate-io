@@ -7,8 +7,8 @@ import weaviate from 'weaviate-client';
 
 const client = await weaviate.connectToLocal({
   headers: {
-    'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',
-    'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
+    'X-OpenAI-Api-Key': process.env.OPENAI_APIKEY || '',
+    'X-Cohere-Api-Key': process.env.COHERE_APIKEY || '',
   },
 });
 
@@ -80,6 +80,42 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeGoogle
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.palm({
+    // project_id='<google-cloud-project-id>',  // Required for Vertex AI
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeGoogle
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeGoogle
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.palm({
+    // project_id='<google-cloud-project-id>',  // Required for Vertex AI
+    // model_id="<google-model-id>",
+    // api_endpoint="<google-api-endpoint>",
+    // temperature=0.7,
+    // top_k=5,
+    // top_p=0.9,
+    // vectorize_collection_name=False,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeGoogle
 
 // Clean up
 await client.collections.delete('DemoCollection');

@@ -1,8 +1,8 @@
 ---
 title: Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai', 'embeddings']
+image: og/docs/integrations/provider_integrations_google.jpg
+# tags: ['model providers', 'google', 'embeddings']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,25 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-# OpenAI Embeddings with Weaviate
+# Google AI Embeddings with Weaviate
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with [Google AI Studio](https://ai.google/build) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an OpenAI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your OpenAI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_google_embedding.png)
+
+:::info AI Studio availability
+At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/gemini-api/docs/available-regions) for the latest information.
+:::
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the OpenAI vectorizer integration (`text2vec-openai`) module.
+Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -46,11 +50,11 @@ This integration is enabled by default on Weaviate Cloud Services (WCS) serverle
 
 ### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide a valid API credentials to Weaviate for the appropriate integration. Go to [Google AI Studio](https://ai.google/build) or [Google Vertex AI](https://cloud.google.com/vertex-ai) to sign up and obtain API credentials.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `OPENAI_API_KEY` environment variable that is available to Weaviate.
+- Set the `PALM_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -58,8 +62,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START OpenAIInstantiation"
-      endMarker="# END OpenAIInstantiation"
+      startMarker="# START GoogleInstantiation"
+      endMarker="# END GoogleInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,8 +71,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START OpenAIInstantiation"
-      endMarker="// END OpenAIInstantiation"
+      startMarker="// START GoogleInstantiation"
+      endMarker="// END GoogleInstantiation"
       language="ts"
     />
   </TabItem>
@@ -77,14 +81,14 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an OpenAI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Google AI embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerOpenAI"
-      endMarker="# END BasicVectorizerOpenAI"
+      startMarker="# START BasicVectorizerGoogle"
+      endMarker="# END BasicVectorizerGoogle"
       language="py"
     />
   </TabItem>
@@ -92,15 +96,15 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerOpenAI"
-      endMarker="// END BasicVectorizerOpenAI"
+      startMarker="// START BasicVectorizerGoogle"
+      endMarker="// END BasicVectorizerGoogle"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`text-embedding-ada-002`) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified.
 
 ## Data import
 
@@ -134,9 +138,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified OpenAI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Google AI model.
 
-![Embedding integration at search illustration](../_includes/integration_openai_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_google_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -202,22 +206,19 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose OpenAI-specific options.
+Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Google AI-specific options.
 
-| Parameter | Data type | Required | Default | Purpose |
-| :- | :- | :- | :- | :- |
-| `model` | string | Optional | `ada` | For v3 OpenAI embedding models, the model name. For earlier models, model family, e.g. `ada`. |
-| `dimensions` | int | Optional | `1536` for `text-embedding-3-small`<br/>`3072` for `text-embedding-3-large` | Number of dimensions. Applicable to v3 OpenAI models only. |
-| `modelVersion` | string | Optional | | Version string, e.g. `003`. |
-| `type` | string | Optional | | Model type. Can be `text` or `code`. |
-| `baseURL` | string | Optional | `https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
+- `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
+- `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
+- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
+<!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerOpenAI"
-      endMarker="# END FullVectorizerOpenAI"
+      startMarker="# START FullVectorizerGoogle"
+      endMarker="# END FullVectorizerGoogle"
       language="py"
     />
   </TabItem>
@@ -225,46 +226,35 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerOpenAI"
-      endMarker="// END FullVectorizerOpenAI"
+      startMarker="// START FullVectorizerGoogle"
+      endMarker="// END FullVectorizerGoogle"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
-
 ### Available models
 
-You can use any OpenAI embedding model with `text2vec-openai`. For document embeddings, choose from the following [embedding model families](https://platform.openai.com/docs/models/embeddings):
+Vertex AI:
+- `textembedding-gecko@001` (default)
+- `textembedding-gecko@002`
+- `textembedding-gecko@003`
+- `textembedding-gecko@latest`
+- `textembedding-gecko-multilingual@001`
+- `textembedding-gecko-multilingual@latest`
+- `text-embedding-preview-0409`
+- `text-multilingual-embedding-preview-0409`
 
-* `text-embedding-3`
-    * Available dimensions:
-        * `text-embedding-3-large`: `256`, `1024`, `3072` (default)
-        * `text-embedding-3-small`: `512`, `1536` (default)
-* `ada`
-* `babbage`
-* `davinci`
-
-<details>
-  <summary>Deprecated models</summary>
-
-The following models are available, but deprecated:
-* Codex
-* babbage-001
-* davinci-001
-* curie
-
-[Source](https://platform.openai.com/docs/deprecations)
-
-</details>
+AI Studio:
+- `embedding-001` (default)
+- `text-embedding-004`
 
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI generative models + Weaviate](./generative.md).
+- [Google AI generative models + Weaviate](./generative.md).
 
 ### Code examples
 
@@ -275,7 +265,8 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- OpenAI [Embed API documentation](https://platform.openai.com/docs/api-reference/embeddings)
+- [Google Vertex AI](https://cloud.google.com/vertex-ai)
+- [Google AI Studio](https://ai.google/build)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

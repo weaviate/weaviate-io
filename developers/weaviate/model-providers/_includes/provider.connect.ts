@@ -4,29 +4,32 @@ import weaviate from 'weaviate-client'
 // END-ANY
 
 // START AnyscaleInstantiation
-const anyscaleApiKey = process.env.ANYSCALE_API_KEY || '';  // Replace with your inference API key
+const anyscaleApiKey = process.env.ANYSCALE_APIKEY || '';  // Replace with your inference API key
 // END AnyscaleInstantiation
 // START AWSInstantiation
 const aws_access_key = process.env.AWS_ACCESS_KEY || '';  // Replace with your AWS access key
 const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your AWS secret key
 // END AWSInstantiation
 // START CohereInstantiation
-const cohereApiKey = process.env.COHERE_API_KEY || '';  // Replace with your inference API key
+const cohereApiKey = process.env.COHERE_APIKEY || '';  // Replace with your inference API key
 // END CohereInstantiation
+// START GoogleInstantiation
+const googleApiKey = process.env.GOOGLE_APIKEY || '';  // Replace with your inference API key
+// END GoogleInstantiation
 // START HuggingFaceInstantiation
-const huggingFaceApiKey = process.env.HUGGINGFACE_API_KEY || '';  // Replace with your inference API key
+const huggingFaceApiKey = process.env.HUGGINGFACE_APIKEY || '';  // Replace with your inference API key
 // END HuggingFaceInstantiation
 // START JinaAIInstantiation
-const jinaaiApiKey = process.env.JINAAI_API_KEY || '';  // Replace with your inference API key
+const jinaaiApiKey = process.env.JINAAI_APIKEY || '';  // Replace with your inference API key
 // END JinaAIInstantiation
 // START MistralInstantiation
-const mistralApiKey = process.env.MISTRAL_API_KEY || '';  // Replace with your inference API key
+const mistralApiKey = process.env.MISTRAL_APIKEY || '';  // Replace with your inference API key
 // END MistralInstantiation
 // START OpenAIInstantiation
-const openaiApiKey = process.env.OPENAI_API_KEY || '';  // Replace with your inference API key
+const openaiApiKey = process.env.OPENAI_APIKEY || '';  // Replace with your inference API key
 // END OpenAIInstantiation
 // START VoyageAIInstantiation
-const voyageaiApiKey = process.env.VOYAGEAI_API_KEY || '';  // Replace with your inference API key
+const voyageaiApiKey = process.env.VOYAGEAI_APIKEY || '';  // Replace with your inference API key
 // END VoyageAIInstantiation
 
 // START-ANY
@@ -34,7 +37,7 @@ const voyageaiApiKey = process.env.VOYAGEAI_API_KEY || '';  // Replace with your
 const client = await weaviate.connectToWCS(
   'WEAVIATE_INSTANCE_URL',  // Replace with your instance URL
   {
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'),
+    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_APIKEY'),
     // highlight-start
     headers: {
       // END-ANY
@@ -48,6 +51,9 @@ const client = await weaviate.connectToWCS(
       // START CohereInstantiation
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation
+      // START GoogleInstantiation
+      'X-Google-Api-Key': googleApiKey,
+      // END GoogleInstantiation
       // START JinaAIInstantiation
       'X-JinaAI-Api-Key': jinaaiApiKey,
       // END JinaAIInstantiation

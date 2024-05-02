@@ -8,8 +8,8 @@ import weaviate
 
 client = weaviate.connect_to_local(
     headers={
-        "X-OpenAI-Api-Key": os.environ["OPENAI_API_KEY"],
-        "X-Cohere-Api-Key": os.environ["COHERE_API_KEY"],
+        "X-OpenAI-Api-Key": os.environ["OPENAI_APIKEY"],
+        "X-Cohere-Api-Key": os.environ["COHERE_APIKEY"],
     }
 )
 
@@ -125,6 +125,46 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeGoogle
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.palm(
+        # project_id="<google-cloud-project-id>",  # Required for Vertex AI
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeGoogle
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeGoogle
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.palm(
+        # project_id="<google-cloud-project-id>",  # Required for Vertex AI
+        # model_id="<google-model-id>",
+        # api_endpoint="<google-api-endpoint>",
+        # temperature=0.7,
+        # top_k=5,
+        # top_p=0.9,
+        # vectorize_collection_name=False,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeGoogle
 
 # clean up
 client.collections.delete("DemoCollection")
