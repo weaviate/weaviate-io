@@ -13,6 +13,47 @@ client = weaviate.connect_to_local(
     }
 )
 
+# START BasicGenerativeAWSBedrock
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.aws(
+        region="us-east-1",
+        model="cohere.command-r-plus-v1:0"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeAWSBedrock
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeAWSSagemaker
+# Example coming soon
+# END BasicGenerativeAWSSagemaker
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeAWS
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.aws(
+        region="us-east-1",
+        model="cohere.command-r-plus-v1:0"
+        # Sagemaker parameter to be added soon
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeAWS
+
 # START BasicGenerativeCohere
 from weaviate.classes.config import Configure
 

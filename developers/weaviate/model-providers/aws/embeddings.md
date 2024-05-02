@@ -1,8 +1,8 @@
 ---
 title: Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai', 'embeddings']
+image: og/docs/integrations/provider_integrations_aws.jpg
+# tags: ['model providers', 'aws', 'embeddings']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,21 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-# OpenAI Embeddings with Weaviate
+# AWS Embeddings with Weaviate
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with AWS's [SageMaker](https://aws.amazon.com/sagemaker/) and [Bedrock](https://aws.amazon.com/bedrock/) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use an OpenAI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your OpenAI API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an AWS embedding model, and Weaviate will generate embeddings for various operations using the specified model and your AWS API credentials. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_openai_embedding.png)
+![Embedding integration illustration](../_includes/integration_aws_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the OpenAI vectorizer integration (`text2vec-openai`) module.
+Your Weaviate instance must be configured with the AWS vectorizer integration (`text2vec-aws`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -44,22 +44,22 @@ This module is enabled by default in Weaviate Cloud Services (WCS) instances.
 
 </details>
 
-### API key
+### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to Weaviate for these integrations. Go to [AWS](https://aws.amazon.com/) to sign up and obtain an AWS access key ID and a corresponding AWS secret access key.
 
-Provide the API key to Weaviate using one of the following methods:
+Provide the API credentials to Weaviate using one of the following methods:
 
-- Set the `OPENAI_API_KEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+- Set the `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` environment variables that are available to Weaviate.
+- Provide the API credentials at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START OpenAIInstantiation"
-      endMarker="# END OpenAIInstantiation"
+      startMarker="# START AWSInstantiation"
+      endMarker="# END AWSInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,24 +67,40 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="ts" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START OpenAIInstantiation"
-      endMarker="// END OpenAIInstantiation"
+      startMarker="// START AWSInstantiation"
+      endMarker="// END AWSInstantiation"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
+### AWS model access
+
+#### Bedrock
+
+To use a model via [Bedrock](https://aws.amazon.com/bedrock/), it must be available, and AWS must grant you access to it.
+
+Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
+
+#### SageMaker
+
+To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have access to the model's endpoint.
+
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an OpenAI embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an AWS embedding model by setting the vectorizer as follows. Note that the required parameters differ between Bedrock and SageMaker models.
+
+### Bedrock
+
+For Bedrock, you must provide the model name in the vectorizer configuration.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerOpenAI"
-      endMarker="# END BasicVectorizerOpenAI"
+      startMarker="# START BasicVectorizerAWSBedrock"
+      endMarker="# END BasicVectorizerAWSBedrock"
       language="py"
     />
   </TabItem>
@@ -92,15 +108,38 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerOpenAI"
-      endMarker="// END BasicVectorizerOpenAI"
+      startMarker="// START BasicVectorizerAWSBedrock"
+      endMarker="// END BasicVectorizerAWSBedrock"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`text-embedding-ada-002`) is used if no model is specified.
+### SageMaker
+
+For SageMaker, you must provide the endpoint address in the vectorizer configuration.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicVectorizerAWSSagemaker"
+      endMarker="# END BasicVectorizerAWSSagemaker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicVectorizerAWSSagemaker"
+      endMarker="// END BasicVectorizerAWSSagemaker"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
 
 ## Data import
 
@@ -129,14 +168,14 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 </Tabs>
 
 :::tip Re-use existing vectors
-If you already have a compatible OpenAI vector available, you can provide it directly to Weaviate. This can be useful if you have already generated embeddings using OpenAI and want to use them in Weaviate, such as when migrating data from another system.
+If you already have a compatible AWS vector available, you can provide it directly to Weaviate. This can be useful if you have already generated embeddings using AWS and want to use them in Weaviate, such as when migrating data from another system.
 :::
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified OpenAI model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified AWS model.
 
-![Embedding integration at search illustration](../_includes/integration_openai_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_aws_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -202,22 +241,19 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose OpenAI-specific options.
+Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose AWS-specific options.
 
-| Parameter | Data type | Required | Default | Purpose |
-| :- | :- | :- | :- | :- |
-| `model` | string | Optional | `ada` | For v3 OpenAI embedding models, the model name. For earlier models, model family, e.g. `ada`. |
-| `dimensions` | int | Optional | `1536` for `text-embedding-3-small`<br/>`3072` for `text-embedding-3-large` | Number of dimensions. Applicable to v3 OpenAI models only. |
-| `modelVersion` | string | Optional | | Version string, e.g. `003`. |
-| `type` | string | Optional | | Model type. Can be `text` or `code`. |
-| `baseURL` | string | Optional | `https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
+The AWS region setting is required for all AWS integrations.
+
+- Bedrock users must set `service` to `bedrock` and provide the `model` name.
+- SageMaker users must set `service` to `sagemaker` and provide the `endpoint` address.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerOpenAI"
-      endMarker="# END FullVectorizerOpenAI"
+      startMarker="# START FullVectorizerAWS"
+      endMarker="# END FullVectorizerAWS"
       language="py"
     />
   </TabItem>
@@ -225,46 +261,29 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerOpenAI"
-      endMarker="// END FullVectorizerOpenAI"
+      startMarker="// START FullVectorizerAWS"
+      endMarker="// END FullVectorizerAWS"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/embeddings).
-
 ### Available models
 
-You can use any OpenAI embedding model with `text2vec-openai`. For document embeddings, choose from the following [embedding model families](https://platform.openai.com/docs/models/embeddings):
+#### Bedrock
 
-* `text-embedding-3`
-    * Available dimensions:
-        * `text-embedding-3-large`: `256`, `1024`, `3072` (default)
-        * `text-embedding-3-small`: `512`, `1536` (default)
-* `ada`
-* `babbage`
-* `davinci`
+Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
 
-<details>
-  <summary>Deprecated models</summary>
+### SageMaker
 
-The following models are available, but deprecated:
-* Codex
-* babbage-001
-* davinci-001
-* curie
-
-[Source](https://platform.openai.com/docs/deprecations)
-
-</details>
+Any custom SageMaker URL can be used as an endpoint.
 
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI generative models + Weaviate](./generative.md).
+- [AWS generative models + Weaviate](./generative.md).
 
 ### Code examples
 
@@ -275,7 +294,8 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- OpenAI [Embed API documentation](https://platform.openai.com/docs/api-reference/embeddings)
+- AWS [Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
+- AWS [SageMaker documentation](https://docs.aws.amazon.com/sagemaker/)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -11,6 +11,26 @@ const client = await weaviate.connectToLocal({
     'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
   },
 });
+// START BasicGenerativeAWSBedrock
+// Code example coming soon
+// END BasicGenerativeAWSBedrock
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeAWSSagemaker
+// Code example coming soon
+// END BasicGenerativeAWSSagemaker
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeAWS
+// Code example coming soon
+// END FullGenerativeAWS
+
+// Clean up
+await client.collections.delete('DemoCollection');
 
 // START BasicGenerativeCohere
 await client.collections.create({

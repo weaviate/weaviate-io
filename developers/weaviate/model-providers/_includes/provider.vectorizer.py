@@ -13,6 +13,77 @@ client = weaviate.connect_to_local(
     }
 )
 
+# START BasicVectorizerAWSBedrock
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_aws(
+            name="title_vector",
+            region="us-east-1",
+            source_properties=["title"],
+            service="bedrock",
+            model="cohere.embed-multilingual-v3",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerAWSBedrock
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerAWSSagemaker
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_aws(
+            name="title_vector",
+            region="us-east-1",
+            source_properties=["title"],
+            service="sagemaker",
+            endpoint="<custom_sagemaker_url>",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerAWSSagemaker
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerAWS
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_aws(
+            name="title_vector",
+            region="us-east-1",
+            source_properties=["title"],
+            service="bedrock",                      # `bedrock` or `sagemaker`
+            model="cohere.embed-multilingual-v3",   # If using `bedrock`, this is required
+            # endpoint="<sagemaker_endpoint>",        # If using `sagemaker`, this is required
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerAWS
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerCohere
 from weaviate.classes.config import Configure
 

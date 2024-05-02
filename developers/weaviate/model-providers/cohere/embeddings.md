@@ -44,7 +44,7 @@ This module is enabled by default in Weaviate Cloud Services (WCS) instances.
 
 </details>
 
-### API key
+### API credentials
 
 You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
 

@@ -9,6 +9,11 @@ weaviate_url = os.getenv("WEAVIATE_URL")
 weaviate_key = os.getenv("WEAVIATE_API_KEY")
 
 
+# START AWSInstantiation
+# Recommended: save sensitive data as environment variables
+aws_access_key = os.getenv("AWS_ACCESS_KEY")
+aws_secret_key = os.getenv("AWS_SECRET_KEY")
+# END AWSInstantiation
 # START CohereInstantiation
 # Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_API_KEY")
@@ -23,6 +28,10 @@ openai_key = os.getenv("OPENAI_API_KEY")
 # highlight-start
 headers = {
 # END-ANY
+# START AWSInstantiation
+    "X-AWS-Access-Key": aws_access_key,
+    "X-AWS-Secret-Key": aws_secret_key,
+# END AWSInstantiation
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation

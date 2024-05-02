@@ -3,6 +3,10 @@ import weaviate from 'weaviate-client'
 
 // END-ANY
 
+// START AWSInstantiation
+const aws_access_key = process.env.AWS_ACCESS_KEY || '';  // Replace with your AWS access key
+const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your AWS secret key
+// END AWSInstantiation
 // START CohereInstantiation
 const cohereApiKey = process.env.COHERE_API_KEY || '';  // Replace with your inference API key
 // END CohereInstantiation
@@ -19,6 +23,10 @@ const client = await weaviate.connectToWCS(
     // highlight-start
     headers: {
       // END-ANY
+      // START AWSInstantiation
+      'X-AWS-Access-Key': aws_access_key,
+      'X-AWS-Secret-Key': aws_secret_key,
+      // END AWSInstantiation
       // START CohereInstantiation
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation

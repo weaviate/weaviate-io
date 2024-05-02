@@ -1,8 +1,8 @@
 ---
 title: Generative
 sidebar_position: 50
-image: og/docs/integrations/provider_integrations_openai.jpg
-# tags: ['model providers', 'openai', 'generative', 'rag']
+image: og/docs/integrations/provider_integrations_aws.jpg
+# tags: ['model providers', 'aws', 'generative', 'rag']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,21 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-# OpenAI Generative AI with Weaviate
+# AWS Generative AI with Weaviate
 
-Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with AWS's [SageMaker](https://aws.amazon.com/sagemaker/) and [Bedrock](https://aws.amazon.com/bedrock/) APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use a AWS generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your AWS API credentials.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the AWS generative model to generate outputs.
 
-![RAG integration illustration](../_includes/integration_openai_rag.png)
+![RAG integration illustration](../_includes/integration_aws_rag.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the OpenAI generative AI integration (`generative-openai`) module.
+Your Weaviate instance must be configured with the AWS generative AI integration (`generative-aws`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -44,22 +44,22 @@ This module is enabled by default in Weaviate Cloud Services (WCS) instances.
 
 </details>
 
-### API key
+### API credentials
 
-You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
+You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to Weaviate for these integrations. Go to [AWS](https://aws.amazon.com/) to sign up and obtain an AWS access key ID and a corresponding AWS secret access key.
 
-Provide the API key to Weaviate using one of the following methods:
+Provide the API credentials to Weaviate using one of the following methods:
 
-- Set the `OPENAI_API_KEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+- Set the `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` environment variables that are available to Weaviate.
+- Provide the API credentials at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START OpenAIInstantiation"
-      endMarker="# END OpenAIInstantiation"
+      startMarker="# START AWSInstantiation"
+      endMarker="# END AWSInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,24 +67,40 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="ts" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START OpenAIInstantiation"
-      endMarker="// END OpenAIInstantiation"
+      startMarker="// START AWSInstantiation"
+      endMarker="// END AWSInstantiation"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
+### AWS model access
+
+#### Bedrock
+
+To use a model via [Bedrock](https://aws.amazon.com/bedrock/), it must be available, and AWS must grant you access to it.
+
+Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
+
+#### SageMaker
+
+To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have access to the model's endpoint.
+
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a OpenAI generative AI model as follows:
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an AWS generative AI model as follows:
+
+### Bedrock
+
+For Bedrock, you must provide the model name in the vectorizer configuration.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeOpenAI"
-      endMarker="# END BasicGenerativeOpenAI"
+      startMarker="# START BasicGenerativeAWSBedrock"
+      endMarker="# END BasicGenerativeAWSBedrock"
       language="py"
     />
   </TabItem>
@@ -92,8 +108,33 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeOpenAI"
-      endMarker="// END BasicGenerativeOpenAI"
+      startMarker="// START BasicGenerativeAWSBedrock"
+      endMarker="// END BasicGenerativeAWSBedrock"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+### SageMaker
+
+For SageMaker, you must provide the endpoint address in the vectorizer configuration.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BasicGenerativeAWSSagemaker"
+      endMarker="# END BasicGenerativeAWSSagemaker"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START BasicGenerativeAWSSagemaker"
+      endMarker="// END BasicGenerativeAWSSagemaker"
       language="ts"
     />
   </TabItem>
@@ -108,7 +149,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_openai_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_aws_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -140,7 +181,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_openai_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_aws_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -178,8 +219,8 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullGenerativeOpenAI"
-      endMarker="# END FullGenerativeOpenAI"
+      startMarker="# START FullGenerativeAWS"
+      endMarker="# END FullGenerativeAWS"
       language="py"
     />
   </TabItem>
@@ -187,40 +228,31 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullGenerativeOpenAI"
-      endMarker="// END FullGenerativeOpenAI"
+      startMarker="// START FullGenerativeAWS"
+      endMarker="// END FullGenerativeAWS"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat).
+For further details on model parameters, please consult the [relevant AWS documentation](#further-resources).
 
 ### Available models
 
-* [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5) (default)
-* [gpt-3.5-turbo-16k](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-3.5-turbo-1106](https://platform.openai.com/docs/models/gpt-3-5)
-* [gpt-4](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-1106-preview](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* [gpt-4-32k](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+#### Bedrock
 
-<details>
-  <summary>Older models</summary>
+Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
 
-The following models are available, but not recommended:
+### SageMaker
 
-* [davinci 002](https://platform.openai.com/docs/models/overview)
-* [davinci 003](https://platform.openai.com/docs/models/overview)
-
-</details>
+Any custom SageMaker URL can be used as an endpoint.
 
 ## Further resources
 
 ### Other integrations
 
-- [OpenAI embedding models + Weaviate](./embeddings.md).
+- [AWS embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 
@@ -231,7 +263,8 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- OpenAI [Chat API documentation](https://platform.openai.com/docs/api-reference/chat)
+- AWS [Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
+- AWS [SageMaker documentation](https://docs.aws.amazon.com/sagemaker/)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

@@ -12,6 +12,83 @@ const client = await weaviate.connectToLocal({
   },
 });
 
+// START BasicVectorizerAWSBedrock
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecAWS({
+          region: 'us-east-1',
+          service: 'bedrock',
+          model: 'cohere.embed-multilingual-v3',
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerAWSBedrock
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerAWSSagemaker
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecAWS({
+          region: 'us-east-1',
+          service: 'sagemaker',
+          endpoint: '<custom_sagemaker_url>',
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerAWSSagemaker
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerAWS
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecAWS({
+          region: 'us-east-1',
+          service: 'bedrock',
+          model: 'cohere.embed-multilingual-v3',  // If using Bedrock
+          // endpoint: '<custom_sagemaker_url>',  // If using SageMaker
+          // vectorizeClassName: true,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerAWS
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerCohere
 await client.collections.create({
   name: 'DemoCollection',

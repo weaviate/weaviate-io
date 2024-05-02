@@ -17,7 +17,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 Weaviate's integration with OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
+[Configure a Weaviate collection](#configure-collection) to use an OpenAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OpenAI API key.
 
 More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the OpenAI generative model to generate outputs.
 
@@ -44,7 +44,7 @@ This module is enabled by default in Weaviate Cloud Services (WCS) instances.
 
 </details>
 
-### API key
+### API credentials
 
 You must provide a valid OpenAI API key to Weaviate for this integration. Go to [OpenAI](https://openai.com/) to sign up and obtain an API key.
 
@@ -77,7 +77,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use a OpenAI generative AI model as follows:
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an OpenAI generative AI model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
