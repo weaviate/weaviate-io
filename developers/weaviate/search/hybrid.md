@@ -14,11 +14,13 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 
 
-`Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
+`Hybrid` search combines the results of a vector search and a keyword (BM25F) search. 
+
+Weaviate uses a ranking method to merge the search results. The [ranking method](#change-the-ranking-method) and the [ranking weights](#balance-keyword-and-vector-search) are configurable.
 
 ## Basic hybrid search
 
-Combines results of a vector search and a keyword search based on the query string.
+Combine the results of a vector search and a keyword search. The search uses a single query string.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -86,7 +88,7 @@ The output is like this:
 :::info Added in `v1.24`
 :::
 
-A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+To run a hybrid search on a collection that has named vectors, use the `target` field to specify which named vector to search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -151,7 +153,7 @@ The output is like this:
 
 ## Explain the search results
 
-Use the metadata properties to understand why an object is selected.
+To see the object rankings, set the `explain score` field in your query. The search rankings are part of the object metadata. Weaviate uses the score to order the search results.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -216,10 +218,10 @@ The output is like this:
 
 ## Balance keyword and vector search
 
-Use the `alpha` argument to change how much each search affects the results.
+A hybrid search can favor the keyword or the vector component. To change the relative weights of the keyword and vector components, set the `alpha`value.
 
-- An `alpha` of `1` is a pure vector search.
-- An `alpha` of `0` is a pure keyword search.
+- `alpha` equals `1` in a pure vector search.
+- `alpha` equals `0` in a pure keyword search.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
@@ -362,7 +364,7 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 
 </details>
 
-## Specify properties to keyword search
+## Specify keyword search properties
 
 :::info Added in `v1.19.0`
 :::
@@ -495,9 +497,9 @@ The output is like this:
 
 </details>
 
-## Specify a vector
+## Specify a search vector
 
-To specify a vector instead of using a vector of the query string, pass it in addition to the query string for the keyword search.
+The vector component of hybrid search can use a query string or a query vector. To specify a query vector instead of a query string, provide a query vector (for the vector search) and a query string (for the keyword search) in your query.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
