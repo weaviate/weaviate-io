@@ -21,6 +21,16 @@ Voyage AI's embedding models transform text data into high-dimensional vector re
 
 [Voyage AI embedding integration page](./embeddings.md)
 
+### Reranker models
+
+![Reranker integration illustration](../_includes/integration_voyageai_reranker.png)
+
+Voyage AI's reranker models are designed to improve the relevance and ranking of search results.
+
+[The Weaviate reranker integration](./reranker.md) allows users to easily refine their search results by leveraging Voyage AI's reranker models.
+
+[Voyage AI reranker integration page](./reranker.md)
+
 ## Summary
 
 These integrations enable developers to leverage Voyage AI's powerful models directly within Weaviate.
