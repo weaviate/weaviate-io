@@ -16,77 +16,6 @@ import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts
 
 `Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
 
-
-## Named vectors
-
-:::info Added in `v1.24`
-:::
-
-A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# NamedVectorHybridPython"
-      endMarker="# END NamedVectorHybridPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="py3" label="Python (v3)">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# NamedVectorHybridPython"
-      endMarker="# END NamedVectorHybridPython"
-      language="python"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS (Beta)">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// NamedVectorHybrid"
-      endMarker="// END NamedVectorHybrid"
-      language="ts"
-    />
-  </TabItem>
-
-  <TabItem value="js2" label="JS/TS">
-    <FilteredTextBlock
-      text={TSCodeLegacy}
-      startMarker="// NamedVectorHybrid"
-      endMarker="// END NamedVectorHybrid"
-      language="ts"
-    />
-  </TabItem>
-
-
-
-  <TabItem value="graphql" label="GraphQL">
-    <FilteredTextBlock
-      text={PyCodeV3}
-      startMarker="# NamedVectorHybridGraphQL"
-      endMarker="# END NamedVectorHybridGraphQL"
-      language="graphql"
-    />
-  </TabItem>
-</Tabs>
-
-<details>
-  <summary>Example response</summary>
-
-The output is like this:
-
-<FilteredTextBlock
-  text={PyCodeV3}
-  startMarker="# START Expected NamedVectorNearText results"
-  endMarker="# END Expected NamedVectorNearText results"
-  language="json"
-/>
-
-</details>
-
 ## Basic hybrid search
 
 Combines results of a vector search and a keyword search based on the query string.
@@ -147,6 +76,74 @@ The output is like this:
   text={PyCodeV3}
   startMarker="# Expected HybridBasic results"
   endMarker="# END Expected HybridBasic results"
+  language="json"
+/>
+
+</details>
+
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorHybridGraphQL"
+      endMarker="# END NamedVectorHybridGraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# START Expected NamedVectorNearText results"
+  endMarker="# END Expected NamedVectorNearText results"
   language="json"
 />
 
