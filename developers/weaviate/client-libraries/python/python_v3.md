@@ -5,7 +5,6 @@ image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
 
-
 :::note Python client version
 The current Python client version is `v||site.python_client_version||`
 :::
