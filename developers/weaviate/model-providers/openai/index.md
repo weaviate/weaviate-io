@@ -1,6 +1,6 @@
 ---
 title: OpenAI + Weaviate
-sidebar_position: 50
+sidebar_position: 10
 image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai']
 ---

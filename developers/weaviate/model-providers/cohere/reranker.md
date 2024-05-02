@@ -1,6 +1,6 @@
 ---
 title: Reranker
-sidebar_position: 50
+sidebar_position: 70
 image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'reranking']
 ---
