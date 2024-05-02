@@ -11,6 +11,24 @@ const client = await weaviate.connectToLocal({
     'X-Cohere-Api-Key': process.env.COHERE_API_KEY || '',
   },
 });
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeAnyscale
+// Code example coming soon
+// END BasicGenerativeAnyscale
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeAnyscale
+// Code example coming soon
+// END FullGenerativeAnyscale
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeAWSBedrock
 // Code example coming soon
 // END BasicGenerativeAWSBedrock
@@ -62,6 +80,20 @@ await client.collections.create({
   // Additional parameters not shown
 });
 // END FullGenerativeCohere
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeMistral
+// Code example coming soon
+// END BasicGenerativeMistral
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeMistral
+// Code example coming soon
+// END FullGenerativeMistral
 
 // Clean up
 await client.collections.delete('DemoCollection');

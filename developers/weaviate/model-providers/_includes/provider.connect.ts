@@ -3,6 +3,9 @@ import weaviate from 'weaviate-client'
 
 // END-ANY
 
+// START AnyscaleInstantiation
+const anyscaleApiKey = process.env.ANYSCALE_API_KEY || '';  // Replace with your inference API key
+// END AnyscaleInstantiation
 // START AWSInstantiation
 const aws_access_key = process.env.AWS_ACCESS_KEY || '';  // Replace with your AWS access key
 const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your AWS secret key
@@ -16,6 +19,9 @@ const huggingFaceApiKey = process.env.HUGGINGFACE_API_KEY || '';  // Replace wit
 // START JinaAIInstantiation
 const jinaaiApiKey = process.env.JINAAI_API_KEY || '';  // Replace with your inference API key
 // END JinaAIInstantiation
+// START MistralInstantiation
+const mistralApiKey = process.env.MISTRAL_API_KEY || '';  // Replace with your inference API key
+// END MistralInstantiation
 // START OpenAIInstantiation
 const openaiApiKey = process.env.OPENAI_API_KEY || '';  // Replace with your inference API key
 // END OpenAIInstantiation
@@ -32,6 +38,9 @@ const client = await weaviate.connectToWCS(
     // highlight-start
     headers: {
       // END-ANY
+      // START AnyscaleInstantiation
+      'X-Anyscale-Api-Key': anyscaleApiKey,
+      // END AnyscaleInstantiation
       // START AWSInstantiation
       'X-AWS-Access-Key': aws_access_key,
       'X-AWS-Secret-Key': aws_secret_key,
@@ -45,6 +54,9 @@ const client = await weaviate.connectToWCS(
       // START HuggingFaceInstantiation
       'X-HuggingFace-Api-Key': huggingFaceApiKey,
       // END HuggingFaceInstantiation
+      // START MistralInstantiation
+      'X-Mistral-Api-Key': mistralApiKey,
+      // END MistralInstantiation
       // START OpenAIInstantiation
       'X-OpenAI-Api-Key': openaiApiKey,
       // END OpenAIInstantiation

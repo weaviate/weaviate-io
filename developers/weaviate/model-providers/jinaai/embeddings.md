@@ -100,7 +100,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`text-embedding-ada-002`) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`jina-embeddings-v2-base-en`) is used if no model is specified.
 
 ## Data import
 

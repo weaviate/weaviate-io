@@ -8,7 +8,10 @@ import os
 weaviate_url = os.getenv("WEAVIATE_URL")
 weaviate_key = os.getenv("WEAVIATE_API_KEY")
 
-
+# START AnyscaleInstantiation
+# Recommended: save sensitive data as environment variables
+anyscale_key = os.getenv("ANYSCALE_API_KEY")
+# END AnyscaleInstantiation
 # START AWSInstantiation
 # Recommended: save sensitive data as environment variables
 aws_access_key = os.getenv("AWS_ACCESS_KEY")
@@ -26,6 +29,10 @@ huggingface_key = os.getenv("HUGGINGFACE_API_KEY")
 # Recommended: save sensitive data as environment variables
 jinaai_key = os.getenv("JINAAI_API_KEY")
 # END JinaAIInstantiation
+# START MistralInstantiation
+# Recommended: save sensitive data as environment variables
+mistral_key = os.getenv("MISTRAL_API_KEY")
+# END MistralInstantiation
 # START OpenAIInstantiation
 # Recommended: save sensitive data as environment variables
 openai_key = os.getenv("OPENAI_API_KEY")
@@ -40,6 +47,9 @@ voyageai_key = os.getenv("VOYAGEAI_API_KEY")
 # highlight-start
 headers = {
 # END-ANY
+# START AnyscaleInstantiation
+    "X-Anyscale-Api-Key": anyscale_key,
+# END AnyscaleInstantiation
 # START AWSInstantiation
     "X-AWS-Access-Key": aws_access_key,
     "X-AWS-Secret-Key": aws_secret_key,
@@ -53,6 +63,9 @@ headers = {
 # START JinaAIInstantiation
     "X-JinaAI-Api-Key": jinaai_key,
 # END JinaAIInstantiation
+# START MistralInstantiation
+    "X-Mistral-Api-Key": mistral_key,
+# END MistralInstantiation
 # START OpenAIInstantiation
     "X-OpenAI-Api-Key": openai_key,
 # END OpenAIInstantiation

@@ -1,8 +1,8 @@
 ---
 title: Generative
 sidebar_position: 50
-image: og/docs/integrations/provider_integrations_aws.jpg
-# tags: ['model providers', 'aws', 'generative', 'rag']
+image: og/docs/integrations/provider_integrations_mistral.jpg
+# tags: ['model providers', 'mistral', 'generative', 'rag']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,21 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
-# AWS Generative AI with Weaviate
+# Mistral Generative AI with Weaviate
 
-Weaviate's integration with AWS's [SageMaker](https://aws.amazon.com/sagemaker/) and [Bedrock](https://aws.amazon.com/bedrock/) APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Mistral's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-collection) to use a AWS generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your AWS API credentials.
+[Configure a Weaviate collection](#configure-collection) to use an Mistral generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your Mistral API key.
 
-More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the AWS generative model to generate outputs.
+More specifically, Weaviate will perform a search, retrieve the most relevant objects, and then pass them to the Mistral generative model to generate outputs.
 
-![RAG integration illustration](../_includes/integration_aws_rag.png)
+![RAG integration illustration](../_includes/integration_mistral_rag.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the AWS generative AI integration (`generative-aws`) module.
+Your Weaviate instance must be configured with the Mistral generative AI integration (`generative-mistral`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -46,20 +46,20 @@ This module is enabled by default in Weaviate Cloud Services (WCS) instances.
 
 ### API credentials
 
-You must provide [access key based AWS credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) to Weaviate for these integrations. Go to [AWS](https://aws.amazon.com/) to sign up and obtain an AWS access key ID and a corresponding AWS secret access key.
+You must provide a valid Mistral API key to Weaviate for this integration. Go to [Mistral](https://mistral.ai/) to sign up and obtain an API key.
 
-Provide the API credentials to Weaviate using one of the following methods:
+Provide the API key to Weaviate using one of the following methods:
 
-- Set the `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` environment variables that are available to Weaviate.
-- Provide the API credentials at runtime, as shown in the examples below.
+- Set the `MISTRAL_API_KEY` environment variable that is available to Weaviate.
+- Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START AWSInstantiation"
-      endMarker="# END AWSInstantiation"
+      startMarker="# START MistralInstantiation"
+      endMarker="# END MistralInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,40 +67,24 @@ Provide the API credentials to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START AWSInstantiation"
-      endMarker="// END AWSInstantiation"
+      startMarker="// START MistralInstantiation"
+      endMarker="// END MistralInstantiation"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
-
-### AWS model access
-
-#### Bedrock
-
-To use a model via [Bedrock](https://aws.amazon.com/bedrock/), it must be available, and AWS must grant you access to it.
-
-Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
-
-#### SageMaker
-
-To use a model via [SageMaker](https://aws.amazon.com/sagemaker/), you must have access to the model's endpoint.
 
 ## Configure collection
 
-[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an AWS generative AI model as follows:
-
-### Bedrock
-
-For Bedrock, you must provide the model name in the vectorizer configuration.
+[Configure a Weaviate collection](../../manage-data/collections.mdx#specify-a-generative-module) to use an Mistral generative AI model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicGenerativeAWSBedrock"
-      endMarker="# END BasicGenerativeAWSBedrock"
+      startMarker="# START BasicGenerativeMistral"
+      endMarker="# END BasicGenerativeMistral"
       language="py"
     />
   </TabItem>
@@ -108,40 +92,15 @@ For Bedrock, you must provide the model name in the vectorizer configuration.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicGenerativeAWSBedrock"
-      endMarker="// END BasicGenerativeAWSBedrock"
+      startMarker="// START BasicGenerativeMistral"
+      endMarker="// END BasicGenerativeMistral"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-### SageMaker
-
-For SageMaker, you must provide the endpoint address in the vectorizer configuration.
-
-<Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
-    <FilteredTextBlock
-      text={PyCode}
-      startMarker="# START BasicGenerativeAWSSagemaker"
-      endMarker="# END BasicGenerativeAWSSagemaker"
-      language="py"
-    />
-  </TabItem>
-
-  <TabItem value="js" label="JS/TS (Beta)">
-    <FilteredTextBlock
-      text={TSCode}
-      startMarker="// START BasicGenerativeAWSSagemaker"
-      endMarker="// END BasicGenerativeAWSSagemaker"
-      language="ts"
-    />
-  </TabItem>
-
-</Tabs>
-
-You must [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use.
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`open-mistral-7b`) is used if no model is specified.
 
 ## Retrieval augmented generation
 
@@ -149,7 +108,7 @@ After configuring the generative AI integration, perform RAG operations, either 
 
 ### Single prompt
 
-![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_aws_rag_single.png)
+![Single prompt RAG integration generates individual outputs per search result](../_includes/integration_mistral_rag_single.png)
 
 To generate text for each object in the search results, use the single prompt method.
 
@@ -181,7 +140,7 @@ When creating a single prompt query, use braces `{}` to interpolate the object p
 
 ### Grouped task
 
-![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_aws_rag_grouped.png)
+![Grouped task RAG integration generates one output for the set of search results](../_includes/integration_mistral_rag_grouped.png)
 
 To generate one text for the entire set of search results, use the grouped task method.
 
@@ -219,8 +178,8 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullGenerativeAWS"
-      endMarker="# END FullGenerativeAWS"
+      startMarker="# START FullGenerativeMistral"
+      endMarker="# END FullGenerativeMistral"
       language="py"
     />
   </TabItem>
@@ -228,31 +187,29 @@ Configure the following generative parameters to customize the model behavior.
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullGenerativeAWS"
-      endMarker="// END FullGenerativeAWS"
+      startMarker="// START FullGenerativeMistral"
+      endMarker="// END FullGenerativeMistral"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [relevant AWS documentation](#further-resources).
+For further details on model parameters, please consult the [Mistral API documentation](https://docs.mistral.ai/api/).
 
 ### Available models
 
-#### Bedrock
-
-Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
-
-### SageMaker
-
-Any custom SageMaker URL can be used as an endpoint.
+* `open-mistral-7b` (aka `mistral-tiny-2312`) (default)
+* `open-mixtral-8x7b` (aka `mistral-small-2312`)
+* `mistral-tiny`
+* `mistral-small`
+* `mistral-small-latest` (aka `mistral-small-2402`)
+* `mistral-medium`
+* `mistral-medium-latest` (aka `mistral-medium-2312`)
+* `mistral-large`
+* `mistral-large-latest` (aka `mistral-large-2402`)
 
 ## Further resources
-
-### Other integrations
-
-- [AWS embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 
@@ -263,8 +220,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- AWS [Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
-- AWS [SageMaker documentation](https://docs.aws.amazon.com/sagemaker/)
+- Mistral [AI API documentation](https://docs.mistral.ai/api/)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

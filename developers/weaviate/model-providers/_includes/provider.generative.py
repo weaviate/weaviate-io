@@ -13,6 +13,43 @@ client = weaviate.connect_to_local(
     }
 )
 
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeAnyscale
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anyscale()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeAnyscale
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeAnyscale
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.anyscale(
+        # # These parameters are optional
+        # model="mistral-large",
+        # temperature=0.7,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeAnyscale
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeAWSBedrock
 from weaviate.classes.config import Configure
 
@@ -88,6 +125,41 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullGenerativeCohere
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeMistral
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.mistral()
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeMistral
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeMistral
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.mistral(
+        # # These parameters are optional
+        # model="mistral-large",
+        # temperature=0.7,
+        # max_tokens=500,
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeMistral
 
 # clean up
 client.collections.delete("DemoCollection")
