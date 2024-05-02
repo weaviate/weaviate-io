@@ -28,6 +28,13 @@ client.collections.create(
 )
 # END RerankerCohere
 
+# Clean up
+client.collections.delete("DemoCollection")
+
+# START RerankerVoyageAI
+# Code example coming soon
+# END RerankerVoyageAI
+
 source_objects = [
     {"title": "The Shawshank Redemption"},
     {"title": "The Godfather"},

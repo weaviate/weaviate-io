@@ -25,6 +25,9 @@ await client.collections.create({
 });
 // END RerankerCohere
 
+// START RerankerVoyageAI
+// Code example coming soon
+// END RerankerVoyageAI
 
 // START RerankerQueryExample
 let myCollection = client.collections.get('DemoCollection');

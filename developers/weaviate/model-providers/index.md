@@ -25,4 +25,4 @@ This enables an enhanced developed experience, such as the ability to:
 | [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | - |
 | [Mistral](./mistral/index.md) | - | [Text](./mistral/generative.md) | - |
 | [OpenAI](./openai/index.md) | [Text](./openai/embeddings.md) | [Text](./openai/generative.md) |
-| [Voyage AI](./voyageai/index.md) | [Text](./voyageai/embeddings.md) | - | - |
+| [Voyage AI](./voyageai/index.md) | [Text](./voyageai/embeddings.md) | - | [Reranker](./voyageai/reranker.md) |

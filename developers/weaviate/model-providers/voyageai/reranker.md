@@ -1,8 +1,8 @@
 ---
 title: Reranker
 sidebar_position: 70
-image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere', 'reranking']
+image: og/docs/integrations/provider_integrations_voyageai.jpg
+# tags: ['model providers', 'voyageai', 'reranking']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,21 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.reranker.py';
 import TSCode from '!!raw-loader!../_includes/provider.reranker.ts';
 
-# Cohere reranker models with Weaviate
+# Voyage AI reranker models with Weaviate
 
-Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Voyage AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate collection](#configure-the-reranker) to use a Cohere reranker model, and Weaviate will use the specified model and your Cohere API key to rerank search results.
+[Configure a Weaviate collection](#configure-the-reranker) to use a Voyage AI reranker model, and Weaviate will use the specified model and your Voyage AI API key to rerank search results.
 
 This two-step process involves Weaviate first performing a search and then reranking the results using the specified model.
 
-![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
+![Reranker integration illustration](../_includes/integration_voyageai_reranker.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Cohere reranker integration (`reranker-cohere`) module.
+Your Weaviate instance must be configured with the Voyage AI reranker integration (`reranker-voyageai`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -46,11 +46,11 @@ This integration is enabled by default on Weaviate Cloud Services (WCS) serverle
 
 ### API credentials
 
-You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+You must provide a valid Voyage AI API key to Weaviate for this integration. Go to [Voyage AI](https://www.voyageai.com/) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `COHERE_APIKEY` environment variable that is available to Weaviate.
+- Set the `VOYAGEAI_APIKEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -58,8 +58,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START CohereInstantiation"
-      endMarker="# END CohereInstantiation"
+      startMarker="# START VoyageAIInstantiation"
+      endMarker="# END VoyageAIInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,8 +67,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START CohereInstantiation"
-      endMarker="// END CohereInstantiation"
+      startMarker="// START VoyageAIInstantiation"
+      endMarker="// END VoyageAIInstantiation"
       language="ts"
     />
   </TabItem>
@@ -77,14 +77,14 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the reranker
 
-Configure a Weaviate collection to use a Cohere reranker model as follows:
+Configure a Weaviate collection to use a Voyage AI reranker model as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START RerankerCohere"
-      endMarker="# END RerankerCohere"
+      startMarker="# START RerankerVoyageAI"
+      endMarker="# END RerankerVoyageAI"
       language="py"
     />
   </TabItem>
@@ -92,25 +92,26 @@ Configure a Weaviate collection to use a Cohere reranker model as follows:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START RerankerCohere"
-      endMarker="// END RerankerCohere"
+      startMarker="// START RerankerVoyageAI"
+      endMarker="// END RerankerVoyageAI"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can specify one of the [available models](#available-models) for the reranker to use. The default model (`rerank-multilingual-v3.0`) is used if no model is specified.
+You can specify one of the [available models](#available-models) for the reranker to use. Currently, `rerank-lite-1` is the only available model.
+<!-- The default model (`rerank-multilingual-v3.0`) is used if no model is specified. -->
 
 ## Reranking query
 
-Once the reranker is configured, Weaviate performs [reranking operations](../../search/rerank.md) using the specified Cohere model.
+Once the reranker is configured, Weaviate performs [reranking operations](../../search/rerank.md) using the specified Voyage AI model.
 
 More specifically, Weaviate performs an initial search, then reranks the results using the specified model.
 
 Any search in Weaviate can be combined with a reranker to perform reranking operations.
 
-![Reranker integration illustration](../_includes/integration_cohere_reranker.png)
+![Reranker integration illustration](../_includes/integration_voyageai_reranker.png)
 
 <Tabs groupId="languages">
 
@@ -138,25 +139,13 @@ Any search in Weaviate can be combined with a reranker to perform reranking oper
 
 ### Available models
 
-- rerank-english-v3.0
-- rerank-multilingual-v3.0 (default)
-- rerank-english-v2.0
-- rerank-multilingual-v2.0
-
-You can also select a fine-tuned reranker model_id, such as:
-
-- `500df123-afr3-...`
-
-Please refer to [this blog post](/blog/fine-tuning-coheres-reranker) for more information.
-
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/rerank).
+- `rerank-lite-1`
 
 ## Further resources
 
 ### Other integrations
 
-- [Cohere embedding models + Weaviate](./embeddings.md).
-- [Cohere generative models + Weaviate](./generative.md).
+- [Voyage AI embedding models + Weaviate](./embeddings.md).
 
 ### Code examples
 
@@ -167,7 +156,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- Cohere [Rerank API documentation](https://docs.cohere.com/reference/rerank)
+- Voyage AI [Reranker API documentation](https://docs.voyageai.com/docs/reranker)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
