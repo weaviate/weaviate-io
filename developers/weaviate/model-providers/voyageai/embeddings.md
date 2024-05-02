@@ -32,7 +32,7 @@ Your Weaviate instance must be configured with the Voyage AI vectorizer integrat
 <details>
   <summary>For WCS (serverless) users</summary>
 
-This module is enabled by default in Weaviate Cloud Services (WCS) instances.
+This integration is enabled by default on Weaviate Cloud Services (WCS) serverless managed instances.
 
 </details>
 
