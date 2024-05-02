@@ -15,7 +15,7 @@ import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
 # Google AI Embeddings with Weaviate
 
-Weaviate's integration with [Google AI Studio](https://ai.google/build) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with [Google AI Studio](https://ai.google.dev/) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
 
@@ -50,7 +50,29 @@ This integration is enabled by default on Weaviate Cloud Services (WCS) serverle
 
 ### API credentials
 
-You must provide a valid API credentials to Weaviate for the appropriate integration. Go to [Google AI Studio](https://ai.google/build) or [Google Vertex AI](https://cloud.google.com/vertex-ai) to sign up and obtain API credentials.
+You must provide valid API credentials to Weaviate for the appropriate integration.
+
+#### AI Studio
+
+Go to [Google AI Studio](https://ai.google.dev/) to sign up and obtain an API key.
+
+#### Vertex AI
+
+This is called an `access token` in Google Cloud.
+
+If you have the [Google Cloud CLI tool](https://cloud.google.com/cli) installed and set up, you can view your token by running the following command:
+
+```shell
+gcloud auth print-access-token
+```
+
+#### Token expiry for Vertex AI users
+
+import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
+
+<GCPTokenExpiryNotes/>
+
+#### Provide the API key
 
 Provide the API key to Weaviate using one of the following methods:
 
@@ -266,7 +288,7 @@ Once the integrations are configured at the collection, the data management and 
 ### External resources
 
 - [Google Vertex AI](https://cloud.google.com/vertex-ai)
-- [Google AI Studio](https://ai.google/build)
+- [Google AI Studio](https://ai.google.dev/)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
