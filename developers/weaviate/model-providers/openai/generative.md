@@ -64,7 +64,7 @@ Provide the API key to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="ts" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START OpenAIInstantiation"

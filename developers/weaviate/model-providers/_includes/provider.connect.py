@@ -18,6 +18,10 @@ aws_secret_key = os.getenv("AWS_SECRET_KEY")
 # Recommended: save sensitive data as environment variables
 cohere_key = os.getenv("COHERE_API_KEY")
 # END CohereInstantiation
+# START HuggingFaceInstantiation
+# Recommended: save sensitive data as environment variables
+huggingface_key = os.getenv("HUGGINGFACE_API_KEY")
+# END HuggingFaceInstantiation
 # START OpenAIInstantiation
 # Recommended: save sensitive data as environment variables
 openai_key = os.getenv("OPENAI_API_KEY")
@@ -35,6 +39,9 @@ headers = {
 # START CohereInstantiation
     "X-Cohere-Api-Key": cohere_key,
 # END CohereInstantiation
+# START HuggingFaceInstantiation
+    "X-HuggingFace-Api-Key": huggingface_key,
+# END HuggingFaceInstantiation
 # START OpenAIInstantiation
     "X-OpenAI-Api-Key": openai_key,
 # END OpenAIInstantiation

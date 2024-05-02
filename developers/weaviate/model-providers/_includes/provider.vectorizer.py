@@ -129,6 +129,57 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerHuggingFace
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_huggingface(
+            name="title_vector",
+            source_properties=["title"],
+            model="sentence-transformers/all-MiniLM-L6-v2",
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerHuggingFace
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerHuggingFace
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_huggingface(
+            name="title_vector",
+            source_properties=["title"],
+            # NOTE: Use only one of (`model`), (`passage_model` and `query_model`), or (`endpoint_url`)
+            model="sentence-transformers/all-MiniLM-L6-v2",
+            # passage_model="sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base",    # Required if using `query_model`
+            # query_model="sentence-transformers/facebook-dpr-question_encoder-single-nq-base", # Required if using `passage_model`
+            # endpoint_url="<custom_huggingface_url>",
+            #
+            # wait_for_model=True,
+            # use_cache=True,
+            # use_gpu=True,
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerHuggingFace
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOpenAI
 from weaviate.classes.config import Configure
 

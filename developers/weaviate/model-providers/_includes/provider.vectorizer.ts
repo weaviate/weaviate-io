@@ -137,6 +137,63 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerHuggingFace
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecHuggingFace({
+          model: 'sentence-transformers/all-MiniLM-L6-v2',
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerHuggingFace
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerHuggingFace
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecHuggingFace({
+          // NOTE: Use only one of (`model`), (`passage_model` and `query_model`), or (`endpoint_url`)
+          model: 'sentence-transformers/all-MiniLM-L6-v2',
+          // passage_model: 'sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base',    // Required if using `query_model`
+          // query_model: 'sentence-transformers/facebook-dpr-question_encoder-single-nq-base', // Required if using `passage_model`
+          // endpoint_url: '<custom_huggingface_url>',
+          //
+          // wait_for_model: true,
+          // use_cache: true,
+          // use_gpu: true,
+          // vectorize_collection_name: false,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerHuggingFace
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+model="sentence-transformers/all-MiniLM-L6-v2",
+
 // START BasicVectorizerOpenAI
 await client.collections.create({
   name: 'DemoCollection',

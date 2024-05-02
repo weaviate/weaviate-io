@@ -17,7 +17,9 @@ This enables an enhanced developed experience, such as the ability to:
 
 | Model provider | Embeddings | Generative AI | Others |
 | --- | --- | --- | --- |
+| **[AWS](./aws/index.md)** | [Text](./aws/embeddings.md) | [Text](./aws/generative.md) |
 | **[Cohere](./cohere/index.md)** | [Text](./cohere/embeddings.md) | [Text](./cohere/generative.md) | [Reranker](./cohere/reranker.md) |
+| **[HuggingFace](./huggingface/index.md)** | [Text](./openai/embeddings.md) |  |
 | **[OpenAI](./openai/index.md)** | [Text](./openai/embeddings.md) | [Text](./openai/generative.md) |
 
 

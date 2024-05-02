@@ -1,8 +1,8 @@
 ---
 title: Embeddings
 sidebar_position: 20
-image: og/docs/integrations/provider_integrations_cohere.jpg
-# tags: ['model providers', 'cohere', 'embeddings']
+image: og/docs/integrations/provider_integrations_huggingface.jpg
+# tags: ['model providers', 'huggingface', 'embeddings']
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,21 +13,21 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-# Cohere Embeddings with Weaviate
+# Hugging Face Embeddings with Weaviate
 
-Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with Hugging Face's APIs allows you to access their models' capabilities directly from Weaviate.
 
-[Configure a Weaviate vector index](#configure-the-vectorizer) to use a Cohere embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Cohere API key. This feature is called the *vectorizer*.
+[Configure a Weaviate vector index](#configure-the-vectorizer) to use an Hugging Face Hub embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Hugging Face API key. This feature is called the *vectorizer*.
 
 At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
 
-![Embedding integration illustration](../_includes/integration_cohere_embedding.png)
+![Embedding integration illustration](../_includes/integration_huggingface_embedding.png)
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Cohere vectorizer integration (`text2vec-cohere`) module.
+Your Weaviate instance must be configured with the Hugging Face vectorizer integration (`text2vec-huggingface`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -46,11 +46,11 @@ This module is enabled by default in Weaviate Cloud Services (WCS) instances.
 
 ### API credentials
 
-You must provide a valid Cohere API key to Weaviate for this integration. Go to [Cohere](https://cohere.com/) to sign up and obtain an API key.
+You must provide a valid Hugging Face API key to Weaviate for this integration. Go to [Hugging Face](https://huggingface.co/docs/api-inference/en/quicktour) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
-- Set the `COHERE_API_KEY` environment variable that is available to Weaviate.
+- Set the `HUGGINGFACE_API_KEY` environment variable that is available to Weaviate.
 - Provide the API key at runtime, as shown in the examples below.
 
 <Tabs groupId="languages">
@@ -58,8 +58,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyConnect}
-      startMarker="# START CohereInstantiation"
-      endMarker="# END CohereInstantiation"
+      startMarker="# START HuggingFaceInstantiation"
+      endMarker="# END HuggingFaceInstantiation"
       language="py"
     />
   </TabItem>
@@ -67,8 +67,8 @@ Provide the API key to Weaviate using one of the following methods:
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
-      startMarker="// START CohereInstantiation"
-      endMarker="// END CohereInstantiation"
+      startMarker="// START HuggingFaceInstantiation"
+      endMarker="// END HuggingFaceInstantiation"
       language="ts"
     />
   </TabItem>
@@ -77,14 +77,14 @@ Provide the API key to Weaviate using one of the following methods:
 
 ## Configure the vectorizer
 
-[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use a Cohere embedding model by setting the vectorizer as follows:
+[Configure a Weaviate index](../../manage-data/collections.mdx#specify-a-vectorizer) to use an Hugging Face embedding model by setting the vectorizer as follows:
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerCohere"
-      endMarker="# END BasicVectorizerCohere"
+      startMarker="# START BasicVectorizerHuggingFace"
+      endMarker="# END BasicVectorizerHuggingFace"
       language="py"
     />
   </TabItem>
@@ -92,15 +92,15 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerCohere"
-      endMarker="// END BasicVectorizerCohere"
+      startMarker="// START BasicVectorizerHuggingFace"
+      endMarker="// END BasicVectorizerHuggingFace"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`embed-multilingual-v3.0`) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`text-embedding-ada-002`) is used if no model is specified.
 
 ## Data import
 
@@ -134,9 +134,9 @@ If you already have a compatible model vector available, you can provide it dire
 
 ## Searches
 
-Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Cohere model.
+Once the vectorizer is configured, Weaviate will perform vector and hybrid search operations using the specified Hugging Face model.
 
-![Embedding integration at search illustration](../_includes/integration_cohere_embedding_search.png)
+![Embedding integration at search illustration](../_includes/integration_huggingface_embedding_search.png)
 
 ### Vector (near text) search
 
@@ -202,14 +202,30 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Cohere-specific options.
+Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Hugging Face-specific options.
+
+Only set one of:
+
+- `model`,
+- `passageModel` and `queryModel`, or
+- `endpointURL`
+
+| Parameter | Type | Description | Example | Notes |
+| --- | --- | --- | --- | --- |
+| `model` | `string` | The model to use. | `"bert-base-uncased"` |
+| `passageModel` | `string` | [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage model. |`"sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base"` | Set together with `queryModel`. |
+| `queryModel` | `string` | [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) query model. | `"sentence-transformers/facebook-dpr-question_encoder-single-nq-base"` | Set together with `passageModel`. |
+| `endpointURL` | `string` | (Private or public) Endpoint URL. | | If set, this will override `model`, `queryModel` and `passageModel`. [Read more](https://huggingface.co/inference-endpoints) about custom Hugging Face Inference Endpoints.  |
+| `options.waitForModel` | `boolean` | If the model is not ready, wait for it. | | If `False`, query will return a `503` if the model is not ready. |
+| `options.useGPU` | `boolean` | Use a GPU for inference. | | If your [account plan](https://huggingface.co/inference-api#pricing) must support it. |
+| `options.useCache` | `boolean` | Use a cached result if available. | | Set this parameter for non-deterministic models to prevent the caching mechanism from being used. |
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerCohere"
-      endMarker="# END FullVectorizerCohere"
+      startMarker="# START FullVectorizerHuggingFace"
+      endMarker="# END FullVectorizerHuggingFace"
       language="py"
     />
   </TabItem>
@@ -217,43 +233,21 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerCohere"
-      endMarker="// END FullVectorizerCohere"
+      startMarker="// START FullVectorizerHuggingFace"
+      endMarker="// END FullVectorizerHuggingFace"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-For further details on model parameters, please consult the [Cohere API documentation](https://docs.cohere.com/reference/embed).
-
 ### Available models
 
-- `embed-multilingual-v3.0` (Default)
-- `embed-multilingual-light-v3.0`
-- `embed-multilingual-v2.0` (previously `embed-multilingual-22-12`)
-- `embed-english-v3.0`
-- `embed-english-light-v3.0`
-- `embed-english-v2.0`
-- `embed-english-light-v2.0`
-
-<details>
-  <summary>Deprecated models</summary>
-
-The following models are available, but deprecated:
-- `multilingual-22-12`
-- `large`
-- `medium`
-- `small`
-
-</details>
+You can use any Hugging Face embedding model with `text2vec-huggingface`, including public and private Hugging Face models. [Sentence similarity models](https://huggingface.co/models?pipeline_tag=sentence-similarity&sort=downloads) generally work best.
 
 ## Further resources
 
-### Other integrations
-
-- [Cohere generative models + Weaviate](./generative.md).
-- [Cohere reranker models + Weaviate](./reranker.md).
+<!-- TODO: Add link to locally hosted version -->
 
 ### Code examples
 
@@ -264,7 +258,8 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- Cohere [Embed API documentation](https://docs.cohere.com/reference/embed)
+- Hugging Face [Inference API documentation](https://huggingface.co/docs/api-inference/en/quicktour)
+- Hugging Face [Model Hub](https://huggingface.co/models)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

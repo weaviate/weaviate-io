@@ -10,6 +10,9 @@ const aws_secret_key = process.env.AWS_SECRET_KEY || '';  // Replace with your A
 // START CohereInstantiation
 const cohereApiKey = process.env.COHERE_API_KEY || '';  // Replace with your inference API key
 // END CohereInstantiation
+// START HuggingFaceInstantiation
+const huggingFaceApiKey = process.env.HUGGINGFACE_API_KEY || '';  // Replace with your inference API key
+// END HuggingFaceInstantiation
 // START OpenAIInstantiation
 const openaiApiKey = process.env.OPENAI_API_KEY || '';  // Replace with your inference API key
 // END OpenAIInstantiation
@@ -30,6 +33,9 @@ const client = await weaviate.connectToWCS(
       // START CohereInstantiation
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation
+      // START HuggingFaceInstantiation
+      'X-HuggingFace-Api-Key': huggingFaceApiKey,
+      // END HuggingFaceInstantiation
       // START OpenAIInstantiation
       'X-OpenAI-Api-Key': openaiApiKey,
       // END OpenAIInstantiation

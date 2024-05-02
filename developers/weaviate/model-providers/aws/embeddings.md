@@ -64,7 +64,7 @@ Provide the API credentials to Weaviate using one of the following methods:
     />
   </TabItem>
 
- <TabItem value="ts" label="JS/TS (Beta)">
+ <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSConnect}
       startMarker="// START AWSInstantiation"
@@ -168,7 +168,7 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
 </Tabs>
 
 :::tip Re-use existing vectors
-If you already have a compatible AWS vector available, you can provide it directly to Weaviate. This can be useful if you have already generated embeddings using AWS and want to use them in Weaviate, such as when migrating data from another system.
+If you already have a compatible model vector available, you can provide it directly to Weaviate. This can be useful if you have already generated embeddings using the same model and want to use them in Weaviate, such as when migrating data from another system.
 :::
 
 ## Searches
