@@ -218,7 +218,7 @@ The output is like this:
 
 ## Balance keyword and vector search
 
-A hybrid search can favor the keyword or the vector component. To change the relative weights of the keyword and vector components, set the `alpha`value.
+Hybrid search results can favor the keyword component or the vector component. To change the relative weights of the keyword and vector components, set the `alpha` value in your query.
 
 - `alpha` equals `1` in a pure vector search.
 - `alpha` equals `0` in a pure keyword search.
