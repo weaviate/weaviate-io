@@ -22,10 +22,18 @@ cohere_key = os.getenv("COHERE_API_KEY")
 # Recommended: save sensitive data as environment variables
 huggingface_key = os.getenv("HUGGINGFACE_API_KEY")
 # END HuggingFaceInstantiation
+# START JinaAIInstantiation
+# Recommended: save sensitive data as environment variables
+jinaai_key = os.getenv("JINAAI_API_KEY")
+# END JinaAIInstantiation
 # START OpenAIInstantiation
 # Recommended: save sensitive data as environment variables
 openai_key = os.getenv("OPENAI_API_KEY")
 # END OpenAIInstantiation
+# START VoyageAIInstantiation
+# Recommended: save sensitive data as environment variables
+voyageai_key = os.getenv("VOYAGEAI_API_KEY")
+# END VoyageAIInstantiation
 
 
 # START-ANY
@@ -42,9 +50,15 @@ headers = {
 # START HuggingFaceInstantiation
     "X-HuggingFace-Api-Key": huggingface_key,
 # END HuggingFaceInstantiation
+# START JinaAIInstantiation
+    "X-JinaAI-Api-Key": jinaai_key,
+# END JinaAIInstantiation
 # START OpenAIInstantiation
     "X-OpenAI-Api-Key": openai_key,
 # END OpenAIInstantiation
+# START VoyageAIInstantiation
+    "X-VoyageAI-Api-Key": voyageai_key,
+# END VoyageAIInstantiation
 # START-ANY
 }
 # highlight-end

@@ -192,7 +192,51 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
-model="sentence-transformers/all-MiniLM-L6-v2",
+// START BasicVectorizerJinaAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecJina(),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerJinaAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecJina({
+          // // Further options
+          // model='text-embedding-3-large',
+          // vectorize_collection_name=False,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerJinaAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
 
 // START BasicVectorizerOpenAI
 await client.collections.create({
@@ -241,6 +285,53 @@ await client.collections.create({
 });
 // END FullVectorizerOpenAI
 
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerVoyageAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecVoyage(),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerVoyageAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerVoyageAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecVoyage({
+          // // Further options
+          // model: 'voyage-large-2',
+          // base_url: '<custom_voyageai_url>',
+          // truncate: true,
+          // vectorize_collection_name: false,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerVoyageAI
 
 let srcObjects = [
   {"title": "The Shawshank Redemption", "description": ""},

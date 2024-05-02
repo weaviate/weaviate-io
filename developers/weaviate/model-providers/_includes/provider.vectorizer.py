@@ -180,6 +180,49 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerJinaAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_jinaai(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="jina-embeddings-v2-base-en"
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerJinaAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOpenAI
 from weaviate.classes.config import Configure
 
@@ -223,6 +266,51 @@ client.collections.create(
     # Additional parameters not shown
 )
 # END FullVectorizerOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerVoyageAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_voyageai(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerVoyageAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerVoyageAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_voyageai(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            # model="voyage-large-2"
+            # base_url="<custom_voyageai_url>",
+            # truncate=True,
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerVoyageAI
 
 
 source_objects = [

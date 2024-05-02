@@ -13,9 +13,15 @@ const cohereApiKey = process.env.COHERE_API_KEY || '';  // Replace with your inf
 // START HuggingFaceInstantiation
 const huggingFaceApiKey = process.env.HUGGINGFACE_API_KEY || '';  // Replace with your inference API key
 // END HuggingFaceInstantiation
+// START JinaAIInstantiation
+const jinaaiApiKey = process.env.JINAAI_API_KEY || '';  // Replace with your inference API key
+// END JinaAIInstantiation
 // START OpenAIInstantiation
 const openaiApiKey = process.env.OPENAI_API_KEY || '';  // Replace with your inference API key
 // END OpenAIInstantiation
+// START VoyageAIInstantiation
+const voyageaiApiKey = process.env.VOYAGEAI_API_KEY || '';  // Replace with your inference API key
+// END VoyageAIInstantiation
 
 // START-ANY
 
@@ -33,12 +39,18 @@ const client = await weaviate.connectToWCS(
       // START CohereInstantiation
       'X-Cohere-Api-Key': cohereApiKey,
       // END CohereInstantiation
+      // START JinaAIInstantiation
+      'X-JinaAI-Api-Key': jinaaiApiKey,
+      // END JinaAIInstantiation
       // START HuggingFaceInstantiation
       'X-HuggingFace-Api-Key': huggingFaceApiKey,
       // END HuggingFaceInstantiation
       // START OpenAIInstantiation
       'X-OpenAI-Api-Key': openaiApiKey,
       // END OpenAIInstantiation
+      // START VoyageAIInstantiation
+      'X-VoyageAI-Api-Key': voyageaiApiKey,
+      // END VoyageAIInstantiation
       // START-ANY
     }
     // highlight-end
