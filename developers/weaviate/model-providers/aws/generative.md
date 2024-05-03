@@ -246,7 +246,10 @@ For further details on model parameters, please consult the [relevant AWS docume
 
 #### Bedrock
 
-Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
+- `cohere.command-text-v14`
+- `cohere.command-light-text-v14`
+
+Refer to the [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
 
 ### SageMaker
 

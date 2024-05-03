@@ -39,7 +39,7 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.anyscale(
         # # These parameters are optional
-        # model="mistral-large",
+        # model="meta-llama/Llama-2-70b-chat-hf",
         # temperature=0.7,
     )
     # highlight-end
