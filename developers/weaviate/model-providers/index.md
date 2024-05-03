@@ -1,8 +1,8 @@
 ---
 title: Model provider integrations
 sidebar_position: 50
-image: og/docs/tutorials.jpg
-# tags: ['getting started']
+image: og/docs/model-provider-integrations.jpg
+# tags: ['getting started', 'model providers', 'integrations']
 ---
 
 import BetaPageNote from './_includes/beta_pages.md';
