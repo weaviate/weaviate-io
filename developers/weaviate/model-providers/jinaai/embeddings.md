@@ -206,7 +206,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Jina AI-specific options.
+The following examples show how to configure Jina AI-specific options.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

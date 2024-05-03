@@ -280,7 +280,6 @@ await client.collections.create({
           // wait_for_model: true,
           // use_cache: true,
           // use_gpu: true,
-          // vectorize_collection_name: false,
         }),
       },
     ),
@@ -325,8 +324,7 @@ await client.collections.create({
         properties: ['title'],
         vectorizerConfig: weaviate.configure.vectorizer.text2VecJina({
           // // Further options
-          // model='text-embedding-3-large',
-          // vectorize_collection_name=False,
+          // model: 'text-embedding-3-large'
         }),
       },
     ),
@@ -371,12 +369,11 @@ await client.collections.create({
         properties: ['title'],
         vectorizerConfig: weaviate.configure.vectorizer.text2VecOpenAI({
           // // Further options
-          // model='text-embedding-3-large',
-          // model_version="002",   // Parameter only applicable for `ada` model family and older
-          // dimensions=1024,       //Parameter only applicable for `v3` model family and newer
-          // type='text',
-          // base_url='<custom_openai_url>',
-          // vectorize_collection_name=False,
+          // model: 'text-embedding-3-large',
+          // model_version: "002",   // Parameter only applicable for `ada` model family and older
+          // dimensions: 1024,       //Parameter only applicable for `v3` model family and newer
+          // type: 'text',
+          // base_url: '<custom_openai_url>',
         }),
       },
     ),
@@ -426,8 +423,7 @@ await client.collections.create({
           resourceName: '<azure-resource-name>',
           deploymentID: '<azure-deployment-id>',
           // // Further options
-          // baseURL: '<custom_azure_url>',
-          // vectorize_collection_name=False,
+          // baseURL: '<custom_azure_url>'
         }),
       },
     ),
@@ -474,8 +470,7 @@ await client.collections.create({
           // // Further options
           // model: 'voyage-large-2',
           // base_url: '<custom_voyageai_url>',
-          // truncate: true,
-          // vectorize_collection_name: false,
+          // truncate: true
         }),
       },
     ),

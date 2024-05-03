@@ -206,23 +206,27 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Hugging Face-specific options.
+The following examples show how to configure Hugging Face-specific options.
 
-Only set one of:
+#### Model selection parameters
+
+Only select one of the following parameters to specify the model:
 
 - `model`,
 - `passageModel` and `queryModel`, or
 - `endpointURL`
 
-| Parameter | Type | Description | Example | Notes |
-| --- | --- | --- | --- | --- |
-| `model` | `string` | The model to use. | `"bert-base-uncased"` |
-| `passageModel` | `string` | [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage model. |`"sentence-transformers/facebook-dpr-ctx_encoder-single-nq-base"` | Set together with `queryModel`. |
-| `queryModel` | `string` | [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) query model. | `"sentence-transformers/facebook-dpr-question_encoder-single-nq-base"` | Set together with `passageModel`. |
-| `endpointURL` | `string` | (Private or public) Endpoint URL. | | If set, this will override `model`, `queryModel` and `passageModel`. [Read more](https://huggingface.co/inference-endpoints) about custom Hugging Face Inference Endpoints.  |
-| `options.waitForModel` | `boolean` | If the model is not ready, wait for it. | | If `False`, query will return a `503` if the model is not ready. |
-| `options.useGPU` | `boolean` | Use a GPU for inference. | | If your [account plan](https://huggingface.co/inference-api#pricing) must support it. |
-| `options.useCache` | `boolean` | Use a cached result if available. | | Set this parameter for non-deterministic models to prevent the caching mechanism from being used. |
+:::note Differences between `model`, `passageModel`/`queryModel` and `endpointURL`
+The `passageModel` and `queryModel` parameters are used together to specify a [DPR](https://huggingface.co/docs/transformers/en/model_doc/dpr) passage and query model.
+
+The `endpointURL` parameter is used to specify a [custom Hugging Face Inference Endpoint](https://huggingface.co/inference-endpoints). This parameter overrides the `model`, `passageModel`, and `queryModel` parameters.
+:::
+
+#### Other Parameters
+
+- `options.waitForModel`: If the model is not ready, wait for it rather than returning a `503` error.
+- `options.useGPU`: Use a GPU for inference if your [account plan](https://huggingface.co/inference-api#pricing) supports it.
+- `options.useCache`: Use a cached result if available. (For non-deterministic models to prevent the caching mechanism from being used.)
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

@@ -206,15 +206,21 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose OpenAI-specific options.
+- `model`: The OpenAI model name or family.
+- `dimensions`: The number of dimensions for the model.
+- `modelVersion`: The version string for the model.
+- `type`: The model type, either `text` or `code`.
+- `baseURL`: The URL to use (e.g. a proxy) instead of the default OpenAI URL.
 
-| Parameter | Data type | Required | Default | Purpose |
-| :- | :- | :- | :- | :- |
-| `model` | string | Optional | `ada` | For v3 OpenAI embedding models, the model name. For earlier models, model family, e.g. `ada`. |
-| `dimensions` | int | Optional | `1536` for `text-embedding-3-small`<br/>`3072` for `text-embedding-3-large` | Number of dimensions. Applicable to v3 OpenAI models only. |
-| `modelVersion` | string | Optional | | Version string, e.g. `003`. |
-| `type` | string | Optional | | Model type. Can be `text` or `code`. |
-| `baseURL` | string | Optional | `https://api.openai.com`|Sets a proxy or other URL instead of the default OpenAI URL. <br/><br/> Use a the protocol domain format: `https://your.domain.com`. |
+#### (`model` & `dimensions`) or (`model` & `modelVersion`)
+
+For `v3` models such as `text-embedding-3-large`, provide the model name and optionally the dimensions (e.g. `1024`).
+
+For older models such as `text-embedding-ada-002`, provide the model name (`ada`), the type (`text`) and the model version (`002`).
+
+#### Example configuration
+
+The following examples show how to configure OpenAI-specific options.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">

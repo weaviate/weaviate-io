@@ -206,7 +206,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Azure OpenAI-specific options.
+The following examples show how to configure Azure OpenAI-specific options.
 
 - `resource_name` (Required): The name of the Azure OpenAI resource to use.
 - `deployment_id` (Required): The deployment ID of the Azure OpenAI resource.

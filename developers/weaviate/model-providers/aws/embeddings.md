@@ -247,7 +247,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose AWS-specific options.
+The following examples show how to configure AWS-specific options.
 
 The AWS region setting is required for all AWS integrations.
 
@@ -279,7 +279,11 @@ The AWS region setting is required for all AWS integrations.
 
 #### Bedrock
 
-Refer to the [AWS documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) for the list of available models, and to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
+- `amazon.titan-embed-text-v1`
+- `cohere.embed-english-v3`
+- `cohere.embed-multilingual-v3`
+
+Refer to [this document](https://docs.aws.amazon.com/bedrock/latest/userguide/model-usage.html) to find out how request access to a model.
 
 ### SageMaker
 

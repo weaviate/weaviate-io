@@ -232,7 +232,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Google AI-specific options.
+The following examples show how to configure Google AI-specific options.
 
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`

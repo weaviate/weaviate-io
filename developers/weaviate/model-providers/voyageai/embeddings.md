@@ -206,7 +206,7 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Voyage AI-specific options.
+The following examples show how to configure Voyage AI-specific options.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -228,6 +228,8 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
   </TabItem>
 
 </Tabs>
+
+For further details on model parameters, please consult the [Voyage AI Embedding API documentation](https://docs.voyageai.com/docs/embeddings).
 
 ### Available models
 

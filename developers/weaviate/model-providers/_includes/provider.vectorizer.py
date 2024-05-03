@@ -73,7 +73,6 @@ client.collections.create(
             service="bedrock",                      # `bedrock` or `sagemaker`
             model="cohere.embed-multilingual-v3",   # If using `bedrock`, this is required
             # endpoint="<sagemaker_endpoint>",        # If using `sagemaker`, this is required
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -118,7 +117,6 @@ client.collections.create(
             # model="embed-multilingual-v3.0",
             # truncate="END",  # "NONE", "START" or "END"
             # base_url="<custom_cohere_url>"
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -164,7 +162,6 @@ client.collections.create(
             # # Further options
             # model_id="<google-model-id>",
             # api_endpoint="<google-api-endpoint>",
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -234,7 +231,6 @@ client.collections.create(
             # location="us-central1",
             # dimensions=512,
             # video_interval_seconds=20
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -285,7 +281,6 @@ client.collections.create(
             # wait_for_model=True,
             # use_cache=True,
             # use_gpu=True,
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -328,7 +323,6 @@ client.collections.create(
             source_properties=["title"],
             # Further options
             # model="jina-embeddings-v2-base-en"
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -375,7 +369,6 @@ client.collections.create(
             # dimensions=1024,      # Parameter only applicable for `v3` model family and newer
             # type="text",
             # base_url="<custom_openai_url>",
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -422,7 +415,6 @@ client.collections.create(
             deployment_id="<azure-deployment-id>",
             # # Further options
             # base_url="<custom_azure_url>",
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
@@ -467,7 +459,6 @@ client.collections.create(
             # model="voyage-large-2"
             # base_url="<custom_voyageai_url>",
             # truncate=True,
-            # vectorize_collection_name=False,
         )
     ],
     # highlight-end
