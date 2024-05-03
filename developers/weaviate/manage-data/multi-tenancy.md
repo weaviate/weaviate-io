@@ -88,9 +88,11 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
 </Tabs>
 
 
-## Add tenant(s)
+## Add tenants
 
-Add tenants to a collection (`MultiTenancyCollection`) with a name (e.g. `tenantA`) and an optional tenant activity status as `HOT`(active, default) or `COLD` (inactive).
+To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default) or `COLD` (inactive).
+
+This example adds `tenantA` to the `MultiTenancyCollection` collection:
 
 <details>
   <summary>
@@ -163,9 +165,11 @@ Tenant status is available from Weaviate `1.21` onwards.
   </TabItem>
 </Tabs>
 
-## List tenant(s)
+## List tenants
 
-List existing tenants in a collection (e.g.`MultiTenancyCollection`):
+List existing tenants in a collection. 
+
+This example lists the tenants in the `MultiTenancyCollection` collection:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -223,12 +227,11 @@ List existing tenants in a collection (e.g.`MultiTenancyCollection`):
   </TabItem>
 </Tabs>
 
-## Delete tenant(s)
+## Delete tenants
 
-Delete one or more existing tenants in a collection (e.g. `MultiTenancyCollection`) and tenant names (e.g. `["tenantB", "tenantX"]`).
+To delete tenants from a collection, specify the collection and the tenants. The delete operation ignores tenant names if the named tenant is not a part of the collection.
 
-Non-existing tenants are ignored.
-
+In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancyCollection` collection.
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
