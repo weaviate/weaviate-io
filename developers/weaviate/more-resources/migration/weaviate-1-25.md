@@ -1,5 +1,5 @@
 ---
-title: 1.25 (For Kubernete users)
+title: 1.25 (For Kubernetes users)
 sidebar_position: 10
 image: og/docs/more-resources.jpg
 # tags: ['migration']
