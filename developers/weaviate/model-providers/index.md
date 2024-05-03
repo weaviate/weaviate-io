@@ -5,6 +5,10 @@ image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
+import BetaPageNote from './_includes/beta_pages.md';
+
+<BetaPageNote />
+
 Weaviate integrates with a variety of [self-hosted](#self-hosted) and [API-based](#api-based) models from a range of providers.
 
 This enables an enhanced developed experience, such as the ability to:

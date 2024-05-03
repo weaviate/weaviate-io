@@ -5,6 +5,10 @@ image: og/docs/integrations/provider_integrations_voyageai.jpg
 # tags: ['model providers', 'voyageai', 'embeddings']
 ---
 
+import BetaPageNote from '../_includes/beta_pages.md';
+
+<BetaPageNote />
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -234,6 +238,10 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
 - `voyage-lite-02-instruct`
 
 ## Further resources
+
+### Other integrations
+
+- [Voyage AI reranker models + Weaviate](./embeddings.md).
 
 ### Code examples
 

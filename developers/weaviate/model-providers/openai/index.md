@@ -5,6 +5,10 @@ image: og/docs/integrations/provider_integrations_openai.jpg
 # tags: ['model providers', 'openai']
 ---
 
+import BetaPageNote from '../_includes/beta_pages.md';
+
+<BetaPageNote />
+
 OpenAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OpenAI's APIs, allowing users to leverage OpenAI's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.

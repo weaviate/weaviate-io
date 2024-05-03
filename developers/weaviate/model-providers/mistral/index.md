@@ -5,6 +5,10 @@ image: og/docs/integrations/provider_integrations_mistral.jpg
 # tags: ['model providers', 'mistral']
 ---
 
+import BetaPageNote from '../_includes/beta_pages.md';
+
+<BetaPageNote />
+
 Mistral offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Mistral's APIs, allowing users to leverage Mistral's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
