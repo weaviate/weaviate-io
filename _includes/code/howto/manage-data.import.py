@@ -466,7 +466,7 @@ client.close()
 # TODO NEEDS TEST
 # Creates a new client so can't piggyback on the prior client tests
 
-# START BatchVectorizationClient
+# START BatchVectClient
 collection = client.collections.create(
         name="NewCollection",
         properties=[
@@ -480,7 +480,7 @@ collection = client.collections.create(
             wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereSecond"),
         ]
     )
-# END BatchVectorizationClient
+# END BatchVectClient
 
 # ================================================
 # =====    Batch vectorization modify client =====

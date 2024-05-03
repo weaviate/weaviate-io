@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 
 ## Overview
 
@@ -358,6 +359,36 @@ Note that these lists are reset when a batching process is initialized. So make 
 import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
 
 <BatchVectorizationOverview />
+
+The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import. 
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Create a client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectClient"
+      endMarker="# END BatchVectClient"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+
+- **Cohere**. Set the service API key. Set the request rate.
+- **OpenAI**. Set the service API key. Set the base URL.
+- **VoyageAI**. Set the service API key.
+
+ <Tabs groupId="languages">
+  <TabItem value="py" label="Modify the client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectorizationClientModify"
+      endMarker="# END BatchVectorizationClientModify"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Working with collections
 
