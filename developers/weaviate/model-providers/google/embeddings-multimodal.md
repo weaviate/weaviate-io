@@ -1,6 +1,6 @@
 ---
-title: Embeddings (Text)
-sidebar_position: 20
+title: Embeddings (Multimodal)
+sidebar_position: 25
 image: og/docs/integrations/provider_integrations_google.jpg
 # tags: ['model providers', 'google', 'embeddings']
 ---
@@ -13,25 +13,21 @@ import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
 
-# Google AI Text Embeddings with Weaviate
+# Google AI Multimodal Embeddings with Weaviate
 
-Weaviate's integration with [Google AI Studio](https://ai.google.dev/) and [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with [Google Vertex AI](https://cloud.google.com/vertex-ai) APIs allows you to access their models' capabilities directly from Weaviate.
 
 [Configure a Weaviate vector index](#configure-the-vectorizer) to use an Google AI embedding model, and Weaviate will generate embeddings for various operations using the specified model and your Google AI API key. This feature is called the *vectorizer*.
 
-At [import time](#data-import), Weaviate generates text object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts text queries into embeddings.
+At [import time](#data-import), Weaviate generates multimodal object embeddings and saves them into the index. For [vector](#vector-near-text-search) and [hybrid](#hybrid-search) search operations, Weaviate converts queries of one or more modalities into embeddings.
 
 ![Embedding integration illustration](../_includes/integration_google_embedding.png)
-
-:::info AI Studio availability
-At the time of writing (November 2023), AI Studio is not available in all regions. See [this page](https://ai.google.dev/gemini-api/docs/available-regions) for the latest information.
-:::
 
 ## Requirements
 
 ### Weaviate configuration
 
-Your Weaviate instance must be configured with the Google AI vectorizer integration (`text2vec-palm`) module.
+Your Weaviate instance must be configured with the Google AI vectorizer integration (`multi2vec-palm`) module.
 
 <details>
   <summary>For WCS (serverless) users</summary>
@@ -51,10 +47,6 @@ This integration is enabled by default on Weaviate Cloud Services (WCS) serverle
 ### API credentials
 
 You must provide valid API credentials to Weaviate for the appropriate integration.
-
-#### AI Studio
-
-Go to [Google AI Studio](https://ai.google.dev/) to sign up and obtain an API key.
 
 #### Vertex AI
 
@@ -109,8 +101,8 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BasicVectorizerGoogle"
-      endMarker="# END BasicVectorizerGoogle"
+      startMarker="# START BasicMMVectorizerGoogle"
+      endMarker="# END BasicMMVectorizerGoogle"
       language="py"
     />
   </TabItem>
@@ -118,27 +110,29 @@ Provide the API key to Weaviate using one of the following methods:
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BasicVectorizerGoogle"
-      endMarker="// END BasicVectorizerGoogle"
+      startMarker="// START BasicMMVectorizerGoogle"
+      endMarker="// END BasicMMVectorizerGoogle"
       language="ts"
     />
   </TabItem>
 
 </Tabs>
 
-You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified.
+You can [specify](#vectorizer-parameters) one of the [available models](#available-models) for the vectorizer to use. Currently, `multimodalembedding@001` is the only available model.
+
+<!-- The default model (`textembedding-gecko@001` for Vertex AI, `embedding-001` for AI Studio) is used if no model is specified. -->
 
 ## Data import
 
-After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for text objects using the specified model.
+After configuring the vectorizer, [import data](../../manage-data/import.mdx) into Weaviate. Weaviate generates embeddings for the objects using the specified model.
 
 <Tabs groupId="languages">
 
  <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START BatchImportExample"
-      endMarker="# END BatchImportExample"
+      startMarker="# START MMBatchImportExample"
+      endMarker="# END MMBatchImportExample"
       language="py"
     />
   </TabItem>
@@ -146,8 +140,8 @@ After configuring the vectorizer, [import data](../../manage-data/import.mdx) in
  <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START BatchImportExample"
-      endMarker="// END BatchImportExample"
+      startMarker="// START MMBatchImportExample"
+      endMarker="// END MMBatchImportExample"
       language="ts"
     />
   </TabItem>
@@ -224,23 +218,54 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 </Tabs>
 
+### Vector (near media) search
+
+When you perform a media search such as a [near image search](../../search/similarity.md#search-with-image), Weaviate converts the query into an embedding using the specified model and returns the most similar objects from the database.
+
+To perform a near media search such as near image search, convert the media query into a base64 string and pass it to the search query.
+
+The query below returns the `n` most similar objects to the input image from the database, set by `limit`.
+
+<Tabs groupId="languages">
+
+ <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START NearImageExample"
+      endMarker="# END NearImageExample"
+      language="py"
+    />
+  </TabItem>
+
+ <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START NearImageExample"
+      endMarker="// END NearImageExample"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## References
 
 ### Vectorizer parameters
 
 Configure the following vectorizer parameters to customize its behavior. Some parameters are Weaviate-specific, while others expose Google AI-specific options.
 
+- `location` (Required): e.g. `"us-central1"`
 - `projectId` (Only required if using Vertex AI): e.g. `cloud-large-language-models`
 - `apiEndpoint` (Optional): e.g. `us-central1-aiplatform.googleapis.com`
-- `modelId` (Optional): e.g. `textembedding-gecko@001` (Vertex AI) or `embedding-001` (AI Studio)
-<!-- - `titleProperty` (Optional): The Weaviate property name for the `gecko-002` or `gecko-003` model to use as the title. -->
+- `modelId` (Optional): e.g. `multimodalembedding@001`
+- `dimensions` (Optional): Must be one of: `128`, `256`, `512`, `1408`. Default is `1408`.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# START FullVectorizerGoogle"
-      endMarker="# END FullVectorizerGoogle"
+      startMarker="# START FullMMVectorizerGoogle"
+      endMarker="# END FullMMVectorizerGoogle"
       language="py"
     />
   </TabItem>
@@ -248,8 +273,8 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
   <TabItem value="js" label="JS/TS (Beta)">
     <FilteredTextBlock
       text={TSCode}
-      startMarker="// START FullVectorizerGoogle"
-      endMarker="// END FullVectorizerGoogle"
+      startMarker="// START FullMMVectorizerGoogle"
+      endMarker="// END FullMMVectorizerGoogle"
       language="ts"
     />
   </TabItem>
@@ -258,19 +283,7 @@ Configure the following vectorizer parameters to customize its behavior. Some pa
 
 ### Available models
 
-Vertex AI:
-- `textembedding-gecko@001` (default)
-- `textembedding-gecko@002`
-- `textembedding-gecko@003`
-- `textembedding-gecko@latest`
-- `textembedding-gecko-multilingual@001`
-- `textembedding-gecko-multilingual@latest`
-- `text-embedding-preview-0409`
-- `text-multilingual-embedding-preview-0409`
-
-AI Studio:
-- `embedding-001` (default)
-- `text-embedding-004`
+- `multimodalembedding@001` (default)
 
 ## Further resources
 

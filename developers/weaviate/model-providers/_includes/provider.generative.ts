@@ -89,7 +89,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.palm({
-    // project_id='<google-cloud-project-id>',  // Required for Vertex AI
+    projectId: '<google-cloud-project-id>',  // Required for Vertex AI
   }),
   // highlight-end
   // Additional parameters not shown
@@ -104,7 +104,7 @@ await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
   generative: weaviate.configure.generative.palm({
-    // project_id='<google-cloud-project-id>',  // Required for Vertex AI
+    projectId: '<google-cloud-project-id>',  // Required for Vertex AI
     // model_id="<google-model-id>",
     // api_endpoint="<google-api-endpoint>",
     // temperature=0.7,
@@ -138,7 +138,7 @@ await client.collections.delete('DemoCollection');
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
-  generative: weaviate.configure.generative.openai(),
+  generative: weaviate.configure.generative.openAI(),
   // highlight-end
   // Additional parameters not shown
 });
@@ -151,15 +151,14 @@ await client.collections.delete('DemoCollection');
 await client.collections.create({
   name: 'DemoCollection',
   // highlight-start
-  generative: weaviate.configure.generative.openai({
+  generative: weaviate.configure.generative.openAI({
     // // These parameters are optional
-    // model='gpt-4',
-    // frequency_penalty=0,
-    // max_tokens=500,
-    // presence_penalty=0,
-    // temperature=0.7,
-    // top_p=0.7,
-    // base_url='<custom_openai_url>'
+    // model: 'gpt-4',
+    // frequencyPenaltyProperty: 0,
+    // maxTokensProperty: 500,
+    // presencePenaltyProperty: 0,
+    // temperatureProperty: 0.7,
+    // topPProperty: 0.7,
   }),
   // highlight-end
   // Additional parameters not shown

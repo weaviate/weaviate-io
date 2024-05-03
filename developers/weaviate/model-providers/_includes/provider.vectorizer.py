@@ -175,6 +175,76 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicMMVectorizerGoogle
+from weaviate.classes.config import Property, DataType, Configure, Multi2VecField
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_palm(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # video_fields=[],
+            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicMMVectorizerGoogle
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullMMVectorizerGoogle
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="description", data_type=DataType.TEXT),
+        Property(name="poster", data_type=DataType.BLOB),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.multi2vec_palm(
+            name="title_vector",
+            # Define the fields to be used for the vectorization - using image_fields, text_fields, video_fields
+            image_fields=[
+                Multi2VecField(name="poster", weight=0.9)
+            ],
+            text_fields=[
+                Multi2VecField(name="title", weight=0.1)
+            ],
+            # video_fields=[]
+            # project_id="<google-cloud-project-id>"  # Required for Vertex AI
+            # model_id="<google-model-id>",
+            # location="us-central1",
+            # dimensions=512,
+            # video_interval_seconds=20
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullMMVectorizerGoogle
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerHuggingFace
 from weaviate.classes.config import Configure
 
@@ -367,6 +437,25 @@ source_objects = [
     {"title": "A Christmas Carol", "description": ""},
 ]
 
+
+# START NearImageExample
+def url_to_base64(url):
+    import requests
+    import base64
+
+    image_response = requests.get(url)
+    content = image_response.content
+    return base64.b64encode(content).decode("utf-8")
+
+
+# END NearImageExample
+
+
+src_img_path = "https://github.com/weaviate-tutorials/edu-datasets/blob/main/img/International_Space_Station_after_undocking_of_STS-132.jpg?raw=true"
+
+for i in range(len(source_objects)):
+    source_objects[i]["poster_path"] = src_img_path
+
 # START BatchImportExample
 collection = client.collections.get("DemoCollection")
 
@@ -386,6 +475,27 @@ with collection.batch.dynamic() as batch:
         # highlight-end
 # END BatchImportExample
 
+# START MMBatchImportExample
+collection = client.collections.get("DemoCollection")
+
+with collection.batch.dynamic() as batch:
+    for src_obj in source_objects:
+        poster_b64 = url_to_base64(src_obj["poster_path"])
+        weaviate_obj = {
+            "title": src_obj["title"],
+            "description": src_obj["description"],
+            "poster": poster_b64  # Add the image in base64 encoding
+        }
+
+        # highlight-start
+        # The model provider integration will automatically vectorize the object
+        batch.add_object(
+            properties=weaviate_obj,
+            # vector=vector  # Optionally provide a pre-obtained vector
+        )
+        # highlight-end
+# END MMBatchImportExample
+
 # START NearTextExample
 collection = client.collections.get("DemoCollection")
 
@@ -400,6 +510,7 @@ for obj in response.objects:
     print(obj.properties["title"])
 # END NearTextExample
 
+
 # START HybridExample
 collection = client.collections.get("DemoCollection")
 
@@ -413,5 +524,23 @@ response = collection.query.hybrid(
 for obj in response.objects:
     print(obj.properties["title"])
 # END HybridExample
+
+
+# START NearImageExample
+collection = client.collections.get("DemoCollection")
+
+# highlight-start
+query_b64 = url_to_base64(src_img_path)
+
+response = collection.query.near_image(
+    near_image=query_b64,
+    limit=2,
+    return_properties=["title", "release_date", "tmdb_id", "poster"]  # To include the poster property in the response (`blob` properties are not returned by default)
+)
+# highlight-end
+
+for obj in response.objects:
+    print(obj.properties["title"])
+# END NearImageExample
 
 client.close()

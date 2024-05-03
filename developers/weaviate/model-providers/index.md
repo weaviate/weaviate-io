@@ -20,7 +20,7 @@ This enables an enhanced developed experience, such as the ability to:
 | [Anyscale](./anyscale/index.md) | - | [Text](./anyscale/generative.md) | - |
 | [AWS](./aws/index.md) | [Text](./aws/embeddings.md) | [Text](./aws/generative.md) |
 | [Cohere](./cohere/index.md) | [Text](./cohere/embeddings.md) | [Text](./cohere/generative.md) | [Reranker](./cohere/reranker.md) |
-| [Google](./google/index.md) | [Text](./google/embeddings.md) | [Text](./google/generative.md) | - |
+| [Google](./google/index.md) | [Text](./google/embeddings.md), [Multimodal](./google/embeddings-multimodal.md) | [Text](./google/generative.md) | - |
 | [Hugging Face](./huggingface/index.md) | [Text](./huggingface/embeddings.md) | - | - |
 | [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | - |
 | [Mistral](./mistral/index.md) | - | [Text](./mistral/generative.md) | - |

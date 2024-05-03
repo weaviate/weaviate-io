@@ -137,6 +137,107 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerGoogle
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecPalm({
+          projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerGoogle
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerGoogle
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecPalm({
+          projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+          // modelId: '<google-model-id>',
+          // apiEndpoint: '<google-api_endpoint>',
+          // vectorizeClassName: false,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerGoogle
+
+// START BasicMMVectorizerGoogle
+// Code example coming soon
+// END BasicMMVectorizerGoogle
+
+// Placeholder code for the BasicMMVectorizerGoogle example
+// await client.collections.create({
+//   name: 'DemoCollection',
+//   // highlight-start
+//   vectorizer: [
+//     weaviate.configure.namedVectorizer(
+//       'title_vector',
+//       {
+//         properties: ['title'],
+//         vectorizerConfig: weaviate.configure.vectorizer.multi2VecPalm({
+//           projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+//         }),
+//       },
+//     ),
+//   ],
+//   // highlight-end
+//   // Additional parameters not shown
+// });
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullMMVectorizerGoogle
+// Code example coming soon
+// END FullMMVectorizerGoogle
+
+// Placeholder code for the FullMMVectorizerGoogle example
+// await client.collections.create({
+//   name: 'DemoCollection',
+//   // highlight-start
+//   vectorizer: [
+//     weaviate.configure.namedVectorizer(
+//       'title_vector',
+//       {
+//         properties: ['title'],
+//         vectorizerConfig: weaviate.configure.vectorizer.multi2VecPalm({
+//           projectId: '<google-cloud-project-id>',  // Required for Vertex AI
+//           // modelId: '<google-model-id>',
+//           // apiEndpoint: '<google-api_endpoint>',
+//           // vectorizeClassName: false,
+//         }),
+//       },
+//     ),
+//   ],
+//   // highlight-end
+//   // Additional parameters not shown
+// });
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerHuggingFace
 await client.collections.create({
   name: 'DemoCollection',
@@ -362,6 +463,10 @@ const response = await myCollection.data.insertMany(dataObject);
 console.log(response);
 // END BatchImportExample
 
+// START MMBatchImportExample
+// Code example coming soon
+// END MMBatchImportExample
+
 // START NearTextExample
 let result;
 
@@ -386,5 +491,9 @@ result = await myCollection.query.hybrid(
 
 console.log(JSON.stringify(result.objects, null, 2));
 // END HybridExample
+
+// START NearImageExample
+// Code example coming soon
+// END NearImageExample
 
 client.close();
