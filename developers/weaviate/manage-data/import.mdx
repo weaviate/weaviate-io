@@ -401,6 +401,16 @@ The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScrip
 :::info Added in `v1.23`.
 :::
 
+When you import unvectorized data, the import process normally includes a vectorization step. Some third party vectorization services provide APIs that accept objects in batches. When a batch API is available, Weaviate automatically submits incoming objects in batches. Weaviate also adjusts the batch submission rate to minimize problems with rate limits on third party APIs.
+
+In addition to significantly improved import times, submitting objects in batches makes more efficient use of API tokens.
+
+There are some limitations.
+
+- Rate limits. Some third party APIs have different limits for trial (free) tiers and subscription (paid) tiers. If you have a trial API key, you may need to manually set a rate limit in the Weaviate client.
+- No batch API. PaLM does not offer a batch API.
+- Batch API not implemented. This feature is not yet available for all APIs. 
+
 
 ## Related pages
 
