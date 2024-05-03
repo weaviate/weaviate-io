@@ -276,7 +276,7 @@ In most cases, you should use the default `False` setting for `skip_init_checks`
 
 For additional connection configuration, see [Timeout values](#timeout-values).
 
-## Batching
+## Batch imports
 
 The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.
 
@@ -349,6 +349,15 @@ Note that these lists are reset when a batching process is initialized. So make 
   endMarker="# END BatchErrorHandling"
   language="py"
 />
+
+### Batch vectorization
+
+:::info Added in `v1.23`.
+:::
+
+import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
+
+<BatchVectorizationOverview />
 
 ## Working with collections
 
