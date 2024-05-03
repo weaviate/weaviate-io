@@ -5,8 +5,6 @@ image: og/docs/configuration.jpg
 # tags: ['configuration', 'multi-tenancy']
 ---
 
-
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
@@ -16,7 +14,6 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
-
 
 Multi-tenancy isolates data between tenants (typically end users) in a Weaviate instance, for example in a SaaS application. Each tenant is a separate shard in Weaviate.
 
@@ -32,9 +29,7 @@ Multi-tenancy isolates data between tenants (typically end users) in a Weaviate 
 
 ## Enable multi-tenancy
 
-
-Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig` variable in the collection definition as shown below:
-
+Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancyConfig`in the collection definition:
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
