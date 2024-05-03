@@ -1,9 +1,11 @@
 ---
-title: 1.25 migration guide for Kubernetes
+title: 1.25 (For Kubernete users)
 sidebar_position: 10
 image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---
+
+# Weaviate 1.25 migration guide for Kubernetes users
 
 ## Assumptions & requirements
 
