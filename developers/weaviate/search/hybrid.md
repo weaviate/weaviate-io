@@ -564,7 +564,7 @@ The output is like this:
 
 ## Vector similarity search
 
-:::info Added in `v1.24`
+:::info Added in `v1.25`
 :::
 
 Hybrid searches can use some [vector similarity search](/developers/weaviate/search/similarity) methods to improve results.
