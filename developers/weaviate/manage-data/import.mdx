@@ -290,10 +290,10 @@ You can batch create links from an object to another other object through cross-
 
 ## Python-specific batching
 
-The Python clients have built-in batching methods to help you optimize your import speed. Please see the relevant documentation for more information.
+The Python clients have built-in batching methods to help you optimize import speed. For details, see the client documentation:
 
-- [Batching: Python client `v4`](../client-libraries/python/index.md#batching)
-- [Batching: Python client `v3`](../client-libraries/python/python_v3.md#batching)
+- [Python client `v4`](../client-libraries/python/index.md#batching)
+- [Python client `v3`](../client-libraries/python/python_v3.md#batching)
 
 ## Stream data from large files
 
@@ -366,12 +366,16 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
 
 ## Additional considerations
 
-:::info Added in `v1.23`.
+Data imports can be resource intensive. Consider the following when you import large amounts of data. 
+
+### Asynchronous imports
+
+:::info Added in `v1.22`.
 :::
 
-To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) and use gRPC batch imports.
+To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing).
 
-Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python/index.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
+Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. 
 
 To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration file.
 
@@ -383,6 +387,20 @@ weaviate:
     ASYNC_INDEXING: 'true'
   ...
 ```
+### gRPC connection
+
+:::info Added in `v1.23`.
+:::
+
+The gRPC API is faster than the REST API. Use the gRPC API to improve import speeds. 
+
+The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) use gRPC. If you cannot use one of the new clients, you can also access the [gRPC API directly](../api/grpc.md).
+
+### Batch vectorization
+
+:::info Added in `v1.23`.
+:::
+
 
 ## Related pages
 
