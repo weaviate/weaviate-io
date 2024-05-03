@@ -15,7 +15,7 @@ import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.multi-t
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
 
-Multi-tenancy isolates data between tenants (typically end users) in a Weaviate instance, for example in a SaaS application. Each tenant is a separate shard in Weaviate.
+Multi-tenancy provides data isolation. Each tenant is stored on a separate shard. Data stored in one tenant is not visible to another tenant. If your application serves many different users, multi-tenancy keeps their data private and makes database operations more efficient.
 
 <details>
   <summary>
@@ -87,8 +87,7 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
   </TabItem>
 </Tabs>
 
-
-## Add tenants
+## Add new tenants manually
 
 To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default) or `COLD` (inactive).
 
@@ -165,6 +164,17 @@ Tenant status is available from Weaviate `1.21` onwards.
   </TabItem>
 </Tabs>
 
+
+## Automatically add new tenants
+
+Weavite can create tenants automatically. By default, Weaviate returns an error if you try to insert an object into a non-existent tenant. To create a new tenant instead, set `autoTenantCreation` to `true` in the collection definition.
+
+Set `autoTenantCreation` when you create the collection, or update the setting as needed.
+
+Automatic tenant creation is very useful when you import a large number of objects. Be cautious if your data is likely to have small inconsistencies or typos. For example, the names `TenantOne`, `tenantOne`, and `TenntOne` will create three different tenants.
+
+
+ 
 ## List tenants
 
 List existing tenants in a collection. 
@@ -293,7 +303,6 @@ In this example, Weaviate removes `tenantB` and `tenantX` from the `MultiTenancy
 
 Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
-
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
     <FilteredTextBlock
@@ -315,7 +324,6 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 - For now, please send a [PUT request through the REST API endpoint](/developers/weaviate/api/rest#tag/schema) to update the tenant activity status.
 
 </details>
-
 
 ## CRUD operations
 
@@ -377,7 +385,6 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
   </TabItem>
 </Tabs>
 
-
 ## Search queries
 
 Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Get` and `Aggregate` query operation.
@@ -437,7 +444,6 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
     />
   </TabItem>
 </Tabs>
-
 
 ## Cross-references
 
@@ -502,7 +508,6 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
     />
   </TabItem>
 </Tabs>
-
 
 ## Related pages
 
