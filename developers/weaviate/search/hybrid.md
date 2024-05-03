@@ -88,7 +88,7 @@ The output is like this:
 :::info Added in `v1.24`
 :::
 
-To run a hybrid search on a collection that has named vectors, use the `target` field to specify which named vector to search.
+To run a hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -561,6 +561,44 @@ The output is like this:
 />
 
 </details>
+
+## Vector similarity search
+
+:::info Added in `v1.24`
+:::
+
+Hybrid searches can use some [vector similarity search](/developers/weaviate/search/similarity) methods to improve results.
+
+- [Near text](/developers/weaviate/search/similarity#search-with-text)
+- [Near vector](/developers/weaviate/search/similarity#search-with-a-vector)
+
+To run a vector similarity search, specify the similarity search as a sub-search of the hybrid search.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="GraphQL">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# VectorSimilarityGraphQL"
+  endMarker="# END VectorSimilarityGraphQL"
+  language="python"
+/>
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# Expected VectorSimilarityGraphQL results"
+  endMarker="# END Expected VectorSimilarityGraphQL results"
+  language="json"
+/>
+
+</details>
+
 
 ## `limit` & `offset`
 
