@@ -5,9 +5,13 @@ image: og/docs/concepts.jpg
 # tags: ['architecture']
 ---
 
-Data consistency is a property of a database that refers to whether data in different nodes do or do not match. In Weaviate, availability is generally preferred over strong consistency. This doesn't mean that we don't pay attention to consistency at all. Schema and data consistency are as important as possible. As captured by the [CAP Theorem](./index.md#cap-theorem), consistency and availability are a trade-off. In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
+Data consistency is a property of a database that refers to whether data in different nodes do or do not match.
 
-Schema consistency is not tunable, but set to a strong consistency protocol.
+Schema consistency is extremely important, as the schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and RAFT consensus algorithm for schema replication.
+
+Data objects, on the other hand, are eventually consistent, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. Weaviate uses a leaderless design with eventual consistency for data replication.
+
+This difference reflects the trade-off inherent in consistency and availability, as described in the [CAP Theorem](./index.md#cap-theorem). In Weaviate, data consistency is tunable, so it's up to you how you make the trade-off between A and C.
 
 The strength of consistency can be determined by applying the following conditions:
 * If r + w > n, then the system is strongly consistent.
