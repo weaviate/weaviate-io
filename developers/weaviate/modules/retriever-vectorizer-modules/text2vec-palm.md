@@ -8,7 +8,7 @@ image: og/docs/modules/text2vec-palm.jpg
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
 
 :::info Releases and versions
 

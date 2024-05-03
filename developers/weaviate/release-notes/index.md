@@ -211,6 +211,8 @@ For links to the Python Client releases, expand this section.
 
    | Client Version | Release Date |
    | :- | :- |
+   | [4.5.7][p4.5.7] | 2024-05-03 |
+   | [4.5.6][p4.5.6] | 2024-04-23 |
    | [4.5.5][p4.5.5] | 2024-04-03 |
    | [4.5.4][p4.5.4] | 2024-03-15 |
    | [4.5.3][p4.5.3] | 2024-03-14 |
@@ -615,6 +617,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( python client links )
 
+[p4.5.7]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.7
 [p4.5.6]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.6
 [p4.5.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.5
 [p4.5.4]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.4
