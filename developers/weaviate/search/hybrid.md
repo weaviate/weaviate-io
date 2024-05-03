@@ -682,7 +682,7 @@ The output is like this:
 
 ## Filter results
 
-For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow your search.
+To narrow your search results, use a [`filter`](../api/graphql/filters.md).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python (v4)">
