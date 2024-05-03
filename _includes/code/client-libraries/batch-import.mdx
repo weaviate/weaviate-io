@@ -1,4 +1,6 @@
-When you import unvectorized data, the import process normally includes a vectorization step. Some third party vectorization services provide APIs that accept objects in batches. When a batch API is available, Weaviate automatically submits incoming objects in batches. Weaviate also adjusts the batch submission rate to minimize problems with rate limits on third party APIs.
+When you import unvectorized data, the import process normally includes a vectorization step. Some third party vectorization services provide APIs that accept objects in batches.
+
+If a third party batch API is available, Weaviate automatically submits incoming objects in batches. Weaviate also adjusts the batch submission rate to minimize problems with rate limits on third party APIs.
 
 In addition to significantly improved import times, submitting objects in batches makes more efficient use of API tokens.
 
