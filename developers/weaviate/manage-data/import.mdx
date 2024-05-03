@@ -364,6 +364,26 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
   </TabItem>
 </Tabs>
 
+## Batch vectorization
+
+:::info Added in `v1.25`.
+:::
+
+import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
+
+<BatchVectorizationOverview />
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# BatchVectorization"
+      endMarker="# END BatchVectorization"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
 ## Additional considerations
 
 Data imports can be resource intensive. Consider the following when you import large amounts of data. 
@@ -396,14 +416,6 @@ The gRPC API is faster than the REST API. Use the gRPC API to improve import spe
 
 The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) use gRPC. If you cannot use one of the new clients, you can also access the [gRPC API directly](../api/grpc.md).
 
-### Batch vectorization
-
-:::info Added in `v1.23`.
-:::
-
-import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
-
-<BatchVectorizationOverview />
 
 ## Related pages
 

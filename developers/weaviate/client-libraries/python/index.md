@@ -331,7 +331,7 @@ These methods return completely localized context managers. Accordingly, attribu
 </TabItem>
 </Tabs>
 
-In the batching process, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread.
+If the background thread that is responsible for sending the batches raises an exception during batch processing, the error is raised to the main thread.
 
 ### Error handling
 
@@ -352,7 +352,7 @@ Note that these lists are reset when a batching process is initialized. So make 
 
 ### Batch vectorization
 
-:::info Added in `v1.23`.
+:::info Added in `v1.25`.
 :::
 
 import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
