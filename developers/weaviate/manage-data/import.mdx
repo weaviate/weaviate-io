@@ -373,12 +373,27 @@ import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-i
 
 <BatchVectorizationOverview />
 
+The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import. 
+
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
     <FilteredTextBlock
       text={PyCode}
-      startMarker="# BatchVectorization"
-      endMarker="# END BatchVectorization"
+      startMarker="# START BatchVectorizationClient"
+      endMarker="# END BatchVectorizationClient"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+To add or modify the vectorization settings, update the client connection. 
+
+ <Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BatchVectorizationClientModify"
+      endMarker="# END BatchVectorizationClientModify"
       language="py"
     />
   </TabItem>
