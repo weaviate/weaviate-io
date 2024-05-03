@@ -197,6 +197,18 @@
   }
 }
 
+.filterLine {
+  background: #8f99b1;
+  width: 0.5px;
+  height: 216.4375rem;
+  flex-shrink: 0;
+  margin: -48px 10px 0px 0px;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
 header {
   background: #130c49;
   background-image: url('/img/site/home-page-bg-pattern.svg') !important;
@@ -508,6 +520,10 @@ header {
     border-radius: 1.25rem;
     border: 0.5px solid #2a97e1;
     background: #262262;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   input::placeholder {
@@ -536,9 +552,9 @@ header {
   }
 }
 
-.knowledgeCard.llm {
+.knowledgeCard.llms {
   .cardHeader {
-    background: #ab5988;
+    background: #54449d;
   }
 }
 
@@ -793,9 +809,9 @@ header {
   }
 }
 
-.modalContents.llm {
+.modalContents.llms {
   .cardHeader {
-    background: #ab5988;
+    background: #54449d;
   }
 }
 

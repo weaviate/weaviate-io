@@ -3,39 +3,24 @@ import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
 import Card from './card';
+import knowledge from '/data/knowledgecards.json';
 import { ButtonContainer } from '../../theme/Buttons';
 import Highlights from './highlights';
-import fetchKnowledgeCards from './fetchData'; // Ensure this path is correct
 
 export default function KnowledgeBase({ searchQuery }) {
   const [selectedCard, setSelectedCard] = useState('All');
   const [showMore, setShowMore] = useState({});
   const [activeCard, setActiveCard] = useState(null);
-  const [cards, setCards] = useState([]);
 
-  // Fetch cards from backend on mount
-  useEffect(() => {
-    fetchKnowledgeCards().then((data) => {
-      setCards(data);
-      const hash = window.location.hash;
-      if (hash.startsWith('#card=')) {
-        const cardId = hash.substring(6);
-        const matchedCard = data.find((card) => card.id === cardId);
-        if (matchedCard) {
-          setActiveCard(matchedCard);
-          setShowMore((prev) => ({ ...prev, [matchedCard.category]: true }));
-        }
-      }
-    });
-  }, []);
+  const allCards = knowledge.all;
 
   const handleCardFilter = (card) => {
     setSelectedCard(card);
   };
 
-  const filteredCards = cards.filter((card) => {
+  const filteredCards = allCards.filter((card) => {
     return (
-      (selectedCard === 'All' || card.category === selectedCard) &&
+      (selectedCard === 'All' || card.type === selectedCard) &&
       ((card.title &&
         card.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (card.text &&
@@ -47,44 +32,28 @@ export default function KnowledgeBase({ searchQuery }) {
     );
   });
 
-  const handleNavigation = (direction) => {
-    if (!activeCard) return;
-
-    // Filter cards to those in the same category as the active card
-    const cardsInSameCategory = cards.filter(
-      (card) => card.category === activeCard.category
-    );
-
-    // Determine the new index based on navigation direction
-    let newIndex = cardsInSameCategory.findIndex(
-      (card) => card.id === activeCard.id
-    );
-    if (direction === 'next') {
-      newIndex = (newIndex + 1) % cardsInSameCategory.length;
-    } else if (direction === 'previous') {
-      newIndex =
-        newIndex - 1 < 0 ? cardsInSameCategory.length - 1 : newIndex - 1;
-    }
-
-    // Set the new active card based on the newIndex
-    const newActiveCard = cardsInSameCategory[newIndex];
-    if (newActiveCard) {
-      handleCardOpen(newActiveCard);
-    }
-  };
-
-  const handleCardOpen = (card) => {
-    setActiveCard(card);
-    window.location.hash = `card=${card.id}`;
-    setShowMore((prev) => ({ ...prev, [card.category]: true }));
-  };
-
   const handleShowMore = (category) => {
     setShowMore((prevShowMore) => ({
       ...prevShowMore,
       [category]: !prevShowMore[category],
     }));
   };
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith('#card=')) {
+      const cardId = hash.substring(6); // Get the card ID from the hash
+      const matchedCard = allCards.find((card) => card.id === cardId);
+
+      if (matchedCard) {
+        setActiveCard(matchedCard);
+        setShowMore((prev) => ({ ...prev, [matchedCard.category]: true })); // Ensure the card's category is expanded
+      } else {
+        console.error('No matching card found for ID:', cardId);
+        setActiveCard(null);
+      }
+    }
+  }, [allCards]);
 
   const renderCards = (category) => {
     const categoryCards = filteredCards.filter(
@@ -94,23 +63,81 @@ export default function KnowledgeBase({ searchQuery }) {
       ? categoryCards
       : categoryCards.slice(0, 3);
 
+    if (categoryCards.length === 0) {
+      return null;
+    }
+
+    const updateUrlHash = (cardId) => {
+      window.location.hash = `card=${cardId}`;
+    };
+
+    const handleCardOpen = (card) => {
+      setActiveCard(card);
+      updateUrlHash(card.id);
+      // Automatically expand the category of the opened card
+      setShowMore((prev) => ({ ...prev, [card.category]: true }));
+    };
+
+    const handleNavigation = (direction) => {
+      if (!activeCard) return;
+
+      // Filter cards to those in the same category as the active card
+      const cardsInSameCategory = allCards.filter(
+        (card) => card.category === activeCard.category
+      );
+
+      // Determine the new index based on navigation direction
+      let newIndex = cardsInSameCategory.findIndex(
+        (card) => card.id === activeCard.id
+      );
+      if (direction === 'next') {
+        newIndex = (newIndex + 1) % cardsInSameCategory.length;
+      } else if (direction === 'previous') {
+        newIndex =
+          newIndex - 1 < 0 ? cardsInSameCategory.length - 1 : newIndex - 1;
+      }
+
+      // Set the new active card based on the newIndex
+      const newActiveCard = cardsInSameCategory[newIndex];
+      if (newActiveCard) {
+        handleCardOpen(newActiveCard);
+      }
+    };
+
+    const categoryDescriptions = {
+      'Intro to Vector Databases':
+        'Description for Intro to Vector Databases...',
+      'Hybrid Search': 'Description for Hybrid Search...',
+      'Hierarchical Navigable Small World': 'Description for HNSW...',
+      'Multimodal RAG': 'Description for Multimodal RAG...',
+      Databases: 'Description for Databases...',
+      'Large Language Models': 'Description for LLMS...',
+      // Add other categories as needed
+    };
+
+    const totalCards = categoryCards.length;
     return (
       <>
         <h3>{category}</h3>
-        <div className={styles.cardContainer}>
+        <span className={styles.categoryText}>
+          {categoryDescriptions[category]}
+        </span>
+        <div
+          className={`${styles.cardContainer} ${category.toLowerCase()}-card`}
+        >
           {visibleCards.map((card, index) => (
             <Card
-              key={card.id}
+              key={card.title}
               details={card}
               setActiveCard={setActiveCard}
-              currentIndex={index + 1}
-              totalCards={categoryCards.length}
               onOpenModal={() => {
-                setActiveCard(card);
-                window.location.hash = `card=${card.id}`;
-                handleShowMore(card.category);
+                setActiveCard({ category: card.category, index });
+                updateUrlHash(card.type, index);
+                handleCardOpen(card);
               }}
               isActive={activeCard && activeCard.id === card.id}
+              currentIndex={index + 1}
+              totalCards={categoryCards.length}
               onNext={() => handleNavigation('next')}
               onPrevious={() => handleNavigation('previous')}
             />
@@ -126,6 +153,7 @@ export default function KnowledgeBase({ searchQuery }) {
             </button>
           </div>
         )}
+        <hr></hr>
       </>
     );
   };
@@ -133,7 +161,6 @@ export default function KnowledgeBase({ searchQuery }) {
   return (
     <div className={styles.teamBG}>
       <div className="container">
-        <div className={styles.searchContainer}></div>
         <div className={styles.knowledgebase}>
           <div className={styles.filterBox}>
             <div className={styles.cardFilter}>
@@ -195,15 +222,38 @@ export default function KnowledgeBase({ searchQuery }) {
                 />
                 <label htmlFor="filterRAG">Multimodal RAG</label>
               </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterDatabases"
+                  name="cardFilter"
+                  value="Databases"
+                  checked={selectedCard === 'Databases'}
+                  onChange={() => handleCardFilter('Databases')}
+                />
+                <label htmlFor="filterDatabases">Databases</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterLLMS"
+                  name="cardFilter"
+                  value="LLMS"
+                  checked={selectedCard === 'LLMS'}
+                  onChange={() => handleCardFilter('LLMS')}
+                />
+                <label htmlFor="filterLLMS">LLMS</label>
+              </div>
             </div>
           </div>
+          <div className={styles.filterLine}></div>
           <div className={styles.cardResults}>
-            {Object.keys(
-              cards.reduce((acc, card) => {
-                acc[card.category] = true;
-                return acc;
-              }, {})
-            ).map((category) => renderCards(category))}
+            {renderCards('Intro to Vector Databases')}
+            {renderCards('Hybrid Search')}
+            {renderCards('Hierarchical Navigable Small World')}
+            {renderCards('Multimodal RAG')}
+            {renderCards('Databases')}
+            {renderCards('Large Language Models')}
           </div>
         </div>
       </div>

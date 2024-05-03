@@ -110,6 +110,8 @@ export default function KnowledgeBase({ searchQuery }) {
       'Hybrid Search': 'Description for Hybrid Search...',
       'Hierarchical Navigable Small World': 'Description for HNSW...',
       'Multimodal RAG': 'Description for Multimodal RAG...',
+      Databases: 'Description for Databases...',
+      'Large Language Models': 'Description for LLMS...',
       // Add other categories as needed
     };
 
@@ -159,7 +161,6 @@ export default function KnowledgeBase({ searchQuery }) {
   return (
     <div className={styles.teamBG}>
       <div className="container">
-        <div className={styles.searchContainer}></div>
         <div className={styles.knowledgebase}>
           <div className={styles.filterBox}>
             <div className={styles.cardFilter}>
@@ -221,14 +222,38 @@ export default function KnowledgeBase({ searchQuery }) {
                 />
                 <label htmlFor="filterRAG">Multimodal RAG</label>
               </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterDatabases"
+                  name="cardFilter"
+                  value="Databases"
+                  checked={selectedCard === 'Databases'}
+                  onChange={() => handleCardFilter('Databases')}
+                />
+                <label htmlFor="filterDatabases">Databases</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="filterLLMS"
+                  name="cardFilter"
+                  value="LLMS"
+                  checked={selectedCard === 'LLMS'}
+                  onChange={() => handleCardFilter('LLMS')}
+                />
+                <label htmlFor="filterLLMS">LLMS</label>
+              </div>
             </div>
           </div>
-
+          <div className={styles.filterLine}></div>
           <div className={styles.cardResults}>
             {renderCards('Intro to Vector Databases')}
             {renderCards('Hybrid Search')}
             {renderCards('Hierarchical Navigable Small World')}
             {renderCards('Multimodal RAG')}
+            {renderCards('Databases')}
+            {renderCards('Large Language Models')}
           </div>
         </div>
       </div>
