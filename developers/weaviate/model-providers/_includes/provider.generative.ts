@@ -165,6 +165,44 @@ await client.collections.create({
 });
 // END FullGenerativeOpenAI
 
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicGenerativeAzureOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.azureOpenAI({
+    resourceName: '<azure-resource-name>',
+    deploymentId: '<azure-deployment-id>',
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicGenerativeAzureOpenAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeAzureOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  generative: weaviate.configure.generative.azureOpenAI({
+    resourceName: '<azure-resource-name>',
+    deploymentId: '<azure-deployment-id>',
+    // // These parameters are optional
+    // frequencyPenaltyProperty: 0,
+    // maxTokensProperty: 500,
+    // presencePenaltyProperty: 0,
+    // temperatureProperty: 0.7,
+    // topPProperty: 0.7,
+  }),
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullGenerativeAzureOpenAI
+
 // START SinglePromptExample  // START GroupedTaskExample
 let myCollection = client.collections.get('DemoCollection');
 // START SinglePromptExample  // END GroupedTaskExample

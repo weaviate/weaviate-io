@@ -240,6 +240,49 @@ client.collections.create(
 )
 # END FullGenerativeOpenAI
 
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicGenerativeAzureOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.azure_openai(
+        resource_name="<azure-resource-name>",
+        deployment_id="<azure-deployment-id>",
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicGenerativeAzureOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeAzureOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    generative_config=Configure.Generative.azure_openai(
+        resource_name="<azure-resource-name>",
+        deployment_id="<azure-deployment-id>",
+        # # These parameters are optional
+        # frequency_penalty=0,
+        # max_tokens=500,
+        # presence_penalty=0,
+        # temperature=0.7,
+        # top_p=0.7,
+        # base_url="<custom-azure-url>"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullGenerativeAzureOpenAI
+
 source_objects = [
     {"title": "The Shawshank Redemption"},
     {"title": "The Godfather"},

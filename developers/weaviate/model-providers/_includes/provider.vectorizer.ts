@@ -389,6 +389,57 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerAzureOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecAzureOpenAI({
+          resourceName: '<azure-resource-name>',
+          deploymentID: '<azure-deployment-id>',
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerAzureOpenAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerAzureOpenAI
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecAzureOpenAI({
+          resourceName: '<azure-resource-name>',
+          deploymentID: '<azure-deployment-id>',
+          // // Further options
+          // baseURL: '<custom_azure_url>',
+          // vectorize_collection_name=False,
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerAzureOpenAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerVoyageAI
 await client.collections.create({
   name: 'DemoCollection',

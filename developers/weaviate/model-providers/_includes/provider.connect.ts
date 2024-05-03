@@ -28,6 +28,9 @@ const mistralApiKey = process.env.MISTRAL_APIKEY || '';  // Replace with your in
 // START OpenAIInstantiation
 const openaiApiKey = process.env.OPENAI_APIKEY || '';  // Replace with your inference API key
 // END OpenAIInstantiation
+// START AzureOpenAIInstantiation
+const azureApiKey = process.env.AZURE_APIKEY || '';  // Replace with your inference API key
+// END AzureOpenAIInstantiation
 // START VoyageAIInstantiation
 const voyageaiApiKey = process.env.VOYAGEAI_APIKEY || '';  // Replace with your inference API key
 // END VoyageAIInstantiation
@@ -66,6 +69,9 @@ const client = await weaviate.connectToWCS(
       // START OpenAIInstantiation
       'X-OpenAI-Api-Key': openaiApiKey,
       // END OpenAIInstantiation
+      // START AzureOpenAIInstantiation
+      'X-Azure-Api-Key': azureApiKey,
+      // END AzureOpenAIInstantiation
       // START VoyageAIInstantiation
       'X-VoyageAI-Api-Key': voyageaiApiKey,
       // END VoyageAIInstantiation

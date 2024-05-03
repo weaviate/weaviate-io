@@ -41,6 +41,10 @@ mistral_key = os.getenv("MISTRAL_APIKEY")
 # Recommended: save sensitive data as environment variables
 openai_key = os.getenv("OPENAI_APIKEY")
 # END OpenAIInstantiation
+# START AzureOpenAIInstantiation
+# Recommended: save sensitive data as environment variables
+azure_key = os.getenv("AZURE_APIKEY")
+# END AzureOpenAIInstantiation
 # START VoyageAIInstantiation
 # Recommended: save sensitive data as environment variables
 voyageai_key = os.getenv("VOYAGEAI_APIKEY")
@@ -76,6 +80,9 @@ headers = {
 # START OpenAIInstantiation
     "X-OpenAI-Api-Key": openai_key,
 # END OpenAIInstantiation
+# START AzureOpenAIInstantiation
+    "X-Azure-Api-Key": azure_key,
+# END AzureOpenAIInstantiation
 # START VoyageAIInstantiation
     "X-VoyageAI-Api-Key": voyageai_key,
 # END VoyageAIInstantiation

@@ -386,6 +386,53 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerAzureOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_azure_openai(
+            name="title_vector",
+            source_properties=["title"],
+            resource_name="<azure-resource-name>",
+            deployment_id="<azure-deployment-id>"
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerAzureOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerAzureOpenAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_azure_openai(
+            name="title_vector",
+            source_properties=["title"],
+            resource_name="<azure-resource-name>",
+            deployment_id="<azure-deployment-id>",
+            # # Further options
+            # base_url="<custom_azure_url>",
+            # vectorize_collection_name=False,
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerAzureOpenAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerVoyageAI
 from weaviate.classes.config import Configure
 
