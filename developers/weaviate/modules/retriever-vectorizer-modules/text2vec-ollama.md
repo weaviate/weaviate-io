@@ -74,6 +74,11 @@ services:
 
 You can configure how the module will behave in each collection through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
+Configurable parameters for the `text2vec-ollama` module are:
+
+- `apiEndpoint` - the URL of the Ollama endpoint.
+- `modelId` - the model to use for vectorization.
+
 ### Ollama endpoint
 
 Optionally, you can provide the `apiEndpoint` parameter as shown below to specify the URL of the Ollama endpoint.
@@ -82,7 +87,10 @@ If you are running Weaviate via Docker, with a local Ollama instance, specify `h
 
 ### Example
 
-The following example configures the `Article` collection by setting the vectorizer to `text2vec-ollama` and specifies the Ollama endpoint using `host.docker.internal`.
+The following example configures the `Article` collection, with:
+- Vectorizer set to `text2vec-ollama`,
+- The Ollama endpoint set to `host.docker.internal`, and
+- The model set to `snowflake-arctic-embed`.
 
 ```json
 {
@@ -94,7 +102,8 @@ The following example configures the `Article` collection by setting the vectori
       "vectorizer": "text2vec-ollama",
       "moduleConfig": {
         "text2vec-ollama": {
-          "apiEndpoint": "http://host.docker.internal:11434"
+          "apiEndpoint": "http://host.docker.internal:11434",
+          "modelId": "snowflake-arctic-embed"
         }
       },
       // highlight-end
@@ -111,6 +120,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 
 - `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the collection name. Default: `true`.
+- `apiEndpoint` – the URL of the Ollama endpoint. Default: `http://localhost:11434`.
+- `modelId` – the model to use for vectorization. Default: `nomic-embed-text`.
 
 #### Property-level
 
@@ -129,8 +140,9 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
       "moduleConfig": {
         "text2vec-ollama": {
           // highlight-start
-          "vectorizeClassName": false
-          "apiEndpoint": "http://host.docker.internal:11434"
+          "vectorizeClassName": false,
+          "apiEndpoint": "http://host.docker.internal:11434",
+          "modelId": "snowflake-arctic-embed"
           // highlight-end
         }
       },

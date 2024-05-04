@@ -93,6 +93,11 @@ volumes:
 
 You can configure how the module will behave in each collection through the [Weaviate schema](/developers/weaviate/manage-data/collections.mdx).
 
+Configurable parameters unique to the the `generative-ollama` module are:
+
+- `apiEndpoint` (Optional): The URL of the Ollama endpoint. The default is `http://localhost:11434`.
+- `modelId` (Optional): The model to use. The default is `llama3`.
+
 ### API settings
 
 #### Example
@@ -109,7 +114,8 @@ The following example configures the `Document` collection to use the `generativ
       "moduleConfig": {
         // highlight-start
         "generative-ollama": {
-          "apiEndpoint": "http://host.docker.internal:11434"
+          "apiEndpoint": "http://host.docker.internal:11434",
+          "modelId": "llama3"
         },
         // highlight-end
       }
