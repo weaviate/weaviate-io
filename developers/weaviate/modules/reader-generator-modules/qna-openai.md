@@ -1,6 +1,6 @@
 ---
 title: Question Answering - OpenAI
-sidebar_position: 21
+sidebar_position: 41
 image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---

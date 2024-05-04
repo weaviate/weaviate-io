@@ -20,6 +20,7 @@ Key notes:
 - Your Weaviate instance must be able to access the Ollama endpoint. If you are running Weaviate via Docker, you can specify the [Ollama endpoint using `host.docker.internal`](#collection-configuration) to access the host machine from within the container.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - The default model is `nomic-embed-text`.
+    - The specified model must be available in the Ollama instance you are using.
 
 ## Weaviate instance configuration
 
@@ -129,6 +130,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
         "text2vec-ollama": {
           // highlight-start
           "vectorizeClassName": false
+          "apiEndpoint": "http://host.docker.internal:11434"
           // highlight-end
         }
       },
@@ -157,6 +159,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 ### Available models
 
 Please refer to the [Ollama documentation](https://ollama.com/library) for a list of available models. This list includes both large language models and embedding models; look for the word `embed` in the name or description to identify embedding models.
+
+Download the desired model with `ollama pull <model-name>`.
 
 ### Ollama documentation
 
