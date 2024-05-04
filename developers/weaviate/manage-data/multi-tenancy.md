@@ -14,6 +14,7 @@ import TSCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-v2.ts';
 import JavaCode from '!!raw-loader!/_includes/code/howto/java/src/test/java/io/weaviate/docs/manage-data.multi-tenancy.java';
 import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.multi-tenancy_test.go';
+import CurlCode from '!!raw-loader!/_includes/code/howto/manage-data.multi-tenancy-curl.sh';
 
 Multi-tenancy provides data isolation. Each tenant is stored on a separate shard. Data stored in one tenant is not visible to another tenant. If your application serves many different users, multi-tenancy keeps their data private and makes database operations more efficient.
 
@@ -87,6 +88,28 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
   </TabItem>
 </Tabs>
 
+## Automatically add new tenants
+
+Weavite can create new tenants automatically. By default, Weaviate returns an error if you try to insert an object into a non-existent tenant. To create a new tenant instead, set `autoTenantCreation` to `true` in the collection definition.
+
+Set `autoTenantCreation` when you create the collection, or update the setting as needed.
+
+Automatic tenant creation is very useful when you import a large number of objects. Be cautious if your data is likely to have small inconsistencies or typos. For example, the names `TenantOne`, `tenantOne`, and `TenntOne` will create three different tenants.
+
+### Create a collection
+
+<Tabs groupId="languages">
+  <TabItem value="cURL" label="cURL">
+    <FilteredTextBlock
+      text={CurlCode}
+      startMarker="# START CreateWithAMT"
+      endMarker="# END CreateWithAMT"
+      language="py"
+    />
+  </TabItem>
+
+</Tabs>
+
 ## Add new tenants manually
 
 To add tenants to a collection, specify the collection and the new tenants. Optionally, specify the tenant activity status as `HOT`(active, default) or `COLD` (inactive).
@@ -106,7 +129,6 @@ Tenant status is available from Weaviate `1.21` onwards.
 <TenantNameFormat/>
 
 </details>
-
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -164,17 +186,6 @@ Tenant status is available from Weaviate `1.21` onwards.
   </TabItem>
 </Tabs>
 
-
-## Automatically add new tenants
-
-Weavite can create tenants automatically. By default, Weaviate returns an error if you try to insert an object into a non-existent tenant. To create a new tenant instead, set `autoTenantCreation` to `true` in the collection definition.
-
-Set `autoTenantCreation` when you create the collection, or update the setting as needed.
-
-Automatic tenant creation is very useful when you import a large number of objects. Be cautious if your data is likely to have small inconsistencies or typos. For example, the names `TenantOne`, `tenantOne`, and `TenntOne` will create three different tenants.
-
-
- 
 ## List tenants
 
 List existing tenants in a collection. 
