@@ -25,6 +25,9 @@ const jinaaiApiKey = process.env.JINAAI_APIKEY || '';  // Replace with your infe
 // START MistralInstantiation
 const mistralApiKey = process.env.MISTRAL_APIKEY || '';  // Replace with your inference API key
 // END MistralInstantiation
+// START OctoAIInstantiation
+const octoaiApiKey = process.env.OCTOAI_APIKEY || '';  // Replace with your inference API key
+// END OctoAIInstantiation
 // START OpenAIInstantiation
 const openaiApiKey = process.env.OPENAI_APIKEY || '';  // Replace with your inference API key
 // END OpenAIInstantiation
@@ -66,6 +69,9 @@ const client = await weaviate.connectToWCS(
       // START MistralInstantiation
       'X-Mistral-Api-Key': mistralApiKey,
       // END MistralInstantiation
+      // START OctoAIInstantiation
+      'X-OctoAI-Api-Key': octoaiApiKey,
+      // END OctoAIInstantiation
       // START OpenAIInstantiation
       'X-OpenAI-Api-Key': openaiApiKey,
       // END OpenAIInstantiation

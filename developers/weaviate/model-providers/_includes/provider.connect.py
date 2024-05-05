@@ -37,6 +37,10 @@ jinaai_key = os.getenv("JINAAI_APIKEY")
 # Recommended: save sensitive data as environment variables
 mistral_key = os.getenv("MISTRAL_APIKEY")
 # END MistralInstantiation
+# START OctoAIInstantiation
+# Recommended: save sensitive data as environment variables
+octoai_key = os.getenv("OCTOAI_APIKEY")
+# END OctoAIInstantiation
 # START OpenAIInstantiation
 # Recommended: save sensitive data as environment variables
 openai_key = os.getenv("OPENAI_APIKEY")
@@ -77,6 +81,9 @@ headers = {
 # START MistralInstantiation
     "X-Mistral-Api-Key": mistral_key,
 # END MistralInstantiation
+# START OctoAIInstantiation
+    "X-OctoAI-Api-Key": openai_key,
+# END OctoAIInstantiation
 # START OpenAIInstantiation
     "X-OpenAI-Api-Key": openai_key,
 # END OpenAIInstantiation

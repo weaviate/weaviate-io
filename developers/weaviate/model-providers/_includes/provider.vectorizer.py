@@ -333,6 +333,20 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerOctoAI
+# Code example coming soon
+# END BasicVectorizerOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerOctoAI
+# Code example coming soon
+# END FullVectorizerOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOpenAI
 from weaviate.classes.config import Configure
 

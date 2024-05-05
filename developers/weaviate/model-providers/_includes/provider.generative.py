@@ -204,6 +204,20 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicGenerativeOctoAI
+# Code example coming soon
+# END BasicGenerativeOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeOctoAI
+# Code example coming soon
+# END FullGenerativeOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeOpenAI
 from weaviate.classes.config import Configure
 

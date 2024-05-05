@@ -337,6 +337,20 @@ await client.collections.create({
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicVectorizerOctoAI
+// Code example coming soon
+// END BasicVectorizerOctoAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerOctoAI
+// Code example coming soon
+// END FullVectorizerOctoAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicVectorizerOpenAI
 await client.collections.create({
   name: 'DemoCollection',
