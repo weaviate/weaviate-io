@@ -70,9 +70,7 @@ configuration with your setup.
 Out of the box, the configuration file is setup for:
 
 - 1 Weaviate replica.
-- The `text2vec-contextionary` module is enabled and running with 1 replica.
-  (This can be adjusted based on the expected load).
-- Other modules, such as `text2vec-transformers`, `qna-transformers` or
+- Local models, such as `text2vec-transformers`, `qna-transformers` or
   `img2vec-neural` are disabled by default. They can be enabled by setting the
   respective `enabled` flag to `true`.
 - `grpcService` is disabled by default. If you want to use the gRPC API, set the
