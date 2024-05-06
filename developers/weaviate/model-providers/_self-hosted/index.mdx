@@ -1,0 +1,56 @@
+---
+title: Self-hosted model integrations
+image: og/docs/integrations/self-hosted.jpg
+# tags: ['model integration, self-hosted']
+---
+
+import BetaPageNote from '../_includes/beta_pages.md';
+
+<BetaPageNote />
+
+Weaviate provides numerous integrations with popular self-hosted models for producing text and multi-modal vector embeddings, question answering, and reranking.
+
+![Embedding integration illustration](../_includes/integration_selfhosted_embedding.png)
+
+### Architecture & resource requirements
+
+When you use a self-hosted model, Weaviate creates an "inference container" that runs the model. This container is separate from the Weaviate server, and Weaviate communicates with it to get the desired embeddings or predictions.
+
+The inference container requires resources such as CPU, memory, and disk space. The resource requirements depend on the model you use. For example, a large model such as ImageBind requires more resources than a smaller model like a text embedding model.
+
+## Model types
+
+The following self-hosted model integrations are available in Weaviate:
+
+### Text embeddings
+
+<!-- - **[Hugging Face](./embeddings-huggingface.mdx)**: Text embedding models from the Hugging Face Hub. -->
+<!-- - **[GPT4All](./embeddings-gpt4all.mdx)**: Text embedding models from GPT4All. -->
+<!-- - **[Custom](./embeddings-custom.mdx)**: Use a private or local embedding model. -->
+
+### Multi-modal embeddings
+
+<!-- - **[CLIP](./multimodal-clip.mdx)**: Integrates images and text into a single embedding space. -->
+<!-- - **[ImageBind](./multimodal-imagebind.mdx)**: Integrates images, video, text, audio and more into one comprehensive embedding space. -->
+
+### Reranking
+
+<!-- - **[Reranking](./reranking.mdx)**: Re-rank search models with a model from Sentence Transformers. -->
+
+### Text generation
+
+<!-- - **[Question Answering](./question-answering.mdx)**: Answer questions using Q&A models from the Hugging Face Hub. -->
+
+## Considerations
+
+### Do you have a GPU?
+
+<!-- Many of the self-hosted models require a GPU to run efficiently. If you do not have a GPU, we recommend using *ONNX-enabled* models from the [Hugging Face integration](./huggingface.mdx), or a model from the [GPT4all integration](./gpt4all.mdx), which are optimized for CPU usage. -->
+
+### Why use a self-hosted model?
+
+You may want to use a self-hosted model for various reasons. For example, you may wish to make sure that your data is not shared with a third party, or you may want to use a particular, fine-tuned model that is not available publicly.
+
+import DocsMoreResources from '/_includes/more-resources-docs.md';
+
+<DocsMoreResources />
