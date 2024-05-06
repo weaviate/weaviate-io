@@ -89,6 +89,8 @@ Some parameters are mutable after creation, other parameters cannot be changed a
 
 import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
 
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
 <RaftRFChangeWarning/>
 
 - `description`
@@ -102,7 +104,7 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`

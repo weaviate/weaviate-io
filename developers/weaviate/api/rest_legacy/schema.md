@@ -358,6 +358,8 @@ Update settings of an existing collection. Use this endpoint to alter an existin
 
 <RaftRFChangeWarning/>
 
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
 - `description`
 - `invertedIndexConfig`
   - `bm25`
@@ -369,7 +371,7 @@ Update settings of an existing collection. Use this endpoint to alter an existin
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
