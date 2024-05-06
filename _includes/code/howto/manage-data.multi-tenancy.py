@@ -12,7 +12,6 @@ client = weaviate.connect_to_local(
 if client.collections.exists("MultiTenancyCollection"):
     client.collections.delete("MultiTenancyCollection")
 
-
 # =====================
 # ===== Enable MT =====
 # =====================
@@ -31,6 +30,39 @@ multi_collection = client.collections.create(
 
 assert client.collections.exists("MultiTenancyCollection")
 
+# ==========================
+# ===== Enable Auto MT =====
+# ==========================
+
+if (client.collections.exists("CollectionWithAutoMTEnabled")):
+    client.collections.delete("CollectionWithAutoMTEnabled")
+
+# START EnableAutoMT
+from weaviate.classes.config import Configure
+
+multi_collection = client.collections.create(
+    name="CollectionWithAutoMTEnabled",
+    # Enable automatic tenant creation
+    # highlight-start
+    multi_tenancy_config=Configure.multi_tenancy(
+        enabled=True,
+        auto_tenant_creation=True
+    )
+    # highlight-end
+)
+# END EnableAutoMT
+
+assert client.collections.exists("CollectionWithAutoMTEnabled")
+
+# ==========================
+# ===== Update Auto MT =====
+# ==========================
+
+# START UpdateAutoMT
+from weaviate.collections.classes.config import Reconfigure
+
+collection.config.update(multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True))
+# END UpdateAutoMT
 
 # ================================
 # ===== Add tenants to class =====
@@ -54,7 +86,6 @@ multi_collection.tenants.create(
 multi_collection = client.collections.get("MultiTenancyCollection")
 multi_config=multi_collection.config.get()
 assert multi_config.multi_tenancy_config.enabled == True
-
 
 # ===================================
 # ===== List tenants of a class =====
