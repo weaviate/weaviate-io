@@ -64,7 +64,6 @@ from weaviate.collections.classes.config import Reconfigure
 collection.config.update(multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True))
 # END UpdateAutoMT
 
-
 # ================================
 # ===== Add tenants to class =====
 # ================================
@@ -87,7 +86,6 @@ multi_collection.tenants.create(
 multi_collection = client.collections.get("MultiTenancyCollection")
 multi_config=multi_collection.config.get()
 assert multi_config.multi_tenancy_config.enabled == True
-
 
 # ===================================
 # ===== List tenants of a class =====
