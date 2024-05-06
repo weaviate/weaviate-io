@@ -209,7 +209,9 @@ The query below returns the `n` best scoring objects from the database, set by `
 
 ### Vectorizer parameters
 
-<!-- Zain: Any parameters discuss here? Pls see e.g. Cohere/OpenAI page for comparison -->
+- `model`: Model name, default - `"thenlper/gte-large"`.
+- `vectorize_collection_name`: If the Collection name should be vectorized, default - `True`.
+- `base_url`: The URL to use (e.g. a proxy) instead of the default OctoAI URL - `"https://text.octoai.run"`.
 
 #### Example configuration
 
@@ -236,12 +238,15 @@ The following examples show how to configure OctoAI-specific options.
 
 </Tabs>
 
-<!-- Zain: Where are the docs? I couldn't easily locate it. -->
-For further details on model parameters, please consult the [OctoAI API documentation](link/to/the/docs).
+For further details on model parameters, please consult the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/getting-started).
 
 ### Available models
 
-<!-- Zain: What models are available? Pls see e.g. Cohere/OpenAI page for comparison -->
+You can use any embedding model hosted by OctoAI with `text2vec-octoai`. 
+
+Currently the embedding models OctoAI has made [available](https://octo.ai/docs/text-gen-solution/getting-started) are:
+
+* `thenlper/gte-large`
 
 ## Further resources
 
@@ -258,9 +263,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-<!-- Zain: Where are the docs? I couldn't easily locate it. -->
-
-- OctoAI [Embed API documentation](link/to/embedding/docs)
+- OctoAI [Embed API documentation]([link/to/embedding/docs](https://octo.ai/docs/text-gen-solution/getting-started))
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
