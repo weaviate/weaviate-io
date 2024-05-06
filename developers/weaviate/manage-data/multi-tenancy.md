@@ -99,6 +99,14 @@ Automatic tenant creation is very useful when you import a large number of objec
 ### Create a collection
 
 <Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START EnableAutoMT"
+      endMarker="# END EnableAutoMT"
+      language="py"
+    />
+  </TabItem>
   <TabItem value="cURL" label="cURL">
     <FilteredTextBlock
       text={CurlCode}
@@ -107,7 +115,21 @@ Automatic tenant creation is very useful when you import a large number of objec
       language="py"
     />
   </TabItem>
+</Tabs>
 
+### Update a collection
+
+Use the client to update the auto-tenant creation setting. 
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START UpdateAutoMT"
+      endMarker="# END UpdateAutoMT"
+      language="py"
+    />
+  </TabItem>
 </Tabs>
 
 ## Add new tenants manually
