@@ -87,6 +87,10 @@ Some parameters are mutable after creation, other parameters cannot be changed a
 <details>
   <summary>Mutable parameters</summary>
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<RaftRFChangeWarning/>
+
 - `description`
 - `invertedIndexConfig`
   - `bm25`
@@ -396,6 +400,8 @@ These parameters are explained below:
 * `"function"`: *string, optional, immutable*. Only `"murmur3"` is supported as a hashing function. It describes the hashing function used on the `"key"` property to determine the hash which in turn determines the target (virtual - and therefore physical) shard. `"murmur3"` creates a 64bit hash making hash collisions very unlikely.
 
 ### `replicationConfig`
+
+<RaftRFChangeWarning/>
 
 [Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
