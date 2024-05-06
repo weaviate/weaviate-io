@@ -122,7 +122,7 @@ There are multiple ways to connect to your Weaviate instance. To instantiate a c
 
 - [Python client v4 helper methods](#python-client-v4-helper-methods)
 - [Python client v4 explicit connection](#python-client-v4-explicit-connection)
-- [Python client v3 style connection](#python-client-v3-style-connection)
+- [Python client v3 style connection](#python-client-v3-api)
 
 ### Python client v4 helper functions
 
