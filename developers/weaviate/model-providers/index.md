@@ -28,6 +28,6 @@ This enables an enhanced developed experience, such as the ability to:
 | [Hugging Face](./huggingface/index.md) | [Text](./huggingface/embeddings.md) | - | - |
 | [Jina AI](./jinaai/index.md) | [Text](./jinaai/embeddings.md) | - | - |
 | [Mistral](./mistral/index.md) | - | [Text](./mistral/generative.md) | - |
-| [OctoAI](./octoai/index.md) | [Text](./octoai/embeddings.md) | [Text](./openai/generative.md) | - |
+| [OctoAI](./octoai/index.md) | [Text](./octoai/embeddings.md) | [Text](./octoai/generative.md) | - |
 | [OpenAI](./openai/index.md) | [Text](./openai/embeddings.md) | [Text](./openai/generative.md) | - |
 | [Voyage AI](./voyageai/index.md) | [Text](./voyageai/embeddings.md) | - | [Reranker](./voyageai/reranker.md) |
