@@ -82,7 +82,7 @@ headers = {
     "X-Mistral-Api-Key": mistral_key,
 # END MistralInstantiation
 # START OctoAIInstantiation
-    "X-OctoAI-Api-Key": openai_key,
+    "X-OctoAI-Api-Key": octoai_key,
 # END OctoAIInstantiation
 # START OpenAIInstantiation
     "X-OpenAI-Api-Key": openai_key,
