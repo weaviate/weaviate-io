@@ -15,11 +15,15 @@ In Weaviate, schema replication and data replication are separate. For the schem
 :::info Added in `v1.25`
 :::
 
-Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for schema replication. As a result, a Weaviate cluster will include a leader node that is responsible for schema changes. The leader node is elected by the Raft algorithm and is responsible for coordinating schema changes.
+Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for schema replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft).
 
-As a result, each request that changes the schema will be sent to the leader node. The leader node will then replicate the schema change to the follower nodes. Once a quorum of nodes has acknowledged the schema change, the leader node will confirm the change to the client.
+Raft ensures that schema changes are consistent across the cluster. A schema change is forwarded to the leader node, which applies the change to its log before replicating it to the follower nodes. Once a majority of nodes have acknowledged the change, the leader commits the change to the log. The leader then notifies the followers, which apply the change to their logs.
 
 This architecture ensures that schema changes are consistent across the cluster, even in the event of (a minority of) node failures.
+
+As a result, a Weaviate cluster will include a leader node that is responsible for schema changes. The leader node is elected by the Raft algorithm and is responsible for coordinating schema changes.
+
+On the other hand - data replication in Weaviate is leaderless.
 
 ## Data replication: Leaderless
 
