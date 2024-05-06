@@ -9,6 +9,9 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
+:::info Added in `v1.25.0`
+:::
+
 OctoAI offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with OctoAI's APIs, allowing users to leverage OctoAI's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
