@@ -114,7 +114,7 @@ client.collections.create(
     # highlight-start
     generative_config=Configure.Generative.cohere(
         # # These parameters are optional
-        # model="command-xlarge-nightly",
+        # model="command-r",
         # temperature=0.7,
         # max_tokens=500,
         # k=5,
