@@ -59,10 +59,7 @@ assert client.collections.exists("CollectionWithAutoMTEnabled")
 # ==========================
 
 # START UpdateAutoMT
-from weaviate.collections.classes.config import (
-    Configure,
-    Reconfigure,
-)
+from weaviate.collections.classes.config import Reconfigure
 
 collection.config.update(multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True))
 # END UpdateAutoMT
