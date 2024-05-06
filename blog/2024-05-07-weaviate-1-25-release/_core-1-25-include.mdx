@@ -1,0 +1,87 @@
+Weaviate `1.25` is here!
+
+Here are the release ⭐️*highlights*⭐️!
+
+![Weaviate 1.25](./img/hero.png)
+
+- [**Dynamic Vector Index**](/blog/weaviate-1-25-release#dynamic-vectr-index) An index configuration that allows Weavaite to dyanamically switch from flat to HNSW as object count increases.
+- [**New Modules**](/blog/weaviate-1-25-release#new-modules) Loads of new modules that will allow you to use open source locally running and hosted embedding and language models!  
+
+## Dynamic Vector Index
+
+![dynamic_index](./img/dynamic.png)
+
+Configuring Weaviate and not sure if you have enough objects to justify building a full HNSW index or to stick to a flat index? We’ve got good news for you: In 1.25 we’re introducing the dynamic vector index!
+
+Previously you’d have to decide at the outset if you wanted a flat or HNSW index. The flat index was ideal for use cases with a small object count where brute force nearest neighbors search was viable and would provide lower memory overhead and good latency. As the object count increased the flat index would become prohibitively slow and this is what the HNSW index would solve.
+
+With 1.25 you can now configure Weaviate to use a dynamic index. This will initially create a flat index to be used and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will dynamically switch you over to an HNSW index. 
+
+Here is how you can configure Weaviate t	o use a dynamic index:
+
+```json
+{
+	"vectorIndexType": "dynamic",
+	"vectorIndexConfig": {
+		"distance": "dot",
+		"threshold": 10000,
+		"hnsw" : {
+			... standard hnsw configuration
+		},
+		"flat": {
+		  ... standard flat configuration
+		}
+}
+```
+
+Currently, this is only a one-way dynamic switch updating the flat index to be HNSW, the index does not support changing back to a flat index even if the object count goes below the threshold due to deletion. When the threshold is hit, the index switches to HNSW aiming to shorten latencies during querying time at the cost of a larger memory footprint.
+
+This is particularly useful in a multi-tenant setup where building an HNSW index per tenant would introduce too much overhead, now as individual tenants grow they will dynamically switch from flat to HNSW while smaller tenants can remain flat.
+
+## New Modules
+
+### OctoAI Modules
+
+With version 1.25 we’re announcing an integration with OctoAI which will make it even easier for users to access many open source embedding and language models such a Llama3-70b, Mixtral-8x22b and more. 
+
+We are releasing two modules: `text2vec-octoai` and `generative-octoai` which integrates Weaviate with the OctoAI service, which provides hosted inference services for embedding models and large language models. This will allow Weaviate users to perform the entire retrieval augmented generation (RAG) stack with open-source embedding models and LLMs, without having to worry about the infrastructure required to run these models.
+
+Currently the models supported are:
+
+	"qwen1.5-32b-chat"
+	"meta-llama-3-8b-instruct"
+	"meta-llama-3-70b-instruct"
+	"mixtral-8x22b-instruct"
+	"nous-hermes-2-mixtral-8x7b-dpo"
+	"mixtral-8x7b-instruct"
+	"mixtral-8x22b-finetuned"
+	"hermes-2-pro-mistral-7b"
+	"mistral-7b-instruct"
+	"codellama-7b-instruct"
+	"codellama-13b-instruct"
+	"codellama-34b-instruct"
+	"llama-2-13b-chat"
+	"llama-2-70b-chat"
+
+To get started using Weaviate with OctoAI all you need is an OctoAI API key that you can get [from here](https://octo.ai/)! Read more about how you can use the 
+
+If you have used any of the other generative modules in Weaviate, the usage pattern is identical. Make sure you supply your Anyscale API key to Weaviate, and enjoy using these models!
+
+Read more about the generative-anyscale module [here](TBD) and the text2vec-octoai module [here](TBD).
+
+### Multimodal Google PaLM Module:
+
+Another new module that was announced in a patch for 1.24 that is worth highlighting here is the multi2vec-palm module that allows users to embed multimodal data using Google’s hosted embedding models.
+
+Prior to the release of this module if users wanted to embed multimodal data they’d have to self-host the embedding model on thier own compute but with multi2vec-palm building multimodal applications is easier then ever. 
+
+Using Google’s [multimodal embedding model](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) you can now embed text, images and videos all into the same vector space and perform cross modal retrieval!
+
+Learn more about how you can use the module [here](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-palm).
+
+
+## Summary
+
+Enjoy the new features and improvements in Weaviate `1.25`. This release is available as a docker image and on [WCS](https://console.weaviate.cloud/). Try it out in a free, WCS sandbox, or download a copy and try it out locally.
+
+Thanks for reading, see you next time 👋!
