@@ -32,7 +32,16 @@ client.collections.create(
 client.collections.delete("DemoCollection")
 
 # START RerankerVoyageAI
-# Code example coming soon
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    reranker_config=Configure.Reranker.voyageai(
+        # # This parameter is optional
+        # model="rerank-lite-1"
+    )
+    # highlight-end
+    # Additional parameters not shown
+)
 # END RerankerVoyageAI
 
 source_objects = [

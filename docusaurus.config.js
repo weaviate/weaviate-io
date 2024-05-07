@@ -336,16 +336,16 @@ const config = {
                                 type: 'doc',
                             },
                             {
+                             label: 'Forum',
+                             href: 'https://forum.weaviate.io',
+                            },
+                            {
                                 label: 'GitHub',
                                 href: 'https://github.com/weaviate/weaviate',
                             },
                             {
                                 label: 'Slack',
                                 href: 'https://weaviate.io/slack',
-                            },
-                            {
-                                label: 'Forum',
-                                href: 'https://forum.weaviate.io',
                             },
                         ],
                     },

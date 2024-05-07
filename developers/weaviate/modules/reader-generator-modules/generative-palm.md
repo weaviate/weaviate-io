@@ -14,7 +14,7 @@ image: og/docs/modules/generative-palm.jpg
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
     * Please check the vendor pricing.
-* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
 
 :::info Releases and versions
 

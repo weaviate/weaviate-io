@@ -377,8 +377,7 @@ response = questions.aggregate.over_all(total_count=True)
 assert response.total_count == 1000
 
 # Cleanup
-client.collections.delete("JeopardyQuestion")
-
+client.collections.delete("JeopardyQuestion")    
 
 # ===========================================
 # ===== Stream data - CSV =====
@@ -458,5 +457,50 @@ client.collections.delete("JeopardyQuestion")
 os.remove("jeopardy_1k.json")
 os.remove("jeopardy_1k.csv")
 
+client.close()
+
+# ===========================================
+# =====    Batch vectorization client =====
+# ===========================================
+
+# TODO NEEDS TEST
+# Creates a new client so can't piggyback on the prior client tests
+
+# START BatchVectClient
+collection = client.collections.create(
+        name="NewCollection",
+        properties=[
+            wvc.config.Property(name="url", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="raw", data_type=wvc.config.DataType.TEXT),
+            wvc.config.Property(name="sha", data_type=wvc.config.DataType.TEXT),
+        ],
+        vectorizer_config=[
+            wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereFirst"),
+            wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereSecond"),
+        ]
+    )
+# END BatchVectClient
+
+# ================================================
+# =====    Batch vectorization modify client =====
+# ================================================
+
+# TODO NEEDS TEST
+
+# START BatchVectorizationClientModify
+integrations=[
+            wvc.init.Integrations.cohere(
+                api_key="KEY", request_per_minute_embeddings=ReplaceWithRequestRate
+            ),
+            wvc.init.Integrations.openai(
+                api_key="KEY", base_url ="ReplaceWithTheBaseURL"
+            ),
+            wvc.init.Integrations.voyageai(
+                api_key="KEY",
+            ),
+        ]
+client.integrations.configure(integrations)           
+# END BatchVectorizationClientModify     
 
 client.close()
