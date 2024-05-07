@@ -104,7 +104,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`command-xlarge-nightly`) is used if no model is specified.
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`command-r`) is used if no model is specified.
 
 ## Retrieval augmented generation
 
@@ -203,9 +203,17 @@ For further details on model parameters, please consult the [Cohere API document
 
 ### Available models
 
-* `command-xlarge-nightly` (default)
-* `command-xlarge-beta`
-* `command-xlarge`
+- `command-r-plus`
+- `command-r` (default)
+- `command-xlarge`
+- `command-xlarge-beta`
+- `command-xlarge-nightly`
+- `command-medium`
+- `command-medium-nightly`
+- `command`
+- `command-nightly`
+- `command-light`
+- `command-light-nightly`
 
 ## Further resources
 

@@ -69,7 +69,7 @@ await client.collections.create({
   // highlight-start
   generative: weaviate.configure.generative.cohere({
     // // These parameters are optional
-    // model: 'command-xlarge-nightly',
+    // model: 'command-r',
     // temperatureProperty: 0.7,
     // maxTokensProperty: 500,
     // kProperty: 5,
