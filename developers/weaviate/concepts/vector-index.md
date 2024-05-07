@@ -5,7 +5,7 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). You can even select to start off with a flat index and then dynamically switch to the HJNSW index as you scale object count ([dynamic index](#dynamic-index)).
+Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). You can even select to start off with a flat index and then dynamically switch to the HNSW index as you scale object count ([dynamic index](#dynamic-index)).
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
