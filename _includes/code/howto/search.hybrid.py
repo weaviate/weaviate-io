@@ -291,4 +291,27 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # End test
 
+# =========================================
+# ===== Hybrid with vector similarity =====
+# =========================================
+
+# TODO Needs tests
+
+# START VectorSimilarityPython
+from weaviate.classes.query import HybridNear, Move, HybridFusion
+
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    limit=5,
+    vector=HybridNear.text(
+       text="large animal",
+       move_away=Move(
+          force=0.5,
+          concepts=["mammal", "terrestrial"]
+       )
+    ),
+    alpha=0.75,
+    query="California"
+)
+# END VectorSimilarityPython
 client.close()

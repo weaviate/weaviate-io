@@ -575,6 +575,14 @@ Hybrid searches can use some [vector similarity search](/developers/weaviate/sea
 To run a vector similarity search, specify the similarity search as a sub-search of the hybrid search.
 
 <Tabs groupId="languages">
+<TabItem value="py4" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START VectorSimilarityPython"
+  endMarker="# END VectorSimilarityPython"
+  language="python"
+/>
+</TabItem>
 <TabItem value="py" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
