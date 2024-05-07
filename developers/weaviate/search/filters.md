@@ -40,7 +40,7 @@ Add a `filter` to your query, to limit the result set.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchSingleFilter"
@@ -49,7 +49,7 @@ Add a `filter` to your query, to limit the result set.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchSingleFilter"
@@ -105,7 +105,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchMultipleFiltersAnd"
@@ -114,7 +114,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchMultipleFiltersAnd"
@@ -170,7 +170,7 @@ You can group and nest filters.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchMultipleFiltersNested"
@@ -179,7 +179,7 @@ You can group and nest filters.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchMultipleFiltersNested"
@@ -249,7 +249,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchFilterNearText"
@@ -258,7 +258,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchFilterNearText"
@@ -314,7 +314,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// ContainsAnyFilter"
@@ -323,7 +323,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// ContainsAnyFilter"
@@ -379,7 +379,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// ContainsAllFilter"
@@ -388,7 +388,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// ContainsAllFilter"
@@ -448,7 +448,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchLikeFilter"
@@ -457,7 +457,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchLikeFilter"
@@ -525,7 +525,7 @@ To filter on properties from a cross-referenced object, add the collection name 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchCrossReference"
@@ -534,7 +534,7 @@ To filter on properties from a cross-referenced object, add the collection name 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchSingleFilter"
@@ -590,7 +590,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterbyGeolocation"
@@ -599,7 +599,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterbyGeolocation"
@@ -643,7 +643,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// filterById"
@@ -652,7 +652,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
- <TabItem value="js2" label="JS/TS">
+ <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// filterById"
@@ -690,7 +690,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterByTimestamp"
@@ -737,7 +737,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterByPropertyLength"
@@ -746,7 +746,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// FilterByPropertyLength"
