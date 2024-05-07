@@ -6,11 +6,28 @@ image: og/docs/concepts.jpg
 ---
 
 
-This page describes how the nodes or clusters in Weaviate's replication design behave in a leaderless fashion.
+This page describes how the nodes or clusters in Weaviate's replication design behave.
 
-## Leaderless Design
+In Weaviate, schema replication and data replication are separate. For the schema, Weaviate uses the Raft consensus algorithm with strong consistency. For data replication, Weaviate uses a leaderless design with eventual consistency.
 
-Replication in Weaviate is leaderless. This means there is no central leader or primary node that will replicate to follower nodes. Instead, all nodes can accept writes and reads from the client, which can offer better availability. There is no single point of failure. A leaderless replication approach is also known as [Dynamo-style](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) data replication, used by Amazon, and was also implemented by other open source projects like [Apache Cassandra](https://cassandra.apache.org).
+## Schema replication: RAFT
+
+:::info Added in `v1.25`
+:::
+
+Weaviate uses the [Raft consensus algorithm](https://raft.github.io/) for schema replication, implemented with Hashicorp's [raft library](https://pkg.go.dev/github.com/hashicorp/raft).
+
+Raft ensures that schema changes are consistent across the cluster. A schema change is forwarded to the leader node, which applies the change to its log before replicating it to the follower nodes. Once a majority of nodes have acknowledged the change, the leader commits the change to the log. The leader then notifies the followers, which apply the change to their logs.
+
+This architecture ensures that schema changes are consistent across the cluster, even in the event of (a minority of) node failures.
+
+As a result, a Weaviate cluster will include a leader node that is responsible for schema changes. The leader node is elected by the Raft algorithm and is responsible for coordinating schema changes.
+
+On the other hand - data replication in Weaviate is leaderless.
+
+## Data replication: Leaderless
+
+Weaviate uses a leaderless architecture for data replication. This means there is no central leader or primary node that will replicate to follower nodes. Instead, all nodes can accept writes and reads from the client, which can offer better availability. There is no single point of failure. A leaderless replication approach is also known as [Dynamo-style](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) data replication, used by Amazon, and was also implemented by other open source projects like [Apache Cassandra](https://cassandra.apache.org).
 
 In Weaviate, a coordination pattern is used to relay a client’s read and write requests to the correct nodes. Unlike in a leader-based database, a coordinator node does not enforce any ordering of the operations.
 
@@ -25,7 +42,7 @@ On the flipside of high availability, a leaderless database tends to be less con
 
 ## Replication Factor
 
-In Weaviate, replication is enabled and controlled per class. This means you can have different replication factors for different classes.
+In Weaviate, data replication is enabled and controlled per collection. This means you can have different replication factors for different collections.
 
 The replication factor (RF or n) determines how many copies of data are stored in the distributed setup. A replication factor of 1 means that there is only 1 copy of each data entry in the database setup, in other words there is no replication. A replication factor of 2 means that there are two copies of each data entry, which are present on two different nodes (replicas). Naturally, the replication factor cannot be higher than the number of nodes. Any node in the cluster can act as a coordinating node to lead queries to the correct target node(s).
 
@@ -48,7 +65,7 @@ As an example, consider a cluster size of 3 with replication factor of 3. So, al
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-size3.png" alt="Replication Factor 3 with cluster size 3" width="75%"/></p>
 
-With a cluster size of 8 and a replication factor of 3, a write operation will not be sent to all 8 nodes, but only to those three containing the replicas. The coordinating node will determine which nodes the data will be written to. Which nodes store which classes (shards) is determined by the setup of Weaviate, which is known by each node and thus each coordinator node. Where something is replicated is deterministic, so all nodes know on which shard which data will land.
+With a cluster size of 8 and a replication factor of 3, a write operation will not be sent to all 8 nodes, but only to those three containing the replicas. The coordinating node will determine which nodes the data will be written to. Which nodes store which collections (and therefore shards) is determined by the setup of Weaviate, which is known by each node and thus each coordinator node. Where something is replicated is deterministic, so all nodes know on which shard which data will land.
 
 <p align="center"><img src="/img/docs/replication-architecture/replication-rf3-size8.png" alt="Replication Factor 3 with cluster size 8" width="75%"/></p>
 
@@ -65,9 +82,7 @@ Read operations are also coordinated by a coordinator node, which directs a quer
 
 If the cluster size is 3 and the replication factor is also 3, then all nodes can serve the query. The consistency level determines how many nodes will be queried.
 
-If the cluster size is 10 and the replication factor is 3, the 3 nodes which contain that data (class) can serve queries, coordinated by the coordinator node. The client waits until x (the consistency level) nodes have responded.
-
-
+If the cluster size is 10 and the replication factor is 3, the 3 nodes which contain that data (collection) can serve queries, coordinated by the coordinator node. The client waits until x (the consistency level) nodes have responded.
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
