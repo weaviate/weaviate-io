@@ -103,7 +103,7 @@ The following example configures the `Article` collection, with:
       "moduleConfig": {
         "text2vec-ollama": {
           "apiEndpoint": "http://host.docker.internal:11434",
-          "modelId": "snowflake-arctic-embed"
+          "model": "snowflake-arctic-embed"
         }
       },
       // highlight-end
@@ -142,7 +142,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
           // highlight-start
           "vectorizeClassName": false,
           "apiEndpoint": "http://host.docker.internal:11434",
-          "modelId": "snowflake-arctic-embed"
+          "model": "snowflake-arctic-embed"
           // highlight-end
         }
       },

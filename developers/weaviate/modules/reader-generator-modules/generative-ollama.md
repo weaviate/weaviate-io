@@ -115,7 +115,7 @@ The following example configures the `Document` collection to use the `generativ
         // highlight-start
         "generative-ollama": {
           "apiEndpoint": "http://host.docker.internal:11434",
-          "modelId": "llama3"
+          "model": "llama3"
         },
         // highlight-end
       }
