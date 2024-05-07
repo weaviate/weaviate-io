@@ -601,7 +601,7 @@ Article = {
 will be vectorized as:
 
 ```md
-article cows lose their jobs as milk prices drop as his diary cows lumbered over for their monday...
+article cows lose their jobs as milk prices drop as his 100 diary cows lumbered over for their monday...
 ```
 
 By default, the calculation includes the  `collection name` and all property `values`, but the property `names` *are not* indexed.

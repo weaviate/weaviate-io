@@ -1,11 +1,11 @@
 These charts show the Weaviate client releases associated with Weaviate core releases. 
 
-
 ### Current Weaviate core minor releases
 
 |Weaviate Version|Release Date|Python|TypeScript|Go|Java|
 |:-|:-|:-:|:-:|:-:|:-:|
-| [1.24.10](https://github.com/weaviate/weaviate/releases/tag/v1.24.10) | 2024-04-19 | 4.5.6 | 2.1.1 | 4.13.1 | 4.6.0 |
+| [1.24.11](https://github.com/weaviate/weaviate/releases/tag/v1.24.11) | 2024-04-19 | 4.5.7 | 2.1.1 | 4.13.1 | 4.6.0 |
+| [1.24.10](https://github.com/weaviate/weaviate/releases/tag/v1.24.10) | 2024-04-19 | 4.5.6 | '' | '' | '' |
 | [1.24.9](https://github.com/weaviate/weaviate/releases/tag/v1.24.9) | 2024-04-17 | '' | '' | '' | '' |
 | [1.24.8](https://github.com/weaviate/weaviate/releases/tag/v1.24.8) | 2024-04-08 | '' | '' | '' | ''  |
 | [1.24.7](https://github.com/weaviate/weaviate/releases/tag/v1.24.7) | 2024-04-05 | '' | '' | '' | '' |

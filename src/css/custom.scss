@@ -827,6 +827,15 @@ Dropdown style removed.
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 68px;
+  width: 22px;
   height: auto;
+  fill: #2c3854;
+
+  @media screen and (max-width: 768px) {
+    width: 18px;
+  }
+}
+
+[data-theme='dark'] .githubStars {
+  fill: white;
 }
