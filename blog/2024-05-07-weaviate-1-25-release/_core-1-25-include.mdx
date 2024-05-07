@@ -4,12 +4,12 @@ Here are the release ⭐️*highlights*⭐️!
 
 ![Weaviate 1.25](./img/hero.png)
 
-- [**Dynamic Vector Index**](/blog/weaviate-1-25-release#dynamic-vector-index) An index configuration that allows Weaviate to dynamically switch from flat to HNSW as object count increases.
+- [**Dynamic Vector Index**](/blog/weaviate-1-25-release#dynamic-vector-index) Dynamically switch from flat indexes to HNSW to efficiently scale as your data grows.
 - [**Raft**](/blog/weaviate-1-25-release#raft) Improves schema management for faster updates and more reliable clusters. 
-- [**New Modules**](/blog/weaviate-1-25-release#new-modules) Loads of new modules that will allow you to use open source locally running and hosted embedding and language models!
-- [**Batch vectorization**](/blog/weaviate-1-25-release#batch-vectorization)
-- [**Automatic tenant creation**](/blog/weaviate-1-25-release#automatic-tenant-creatio)
-- [**Search improvements**](/blog/weaviate-1-25-release#search-improvements)
+- [**New Modules**](/blog/weaviate-1-25-release#new-modules) Loads of new modules that empower you to host and run open source embedding and language models locally!
+- [**Batch vectorization**](/blog/weaviate-1-25-release#batch-vectorization) Faster and more efficient use of APIs during data import.
+- [**Automatic tenant creation**](/blog/weaviate-1-25-release#automatic-tenant-creatio) Easier data uploads and tenant creation for you application.
+- [**Search improvements**](/blog/weaviate-1-25-release#search-improvements) Hybrid search gets vector similarity search and grouping. method. Keyword search also gets grouping.
 
 ## Dynamic Vector Index
 
@@ -44,7 +44,17 @@ Above the threshold value, HNSW indexes are faster for queries, but they also ha
 
 Dynamic indexes are particularly useful in a multi-tenant setup. The resource costs are high to build an HNSW index for every tenant. However, if a tenant collection grows large enough, the index dynamically switches to HNSW. The smaller tenants continue to use flat indexes.
 
+## Raft
+
+Weaviate clusters can be large, with a lot of systems to coordinate. The host systems have to work together reliably and efficiently, even under high loads. [Raft](https://raft.github.io/) is a robust consensus algorithm that helps make Weaviate faster and more fault tolerant. 
+
+There are two types of data in a Weaviate cluster: your actual data, and system state information. Earlier releases use the same mechanism to store both types of data. Starting in 1.25, Weaviate uses Raft to store schema information and cluster state details. The underlying data [storage](/developers/weaviate/concepts/storage) is managed the same way as before. [Replication](/developers/weaviate/concepts/replication-architecture) and [sharding](/developers/weaviate/concepts/cluster) continue to safeguard your data while making it available for your applications.
+
+If you are new to Weaviate, you can take immediate advantage of Raft. If you are upgrading from an earlier version, be sure to review the [migration guide](/developers/weaviate/more-resources/migration/weaviate-1-25) before you upgrade. There is a one-time change in the upgrade process. 
+
 ## New Modules
+
+This release brings important new integrations with third party APIs.
 
 ### OctoAI Modules
 
