@@ -77,7 +77,7 @@ You can configure how the module will behave in each collection through the [Wea
 Configurable parameters for the `text2vec-ollama` module are:
 
 - `apiEndpoint` - the URL of the Ollama endpoint.
-- `modelId` - the model to use for vectorization.
+- `model` - the model to use for vectorization.
 
 ### Ollama endpoint
 
@@ -103,7 +103,7 @@ The following example configures the `Article` collection, with:
       "moduleConfig": {
         "text2vec-ollama": {
           "apiEndpoint": "http://host.docker.internal:11434",
-          "modelId": "snowflake-arctic-embed"
+          "model": "snowflake-arctic-embed"
         }
       },
       // highlight-end
@@ -121,7 +121,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 - `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the collection name. Default: `true`.
 - `apiEndpoint` – the URL of the Ollama endpoint. Default: `http://localhost:11434`.
-- `modelId` – the model to use for vectorization. Default: `nomic-embed-text`.
+- `model` – the model to use for vectorization. Default: `nomic-embed-text`.
 
 #### Property-level
 
@@ -142,7 +142,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
           // highlight-start
           "vectorizeClassName": false,
           "apiEndpoint": "http://host.docker.internal:11434",
-          "modelId": "snowflake-arctic-embed"
+          "model": "snowflake-arctic-embed"
           // highlight-end
         }
       },
