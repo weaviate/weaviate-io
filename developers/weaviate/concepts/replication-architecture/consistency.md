@@ -7,7 +7,7 @@ image: og/docs/concepts.jpg
 
 Data consistency is a property of a database that refers to whether data in different nodes do or do not match.
 
-Schema consistency is extremely important, as the schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and RAFT consensus algorithm for schema replication.
+Schema consistency is extremely important, as the schema defines the structure, or the blueprint, of the data. For this reason, Weaviate uses a strong consistency protocol and [Raft](https://raft.github.io/) consensus algorithm for schema replication.
 
 Data objects, on the other hand, are eventually consistent, which means that all nodes will eventually contain the most updated data if the data is not updated for a while. Weaviate uses a leaderless design with eventual consistency for data replication.
 
@@ -24,6 +24,16 @@ The strength of consistency can be determined by applying the following conditio
 ## Schema
 
 The data schema in Weaviate is **strongly consistent**. Once you use Weaviate, the data schema is rarely changed. From a user's perspective, it is acceptable that the latency for updating a schema is a bit higher than querying and updating data. By a 'slow' schema update, Weaviate can ensure consistency because it disallows multiple schema changes at the same time.
+
+### Post-`v1.25` schema consensus algorithm
+
+From `v1.25`, Weaviate uses the [Raft](https://raft.github.io/) consensus algorithm for schema replication. Raft is a consensus algorithm with a strong consistency model, and an elected leader node that coordinates replication across the cluster using a log-based approach.
+
+As a result, each request that changes the schema will be sent to the leader node. The leader node will apply the change to its logs, then propagate the changes to the follower nodes. Once a quorum of nodes has acknowledged the schema change, the leader node will commit the change and confirm it to the client.
+
+This architecture ensures that schema changes are consistent across the cluster, even in the event of (a minority of) node failures.
+
+### Pre-`v1.25` schema consensus algorithm
 
 A schema update is done via a [Distributed Transaction](https://en.wikipedia.org/wiki/Distributed_transaction) algorithm. This is a set of operations that is done across databases on different nodes in the distributed network. Weaviate uses a [two-phase commit (2PC)](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) protocol, which replicates the schema updates in a short period of time (milliseconds).
 

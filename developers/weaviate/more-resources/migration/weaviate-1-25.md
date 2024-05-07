@@ -91,14 +91,13 @@ helm search repo weaviate
 
 Then, re-deploy Weaviate as shown below. This will apply your existing configuration file `values.yaml`, and allow the Weaviate cluster to restart anew under the new consensus algorithm (RAFT).
 
-Here, the image tag is overridden to `1.25.0` and the `RAFT_BOOTSTRAP_TIMEOUT` is set to `3600` seconds. You can also modify these values directly in the `values.yaml` file.
+Here, the image tag is overridden to `1.25.0`. You can also modify this value directly in the `values.yaml` file.
 
 ```bash
 helm upgrade weaviate weaviate/weaviate \
   --namespace weaviate \
   --values ./values.yaml \
   --set image.tag="1.25.0" \
-  --set env.RAFT_BOOTSTRAP_TIMEOUT=3600
 ```
 
 ### 4. Verify update
