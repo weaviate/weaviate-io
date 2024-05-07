@@ -222,13 +222,13 @@ from weaviate.classes.config import Configure
 
 client.collections.create(
     "DemoCollection",
-    generative_config=wvc.config.Configure.Generative.octoai(
-                                                             # # These parameters are optional
-                                                             model = "meta-llama-3-70b-instruct",
-                                                             max_tokens = 500,
-                                                             temperature = 0.7,
-                                                             base_url = "https://text.octoai.run"
-                                                            ),
+    generative_config=Configure.Generative.octoai(
+        # # These parameters are optional
+        model = "meta-llama-3-70b-instruct",
+        max_tokens = 500,
+        temperature = 0.7,
+        base_url = "https://text.octoai.run"
+    )
 )
 # END FullGenerativeOctoAI
 
