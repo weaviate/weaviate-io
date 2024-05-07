@@ -41,7 +41,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// NamedVectorNearText"
@@ -50,7 +50,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
@@ -106,7 +106,7 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetNearText"
@@ -115,7 +115,7 @@ Use the [`Near Text`](../api/graphql/search-operators.md#neartext) operator to f
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetNearText"
@@ -178,7 +178,7 @@ This example uses a base64 representation of an image.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={ImgSrchTSCode}
       startMarker="// START search with base64"
@@ -187,7 +187,7 @@ This example uses a base64 representation of an image.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={ImgSrchTSCodeLegacy}
       startMarker="// START search with base64"
@@ -223,7 +223,7 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetNearObject"
@@ -232,7 +232,7 @@ If you have an object ID, use the [`Near Object`](../api/graphql/search-operator
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetNearObject"
@@ -284,7 +284,7 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetNearVector"
@@ -293,7 +293,7 @@ If you have an input vector, use the [`Near Vector`](../api/graphql/search-opera
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetNearVector"
@@ -335,7 +335,7 @@ To set a similarity threshold between the search and target vectors, define a ma
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetWithDistance"
@@ -344,7 +344,7 @@ To set a similarity threshold between the search and target vectors, define a ma
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetWithDistance"
@@ -397,7 +397,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetLimitOffset"
@@ -406,7 +406,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetLimitOffset"
@@ -448,7 +448,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START Autocut"
@@ -457,7 +457,7 @@ To limit results to groups of similar distances to the query, use the [`autocut`
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START Autocut"
@@ -513,7 +513,7 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetWithGroupBy"
@@ -522,7 +522,7 @@ Use a property or a cross-reference to group results. To group returned objects,
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetWithGroupBy"
@@ -578,7 +578,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GetWithFilter"
@@ -587,7 +587,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GetWithFilter"

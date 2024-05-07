@@ -64,7 +64,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// NamedVectorNearText"
@@ -73,7 +73,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
@@ -117,7 +117,7 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// SingleGenerativeProperties TS"
@@ -126,7 +126,7 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// SingleGenerativeProperties TS"
@@ -182,7 +182,7 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GroupedGenerative TS"
@@ -191,7 +191,7 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GroupedGenerative TS"
@@ -250,7 +250,7 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GroupedGenerativeProperties"
@@ -259,7 +259,7 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GroupedGenerativeProperties"
