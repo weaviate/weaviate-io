@@ -28,7 +28,7 @@ To install the TypeScript client v3, follow these steps:
 1. **Install the new client package**
     
   ```bash
-  npm install weaviate-client --tag beta
+  npm install weaviate-client --tag next
   ```
 
 1. **Upgrade Weaviate**
