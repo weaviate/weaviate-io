@@ -273,7 +273,7 @@ Notice how BQ shortens the indexing time with HNSW enormously.
 
 Here we provide code and instructions that will help you to balance recall, latency, and memory footprint optimally by allowing you to replicate these above experiments yourself on your data.
 
-We have included some very useful tools in this [repository](https://github.com/weaviate). To easily run these tests (or any test using your data) you would need the data to be in `hdf5` format with the same specifications as described in the [ANN Benchmarks](https://ann-benchmarks.com/). You could index your data using the [Go benchmarker](https://github.com/weaviate/weaviate-benchmarking). This benchmarker could give you a better idea of QPS using concurrent queries. It takes several parameters that you could explore but in our runs, we use the following commands:
+We have included some very useful tools in this [repository](https://github.com/weaviate/weaviate-chaos-engineering/tree/main/apps/ann-benchmarks). To easily run these tests (or any test using your data) you would need the data to be in `hdf5` format with the same specifications as described in the [ANN Benchmarks](https://ann-benchmarks.com/). You could index your data using the [Go benchmarker](https://github.com/weaviate/weaviate-benchmarking). This benchmarker could give you a better idea of QPS using concurrent queries. It takes several parameters that you could explore but in our runs, we use the following commands:
 
 ```bash
 go run main.go ann-benchmark -v ~/Documents/datasets/dbpedia-100k-openai-ada002.hdf5 -d cosine --indexType flat
