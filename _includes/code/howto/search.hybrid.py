@@ -308,4 +308,31 @@ response = jeopardy.query.hybrid(
     query="California",
 )
 # END VectorSimilarityPython
+
+# =========================================
+# ===== Hybrid with groupBy =====
+# =========================================
+
+# TODO Needs tests
+
+# START HybridGroupByPy4
+# Grouping parameters
+group_by = GroupBy(
+    prop="round",  # group by this property
+    objects_per_group=3,  # maximum objects per group
+    number_of_groups=2,  # maximum number of groups
+)
+
+# Query
+jeopardy = client.collections.get("JeopardyQuestion")
+response = jeopardy.query.hybrid(
+    alpha=0.75,
+    query="California",
+    group_by=group_by
+)
+
+for g in response.groups:
+    print(g)
+# END HybridGroupByPy4
+    
 client.close()

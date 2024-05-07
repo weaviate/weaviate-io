@@ -242,11 +242,12 @@ group_by = GroupBy(
 
 # Query
 response = jeopardy.query.bm25(
-    limit=5,
     query="California",
     group_by=group_by
 )
 
+for g in response.groups:
+    print(g)
 # END BM25GroupByPy4
 
 
