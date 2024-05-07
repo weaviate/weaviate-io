@@ -189,7 +189,7 @@ This schema configuration sets the Google API information, as well as some optio
 |:--|:--|:--|
 | `"projectId"` | Only required with Vertex AI | `"cloud-large-language-models"` |
 | `"apiEndpoint"` | Optional | `"us-central1-aiplatform.googleapis.com"` |
-| `"model"` | Optional | `"chat-bison"` (Vertex AI) <br/> `"chat-bison-001"` (AI Studio) |
+| `"modelId"` | Optional | `"chat-bison"` (Vertex AI) <br/> `"chat-bison-001"` (AI Studio) |
 
 ```json
 {
