@@ -409,6 +409,12 @@
     "team": "developer-growth"
   },
   {
+    "name": "Scott Alexander",
+    "title": "Client-Focused SRE",
+    "photo": "scott-alexander.jpg",
+    "team": "qa-sre"
+  },
+  {
     "name": "Sebastian Witalec",
     "title": "Head of Developer Relations",
     "photo": "sebastian.png",
