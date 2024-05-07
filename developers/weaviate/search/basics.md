@@ -485,7 +485,7 @@ To retrieve properties from cross-referenced objects, specify:
 />
 
 </TabItem>
-<TabItem value="js" label="TS/JS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -496,7 +496,7 @@ To retrieve properties from cross-referenced objects, specify:
 
 </TabItem>
 
-<TabItem value="js2" label="TS/JS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -615,7 +615,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
  />
 </TabItem>
 
-<TabItem value="js" label="TS/JS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// MultiTenancy"
@@ -624,7 +624,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 />
 </TabItem>
 
-<TabItem value="js2" label="TS/JS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// MultiTenancy"

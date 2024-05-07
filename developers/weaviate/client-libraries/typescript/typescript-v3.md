@@ -1,5 +1,5 @@
 ---
-title: TS/JS client v3 (Beta)
+title: JS/TS client v3
 sidebar_position: 20
 image: og/docs/client-libraries.jpg
 # tags: ['typescript', 'javascript', 'client library', 'experimental']
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 :::note TypeScript client version
 The current TypeScript client version is `v||site.typescript_client_version||`.
 <br />
-The TypeScript client v3 is in beta release. To comment on the beta client, contact us in the [Community forum](https://forum.weaviate.io).
+The TypeScript client v3 is available as a release candidate (RC). To comment on the RC build, contact us in the [Community forum](https://forum.weaviate.io).
 :::
 
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';

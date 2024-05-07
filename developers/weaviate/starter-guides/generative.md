@@ -359,7 +359,7 @@ You can check which modules are enabled by viewing the `meta` information for yo
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="TS/JS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeEduDemo}
   startMarker="// ListModules"
@@ -367,7 +367,7 @@ You can check which modules are enabled by viewing the `meta` information for yo
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="TS/JS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeEduDemoLegacy}
   startMarker="// ListModules"

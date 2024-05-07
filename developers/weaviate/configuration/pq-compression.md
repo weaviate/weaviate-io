@@ -154,7 +154,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="ts" label="TS/TS (Beta)">
+  <TabItem value="ts" label="JS/TS v3">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START InitClassDef"
