@@ -22,7 +22,7 @@ import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
 
 # OctoAI Generative AI with Weaviate
 
-Weaviate's integration with OctoAI's APIs allows you to access their models' capabilities directly from Weaviate.
+Weaviate's integration with OctoAI's APIs allows you to access open source and their models' capabilities directly from Weaviate.
 
 [Configure a Weaviate collection](#configure-collection) to use an OctoAI generative AI model, and Weaviate will perform retrieval augmented generation (RAG) using the specified model and your OctoAI API key.
 
@@ -53,7 +53,7 @@ This integration is enabled by default on Weaviate Cloud Services (WCS) serverle
 
 ### API credentials
 
-You must provide a valid OctoAI API key to Weaviate for this integration. Go to [OctoAI](https://octo.ai/) to sign up and obtain an API key.
+You must provide a valid OctoAI API key to Weaviate for this integration. Go to [OctoAI](https://octo.ai/docs/getting-started/how-to-create-an-octoai-access-token) to sign up and obtain an API key.
 
 Provide the API key to Weaviate using one of the following methods:
 
@@ -107,7 +107,7 @@ Provide the API key to Weaviate using one of the following methods:
 
 </Tabs>
 
-You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`gpt-3.5-turbo`) is used if no model is specified.
+You can [specify](#generative-parameters) one of the [available models](#available-models) for Weaviate to use. The default model (`mistral-7b-instruct`) is used if no model is specified.
 
 ## Retrieval augmented generation
 
@@ -204,12 +204,24 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-<!-- Zain: Where are the docs? I couldn't easily locate it. -->
-For further details on model parameters, please consult the [OctoAI API documentation](link/to/the/docs).
+For further details on model parameters, please consult the [OctoAI API documentation]([link/to/the/docs](https://octo.ai/docs/text-gen-solution/rest-api)).
 
 ### Available models
 
-<!-- Zain: What models are available? Pls see e.g. Cohere/OpenAI page for comparison -->
+* `qwen1.5-32b-chat`
+* `meta-llama-3-8b-instruct`
+* `meta-llama-3-70b-instruct`
+* `mixtral-8x22b-instruct`
+* `nous-hermes-2-mixtral-8x7b-dpo`
+* `mixtral-8x7b-instruct`
+* `mixtral-8x22b-finetuned`
+* `hermes-2-pro-mistral-7b`
+* `mistral-7b-instruct` (default)
+* `codellama-7b-instruct`
+* `codellama-13b-instruct`
+* `codellama-34b-instruct`
+* `llama-2-13b-chat`
+* `llama-2-70b-chat`
 
 ## Further resources
 
@@ -226,8 +238,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-<!-- Zain: Where are the docs? I couldn't easily locate it. -->
-- OctoAI [API documentation](link/to/the/docs)
+- OctoAI [API documentation]([link/to/the/docs](https://octo.ai/docs/getting-started/inference-models))
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
