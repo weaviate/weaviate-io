@@ -103,6 +103,12 @@ Batch operations have two primary advantages. Sending batches of objects is sign
 
 ## Search improvements
 
+[**Hybrid search**](/developers/weaviate/search/hybrid) combines the strengths of vector search and keyword search. Standalone vector searches use the [`nearText`](/developers/weaviate/search/similarity#search-with-text) and [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) similarity operators to fine tune search results. This release adds the [similarity operators](/developers/weaviate/search/hybrid#vector-similarity-search) to the vector component of hybrid search.
+
+
+
+[**Keyword search**](/developers/weaviate/search/bm25)
+
 ## Summary
 
 Enjoy the new features and improvements in Weaviate `1.25`. This release is available as a docker image and on [WCS](https://console.weaviate.cloud/). Try it out in a free, WCS sandbox, or download a copy and try it out locally.
