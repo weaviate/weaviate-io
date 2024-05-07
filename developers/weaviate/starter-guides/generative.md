@@ -87,7 +87,7 @@ Connect to the instance like so, remembering to replace the API key for the LLM 
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeEduDemo}
   startMarker="// Instantiation"
@@ -96,7 +96,7 @@ Connect to the instance like so, remembering to replace the API key for the LLM 
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeEduDemoLegacy}
   startMarker="// Instantiation"
@@ -130,7 +130,7 @@ Before we can generate text, we need to retrieve relevant data. Let's retrieve t
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeEduDemo}
   startMarker="// DataRetrieval"
@@ -138,7 +138,7 @@ Before we can generate text, we need to retrieve relevant data. Let's retrieve t
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeEduDemoLegacy}
   startMarker="// DataRetrieval"
@@ -200,7 +200,7 @@ Run the following code snippet, and inspect the results:
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeEduDemo}
   startMarker="// TransformResultSets"
@@ -208,7 +208,7 @@ Run the following code snippet, and inspect the results:
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeEduDemoLegacy}
   startMarker="// TransformResultSets"
@@ -269,7 +269,7 @@ Note that in this query, we apply a `single prompt` parameter. This means that t
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeEduDemo}
   startMarker="// TransformIndividualObjects"
@@ -277,7 +277,7 @@ Note that in this query, we apply a `single prompt` parameter. This means that t
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeEduDemoLegacy}
   startMarker="// TransformIndividualObjects"
@@ -359,7 +359,7 @@ You can check which modules are enabled by viewing the `meta` information for yo
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="TS/JS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeEduDemo}
   startMarker="// ListModules"
@@ -367,7 +367,7 @@ You can check which modules are enabled by viewing the `meta` information for yo
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="TS/JS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeEduDemoLegacy}
   startMarker="// ListModules"
@@ -463,7 +463,7 @@ In the following snippet, we download a chapter of the `Pro Git` book, clean it 
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// ChunkText"
@@ -471,7 +471,7 @@ In the following snippet, we download a chapter of the `Pro Git` book, clean it 
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// ChunkText"
@@ -506,7 +506,7 @@ The below collection definition for the `GitBookChunk` collection specifies `tex
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// CreateClass"
@@ -514,7 +514,7 @@ The below collection definition for the `GitBookChunk` collection specifies `tex
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// CreateClass"
@@ -545,7 +545,7 @@ Now, we can import the data into Weaviate.
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// ImportData"
@@ -553,7 +553,7 @@ Now, we can import the data into Weaviate.
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// ImportData"
@@ -582,7 +582,7 @@ Once this is done, you should have imported a collection of chunks from the chap
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// CountObjects"
@@ -590,7 +590,7 @@ Once this is done, you should have imported a collection of chunks from the chap
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// CountObjects"
@@ -627,7 +627,7 @@ Single prompts tell Weaviate to generate text based on each retrieved object and
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// SinglePrompt"
@@ -635,7 +635,7 @@ Single prompts tell Weaviate to generate text based on each retrieved object and
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// SinglePrompt"
@@ -682,7 +682,7 @@ In this example, we prompt the language model to write a trivia tweet based on t
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// GroupedTask"
@@ -690,7 +690,7 @@ In this example, we prompt the language model to write a trivia tweet based on t
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// GroupedTask"
@@ -731,7 +731,7 @@ In this example, we search the chapter for passages that relate to the states of
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// NearTextGroupedTask"
@@ -739,7 +739,7 @@ In this example, we search the chapter for passages that relate to the states of
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// NearTextGroupedTask"
@@ -776,7 +776,7 @@ Now, simply by changing the search query, we can generate similar content about 
   language="py"
 />
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCodeLocal}
   startMarker="// SecondNearTextGroupedTask"
@@ -784,7 +784,7 @@ Now, simply by changing the search query, we can generate similar content about 
   language="ts"
 />
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLocalLegacy}
   startMarker="// SecondNearTextGroupedTask"

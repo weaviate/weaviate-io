@@ -62,7 +62,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={SimilarityTSCode}
       startMarker="// NamedVectorNearText"
@@ -71,7 +71,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
@@ -113,7 +113,7 @@ To rerank the results of a vector search, configure the object properties to sor
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START RerankNearText"
@@ -122,7 +122,7 @@ To rerank the results of a vector search, configure the object properties to sor
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START RerankNearText"
@@ -178,7 +178,7 @@ To rerank the results of a keyword search, configure the object properties to so
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START bm25Rerank"
@@ -187,7 +187,7 @@ To rerank the results of a keyword search, configure the object properties to so
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START bm25Rerank"

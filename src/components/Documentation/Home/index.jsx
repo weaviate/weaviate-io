@@ -144,7 +144,7 @@ const DocHomePage = () => {
               <ul className={styles.deployList}>
                 <li>For basic, quick evaluation</li>
                 <li>
-                  Conveniently launch Weaviate directly from Python or TS/JS
+                  Conveniently launch Weaviate directly from Python or JS/TS
                 </li>
               </ul>
               <button className={styles.deployButton}>
@@ -335,7 +335,7 @@ const DocHomePage = () => {
             </div>
             <div className={`${styles.secondaryTabs} ${styles.ts}`}>
               <a href="/developers/weaviate/client-libraries/typescript">
-                TS/JS
+                JS/TS
               </a>
             </div>
           </div>
