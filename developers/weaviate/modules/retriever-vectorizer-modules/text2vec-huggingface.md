@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="huggingface" />
 
 ## Overview
 

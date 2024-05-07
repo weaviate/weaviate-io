@@ -5,6 +5,9 @@ image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'rag', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
 
 ## In short
 

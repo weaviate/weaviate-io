@@ -5,6 +5,10 @@ image: og/docs/modules/generative-aws.jpg
 # tags: ['generative', 'rag', 'aws']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="aws" />
+
 
 ## In short
 

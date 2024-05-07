@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-voyageai.jpg
 # tags: ['text2vec', 'text2vec-voyageai', 'voyageai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="voyageai" />
 
 ## Overview
 

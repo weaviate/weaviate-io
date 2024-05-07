@@ -5,6 +5,9 @@ image: og/docs/modules/generative-openai.jpg
 # tags: ['generative', 'rag', 'openai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="openai" />
 
 ## In short
 

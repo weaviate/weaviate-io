@@ -242,7 +242,7 @@ For further details on model parameters, please consult the [OctoAI API document
 
 ### Available models
 
-You can use any embedding model hosted by OctoAI with `text2vec-octoai`. 
+You can use any embedding model hosted by OctoAI with `text2vec-octoai`.
 
 Currently the embedding models OctoAI has made [available](https://octo.ai/docs/text-gen-solution/getting-started) are:
 
@@ -263,7 +263,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### External resources
 
-- OctoAI [Embed API documentation]([link/to/embedding/docs](https://octo.ai/docs/text-gen-solution/getting-started))
+- OctoAI [Embed API documentation](https://octo.ai/docs/text-gen-solution/getting-started)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 

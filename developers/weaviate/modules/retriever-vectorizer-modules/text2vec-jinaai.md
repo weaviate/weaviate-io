@@ -4,6 +4,9 @@ sidebar_position: 17
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="jinaai" />
 
 ## Overview
 

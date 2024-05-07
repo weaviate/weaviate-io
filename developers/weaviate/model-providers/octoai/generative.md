@@ -204,7 +204,7 @@ Configure the following generative parameters to customize the model behavior.
 
 </Tabs>
 
-For further details on model parameters, please consult the [OctoAI API documentation]([link/to/the/docs](https://octo.ai/docs/text-gen-solution/rest-api)).
+For further details on model parameters, please consult the [OctoAI API documentation](https://octo.ai/docs/text-gen-solution/rest-api).
 
 ### Available models
 
@@ -238,7 +238,7 @@ Once the integrations are configured at the collection, the data management and 
 
 ### References
 
-- OctoAI [API documentation]([link/to/the/docs](https://octo.ai/docs/getting-started/inference-models))
+- OctoAI [API documentation](https://octo.ai/docs/getting-started/inference-models)
 
 import DocsMoreResources from '/_includes/more-resources-docs.md';
 
