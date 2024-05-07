@@ -134,6 +134,20 @@ await client.collections.delete('DemoCollection');
 // Clean up
 await client.collections.delete('DemoCollection');
 
+// START BasicGenerativeOctoAI
+// Code example coming soon
+// END BasicGenerativeOctoAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullGenerativeOctoAI
+// Code example coming soon
+// END FullGenerativeOctoAI
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
 // START BasicGenerativeOpenAI
 await client.collections.create({
   name: 'DemoCollection',

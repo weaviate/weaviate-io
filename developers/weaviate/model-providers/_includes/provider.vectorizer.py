@@ -333,6 +333,45 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicVectorizerOctoAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_octoai(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # Additional parameters not shown
+)
+# END BasicVectorizerOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerOctoAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_octoai(
+            name="title_vector",
+            source_properties=["title"],
+            # # Further options
+            # model="thenlper/gte-large",
+            # vectorize_collection_name=True
+            # base_url="https://text.octoai.run",
+        )
+    ],
+)
+# END FullVectorizerOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicVectorizerOpenAI
 from weaviate.classes.config import Configure
 

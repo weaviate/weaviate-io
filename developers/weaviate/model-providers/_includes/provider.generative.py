@@ -204,6 +204,37 @@ client.collections.create(
 # clean up
 client.collections.delete("DemoCollection")
 
+# START BasicGenerativeOctoAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.octoai()
+    # Additional parameters not shown
+)
+# END BasicGenerativeOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullGenerativeOctoAI
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    generative_config=Configure.Generative.octoai(
+        # # These parameters are optional
+        model = "meta-llama-3-70b-instruct",
+        max_tokens = 500,
+        temperature = 0.7,
+        base_url = "https://text.octoai.run"
+    )
+)
+# END FullGenerativeOctoAI
+
+# clean up
+client.collections.delete("DemoCollection")
+
 # START BasicGenerativeOpenAI
 from weaviate.classes.config import Configure
 
