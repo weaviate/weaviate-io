@@ -5,6 +5,10 @@ image: og/docs/modules/reranker-voyageai.jpg
 # tags: ['rerank', 'voyageai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="voyageai" />
+
 :::info Added in `v1.24.7`
 :::
 

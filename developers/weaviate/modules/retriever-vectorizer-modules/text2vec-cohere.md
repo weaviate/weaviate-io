@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
 
 ## Overview
 

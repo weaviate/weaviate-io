@@ -5,6 +5,10 @@ image: og/docs/modules/multi2vec-palm.jpg
 # tags: ['multi2vec', 'multi2vec-palm']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
+
 :::info Added in `v1.24.3`
 :::
 

@@ -5,6 +5,9 @@ image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'gemini', 'palm', 'gcp']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
 
 ## Overview
 
