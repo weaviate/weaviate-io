@@ -607,6 +607,35 @@ The output is like this:
 
 </details>
 
+## Group results
+
+:::info Added in `v1.25`
+:::
+
+Define criteria to group search results.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START HybridGroupByPy4"
+      endMarker="# END HybridGroupByPy4"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The response is like this:
+
+```
+'Jeopardy!'
+'Double Jeopardy!'
+```
+
+</details>
 
 ## `limit` & `offset`
 
