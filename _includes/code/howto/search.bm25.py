@@ -16,7 +16,6 @@ client = weaviate.connect_to_wcs(
     }
 )
 
-
 # ============================
 # ===== Basic BM25 Query =====
 # ============================
@@ -222,6 +221,33 @@ assert response.objects[0].collection == "JeopardyQuestion"
 assert "food" in str(response.objects[0].properties).lower()
 assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # End test
+
+# ==================================
+# ===== BM25 groupBy  =====
+# ==================================
+
+# TODO Needs test
+
+# START BM25GroupByPy4
+from weaviate.classes.query import GroupBy
+
+jeopardy = client.collections.get("JeopardyQuestion")
+
+# Grouping parameters
+group_by = GroupBy(
+    prop="round",  # group by this property
+    objects_per_group=3,  # maximum objects per group
+    number_of_groups=2,  # maximum number of groups
+)
+
+# Query
+response = jeopardy.query.bm25(
+    limit=5,
+    query="California",
+    group_by=group_by
+)
+
+# END BM25GroupByPy4
 
 
 client.close()
