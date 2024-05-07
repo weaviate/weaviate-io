@@ -13,7 +13,7 @@ client = weaviate.connect_to_wcs(
     auth_credentials=AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),
     headers={
         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
-    }
+    },
 )
 
 # ==============================
@@ -24,9 +24,7 @@ client = weaviate.connect_to_wcs(
 reviews = client.collections.get("WineReviewNV")
 # highlight-start
 response = reviews.query.hybrid(
-    query="A French Riesling",
-    target_vector="title_country",
-    limit=3
+    query="A French Riesling", target_vector="title_country", limit=3
 )
 # highlight-end
 
@@ -46,10 +44,7 @@ assert response.objects[0].collection == "WineReviewNV"
 # HybridBasicPython
 jeopardy = client.collections.get("JeopardyQuestion")
 # highlight-start
-response = jeopardy.query.hybrid(
-    query="food",
-    limit=3
-)
+response = jeopardy.query.hybrid(query="food", limit=3)
 # highlight-end
 
 for o in response.objects:
@@ -75,7 +70,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     return_metadata=MetadataQuery(score=True, explain_score=True),
     # highlight-end
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -151,7 +146,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     alpha=0.25,
     # highlight-end
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -170,6 +165,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # HybridWithFusionTypePython
 # highlight-start
 from weaviate.classes.query import HybridFusion
+
 # highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
@@ -178,7 +174,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     fusion_type=HybridFusion.RELATIVE_SCORE,
     # highlight-end
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -202,7 +198,7 @@ response = jeopardy.query.hybrid(
     query_properties=["question"],
     # highlight-end
     alpha=0.25,
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -226,7 +222,7 @@ response = jeopardy.query.hybrid(
     query_properties=["question^2", "answer"],
     # highlight-end
     alpha=0.25,
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -252,7 +248,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     vector=query_vector,
     # highlight-end
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -271,6 +267,7 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # HybridWithFilterPython
 # highlight-start
 from weaviate.classes.query import Filter
+
 # highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
@@ -279,7 +276,7 @@ response = jeopardy.query.hybrid(
     # highlight-start
     filters=Filter.by_property("round").equal("Double Jeopardy!"),
     # highlight-end
-    limit=3
+    limit=3,
 )
 
 for o in response.objects:
@@ -304,14 +301,11 @@ jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     limit=5,
     vector=HybridNear.text(
-       text="large animal",
-       move_away=Move(
-          force=0.5,
-          concepts=["mammal", "terrestrial"]
-       )
+        text="large animal",
+        move_away=Move(force=0.5, concepts=["mammal", "terrestrial"]),
     ),
     alpha=0.75,
-    query="California"
+    query="California",
 )
 # END VectorSimilarityPython
 client.close()
