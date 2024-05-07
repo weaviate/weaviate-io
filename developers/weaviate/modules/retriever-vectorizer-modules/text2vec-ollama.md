@@ -77,7 +77,7 @@ You can configure how the module will behave in each collection through the [Wea
 Configurable parameters for the `text2vec-ollama` module are:
 
 - `apiEndpoint` - the URL of the Ollama endpoint.
-- `modelId` - the model to use for vectorization.
+- `model` - the model to use for vectorization.
 
 ### Ollama endpoint
 
@@ -121,7 +121,7 @@ You can set vectorizer behavior using the `moduleConfig` section under each coll
 - `vectorizer` - what module to use to vectorize the data.
 - `vectorizeClassName` – whether to vectorize the collection name. Default: `true`.
 - `apiEndpoint` – the URL of the Ollama endpoint. Default: `http://localhost:11434`.
-- `modelId` – the model to use for vectorization. Default: `nomic-embed-text`.
+- `model` – the model to use for vectorization. Default: `nomic-embed-text`.
 
 #### Property-level
 

@@ -96,7 +96,7 @@ You can configure how the module will behave in each collection through the [Wea
 Configurable parameters unique to the the `generative-ollama` module are:
 
 - `apiEndpoint` (Optional): The URL of the Ollama endpoint. The default is `http://localhost:11434`.
-- `modelId` (Optional): The model to use. The default is `llama3`.
+- `model` (Optional): The model to use. The default is `llama3`.
 
 ### API settings
 
