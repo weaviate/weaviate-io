@@ -103,11 +103,9 @@ Batch operations have two primary advantages. Sending batches of objects is sign
 
 ## Search improvements
 
-[**Hybrid search**](/developers/weaviate/search/hybrid) combines the strengths of vector search and keyword search. Standalone vector searches use the [`nearText`](/developers/weaviate/search/similarity#search-with-text) and [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) similarity operators to fine tune search results. This release adds the [similarity operators](/developers/weaviate/search/hybrid#vector-similarity-search) to the vector component of hybrid search.
+[Hybrid search](/developers/weaviate/search/hybrid) combines the strengths of vector search and keyword search. Standalone vector searches use the [`nearText`](/developers/weaviate/search/similarity#search-with-text) and [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) similarity operators to fine tune search results. This release adds the [similarity operators](/developers/weaviate/search/hybrid#vector-similarity-search) to the vector component of hybrid search.
 
-
-
-[**Keyword search**](/developers/weaviate/search/bm25)
+Starting in 1.25, the `groupBy` operator is available for [hybrid search](/developers/weaviate/search/hybrid#group-results) and [keyword search](/developers/weaviate/search/bm25#group-results)
 
 ## Summary
 
