@@ -166,7 +166,6 @@ The goal of `dynamic` indexing is to shorten latencies during query time at the 
 | `flat` | VectorIndexConfigFlat | default Flat | Flat index configuration to be used. |
 | `threshold` | integer | 10000 | Threshold object count at which `flat` to `hnsw` conversion happens |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
-| `quantizer` | string | None | Whether to use `bq` or `pq` quantization. |
 
 ## Asynchronous indexing
 
