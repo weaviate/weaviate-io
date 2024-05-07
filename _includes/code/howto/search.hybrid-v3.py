@@ -889,3 +889,77 @@ gql_query = """
 """
 gqlresponse = client.query.raw(gql_query)
 test_gqlresponse(response, gqlresponse)
+
+
+################################
+### VECTOR SIMILARITY SEARCH ###
+################################
+
+gql_query = """
+# VectorSimilarityGraphQL
+{
+    Get {
+      JeopardyQuestion(
+        limit: 5
+        hybrid: {
+          # highlight-start
+          searches: {
+             nearText: {
+                concepts: [ "large animal" ]
+             }
+           # highlight-end
+           }
+           alpha: 0.75,
+           query: "California"
+         }
+       )
+         {
+           question
+           answer
+           points
+         }
+     }
+}
+# END VectorSimilarityGraphQL
+"""
+gqlresponse = client.query.raw(gql_query)
+
+
+expected_results = """
+# Expected VectorSimilarityGraphQL results
+{
+  "data": {
+    "Get": {
+      "JeopardyQuestion": [
+        {
+          "answer": "Rhinoceros",
+          "points": 400,
+          "question": "The \"black\" species of this large horned mammal can grasp twigs with its upper lip"
+        },
+        {
+          "answer": "the hippopotamus",
+          "points": 400,
+          "question": "Close relative of the pig, though its name means \"river horse\""
+        },
+        {
+          "answer": "buffalo",
+          "points": 400,
+          "question": "Animal that was the main staple of the Plains Indians economy"
+        },
+        {
+          "answer": "California",
+          "points": 200,
+          "question": "Its state animal is the grizzly bear, & the state tree is a type of redwood"
+        },
+        {
+          "answer": "California",
+          "points": 200,
+          "question": "This western state sent its first refrigerated trainload of oranges back east February 14, 1886"
+        }
+      ]
+    }
+  }
+}
+
+# END Expected VectorSimilarityGraphQL results
+"""
