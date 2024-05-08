@@ -321,6 +321,8 @@ The module also supports these legacy models. However, their use is not recommen
 * [davinci 003](https://platform.openai.com/docs/models/overview)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

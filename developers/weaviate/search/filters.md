@@ -786,6 +786,8 @@ For a list of filter operators, see [the reference page](../api/graphql/filters.
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: Filters](../api/graphql/filters.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

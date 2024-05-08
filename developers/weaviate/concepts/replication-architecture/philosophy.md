@@ -30,6 +30,8 @@ The motivation behind this phased roll-out is two-fold. First, not everyone has 
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

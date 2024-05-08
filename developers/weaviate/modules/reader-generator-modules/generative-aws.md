@@ -294,6 +294,8 @@ You can use any of the following models with `generative-aws`:
 * cohere.command-light-text-v14
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

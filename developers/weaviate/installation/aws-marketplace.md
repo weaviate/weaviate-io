@@ -160,7 +160,9 @@ You will be charged for Weaviate and associated resources directly by AWS.
 This will, for example, include the EC2 instances, EBS volumes, and any other resources used by the cluster.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

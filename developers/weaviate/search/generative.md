@@ -300,6 +300,8 @@ The output is like this:
 - [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
 - [API References: GraphQL: Get](../api/graphql/get.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

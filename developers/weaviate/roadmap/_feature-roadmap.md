@@ -44,6 +44,8 @@ The following is an overview of features planned for Weaviate. By clicking the l
 </ul> -->
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
