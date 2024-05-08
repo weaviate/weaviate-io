@@ -50,11 +50,11 @@ import WV8onRaft from './img/raft-weaviate.png';
 
 <center><img src={WV8onRaft} width="50%" alt="Weaviate on a raft"/></center>
 
-Weaviate clusters can be large; there can be a lot of nodes to coordinate. The host systems have to work together reliably and efficiently, even under high loads. [Raft](https://raft.github.io/) is a robust consensus algorithm that helps make Weaviate faster and more fault tolerant. 
+Weaviate clusters can be large; there can be a lot of nodes to coordinate. The host systems have to work together reliably and efficiently, even under high loads. [Raft](https://raft.github.io/) is a robust consensus algorithm that helps make multi-node clusters more fault tolerant. 
 
-There are two types of data in a Weaviate cluster: your actual data, and system state information. Earlier releases use the same mechanism to store both types of data. Starting in 1.25, Weaviate uses Raft to store schema information and cluster state details. The underlying data [storage](/developers/weaviate/concepts/storage) is managed the same way as before - [replication](/developers/weaviate/concepts/replication-architecture) and [sharding](/developers/weaviate/concepts/cluster) continue to safeguard your data while making it available for your applications. Raft ensures your schemas are safe and helps you to reliably scale your production workloads. 
+There are two types of data in a Weaviate cluster: your actual data, and system state information. Earlier releases use a two-phase commit protocol to store schema information. This mechanism doesn't scale well and can leads to locking behavior in multi-node clusters. Starting in 1.25, Weaviate uses Raft to store schema information and cluster state details. Raft ensures your schemas are safe and helps you to reliably scale multi-node clusters for production workloads. The underlying data [storage](/developers/weaviate/concepts/storage) is managed the same way as before - [replication](/developers/weaviate/concepts/replication-architecture) and [sharding](/developers/weaviate/concepts/cluster) continue to safeguard your data while making it available for your applications.
 
-If you are new to Weaviate, you can take immediate advantage of Raft. If you are upgrading from an earlier version, be sure to review the [migration guide](/developers/weaviate/more-resources/migration/weaviate-1-25) before you upgrade. There is a one-time change in the upgrade process. 
+If you are new to Weaviate, you can take immediate advantage of Raft. If you are upgrading a Kubernetes deployment from an earlier version, be sure to review the [migration guide](/developers/weaviate/more-resources/migration/weaviate-1-25) before you upgrade. There is a one-time migration step to update the [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/). 
 
 ## New Modules
 
