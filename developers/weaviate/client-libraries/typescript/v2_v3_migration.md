@@ -396,14 +396,7 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 </TabItem>
 </Tabs>
 
-## How to migrate your code
-
-To update v2 client code to v3, follow these steps:
-
-1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
-1. Edit your v2 code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
-1. Edit your v2 [client instantiation](./typescript-v3.md#connect-to-weaviate) code.
-1. Edit your code to reflect the [collection first](./typescript-v3.md#design-philosophy) client orientation. 
+## Code comparison
 
 Consider these code samples. The samples compare v2 client code and v3 client code. The complete v2 and v3 client scripts follow the examples.
 
@@ -685,13 +678,22 @@ main()
 </TabItem>
 </Tabs>
 
-Continue to update the v2 code until all of the old code is replace with the v3 equivalent.
-
-For more code examples, see the pages here:
+For more code examples, see the following:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect)
+
+## How to migrate your code
+
+To update v2 client code to v3, follow these steps:
+
+1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
+1. Edit your v2 code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
+1. Edit your v2 [client instantiation](./typescript-v3.md#connect-to-weaviate) code.
+1. Edit your code to reflect the [collection first](./typescript-v3.md#design-philosophy) client orientation. 
+
+Continue to update the v2 code until all of the old code is replace with the v3 equivalent.
 
 ## Client change logs
 
