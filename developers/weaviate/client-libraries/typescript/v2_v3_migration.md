@@ -398,15 +398,14 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## How to migrate your code
 
-
-This workflow describes the process one would follow to migrate their codebase to the v3 client. 
+This example compares v2 client code and v3 client code. To update v2 client code, follow these steps:
 
 1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
-1. Edit your code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
-1. Edit your your [client instantiation](./typescript-v3.md#connect-to-weaviate) code as per your connection method i.e. local, custom or WCS.
-1. Edit your code snippets respecting the [collection first](./typescript-v3.md#design-philosophy) of the v3 client. 
+1. Edit your v2 code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
+1. Edit your v2 [client instantiation](./typescript-v3.md#connect-to-weaviate) code.
+1. Edit your code to reflect the [collection first](./typescript-v3.md#design-philosophy) client orientation. 
 
-Consider this sample v2 code. The v3 code demonstrates the changes you need to make to convert your code.
+Consider this sample of v2 code. The corresponding v3 code demonstrates the changes you need to make to convert your code.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
