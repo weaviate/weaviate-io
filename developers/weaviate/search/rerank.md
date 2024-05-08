@@ -229,6 +229,8 @@ The response should look like this:
 - [References: Modules: reranker-cohere](../modules/retriever-vectorizer-modules/reranker-cohere.md)
 - [References: Modules: reranker-transformers](../modules/retriever-vectorizer-modules/reranker-transformers.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

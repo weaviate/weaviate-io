@@ -270,6 +270,8 @@ For further information see:
 - [How-to: Search: Basics](../../search/basics.md)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

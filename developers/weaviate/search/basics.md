@@ -649,6 +649,8 @@ import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

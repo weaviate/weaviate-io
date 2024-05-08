@@ -26,6 +26,8 @@ To join a discussion on GitHub, click on the issue title, and then add a comment
 
 <Roadmap label="backlog"/>
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

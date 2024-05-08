@@ -72,6 +72,8 @@ The console might ask to downgrade to HTTP. This is done to avoid [CORS](https:/
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -279,6 +279,8 @@ The classification task will update the target property in each data object.
 The results of a classification can be requested for the individual data objects through the [`v1/objects/{id}/?include=classification` RESTful endpoint](./objects.md#response-fields) or with the [GraphQL `_additional {classification}` field](../graphql/additional-properties.md#classification).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

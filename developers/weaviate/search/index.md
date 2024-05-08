@@ -20,6 +20,8 @@ These guides cover additional search topics:
 - [Aggregation](./aggregate.md): Aggregate data from a results set.
 - [Filters](./filters.md): Apply conditional filters to the search.
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

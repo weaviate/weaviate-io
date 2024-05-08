@@ -70,6 +70,8 @@ import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
 ## Related pages
 - [Concepts: Replication Architecture](../concepts/replication-architecture/index.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -891,6 +891,8 @@ are hosted here:
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

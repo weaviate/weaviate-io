@@ -245,6 +245,8 @@ See the [`similarity search`](./similarity.md) page for more details.
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

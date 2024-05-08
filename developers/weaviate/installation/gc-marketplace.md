@@ -141,7 +141,9 @@ You will be charged for Weaviate and associated resources directly by Google Clo
 This will, for example, include the compute instances, volumes, and any other resources used by the cluster.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

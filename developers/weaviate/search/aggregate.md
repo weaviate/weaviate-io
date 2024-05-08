@@ -505,7 +505,9 @@ For more specific results, use a `filter` to narrow your search.
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: GraphQL: Aggregate](../api/graphql/aggregate.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 
