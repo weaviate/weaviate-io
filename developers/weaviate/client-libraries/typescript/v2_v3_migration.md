@@ -324,7 +324,7 @@ console.log(JSON.stringify(result, null, 2));
 
 ### Generate Namespace
 
-The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish generative queries and a base vector searches. 
+The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches. 
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -403,13 +403,12 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 This workflow describes the process one would follow to migrate their codebase to the v3 client. 
 
-1. Install the v3 client package. Update the client package from the v2 to v3 client. 
+1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
+1. Edit your code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
+1. Edit your your [client instantiation](./typescript-v3.md#connect-to-weaviate) code as per your connection method i.e. local, custom or WCS.
+1. Edit your code snippets respecting the [collection first](./typescript-v3.md#design-philosophy) of the v3 client. 
 
-2. Connect to Weaviate. Make sure your client instantiation respects the new clients syntax. Our documentation on instantiation covers use cases from local, custom to WCS.
-
-3. Migrate your code snippets. The v3 client is collection first which means we do not have to duplicate mentions of the collection you are interacting with.
-
-Below is an example of a basic script in both the v2 and v3 clients. In this script, we define a collection, insert then query objects from the collection, and finally delete the collection. This is to give you an idea of what the migration would entail.
+Consider this sample v2 code. The v3 code demonstrates the changes you need to make to convert your code.
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
