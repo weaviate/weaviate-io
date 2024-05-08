@@ -243,10 +243,10 @@ await questions.data.insertMany(dataBatch);
 
 ```ts
 let className = 'CollectionName';  // Replace with your collection name
-let dataObjs = [...];
+let dataObject = [...];
 
 let batcher5 = client.batch.objectsBatcher();
-for (const dataObj of dataObjs)
+for (const dataObj of dataObject)
   batcher5 = batcher5.withObject({
     class: className,
     properties: dataObj,
@@ -322,7 +322,7 @@ console.log(JSON.stringify(result, null, 2));
 
 ### Generate Namespace
 
-The v3 client adds a new namespace, `generate`. Use the generate namespace like the query namespace to make queries.
+The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches. 
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS (v3)">
@@ -398,7 +398,150 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## How to migrate your code
 
-For code examples, see the pages here:
+
+This workflow describes the process one would follow to migrate their codebase to the v3 client. 
+
+1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
+1. Edit your code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
+1. Edit your your [client instantiation](./typescript-v3.md#connect-to-weaviate) code as per your connection method i.e. local, custom or WCS.
+1. Edit your code snippets respecting the [collection first](./typescript-v3.md#design-philosophy) of the v3 client. 
+
+Consider this sample v2 code. The v3 code demonstrates the changes you need to make to convert your code.
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="JS/TS (v3)">
+
+```ts
+import weaviate from 'weaviate-client'
+import 'dotenv/config';
+
+async function main() {
+  // define a collection name
+  const collectionName = 'RollingStones'
+
+  // connect to your Weaviate instance on WCS
+  const client = await weaviate.connectToWCS(
+    process.env.WEAVIATE_URL || '',
+    {
+      authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
+      headers: {
+        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
+      }
+    }
+  )
+
+  // create a new collection
+  await client.collections.create({
+    name: collectionName,
+    vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  })
+
+  const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
+
+  // define a collection to interact with 
+  const myCollection = client.collections.get(collectionName)
+
+  // bulk insert data to your collection
+  await myCollection.data.insertMany(await response.json())
+
+  // run a nearText search that limits results to two items and shows the distance metric of the results
+  const queryResponse = await myCollection.query.nearText('songs about cowboys',{
+    limit: 2,
+    returnMetadata: ['distance']
+  })
+
+  console.log('Here are songs about cowboys: ', queryResponse.objects)
+
+  // delete your collection
+  await client.collections.delete(collectionName)
+
+  console.log('Collection Exists:', await client.collections.exists(collectionName))
+}
+
+main()
+```
+
+</TabItem>
+<TabItem value="jsv2" label="JS/TS (v2)">
+
+```ts
+import weaviate, { ApiKey, WeaviateClient } from 'weaviate-ts-client';
+import 'dotenv/config'
+
+async function main() {
+  // define a collection name
+  const collectionName = 'RollingStones'
+
+  // connect to your Weaviate instance on WCS
+  const client: WeaviateClient = weaviate.client({
+    scheme: process.env.WEAVIATE_SCHEME_URL || '', 
+    host: process.env.WEAVIATE_URL || '', 
+    apiKey: new ApiKey(process.env.WEAVIATE_API_KEY || ''), 
+    headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '' }, 
+  });
+
+  const schemaDefinition = {
+    class: collectionName,
+    vectorizer: 'text2vec-openai',
+  }
+  
+  // create a new collection
+  await client.schema.classCreator().withClass(schemaDefinition).do()
+
+  const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
+  const data = await response.json()
+
+  let counter = 0;
+  let batcher = client.batch.objectsBatcher();
+
+  // bulk insert data to your collection
+  for (const dataObjects of data) {
+    batcher = batcher.withObject({
+      class: collectionName,
+      properties: dataObjects,
+    });
+
+    // push a batch of 10 objects
+    if (++counter > 9) {
+      await batcher.do();
+      batcher = client.batch.objectsBatcher();
+      counter = 0;
+    }
+  }
+
+  // push the remaining batch of objects
+  if (counter > 0) {
+    await batcher.do();
+  }
+
+  // run a nearText search that limits results to two items and shows the distance metric of the results
+  const queryResponse = await client
+  .graphql
+  .get()
+  .withClassName(collectionName) // define a collection to interact with 
+  .withFields("title artist  _additional { distance id }")
+  .withNearText({
+    "concepts": ['songs about cowboys']
+  })
+  .withLimit(2)
+  .do();
+
+  console.log('Here are songs about cowboys:', queryResponse.data.Get.RollingStones)
+
+  // delete your collection
+  await client.schema.classDeleter().withClassName(collectionName).do();
+
+  console.log('Collection Exists:', await client.schema.exists(collectionName))
+}
+
+main()
+```
+
+</TabItem>
+</Tabs>
+
+In a similar vain, you would go on replacing the v2 code during your migration with the v3 equivalent.
+For more code examples, see the pages here:
 
 - [Search](/developers/weaviate/search)
 - [Data management](/developers/weaviate/manage-data)

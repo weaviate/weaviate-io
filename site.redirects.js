@@ -42,7 +42,7 @@ const siteRedirects = {
          from: '/developers/wcs/guides/create-instance',
         },
         {
-         to: '/developers/wcs/authentication',
+         to: '/developers/wcs/connect',
          from: '/developers/wcs/guides/authentication',
         },
         // Client library redirects
