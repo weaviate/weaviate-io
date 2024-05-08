@@ -408,7 +408,7 @@ This example compares v2 client code and v3 client code. To update v2 client cod
 Consider this sample of v2 code. The corresponding v3 code demonstrates the changes you need to make to convert your code.
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS v3">
 
 ```ts
 import weaviate from 'weaviate-client'
@@ -461,7 +461,7 @@ main()
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS v2">
 
 ```ts
 import weaviate, { ApiKey, WeaviateClient } from 'weaviate-ts-client';
@@ -539,7 +539,8 @@ main()
 </TabItem>
 </Tabs>
 
-In a similar vain, you would go on replacing the v2 code during your migration with the v3 equivalent.
+Continue to update the v2 code until all of the old code is replace with the v3 equivalent.
+
 For more code examples, see the pages here:
 
 - [Search](/developers/weaviate/search)
@@ -548,7 +549,7 @@ For more code examples, see the pages here:
 
 ## Client change logs
 
-See the client [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
+The client [change logs](https://github.com/weaviate/typescript-client/releases) for each release are available on GitHub.
 
 ## Questions and feedback
 

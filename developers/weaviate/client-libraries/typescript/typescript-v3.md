@@ -334,7 +334,7 @@ import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
 ## Client change logs
 
-See the client [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
+The client [change logs](https://github.com/weaviate/typescript-client/releases) for each release are available on GitHub.
 
 ## Questions and feedback
 
