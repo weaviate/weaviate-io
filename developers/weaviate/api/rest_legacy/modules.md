@@ -12,6 +12,8 @@ import DocDeprecationNote from './_deprecated.mdx';
 The `/v1/modules` endpoint is available for all modules that are connected to your Weaviate instance. The available module endpoints thus depend on how you configured your weaviate. For API references of specific modules offered by Weaviate, visit the specific [modules](/developers/weaviate/modules/index.md) pages, for example the [`text2vec-contextionary`](/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary.md#module-endpoints-api-reference).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

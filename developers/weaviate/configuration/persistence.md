@@ -106,6 +106,8 @@ In general, `mmap` may be a preferred option with memory management benefits. Ho
 ## Related pages
 - [Configuration: Backups](./backups.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

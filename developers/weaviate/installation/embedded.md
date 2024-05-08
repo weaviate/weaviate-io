@@ -128,6 +128,8 @@ The TypeScript clients are in these GitHub repositories:
 - [Embedded TypeScript client](https://github.com/weaviate/typescript-embedded)
 - [Standard TypeScript client](https://github.com/weaviate/typescript-client)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

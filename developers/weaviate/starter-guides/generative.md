@@ -858,7 +858,9 @@ We've explored the dynamic capabilities of generative search in Weaviate, showca
 To learn more about specific search capabilities, check out the [How-to: search guide](../search/index.md). And to learn more about individual modules, check out the [Modules section](../modules/index.md).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

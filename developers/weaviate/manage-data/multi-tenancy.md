@@ -513,6 +513,8 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
 - [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure: Multi-tenancy](../concepts/data.md#multi-tenancy)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

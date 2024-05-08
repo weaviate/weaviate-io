@@ -101,6 +101,8 @@ Pagination (i.e. `limit` with `offset`) is not possible in `Explore` queries.
 Because pagination is not possible in multidimensional storage, we recommend using `moveTo` and `moveAwayFrom` if further query refinement is sought. They work as they do in other queries. See [search operators#nearText](search-operators.md#neartext) for more information.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

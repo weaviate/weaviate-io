@@ -179,6 +179,8 @@ Similarly, compression must be enabled independently for each vector. The proced
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

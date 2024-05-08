@@ -649,6 +649,8 @@ The central concept in the group, `The New York Times Company`, leads the group.
 
 </details>
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

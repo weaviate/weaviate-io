@@ -120,6 +120,8 @@ See [here](../modules/other-modules/custom-modules.md) how you can create and us
 - [Concepts: Modules](../concepts/modules.md)
 - [References: Modules](../modules/index.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

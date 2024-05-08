@@ -180,6 +180,8 @@ The `text2vec-gpt4all` module uses the [`gpt4all`](https://docs.gpt4all.io/gpt4a
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
