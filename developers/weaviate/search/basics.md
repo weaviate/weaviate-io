@@ -43,7 +43,7 @@ You can get objects without specifying any parameters. This returns objects orde
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -54,7 +54,7 @@ You can get objects without specifying any parameters. This returns objects orde
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -122,7 +122,7 @@ Use `limit` to set a fixed maximum number of objects to return.
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -133,7 +133,7 @@ Use `limit` to set a fixed maximum number of objects to return.
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -193,7 +193,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -204,7 +204,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -268,7 +268,7 @@ You can specify which object properties to return.
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -279,7 +279,7 @@ You can specify which object properties to return.
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -338,7 +338,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -349,7 +349,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -410,7 +410,7 @@ You can retrieve the object `id` (uuid).
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -421,7 +421,7 @@ You can retrieve the object `id` (uuid).
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -485,7 +485,7 @@ To retrieve properties from cross-referenced objects, specify:
 />
 
 </TabItem>
-<TabItem value="js" label="TS/JS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -496,7 +496,7 @@ To retrieve properties from cross-referenced objects, specify:
 
 </TabItem>
 
-<TabItem value="js2" label="TS/JS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -556,7 +556,7 @@ You can specify metadata fields to be returned.
 />
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 
 <FilteredTextBlock
   text={TSCode}
@@ -567,7 +567,7 @@ You can specify metadata fields to be returned.
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS v2">
 
 <FilteredTextBlock
   text={TSCodeLegacy}
@@ -615,7 +615,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
  />
 </TabItem>
 
-<TabItem value="js" label="TS/JS (Beta)">
+<TabItem value="js" label="JS/TS v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// MultiTenancy"
@@ -624,7 +624,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 />
 </TabItem>
 
-<TabItem value="js2" label="TS/JS">
+<TabItem value="js2" label="JS/TS v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// MultiTenancy"
@@ -649,6 +649,8 @@ import QueryReplication from '/_includes/code/replication.get.object.by.id.mdx';
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md)
 - For search using the GraphQL API, see [GraphQL API](../api/graphql/get.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

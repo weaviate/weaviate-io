@@ -69,6 +69,8 @@ If the cluster size is 10 and the replication factor is 3, the 3 nodes which con
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

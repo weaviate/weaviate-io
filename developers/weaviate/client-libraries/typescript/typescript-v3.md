@@ -1,5 +1,5 @@
 ---
-title: TS/JS client v3 (Beta)
+title: JS/TS client v3
 sidebar_position: 20
 image: og/docs/client-libraries.jpg
 # tags: ['typescript', 'javascript', 'client library', 'experimental']
@@ -8,11 +8,9 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::note TypeScript client version
-The current TypeScript client version is `v||site.typescript_client_version||`.
-<br />
-The TypeScript client v3 is in beta release. To comment on the beta client, contact us in the [Community forum](https://forum.weaviate.io).
-:::
+import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
+
+<RCNote />
 
 import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
 
@@ -29,7 +27,7 @@ This section details how install and configure the v3 TypeScript client.
 The v3 client package has a new name, `weaviate-client`. Use [npm](https://www.npmjs.com/) to install the TypeScript client library package:
 
 ```bash
-npm install weaviate-client --tag beta
+npm install weaviate-client --tag next
 ```
 
 ### Import the Client
@@ -338,6 +336,8 @@ import MatrixIntro from '/_includes/clients/matrix-intro.md';
 
 See the client [change logs on GitHub](https://github.com/weaviate/typescript-client/releases).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -166,6 +166,8 @@ A request with a `200` response may still include object-level errors, which is 
 All other CRUD object operations are available in the [manage-data](../manage-data/index.md) section.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

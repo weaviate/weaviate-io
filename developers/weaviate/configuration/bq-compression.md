@@ -57,7 +57,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
       <FilteredTextBlock
         text={TSCode}
         startMarker="// START EnableBQ"
@@ -66,7 +66,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START EnableBQ"
@@ -128,7 +128,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS v3">
       <FilteredTextBlock
         text={TSCodeBQOptions}
         startMarker="// START BQWithOptions"
@@ -137,7 +137,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS v2">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START BQWithOptions"
@@ -179,6 +179,8 @@ Similarly, compression must be enabled independently for each vector. The proced
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

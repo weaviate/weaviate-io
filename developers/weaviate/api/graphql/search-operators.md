@@ -564,6 +564,8 @@ import QNATransformersAsk from '/_includes/code/qna-transformers.ask.mdx';
 The `answer` and a `certainty` can be retrieved.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

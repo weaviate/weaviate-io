@@ -10,7 +10,6 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-
 :::note Python client version
 The current Python client version is `v||site.python_client_version||`
 :::
@@ -227,6 +226,8 @@ In particular, check out the pages for:
 - [Similarity search](../../search/similarity.md)
 - [Filters](../../search/filters.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

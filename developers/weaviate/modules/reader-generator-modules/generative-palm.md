@@ -381,6 +381,8 @@ AI Studio:
 - `gemini-pro`
 - `gemini-pro-vision` (from Weaviate `v1.24.2`)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

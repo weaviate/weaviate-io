@@ -40,6 +40,8 @@ When try out upcoming features, please provide [feedback](https://github.com/wea
 - [Weaviate Cloud Services Quickstart](../../wcs/quickstart.mdx)
 - [References: Configuration](../configuration/index.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
