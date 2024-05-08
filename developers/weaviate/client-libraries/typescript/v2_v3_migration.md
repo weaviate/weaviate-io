@@ -398,14 +398,160 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## How to migrate your code
 
-This example compares v2 client code and v3 client code. To update v2 client code, follow these steps:
+To update v2 client code to v3, follow these steps:
 
 1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
 1. Edit your v2 code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
 1. Edit your v2 [client instantiation](./typescript-v3.md#connect-to-weaviate) code.
 1. Edit your code to reflect the [collection first](./typescript-v3.md#design-philosophy) client orientation. 
 
-Consider this sample of v2 code. The corresponding v3 code demonstrates the changes you need to make to convert your code.
+Consider these code samples. The samples compare v2 client code and v3 client code. The complete v2 and v3 client scripts follow the examples.
+
+### Imports
+
+v2 client code:
+
+```
+import weaviate, { ApiKey, WeaviateClient } from 'weaviate-ts-client';
+import 'dotenv/config'
+```
+
+v3 client code:
+
+```
+import weaviate from 'weaviate-client'
+import 'dotenv/config';
+```
+
+### Connect to Weaviate Cloud
+
+v2 client code:
+
+```
+const client: WeaviateClient = weaviate.client({
+  scheme: process.env.WEAVIATE_SCHEME_URL || '', 
+  host: process.env.WEAVIATE_URL || '', 
+  apiKey: new ApiKey(process.env.WEAVIATE_API_KEY || ''), 
+  headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '' }, 
+});
+```
+
+v3 client code:
+
+```
+const client = await weaviate.connectToWCS(
+  process.env.WEAVIATE_URL || '',
+  {
+    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
+    headers: {
+      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
+    }
+  }
+)
+```
+
+### Create a collection
+
+v2 client code:
+
+```
+await client.schema.classCreator().withClass(schemaDefinition).do()
+```
+
+v3 client code:
+
+```
+await client.collections.create({
+  name: collectionName,
+  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+})
+```
+
+### Batch insert
+
+v2 client code:
+
+```
+let counter = 0;
+let batcher = client.batch.objectsBatcher();
+
+// bulk insert data to your collection
+for (const dataObjects of data) {
+  batcher = batcher.withObject({
+    class: collectionName,
+    properties: dataObjects,
+  });
+
+  // push a batch of 10 objects
+  if (++counter > 9) {
+    await batcher.do();
+    batcher = client.batch.objectsBatcher();
+    counter = 0;
+  }
+}
+
+// push the remaining batch of objects
+if (counter > 0) {
+  await batcher.do();
+}
+```
+
+v3 client code:
+
+```
+// define a collection to interact with 
+const myCollection = client.collections.get(collectionName)
+
+// bulk insert data to your collection
+await myCollection.data.insertMany(await response.json())
+```
+
+### Query your data
+
+v2 client code:
+
+```
+const queryResponse = await client
+.graphql
+.get()
+.withClassName(collectionName) // define a collection to interact with 
+.withFields("title artist  _additional { distance id }")
+.withNearText({
+  "concepts": ['songs about cowboys']
+})
+.withLimit(2)
+.do();
+```
+
+v3 client code:
+
+```
+// run a nearText search that limits results to two items and shows the distance metric of the results
+const queryResponse = await myCollection.query.nearText('songs about cowboys',{
+  limit: 2,
+  returnMetadata: ['distance']
+})
+```
+
+### Delete a collection
+
+v2 client code:
+
+```
+// delete your collection
+await client.schema.classDeleter().withClassName(collectionName).do();
+```
+
+v3 client code:
+
+```
+// delete your collection
+await client.collections.delete(collectionName)
+
+console.log('Collection Exists:', await client.collections.exists(collectionName))
+```
+
+### Sample scripts
 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="JS/TS v3">
