@@ -40,9 +40,9 @@ Here is how you can configure Weaviate to use a dynamic index:
 
 This is a one-way dynamic switch that converts the flat index to HNSW. The index does not switch back to a flat index even if the object count drops below the threshold.
 
-Above the threshold value, HNSW indexes are faster for queries, but they also have a larger memory footprint.
+Above the threshold value, HNSW indexes are faster for queries, but they also have a larger memory footprint than flat indexes.
 
-Dynamic indexes are particularly useful in a multi-tenant setup. The resource costs are high to build an HNSW index for every tenant. However, if a tenant collection grows large enough, the index dynamically switches to HNSW. The smaller tenants continue to use flat indexes.
+Dynamic indexes are particularly useful in a multi-tenant clusters. HNSW indexes have higher resource costs, but they do not have to be enabled for every tenant. All tenants start with less resource intensive flat indexes. If particular tenant collection grows large enough, the index dynamically switches that tenant to HNSW. The smaller tenants continue to use flat indexes.
 
 ## Raft
 
