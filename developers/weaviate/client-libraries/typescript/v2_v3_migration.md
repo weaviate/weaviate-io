@@ -438,7 +438,7 @@ async function main() {
     vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
   })
 
-  const response = await fetch('<to be edited>')
+  const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
 
   // define a collection to interact with 
   const myCollection = client.collections.get(collectionName)
@@ -490,7 +490,7 @@ async function main() {
   // create a new collection
   await client.schema.classCreator().withClass(schemaDefinition).do()
 
-  const response = await fetch('<to be edited>')
+  const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
   const data = await response.json()
 
   let counter = 0;
@@ -506,7 +506,6 @@ async function main() {
     // push a batch of 10 objects
     if (++counter > 9) {
       await batcher.do();
-      console.log('Batch inserted!');
       batcher = client.batch.objectsBatcher();
       counter = 0;
     }
