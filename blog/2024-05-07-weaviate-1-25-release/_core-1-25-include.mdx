@@ -11,7 +11,7 @@ Here are the release ⭐️*highlights*⭐️!
 - [**Automatic tenant creation**](/blog/weaviate-1-25-release#automatic-tenant-creation) Easier data uploads and tenant creation for your application.
 - [**Search improvements**](/blog/weaviate-1-25-release#search-improvements) Hybrid search gets vector similarity search and grouping. method. Keyword search also gets grouping.
 
-## Dynamic Vector Index
+## Dynamic vector index
 
 ![dynamic_index](./img/dynamic.png)
 
@@ -56,15 +56,15 @@ There are two types of data in a Weaviate cluster: your actual data, and system 
 
 If you are new to Weaviate, you can take immediate advantage of Raft. If you are upgrading a Kubernetes deployment from an earlier version, be sure to review the [migration guide](/developers/weaviate/more-resources/migration/weaviate-1-25) before you upgrade. There is a one-time migration step to update the [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/). 
 
-## New Modules
+## New model integrations
 
 This release brings important new integrations with third party APIs.
 
-### OctoAI Modules
+### OctoAI integration
 
 With version 1.25 we’re announcing an integration with OctoAI which will make it even easier for users to access many open source embedding and language models such as Llama3-70b, Mixtral-8x22b and more. 
 
-We are releasing two modules: text2vec-octoai and generative-octoai that integrate Weaviate and the OctoAI service. OctoAI provides hosted inference services for embedding models and large language models.
+We are releasing two integrations: text2vec-octoai and generative-octoai that integrate Weaviate and the OctoAI service. OctoAI provides hosted inference services for embedding models and large language models.
 
 The current models supported include:
 
@@ -83,17 +83,17 @@ The current models supported include:
 	"llama-2-13b-chat"
 	"llama-2-70b-chat"
 
-To get started using Weaviate with OctoAI all you need is an OctoAI API key that you can get [from here](https://octo.ai/)! Read more about how you can use the `generative-octoai` module [here](/add/link/here) and the `text2vec-octoai` module [here](/add/link/here).
+To get started using Weaviate with OctoAI all you need is an OctoAI API key that you can get [from here](https://octo.ai/)! Read more about how you can use the `generative-octoai` integration model [here](/add/link/here) and the `text2vec-octoai` integration model [here](/add/link/here).
 
-### Multimodal Google PaLM Module:
+### Multimodal Google PaLM integration
 
-The multi2vec-palm module is an update to v1.24 that lets you use Google’s hosted embedding models to embed multimodal data.
+The multi2vec-palm integration model is an update to v1.24 that lets you use Google’s hosted embedding models to embed multimodal data.
 
-Prior to the release of this module if users wanted to embed multimodal data they’d have to self-host the embedding model on their own compute but with multi2vec-palm building multimodal applications is easier than ever. 
+Prior to the release of this model if users wanted to embed multimodal data they’d have to self-host the embedding model on their own compute but with multi2vec-palm building multimodal applications is easier than ever. 
 
 Using Google’s [multimodal embedding model](https://cloud.google.com/vertex-ai/generative-ai/docs/embeddings/get-multimodal-embeddings) you can now embed text, images and videos all into the same vector space and perform cross-modal retrieval!
 
-Learn more about how you can use the module [here](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-palm).
+Learn more about how you can use the integration model [here](/developers/weaviate/modules/retriever-vectorizer-modules/multi2vec-palm).
 
 ## Batch vectorization
 
