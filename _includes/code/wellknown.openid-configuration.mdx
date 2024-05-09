@@ -27,7 +27,20 @@ print(open_id_configuration)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (v3)">
+
+```js
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal()
+const response = await client.getOpenIDConfig()
+
+console.log(response);
+```
+
+</TabItem>
+
+<TabItem value="js2" label="JS/TS (v2)">
 
 ```js
 import weaviate from 'weaviate-ts-client';
@@ -44,6 +57,7 @@ console.log(JSON.stringify(response, null, 2));
 ```
 
 </TabItem>
+
 <TabItem value="go" label="Go">
 
 ```go
