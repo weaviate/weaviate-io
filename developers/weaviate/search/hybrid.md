@@ -43,7 +43,7 @@ A hybrid on collections with named vectors configured must include a `target` ve
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// NamedVectorHybrid"
@@ -52,7 +52,7 @@ A hybrid on collections with named vectors configured must include a `target` ve
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// NamedVectorHybrid"
@@ -110,7 +110,7 @@ Combines results of a vector search and a keyword search based on the query stri
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridBasic"
@@ -119,7 +119,7 @@ Combines results of a vector search and a keyword search based on the query stri
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridBasic"
@@ -175,7 +175,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithScore"
@@ -184,7 +184,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithScore"
@@ -243,7 +243,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithAlpha"
@@ -252,7 +252,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithAlpha"
@@ -314,7 +314,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithFusionType"
@@ -323,7 +323,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFusionType"
@@ -391,7 +391,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithProperties"
@@ -400,7 +400,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithProperties"
@@ -456,7 +456,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithPropertyWeighting"
@@ -465,7 +465,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithPropertyWeighting"
@@ -521,7 +521,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithVector"
@@ -530,7 +530,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithVector"
@@ -588,7 +588,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START limit"
@@ -597,7 +597,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START limit"
@@ -639,7 +639,7 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START autocut"
@@ -648,7 +648,7 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START autocut"
@@ -704,7 +704,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 <FilteredTextBlock
   text={TSCode}
   startMarker="// searchHybridWithFilter"
@@ -713,7 +713,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 <FilteredTextBlock
   text={TSCodeLegacy}
   startMarker="// searchHybridWithFilter"

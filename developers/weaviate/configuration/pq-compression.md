@@ -77,7 +77,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeAutoPQ}
        startMarker="// START CollectionWithAutoPQ"
@@ -86,7 +86,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START CollectionWithAutoPQ"
@@ -154,7 +154,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS v3">
+  <TabItem value="ts" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START InitClassDef"
@@ -163,7 +163,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START InitClassDef"
@@ -346,7 +346,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START UpdateSchema"
@@ -355,7 +355,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START UpdateSchema"
@@ -451,7 +451,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeManualPQ}
       startMarker="// START ViewConfig"
@@ -460,7 +460,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START GetSchema"
