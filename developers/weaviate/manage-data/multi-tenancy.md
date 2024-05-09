@@ -119,7 +119,7 @@ Automatic tenant creation is very useful when you import a large number of objec
 
 ### Update a collection
 
-Use the client to update the auto-tenant creation setting. 
+Use the client to update the auto-tenant creation setting.
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python (v4)">
@@ -208,9 +208,9 @@ Tenant status is available from Weaviate `1.21` onwards.
   </TabItem>
 </Tabs>
 
-## List tenants
+## List all tenants
 
-List existing tenants in a collection. 
+List existing tenants in a collection.
 
 This example lists the tenants in the `MultiTenancyCollection` collection:
 
@@ -269,6 +269,61 @@ This example lists the tenants in the `MultiTenancyCollection` collection:
     />
   </TabItem>
 </Tabs>
+
+## Get tenants by name
+
+Get tenants from a collection by name. Note that non-existent tenant names are ignored in the response.
+
+This example returns `tenantA` and `tenantB` from the `MultiTenancyCollection` collection:
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GetTenantsByName"
+      endMarker="# END GetTenantsByName"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GetOneTenant"
+      endMarker="// END GetOneTenant"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
+## Get one tenant
+
+Get a particular tenant from a collection.
+
+This example returns a tenant from the `MultiTenancyCollection` collection:
+
+<Tabs groupId="languages">
+  <TabItem value="py4" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START GetOneTenant"
+      endMarker="# END GetOneTenant"
+      language="py"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS v3">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// START GetOneTenant"
+      endMarker="// END GetOneTenant"
+      language="ts"
+    />
+  </TabItem>
+
+</Tabs>
+
 
 ## Delete tenants
 

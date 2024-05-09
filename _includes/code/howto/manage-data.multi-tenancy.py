@@ -23,7 +23,7 @@ multi_collection = client.collections.create(
     name="MultiTenancyCollection",
     # Enable multi-tenancy on the new collection
     # highlight-start
-    multi_tenancy_config=Configure.multi_tenancy(True)
+    multi_tenancy_config=Configure.multi_tenancy(enabled=True)
     # highlight-end
 )
 # END EnableMultiTenancy
@@ -58,15 +58,33 @@ assert client.collections.exists("CollectionWithAutoMTEnabled")
 # ===== Update Auto MT =====
 # ==========================
 
+collection_name = "MTCollectionNoAutoMT"
+client.collections.delete(collection_name)
+
+collection = client.collections.create(
+    name=collection_name,
+    multi_tenancy_config=Configure.multi_tenancy(enabled=True, auto_tenant_creation=False)
+)
+
+assert collection.config.get().multi_tenancy_config.auto_tenant_creation == False
+
 # START UpdateAutoMT
 from weaviate.collections.classes.config import Reconfigure
 
-collection.config.update(multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True))
+collection = client.collections.get(collection_name)
+
+collection.config.update(
+    multi_tenancy_config=Reconfigure.multi_tenancy(auto_tenant_creation=True)
+)
 # END UpdateAutoMT
+
+assert collection.config.get().multi_tenancy_config.auto_tenant_creation == True
 
 # ================================
 # ===== Add tenants to class =====
 # ================================
+
+multi_collection = client.collections.get("MultiTenancyCollection")
 
 # START AddTenantsToClass
 from weaviate.classes.tenants import Tenant
@@ -93,6 +111,7 @@ assert multi_config.multi_tenancy_config.enabled == True
 
 # START ListTenants
 multi_collection = client.collections.get("MultiTenancyCollection")
+
 # highlight-start
 tenants = multi_collection.tenants.get()
 # highlight-end
@@ -103,6 +122,45 @@ print(tenants)
 # Test
 assert "tenantA" in tenants
 assert "tenantB" in tenants
+
+# ===================================
+# ===== Get tenants by name =====
+# ===================================
+
+# START GetTenantsByName
+multi_collection = client.collections.get("MultiTenancyCollection")
+
+# highlight-start
+tenant_names = ["tenantA", "tenantB", "nonExistentTenant"]  # `nonExistentTenant`` does not exist and will be ignored
+tenants_response = multi_collection.tenants.get_by_names(tenant_names)
+# highlight-end
+
+for k, v in tenants_response.items():
+    print(k, v)
+# END GetTenantsByName
+
+# Test
+for k, v in tenants_response.items():
+    assert k in tenant_names
+
+# ===================================
+# ===== Get a tenant =====
+# ===================================
+
+tenant_name = "tenantA"
+
+# START GetOneTenant
+multi_collection = client.collections.get("MultiTenancyCollection")
+
+# highlight-start
+tenant_obj = multi_collection.tenants.get_by_name(tenant_name)
+# highlight-end
+
+print(tenant_obj.name)
+# END GetOneTenant
+
+# Test
+assert tenant_obj.name == tenant_name
 
 # =======================================
 # ===== Remove tenants from a class =====

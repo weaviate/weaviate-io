@@ -10,7 +10,7 @@ const client = await weaviate.connectToWCS(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
- } 
+ }
 )
 
 const className = 'MultiTenancyCollection';  // aka JeopardyQuestion
@@ -43,7 +43,7 @@ const multiCollection =  client.collections.get('MultiTenancyCollection');
 
   // highlight-start
 await multiCollection.tenants.create([
-  { name: 'tenantA'}, 
+  { name: 'tenantA'},
   { name: 'tenantB'}
 ])
   // highlight-end
@@ -76,6 +76,24 @@ assert.ok(['tenantA', 'tenantB'].includes(tenants[1].name));
 
 
 // =======================================
+// ===== Get tenants from a collection by name =====
+// =======================================
+
+// START GetTenantsByName
+// Coming soon
+// END GetTenantsByName
+
+
+// =======================================
+// ===== Get one tenant from a collection =====
+// =======================================
+
+// START GetOneTenant
+// Coming soon
+// END GetOneTenant
+
+
+// =======================================
 // ===== Remove tenants from a class =====
 // =======================================
 
@@ -87,7 +105,7 @@ await multiCollection.tenants.remove([
     { name: 'tenantB'},
     { name: 'tenantX'}  // tenantX will be ignored
 ])
-// highlight-end 
+// highlight-end
 // END RemoveTenants
 
 // Test
@@ -108,7 +126,7 @@ const multiTenantA = multiCollection.withTenant('tenantA')
 await multiTenantA.data.insert({
   question: 'This vector DB is OSS & supports automatic property type inference on import'
 })
-// highlight-end 
+// highlight-end
 // END CreateMtObject
 
 // Test
@@ -128,7 +146,7 @@ const multiTenantA = multiCollection.withTenant('tenantA')
 const objectA = await multiTenantA.query.fetchObjects({
   limit: 2
 })
-// highlight-end 
+// highlight-end
 
 console.log(objectA.objects)
 // END Search
@@ -167,7 +185,7 @@ await multiTenantA.data.referenceAdd({
   // highlight-end
   fromUuid: objectId,
   fromProperty: 'hasCategory',
-  to: categoryId 
+  to: categoryId
 })
 // END AddCrossRef
 
