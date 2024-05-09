@@ -173,7 +173,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS">
+  <TabItem value="js" label="JS/TS (v2)">
     <FilteredTextBlock
       text={HybridTSCode}
       startMarker="// NamedVectorHybrid"
@@ -182,7 +182,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS (Legacy)">
+  <TabItem value="js2" label="JS/TS (v2)">
     <FilteredTextBlock
       text={HybridTSCodeLegacy}
       startMarker="// NamedVectorHybrid"
