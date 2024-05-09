@@ -15,8 +15,8 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ## Index configuration parameters
 
-:::warning The `dynamic` indexing feature added in 1.25 is currently in beta.
-
+:::caution Beta
+Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
 :::
 
 Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
@@ -148,24 +148,25 @@ Configure `bq` with these parameters.
 | `cache` | boolean | `false` | Whether to use the vector cache. |
 
 ## Dynamic indexes
-:::warning The `dynamic` indexing feature added in 1.25 is currently in beta.
 
+:::caution Beta
+Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
 :::
 
-Using the `dynamic` index will initially create a flat index and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will automatically switch you over to an HNSW index. 
+Using the `dynamic` index will initially create a flat index and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will automatically switch you over to an HNSW index.
 
-This is only a one-way switch that converts a flat index to a HNSW, the index does not support changing back to a flat index even if the object count goes below the threshold due to deletion. 
+This is only a one-way switch that converts a flat index to a HNSW, the index does not support changing back to a flat index even if the object count goes below the threshold due to deletion.
 
 The goal of `dynamic` indexing is to shorten latencies during query time at the cost of a larger memory footprint.
 
 ### Dynamic index parameters
+
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
 | `distance` | string | `cosine` | Distance metric. The metric that measures the distance between two arbitrary vectors. |
-| `hnsw` | VectorIndexConfigHNSW | default HNSW | HNSW index configuration to be used. |
-| `flat` | VectorIndexConfigFlat | default Flat | Flat index configuration to be used. |
+| `hnsw` | object | default HNSW | [HNSW index configuration](#hnsw-index-parameters) to be used. |
+| `flat` | object | default Flat | [Flat index configuration](#flat-indexes) to be used. |
 | `threshold` | integer | 10000 | Threshold object count at which `flat` to `hnsw` conversion happens |
-| `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
 
 ## Asynchronous indexing
 

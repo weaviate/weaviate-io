@@ -5,17 +5,17 @@ image: og/docs/concepts.jpg
 # tags: ['vector index plugins']
 ---
 
-Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). You can even select to start off with a flat index and then dynamically switch to the HNSW index as you scale object count ([dynamic index](#dynamic-index)).
+Vector indexing is a key component of vector databases. It can help to [significantly **increase the speed** of the search process of similarity search](https://weaviate.io/blog/why-is-vector-search-so-fast) with only a minimal tradeoff in search accuracy ([HNSW index](#hnsw-index)), or efficiently store many subsets of data in a small memory footprint ([flat index](#flat-index)). The [dynamic index](#dynamic-index) can even start off as a flat index and then dynamically switch to the HNSW index as it scales past a threshold.
 
 Weaviate's vector-first storage system takes care of all storage operations with a vector index. Storing data in a vector-first manner not only allows for semantic or context-based search, but also makes it possible to store *very* large amounts of data without decreasing performance (assuming scaled well horizontally or having sufficient shards for the indices).
 
 Weaviate supports two types of vector indexing:
 * [flat index](#flat-index): a simple, lightweight index that is designed for small datasets.
 * [HNSW index](#hnsw-index): a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
-* [dynamic index](#dynamic-index): allows you to automatically switch from a flat index to an HNSW index as object count scales 
+* [dynamic index](#dynamic-index): allows you to automatically switch from a flat index to an HNSW index as object count scales
 
-:::warning Beta Feature Added in v1.25.0
-Dynamic indexing is currently in beta.
+:::caution Beta
+Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
 :::
 
 This page explains what vector indices are, and what purpose they serve in the Weaviate vector database.
@@ -41,7 +41,7 @@ Another way to think of this is how products are placed in a supermarket. You'd 
 
 ![Supermarket map visualization as analogy for vector indexing](./img/supermarket.svg "Supermarket map visualization")
 
-:::tip 
+:::tip
 You might be also interested in our blog post [Why is vector search to fast?](https://weaviate.io/blog/why-is-vector-search-so-fast).
 :::
 
@@ -150,7 +150,7 @@ Asynchronous indexing decouples object creation from vector index updates. Objec
 
 While the vector index is updating, Weaviate can search a maximum of 100,000 un-indexed objects by brute force, that is, without using the vector index. This means that the search performance is slower until the vector index has been fully updated. Also, any additional new objects beyond the first 100,000 in the queue are not include in the search.
 
-:::tip 
+:::tip
 You might be also interested in our blog post [Vamana vs. HNSW - Exploring ANN algorithms Part 1](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw).
 :::
 
@@ -167,17 +167,17 @@ A drawback of the flat index is that it does not scale well to large collections
 
 ## Dynamic index
 
-:::warning Beta Feature Added in v1.25.0
-Dynamic indexing is currently in beta.
+:::caution Beta
+Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
 :::
 
-The flat index is ideal for use cases with a small object count and provides lower memory overhead and good latency. As the object count increases the HNSW index provides a more viable solution. The goal of the dynamic index is to shorten latencies during querying time at the cost of a larger memory footprint as you scale.
+The flat index is ideal for use cases with a small object count and provides lower memory overhead and good latency. As the object count increases the HNSW index provides a more viable solution as HNSW speeds up search. The goal of the dynamic index is to shorten latencies during querying time at the cost of a larger memory footprint as you scale.
 
 By configuring a dynamic index, you can automatically switch from flat to HNSW indexes. This switch occurs when the object count exceeds a prespecified threshold (by default 10,000). This functionality only works with async indexing enabled. When the threshold is hit while importing, all the data piles up in the async queue, the HNSW index is constructed in the background and when ready the swap from flat to HNSW is completed.
 
 Currently, this is only a one-way upgrade from a flat to an HNSW index, it does not support changing back to a flat index even if the object count goes below the threshold due to deletion.
 
-This is particularly useful in a multi-tenant setup where building an HNSW index per tenant would introduce extra overhead, now as individual tenants grow they dynamically switch from flat to HNSW, while smaller tenants remain flat.
+This is particularly useful in a multi-tenant setup where building an HNSW index per tenant would introduce extra overhead. With a dynamic index, as individual tenants grow their index will switch from flat to HNSW, while smaller tenants' indexes remain flat.
 
 ## Vector cache considerations
 
