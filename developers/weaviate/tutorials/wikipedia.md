@@ -62,15 +62,13 @@ We can create a Weaviate instance locally using the [embedded](../installation/e
 If using the Docker option, make sure to select "With Modules" (instead of standalone), and the `text2vec-openai` module when using the Docker configurator, at the "Vectorizer & Retriever Text Module" step. At the "OpenAI Requires an API Key" step, you can choose to "provide the key with each request", as we'll do so in the next section.
 :::
 
-
 ## Connect to the instance and OpenAI
 
-To pave the way for using OpenAI later when querying, let's make sure we provide the OpenAI API key to the client.
+Add the OpenAI API key to the client so you can use the OpenAI vectorizer API when you send queries to Weaviate.
 
 import ProvideOpenAIAPIKey from '/_includes/provide-openai-api-key-headers.mdx'
 
 <ProvideOpenAIAPIKey />
-
 
 ## Create the schema
 
