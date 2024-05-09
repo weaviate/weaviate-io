@@ -240,6 +240,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - OctoAI [API documentation](https://octo.ai/docs/getting-started/inference-models)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

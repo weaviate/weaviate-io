@@ -226,6 +226,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - Mistral [AI API documentation](https://docs.mistral.ai/api/)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

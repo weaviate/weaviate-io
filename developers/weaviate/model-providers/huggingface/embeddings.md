@@ -269,6 +269,6 @@ Once the integrations are configured at the collection, the data management and 
 - Hugging Face [Inference API documentation](https://huggingface.co/docs/api-inference/en/quicktour)
 - Hugging Face [Model Hub](https://huggingface.co/models)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

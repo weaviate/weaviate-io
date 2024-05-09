@@ -223,6 +223,6 @@ Once the integrations are configured at the collection, the data management and 
 - Azure OpenAI [API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - Azure OpenAI [models and availability](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

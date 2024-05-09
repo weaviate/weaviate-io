@@ -307,6 +307,6 @@ Once the integrations are configured at the collection, the data management and 
 - [Google Vertex AI](https://cloud.google.com/vertex-ai)
 - [Google AI Studio](https://ai.google.dev/)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

@@ -237,6 +237,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - OpenAI [Chat API documentation](https://platform.openai.com/docs/api-reference/chat)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

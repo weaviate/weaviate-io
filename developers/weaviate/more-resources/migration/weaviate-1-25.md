@@ -189,6 +189,6 @@ helm upgrade weaviate weaviate/weaviate \
 
 This should bring the cluster back to your specified pre-`1.25` version.
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

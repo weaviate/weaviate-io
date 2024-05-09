@@ -265,6 +265,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - OctoAI [Embed API documentation](https://octo.ai/docs/text-gen-solution/getting-started)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

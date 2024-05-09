@@ -295,6 +295,6 @@ import LocalGroupedResult from '/_includes/code/generative.local.groupedresult.m
 }
 ```
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>
