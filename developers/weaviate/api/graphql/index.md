@@ -85,6 +85,8 @@ gRPC is a high-performance, open-source universal RPC framework that is contract
 Read more about the gRPC API [here](../grpc.md).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

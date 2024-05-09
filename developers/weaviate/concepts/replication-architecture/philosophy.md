@@ -25,6 +25,8 @@ Based on the above usage patterns, and keeping the [CAP theorem](./index.md#cap-
 
 Weaviate’s replication architecture is inspired by other modern, Internet-scale databases that serve similar goals; [Apache Cassandra](https://cassandra.apache.org/_/index.html) is a notable example. Weaviate’s [Replication Architecture](./cluster-architecture.md) has significant similarities to Cassandra's. Unsurprisingly, a leaderless pattern was chosen to achieve both availability and throughput goals. In a leaderful setup, leader nodes have two significant disadvantages: Firstly, leaders become a performance bottleneck, e.g., because every write request needs to pass through the leader. Secondly, a leader's failure involves the election of a new leader, which can be a complex and costly process that can lead to temporary unavailability. The main advantage of a leaderful system is that it may be easier to provide specific consistency guarantees. As outlined in the motivation above, Weaviate prefers large-scale use cases, linear scaling, and availability over strict consistency.
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

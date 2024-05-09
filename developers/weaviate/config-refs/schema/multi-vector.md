@@ -150,7 +150,9 @@ Named vector collections support [hybrid search](../../search/hybrid.md), but on
 
 import HybridPyCode from '!!raw-loader!/_includes/code/howto/search.hybrid.py';
 import HybridPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
+import HybridTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
+
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -171,9 +173,18 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="js" label="JavaScript/TypeScript">
+  <TabItem value="js" label="JS/TS (v2)">
     <FilteredTextBlock
       text={HybridTSCode}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS (v2)">
+    <FilteredTextBlock
+      text={HybridTSCodeLegacy}
       startMarker="// NamedVectorHybrid"
       endMarker="// END NamedVectorHybrid"
       language="ts"
@@ -198,6 +209,8 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 - [BQ Compression](../../configuration/bq-compression.md)
 - [PQ Compression](../../configuration/pq-compression.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -143,6 +143,8 @@ This is described further in this [blog post](/blog/fine-tuning-coheres-reranker
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

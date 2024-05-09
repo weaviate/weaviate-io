@@ -214,6 +214,8 @@ The `img2vec-neural` module uses the `resnet50` model.
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -150,6 +150,8 @@ An object that never existed will be propagated to the other nodes only if the o
 - [API References | REST | Objects](/developers/weaviate/api/rest#tag/objects)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

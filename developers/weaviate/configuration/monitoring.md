@@ -123,6 +123,8 @@ import APIOutputs from '/_includes/rest/node-endpoint-info.mdx';
 
 <APIOutputs />
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -606,6 +606,8 @@ For example, consider the following situation: You would like to do a load test 
 ## Related pages
 - [References: REST API: Backups](/developers/weaviate/api/rest#tag/backups)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

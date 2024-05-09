@@ -70,6 +70,8 @@ import CodeAddRefLater from '/_includes/code/howto.add.data.things.add.reference
 - See the RESTful [API reference pages](/developers/weaviate/api/rest) for all API operations to add, modify and delete data.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -27,7 +27,19 @@ print(is_ready) # returns True if Weaviate is ready
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (v3)">
+
+```js
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal()
+const response = await client.isReady()
+
+console.log(response)
+```
+
+</TabItem>
+<TabItem value="js2" label="JS/TS (v2)">
 
 ```js
 import weaviate from 'weaviate-ts-client';

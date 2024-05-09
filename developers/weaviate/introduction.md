@@ -168,6 +168,8 @@ Want to get started or want to learn more? These resources might help you furthe
     - [Concepts](./concepts/index.md)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

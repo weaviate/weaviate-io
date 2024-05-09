@@ -87,6 +87,8 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | `RAFT_JOIN` | Manually set RAFT voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of RAFT voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If set to `true`, voter nodes will only handle the schema, but not accept any data. | `boolean` | `false` |
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

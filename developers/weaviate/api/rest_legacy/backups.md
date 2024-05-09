@@ -166,6 +166,8 @@ For client code examples, see the [How-to: Configure / Backups](../../configurat
 Discover more about [Backups Configuration](/developers/weaviate/configuration/backups.md#configuration), including Backups to [S3](/developers/weaviate/configuration/backups.md#s3-aws-or-s3-compatible), [GCS](/developers/weaviate/configuration/backups.md#gcs-google-cloud-storage), or [Azure](/developers/weaviate/configuration/backups.md#azure-storage), [Technical Considerations of Backups](/developers/weaviate/configuration/backups.md#technical-considerations), as well as [additional use cases](/developers/weaviate/configuration/backups.md#other-use-cases).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

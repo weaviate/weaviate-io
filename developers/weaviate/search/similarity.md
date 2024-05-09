@@ -627,6 +627,8 @@ The output is like this:
 - For tutorials, see [Queries](/developers/weaviate/tutorials/query.md).
 - For search using the GraphQL API, see [GraphQL API](/developers/weaviate/api/graphql).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
