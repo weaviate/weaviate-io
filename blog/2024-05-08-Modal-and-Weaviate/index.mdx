@@ -61,7 +61,7 @@ In this section, we walk through some of the key Weaviate features we used to im
 5. [Batch Imports](#batch-imports)
 
 ### Async Indexing
-Importing data into a vector database is a two-step process: 1. Object creation, and 2. Vector index construction. Typically, the database won’t receive another batch of objects until it has finished indexing the prior batch. Weaviate `1.22` introduced [async indexing](/developers/weaviate/release-notes/900_1_22#asynchronous-vector-indexing-experimental) to speed up data ingestion.
+Importing data into a vector database is a two-step process: 1. Object creation, and 2. Vector index construction. Typically, the database won’t receive another batch of objects until it has finished indexing the prior batch. Weaviate `1.22` introduced [async indexing](/developers/weaviate/release-notes/release_1_22#asynchronous-vector-indexing-experimental) to speed up data ingestion.
 
 Async indexing speeds up object ingestion by separating it from the vector index construction process. Rather than waiting for the new objects to be indexed, the objects are put in an in-memory queue before getting indexed. Since we imported millions of objects, it was important to enable this feature to reduce the import time. 
 
