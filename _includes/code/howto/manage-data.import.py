@@ -461,7 +461,6 @@ os.remove("jeopardy_1k.csv")
 # =====   Batch vectorization set parameters =====
 # ================================================
 
-import os
 rpm_embeddings = 100
 tpm_embeddings = 10000
 
