@@ -203,8 +203,8 @@ For further details on model parameters, please consult the [Cohere API document
 
 ### Available models
 
-- `command-r-plus`
-- `command-r` (default)
+- `command-r-plus`  (Added in `v1.25.0`)
+- `command-r` (default)  (Added in `v1.25.0`)
 - `command-xlarge`
 - `command-xlarge-beta`
 - `command-xlarge-nightly`
