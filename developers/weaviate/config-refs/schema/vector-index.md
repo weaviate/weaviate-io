@@ -15,8 +15,8 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ## Index configuration parameters
 
-:::caution Beta
-Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
+:::caution Experimental feature
+Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
 :::
 
 Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
@@ -149,8 +149,8 @@ Configure `bq` with these parameters.
 
 ## Dynamic indexes
 
-:::caution Beta
-Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
+:::caution Experimental feature
+Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
 :::
 
 Using the `dynamic` index will initially create a flat index and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will automatically switch you over to an HNSW index.

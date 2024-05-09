@@ -14,8 +14,8 @@ Weaviate supports two types of vector indexing:
 * [HNSW index](#hnsw-index): a more complex index that is slower to build, but it scales well to large datasets as queries have a logarithmic time complexity.
 * [dynamic index](#dynamic-index): allows you to automatically switch from a flat index to an HNSW index as object count scales
 
-:::caution Beta
-Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
+:::caution Experimental feature
+Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
 :::
 
 This page explains what vector indices are, and what purpose they serve in the Weaviate vector database.
@@ -167,8 +167,8 @@ A drawback of the flat index is that it does not scale well to large collections
 
 ## Dynamic index
 
-:::caution Beta
-Dynamic indexing was added in `v1.25` and is currently in beta. Please use with caution.
+:::caution Experimental feature
+Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
 :::
 
 The flat index is ideal for use cases with a small object count and provides lower memory overhead and good latency. As the object count increases the HNSW index provides a more viable solution as HNSW speeds up search. The goal of the dynamic index is to shorten latencies during querying time at the cost of a larger memory footprint as you scale.
