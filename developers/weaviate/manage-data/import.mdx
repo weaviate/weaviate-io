@@ -390,19 +390,6 @@ Note that each provider exposes different configuration options.
   </TabItem>
 </Tabs>
 
-### Rate limiting headers
-
-To manually set internal rate limit parameters for the batch vectorizer, add the following request headers at client instantiation ([Python](../client-libraries/python/index.md#instantiate-a-client), [JS/TS](../client-libraries/typescript/index.mdx), [Java](../client-libraries/java.md#custom-headers), [Go](../client-libraries/go.md#custom-headers)):
-
-| Purpose | Header key |
-| :- | :- |
-| Limit tokens | x-ratelimit-limit-tokens |
-| Remaining tokens | x-ratelimit-remaining-tokens |
-| Reset tokens | x-ratelimit-reset-tokens |
-| Limit requests | x-ratelimit-limit-requests |
-| Remaining requests | x-ratelimit-remaining-requests |
-| Reset requests | x-ratelimit-reset-requests |
-
 ## Additional considerations
 
 Data imports can be resource intensive. Consider the following when you import large amounts of data.
