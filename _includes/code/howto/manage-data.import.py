@@ -377,7 +377,7 @@ response = questions.aggregate.over_all(total_count=True)
 assert response.total_count == 1000
 
 # Cleanup
-client.collections.delete("JeopardyQuestion")    
+client.collections.delete("JeopardyQuestion")
 
 # ===========================================
 # ===== Stream data - CSV =====
@@ -457,50 +457,70 @@ client.collections.delete("JeopardyQuestion")
 os.remove("jeopardy_1k.json")
 os.remove("jeopardy_1k.csv")
 
-client.close()
-
 # ===========================================
 # =====    Batch vectorization client =====
 # ===========================================
 
-# TODO NEEDS TEST
-# Creates a new client so can't piggyback on the prior client tests
+client.collections.delete("NewCollection")
 
 # START BatchVectClient
+from weaviate.classes.config import Configure, Property, DataType
+
 collection = client.collections.create(
-        name="NewCollection",
-        properties=[
-            wvc.config.Property(name="url", data_type=wvc.config.DataType.TEXT),
-            wvc.config.Property(name="title", data_type=wvc.config.DataType.TEXT),
-            wvc.config.Property(name="raw", data_type=wvc.config.DataType.TEXT),
-            wvc.config.Property(name="sha", data_type=wvc.config.DataType.TEXT),
-        ],
-        vectorizer_config=[
-            wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereFirst"),
-            wvc.config.Configure.NamedVectors.text2vec_cohere(name="cohereSecond"),
-        ]
-    )
+    name="NewCollection",
+    properties=[
+        Property(name="title", data_type=DataType.TEXT),
+        Property(name="summary", data_type=DataType.TEXT),
+        Property(name="body", data_type=DataType.TEXT),
+    ],
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_cohere(
+            name="titleVector", source_properties=["title"]
+        ),
+        Configure.NamedVectors.text2vec_openai(
+            name="descriptionVector", source_properties=["summary", "body"]
+        ),
+    ],
+)
 # END BatchVectClient
 
 # ================================================
 # =====    Batch vectorization modify client =====
 # ================================================
 
-# TODO NEEDS TEST
+import os
+rpm_embeddings = 100
+tpm_embeddings = 10000
+
+cohere_key = os.environ["COHERE_API_KEY"]
+openai_key = os.environ["OPENAI_API_KEY"]
+
 
 # START BatchVectorizationClientModify
-integrations=[
-            wvc.init.Integrations.cohere(
-                api_key="KEY", request_per_minute_embeddings=ReplaceWithRequestRate
-            ),
-            wvc.init.Integrations.openai(
-                api_key="KEY", base_url ="ReplaceWithTheBaseURL"
-            ),
-            wvc.init.Integrations.voyageai(
-                api_key="KEY",
-            ),
-        ]
-client.integrations.configure(integrations)           
-# END BatchVectorizationClientModify     
+from weaviate.classes.config import Integrations
+
+integrations = [
+    # Each model provider may expose different parameters
+    Integrations.cohere(
+        api_key=cohere_key,
+        requests_per_minute_embeddings=rpm_embeddings,
+    ),
+    Integrations.openai(
+        api_key=openai_key,
+        requests_per_minute_embeddings=rpm_embeddings,
+        tokens_per_minute_embeddings=tpm_embeddings,   # e.g. OpenAI also exposes tokens per minute for embeddings
+    ),
+]
+client.integrations.configure(integrations)
+# END BatchVectorizationClientModify
+
+collection = client.collections.get("NewCollection")
+
+collection.data.insert_many(
+    {"title": f"Some title {i}", "summary": f"Summary {i}", "body": f"Body {i}"} for i in range(5)
+)
+
+response = collection.aggregate.over_all(total_count=True)
+assert response.total_count == 5
 
 client.close()

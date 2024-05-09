@@ -1,11 +1,5 @@
-When you import unvectorized data, the import process normally includes a vectorization step. Some third party vectorization services provide APIs that accept objects in batches.
+Some [model providers](/developers/weaviate/model-providers/index.md) provide batch vectorization APIs, where each request can include multiple objects. From Weaviate `v1.25.0`, a batch import into Weaviate can make use of these APIs.
 
-If a third party batch API is available, Weaviate automatically submits incoming objects in batches. Weaviate also adjusts the batch submission rate to minimize problems with rate limits on third party APIs.
+This reduces the number of requests to the model provider, improving throughput. Some providers may also offer a discount for batch requests.
 
-In addition to significantly improved import times, submitting objects in batches makes more efficient use of API tokens.
-
-There are some limitations.
-
-- **Rate limits**. Some third party APIs have different limits for trial (free) tiers and subscription (paid) tiers. If you have a trial API key, you may need to manually set a rate limit in the Weaviate client.
-- **No batch API**. PaLM does not offer a batch API.
-- **Batch submission not implemented**. This feature is not yet available for all APIs.
+Please refer to the specific model provider documentation for details.
