@@ -155,7 +155,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={HybridPyCode}
       startMarker="# NamedVectorHybridPython"
@@ -164,7 +164,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={HybridPyCodeV3}
       startMarker="# NamedVectorHybridPython"
@@ -173,7 +173,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (v2)">
+  <TabItem value="js" label="JS/TS Client (v2)">
     <FilteredTextBlock
       text={HybridTSCode}
       startMarker="// NamedVectorHybrid"
@@ -182,7 +182,7 @@ import HybridTSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS (v2)">
+  <TabItem value="js2" label="JS/TS Client (v2)">
     <FilteredTextBlock
       text={HybridTSCodeLegacy}
       startMarker="// NamedVectorHybrid"

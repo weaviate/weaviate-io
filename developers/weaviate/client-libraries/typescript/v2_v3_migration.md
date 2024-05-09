@@ -151,7 +151,7 @@ The v2 client uses the `client` object for CRUD and search operations. In the v3
 After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS Client (v3)">
 
 ```ts
 const myCollection = client.collections.get('JeopardyQuestion');
@@ -164,7 +164,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS Client (v2)">
 
 ```ts
 result = await client
@@ -187,7 +187,7 @@ Note here that the collection object can be re-used throughout the codebase.
 The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS Client (v3)">
 
 ```ts
 let result 
@@ -203,7 +203,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS Client (v2)">
 
 ```ts
 let result;
@@ -229,7 +229,7 @@ The `insertMany()` method replaces `objectBatcher()` to make batch insertions ea
 For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS Client (v3)">
 
 ```ts
 const questions = client.collections.get("CollectionName")
@@ -239,7 +239,7 @@ await questions.data.insertMany(dataBatch);
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS Client (v2)">
 
 ```ts
 let className = 'CollectionName';  // Replace with your collection name
@@ -270,7 +270,7 @@ import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 The `Filter` helper class makes it easier to use filters with conditions. The v3 client streamlines how you use `Filter` so your code is cleaner and more concise.
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS Client (v3)">
 
 ```ts
 import weaviate, { Filters } from 'weaviate-client';
@@ -289,7 +289,7 @@ console.log(JSON.stringify(result, null, 2));
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS Client (v2)">
 
 ```ts
 result = await client.graphql
@@ -325,7 +325,7 @@ console.log(JSON.stringify(result, null, 2));
 The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches. 
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS Client (v3)">
 
 ```ts
 const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
@@ -342,7 +342,7 @@ console.log(JSON.stringify(result.objects, null, 2));
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS Client (v2)">
 
 ```ts
 let result;
@@ -372,7 +372,7 @@ console.log(JSON.stringify(result, null, 2));
 The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS (v3)">
+<TabItem value="jsv3" label="JS/TS Client (v3)">
 
 ```ts
 response.objects[0].properties.title  // Get the `title` property of the first object
@@ -383,7 +383,7 @@ response.metadata?.creationTime // Get the creation time as a native JS Date val
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS (v2)">
+<TabItem value="jsv2" label="JS/TS Client (v2)">
 
 ```ts
 response.data?.Get?.Article?.[0].title  // Get the `title` property of the first object
@@ -547,7 +547,7 @@ console.log('Collection Exists:', await client.collections.exists(collectionName
 ### Sample scripts
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS v3">
+<TabItem value="jsv3" label="JS/TS Client v3">
 
 ```ts
 import weaviate from 'weaviate-client'
@@ -600,7 +600,7 @@ main()
 ```
 
 </TabItem>
-<TabItem value="jsv2" label="JS/TS v2">
+<TabItem value="jsv2" label="JS/TS Client v2">
 
 ```ts
 import weaviate, { ApiKey, WeaviateClient } from 'weaviate-ts-client';

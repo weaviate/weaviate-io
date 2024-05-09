@@ -559,7 +559,7 @@ Tenants are used to separate data between different users or groups of users. Th
 ### Enable multi-tenancy
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableMultiTenancy"
@@ -568,7 +568,7 @@ Tenants are used to separate data between different users or groups of users. Th
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START EnableMultiTenancy"
@@ -637,7 +637,7 @@ POST v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddTenantsToClass"
@@ -646,7 +646,7 @@ POST v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START AddTenantsToClass"
@@ -690,7 +690,7 @@ GET v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ListTenants"
@@ -699,7 +699,7 @@ GET v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ListTenants"
@@ -745,7 +745,7 @@ DELETE v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RemoveTenants"
@@ -754,7 +754,7 @@ DELETE v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START RemoveTenants"
@@ -816,7 +816,7 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateTenants"

@@ -224,7 +224,7 @@ You cannot set `include` and `exclude` at the same time. Set none or exactly one
 Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants) by default.
 :::
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateBackup"
@@ -233,7 +233,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
     />
   </TabItem>
 
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateBackup"
@@ -242,7 +242,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeBackup}
       startMarker="// START CreateBackup"
@@ -251,7 +251,7 @@ Weaviate uses [gzip compression](https://pkg.go.dev/compress/gzip#pkg-constants)
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START CreateBackup"
@@ -314,7 +314,7 @@ GET /v1/backups/{backend}/{backup_id}
 The response contains a `"status"` field. If the status is `SUCCESS`, the backup is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START StatusCreateBackup"
@@ -322,7 +322,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
       language="py"
     />
   </TabItem>
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START StatusCreateBackup"
@@ -331,7 +331,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeStatus}
       startMarker="// START StatusCreateBackup"
@@ -340,7 +340,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the backup
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START StatusCreateBackup"
@@ -417,7 +417,7 @@ The request takes a json object with the following properties:
 | `cpuPercentage`   | number | no | `50%` | An optional integer to set the desired CPU core utilization ranging from 1%-80%. |
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RestoreBackup"
@@ -425,7 +425,7 @@ The request takes a json object with the following properties:
       language="py"
     />
   </TabItem>
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START RestoreBackup"
@@ -434,7 +434,7 @@ The request takes a json object with the following properties:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeRestore}
       startMarker="// START RestoreBackup"
@@ -443,7 +443,7 @@ The request takes a json object with the following properties:
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START RestoreBackup"
@@ -503,7 +503,7 @@ GET /v1/backups/{backend}/{backup_id}/restore
 The response contains a `"status"` field. If the status is `SUCCESS`, the restore is complete. If the status is `FAILED`, an additional error is provided.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START StatusRestoreBackup"
@@ -511,7 +511,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
       language="py"
     />
   </TabItem>
-  <TabItem value="pyv3" label="Python (v3)">
+  <TabItem value="pyv3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START StatusRestoreBackup"
@@ -520,7 +520,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeStatus}
       startMarker="// START StatusRestoreBackup"
@@ -529,7 +529,7 @@ The response contains a `"status"` field. If the status is `SUCCESS`, the restor
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START StatusRestoreBackup"
