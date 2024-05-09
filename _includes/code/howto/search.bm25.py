@@ -16,6 +16,12 @@ client = weaviate.connect_to_wcs(
     }
 )
 
+# client = weaviate.connect_to_local(
+#     headers={
+#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+#     }
+# )
+
 # ============================
 # ===== Basic BM25 Query =====
 # ============================
@@ -226,8 +232,6 @@ assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # ===== BM25 groupBy  =====
 # ==================================
 
-# TODO Needs test
-
 # START BM25GroupByPy4
 from weaviate.classes.query import GroupBy
 
@@ -246,9 +250,14 @@ response = jeopardy.query.bm25(
     group_by=group_by
 )
 
-for g in response.groups:
-    print(g)
+for grp_name, grp_content in response.groups.items():
+    print(grp_name, grp_content.objects)
 # END BM25GroupByPy4
 
+assert len(response.groups) > 0
+assert len(response.groups) <= 2
+for grp_name, grp_content in response.groups.items():
+    assert grp_content.number_of_objects <= 3
+    assert grp_content.number_of_objects > 0
 
 client.close()

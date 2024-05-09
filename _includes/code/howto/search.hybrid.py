@@ -16,6 +16,12 @@ client = weaviate.connect_to_wcs(
     },
 )
 
+# client = weaviate.connect_to_local(
+#     headers={
+#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+#     }
+# )
+
 # ==============================
 # ===== Named Vector Hybrid Query =====
 # ==============================
@@ -331,11 +337,14 @@ response = jeopardy.query.hybrid(
     group_by=group_by
 )
 
-for g in response.groups:
-    print(g)
+for grp_name, grp_content in response.groups.items():
+    print(grp_name, grp_content.objects)
 # END HybridGroupByPy4
 
 assert len(response.groups) <= 2
 assert len(response.groups) > 0
+for grp_name, grp_content in response.groups.items():
+    assert grp_content.number_of_objects <= 3
+    assert grp_content.number_of_objects > 0
 
 client.close()
