@@ -457,35 +457,8 @@ client.collections.delete("JeopardyQuestion")
 os.remove("jeopardy_1k.json")
 os.remove("jeopardy_1k.csv")
 
-# ===========================================
-# =====    Batch vectorization client =====
-# ===========================================
-
-client.collections.delete("NewCollection")
-
-# START BatchVectClient
-from weaviate.classes.config import Configure, Property, DataType
-
-collection = client.collections.create(
-    name="NewCollection",
-    properties=[
-        Property(name="title", data_type=DataType.TEXT),
-        Property(name="summary", data_type=DataType.TEXT),
-        Property(name="body", data_type=DataType.TEXT),
-    ],
-    vectorizer_config=[
-        Configure.NamedVectors.text2vec_cohere(
-            name="titleVector", source_properties=["title"]
-        ),
-        Configure.NamedVectors.text2vec_openai(
-            name="descriptionVector", source_properties=["summary", "body"]
-        ),
-    ],
-)
-# END BatchVectClient
-
 # ================================================
-# =====    Batch vectorization modify client =====
+# =====   Batch vectorization set parameters =====
 # ================================================
 
 import os
