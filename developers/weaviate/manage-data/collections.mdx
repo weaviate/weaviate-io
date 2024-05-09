@@ -26,7 +26,7 @@ Newer Weaviate documentation discuses "collections." Older Weaviate documentatio
 To create a collection, specify at least the collection name. If you don't specify any properties, [`auto-schema`](../config-refs/schema/index.md#auto-schema) creates them.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicCreateCollection"
@@ -35,7 +35,7 @@ To create a collection, specify at least the collection name. If you don't speci
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START BasicCreateCollection"
@@ -101,7 +101,7 @@ For details, see:
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionWithProperties"
@@ -110,7 +110,7 @@ For details, see:
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionWithProperties"
@@ -160,7 +160,7 @@ Collection level settings override default values and general configuration para
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Vectorizer"
@@ -169,7 +169,7 @@ Collection level settings override default values and general configuration para
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START Vectorizer"
@@ -207,7 +207,7 @@ Collection level settings override default values and general configuration para
 You can define multiple named vectors per collection. This allows each object to be represented by multiple vectors, such as a `text` vector and an `image` vector, or a `title` vector and a `body` vector.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START BasicNamedVectors"
@@ -216,7 +216,7 @@ You can define multiple named vectors per collection. This allows each object to
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START BasicNamedVectors"
@@ -250,7 +250,7 @@ You can define multiple named vectors per collection. This allows each object to
 To configure how a vectorizer works (i.e. what model to use) with a specific collection, set the vectorizer parameters.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ModuleSettings"
@@ -259,7 +259,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ModuleSettings"
@@ -293,7 +293,7 @@ To configure how a vectorizer works (i.e. what model to use) with a specific col
 The vector index type can be set for each collection between `hnsw` and `flat` index types.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SetVectorIndexType"
@@ -302,7 +302,7 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START SetVectorIndexType"
@@ -342,7 +342,7 @@ The vector index type can be set for each collection between `hnsw` and `flat` i
 Various vector index parameters are configurable at collection creation time, including compression.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SetVectorIndexParams"
@@ -351,7 +351,7 @@ Various vector index parameters are configurable at collection creation time, in
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START SetVectorIndexParams"
@@ -391,7 +391,7 @@ Various vector index parameters are configurable at collection creation time, in
 Configure each property to choose whether to vectorize property name, include property in vectorization, and choose tokenization type.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START PropModuleSettings"
@@ -400,7 +400,7 @@ Configure each property to choose whether to vectorize property name, include pr
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START PropModuleSettings"
@@ -433,7 +433,7 @@ Configure each property to choose whether to vectorize property name, include pr
 If you choose to bring your own vectors, you should specify the `distance metric`.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DistanceMetric"
@@ -442,7 +442,7 @@ If you choose to bring your own vectors, you should specify the `distance metric
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DistanceMetric"
@@ -487,7 +487,7 @@ For details on the configuration parameters, see the following:
 Various [inverted index parameters](../config-refs/schema/index.md#invertedindexconfig) are configurable for each collection. Some parameters are set at the collection level, while others are set at the property level.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SetInvertedIndexParams"
@@ -496,7 +496,7 @@ Various [inverted index parameters](../config-refs/schema/index.md#invertedindex
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START SetInvertedIndexParams"
@@ -536,7 +536,7 @@ Specify a `generative` module for a collection (for RAG).
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START SetGenerative"
@@ -545,7 +545,7 @@ Specify a `generative` module for a collection (for RAG).
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START SetGenerative"
@@ -578,7 +578,7 @@ Specify a `generative` module for a collection (for RAG).
 Configure replication per collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReplicationSettings"
@@ -587,7 +587,7 @@ Configure replication per collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReplicationSettings"
@@ -634,7 +634,7 @@ For details on the configuration parameters, see the following:
 Configure sharding per collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ShardingSettings"
@@ -643,7 +643,7 @@ Configure sharding per collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ShardingSettings"
@@ -690,7 +690,7 @@ For details on the configuration parameters, see the following:
 Create a collection with multi-tenancy enabled.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Multi-tenancy"
@@ -699,7 +699,7 @@ Create a collection with multi-tenancy enabled.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START Multi-tenancy"
@@ -732,7 +732,7 @@ Create a collection with multi-tenancy enabled.
 Retrieve a collection definition from the schema.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReadOneCollection"
@@ -740,7 +740,7 @@ Retrieve a collection definition from the schema.
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReadOneCollection"
@@ -956,7 +956,7 @@ For image searches, see [Image search](../search/image.md).
 Fetch the database schema to retrieve all of the collection definitions.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReadAllCollections"
@@ -965,7 +965,7 @@ Fetch the database schema to retrieve all of the collection definitions.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReadAllCollections"
@@ -1016,7 +1016,7 @@ Fetch the database schema to retrieve all of the collection definitions.
 Some definitions cannot be modified after you create your collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateCollection"
@@ -1025,7 +1025,7 @@ Some definitions cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START UpdateCollection"
@@ -1064,7 +1064,7 @@ Some definitions cannot be modified after you create your collection.
 Some parameters cannot be modified after you create your collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ModifyParam"
@@ -1073,7 +1073,7 @@ Some parameters cannot be modified after you create your collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ModifyParam"

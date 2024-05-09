@@ -24,7 +24,7 @@ You can get objects without specifying any parameters. This returns objects orde
 
 <Tabs groupId="languages">
 
- <TabItem value="py" label="Python (v4)">
+ <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# BasicGetPython"
@@ -33,7 +33,7 @@ You can get objects without specifying any parameters. This returns objects orde
     />
   </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -103,7 +103,7 @@ The output is like this:
 Use `limit` to set a fixed maximum number of objects to return.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithLimitPython"
@@ -112,7 +112,7 @@ Use `limit` to set a fixed maximum number of objects to return.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -174,7 +174,7 @@ The output is like this:
 To start in the middle of your result set, define an `offset`. Set a `limit` to return objects starting at the offset.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithLimitOffsetPython"
@@ -183,7 +183,7 @@ To start in the middle of your result set, define an `offset`. Set a `limit` to 
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -248,7 +248,7 @@ To paginate through the entire database, use a [cursor](../manage-data/read-all-
 You can specify which object properties to return.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetPropertiesPython"
@@ -258,7 +258,7 @@ You can specify which object properties to return.
 </TabItem>
 
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -320,7 +320,7 @@ The output is like this:
 You can retrieve the object vector. (Also applicable where [named vectors](../config-refs/schema/multi-vector.md) are used.)
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetObjectVectorPython"
@@ -329,7 +329,7 @@ You can retrieve the object vector. (Also applicable where [named vectors](../co
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# GetObjectVectorPython"
@@ -390,7 +390,7 @@ The output is like this:
 You can retrieve the object `id` (uuid).
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 
 <FilteredTextBlock
   text={PyCode}
@@ -400,7 +400,7 @@ You can retrieve the object `id` (uuid).
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -466,7 +466,7 @@ To retrieve properties from cross-referenced objects, specify:
 - The properties to retrieve
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithCrossRefsPython"
@@ -475,7 +475,7 @@ To retrieve properties from cross-referenced objects, specify:
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -537,7 +537,7 @@ The output is like this:
 You can specify metadata fields to be returned.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# GetWithMetadataPython"
@@ -546,7 +546,7 @@ You can specify metadata fields to be returned.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 <FilteredTextBlock
   text={PyCodeV3}
@@ -597,7 +597,7 @@ For a comprehensive list of metadata fields, see [GraphQL: Additional properties
 If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the tenant parameter in each query.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# MultiTenancy"
@@ -606,7 +606,7 @@ If [multi-tenancy](../concepts/data.md#multi-tenancy) is enabled, specify the te
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# MultiTenancy"

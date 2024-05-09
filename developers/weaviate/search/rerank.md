@@ -44,7 +44,7 @@ A collection can have multiple rerankers. If multiple `reranker` modules are ena
 Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={SimilarityPyCode}
       startMarker="# NamedVectorNearTextPython"
@@ -53,7 +53,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={SimilarityPyCodeV3}
       startMarker="# NamedVectorNearTextPython"
@@ -95,7 +95,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 To rerank the results of a vector search, configure the object properties to sort on.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START nearTextRerank Python"
@@ -104,7 +104,7 @@ To rerank the results of a vector search, configure the object properties to sor
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START nearTextRerank Python"
@@ -160,7 +160,7 @@ The response should look like this:
 To rerank the results of a keyword search, configure the object properties to sort on.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START bm25Rerank Python"
@@ -169,7 +169,7 @@ To rerank the results of a keyword search, configure the object properties to so
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START bm25Rerank Python"

@@ -67,7 +67,7 @@ There is no direct path to convert a sandbox cluster to a managed cluster. Follo
 To export your collection definitions, follow these steps:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ReadAllCollections"
@@ -76,7 +76,7 @@ To export your collection definitions, follow these steps:
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ReadAllCollections"
@@ -138,7 +138,7 @@ The managed cluster has new API keys. Update the API keys in your client code to
 Use the exported (sandbox cluster) schema to recreate the collection schema in the managed cluster. For more details on creating schemas, see [Manage collections](/developers/weaviate/manage-data/collections#create-a-collection).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateCollectionWithProperties"
@@ -147,7 +147,7 @@ Use the exported (sandbox cluster) schema to recreate the collection schema in t
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateCollectionWithProperties"

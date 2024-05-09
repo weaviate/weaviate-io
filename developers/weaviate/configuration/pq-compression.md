@@ -59,7 +59,7 @@ Specify PQ settings for each collection for which it is to be enabled.
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START CollectionWithAutoPQ"
@@ -68,7 +68,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START CollectionWithAutoPQ"
@@ -136,7 +136,7 @@ The next few sections work through these steps.
 [Create a collection](../manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START InitialSchema"
@@ -145,7 +145,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START InitialSchema"
@@ -209,7 +209,7 @@ We recommend loading a representative sample such that the trained centroids are
   </div>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START DownloadData"
@@ -218,7 +218,7 @@ We recommend loading a representative sample such that the trained centroids are
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START DownloadData"
@@ -264,7 +264,7 @@ We recommend loading a representative sample such that the trained centroids are
   </summary>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START LoadData"
@@ -273,7 +273,7 @@ We recommend loading a representative sample such that the trained centroids are
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START LoadData"
@@ -328,7 +328,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START UpdateSchema"
@@ -337,7 +337,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START UpdateSchema"
@@ -433,7 +433,7 @@ docker inspect --format='{{.LogPath}}' <your-weaviate-container-id>
 To review the current `pq` configuration, you can retrieve it as shown below.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GetSchema"
@@ -442,7 +442,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START GetSchema"

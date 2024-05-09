@@ -25,7 +25,7 @@ import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts
 A hybrid on collections with named vectors configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# NamedVectorHybridPython"
@@ -34,7 +34,7 @@ A hybrid on collections with named vectors configured must include a `target` ve
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# NamedVectorHybridPython"
@@ -92,7 +92,7 @@ The output is like this:
 Combines results of a vector search and a keyword search based on the query string.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridBasicPython"
@@ -101,7 +101,7 @@ Combines results of a vector search and a keyword search based on the query stri
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridBasicPython"
@@ -157,7 +157,7 @@ The output is like this:
 Use the metadata properties to understand why an object is selected.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithScorePython"
@@ -166,7 +166,7 @@ Use the metadata properties to understand why an object is selected.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithScorePython"
@@ -225,7 +225,7 @@ Use the `alpha` argument to change how much each search affects the results.
 - An `alpha` of `0` is a pure keyword search.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithAlphaPython"
@@ -234,7 +234,7 @@ Use the `alpha` argument to change how much each search affects the results.
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithAlphaPython"
@@ -296,7 +296,7 @@ The output is like this:
 - To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithFusionTypePython"
@@ -305,7 +305,7 @@ The output is like this:
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithFusionTypePython"
@@ -373,7 +373,7 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 The keyword search portion of hybrid search can be directed to only search a subset of object properties. This does not affect the vector search portion.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithPropertiesPython"
@@ -382,7 +382,7 @@ The keyword search portion of hybrid search can be directed to only search a sub
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithPropertiesPython"
@@ -438,7 +438,7 @@ The output is like this:
 Specify the relative value of an object's `properties` in the keyword search. Higher values increase the property's contribution to the search score.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithPropertyWeightingPython"
@@ -447,7 +447,7 @@ Specify the relative value of an object's `properties` in the keyword search. Hi
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithPropertyWeightingPython"
@@ -503,7 +503,7 @@ The output is like this:
 To specify a vector instead of using a vector of the query string, pass it in addition to the query string for the keyword search.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithVectorPython"
@@ -512,7 +512,7 @@ To specify a vector instead of using a vector of the query string, pass it in ad
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithVectorPython"
@@ -570,7 +570,7 @@ Use `limit` to set a fixed maximum number of objects to return.
 Optionally, use `offset` to paginate the results.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START limit Python"
@@ -579,7 +579,7 @@ Optionally, use `offset` to paginate the results.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START limit Python"
@@ -621,7 +621,7 @@ Optionally, use `offset` to paginate the results.
 To limit results to groups with similar distances from the query, use the [`autocut`](../api/graphql/additional-operators.md#autocut) filter. Specify the `Relative Score Fusion` ranking method when you use autocut with hybrid search.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START autocut Python"
@@ -630,7 +630,7 @@ To limit results to groups with similar distances from the query, use the [`auto
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START autocut Python"
@@ -686,7 +686,7 @@ The output is like this:
 For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow your search.
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# HybridWithFilterPython"
@@ -695,7 +695,7 @@ For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow
 />
 </TabItem>
 
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# HybridWithFilterPython"

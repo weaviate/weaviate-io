@@ -23,7 +23,7 @@ The examples on this page demonstrate how to create individual objects in Weavia
 This example creates an object in the `JeopardyQuestion` collection.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# CreateObject START"
@@ -32,7 +32,7 @@ This example creates an object in the `JeopardyQuestion` collection.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# CreateObject START"
@@ -98,7 +98,7 @@ By default, [auto-schema](/developers/weaviate/config-refs/schema#autoschema) cr
 When you create an object, you can provide a vector. (For specifying multiple, named vectors, see [below](#create-an-object-with-named-vectors).)
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# CreateObjectWithVector START"
@@ -107,7 +107,7 @@ When you create an object, you can provide a vector. (For specifying multiple, n
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# CreateObjectWithVector START"
@@ -161,7 +161,7 @@ When you create an object, you can provide a vector. (For specifying multiple, n
 When you create an object, you can specify named vectors (if [configured in your collection](./collections.mdx#define-multiple-named-vectors)).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# CreateObjectNamedVectors START"
@@ -170,7 +170,7 @@ When you create an object, you can specify named vectors (if [configured in your
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# CreateObjectNamedVectors START"
@@ -207,7 +207,7 @@ If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedi
 :::
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# CreateObjectWithId START"
@@ -216,7 +216,7 @@ If no ID is provided, Weaviate will generate a random [UUID](https://en.wikipedi
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# CreateObjectWithId START"
@@ -271,7 +271,7 @@ Object IDs are not randomly generated. The same value always generates the same 
 :::
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# CreateObjectWithDeterministicId START"
@@ -280,7 +280,7 @@ Object IDs are not randomly generated. The same value always generates the same 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# CreateObjectWithDeterministicId START"
@@ -346,7 +346,7 @@ import XrefTSCodeLegacy from '!!raw-loader!/_includes/code/howto/manage-data.cro
 You can create an object with cross-references to other objects.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={XrefPyCode}
       startMarker="# ObjectWithCrossRef"
@@ -355,7 +355,7 @@ You can create an object with cross-references to other objects.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={XrefPyCodeV3}
       startMarker="# ObjectWithCrossRef"
@@ -404,7 +404,7 @@ import CreateWithGeo from '/_includes/code/howto/manage-data.create.with.geo.mdx
 Before you create an object, you can [validate](/developers/weaviate/api/rest#tag/objects/post/objects/validate) it against the collection definition.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# ValidateObject START"
@@ -413,7 +413,7 @@ Before you create an object, you can [validate](/developers/weaviate/api/rest#ta
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# ValidateObject START"

@@ -37,7 +37,7 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
 
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableMultiTenancy"
@@ -46,7 +46,7 @@ Multi-tenancy is disabled by default. To enable it, set the `multiTenancyConfig`
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START EnableMultiTenancy"
@@ -113,7 +113,7 @@ Tenant status is available from Weaviate `1.21` onwards.
 
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddTenantsToClass"
@@ -122,7 +122,7 @@ Tenant status is available from Weaviate `1.21` onwards.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START AddTenantsToClass"
@@ -173,7 +173,7 @@ Tenant status is available from Weaviate `1.21` onwards.
 List existing tenants in a collection (e.g.`MultiTenancyCollection`):
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ListTenants"
@@ -182,7 +182,7 @@ List existing tenants in a collection (e.g.`MultiTenancyCollection`):
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ListTenants"
@@ -236,7 +236,7 @@ Non-existing tenants are ignored.
 
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RemoveTenants"
@@ -245,7 +245,7 @@ Non-existing tenants are ignored.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START RemoveTenants"
@@ -297,7 +297,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateTenants"
@@ -324,7 +324,7 @@ Update existing tenants' activity status to active (`HOT`) or inactive (`COLD`).
 Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD operation, as shown in the object creation example below.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START CreateMtObject"
@@ -333,7 +333,7 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START CreateMtObject"
@@ -385,7 +385,7 @@ Multi-tenancy collections require tenant name (e.g. `tenantA`) with each CRUD op
 Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Get` and `Aggregate` query operation.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START Search"
@@ -394,7 +394,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) with each `Ge
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START Search"
@@ -450,7 +450,7 @@ A cross-reference can be added from a multi-tenancy collection object to:
 Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating, updating or deleting cross-references.
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddCrossRef"
@@ -459,7 +459,7 @@ Multi-tenancy collections require the tenant name (e.g. `tenantA`) when creating
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START AddCrossRef"
