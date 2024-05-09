@@ -14,11 +14,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 
 
-`Hybrid` search combines the results of a vector search and a keyword (BM25F) search. 
+`Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
 
-<<<<<<< HEAD
-Weaviate uses a ranking method to merge the search results. The [ranking method](#change-the-ranking-method) and the [ranking weights](#balance-keyword-and-vector-search) are configurable.
-=======
+The [fusion method](#change-the-fusion-method) and the [relative weights](#balance-keyword-and-vector-search) are configurable.
 
 ## Named vectors
 
@@ -89,7 +87,6 @@ The output is like this:
 />
 
 </details>
->>>>>>> e6bfa100a0aa953a108c85e8ee468c879c8494ef
 
 ## Basic hybrid search
 
@@ -357,7 +354,7 @@ The output is like this:
 
 </details>
 
-## Change the ranking method
+## Change the fusion method
 
 :::info Added in `v1.20`
 :::
@@ -635,20 +632,15 @@ The output is like this:
 
 </details>
 
-## Vector similarity search
+## Vector search parameters
 
 :::info Added in `v1.25`
 :::
 
-Hybrid searches can use some [vector similarity search](/developers/weaviate/search/similarity) methods to improve results.
-
-- [Near text](/developers/weaviate/search/similarity#search-with-text)
-- [Near vector](/developers/weaviate/search/similarity#search-with-a-vector)
-
-To run a vector similarity search, specify the similarity search as a sub-search of the hybrid search.
+You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`.
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
+<TabItem value="py" label="Python (v4)">
 <FilteredTextBlock
   text={PyCode}
   startMarker="# START VectorSimilarityPython"
@@ -656,13 +648,20 @@ To run a vector similarity search, specify the similarity search as a sub-search
   language="python"
 />
 </TabItem>
-<TabItem value="py" label="GraphQL">
+<TabItem value="py3" label="GraphQL">
 <FilteredTextBlock
   text={PyCodeV3}
   startMarker="# VectorSimilarityGraphQL"
   endMarker="# END VectorSimilarityGraphQL"
   language="python"
 />
+</TabItem>
+<TabItem value="js" label="JS/TS v3">
+
+```js
+// Coming soon
+```
+
 </TabItem>
 </Tabs>
 

@@ -165,7 +165,6 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # HybridWithFusionTypePython
 # highlight-start
 from weaviate.classes.query import HybridFusion
-
 # highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
