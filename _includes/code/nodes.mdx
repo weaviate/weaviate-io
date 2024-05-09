@@ -27,7 +27,23 @@ print(nodes_status)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript/TypeScript">
+<TabItem value="js" label="JS/TS (v3)">
+
+```js
+import weaviate from 'weaviate-client';
+
+const client = await weaviate.connectToLocal()
+
+const response = await client.cluster.nodes({
+  collection: 'JeopardyQuestion',
+  output: 'minimal'
+})
+
+console.log(response)
+```
+
+</TabItem>
+<TabItem value="js2" label="JS/TS (v3)">
 
 ```js
 import weaviate from 'weaviate-ts-client';
