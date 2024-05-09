@@ -292,16 +292,14 @@ assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # ===== Hybrid with vector similarity =====
 # =========================================
 
-# TODO Needs tests
-
 # START VectorSimilarityPython
-from weaviate.classes.query import HybridNear, Move, HybridFusion
+from weaviate.classes.query import HybridVector, Move, HybridFusion
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     limit=5,
-    vector=HybridNear.text(
-        text="large animal",
+    vector=HybridVector.near_text(
+        query="large animal",
         move_away=Move(force=0.5, concepts=["mammal", "terrestrial"]),
     ),
     alpha=0.75,
@@ -309,11 +307,14 @@ response = jeopardy.query.hybrid(
 )
 # END VectorSimilarityPython
 
+assert len(response.objects) <= 5
+assert len(response.objects) > 0
+
 # =========================================
 # ===== Hybrid with groupBy =====
 # =========================================
 
-# TODO Needs tests
+from weaviate.classes.query import GroupBy
 
 # START HybridGroupByPy4
 # Grouping parameters
@@ -334,5 +335,8 @@ response = jeopardy.query.hybrid(
 for g in response.groups:
     print(g)
 # END HybridGroupByPy4
-    
+
+assert len(response.groups) <= 2
+assert len(response.groups) > 0
+
 client.close()
