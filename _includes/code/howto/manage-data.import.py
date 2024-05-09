@@ -523,4 +523,7 @@ collection.data.insert_many(
 response = collection.aggregate.over_all(total_count=True)
 assert response.total_count == 5
 
+# Clean up
+client.collections.delete("NewCollection")
+
 client.close()

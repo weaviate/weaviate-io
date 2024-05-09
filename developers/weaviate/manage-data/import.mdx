@@ -418,12 +418,11 @@ Data imports can be resource intensive. Consider the following when you import l
 
 ### Asynchronous imports
 
-:::info Added in `v1.22`.
+:::caution Experimental
+Available starting in `v1.22`. This is an experimental feature. Please use with caution.
 :::
 
 To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing).
-
-Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use.
 
 To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration file.
 
@@ -440,9 +439,9 @@ weaviate:
 :::info Added in `v1.23`.
 :::
 
-The gRPC API is faster than the REST API. Use the gRPC API to improve import speeds.
+The [gRPC API](../api/grpc.md) is faster than the REST API. Use the gRPC API to improve import speeds.
 
-The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) use gRPC. If you cannot use one of the new clients, you can also access the [gRPC API directly](../api/grpc.md).
+The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) use gRPC.
 
 ## Related pages
 
