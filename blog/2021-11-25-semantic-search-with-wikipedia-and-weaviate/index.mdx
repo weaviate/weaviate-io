@@ -137,6 +137,8 @@ You can find the complete Docker Compose file we've used here.
 ## Query the Data
 The current Weaviate setup has two modules enabled: semantic search and Q&A. The modules can be used for different types of queries. The query language used is GraphQL and can be used with a wide variety of [client libraries](/developers/weaviate/client-libraries) in different programming languages.
 
+To follow along, and try out these examples, [create an account in Weaviate Cloud](https://weaviate.io/developers/wcs/quickstart).
+
 ### Example 1 — natural language questions
 In this example, we pose a natural language question, and we will assume that the first result contains the answer (hence the limit is set to 1). The result based on the latest dataset contains a certainty (i.e., the distance from the query to the answer in the vector space) of ≈ 0.68. In your end application, you can set limits to the certainty to determine if you want to present the results to the end-user, in the latest paragraph of this article (Implementation Strategies — Bringing Semantic Search to Production) you'll find more info about this.
 
@@ -163,8 +165,6 @@ In this example, we pose a natural language question, and we will assume that th
 }
 ```
 
-💡 LIVE — [try out this query](https://console.weaviate.io/console/query#weaviate_uri=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080&graphql_query=%23%23%0A%23%20Using%20the%20Q%26A%20module%20I%0A%23%23%0A%7B%0A%20%20Get%20%7B%0A%20%20%20%20Paragraph(%0A%20%20%20%20%20%20ask%3A%20%7B%0A%20%20%20%20%20%20%20%20question%3A%20%22Where%20is%20the%20States%20General%20of%20The%20Netherlands%20located%3F%22%0A%20%20%20%20%20%20%20%20properties%3A%20%5B%22content%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20answer%20%7B%0A%20%20%20%20%20%20%20%20%20%20result%0A%20%20%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20content%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
-
 ### Example 2 — generic concept search
 One can not only search for natural language questions, but also generic concepts like "Italian food" in the overview below. The `nearText` filter also allows for [more specific filters](https://towardsdatascience.com/semantic-search-through-wikipedia-with-weaviate-graphql-sentence-bert-and-bert-q-a-3c8a5edeacf6#:~:text=more%20specific%20filters) like `moveAwayFrom` and `MoveTo` concepts to manipulate the search through vector space.
 
@@ -189,8 +189,6 @@ One can not only search for natural language questions, but also generic concept
   }
 }
 ```
-
-💡 LIVE — [try out this query](https://console.weaviate.io/console/query#weaviate_uri=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080&graphql_query=%23%23%0A%23%20Generic%20question%20about%20Italian%20food%0A%23%23%0A%7B%0A%20%20Get%20%7B%0A%20%20%20%20Paragraph(%0A%20%20%20%20%20%20nearText%3A%20%7B%0A%20%20%20%20%20%20%20%20concepts%3A%20%5B%22Italian%20food%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%2050%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20content%0A%20%20%20%20%20%20order%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20inArticle%20%7B%0A%20%20%20%20%20%20%20%20...%20on%20Article%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
 
 ### Example 3 — mix natural language questions with scalar search
 Within Weaviate you can also mix scalar search filters with vector search filters. In the specific case, we want to conduct a semantic search query through all the paragraphs of articles about the saxophone player Michael Brecker.
@@ -228,8 +226,6 @@ Within Weaviate you can also mix scalar search filters with vector search filter
 }
 ```
 
-💡 LIVE — [try out this query](https://console.weaviate.io/console/query#weaviate_uri=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080&graphql_query=%23%23%0A%23%20Mixing%20scalar%20queries%20and%20semantic%20search%20queries%0A%23%23%0A%7B%0A%20%20Get%20%7B%0A%20%20%20%20Paragraph(%0A%20%20%20%20%20%20ask%3A%20%7B%0A%20%20%20%20%20%20%20%20question%3A%20%22What%20was%20Michael%20Brecker's%20first%20saxophone%3F%22%0A%20%20%20%20%20%20%20%20properties%3A%20%5B%22content%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20where%3A%20%7B%0A%20%20%20%20%20%20%20%20operator%3A%20Equal%0A%20%20%20%20%20%20%20%20path%3A%20%5B%22inArticle%22%2C%20%22Article%22%2C%20%22title%22%5D%0A%20%20%20%20%20%20%20%20valueText%3A%20%22Michael%20Brecker%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20answer%20%7B%0A%20%20%20%20%20%20%20%20%20%20result%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20content%0A%20%20%20%20%20%20order%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20inArticle%20%7B%0A%20%20%20%20%20%20%20%20...%20on%20Article%20%7B%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
-
 ### Example 4 — mix generic concept search with graph relations
 With Weaviate you can also use the GraphQL interface to make graph relations like -in the case of Wikipedia- links between different articles. In this overview we connect the paragraphs to the articles and show the linking articles.
 
@@ -259,8 +255,6 @@ With Weaviate you can also use the GraphQL interface to make graph relations lik
   }
 }
 ```
-
-💡 LIVE — [try out this query](https://console.weaviate.io/console/query#weaviate_uri=http://semantic-search-wikipedia-with-weaviate.api.vectors.network:8080&graphql_query=%23%23%0A%23%20Using%20the%20Q%26A%20module%20I%0A%23%23%0A%7B%0A%20%20Get%20%7B%0A%20%20%20%20Paragraph(%0A%20%20%20%20%20%20ask%3A%20%7B%0A%20%20%20%20%20%20%20%20question%3A%20%22Where%20is%20the%20States%20General%20of%20The%20Netherlands%20located%3F%22%0A%20%20%20%20%20%20%20%20properties%3A%20%5B%22content%22%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20limit%3A%201%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20_additional%20%7B%0A%20%20%20%20%20%20%20%20answer%20%7B%0A%20%20%20%20%20%20%20%20%20%20result%0A%20%20%20%20%20%20%20%20%20%20certainty%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20content%0A%20%20%20%20%20%20title%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
 
 ## Implementation Strategies — Bringing Semantic Search to Production
 The goal of Weaviate is to allow you to bring large ML-first applications to production. But like with any technology, it is not a silver bullet and success depends on your implementation.
