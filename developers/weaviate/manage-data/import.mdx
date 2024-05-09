@@ -384,7 +384,9 @@ import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-i
 
 ## Model provider configurations
 
-You can configure the batch vectorization settings for each model provider, such as the requests per minute or tokens per minute. Note that each provider exposes different configuration options. The following examples sets rate limits for Cohere and OpenAI integrations, and provides API keys for both.
+You can configure the batch vectorization settings for each model provider, such as the requests per minute or tokens per minute. The following examples sets rate limits for Cohere and OpenAI integrations, and provides API keys for both.
+
+Note that each provider exposes different configuration options.
 
  <Tabs groupId="languages">
   <TabItem value="py" label="Python (v4)">
@@ -399,9 +401,9 @@ You can configure the batch vectorization settings for each model provider, such
 
 ### Rate limiting headers
 
-To manually set rate limits for the batch vectorizer, send the following request headers:
+To manually set internal rate limit parameters for the batch vectorizer, add the following request headers at client instantiation ([Python](../client-libraries/python/index.md#instantiate-a-client), [JS/TS](../client-libraries/typescript/index.mdx), [Java](../client-libraries/java.md#custom-headers), [Go](../client-libraries/go.md#custom-headers)):
 
-| Purpose | Header |
+| Purpose | Header key |
 | :- | :- |
 | Limit tokens | x-ratelimit-limit-tokens |
 | Remaining tokens | x-ratelimit-remaining-tokens |
