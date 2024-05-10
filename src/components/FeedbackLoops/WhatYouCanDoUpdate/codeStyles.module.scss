@@ -1,0 +1,48 @@
+.linkRight {
+  margin: auto;
+}
+.codeSnip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 654px;
+  border-radius: 0.9375rem;
+  border: 1px solid #0073b4;
+  background: #130c49;
+  box-shadow: 0px 24px 64px 0px rgba(22, 27, 45, 0.04);
+  width: 37.125rem;
+  height: 33rem;
+  flex-shrink: 0;
+  margin-top: 60px;
+
+  @media screen and (max-width: 500px) {
+    height: 100%;
+  }
+
+  pre {
+    display: inherit;
+    overflow-x: auto;
+    background: rgb(19, 12, 73) !important;
+    width: 100%;
+    box-shadow: none !important;
+    border: none !important;
+
+    code {
+      margin-top: 20px;
+    }
+  }
+}
+.copyButton {
+  border-radius: 0.3125rem;
+  border: 1px solid #0073b4;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 157.33%;
+  background: none;
+  margin: auto 10px 4px auto;
+}
