@@ -167,7 +167,7 @@ const quotesCollection = await client.collections.create({
       skipVectorisation: true,
     },
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
 });
 ```
 
