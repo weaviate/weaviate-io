@@ -14,8 +14,9 @@ import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 
 
-`Hybrid` search combines results of a vector search and a keyword (BM25F) search. You can set the [weights](#balance-keyword-and-vector-search) or the [ranking method](#change-the-ranking-method).
+`Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
 
+The [fusion method](#change-the-fusion-method) and the [relative weights](#balance-keyword-and-vector-search) are configurable.
 
 ## Named vectors
 
@@ -89,7 +90,7 @@ The output is like this:
 
 ## Basic hybrid search
 
-Combines results of a vector search and a keyword search based on the query string.
+Combine the results of a vector search and a keyword search. The search uses a single query string.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -152,9 +153,77 @@ The output is like this:
 
 </details>
 
+## Named vectors
+
+:::info Added in `v1.24`
+:::
+
+To run a hybrid search on a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="py3" label="Python (v3)">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorHybridPython"
+      endMarker="# END NamedVectorHybridPython"
+      language="python"
+    />
+  </TabItem>
+
+  <TabItem value="js" label="JS/TS (Beta)">
+    <FilteredTextBlock
+      text={TSCode}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="js2" label="JS/TS">
+    <FilteredTextBlock
+      text={TSCodeLegacy}
+      startMarker="// NamedVectorHybrid"
+      endMarker="// END NamedVectorHybrid"
+      language="ts"
+    />
+  </TabItem>
+
+  <TabItem value="graphql" label="GraphQL">
+    <FilteredTextBlock
+      text={PyCodeV3}
+      startMarker="# NamedVectorHybridGraphQL"
+      endMarker="# END NamedVectorHybridGraphQL"
+      language="graphql"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# START Expected NamedVectorNearText results"
+  endMarker="# END Expected NamedVectorNearText results"
+  language="json"
+/>
+
+</details>
+
 ## Explain the search results
 
-Use the metadata properties to understand why an object is selected.
+To see the object rankings, set the `explain score` field in your query. The search rankings are part of the object metadata. Weaviate uses the score to order the search results.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -219,7 +288,7 @@ The output is like this:
 
 ## Balance keyword and vector search
 
-Use the `alpha` argument to change how much each search affects the results.
+Hybrid search results can favor the keyword component or the vector component. To change the relative weights of the keyword and vector components, set the `alpha` value in your query.
 
 - An `alpha` of `1` is a pure vector search.
 - An `alpha` of `0` is a pure keyword search.
@@ -285,7 +354,7 @@ The output is like this:
 
 </details>
 
-## Change the ranking method
+## Change the fusion method
 
 :::info Added in `v1.20`
 :::
@@ -365,7 +434,7 @@ For a discussion of fusion methods, see [this blog post](/blog/hybrid-search-fus
 
 </details>
 
-## Specify properties to keyword search
+## Specify keyword search properties
 
 :::info Added in `v1.19.0`
 :::
@@ -498,9 +567,9 @@ The output is like this:
 
 </details>
 
-## Specify a vector
+## Specify a search vector
 
-To specify a vector instead of using a vector of the query string, pass it in addition to the query string for the keyword search.
+The vector component of hybrid search can use a query string or a query vector. To specify a query vector instead of a query string, provide a query vector (for the vector search) and a query string (for the keyword search) in your query.
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">
@@ -560,6 +629,83 @@ The output is like this:
   endMarker="# END Expected HybridWithVector results"
   language="json"
 />
+
+</details>
+
+## Vector search parameters
+
+:::info Added in `v1.25`
+:::
+
+You can specify [vector similarity search](/developers/weaviate/search/similarity) parameters similar to [near text](/developers/weaviate/search/similarity.md#search-with-text) or [near vector](/developers/weaviate/search/similarity.md#search-with-a-vector) searches, such as `group by` and `move to` / `move away`.
+
+<Tabs groupId="languages">
+<TabItem value="py" label="Python (v4)">
+<FilteredTextBlock
+  text={PyCode}
+  startMarker="# START VectorSimilarityPython"
+  endMarker="# END VectorSimilarityPython"
+  language="python"
+/>
+</TabItem>
+<TabItem value="py3" label="GraphQL">
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# VectorSimilarityGraphQL"
+  endMarker="# END VectorSimilarityGraphQL"
+  language="python"
+/>
+</TabItem>
+<TabItem value="js" label="JS/TS v3">
+
+```js
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The output is like this:
+
+<FilteredTextBlock
+  text={PyCodeV3}
+  startMarker="# Expected VectorSimilarityGraphQL results"
+  endMarker="# END Expected VectorSimilarityGraphQL results"
+  language="json"
+/>
+
+</details>
+
+## Group results
+
+:::info Added in `v1.25`
+:::
+
+Define criteria to group search results.
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START HybridGroupByPy4"
+      endMarker="# END HybridGroupByPy4"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+<details>
+  <summary>Example response</summary>
+
+The response is like this:
+
+```
+'Jeopardy!'
+'Double Jeopardy!'
+```
 
 </details>
 
@@ -683,7 +829,7 @@ The output is like this:
 
 ## Filter results
 
-For more specific results, use a [`filter`](../api/graphql/filters.md) to narrow your search.
+To narrow your search results, use a [`filter`](../api/graphql/filters.md).
 
 <Tabs groupId="languages">
 <TabItem value="py" label="Python Client v4">

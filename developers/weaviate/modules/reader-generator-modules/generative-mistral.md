@@ -5,6 +5,9 @@ image: og/docs/modules/generative-mistral.jpg
 # tags: ['generative', 'rag', 'mistral']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="mistral" />
 
 ## In short
 

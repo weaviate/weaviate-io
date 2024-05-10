@@ -575,6 +575,10 @@ Specify a `generative` module for a collection (for RAG).
 
 ## Replication settings
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<RaftRFChangeWarning/>
+
 Configure replication per collection.
 
 <Tabs groupId="languages">
@@ -1013,7 +1017,9 @@ Fetch the database schema to retrieve all of the collection definitions.
 
 ## Update a collection definition
 
-Some definitions cannot be modified after you create your collection.
+<RaftRFChangeWarning/>
+
+You can update a collection definition to change the [mutable collection settings](../config-refs/schema/index.md#mutability).
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

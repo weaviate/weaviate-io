@@ -20,7 +20,7 @@ Vector search returns the objects with most similar vectors to that of the query
 :::info Added in `v1.24`
 :::
 
-Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
+To search a collection that has [named vectors](../config-refs/schema/multi-vector.md), use the `target vector` field to specify which named vector to search.
 
 <Tabs groupId="languages">
   <TabItem value="py" label="Python Client v4">

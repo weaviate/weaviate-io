@@ -17,7 +17,6 @@ import GoCode from '!!raw-loader!/_includes/code/howto/go/docs/manage-data.impor
 
 [Batch imports](../tutorials/import.md#to-batch-or-not-to-batch) are an efficient way to add multiple data objects and cross-references.
 
-
 <details>
   <summary>Additional information</summary>
 
@@ -289,12 +288,12 @@ You can batch create links from an object to another other object through cross-
   </TabItem>
 </Tabs>
 
-## Python-specific batching
+## Python-specific considerations
 
-The Python clients have built-in batching methods to help you optimize your import speed. Please see the relevant documentation for more information.
+The Python clients have built-in batching methods to help you optimize import speed. For details, see the client documentation:
 
-- [Batching: Python client `v4`](../client-libraries/python/index.md#batching)
-- [Batching: Python client `v3`](../client-libraries/python/python_v3.md#batching)
+- [Python client `v4`](../client-libraries/python/index.md#batching)
+- [Python client `v3`](../client-libraries/python/python_v3.md#batching)
 
 ## Stream data from large files
 
@@ -365,14 +364,43 @@ If your dataset is large, consider streaming the import to avoid out-of-memory i
   </TabItem>
 </Tabs>
 
-## Additional considerations
+## Batch vectorization
 
-:::info Added in `v1.23`.
+:::info Added in `v1.25`.
 :::
 
-To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing) and use gRPC batch imports.
+import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
 
-Asynchronous indexing is an experimental feature in `1.22`, and may not be suitable for production use. The [Python client `v4`](../client-libraries/python/index.md) uses gRPC. If you cannot use the new client, access the [gRPC API directly](../api/grpc.md).
+<BatchVectorizationOverview />
+
+## Model provider configurations
+
+You can configure the batch vectorization settings for each model provider, such as the requests per minute or tokens per minute. The following examples sets rate limits for Cohere and OpenAI integrations, and provides API keys for both.
+
+Note that each provider exposes different configuration options.
+
+ <Tabs groupId="languages">
+  <TabItem value="py" label="Python (v4)">
+    <FilteredTextBlock
+      text={PyCode}
+      startMarker="# START BatchVectorizationClientModify"
+      endMarker="# END BatchVectorizationClientModify"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+## Additional considerations
+
+Data imports can be resource intensive. Consider the following when you import large amounts of data.
+
+### Asynchronous imports
+
+:::caution Experimental
+Available starting in `v1.22`. This is an experimental feature. Please use with caution.
+:::
+
+To maximize import speed, enable [asynchronous indexing](/developers/weaviate/config-refs/schema/vector-index#asynchronous-indexing).
 
 To enable asynchronous indexing, set the `ASYNC_INDEXING` environment variable to `true` in your Weaviate configuration file.
 
@@ -384,6 +412,14 @@ weaviate:
     ASYNC_INDEXING: 'true'
   ...
 ```
+### gRPC connection
+
+:::info Added in `v1.23`.
+:::
+
+The [gRPC API](../api/grpc.md) is faster than the REST API. Use the gRPC API to improve import speeds.
+
+The [Python client `v4`](../client-libraries/python/index.md) and the [TypeScript client v3](/developers/weaviate/client-libraries/typescript/typescript-v3) use gRPC.
 
 ## Related pages
 

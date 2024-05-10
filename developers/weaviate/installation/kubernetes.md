@@ -145,8 +145,16 @@ Optionally, you can provide the `--create-namespace` parameter which will create
 
 ### Updating the installation after the initial deployment
 
-The above command (`helm upgrade...`) is idempotent, you can run it again, for
-example after adjusting your desired configuration.
+The above command (`helm upgrade...`) is idempotent. In other words, you can run it multiple times after adjusting your desired configuration without causing any unintended changes or side effects.
+
+### Upgrading to `1.25` or higher from pre-`1.25`
+
+:::caution Important
+:::
+
+To upgrade to `1.25` or higher from a pre-`1.25` version, you must delete the deployed `StatefulSet`, update the helm chart to version `17.0.0` or higher, and re-deploy Weaviate.
+
+See the [1.25 migration guide for Kubernetes](../more-resources/migration/weaviate-1-25.md) for more details.
 
 ## Additional Configuration Help
 

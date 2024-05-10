@@ -5,6 +5,10 @@ image: og/docs/modules/generative-anyscale.jpg
 # tags: ['generative', 'rag', 'anyscale']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="anyscale" />
+
 
 ## In short
 

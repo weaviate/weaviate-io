@@ -258,6 +258,10 @@ POST /v1/schema
 
 ### Parameters
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<RaftRFChangeWarning/>
+
 For more details on these parameters, see the [schema configuration reference page](../../config-refs/schema/index.md).
 
 | Name | Location | Type | Description |
@@ -352,6 +356,10 @@ Update settings of an existing collection. Use this endpoint to alter an existin
 <details>
   <summary>The list of mutable settings</summary>
 
+<RaftRFChangeWarning/>
+
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
 - `description`
 - `invertedIndexConfig`
   - `bm25`
@@ -363,7 +371,7 @@ Update settings of an existing collection. Use this endpoint to alter an existin
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
@@ -396,6 +404,8 @@ PUT v1/schema/{collection_name}
 ```
 
 ### Parameters
+
+<RaftRFChangeWarning/>
 
 The URL must contain the following parameter:
 
