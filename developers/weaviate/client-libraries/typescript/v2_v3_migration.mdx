@@ -130,11 +130,13 @@ After you create a connection, you do not have to specify the collection for eac
 </TabItem>
 </Tabs>
 
-Note here that the collection object can be re-used throughout the codebase.
+The collection object can be re-used throughout the codebase.
 
 ### Builder Pattern is removed
 
-The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
+The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries.
+
+The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
 
 <Tabs groupId="builderEx">
 <TabItem value="three" label="Client v3">
