@@ -606,6 +606,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( upvote links )
 
+[v1.25]: https://github.com/weaviate/weaviate/issues?q=is%3Aissue+sort%3Areactions-%2B1-desc+label%3Aplanned-1.25+is%3Aclosed+
 [v1.24]: https://github.com/weaviate/weaviate/issues?q=is%3Aissue+sort%3Areactions-%2B1-desc+label%3Aplanned-1.24+is%3Aclosed+
 [v1.23]: https://github.com/weaviate/weaviate/issues?q=is%3Aissue+sort%3Areactions-%2B1-desc+label%3Aplanned-1.23+is%3Aclosed+
 [v1.22]: https://github.com/weaviate/weaviate/issues?q=is%3Aissue+sort%3Areactions-%2B1-desc+label%3Aplanned-1.22+is%3Aclosed+
@@ -616,6 +617,7 @@ For links to the Java Client releases, expand this section.
 
 [comment]: # ( python client links )
 
+[p4.6.0]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.6.0
 [p4.5.7]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.7
 [p4.5.6]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.6
 [p4.5.5]: https://github.com/weaviate/weaviate-python-client/releases/tag/v4.5.5
