@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import TSv2Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts2.ts';
 import TSv3Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts3.ts';
+import TSv3Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts3.ts';
 
 import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
 
@@ -64,73 +65,30 @@ In most cases, you should use one of the connection helper functions to connect 
 
 You can also use a custom configuration to instantiate the client directly:
 
-<Tabs groupId="platforms">
-<TabItem value="wcs" label="WCS">
-
-```ts
-import weaviate from 'weaviate-client'
-
-const client = await weaviate.connectToWCS(
-  'WEAVIATE_INSTANCE_URL', { // Replace WEAVIATE_INSTANCE_URL with your instance URL
-    authCredentials: new weaviate.ApiKey('WEAVIATE_INSTANCE_API_KEY'), 
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
-    }
-  } 
-)
-
-console.log(client)
-```
-
-</TabItem>
+<Tabs groupId="connections">
 <TabItem value="local" label="Local">
-
-```ts
-import weaviate from 'weaviate-client'
-
-const client = await weaviate.connectToLocal({
-    httpHost: 'localhost',
-    httpPort: 8080,
-    grpcHost: 'localhost',
-    grpcPort: 50051,
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
-    }
-  }
-)
- 
-console.log(client)
-```
-
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ConnectLocal"
+  endMarker="// END ConnectLocal"
+  language="js"
+/>
+</TabItem>
+<TabItem value="wcs" label="Weaviate Cloud">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ConnectCloud"
+  endMarker="// END ConnectCloud"
+  language="js"
+/>
 </TabItem>
 <TabItem value="custom" label="Custom">
-
-```ts
-import weaviate from 'weaviate-client'
-
-const client = await weaviate.client({
-    rest: {
-      host: 'WEAVIATE_INSTANCE_HOST_NAME',
-      port: 8080,
-      secure: true
-    },
-    grpc: {
-      host: 'WEAVIATE_INSTANCE_HOST_NAME',
-      port: 50051,
-      secure: true
-    },
-    auth: {
-      apiKey: process.env.WEAVIATE_API_KEY || ''
-    },
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || ''
-    }
-  }
-)
- 
-console.log(client)
-```
-
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ConnectCustom"
+  endMarker="// END ConnectCustom"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 
