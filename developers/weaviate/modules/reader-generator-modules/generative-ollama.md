@@ -98,6 +98,12 @@ Configurable parameters unique to the the `generative-ollama` module are:
 - `apiEndpoint` (Optional): The URL of the Ollama endpoint. The default is `http://localhost:11434`.
 - `model` (Optional): The model to use. The default is `llama3`.
 
+### Ollama endpoint
+
+Optionally, you can provide the `apiEndpoint` parameter as shown below to specify the URL of the Ollama endpoint.
+
+If you are running Weaviate via Docker, with a local Ollama instance, specify `host.docker.internal:<ollama-port>` to access the host machine from within the container, where `<ollama-port>` is the port on which Ollama is running (default: `11434`).
+
 ### API settings
 
 #### Example
