@@ -1,0 +1,3 @@
+Some [model providers](/developers/weaviate/model-providers/index.md) provide batch vectorization APIs, where each request can include multiple objects.
+
+From Weaviate `v1.25.0`, a batch import automatically makes use of the model providers' batch vectorization APIs where available. This reduces the number of requests to the model provider, improving throughput.

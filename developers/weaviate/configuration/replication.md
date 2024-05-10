@@ -11,6 +11,10 @@ For more about how replication is designed and built in Weaviate, see the [Repli
 
 ## How to configure
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<RaftRFChangeWarning/>
+
 Replication is disabled by default and can be enabled per data class in the [collection configuration](../manage-data/collections.mdx#replication-settings). This means you can set different replication factors per class in your dataset. To enable replication on a class, the replication factor has to be set, which looks like the following:
 
 

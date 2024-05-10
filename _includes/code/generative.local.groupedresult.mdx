@@ -1,0 +1,243 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="languages">
+<TabItem value="graphql" label="GraphQL">
+
+```graphql
+{
+  Get {
+    PodClip(
+      nearText: {
+        concepts: ["What is ref2vec?"]
+      },
+      limit: 5
+    ) {
+      speaker
+      content
+      // highlight-start
+      _additional {
+        generate(
+          groupedResult: {
+            task: "Please answer the question: What is ref2vec? based on the following search results. IMPORTANT! Please make sure your answer is supported by the information in the search results and provide references to the provided content when possible."
+          }
+        ) {
+          groupedResult
+          error
+        }
+      }
+      // highlight-end
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python
+import weaviate
+
+client  = weaviate.Client(
+  url = "https://WEAVIATE_INSTANCE_URL/",  # Replace WEAVIATE_INSTANCE_URL with your instance URL
+)
+
+# highlight-start
+# instruction for the generative module
+generateTask = "Please answer the question: What is ref2vec? based on the following search results. IMPORTANT! Please make sure your answer is supported by the information in the search results and provide references to the provided content when possible."
+# highlight-end
+
+result = (
+  client.query
+  .get("PodClip", ["speaker", "content"])
+  # highlight-start
+  .with_generate(grouped_task=generateTask)
+  # highlight-end
+  .with_near_text({
+    "concepts": ["What is ref2vec?"]
+  })
+  .with_limit(5)
+).do()
+
+print(result)
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript/TypeScript">
+
+```ts
+import weaviate, { ApiKey } from 'weaviate-ts-client';
+
+const client = weaviate.client({
+  scheme: 'https',
+  host: 'edu-demo.weaviate.network',
+  apiKey: new ApiKey('learn-weaviate'),
+});
+
+// highlight-start
+// instruction for the generative module
+const generateTask = 'Please answer the question: What is ref2vec? based on the following search results. IMPORTANT! Please make sure your answer is supported by the information in the search results and provide references to the provided content when possible.';
+// highlight-end
+
+const response = await client.graphql
+  .get()
+  .withClassName('PodClip')
+  .withFields('speaker content')
+  .withNearText({
+    concepts: ['What is ref2vec?'],
+  })
+  .withGenerate({
+    groupedTask: generateTask,
+  })
+  .withLimit(5)
+  .do();
+console.log(JSON.stringify(response, null, 2));
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+  "context"
+  "fmt"
+
+  "github.com/weaviate/weaviate-go-client/v4/weaviate"
+  "github.com/weaviate/weaviate-go-client/v4/weaviate/graphql"
+)
+
+func main() {
+  cfg := weaviate.Config{
+    Host:    "WEAVIATE_INSTANCE_URL",  // Replace with your instance URL
+    Scheme:  "https",
+  }
+  client, err := weaviate.NewClient(cfg)
+  if err != nil {
+    panic(err)
+  }
+  ctx := context.Background()
+
+  fields := []graphql.Field{
+    {Name: "speaker"},
+    {Name: "content"},
+  }
+
+  concepts := []string{"What is ref2vec?"}
+  nearText := client.GraphQL().NearTextArgBuilder().
+    WithConcepts(concepts)
+
+  // highlight-next-line
+  gs := graphql.NewGenerativeSearch().GroupedResult("Please answer the question: What is ref2vec? based on the following search results. IMPORTANT! Please make sure your answer is supported by the information in the search results and provide references to the provided content when possible.")
+
+  result, err := client.GraphQL().Get().
+    WithClassName("PodClip").
+    WithFields(fields...).
+    // highlight-next-line
+    WithGenerativeSearch(gs).
+    WithNearText(nearText).
+    WithLimit(5).
+    Do(ctx)
+
+  if err != nil {
+    panic(err)
+  }
+  fmt.Printf("%v", result)
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+package io.weaviate;
+
+import java.util.HashMap;
+import java.util.Map;
+import io.weaviate.client.Config;
+import io.weaviate.client.WeaviateClient;
+import io.weaviate.client.base.Result;
+import io.weaviate.client.v1.graphql.model.GraphQLResponse;
+import io.weaviate.client.v1.graphql.query.argument.NearTextArgument;
+import io.weaviate.client.v1.graphql.query.fields.Field;
+
+public class App {
+  public static void main(String[] args) {
+    Config config = new Config("https", "WEAVIATE_INSTANCE_URL", headers);
+    // Replace WEAVIATE_INSTANCE_URL with your instance URL
+    WeaviateClient client = new WeaviateClient(config);
+
+    // highlight-start
+    // instruction for the generative module
+    GenerativeSearchBuilder generativeSearch = GenerativeSearchBuilder.builder()
+      .groupedResultTask("Please answer the question: What is ref2vec? based on the following search results. IMPORTANT! Please make sure your answer is supported by the information in the search results and provide references to the provided content when possible.")
+      .build();
+    // highlight-end
+
+    Field speaker = Field.builder().name("speaker").build();
+    Field content = Field.builder().name("content").build();
+
+    NearTextArgument nearText = client.graphQL().arguments().nearTextArgBuilder()
+      .concepts(new String[]{ "What is ref2vec?" })
+      .build();
+
+    Result<GraphQLResponse> result = client.graphQL().get()
+      .withClassName("PodClip")
+      .withFields(speaker, content)
+      // highlight-next-line
+      .withGenerativeSearch(generativeSearch)
+      .withNearText(nearText)
+      .withLimit(5)
+      .run();
+
+    if (result.hasErrors()) {
+      System.out.println(result.getError());
+      return;
+    }
+    System.out.println(result.getResult());
+  }
+}
+```
+
+</TabItem>
+<TabItem value="curl" label="Curl">
+
+```bash
+echo '{
+  "query": "{
+    Get {
+      PodClip(
+        nearText: {
+          concepts: [\"What is ref2vec?\"]
+        }
+        limit: 5
+      ) {
+        speaker
+        content
+        # highlight-start
+        _additional {
+          generate(
+            groupedResult: {
+              task: \"Please answer the question: What is ref2vec? based on the following search results. IMPORTANT! Please make sure your answer is supported by the information in the search results and provide references to the provided content when possible.\"
+            }
+          ) {
+            groupedResult
+            error
+          }
+        }
+        # highlight-end
+      }
+    }
+  }
+  "
+}' | curl \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $WEAVIATE_API_KEY" \
+    -d @- \
+    https://WEAVIATE_INSTANCE_URL/v1/graphql # Replace WEAVIATE_INSTANCE_URL with your instance URL
+```
+
+</TabItem>
+</Tabs>

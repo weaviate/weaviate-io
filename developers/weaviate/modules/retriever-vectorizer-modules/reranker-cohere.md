@@ -5,6 +5,10 @@ image: og/docs/modules/reranker-cohere.jpg
 # tags: ['rerank', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
+
 ## Introduction
 
 - The `reranker-cohere` module enables reranking search results using a [Cohere reranker API](https://txt.cohere.com/rerank/).

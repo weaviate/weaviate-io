@@ -258,6 +258,10 @@ POST /v1/schema
 
 ### Parameters
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<RaftRFChangeWarning/>
+
 For more details on these parameters, see the [schema configuration reference page](../../config-refs/schema/index.md).
 
 | Name | Location | Type | Description |
@@ -352,6 +356,10 @@ Update settings of an existing collection. Use this endpoint to alter an existin
 <details>
   <summary>The list of mutable settings</summary>
 
+<RaftRFChangeWarning/>
+
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
 - `description`
 - `invertedIndexConfig`
   - `bm25`
@@ -363,7 +371,7 @@ Update settings of an existing collection. Use this endpoint to alter an existin
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
@@ -396,6 +404,8 @@ PUT v1/schema/{collection_name}
 ```
 
 ### Parameters
+
+<RaftRFChangeWarning/>
 
 The URL must contain the following parameter:
 
@@ -549,7 +559,7 @@ Tenants are used to separate data between different users or groups of users. Th
 ### Enable multi-tenancy
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START EnableMultiTenancy"
@@ -558,7 +568,7 @@ Tenants are used to separate data between different users or groups of users. Th
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START EnableMultiTenancy"
@@ -627,7 +637,7 @@ POST v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START AddTenantsToClass"
@@ -636,7 +646,7 @@ POST v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START AddTenantsToClass"
@@ -680,7 +690,7 @@ GET v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ListTenants"
@@ -689,7 +699,7 @@ GET v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ListTenants"
@@ -735,7 +745,7 @@ DELETE v1/schema/{collection_name}/tenants
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START RemoveTenants"
@@ -744,7 +754,7 @@ DELETE v1/schema/{collection_name}/tenants
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START RemoveTenants"
@@ -806,7 +816,7 @@ Pass a payload with an array of tenant objects. For updating tenants, both `name
 ```
 
 <Tabs groupId="languages">
-  <TabItem value="py4" label="Python (v4)">
+  <TabItem value="py4" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START UpdateTenants"

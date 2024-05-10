@@ -1,6 +1,6 @@
 ---
 title: Migration Guide
-sidebar_position: 8
+sidebar_position: 10
 image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---

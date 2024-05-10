@@ -2,10 +2,10 @@
 {
   "compilerOptions": {
     "resolveJsonModule": true,  // to import JSON data files directly
-    "target": "ESNext",  // top-level await
-    "module": "Node16",  // output `import`/`export` ES modules
+    "target": "esnext", // top-level await
+    "module": "esnext", // output `import`/`export` ES modules
     "allowSyntheticDefaultImports": true,  // allow default imports from modules with no default export. This does not affect code emit, just typechecking.
-    "moduleResolution": "Node16",  // find modules in node_modules - https://github.com/Microsoft/TypeScript/issues/8189#issuecomment-212079251
+    "moduleResolution": "node", // find modules in node_modules - https://github.com/Microsoft/TypeScript/issues/8189#issuecomment-212079251
     "types": ["node"],
     "sourceMap": true
   }
