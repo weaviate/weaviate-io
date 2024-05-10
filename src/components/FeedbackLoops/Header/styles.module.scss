@@ -801,8 +801,9 @@
 
 .exampleBox {
   border-radius: 0.93325rem;
-  border: 0.747px solid #0073b4;
-  background: #262262;
+
+  background-image: url('/img/site/gen-code-block.svg');
+  background-repeat: no-repeat;
   width: 26.50388rem;
   max-width: 31.50388rem;
   height: 23.9375rem;
@@ -812,7 +813,6 @@
   justify-content: center;
   padding: 20px;
 }
-
 .codeSnippet {
   background-image: url('/img/site/hybrid-code-block.svg');
   background-size: cover;
@@ -1010,12 +1010,4 @@
     background: #61bd73;
     color: #130c49;
   }
-}
-
-.serviceImage {
-  background-image: url('/img/site/vision-circle.png');
-  background-size: cover;
-  width: 35.125rem;
-  height: 30.8125rem;
-  flex-shrink: 0;
 }

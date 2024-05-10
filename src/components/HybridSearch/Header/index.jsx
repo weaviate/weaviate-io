@@ -148,9 +148,7 @@ export default function HomepageHeader() {
               </Link>
             </div>
           </div>
-          <div className={styles.exampleBox}>
-            <div className={styles.codeSnippet}></div>
-          </div>
+          <div className={styles.exampleBox}></div>
         </div>
       </div>
     </header>

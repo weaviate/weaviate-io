@@ -3,12 +3,6 @@ import { ButtonContainer } from '../../../../theme/Buttons';
 import styles from './styles.module.scss';
 import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
-import Typewriter from './typingTitle';
-import CodeSnippet from './CodeSnippet';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styled from 'styled-components';
 
 export default function HomepageHeader() {
   useEffect(() => {
@@ -117,16 +111,12 @@ export default function HomepageHeader() {
           </div>
           <div className={styles.serviceBox}>
             <div className={styles.serviceText}>
-              <h2>The future of software is AI-native.</h2>
-              <span>
-                And requires infrastructure that is flexible, open source, and
-                reliable.
-              </span>
+              <h2>Empower every developer to build AI-native applications</h2>
+              <span>With flexible, reliable, open source foundations.</span>
               <p>
-                Our Services are designed to support organizations of all sizes
-                from prototype to production. Whether you’re a fast-moving
-                startup or a well-established enterprise, we have flexible
-                options to meet your needs.
+                Software development is changing. Our open source vector
+                database and surrounding offerings are designed to support
+                developers and teams of all sizes on their AI journey.
               </p>
               <div className={styles.buttons}>
                 <Link
@@ -149,8 +139,8 @@ export default function HomepageHeader() {
         <div className="container">
           <div className={styles.bottomBar}>
             <h2 className={styles.text}>
-              Loved by developers and trusted by companies of all sizes<br></br>
-              to power search and generative applications
+              With over 1M monthly downloads, Weaviate is a core piece<br></br>{' '}
+              of the AI-native stack for developers and enterprises alike.
             </h2>
             <div className={styles.innerBar}>
               <div className={styles.logoSection}>

@@ -89,8 +89,12 @@
   @media screen and (max-width: 1000px) {
     flex-direction: column;
     display: flex;
-    align-content: center;
-    gap: 30px;
+    align-content: flex-start;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
   }
 }
 .rightSide {
