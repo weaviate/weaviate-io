@@ -400,7 +400,9 @@ response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the tim
 
 ## Code comparison
 
-Consider these code samples. The samples compare v2 client code and v3 client code. The complete v2 and v3 client scripts follow the examples.
+These samples compare v2 client code and v3 client code.
+
+The comparison samples omit sections of the code that are the same for both clients. The complete v2 and v3 client scripts are [here](#sample-scripts).
 
 ### Imports
 
@@ -505,28 +507,34 @@ Consider these code samples. The samples compare v2 client code and v3 client co
   language="js"
 />
 </TabItem>
-</Tabs>``
+</Tabs>
 
 ### Delete a collection
 
-v2 client code:
 
-```
-// delete your collection
-await client.schema.classDeleter().withClassName(collectionName).do();
-```
-
-v3 client code:
-
-```
-// delete your collection
-await client.collections.delete(collectionName)
-
-console.log('Collection Exists:', await client.collections.exists(collectionName))
-```
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// DeleteCollection"
+  endMarker="// END DeleteCollection"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// DeleteCollection"
+  endMarker="// END DeleteCollection"
+  language="js"
+/>
+</TabItem>
+</Tabs>
 
 ### Sample scripts
 
+These scripts are complete versions of the client comparison code from this section. 
+ 
 <Tabs groupId="languages">
 <TabItem value="jsv3" label="Client v3">
 <FilteredTextBlock

@@ -81,11 +81,14 @@ async function main() {
   console.log('Here are songs about cowboys:', queryResponse.data.Get.RollingStones)
 // END CompleteScript  // END RunAQuery
 
+// CompleteScript  // DeleteCollection
   // delete your collection
   await client.schema.classDeleter().withClassName(collectionName).do();
 
   console.log('Collection Exists:', await client.schema.exists(collectionName))
 }
+// END CompleteScript  // END DeleteCollection
 
+// CompleteScript
 main()
 // END CompleteScript

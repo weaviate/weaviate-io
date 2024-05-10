@@ -52,11 +52,14 @@ async function main() {
   console.log('Here are songs about cowboys: ', queryResponse.objects)
 // END CompleteScript  // END RunAQuery
 
+// CompleteScript  // DeleteCollection
   // delete your collection
   await client.collections.delete(collectionName)
 
   console.log('Collection Exists:', await client.collections.exists(collectionName))
 }
+// END CompleteScript  // END DeleteCollection
 
+// CompleteScript
 main()
 // END CompleteScript
