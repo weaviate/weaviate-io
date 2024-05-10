@@ -99,7 +99,7 @@ The v3 client introduces a new way to work with your data. Here are some of the 
 
 - [Collection object replaces client object](#work-with-collections)
 - [Builder pattern is removed](#builder-pattern-is-removed)
-- [Bulk inserts](#bulk-inserts)
+- [Batch Inserts](#batch-inserts)
 - [Close clients explicitly](#client-close-method)
 - [Data filtering](#filter-data)
 - [Namespace for generative models](#generate-namespace)
@@ -155,40 +155,28 @@ The v2 client uses builder patterns to construct queries. Builder patterns can b
 </TabItem>
 </Tabs>
 
-### Bulk Inserts
+### Batch Inserts
 
 The `insertMany()` method replaces `objectBatcher()` to make batch insertions easier.
 
 For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
 
-<Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS Client (v3)">
-
-```ts
-const questions = client.collections.get("CollectionName")
-const dataObject = [...]; // your data
-
-await questions.data.insertMany(dataBatch);
-```
-
+<Tabs groupId="batchEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// BatchEx"
+  endMarker="// END BatchEx"
+  language="js"
+/>
 </TabItem>
-<TabItem value="jsv2" label="JS/TS Client (v2)">
-
-```ts
-let className = 'CollectionName';  // Replace with your collection name
-let dataObject = [...];
-
-let batcher5 = client.batch.objectsBatcher();
-for (const dataObj of dataObject)
-  batcher5 = batcher5.withObject({
-    class: className,
-    properties: dataObj,
-  });
-
-// Flush
-await batcher5.do();
-```
-
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// BatchEx"
+  endMarker="// END BatchEx"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 
@@ -202,54 +190,22 @@ import TSClientClose from '/_includes/clients/ts-client-close.mdx';
 
 The `Filter` helper class makes it easier to use filters with conditions. The v3 client streamlines how you use `Filter` so your code is cleaner and more concise.
 
-<Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS Client (v3)">
-
-```ts
-import weaviate, { Filters } from 'weaviate-client';
-const myCollection = client.collections.get('JeopardyQuestion');
-
-const result = await myCollection.query.fetchObjects({
-  returnProperties: ['question', 'answer','round', 'points'],
-  filters: Filters.and(
-     myCollection.filter.byProperty('round').equal('Double Jeopardy!'),
-     myCollection.filter.byProperty('points').lessThan(600)
-    ),
-  limit: 3,
- })
-
-console.log(JSON.stringify(result, null, 2));
-```
-
+<Tabs groupId="filterDataEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// FilterDataEx"
+  endMarker="// END FilterDataEx"
+  language="js"
+/>
 </TabItem>
-<TabItem value="jsv2" label="JS/TS Client (v2)">
-
-```ts
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withWhere({
-    operator: 'And',
-    operands: [
-      {
-        path: ['round'],
-        operator: 'Equal',
-        valueText: 'Double Jeopardy!',
-      },
-      {
-        path: ['points'],
-        operator: 'LessThan',
-        valueInt: 600,
-      },
-    ],
-  })
-  .withLimit(3)
-  .withFields('question answer round points')
-  .do();
-
-console.log(JSON.stringify(result, null, 2));
-```
-
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// FilterDataEx"
+  endMarker="// END FilterDataEx"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 
@@ -257,46 +213,22 @@ console.log(JSON.stringify(result, null, 2));
 
 The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches. 
 
-<Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS Client (v3)">
-
-```ts
-const generatePrompt = `Convert this quiz question: {question} and answer: {answer} into a trivia tweet.`;
-
-const myCollection = client.collections.get('JeopardyQuestion');
-const result = await myCollection.generate.nearText(['World history'],{
-    singlePrompt: generatePrompt,
-  },{
-    limit: 2,
-    returnProperties: ['round'],
-})
-
-console.log(JSON.stringify(result.objects, null, 2));
-```
-
+<Tabs groupId="generateNameEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// GenerateNamespaceEx"
+  endMarker="// END GenerateNamespaceEx"
+  language="js"
+/>
 </TabItem>
-<TabItem value="jsv2" label="JS/TS Client (v2)">
-
-```ts
-let result;
-generatePrompt = 'Convert this quiz question: {question} and answer: {answer} into a trivia tweet.';
-
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withGenerate({
-    singlePrompt: generatePrompt,
-  })
-  .withNearText({
-    concepts: ['World history'],
-  })
-  .withFields('round')
-  .withLimit(2)
-  .do();
-
-console.log(JSON.stringify(result, null, 2));
-```
-
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// GenerateNamespaceEx"
+  endMarker="// END GenerateNamespaceEx"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 
