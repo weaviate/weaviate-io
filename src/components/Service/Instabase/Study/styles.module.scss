@@ -112,11 +112,12 @@
     }
 
     .logo {
-      background-image: url('/img/site/study-instabase.svg');
+      background-image: url('/img/site/study-instabase-dark.svg');
       background-size: contain;
       background-repeat: no-repeat;
-      width: 7.09331rem;
-      height: 2.25rem;
+      width: 13.8125rem;
+      height: 1.47194rem;
+
       flex-shrink: 0;
     }
 
@@ -138,6 +139,15 @@
       font-style: normal;
       font-weight: 400;
       line-height: 150%; /* 1.5rem */
+    }
+    a {
+      color: #130c49;
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%; /* 1.5rem */
+      text-decoration-line: underline;
     }
   }
 }

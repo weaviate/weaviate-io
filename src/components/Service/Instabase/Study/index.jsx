@@ -105,8 +105,9 @@ export default function Study() {
                 surface, a human needs to get involved, and the cost savings are
                 greatly reduced. So accuracy and speed are critical for us.”
               </span>
-              <br></br> Shaunak Godbole, Head of Infrastructure Engineering at
-              Instabase
+            </p>
+            <p>
+              Shaunak Godbole, Head of Infrastructure Engineering at Instabase
             </p>
           </div>
         </div>
