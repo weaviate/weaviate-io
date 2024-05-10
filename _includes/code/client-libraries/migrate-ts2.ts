@@ -25,18 +25,22 @@ async function main() {
   });
 // END CompleteScript // END CreateClient
 
-// CompleteScript
+// CompleteScript // CreateCollection
   const schemaDefinition = {
     class: collectionName,
     vectorizer: 'text2vec-openai',
   }
-  
+
   // create a new collection
   await client.schema.classCreator().withClass(schemaDefinition).do()
+// END CompleteScript // END CreateCollection
 
+// CompleteScript
   const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
   const data = await response.json()
+// END CompleteScript
 
+// CompleteScript  // BatchInsert
   let counter = 0;
   let batcher = client.batch.objectsBatcher();
 
@@ -59,6 +63,7 @@ async function main() {
   if (counter > 0) {
     await batcher.do();
   }
+// END CompleteScript  // END BatchInsert
 
   // run a nearText search that limits results to two items and shows the distance metric of the results
   const queryResponse = await client

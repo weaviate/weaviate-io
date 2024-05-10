@@ -3,7 +3,7 @@ import weaviate from 'weaviate-client'
 import 'dotenv/config';
 // END CompleteScript // END Imports
 
-// CompleteScript // Connect
+// CompleteScript
 async function main() {
   // define a collection name
   const collectionName = 'RollingStones'
@@ -22,19 +22,25 @@ async function main() {
   )
 // END CompleteScript // END CreateClient
 
+// CompleteScript // CreateCollection
   // create a new collection
   await client.collections.create({
     name: collectionName,
     vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
   })
+// END CompleteScript // END CreateCollection
 
+// CompleteScript
   const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
+// END CompleteScript
 
+// CompleteScript  // BatchInsert
   // define a collection to interact with 
   const myCollection = client.collections.get(collectionName)
 
   // bulk insert data to your collection
   await myCollection.data.insertMany(await response.json())
+// END CompleteScript  // END BatchInsert
 
   // run a nearText search that limits results to two items and shows the distance metric of the results
   const queryResponse = await myCollection.query.nearText('songs about cowboys',{

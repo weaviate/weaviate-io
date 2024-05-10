@@ -446,59 +446,45 @@ Consider these code samples. The samples compare v2 client code and v3 client co
 
 ### Create a collection
 
-v2 client code:
-
-```
-await client.schema.classCreator().withClass(schemaDefinition).do()
-```
-
-v3 client code:
-
-```
-await client.collections.create({
-  name: collectionName,
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
-})
-```
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// CreateCollection"
+  endMarker="// END CreateCollection"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// CreateCollection"
+  endMarker="// END CreateCollection"
+  language="js"
+/>
+</TabItem>
+</Tabs>
 
 ### Batch insert
 
-v2 client code:
-
-```
-let counter = 0;
-let batcher = client.batch.objectsBatcher();
-
-// bulk insert data to your collection
-for (const dataObjects of data) {
-  batcher = batcher.withObject({
-    class: collectionName,
-    properties: dataObjects,
-  });
-
-  // push a batch of 10 objects
-  if (++counter > 9) {
-    await batcher.do();
-    batcher = client.batch.objectsBatcher();
-    counter = 0;
-  }
-}
-
-// push the remaining batch of objects
-if (counter > 0) {
-  await batcher.do();
-}
-```
-
-v3 client code:
-
-```
-// define a collection to interact with 
-const myCollection = client.collections.get(collectionName)
-
-// bulk insert data to your collection
-await myCollection.data.insertMany(await response.json())
-```
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// BatchInsert"
+  endMarker="// END BatchInsert"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// BatchInsert"
+  endMarker="// END BatchInsert"
+  language="js"
+/>
+</TabItem>
+</Tabs>
 
 ### Query your data
 
