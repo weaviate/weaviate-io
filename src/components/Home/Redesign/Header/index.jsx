@@ -43,7 +43,7 @@ export default function HomepageHeader() {
                 </h1>
                 <p>
                   Bring intuitive applications to life with<br></br> less
-                  hallucination, data leakage, and<br></br> vendor lock-in
+                  hallucination, data leakage, and vendor lock-in
                 </p>
               </div>
 
@@ -125,7 +125,7 @@ export default function HomepageHeader() {
                 >
                   Start Free
                 </Link>
-                <Link className={styles.buttonOutline} to="/platform">
+                <Link className={styles.buttonOutline} to="/services">
                   Learn More
                 </Link>
               </div>

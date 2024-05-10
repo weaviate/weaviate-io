@@ -31,7 +31,7 @@
 
 .headerHome {
   background: #f6f6f6;
-  background-image: url('/img/site/3d-weaviate-bubble-white-light.jpg');
+  /*  background-image: url('/img/site/3d-weaviate-bubble-white-light.jpg'); */
   background-size: contain;
   background-repeat: no-repeat;
   background-position-y: -71px;
@@ -790,7 +790,7 @@
   p {
     color: #130c49;
     font-family: Inter;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-style: normal;
     font-weight: 400;
     line-height: 140%; /* 2.1rem */
@@ -973,6 +973,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   max-width: 420px;
+  gap: 25px;
 
   h2 {
     color: #fff;
