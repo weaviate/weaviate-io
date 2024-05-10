@@ -288,7 +288,7 @@ In this algorithm, each object is scored according to its position in the result
 
 :::info Added in `v1.20`
 :::
-:::info Since `v1.24` the default method is Relative Score Fusion
+:::info Relative Score Fusion is the default in `v1.24` and higher.
 :::
 
 In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
