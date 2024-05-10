@@ -165,9 +165,9 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeText}>
               <p>
-                Enhance customer insights by merging keyword and vector search
-                with ML models to swiftly deliver relevant and contextual
-                results across unstructured data.
+                Improve search experiences by merging vector and keyword
+                techniques. Deliver contextual, precise results across all of
+                your data in any modality, with less effort.
               </p>
               <Link to="/hybrid-search">Learn more</Link>
             </div>
@@ -179,9 +179,9 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeText}>
               <p>
-                Build secure, explainable AI applications that are more reliable
-                and reduce hallucinations, using proprietary or domain-specific
-                data to enhance accuracy without compromising data privacy.
+                Build trustworthy generative AI applications using your own
+                data, with privacy and security top-of-mind. Surface relevant
+                and accurate answers using your favorite LLMs.
               </p>
               <Link to="/rag">Learn more</Link>
             </div>
@@ -195,9 +195,9 @@ export default function HomepageHeader() {
             </div>
             <div className={styles.typeText}>
               <p>
-                Automatically improve data quality and outcomes by enriching
-                your dataset with content from Large Language Models (LLMs),
-                reducing time spent on tedious manual cleaning.
+                Make your dataset smarter by enriching it with AI-generated
+                answers. Improve personalization and spend less time on manual
+                data cleaning.
               </p>
               <Link to="/gen-feedback-loops">Learn more</Link>
             </div>

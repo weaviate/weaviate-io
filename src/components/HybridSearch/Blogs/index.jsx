@@ -9,7 +9,7 @@ import posts from '/data/blogposts.json';
 import BlogItem from './blogItem';
 
 export default function Blogs() {
-  const option2Data = posts.blog;
+  const option2Data = posts.hybrid;
   return (
     <div className="container">
       <div className={styles.header}>
