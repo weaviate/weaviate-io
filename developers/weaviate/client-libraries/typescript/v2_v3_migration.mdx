@@ -11,6 +11,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import TSv2Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts2.ts';
 import TSv3Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts3.ts';
 import TSv3Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts3.ts';
+import TSv2Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts2.ts';
 
 import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
 
@@ -110,33 +111,22 @@ The v2 client uses the `client` object for CRUD and search operations. In the v3
 
 After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
 
-<Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS Client (v3)">
-
-```ts
-const myCollection = client.collections.get('JeopardyQuestion');
-
-const result = await myCollection.query.fetchObjects({
-  returnProperties: ['question'],
-})
-
-console.log(JSON.stringify(result.objects, null, 2));
-```
-
+<Tabs groupId="collections">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// CollectionEx"
+  endMarker="// END CollectionEx"
+  language="js"
+/>
 </TabItem>
-<TabItem value="jsv2" label="JS/TS Client (v2)">
-
-```ts
-result = await client
-  .graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withFields('question')
-  .do();
-
-console.log(JSON.stringify(result, null, 2));
-```
-
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// CollectionEx"
+  endMarker="// END CollectionEx"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 
@@ -146,39 +136,22 @@ Note here that the collection object can be re-used throughout the codebase.
 
 The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries. The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
 
-<Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS Client (v3)">
-
-```ts
-let result 
-const myCollection = client.collections.get('JeopardyQuestion');
-
-result = await myCollection.query.nearText(['animals in movies'],{
-  limit: 2,
-  returnProperties: ['question', 'answer'],
-  returnMetadata: ['distance']
-})
-
-console.log(JSON.stringify(result.objects, null, 2));
-```
-
+<Tabs groupId="builderEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// BuilderEx"
+  endMarker="// END BuilderEx"
+  language="js"
+/>
 </TabItem>
-<TabItem value="jsv2" label="JS/TS Client (v2)">
-
-```ts
-let result;
-
-result = await client.graphql
-  .get()
-  .withClassName('JeopardyQuestion')
-  .withNearText({ concepts: ['animals in movies'] })
-  .withLimit(2)
-  .withFields('question answer _additional { distance }')
-  .do();
-
-console.log(JSON.stringify(result, null, 2));
-```
-
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// BuilderEx"
+  endMarker="// END BuilderEx"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 

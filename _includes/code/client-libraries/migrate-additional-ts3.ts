@@ -59,3 +59,34 @@ const client = await weaviate.client({
  
 console.log(client)
 // END ConnectCustom
+
+// =============================
+// === WORK WITH COLLECTIONS
+// =============================
+
+// CollectionEx
+const myCollection = client.collections.get('JeopardyQuestion');
+
+const result = await myCollection.query.fetchObjects({
+  returnProperties: ['question'],
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
+// END CollectionEx
+
+// =============================
+// === BUILDER PATTERN
+// =============================
+
+// BuilderEx
+let result 
+const myCollection = client.collections.get('JeopardyQuestion');
+
+result = await myCollection.query.nearText(['animals in movies'],{
+  limit: 2,
+  returnProperties: ['question', 'answer'],
+  returnMetadata: ['distance']
+})
+
+console.log(JSON.stringify(result.objects, null, 2));
+// END BuilderEx
