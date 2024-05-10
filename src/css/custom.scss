@@ -843,3 +843,9 @@ Dropdown style removed.
 [data-theme='dark'] .githubStars {
   fill: white;
 }
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: var(--ifm-link-color);
+  text-decoration: none;
+}

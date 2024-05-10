@@ -41,6 +41,22 @@
   }
 }
 
+.headerVideo {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  position: absolute;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 2;
+  /* Add other styles for your content */
+}
+
 .logoSection {
   display: contents;
 
