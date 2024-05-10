@@ -30,6 +30,7 @@ export default function Home() {
 
           <Resources />
           <CTA />
+          <ContactForm />
         </main>
       </Layout>
       <ThemeSwitch />

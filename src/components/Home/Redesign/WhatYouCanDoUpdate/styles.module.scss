@@ -101,7 +101,7 @@
           /* border-bottom: 7px solid #130c49; */
 
           max-height: 770px;
-          width: 250px;
+          width: 100%;
 
           p {
             text-align: left;
@@ -124,7 +124,7 @@
           /* border-bottom: 7px solid #130c49; */
 
           max-height: 770px;
-          width: 250px;
+          width: 100%;
         }
 
         p {
@@ -299,6 +299,10 @@
     font-weight: 600;
     line-height: 144.9%; /* 2.1735rem */
     letter-spacing: -0.015rem;
+
+    @media screen and (max-width: 485px) {
+      font-size: 1.1rem;
+    }
   }
 }
 
