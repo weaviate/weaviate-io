@@ -139,3 +139,15 @@ const result = await myCollection.generate.nearText(['World history'],{
 
 console.log(JSON.stringify(result.objects, null, 2));
 // END GenerateNamespaceEx
+
+// =============================
+// === RETURN OBJECT
+// =============================
+
+// ReturnObjectEx
+response.objects[0].properties.title  // Get the `title` property of the first object
+response.objects[0].uuid  // Get the ID of the first object
+response.objects[0].generated  // Get the generated text from a `singlePrompt` request
+response.generated  // Get the generated text from a `groupedTask` request
+response.metadata?.creationTime // Get the creation time as a native JS Date value
+// END ReturnObjectEx

@@ -103,3 +103,15 @@ result = await client.graphql
 
 console.log(JSON.stringify(result, null, 2));
 // END GenerateNamespaceEx
+
+// =============================
+// === RETURN OBJECT
+// =============================
+
+// ReturnObjectEx
+response.data?.Get?.Article?.[0].title  // Get the `title` property of the first object
+response.data?.Get?.Article?.[0]['_additional']?.id  // Get the ID of the first object
+response.data?.Get?.Article?.[0]['_additional']?.generate?.singleResult  // Get the generated text from a `singlePrompt` request
+response.data?.Get?.Article?.[0]['_additional']?.generate.groupedResult  // Get the generated text from a `groupedTask` request
+response.data?.Get?.Article?.[0]['_additional']?.creationTimeUnix // Get the timestamp when the object was created
+// END ReturnObjectEx
