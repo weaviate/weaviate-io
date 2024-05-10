@@ -358,10 +358,12 @@ The output is like this:
 
 :::info Added in `v1.20`
 :::
+:::info Since `v1.24` the default method is Relative Score Fusion
+:::
 
-`Ranked Fusion` is the default fusion algorithm.
+`Relative Fusion` is the default fusion algorithm.
 
-- To use objects' keyword and vector search scores instead of ranks, use `Relative Score Fusion`.
+- To use objects' keyword and vector search scores instead of relative, use `Relative Score Fusion`.
 - To use autocut with the `hybrid` operator, use `Relative Score Fusion`.
 
 <Tabs groupId="languages">

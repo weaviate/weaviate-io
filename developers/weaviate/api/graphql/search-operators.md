@@ -286,7 +286,10 @@ In this algorithm, each object is scored according to its position in the result
 
 #### Relative score fusion
 
-New in Weaviate version 1.20.
+:::info Added in `v1.20`
+:::
+:::info Since `v1.24` the default method is Relative Score Fusion
+:::
 
 In `relativeScoreFusion` the vector search and keyword search scores are scaled between `0` and `1`. The highest raw score becomes `1` in the scaled scores. The lowest value is assigned `0`. The remaining values are ranked between `0` and `1`. The total score is a scaled sum of the normalized vector similarity and normalized BM25 scores.
 
