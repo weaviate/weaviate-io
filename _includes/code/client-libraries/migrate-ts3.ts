@@ -42,13 +42,15 @@ async function main() {
   await myCollection.data.insertMany(await response.json())
 // END CompleteScript  // END BatchInsert
 
-  // run a nearText search that limits results to two items and shows the distance metric of the results
+// CompleteScript  // RunAQuery
+  // run a nearText search; limit 2 results; show distance metrics
   const queryResponse = await myCollection.query.nearText('songs about cowboys',{
     limit: 2,
     returnMetadata: ['distance']
   })
 
   console.log('Here are songs about cowboys: ', queryResponse.objects)
+// END CompleteScript  // END RunAQuery
 
   // delete your collection
   await client.collections.delete(collectionName)

@@ -488,30 +488,24 @@ Consider these code samples. The samples compare v2 client code and v3 client co
 
 ### Query your data
 
-v2 client code:
-
-```
-const queryResponse = await client
-.graphql
-.get()
-.withClassName(collectionName) // define a collection to interact with 
-.withFields("title artist  _additional { distance id }")
-.withNearText({
-  "concepts": ['songs about cowboys']
-})
-.withLimit(2)
-.do();
-```
-
-v3 client code:
-
-```
-// run a nearText search that limits results to two items and shows the distance metric of the results
-const queryResponse = await myCollection.query.nearText('songs about cowboys',{
-  limit: 2,
-  returnMetadata: ['distance']
-})
-```
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// RunAQuery"
+  endMarker="// END RunAQuery"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// RunAQuery"
+  endMarker="// END RunAQuery"
+  language="js"
+/>
+</TabItem>
+</Tabs>``
 
 ### Delete a collection
 
