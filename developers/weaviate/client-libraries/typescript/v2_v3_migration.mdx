@@ -8,6 +8,8 @@ image: og/docs/client-libraries.jpg
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSv2Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts2.ts';
+import TSv3Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts3.ts';
 
 import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
 
@@ -402,46 +404,45 @@ Consider these code samples. The samples compare v2 client code and v3 client co
 
 ### Imports
 
-v2 client code:
-
-```
-import weaviate, { ApiKey, WeaviateClient } from 'weaviate-ts-client';
-import 'dotenv/config'
-```
-
-v3 client code:
-
-```
-import weaviate from 'weaviate-client'
-import 'dotenv/config';
-```
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// Imports"
+  endMarker="// END Imports"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// Imports"
+  endMarker="// END Imports"
+  language="js"
+/>
+</TabItem>
+</Tabs>
 
 ### Connect to Weaviate Cloud
 
-v2 client code:
-
-```
-const client: WeaviateClient = weaviate.client({
-  scheme: process.env.WEAVIATE_SCHEME_URL || '', 
-  host: process.env.WEAVIATE_URL || '', 
-  apiKey: new ApiKey(process.env.WEAVIATE_API_KEY || ''), 
-  headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '' }, 
-});
-```
-
-v3 client code:
-
-```
-const client = await weaviate.connectToWCS(
-  process.env.WEAVIATE_URL || '',
-  {
-    authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
-    headers: {
-      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
-    }
-  }
-)
-```
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// CreateClient"
+  endMarker="// END CreateClient"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// CreateClient"
+  endMarker="// END CreateClient"
+  language="js"
+/>
+</TabItem>
+</Tabs>
 
 ### Create a collection
 
@@ -547,134 +548,21 @@ console.log('Collection Exists:', await client.collections.exists(collectionName
 ### Sample scripts
 
 <Tabs groupId="languages">
-<TabItem value="jsv3" label="JS/TS Client v3">
-
-```ts
-import weaviate from 'weaviate-client'
-import 'dotenv/config';
-
-async function main() {
-  // define a collection name
-  const collectionName = 'RollingStones'
-
-  // connect to your Weaviate instance on WCS
-  const client = await weaviate.connectToWCS(
-    process.env.WEAVIATE_URL || '',
-    {
-      authCredentials: new weaviate.ApiKey(process.env.WEAVIATE_API_KEY || ''),
-      headers: {
-        'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  
-      }
-    }
-  )
-
-  // create a new collection
-  await client.collections.create({
-    name: collectionName,
-    vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
-  })
-
-  const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
-
-  // define a collection to interact with 
-  const myCollection = client.collections.get(collectionName)
-
-  // bulk insert data to your collection
-  await myCollection.data.insertMany(await response.json())
-
-  // run a nearText search that limits results to two items and shows the distance metric of the results
-  const queryResponse = await myCollection.query.nearText('songs about cowboys',{
-    limit: 2,
-    returnMetadata: ['distance']
-  })
-
-  console.log('Here are songs about cowboys: ', queryResponse.objects)
-
-  // delete your collection
-  await client.collections.delete(collectionName)
-
-  console.log('Collection Exists:', await client.collections.exists(collectionName))
-}
-
-main()
-```
-
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// CompleteScript"
+  endMarker="// END CompleteScript"
+  language="js"
+/>
 </TabItem>
-<TabItem value="jsv2" label="JS/TS Client v2">
-
-```ts
-import weaviate, { ApiKey, WeaviateClient } from 'weaviate-ts-client';
-import 'dotenv/config'
-
-async function main() {
-  // define a collection name
-  const collectionName = 'RollingStones'
-
-  // connect to your Weaviate instance on WCS
-  const client: WeaviateClient = weaviate.client({
-    scheme: process.env.WEAVIATE_SCHEME_URL || '', 
-    host: process.env.WEAVIATE_URL || '', 
-    apiKey: new ApiKey(process.env.WEAVIATE_API_KEY || ''), 
-    headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '' }, 
-  });
-
-  const schemaDefinition = {
-    class: collectionName,
-    vectorizer: 'text2vec-openai',
-  }
-  
-  // create a new collection
-  await client.schema.classCreator().withClass(schemaDefinition).do()
-
-  const response = await fetch('https://raw.githubusercontent.com/weaviate/weaviate-io/tsdocs/content-fixes/_includes/clients/songs.json')
-  const data = await response.json()
-
-  let counter = 0;
-  let batcher = client.batch.objectsBatcher();
-
-  // bulk insert data to your collection
-  for (const dataObjects of data) {
-    batcher = batcher.withObject({
-      class: collectionName,
-      properties: dataObjects,
-    });
-
-    // push a batch of 10 objects
-    if (++counter > 9) {
-      await batcher.do();
-      batcher = client.batch.objectsBatcher();
-      counter = 0;
-    }
-  }
-
-  // push the remaining batch of objects
-  if (counter > 0) {
-    await batcher.do();
-  }
-
-  // run a nearText search that limits results to two items and shows the distance metric of the results
-  const queryResponse = await client
-  .graphql
-  .get()
-  .withClassName(collectionName) // define a collection to interact with 
-  .withFields("title artist  _additional { distance id }")
-  .withNearText({
-    "concepts": ['songs about cowboys']
-  })
-  .withLimit(2)
-  .do();
-
-  console.log('Here are songs about cowboys:', queryResponse.data.Get.RollingStones)
-
-  // delete your collection
-  await client.schema.classDeleter().withClassName(collectionName).do();
-
-  console.log('Collection Exists:', await client.schema.exists(collectionName))
-}
-
-main()
-```
-
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// CompleteScript"
+  endMarker="// END CompleteScript"
+  language="js"
+/>
 </TabItem>
 </Tabs>
 
