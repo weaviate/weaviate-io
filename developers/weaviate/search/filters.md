@@ -22,7 +22,7 @@ For a list of filter operators, see the [API reference page](../api/graphql/filt
 Add a `filter` to your query, to limit the result set.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# SingleFilterPython"
@@ -31,7 +31,7 @@ Add a `filter` to your query, to limit the result set.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# SingleFilterPython"
@@ -40,7 +40,7 @@ Add a `filter` to your query, to limit the result set.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchSingleFilter"
@@ -49,7 +49,7 @@ Add a `filter` to your query, to limit the result set.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchSingleFilter"
@@ -87,7 +87,7 @@ The output is like this:
 To filter with two or more conditions, use `And` or `Or` to define the relationship between the conditions.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# MultipleFiltersAndPython"
@@ -96,7 +96,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# MultipleFiltersAndPython"
@@ -105,7 +105,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchMultipleFiltersAnd"
@@ -114,7 +114,7 @@ To filter with two or more conditions, use `And` or `Or` to define the relations
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchMultipleFiltersAnd"
@@ -152,7 +152,7 @@ The output is like this:
 You can group and nest filters.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# MultipleFiltersNestedPython"
@@ -161,7 +161,7 @@ You can group and nest filters.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# MultipleFiltersNestedPython"
@@ -170,7 +170,7 @@ You can group and nest filters.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchMultipleFiltersNested"
@@ -179,7 +179,7 @@ You can group and nest filters.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchMultipleFiltersNested"
@@ -231,7 +231,7 @@ To create a nested filter, follow these steps.
 Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# SingleFilterNearTextPython"
@@ -240,7 +240,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# SingleFilterNearTextPython"
@@ -249,7 +249,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchFilterNearText"
@@ -258,7 +258,7 @@ Filters work with search operators like `nearXXX`, `hybrid`, and `bm25`.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchFilterNearText"
@@ -296,7 +296,7 @@ The output is like this:
 The `ContainsAny` operator works on text properties and take an array of values as input. It will match objects where the property **contains any (i.e. one or more)** of the values in the array.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# ContainsAnyFilter"
@@ -305,7 +305,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# ContainsAnyFilter"
@@ -314,7 +314,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// ContainsAnyFilter"
@@ -323,7 +323,7 @@ The `ContainsAny` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// ContainsAnyFilter"
@@ -361,7 +361,7 @@ The output is like this:
 The `ContainsAll` operator works on text properties and take an array of values as input. It will match objects where the property **contains all** of the values in the array.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# ContainsAllFilter"
@@ -370,7 +370,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# ContainsAllFilter"
@@ -379,7 +379,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// ContainsAllFilter"
@@ -388,7 +388,7 @@ The `ContainsAll` operator works on text properties and take an array of values 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// ContainsAllFilter"
@@ -430,7 +430,7 @@ If you want to do a batch delete, see [Delete objects](../manage-data/delete.mdx
 If the object property is a `text`, or `text`-like data type such as object ID, use `Like` to filter on partial text matches.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# LikeFilterPython"
@@ -439,7 +439,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# LikeFilterPython"
@@ -448,7 +448,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchLikeFilter"
@@ -457,7 +457,7 @@ If the object property is a `text`, or `text`-like data type such as object ID, 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchLikeFilter"
@@ -507,7 +507,7 @@ The output is like this:
 To filter on properties from a cross-referenced object, add the collection name to the filter.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# CrossReferencePython"
@@ -516,7 +516,7 @@ To filter on properties from a cross-referenced object, add the collection name 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# CrossReferencePython"
@@ -525,7 +525,7 @@ To filter on properties from a cross-referenced object, add the collection name 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// searchCrossReference"
@@ -534,7 +534,7 @@ To filter on properties from a cross-referenced object, add the collection name 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// searchSingleFilter"
@@ -574,7 +574,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
 <GeoLimitations/>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FilterbyGeolocation"
@@ -582,7 +582,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       language="python"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START FilterbyGeolocation"
@@ -590,7 +590,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterbyGeolocation"
@@ -599,7 +599,7 @@ import GeoLimitations from '/_includes/geo-limitations.mdx';
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterbyGeolocation"
@@ -627,7 +627,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 ### Metadata filter - by object `id`
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FilterById"
@@ -635,7 +635,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START FilterById"
@@ -643,7 +643,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// filterById"
@@ -652,7 +652,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
- <TabItem value="js2" label="JS/TS v2">
+ <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// filterById"
@@ -674,7 +674,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 ### Metadata filter - by object timestamp
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FilterByTimestamp"
@@ -682,7 +682,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START FilterByTimestamp"
@@ -690,7 +690,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterByTimestamp"
@@ -699,7 +699,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
-   <TabItem value="js2" label="JS/TS ">
+   <TabItem value="js2" label="JS/TS Client ">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// FilterByTimestamp"
@@ -721,7 +721,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
 ### Metadata filter - by object property length
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START FilterByPropertyLength"
@@ -729,7 +729,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START FilterByPropertyLength"
@@ -737,7 +737,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
       language="python"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={JavaScriptCode}
       startMarker="// FilterByPropertyLength"
@@ -746,7 +746,7 @@ For the full list, see [API references: Filters](../api/graphql/filters.md#speci
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={JavaScriptCodeLegacy}
       startMarker="// FilterByPropertyLength"
@@ -786,6 +786,8 @@ For a list of filter operators, see [the reference page](../api/graphql/filters.
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [API References: Filters](../api/graphql/filters.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

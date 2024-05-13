@@ -1,6 +1,6 @@
 ---
 title: Question Answering - OpenAI
-sidebar_position: 21
+sidebar_position: 41
 image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
@@ -242,7 +242,9 @@ OpenAI has multiple models available for the extraction of answers from a given 
 These models can be configured
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

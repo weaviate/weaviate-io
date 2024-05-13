@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-voyageai.jpg
 # tags: ['text2vec', 'text2vec-voyageai', 'voyageai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="voyageai" />
 
 ## Overview
 
@@ -216,6 +219,8 @@ import GraphQLFiltersNearNextVoyageAI from '/_includes/code/graphql.filters.near
 <GraphQLFiltersNearNextVoyageAI/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

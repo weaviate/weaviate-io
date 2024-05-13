@@ -366,6 +366,8 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 
 For details see, [t2v-transformers-model release notes](https://github.com/weaviate/t2v-transformers-models/releases/).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

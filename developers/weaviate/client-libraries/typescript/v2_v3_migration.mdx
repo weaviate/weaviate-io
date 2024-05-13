@@ -1,0 +1,441 @@
+---
+title: Migrate from v2 to v3
+sidebar_position: 70
+image: og/docs/client-libraries.jpg
+# tags: ['typescript', 'client library']
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import TSv2Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts2.ts';
+import TSv3Code from '!!raw-loader!/_includes/code/client-libraries/migrate-ts3.ts';
+import TSv3Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts3.ts';
+import TSv2Additional from '!!raw-loader!/_includes/code/client-libraries/migrate-additional-ts2.ts';
+
+import RCNote from '/_includes/clients/ts-client-rc-note.mdx';
+
+<RCNote />
+
+import TSClientIntro from '/_includes/clients/ts-client-intro.mdx';
+
+<TSClientIntro />
+
+## Install 
+
+To install the TypeScript client v3, follow these steps: 
+
+1. **Update Node.js**
+
+   The v3 client requires `Node v18` or higher. 
+
+1. **Install the new client package**
+    
+  ```bash
+  npm install weaviate-client --tag next
+  ```
+
+1. **Upgrade Weaviate**
+
+   The v3 client requires Weaviate core `1.23.7` or higher. Whenever possible, use the latest versions of Weaviate core and the Weaviate client.
+
+1. **Open a gRPC port**
+
+   The default gRPC port is 50051.
+
+    <details>
+      <summary>docker-compose.yml</summary>
+
+    To map the Weaviate gRPC port in your Docker container to a local port, add this code to your `docker-compose.yml` file:
+
+    ```yaml
+        ports:
+        - 8080:8080
+        - 50051:50051
+    ```
+    </details>
+
+## Instantiate a client
+ 
+The weaviate object is the main entry point for all API operations. The v3 client instantiates the weaviate object and [creates a connection](/developers/weaviate/starter-guides/connect) to your Weaviate instance.
+
+In most cases, you should use one of the connection helper functions to connect to your Weaviate instance: 
+
+- `connectToWCS`
+- `connectToLocal`
+
+You can also use a custom configuration to instantiate the client directly:
+
+<Tabs groupId="connections">
+<TabItem value="local" label="Local">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ConnectLocal"
+  endMarker="// END ConnectLocal"
+  language="js"
+/>
+</TabItem>
+<TabItem value="wcs" label="Weaviate Cloud">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ConnectCloud"
+  endMarker="// END ConnectCloud"
+  language="js"
+/>
+</TabItem>
+<TabItem value="custom" label="Custom">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ConnectCustom"
+  endMarker="// END ConnectCustom"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+## Changes in v3
+
+The v3 client introduces a new way to work with your data. Here are some of the important changes:
+
+- [Collection object replaces client object](#work-with-collections)
+- [Builder pattern is removed](#builder-pattern-is-removed)
+- [Batch Inserts](#batch-inserts)
+- [Close clients explicitly](#client-close-method)
+- [Data filtering](#filter-data)
+- [Namespace for generative models](#generate-namespace)
+- [Update return object](#return-object)
+
+### Work with collections
+
+The v2 client uses the `client` object for CRUD and search operations. In the v3 client, the `collection` object replaces the `client` object.
+
+After you create a connection, you do not have to specify the collection for each operation. This helps to reduce errors.
+
+<Tabs groupId="collections">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// CollectionEx"
+  endMarker="// END CollectionEx"
+  language="js"
+/>
+</TabItem>
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// CollectionEx"
+  endMarker="// END CollectionEx"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+The collection object can be re-used throughout the codebase.
+
+### Builder Pattern is removed
+
+The v2 client uses builder patterns to construct queries. Builder patterns can be confusing and can lead to invalid queries.
+
+The v3 client doesn't use the builder pattern. The v3 client uses specific methods and method parameters instead.
+
+<Tabs groupId="builderEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// BuilderEx"
+  endMarker="// END BuilderEx"
+  language="js"
+/>
+</TabItem>
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// BuilderEx"
+  endMarker="// END BuilderEx"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Batch Inserts
+
+The `insertMany()` method replaces `objectBatcher()` to make batch insertions easier.
+
+For more information on batch processing, see [Batch Inserts](/developers/weaviate/client-libraries/typescript/typescript-v3#batch-inserts).
+
+<Tabs groupId="batchEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// BatchEx"
+  endMarker="// END BatchEx"
+  language="js"
+/>
+</TabItem>
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// BatchEx"
+  endMarker="// END BatchEx"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Client Close Method
+
+import TSClientClose from '/_includes/clients/ts-client-close.mdx'; 
+
+<TSClientClose />
+
+### Filter data
+
+The `Filter` helper class makes it easier to use filters with conditions. The v3 client streamlines how you use `Filter` so your code is cleaner and more concise.
+
+<Tabs groupId="filterDataEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// FilterDataEx"
+  endMarker="// END FilterDataEx"
+  language="js"
+/>
+</TabItem>
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// FilterDataEx"
+  endMarker="// END FilterDataEx"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Generate Namespace
+
+The v3 client adds a new namespace, `generate` for generative queries. This makes it easier to distinguish between generative queries and vector searches. 
+
+<Tabs groupId="generateNameEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// GenerateNamespaceEx"
+  endMarker="// END GenerateNamespaceEx"
+  language="js"
+/>
+</TabItem>
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// GenerateNamespaceEx"
+  endMarker="// END GenerateNamespaceEx"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Return object 
+
+The new client has a cleaner return object. It is easier to access important information like object UUIDs, object metadata, and generative query results.
+
+<Tabs groupId="returnObjEx">
+<TabItem value="three" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Additional}
+  startMarker="// ReturnObjectEx"
+  endMarker="// END ReturnObjectEx"
+  language="js"
+/>
+</TabItem>
+<TabItem value="two" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Additional}
+  startMarker="// ReturnObjectEx"
+  endMarker="// END ReturnObjectEx"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+## Code comparison
+
+These samples compare v2 client code and v3 client code.
+
+The comparison samples omit sections of the code that are the same for both clients. The complete v2 and v3 client scripts are [here](#sample-scripts).
+
+### Imports
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// Imports"
+  endMarker="// END Imports"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// Imports"
+  endMarker="// END Imports"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Connect to Weaviate Cloud
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// CreateClient"
+  endMarker="// END CreateClient"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// CreateClient"
+  endMarker="// END CreateClient"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Create a collection
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// CreateCollection"
+  endMarker="// END CreateCollection"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// CreateCollection"
+  endMarker="// END CreateCollection"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Batch insert
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// BatchInsert"
+  endMarker="// END BatchInsert"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// BatchInsert"
+  endMarker="// END BatchInsert"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Query your data
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// RunAQuery"
+  endMarker="// END RunAQuery"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// RunAQuery"
+  endMarker="// END RunAQuery"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Delete a collection
+
+
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// DeleteCollection"
+  endMarker="// END DeleteCollection"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// DeleteCollection"
+  endMarker="// END DeleteCollection"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+### Sample scripts
+
+These scripts are complete versions of the client comparison code from this section. 
+ 
+<Tabs groupId="languages">
+<TabItem value="jsv3" label="Client v3">
+<FilteredTextBlock
+  text={TSv3Code}
+  startMarker="// CompleteScript"
+  endMarker="// END CompleteScript"
+  language="js"
+/>
+</TabItem>
+<TabItem value="jsv2" label="Client v2">
+<FilteredTextBlock
+  text={TSv2Code}
+  startMarker="// CompleteScript"
+  endMarker="// END CompleteScript"
+  language="js"
+/>
+</TabItem>
+</Tabs>
+
+For more code examples, see the following:
+
+- [Search](/developers/weaviate/search)
+- [Data management](/developers/weaviate/manage-data)
+- [Connect to Weaviate](/developers/weaviate/starter-guides/connect)
+
+## How to migrate your code
+
+To update v2 client code to v3, follow these steps:
+
+1. Install the [v3 client package](https://www.npmjs.com/package/weaviate-client). 
+1. Edit your v2 code to [import](./typescript-v3.md#import-the-client) the v3 client package. 
+1. Edit your v2 [client instantiation](./typescript-v3.md#connect-to-weaviate) code.
+1. Edit your code to reflect the [collection first](./typescript-v3.md#design-philosophy) client orientation. 
+
+Continue to update the v2 code until all of the old code is replace with the v3 equivalent.
+
+## Client change logs
+
+The client [change logs](https://github.com/weaviate/typescript-client/releases) for each release are available on GitHub.
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -6,12 +6,12 @@ image: og/wcs/user_guides.jpg
 
 There are two ways to connect to your [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instance:
 
-- [Connect a browser to WCS through the WCS Console.](/developers/wcs/authentication#connect-with-a-browser)
+- [Connect a browser to WCS through the WCS Console.](/developers/wcs/connect#connect-with-a-browser)
 
    - The WCS console is a multi-purpose tool. Login to manage your clusters, users, and billing.
    - The built-in [Query console](./console.mdx) is useful to connect without a client application.
 
-- [Connect a client application to WCS through APIs.](/developers/wcs/authentication#connect-with-an-api)
+- [Connect a client application to WCS through APIs.](/developers/wcs/connect#connect-with-an-api)
 
    - For applications, use the WCS API and one of the [client libraries](/developers/weaviate/client-libraries) to connect to WCS.
 
@@ -164,7 +164,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slow_connection.py';
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
+<TabItem value="py4" label="Python Client v4">
 
    <FilteredTextBlock
      text={PyCodeSupp}
@@ -179,7 +179,7 @@ import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slo
 Alternatively, leave the default timeout values, but skip the initial connection checks. 
 
 <Tabs groupId="languages">
-<TabItem value="py4" label="Python (v4)">
+<TabItem value="py4" label="Python Client v4">
 
    <FilteredTextBlock
      text={PyCodeSupp}

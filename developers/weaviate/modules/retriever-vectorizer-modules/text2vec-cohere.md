@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-cohere.jpg
 # tags: ['text2vec', 'text2vec-cohere', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
 
 ## Overview
 
@@ -248,6 +251,8 @@ import GraphQLFiltersNearNextCohere from '/_includes/code/graphql.filters.nearTe
 <GraphQLFiltersNearNextCohere/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

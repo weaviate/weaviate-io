@@ -4,6 +4,9 @@ sidebar_position: 17
 # tags: ['text2vec', 'text2vec-jinaai', 'jinaai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="jinaai" />
 
 ## Overview
 
@@ -190,6 +193,8 @@ The following models are available:
 - `jina-embeddings-v2-small-en`
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -1,6 +1,6 @@
 ---
 title: Migration Guide
-sidebar_position: 8
+sidebar_position: 10
 image: og/docs/more-resources.jpg
 # tags: ['migration']
 ---
@@ -899,6 +899,8 @@ Official release notes can be found on [GitHub](https://github.com/weaviate/weav
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -23,6 +23,8 @@ image: og/docs/more-resources.jpg
 | **Vector index** | A data storage mechanism where data is stored as vectors (long arrays of numbers, also seen as coordinates in a high dimensional space), allowing for context-based search |
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

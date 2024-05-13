@@ -87,6 +87,12 @@ Some parameters are mutable after creation, other parameters cannot be changed a
 <details>
   <summary>Mutable parameters</summary>
 
+import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
+
+<!-- Note: remove below "(not mutable in `v1.25`)" note when the feature is released. -->
+
+<RaftRFChangeWarning/>
+
 - `description`
 - `invertedIndexConfig`
   - `bm25`
@@ -98,7 +104,7 @@ Some parameters are mutable after creation, other parameters cannot be changed a
     - `preset`
     - `removals`
 - `replicationConfig`
-  - `factor`
+  - `factor`  (not mutable in `v1.25`)
 - `vectorIndexConfig`
   - `dynamicEfFactor`
   - `dynamicEfMin`
@@ -397,6 +403,8 @@ These parameters are explained below:
 
 ### `replicationConfig`
 
+<RaftRFChangeWarning/>
+
 [Replication](../../configuration/replication.md) configurations can be set using the schema, through the `replicationConfig` parameter.
 
 The `factor` parameter sets the number of copies of to be stored for objects in this collection.
@@ -631,7 +639,9 @@ client.schema.create_class(collection_obj)
 - [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

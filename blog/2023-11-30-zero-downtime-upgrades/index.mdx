@@ -254,7 +254,7 @@ Another challenge is that any write request that comes in while any nodes are do
 To reduce the length of this time, there is a proposed feature to proactively start repairing those inconsistencies (i.e. perform asynchronous replication). If this is important, please [upvote the feature here](https://github.com/weaviate/weaviate/issues/2405).
 :::
 
-But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](/developers/weaviate/concepts/replication-architecture/cluster-architecture#leaderless-design), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.
+But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](/developers/weaviate/concepts/replication-architecture/cluster-architecture#data-replication-leaderless), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.
 
 Take the longer start-up time for example. Adding replication caused node-level start-up time to increase in our experiment. But the end result was that a hundred percent of requests succeeded. In other words, the end user would not have noticed anything was going on. And again, what are peace of mind and avoiding the wrath of angry users during downtime worth to you??
 

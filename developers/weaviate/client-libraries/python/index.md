@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
+import BatchVectorCode from '!!raw-loader!/_includes/code/howto/manage-data.import.py';
 
 ## Overview
 
@@ -276,7 +277,7 @@ In most cases, you should use the default `False` setting for `skip_init_checks`
 
 For additional connection configuration, see [Timeout values](#timeout-values).
 
-## Batching
+## Batch imports
 
 The `v4` client offers two ways to perform batch imports. From the client object directly, or from the collection object.
 
@@ -331,7 +332,7 @@ These methods return completely localized context managers. Accordingly, attribu
 </TabItem>
 </Tabs>
 
-In the batching process, if the background thread responsible for sending the batches raises an exception this is now re-raised in the main thread.
+If the background thread that is responsible for sending the batches raises an exception during batch processing, the error is raised to the main thread.
 
 ### Error handling
 
@@ -349,6 +350,45 @@ Note that these lists are reset when a batching process is initialized. So make 
   endMarker="# END BatchErrorHandling"
   language="py"
 />
+
+### Batch vectorization
+
+:::info Added in `v1.25`.
+:::
+
+import BatchVectorizationOverview from '/_includes/code/client-libraries/batch-import.mdx';
+
+<BatchVectorizationOverview />
+
+The client automatically handles vectorization if you set the vectorizer when you create the client connection for your batch import. 
+
+<Tabs groupId="languages">
+  <TabItem value="py" label="Create a client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectClient"
+      endMarker="# END BatchVectClient"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
+
+To add or modify the vectorization settings, update the client connection. This example adds multiple vectorizers:
+
+- **Cohere**. Set the service API key. Set the request rate.
+- **OpenAI**. Set the service API key. Set the base URL.
+- **VoyageAI**. Set the service API key.
+
+ <Tabs groupId="languages">
+  <TabItem value="py" label="Modify the client">
+    <FilteredTextBlock
+      text={BatchVectorCode}
+      startMarker="# START BatchVectorizationClientModify"
+      endMarker="# END BatchVectorizationClientModify"
+      language="py"
+    />
+  </TabItem>
+</Tabs>
 
 ## Working with collections
 
@@ -1071,6 +1111,8 @@ are hosted here:
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -5,6 +5,10 @@ image: og/docs/modules/reranker-voyageai.jpg
 # tags: ['rerank', 'voyageai']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="voyageai" />
+
 :::info Added in `v1.24.7`
 :::
 
@@ -141,6 +145,8 @@ You can supply parameters at query time by adding it to the HTTP header.
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

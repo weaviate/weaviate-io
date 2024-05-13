@@ -5,6 +5,9 @@ image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'gemini', 'palm', 'gcp']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
 
 ## Overview
 
@@ -381,6 +384,8 @@ AI Studio:
 - `gemini-pro`
 - `gemini-pro-vision` (from Weaviate `v1.24.2`)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

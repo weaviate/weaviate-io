@@ -104,3 +104,9 @@ each version are contained here:
 import ContributorGuideMoreResources from '/_includes/more-resources-contributor-guide.md';
 
 <ContributorGuideMoreResources />
+
+## Questions and feedback
+
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

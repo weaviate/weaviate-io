@@ -117,6 +117,8 @@ We recommend starting from the following table of vectorizers and their availabi
 | Reranker | **Text** | [`reranker-transformers`](../modules/retriever-vectorizer-modules/reranker-transformers.md) | :x: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

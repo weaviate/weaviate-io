@@ -39,7 +39,7 @@ Each collection can be configured to use BQ compression. BQ must be enabled at c
 This can be done by setting the `vector_index_config` of the collection to enable BQ compression.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START EnableBQ"
@@ -48,7 +48,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START EnableBQ"
@@ -57,7 +57,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
       <FilteredTextBlock
         text={TSCode}
         startMarker="// START EnableBQ"
@@ -66,7 +66,7 @@ This can be done by setting the `vector_index_config` of the collection to enabl
       />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START EnableBQ"
@@ -110,7 +110,7 @@ The following parameters are available for BQ compression, under `vectorIndexCon
 For example:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START BQWithOptions"
@@ -119,7 +119,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START BQWithOptions"
@@ -128,7 +128,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
       <FilteredTextBlock
         text={TSCodeBQOptions}
         startMarker="// START BQWithOptions"
@@ -137,7 +137,7 @@ For example:
       />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
       <FilteredTextBlock
         text={TSCodeLegacy}
         startMarker="// START BQWithOptions"
@@ -179,6 +179,8 @@ Similarly, compression must be enabled independently for each vector. The proced
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

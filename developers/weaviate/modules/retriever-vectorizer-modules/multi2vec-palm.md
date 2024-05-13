@@ -5,6 +5,10 @@ image: og/docs/modules/multi2vec-palm.jpg
 # tags: ['multi2vec', 'multi2vec-palm']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
+
 :::info Added in `v1.24.3`
 :::
 
@@ -224,6 +228,8 @@ import CodeNearImage from '/_includes/code/img2vec-neural.nearimage.mdx';
 <CodeNearImage />
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

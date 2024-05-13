@@ -5,6 +5,9 @@ image: og/docs/modules/text2vec-huggingface.jpg
 # tags: ['text2vec', 'text2vec-huggingface', 'huggingface']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="huggingface" />
 
 ## Overview
 
@@ -214,6 +217,8 @@ The `text2vec-huggingface` module is compatible with various models, each with t
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -5,6 +5,9 @@ image: og/docs/modules/generative-mistral.jpg
 # tags: ['generative', 'rag', 'mistral']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="mistral" />
 
 ## In short
 
@@ -238,6 +241,8 @@ For further usage examples, please see the [how-to search: generative](../../sea
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

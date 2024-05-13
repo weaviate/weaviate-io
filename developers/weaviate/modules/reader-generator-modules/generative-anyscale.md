@@ -5,6 +5,10 @@ image: og/docs/modules/generative-anyscale.jpg
 # tags: ['generative', 'rag', 'anyscale']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="anyscale" />
+
 
 ## In short
 
@@ -302,6 +306,8 @@ import AnyscaleGroupedResult from '/_includes/code/generative.anyscale.groupedre
 }
 ```
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

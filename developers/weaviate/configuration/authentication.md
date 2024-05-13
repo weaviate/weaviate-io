@@ -26,7 +26,7 @@ See [this page](../installation/kubernetes.md#authentication-and-authorization) 
 
 ## WCS authentication
 
-[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/authentication.mdx).
+[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/connect.mdx).
 
 ## API key
 
@@ -231,7 +231,7 @@ OIDC authentication flows are outside the scope of this documentation, but here 
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud Services](/developers/wcs/authentication.mdx).
+1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud Services](/developers/wcs/connect.mdx).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### OIDC support for Weaviate clients
@@ -381,6 +381,8 @@ services:
 Send REST requests to Weaviate without any additional authentication headers or parameters.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
