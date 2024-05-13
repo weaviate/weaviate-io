@@ -94,8 +94,8 @@ export default function HomepageWhatYouCanDo() {
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg1}`} />
                   <p>
-                    Open source with a strong community. Enable developers of
-                    all levels to build production-ready AI applications.
+                    Open source with a strong community. Resources to help
+                    developers of all levels build production-ready AI apps.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
@@ -136,7 +136,7 @@ export default function HomepageWhatYouCanDo() {
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab5">
                   <h3 className={styles.tabHeader05}>
-                    Flexible deployment options
+                    Secure, flexible deployment options
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg5}`} />
                   <p>
