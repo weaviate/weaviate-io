@@ -58,6 +58,10 @@
     font-weight: 400;
     line-height: 157.33%; /* 1.67163rem */
   }
+
+  @media screen and (max-width: 1050px) {
+    width: 19rem;
+  }
 }
 
 .resourceIcon {

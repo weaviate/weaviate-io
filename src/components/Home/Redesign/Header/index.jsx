@@ -6,7 +6,6 @@ import Link from '@docusaurus/Link';
 
 export default function HomepageHeader() {
   useEffect(() => {
-    // Ensure that the video and header elements are correctly fetched
     const video = document.getElementById('headerVideo');
     const header = document.querySelector('.headerHome');
 

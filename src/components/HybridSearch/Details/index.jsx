@@ -57,22 +57,25 @@ export default function Details() {
             </div>
           </div>
         </div>
-        <div className={styles.serviceBox}>
-          <div className={styles.serviceText}>
-            {/*  <div className={styles.serviceIcon}></div> */}
-            <span>Webinar</span>
-            <h2>
-              Beyond Vector Search: Taking a hybrid approach for better results
-            </h2>
+        <Link to="https://events.weaviate.io/hybrid-search-webinar">
+          <div className={styles.serviceBox}>
+            <div className={styles.serviceText}>
+              {/*  <div className={styles.serviceIcon}></div> */}
+              <span>Webinar</span>
+              <h2>
+                Beyond Vector Search: Taking a hybrid approach for better
+                results
+              </h2>
 
-            <p>
-              Discover the benefits of combining keyword and vector searches and
-              implement hybrid search in your application.
-            </p>
+              <p>
+                Discover the benefits of combining keyword and vector searches
+                and implement hybrid search in your application.
+              </p>
+            </div>
+
+            <div className={styles.serviceImage}></div>
           </div>
-
-          <div className={styles.serviceImage}></div>
-        </div>
+        </Link>
       </div>
     </div>
   );

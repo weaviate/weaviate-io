@@ -58,21 +58,23 @@ export default function Details() {
             </div>
           </div>
         </div>
-        <div className={styles.serviceBox}>
-          <div className={styles.serviceText}>
-            <h2>
-              Hurricane: Writing Blog Posts with Generative Feedback Loops
-            </h2>
+        <Link to="/blog/hurricane-generative-feedback-loops">
+          <div className={styles.serviceBox}>
+            <div className={styles.serviceText}>
+              <h2>
+                Hurricane: Writing Blog Posts with Generative Feedback Loops
+              </h2>
 
-            <p>
-              Learn how to enhance blog posts, from creating new content to
-              editing and analyzing existing material with Generative Feedback
-              Loops.
-            </p>
+              <p>
+                Learn how to enhance blog posts, from creating new content to
+                editing and analyzing existing material with Generative Feedback
+                Loops.
+              </p>
+            </div>
+
+            <div className={styles.serviceImage}></div>
           </div>
-
-          <div className={styles.serviceImage}></div>
-        </div>
+        </Link>
       </div>
     </div>
   );
