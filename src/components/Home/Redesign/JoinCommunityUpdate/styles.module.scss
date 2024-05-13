@@ -99,7 +99,7 @@
 }
 .rightSide {
   display: flex;
-  gap: 50px;
+  gap: 10px;
   width: 22rem;
   height: 100%;
   flex-flow: wrap;
@@ -107,13 +107,14 @@
 
   @media screen and (max-width: 520px) {
     display: flex;
-    width: 26rem;
+    width: 100%;
     height: 22rem;
     flex-flow: wrap;
     gap: 12px;
-    padding: 50px;
+    padding: 10px;
   }
 }
+
 .leftSide {
   display: flex;
   width: 31rem;
@@ -135,19 +136,16 @@
 .socialBox {
   display: flex;
   flex-direction: column;
-
-  width: 6.07219rem;
+  width: 6.07219rem; /* Original width for larger screens */
   height: 6.07219rem;
   margin: auto;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 500px) {
-    width: 9.38156rem;
-    height: 3.875rem;
-    flex-shrink: 0;
-    margin-bottom: 90px;
+  @media screen and (max-width: 520px) {
+    width: calc((100% - 12px) / 2);
+    height: auto;
   }
 
   .slack {

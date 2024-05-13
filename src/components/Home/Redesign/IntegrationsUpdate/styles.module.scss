@@ -56,6 +56,10 @@
   background-position-x: right;
   right: 0;
   top: 0;
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .integrationsLogos {

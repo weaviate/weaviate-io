@@ -75,7 +75,7 @@ export default function Details() {
                 className={styles.buttonGradient}
                 to="https://verba.weaviate.io/"
               >
-                Try Now
+                Give it a spin
               </Link>
               <Link
                 className={styles.buttonOutline}

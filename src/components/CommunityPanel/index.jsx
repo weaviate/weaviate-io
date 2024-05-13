@@ -51,7 +51,10 @@ export default function CommunityPanel() {
             </h2>
 
             <span className={styles.rightText}>
-              Sign up for our bi-weekly newsletter to stay updated!
+              <p>Sign up for our bi-weekly newsletter to stay updated!</p>{' '}
+              <br></br>By submitting, I agree to the{' '}
+              <Link href="/service">Terms of Service </Link>and{' '}
+              <Link href="/privacy">Privacy Policy</Link>.
             </span>
 
             <div className={styles.communityForm}>
@@ -69,14 +72,7 @@ export default function CommunityPanel() {
                   important: false,
                 }}
               ></iframe>
-              <span className={styles.formFooter}>
-                By submitting, I agree to the{' '}
-                <Link href="/service">Terms of Service </Link>and{' '}
-                <Link href="/privacy">Privacy Policy</Link>.
-              </span>
             </div>
-
-
           </div>
         </div>
       </div>
