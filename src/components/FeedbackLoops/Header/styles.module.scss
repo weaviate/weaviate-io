@@ -280,6 +280,10 @@
     justify-content: center;
   }
 
+  @media screen and (max-width: 500px) {
+    justify-content: left;
+  }
+
   a {
     width: 11.1875rem;
     height: 3.125rem;
@@ -777,6 +781,12 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
+    @media screen and (max-width: 500px) {
+      br {
+        display: none;
+      }
+    }
   }
 
   span {
@@ -812,6 +822,19 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+
+  @media screen and (max-width: 850px) {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    max-width: 31.50388rem;
+    height: 23.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex: unset;
+  }
 }
 .codeSnippet {
   background-image: url('/img/site/hybrid-code-block.svg');

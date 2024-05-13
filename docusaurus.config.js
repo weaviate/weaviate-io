@@ -263,12 +263,12 @@ const config = {
 
                         },
                         {
-                            label: 'Serverless',
+                            label: 'Serverless Cloud',
                             href: '/services/serverless',
 
                         },
                         {
-                            label: 'Enterprise Dedicated',
+                            label: 'Enterprise Cloud',
                             href: '/services/enterprise-dedicated',
 
                         },
@@ -518,11 +518,11 @@ const config = {
                                 to: '/services',
                             },
                             {
-                                label: 'Serverless',
+                                label: 'Serverless Cloud',
                                 to: '/services/serverless',
                             },
                             {
-                                label: 'Enterprise Dedicated',
+                                label: 'Enterprise Cloud',
                                 to: '/services/enterprise-dedicated',
                             },
                             {

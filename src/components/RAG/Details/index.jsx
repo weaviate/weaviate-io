@@ -11,49 +11,51 @@ export default function Details() {
         <div className={styles.header}>
           <h2>RAG with Weaviate</h2>
           <p>
-            Retrieval Augmented Generation (RAG) enhances traditional search by
-            using a Large Language Model (LLM) for summarizing answers, allowing
-            users to retrieve relevant sources and receive responses in natural
-            language. Vector databases like Weaviate, with features like vector
-            or hybrid search, facilitate quick document retrieval and
-            integration with LLMs, ensuring accurate and fast searches crucial
-            for effective RAG applications.
+            Retrieval Augmented Generation (RAG) incorporates external knowledge
+            into a Large Language Model (LLM) to improve the accuracy of
+            AI-generated content. Weaviate's design caters specifically to the
+            demands of vector data, enabling unparalleled scalability and
+            performance. This scalability is key in RAG applications, where the
+            volume of data and the need for rapid retrieval can be significant.
+            Weaviate maintains high performance at scale, ensuring that the LLMs
+            in RAG applications are always fed with the most relevant and timely
+            data.
           </p>
         </div>
         <div className={styles.typeContainer}>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={styles.homeIcon}></div>
-              <h2>Confidently reduce hallucinations</h2>
+              <h2>Keep data safe within your own environment</h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Use proprietary data without sacrificing privacy - with
-                citations to the source.
+                Weaviate can be self-hosted, or we can host and manage it for
+                your within your own VPC environment.
               </p>
             </div>
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.homeIcon} ${styles.search}`}></div>
-              <h2>Build, experiment, and iterate faster</h2>
+              <h2>Quickly integrate and test different LLMs</h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Easily plug in different ML frameworks and models to find what
-                suits your use case.
+                Connect to different LLMs with a single line of code. Iterate
+                quickly as you find what suits your use case.
               </p>
             </div>
           </div>
           <div className={styles.typeBox}>
             <div className={styles.typeIcon}>
               <div className={`${styles.homeIcon} ${styles.scale}`}></div>
-              <h2>Power the AI apps of today and tomorrow</h2>
+              <h2>Serve the best answers to your users </h2>
             </div>
             <div className={styles.typeText}>
               <p>
-                Scale with a reliable, flexible, open source platform that
-                adapts to your needs.
+                Deliver accurate and contextual answers with powerful hybrid
+                search under the hood.
               </p>
             </div>
           </div>

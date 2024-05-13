@@ -53,7 +53,7 @@
   p {
     color: #869ab8;
     font-family: Inter;
-    font-size: 1.0625rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%; /* 1.67163rem */
@@ -64,7 +64,32 @@
   background-image: url('/img/site/resource-icon-01.png');
   width: 9.36756rem;
   height: 9.66975rem;
+  background-repeat: no-repeat;
   flex-shrink: 0;
+}
+
+.resource1 {
+  background-image: url('/img/site/resource-icon-01.svg');
+}
+
+.resource2 {
+  background-image: url('/img/site/resource-icon-02.svg');
+}
+
+.resource3 {
+  background-image: url('/img/site/resource-icon-03.svg');
+}
+
+.resource4 {
+  background-image: url('/img/site/resource-icon-04.svg');
+}
+
+.resource5 {
+  background-image: url('/img/site/resource-icon-05.svg');
+}
+
+.resource6 {
+  background-image: url('/img/site/resource-icon-06.svg');
 }
 
 .bottomBox {

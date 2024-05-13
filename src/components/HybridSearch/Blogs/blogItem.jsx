@@ -19,7 +19,7 @@ export default function BlogItem(props) {
           <h3>{details.type}</h3>
           <p>{details.tagline}</p>
         </div>
-        <div className={styles.bottomBox}>
+        {/*   <div className={styles.bottomBox}>
           <img
             className={styles.smallImage}
             src={`/img/people/icon/${details.photo}`}
@@ -31,7 +31,7 @@ export default function BlogItem(props) {
             {details.title}
           </p>
           <span className={styles.smallText}>{details.date}</span>
-        </div>
+        </div> */}
       </div>
     </Link>
   );

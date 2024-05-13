@@ -112,11 +112,6 @@
     gap: 0px;
   }
 
-  @media screen and (max-width: 1050px) {
-    grid-template-columns: 1fr;
-    margin: 0px 10px;
-  }
-
   @media screen and (max-width: 850px) {
     flex-direction: column;
   }
@@ -279,6 +274,10 @@
 
   @media screen and (max-width: 800px) {
     justify-content: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    justify-content: left;
   }
 
   a {
@@ -778,6 +777,12 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
+    @media screen and (max-width: 500px) {
+      br {
+        display: none;
+      }
+    }
   }
 
   span {
@@ -802,7 +807,6 @@
 
 .exampleBox {
   border-radius: 0.93325rem;
-
   background-image: url('/img/site/rag-code-block.svg');
   background-repeat: no-repeat;
   width: 26.50388rem;
@@ -813,6 +817,19 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+
+  @media screen and (max-width: 850px) {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    max-width: 31.50388rem;
+    height: 23.9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex: unset;
+  }
 }
 .codeSnippet {
   background-image: url('/img/site/hybrid-code-block.svg');

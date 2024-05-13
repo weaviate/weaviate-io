@@ -106,7 +106,7 @@
           p {
             text-align: left;
             display: inherit;
-            color: #130c49;
+            color: #ffffff;
             font-family: Inter;
             font-size: 1rem;
             font-style: normal;
@@ -307,7 +307,8 @@
 }
 
 .accordianBar {
-  width: 26.875rem;
+  max-width: 26.875rem;
+  width: 100%;
   height: 0.0625rem;
   background: #c3c5d8;
   margin: 10px 0px;

@@ -36,6 +36,18 @@
 .header {
   width: 70%;
   margin: 30px 0px;
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
 }
 
 .grid {
@@ -820,6 +832,10 @@
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 }
 
 .typeIcon {
@@ -891,7 +907,7 @@
 }
 
 .serviceBox {
-  width: 76.6875rem;
+  max-width: 76.6875rem;
   height: 33.75rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
@@ -908,6 +924,10 @@
   justify-content: space-evenly;
   padding: 74px;
 
+  @media screen and (max-width: 800px) {
+    padding: 25px;
+  }
+
   h2 {
     color: #fff;
     font-family: 'Plus Jakarta Sans';
@@ -915,6 +935,10 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 3rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 2rem;
+    }
   }
 
   span {
@@ -934,6 +958,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 2.25rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.2rem;
+    }
   }
 
   .buttonGradient,
@@ -958,4 +986,8 @@
   background-repeat: no-repeat;
   width: 73.125rem;
   height: 39.8125rem;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 }

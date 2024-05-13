@@ -36,6 +36,22 @@
 .header {
   width: 70%;
   margin: 30px 0px;
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  a {
+    text-decoration: underline;
+    color: #130c49;
+  }
 }
 
 .grid {
@@ -812,7 +828,7 @@
 }
 
 .typeBox {
-  width: 16.5625rem;
+  width: 15.5625rem;
   height: 16.625rem;
   padding: 22px 0px;
   flex-shrink: 0;
@@ -820,6 +836,10 @@
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 }
 
 .typeIcon {
@@ -890,15 +910,18 @@
 }
 
 .serviceBox {
-  width: 76.6875rem;
+  max-width: 76.6875rem;
   height: 33.75rem;
   flex-shrink: 0;
   border-radius: 0.625rem;
   background: #130c49;
   margin: 36px auto;
   display: flex;
-
   gap: 32px;
+
+  @media screen and (max-width: 800px) {
+    height: auto;
+  }
 }
 
 .serviceText {
@@ -906,6 +929,12 @@
   flex-direction: column;
   justify-content: space-evenly;
   padding: 74px;
+  flex: 1;
+
+  @media screen and (max-width: 800px) {
+    padding: 25px;
+    gap: 10px;
+  }
 
   h2 {
     color: #fff;
@@ -914,6 +943,10 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 3rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 2rem;
+    }
   }
 
   span {
@@ -933,6 +966,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 2.25rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.2rem;
+    }
   }
 
   .buttonGradient,
@@ -949,12 +986,23 @@
   background-repeat: no-repeat;
   width: 10rem;
   height: 10rem;
+
+  @media screen and (max-width: 800px) {
+    height: 5rem;
+  }
 }
 
 .serviceImage {
-  background-image: url('/img/site/case-study-background.svg');
+  background-image: url('/img/site/hurricane-details.png');
   background-size: contain;
   background-repeat: no-repeat;
-  width: 73.125rem;
-  height: 39.8125rem;
+  width: 20.0625rem;
+  height: 19.4375rem;
+  border-radius: 0.625rem;
+  flex: 1;
+  margin: auto;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 }

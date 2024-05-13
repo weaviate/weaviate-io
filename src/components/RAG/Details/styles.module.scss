@@ -36,6 +36,18 @@
 .header {
   width: 70%;
   margin: 30px 0px;
+
+  p {
+    color: #130c49;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+  }
+  @media screen and (max-width: 950px) {
+    width: 100%;
+  }
 }
 
 .grid {
@@ -211,7 +223,7 @@
   justify-content: flex-start;
 
   @media screen and (max-width: 800px) {
-    justify-content: center;
+    justify-content: left;
   }
 
   a {
@@ -811,6 +823,10 @@
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 }
 
 .typeIcon {
@@ -890,6 +906,10 @@
   background: #130c49;
   margin: 36px auto;
   display: flex;
+
+  @media screen and (max-width: 800px) {
+    height: auto;
+  }
 }
 
 .serviceText {
@@ -899,6 +919,10 @@
   padding: 74px;
   flex: 1;
 
+  @media screen and (max-width: 800px) {
+    padding: 25px;
+  }
+
   h2 {
     color: #fff;
     font-family: 'Plus Jakarta Sans';
@@ -906,6 +930,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%; /* 3rem */
+    @media screen and (max-width: 800px) {
+      font-size: 2rem;
+    }
   }
 
   span {
@@ -925,6 +952,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 2.25rem */
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.2rem;
+    }
   }
 
   .buttonGradient,
@@ -952,4 +983,8 @@
   border-radius: 0.625rem;
   flex: 1;
   margin: auto;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 }

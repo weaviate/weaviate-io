@@ -17,38 +17,71 @@ export default function Resources() {
           </p>
         </div>
         <div className={styles.latestModule}>
-          <div className={styles.resourceBox}>
-            <div className={styles.resourceIcon}></div>
-            <h3>Learning Centre</h3>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-          </div>
-          <div className={styles.resourceBox}>
-            <div className={styles.resourceIcon}></div>
-            <h3>Build with Weaviate</h3>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-          </div>
-          <div className={styles.resourceBox}>
-            <div className={styles.resourceIcon}></div>
-            <h3>Knowledge Cards</h3>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-          </div>
+          <Link to="/blog">
+            <div className={styles.resourceBox}>
+              <div
+                className={`${styles.resourceIcon} ${styles.resource1}`}
+              ></div>
+              <h3>Blog</h3>
+              <p>Concepts, releases, research, how-tos and more.</p>
+            </div>
+          </Link>
+          <Link to="/developers/academy">
+            <div className={styles.resourceBox}>
+              <div
+                className={`${styles.resourceIcon} ${styles.resource2}`}
+              ></div>
+              <h3>Weaviate Academy</h3>
+              <p>
+                End-to-end courses designed to accelerate your Weaviate learning
+                journey.
+              </p>
+            </div>
+          </Link>
+          <Link to="/developers/weaviate">
+            <div className={styles.resourceBox}>
+              <div
+                className={`${styles.resourceIcon} ${styles.resource3}`}
+              ></div>
+              <h3>Documentation</h3>
+              <p>
+                Get started with Weaviate and learn how to get the most out of
+                its features.
+              </p>
+            </div>
+          </Link>
         </div>
         <div className={styles.latestModule}>
-          <div className={styles.resourceBox}>
-            <div className={styles.resourceIcon}></div>
-            <h3>Events & Webinars</h3>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-          </div>
-          <div className={styles.resourceBox}>
-            <div className={styles.resourceIcon}></div>
-            <h3>Blogs</h3>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-          </div>
-          <div className={styles.resourceBox}>
-            <div className={styles.resourceIcon}></div>
-            <h3>Docs</h3>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
-          </div>
+          <Link to="/developers/weaviate/quickstart">
+            <div className={styles.resourceBox}>
+              <div
+                className={`${styles.resourceIcon} ${styles.resource4}`}
+              ></div>
+              <h3>Quickstart guide</h3>
+              <p>See what you can do with Weaviate, in 20-30 minutes.</p>
+            </div>
+          </Link>
+          <Link to="/community/events">
+            <div className={styles.resourceBox}>
+              <div
+                className={`${styles.resourceIcon} ${styles.resource5}`}
+              ></div>
+              <h3>Events & Webinars</h3>
+              <p>Learn from the experts, meet us where you are.</p>
+            </div>
+          </Link>
+          <Link to="/community">
+            <div className={styles.resourceBox}>
+              <div
+                className={`${styles.resourceIcon} ${styles.resource6}`}
+              ></div>
+              <h3>Community</h3>
+              <p>
+                Connect with the Weaviate Team and hundreds of developers and
+                data engineers.
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

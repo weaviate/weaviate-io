@@ -19,19 +19,6 @@ export default function BlogItem(props) {
           <h3>{details.type}</h3>
           <p>{details.tagline}</p>
         </div>
-        <div className={styles.bottomBox}>
-          <img
-            className={styles.smallImage}
-            src={`/img/people/icon/${details.photo}`}
-            alt={`${details.tagline}`}
-          />
-          <p className={styles.smallText}>
-            {details.name}
-            <br></br>
-            {details.title}
-          </p>
-          <span className={styles.smallText}>{details.date}</span>
-        </div>
       </div>
     </Link>
   );

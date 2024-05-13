@@ -12,7 +12,7 @@ export default function Resources() {
       <div className="container">
         <div className={styles.header}>
           <h2 className={styles.title}>
-            Secure, stateful, explainable GenAI—built on open source
+            The AI-native database for a new generation of software
           </h2>
           <div className={styles.buttons}>
             <Link
