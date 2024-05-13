@@ -11,7 +11,7 @@ import Integrations from '../../components/Service/Serverless/Integrations/index
 export default function ServerlessPage() {
   return (
     <div className="custom-page noBG">
-      <Layout title="Serverless" description="Serverless Service">
+      <Layout title="Serverless Cloud" description="Serverless Cloud Service">
         <ServiceHeader />
         <ServicePlan />
         <CalculatorContainer />

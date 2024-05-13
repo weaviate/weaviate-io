@@ -269,7 +269,7 @@ const config = {
                         },
                         {
                             label: 'Enterprise Cloud',
-                            href: '/services/enterprise-dedicated',
+                            href: '/services/enterprise-cloud',
 
                         },
                         {
@@ -523,7 +523,7 @@ const config = {
                             },
                             {
                                 label: 'Enterprise Cloud',
-                                to: '/services/enterprise-dedicated',
+                                to: '/services/enterprise-cloud',
                             },
                             {
                                 label: 'Bring Your Own Cloud',

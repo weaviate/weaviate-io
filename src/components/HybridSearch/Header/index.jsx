@@ -131,7 +131,9 @@ export default function HomepageHeader() {
         <div className={styles.grid}>
           <div className={styles.box}>
             <span>Hybrid Search</span>
-            <h1>Take search to new AI-powered heights</h1>
+            <h1>
+              Take search to new<br></br> AI-powered heights
+            </h1>
             <p>
               Blend vector, keyword, and multimodal techniques to deliver
               accurate, contextual search with less complexity.
