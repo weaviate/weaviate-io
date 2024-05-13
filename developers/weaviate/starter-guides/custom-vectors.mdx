@@ -5,6 +5,11 @@ image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
+import Py4Code from '!!raw-loader!/_includes/code/starter-guides/custom-vectors-py4.py';
+
 Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. When you import a data object, you normally include a vector representation of that object as well. The vector representation is also called an "embedding."
 
 Later, when you work with the stored vectors, Weaviate uses a vectorized version of your query to search the vector space.
@@ -109,6 +114,25 @@ import CreateSchema from '/_includes/code/quickstart.byov.schema.mdx'
 <CreateSchema />
 
 ### Create a collection schema
+
+<Tabs groupId="languages">
+   <TabItem value="py" label="Python Client v4">
+      <FilteredTextBlock
+         text={Py4Code}
+         startMarker="# START create schema"
+         endMarker="# END create schema"
+         language="py"
+      />
+   </TabItem>   
+   <TabItem value="py" label="Python Client v3">
+      <FilteredTextBlock
+         text={Py4Code}
+         startMarker="# START create schema"
+         endMarker="# END create schema"
+         language="py"
+      />
+   </TabItem>   
+</Tabs>
 
 ## Import the data
 
