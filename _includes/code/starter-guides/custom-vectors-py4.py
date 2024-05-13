@@ -1,17 +1,7 @@
 # START-ANY
-import weaviate, os
-import weaviate.classes as wvc
-
 # Set these environment variables
 # WCS_URL - The URL for your Weaviate instance
 # WCS_API_KEY - The API key for your Weaviate instance
-
-# Connect to a WCS instance
-client = weaviate.connect_to_wcs(
-    cluster_url=URL,
-    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
-)
-
 # END-ANY
 
 # For testing and rerunning script
@@ -19,7 +9,10 @@ if (client.collections.exists("Question")):
     client.collections.delete("Question")
 
 # START create schema
-# The with-as context manager closes the connect for you
+import weaviate, os
+import weaviate.classes as wvc
+
+# The with-as context manager closes the connect when your code exits
 with weaviate.connect_to_wcs(
     cluster_url=os.getenv("WCS_URL"),
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_API_KEY"))
