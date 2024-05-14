@@ -7,7 +7,7 @@ export default function SafetyTypes() {
     <div className={styles.bgColor}>
       <div className="container">
         <div className={styles.title}>
-          <h2>Partner with our experts to bring AI to your organisation</h2>
+          <h2>Partner with our experts to bring AI to your organization</h2>
           <p>Packages tailored to meet your needs, including:</p>
         </div>
         <div className={styles.box}>

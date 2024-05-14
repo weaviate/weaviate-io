@@ -14,13 +14,13 @@ Weaviate uses your feedback to plan future releases. If an issue is important to
 
 To join a discussion on GitHub, click on the issue title, and then add a comment in the discussion section. Alternatively, join our [forum](https://forum.weaviate.io/) to discuss the roadmap in more detail.
 
-## Planned for Weaviate 1.25
-
-<Roadmap label="planned-1.25"/>
-
 ## Planned for Weaviate 1.26
 
 <Roadmap label="planned-1.26"/>
+
+## Planned for Weaviate 1.27
+
+<Roadmap label="planned-1.27"/>
 
 ## Backlog
 
