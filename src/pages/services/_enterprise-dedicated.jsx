@@ -12,10 +12,7 @@ import Availability from '../../components/Service/EnterpriseDedicated/Availabil
 export default function EDPage() {
   return (
     <div className="custom-page noBG">
-      <Layout
-        title="Enterprise Dedicated"
-        description="Enterprise Dedicated Service"
-      >
+      <Layout title="Enterprise Cloud" description="Enterprise Cloud Service">
         <ServiceHeader />
         <ServicePlan />
         <QuoteBox />
