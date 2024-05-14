@@ -24,7 +24,7 @@ const sidebars = {
     },
     {
       type: 'link',
-      label: 'Weaviate Cloud Services docs',
+      label: 'Weaviate Cloud docs',
       href: '/developers/wcs',
     },
     {

@@ -21,14 +21,14 @@
   },
   {
     "question": "Is the open source Weaviate the same as that used on WCS?",
-    "answer": "Yes! Weaviate Cloud Services (WCS) runs the open-source Weaviate library. The differences are in where it runs (i.e. WCS is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
+    "answer": "Yes! Weaviate Cloud (WCD) runs the open-source Weaviate library. The differences are in where it runs (i.e. WCS is managed by us as a SaaS) and in licensing (SLA tiers as opposed to the open-source BSD3 license)."
   },
   {
     "question": "Are discounts available for non-profits, startups, or students?",
     "answer": "Yes, please reach out to us at <a href='mailto:hello+discount@weaviate.io'>hello+discount@weaviate.io</a>"
   },
   {
-    "question": "Is Weaviate Cloud Services SOC2 compliant?",
+    "question": "Is Weaviate Cloud SOC2 compliant?",
     "answer": "Yes, for more info email <a href=\"mailto:infosec@weaviate.io\">infosec@weaviate.io</a>"
   },
   {

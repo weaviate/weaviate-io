@@ -17,7 +17,7 @@ image: og/docs/modules/reranker-transformers.jpg
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
 The `reranker-transformers` module is not available on the WCS.
 

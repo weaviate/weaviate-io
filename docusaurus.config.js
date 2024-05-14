@@ -302,7 +302,7 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Weaviate Cloud Services Docs',
+                                label: 'Weaviate Cloud Docs',
                                 docId: 'wcs/index',
                                 sidebarid: 'wcsSidebar',
                                 type: 'doc',
@@ -479,7 +479,7 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Weaviate Cloud Services',
+                        title: 'Weaviate Cloud',
                         items: [
                             {
                                 label: 'Pricing',

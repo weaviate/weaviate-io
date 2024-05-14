@@ -21,7 +21,7 @@ The world was taken by storm by OpenAI ChatGPT in November of 2022. The interest
 
 ![weaviate-easiest-way-to-build-ai-apps](./img/weaviate-easiest-way-to-build-ai-apps.png)
 
-The debut of ChatGPT kicked off a wave of innovation that has led nearly every industry to consider how they can extract value from these LLMs by integrating Generative AI use cases and features into their business offerings. We’ve had the privilege to be building these AI Native applications, RAG services, search and recommendation systems, and so much more with so many happy customers. 
+The debut of ChatGPT kicked off a wave of innovation that has led nearly every industry to consider how they can extract value from these LLMs by integrating Generative AI use cases and features into their business offerings. We’ve had the privilege to be building these AI Native applications, RAG services, search and recommendation systems, and so much more with so many happy customers.
 
 
 :::note Event
@@ -38,9 +38,9 @@ Generative AI is no longer as new as it was a year ago, since the inception of C
 
 Let’s first talk about some of the technology that makes generative AI possible.
 
-At the most fundamental level, generative AI, as we know it today, is a prediction algorithm. Predictions by these algorithms are made possible by training over a large… massive corpus of data and allows a deep learning neural network to build out weights that represent the probabilistic nature of the data. Once the model is trained with all the weights, you can pass in new data for the model to make an inference over. In the inference process, the model returns the next most probabilistic output from the model, then feeds back all the original prompt as well as the output back into the model for the next inference until there is a STOP indicator sent back from the model. This informs us that the inference is complete for the original prompt. After we do this training process over massive amounts of text, “a model” is produced which is capable of generating new text based on the next most probable word to be chosen, we call these models, “large language models”. 
+At the most fundamental level, generative AI, as we know it today, is a prediction algorithm. Predictions by these algorithms are made possible by training over a large… massive corpus of data and allows a deep learning neural network to build out weights that represent the probabilistic nature of the data. Once the model is trained with all the weights, you can pass in new data for the model to make an inference over. In the inference process, the model returns the next most probabilistic output from the model, then feeds back all the original prompt as well as the output back into the model for the next inference until there is a STOP indicator sent back from the model. This informs us that the inference is complete for the original prompt. After we do this training process over massive amounts of text, “a model” is produced which is capable of generating new text based on the next most probable word to be chosen, we call these models, “large language models”.
 
-The model is deep learning neural network with many layers and weights distributed across the entire network representing the probablistic nature of your dataset. 
+The model is deep learning neural network with many layers and weights distributed across the entire network representing the probablistic nature of your dataset.
 
 ![neural-network](./img/neural-network.png)
 
@@ -50,7 +50,7 @@ Through this simple input output system, we can leverage these foundational larg
 
 Vector databases are a fairly new class of database that is specifically designed to store and look up vector embeddings. A vector embedding is a numerical representation of some unit of data that has semantic meanings relative to the weights of the language model.
 
-These numerical representations are usually presented as an array of numbers and can have various sizes, or dimensions. As they are effectively a vector in N-dimensional space, we can place them into vector space and clustered vectors naturally have higher similarities to one another. As a result, we can write clever algorithms over this vector space to look up vectors that are closely connected, we call these vector search algorithms. This is distinctly different from a traditional database because the lookups are only capable of finding data in neatly structured entities. 
+These numerical representations are usually presented as an array of numbers and can have various sizes, or dimensions. As they are effectively a vector in N-dimensional space, we can place them into vector space and clustered vectors naturally have higher similarities to one another. As a result, we can write clever algorithms over this vector space to look up vectors that are closely connected, we call these vector search algorithms. This is distinctly different from a traditional database because the lookups are only capable of finding data in neatly structured entities.
 
 ![embeddings](./img/embeddings.png)
 
@@ -64,11 +64,11 @@ Weaviate has way too many features and capabilities to describe in a single blog
 
 ### Search
 
-Weaviate’s core competency can be boiled down to search. 
+Weaviate’s core competency can be boiled down to search.
 
-We enable highly relevant search in all use cases. As mentioned previously we support [vector search](https://weaviate.io/developers/weaviate/search/similarity), which allows for semantic relevance retrieval. We support text based search to “near text concepts”. These near text concepts are calculated by semantic relevance based on the embedding model weights. We also support image based search to find objects with the nearest vector to an image. 
+We enable highly relevant search in all use cases. As mentioned previously we support [vector search](https://weaviate.io/developers/weaviate/search/similarity), which allows for semantic relevance retrieval. We support text based search to “near text concepts”. These near text concepts are calculated by semantic relevance based on the embedding model weights. We also support image based search to find objects with the nearest vector to an image.
 
-In other use cases, we’ve found that [keyword search](https://weaviate.io/developers/weaviate/search/bm25) is more important for some applications. "BM25 (Best match 25)" or "sparse vector" search, returns objects that have the highest BM25F scores. 
+In other use cases, we’ve found that [keyword search](https://weaviate.io/developers/weaviate/search/bm25) is more important for some applications. "BM25 (Best match 25)" or "sparse vector" search, returns objects that have the highest BM25F scores.
 
 Vector Search and Keyword Search each have their advantages, but often times, the results from vector search or keyword search are too restrictive and the optimal set of results are somewhere in-between. This is why we also have [hybrid search](https://weaviate.io/developers/weaviate/search/hybrid) which combines results of a vector search and a keyword (BM25F) search. You can set the [weights](https://weaviate.io/developers/weaviate/search/hybrid#balance-keyword-and-vector-search) or the [ranking method](https://weaviate.io/developers/weaviate/search/hybrid#change-the-ranking-method).
 
@@ -84,19 +84,19 @@ Search is a core competency, but Weaviate offers features that help you build mo
 
 This feature is ideal if you have different customers where each wants to load data into your enterprise application, but don’t want cross pollination of results between those tenants. The Weaviate multi tenancy scales to millions of tenants.
 
-If you’d like to learn more about our multi tenancy implementation, [read this blog post](https://weaviate.io/blog/multi-tenancy-vector-search) by our CTO, Etienne Dilocker. 
+If you’d like to learn more about our multi tenancy implementation, [read this blog post](https://weaviate.io/blog/multi-tenancy-vector-search) by our CTO, Etienne Dilocker.
 
 ### Data Privacy and Compliance
 
-Of course, with any enterprise tool, compliance and data privacy are top of mind for any product adoption. As an open source vector database, we support many deployment models from being self-hostable in your own infrastructure using docker or kubernetes, to being deployed into your own VPC in AWS or GCP via the marketplaces, or if you’re compliance requirements allows it, you can also deploy on Weaviate Cloud Services which will reduce your overhead of managing your Weaviate clusters as well.
+Of course, with any enterprise tool, compliance and data privacy are top of mind for any product adoption. As an open source vector database, we support many deployment models from being self-hostable in your own infrastructure using docker or kubernetes, to being deployed into your own VPC in AWS or GCP via the marketplaces, or if you’re compliance requirements allows it, you can also deploy on Weaviate Cloud which will reduce your overhead of managing your Weaviate clusters as well.
 
 You can learn more about our security standards [here](https://weaviate.io/security).
 
 ## Application of GenAI and Weaviate in Business Use Cases
 
-Enough with features, what are some applications of Weaviate and GenAI in the enterprise? 
+Enough with features, what are some applications of Weaviate and GenAI in the enterprise?
 
-Across many of our customers, there are a few common architectural patterns in the applications they are building. All of them revolve around applying some search query over the dataset to retrieve relevant data, then utilizing a language model to generate some natural language with that data. The output can be applied to various use cases in business operations across many different industries. 
+Across many of our customers, there are a few common architectural patterns in the applications they are building. All of them revolve around applying some search query over the dataset to retrieve relevant data, then utilizing a language model to generate some natural language with that data. The output can be applied to various use cases in business operations across many different industries.
 
 ### Chatbots
 
@@ -112,7 +112,7 @@ One of the most common tools we’ve seen generative AI applied to are chatbots.
 </figure>
 
 
-This is [Verba](https://verba.weaviate.io). Our open source first party RAG example which demonstrates some of the best practices around chunking, prompting, and modularity. We released Verba about half a year ago and in just a few short months, it’s gained massive traction and has pulled together nearly 2000 stars on GitHub. Many developers have cloned Verba, running Weaviate locally in their own environments, and loaded their own datasets which range from the entire Lord of the Ring series to enterprise data as well. 
+This is [Verba](https://verba.weaviate.io). Our open source first party RAG example which demonstrates some of the best practices around chunking, prompting, and modularity. We released Verba about half a year ago and in just a few short months, it’s gained massive traction and has pulled together nearly 2000 stars on GitHub. Many developers have cloned Verba, running Weaviate locally in their own environments, and loaded their own datasets which range from the entire Lord of the Ring series to enterprise data as well.
 
 Verba can be an excellent starting point to building and customizing your own RAG application. If you’d like to clone it, you can find it on [GitHub](https://github.com/weaviate/verba). Additionally, we have a blog post that goes into detail about [building modular RAG applications](https://weaviate.io/blog/verba-open-source-rag-app), and dives deep into some of the design choices of Verba.
 
@@ -136,7 +136,7 @@ This is RAG Send for Hotel Marketing. It allows you to generate emails using a v
 
 RAG Send for Hotel Marketing can generate automated marketing emails based on the analytics of a user’s past interactions with the hotel datasets available on your platform.
 
-This is yet another form of RAG, just applied to a marketing use case. 
+This is yet another form of RAG, just applied to a marketing use case.
 
 ### GFL - Generative Feedback Loops
 
@@ -167,9 +167,9 @@ An increasing number of larger ecommerce companies are starting to expand their 
 
 ## The Future of GenAI Applications in the Enterprise
 
-It’s an exciting time here at Weaviate especially seeing the breadth of applications that customers are leveraging our capabilities for. The applications and use cases discussed in this blog post are some of the more prevalent ones, but the tools and applications developers are building with Weaviate are increasing every day. You can be certain that Weaviate is building cutting edge features and taking you into the next era of technology and integration of AI into your applications. 
+It’s an exciting time here at Weaviate especially seeing the breadth of applications that customers are leveraging our capabilities for. The applications and use cases discussed in this blog post are some of the more prevalent ones, but the tools and applications developers are building with Weaviate are increasing every day. You can be certain that Weaviate is building cutting edge features and taking you into the next era of technology and integration of AI into your applications.
 
-There are tons of ways to get started with Weaviate if you’re looking to build generative AI features into your application. We’re on many of the major cloud provider marketplaces ([GCP](https://weaviate.io/developers/weaviate/installation/gc-marketplace) and [AWS](https://weaviate.io/developers/weaviate/installation/aws-marketplace)) or you can get started with Weaviate for free using a sandbox in [Weaviate Cloud Services](https://console.weaviate.cloud) or deploy our open source database locally with docker. 
+There are tons of ways to get started with Weaviate if you’re looking to build generative AI features into your application. We’re on many of the major cloud provider marketplaces ([GCP](https://weaviate.io/developers/weaviate/installation/gc-marketplace) and [AWS](https://weaviate.io/developers/weaviate/installation/aws-marketplace)) or you can get started with Weaviate for free using a sandbox in [Weaviate Cloud](https://console.weaviate.cloud) or deploy our open source database locally with docker.
 
 If you have any questions, don’t hesitate to reach out to us on our [public slack community](https://weaviate.io/slack)!
 
