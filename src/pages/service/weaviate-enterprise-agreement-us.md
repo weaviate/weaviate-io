@@ -16,7 +16,7 @@ This Customer Agreement (this “**_Agreement_**”) is between Weaviate, LLC, a
 
 ### **Background**
 
-Weaviate has developed and makes available an open-sourced vector database that permits Customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**” or“**_Enterprise Dedicated Offering_**” ) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
+Weaviate has developed and makes available an open-sourced vector database that permits Customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**” or“**_Weaviate Enterprise Cloud Offering_**” ) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
 
 ---
 ### 1. **Definitions**

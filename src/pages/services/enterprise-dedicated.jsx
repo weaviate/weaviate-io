@@ -13,8 +13,8 @@ export default function EDPage() {
   return (
     <div className="custom-page noBG">
       <Layout
-        title="Enterprise Dedicated"
-        description="Enterprise Dedicated Service"
+        title="Weaviate Enterprise Cloud"
+        description="Weaviate Enterprise Cloud Service"
       >
         <ServiceHeader />
         <ServicePlan />

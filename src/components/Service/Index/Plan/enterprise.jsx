@@ -7,7 +7,7 @@ export default function PricingEnterprise() {
     <div className={styles.boxContainer}>
       <Link className={styles.box} to="services/enterprise-dedicated">
         <div className={styles.title}>
-          <h3>Enterprise Dedicated</h3>
+          <h3>Weaviate Enterprise Cloud</h3>
         </div>
         <div className={styles.price}>
           <p>

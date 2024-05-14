@@ -268,7 +268,7 @@ const config = {
 
                         },
                         {
-                            label: 'Enterprise Dedicated',
+                            label: 'Weaviate Enterprise Cloud',
                             href: '/services/enterprise-dedicated',
 
                         },
