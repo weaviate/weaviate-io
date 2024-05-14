@@ -26,7 +26,7 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
+:::info Not applicable to WCD
 This module is not available on Weaviate Cloud.
 :::
 

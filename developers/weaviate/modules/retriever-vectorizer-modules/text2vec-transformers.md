@@ -37,7 +37,7 @@ Alternatively, consider one of the following options:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
+:::info Not applicable to WCD
 This module is not available on Weaviate Cloud.
 :::
 

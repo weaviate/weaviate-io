@@ -26,7 +26,7 @@ For production use cases, we recommend using other modules that use a more moder
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
+:::info Not applicable to WCD
 This module is not available on Weaviate Cloud.
 :::
 
