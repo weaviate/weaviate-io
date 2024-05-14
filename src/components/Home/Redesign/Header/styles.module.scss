@@ -34,10 +34,9 @@
   /*  background-image: url('/img/site/3d-weaviate-bubble-white-light.jpg'); */
   background-size: contain;
   background-repeat: no-repeat;
-  background-position-y: -71px;
 
   @media screen and (max-width: 500px) {
-    background-image: none;
+    background-image: url('/img/site/3d-weaviate-bubble-white-light-mobile.jpg');
   }
 }
 
@@ -49,6 +48,10 @@
   object-fit: cover;
   z-index: 0;
   position: absolute;
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .headerContent {
@@ -822,7 +825,7 @@
     line-height: 140%; /* 2.1rem */
 
     @media screen and (max-width: 500px) {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
 }
