@@ -325,7 +325,7 @@ const config = {
                                 type: 'doc',
                             },
                             {
-                                label: 'Weaviate Cloud Services Docs',
+                                label: 'Weaviate Cloud Docs',
                                 docId: 'wcs/index',
                                 sidebarid: 'wcsSidebar',
                                 type: 'doc',
@@ -502,7 +502,7 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Product',
+                        title: 'Weaviate Cloud',
                         items: [
                             {
                                 label: 'Vector Database',

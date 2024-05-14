@@ -4,7 +4,7 @@ sidebar_position: 10
 image: og/wcs/user_guides.jpg
 ---
 
-There are two ways to connect to your [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instance:
+There are two ways to connect to your [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instance:
 
 - [Connect a browser to WCS through the WCS Console.](/developers/wcs/connect#connect-with-a-browser)
 
@@ -24,7 +24,7 @@ The WCS dashboard lets you monitor and control your Weaviate clusters from your 
 To connect to WCS with a browser, follow these steps:
 
 1. Open the [WCS login page](https://console.weaviate.cloud/) in a browser.
-1. Click `Login to Weaviate Cloud Services`.
+1. Click `Login to Weaviate Cloud`.
 1. Enter your email address and password to authenticate.
 
 ### Enable multi-factor authentication
@@ -140,10 +140,10 @@ To pass the API key, add it to the `Headers` at the bottom of the GraphQL query 
 
 ![API key in header](./img/wcs-auth-header.jpg)
 
-## Troubleshooting 
+## Troubleshooting
 
 This section has solutions for some common problems. For additional help, [contact support](#support).
- 
+
 ### Reset your password
 
 To reset your WCS password, follow these steps:
@@ -176,7 +176,7 @@ import PyCodeSupp from '!!raw-loader!/_includes/code/client-libraries/python_slo
 </TabItem>
 </Tabs>
 
-Alternatively, leave the default timeout values, but skip the initial connection checks. 
+Alternatively, leave the default timeout values, but skip the initial connection checks.
 
 <Tabs groupId="languages">
 <TabItem value="py4" label="Python Client v4">
@@ -193,7 +193,7 @@ Alternatively, leave the default timeout values, but skip the initial connection
 
 ### gRPC health check error
 
-**Problem**: gRPC returns a health check error after you update a managed cluster. 
+**Problem**: gRPC returns a health check error after you update a managed cluster.
 
 ```
 weaviate.exceptions.WeaviateGRPCUnavailableError: gRPC health check could not be completed.
@@ -207,10 +207,10 @@ To check the URLs, open the WCS Console and check the details panel for your clu
 
 ![Compare URLs](./img/wcs-console-url-check.jpg)
 
-Compare the Cluster URL with the connection URL in your application. The old URL and the new URL are similar, but the new one may have an extra subdomain such as `.c0.region`. 
+Compare the Cluster URL with the connection URL in your application. The old URL and the new URL are similar, but the new one may have an extra subdomain such as `.c0.region`.
 
 If the URLs are different, update your application's connection code to use the new Cluster URL.
-  
+
 ## More resources
 
 To authenticate with a Weaviate client library, see the following:

@@ -63,7 +63,7 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -247,4 +247,3 @@ These models can be configured
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>
-

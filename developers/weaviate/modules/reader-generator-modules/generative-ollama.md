@@ -13,7 +13,7 @@ image: og/docs/modules/generative-ollama.jpg
 
 - The Generative Ollama (`generative-ollama`) module performs retrieval augmented generation, or RAG, based on the data stored in your Weaviate instance.
 - The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - This module assumes an Ollama endpoint is available to you (e.g. by running a local Ollama instance on your own device).
 - Your Weaviate instance must be able to access the Ollama endpoint. If you are running Weaviate via Docker, you can specify the [Ollama endpoint using `host.docker.internal`](#collection-configuration) to access the host machine from within the container.
 - The default model is `llama3`.
@@ -40,8 +40,8 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file

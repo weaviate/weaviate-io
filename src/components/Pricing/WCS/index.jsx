@@ -12,7 +12,7 @@ export default function Soc2(props) {
         <div className="container">
           <div className={styles.box}>
             <div className={styles.soc2Box}>
-              <h2>Weaviate Cloud Services (WCS)</h2>
+              <h2>Weaviate Cloud (WCD)</h2>
 
               <p>
                 Whether you work at a fast-paced startup or at an enterprise

@@ -26,7 +26,7 @@ Key notes:
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
-- This module is available on Weaviate Cloud Services (WCS).
+- This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - Model names differ between Vertex AI and AI Studio.
     - The default model for Vertex AI is `textembedding-gecko@001`.
@@ -82,7 +82,7 @@ In the Weaviate [class configuration](#class-configuration), set the `apiEndpoin
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file

@@ -1,21 +1,21 @@
 ---
-title: Weaviate Cloud Services
+title: Weaviate Cloud
 sidebar_position: 1
 image: og/docs/installation.jpg
-# tags: ['installation', 'Weaviate Cloud Services']
+# tags: ['installation', 'Weaviate Cloud']
 ---
 
 import WCSLandingIntro from '/_includes/wcs/wcs-landing-intro.mdx'
 
 <WCSLandingIntro/>
 
-## WCS and Weaviate open-source
+## WCD and Weaviate open-source
 
 import WCSLandingOpenSource from '/_includes/wcs/wcs-landing-open-source.mdx'
 
 <WCSLandingOpenSource/>
 
-## WCS solutions
+## WCD solutions
 
 import WCSLandingSolutions from '/_includes/wcs/wcs-landing-solutions.mdx'
 
@@ -32,4 +32,3 @@ import WCSLandingGetStarted from '/_includes/wcs/wcs-landing-get-started.mdx'
 import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
 
 <SupportAndTrouble />
-

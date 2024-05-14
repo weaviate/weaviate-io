@@ -28,7 +28,7 @@ This directory contains the following files:
 
 ### Server-side
 
-To take advantage of the gRPC API, we recommend using the latest version of Weaviate. We suggest using port `50051` for gRPC calls. This can be set in the configuration file for Weaviate. (Note that [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) uses port `443` for gRPC.)
+To take advantage of the gRPC API, we recommend using the latest version of Weaviate. We suggest using port `50051` for gRPC calls. This can be set in the configuration file for Weaviate. (Note that [Weaviate Cloud (WCD)](https://console.weaviate.cloud/) uses port `443` for gRPC.)
 
 As an example, the snippet below maps `50051` as the host port so that it can be accessed from outside the container. The `50051` port is mapped to the `50051` port inside the container for gRPC calls, and the `8080` port is mapped to the `8080` port inside the container for REST calls.
 
