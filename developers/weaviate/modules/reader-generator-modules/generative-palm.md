@@ -5,6 +5,9 @@ image: og/docs/modules/generative-palm.jpg
 # tags: ['generative', 'gemini', 'palm', 'gcp']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="google" />
 
 ## Overview
 
@@ -14,7 +17,7 @@ image: og/docs/modules/generative-palm.jpg
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
     * Please check the vendor pricing.
-* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
 
 :::info Releases and versions
 
@@ -123,7 +126,7 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -381,6 +384,8 @@ AI Studio:
 - `gemini-pro`
 - `gemini-pro-vision` (from Weaviate `v1.24.2`)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

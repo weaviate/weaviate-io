@@ -76,8 +76,18 @@
   }
 }
 
+.calculatorHolder {
+  display: flex;
+}
+
+.info {
+  width: 20.9375rem;
+  height: 40rem;
+  border-radius: 0.625rem;
+  border: 3px solid #262262;
+}
 .buttons {
-  margin-top: 70px;
+  margin: 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -101,6 +111,33 @@
     background-image: linear-gradient(45deg, #20e220 60%, #ffff00);
     color: rgba(46, 49, 143);
     font-weight: bold;
+  }
+
+  .buttonOutline {
+    border-radius: 0.3125rem;
+    border: 1px solid #61bd73;
+    color: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
+    transition: background-color 1s ease-out, border-color 1s ease-out,
+      color 1s ease-out;
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.3125rem;
+    border: 1px solid #130c49;
+    background: #61bb73;
+    color: #130c49;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.57331rem */
   }
 }
 
@@ -284,13 +321,219 @@
 }
 
 .bgColor {
-  background: #ededed;
+  background: #130c49;
+  margin-top: -2px;
 }
 
+.container {
+  @media (min-width: 1440px) {
+    max-width: var(--ifm-container-width-xl);
+    margin: auto;
+  }
+}
 .featuresLine {
   width: 150%;
 
   @media screen and (max-width: 668px) {
     display: none;
+  }
+}
+
+.productPlan {
+  width: 80%;
+  margin: 20px auto;
+  height: 25.4rem;
+  border-radius: 0.625rem;
+  border: 3px solid #262262;
+  display: flex;
+  padding: 2rem;
+  flex-direction: row;
+  gap: 70px;
+
+  @media screen and (max-width: 668px) {
+    width: 95%;
+    margin: 20px auto;
+    height: 25.4rem;
+    border-radius: 0.625rem;
+    border: 3px solid #262262;
+    display: flex;
+    padding: 2rem;
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+.mobilePlans {
+  justify-content: space-between;
+}
+
+.desktopPlan {
+  display: block;
+
+  @media screen and (max-width: 1230px) {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media screen and (max-width: 1230px) {
+    display: block;
+  }
+}
+
+.plansTrack {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  overflow-x: scroll;
+  overflow-y: unset;
+}
+
+.plans {
+  width: 270px;
+  color: #ffffff;
+  z-index: 1;
+
+  @media screen and (max-width: 668px) {
+    width: 810px;
+  }
+
+  h2 {
+    color: #fff;
+    text-align: right;
+    font-family: Inter;
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    margin: 0px 0px 55px;
+
+    @media screen and (max-width: 668px) {
+      text-align: left;
+    }
+  }
+
+  p {
+    color: #61bb73;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 10px 0px;
+
+    @media screen and (max-width: 668px) {
+      text-align: left;
+      font-size: 0.9rem;
+      width: 196px;
+      margin: 13px 0px;
+    }
+
+    span {
+      color: #ffffff;
+    }
+  }
+}
+
+.standard,
+.enterprise,
+.businessCritical {
+  width: 200px;
+
+  @media screen and (max-width: 668px) {
+    width: 140px;
+  }
+  h2 {
+    color: #61bb73;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+    margin: 10px 0px;
+  }
+  p {
+    text-align: center;
+    color: #ffffff;
+
+    @media screen and (max-width: 668px) {
+      text-align: left;
+      font-size: 1rem;
+      width: unset;
+      margin: 10px 0px;
+    }
+  }
+
+  .pricing {
+    color: #fff;
+    margin: 20px 0px;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+
+    span {
+      color: #fff;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    @media screen and (max-width: 668px) {
+      margin: 0px;
+    }
+  }
+
+  .mobileHeader {
+    @media screen and (max-width: 668px) {
+      margin-top: -5px;
+    }
+  }
+}
+
+.lines {
+  margin: 38px 0px;
+  width: 80%;
+  height: 2.25rem;
+  flex-shrink: 0;
+  background: #262262;
+  position: absolute;
+  z-index: 0;
+  margin-left: -35px;
+  transform: translateY(73px);
+  max-width: 1056px;
+
+  @media screen and (max-width: 668px) {
+    width: 95%;
+  }
+}
+
+.line1 {
+  transform: translateY(105px);
+}
+.line2 {
+  transform: translateY(180px);
+}
+.line3 {
+  transform: translateY(253px);
+}
+
+.explanation {
+  width: 100%;
+  height: 34px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 300;
+  margin-top: -57px;
+
+  @media screen and (max-width: 1230px) {
+    display: none;
+  }
+}
+
+.mob {
+  display: none;
+
+  @media screen and (max-width: 1230px) {
+    display: block;
   }
 }

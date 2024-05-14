@@ -5,6 +5,10 @@ image: og/docs/modules/reranker-cohere.jpg
 # tags: ['rerank', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
+
 ## Introduction
 
 - The `reranker-cohere` module enables reranking search results using a [Cohere reranker API](https://txt.cohere.com/rerank/).
@@ -18,9 +22,9 @@ image: og/docs/modules/reranker-cohere.jpg
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
-This module is enabled by default on the WCS.
+This module is enabled by default in WCD.
 
 ### Weaviate open source
 
@@ -139,6 +143,8 @@ This is described further in this [blog post](/blog/fine-tuning-coheres-reranker
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

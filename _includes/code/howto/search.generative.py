@@ -14,6 +14,38 @@ client = weaviate.connect_to_wcs(
     }
 )
 
+# ===============================================
+# ===== QUERY WITH TARGET VECTOR & nearText =====
+# ===============================================
+
+# NamedVectorNearTextPython
+from weaviate.classes.query import MetadataQuery
+
+reviews = client.collections.get("WineReviewNV")
+response = reviews.generate.near_text(
+    query="a sweet German white wine",
+    limit=2,
+    # highlight-start
+    target_vector="title_country",  # Specify the target vector for named vector collections
+    single_prompt="Translate this into German: {review_body}",
+    grouped_task="Summarize these review",
+    # highlight-end
+    return_metadata=MetadataQuery(distance=True)
+)
+
+print(response.generated)
+for o in response.objects:
+    print(o.properties)
+    print(o.generated)
+# END NamedVectorNearTextPython
+
+# Test results
+assert response.objects[0].collection == "WineReviewNV"
+assert len(response.objects) == 2
+assert "title" in response.objects[0].properties.keys()
+assert response.objects[0].metadata.distance is not None
+# End test
+
 # =====================================
 # ===== SINGLE GENERATIVE EXAMPLE =====
 # =====================================

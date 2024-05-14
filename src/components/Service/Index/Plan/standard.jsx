@@ -7,7 +7,7 @@ export default function PricingStandard() {
     <div className={styles.boxContainer}>
       <Link className={styles.box} to="services/serverless">
         <div className={styles.title}>
-          <h3>Serverless</h3>
+          <h3>Serverless Cloud</h3>
         </div>
         <div className={styles.price}>
           <p>We manage everything for you in the Weaviate Cloud.</p>

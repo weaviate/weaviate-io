@@ -63,6 +63,8 @@ It is possible for anyone to create a custom module for use with Weaviate. Click
 - [References: Modules](../modules/index.md)
 :::
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

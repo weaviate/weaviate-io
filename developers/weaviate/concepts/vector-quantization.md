@@ -122,6 +122,8 @@ In some cases, rescoring also includes over-fetching, whereby additional candida
 - [Weaviate Academy: 250 Vector Compression](../../academy/py/compression/index.md)
 :::
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

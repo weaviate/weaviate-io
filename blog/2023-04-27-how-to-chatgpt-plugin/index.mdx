@@ -414,7 +414,7 @@ Have a look at some of the endpoint testing we did locally before moving onto th
 
 Once we have tested the plugin locally to our satisfaction we can deploy remotely and install it into ChatGPT. Here are the steps we follow to share our plugin with those who have access to the alpha:
 
-1. Create a remote Weaviate Instance: This was done using the [Weaviate Cloud Services](https://console.weaviate.cloud/)
+1. Create a remote Weaviate Instance: This was done using the [Weaviate Cloud](https://console.weaviate.cloud/)
 
 2. Add a [dockerfile](https://github.com/weaviate/howto-weaviate-retrieval-plugin/blob/main/Dockerfile). This dockerfile is just a modified version the file [template provided by OpenAI](https://github.com/openai/chatgpt-retrieval-plugin/blob/main/Dockerfile) and will be used to setup your environment remotely and starts up the server.
 

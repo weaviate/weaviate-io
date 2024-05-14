@@ -193,7 +193,7 @@
   {
     "name": "Erika Cardenas",
     "title": "Technology Partner Manager",
-    "photo": "erika.png",
+    "photo": "erika.jpg",
     "linkedin": "erikacardenas300",
     "twitter": "ecardenas300",
     "github": "erika-cardenas",
@@ -409,12 +409,16 @@
     "team": "developer-growth"
   },
   {
-    "name": "Redouan 'Red' El Rhazouani",
-    "title": "Core Engineer",
-    "photo": "redo.png",
-    "linkedin": "redouan-el-rhazouani-295082111",
-    "github": "redouan-rhazouani",
-    "team": "cloud"
+    "name": "Scott Alexander",
+    "title": "Client-Focused SRE",
+    "photo": "scott-alexander.jpg",
+    "team": "qa-sre"
+  },
+  {
+    "name": "Sebastian Neira Farriol",
+    "title": "Client-Focused SRE",
+    "photo": "Sebastian-Farriol.jpg",
+    "team": "qa-sre"
   },
   {
     "name": "Sebastian Witalec",

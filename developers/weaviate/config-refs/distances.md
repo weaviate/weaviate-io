@@ -83,6 +83,8 @@ For backward compatibility, `certainty` can still be used when the distance is
 See also [distance and certainty _additional{} properties](../api/graphql/additional-properties.md).
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -5,7 +5,7 @@ image: og/docs/quickstart-tutorial.jpg
 # tags: ['getting started']
 ---
 
-This Quickstart guide shows you how to get started with Weaviate Cloud Services (WCS).
+This Quickstart guide shows you how to get started with Weaviate Cloud (WCD).
 
 ## Create a WCS account
 
@@ -61,7 +61,7 @@ To get the cluster URL and authentication details, follow these steps:
 
 1. Click the `Details` button to open the Details panel.
 
-![Details button](./img/wcs-console-details-button.jpg)
+![Details button](./img/wcs-details-icon.jpg)
 
 2. To get the API keys, click the `API keys` button.
 
@@ -108,7 +108,7 @@ Weaviate stores objects in collections. Every collection has a [schema](/develop
 
 To create a schema for the `Question` collection, follow these steps in your client code:
 
-1. Create a [client connection](#connect-to-your-wcs-instance). 
+1. Create a [client connection](#connect-to-your-wcs-instance).
 1. Add the collection definition code after the client creation code.
 1. Run the code.
 
@@ -116,7 +116,7 @@ import CodeAutoschemaMinimumSchema from '/_includes/code/quickstart/collection.d
 
 <CodeAutoschemaMinimumSchema />
 
-The collection has these properties: 
+The collection has these properties:
 
   - Collection name: `Question`
   - Vectorizer module: `text2vec-openai`

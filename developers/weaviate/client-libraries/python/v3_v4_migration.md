@@ -10,7 +10,6 @@ import TabItem from '@theme/TabItem';
 import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBlock';
 import PythonCode from '!!raw-loader!/_includes/code/client-libraries/python_v4.py';
 
-
 :::note Python client version
 The current Python client version is `v||site.python_client_version||`
 :::
@@ -148,7 +147,7 @@ import ManageDataCode from '!!raw-loader!/_includes/code/howto/manage-data.read.
 import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.read-v3.py';
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={ManageDataCode}
       startMarker="# ReadObject START"
@@ -157,7 +156,7 @@ import ManageDataCodeV3 from '!!raw-loader!/_includes/code/howto/manage-data.rea
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={ManageDataCodeV3}
       startMarker="# ReadObject START"
@@ -190,7 +189,7 @@ import SearchSimilarityCode from '!!raw-loader!/_includes/code/howto/search.simi
 import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={SearchSimilarityCode}
       startMarker="# GetNearTextPython"
@@ -199,7 +198,7 @@ import SearchSimilarityCodeV3 from '!!raw-loader!/_includes/code/howto/search.si
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={SearchSimilarityCodeV3}
       startMarker="# GetNearTextPython"
@@ -227,6 +226,8 @@ In particular, check out the pages for:
 - [Similarity search](../../search/similarity.md)
 - [Filters](../../search/filters.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -1,0 +1,61 @@
+---
+title: Upgrade a cluster
+sidebar_position: 30
+# image: og/wcs/user_guides.jpg
+---
+
+WCS does not automatically upgrade existing clusters when a new version of Weaviate core is released.
+
+If you have a stand-alone cluster, an upgrade requires system downtime. Consider your business needs, and upgrade your cluster when you have a suitable maintenance window. There is no downtime if you have a high availability (HA) cluster.
+
+## Check the server version
+
+Check for a Weaviate server update.
+
+### Console message
+
+The console displays a notification message in the console when a new version is available.
+
+![WCS Upgrade notification message](../img/wcs-upgrade-banner.jpg)
+
+Click to expand the notification. The notification displays a list of clusters that can be upgraded.
+
+![WCS Upgrade notification details](../img/wcs-upgrade-notification-details.jpg)
+
+### Details panel
+
+To check if you are running the latest version of Weaviate, follow these steps.
+
+1. Connect to the WCS console, and find your cluster in the Dashboard tab.
+1. Click the "Details" button.
+1. Find the version tile in the details panel.
+
+The tile has an "Update!" button when a newer version is available.
+
+![WCS Upgrade available indicator](../img/wcs-upgrade-details.jpg)
+
+## Upgrade the server version
+
+ WCS restarts your cluster during an upgrade. A standard cluster is unavailable during the upgrade.
+
+ To avoid downtime, consider using high availability (HA) clusters for production workloads. An HA cluster upgrades one node at a time so the cluster is available during the upgrade.
+
+ To upgrade a cluster, follow these steps:
+
+ 1. Click the "Upgrade!" button on the cluster details tile.
+ 1. Enter your cluster name in the text entry box.
+ 1. Click confirm.
+
+![WCS Upgrade confirmation](../img/wcs-upgrade-confirmation.jpg)
+
+During the upgrade, the console displays a status indicator.
+
+![WCS update status indicator](../img/wcs-upgrade-status-indicator.jpg)
+
+The indicator goes way and WCS sends a confirmation email when the cluster is ready.
+
+## Support
+
+import SupportAndTrouble from '/_includes/wcs/support-and-troubleshoot.mdx';
+
+<SupportAndTrouble />

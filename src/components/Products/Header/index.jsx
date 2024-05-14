@@ -6,7 +6,7 @@ export default function PricingHeader({ selectedType, handleSelected }) {
   return (
     <div className="container">
       <div className={styles.box}>
-        <h1 className={styles.pricingHeader}>Weaviate Cloud Services</h1>
+        <h1 className={styles.pricingHeader}>Weaviate Cloud</h1>
         <h3>The power of the open-source vector database, fully managed</h3>
         <p>
           Regardless of whether you are a startup wanting to get started with

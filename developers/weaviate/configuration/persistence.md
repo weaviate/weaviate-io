@@ -91,12 +91,12 @@ If a shard was marked `READONLY` due to disk pressure and you want to mark the
 shard as ready again (either because you have made more space available or
 changed the thresholds) you can use the [Shards API](/developers/weaviate/api/rest#tag/schema/get/schema/%7BclassName%7D/shards) to do so.
 
-## Virtual memory access method
+## Disk access method
 
 :::info Added in `v1.21`
 :::
 
-You can choose between `mmap` (DEFAULT) and `pread` functions to access virtual memory by setting the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable.
+Weaviate maps data on disk to memory. To configure how Weaviate uses virtual memory, set the `PERSISTENCE_LSM_ACCESS_STRATEGY` environment variable. The default value is `mmap`. Use `pread` to as an alternative. 
 
 The two functions reflect different under-the-hood memory management behaviors. `mmap` uses a memory-mapped file, which means that the file is mapped into the virtual memory of the process. `pread` is a function that reads data from a file descriptor at a given offset.
 
@@ -106,6 +106,8 @@ In general, `mmap` may be a preferred option with memory management benefits. Ho
 ## Related pages
 - [Configuration: Backups](./backups.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

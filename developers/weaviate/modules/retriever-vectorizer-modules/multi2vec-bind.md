@@ -15,7 +15,7 @@ The `multi2vec-bind` module enables Weaviate to use the [ImageBind](https://gith
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable multiple [`near<Media>` search operators](#additional-search-operators).
 - Model encapsulated in Docker container.
 - This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
@@ -31,8 +31,8 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Memory requirements
@@ -226,6 +226,8 @@ The `multi2vec-bind` module uses the [ImageBind](https://github.com/facebookrese
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

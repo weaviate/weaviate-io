@@ -379,7 +379,6 @@ assert response.total_count == 1000
 # Cleanup
 client.collections.delete("JeopardyQuestion")
 
-
 # ===========================================
 # ===== Stream data - CSV =====
 # ===========================================
@@ -458,5 +457,45 @@ client.collections.delete("JeopardyQuestion")
 os.remove("jeopardy_1k.json")
 os.remove("jeopardy_1k.csv")
 
+# ================================================
+# =====   Batch vectorization set parameters =====
+# ================================================
+
+rpm_embeddings = 100
+tpm_embeddings = 10000
+
+cohere_key = os.environ["COHERE_API_KEY"]
+openai_key = os.environ["OPENAI_API_KEY"]
+
+
+# START BatchVectorizationClientModify
+from weaviate.classes.config import Integrations
+
+integrations = [
+    # Each model provider may expose different parameters
+    Integrations.cohere(
+        api_key=cohere_key,
+        requests_per_minute_embeddings=rpm_embeddings,
+    ),
+    Integrations.openai(
+        api_key=openai_key,
+        requests_per_minute_embeddings=rpm_embeddings,
+        tokens_per_minute_embeddings=tpm_embeddings,   # e.g. OpenAI also exposes tokens per minute for embeddings
+    ),
+]
+client.integrations.configure(integrations)
+# END BatchVectorizationClientModify
+
+collection = client.collections.get("NewCollection")
+
+collection.data.insert_many(
+    {"title": f"Some title {i}", "summary": f"Summary {i}", "body": f"Body {i}"} for i in range(5)
+)
+
+response = collection.aggregate.over_all(total_count=True)
+assert response.total_count == 5
+
+# Clean up
+client.collections.delete("NewCollection")
 
 client.close()

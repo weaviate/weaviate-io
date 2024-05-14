@@ -61,7 +61,7 @@ ieva:
   name: Ieva Urbaite
   title: Marketing
   url: https://www.linkedin.com/in/ievaurbaite/
-  image_url: /img/people/icon/ieva.jpg
+  image_url: /img/people/icon/ieva.png
 jessie:
   name: Jessie de Groot
   title: Head of People and Culture
@@ -170,3 +170,13 @@ ajit:
   title: Developer Growth Intern
   url: https://github.com/ajit283
   image_url: /img/people/icon/ajit.png
+amir:
+  name: Amir Houieh
+  title: Founder & CEO of Unbody
+  url: https://www.unbody.io/
+  image_url: /img/people/icon/amir.jpeg
+charles:
+  name: Charles Frye
+  title: AI Engineer
+  url: https://twitter.com/charles_irl
+  image_url: /img/people/icon/charles-modal.png

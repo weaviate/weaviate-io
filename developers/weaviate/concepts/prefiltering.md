@@ -145,6 +145,8 @@ The cache is built in a way that it cannot ever serve a stale entry. Any write t
 - [References: GraphQL API](../api/graphql/index.md)
 :::
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

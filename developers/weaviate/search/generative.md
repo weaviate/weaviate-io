@@ -12,11 +12,6 @@ import PyCode from '!!raw-loader!/_includes/code/howto/search.generative.py';
 import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.generative-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.generative.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.generative-v2.ts';
-import SimilarityPyCode from '!!raw-loader!/_includes/code/howto/search.similarity.py';
-import SimilarityPyCodeV3 from '!!raw-loader!/_includes/code/howto/search.similarity-v3.py';
-import SimilarityTSCode from '!!raw-loader!/_includes/code/howto/search.similarity.ts';
-import SimilarityTSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.similarity-v2.ts';
-
 
 `Generative` search, also known as "Retrieval Augmented Generation" (RAG), is a multi-stage process.<br/>
 First Weaviate performs a query, then it passes the retrieved results and a prompt to a large language model (LLM), to generate a new output.
@@ -51,36 +46,36 @@ First Weaviate performs a query, then it passes the retrieved results and a prom
 Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
-      text={SimilarityPyCode}
+      text={PyCode}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
       language="python"
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
-      text={SimilarityPyCodeV3}
+      text={PyCodeV3}
       startMarker="# NamedVectorNearTextPython"
       endMarker="# END NamedVectorNearTextPython"
       language="python"
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
-      text={SimilarityTSCode}
+      text={TSCode}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
-      text={SimilarityTSCodeLegacy}
+      text={TSCodeLegacy}
       startMarker="// NamedVectorNearText"
       endMarker="// END NamedVectorNearText"
       language="ts"
@@ -89,7 +84,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
 
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
-      text={SimilarityPyCodeV3}
+      text={PyCodeV3}
       startMarker="# NamedVectorNearTextGraphql"
       endMarker="# END NamedVectorNearTextGraphql"
       language="graphql"
@@ -104,7 +99,7 @@ Define object `properties` – using `{prop-name}` syntax – to interpolate ret
 The properties you use in the prompt do not have to be among the properties you retrieve in the query.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# SingleGenerativePropertiesPython"
@@ -113,7 +108,7 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# SingleGenerativePropertiesPython"
@@ -122,7 +117,7 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// SingleGenerativeProperties TS"
@@ -131,7 +126,7 @@ The properties you use in the prompt do not have to be among the properties you 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// SingleGenerativeProperties TS"
@@ -169,7 +164,7 @@ The output is like this:
 Grouped task search returns one response that includes all of the query results. By default grouped task search uses all object `properties` in the prompt.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# GroupedGenerativePython"
@@ -178,7 +173,7 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# GroupedGenerativePython"
@@ -187,7 +182,7 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GroupedGenerative TS"
@@ -196,7 +191,7 @@ Grouped task search returns one response that includes all of the query results.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GroupedGenerative TS"
@@ -237,7 +232,7 @@ The output is like this:
 Define object `properties` to use in the prompt. This limits the information in the prompt and reduces prompt length.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# GroupedGenerativeProperties Python"
@@ -246,7 +241,7 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# GroupedGenerativeProperties Python"
@@ -255,7 +250,7 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// GroupedGenerativeProperties"
@@ -264,7 +259,7 @@ Define object `properties` to use in the prompt. This limits the information in 
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// GroupedGenerativeProperties"
@@ -305,6 +300,8 @@ The output is like this:
 - [References: Modules: generative-palm](../modules/reader-generator-modules/generative-palm.md)
 - [API References: GraphQL: Get](../api/graphql/get.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
