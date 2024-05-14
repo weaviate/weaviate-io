@@ -164,7 +164,7 @@ const quotesCollection = await client.collections.create({
     {
       name: 'author',
       dataType: 'text',
-      skipVectorisation: true,
+      skipVectorization: true,
     },
   ],
   vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),

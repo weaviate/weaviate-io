@@ -67,7 +67,7 @@ const newCollection = await client.collections.create({
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
       tokenization: 'whitespace',
-      skipVectorisation: true
+      skipVectorization: true
     },
   ],
 })
@@ -154,7 +154,7 @@ const newCollection = await client.collections.create({
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
       tokenization: 'whitespace' as const,
-      skipVectorisation: true
+      skipVectorization: true
     },
   ],
   // highlight-start
@@ -284,7 +284,7 @@ const newCollection = await client.collections.create({
     {
       name: 'body',
       dataType: weaviate.configure.dataType.TEXT,
-      skipVectorisation: true,
+      skipVectorization: true,
       tokenization: 'whitespace'
     },],
   vectorizer: weaviate.configure.vectorizer.text2VecCohere(),
