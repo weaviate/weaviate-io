@@ -85,7 +85,7 @@ export default function PricingTable() {
                     <div className={styles.longCell}>
                       <div className={styles.cellContent}>
                         <div className={styles.cellImage}></div>
-                        <h3>Serverless</h3>
+                        <h3>Serverless Cloud</h3>
                         <span>
                           We manage everything for you in Weaviate Cloud
                           Services (WCS)
@@ -105,7 +105,7 @@ export default function PricingTable() {
                         <div className={styles.cellLogo}>
                           <div className={styles.logoText}>
                             <span>Weaviate</span>
-                            <span>Cloud Services</span>
+                            <span>Cloud</span>
                           </div>
                         </div>
                       </div>

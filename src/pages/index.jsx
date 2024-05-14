@@ -3,20 +3,15 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { MetaSEO } from '/src/theme/MetaSEO';
 
-import HomepageHeader from '/src/components/Home/Header';
-import HomepageFeatures from '/src/components/Home/FeaturesUpdate';
-import HomepageWhatYouCanDo from '/src/components/Home/WhatYouCanDoUpdate';
-import HomepageLovedByDevelopers from '/src/components/Home/LovedByDeveloperUpdate';
-import HomepageLearn from '/src/components/Home/Learn';
-import HomepageJoinCommunity from '/src/components/Home/JoinCommunityUpdate';
-import HomepageReady from '/src/components/Home/Contact';
-import HomepageNewsletter from '/src/components/Home/Newsletter';
-import HomepageCompany from '/src/components/Home/Company';
-import HomepageIntegrations from '/src/components/Home/IntegrationsUpdate';
-import HomepageTestimonials from '/src/components/Home/Testimonials';
-import HomepageLatestInsights from '/src/components/Home/LatestInsights';
-import HomepageContact from '/src/components/Home/Contact';
-import ContactForm from '/src/components/Home/ContactForm/contactForm';
+import HomepageHeader from '/src/components/Home/Redesign/Header';
+import HomepageWhatYouCanDo from '/src/components/Home/Redesign/WhatYouCanDoUpdate';
+import HomepageLovedByDevelopers from '/src/components/Home/Redesign/LovedByDeveloperUpdate/index.jsx';
+import HomepageJoinCommunity from '/src/components/Home/Redesign/JoinCommunityUpdate';
+import HomepageIntegrations from '/src/components/Home/Redesign/IntegrationsUpdate';
+import HomepageTestimonials from '/src/components/Home/Redesign/Testimonials';
+import Resources from '/src/components/Home/Redesign/Resources';
+import CTA from '/src/components/Home/Redesign/CTA';
+import ContactForm from '/src/components/Home/Redesign/ContactForm/contactForm';
 import ThemeSwitch from '/src/components/ThemeSwitch';
 
 export default function Home() {
@@ -29,12 +24,12 @@ export default function Home() {
         <HomepageHeader />
         <main>
           <HomepageLovedByDevelopers />
-
           <HomepageTestimonials />
           <HomepageWhatYouCanDo />
           <HomepageIntegrations />
-          <HomepageJoinCommunity />
-          <HomepageLatestInsights />
+
+          <Resources />
+          <CTA />
           <ContactForm />
         </main>
       </Layout>

@@ -360,7 +360,7 @@
     margin: 0px;
   }
 
-  @media screen and (max-width: 1020px) {
+  @media screen and (max-width: 1150px) {
     display: none;
   }
 
@@ -372,19 +372,18 @@
 }
 
 .custom-page .tryNow {
-  border-radius: 0.3125rem;
-  border: 1px solid #1c1468;
-  background: #61bd73;
   margin: 0px 70px 0px 0px;
-  width: 8rem;
-  height: 2.625rem;
-  flex-shrink: 0;
+
   align-items: center;
   display: flex;
   align-content: center;
   justify-content: center;
-  transition: background-color 1s ease-out, border-color 1s ease-out,
-    color 1s ease-out;
+  width: 10.625rem;
+  height: 3.5rem;
+
+  border-radius: 0.3125rem;
+  background: #130c49;
+  color: #ffffff;
 
   @media screen and (max-width: 1160px) {
     margin: 0px;
@@ -446,6 +445,11 @@ button.close {
 .footer__copyright,
 .footer__link-item {
   color: var(--site-base-color-shade);
+}
+
+.subtitle {
+  margin: 1rem auto;
+  display: block;
 }
 
 /* Styling for both modes  */
@@ -709,7 +713,7 @@ button.close {
 }
 
 .custom-page .footer__title {
-  color: #ffffff;
+  color: #61bd73;
 }
 
 .custom-page .footer__link-item {
@@ -838,4 +842,16 @@ Dropdown style removed.
 
 [data-theme='dark'] .githubStars {
   fill: white;
+}
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: var(--ifm-link-color);
+  text-decoration: none;
+}
+
+.announcementBar_mb4j,
+.announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+  z-index: 1;
+  position: relative;
 }

@@ -8,7 +8,7 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Weaviate Enterprise Cloud</h1>
+          <h1>Enterprise Cloud</h1>
           <div className={styles.headerBox}>
             <p>
               Tailored for businesses seeking high performance, Weaviate’s
