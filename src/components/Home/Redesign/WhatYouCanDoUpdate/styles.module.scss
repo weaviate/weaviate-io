@@ -5,6 +5,10 @@
 .header {
   margin: 65px 0px;
 
+  @media screen and (max-width: 768px) {
+    margin: 15px 0px;
+  }
+
   h2 {
     color: #fff;
     font-family: 'Plus Jakarta Sans';
@@ -21,6 +25,12 @@
     font-style: normal;
     font-weight: 400;
     line-height: 157.33%; /* 1.57331rem */
+
+    @media screen and (max-width: 768px) {
+      br {
+        display: none;
+      }
+    }
   }
 }
 .info {
@@ -51,9 +61,7 @@
       flex-direction: column;
       flex: 0 0 auto;
       flex-wrap: nowrap;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 0 10px;
+
       width: 100%;
     }
 
@@ -69,9 +77,7 @@
         flex: 0 0 auto;
         flex-direction: column;
         flex-wrap: nowrap;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        scroll-padding: 0 10px;
+
         width: 100%;
       }
 

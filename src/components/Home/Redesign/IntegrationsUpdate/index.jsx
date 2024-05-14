@@ -41,11 +41,7 @@ export default function HomepageIntegrations() {
                 <span className={styles.logoJ} />
               </div>
             </Link>
-            <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
-              <div className={styles.logoBg}>
-                <span className={styles.logoD} />
-              </div>
-            </Link>
+
             <Link to="https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-cohere">
               <div className={styles.logoBg}>
                 <span className={styles.logoCo} />
@@ -69,6 +65,11 @@ export default function HomepageIntegrations() {
             <Link to="https://gpt-index.readthedocs.io/en/latest/examples/vector_stores/WeaviateIndexDemo.html">
               <div className={styles.logoBg}>
                 <span className={styles.logoLa} />
+              </div>
+            </Link>
+            <Link to="https://haystack.deepset.ai/integrations/weaviate-document-store">
+              <div className={styles.logoBg}>
+                <span className={styles.logoD} />
               </div>
             </Link>
           </div>

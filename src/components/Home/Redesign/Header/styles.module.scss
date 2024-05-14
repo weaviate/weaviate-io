@@ -142,6 +142,7 @@
     color: #130c49;
 
     @media screen and (max-width: 950px) {
+      text-align: center;
       br {
         display: none;
       }
@@ -822,6 +823,9 @@
 
     @media screen and (max-width: 500px) {
       font-size: 1rem;
+      br {
+        display: none;
+      }
     }
   }
 }
