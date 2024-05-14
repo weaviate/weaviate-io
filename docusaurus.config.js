@@ -268,8 +268,8 @@ const config = {
 
                         },
                         {
-                            label: 'Enterprise Cloud',
-                            href: '/services/enterprise-cloud',
+                            label: 'Weaviate Enterprise Cloud',
+                            href: '/services/enterprise-dedicated',
 
                         },
                         {
@@ -309,7 +309,7 @@ const config = {
                             href: '/gen-feedback-loops',
 
                         },
-                      
+
                     ]
                 }
                     ,
@@ -339,7 +339,7 @@ const config = {
                             {
                                 label: 'Blog',
                                 to: '/blog',
-                               
+
                             },
                             {
                                 label: 'Online Workshops & Events',
@@ -539,7 +539,7 @@ const config = {
                             },
                         ],
                     },
-                    { 
+                    {
                         title: 'Learn',
                         items: [
                             {
@@ -614,14 +614,14 @@ const config = {
                                 label: 'Toronto',
                                 to: 'https://www.meetup.com/weaviate-toronto',
                             },
-                           
+
                         ],
                     },
                     {
                         title: 'Company',
                         items: [
-                           
-                           
+
+
                             {
                                 label: 'About',
                                 to: '/company/about-us',
@@ -671,11 +671,11 @@ const config = {
 
                         ],
                     },
-                   
+
                     {
                         title: 'Follow Us',
                         items: [
-                            
+
                             {
                                 label: 'GitHub',
                                 to: 'https://github.com/weaviate/weaviate',
@@ -701,7 +701,7 @@ const config = {
                                 label: 'Linkedin',
                                 to: 'https://www.linkedin.com/company/weaviate-io',
                             },
-                           
+
                         ],
                     },
                 ],

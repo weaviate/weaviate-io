@@ -11,7 +11,7 @@ export default function SafetyTypes() {
           <p>
             Weaviate Cloud was built to offload the burden of managing
             a vector database and give development teams peace of mind. Whether
-            you’re running Weaviate as a Serverless, Enterprise Dedicated, or
+            you’re running Weaviate as a Serverless, Weaviate Enterprise Cloud, or
             Bring Your Own Cloud solution– our top priority is keeping your data
             safe and available. Read more about our SLAs{' '}
             <Link to="/service">here</Link>. 
