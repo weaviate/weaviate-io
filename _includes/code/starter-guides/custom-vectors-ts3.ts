@@ -28,21 +28,34 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 const newCollection = await client.collections.create({
  name: 'Question',
  properties: [
-   {
-     name: 'title',
+     {
+      name: 'question',
+      description: 'What to ask',
+      dataType: weaviate.configure.dataType.TEXT,
+      vectorizer: 'text2vec-openai',
+      vectorizePropertyName: true,
+      tokenization: 'word' ,
+    },
+    {
+     name: 'answer',
+     description: 'The clue',
      dataType: weaviate.configure.dataType.TEXT,
-     vectorizePropertyName: true,
-     tokenization: 'lowercase' ,
-   },
-   {
-     name: 'body',
-     dataType: weaviate.configure.dataType.TEXT,
-     tokenization: 'whitespace',
+     vectorizer: 'text2vec-openai',
+     tokenization: 'word',
      skipVectorization: true
-   },
- ],
+     },
+     {
+      name: 'category',
+      description: 'The subject',
+      dataType: weaviate.configure.dataType.TEXT,
+      vectorizer: 'text2vec-openai',
+      tokenization: 'word',
+      skipVectorization: true
+     },
+   ],
 })
 
 // Display schema as verification
-console.log(JSON.stringify(newCollection, null, 2));
+const collectionDefinition = await client.collections.get('Question')
+console.log(await collectionDefinition.config.get())
 // END create schema
