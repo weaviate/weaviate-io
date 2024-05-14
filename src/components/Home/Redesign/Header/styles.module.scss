@@ -48,10 +48,6 @@
   object-fit: cover;
   z-index: 0;
   position: absolute;
-
-  @media screen and (max-width: 500px) {
-    display: none;
-  }
 }
 
 .headerContent {
@@ -286,7 +282,7 @@
 }
 
 .buttons {
-  margin-top: 30px;
+  margin-top: 12px;
   gap: 20px;
   display: flex;
   flex-direction: row;
@@ -805,7 +801,7 @@
 
     @media screen and (max-width: 500px) {
       font-size: 2.5rem;
-
+      width: 300px;
       br {
         display: none;
       }

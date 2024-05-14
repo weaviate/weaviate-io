@@ -30,6 +30,7 @@ export default function HomepageHeader() {
         >
           <source
             src="/img/site/3d-weaviate-bubble-white-light-loop.mp4"
+            poster="/img/site/3d-weaviate-bubble-white-light.jpg"
             type="video/mp4"
           />
         </video>
@@ -42,7 +43,7 @@ export default function HomepageHeader() {
                   <br></br> software
                 </h1>
                 <p>
-                  Bring intuitive applications to life with<br></br> less
+                  Bring intuitive applications to life with less <br></br>{' '}
                   hallucination, data leakage, and vendor lock-in
                 </p>
               </div>

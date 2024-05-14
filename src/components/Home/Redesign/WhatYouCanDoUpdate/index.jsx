@@ -72,7 +72,7 @@ export default function HomepageWhatYouCanDo() {
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab5">
                   <h3 className={styles.tabHeader05}>
-                    Secure, flexible deployment options
+                    Secure, flexible deployment
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg5}`} />
                   <p>
