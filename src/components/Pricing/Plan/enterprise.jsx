@@ -39,7 +39,7 @@ export default function PricingEnterprise() {
             SLA tiers:
             <ul>
               <li>
-                <div className={styles.checkIconWhite}></div>Enterprise
+                <div className={styles.checkIconWhite}></div>Professional
               </li>
               <li>
                 <div className={styles.checkIconWhite}></div>Business Critical
