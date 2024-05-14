@@ -189,20 +189,9 @@ import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questi
 
 <ImportQuestionsWithVectors />
 
-## Query
+## Summary
 
-Let's say you want to find questions related to biology. We can do that by obtaining a vector embedding for "biology", and finding objects nearest to it.
-In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` operator](../api/graphql/search-operators.md#nearvector):
-
-import NearVector from '/_includes/code/quickstart.query.nearVector.mdx';
-
-<NearVector />
-
-You should see something like this:
-
-import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.questions.mdx';
-
-<BiologyQuestionsJson />
+Weaviate provides API integrations with many [model providers](/developers/weaviate/model-providers). These providers can vectorize your data at import time. However, if you already have vectorized data, you can import the vectors when you import the underlying data objects.
 
 ## Questions and feedback
 
