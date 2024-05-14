@@ -38,7 +38,7 @@ const newCollection = await client.collections.create({
      name: 'body',
      dataType: weaviate.configure.dataType.TEXT,
      tokenization: 'whitespace',
-     skipVectorisation: true
+     skipVectorization: true
    },
  ],
 })
