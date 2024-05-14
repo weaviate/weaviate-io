@@ -29,7 +29,7 @@ type JeopardyItem = {
   Vector: number[],
 }
 async function getJsonData(): Promise<JeopardyItem[]> {
-  const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json');
+  const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json');
   return file.json() as unknown as JeopardyItem[];
 }
 
