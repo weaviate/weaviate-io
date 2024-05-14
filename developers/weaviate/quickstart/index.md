@@ -62,7 +62,7 @@ Try it directly on [Google Colab](https://colab.research.google.com/github/weavi
 
 ## Step 1: Create a Weaviate database
 
-You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud Services (WCS).
+You need a Weaviate instance to work with. We recommend creating a free cloud sandbox instance on Weaviate Cloud (WCD).
 
 Go to the [WCS quickstart](/developers/wcs/quickstart.mdx) and follow the instructions to create a sandbox instance, and come back here.  Collect the **API key** and **URL** from the `Details` tab in WCS.
 
@@ -477,7 +477,7 @@ import CautionSchemaDeleteClass from '/_includes/schema-delete-class.mdx'
 <details>
   <summary>See answer</summary>
 
-If you are not sure whether the class has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint. 
+If you are not sure whether the class has been created, check the [`schema`](/developers/weaviate/api/rest#tag/schema) endpoint.
 
 Replace WEAVIATE_INSTANCE_URL with your instance URL.:
 

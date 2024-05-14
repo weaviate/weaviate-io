@@ -48,7 +48,7 @@ Our new Confluent integration enables all your teams to tap into a continuously 
 ![Figure1Dark](./img/fig1-dark.png#gh-dark-mode-only)
 ![Figure1Light](./img/fig1-light.png#gh-light-mode-only)
 
-The integration architecture is designed to be both robust and straightforward, ensuring a seamless flow of real-time data from Confluent Cloud to Weaviate Cloud Services.
+The integration architecture is designed to be both robust and straightforward, ensuring a seamless flow of real-time data from Confluent Cloud to Weaviate Cloud.
 
 1. **Kafka Topic in Confluent Cloud:** The journey begins in Confluent Cloud, where you create a fully managed Kafka topic that holds the data you wish to stream into Weaviate.
 2. **Spark Cluster with confluent-connector Library:** Next, you'll spin up a Spark cluster loaded with our specialized Confluent-Connector library. This cluster acts as the data processing engine that facilitates the data flow between Confluent Cloud and Weaviate.
@@ -61,7 +61,7 @@ By connecting these components, you create a powerful, real-time data pipeline t
 We'll be using code snippets from a Python notebook, which assumes you're running a local Spark cluster in standalone mode. For a comprehensive, end-to-end walkthrough, you can access the full Python notebook [here](https://github.com/weaviate/confluent-connector/blob/main/notebooks/02_demo_confluent_weaviate.ipynb).
 
 :::tip
-A version of the notebook designed to run on databricks and Weaviate Cloud Services (WCS) can be found [here](https://github.com/weaviate/confluent-connector/blob/main/notebooks/04_demo_confluent_databricks.ipynb).
+A version of the notebook designed to run on databricks and Weaviate Cloud (WCD) can be found [here](https://github.com/weaviate/confluent-connector/blob/main/notebooks/04_demo_confluent_databricks.ipynb).
 :::
 
 ### Configure The Spark Session
@@ -81,7 +81,7 @@ spark = (
 )
 ```
 
-This code snippet sets up the Spark environment required for the Confluent Cloud-Weaviate integration. It specifies the necessary JAR packages, including Avro and Kafka SQL libraries, to ensure compatibility and functionality with Confluent Cloud. Additionally, a custom JAR file, `confluent-connector_2.12-3.4.0_0.0.1.jar`, is included to establish the connection between Spark and Weaviate. By running this script, you initialize a Spark session with all the required configurations, laying the groundwork for streaming data from Confluent Cloud to Weaviate Cloud Services.
+This code snippet sets up the Spark environment required for the Confluent Cloud-Weaviate integration. It specifies the necessary JAR packages, including Avro and Kafka SQL libraries, to ensure compatibility and functionality with Confluent Cloud. Additionally, a custom JAR file, `confluent-connector_2.12-3.4.0_0.0.1.jar`, is included to establish the connection between Spark and Weaviate. By running this script, you initialize a Spark session with all the required configurations, laying the groundwork for streaming data from Confluent Cloud to Weaviate Cloud.
 
 ### Create A Schema In Weaviate
 
@@ -175,7 +175,7 @@ clickstreamDF.writeStream.foreachBatch(f)
 
 This code snippet uses the **`writeStream`** method on the **`clickstreamDF`** DataFrame, which contains the real-time data stream from Confluent Cloud in microbatches. The **`foreachBatch(f)`** function call specifies that for each batch of data, the function **`f`** defined earlier will be executed. This function writes the data into Weaviate, as configured.
 
-The **`queryName("write_stream_to_weaviate")`** sets a name for the query, making it easier to monitor and manage. Finally, the **`start()`** method initiates the data streaming process, effectively sending your real-time data from Confluent Cloud into Weaviate Cloud Services.
+The **`queryName("write_stream_to_weaviate")`** sets a name for the query, making it easier to monitor and manage. Finally, the **`start()`** method initiates the data streaming process, effectively sending your real-time data from Confluent Cloud into Weaviate Cloud.
 
 Here's a sample of what the data looks like in Weaviate:
 
@@ -212,7 +212,7 @@ Key Points to Note:
 
 ## Closing CTAs
 
-Not yet a Weaviate customer? Kickstart your AI journey with a [free sandbox environment](https://console.weaviate.cloud/) in Weaviate Cloud Services today - no credit card required.
+Not yet a Weaviate customer? Kickstart your AI journey with a [free sandbox environment](https://console.weaviate.cloud/) in Weaviate Cloud today - no credit card required.
 
 Not yet a Confluent customer? Start your [free trial of Confluent Cloud](https://www.confluent.io/confluent-cloud/tryfree/?utm_campaign=tm.pmm_cd.2023_partner_cwc_weaviate_tryfree&utm_source=weaviate&utm_medium=partnerref) today. New signups receive $400 to spend during their first 30 days—no credit card required.
 

@@ -14,7 +14,7 @@ The `text2vec-transformers` module enables Weaviate to obtain vectors locally fr
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module is only compatible with models encapsulated in a Docker container.
 - [Pre-built images](#use-a-pre-built-image) are available with popular models.
@@ -38,7 +38,7 @@ Alternatively, consider one of the following options:
 ## Weaviate instance configuration
 
 :::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file

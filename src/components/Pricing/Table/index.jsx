@@ -152,7 +152,7 @@ export default function PricingTable() {
                         <h3>Enterprise Dedicated</h3>
                         <span>
                           We manage everything for you in a dedicated instance
-                          in Weaviate Cloud Services (WCS)
+                          in Weaviate Cloud (WCD)
                         </span>
                       </div>
                     </div>

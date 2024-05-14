@@ -18,7 +18,7 @@ The `img2vec-neural` module enables Weaviate to obtain vectors locally images us
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearImage` search operator](#additional-search-operator).
 - Model encapsulated in a Docker container.
 - This module is not compatible with Auto-schema. You must define your classes manually as [shown below](#class-configuration).
@@ -27,7 +27,7 @@ Key notes:
 ## Weaviate instance configuration
 
 :::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file

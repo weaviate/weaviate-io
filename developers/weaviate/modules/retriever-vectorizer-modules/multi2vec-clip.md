@@ -14,7 +14,7 @@ The `multi2vec-clip` module enables Weaviate to obtain vectors locally from text
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` and `nearImage` search operators](#additional-search-operators).
 - Model encapsulated in a Docker container.
 - This module is not compatible with Auto-schema. You must define your collections manually as [shown below](#collection-configuration).
@@ -22,7 +22,7 @@ Key notes:
 ## Weaviate instance configuration
 
 :::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file
