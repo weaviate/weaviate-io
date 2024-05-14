@@ -183,12 +183,6 @@ You can use any vectorizer. In this example, OpenAI is the vectorizer. The quest
 
 Create a json formatted data file to use in your import. In this example, the [data file](/developers/weaviate/starter-guides/_resources/jeopardy_10_vectors.json) is already prepared.
 
-The import script specifies the file to use.
-
-## Import data with vectors
-
-For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
-
 This [batch import](/developers/weaviate/tutorials/import#batch-import-process) code imports the question objects, including their vectors. Batch import is more efficient than importing individual objects. You should use batch imports when you import large amounts of data.
 
 import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions+vectors.mdx'
