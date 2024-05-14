@@ -783,6 +783,10 @@
         display: none;
       }
     }
+
+    @media screen and (max-width: 400px) {
+      font-size: 2.3rem;
+    }
   }
 
   span {

@@ -294,14 +294,15 @@
   h3 {
     color: #ffffff;
     font-family: Plus Jakarta Sans;
-    font-size: 1.5rem;
-    font-style: normal;
-    font-weight: 600;
+    font-size: 1.3rem;
+
     line-height: 144.9%; /* 2.1735rem */
     letter-spacing: -0.015rem;
 
     @media screen and (max-width: 485px) {
       font-size: 1.1rem;
+      text-align: left;
+      display: flex;
     }
   }
 }

@@ -13,8 +13,8 @@ export default function HomepageHeader() {
             <span>Retrieval Augmented Generation</span>
             <h1>Build secure, explainable generative AI applications</h1>
             <p>
-              Reduce hallucination and make conversational applications more
-              reliable, without compromising data privacy.
+              Reduce hallucination and make conversational apps more reliable,
+              without compromising data privacy.
             </p>
             <div className={styles.buttons}>
               <Link

@@ -16,10 +16,9 @@ export default function Details() {
             AI-generated content. Weaviate's design caters specifically to the
             demands of vector data, enabling unparalleled scalability and
             performance. This scalability is key in RAG applications, where the
-            volume of data and the need for rapid retrieval can be significant.
+            volume of data and the need for rapid retrieval is significant.
             Weaviate maintains high performance at scale, ensuring that the LLMs
-            in RAG applications are always fed with the most relevant and timely
-            data.
+            are always fed with the most relevant and timely data.
           </p>
         </div>
         <div className={styles.typeContainer}>
@@ -31,7 +30,7 @@ export default function Details() {
             <div className={styles.typeText}>
               <p>
                 Weaviate can be self-hosted, or we can host and manage it for
-                your within your own VPC environment.
+                you within your own VPC environment.
               </p>
             </div>
           </div>

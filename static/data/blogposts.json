@@ -129,14 +129,14 @@
   ],
   "gen": [
     {
-      "link": "/blog/hurricane-generative-feedback-loops",
-      "type": "Blog",
+      "link": "https://www.youtube.com/watch?v=ickqCzFxWj0",
+      "type": "Video",
       "backgroundImage": "/img/site/hero-gen-01.png",
-      "tagline": "Hurricane: Writing Blog Posts with Generative Feedback Loops",
-      "photo": "connor.jpg",
-      "name": "Connor Shorten",
-      "title": "Product Researcher",
-      "date": "March 19, 2024"
+      "tagline": "DSPy + Weaviate for the Next Generation of LLM Apps",
+      "photo": "erika.jpg",
+      "name": "Erika Cardenas",
+      "title": "Technology Partner Manager",
+      "date": "November 21, 2023"
     },
     {
       "link": "/blog/generative-feedback-loops-with-llms",

@@ -29,7 +29,7 @@ export default function Details() {
             <div className={styles.typeText}>
               <p>
                 Create trustworthy feedback loops using Weaviate-powered vector
-                search and RAG under-the-hood
+                search and RAG.
               </p>
             </div>
           </div>

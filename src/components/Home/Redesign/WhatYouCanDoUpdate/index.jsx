@@ -3,69 +3,8 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 import * as Tabs from '@radix-ui/react-tabs';
-import { LinkButton } from '/src/theme/Buttons';
-import { ButtonContainer } from '../../../../theme/Buttons';
-import CodeSnippet from './CodeSnippet';
 
 export default function HomepageWhatYouCanDo() {
-  const codeExample = `{
-    Get {
-      Publication(
-        nearText: {
-          concepts: ["fashion"]
-           limit: 1
-     ) {
-        name
-        _additional {
-           certainty
-           distance
-            vector
-        }
-     }
-   }
-  }
-`;
-
-  const codeExample2 = `{
-    Get {
-     Article(
-      hybrid: {
-        query: "Board games people
-        are looking out for"
-      }
-     limit: 10
-   ) {
-     summary
-     title
-     url
-     wordCount
-    }
-  }
-  }`;
-
-  const codeExample3 = `{
-  Get {
-   Article(
-    ask: {
-      question: "What movie did
-      Ravensburger create
-      a board game about?"
-}
-   limit: 1
- ) {
-   summary
-   title
-   url
-   wordCount
-   _additional{
-    answer{
-      result
-      }
-    }
-  }
-}
-}`;
-
   return (
     <div className={styles.bgContainer}>
       <div className="container">
@@ -90,7 +29,7 @@ export default function HomepageWhatYouCanDo() {
                   disabled={false}
                 >
                   <h3 className={styles.tabHeader01}>
-                    A partner on your AI-native journey
+                    A partner on your AI journey
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg1}`} />
                   <p>
@@ -102,20 +41,17 @@ export default function HomepageWhatYouCanDo() {
 
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab2">
                   <h3 className={styles.tabHeader02}>
-                    Hybrid search with less effort
+                    Hybrid search made easy
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg2}`} />
                   <p>
-                    Purpose-built for vectors and objects. Get the best of
-                    vector and keyword search to maximize accuracy and
-                    performance.
+                    Get the best of vector and keyword search. Deliver better
+                    results with less effort.
                   </p>
                   <div className={styles.accordianBar}></div>
                 </Tabs.Trigger>
                 <Tabs.Trigger className={styles.tabsTrigger} value="tab3">
-                  <h3 className={styles.tabHeader03}>
-                    Pluggable ML models and frameworks
-                  </h3>
+                  <h3 className={styles.tabHeader03}>Pluggable ML models</h3>
                   <div className={`${styles.cImage} ${styles.codeImg3}`} />
                   <p>
                     Built-in modules for popular machine learning models and
@@ -129,7 +65,7 @@ export default function HomepageWhatYouCanDo() {
                   </h3>
                   <div className={`${styles.cImage} ${styles.codeImg4}`} />
                   <p>
-                    Native multi-tenancy, data compression, filtering, and more.
+                    Advanced multi-tenancy, data compression, and filtering.
                     Scale confidently and efficiently.
                   </p>
                   <div className={styles.accordianBar}></div>
