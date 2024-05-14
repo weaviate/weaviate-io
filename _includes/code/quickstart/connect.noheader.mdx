@@ -9,18 +9,21 @@ import EndToEndTSCode from '!!raw-loader!/_includes/code/quickstart/endtoend.ts'
 <TabItem value="py" label="Python Client v4">
 
 ```python
-import weaviate
+import weaviate, os
+import weaviate.classes as wvc
 
-# As of November 2023, WCS sandbox instances are not yet compatible with the new API introduced in the v4 Python client.
-# This example connects to a local instance of Weaviate. You do not need to provide the Weaviate API key when local,
-# anonymous, authentication is enabled.
-client = weaviate.connect_to_local()
+# Set these environment variables
+URL = os.getenv("WCS_URL")
+APIKEY = os.getenv("WCS_API_KEY")
 
-try:
-    # Your code here
-except:
-    # Close the connection gracefully
-    client.close()
+# Connect to a WCS instance
+client = weaviate.connect_to_wcs(
+    cluster_url=URL,
+    auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
+)
+
+# Check connection
+client.is_ready()
 ```
 
 </TabItem>
