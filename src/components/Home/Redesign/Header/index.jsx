@@ -23,10 +23,10 @@ export default function HomepageHeader() {
         <video
           id="headerVideo"
           className={styles.headerVideo}
-          playsInline
-          autoPlay
-          muted
-          loop
+          muted="muted"
+          autoplay="autoplay"
+          playsinline="playsinline"
+          loop="loop"
         >
           <source
             src="/img/site/3d-weaviate-bubble-white-light-loop.mp4"
