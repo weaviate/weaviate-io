@@ -44,12 +44,12 @@ const newCollection = {
     ]
  }
 
-let collectionSchema = await client.schema
-   .classGetter()
-   .withClassName("Question")
-   .do();
-
-console.log(JSON.stringify(collectionSchema, null, 2));
+// Add the class to the schema
+await client
+  .schema
+  .classCreator()
+  .withClass(newCollection)
+  .do();
 
 // Display schema as verification
 console.log(JSON.stringify(newCollection, null, 2));

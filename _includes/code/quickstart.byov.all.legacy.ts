@@ -45,7 +45,7 @@ async function importQuestionsWithVectors() {
   for (const item of data) {
     // Construct the object to add to the batch
     const obj = {
-      class: className,
+      class: "Question",
       properties: {
         answer: item.Answer,
         question: item.Question,
