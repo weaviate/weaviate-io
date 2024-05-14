@@ -18,7 +18,7 @@ The `text2vec-gpt4all` module enables Weaviate to obtain vectors using the [gpt4
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - This module is optimized for CPU using the [`ggml` library](https://github.com/ggerganov/ggml), allowing for fast inference even without a GPU.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - By default, **input text longer than 256 tokens is mean-pooled with an overlapping context window up to the number of tokens in your input.**
@@ -26,8 +26,8 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file

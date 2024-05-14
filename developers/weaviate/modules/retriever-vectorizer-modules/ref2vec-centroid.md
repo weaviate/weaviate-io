@@ -12,9 +12,9 @@ The `ref2Vec-centroid` module is used to calculate object vectors based on the c
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
-This module is enabled by default on the WCS.
+This module is enabled by default on the WCD.
 
 ### Weaviate open source
 

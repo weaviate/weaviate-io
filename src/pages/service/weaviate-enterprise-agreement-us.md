@@ -16,7 +16,7 @@ This Customer Agreement (this “**_Agreement_**”) is between Weaviate, LLC, a
 
 ### **Background**
 
-Weaviate has developed and makes available an open-sourced vector database that permits Customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**” or“**_Enterprise Dedicated Offering_**” ) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
+Weaviate has developed and makes available an open-sourced vector database that permits Customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**” or“**_Weaviate Enterprise Cloud Offering_**” ) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
 
 ---
 ### 1. **Definitions**
@@ -149,7 +149,7 @@ Weaviate’s online documentation includes technical and user documentation and 
 
 **Support Plans and Response Time SLAs**
 
-| Severity Levels       | Criteria                                                                                                              | Standard Support | Enterprise Support | Business Critical Support |
+| Severity Levels       | Criteria                                                                                                              | Standard Support | Professional Support | Business Critical Support |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------ | ------------------------- |
 | Severity 1 (Critical) | Issues that are critical and require immediate attention, causing widespread disruption or outages.                   | 1 Business day   | 4 hours (24/7)     | 1 hour (24/7)             |
 | Severity 2 (High)     | High-priority problems that can impact service functionality or performance for a subset of users.                    | 2 Business days  | 8 hours (24/7)     | 4 hours (24/7)            |
@@ -160,7 +160,7 @@ Weaviate’s online documentation includes technical and user documentation and 
 
 **Support Channels**
 
-- Enterprise Support: Email during business hours
+- Professional Support: Email during business hours
 - Business Critical Support: Email; 24/7 Phone hotline for escalations
 
 
@@ -187,7 +187,7 @@ Service Requests: This term refers to inquiries from the Customer seeking additi
 
 **Introduction**
 
-This Service Level Agreement (“SLA”) delineates the service levels for Weaviate's vector database services, including the Standard, and Enterprise tiers, valid during the term of the Agreement. The infrastructure of the services is designed for Normal Use, and the Availability is applicable solely for Normal Use of the services. Any usage beyond Normal Use may lead to a degradation of service quality and availability. Issues accessing the service due to application errors (like misuse, misconfiguration, etc.) are excluded from Availability calculations and are not considered downtime, as these are the responsibility of the Customer.
+This Service Level Agreement (“SLA”) delineates the service levels for Weaviate's vector database services, including the Standard, and Professional tiers, valid during the term of the Agreement. The infrastructure of the services is designed for Normal Use, and the Availability is applicable solely for Normal Use of the services. Any usage beyond Normal Use may lead to a degradation of service quality and availability. Issues accessing the service due to application errors (like misuse, misconfiguration, etc.) are excluded from Availability calculations and are not considered downtime, as these are the responsibility of the Customer.
 
 **Normal Use**
 
@@ -199,7 +199,7 @@ Availability
 
 Availability signifies that the services are functional and accessible to the Customer. The details for each parameter are as follows:
 
-| Parameter               | Standard | Enterprise |
+| Parameter               | Standard | Professional |
 |-------------------------|----------|------------|
 | Availability per Quarter| 99.5%    | 99.9%      |
 
@@ -237,20 +237,20 @@ Planned maintenance windows are periods during which the availability of the ser
 Weaviate employs different backup policies for each tier:
 
 - Standard Tier: Daily full backup, stored in the same region for 7 days
-- Enterprise Tier: Daily full backup, stored in the another region for 30 days
+- Professional Tier: Daily full backup, stored in the another region for 30 days
 
 **Monitoring**
 
 Weaviate offers different monitoring solutions for each tier:
 
 - Standard Tier: Public Status Page
-- Enterprise Tier: Dedicated Status Page
+- Professional Tier: Dedicated Status Page
 
 **Service Credits**
 
 In the event that the availability of the services as described herein is not met, Customer shall have the right to claim service credits according to the table below:
 
-| Service Level Targets                  | Standard Tier | Enterprise Tier |
+| Service Level Targets                  | Standard Tier | Professional Tier |
 |---------------------------------------|---------------|-----------------|
 | 99.9% or more                         | No service credits | No service credits |
 | Less than 99.9% but more than 99.5%   | No service credits | 5% service credit |

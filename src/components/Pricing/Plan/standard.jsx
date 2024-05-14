@@ -62,7 +62,7 @@ export default function PricingStandard() {
                   <div className={styles.checkIconWhite}></div>Standard
                 </li>
                 <li>
-                  <div className={styles.checkIconWhite}></div>Enterprise
+                  <div className={styles.checkIconWhite}></div>Professional
                 </li>
                 <li>
                   <div className={styles.checkIconWhite}></div>Business Critical

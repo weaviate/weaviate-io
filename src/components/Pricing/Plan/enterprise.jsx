@@ -6,7 +6,7 @@ export default function PricingEnterprise() {
   return (
     <div className={styles.box}>
       <div className={styles.title}>
-        <h3>Enterprise Dedicated</h3>
+        <h3>Weaviate Enterprise Cloud</h3>
       </div>
       <div className={styles.price}>
         <p>
@@ -39,7 +39,7 @@ export default function PricingEnterprise() {
             SLA tiers:
             <ul>
               <li>
-                <div className={styles.checkIconWhite}></div>Enterprise
+                <div className={styles.checkIconWhite}></div>Professional
               </li>
               <li>
                 <div className={styles.checkIconWhite}></div>Business Critical

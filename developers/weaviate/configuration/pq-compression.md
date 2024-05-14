@@ -49,7 +49,7 @@ For new collections, use AutoPQ. AutoPQ automates triggering of the PQ training 
 AutoPQ requires asynchronous indexing.
 
 - **Open-source Weaviate users**: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
-- [**Weaviate Cloud Services (WCS)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCS console and restart your Weaviate instance.
+- [**Weaviate Cloud (WCD)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCS console and restart your Weaviate instance.
 
 
 ### 2. Configure PQ

@@ -8,11 +8,11 @@ export default function ServiceHeader() {
     <header className={styles.headerSecurity}>
       <div className="container">
         <div className={styles.box}>
-          <h1>Enterprise Dedicated</h1>
+          <h1>Enterprise Cloud</h1>
           <div className={styles.headerBox}>
             <p>
               Tailored for businesses seeking high performance, Weaviate’s
-              Enterprise Dedicated solution provides the power of Weaviate on
+              Enterprise Cloud solution provides the power of Weaviate on
               dedicated resources, ensuring consistent, high-speed results
               without the complexities of self-management.
             </p>

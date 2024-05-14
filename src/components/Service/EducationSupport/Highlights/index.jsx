@@ -72,7 +72,7 @@ export default function SafetyTypes() {
             <div className={styles.contentDiv}>
               <div className={`${styles.cardIcon} ${styles.icon08}`}></div>
               <p className={styles.textCardContent}>
-                Enterprise or Business<br></br> Critical SLAs
+                Professional or Business<br></br> Critical SLAs
               </p>
             </div>
           </div>

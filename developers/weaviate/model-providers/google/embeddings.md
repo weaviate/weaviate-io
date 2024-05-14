@@ -40,7 +40,7 @@ Your Weaviate instance must be configured with the Google AI vectorizer integrat
 <details>
   <summary>For WCS (serverless) users</summary>
 
-This integration is enabled by default on Weaviate Cloud Services (WCS) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 
 </details>
 

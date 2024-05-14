@@ -14,7 +14,7 @@ In this section, we will explore data import, including details of the batch imp
 
 Before you start this tutorial, you should follow the steps in the tutorials to have:
 
-- An instance of Weaviate running (e.g. on the [Weaviate Cloud Services](https://console.weaviate.cloud)),
+- An instance of Weaviate running (e.g. on the [Weaviate Cloud](https://console.weaviate.cloud)),
 - An API key for your preferred inference API, such as OpenAI, Cohere, or Hugging Face,
 - Installed your preferred Weaviate client library, and
 - Set up a `Question` class in your schema.
