@@ -22,7 +22,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
    headers: {
      'X-OpenAI-Api-Key': OPENAI_API_KEY,
    }
- } 
+ }
 )
 
 const newCollection = await client.collections.create({
@@ -34,7 +34,7 @@ const newCollection = await client.collections.create({
       dataType: weaviate.configure.dataType.TEXT,
       vectorizer: 'text2vec-openai',
       vectorizePropertyName: true,
-      tokenization: 'word' ,
+      tokenization: 'word',
     },
     {
      name: 'answer',

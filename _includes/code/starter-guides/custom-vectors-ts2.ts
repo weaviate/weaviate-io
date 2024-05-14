@@ -9,39 +9,47 @@
 // END-ANY
 
 // START create schema
-import weaviate, { WeaviateClient } from 'weaviate-client';
+import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 
 const WCS_URL=process.env["WCS_URL"];
 const WCS_API_KEY=process.env["WCS_API_KEY"];
 const OPENAI_API_KEY=process.env["OPENAI_API_KEY"];
 
-const client: WeaviateClient = await weaviate.connectToWCS(
-  WCS_URL,
- {
-   authCredentials: new weaviate.ApiKey(WCS_API_KEY),
-   headers: {
-     'X-OpenAI-Api-Key': OPENAI_API_KEY,
-   }
- } 
-)
+const client: WeaviateClient = weaviate.client({
+  scheme: 'https',
+  host: WCS_URL,
+  apiKey: new ApiKey(WCS_API_KEY),
+  headers: { 'X-OpenAI-Api-Key': OPENAI_API_KEY },
+});
 
-const newCollection = await client.collections.create({
- name: 'Question',
- properties: [
-   {
-     name: 'title',
-     dataType: weaviate.configure.dataType.TEXT,
-     vectorizePropertyName: true,
-     tokenization: 'lowercase' ,
-   },
-   {
-     name: 'body',
-     dataType: weaviate.configure.dataType.TEXT,
-     tokenization: 'whitespace',
-     skipVectorization: true
-   },
- ],
-})
+const newCollection = {
+  class: 'Question',
+  description: 'What to ask',
+  vectorizer: 'text2vec-openai',
+  vectorizePropertyName: true,
+  tokenization: 'word',
+  properties: [
+    {
+        name: 'question',
+        dataType: ['text'],
+    },
+    {
+         name: 'answer',
+         dataType: ['text'],
+     },
+     {
+           name: 'category',
+           dataType: ['text'],
+       },
+    ]
+ }
+
+let collectionSchema = await client.schema
+   .classGetter()
+   .withClassName("Question")
+   .do();
+
+console.log(JSON.stringify(collectionSchema, null, 2));
 
 // Display schema as verification
 console.log(JSON.stringify(newCollection, null, 2));
