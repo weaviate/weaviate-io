@@ -269,7 +269,7 @@ const config = {
                         },
                         {
                             label: 'Weaviate Enterprise Cloud',
-                            href: '/services/enterprise-dedicated',
+                            href: '/services/enterprise-cloud',
 
                         },
                         {
