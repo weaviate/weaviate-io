@@ -2,6 +2,8 @@
 # Set these environment variables
 # WCS_URL - The URL for your Weaviate instance
 # WCS_API_KEY - The API key for your Weaviate instance
+# OPENAI_API_KEY - The API key for your OpenAI account
+
 # END-ANY
 
 # For testing and rerunning script
@@ -18,7 +20,7 @@ with weaviate.connect_to_wcs(
     auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_API_KEY")),
 ) as client:
     questions = client.collections.create(
-        name="Question2",
+        name="Question",
         properties=[
             wvc.config.Property(
                 name="question",
