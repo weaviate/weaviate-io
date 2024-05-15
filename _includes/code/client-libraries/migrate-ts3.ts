@@ -1,5 +1,5 @@
 // CompleteScript // Imports
-import weaviate from 'weaviate-client'
+import weaviate from 'weaviate-client';
 import 'dotenv/config';
 // END CompleteScript // END Imports
 
@@ -26,7 +26,7 @@ async function main() {
   // create a new collection
   await client.collections.create({
     name: collectionName,
-    vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+    vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   })
 // END CompleteScript // END CreateCollection
 
