@@ -30,63 +30,8 @@ This guide uses a free sandbox in [Weaviate Cloud](/developers/wcs/sandbox). If 
 
 Follow these steps to import data that includes vectors.
 
-1. [Create a sandbox instance](#create-a-sandbox-instance)
-1. [Connect to your sandbox](#connect-to-your-sandbox)
 1. [Prepare the collection](#prepare-the-collection)
 1. [Import the data](#import-the-data)
-
-## Create a sandbox instance
-
-Follow these steps to create a sandbox instance.
-
-### Login to Weaviate Cloud
-
-1. Open the [WCD login page](https://console.weaviate.cloud/) in a browser.
-1. Click `Login to Weaviate Cloud Services`.
-1. Enter your email address and password to authenticate.
-
-### Create a sandbox cluster
-
-To create a cluster, click the 'Create cluster' button on the WCD Dashboard page.
-
-import CreateClusterButton from '/developers/wcs/img/wcs-create-cluster-button.jpg';
-
-<center><img src={CreateClusterButton} width="75%" alt="Create cluster button"/></center>
-
-import CreateSandboxCluster from '/_includes/wcs/create-cluster-sandbox.mdx'
-
-<CreateSandboxCluster />
-
-## Connect to your sandbox
-
-Follow these steps to connect to your sandbox instance.
-
-### Get the connection details
-
-To connect to your sandbox instance, you need the following information:
-
-- The Weaviate sandbox URL
-- The Weaviate sandbox API key
-
-To get the cluster URL and authentication details, follow these steps:
-
-1. Click the `Details` button to open the Details panel.
-
-import DetailsButton from '/developers/wcs/img/wcs-details-icon.jpg';
-
-<center><img src={DetailsButton} width="75%" alt="Details button"/></center>
-
-2. Copy the REST endpoint.
-
-import RESTEndPoint from '/developers/wcs/img/wcs-rest-endpoint.jpg';
-
-<center><img src={RESTEndPoint} width="75%" alt="Details button"/></center>
-
-3. To get the API keys, click the `API keys` button. Copy the Weaviate API key.
-
-import DetailsAPIKey from '/developers/wcs/img/wcs-console-details-api-key.jpg';
-
-<center><img src={DetailsAPIKey} width="75%" alt="Details API Key"/></center>
 
 ### Connect to a Weaviate instance
 
