@@ -47,7 +47,7 @@ client = weaviate.connect_to_custom(
 import weaviate
 from weaviate.auth import AuthApiKey
 
-# Connect to a WCS instance
+# Connect to a WCD instance
 client = weaviate.connect_to_wcs(
     cluster_url=weaviate_url,                    # `weaviate_url`: your Weaviate URL
     auth_credentials=AuthApiKey(weaviate_key),   # `weaviate_key`: your Weaviate API key
