@@ -128,6 +128,19 @@ First you need to pip install the relevant Python packages.
 pip install -U weaviate-client
 ```
 
+Next, you need to setup a Weaviate vector database instance. For this example, you can [start up a local instance of Weaviate via Docker](/developers/weaviate/installation/docker-compose.md), as follows:
+```powershell
+docker run -p 8080:8080 -p 50051:50051 cr.weaviate.io/semitechnologies/weaviate:1.25.0
+````
+
+Once your vector database instance is up and running, you can connect to it as shown below:
+
+```python
+import weaviate
+
+client = weaviate.connect_to_local()
+```
+
 ### With default dimensions
 
 As the OpenAI models are tightly integrated with Weaviate, you can use them through the `text2vec_openai` module, which enabled automatic vectorization of data at import and query time. You only need to define the model name and the dimensions. The `text2vec_openai`
@@ -139,7 +152,7 @@ module has some pre-defined dimensions. Available default dimensions for these m
 from weaviate.classes.config import Property, DataType
 
 # Define schema and create collection
-questions = client.collections.create(
+my_collection = client.collections.create(
     name="MyCollection",
     vectorizer_config=wvc.config.Configure.Vectorizer.text2vec_openai(model='text-embedding-3-small',
                                                                       dimensions = 512,
@@ -154,7 +167,7 @@ questions = client.collections.create(
 )
 
 # Insert single data object
-questions.data.insert({
+my_collection.data.insert({
     "text": example_text,
 })
 ```
@@ -180,7 +193,7 @@ def vectorize(text,
                                    dimensions = dimensions).data[0].embedding
 
 # Define schema and create collection
-questions = client.collections.create(
+my_collection = client.collections.create(
     name="MyCollection",
     properties=[
         Property(name="text", data_type=DataType.TEXT),
@@ -188,7 +201,7 @@ questions = client.collections.create(
 )
 
 # Insert single data object
-questions.data.insert(
+my_collection.data.insert(
         properties = {"text" : example_text},
         vector = vectorize(example_text, dimensions=128),
     )
