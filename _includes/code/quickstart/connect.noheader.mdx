@@ -16,7 +16,7 @@ import weaviate.classes as wvc
 URL = os.getenv("WCS_URL")
 APIKEY = os.getenv("WCS_API_KEY")
 
-# Connect to a WCS instance
+# Connect to Weaviate Cloud
 client = weaviate.connect_to_wcs(
     cluster_url=URL,
     auth_credentials=weaviate.auth.AuthApiKey(APIKEY),
@@ -52,7 +52,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
     headers: {
       'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
     }
-  } 
+  }
 )
 
 ```
