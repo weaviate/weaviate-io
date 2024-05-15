@@ -60,6 +60,16 @@ Some HNSW parameters are mutable, but others cannot be modified after you create
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
 | `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
 
+### Database parameters for HNSW
+
+Note that some database-level parameters are available to configure HNSW indexing behavior.
+
+- `PERSISTENCE_HNSW_MAX_LOG_SIZE` is a database-level parameter that sets the maximum size of the HNSW write-ahead-log. The default value is `500MiB`.
+
+Increase this value to improve efficiency of the compaction process, but be aware that this will increase the memory usage of the database. Conversely, decreasing this value will reduce memory usage but may slow down the compaction process.
+
+Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to the size of the HNSW graph.
+
 ### PQ configuration parameters
 
 Configure `pq` with these parameters.
