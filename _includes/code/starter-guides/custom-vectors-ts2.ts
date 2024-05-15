@@ -1,13 +1,5 @@
 // TODO - make this script run as part of the test framework
 
-// START-ANY
-// Set these environment variables
-// WCS_URL - The URL for your Weaviate instance
-// WCS_API_KEY - The API key for your Weaviate instance
-// OPENAI_API_KEY - The API key for your OpenAI account
-
-// END-ANY
-
 // START create schema
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';
 
@@ -31,16 +23,19 @@ const newCollection = {
   properties: [
     {
         name: 'question',
+        description: 'What to ask',
         dataType: ['text'],
     },
     {
          name: 'answer',
+         description: 'The clue',
          dataType: ['text'],
      },
      {
-           name: 'category',
-           dataType: ['text'],
-       },
+         name: 'category',
+         description: 'The subject',
+         dataType: ['text'],
+      },
     ]
  }
 

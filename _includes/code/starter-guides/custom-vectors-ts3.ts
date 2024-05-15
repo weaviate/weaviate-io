@@ -1,13 +1,5 @@
 // TODO - make this script run as part of the test framework
 
-// START-ANY
-// Set these environment variables
-// WCS_URL - The URL for your Weaviate instance
-// WCS_API_KEY - The API key for your Weaviate instance
-// OPENAI_API_KEY - The API key for your OpenAI account
-
-// END-ANY
-
 // START create schema
 import weaviate, { WeaviateClient } from 'weaviate-client';
 
@@ -32,27 +24,20 @@ const newCollection = await client.collections.create({
       name: 'question',
       description: 'What to ask',
       dataType: weaviate.configure.dataType.TEXT,
-      vectorizer: 'text2vec-openai',
-      vectorizePropertyName: true,
-      tokenization: 'word',
     },
     {
      name: 'answer',
      description: 'The clue',
      dataType: weaviate.configure.dataType.TEXT,
-     vectorizer: 'text2vec-openai',
-     tokenization: 'word',
-     skipVectorization: true
      },
      {
       name: 'category',
       description: 'The subject',
       dataType: weaviate.configure.dataType.TEXT,
-      vectorizer: 'text2vec-openai',
-      tokenization: 'word',
-      skipVectorization: true
      },
    ],
+   vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
+   generative: weaviate.configure.generative.openAI(),
 })
 
 // Display schema as verification

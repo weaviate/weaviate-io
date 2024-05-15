@@ -1,16 +1,8 @@
-# START-ANY
-# Set these environment variables
-# WCS_URL - The URL for your Weaviate instance
-# WCS_API_KEY - The API key for your Weaviate instance
-# OPENAI_API_KEY - The API key for your OpenAI account
-
-# END-ANY
-
 # For testing and rerunning script
 if client.collections.exists("Question"):
     client.collections.delete("Question")
 
-# START create schema
+# START create schema # START connect
 import weaviate
 import json
 
@@ -21,6 +13,9 @@ client = weaviate.Client(
         "X-OpenAI-Api-Key": OPENAI_API_KEY
     }
 )
+# END create schema # END connect
+
+# START create schema
 
 class_obj = {
     "class": "Question",
@@ -34,34 +29,17 @@ class_obj = {
             "name": "question",
             "dataType": ["text"],
             "description": "What to ask",
-            "moduleConfig": {
-                "text2vec-openai": {
-                    "vectorizePropertyName": True,
-                    "tokenization": "word"
-                }
             }
         },
         {
             "name": "answer",
             "dataType": ["text"],
             "description": "The clue",
-            "moduleConfig": {
-                "text2vec-openai": {
-                    "vectorizePropertyName": False,
-                    "tokenization": "word"
-                }
-            }
         },
         {
             "name": "category",
             "dataType": ["text"],
             "description": "The subject",
-            "moduleConfig": {
-                "text2vec-openai": {
-                    "vectorizePropertyName": False,
-                    "tokenization": "word"
-                }
-            }
         },
     ],
 }
