@@ -43,7 +43,6 @@ func createClassWithAutoTenantEnabled(ctx context.Context, client *weaviate.Clie
 
 // END enable autoMT
 
-// Start update autoMT
 func createClassWithoutAutoTenantAndToggleOn(ctx context.Context, client *weaviate.Client) {
 	class := &models.Class{
 		Class: "AutoTenantEnabledOnUpdate",
@@ -58,8 +57,8 @@ func createClassWithoutAutoTenantAndToggleOn(ctx context.Context, client *weavia
 	if err != nil {
 		log.Fatalf("create class: %v", err)
 	}
-	// END update autoMT
 
+	// Start update autoMT
 	existing, err := client.Schema().ClassGetter().
 		WithClassName(class.Class).Do(ctx)
 	if err != nil {
@@ -73,3 +72,5 @@ func createClassWithoutAutoTenantAndToggleOn(ctx context.Context, client *weavia
 		log.Fatalf("enable autotenant: %v", err)
 	}
 }
+
+// END update autoMT
