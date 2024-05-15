@@ -15,13 +15,13 @@ image: ./img/hero.png
 
 ![embedding model.png](./img/embedding_model.png)
 
-As a [vector database](https://weaviate.io/blog/what-is-a-vector-database) that stores vector embeddings and retrieves data objects based on vector search, Weaviate has many [integrations with various model providers and their wide variety of embedding models](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules). 
+As a [vector database](/blog/what-is-a-vector-database) that stores vector embeddings and retrieves data objects based on vector search, Weaviate has many [integrations with various model providers and their wide variety of embedding models](/developers/weaviate/model-providers). 
 
 But how do you approach selecting the right embedding model for your search or RAG application? As you will learn in this article, it depends on your use case and specific requirements.
 
 ## Step 1: Identify your use case
 
-Would a general-purpose model be sufficient for what you are trying to achieve, or do you have specific needs, such as modality (e.g., text only or multimodal), subject domain (e.g., coding, law, medical, multilingual, etc.), and deployment mode?
+Would a general-purpose model be sufficient for what you are trying to achieve, or do you have specific needs, such as modality (e.g., text only or multimodal), subject domain (e.g., coding, law, medical, multilingual, etc.), and deployment mode? In most cases, starting with a general-purpose model for your desired modalities would be a sensible baseline.
 
 ## Step 2: Select a baseline model
 
@@ -33,7 +33,7 @@ Here are a few considerations for choosing the best model for your application:
 - **Score**: This will show you how well the model performs on a specific benchmark dataset or across multiple benchmark datasets. Depending on the task, different [evaluation metrics](/blog/retrieval-evaluation-metrics/) are used. Usually, these metrics can take values between 0 and 1, where higher values indicate a better performance.
 - **Model size and memory usage:** These give you an idea of the computational resources required to run the model. While retrieval performance scales with model size, it is important to note that model size also directly impacts latency. Additionally, it is worth mentioning that larger models can also overfit and thus underperform in production. Thus, you want to aim for a good latency-performance trade-off for a production setup. Ideally, start with a small, lightweight model to be able to build a baseline upon which you can iterate quickly. Once your pipeline works, you can switch out the model with a bigger and more performant one later.
 - **Embedding dimensions**: This is the length of the embedding vector. While larger embedding dimensions can capture more nuanced details and relationships in the data, they aren't necessarily always better. Do you really need 2048 dimensions to chat with a PDF? Probably not. On the other hand, smaller embedding dimensions offer faster inference and are more storage- and memory-efficient. Thus, you will want to aim for a good trade-off between capturing the complexity of data and operational efficiency.
-- **Max tokens**: This is the maximum number of tokens that can be converted into a single embedding. For common RAG applications, you typically don’t need to put more than a single paragraph of text into a single embedding. In this case, models with max tokens of 512 should be sufficient. However, there will be special cases where you need to embed longer source texts that require models with a larger context window.
+- **Max tokens**: This is the maximum number of tokens that can be converted into a single embedding. For common RAG applications, a good chunk size for an embedding is typically about a single paragraph of text or less. In this case, models with max tokens of 512 should be sufficient. However, there will be special cases where you need to embed longer source texts that require models with a larger context window.
 
 ![mteb leaderboard](./img/mteb.png)
 
@@ -71,7 +71,7 @@ client = weaviate.connect_to_embedded(
 )
 ```
 
-Then, you will configure a data collection called `"Pastries"` and configure the properties and vectorizer. This example uses OpenAI’s `text-embedding-3-small` embedding model to vectorize the data at import and query time automatically. 
+Then, you will configure a data collection called `"Pastries"` and configure the properties and vectorizer. This example uses OpenAI’s `text-embedding-3-small` embedding model to vectorize the data at import and query time automatically. Note, that we will repeat this step later with `text-embedding-3-large` to compare the two models. For this, you might want to have a look at [how to delete a collection](/developers/weaviate/manage-data/delete.mdx).
 
 ```python
 import weaviate.classes as wvc
@@ -108,6 +108,8 @@ pastries.data.insert_many(pastry_objects)
 Now, you can run a few queries:
 
 ```python
+from weaviate.classes.query import MetadataQuery
+
 response = pastries.query.near_text(
     query="Sweet pastry",
     limit=4,
@@ -123,7 +125,7 @@ Various [evaluation metrics](/blog/retrieval-evaluation-metrics/) are available,
 
 **Query 1: “Sweet pastry”**
 
-Relevant items: Donut, Muffin, Scone
+Relevant items: Donut, Muffin, Scone (Note, that this list is subjective because we have decided what will be relevant for this query)
 
 Results:
 
@@ -138,7 +140,7 @@ Results:
 
 **Query 2: “Suitable for lunch”**
 
-Relevant items: Sandwich, Bagel, Roll, Pretzel
+Relevant items: Sandwich, Bagel, Roll, Pretzel (Note, that this list is subjective because we have decided what will be relevant for this query)
 
 Results:
 
@@ -153,7 +155,7 @@ Results:
 
 **Query 3: “Goes well with jam”**
 
-Relevant items: Bagel, Croissant, Roll
+Relevant items: Bagel, Croissant, Roll (Note, that this list is subjective because we have decided what will be relevant for this query)
 
 Results:
 
