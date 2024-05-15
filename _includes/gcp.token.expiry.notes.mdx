@@ -93,7 +93,7 @@ def re_instantiate_weaviate() -> weaviate.Client:
 
     client = weaviate.connect_to_wcs(  # e.g. if you use the Weaviate Cloud Service
         cluster_url="https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
-        auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),  # Replace with your WCD key
+        auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),  # Replace with your Weaviate Cloud key
         headers={
             "X-PaLM-Api-Key": token,
         },
