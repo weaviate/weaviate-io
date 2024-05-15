@@ -40,7 +40,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
 // Add the schema
 const schema = {
   name: 'Question',
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   generative: weaviate.configure.generative.openAI(),
 }
 

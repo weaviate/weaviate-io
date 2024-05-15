@@ -109,7 +109,7 @@ const classObj = const schema = {
       vectorizePropertyName: false,
     }
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   generative: weaviate.configure.generative.openAI(),
   invertedIndex: weaviate.configure.invertedIndex({
     indexNullState: true,

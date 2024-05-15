@@ -5,18 +5,6 @@ import { LinkButton } from '/src/theme/Buttons';
 import Link from '@docusaurus/Link';
 
 export default function HomepageHeader() {
-  /* useEffect(() => {
-    const video = document.getElementById('headerVideo');
-    const header = document.querySelector('.headerHome');
-
-    if (video && header) {
-      video.onended = function () {
-        header.style.backgroundImage =
-          "url('/img/site/3d-weaviate-bubble-white-light.jpg')";
-        video.style.display = 'none';
-      };
-    }
-  }, []); */
   return (
     <>
       <header className={styles.headerHome}>
@@ -29,9 +17,19 @@ export default function HomepageHeader() {
           loop="loop"
         >
           <source
-            src="/img/site/3d-weaviate-bubble-white-light-loop.mp4"
+            src="/img/site/3d-weaviate-bubble-white-light-loop-sml.mp4"
             poster="/img/site/3d-weaviate-bubble-white-light.jpg"
             type="video/mp4"
+          />
+          <source
+            src="/img/site/3d-weaviate-bubble-white-light-loop-sml.mov"
+            poster="/img/site/3d-weaviate-bubble-white-light.jpg"
+            type="video/mov"
+          />
+          <source
+            src="/img/site/3d-weaviate-bubble-white-light-loop-sml.webm"
+            poster="/img/site/3d-weaviate-bubble-white-light.jpg"
+            type="video/webm"
           />
         </video>
         <div className={styles.headerContent}>
@@ -61,9 +59,6 @@ export default function HomepageHeader() {
               </div>
             </div>
           </div>
-          {/*   <Link to="https://events.weaviate.io/ai-in-prod-ny-24">
-        <div className={styles.awsBanner}></div>
-      </Link> */}
           <div className={styles.typeContainer}>
             <div className={styles.typeBox}>
               <div className={styles.typeIcon}>

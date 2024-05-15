@@ -189,7 +189,7 @@ const newCollection = await client.collections.create({
       dataType: weaviate.configure.dataType.TEXT,
     },
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   // highlight-start
   vectorIndex: weaviate.configure.vectorIndex.hnsw()
   // highlight-end
@@ -389,7 +389,7 @@ const newCollection = await client.collections.create({
     },
   ],
   // highlight-start
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   // highlight-end
 })
 // The returned value is the full collection definition, showing all defaults
