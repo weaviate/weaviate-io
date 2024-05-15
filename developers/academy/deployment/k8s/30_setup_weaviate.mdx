@@ -131,6 +131,15 @@ Note how here, the `weaviate-0` pod went from `Pending` to `Running`.
 
 Congratulations! You have successfully deployed Weaviate on your local Kubernetes cluster. Next, let's confirm some basic interactions with Weaviate.
 
+:::tip Upgrading to `1.25` or higher
+
+To upgrade to `1.25` or higher from a pre-`1.25` version, you must delete the deployed `StatefulSet`, update the helm chart to version `17.0.0` or higher, and re-deploy Weaviate.
+
+See the [1.25 migration guide for Kubernetes](/developers/weaviate/more-resources/migration/weaviate-1-25) for more details.
+:::
+
+## Questions and feedback
+
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 
 <DocsFeedback/>

@@ -46,6 +46,7 @@ The resources are broken into two categories:
 
 
 
+
 ### Read and Listen
 
 | Topic | Details |
@@ -58,6 +59,8 @@ The resources are broken into two categories:
 | **Your Language Model Deserves Better Prompting** | Overview of the DSPy optimizers for prompt tuning. [Blog](/blog/dspy-optimizers)|
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

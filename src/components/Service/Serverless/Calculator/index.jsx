@@ -156,19 +156,18 @@ export default function PricingCalculator({ props }) {
     <div className="newCalculator">
       <div className="slaCalculator">
         <div className="pricingCalculator">
-          <div className="container">
-            <div className="pricingSection">
-              <h2 id="mainPricingArea">Estimate your cost for Serverless</h2>
-              <p>
-                Our pricing is built around vector dimensions stored and
-                queried, and different SLA-tiers have different prices per
-                dimension. The exact calculation can be found in the{' '}
-                <Link to="/pricing#faq">FAQ</Link> (not inclusive of discounts
-                and taxes).
-              </p>
+          <div className="pricingCalculatorContainer">
+            <div className="info">
+              <h2>Estimate your cost for Serverless</h2>
+              <ul>
+                <p>All Packages include:</p>
+                <li>∞ lifetime (until terminated)</li>
+                <li>Monitoring</li>
+                <li>Email support during business hours</li>
+                <li>Multiple Availability Zones</li>
+                <li>High availability optional</li>
+              </ul>
             </div>
-          </div>
-          <div className="container">
             <div className="sliderArea">
               <div className="slider">
                 <div className="label">
@@ -273,7 +272,7 @@ export default function PricingCalculator({ props }) {
                     onChange={(event) => setSlaTier(event.target.value)}
                   >
                     <option value="standard">Standard</option>
-                    <option value="enterprise">Enterprise</option>
+                    <option value="enterprise">Production</option>
                     <option value="businessCritical">Business Critical</option>
                   </select>
                 </div>

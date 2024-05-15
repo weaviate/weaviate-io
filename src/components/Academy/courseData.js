@@ -132,7 +132,7 @@ export const courseData = {
     note: "Python client (v4); project-based"
   },
   "intro_weaviate_typescript": {
-    title: "Intro to Weaviate with Typescript (or JavaScript)",
+    title: "Intro to Weaviate with TypeScript (or JavaScript)",
     courseId: "TS_100",
     body: "A practical course where you can learn how to add Weaviate to a TypeScript (or JavaScript) app.",
     buttonType: "Click here",
@@ -250,7 +250,7 @@ export const courseData = {
       "How to build a Weaviate instance and populate it with vectorized data, as well as how to construct queries to efficiently retrieve relevant data."
     ],
     learningOutcomes: [
-      "Use Weaviate Cloud Services to create an instance of Weaviate",
+      "Use Weaviate Cloud to create an instance of Weaviate",
       "Use appropriate query types and syntax to retrieve desired objects",
       "Outline what vector search is and how it works",
       "Demonstrate how to efficiently populate an Weaviate instance with data",

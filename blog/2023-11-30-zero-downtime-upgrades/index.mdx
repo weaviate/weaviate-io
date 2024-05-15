@@ -36,9 +36,9 @@ In fact, configuring replication is actually easy and simple, and using it can l
 
 Just the simple act of enabling replication on a Weaviate cluster will provide huge benefits. Doing so might actually be simpler than you might imagine.
 
-### How to enable replication on Weaviate Cloud Services (WCS)
+### How to enable replication on Weaviate Cloud (WCD)
 
-Enabling replication on a Weaviate Cloud Services cluster is as simple as selecting the `Enable High Availability` button at cluster creation time. (Not available on sandboxes.)
+Enabling replication on a Weaviate Cloud cluster is as simple as selecting the `Enable High Availability` button at cluster creation time. (Not available on sandboxes.)
 
 
 This will enable a multi-node configuration in Weaviate and ensures that each class is configured with the appropriate replication factor.
@@ -254,7 +254,7 @@ Another challenge is that any write request that comes in while any nodes are do
 To reduce the length of this time, there is a proposed feature to proactively start repairing those inconsistencies (i.e. perform asynchronous replication). If this is important, please [upvote the feature here](https://github.com/weaviate/weaviate/issues/2405).
 :::
 
-But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](/developers/weaviate/concepts/replication-architecture/cluster-architecture#leaderless-design), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.
+But we think that the cost of high availability is worth these prices. We take system availability seriously, and architect Weaviate according to this philosophy. This is one of the reasons that we use [leaderless replication](/developers/weaviate/concepts/replication-architecture/cluster-architecture#data-replication-leaderless), and why replication in the first place is so important to us - because it enables our users to have robust systems on which they can rely.
 
 Take the longer start-up time for example. Adding replication caused node-level start-up time to increase in our experiment. But the end result was that a hundred percent of requests succeeded. In other words, the end user would not have noticed anything was going on. And again, what are peace of mind and avoiding the wrath of angry users during downtime worth to you??
 
@@ -276,7 +276,7 @@ But what replication factor would we recommend? That’s something of a subjecti
 
 The reason is that odd numbers are preferred for consistency so that consensus can always be reached. Higher factors are also possible, but this is more of a measure to scale query throughput, rather than lead to more availability. And for more cost-sensitive applications, even 2 would introduce high availability and robustness to the system.
 
-As we've mentioned before - using Weaviate Cloud Services is a convenient way to set up a cluster with replication enabled. Set the `Enable High Availability` button to `Yes` at cluster creation time, and it will spin up a multi-node cluster with replication enabled, including the appropriate replication factor for each class.
+As we've mentioned before - using Weaviate Cloud is a convenient way to set up a cluster with replication enabled. Set the `Enable High Availability` button to `Yes` at cluster creation time, and it will spin up a multi-node cluster with replication enabled, including the appropriate replication factor for each class.
 
 So there it is. We hope we’ve convinced you of the benefits of using replication, and how easy it is to use. For sure it might not be for everybody and every use case. But if you are using Weaviate at scale, in production, we believe enabling it will add significant value and encourage you to consider its use.
 

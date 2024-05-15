@@ -32,7 +32,7 @@ To configure a connection, you need the following information:
 
 ### Where to find connection details
 
-**Weaviate Cloud Services (WCS)** If you are using [Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/), the dashboard has a "Details" button. Click the button to get the following information:
+**Weaviate Cloud (WCD)** If you are using [Weaviate Cloud (WCD)](https://console.weaviate.cloud/), the dashboard has a "Details" button. Click the button to get the following information:
 
  - The cluster URL
  - Authentication type
@@ -153,7 +153,7 @@ Edit the sample code to use your Weaviate API key. Be sure to use your Weaviate 
 
 <WCSAuthenticationApiKey/>
 
-#### OIDC (WCS username & password)
+#### OIDC
 
 This example shows a typical OIDC configuration. OIDC providers use a variety of authentication configurations. Your identity provider may use a different configuration, but the concepts are the same. For details, see [OIDC authentication](../configuration/authentication.md#oidc---a-systems-perspective).
 
@@ -172,7 +172,7 @@ Embedded instances usually don't need authentication credentials.
 For [gRPC-enabled](../api/grpc.md) clients, you can set timeout values for initialization, queries or insertions independently. If you are experiencing timeouts, adjust these values to suit your use case.
 
 <Tabs groupId="languages">
-    <TabItem value="py4" label="Python (v4)">
+    <TabItem value="py4" label="Python Client v4">
         <FilteredTextBlock
         text={PyClientCode}
         startMarker="# LocalInstantiationWithTimeout"
@@ -205,6 +205,8 @@ For additional tutorials, see:
 - [Import data](../tutorials/import.md)
 - [Query data](../tutorials/query.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

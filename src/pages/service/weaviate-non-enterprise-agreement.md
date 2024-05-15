@@ -12,7 +12,7 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Last Updated: February, 2024**
 
-Thank you for using the Weaviate Database (as defined below), an open-sourced vector database that permits customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**”) or (“**_Enterprise Dedicated Offering_**”) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
+Thank you for using the Weaviate Database (as defined below), an open-sourced vector database that permits customers to store data objects and vector embeddings (the “**_Weaviate Database_**”), which may be offered as SaaS-based product (the “**_Serverless Offering_**”) or (“**_Weaviate Enterprise Cloud Offering_**”) or software that is provided to Customer for installation and use on Customer’s premises or private cloud (the “**_BYOC Offering_**”).
 
 To be eligible to register for an Weaviate account and use the Weaviate Database, you must review and accept the terms of this Weaviate Terms of Service (this “**_Agreement_**” or these “**_Terms_**”) by clicking the terms of service checkbox or other mechanism provided within the online registration process. PLEASE REVIEW THESE TERMS CAREFULLY. BY ACCEPTING THESE TERMS OR USING THE WEAVIATE DATABASE, YOU AGREE TO THESE TERMS AND CONDITIONS WITH WEAVIATE, LLC IF YOU RESIDE OR ARE ESTABLISHED IN THE UNITED STATES OF AMERICA, OR WITH WEAVIATE B.V. (“**_Weaviate_**”) IF YOU RESIDE OR ARE ESTABLISHED OUTSIDE THE UNITED STATES OF AMERICA. IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS, YOU SHOULD NOT USE THE WEAVIATE DATABASE.
 
@@ -134,5 +134,3 @@ EVEN IF A REPRESENTATIVE OF WEAVIATE HAS BEEN ADVISED, KNEW OR SHOULD HAVE KNOWN
    9. 11. <u>Government Terms</u>. Weaviate provides the Weaviate Database, including related software and technology, for ultimate federal government end use solely in accordance with the terms of this Agreement. If Customer (or any of its customers) is an agency, department, or other entity of any government, the use, duplication, reproduction, release, modification, disclosure, or transfer of the Weaviate Database, or any related documentation of any kind, including technical data, software, and manuals, is restricted by the terms of this Agreement. All other use is prohibited and no rights than those provided in this Agreement are conferred.
 
    9. 12. <u>Interpretation</u>. For purposes hereof, “include”, “includes”, “including”, or any variation thereof shall always be construed as if followed by the words “without limitation”.
-
-

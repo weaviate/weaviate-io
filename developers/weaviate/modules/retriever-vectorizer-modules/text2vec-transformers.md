@@ -14,13 +14,13 @@ The `text2vec-transformers` module enables Weaviate to obtain vectors locally fr
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module is only compatible with models encapsulated in a Docker container.
-- [Pre-built images](#option-1-pre-built-images) are available with popular models.
+- [Pre-built images](#use-a-pre-built-image) are available with popular models.
 - You can also use other models, such as:
-    - By [building an image](#option-2-a-hugging-face-model) for any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
-    - By [building an image](#option-3-a-private-or-local-model) for any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
+    - By [building an image](#build-a-model) for any publicly available model from the [Hugging Face model hub](https://huggingface.co/models).
+    - By [building an image](#use-a-private-or-local-model) for any model compatible with Hugging Face's `AutoModel` and `AutoTokenizer`.
 
 :::tip Do you have GPU acceleration?
 
@@ -37,8 +37,8 @@ Alternatively, consider one of the following options:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file
@@ -366,6 +366,8 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 
 For details see, [t2v-transformers-model release notes](https://github.com/weaviate/t2v-transformers-models/releases/).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

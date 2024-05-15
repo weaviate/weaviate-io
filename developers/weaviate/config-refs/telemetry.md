@@ -28,6 +28,8 @@ To disable telemetry data collection, add this line to your [system configuratio
 DISABLE_TELEMETRY=true
 ```
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

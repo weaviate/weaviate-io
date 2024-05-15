@@ -15,7 +15,7 @@ export default function AboutUsHeader() {
           </h1>
           <div className={styles.headerBox}>
             <p className="text-center">
-              Weaviate Cloud Services was built to help developers scale AI
+              Weaviate Cloud was built to help developers scale AI
               applications with ease and confidence.
             </p>
           </div>

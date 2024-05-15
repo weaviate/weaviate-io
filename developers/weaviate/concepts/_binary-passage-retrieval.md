@@ -79,6 +79,8 @@ BPR support will be provided for all uses-cases including your own vectors from 
 From a purely technical perspective, there is no impediment to using any model with BPR. Since the hashing function is very simple, any existing vector can be hashed. However, it is unlikely that your hashes will hold a lot of semantic meaning if the model has not been specifically trained to produce good hashes alongside good vectors. Typically this is done by including the binary loss as part of the loss function during the training process.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

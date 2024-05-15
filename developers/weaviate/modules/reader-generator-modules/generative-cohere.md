@@ -5,6 +5,9 @@ image: og/docs/modules/generative-cohere.jpg
 # tags: ['generative', 'rag', 'cohere']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="cohere" />
 
 ## In short
 
@@ -14,7 +17,7 @@ image: og/docs/modules/generative-cohere.jpg
 * The Generative Cohere (`generative-cohere`) module performs retrieval augmented generation, or RAG, using the data stored in your Weaviate instance.
 * The module can generate a response for each object returned from Weaviate, or a combined response for a group of objects.
 * The module enables generative search operations on the Weaviate instance.
-* The default model is `command-xlarge-nightly`, which the Cohere team trains nightly and pushes updates.
+* The default model is `command-r`.
 
 ## Introduction
 
@@ -59,7 +62,7 @@ import ClientKey from '/_includes/code/core.client.cohere.apikey.mdx';
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 :::caution
@@ -284,11 +287,20 @@ import CohereGroupedResult from '/_includes/code/generative.cohere.groupedresult
 
 You can use any of
 
-* [`command-xlarge-nightly`](https://docs.cohere.com/docs/command-beta)(default)
-* `command-xlarge-beta`
-* `command-xlarge`
+- `command-r-plus`  (Added in `v1.25.0`)
+- `command-r` (default)  (Added in `v1.25.0`)
+- `command-xlarge`
+- `command-xlarge-beta`
+- `command-xlarge-nightly`
+- `command-medium`
+- `command-medium-nightly`
+- `command`
+- `command-nightly`
+- `command-light`
+- `command-light-nightly`
 
+## Questions and feedback
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

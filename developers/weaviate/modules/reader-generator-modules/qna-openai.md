@@ -1,6 +1,6 @@
 ---
 title: Question Answering - OpenAI
-sidebar_position: 21
+sidebar_position: 41
 image: og/docs/modules/qna-openai.jpg
 # tags: ['qna', 'qna-openai', 'transformers', 'openai']
 ---
@@ -63,7 +63,7 @@ import ClientKey from '/_includes/code/core.client.openai.apikey.mdx';
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -242,7 +242,8 @@ OpenAI has multiple models available for the extraction of answers from a given 
 These models can be configured
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
+<DocsFeedback/>

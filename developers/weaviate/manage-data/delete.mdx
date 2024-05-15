@@ -40,7 +40,7 @@ import RestObjectsCRUDClassnameNote from '/_includes/rest-objects-crud-classname
 To delete by id, specify the collection name and the object id.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DeleteObject"
@@ -48,7 +48,7 @@ To delete by id, specify the collection name and the object id.
       language="py"
     />
   </TabItem>
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DeleteObject"
@@ -57,7 +57,7 @@ To delete by id, specify the collection name and the object id.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteObject"
@@ -66,7 +66,7 @@ To delete by id, specify the collection name and the object id.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START DeleteObject"
@@ -111,7 +111,7 @@ You can handle errors as follows:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteError"
@@ -127,7 +127,7 @@ You can handle errors as follows:
 To delete objects that match a set of criteria, specify the collection and a [`where` filter](../search/similarity.md).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DeleteBatch"
@@ -136,7 +136,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DeleteBatch"
@@ -145,7 +145,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DeleteBatch"
@@ -154,7 +154,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START DeleteBatch"
@@ -197,7 +197,7 @@ To delete objects that match a set of criteria, specify the collection and a [`w
 The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a set of criteria.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DeleteContains"
@@ -206,7 +206,7 @@ The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DeleteContains"
@@ -215,7 +215,7 @@ The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
         text={TSCode}
         startMarker="// START DeleteContain"
@@ -224,7 +224,7 @@ The `ContainsAny` / `ContainsAll` filters allow deletion of objects that match a
       />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
 
 ```js
 await client.batch
@@ -301,7 +301,7 @@ The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e
 </details>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DeleteByIDBatch"
@@ -310,7 +310,7 @@ The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DeleteByIDBatch"
@@ -319,7 +319,7 @@ The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
           text={TSCode}
           startMarker="// START DeleteByIDBatch"
@@ -328,7 +328,7 @@ The default `QUERY_MAXIMUM_RESULTS` value is 10,000. This may be configurable, e
         />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
 
 ```js
 await client.batch
@@ -388,7 +388,7 @@ client.batch().objectsBatchDeleter()
 - Set `output` to `'verbose'` to see more details (ID and deletion status) for each deletion.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START DryRun"
@@ -397,7 +397,7 @@ client.batch().objectsBatchDeleter()
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START DryRun"
@@ -406,7 +406,7 @@ client.batch().objectsBatchDeleter()
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS (Beta)">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START DryRun"
@@ -415,7 +415,7 @@ client.batch().objectsBatchDeleter()
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START DryRun"
@@ -450,7 +450,7 @@ client.batch().objectsBatchDeleter()
 It should produce a response like the one below:
 
 <FilteredTextBlock
-  text={PyCode}
+  text={PyCodeV3}
   startMarker="# START ResultsDryRun"
   endMarker="# END ResultsDryRun"
   language="json"
@@ -464,6 +464,8 @@ It should produce a response like the one below:
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 - [References: REST - /v1/objects](/developers/weaviate/api/rest#tag/objects)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

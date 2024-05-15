@@ -1,4 +1,5 @@
 // Bring your own vectors - TypeScript complete sample
+
 import weaviate, { WeaviateClient } from 'weaviate-client'
 
 const client: WeaviateClient = await weaviate.connectToWCS(
@@ -8,7 +9,7 @@ const client: WeaviateClient = await weaviate.connectToWCS(
    headers: {
      'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY || '',  // Replace with your inference API key
    }
- } 
+ }
 )
 
 // Class definition object. Weaviate's autoschema feature will infer properties when importing.
@@ -33,7 +34,7 @@ type JeopardyItem = {
 }
 
 async function getJsonData(): Promise<JeopardyItem[]> {
-  const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny+vectors.json');
+  const file = await fetch('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json');
   return file.json() as unknown as JeopardyItem[];
 }
 

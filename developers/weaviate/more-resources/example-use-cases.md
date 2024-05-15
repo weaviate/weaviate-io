@@ -17,16 +17,16 @@ A vector databases enables fast, efficient similarity searches on and across any
 
 |Title | Description | Modality | Code |
 | --- | --- | --- | --- |
-| Plant search | Semantic search over plants.  | Text | [Javascript](https://github.com/weaviate-tutorials/DEMO-text-search-plants) |
+| Plant search | Semantic search over plants.  | Text | [JavaScript](https://github.com/weaviate-tutorials/DEMO-text-search-plants) |
 | Wine search | Semantic search over wines. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-text-search-wines) |
 | Book recommender system ([Video](https://www.youtube.com/watch?v=SF1ZlRjVsxw), [Demo](https://bookrecs.weaviate.io/)) | Find book recommendations based on search query. | Text | [TypeScript](https://github.com/weaviate/BookRecs) |
-| Movie recommender system ([Blog](https://medium.com/towards-data-science/recreating-andrej-karpathys-weekend-project-a-movie-search-engine-9b270d7a92e4)) | Find similar movies. | Text | [Javascript](https://github.com/weaviate-tutorials/awesome-moviate) |
+| Movie recommender system ([Blog](https://medium.com/towards-data-science/recreating-andrej-karpathys-weekend-project-a-movie-search-engine-9b270d7a92e4)) | Find similar movies. | Text | [JavaScript](https://github.com/weaviate-tutorials/awesome-moviate) |
 | Multilingual Wikipedia Search | Search through Wikipedia in multiple languages. | Text | [TypeScript](https://github.com/weaviate/weaviate-examples/tree/main/cohere-multilingual-wikipedia-search/frontend) |
 | Podcast search | Semantic search over podcast episodes. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-semantic-search-podcast) |
 | Video Caption Search| Find the timestamp of the answer to your question in a video. | Text | [Python](https://github.com/weaviate-tutorials/DEMO-text-search-video-captions) |
 | Facial Recognition | Identify people in images | Image | [Python](https://github.com/weaviate-tutorials/DEMO-face-recognition) |
 | Image Search over dogs ([Blog](https://weaviate.io/blog/how-to-build-an-image-search-application-with-weaviate)) | Find images of similar dog breeds based on uploaded image. | Image | [Python](https://github.com/weaviate-tutorials/DEMO-image-search-dogs) |
-| Text to image search | Find images most similar to a text query. | Multimodal | [Javascript](https://github.com/weaviate-tutorials/DEMO-multimodal-text-to-image-search) |
+| Text to image search | Find images most similar to a text query. | Multimodal | [JavaScript](https://github.com/weaviate-tutorials/DEMO-multimodal-text-to-image-search) |
 | Text to image and image to image search | Find images most similar to a text or image query. | Multimodal | [Python](https://github.com/weaviate-tutorials/DEMO-multimodal-search) |
 
 ## LLMs and search
@@ -64,6 +64,8 @@ Weaviate's [modular ecosystem](https://weaviate.io/developers/weaviate/modules) 
 | Named Entity Recognition (NER)| tbd |  [Python](https://github.com/weaviate/weaviate-examples/tree/main/example-with-NER-module) |
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

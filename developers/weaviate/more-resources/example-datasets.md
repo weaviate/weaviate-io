@@ -5,7 +5,6 @@ image: og/docs/more-resources.jpg
 # tags: ['example datasets']
 ---
 
-
 ## Multi-Modal Text/Image search using CLIP
 
 This example application spins up a Weaviate instance using the
@@ -56,10 +55,7 @@ Run Docker (optional: run with `-d` to run Docker in the background)
 docker compose up
 ```
 
-Weaviate will be available and preloaded with the News Articles demo dataset on:
-
-- `http://localhost:8080/`
-- [Via the Console](https://console.weaviate.io): connect to `https://demo.dataset.playground.semi.technology`.
+To work with the News Articles demo dataset, connect to  `http://localhost:8080/`.
 
 #### Text2vec-transformers (without GPU)
 
@@ -77,10 +73,7 @@ Run Docker (optional: run with `-d` to run Docker in the background)
 docker compose up
 ```
 
-Weaviate will be available and preloaded with the News Articles demo dataset on:
-
-- `http://localhost:8080/`
-- [Via the Console](https://console.weaviate.io): connect to `https://demo.dataset.playground.semi.technology`.
+To work with the News Articles demo dataset, connect to  `http://localhost:8080/`.
 
 #### Text2vec-transformers (with GPU enabled)
 
@@ -98,10 +91,7 @@ Run Docker (optional: run with `-d` to run Docker in the background)
 docker compose up
 ```
 
-Weaviate will be available and preloaded with the News Articles demo dataset on:
-
-- `http://localhost:8080/`
-- [Via the Console](https://console.weaviate.io): connect to `https://demo.dataset.playground.semi.technology`.
+To work with the News Articles demo dataset, connect to  `http://localhost:8080/`.
 
 ### Run manually
 
@@ -141,6 +131,8 @@ docker run -it --network=$WEAVIATE_NETWORK -e weaviate_host=$WEAVIATE_ORIGIN -e 
 {% endraw %}
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -13,8 +13,8 @@ description: "How hybrid search works, and under the hood of Weaviate's fusion a
 
 :::info Highlights
 - There are two fusion algorithms available in Weaviate: `rankedFusion` and `relativeScoreFusion`.
-- `rankedFusion` is the default algorithm.
-- `relativeScoreFusion` is the newer algorithm, and likely the better choice for most.
+- `rankedFusion` was the default algorithm until 1.24
+- `relativeScoreFusion` is the newer algorithm, introduced in 1.20 and made default in 1.24, and likely the better choice for most.
 - We would love to get your feedback on hybrid search. Please fill out [this short survey](https://docs.google.com/forms/d/e/1FAIpQLSfxekC2eh5Xkl0iJYEAoOkfhK4FA5AO-Od3KUz4srreOpq00g/viewform?usp=sf_link).
 :::
 
@@ -207,7 +207,7 @@ Hybrid searches can be ‘weighted’ to give more weight to the vector or keywo
 
 Each of the two (vector and keyword) searches returns a set of results with its own scores. These scores are then handed over to the selected fusion algorithm. A job of the fusion algorithm is to prepare the scores from each search to be compatible with each other, so that they can be weighted and added up and presented to the user.
 
-As of `1.20`, there are two algorithms available - one called `rankedFusion` (the current default as of `1.21`) and another called `relativeScoreFusion`.
+As of `1.20`, there are two algorithms available - one called `rankedFusion` (the current default until `1.24`) and another called `relativeScoreFusion`, the default until `1.24`.
 
 ### rankedFusion
 
@@ -328,7 +328,7 @@ Here are some additional notes on how we see these two:
 
 ### Recall performance / benchmarks
 
-In developing these two algorithms, we carried out some internal benchmarks testing recall on a standard (FIQA) dataset. According to our internal benchmarks, the `relativeScoreFusion` algorithm showed a ~6% improvement in recall over the default `rankedFusion` method.
+In developing these two algorithms, we carried out some internal benchmarks testing recall on a standard (FIQA) dataset. According to our internal benchmarks, the default `relativeScoreFusion` algorithm showed a ~6% improvement in recall over the `rankedFusion` method.
 
 This is quite a significant improvement. So in the absence of specific characteristics of your dataset or a need to retain backwards compatibility with previous searches, `relativeScoreFusion` might be a good choice.
 
@@ -340,7 +340,10 @@ AutoCut works well with `relativeScoreFusion`, which often results in natural cl
 
 ### Why the default choice?
 
-Given our earlier explanations, you might be wondering why `rankedFusion` is the default algorithm. In fact, currently we believe that `relativeScoreFusion` is more likely to be the better-performing algorithm.
+:::info Since `v1.24` the default method is Relative Score Fusion
+:::
+
+Given our earlier explanations, you might be wondering why `rankedFusion` was the default algorithm. In fact, currently we believe that `relativeScoreFusion` is more likely to be the better-performing algorithm.
 
 The answer is that `rankedFusion` is the older, reliable choice that has worked quite well. In the meantime, we have been reviewing how `relativeScoreFusion` is received by the community, and making small tweaks like adding [over-search](/developers/weaviate/api/graphql/search-operators#oversearch-with-relativescorefusion) to make it more robust.
 

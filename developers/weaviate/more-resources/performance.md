@@ -45,6 +45,8 @@ A tip is to avoid deeply nested filters in the queries. Additionally, try to mak
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

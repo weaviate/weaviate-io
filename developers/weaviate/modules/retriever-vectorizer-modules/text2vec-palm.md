@@ -5,10 +5,13 @@ image: og/docs/modules/text2vec-palm.jpg
 # tags: ['text2vec', 'text2vec-palm', 'palm', 'gcp']
 ---
 
+import ModuleDocDeprecation from '/developers/weaviate/modules/_components/module.doc.deprecation.md';
+
+<ModuleDocDeprecation provider="openai" />
 
 ## Overview
 
-The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+The `text2vec-palm` module enables Weaviate to obtain vectors using a Google API. You can use this with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
 
 :::info Releases and versions
 
@@ -23,7 +26,7 @@ Key notes:
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
     - Please check the vendor pricing (e.g. check Google Vertex AI pricing), especially before vectorizing large amounts of data.
-- This module is available on Weaviate Cloud Services (WCS).
+- This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - Model names differ between Vertex AI and AI Studio.
     - The default model for Vertex AI is `textembedding-gecko@001`.
@@ -79,7 +82,7 @@ In the Weaviate [class configuration](#class-configuration), set the `apiEndpoin
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -281,6 +284,8 @@ import CodeNearText from '/_includes/code/graphql.filters.nearText.palm.mdx';
 <CodeNearText />
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

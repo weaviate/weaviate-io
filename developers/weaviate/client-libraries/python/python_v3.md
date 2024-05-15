@@ -5,7 +5,6 @@ image: og/docs/client-libraries.jpg
 # tags: ['python', 'client library']
 ---
 
-
 :::note Python client version
 The current Python client version is `v||site.python_client_version||`
 :::
@@ -892,6 +891,8 @@ are hosted here:
 - [Read the Docs](https://weaviate-python-client.readthedocs.io/en/stable/changelog.html)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

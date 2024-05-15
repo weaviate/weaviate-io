@@ -287,6 +287,8 @@ import HowtoSchemaPropertyAdd from '/_includes/code/howto.schema.property.add.md
 - Read this article on [Weaviate and schema creation](https://hackernoon.com/what-is-weaviate-and-how-to-create-data-schemas-in-it-7hy3460)
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

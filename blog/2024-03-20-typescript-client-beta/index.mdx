@@ -1,18 +1,18 @@
 ---
-title: Announcing the Weaviate Typescript Client Beta
+title: Announcing the Weaviate TypeScript Client Beta
 slug: typescript-client-beta
 authors: [daniel, tommy]
 date: 2024-03-21
 tags: ['engineering','release']
 image: ./img/hero.png
-description: "A beta release of our new Typescript client is now available! Help us make it better by trying it out and providing your feedback."
+description: "A beta release of our new TypeScript client is now available! Help us make it better by trying it out and providing your feedback."
 ---
 
-![The pre-release Weaviate Typescript client](./img/hero.png)
+![The pre-release Weaviate TypeScript client](./img/hero.png)
 
 :::info TL;DR
 
-We've released a beta version of our new Typescript client. It's available for you to try out [on npm](https://www.npmjs.com/package/weaviate-client) under the new name: `weaviate-client`. We’d also love any feedback you can share on the client and your experience using it. Please open an issue on the [client GitHub repository](https://github.com/weaviate/typescript-client/tree/collections/main). Besides the package name change, we’ve made a lot of changes that mirror our client refresh in Python to bring the two closer to each other. We have better Typescript support, a collections-first approach, and performance improvements.
+We've released a beta version of our new TypeScript client. It's available for you to try out [on npm](https://www.npmjs.com/package/weaviate-client) under the new name: `weaviate-client`. We’d also love any feedback you can share on the client and your experience using it. Please open an issue on the [client GitHub repository](https://github.com/weaviate/typescript-client/tree/collections/main). Besides the package name change, we’ve made a lot of changes that mirror our client refresh in Python to bring the two closer to each other. We have better TypeScript support, a collections-first approach, and performance improvements.
 
 <br/>
 
@@ -22,9 +22,9 @@ You can try it here - [Experimental clients](/developers/weaviate/client-librari
 
 ## Introduction
 
-With first-hand developer experience in mind, we’re committed to making sure that the client libraries we provide are true to the optimum developer experience of each community. We got a lot of feedback on things we could do better in our Typescript client and we’re thrilled to share this beta version with you.
+With first-hand developer experience in mind, we’re committed to making sure that the client libraries we provide are true to the optimum developer experience of each community. We got a lot of feedback on things we could do better in our TypeScript client and we’re thrilled to share this beta version with you.
 
-We recently released an update to our [Python client](https://weaviate.io/blog/collections-python-client-preview). With Typescript being the second most popular language choice for developers we felt it only fair to bring the enhancements from the Python client to the Typescript ecosystem.
+We recently released an update to our [Python client](https://weaviate.io/blog/collections-python-client-preview). With TypeScript being the second most popular language choice for developers we felt it only fair to bring the enhancements from the Python client to the TypeScript ecosystem.
 
 We shared a few messages and have tested the client internally and we’re finally ready to have the wider community try out the new client and the API it offers. 
 
@@ -32,21 +32,21 @@ We shared a few messages and have tested the client internally and we’re final
 
 First things first, you probably want to install the new client beta. You can do that in your terminal with the following command.
 ```bash
-npm install weaviate-client --tag beta  # Or yarn add weaviate-client@beta
+npm install weaviate-client --tag next  # Or yarn add weaviate-client@beta
 ```
 
 Using the beta tag is the best way to ensure you're using the latest version of the client.
 
 :::info Your tsconfig.json file
-If you’re using Typescript, your tsconfig.json file must be specified with (at least) `"module": "Node16"` and `"moduleResolution": "Node16"`.
+If you’re using TypeScript, your tsconfig.json file must be specified with (at least) `"module": "Node16"` and `"moduleResolution": "Node16"`.
 :::
 
 You might be curious to know what a query looks like in the new client, let's answer that for you.
 
-A `nearText` query looks like this in the previous Typescript client.
+A `nearText` query looks like this in the previous TypeScript client.
 
 ```typescript
-// nearText in v2 Typescript Client
+// nearText in v2 TypeScript Client
 result = await client.graphql
   .get()
   .withClassName('JeopardyQuestion')
@@ -57,11 +57,11 @@ result = await client.graphql
 
 ```
 
-In the new Typescript client beta, the `nearText` you've grown to love becomes:
+In the new TypeScript client beta, the `nearText` you've grown to love becomes:
 
 
 ```typescript
-// nearText in v3 Typescript Client
+// nearText in v3 TypeScript Client
 const myCollection = client.collections.get('JeopardyQuestion');
 
 const result = await myCollection.query.nearText(['animals in movies'],{
@@ -73,7 +73,7 @@ const result = await myCollection.query.nearText(['animals in movies'],{
 
 
 
-:::info Try the new Typescript client
+:::info Try the new TypeScript client
 If you're keen to try it, please head over to our [Experimental clients](/developers/weaviate/client-libraries/typescript) page. There, you'll find the installation, usage, and feedback instructions.
 :::
 
@@ -100,7 +100,7 @@ Let's look at each of these in more detail.
 
 ### Better Type Support 
 
-As with previous clients, we're enabling both Javascript and Typescript Developers with this client. Written in Typescript you have the benefits of strong typing out of the box. However, we have method types available for Javascript developers as well. This makes for a better more intuitive experience in your IDE and beyond. This means you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a hurdle when you are working with less often-used options, trying new APIs, or when you are new to Weaviate.
+As with previous clients, we're enabling both JavaScript and TypeScript Developers with this client. Written in TypeScript you have the benefits of strong typing out of the box. However, we have method types available for JavaScript developers as well. This makes for a better more intuitive experience in your IDE and beyond. This means you do not have to remember the exact API parameter names, as the IDE will show you the available options. This can be a hurdle when you are working with less often-used options, trying new APIs, or when you are new to Weaviate.
 
 import codeCompletionImgUrl from './img/code-completion.gif';
 
@@ -172,7 +172,7 @@ This means that you will no longer need to specify the collection name in every 
 
 For example, take the following syntax for performing a simple request to retrieve a few objects from the database:
 
-:::note Classic Typescript syntax
+:::note Classic TypeScript syntax
 
 ```typescript
 const response = await client.graphql

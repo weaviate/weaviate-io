@@ -31,7 +31,7 @@ image: og/docs/more-resources.jpg
 <details>
   <summary>Answer</summary>
 
-> Yes, we do - check out [Weaviate Cloud Services](/pricing).
+> Yes, we do - check out [Weaviate Cloud](/pricing).
 
 </details>
 
@@ -556,6 +556,8 @@ docker compose up
 
 ## More questions?
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

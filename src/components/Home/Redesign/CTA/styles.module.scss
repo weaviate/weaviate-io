@@ -1,0 +1,167 @@
+.header {
+  margin: 110px auto;
+  text-align: center;
+
+  h2 {
+    color: #fff;
+    text-align: center;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 3.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 113.4%; /* 4.2525rem */
+    letter-spacing: -0.0375rem;
+    width: 60%;
+    margin: auto;
+
+    @media screen and (max-width: 485px) {
+      font-size: 2.5rem;
+      width: 100%;
+    }
+  }
+}
+.info {
+  flex: 1;
+  h3,
+  p {
+    margin-left: 15px;
+  }
+}
+
+.bgContain {
+  background-color: #130c49;
+  background-image: url('/img/site/cta-background-01.jpg');
+  background-size: cover;
+}
+.latestModule {
+  display: flex;
+  gap: 40px;
+  margin: 40px auto;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 1050px) {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 21px;
+    scroll-padding: 20%;
+    padding: 5px 10px 20px;
+  }
+}
+
+.resourceBox {
+  border-radius: 0.61975rem;
+  background: #262262;
+  width: 20rem;
+  height: 20.25rem;
+  flex-shrink: 0;
+  padding: 30px;
+
+  h3 {
+    color: #fff;
+  }
+
+  p {
+    color: #869ab8;
+    font-family: Inter;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.33%; /* 1.67163rem */
+  }
+}
+
+.resourceIcon {
+  background-image: url('/img/site/resource-icon-01.png');
+  width: 9.36756rem;
+  height: 9.66975rem;
+  flex-shrink: 0;
+}
+
+.bottomBox {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.smallText {
+  color: #130c49;
+  font-size: 0.65rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 157.33%;
+  margin: 0 0 3px;
+}
+
+.smallImage {
+  border-radius: 50%;
+  width: 13%;
+}
+
+.buttons {
+  margin-top: 51px;
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+  }
+
+  a {
+    width: 11.1875rem;
+    height: 3.125rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .buttonGradient {
+    border-radius: 0.375rem;
+    background: #130c49;
+    color: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.638rem */
+    width: 13.1875rem;
+  }
+
+  .buttonGradient:hover {
+    border-radius: 0.375rem;
+    background: #130c49;
+    color: #fff;
+  }
+
+  .buttonOutline {
+    color: #130c49;
+    border-radius: 0.375rem;
+    background: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 163.8%; /* 1.638rem */
+  }
+
+  .buttonOutline:hover {
+    border-radius: 0.375rem;
+    background: #fff;
+  }
+}

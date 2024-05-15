@@ -126,7 +126,7 @@ From your perspective, taking advantage of the new gRPC API involves making sure
 
 ### Step 1: Open Port for gRPC messages
 
-First of all, the appropriate port must be open to allow gRPC messages through. Weaviate still uses REST endpoints for various functions, and gRPC traffic is sent through a separate socket than its REST traffic. Typically, the server port is 50051, although it can vary. [Weaviate Cloud Services](https://console.weaviate.cloud), for example, uses port 443 with a different URL to provide two distinct sockets for gRPC and REST traffic.
+First of all, the appropriate port must be open to allow gRPC messages through. Weaviate still uses REST endpoints for various functions, and gRPC traffic is sent through a separate socket than its REST traffic. Typically, the server port is 50051, although it can vary. [Weaviate Cloud](https://console.weaviate.cloud), for example, uses port 443 with a different URL to provide two distinct sockets for gRPC and REST traffic.
 
 <details>
   <summary>For Docker users</summary>

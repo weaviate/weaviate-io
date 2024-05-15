@@ -175,6 +175,8 @@ a more marketing-suited way of saying the same things. Feel free to adopt.
 * as of 0.22.16 each index has a single shard. Support for a custom number of
   shards will be added before `1.0.0`
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

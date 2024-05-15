@@ -229,6 +229,8 @@ Please refer to the [client documentation](/developers/weaviate/client-libraries
 
 <BeaconsRequireLocalhost />
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
