@@ -29,7 +29,7 @@ export default function HomepageHeader() {
           loop="loop"
         >
           <source
-            src="/img/site/3d-weaviate-bubble-white-light-loop.mp4"
+            src="/img/site/3d-weaviate-bubble-white-light-loop-sml.mp4"
             poster="/img/site/3d-weaviate-bubble-white-light.jpg"
             type="video/mp4"
           />
