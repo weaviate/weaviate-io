@@ -1,5 +1,5 @@
 ---
-title: DSPy Integration
+title: DSPy and Weaviate Integration
 sidebar_position: 5
 image: og/docs/more-resources.jpg
 ---
@@ -42,6 +42,7 @@ The resources are broken into two categories:
 | **Building RAG with Command R+ from Cohere, DSPy, and Weaviate** | Overview of Command R+ with a quick RAG demo in DSPy. [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/dspy/llms/Command-R-Plus.ipynb) and [Video](https://youtu.be/6dgXALb_5Ag?si=nSX2AnmpbUau_2JF) |
 | **Advanced Optimizers in DSPy** | Dive into optimizing DSPy programs with various techniques. [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/dspy/5.Advanced-Optimizers.ipynb) |
 | **Llama 3 RAG Demo with DSPy Optimization, Ollama, and Weaviate** | Integrating Llama3 with DSPy and optimizing prompts with MIPRO. [Notebook](https://github.com/weaviate/recipes/blob/main/integrations/dspy/llms/Llama3.ipynb) and [Video](https://youtu.be/1h3_h8t3L14?si=G4d-aY5Ynpv8ckea)|
+| **BigQuery and Weaviate orchestrated with DSPy** | Build an end-to-end RAG pipeline that uses BigQuery and Weaviate using DSPy. [Notebook](https://github.com/weaviate/recipes/tree/main/integrations/bigquery)|
 
 
 
