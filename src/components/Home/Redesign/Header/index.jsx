@@ -21,6 +21,16 @@ export default function HomepageHeader() {
             poster="/img/site/3d-weaviate-bubble-white-light.jpg"
             type="video/mp4"
           />
+          <source
+            src="/img/site/3d-weaviate-bubble-white-light-loop-sml.mov"
+            poster="/img/site/3d-weaviate-bubble-white-light.jpg"
+            type="video/mov"
+          />
+          <source
+            src="/img/site/3d-weaviate-bubble-white-light-loop-sml.webm"
+            poster="/img/site/3d-weaviate-bubble-white-light.jpg"
+            type="video/webm"
+          />
         </video>
         <div className={styles.headerContent}>
           <div className="container">
