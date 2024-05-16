@@ -140,7 +140,7 @@ When you specify the elements of your batch import, be careful not to mislabel v
 
 ## Query
 
-In order to query a vector, Weaviate needs a vector representation of the query. If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding for the query. The example collection in this guide does not specify a vectorizer. Since Weaviate cannot vectorize the query, you have to supply a query vector.
+In order to query a vector, Weaviate needs a vector representation of the query. If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding for the query. However, the example collection in this guide does not specify a vectorizer. Since Weaviate cannot vectorize the query, you have to supply a query vector.
 
 For example, to search the database for questions related to biology, use the same vectorizer that you used to create the data embedding to vectorize "biology" (the query term). Since the sample vectors are created with the `ada-002` model, the query ("biology") is also vectorized using the `ada-002` model.
 
