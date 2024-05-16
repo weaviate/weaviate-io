@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Link from '@docusaurus/Link';
 
-export default function PricingEnterprise() {
+export default function PricingProfessional() {
   return (
     <div className={styles.box}>
       <div className={styles.title}>
-        <h3>Enterprise</h3>
+        <h3>Professional</h3>
       </div>
       <div className={styles.price}>
         <p>

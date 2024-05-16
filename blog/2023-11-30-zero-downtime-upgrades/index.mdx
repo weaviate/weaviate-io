@@ -36,9 +36,9 @@ In fact, configuring replication is actually easy and simple, and using it can l
 
 Just the simple act of enabling replication on a Weaviate cluster will provide huge benefits. Doing so might actually be simpler than you might imagine.
 
-### How to enable replication on Weaviate Cloud Services (WCS)
+### How to enable replication on Weaviate Cloud (WCD)
 
-Enabling replication on a Weaviate Cloud Services cluster is as simple as selecting the `Enable High Availability` button at cluster creation time. (Not available on sandboxes.)
+Enabling replication on a Weaviate Cloud cluster is as simple as selecting the `Enable High Availability` button at cluster creation time. (Not available on sandboxes.)
 
 
 This will enable a multi-node configuration in Weaviate and ensures that each class is configured with the appropriate replication factor.
@@ -276,7 +276,7 @@ But what replication factor would we recommend? That’s something of a subjecti
 
 The reason is that odd numbers are preferred for consistency so that consensus can always be reached. Higher factors are also possible, but this is more of a measure to scale query throughput, rather than lead to more availability. And for more cost-sensitive applications, even 2 would introduce high availability and robustness to the system.
 
-As we've mentioned before - using Weaviate Cloud Services is a convenient way to set up a cluster with replication enabled. Set the `Enable High Availability` button to `Yes` at cluster creation time, and it will spin up a multi-node cluster with replication enabled, including the appropriate replication factor for each class.
+As we've mentioned before - using Weaviate Cloud is a convenient way to set up a cluster with replication enabled. Set the `Enable High Availability` button to `Yes` at cluster creation time, and it will spin up a multi-node cluster with replication enabled, including the appropriate replication factor for each class.
 
 So there it is. We hope we’ve convinced you of the benefits of using replication, and how easy it is to use. For sure it might not be for everybody and every use case. But if you are using Weaviate at scale, in production, we believe enabling it will add significant value and encourage you to consider its use.
 

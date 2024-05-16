@@ -503,6 +503,11 @@ const siteRedirects = {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
             },
+  // Services Changes
+  {
+    to: "/services/enterprise-cloud",
+    from: "/services/enterprise-dedicated"
+},
 
 
     ],

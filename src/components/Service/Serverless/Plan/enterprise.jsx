@@ -6,7 +6,7 @@ export default function PricingEnterprise() {
   return (
     <div className={styles.box}>
       <div className={styles.title}>
-        <h3>Enterprise</h3>
+        <h3>Professional</h3>
       </div>
       <hr></hr>
 

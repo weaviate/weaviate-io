@@ -57,7 +57,7 @@ const DocHomePage = () => {
               <div className={styles.deployTab}>Production</div>
             </div>
             <div className={styles.deployContent}>
-              <div className={styles.deployHeader}>Weaviate Cloud Services</div>
+              <div className={styles.deployHeader}>Weaviate Cloud</div>
               <ul className={styles.deployList}>
                 <li>From evaluation (sandbox) to production</li>
                 <li>Serverless (infrastructure managed by Weaviate)</li>

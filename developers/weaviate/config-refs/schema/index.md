@@ -113,7 +113,6 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
   - `skip`
   - `vectorCacheMaxObjects`
   - `pq`
-    - `bitCompression`
     - `centroids`
     - `enabled`
     - `segments`
