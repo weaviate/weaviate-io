@@ -5,25 +5,27 @@ image: og/docs/tutorials.jpg
 # tags: ['getting started']
 ---
 
-## Overview
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-As a vector database, Weaviate make use of vector representations, also known as "embeddings", of data objects.
+Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. When you import a data object, you normally include a vector representation of that object as well. The vector representation is also called an "embedding."
 
-One way to generate these vectors is to use a ["vectorizer" module](../modules/retriever-vectorizer-modules/index.md), which will generate a vector at import and query time. This can be a convenient method if you are using a publicly available model and want to simplify your pipeline.
+This guide discusses importing data that already has vectors. An alternative approach is to use a [vectorizer](../modules/retriever-vectorizer-modules/index.md) model to generate vectors at import time. Weaviate has [integrations](/developers/weaviate/model-providers) that support most popular models.
 
-Alternatively, you can supply your own, "custom", vector embeddings at import time as well as for any vector-based queries. This is useful if you have a custom model, or if you want to use a model that is not available through a Weaviate module.
-
-This tutorial will guide you through the process of using Weaviate with your own vectors. We will:
+To import data with your own vectors, follow these steps:
 
 1. Create a Weaviate instance
 2. Connect to the Weaviate instance
-3. Import your data, specifying your own vectors
+3. Import data that specifies its own vectors
 4. Perform a vector search with Weaviate
 
+## Setup
 
-## Data
+This section introduces the example data and setup requirements.
 
-We'll use as an example a tiny dataset consisting of 10 questions from the popular quiz show "Jeopardy!". Each object has an associated vector embedding.
+### Example Data
+
+The example dataset is 10 questions from the popular quiz show "Jeopardy!". Each of the questions has an associated vector embedding.
 
 In this example, these vectors were obtained through an OpenAI API, using the <nobr>[`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings)</nobr>. But your vectors can come from any source, such as another inference service provider (e.g Cohere or Hugging Face) or your own fine-tuned model.
 
@@ -46,22 +48,43 @@ In this example, these vectors were obtained through an OpenAI API, using the <n
 </details>
 
 
-## Installation
+### Weaviate Instance
 
-Weaviate is open source and you can easily [run the binary on Linux](../installation/embedded.md) or [run a local instance from a Docker image](../installation/docker-compose.md) on any OS, or even easier - you can create a free sandbox instance with the [Weaviate Cloud](../../wcs/quickstart.mdx) (WC).
+Weaviate is open source. You can [run Weaviate](/developers/weaviate/installation) locally, in the cloud, or as a service. If you want to follow this guide without setting up an instance of your own, consider using a free, Sandbox instance in [Weaviate Cloud]/developers/wcs/quickstart).
 
-For this example, we will assume that you are using a WCS instance with authentication enabled.
+### Client library
 
+[Client libraries](/developers/weaviate/client-libraries) simplify working with Weaviate. Clients are available for multiple programming languages. This guide provides examples in Python, Typescript, and cURL.
 
-## Client library
+To install a client library, use the installer for the client language:
 
-For the best experience with Weaviate, we recommend installing a Weaviate client library for one of these languages:
+<Tabs groupId="languages">
+<TabItem value="py" label="Python Client v4">
+The v4 client requires Weaviate 1.23 or higher.<br/><br/>
 
-import CodeClientInstall from '/_includes/code/quickstart/clients.install.mdx';
+```bash
+pip install -U weaviate-client
+```
+</TabItem>
+<TabItem value="py3" label="Python Client v3">
 
-<CodeClientInstall />
+```bash
+pip install "weaviate-client==3.*"
+```
+</TabItem>
+<TabItem value="js" label="JS/TS Client v3">
 
-For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
+```bash
+npm install weaviate-client --tag next
+```
+</TabItem>
+<TabItem value="js2" label="JS/TS Client v2">
+
+```bash
+npm install weaviate-ts-client
+```
+</TabItem>
+</Tabs>
 
 ## Connect to Weaviate
 
@@ -102,6 +125,8 @@ Here is the set of [10 pre-vectorized Jeopardy questions](https://raw.githubuser
 The following will load the question objects with vectors, and import them to Weaviate.
 
 Note that we use a batch import process, so that each request to the inference API contains multiple objects. You should use batch imports unless you have a good reason not to, as it will significantly improve the speed of data ingestion.
+
+For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
 
 import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions+vectors.mdx'
 
