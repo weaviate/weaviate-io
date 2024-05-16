@@ -20,10 +20,9 @@ This guide discusses importing data that already has vectors. An alternative app
 
 To import data with your own vectors, follow these steps:
 
-1. Create a Weaviate instance
-2. Connect to the Weaviate instance
-3. Import data that specifies its own vectors
-4. Perform a vector search with Weaviate
+1. [Connect to a Weaviate instance.](#connect-to-weaviate)
+1. [Import data that specifies its own vectors.](#import-data-and-vectors)
+1. [Perform a vector search.](#query)
 
 ## Setup
 
@@ -195,7 +194,6 @@ This [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector)
 </TabItem>
 </Tabs>
 
-
 <details>
   <summary>Query response</summary>
 
@@ -211,13 +209,19 @@ import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.qu
 
 If you made it here - well done! 🥳
 
-You have:
-- Populated your Weaviate instance with your own vectors, and
-- Performed text similarity searches.
+This guide describes how to:
+
+1. [Connect to a Weaviate instance.](#connect-to-weaviate)
+1. [Import data that specifies its own vectors.](#import-data-and-vectors)
+1. [Perform a vector search.](#query)
+
+See the remaining sections of the guide for [related pages](#related-pages) and [feedback](#questions-and-feedback).
 
 ## Related pages
 
-- [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
+- [Batch import](/developers/weaviate/manage-data/import)
+- [Manage collections](developers/weaviate/manage-data/collections)
+- [Vector similarity search](/developers/weaviate/search/similarity)
 
 ## Questions and feedback
 
