@@ -95,7 +95,7 @@ To connect to your Weaviate instance, you need the following information:
 
 If you are using a Sandbox instance, the URL and API keys are listed in the [details panel](/developers/wcs/quickstart#explore-the-details-panel) for your instance.
 
-To connect to Weaviate, run the code for your language. You can re-use the resulting `client` object in the following steps.
+To connect to Weaviate, run the code for your language to create a client object. Re-use the `client` object in the later steps.
 
 import ConnectToWeaviate from '/_includes/code/quickstart/connect.noheader.mdx'
 
@@ -130,20 +130,21 @@ The example data is based on a set of ten questions from the "Jeopardy!" televis
 
 For large datasets, batch import is more efficient than importing individual objects. This [batch import](/developers/weaviate/tutorials/import#batch-import-process) code imports the question objects, including their vectors.
 
-For JavaScript/TypeScript, we'll also need the `node-fetch` library to download the dataset, so make sure to `npm install node-fetch`.
-
 import ImportQuestionsWithVectors from '/_includes/code/quickstart.import.questions+vectors.mdx'
 
 <ImportQuestionsWithVectors />
 
-:::tip vector != object property
-Do *not* specify object vectors as an object property. This will cause Weaviate to treat it as a regular property, rather than as a vector embedding.
+:::tip Vectors are not object properties
+When you specify the elements of your batch import, be careful not to mislabel vectors as properties. If the vector is listed in the properties section, Weaviate processes it as a regular property, rather than as a vector embedding.
 :::
 
 ## Query
 
-Let's say you want to find questions related to biology. We can do that by obtaining a vector embedding for "biology", and finding objects nearest to it.
-In this example, we've used the OpenAI API to generate it, with the same [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Then, in the following query, we pass that vector to the [`nearVector` operator](../api/graphql/search-operators.md#nearvector):
+In order to query a vector, Weaviate needs a vector representation of the query. If the collection definition specifies a vectorizer, Weaviate uses that vectorizer to generate a vector embedding for the query. The example collection in this guide does not specify a vectorizer. Since Weaviate cannot vectorize the query, you have to supply a query vector.
+
+For example, to search the database for questions related to biology, use the same vectorizer that you used to create the data embedding to vectorize "biology" (the query term). Since the sample vectors are created with the `ada-002` model, the query ("biology") is also vectorized using the `ada-002` model.
+
+This [`nearVector`](/developers/weaviate/search/similarity#search-with-a-vector) query use the vector embedding of "biology" to search the database:
 
 import NearVector from '/_includes/code/quickstart.query.nearVector.mdx';
 
