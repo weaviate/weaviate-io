@@ -16,7 +16,7 @@ import ByovAllShCode from '!!raw-loader!/_includes/code/quickstart.byov.all.sh';
 
 Weaviate is a vector database. [Vector databases](/blog/vector-library-vs-vector-database) store data objects and vectors that represent those objects. When you import a data object, you normally include a vector representation of that object as well. The vector representation is also called an "embedding."
 
-This guide discusses importing data that already has vectors. An alternative approach is to use a [vectorizer](../modules/retriever-vectorizer-modules/index.md) model to generate vectors at import time. Weaviate has [integrations](/developers/weaviate/model-providers) that support most popular models.
+Weaviate has [integrations](/developers/weaviate/model-providers) with [vectorizer](../modules/retriever-vectorizer-modules/index.md) models so you can create vector embeddings at import time. An alternative approach is to "bring your own vectors," and supply the vector embeddings when you upload your data. The embeddings could be custom vectors or pre-existing vectors from one of the popular model providers. This guide discusses importing data that already has vectors.
 
 To import data with your own vectors, follow these steps:
 
@@ -26,16 +26,16 @@ To import data with your own vectors, follow these steps:
 
 ## Setup
 
-This section introduces the example data and setup requirements.
+This section introduces setup requirements and the data that this example uses.
 
 ### Example Data
 
 The example dataset is 10 questions from the popular quiz show "Jeopardy!". Each of the questions has an associated vector embedding.
 
-In this example, these vectors were obtained through an OpenAI API, using the <nobr>[`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings)</nobr>. But your vectors can come from any source, such as another inference service provider (e.g Cohere or Hugging Face) or your own fine-tuned model.
+In this example, the vector embeddings were obtained from OpenAI API, by using the [`text-embedding-ada-002` model](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Your vectors can come from any source, perhaps from your own vectorizer model or a different service provider such as Cohere or Hugging Face.
 
 <details>
-  <summary>Take a look at the dataset</summary>
+  <summary>The sample data</summary>
 
   |    | Category   | Question                                                                                                          | Answer                  | Vector                                             |
   |---:|:-----------|:------------------------------------------------------------------------------------------------------------------|:------------------------| ---------------------------------------------------|
@@ -51,7 +51,6 @@ In this example, these vectors were obtained through an OpenAI API, using the <n
   |  9 | SCIENCE    | In 70-degree air, a plane traveling at about 1,130 feet per second breaks it                                      | Sound barrier           | [ -0.0013459147, 0.0018580769, ..., -0.033439033 ] |
 
 </details>
-
 
 ### Weaviate Instance
 
@@ -100,7 +99,7 @@ To connect to your Weaviate instance, you need the following information:
 
 If you are using a Sandbox instance, the URL and API keys are listed in the [details panel](/developers/wcs/quickstart#explore-the-details-panel) for your instance.
 
-To connect to Weaviate, run the code for your language to create a client object. Re-use the `client` object in the later steps.
+To connect to Weaviate, run the code for your language to create a client object. Re-use the `client` object in the later steps to connect to your instance and run the sample code.
 
 import ConnectToWeaviate from '/_includes/code/quickstart/connect.partial.mdx'
 
@@ -108,13 +107,13 @@ import ConnectToWeaviate from '/_includes/code/quickstart/connect.partial.mdx'
 
 ## Collection definition
 
-Weaviate stores [data](../concepts/data.md) in collections. Each data object in a collection has a set of properties and a vector representation. Before you import data, you should create a [collection definition](/developers/weaviate/config-refs/schema) to define the collection properties.
+Weaviate stores [data](../concepts/data.md) in collections. Each data object in a collection has a set of properties and a vector representation. Before you import data, you should create a [collection definition](/developers/weaviate/config-refs/schema) to define the data properties for the collection.
 
-The data property definitions are called a schema. Vectorizers are also defined at the collection level. Details, such as the specific model, or vectorization behavior, are defined at the property level.
+The data property definitions are called a schema. Although vectorizers are defined at the collection level, details, such as the specific model or behavior, are sometimes defined at the property level.
 
-This is a guide to using your own vectors. It assumes you already have vector embeddings for your data. The sample configuration code sets the vectorizer to `none` because the vector embeddings are included with the import file.
+This is a guide to using your own vectors. It assumes you already have vector embeddings for your data, so the sample configuration code sets the vectorizer to `none` on the collection level because the vector embeddings are included with the import file.
 
-For more on configurations, see [specify]vectorizer settings](/developers/weaviate/manage-data/collections#specify-vectorizer-settings).
+For more on configurations, see [vectorizer settings](/developers/weaviate/manage-data/collections#specify-vectorizer-settings).
 
 ### Define the collection
 
@@ -123,7 +122,7 @@ import CreateSchema from '/_includes/code/quickstart.byov.schema.mdx'
 <CreateSchema />
 
 ### Optional: Set a compatible vectorizer
-If Weaviate has an [integration](/developers/weaviate/model-providers) for the vectorizer that you use to generate you custom vectors, consider adding your vectorizer to the collection definition.  If you specify a vectorizer, Weaviate can generate new vectors when it needs them.<br/>
+If Weaviate has an [integration](/developers/weaviate/model-providers) for the vectorizer that generates your custom vectors, consider adding your vectorizer to the collection definition. If you specify a vectorizer, Weaviate can generate new vectors when it needs them.
 
 In this example, the vectors are generated by an OpenAI model, `ada-002`. Weaviate provides an OpenAI integration, `text2vec-openai`, that can access the `ada-002` model so you would specify `text2vec-openai` in the collection definition.
 
@@ -204,18 +203,6 @@ import BiologyQuestionsJson from '/_includes/code/quickstart/response.biology.qu
 <BiologyQuestionsJson />
 
 </details>
-
-## Recap
-
-If you made it here - well done! 🥳
-
-This guide describes how to:
-
-1. [Connect to a Weaviate instance.](#connect-to-weaviate)
-1. [Import data that specifies its own vectors.](#import-data-and-vectors)
-1. [Perform a vector search.](#query)
-
-See the remaining sections of the guide for [related pages](#related-pages) and [feedback](#questions-and-feedback).
 
 ## Related pages
 
