@@ -17,7 +17,7 @@ image: og/docs/modules/reranker-transformers.jpg
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
 The `reranker-transformers` module is not available on the WCS.
 
@@ -115,6 +115,8 @@ These pre-trained models are open-sourced on Hugging Face. The `cross-encoder/ms
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

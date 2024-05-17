@@ -4,7 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyClientCode from '!!raw-loader!/_includes/code/wcs.client.is_ready.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
   <FilteredTextBlock
     text={PyClientCode}
     startMarker="# WCSQuickStartInstantiation"
@@ -12,7 +12,7 @@ import PyClientCode from '!!raw-loader!/_includes/code/wcs.client.is_ready.py';
     language="py"
   />
 </TabItem>
-<TabItem value="pyv3" label="Python (v3)">
+<TabItem value="pyv3" label="Python Client v3">
 
 ```python
 import weaviate
@@ -29,7 +29,7 @@ print(client.is_ready())
 ```
 
 </TabItem>
-<TabItem value="js" label="JS/TS (Beta)">
+<TabItem value="js" label="JS/TS Client v3">
 
 ```js
 import weaviate, { WeaviateClient } from 'weaviate-client';
@@ -44,7 +44,7 @@ console.log(response);
 ```
 
 </TabItem>
-<TabItem value="js2" label="JS/TS">
+<TabItem value="js2" label="JS/TS Client v2">
 
 ```js
 import weaviate, { WeaviateClient, ObjectsBatcher, ApiKey } from 'weaviate-ts-client';

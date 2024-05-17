@@ -1,6 +1,6 @@
 ---
 title: Question Answering - transfomers
-sidebar_position: 20
+sidebar_position: 40
 image: og/docs/modules/qna-transformers.jpg
 # tags: ['qna', 'qna-transformers', 'transformers']
 ---
@@ -170,6 +170,8 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

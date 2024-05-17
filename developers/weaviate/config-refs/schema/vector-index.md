@@ -15,24 +15,27 @@ import MultiVectorSupport from '/_includes/multi-vector-support.mdx';
 
 ## Index configuration parameters
 
+:::caution Experimental feature
+Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
+:::
+
 Use these parameters to configure the index type and their properties. They can be set in the [collection configuration](../../manage-data/collections.mdx#set-vector-index-type).
 
 | Parameter | Type | Default | Details |
 | :-- | :-- | :-- | :-- |
-| `vectorIndexType` | string | `hnsw` | Optional. The index type - can be `hnsw` or `flat`. |
+| `vectorIndexType` | string | `hnsw` | Optional. The index type - can be `hnsw`, `flat` or `dynamic`. |
 | `vectorIndexConfig` | object | - | Optional. Set parameters that are specific to the vector index type. |
 
 <details>
   <summary>How to select the index type</summary>
 
-Generally, the `hnsw` index type is recommended for most use cases. The `flat` index type is recommended for use cases where the data the number of objects per index is low, such as in multi-tenancy cases.
+Generally, the `hnsw` index type is recommended for most use cases. The `flat` index type is recommended for use cases where the data the number of objects per index is low, such as in multi-tenancy cases. You can also opt for the `dynamic` index which will initially configure a `flat` index and once the object count exceeds a specified threshold it will automatically convert to an `hnsw` index.
 
 See [this section](../../concepts/vector-index.md#which-vector-index-is-right-for-me) for more information about the different index types and how to choose between them.
 
 </details>
 
 If faster import speeds are desired, [asynchronous indexing](#asynchronous-indexing) allows de-coupling of indexing from object creation.
-
 
 ## HNSW indexes
 
@@ -56,6 +59,16 @@ Some HNSW parameters are mutable, but others cannot be modified after you create
 | `skip` | boolean | `false` | No | When true, do not index the collection. <br/><br/> Weaviate decouples vector creation and vector storage. If you skip vector indexing, but a vectorizer is configured (or a vector is provided manually), Weaviate logs a warning each import. <br/><br/> To skip indexing and vector generation, set `"vectorizer": "none"` when you set `"skip": true`. <br/><br/> See [When to skip indexing](../../concepts/vector-index.md#when-to-skip-indexing). |
 | `vectorCacheMaxObjects`| integer | `1e12` | Yes | Maximum number of objects in the memory cache. By default, this limit is set to one trillion (`1e12`) objects when a new collection is created. For sizing recommendations, see [Vector cache considerations](../../concepts/vector-index.md#vector-cache-considerations). |
 | `pq` | object | -- | Yes | Enable and configure [product quantization (PQ)](/developers/weaviate/concepts/vector-index.md#hnsw-with-product-quantizationpq) compression. <br/><br/> PQ assumes some data has already been loaded. You should have 10,000 to 100,000 vectors per shard loaded before you enable PQ. <br/><br/> For PQ configuration details, see [PQ configuration parameters](#pq-configuration-parameters). |
+
+### Database parameters for HNSW
+
+Note that some database-level parameters are available to configure HNSW indexing behavior.
+
+- `PERSISTENCE_HNSW_MAX_LOG_SIZE` is a database-level parameter that sets the maximum size of the HNSW write-ahead-log. The default value is `500MiB`.
+
+Increase this value to improve efficiency of the compaction process, but be aware that this will increase the memory usage of the database. Conversely, decreasing this value will reduce memory usage but may slow down the compaction process.
+
+Preferably, the `PERSISTENCE_HNSW_MAX_LOG_SIZE` should set to a value close to the size of the HNSW graph.
 
 ### PQ configuration parameters
 
@@ -144,6 +157,26 @@ Configure `bq` with these parameters.
 | `rescoreLimit` | integer | -1 | The minimum number of candidates to fetch before rescoring. |
 | `cache` | boolean | `false` | Whether to use the vector cache. |
 
+## Dynamic indexes
+
+:::caution Experimental feature
+Dynamic indexing was added in `v1.25` and is currently an experimental feature. Please use with caution.
+:::
+
+Using the `dynamic` index will initially create a flat index and once the number of objects exceeds a certain threshold (by default 10,000 objects) it will automatically switch you over to an HNSW index.
+
+This is only a one-way switch that converts a flat index to a HNSW, the index does not support changing back to a flat index even if the object count goes below the threshold due to deletion.
+
+The goal of `dynamic` indexing is to shorten latencies during query time at the cost of a larger memory footprint.
+
+### Dynamic index parameters
+
+| Parameter | Type | Default | Details |
+| :-- | :-- | :-- | :-- |
+| `distance` | string | `cosine` | Distance metric. The metric that measures the distance between two arbitrary vectors. |
+| `hnsw` | object | default HNSW | [HNSW index configuration](#hnsw-index-parameters) to be used. |
+| `flat` | object | default Flat | [Flat index configuration](#flat-indexes) to be used. |
+| `threshold` | integer | 10000 | Threshold object count at which `flat` to `hnsw` conversion happens |
 
 ## Asynchronous indexing
 
@@ -245,6 +278,8 @@ The `vectorQueueLength` field will show the number of remaining objects to be in
 - [Concepts: Vector Indexing](../../concepts/vector-index.md)
 :::
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

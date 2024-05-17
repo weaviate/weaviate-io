@@ -118,7 +118,7 @@ If your use cases don't fall into any of the two scenarios mentioned, you might 
 
 To get some hands-on experience with the new TypeScript client, let's create a simple web application that allows us to perform hybrid search on a collection of quotes. If you have ever wanted to strengthen your point by quoting someone famous, this is the project for you!
 
-### Setting up WCS (Weaviate Cloud Services)
+### Setting up WCD (Weaviate Cloud)
 
 First, we need to set up our own Weaviate database. The easiest way to do this is to use WCS, the cloud-hosting solution from Weaviate. Head over to [the WCS homepage](https://console.weaviate.cloud) and create an account. Then, create a free sandbox.
 
@@ -128,7 +128,7 @@ The first step is to insert our quotes into the Weaviate database. For our datas
 
 The import only needs to be done once, so we'll put together a script in a separate file, e.g. `import.ts`.
 
-Install the Weaviate client by running `npm install weaviate-client --tag beta`, and then add the following code in your `import.ts` file.
+Install the Weaviate client by running `npm install weaviate-client --tag next`, and then add the following code in your `import.ts` file.
 
 ```typescript
 import weaviate from 'weaviate-client';
@@ -164,10 +164,10 @@ const quotesCollection = await client.collections.create({
     {
       name: 'author',
       dataType: 'text',
-      skipVectorisation: true,
+      skipVectorization: true,
     },
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
 });
 ```
 
@@ -197,7 +197,7 @@ For creating our QuoteFinder, we decided to go with Next.js and its Server Actio
 
 To get started, in a new folder, run `npx create-next-app@latest` to create a new project using Next.js. Choose any name you like, and answer "yes" to all other questions. This creates a good starting point from which we can build our app.
 
-Run `npm install weaviate-client --tag beta` in the root directory of your project to install the Weaviate client.
+Run `npm install weaviate-client --tag next` in the root directory of your project to install the Weaviate client.
 
 We first define a type for our Quote, as this makes our code less error-prone on the front and back ends of our system. Create a file named `types.ts` in the root folder and define your type:
 

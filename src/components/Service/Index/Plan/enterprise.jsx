@@ -5,14 +5,14 @@ import Link from '@docusaurus/Link';
 export default function PricingEnterprise() {
   return (
     <div className={styles.boxContainer}>
-      <Link className={styles.box} to="services/enterprise-dedicated">
+      <Link className={styles.box} to="services/enterprise-cloud">
         <div className={styles.title}>
-          <h3>Enterprise Dedicated</h3>
+          <h3>Enterprise Cloud</h3>
         </div>
         <div className={styles.price}>
           <p>
             We manage everything for you in a dedicated instance in Weaviate
-            Cloud Services (WCS).
+            Cloud (WCD).
           </p>
         </div>
         <hr></hr>
@@ -43,7 +43,7 @@ export default function PricingEnterprise() {
             Deploying large-scale production use cases without the complexities
             of self-management.
           </p>
-          <Link className={styles.boxLink} to="services/enterprise-dedicated">
+          <Link className={styles.boxLink} to="services/enterprise-cloud">
             Learn More
           </Link>
         </div>

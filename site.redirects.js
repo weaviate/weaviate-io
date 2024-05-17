@@ -42,7 +42,7 @@ const siteRedirects = {
          from: '/developers/wcs/guides/create-instance',
         },
         {
-         to: '/developers/wcs/authentication',
+         to: '/developers/wcs/connect',
          from: '/developers/wcs/guides/authentication',
         },
         // Client library redirects
@@ -503,6 +503,11 @@ const siteRedirects = {
                 to: "/case-studies/neople",
                 from: "/services/case-study-neople"
             },
+  // Services Changes
+  {
+    to: "/services/enterprise-cloud",
+    from: "/services/enterprise-dedicated"
+},
 
 
     ],

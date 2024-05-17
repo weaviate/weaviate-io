@@ -14,7 +14,7 @@ The `text2vec-transformers` module enables Weaviate to obtain vectors locally fr
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module is only compatible with models encapsulated in a Docker container.
 - [Pre-built images](#use-a-pre-built-image) are available with popular models.
@@ -37,8 +37,8 @@ Alternatively, consider one of the following options:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file
@@ -209,34 +209,34 @@ We have built images from publicly available models that in our opinion are well
 
 |Model Name|Image Name|
 |---|---|
-|`distilbert-base-uncased` ([Info](https://huggingface.co/distilbert-base-uncased))|`semitechnologies/transformers-inference:distilbert-base-uncased`|
-|`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2`|
-|`sentence-transformers/multi-qa-MiniLM-L6-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1`|
-|`sentence-transformers/multi-qa-mpnet-base-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-mpnet-base-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-mpnet-base-cos-v1`|
-|`sentence-transformers/all-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/all-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-mpnet-base-v2`|
-|`sentence-transformers/all-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L12-v2`|
-|`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2))|`semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2`|
-|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2`|
-|`sentence-transformers/multi-qa-distilbert-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-distilbert-cos-v1))|`semitechnologies/transformers-inference:sentence-transformers-multi-qa-distilbert-cos-v1`|
-|`sentence-transformers/gtr-t5-base` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-base))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
-|`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
-|`google/flan-t5-base` ([Info](https://huggingface.co/google/flan-t5-base))|`semitechnologies/transformers-inference:google-flan-t5-base`|
-|`google/flan-t5-large` ([Info](https://huggingface.co/google/flan-t5-large))|`semitechnologies/transformers-inference:google-flan-t5-large`|
-|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5`|
-|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5`|
+|`distilbert-base-uncased` ([Info](https://huggingface.co/distilbert-base-uncased))|`cr.weaviate.io/semitechnologies/transformers-inference:distilbert-base-uncased`|
+|`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-MiniLM-L12-v2`|
+|`sentence-transformers/multi-qa-MiniLM-L6-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1`|
+|`sentence-transformers/multi-qa-mpnet-base-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-mpnet-base-cos-v1))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-mpnet-base-cos-v1`|
+|`sentence-transformers/all-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/all-mpnet-base-v2))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-all-mpnet-base-v2`|
+|`sentence-transformers/all-MiniLM-L12-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L12-v2`|
+|`sentence-transformers/paraphrase-multilingual-mpnet-base-v2` ([Info](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-paraphrase-multilingual-mpnet-base-v2`|
+|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2`|
+|`sentence-transformers/multi-qa-distilbert-cos-v1` ([Info](https://huggingface.co/sentence-transformers/multi-qa-distilbert-cos-v1))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-multi-qa-distilbert-cos-v1`|
+|`sentence-transformers/gtr-t5-base` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-base))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-gtr-t5-base`|
+|`sentence-transformers/gtr-t5-large` ([Info](https://huggingface.co/sentence-transformers/gtr-t5-large))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-gtr-t5-large`|
+|`google/flan-t5-base` ([Info](https://huggingface.co/google/flan-t5-base))|`cr.weaviate.io/semitechnologies/transformers-inference:google-flan-t5-base`|
+|`google/flan-t5-large` ([Info](https://huggingface.co/google/flan-t5-large))|`cr.weaviate.io/semitechnologies/transformers-inference:google-flan-t5-large`|
+|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`cr.weaviate.io/semitechnologies/transformers-inference:baai-bge-small-en-v1.5`|
+|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`cr.weaviate.io/semitechnologies/transformers-inference:baai-bge-base-en-v1.5`|
 |DPR Models|
-|`facebook/dpr-ctx_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-ctx_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-ctx_encoder-single-nq-base`|
-|`facebook/dpr-question_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base))|`semitechnologies/transformers-inference:facebook-dpr-question_encoder-single-nq-base`|
-|`vblagoje/dpr-ctx_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-ctx_encoder-single-lfqa-wiki))|`semitechnologies/transformers-inference:vblagoje-dpr-ctx_encoder-single-lfqa-wiki`|
-|`vblagoje/dpr-question_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-question_encoder-single-lfqa-wiki))|`semitechnologies/transformers-inference:vblagoje-dpr-question_encoder-single-lfqa-wiki`|
+|`facebook/dpr-ctx_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-ctx_encoder-single-nq-base))|`cr.weaviate.io/semitechnologies/transformers-inference:facebook-dpr-ctx_encoder-single-nq-base`|
+|`facebook/dpr-question_encoder-single-nq-base` ([Info](https://huggingface.co/facebook/dpr-question_encoder-single-nq-base))|`cr.weaviate.io/semitechnologies/transformers-inference:facebook-dpr-question_encoder-single-nq-base`|
+|`vblagoje/dpr-ctx_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-ctx_encoder-single-lfqa-wiki))|`cr.weaviate.io/semitechnologies/transformers-inference:vblagoje-dpr-ctx_encoder-single-lfqa-wiki`|
+|`vblagoje/dpr-question_encoder-single-lfqa-wiki` ([Info](https://huggingface.co/vblagoje/dpr-question_encoder-single-lfqa-wiki))|`cr.weaviate.io/semitechnologies/transformers-inference:vblagoje-dpr-question_encoder-single-lfqa-wiki`|
 |Bar-Ilan University NLP Lab Models|
-|`biu-nlp/abstract-sim-sentence` ([Info](https://huggingface.co/biu-nlp/abstract-sim-sentence))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-sentence`|
-|`biu-nlp/abstract-sim-query` ([Info](https://huggingface.co/biu-nlp/abstract-sim-query))|`semitechnologies/transformers-inference:biu-nlp-abstract-sim-query`|
+|`biu-nlp/abstract-sim-sentence` ([Info](https://huggingface.co/biu-nlp/abstract-sim-sentence))|`cr.weaviate.io/semitechnologies/transformers-inference:biu-nlp-abstract-sim-sentence`|
+|`biu-nlp/abstract-sim-query` ([Info](https://huggingface.co/biu-nlp/abstract-sim-query))|`cr.weaviate.io/semitechnologies/transformers-inference:biu-nlp-abstract-sim-query`|
 |Snowflake models|
-|`Snowflake/snowflake-arctic-embed-xs` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-xs))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-xs`|
-|`Snowflake/snowflake-arctic-embed-s` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-s))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-s`|
-|`Snowflake/snowflake-arctic-embed-m` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-m))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-m`|
-|`Snowflake/snowflake-arctic-embed-l` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-l))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-l`|
+|`Snowflake/snowflake-arctic-embed-xs` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-xs))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-xs`|
+|`Snowflake/snowflake-arctic-embed-s` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-s))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-s`|
+|`Snowflake/snowflake-arctic-embed-m` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-m))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-m`|
+|`Snowflake/snowflake-arctic-embed-l` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-l))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-l`|
 
 </details>
 
@@ -251,14 +251,14 @@ Look for the `-onnx` suffix in the image name.
 
 |Model Name|Image Name|
 |---|---|
-|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2-onnx`|
-|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
-|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
-|`BAAI/bge-m3` ([Info](https://huggingface.co/BAAI/bge-m3))|`semitechnologies/transformers-inference:baai-bge-m3-onnx`|
-|`Snowflake/snowflake-arctic-embed-xs` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-xs))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-xs-onnx`|
-|`Snowflake/snowflake-arctic-embed-s` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-s))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-s-onnx`|
-|`Snowflake/snowflake-arctic-embed-m` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-m))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-m-onnx`|
-|`Snowflake/snowflake-arctic-embed-l` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-l))|`semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-l-onnx`|
+|`sentence-transformers/all-MiniLM-L6-v2` ([Info](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2))|`cr.weaviate.io/semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2-onnx`|
+|`BAAI/bge-small-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-small-en-v1.5))|`cr.weaviate.io/semitechnologies/transformers-inference:baai-bge-small-en-v1.5-onnx`|
+|`BAAI/bge-base-en-v1.5` ([Info](https://huggingface.co/BAAI/bge-base-en-v1.5))|`cr.weaviate.io/semitechnologies/transformers-inference:baai-bge-base-en-v1.5-onnx`|
+|`BAAI/bge-m3` ([Info](https://huggingface.co/BAAI/bge-m3))|`cr.weaviate.io/semitechnologies/transformers-inference:baai-bge-m3-onnx`|
+|`Snowflake/snowflake-arctic-embed-xs` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-xs))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-xs-onnx`|
+|`Snowflake/snowflake-arctic-embed-s` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-s))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-s-onnx`|
+|`Snowflake/snowflake-arctic-embed-m` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-m))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-m-onnx`|
+|`Snowflake/snowflake-arctic-embed-l` ([Info](https://huggingface.co/Snowflake/snowflake-arctic-embed-l))|`cr.weaviate.io/semitechnologies/transformers-inference:snowflake-snowflake-arctic-embed-l-onnx`|
 
 </details>
 
@@ -269,7 +269,7 @@ If your preferred model is missing, please [open an issue](https://github.com/we
 #### How to set the version
 
 You can explicitly set the version through a suffix.
-- Use `-1.0.0` to pin to a specific version. E.g. `semitechnologies/transformers-inference:distilbert-base-uncased-1.0.0` will always use the version with git tag `1.0.0` of the `distilbert-base-uncased` repository.
+- Use `-1.0.0` to pin to a specific version. E.g. `cr.weaviate.io/semitechnologies/transformers-inference:distilbert-base-uncased-1.0.0` will always use the version with git tag `1.0.0` of the `distilbert-base-uncased` repository.
 - You can explicitly set `-latest` to always use the latest version, however this is the default behavior.
 
 ### Build a model
@@ -366,6 +366,8 @@ It is your responsibility to evaluate whether the terms of its license(s), if an
 
 For details see, [t2v-transformers-model release notes](https://github.com/weaviate/t2v-transformers-models/releases/).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
