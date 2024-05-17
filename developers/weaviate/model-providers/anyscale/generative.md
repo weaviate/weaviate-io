@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_anyscale.jpg
 # tags: ['model providers', 'anyscale', 'generative', 'rag']
 ---
 
+# Anyscale Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# Anyscale Generative AI with Weaviate
 
 Weaviate's integration with Anyscale's Endpoints APIs allows you to access their models' capabilities directly from Weaviate.
 
