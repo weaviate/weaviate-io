@@ -43,10 +43,10 @@ To use the `multi2vec-palm` module, enable it in your [Docker Compose](/develope
 | `modelId` |  No | `"multimodalembedding@001"` | Current the only model available. |
 | `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`. |
 
-Specify the API key as a request header or an environment variable.
+Specify the API key as a request header.
 
-- Request header: `X-Palm-Api-Key`
-- Environment variable: `PALM_APIKEY`
+- `"X-Google-Vertex-Api-Key"`: For Vertex AI
+- `"X-Google-Studio-Api-Key"`: For AI Studio
 
 ## Configure `multi2vec-palm` for VertexAI
 
@@ -94,7 +94,6 @@ services:
       PERSISTENCE_DATA_PATH: "./data"
       ENABLE_MODULES: multi2vec-palm
       DEFAULT_VECTORIZER_MODULE: multi2vec-palm
-      PALM_APIKEY: sk-replace-with-your-api-key  # Or provide the key at query time.
       CLUSTER_HOSTNAME: 'node1'
 ...
 ```

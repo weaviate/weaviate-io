@@ -36,7 +36,7 @@ Prior to Weaviate `v1.22.7`, the `generative-google` module was called `generati
 
 Along with the name change:
 - The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
-- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
+ -->
 
 
 ## Configuring `generative-palm` for VertexAI or AI Studio
@@ -102,26 +102,11 @@ You need to input both a query and a prompt (for individual responses) or a task
 
 ### Provide the key to Weaviate
 
-To provide your Google API key, use the `"X-PaLM-Api-Key"` request header. If you use a Weaviate client, follow these examples:
+To provide your Google API key, use the `"X-Google-Vertex-Api-Key"` or `"X-Google-Studio-Api-Key"` request header as appropriate. If you use a Weaviate client, follow these examples:
 
 import ClientKey from '/_includes/code/core.client.palm.apikey.mdx';
 
 <ClientKey />
-
-Optionally (not recommended), you can provide the Google API key as an environment variable.
-
-<details>
-  <summary>How to provide the Google API key as an environment variable</summary>
-
-During the **configuration** of your Docker instance, by adding `PALM_APIKEY` under `environment` to your `Docker Compose` file, like this:
-
-  ```yaml
-  environment:
-    PALM_APIKEY: 'your-key-goes-here'  # Setting this parameter is optional; you can also provide the key at runtime.
-    ...
-  ```
-
-</details>
 
 ## Module configuration
 
@@ -167,7 +152,6 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'text2vec-palm'
       // highlight-next-line
       ENABLE_MODULES: 'text2vec-palm,generative-palm'
-      PALM_APIKEY: sk-yourKeyGoesHere  # This parameter is optional; you can also provide the key at runtime.
       CLUSTER_HOSTNAME: 'node1'
 ```
 
