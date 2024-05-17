@@ -78,10 +78,13 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 #### Provide the API key
 
-Provide the API key to Weaviate using one of the following methods:
+Provide the API key to Weaviate at runtime, as shown in the examples below.
 
-- Set the `PALM_APIKEY` environment variable that is available to Weaviate.
-- Provide the API key at runtime, as shown in the examples below.
+Note the separate headers that are available for [AI Studio](#ai-studio) and [Vertex AI](#vertex-ai) users.
+
+import ApiKeyNote from '../_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 <Tabs groupId="languages">
 

@@ -357,7 +357,7 @@ Depending on your choice, make sure to pass on the API key(s). You can do so by 
 "X-Cohere-Api-Key": "YOUR-COHERE-API-KEY",  // For Cohere
 "X-HuggingFace-Api-Key": "YOUR-HUGGINGFACE-API-KEY",  // For Hugging Face
 "X-OpenAI-Api-Key": "YOUR-OPENAI-API-KEY",  // For OpenAI
-"X-PaLM-Api-Key": "YOUR-PALM-API-KEY",  // For PaLM
+"X-Google-Studio-Api-Key": "YOUR-AI-STUDIO-API-KEY",  // For AI Studio
 ```
 
 Additionally, we also provide suggested `vectorizer` module configurations.

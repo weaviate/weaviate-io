@@ -40,12 +40,15 @@ Prior to Weaviate `v1.22.7`, the `text2vec-google` module was called `text2vec-p
 
 Along with the name change:
 - The API key header was renamed to `X-Google-Api-Key` from `X-Palm-Api-Key`.
-- The environment variable was renamed to `GOOGLE_APIKEY` from `PALM_APIKEY`. -->
-
+ -->
 
 ## Configuring `text2vec-palm` for VertexAI or AI Studio
 
 The module can be used with either Google Cloud Vertex AI or AI Studio. The configurations vary slightly for each.
+
+import ApiKeyNote from '../_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 ### Google Cloud Vertex AI
 
@@ -91,7 +94,6 @@ To use `text2vec-palm`, you must enable it in your Docker Compose file (`docker-
 
 - `ENABLE_MODULES` (Required): The modules to enable. Include `text2vec-palm` to enable the module.
 - `DEFAULT_VECTORIZER_MODULE` (Optional): The default vectorizer module. You can set this to `text2vec-palm` to make it the default for all classes.
-- `PALM_APIKEY` (Optional): Your Google API key. You can also provide the key at query time.
 
 ```yaml
 ---
@@ -110,7 +112,6 @@ services:
       # highlight-start
       ENABLE_MODULES: text2vec-palm
       DEFAULT_VECTORIZER_MODULE: text2vec-palm
-      PALM_APIKEY: sk-foobar  # Optional; you can also provide the key at query time.
       # highlight-end
       CLUSTER_HOSTNAME: 'node1'
 ...
@@ -212,7 +213,8 @@ You can set vectorizer behavior using the `moduleConfig` section under each clas
 ### API key
 
 You can supply the API key at query time by adding it to the HTTP header:
-- `"X-PaLM-Api-Key": "YOUR-PALM-API-KEY"`
+- `"X-Google-Vertex-Api-Key"`: `"YOUR-VERTEX-API-KEY"` (For Vertex AI)
+- `"X-Google-Studio-Api-Key"`: `"YOUR-AI-STUDIO-API-KEY"` (For AI Studio)
 
 ## Additional information
 
