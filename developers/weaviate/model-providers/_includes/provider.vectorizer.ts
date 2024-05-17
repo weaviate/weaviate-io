@@ -494,6 +494,54 @@ await client.collections.create({
 });
 // END FullVectorizerVoyageAI
 
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START BasicVectorizerTransformers
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecTransformers(),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END BasicVectorizerTransformers
+
+// Clean up
+await client.collections.delete('DemoCollection');
+
+// START FullVectorizerTransformers
+await client.collections.create({
+  name: 'DemoCollection',
+  // highlight-start
+  vectorizer: [
+    weaviate.configure.namedVectorizer(
+      'title_vector',
+      {
+        properties: ['title'],
+        vectorizerConfig: weaviate.configure.vectorizer.text2VecTransformers({
+          // // Further options
+          // poolingStrategy: 'masked_mean',
+          // inferenceUrl: '<custom_transformers_url>',          // For when using multiple inference containers
+          // passageInferenceUrl: `<custom_transformers_url>`,  // For when using DPR models
+          // queryInferenceUrl: `<custom_transformers_url>`,    // For when using DPR models
+        }),
+      },
+    ),
+  ],
+  // highlight-end
+  // Additional parameters not shown
+});
+// END FullVectorizerTransformers
+
 let srcObjects = [
   {"title": "The Shawshank Redemption", "description": ""},
   {"title": "The Godfather", "description": ""},
