@@ -34,7 +34,7 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the OpenAI generative AI integration (`generative-openai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
 This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 

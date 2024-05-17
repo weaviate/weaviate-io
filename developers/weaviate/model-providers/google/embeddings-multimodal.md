@@ -34,7 +34,7 @@ At [import time](#data-import), Weaviate generates multimodal object embeddings 
 Your Weaviate instance must be configured with the Google AI vectorizer integration (`multi2vec-palm`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
 This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 

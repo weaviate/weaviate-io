@@ -34,7 +34,7 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 Your Weaviate instance must be configured with the Azure OpenAI vectorizer integration (`text2vec-openai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
 This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 

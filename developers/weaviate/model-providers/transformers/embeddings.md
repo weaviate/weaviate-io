@@ -34,7 +34,7 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 Your Weaviate instance must be configured with the Hugging Face Transformers vectorizer integration (`text2vec-transformers`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
 This integration is not available for Weaviate Cloud (WCD) serverless managed instances, as it requires spinning up a container with the Hugging Face model.
 
