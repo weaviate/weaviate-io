@@ -15,7 +15,7 @@ The `text2vec-ollama` module enables Weaviate to obtain vectors using [Ollama](h
 
 Key notes:
 
-- This module is not available on Weaviate Cloud Services (WCS).
+- This module is not available on Weaviate Cloud (WCD).
 - This module assumes an Ollama endpoint is available to you (e.g. by running a local Ollama instance on your own device).
 - Your Weaviate instance must be able to access the Ollama endpoint. If you are running Weaviate via Docker, you can specify the [Ollama endpoint using `host.docker.internal`](#collection-configuration) to access the host machine from within the container.
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
@@ -24,8 +24,8 @@ Key notes:
 
 ## Weaviate instance configuration
 
-:::info Not applicable to WCS
-This module is not available on Weaviate Cloud Services.
+:::info Not applicable to WCD
+This module is not available on Weaviate Cloud.
 :::
 
 ### Docker Compose file
@@ -196,6 +196,6 @@ The `text2vec-ollama` module uses various models though Ollama. Please refer to 
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

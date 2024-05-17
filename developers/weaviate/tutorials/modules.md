@@ -300,6 +300,8 @@ Some such modules can enables the GraphQL API, for example as shown here.
 Modules are add-ons to Weaviate that can perform additional functions. You don't have to use them, but you can.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

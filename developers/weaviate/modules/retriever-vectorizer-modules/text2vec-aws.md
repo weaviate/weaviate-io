@@ -23,7 +23,7 @@ If you need to run your own embedding service, use `Sagemaker`. `Bedrock` uses A
 
 ## Considerations
 
-- This module is available on Weaviate Cloud Services (WCS).
+- This module is available on Weaviate Cloud (WCD).
 - `Bedrock` and `Sagemaker` are third party APIs. You must provide AWS API credentials.
 - `Bedrock` requires a model.
     - There is no default `Bedrock` model set for this module.
@@ -244,6 +244,8 @@ import GraphQLFiltersNearNextAWS from '/_includes/code/graphql.filters.nearText.
 <GraphQLFiltersNearNextAWS/>
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

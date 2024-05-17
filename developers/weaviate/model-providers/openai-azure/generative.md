@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_openai_azure.jpg
 # tags: ['model providers', 'azure', 'openai', 'generative', 'rag']
 ---
 
+# Azure OpenAI Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# Azure OpenAI Generative AI with Weaviate
 
 Weaviate's integration with Azure OpenAI's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the Azure OpenAI generative AI integration (`generative-openai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud Services (WCS) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 
 </details>
 
@@ -223,6 +223,6 @@ Once the integrations are configured at the collection, the data management and 
 - Azure OpenAI [API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
 - Azure OpenAI [models and availability](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

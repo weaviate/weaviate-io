@@ -61,6 +61,6 @@ Then, go to the relevant integration page to learn how to configure Weaviate wit
 - [Generative AI](./generative.md)
 - [Reranker](./reranker.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

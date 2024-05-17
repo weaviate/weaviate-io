@@ -16,6 +16,12 @@ client = weaviate.connect_to_wcs(
     },
 )
 
+# client = weaviate.connect_to_local(
+#     headers={
+#         "X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY"),
+#     }
+# )
+
 # ==============================
 # ===== Named Vector Hybrid Query =====
 # ==============================
@@ -165,7 +171,6 @@ assert response.objects[0].collection == "JeopardyQuestion"
 # HybridWithFusionTypePython
 # highlight-start
 from weaviate.classes.query import HybridFusion
-
 # highlight-end
 
 jeopardy = client.collections.get("JeopardyQuestion")
@@ -292,16 +297,14 @@ assert response.objects[0].properties["round"] == "Double Jeopardy!"
 # ===== Hybrid with vector similarity =====
 # =========================================
 
-# TODO Needs tests
-
 # START VectorSimilarityPython
-from weaviate.classes.query import HybridNear, Move, HybridFusion
+from weaviate.classes.query import HybridVector, Move, HybridFusion
 
 jeopardy = client.collections.get("JeopardyQuestion")
 response = jeopardy.query.hybrid(
     limit=5,
-    vector=HybridNear.text(
-        text="large animal",
+    vector=HybridVector.near_text(
+        query="large animal",
         move_away=Move(force=0.5, concepts=["mammal", "terrestrial"]),
     ),
     alpha=0.75,
@@ -309,11 +312,14 @@ response = jeopardy.query.hybrid(
 )
 # END VectorSimilarityPython
 
+assert len(response.objects) <= 5
+assert len(response.objects) > 0
+
 # =========================================
 # ===== Hybrid with groupBy =====
 # =========================================
 
-# TODO Needs tests
+from weaviate.classes.query import GroupBy
 
 # START HybridGroupByPy4
 # Grouping parameters
@@ -331,8 +337,14 @@ response = jeopardy.query.hybrid(
     group_by=group_by
 )
 
-for g in response.groups:
-    print(g)
+for grp_name, grp_content in response.groups.items():
+    print(grp_name, grp_content.objects)
 # END HybridGroupByPy4
-    
+
+assert len(response.groups) <= 2
+assert len(response.groups) > 0
+for grp_name, grp_content in response.groups.items():
+    assert grp_content.number_of_objects <= 3
+    assert grp_content.number_of_objects > 0
+
 client.close()

@@ -159,6 +159,8 @@ The module extends existing `text2vec-*` modules with an `autoCorrect` flag, whi
 ```
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

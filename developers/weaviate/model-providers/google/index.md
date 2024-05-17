@@ -50,6 +50,6 @@ Go to the relevant integration page to learn how to configure Weaviate with the 
 - [Embeddings](./embeddings.md)
 - [Generative AI](./generative.md)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

@@ -26,11 +26,11 @@ See [this page](../installation/kubernetes.md#authentication-and-authorization) 
 
 ## WCS authentication
 
-[Weaviate Cloud Services (WCS)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/authentication.mdx).
+[Weaviate Cloud (WCD)](https://console.weaviate.cloud/) instances are pre-configured for API key [authentication](/developers/wcs/connect.mdx).
 
 ## API key
 
-To configure Weaviate for API key-based authentication, add the following environment variables to your configuration file. 
+To configure Weaviate for API key-based authentication, add the following environment variables to your configuration file.
 
 An example `docker-compose.yml` file looks like this:
 
@@ -50,9 +50,9 @@ services:
       AUTHENTICATION_APIKEY_USERS: 'jane@doe.com,ian-smith'
 ```
 
-The example associates API keys and users. 
+The example associates API keys and users.
 
-| API key | User| 
+| API key | User|
 | :- | :- |
 | `jane-secret-key` | `jane@doe.com` |
 | `ian-secret-key` | `ian-smith` |
@@ -76,9 +76,9 @@ services:
       AUTHORIZATION_ADMINLIST_READONLY_USERS: 'ian-smith,roberta@doe.com'
 ```
 
-The example associates permissions with users. 
+The example associates permissions with users.
 
-| User| User type | Permission | 
+| User| User type | Permission |
 | :- | :- | :- |
 | `jane-secret-key` | Admin | Read, write |
 | `john@doe.com` | Admin | Read, write |
@@ -115,7 +115,7 @@ OIDC authentication involves three parties.
 1. An **identity provider (a.k.a token issuer)** (e.g. Okta, Microsoft, or WCS) that authenticates the user and issues tokens.
 1. A **resource** (in this case, Weaviate) who validates the tokens to rely on the identity provider's authentication.
 
-For example, a setup may involve a Weaviate instance as a resource, Weaviate Cloud Services (WCS) as an identity provider, and the Weaviate client acting on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
+For example, a setup may involve a Weaviate instance as a resource, Weaviate Cloud (WCD) as an identity provider, and the Weaviate client acting on behalf of the user. This document attempts to provide some perspective from each one to help you use Weaviate with authentication.
 
 <details>
   <summary>
@@ -143,7 +143,7 @@ This applies to anyone who is running their own Weaviate instance.
 
 Any "OpenID Connect" compatible token issuer implementing OpenID Connect Discovery can be used with Weaviate. Configuring the OIDC token issuer is outside the scope of this document, but here are a few options as a starting point:
 
-- For simple use-cases such as for a single user, you can use Weaviate Cloud Services (WCS) as the OIDC token issuer. To do so:
+- For simple use-cases such as for a single user, you can use Weaviate Cloud (WCD) as the OIDC token issuer. To do so:
     - Make sure you have a WCS account (you can [sign up here](https://console.weaviate.cloud/)).
     - In the Docker Compose file (e.g. `docker-compose.yml`), specify:
       - `https://auth.wcs.api.weaviate.io/auth/realms/SeMI` as the issuer (in `AUTHENTICATION_OIDC_ISSUER`),
@@ -231,7 +231,7 @@ OIDC authentication flows are outside the scope of this documentation, but here 
     - Validated using Okta and Azure as identity providers; GCP does not support client credentials grant flow (as of December 2022).
     - Weaviate's Python client directly supports this method.
     - Client credential flows usually do not come with a refresh token and the credentials are saved in the respective clients to acquire a new access token on expiration of the old one.
-1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud Services](/developers/wcs/authentication.mdx).
+1. Use the `resource owner password flow` for trusted applications like [Weaviate Cloud](/developers/wcs/connect.mdx).
 1. Use `hybrid flow` if Azure is your token issuer or if you would like to prevent exposing passwords.
 
 ### OIDC support for Weaviate clients
@@ -381,6 +381,8 @@ services:
 Send REST requests to Weaviate without any additional authentication headers or parameters.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

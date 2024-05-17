@@ -162,7 +162,6 @@ Here is an example schema structure:
         "distance": "cosine",
         "pq": {
           "enabled": false,
-          "bitCompression": false,
           "segments": 0,
           "centroids": 256,
           "encoder": {
@@ -216,6 +215,8 @@ Any missing information required for schema definition will be automatically inf
 - Vector searches can only be performed within a single vector space.
     - So, any objects you want to search together should be in the same class.
 - Any missing information required for schema definition will be automatically inferred by Weaviate based on default values and the imported data.
+
+## Questions and feedback
 
 import DocsFeedback from '/_includes/docs-feedback.mdx';
 

@@ -1,9 +1,5 @@
-The API key can be provided to Weaviate as an environment variable, or in the HTTP header with every request. Here, we will add it to the Weaviate client at instantiation as shown below. The client will then send the key as a part of the HTTP request header with every request.
+The API key can be provided to Weaviate as an environment variable, or in the HTTP header with every request. This example adds the key to the client. The client sends the key with every request as a part of the HTTP request header.
 
 import ConnectToWeaviateWithKey from '/_includes/code/wcs.authentication.api.key.with.openai.key.mdx'
 
 <ConnectToWeaviateWithKey />
-
-:::tip Running GraphQL OpenAI queries against local Docker instances
-You can explore data in a self-hosted Weaviate instance using [Weaviate's GraphQL interface](https://console.weaviate.io) by connecting to its endpoint, such as `localhost:8080`. If you get an error about a missing OpenAI key (e.g. when running a `nearText` query), you can supply the OpenAI API key by exporting it via the `OPENAI_APIKEY` environment variable before running `docker compose up`.
-:::

@@ -126,7 +126,7 @@ During the **configuration** of your Docker instance, by adding `PALM_APIKEY` un
 ## Module configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file (Weaviate open source only)
@@ -384,6 +384,8 @@ AI Studio:
 - `gemini-pro`
 - `gemini-pro-vision` (from Weaviate `v1.24.2`)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

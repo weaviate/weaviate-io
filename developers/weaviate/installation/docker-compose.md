@@ -350,6 +350,8 @@ Alternatively you can run docker compose entirely detached with `docker compose 
 
 - If you are new to Docker, see [Docker Introduction for Weaviate Users](/blog/docker-and-containers-with-weaviate).
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

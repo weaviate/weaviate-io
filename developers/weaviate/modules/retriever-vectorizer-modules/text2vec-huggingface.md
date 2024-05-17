@@ -18,7 +18,7 @@ Key notes:
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
     - Please check the inference [pricing page](https://huggingface.co/inference-api#pricing), especially before vectorizing large amounts of data.
-- This module is available on Weaviate Cloud Services (WCS).
+- This module is available on Weaviate Cloud (WCD).
 - Enabling this module will enable the [`nearText` search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
 - This module only supports [sentence similarity](https://huggingface.co/models?pipeline_tag=sentence-similarity) models.
 
@@ -26,7 +26,7 @@ Key notes:
 ## Weaviate instance configuration
 
 :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 :::
 
 ### Docker Compose file
@@ -217,6 +217,8 @@ The `text2vec-huggingface` module is compatible with various models, each with t
 It is your responsibility to evaluate whether the terms of its license(s), if any, are appropriate for your intended use.
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

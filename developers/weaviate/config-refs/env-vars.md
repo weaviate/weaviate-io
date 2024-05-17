@@ -40,6 +40,8 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | `ORIGIN` | Set the http(s) origin for Weaviate | `string - HTTP origin` | `https://my-weaviate-deployment.com` |
 | `PERSISTENCE_DATA_PATH` | Path to the Weaviate data store | `string - file path` | `/var/lib/weaviate` <br/> Starting in v1.24, defaults to `./data`|
 | `PERSISTENCE_LSM_ACCESS_STRATEGY` | Function used to access disk data in virtual memory | `string` | `mmap` (default) or `pread` |
+| `PERSISTENCE_LSM_MAX_SEGMENT_SIZE` | Maximum size of a segment in the [LSM store](../concepts/storage.md#object-and-inverted-index-store). Set this to limit disk usage spikes during compaction to ~2x the segment size. (Default: no limit) | `string` | `4GiB` (IEC units), `4GB` (SI units), `4000000000` (bytes) |
+| `PERSISTENCE_HNSW_MAX_LOG_SIZE` | Maximum size of the HNSW [write-ahead-log](../concepts/storage.md#hnsw-vector-index-storage). Increase this to improve log compaction efficiency, or decrease to reduce memory requirements. (Default: 500MiB) | `string` | `4GiB` (IEC units), `4GB` (SI units), `4000000000` (bytes) |
 | `QUERY_MAXIMUM_RESULTS` | Sets the maximum total number of objects that can be retrieved. | `string - number` | `10000` |
 | `QUERY_DEFAULTS_LIMIT` | Sets the default number of objects to be returned in a query. | `string - number` | `25` <br/> Starting in v1.24, defaults to `10`|
 | `REINDEX_SET_TO_ROARINGSET_AT_STARTUP` | Allow Weaviate to perform a one-off re-indexing to [use Roaring Bitmaps](../concepts/prefiltering.md#migration-to-roaring-bitmaps). <br/><br/>Available in versions `1.18` and higher. | `boolean` | `true` |
@@ -87,6 +89,8 @@ To configure Weaviate in a [Docker](../installation/docker-compose.md) or a [Kub
 | `RAFT_JOIN` | Manually set RAFT voter nodes. If set, RAFT_BOOTSTRAP_EXPECT needs to be adjusted manually to match the number of RAFT voters. | `string` | `weaviate-0,weaviate-1` |
 | `RAFT_METADATA_ONLY_VOTERS` | If set to `true`, voter nodes will only handle the schema, but not accept any data. | `boolean` | `false` |
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

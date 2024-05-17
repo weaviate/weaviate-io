@@ -24,9 +24,9 @@ import ModuleDocDeprecation from '/developers/weaviate/modules/_components/modul
 
 ## How to enable
 
-### Weaviate Cloud Services
+### Weaviate Cloud
 
-This module is enabled by default on the WCS.
+This module is enabled by default in WCD.
 
 ### Weaviate open source
 
@@ -145,6 +145,8 @@ You can supply parameters at query time by adding it to the HTTP header.
 
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

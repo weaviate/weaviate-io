@@ -4,7 +4,7 @@ import FilteredTextBlock from '@site/src/components/Documentation/FilteredTextBl
 import PyCode from '!!raw-loader!/_includes/code/starter-guides/schema.py';
 
 <Tabs groupId="languages">
-<TabItem value="py" label="Python (v4)">
+<TabItem value="py" label="Python Client v4">
 
 <FilteredTextBlock
   text={PyCode}
@@ -14,7 +14,7 @@ import PyCode from '!!raw-loader!/_includes/code/starter-guides/schema.py';
 />
 
 </TabItem>
-<TabItem value="py3" label="Python (v3)">
+<TabItem value="py3" label="Python Client v3">
 
 ```python
 import weaviate
@@ -77,7 +77,7 @@ client.schema.create_class(class_obj)
 
 </TabItem>
 
-<TabItem value="js" label="JS/TS v3">
+<TabItem value="js" label="JS/TS Client v3">
 
 ```js
 import weaviate from 'weaviate-client';
@@ -109,7 +109,7 @@ const classObj = const schema = {
       vectorizePropertyName: false,
     }
   ],
-  vectorizer: weaviate.configure.vectorizer.text2VecOpenAI(),
+  vectorizers: weaviate.configure.vectorizer.text2VecOpenAI("default"),
   generative: weaviate.configure.generative.openAI(),
   invertedIndex: weaviate.configure.invertedIndex({
     indexNullState: true,
@@ -128,7 +128,7 @@ const newCollection = await client.collections.create(schema)
 
 </TabItem>
 
-<TabItem value="js2" label="JS/TS v2">
+<TabItem value="js2" label="JS/TS Client v2">
 
 ```js
 import weaviate from 'weaviate-ts-client';

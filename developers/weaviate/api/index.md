@@ -33,6 +33,8 @@ This section includes references for the RESTful and GraphQL APIs. RESTful API e
 
 - [OpenAPI specs](/developers/weaviate/api/rest)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

@@ -49,7 +49,7 @@ For new collections, use AutoPQ. AutoPQ automates triggering of the PQ training 
 AutoPQ requires asynchronous indexing.
 
 - **Open-source Weaviate users**: To enable AutoPQ, set the environment variable `ASYNC_INDEXING=true` and restart your Weaviate instance.
-- [**Weaviate Cloud Services (WCS)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCS console and restart your Weaviate instance.
+- [**Weaviate Cloud (WCD)**](https://console.weaviate.cloud/) users: Enable async indexing through the WCS console and restart your Weaviate instance.
 
 
 ### 2. Configure PQ
@@ -59,7 +59,7 @@ Specify PQ settings for each collection for which it is to be enabled.
 For additional configuration options, see the [PQ parameters](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START CollectionWithAutoPQ"
@@ -68,7 +68,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START CollectionWithAutoPQ"
@@ -77,7 +77,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeAutoPQ}
        startMarker="// START CollectionWithAutoPQ"
@@ -86,7 +86,7 @@ For additional configuration options, see the [PQ parameters](./pq-compression.m
      />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START CollectionWithAutoPQ"
@@ -136,7 +136,7 @@ The next few sections work through these steps.
 [Create a collection](../manage-data/collections.mdx#create-a-collection) without specifying a quantizer.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START InitialSchema"
@@ -145,7 +145,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START InitialSchema"
@@ -154,7 +154,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="ts" label="JS/TS v3">
+  <TabItem value="ts" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START InitClassDef"
@@ -163,7 +163,7 @@ The next few sections work through these steps.
      />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START InitClassDef"
@@ -209,7 +209,7 @@ We recommend loading a representative sample such that the trained centroids are
   </div>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
       <FilteredTextBlock
         text={PyCode}
         startMarker="# START DownloadData"
@@ -218,7 +218,7 @@ We recommend loading a representative sample such that the trained centroids are
       />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
       <FilteredTextBlock
         text={PyCodeV3}
         startMarker="# START DownloadData"
@@ -264,7 +264,7 @@ We recommend loading a representative sample such that the trained centroids are
   </summary>
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START LoadData"
@@ -273,7 +273,7 @@ We recommend loading a representative sample such that the trained centroids are
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START LoadData"
@@ -328,7 +328,7 @@ import PQMakesCodebook from '/_includes/pq-compression/makes-a-codebook.mdx' ;
 To enable PQ, update your schema as shown below. For additional configuration options, see the [PQ parameter table](./pq-compression.md#pq-parameters).
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
      <FilteredTextBlock
        text={PyCode}
        startMarker="# START UpdateSchema"
@@ -337,7 +337,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
      <FilteredTextBlock
        text={PyCodeV3}
        startMarker="# START UpdateSchema"
@@ -346,7 +346,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
      <FilteredTextBlock
        text={TSCodeManualPQ}
        startMarker="// START UpdateSchema"
@@ -355,7 +355,7 @@ To enable PQ, update your schema as shown below. For additional configuration op
      />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
      <FilteredTextBlock
        text={TSCodeLegacy}
        startMarker="// START UpdateSchema"
@@ -433,7 +433,7 @@ docker inspect --format='{{.LogPath}}' <your-weaviate-container-id>
 To review the current `pq` configuration, you can retrieve it as shown below.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START GetSchema"
@@ -442,7 +442,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START GetSchema"
@@ -451,7 +451,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCodeManualPQ}
       startMarker="// START ViewConfig"
@@ -460,7 +460,7 @@ To review the current `pq` configuration, you can retrieve it as shown below.
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START GetSchema"
@@ -502,6 +502,8 @@ Similarly, compression must be enabled independently for each vector. The proced
 - [Concepts: Vector quantization](../concepts/vector-quantization.md)
 - [Tutorial: Schema](/developers/weaviate/starter-guides/schema)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

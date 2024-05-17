@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_cohere.jpg
 # tags: ['model providers', 'cohere', 'generative', 'rag']
 ---
 
+# Cohere Generative AI with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.generative.py';
 import TSCode from '!!raw-loader!../_includes/provider.generative.ts';
-
-# Cohere Generative AI with Weaviate
 
 Weaviate's integration with Cohere's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ More specifically, Weaviate will perform a search, retrieve the most relevant ob
 Your Weaviate instance must be configured with the Cohere generative AI integration (`generative-cohere`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud Services (WCS) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 
 </details>
 
@@ -203,8 +203,8 @@ For further details on model parameters, please consult the [Cohere API document
 
 ### Available models
 
-- `command-r-plus`
-- `command-r` (default)
+- `command-r-plus`  (Added in `v1.25.0`)
+- `command-r` (default)  (Added in `v1.25.0`)
 - `command-xlarge`
 - `command-xlarge-beta`
 - `command-xlarge-nightly`
@@ -233,6 +233,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - Cohere [Chat API documentation](https://docs.cohere.com/reference/chat)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

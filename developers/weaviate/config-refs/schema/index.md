@@ -113,7 +113,6 @@ import RaftRFChangeWarning from '/_includes/1-25-replication-factor.mdx';
   - `skip`
   - `vectorCacheMaxObjects`
   - `pq`
-    - `bitCompression`
     - `centroids`
     - `enabled`
     - `segments`
@@ -639,7 +638,9 @@ client.schema.create_class(collection_obj)
 - [References: REST API: Schema](/developers/weaviate/api/rest#tag/schema)
 - [Concepts: Data Structure](/developers/weaviate/concepts/data)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
 

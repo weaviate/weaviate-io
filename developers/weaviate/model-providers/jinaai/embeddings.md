@@ -5,6 +5,8 @@ image: og/docs/integrations/provider_integrations_jinaai.jpg
 # tags: ['model providers', 'jinaai', 'embeddings']
 ---
 
+# Jina AI Embeddings with Weaviate
+
 import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
@@ -16,8 +18,6 @@ import PyConnect from '!!raw-loader!../_includes/provider.connect.py';
 import TSConnect from '!!raw-loader!../_includes/provider.connect.ts';
 import PyCode from '!!raw-loader!../_includes/provider.vectorizer.py';
 import TSCode from '!!raw-loader!../_includes/provider.vectorizer.ts';
-
-# Jina AI Embeddings with Weaviate
 
 Weaviate's integration with Jina AI's APIs allows you to access their models' capabilities directly from Weaviate.
 
@@ -34,9 +34,9 @@ At [import time](#data-import), Weaviate generates text object embeddings and sa
 Your Weaviate instance must be configured with the Jina AI vectorizer integration (`text2vec-jinaai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud Services (WCS) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 
 </details>
 
@@ -176,7 +176,7 @@ The query below returns the `n` most similar objects from the database, set by `
 A hybrid search performs a vector search and a keyword (BM25) search, before [combining the results](../../search/hybrid.md#change-the-ranking-method) to return the best matching objects from the database.
 :::
 
-When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model returns the best scoring objects from the database.
+When you perform a [hybrid search](../../search/hybrid.md), Weaviate converts the text query into an embedding using the specified model and returns the best scoring objects from the database.
 
 The query below returns the `n` best scoring objects from the database, set by `limit`.
 
@@ -247,6 +247,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - Jina AI [Embeddings API documentation](https://jina.ai/embeddings/)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

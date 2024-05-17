@@ -34,9 +34,9 @@ This two-step process involves Weaviate first performing a search and then reran
 Your Weaviate instance must be configured with the Voyage AI reranker integration (`reranker-voyageai`) module.
 
 <details>
-  <summary>For WCS (serverless) users</summary>
+  <summary>For Weaviate Cloud (WCD) users</summary>
 
-This integration is enabled by default on Weaviate Cloud Services (WCS) serverless managed instances.
+This integration is enabled by default on Weaviate Cloud (WCD) serverless managed instances.
 
 </details>
 
@@ -162,6 +162,6 @@ Once the integrations are configured at the collection, the data management and 
 
 - Voyage AI [Reranker API documentation](https://docs.voyageai.com/docs/reranker)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+import DocsFeedback from '/_includes/docs-feedback.mdx';
 
-<DocsMoreResources />
+<DocsFeedback/>

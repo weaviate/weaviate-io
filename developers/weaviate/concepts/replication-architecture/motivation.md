@@ -88,6 +88,8 @@ Multi-DC replication also comes with the additional benefit that data is redunda
 Note, Regional Proximity depends on the Multi-Datacenter feature of replication, which you can [vote for here](https://github.com/weaviate/weaviate/issues/2436).
 :::
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

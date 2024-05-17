@@ -45,7 +45,7 @@ For details, see the modules reference page:
 Any vector-based search on collections with [named vectors](../config-refs/schema/multi-vector.md) configured must include a `target` vector name in the query. This allows Weaviate to find the correct vector to compare with the query vector.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={SimilarityPyCode}
       startMarker="# NamedVectorNearTextPython"
@@ -54,7 +54,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={SimilarityPyCodeV3}
       startMarker="# NamedVectorNearTextPython"
@@ -63,7 +63,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={SimilarityTSCode}
       startMarker="// NamedVectorNearText"
@@ -72,7 +72,7 @@ Any vector-based search on collections with [named vectors](../config-refs/schem
     />
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={SimilarityTSCodeLegacy}
       startMarker="// NamedVectorNearText"
@@ -97,7 +97,7 @@ Use the `Near Image` operator to execute image search.<br/>
 If your query image is stored in a file, you can use the client library to search by its filename.
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START ImageFileSearch"
@@ -106,7 +106,7 @@ If your query image is stored in a file, you can use the client library to searc
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START ImageFileSearch"
@@ -115,7 +115,7 @@ If your query image is stored in a file, you can use the client library to searc
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 
@@ -128,7 +128,7 @@ If your query image is stored in a file, you can use the client library to searc
 
   </TabItem>
 
-  <TabItem value="js2" label="JS/TS v2">
+  <TabItem value="js2" label="JS/TS Client v2">
 
   > Not available yet. Vote for the [feature request](https://github.com/weaviate/typescript-client/issues/65). DYI code below.
 
@@ -160,7 +160,7 @@ If your query image is stored in a file, you can use the client library to searc
 You can search by a base64 representation of an image:
 
 <Tabs groupId="languages">
-  <TabItem value="py" label="Python (v4)">
+  <TabItem value="py" label="Python Client v4">
     <FilteredTextBlock
       text={PyCode}
       startMarker="# START search with base64"
@@ -169,7 +169,7 @@ You can search by a base64 representation of an image:
     />
   </TabItem>
 
-  <TabItem value="py3" label="Python (v3)">
+  <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
       startMarker="# START search with base64"
@@ -178,7 +178,7 @@ You can search by a base64 representation of an image:
     />
   </TabItem>
 
-  <TabItem value="js" label="JS/TS v3">
+  <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START search with base64"
@@ -187,7 +187,7 @@ You can search by a base64 representation of an image:
     />
   </TabItem>
 
-   <TabItem value="js2" label="JS/TS v2">
+   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
       startMarker="// START search with base64"
@@ -223,7 +223,7 @@ You can create a base64 representation of an online image, and use it as input f
       language="py"
     />
   </TabItem>
-  <TabItem value="js" label="JS/TS v2">
+  <TabItem value="js" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCode}
       startMarker="// START helper base64 functions"
@@ -245,6 +245,8 @@ See the [`similarity search`](./similarity.md) page for more details.
 
 - [Connect to Weaviate](/developers/weaviate/starter-guides/connect.mdx)
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>

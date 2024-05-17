@@ -16,7 +16,7 @@ Key notes:
 
 - As it uses a third-party API, you will need an API key.
 - **Its usage may incur costs**.
-<!-- - This module is available on Weaviate Cloud Services (WCS). -->
+<!-- - This module is available on Weaviate Cloud (WCD). -->
 <!-- Note: Will be added to WCS soon. Un-comment the above and delete this line when it is enabled. -->
 - JinaAI requires a third-party API key. You can obtain one [here](https://jina.ai/embeddings/).
 - When you enable the text2vec-jinaai model, you can use the [nearText search operator](/developers/weaviate/api/graphql/search-operators.md#neartext).
@@ -28,7 +28,7 @@ Key notes:
 ## Weaviate instance configuration
 
 <!-- :::tip
-If you use Weaviate Cloud Services (WCS), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
+If you use Weaviate Cloud (WCD), this module is already enabled and pre-configured. You cannot edit the configuration in WCS.
 ::: -->
 
 <!-- Note: Will be added to WCS soon. Un-comment the above and delete this line when it is enabled. -->
@@ -193,6 +193,8 @@ The following models are available:
 - `jina-embeddings-v2-small-en`
 
 
-import DocsMoreResources from '/_includes/more-resources-docs.md';
+## Questions and feedback
 
-<DocsMoreResources />
+import DocsFeedback from '/_includes/docs-feedback.mdx';
+
+<DocsFeedback/>
