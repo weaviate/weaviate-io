@@ -20,9 +20,11 @@ For more information related to one of the documents below, please reach out to 
 - Customers
 
   - [Terms of Service](/service/weaviate-non-enterprise-agreement)
-  - [Weaviate Enterprise Agreement](/service/weaviate-enterprise-agreement)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
+  - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement)
+  - [Weaviate Service Level Agreement](/sla)
+  - [Weaviate Data Processing Agreement](/dpa)
+  - [Weaviate Data Subprocessors](/subprocessors)
   - [Weaviate Privacy Policy](/privacy)
-
 
 
