@@ -43,16 +43,15 @@ To use the `multi2vec-palm` module, enable it in your [Docker Compose](/develope
 | `modelId` |  No | `"multimodalembedding@001"` | Current the only model available. |
 | `dimensions` | No | `1408` | Must be one of: `128`, `256`, `512`, `1408`. |
 
-Specify the API key as a request header.
-
-- `"X-Google-Vertex-Api-Key"`: For Vertex AI
-- `"X-Google-Studio-Api-Key"`: For AI Studio
-
 ## Configure `multi2vec-palm` for VertexAI
 
 This module is only supported in [Google Vertex AI](https://cloud.google.com/vertex-ai). It is not supported in Google AI Studio.
 
 To enable the Vertex AI API on your Google Cloud project, follow [Google's instructions](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
+
+import ApiKeyNote from '../_includes/google-api-key-note.md';
+
+<ApiKeyNote />
 
 ### Vertex AI API key
 

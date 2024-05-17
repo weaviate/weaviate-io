@@ -46,6 +46,10 @@ Along with the name change:
 
 The module can be used with either Google Cloud Vertex AI or AI Studio. The configurations vary slightly for each.
 
+import ApiKeyNote from '../_includes/google-api-key-note.md';
+
+<ApiKeyNote />
+
 ### Google Cloud Vertex AI
 
 As of the time of writing (September 2023), you must manually enable the Vertex AI API on your Google Cloud project. You can do so by following the instructions [here](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
