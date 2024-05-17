@@ -103,7 +103,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 ### **Termination**
 
 1. **Term.**  
-   The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below. The initial term of each Order Form will begin on the Order Form Effective Date of such Order Form and will continue for the subscription term set forth in the Order Form.
+  The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below.  The initial term will begin on the Effective Date of the Order Form and will continue for the subscription term set forth in the Order Form. Except as set forth in such Order Form, the term of such Order Form will automatically renew for successive renewal terms on a month-to-month basis at the same price, or at Weaviate’s then-current list prices, unless either party provides the other party with written notice of non-renewal at least thirty (30) days prior to the end of the then-current term."
 
 2. **Termination.**  
    Each party may terminate this Agreement upon written notice to the other party if there are no Order Forms then in effect. Each party may also terminate this Agreement or the applicable Order Form upon written notice in the event (a) the other party commits any material breach of this Agreement or the applicable Order Form and fails to remedy such breach within thirty (30) days after written notice of such breach, or (b) subject to applicable law, upon the other party’s liquidation, commencement of dissolution proceedings, or assignment of substantially all its assets for the benefit of creditors, or if the other party becomes the subject of bankruptcy or similar proceeding that is not dismissed within sixty (60) days.
@@ -169,7 +169,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 10. **Order Form** means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
 
-11. **SLAs** mean the service levels offered by Weaviate as defined at [www.weaviate.io/slas](http://www.weaviate.io/slas).
+11. **SLAs** mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
 
 12. **Support Services** means the maintenance and support services offered by Weaviate as defined at [www.weaviate.com/support](http://www.weaviate.com/support).
 
@@ -182,32 +182,3 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 16. **Weaviate Services** means consulting and training services provided by Weaviate.
 
 ---
-
-IN WITNESS WHEREOF, the duly authorized representatives of each of the parties hereto have executed this Agreement as of the Effective Date.
-
-**Customer:**
-<br></br>
-
-By:........................<br></br>
-Name:........................<br></br>
-Title:........................<br></br>
-
-<br></br>
-
-**Weaviate LLC:**
-<br></br>
-
-By:........................ <br></br>
-Name:........................<br></br>
-Title:........................<br></br>
-
-
-<br></br>
-
-**Address for notice**
-<br></br>
-Weaviate LLC
-2810N Church Street PMB 17782 Wilmington DE 19802-4447
-<br></br>
-Attn: Legal legal@weaviate.io
-
