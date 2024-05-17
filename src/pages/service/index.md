@@ -19,7 +19,7 @@ For more information related to one of the documents below, please reach out to 
 <br></br><br></br>
 - Customers
 
-  - [Terms of Service](/service/weaviate-non-enterprise-agreement)
+  - [Terms of Service](/service/weaviate-terms-of-service)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
   - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement)
   - [Weaviate Service Level Agreement](/sla)

@@ -7,10 +7,8 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 <MetaSEO img="og/service/_title.jpg" />
 
-### **SUPPORT TERMS**
-<br></br>
 
-**Weaviate Support Offerings**
+### **Weaviate Support Offerings**
 
 Weaviate shall provide the following Support to Customer for the licensed products:
 <br></br>
@@ -23,6 +21,7 @@ Weaviate provides a ticketing system operated by the Weaviate technical team tha
 ### **Support Tickets**
 
 Incidents and questions should be reported through the user interface as documented on our website. Tickets should include:
+<br></br>
 
 - Description of the issue and steps to reproduce
 - Error message

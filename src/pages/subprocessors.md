@@ -8,9 +8,9 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 <MetaSEO img="og/service/_title.jpg" />
 
 
-### **Exhibit A - List of Subprocessors**
+### **List of Subprocessors**
 
-**Last Updated: February 2024**
+**Last Updated: May, 2024**
 
 The following subprocessors are authorized by the Data Controller to process Personal Data:
 
@@ -33,3 +33,6 @@ The following subprocessors are authorized by the Data Controller to process Per
   Purpose: Email and collaboration tools.  
   Location: Global  
   Website: [https://workspace.google.com/](https://workspace.google.com/)
+
+
+The Data Controller acknowledges and agrees that the list of subprocessors may be updated from time to time by the Data Processor in accordance with the terms of the Principal Agreement.
