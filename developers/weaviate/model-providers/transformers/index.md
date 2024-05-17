@@ -1,5 +1,5 @@
 ---
-title: Hugging Face Transformers (Locally hosted) + Weaviate
+title: Locally Hosted Transformers + Weaviate
 sidebar_position: 10
 image: og/docs/integrations/provider_integrations_transformers.jpg
 # tags: ['model providers', 'huggingface', 'transformers']
