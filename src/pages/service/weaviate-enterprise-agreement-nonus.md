@@ -55,7 +55,7 @@ The Weaviate Offering may include individual open-source software components, ea
 
    “**_Order Form_**” means an order form or other similar document which defines the specific Weaviate Offering, the permitted number of users, pricing, and the subscription term.
 
-   “**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/slas](http://www.weaviate.io/slas).
+   “**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
 
    “**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.com/supportterms](http://www.weaviate.com/supportterms).
 
@@ -125,7 +125,7 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 
 ### 8. **Termination**
 
-1. **Term**. The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below. The initial term of each Order Form will begin on the Order Form Effective Date of such Order Form and will continue for the subscription term set forth in the Order Form.
+1. **Term**. The term of this Agreement will commence on the Effective Date and continue until terminated as set forth below.  The initial term will begin on the Effective Date of the Order Form and will continue for the subscription term set forth in the Order Form. Except as set forth in such Order Form, the term of such Order Form will automatically renew for successive renewal terms on a month-to-month basis at the same price, or at Weaviate’s then-current list prices, unless either party provides the other party with written notice of non-renewal at least thirty (30) days prior to the end of the then-current term."
 
 2. **Termination**. Each party may terminate this Agreement upon written notice to the other party if there are no Order Forms then in effect. Each party may also terminate this Agreement or the applicable Order Form upon written notice in the event (a) the other party commits any material breach of this Agreement or the applicable Order Form and fails to remedy such breach within thirty (30) days after written notice of such breach or (b) subject to applicable law, upon the other party’s liquidation, commencement of dissolution proceedings or assignment of substantially all its assets for the benefit of creditors, or if the other party become the subject of bankruptcy or similar proceeding that is not dismissed within sixty (60) days.
 
@@ -156,32 +156,3 @@ UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, WILL EITHER PART
 10. **Government Terms**. Weaviate provides the Weaviate Offering, including related software and technology, for ultimate federal government end use solely in accordance with the terms of this Agreement. If Customer is an agency, department, or other entity of any government, the use, duplication, reproduction, release, modification, disclosure, or transfer of the Weaviate Offering or any related documentation of any kind, including technical data, software, and manuals, is restricted by the terms of this Agreement. All other use is prohibited and no rights than those provided in this Agreement are conferred. The Weaviate Offering was developed fully at private expense.
 
 ---
-
-IN WITNESS WHEREOF, the duly authorized representatives of each of the parties hereto have executed this Agreement as of the Effective Date.
-
-**Customer:**
-<br></br>
-
-By:........................<br></br>
-Name:........................<br></br>
-Title:........................<br></br>
-
-<br></br>
-
-**Weaviate LLC:**
-<br></br>
-
-By:........................ <br></br>
-Name:........................<br></br>
-Title:........................<br></br>
-
-
-<br></br>
-
-**Address for notice**
-<br></br>
-Weaviate B.V.
-Prinsengracht 769a, 1017JZ Amsterdam, the Netherlands
-Attn: Legal
-legal@weaviate.io
-

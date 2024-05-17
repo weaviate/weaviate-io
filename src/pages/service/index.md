@@ -21,7 +21,7 @@ For more information related to one of the documents below, please reach out to 
 
   - [General Terms of Service](/service/weaviate-terms-of-service)
   - [Weaviate Enterprise Agreement US](/service/weaviate-enterprise-agreement-us)
-  - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement)
+  - [Weaviate Enterprise Agreement non-US](/service/weaviate-enterprise-agreement-nonus)
   - [Weaviate Service Level Agreement](/sla)
   - [Weaviate Data Processing Agreement](/dpa)
   - [Weaviate Data Subprocessors](/subprocessors)
