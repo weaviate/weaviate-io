@@ -11,13 +11,14 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 **Last Updated: May, 2024**
 
-This Customer Agreement (this “**_Agreement_**”) is between Weaviate B.V., a private limited liability company under the laws of the Netherlands (“**_Weaviate_**”), and \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (“**_Customer_**”) a \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ company organized under the laws of \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ on behalf of itself and its Affiliates and is effective as of \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (the “**_Effective Date_**”).
+---
 
-### **Weaviate Offering**
+#### **Weaviate Offering**
 
-#### Provision of Weaviate Offering
+### Provision of Weaviate Offering
 
 Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Offering available to Customer pursuant to this Agreement, any applicable Exhibits to this Agreement, and the applicable Order Form.
+<br></br>
 
 #### Customer Responsibilities
 

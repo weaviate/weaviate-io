@@ -9,23 +9,26 @@ import { MetaSEO } from '/src/theme/MetaSEO';
 
 ### **CUSTOMER AGREEMENT**
 
-**Last Updated: May 2024**
+**Last Updated: May, 2024**
 
-This Customer Agreement (this “**Agreement**”) is between Weaviate LLC, a private limited liability company under the laws of the state of New York (“**Weaviate**”), and _________________ (“**Customer**”), a __________ company organized under the laws of ________ on behalf of itself and its Affiliates and is effective as of _________________ (the “**Effective Date**”).
 
 ---
 
 ### **Weaviate Offering**
 
+
 1. **Provision of Weaviate Offering.**  
    Subject to the terms and conditions of this Agreement, Weaviate will make the Weaviate Offering available to Customer pursuant to this Agreement, any applicable Exhibits to this Agreement, and the applicable Order Form.
+   <br></br>
 
 2. **Customer Responsibilities.**  
    - Customer acknowledges that Weaviate’s provision of the Weaviate Offering is dependent on Customer providing all reasonably required cooperation (including the prompt provision of access to Customer’s systems, personnel, cooperation, and materials as reasonably required and any other access as may be specified in the applicable Order Form), and Customer will provide all such cooperation in a diligent and timely manner.
    - Customer will (i) be responsible for all use of the Weaviate Offering under its account, (ii) use commercially reasonable efforts to prevent unauthorized access to or use of the Weaviate Offering, and notify Weaviate promptly of any such unauthorized access or use or any other known or suspected breach of security or misuse of the Weaviate Offering, and (iii) be responsible for obtaining and maintaining any equipment, software, and ancillary services needed to connect to, access, or otherwise use the Weaviate Offering, including as set forth in the Documentation. Customer will be solely responsible for its failure to maintain such equipment, software, and services, and Weaviate will have no liability for such failure (including under any service level agreement).
+  <br></br>
 
 3. **Open Source Software.**  
    The Weaviate Offering may include individual open source software components, each of which has its own copyright and its own applicable license conditions. These open-source software components are licensed under the terms of the applicable open-source license conditions and/or copyright notices.
+   <br></br>
 
 ---
 
