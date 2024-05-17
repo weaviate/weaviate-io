@@ -17,7 +17,7 @@ import ModuleDocDeprecation from '/developers/weaviate/modules/_components/modul
 * You need an API key for a Google generative model API to use this module.
 * **You may incur costs when you use this module**.
     * Please check the vendor pricing.
-* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/tutorials/ai-studio_quickstart).
+* You can use this module with [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai), or with [Google AI Studio](https://ai.google.dev/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=).
 
 :::info Releases and versions
 
@@ -65,11 +65,9 @@ import GCPTokenExpiryNotes from '/_includes/gcp.token.expiry.notes.mdx';
 
 ### AI Studio
 
-AI Studio may not be available in all regions. See [this page](https://developers.generativeai.google/available_regions) for the latest information.
-
 #### API key for AI Studio users
 
-You can obtain an API key by logging in to your AI Studio account and creating an API key. This is the key to pass on to Weaviate. This key does not have an expiration date.
+You can obtain an API key [from this page](https://aistudio.google.com/app/prompts/new_chat/?utm_source=weaviate&utm_medium=referral&utm_campaign=partnerships&utm_content=). This is the key to pass on to Weaviate. This key does not have an expiration date.
 
 #### `apiEndpoint` for AI Studio users
 
