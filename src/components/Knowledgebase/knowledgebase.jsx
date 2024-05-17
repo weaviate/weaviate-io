@@ -42,19 +42,42 @@ export default function KnowledgeBase({ searchQuery }) {
   useEffect(() => {
     const hash = window.location.hash;
     if (hash.startsWith('#card=')) {
-      const cardId = hash.substring(6); // Get the card ID from the hash
-      const matchedCard = allCards.find((card) => card.id === cardId);
+      const titleFromUrl = hash.substring(6); // Get the formatted title from the URL
+      const matchedCard = allCards.find(
+        (card) => formatTitleForUrl(card.title) === titleFromUrl
+      );
 
       if (matchedCard) {
         setActiveCard(matchedCard);
-        setShowMore((prev) => ({ ...prev, [matchedCard.category]: true })); // Ensure the card's category is expanded
+        setShowMore((prev) => ({ ...prev, [matchedCard.category]: true }));
       } else {
-        console.error('No matching card found for ID:', cardId);
+        console.error('No matching card found for title:', titleFromUrl);
         setActiveCard(null);
       }
     }
   }, [allCards]);
 
+  const updateUrlHash = (cardTitle) => {
+    // Replace spaces and forward slashes with hyphens, then lowercase the string
+    const formattedTitle = cardTitle.replace(/[\s/]+/g, '-').toLowerCase();
+
+    window.location.hash = `card=${encodeURIComponent(formattedTitle)}`;
+  };
+
+  const handleCardOpen = (card) => {
+    setActiveCard(card);
+    const cardTitleForUrl = formatTitleForUrl(card.title);
+    window.location.hash = `card=${cardTitleForUrl}`;
+    setShowMore((prev) => ({ ...prev, [card.category]: true }));
+  };
+
+  // Helper function to create URL-friendly names
+  function formatTitleForUrl(title) {
+    return title
+      .replace(/[^\w\s]/gi, '') // Remove all non-word characters except spaces
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .toLowerCase(); // Convert to lowercase to standardize
+  }
   const renderCards = (category) => {
     const categoryCards = filteredCards.filter(
       (card) => card.category === category
@@ -66,17 +89,6 @@ export default function KnowledgeBase({ searchQuery }) {
     if (categoryCards.length === 0) {
       return null;
     }
-
-    const updateUrlHash = (cardId) => {
-      window.location.hash = `card=${cardId}`;
-    };
-
-    const handleCardOpen = (card) => {
-      setActiveCard(card);
-      updateUrlHash(card.id);
-      // Automatically expand the category of the opened card
-      setShowMore((prev) => ({ ...prev, [card.category]: true }));
-    };
 
     const handleNavigation = (direction) => {
       if (!activeCard) return;
