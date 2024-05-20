@@ -71,6 +71,5 @@ func createClassWithoutAutoTenantAndToggleOn(ctx context.Context, client *weavia
 	if err != nil {
 		log.Fatalf("enable autotenant: %v", err)
 	}
+	// END update autoMT
 }
-
-// END update autoMT

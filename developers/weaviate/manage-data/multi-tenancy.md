@@ -106,7 +106,7 @@ import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
       text={GoCodeAuto}
       startMarker="// START enable autoMT"
       endMarker="// END enable autoMT"
-      language="go"
+      language="bash"
     />
   </TabItem>
   <TabItem value="cURL" label="cURL">
@@ -137,7 +137,7 @@ Use the client to update the auto-tenant creation setting. Auto-tenant is only a
       text={GoCodeAuto}
       startMarker="// Start update autoMT"
       endMarker="// END update autoMT"
-      language="go"
+      language="bash"
     />
   </TabItem>
 </Tabs>
