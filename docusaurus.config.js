@@ -268,7 +268,7 @@ const config = {
 
                         },
                         {
-                            label: 'Weaviate Enterprise Cloud',
+                            label: 'Enterprise Cloud',
                             href: '/services/enterprise-cloud',
 
                         },
@@ -502,10 +502,10 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Weaviate Cloud',
+                        title: 'Product',
                         items: [
                             {
-                                label: 'Vector Database',
+                                label: 'Weaviate Database',
                                 to: '/platform',
                             },
                             {

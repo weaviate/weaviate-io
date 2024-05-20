@@ -49,7 +49,7 @@ This module is only supported in [Google Vertex AI](https://cloud.google.com/ver
 
 To enable the Vertex AI API on your Google Cloud project, follow [Google's instructions](https://cloud.google.com/vertex-ai/docs/featurestore/setup).
 
-import ApiKeyNote from '../_includes/google-api-key-note.md';
+import ApiKeyNote from '/developers/weaviate/model-providers/_includes/google-api-key-note.md';
 
 <ApiKeyNote />
 

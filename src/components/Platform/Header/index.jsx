@@ -11,7 +11,7 @@ export default function PlatformHeader() {
           <h1>The AI-Native Vector Database</h1>
           <div className={styles.headerBox}>
             <p className="text-center">
-              Purpose-built platform for a new breed of software applications.
+              Purpose-built for a new breed of software applications.
             </p>
           </div>
           <div className={styles.buttons}>

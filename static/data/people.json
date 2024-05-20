@@ -294,6 +294,13 @@
     "team": "qa-sre"
   },
   {
+    "name": "Joseph Green",
+    "title": "Product Support Engineer",
+    "photo": "joseph-green.jpg",
+    "team": "qa-sre",
+    "linkedin": "joe-green-11381620a"
+  },
+  {
     "name": "Laura Stoye",
     "title": "Executive Assistant",
     "photo": "laura.jpg",
@@ -434,7 +441,7 @@
     "title": "Web Developer",
     "photo": "shan.jpg",
     "linkedin": "shan-blackwood-79251876",
-    "team": "design"
+    "team": "marketing"
   },
   {
     "name": "Shukri Hasan",
@@ -454,11 +461,11 @@
   },
   {
     "name": "Svitlana Smolianova",
-    "title": "Head of Design",
+    "title": "Creative Director",
     "photo": "svitlana.png",
     "linkedin": "svitlana-sm",
     "twitter": "switlana_c",
-    "team": "design"
+    "team": "marketing"
   },
   {
     "name": "Thomas Smith",

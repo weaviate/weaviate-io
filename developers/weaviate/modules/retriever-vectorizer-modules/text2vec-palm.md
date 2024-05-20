@@ -46,7 +46,7 @@ Along with the name change:
 
 The module can be used with either Google Cloud Vertex AI or AI Studio. The configurations vary slightly for each.
 
-import ApiKeyNote from '../_includes/google-api-key-note.md';
+import ApiKeyNote from '/developers/weaviate/model-providers/_includes/google-api-key-note.md';
 
 <ApiKeyNote />
 
