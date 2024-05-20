@@ -14,7 +14,8 @@ For descriptive notes on recent major releases, follow the links in the table of
 
 | Weaviate Version | Release Date | Python | TypeScript<br/>JavaScript | Go | Java |
 | :- | :- | :-: | :-: | :-: | :-: |
-| [1.25.0][c1.25.0] | 2024-05-10 | [4.6.0][p4.6.0] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] |
+| [1.25.1][c1.25.1] | 2024-05-17 | [4.6.0][p4.6.0] | [2.1.1][ts2.1.1] | [4.13.1][g4.13.0] | [4.6.0][j4.6.0] |
+| [1.25.0][c1.25.0] | 2024-05-10 | '' | '' | '' | '' |
 
 ### Major releases
 
@@ -58,6 +59,7 @@ For links to the Weaviate Core releases, expand this section.
 
   | Weaviate Version | Release Date |
   | :- | :- |
+  | [1.25.1][c1.25.1] | 2024-05-17 |
   | [1.25.0][c1.25.0] | 2024-05-10 |
   | [1.24.14][c1.24.14] | 2024-05-17 |
   | [1.24.13][c1.24.13] | 2024-05-15 |
@@ -475,6 +477,7 @@ For links to the Java Client releases, expand this section.
 
 
 [comment]: # ( core links )
+[c1.25.1]: https://github.com/weaviate/weaviate/releases/tag/v1.25.1
 [c1.25.0]: https://github.com/weaviate/weaviate/releases/tag/v1.25.0
 [c1.24.14]: https://github.com/weaviate/weaviate/releases/tag/v1.24.14
 [c1.24.13]: https://github.com/weaviate/weaviate/releases/tag/v1.24.13
