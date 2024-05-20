@@ -305,7 +305,7 @@ For links to the TypeScript Client releases, expand this section.
   | Client Version | Release Date |
   | :- | :- |
   | [2.2.0][ts2.2.0] | 2024-05-20 |
-  | [2.1.1][ts2.1.1] | 2024-03-08 |
+  | [2.1.1][ts2.1.1] | 2024-03-26 |
   | [2.1.0][ts2.1.0] | 2024-02-28 |
   | [2.0.0][ts2.0.0] | 2023-11-22 |
   | [1.6.0][ts1.6.0] | 2023-10-31 |
