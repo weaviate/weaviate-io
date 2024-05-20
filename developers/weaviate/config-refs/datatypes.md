@@ -113,7 +113,7 @@ Future plans include the ability to index nested properties, for example to allo
 
 ## DataType: `date`
 
-A `date` in Weaviate is an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp in the `date-time` format. The timestamp includes the time and an offset.
+A `date` in Weaviate is represented by an [RFC 3339](https://datatracker.ietf.org/doc/rfc3339/) timestamp in the `date-time` format. The timestamp includes the time and an offset.
 
 For example:
 
