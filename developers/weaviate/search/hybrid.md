@@ -13,6 +13,9 @@ import PyCodeV3 from '!!raw-loader!/_includes/code/howto/search.hybrid-v3.py';
 import TSCode from '!!raw-loader!/_includes/code/howto/search.hybrid.ts';
 import TSCodeLegacy from '!!raw-loader!/_includes/code/howto/search.hybrid-v2.ts';
 
+`Hybrid` search combines the results of a vector search and a keyword (BM25F) search.
+
+Weaviate uses a ranking method to merge the search results. The [ranking method](#change-the-ranking-method) and the [ranking weights](#balance-keyword-and-vector-search) are configurable.
 
 `Hybrid` search combines the results of a vector search and a keyword (BM25F) search by fusing the two result sets.
 
@@ -34,7 +37,6 @@ A hybrid on collections with named vectors configured must include a `target` ve
       language="python"
     />
   </TabItem>
-
   <TabItem value="py3" label="Python Client v3">
     <FilteredTextBlock
       text={PyCodeV3}
@@ -43,7 +45,6 @@ A hybrid on collections with named vectors configured must include a `target` ve
       language="python"
     />
   </TabItem>
-
   <TabItem value="js" label="JS/TS Client v3">
     <FilteredTextBlock
       text={TSCode}
@@ -52,7 +53,6 @@ A hybrid on collections with named vectors configured must include a `target` ve
       language="ts"
     />
   </TabItem>
-
   <TabItem value="js2" label="JS/TS Client v2">
     <FilteredTextBlock
       text={TSCodeLegacy}
@@ -61,9 +61,6 @@ A hybrid on collections with named vectors configured must include a `target` ve
       language="ts"
     />
   </TabItem>
-
-
-
   <TabItem value="graphql" label="GraphQL">
     <FilteredTextBlock
       text={PyCodeV3}
