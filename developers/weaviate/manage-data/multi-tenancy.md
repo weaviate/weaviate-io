@@ -86,11 +86,9 @@ Multi-tenancy is disabled by default. To enable multi-tenancy, set `multiTenancy
 
 ## Automatically add new tenants
 
-Weavite can create new tenants automatically. By default, Weaviate returns an error if you try to insert an object into a non-existent tenant. To create a new tenant instead, set `autoTenantCreation` to `true` in the collection definition.
+import AutoTenantBatch from '/_includes/auto-tenant-batch.mdx';
 
-Set `autoTenantCreation` when you create the collection, or update the setting as needed.
-
-Automatic tenant creation is very useful when you import a large number of objects. Be cautious if your data is likely to have small inconsistencies or typos. For example, the names `TenantOne`, `tenantOne`, and `TenntOne` will create three different tenants.
+<AutoTenantBatch/>
 
 ### Create a collection
 
@@ -123,7 +121,7 @@ Automatic tenant creation is very useful when you import a large number of objec
 
 ### Update a collection
 
-Use the client to update the auto-tenant creation setting.
+Use the client to update the auto-tenant creation setting. Auto-tenant is only available for batch inserts.
 
 <Tabs groupId="languages">
   <TabItem value="py4" label="Python Client v4">

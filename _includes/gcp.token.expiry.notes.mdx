@@ -39,7 +39,7 @@ def re_instantiate_weaviate() -> weaviate.Client:
     client = weaviate.Client(
       url = "https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
       additional_headers = {
-        "X-PaLM-Api-Key": token,
+        "X-Google-Vertex-Api-Key": token,
       }
     )
     return client
@@ -95,7 +95,7 @@ def re_instantiate_weaviate() -> weaviate.Client:
         cluster_url="https://WEAVIATE_INSTANCE_URL",  # Replace WEAVIATE_INSTANCE_URL with the URL
         auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WCS_DEMO_RO_KEY")),  # Replace with your Weaviate Cloud key
         headers={
-            "X-PaLM-Api-Key": token,
+            "X-Google-Vertex-Api-Key": token,
         },
     )
     return client
