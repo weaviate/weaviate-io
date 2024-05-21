@@ -57,7 +57,7 @@ The Weaviate Offering may include individual open-source software components, ea
 
    “**_SLAs_**” mean the service levels offered by Weaviate as defined at [www.weaviate.io/sla](http://www.weaviate.io/sla).
 
-   “**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.com/supportterms](http://www.weaviate.com/supportterms).
+   “**_Support Services_**” means the maintenance and support services offered by Weaviate as defined at [www.weaviate.io/weaviate-support-terms](http://www.weaviate.io/weaviate-support-terms).
 
    “**_System Data_**” means data collected by Weaviate regarding the Weaviate Offering that may be used to generate logs, statistics, or reports regarding the performance, availability, usage, integrity, or security of the Weaviate Product.
 
