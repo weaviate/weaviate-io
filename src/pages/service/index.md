@@ -25,6 +25,7 @@ For more information related to one of the documents below, please reach out to 
   - [Weaviate Service Level Agreement](/sla)
   - [Weaviate Data Processing Agreement](/dpa)
   - [Weaviate Data Subprocessors](/subprocessors)
+  - [Weaviate Support Terms](/weaviate-support-terms)
   - [Weaviate Privacy Policy](/privacy)
 
 
