@@ -30,7 +30,7 @@ const ModalComponent = ({
   const [showShareOptions, setShowShareOptions] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
 
-  const imageFullUrl = `${window.location.origin}/img/site/${details.cardImage}`;
+  const imageFullUrl = `${window.location.origin}/img/cards/${details.cardImage}`;
 
   const shareToTwitter = () => {
     const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
