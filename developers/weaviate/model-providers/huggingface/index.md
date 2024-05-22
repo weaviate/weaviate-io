@@ -9,7 +9,7 @@ import BetaPageNote from '../_includes/beta_pages.md';
 
 <BetaPageNote />
 
-Hugging Face offers a wide range of models for natural language processing and generation. Weaviate seamlessly integrates with Hugging Face's Inference API, allowing users to leverage Hugging Face Hub's models directly within the Weaviate database.
+Hugging Face offers a wide range of models for natural language processing. Weaviate seamlessly integrates with Hugging Face's Inference API, allowing users to leverage Hugging Face Hub's models directly within the Weaviate database.
 
 These integrations empower developers to build sophisticated AI-driven applications with ease.
 

@@ -505,6 +505,50 @@ client.collections.create(
 )
 # END FullVectorizerVoyageAI
 
+# clean up
+client.collections.delete("DemoCollection")
+
+# START BasicVectorizerTransformers
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_transformers(
+            name="title_vector",
+            source_properties=["title"]
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END BasicVectorizerTransformers
+
+# clean up
+client.collections.delete("DemoCollection")
+
+# START FullVectorizerTransformers
+from weaviate.classes.config import Configure
+
+client.collections.create(
+    "DemoCollection",
+    # highlight-start
+    vectorizer_config=[
+        Configure.NamedVectors.text2vec_transformers(
+            name="title_vector",
+            source_properties=["title"],
+            # Further options
+            pooling_strategy="masked_mean",
+            inference_url="<custom_transformers_url>",          # For when using multiple inference containers
+            passage_inference_url="<custom_transformers_url>",  # For when using DPR models
+            query_inference_url="<custom_transformers_url>",    # For when using DPR models
+        )
+    ],
+    # highlight-end
+    # Additional parameters not shown
+)
+# END FullVectorizerTransformers
 
 source_objects = [
     {"title": "The Shawshank Redemption", "description": ""},

@@ -12,7 +12,7 @@ export default function PricingEnterprise() {
         <div className={styles.price}>
           <p>
             We manage everything for you in a dedicated instance in Weaviate
-            Cloud (WCD).
+            Cloud.
           </p>
         </div>
         <hr></hr>
