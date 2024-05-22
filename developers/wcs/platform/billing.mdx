@@ -4,7 +4,42 @@ sidebar_position: 3
 # image: og/wcs/user_guides.jpg
 ---
 
-Weaviate Cloud (WCD) uses [Stripe](https://stripe.com/) for billing.
+Sandbox clusters are free. You do not need a billing account to create a Sandbox cluster.
+
+Serverless clusters are charged for resource usage. You have to have a billing account to create a serverless cluster. The monthly charge is determined by usage and your support level. To estimate costs for different combinations of usage levels and SLAs, see the [pricing calculator](https://weaviate.io/services/serverless).
+
+## Create an account
+
+Weaviate Cloud (WCD) uses [Stripe](https://stripe.com/) for billing. Accounts are billed
+
+## Usage charges
+
+1.  vectorDimensionsSum = objects x dimensions with compression disabled
+2. vectorSegmentsSum = objects x dimensions with compression enabled
+3. queryDimensionsTotal = (old style plan)
+
+Essentially the amount of objects multiplied by the number of dimensions stored/queried in our database. When a charge is created, we call our database to retrieve the max metric from each day over the period of the invoice (currently default 30 days). We then average those out and divide them by 1,000,000 to get the basePrice. From there, we:
+
+1. Add together the vectorDimensionsSum and vectorSegmentsSum (optionally the queryDimensionsTotal if they are on an old style plan)
+2. Multiply by the replicationCount (in the case of high availability setups) (default for HA is replicationCount = 3)
+3. Multiply by the pricing rate for the cluster’s chosen SLA plan:
+    1. New price plan: Standard_202309, Enterprise_202309, Business Critical_202309
+    2. Old price plan: Standard, Enterprise, Business Critical (currently 16 clusters - the plan is to consolidate and migrate these customers to the new price plan and remove the old price plan code logic.
+
+
+## Support levels
+
+Weaviate offers three levels of support, [Standard](/developers/wcs/platform/support-levels#standard-support), [Professional](/developers/wcs/platform/support-levels#professional-support), and [Business Critical](/developers/wcs/platform/support-levels#business-critical-support). Each support level (SLA) has a billing rate.
+
+The billing rate is a minimum charge per month. If the usage cost is less than the monthly minimum charge for the SLA, Weaviate bills the monthly minimum. If the usage cost exceeds the monthly minimum, Weaviate bills the minimum amount plus any additional charges.
+
+## High availability
+
+If you have a high availability cluster (HA), WCD multiples the minimum charge and the usage charges by three to account for the additional resources.
+
+## Billing cycles
+
+Billing runs on 30 day cycles. Charges are calculated for active clusters every 30 days. They are not charged according to calendar months.
 
 ## Exact and Mollie
 
