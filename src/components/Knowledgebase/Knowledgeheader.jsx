@@ -7,9 +7,9 @@ import KnowledgeSearch from './knowledgeSearch';
 
 export default function KnowledgeHeader({ searchQuery, onSearchChange }) {
   return (
-    <header>
+    <div className={styles.knowledgeHeader}>
       <div className="container">
-        <div className={styles.box}>
+        <div className={styles.boxGrid}>
           <h1>Weaviate Knowledge Cards</h1>
           <div className={styles.headerBox}>
             <p className="text-center">
@@ -22,6 +22,6 @@ export default function KnowledgeHeader({ searchQuery, onSearchChange }) {
       <div className={styles.searchContainer}>
         <KnowledgeSearch searchQuery={searchQuery} onSearch={onSearchChange} />
       </div>
-    </header>
+    </div>
   );
 }

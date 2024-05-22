@@ -176,7 +176,7 @@ export default function KnowledgeBase({ searchQuery }) {
   };
 
   return (
-    <div className={styles.teamBG}>
+    <div className={styles.knowledgeBG}>
       <div className="container">
         <div className={styles.knowledgebase}>
           <div className={styles.filterBox}>
