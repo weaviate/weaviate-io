@@ -14,9 +14,12 @@ Weaviate Cloud (WCD) uses [Stripe](https://stripe.com/) for billing. Accounts ar
 
 ## Usage charges
 
-1.  vectorDimensionsSum = objects x dimensions with compression disabled
-2. vectorSegmentsSum = objects x dimensions with compression enabled
-3. queryDimensionsTotal = (old style plan)
+Usage charges reflect the number and size of the objects in your collection. Weaviate polls each collection to determine a daily object count.
+
+- If the objects are uncompressed, multiplies the object count by the number of dimensions to get the `vectorDimensionsSum`.
+- If the objects are compressed, multiplies the object count by the number of vector segments to get the `vectorSegmentsSum`.
+- Older plans may also calculate a similar value, the `queryDimensionsTotal`.
+
 
 Essentially the amount of objects multiplied by the number of dimensions stored/queried in our database. When a charge is created, we call our database to retrieve the max metric from each day over the period of the invoice (currently default 30 days). We then average those out and divide them by 1,000,000 to get the basePrice. From there, we:
 
