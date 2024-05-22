@@ -162,6 +162,10 @@ const ModalComponent = ({
           }#card=${details.title.replace(/\s+/g, '-').toLowerCase()}`}
         />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={details.title} />
+        <meta name="twitter:description" content={details.longText} />
+        <meta name="twitter:image" content={imageFullUrl} />
       </Helmet>
       <div
         className={`${styles.modalContents} ${styles[typeClass] || ''}`}
