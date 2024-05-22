@@ -6,11 +6,20 @@ sidebar_position: 3
 
 Sandbox clusters are free. You do not need a billing account to create a Sandbox cluster.
 
-Serverless clusters are charged for resource usage. You have to have a billing account to create a serverless cluster. The monthly charge is determined by usage and your support level. To estimate costs for different combinations of usage levels and SLAs, see the [pricing calculator](https://weaviate.io/services/serverless).
+Serverless clusters are charged for resource usage. You have to have a billing account to create a serverless cluster. The monthly charge is determined by usage and your support level.
+
+To estimate costs for different combinations of usage levels and SLAs, see the [pricing calculator](https://weaviate.io/services/serverless).
 
 ## Create an account
 
-Weaviate Cloud (WCD) uses [Stripe](https://stripe.com/) for billing. Accounts are billed
+Weaviate Cloud (WCD) uses [Stripe](https://stripe.com/) for billing. To create an account follow these steps:
+
+1. On the Clusters tab, click the `Create cluster` button.
+1. Choose a Managed cluster.
+1. Click the `Add billing` button.<br/>
+1. Select your location on the next screen.
+1. Continue to the Stripe account creation page.<br/>
+1. Create your Stripe account.
 
 ## Usage charges
 
@@ -20,15 +29,7 @@ Usage charges reflect the number and size of the objects in your collection. Wea
 - If the objects are compressed, multiplies the object count by the number of vector segments to get the `vectorSegmentsSum`.
 - Older plans may also calculate a similar value, the `queryDimensionsTotal`.
 
-
-Essentially the amount of objects multiplied by the number of dimensions stored/queried in our database. When a charge is created, we call our database to retrieve the max metric from each day over the period of the invoice (currently default 30 days). We then average those out and divide them by 1,000,000 to get the basePrice. From there, we:
-
-1. Add together the vectorDimensionsSum and vectorSegmentsSum (optionally the queryDimensionsTotal if they are on an old style plan)
-2. Multiply by the replicationCount (in the case of high availability setups) (default for HA is replicationCount = 3)
-3. Multiply by the pricing rate for the cluster’s chosen SLA plan:
-    1. New price plan: Standard_202309, Enterprise_202309, Business Critical_202309
-    2. Old price plan: Standard, Enterprise, Business Critical (currently 16 clusters - the plan is to consolidate and migrate these customers to the new price plan and remove the old price plan code logic.
-
+The values are added together and normalized to get a base price. The based price is multiplied by the pricing rate for the cluster's SLA tier. If the cluster has high availability, the rate is multiplied by three.
 
 ## Support levels
 
