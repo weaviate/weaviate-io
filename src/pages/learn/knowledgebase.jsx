@@ -14,8 +14,11 @@ export default function KnowledgeBasePage() {
   };
   return (
     <div className="custom-page noBG">
-      <Layout>
-        <MetaSEO />
+      <Layout
+        title="Weaviate Knowledge Cards"
+        description="Learn core concepts and terminology"
+      >
+        <MetaSEO img="og/content/knowledgecards.jpg" />
         <KnowledgeHeader
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}
