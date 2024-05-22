@@ -99,7 +99,7 @@ Learn more about how you can use the integration model [here](/developers/weavia
 
 Data imports often involve a vectorization step. You designate a third party vectorization service in your collection schema, and Weaviate sends objects to the service's API during data imports. In earlier versions, each object is sent as a single API call. This creates a bottleneck and leads to long import times.
 
-Some third part services offer more efficient, batch APIs. Starting in 1.25, you can configure Weaviate to [send batches of objects](developers/weaviate/manage-data/import#batch-vectorization) to vectorization services that offer batch APIs.
+Some third part services offer more efficient, batch APIs. Starting in 1.25, you can configure Weaviate to [send batches of objects](/developers/weaviate/manage-data/import#batch-vectorization) to vectorization services that offer batch APIs.
 
 Batch operations have two primary advantages:
 
